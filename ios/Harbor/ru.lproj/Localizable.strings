@@ -27,6 +27,7 @@
 "A-Z" = "А-Я";
 "AMC+" = "AMC+";
 "API key" = "API-ключ";
+"API token" = "API-токен";
 "Abajo a la derecha" = "Снизу справа";
 "Abajo a la izquierda" = "Снизу слева";
 "About" = "О программе";
@@ -54,6 +55,7 @@
 "Activado" = "Вкл.";
 "Activar addon" = "Enable addon";
 "Activar sonido" = "Включить звук";
+"Active" = "Активно";
 "Actualizar" = "Обновить";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Обновить источники";
@@ -126,6 +128,8 @@
 "All tags" = "Все теги";
 "All-Time Great Series" = "Великие сериалы всех времён";
 "All-Time Greats" = "Лучшее за всё время";
+"AllDebrid API key" = "API-ключ AllDebrid";
+"AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "AllDebrid объявил endpoint проверки кеша устаревшим, поэтому статус потоков может отображаться как неизвестный, пока вы не нажмёте «Воспроизвести».";
 "Allow cellular data" = "Allow cellular data";
 "Already added." = "Уже добавлен.";
 "Alternate" = "Альтернативный";
@@ -510,6 +514,8 @@
 "Dark" = "Тёмная";
 "Date" = "Дата";
 "De dónde viene tu video" = "Источники видео";
+"Debrid services" = "Debrid-сервисы";
+"Debrid-Link API key" = "API-ключ Debrid-Link";
 "Default" = "По умолчанию";
 "Default (gold accent)" = "По умолчанию (золотой акцент)";
 "Defining the 2010s" = "Знаковые 2010-е";
@@ -582,6 +588,7 @@
 "Día siguiente" = "Next day";
 "Dónde aparece" = "Где показывать";
 "Dónde se emite" = "Где смотреть";
+"EU-hosted, fast cache check. Same read-only usage as the others." = "Размещено в ЕС, быстрая проверка кеша. Такой же доступ только для чтения, как у остальных.";
 "Earth" = "Земля";
 "Easy on the eyes" = "Мягче для глаз";
 "Edición terminada" = "Готово";
@@ -657,6 +664,7 @@
 "Exit Picture in Picture" = "Выйти из картинки в картинке";
 "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Расширяет карточки постеров при навигации с клавиатуры или пульта по рядам постеров, используя предзагруженные широкие изображения.";
 "Expanding Cards" = "Расширяющиеся карточки";
+"Expired" = "Истёк";
 "Explicit" = "Ненормативная лексика";
 "Explorar" = "Каталог";
 "Explorar complementos" = "Обзор дополнений";
@@ -739,6 +747,7 @@
 "Get Started" = "Начать";
 "Get a free key at themoviedb.org" = "Получить бесплатный ключ на themoviedb.org";
 "Get an API key" = "Получить ключ API";
+"Get yours at" = "Получить можно на";
 "Golf" = "Гольф";
 "Grand Prize" = "Гран-при";
 "Gray" = "Gray";
@@ -1329,6 +1338,7 @@
 "Predeterminado (acento dorado)" = "По умолчанию (золотой акцент)";
 "Preguntar si reanudar o empezar de nuevo" = "Спрашивать: продолжить или начать сначала";
 "Premiered This Month" = "Премьеры этого месяца";
+"Premiumize API key" = "API-ключ Premiumize";
 "Press play on something. It'll show up here once you start watching." = "Запустите что-нибудь. Как только начнёте смотреть, оно появится здесь.";
 "Preview" = "Предпросмотр";
 "Previous" = "Предыдущее";
@@ -1391,6 +1401,8 @@
 "Reading help" = "Как пользоваться Manga и eBook";
 "Reading mode" = "Режим чтения";
 "Reading options" = "Reading options";
+"Real-Debrid API token" = "API-токен Real-Debrid";
+"Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Кэшированные потоки воспроизводятся напрямую. Ключи хранятся локально.";
 "Reality" = "Реалити";
 "Reanudar" = "Продолжить";
 "Reanudar al volver a la app" = "Resume when returning to the app";
@@ -1531,6 +1543,7 @@
 "Saltar créditos" = "Пропустить титры";
 "Saltar intro" = "Пропустить заставку";
 "Saltar resumen" = "Пропустить пересказ";
+"Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "Такой же доступ только для чтения, как у Real-Debrid. Также позволяет ставить некешированные источники в очередь из меню выбора источника воспроизведения.";
 "Saturación" = "Насыщенность";
 "Saturation" = "Насыщенность";
 "Save" = "Сохранить";
@@ -1901,6 +1914,7 @@
 "Top result" = "Лучший результат";
 "Top rising" = "Набирают популярность";
 "Top tracks" = "Top tracks";
+"TorBox API key" = "API-ключ TorBox";
 "Torrents" = "Торренты";
 "Track" = "Дорожка";
 "Tracking" = "Tracking";
@@ -1978,7 +1992,9 @@
 "Use the v3 key, not the read access token." = "Используйте ключ v3, а не токен доступа для чтения.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "Используется с непрозрачностью 55% / 25%.";
+"Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Используется для проверки кеша и снятия ограничений со ссылок. Harbor никогда ничего не добавляет в ваш аккаунт и не удаляет из него самостоятельно.";
 "Username" = "Имя пользователя";
+"Uses the directdl endpoint, which skips queueing for anything already cached." = "Использует endpoint directdl, который не ставит в очередь уже кешированные материалы.";
 "VOD sources" = "VOD sources";
 "Velocidad" = "Скорость";
 "Ver más" = "Показать ещё";
@@ -3224,6 +3240,7 @@
 "{n} not matched" = "Не сопоставлено: {n}";
 "{n} seeds" = "Сидов: {n}";
 "{n} semillas" = "Сидов: {n}";
+"{n}d left" = "осталось {n} дн.";
 "{requests} requests" = "{requests} запросов";
 "{shown} of {total}" = "{shown} из {total}";
 "{watched} de {total} vistos ({pct}%)." = "Просмотрено {watched} из {total} ({pct}%).";

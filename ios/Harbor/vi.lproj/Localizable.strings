@@ -25,6 +25,7 @@
 "A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "Khóa API";
+"API token" = "Token API";
 "Abajo a la derecha" = "Dưới cùng bên phải";
 "Abajo a la izquierda" = "Dưới cùng bên trái";
 "About" = "Giới thiệu";
@@ -52,6 +53,7 @@
 "Activado" = "Bật";
 "Activar addon" = "Enable addon";
 "Activar sonido" = "Bật tiếng";
+"Active" = "Đang hoạt động";
 "Actualizar" = "Làm mới";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Làm mới nguồn";
@@ -124,6 +126,8 @@
 "All tags" = "Tất cả thẻ";
 "All-Time Great Series" = "Phim bộ vĩ đại nhất mọi thời đại";
 "All-Time Greats" = "Những tác phẩm vĩ đại nhất mọi thời đại";
+"AllDebrid API key" = "Khóa API AllDebrid";
+"AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "AllDebrid đã ngừng dùng endpoint kiểm tra bộ nhớ đệm, nên luồng phát có thể hiển thị là không xác định cho đến khi bạn thực sự nhấn Phát.";
 "Allow cellular data" = "Allow cellular data";
 "Already added." = "Đã thêm rồi.";
 "Alternate" = "Thay thế";
@@ -506,6 +510,8 @@
 "Dark" = "Tối";
 "Date" = "Ngày";
 "De dónde viene tu video" = "Nguồn video";
+"Debrid services" = "Dịch vụ debrid";
+"Debrid-Link API key" = "Khóa API Debrid-Link";
 "Default" = "Mặc định";
 "Default (gold accent)" = "Mặc định (điểm nhấn màu vàng kim)";
 "Defining the 2010s" = "Dấu ấn thập niên 2010";
@@ -578,6 +584,7 @@
 "Día siguiente" = "Next day";
 "Dónde aparece" = "Vị trí hiển thị";
 "Dónde se emite" = "Xem ở đâu";
+"EU-hosted, fast cache check. Same read-only usage as the others." = "Được lưu trữ tại EU, kiểm tra bộ nhớ đệm nhanh. Quyền sử dụng chỉ đọc giống các dịch vụ khác.";
 "Earth" = "Trái Đất";
 "Easy on the eyes" = "Dịu mắt";
 "Edición terminada" = "Chỉnh sửa xong";
@@ -653,6 +660,7 @@
 "Exit Picture in Picture" = "Thoát chế độ Hình trong hình";
 "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Mở rộng thẻ áp phích khi điều hướng bằng bàn phím hoặc điều khiển từ xa qua các hàng áp phích, sử dụng ảnh ngang đã tải trước.";
 "Expanding Cards" = "Thẻ mở rộng";
+"Expired" = "Đã hết hạn";
 "Explicit" = "Nhạy cảm";
 "Explorar" = "Duyệt";
 "Explorar complementos" = "Duyệt tiện ích bổ sung";
@@ -734,6 +742,7 @@
 "Get Started" = "Bắt đầu";
 "Get a free key at themoviedb.org" = "Nhận khóa miễn phí tại themoviedb.org";
 "Get an API key" = "Lấy khóa API";
+"Get yours at" = "Lấy token của bạn tại";
 "Golf" = "Golf";
 "Grand Prize" = "Giải thưởng lớn";
 "Gray" = "Gray";
@@ -1318,6 +1327,7 @@
 "Predeterminado (acento dorado)" = "Mặc định (điểm nhấn màu vàng kim)";
 "Preguntar si reanudar o empezar de nuevo" = "Hỏi tiếp tục xem hay xem lại từ đầu";
 "Premiered This Month" = "Ra mắt trong tháng này";
+"Premiumize API key" = "Khóa API Premiumize";
 "Press play on something. It'll show up here once you start watching." = "Hãy nhấn phát trên một nội dung. Nội dung đó sẽ xuất hiện ở đây khi bạn bắt đầu xem.";
 "Preview" = "Xem trước";
 "Previous" = "Trước";
@@ -1380,6 +1390,8 @@
 "Reading help" = "Reading help";
 "Reading mode" = "Chế độ đọc";
 "Reading options" = "Reading options";
+"Real-Debrid API token" = "Token API Real-Debrid";
+"Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Luồng đã lưu đệm được phát trực tiếp. Các khóa chỉ được lưu cục bộ.";
 "Reality" = "Truyền hình thực tế";
 "Reanudar" = "Tiếp tục";
 "Reanudar al volver a la app" = "Resume when returning to the app";
@@ -1519,6 +1531,7 @@
 "Saltar créditos" = "Bỏ qua phần danh đề";
 "Saltar intro" = "Bỏ qua phần mở đầu";
 "Saltar resumen" = "Bỏ qua phần tóm tắt";
+"Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "Quyền sử dụng chỉ đọc giống Real-Debrid. Đồng thời cho phép bạn đưa nguồn chưa được lưu vào bộ nhớ đệm vào hàng đợi từ trình chọn phát.";
 "Saturación" = "Độ bão hòa";
 "Saturation" = "Độ bão hòa";
 "Save" = "Lưu";
@@ -1886,6 +1899,7 @@
 "Top result" = "Kết quả hàng đầu";
 "Top rising" = "Đang lên";
 "Top tracks" = "Top tracks";
+"TorBox API key" = "Khóa API TorBox";
 "Torrents" = "Torrent";
 "Track" = "Bản nhạc";
 "Tracking" = "Tracking";
@@ -1963,7 +1977,9 @@
 "Use the v3 key, not the read access token." = "Dùng khóa v3, không dùng mã truy cập đọc.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "Dùng ở độ trong suốt 55% / 25%.";
+"Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Dùng để kiểm tra bộ nhớ đệm và bỏ hạn chế liên kết. Harbor không bao giờ tự thêm hoặc xóa bất cứ thứ gì trong tài khoản của bạn.";
 "Username" = "Tên người dùng";
+"Uses the directdl endpoint, which skips queueing for anything already cached." = "Dùng endpoint directdl, bỏ qua việc xếp hàng đối với mọi nội dung đã có trong bộ nhớ đệm.";
 "VOD sources" = "VOD sources";
 "Velocidad" = "Tốc độ";
 "Ver más" = "Xem thêm";
@@ -3209,6 +3225,7 @@
 "{n} not matched" = "{n} mục chưa khớp";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
+"{n}d left" = "còn {n} ngày";
 "{requests} requests" = "{requests} yêu cầu";
 "{shown} of {total}" = "{shown} trên {total}";
 "{watched} de {total} vistos ({pct}%)." = "đã xem {watched}/{total} ({pct}%).";

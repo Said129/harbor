@@ -1,0 +1,204 @@
+{
+  "schema": 1,
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "program_sha256": "2be2bffda8261d1137573b56deaa6e11b48ef71755de81756de3d9086fc54a94",
+  "key": "owned-rd-key",
+  "hash": "aabbccddeeff00112233445566778899aabbccdd",
+  "account": {
+    "ok": true,
+    "data": {
+      "slug": "rd",
+      "username": "owned",
+      "email": "owned@example.invalid",
+      "premium": true,
+      "premiumUntil": 1893456000
+    }
+  },
+  "playable": {
+    "ok": true,
+    "data": {
+      "url": "https://cdn.owned.example/Owned.Show.S01E01.mkv",
+      "filename": "Owned.Show.S01E01.mkv",
+      "filesize": 1000
+    }
+  },
+  "unauthorized_code": "unauthorized",
+  "not_cached_code": "not-cached",
+  "scripts": {
+    "flow": {
+      "GET https://api.real-debrid.com/rest/1.0/user": [
+        {
+          "status": 200,
+          "body": {
+            "username": "owned",
+            "email": "owned@example.invalid",
+            "premium": 1,
+            "expiration": "2030-01-01T00:00:00.000Z"
+          }
+        }
+      ],
+      "POST https://api.real-debrid.com/rest/1.0/torrents/addMagnet": [
+        {
+          "status": 201,
+          "body": {
+            "id": "RD1"
+          }
+        }
+      ],
+      "GET https://api.real-debrid.com/rest/1.0/torrents/info/RD1": [
+        {
+          "status": 200,
+          "body": {
+            "id": "RD1",
+            "status": "waiting_files_selection",
+            "progress": 0,
+            "files": [
+              {
+                "id": 1,
+                "path": "/Owned.Show.S01E01.mkv",
+                "bytes": 1000,
+                "selected": 0
+              },
+              {
+                "id": 2,
+                "path": "/readme.nfo",
+                "bytes": 1,
+                "selected": 0
+              }
+            ],
+            "links": []
+          }
+        },
+        {
+          "status": 200,
+          "body": {
+            "id": "RD1",
+            "status": "downloaded",
+            "progress": 100,
+            "files": [
+              {
+                "id": 1,
+                "path": "/Owned.Show.S01E01.mkv",
+                "bytes": 1000,
+                "selected": 1
+              },
+              {
+                "id": 2,
+                "path": "/readme.nfo",
+                "bytes": 1,
+                "selected": 0
+              }
+            ],
+            "links": ["https://real-debrid.com/d/OWNED"]
+          }
+        }
+      ],
+      "POST https://api.real-debrid.com/rest/1.0/torrents/selectFiles/RD1": [
+        {
+          "status": 204,
+          "body": null
+        }
+      ],
+      "POST https://api.real-debrid.com/rest/1.0/unrestrict/link": [
+        {
+          "status": 200,
+          "body": {
+            "download": "https://cdn.owned.example/Owned.Show.S01E01.mkv",
+            "filename": "Owned.Show.S01E01.mkv",
+            "filesize": 1000
+          }
+        }
+      ]
+    },
+    "forbidden": {
+      "GET https://api.real-debrid.com/rest/1.0/user": [
+        {
+          "status": 401,
+          "body": {
+            "error": "bad_token"
+          }
+        }
+      ]
+    },
+    "uncached": {
+      "POST https://api.real-debrid.com/rest/1.0/torrents/addMagnet": [
+        {
+          "status": 201,
+          "body": {
+            "id": "RD2"
+          }
+        }
+      ],
+      "GET https://api.real-debrid.com/rest/1.0/torrents/info/RD2": [
+        {
+          "status": 200,
+          "body": {
+            "id": "RD2",
+            "status": "downloading",
+            "progress": 12,
+            "files": [],
+            "links": []
+          }
+        }
+      ],
+      "DELETE https://api.real-debrid.com/rest/1.0/torrents/delete/RD2": [
+        {
+          "status": 204,
+          "body": null
+        }
+      ]
+    }
+  },
+  "requests": [
+    {
+      "method": "GET",
+      "url": "https://api.real-debrid.com/rest/1.0/user",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "url": "https://api.real-debrid.com/rest/1.0/torrents/addMagnet",
+      "body": "magnet=magnet%3A%3Fxt%3Durn%3Abtih%3Aaabbccddeeff00112233445566778899aabbccdd"
+    },
+    {
+      "method": "GET",
+      "url": "https://api.real-debrid.com/rest/1.0/torrents/info/RD1",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "url": "https://api.real-debrid.com/rest/1.0/torrents/selectFiles/RD1",
+      "body": "files=1"
+    },
+    {
+      "method": "GET",
+      "url": "https://api.real-debrid.com/rest/1.0/torrents/info/RD1",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "url": "https://api.real-debrid.com/rest/1.0/unrestrict/link",
+      "body": "link=https%3A%2F%2Freal-debrid.com%2Fd%2FOWNED"
+    },
+    {
+      "method": "GET",
+      "url": "https://api.real-debrid.com/rest/1.0/user",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "url": "https://api.real-debrid.com/rest/1.0/torrents/addMagnet",
+      "body": "magnet=magnet%3A%3Fxt%3Durn%3Abtih%3Aaabbccddeeff00112233445566778899aabbccdd"
+    },
+    {
+      "method": "GET",
+      "url": "https://api.real-debrid.com/rest/1.0/torrents/info/RD2",
+      "body": null
+    },
+    {
+      "method": "DELETE",
+      "url": "https://api.real-debrid.com/rest/1.0/torrents/delete/RD2",
+      "body": null
+    }
+  ]
+}

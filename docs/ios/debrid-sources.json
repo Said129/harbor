@@ -1,0 +1,31 @@
+{
+  "reference_version": "0.9.132",
+  "reference_commit": "0834340cec5531650bfe78cd628628702e636987",
+  "original_inputs": {
+    "src/lib/debrid/types.ts": "282aab5e288e976a5a5fd582cea636c3e615411ae11205db16391e08276db693",
+    "src/lib/debrid/realdebrid.ts": "7dde8ef0d27f6cef7c9f4f4a89cf049acd81cf24ac5e936f6cf256dc462bff0b",
+    "src/lib/debrid/alldebrid.ts": "1e8bca2323909387f377b4400ad59db927cff3709a4cb681873d7218994f7adf",
+    "src/lib/debrid/debridlink.ts": "3fcc341261b286ea32518f1e6ee4642445dd968d68affcb8b36c2650232d82ff",
+    "src/lib/debrid/premiumize.ts": "52dd5e43df7ff38e02a048a17b93e657537c5587db0291f85d91c1dedd886aa1",
+    "src/lib/debrid/torbox.ts": "11e01d9fd8c35bea1b14f4422f643a79cda127501e300d4936c5981b75554234",
+    "src/lib/streams/episode-file.ts": "50e1b68e04b469a8558745fce1bb8b3537a2840ea66fb17bb370a981c0a8c276",
+    "src/lib/episode-span.ts": "f7431cfa9f39f35fd217e2a46982871c8eac90ae2442bdf64a0d8f200c9488ef"
+  },
+  "program_sha256": "2be2bffda8261d1137573b56deaa6e11b48ef71755de81756de3d9086fc54a94",
+  "original_modules": 8,
+  "providers": ["rd", "tb", "ad", "pm", "dl"],
+  "preserved": [
+    "Real-Debrid, TorBox, AllDebrid, Premiumize and Debrid-Link account, cache, playable URL, queue and library calls",
+    "episode-file matching so a season pack opens the requested episode",
+    "original result codes: unauthorized, not-premium, rate-limited, not-cached and the rest"
+  ],
+  "host_shims": ["safe-fetch over the native HTTP transport", "debug (no logging)"],
+  "not_ported_yet": [
+    "stream pipeline cache verification",
+    "library lookup in the stream list",
+    "prepared-link prefetch",
+    "play-time resolution"
+  ],
+  "generator_accesses_providers": false,
+  "contains_personal_api_key": false
+}

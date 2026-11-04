@@ -25,6 +25,7 @@
 "A-Z" = "가나다순";
 "AMC+" = "AMC+";
 "API key" = "API 키";
+"API token" = "API 토큰";
 "Abajo a la derecha" = "오른쪽 아래";
 "Abajo a la izquierda" = "왼쪽 아래";
 "About" = "정보";
@@ -52,6 +53,7 @@
 "Activado" = "켬";
 "Activar addon" = "Enable addon";
 "Activar sonido" = "음소거 해제";
+"Active" = "활성";
 "Actualizar" = "새로 고침";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "소스 새로고침";
@@ -124,6 +126,8 @@
 "All tags" = "모든 태그";
 "All-Time Great Series" = "역대 명작 시리즈";
 "All-Time Greats" = "시대를 초월한 명작";
+"AllDebrid API key" = "AllDebrid API 키";
+"AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "AllDebrid에서 캐시 확인 엔드포인트 지원을 중단했으므로 실제로 재생을 누르기 전까지 스트림이 알 수 없음으로 표시될 수 있습니다.";
 "Allow cellular data" = "Allow cellular data";
 "Already added." = "이미 추가되었습니다.";
 "Alternate" = "대체";
@@ -506,6 +510,8 @@
 "Dark" = "어둡게";
 "Date" = "날짜";
 "De dónde viene tu video" = "동영상 제공 출처";
+"Debrid services" = "디브리드 서비스";
+"Debrid-Link API key" = "Debrid-Link API 키";
 "Default" = "기본값";
 "Default (gold accent)" = "기본값(골드 강조색)";
 "Defining the 2010s" = "2010년대를 정의한 작품";
@@ -578,6 +584,7 @@
 "Día siguiente" = "Next day";
 "Dónde aparece" = "표시 위치";
 "Dónde se emite" = "시청 가능한 곳";
+"EU-hosted, fast cache check. Same read-only usage as the others." = "EU에서 호스팅되며 캐시 확인이 빠릅니다. 다른 서비스와 동일한 읽기 전용 방식으로 사용됩니다.";
 "Earth" = "지구";
 "Easy on the eyes" = "눈이 편안하게";
 "Edición terminada" = "편집 완료";
@@ -653,6 +660,7 @@
 "Exit Picture in Picture" = "화면 속 화면 종료";
 "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "키보드나 리모컨으로 포스터 행을 탐색할 때 미리 불러온 와이드 아트워크를 사용해 포스터 카드를 확장합니다.";
 "Expanding Cards" = "확장 카드";
+"Expired" = "만료됨";
 "Explicit" = "명시적 콘텐츠";
 "Explorar" = "탐색";
 "Explorar complementos" = "애드온 탐색";
@@ -734,6 +742,7 @@
 "Get Started" = "시작하기";
 "Get a free key at themoviedb.org" = "themoviedb.org에서 무료 키 받기";
 "Get an API key" = "API 키 받기";
+"Get yours at" = "여기에서 받기";
 "Golf" = "골프";
 "Grand Prize" = "대상";
 "Gray" = "Gray";
@@ -1318,6 +1327,7 @@
 "Predeterminado (acento dorado)" = "기본값(골드 강조색)";
 "Preguntar si reanudar o empezar de nuevo" = "이어 보기 또는 처음부터 보기 확인";
 "Premiered This Month" = "이번 달 공개작";
+"Premiumize API key" = "Premiumize API 키";
 "Press play on something. It'll show up here once you start watching." = "콘텐츠를 재생해 보세요. 시청을 시작하면 여기에 표시됩니다.";
 "Preview" = "미리보기";
 "Previous" = "이전";
@@ -1380,6 +1390,8 @@
 "Reading help" = "Reading help";
 "Reading mode" = "읽기 모드";
 "Reading options" = "Reading options";
+"Real-Debrid API token" = "Real-Debrid API 토큰";
+"Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link를 지원합니다. 캐시된 스트림은 바로 재생되며 키는 로컬에 보관됩니다.";
 "Reality" = "리얼리티";
 "Reanudar" = "이어서 재생";
 "Reanudar al volver a la app" = "Resume when returning to the app";
@@ -1519,6 +1531,7 @@
 "Saltar créditos" = "크레딧 건너뛰기";
 "Saltar intro" = "오프닝 건너뛰기";
 "Saltar resumen" = "이전 내용 건너뛰기";
+"Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "Real-Debrid와 동일한 읽기 전용 방식으로 사용됩니다. 재생 선택기에서 캐시되지 않은 소스를 대기열에 추가할 수도 있습니다.";
 "Saturación" = "채도";
 "Saturation" = "채도";
 "Save" = "저장";
@@ -1886,6 +1899,7 @@
 "Top result" = "최상위 결과";
 "Top rising" = "급상승";
 "Top tracks" = "Top tracks";
+"TorBox API key" = "TorBox API 키";
 "Torrents" = "토렌트";
 "Track" = "트랙";
 "Tracking" = "Tracking";
@@ -1963,7 +1977,9 @@
 "Use the v3 key, not the read access token." = "읽기 액세스 토큰이 아닌 v3 키를 사용하세요.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "55% / 25% 알파로 사용됩니다.";
+"Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "캐시를 확인하고 링크 제한을 해제하는 데 사용됩니다. Harbor는 자체적으로 계정에 무언가를 추가하거나 제거하지 않습니다.";
 "Username" = "사용자 이름";
+"Uses the directdl endpoint, which skips queueing for anything already cached." = "directdl 엔드포인트를 사용하여 이미 캐시된 항목은 대기열에 추가하지 않습니다.";
 "VOD sources" = "VOD sources";
 "Velocidad" = "속도";
 "Ver más" = "더 보기";
@@ -3209,6 +3225,7 @@
 "{n} not matched" = "일치하지 않음 {n}개";
 "{n} seeds" = "시드 {n}개";
 "{n} semillas" = "시드 {n}개";
+"{n}d left" = "{n}일 남음";
 "{requests} requests" = "요청 {requests}개";
 "{shown} of {total}" = "{total}개 중 {shown}개";
 "{watched} de {total} vistos ({pct}%)." = "{total}개 중 {watched}개 시청함({pct}%).";

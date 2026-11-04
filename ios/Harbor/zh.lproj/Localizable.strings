@@ -25,6 +25,7 @@
 "A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "API 密钥";
+"API token" = "API 令牌";
 "Abajo a la derecha" = "右下角";
 "Abajo a la izquierda" = "左下角";
 "About" = "关于";
@@ -52,6 +53,7 @@
 "Activado" = "开启";
 "Activar addon" = "Enable addon";
 "Activar sonido" = "取消静音";
+"Active" = "已启用";
 "Actualizar" = "刷新";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "刷新来源";
@@ -124,6 +126,8 @@
 "All tags" = "所有标签";
 "All-Time Great Series" = "史上经典剧集";
 "All-Time Greats" = "影史经典";
+"AllDebrid API key" = "AllDebrid API 密钥";
+"AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "AllDebrid 已弃用其缓存检查端点，因此在您实际点击“播放”之前，流可能会显示为未知。";
 "Allow cellular data" = "Allow cellular data";
 "Already added." = "已经添加过了。";
 "Alternate" = "备选";
@@ -506,6 +510,8 @@
 "Dark" = "深色";
 "Date" = "日期";
 "De dónde viene tu video" = "视频来源";
+"Debrid services" = "Debrid 服务";
+"Debrid-Link API key" = "Debrid-Link API 密钥";
 "Default" = "默认";
 "Default (gold accent)" = "默认（金色强调色）";
 "Defining the 2010s" = "2010 年代代表作";
@@ -578,6 +584,7 @@
 "Día siguiente" = "Next day";
 "Dónde aparece" = "显示位置";
 "Dónde se emite" = "观看平台";
+"EU-hosted, fast cache check. Same read-only usage as the others." = "服务器位于欧盟，可快速检查缓存。与其他服务一样，仅进行只读操作。";
 "Earth" = "地球";
 "Easy on the eyes" = "护眼";
 "Edición terminada" = "完成编辑";
@@ -653,6 +660,7 @@
 "Exit Picture in Picture" = "退出画中画";
 "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "使用键盘或遥控器浏览海报行时，使用预加载的宽幅图片展开海报卡片。";
 "Expanding Cards" = "展开卡片";
+"Expired" = "已过期";
 "Explicit" = "露骨内容";
 "Explorar" = "浏览";
 "Explorar complementos" = "浏览插件";
@@ -734,6 +742,7 @@
 "Get Started" = "开始使用";
 "Get a free key at themoviedb.org" = "前往 themoviedb.org 获取免费密钥";
 "Get an API key" = "获取 API 密钥";
+"Get yours at" = "获取地址：";
 "Golf" = "高尔夫";
 "Grand Prize" = "大奖";
 "Gray" = "Gray";
@@ -1318,6 +1327,7 @@
 "Predeterminado (acento dorado)" = "默认（金色强调色）";
 "Preguntar si reanudar o empezar de nuevo" = "询问继续播放还是从头开始";
 "Premiered This Month" = "本月首播";
+"Premiumize API key" = "Premiumize API 密钥";
 "Press play on something. It'll show up here once you start watching." = "请播放任意内容。开始观看后，它就会显示在这里。";
 "Preview" = "预览";
 "Previous" = "上一个";
@@ -1380,6 +1390,8 @@
 "Reading help" = "Reading help";
 "Reading mode" = "阅读模式";
 "Reading options" = "Reading options";
+"Real-Debrid API token" = "Real-Debrid API 令牌";
+"Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "支持 Real-Debrid、TorBox、AllDebrid、Premiumize 和 Debrid-Link。已缓存的播放源可直接播放。密钥仅保存在本地。";
 "Reality" = "真人秀";
 "Reanudar" = "继续播放";
 "Reanudar al volver a la app" = "Resume when returning to the app";
@@ -1519,6 +1531,7 @@
 "Saltar créditos" = "跳过片尾";
 "Saltar intro" = "跳过片头";
 "Saltar resumen" = "跳过前情回顾";
+"Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "与 Real-Debrid 相同，仅进行只读操作。还可让您从播放选择器中将未缓存的来源加入队列。";
 "Saturación" = "饱和度";
 "Saturation" = "饱和度";
 "Save" = "保存";
@@ -1886,6 +1899,7 @@
 "Top result" = "最佳结果";
 "Top rising" = "飙升榜";
 "Top tracks" = "Top tracks";
+"TorBox API key" = "TorBox API 密钥";
 "Torrents" = "种子";
 "Track" = "轨道";
 "Tracking" = "Tracking";
@@ -1963,7 +1977,9 @@
 "Use the v3 key, not the read access token." = "请使用 v3 密钥，而不是读取访问令牌。";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "使用 55% / 25% 不透明度。";
+"Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "用于检查缓存和解除链接限制。Harbor 绝不会自行在你的账户中添加或移除任何内容。";
 "Username" = "用户名";
+"Uses the directdl endpoint, which skips queueing for anything already cached." = "使用 directdl 端点，已缓存的内容均可跳过排队。";
 "VOD sources" = "VOD sources";
 "Velocidad" = "速度";
 "Ver más" = "查看更多";
@@ -3209,6 +3225,7 @@
 "{n} not matched" = "{n} 个未匹配";
 "{n} seeds" = "{n} 个做种者";
 "{n} semillas" = "{n} 个做种者";
+"{n}d left" = "剩余 {n} 天";
 "{requests} requests" = "{requests} 次请求";
 "{shown} of {total}" = "已显示 {shown} 个，共 {total} 个";
 "{watched} de {total} vistos ({pct}%)." = "已观看 {watched}/{total}（{pct}%）。";

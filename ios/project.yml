@@ -170,6 +170,7 @@ targets:
       - path: HarborTests/MusicArtworkTests.swift
       - path: HarborTests/MusicSignalDetailsTests.swift
       - path: HarborTests/MusicArtistProfileTests.swift
+      - path: HarborTests/DebridClientTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift

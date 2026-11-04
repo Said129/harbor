@@ -14,6 +14,7 @@
 "A to Z" = "A to Z";
 "A-Z" = "A-Z";
 "API key" = "API key";
+"API token" = "API token";
 "Abajo a la derecha" = "Bottom right";
 "Abajo a la izquierda" = "Bottom left";
 "About" = "About";
@@ -38,6 +39,7 @@
 "Activado" = "On";
 "Activar addon" = "Enable addon";
 "Activar sonido" = "Unmute";
+"Active" = "Active";
 "Actualizar" = "Refresh";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Refresh sources";
@@ -103,6 +105,8 @@
 "All sources" = "All sources";
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "All sports";
+"AllDebrid API key" = "AllDebrid API key";
+"AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play.";
 "Allow cellular data" = "Allow cellular data";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -411,6 +415,8 @@
 "Dark" = "Dark";
 "Date" = "Date";
 "De dónde viene tu video" = "Where your video comes from";
+"Debrid services" = "Debrid services";
+"Debrid-Link API key" = "Debrid-Link API key";
 "Default" = "Default";
 "Default (gold accent)" = "Default (gold accent)";
 "Dejar de mostrarlo como segundo subtítulo" = "Stop showing as second subtitle";
@@ -473,6 +479,7 @@
 "Día siguiente" = "Next day";
 "Dónde aparece" = "Where it shows";
 "Dónde se emite" = "Where to watch";
+"EU-hosted, fast cache check. Same read-only usage as the others." = "EU-hosted, fast cache check. Same read-only usage as the others.";
 "Earth" = "Earth";
 "Easy on the eyes" = "Easy on the eyes";
 "Edición terminada" = "Done editing";
@@ -535,6 +542,7 @@
 "Exit Picture in Picture" = "Exit Picture in Picture";
 "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork.";
 "Expanding Cards" = "Expanding Cards";
+"Expired" = "Expired";
 "Explicit" = "Explicit";
 "Explorar" = "Browse";
 "Explorar complementos" = "Browse addons";
@@ -600,6 +608,7 @@
 "Genre" = "Genre";
 "Gently magnify nearby posters as you move across a poster row." = "Gently magnify nearby posters as you move across a poster row.";
 "Get an API key" = "Get an API key";
+"Get yours at" = "Get yours at";
 "Gray" = "Gray";
 "Gris" = "Gray";
 "Grosor del contorno" = "Outline thickness";
@@ -1077,6 +1086,7 @@
 "Predeterminado" = "Default";
 "Predeterminado (acento dorado)" = "Default (gold accent)";
 "Preguntar si reanudar o empezar de nuevo" = "Ask to resume or start over";
+"Premiumize API key" = "Premiumize API key";
 "Press play on something. It'll show up here once you start watching." = "Press play on something. It'll show up here once you start watching.";
 "Preview" = "Preview";
 "Previous" = "Previous";
@@ -1130,6 +1140,8 @@
 "Reading help" = "Reading help";
 "Reading mode" = "Reading mode";
 "Reading options" = "Reading options";
+"Real-Debrid API token" = "Real-Debrid API token";
+"Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local.";
 "Reanudar" = "Resume";
 "Reanudar al volver a la app" = "Resume when returning to the app";
 "Reanudar desde donde lo dejaste" = "Resume where you left off";
@@ -1252,6 +1264,7 @@
 "Saltar créditos" = "Skip Credits";
 "Saltar intro" = "Skip Intro";
 "Saltar resumen" = "Skip Recap";
+"Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker.";
 "Saturación" = "Saturation";
 "Saturation" = "Saturation";
 "Save" = "Save";
@@ -1557,6 +1570,7 @@
 "Top result" = "Top result";
 "Top rising" = "Top rising";
 "Top tracks" = "Top tracks";
+"TorBox API key" = "TorBox API key";
 "Torrents" = "Torrents";
 "Track" = "Track";
 "Tracking" = "Tracking";
@@ -1622,7 +1636,9 @@
 "Use the v3 key, not the read access token." = "Use the v3 key, not the read access token.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "Used at 55% / 25% alpha.";
+"Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own.";
 "Username" = "Username";
+"Uses the directdl endpoint, which skips queueing for anything already cached." = "Uses the directdl endpoint, which skips queueing for anything already cached.";
 "VOD sources" = "VOD sources";
 "Velocidad" = "Speed";
 "Ver más" = "View more";
@@ -2805,6 +2821,7 @@
 "{n} not matched" = "{n} not matched";
 "{n} seeds" = "{n} seeds";
 "{n} semillas" = "{n} seeds";
+"{n}d left" = "{n}d left";
 "{shown} of {total}" = "{shown} of {total}";
 "{watched} de {total} vistos ({pct}%)." = "{watched} of {total} watched ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "{watched} of {total} watched ({pct}%).";

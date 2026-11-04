@@ -30,6 +30,7 @@
 "AFC Women's Asian Cup" = "Copa da Ásia Feminina";
 "AMC+" = "AMC+";
 "API key" = "Chave de API";
+"API token" = "Token de API";
 "Abajo a la derecha" = "Inferior direito";
 "Abajo a la izquierda" = "Inferior esquerdo";
 "About" = "Sobre";
@@ -57,6 +58,7 @@
 "Activado" = "Ativado";
 "Activar addon" = "Enable addon";
 "Activar sonido" = "Ativar som";
+"Active" = "Ativo";
 "Actualizar" = "Atualizar";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Atualizar fontes";
@@ -131,6 +133,8 @@
 "All tags" = "Todas as tags";
 "All-Time Great Series" = "Melhores Séries de Todos os Tempos";
 "All-Time Greats" = "Os Melhores de Todos os Tempos";
+"AllDebrid API key" = "Chave de API do AllDebrid";
+"AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "O AllDebrid descontinuou o endpoint de verificação de cache, então as fontes podem aparecer como desconhecidas até você tocar em Reproduzir.";
 "Allow cellular data" = "Allow cellular data";
 "Already added." = "Já adicionado.";
 "Alternate" = "Alternar";
@@ -526,6 +530,8 @@
 "Dark" = "Escuro";
 "Date" = "Data";
 "De dónde viene tu video" = "De onde vem o seu vídeo";
+"Debrid services" = "Serviços debrid";
+"Debrid-Link API key" = "Chave de API do Debrid-Link";
 "Default" = "Padrão";
 "Default (gold accent)" = "Padrão (destaque dourado)";
 "Defining the 2010s" = "Definindo os anos 2010";
@@ -598,6 +604,7 @@
 "Día siguiente" = "Next day";
 "Dónde aparece" = "Onde aparece";
 "Dónde se emite" = "Onde assistir";
+"EU-hosted, fast cache check. Same read-only usage as the others." = "Hospedado na UE, com verificação de cache rápida. Mesmo uso somente leitura dos demais.";
 "Earth" = "Terra";
 "Easy on the eyes" = "Suave para os olhos";
 "Edición terminada" = "Edição concluída";
@@ -673,6 +680,7 @@
 "Exit Picture in Picture" = "Sair do Picture in Picture";
 "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Expande os cartões de pôster durante a navegação por teclado ou controle nas fileiras de pôsteres, usando arte larga pré-carregada.";
 "Expanding Cards" = "Cartões expansíveis";
+"Expired" = "Expirado";
 "Explicit" = "Explícito";
 "Explorar" = "Explorar";
 "Explorar complementos" = "Navegar pelos addons";
@@ -754,6 +762,7 @@
 "Get Started" = "Começar";
 "Get a free key at themoviedb.org" = "Obtenha uma chave gratuita em themoviedb.org";
 "Get an API key" = "Obter uma chave API";
+"Get yours at" = "Obtenha o seu em";
 "Golf" = "Golfe";
 "Grand Prize" = "Grande Prêmio";
 "Gray" = "Gray";
@@ -1338,6 +1347,7 @@
 "Predeterminado (acento dorado)" = "Padrão (destaque dourado)";
 "Preguntar si reanudar o empezar de nuevo" = "Perguntar se deseja continuar ou começar de novo";
 "Premiered This Month" = "Estreou Este Mês";
+"Premiumize API key" = "Chave de API do Premiumize";
 "Press play on something. It'll show up here once you start watching." = "Dê play em algo. Vai aparecer aqui assim que você começar a assistir.";
 "Preview" = "Prévia";
 "Previous" = "Anterior";
@@ -1400,6 +1410,8 @@
 "Reading help" = "Como usar Manga e eBook";
 "Reading mode" = "Modo de leitura";
 "Reading options" = "Reading options";
+"Real-Debrid API token" = "Token de API do Real-Debrid";
+"Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Streams em cache tocam direto. As chaves ficam locais.";
 "Reality" = "Reality";
 "Reanudar" = "Retomar";
 "Reanudar al volver a la app" = "Resume when returning to the app";
@@ -1539,6 +1551,7 @@
 "Saltar créditos" = "Pular Créditos";
 "Saltar intro" = "Pular Abertura";
 "Saltar resumen" = "Pular Recapitulação";
+"Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "Mesmo uso somente leitura do Real-Debrid. Também permite colocar na fila fontes que não estão no cache pelo seletor de reprodução.";
 "Saturación" = "Saturação";
 "Saturation" = "Saturação";
 "Saudi King's Cup" = "Copa do Rei da Arábia Saudita";
@@ -1909,6 +1922,7 @@
 "Top result" = "Melhor resultado";
 "Top rising" = "Em ascensão";
 "Top tracks" = "Top tracks";
+"TorBox API key" = "Chave de API do TorBox";
 "Torrents" = "Torrents";
 "Track" = "Faixa";
 "Tracking" = "Tracking";
@@ -1986,7 +2000,9 @@
 "Use the v3 key, not the read access token." = "Use a chave da v3, não o token de acesso de leitura.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "Usado com alfa de 55% / 25%.";
+"Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Usado para verificar o cache e desbloquear links. O Harbor nunca adiciona nem remove nada da sua conta por conta própria.";
 "Username" = "Nome de usuário";
+"Uses the directdl endpoint, which skips queueing for anything already cached." = "Usa o endpoint directdl, que dispensa a fila para qualquer item já armazenado em cache.";
 "VOD sources" = "VOD sources";
 "Velocidad" = "Velocidade";
 "Ver más" = "Ver mais";
@@ -3236,6 +3252,7 @@
 "{n} not matched" = "{n} não correspondidos";
 "{n} seeds" = "{n} seeds";
 "{n} semillas" = "{n} seeds";
+"{n}d left" = "{n}d restantes";
 "{requests} requests" = "{requests} solicitações";
 "{shown} of {total}" = "{shown} de {total}";
 "{watched} de {total} vistos ({pct}%)." = "{watched} de {total} assistidos ({pct}%).";

@@ -25,6 +25,7 @@
 "A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "APIキー";
+"API token" = "APIトークン";
 "Abajo a la derecha" = "右下";
 "Abajo a la izquierda" = "左下";
 "About" = "Harborについて";
@@ -52,6 +53,7 @@
 "Activado" = "オン";
 "Activar addon" = "Enable addon";
 "Activar sonido" = "ミュート解除";
+"Active" = "有効";
 "Actualizar" = "更新";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "ソースを更新";
@@ -124,6 +126,8 @@
 "All tags" = "すべてのタグ";
 "All-Time Great Series" = "史上最高のシリーズ";
 "All-Time Greats" = "不朽の名作";
+"AllDebrid API key" = "AllDebrid APIキー";
+"AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "AllDebridのキャッシュ確認エンドポイントは廃止されたため、実際に再生するまでストリームが不明と表示される場合があります。";
 "Allow cellular data" = "Allow cellular data";
 "Already added." = "すでに追加されています。";
 "Alternate" = "別名";
@@ -506,6 +510,8 @@
 "Dark" = "ダーク";
 "Date" = "日付";
 "De dónde viene tu video" = "動画の配信元";
+"Debrid services" = "Debridサービス";
+"Debrid-Link API key" = "Debrid-Link APIキー";
 "Default" = "デフォルト";
 "Default (gold accent)" = "デフォルト（ゴールドのアクセント）";
 "Defining the 2010s" = "2010年代を象徴する作品";
@@ -578,6 +584,7 @@
 "Día siguiente" = "Next day";
 "Dónde aparece" = "表示位置";
 "Dónde se emite" = "視聴方法";
+"EU-hosted, fast cache check. Same read-only usage as the others." = "EUでホストされ、キャッシュを高速に確認します。他と同じく読み取り専用です。";
 "Earth" = "地球";
 "Easy on the eyes" = "目にやさしい";
 "Edición terminada" = "編集を完了";
@@ -653,6 +660,7 @@
 "Exit Picture in Picture" = "ピクチャ・イン・ピクチャを終了";
 "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "キーボードやリモコンでポスター列を移動する際、事前読み込みした横長画像を使ってポスターカードを拡大します。";
 "Expanding Cards" = "拡大カード";
+"Expired" = "期限切れ";
 "Explicit" = "露骨な表現を含む";
 "Explorar" = "一覧";
 "Explorar complementos" = "アドオンを見る";
@@ -734,6 +742,7 @@
 "Get Started" = "はじめる";
 "Get a free key at themoviedb.org" = "themoviedb.orgで無料キーを取得";
 "Get an API key" = "APIキーを取得";
+"Get yours at" = "次で入手:";
 "Golf" = "ゴルフ";
 "Grand Prize" = "大賞";
 "Gray" = "Gray";
@@ -1318,6 +1327,7 @@
 "Predeterminado (acento dorado)" = "デフォルト（ゴールドのアクセント）";
 "Preguntar si reanudar o empezar de nuevo" = "続きから再生するか最初から再生するか確認";
 "Premiered This Month" = "今月の新作";
+"Premiumize API key" = "Premiumize APIキー";
 "Press play on something. It'll show up here once you start watching." = "何か再生してみましょう。視聴を始めると、ここに表示されます。";
 "Preview" = "プレビュー";
 "Previous" = "前へ";
@@ -1380,6 +1390,8 @@
 "Reading help" = "Reading help";
 "Reading mode" = "閲覧モード";
 "Reading options" = "Reading options";
+"Real-Debrid API token" = "Real-Debrid APIトークン";
+"Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid、TorBox、AllDebrid、Premiumize、Debrid-Link。キャッシュ済みストリームは直接再生されます。キーはローカルに保存されます。";
 "Reality" = "リアリティ番組";
 "Reanudar" = "再開";
 "Reanudar al volver a la app" = "Resume when returning to the app";
@@ -1519,6 +1531,7 @@
 "Saltar créditos" = "クレジットをスキップ";
 "Saltar intro" = "イントロをスキップ";
 "Saltar resumen" = "前回までのあらすじをスキップ";
+"Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "Real-Debridと同じ読み取り専用で使用します。また、未キャッシュのソースを再生選択画面からキューに追加できます。";
 "Saturación" = "彩度";
 "Saturation" = "彩度";
 "Save" = "保存";
@@ -1886,6 +1899,7 @@
 "Top result" = "最上位の結果";
 "Top rising" = "人気急上昇";
 "Top tracks" = "Top tracks";
+"TorBox API key" = "TorBox APIキー";
 "Torrents" = "トレント";
 "Track" = "トラック";
 "Tracking" = "Tracking";
@@ -1963,7 +1977,9 @@
 "Use the v3 key, not the read access token." = "読み取りアクセストークンではなく、v3キーを使用してください。";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "55% / 25%のアルファ値で使用。";
+"Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "キャッシュの確認とリンクの制限解除に使用します。Harborがアカウントに独自に何かを追加または削除することはありません。";
 "Username" = "ユーザー名";
+"Uses the directdl endpoint, which skips queueing for anything already cached." = "directdlエンドポイントを使用し、キャッシュ済みのものはキューをスキップします。";
 "VOD sources" = "VOD sources";
 "Velocidad" = "再生速度";
 "Ver más" = "もっと見る";
@@ -3209,6 +3225,7 @@
 "{n} not matched" = "未照合{n}件";
 "{n} seeds" = "シード数: {n}";
 "{n} semillas" = "シード数: {n}";
+"{n}d left" = "残り{n}日";
 "{requests} requests" = "{requests}件のリクエスト";
 "{shown} of {total}" = "{total}件中{shown}件";
 "{watched} de {total} vistos ({pct}%)." = "{total}中{watched}を視聴済み（{pct}%）。";

@@ -57,7 +57,7 @@ struct SettingsView: View {
                         }.accessibilityIdentifier("settings-subtitles")
                     }
                 }
-                if matches("Metadata providers", group: "Sources & library") || matches("Library", group: "Sources & library") || matches("Streaming services", group: "Sources & library") || matches("Plugins", group: "Sources & library") {
+                if matches("Metadata providers", group: "Sources & library") || matches("Library", group: "Sources & library") || matches("Streaming services", group: "Sources & library") || matches("Debrid services", group: "Sources & library") || matches("Plugins", group: "Sources & library") {
                     group("Sources & library") {
                         if matches("Plugins", group: "Sources & library") {
                             NavigationLink { HarborPluginManagementView(app: app).toolbar(.visible, for: .navigationBar) } label: {
@@ -68,6 +68,11 @@ struct SettingsView: View {
                             NavigationLink { StreamingSettingsView(app: app).toolbar(.visible, for: .navigationBar) } label: {
                                 SettingsRow(title: DesktopInterfaceText.value("Streaming services"), icon: "nav-movies")
                             }.accessibilityIdentifier("settings-streaming")
+                        }
+                        if matches("Debrid services", group: "Sources & library"), let scope = app.pluginExecutionScope {
+                            NavigationLink { DebridSettingsView(app: app, scope: scope).toolbar(.visible, for: .navigationBar) } label: {
+                                SettingsRow(title: DesktopInterfaceText.value("Debrid services"), icon: "nav-download")
+                            }.accessibilityIdentifier("settings-debrid")
                         }
                         if matches("Metadata providers", group: "Sources & library") {
                             NavigationLink { MetadataSettingsView().toolbar(.visible, for: .navigationBar) } label: {
