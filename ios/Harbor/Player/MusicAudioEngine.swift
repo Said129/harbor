@@ -96,7 +96,10 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
         metering = false; latestMeterRevision = 0; spectrum.clear()
         if let previous { mpv_terminate_destroy(previous) }
     }
-    func setMetering(_ enabled: Bool, request: UInt64, revision: UInt64) throws {
+    // Both meter entry points are async like their protocol requirements. A
+    // synchronous member would lose overload resolution in async callers to the
+    // protocol extension's unavailable default.
+    func setMetering(_ enabled: Bool, request: UInt64, revision: UInt64) async throws {
         guard request == newest, revision >= latestMeterRevision else { throw CancellationError() }
         latestMeterRevision = revision
         guard enabled != metering else { return }
@@ -116,7 +119,7 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
         meterFailure = nil
         metering = enabled; spectrum.clear()
     }
-    func meterSnapshot(request: UInt64) -> MusicMeterMeasurement? {
+    func meterSnapshot(request: UInt64) async -> MusicMeterMeasurement? {
         guard request == newest, metering, let handle else { return nil }
         return MusicAudioMeter.snapshot(handle, spectrum: spectrum)
     }

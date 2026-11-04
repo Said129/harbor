@@ -1071,3 +1071,27 @@ All labels already exist in the sixteen catalogues; none were added.
 
 New native case MusicSignalDetailsTests (original tier vectors and
 phone/tablet/Arabic captures) joins the focused module; it is unexecuted.
+
+## Run 41844742608 (da648bfb)
+
+Artifact 13331927916, SHA-256
+7bdeb16afab39f23be3b49aa6bb6c10b9a2165c17c294405214464c307151288 (verified).
+The artwork sources compiled on Apple for the first time. Passed: artwork
+colours in the responsive player, both audio-form captures, beat-effect
+controls and the queued-source chooser; its Arabic capture now lists the
+owned alternative. Failed, with causes:
+
+- Measured bands: enable-before-load threw with no mpv diagnostic. The
+  actor's synchronous setMetering/meterSnapshot lost overload resolution in
+  the async test to the protocol extension's unavailable defaults, so the
+  engine was never reached (also the 41831413613 failure). Both are now
+  async like their requirements.
+- Owned consumers: release-phone timed out, mpv=none. Hiding the capture
+  window did not close the views; the test now removes both consumers from
+  the visible hierarchy, the production close path, before tearing down.
+- Artwork vectors: all 19 passed; actual decoding returned the bottom
+  colour of the owned two-colour image. The pixel reader flipped a bitmap
+  context that already stores its top row first; the flip is removed. The
+  phone/Arabic player captures show the blue (bottom) palette from this bug.
+
+"Unknown artist" in captures is Desktop's own native placeholder data.

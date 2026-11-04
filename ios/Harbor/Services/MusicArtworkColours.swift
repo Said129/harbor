@@ -63,7 +63,8 @@ actor MusicArtworkColours {
                                           bytesPerRow: 24 * 4, space: space,
                                           bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue) else { return false }
             context.interpolationQuality = .high
-            context.translateBy(x: 0, y: 24); context.scaleBy(x: 1, y: -1)
+            // A bitmap context already stores its top row first, like the
+            // original canvas getImageData; a flip would reverse tie order.
             context.draw(image, in: CGRect(x: 0, y: 0, width: 24, height: 24))
             return true
         }

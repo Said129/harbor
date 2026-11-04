@@ -1,4 +1,5 @@
 import AVFoundation
+import Observation
 import SwiftUI
 import UIKit
 import XCTest
@@ -99,11 +100,10 @@ import XCTest
             ] {
                 UserDefaults.standard.set(language, forKey: "uiLanguage")
                 player.seek(0); try await wait { player.position < 0.3 }
-                try await capture(player, name: "music-measured-meter-" + name, size: size, direction: direction)
-                do { try await waitAsync("release-" + name) { await player.audioSignal()?.filters?.contains("harbor_meter") == false } }
+                do { try await capture(player, name: "music-measured-meter-" + name, size: size, direction: direction) }
                 catch {
                     let failure = await engine.meterFailure
-                    XCTFail("Closed \(name) meters kept analysis: mpv=\(failure ?? "none")")
+                    XCTFail("The \(name) meters did not settle: mpv=\(failure ?? "none")")
                     throw error
                 }
             }
@@ -160,12 +160,9 @@ import XCTest
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let previous = scene.windows.first { $0.isKeyWindow }, window = UIWindow(windowScene: scene)
         window.frame = CGRect(origin: .zero, size: size)
-        let host = UIHostingController(rootView: NavigationStack {
-            Form {
-                MusicAudioMeterView(player: player)
-                MusicAudioMeterView(player: player, presentation: .spectrum).frame(width: 152, height: 32)
-            }.navigationTitle(DesktopInterfaceText.value("music.quality.title"))
-        }.environment(\.scenePhase, .active).environment(\.layoutDirection, direction).preferredColorScheme(.dark))
+        let presence = MeterPresence()
+        let host = UIHostingController(rootView: MeterCaptureRoot(player: player, presence: presence)
+            .environment(\.scenePhase, .active).environment(\.layoutDirection, direction).preferredColorScheme(.dark))
         window.rootViewController = host; window.makeKeyAndVisible()
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
         host.view.layoutIfNeeded()
@@ -173,5 +170,26 @@ import XCTest
         try await Task.sleep(for: .milliseconds(450))
         let image = UIGraphicsImageRenderer(size: size).image { _ in host.view.drawHierarchy(in: CGRect(origin: .zero, size: size), afterScreenUpdates: true) }
         let attachment = XCTAttachment(image: image); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+        // Closing is the production path: both consumers leave a visible
+        // hierarchy. Hiding a test window does not represent a closed panel.
+        presence.shown = false; host.view.layoutIfNeeded()
+        try await waitAsync("release-" + name) { await player.audioSignal()?.filters?.contains("harbor_meter") == false }
+    }
+}
+
+@MainActor @Observable private final class MeterPresence { var shown = true }
+
+@MainActor private struct MeterCaptureRoot: View {
+    let player: MusicPlayback
+    let presence: MeterPresence
+    var body: some View {
+        NavigationStack {
+            Form {
+                if presence.shown {
+                    MusicAudioMeterView(player: player)
+                    MusicAudioMeterView(player: player, presentation: .spectrum).frame(width: 152, height: 32)
+                }
+            }.navigationTitle(DesktopInterfaceText.value("music.quality.title"))
+        }
     }
 }
