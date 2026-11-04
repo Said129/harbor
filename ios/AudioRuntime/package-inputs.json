@@ -2,12 +2,12 @@
   "originalPackageSource": "f82e06d4f5ef4fc4aa9faba3782a462dbbef870c",
   "originalPackageSHA256": "36f629e68ec8ed0d8c7963e726b40edb6beffc261b196cfba86789cf399f130c",
   "candidatePackageSHA256": "b49c615856f61a37e686a6e59673962a7b1ace2ad570378ed65e93a54a500de2",
-  "componentSHA256": "b3d8406c8ebf61018709e18fac526e13910e032b870ff9fe35ac4a1ef2f6934a",
+  "componentSHA256": "1e38b1df04dc3f4bf990ec011b6a1074850955bd8bcf55be2a21e807430ac0ec",
   "builderSource": "288527dffbc6d3e63cce147fc7b520c64a791603",
   "ffmpegSource": "38b88335f99e76ed89ff3c93f877fdefce736c13",
   "publicHeadersMatchBaseline": true,
   "applicationDefaultChanged": false,
-  "nativeExecutionValidated": true,
+  "nativeExecutionValidated": false,
   "packageShims": {
     "Sources/_MPVKit/dummy.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "Sources/_MPVKit/include/dummy.h": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -24,20 +24,50 @@
     "COPYING.LGPLv2.1": "246041b6ecf9bc32d718a62c57877c78b5eb397b6467e74ed7ae2626ab189c30"
   },
   "nativeValidation": {
-    "run": 41544752262,
-    "source": "0c4a120262ca1c8123677ce835b21bc88a793cee",
-    "artifactSHA256": "f4bace714ff818dad1d1c5afdc739c93d84e179c9580ebdc6f479fded12b9f17",
-    "passed": [
-      "MusicAudioTests/testChangingARealMusicSourcePreservesPositionAndPausedState",
-      "MusicAudioTests/testRealNativeDSPChangesApplyWithoutResettingPauseOrSeekPosition",
-      "MusicExtendedAudioTests/testOriginalParametricCrossfeedReverbAndEffectsExecuteInTheNativeAudioCore",
-      "SubtitleSeekTests/testDownloadedCommunityWebVTTCuesFollowSeeksAfterResumingMidVideo"
+    "passed": [],
+    "pending": [
+      "measured levels and eight-band timeline",
+      "shared-consumer graph cleanup with live effects",
+      "queue editing and source replacement",
+      "HTTP checkpoint follow-up",
+      "indexed HTTP subtitle observation follow-up"
     ],
-    "knownFailingCase": [
-      "SubtitleSeekTests/testHTTPRangeSeeksRetainEmbeddedAndExternalCuesAndRenderedSubtitles"
-    ],
-    "completeRun": false,
     "deviceApplicationBuild": "pending",
     "defaultAdopted": false
+  },
+  "previousAcceptedComponent": {
+    "componentSHA256": "b3d8406c8ebf61018709e18fac526e13910e032b870ff9fe35ac4a1ef2f6934a",
+    "nativeExecutionValidated": true,
+    "nativeValidation": {
+      "run": 41544752262,
+      "source": "0c4a120262ca1c8123677ce835b21bc88a793cee",
+      "artifactSHA256": "f4bace714ff818dad1d1c5afdc739c93d84e179c9580ebdc6f479fded12b9f17",
+      "passed": [
+        "MusicAudioTests/testChangingARealMusicSourcePreservesPositionAndPausedState",
+        "MusicAudioTests/testRealNativeDSPChangesApplyWithoutResettingPauseOrSeekPosition",
+        "MusicExtendedAudioTests/testOriginalParametricCrossfeedReverbAndEffectsExecuteInTheNativeAudioCore",
+        "SubtitleSeekTests/testDownloadedCommunityWebVTTCuesFollowSeeksAfterResumingMidVideo"
+      ],
+      "knownFailingCase": [
+        "SubtitleSeekTests/testHTTPRangeSeeksRetainEmbeddedAndExternalCuesAndRenderedSubtitles"
+      ],
+      "completeRun": false,
+      "deviceApplicationBuild": "pending",
+      "defaultAdopted": false
+    }
+  },
+  "componentBuild": {
+    "componentRun": 41734710275,
+    "componentSource": "cb230f53dcf782eff0d7cb3586a5d8060a8306d9",
+    "artifactSHA256": "1048d901b19c5b9ea62135e3e0140a978f99baa86b743dea3865d74b4637e57d",
+    "componentSHA256": "1e38b1df04dc3f4bf990ec011b6a1074850955bd8bcf55be2a21e807430ac0ec",
+    "additionalFilters": ["bandpass", "asetnsamples", "anullsink"],
+    "unchangedPublicHeaders": 10,
+    "actualArchiveCPUTypes": {
+      "ios-arm64": [16777228],
+      "ios-arm64_x86_64-simulator": [16777223, 16777228]
+    },
+    "licensesAndUpstreamPatchUnchanged": true,
+    "nativeApplicationExecutionValidated": false
   }
 }

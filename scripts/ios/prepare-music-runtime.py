@@ -9,7 +9,7 @@ import zipfile
 root = Path(__file__).resolve().parents[2]
 component = root / "ios/AudioRuntime"
 package = root / "ios/MPVKitMusic"
-expected = "b3d8406c8ebf61018709e18fac526e13910e032b870ff9fe35ac4a1ef2f6934a"
+expected = "1e38b1df04dc3f4bf990ec011b6a1074850955bd8bcf55be2a21e807430ac0ec"
 
 
 def digest(path):

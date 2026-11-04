@@ -1,5 +1,5 @@
 diff --git a/Sources/BuildScripts/XCFrameworkBuild/main.swift b/Sources/BuildScripts/XCFrameworkBuild/main.swift
-index e5f872c..6fd1a64 100644
+index e5f872c..c19f288 100644
 --- a/Sources/BuildScripts/XCFrameworkBuild/main.swift
 +++ b/Sources/BuildScripts/XCFrameworkBuild/main.swift
 @@ -18,7 +18,7 @@ do {
@@ -28,7 +28,7 @@ index e5f872c..6fd1a64 100644
  
          // ./configure --list-filters
          "--disable-filters",
-+        "--enable-filter=aecho", "--enable-filter=crossfeed", "--enable-filter=bass", "--enable-filter=treble", "--enable-filter=lowpass", "--enable-filter=highpass", "--enable-filter=bandreject", "--enable-filter=astats", "--enable-filter=ametadata", "--enable-filter=afade", "--enable-filter=acrossfade", "--enable-filter=asplit", "--enable-filter=asetpts", "--enable-filter=alimiter",
++        "--enable-filter=aecho", "--enable-filter=crossfeed", "--enable-filter=bass", "--enable-filter=treble", "--enable-filter=lowpass", "--enable-filter=highpass", "--enable-filter=bandreject", "--enable-filter=astats", "--enable-filter=ametadata", "--enable-filter=afade", "--enable-filter=acrossfade", "--enable-filter=asplit", "--enable-filter=asetpts", "--enable-filter=alimiter", "--enable-filter=bandpass", "--enable-filter=asetnsamples", "--enable-filter=anullsink",
          "--enable-filter=aformat", "--enable-filter=amix", "--enable-filter=anull", "--enable-filter=aresample",
          "--enable-filter=areverse", "--enable-filter=asetrate", "--enable-filter=atempo", "--enable-filter=atrim",
          "--enable-filter=bwdif", "--enable-filter=delogo",

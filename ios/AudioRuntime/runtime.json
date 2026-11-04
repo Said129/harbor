@@ -16,32 +16,35 @@
     "acrossfade",
     "asplit",
     "asetpts",
-    "alimiter"
+    "alimiter",
+    "bandpass",
+    "asetnsamples",
+    "anullsink"
   ],
   "baselineBinarySha256": {
     "Libavfilter": "3e71af8633d99d365f14b88064bceafd57acb23fc64db90e55b715a9c0dca328",
     "Libavutil": "5dc251c8807c501982edfb0bc9bddfee4148733142d6ebb947738c60fb3bf8d8"
   },
   "originalBuilderSha256": "6c16aa24952165db875497af758968880bba5549157687c17f9014eb859a906c",
-  "patchedBuilderSha256": "a255c86a99894dd715ce4b8b3d5d58daaec9be478fddbc38cab4f43077782a42",
+  "patchedBuilderSha256": "51d2191fba387bf05f3fc021f432af15a7078b4332d0d2fdf960c2ca788c80b7",
   "architectures": [
     {
       "platform": "ios",
       "architecture": "arm64",
-      "configSha256": "d521b652ded48362f2bb788bd7ba262ebc857281700c6b28bd86e214190b3fcc"
+      "configSha256": "688291c7b238b70c2e4c44c44f5dfc7ea89363930fd59d7ac5e111c08520ceda"
     },
     {
       "platform": "isimulator",
       "architecture": "arm64",
-      "configSha256": "d521b652ded48362f2bb788bd7ba262ebc857281700c6b28bd86e214190b3fcc"
+      "configSha256": "688291c7b238b70c2e4c44c44f5dfc7ea89363930fd59d7ac5e111c08520ceda"
     },
     {
       "platform": "isimulator",
       "architecture": "x86_64",
-      "configSha256": "d521b652ded48362f2bb788bd7ba262ebc857281700c6b28bd86e214190b3fcc"
+      "configSha256": "688291c7b238b70c2e4c44c44f5dfc7ea89363930fd59d7ac5e111c08520ceda"
     }
   ],
-  "archiveSha256": "b3d8406c8ebf61018709e18fac526e13910e032b870ff9fe35ac4a1ef2f6934a",
+  "archiveSha256": "1e38b1df04dc3f4bf990ec011b6a1074850955bd8bcf55be2a21e807430ac0ec",
   "libraries": [
     {
       "BinaryPath": "Libavfilter.framework/Libavfilter",
