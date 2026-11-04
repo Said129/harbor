@@ -26,6 +26,9 @@ import Foundation
         self.audio = audio
         self.lastfm = lastfm
     }
+    /// A fresh artist-metadata client bound to this session's profile scope. The
+    /// expanded player sits outside the music screen, so it cannot inherit one.
+    func makeArtistMetadataClient() -> MusicArtistClient { MusicArtistClient(scope: scope, currentScope: currentScope) }
     func validate() throws {
         try server.validateCatalogScope()
         guard scope == currentScope(), playlists.owner == scope.owner,

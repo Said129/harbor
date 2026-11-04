@@ -10,10 +10,13 @@
     "src/lib/music/artist-popularity.ts": "7d95c390711282cfd95062774305d475a8151c1e0a627d220de4baea7c3a94cc",
     "src/lib/music/search-normalize.ts": "972d5f2778059adf59ee6d72a6c7f45012f371e93f3dac8dfa0dff2de7aac029",
     "src/lib/cache.ts": "8e7016f707a788993b5d9e6763c03c26e318987a3fb91b905f8fbbdbb4fd9171",
+    "src/lib/music/artist-profile.ts": "f6ddc7f30542712edf403bab87dfeb429eee0b09abb8855d9849f4a6b8fe90fd",
+    "src/lib/music/artist-genre-cache.ts": "a91e644cfc95ab8388d35d1c03069458c10575b070889618c58a8960ee448fc6",
+    "src/lib/music/source-link.ts": "b0adf9f5cfc3580c2c6258ddd61f7344c2684b7bfd9571e3b732561d200f4d48",
     "src/lib/music/lastfm.ts": "7d057374ff6796cac84df6c10878fa1bed16098ffa713b7d3a004735f51fd279"
   },
-  "program_sha256": "5b27b579599bf357448882c9d0e49e93d76ecc8c5160df8728e116c8c8143b01",
-  "original_modules": 8,
+  "program_sha256": "02fb263e3723f4ac5e937dd58b9a07bf70cd11e1d0a1e2adc3e9a8d721f5d9bc",
+  "original_modules": 11,
   "public_secret_key_identifier_only": "harbor.lastfm.v1.apiKey",
   "preserved": [
     "24-artist original tagged MusicBrainz roster and original returned-row cursor",
@@ -22,7 +25,16 @@
     "original authority and namesake resolution",
     "three-at-a-time original statistics enrichment",
     "original recording identity/ISRC/title-credit matching and attributed credits",
-    "recording consumer coalescing and source-specific cache TTLs"
+    "recording consumer coalescing and source-specific cache TTLs",
+    "original MusicBrainz artist profile: aliases, genres, members, store/merch/tour/social links, provider identities",
+    "original Wikidata/Wikipedia biography and portrait with the P434 identity check and 30-minute cache"
+  ],
+  "host_shims": [
+    "safe-fetch",
+    "debug",
+    "secret-store",
+    "lastfm key identifier",
+    "local-store (no persistence)"
   ],
   "generator_accesses_providers": false,
   "generator_executes_apple_tests": false,

@@ -8,9 +8,15 @@ import Observation
 }
 struct MusicArtistTransport: HarborPluginHostTransport {
     var network: any HarborNativeNetworkCalling = HarborNativeNetwork()
+    /// MusicBrainz, Deezer and Last.fm, plus the original profile's Wikidata
+    /// entity and Wikipedia summary hosts (two or three letter language codes).
+    static func allowed(_ host: String) -> Bool {
+        ["musicbrainz.org", "api.deezer.com", "ws.audioscrobbler.com", "www.wikidata.org"].contains(host)
+            || host.range(of: #"^[a-z]{2,3}\.wikipedia\.org$"#, options: .regularExpression) != nil
+    }
     func perform(_ kind: HarborPluginBridgeKind, payload: JSONValue) async throws -> JSONValue {
         guard kind == .http, let raw = payload["url"].string, let url = URL(string: raw),
-              url.scheme == "https", ["musicbrainz.org", "api.deezer.com", "ws.audioscrobbler.com"].contains(url.host?.lowercased() ?? ""),
+              url.scheme == "https", Self.allowed(url.host?.lowercased() ?? ""),
               url.port == nil, url.user == nil, url.password == nil, payload["opts"]["method"].string == "GET" else { throw HarborError(code: "music-artist-host") }
         let policy = HarborPluginNetworkPolicy(sameSiteHeaders: false, publicOnly: true, openHeaders: false, baseURL: nil, blockedHosts: [])
         return try await HarborNativePluginTransport(policy: policy, network: network).perform(kind, payload: payload)
@@ -67,11 +73,35 @@ struct MusicArtistTransport: HarborPluginHostTransport {
         let value = try JSONDecoder().decode(JSONValue.self, from: JSONEncoder().encode(artists))
         return try await query("stats", arguments: ["artists": value], as: [MusicArtistAudience].self)
     }
-    func recording(_ track: MusicTrack) async throws -> MusicRecordingProfile? {
-        // Catalog enrichment must never receive a private playback URL or replace playback identity.
+    /// The original artist profile: MusicBrainz relations, then the Wikidata
+    /// entity and Wikipedia summary when the identity is verified. Nil when the
+    /// artist has no verified MusicBrainz identity.
+    func profile(_ artist: MusicArtistReference, language: String) async throws -> MusicArtistProfile? {
+        let value = try JSONDecoder().decode(JSONValue.self, from: JSONEncoder().encode(artist))
+        let id = UUID().uuidString, version = credentialVersion
+        return try await withTaskCancellationHandler {
+            try await query("profile", arguments: ["artist": value, "language": .string(language), "requestId": .string(id)], as: MusicArtistProfile?.self)
+        } onCancel: {
+            Task { @MainActor [weak self] in
+                guard let self, !self.disposed, self.credentialVersion == version, self.scope == self.currentScope() else { return }
+                _ = try? await self.query("cancelProfile", arguments: ["requestId": .string(id)], as: JSONValue.self)
+            }
+        }
+    }
+    /// Desktop's resolveArtist for a track whose recording profile has no known primary artist.
+    func canonicalArtist(for track: MusicTrack) async throws -> MusicArtistReference? {
+        let options: JSONValue = .object(["track": .object(Self.trackInput(track))])
+        return try await query("resolve", arguments: ["name": .string(track.artist), "options": options], as: MusicArtistResolution.self).canonical
+    }
+    /// Catalog enrichment must never receive a private playback URL or replace playback identity.
+    private static func trackInput(_ track: MusicTrack) -> [String: JSONValue] {
         var value: [String: JSONValue] = ["id": .string(track.id), "title": .string(track.title), "artist": .string(track.artist),
             "durationSeconds": .number(Double(track.durationSeconds)), "artwork": .string(track.artwork), "durationLabel": .string(track.durationLabel)]
         for (key, text) in [("connectorId", track.connectorId), ("sourceId", track.sourceId), ("album", track.album), ("mediaKind", track.mediaKind), ("isrc", track.isrc)] { if let text { value[key] = .string(text) } }
+        return value
+    }
+    func recording(_ track: MusicTrack) async throws -> MusicRecordingProfile? {
+        let value = Self.trackInput(track)
         let id = UUID().uuidString, version = credentialVersion
         return try await withTaskCancellationHandler {
             try await query("recording", arguments: ["track": .object(value), "requestId": .string(id)], as: MusicRecordingProfile?.self)

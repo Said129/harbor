@@ -144,15 +144,17 @@ extension EnvironmentValues {
     }
 }
 
-/// Desktop's now-playing detail tabs. The about tab (artist overview, credits,
-/// where to buy) is not ported yet and is therefore not offered.
+/// Desktop's now-playing detail tabs, in its order: up next, about, lyrics and
+/// signal. About needs a playback session for its profile-scoped metadata
+/// client, so it is offered only while one exists.
 @MainActor private struct MusicNowPanels: View {
     enum Panel: String, CaseIterable, Identifiable {
-        case queue, lyrics, signal
+        case queue, about, lyrics, signal
         var id: String { rawValue }
         var label: String {
             switch self {
             case .queue: "music.now.next"
+            case .about: "music.artist.about"
             case .lyrics: "Lyrics"
             case .signal: "music.now.signal"
             }
@@ -160,11 +162,12 @@ extension EnvironmentValues {
     }
     @Bindable var player: MusicPlayback
     @State private var panel = Panel.queue
+    private var panels: [Panel] { Panel.allCases.filter { $0 != .about || player.playbackSession != nil } }
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             HStack(spacing: 8) {
                 Picker(DesktopInterfaceText.value("music.now.details"), selection: $panel) {
-                    ForEach(Panel.allCases) { Text(DesktopInterfaceText.value($0.label)).tag($0) }
+                    ForEach(panels) { Text(DesktopInterfaceText.value($0.label)).tag($0) }
                 }.pickerStyle(.segmented).accessibilityIdentifier("music-now-tabs")
                 NavigationLink { MusicQueueView(player: player) } label: {
                     Image("music-queue").frame(width: 44, height: 44)
@@ -178,6 +181,8 @@ extension EnvironmentValues {
                         ForEach(player.items) { entry in row(entry) }
                     }
                 }.accessibilityIdentifier("music-shared-queue")
+            case .about:
+                MusicAboutPanel(player: player)
             case .lyrics:
                 MusicLyricsView(player: player, client: player.lyricsClient).accessibilityIdentifier("music-now-panel-lyrics")
             case .signal:
@@ -191,6 +196,39 @@ extension EnvironmentValues {
                 Button(DesktopInterfaceText.value("music.queue.playNext")) { player.moveAfterCurrent(item) }
                 Button(DesktopInterfaceText.value("music.queue.remove", variables: ["title": item.track.title]), role: .destructive) { player.removeFromQueue(item) }
             }
+    }
+}
+
+/// Desktop's MusicListeningDetails: the artist overview, the recording credits
+/// and where to buy. The soundtrack link is not ported yet. The metadata client
+/// is created for this panel because the expanded player is mounted by the app
+/// shell, outside the music screen that owns the shared one.
+@MainActor private struct MusicAboutPanel: View {
+    @Bindable var player: MusicPlayback
+    @State private var client: MusicArtistClient?
+    @State private var recording: MusicRecordingProfile?
+    @State private var resolved: MusicArtistReference?
+    private let catalog: any MusicCatalogCalling = MusicCatalogClient()
+    private var artist: MusicArtistReference? { recording?.primaryArtist ?? resolved }
+    var body: some View {
+        VStack(alignment: .leading, spacing: 24) {
+            if let track = player.currentTrack, let client {
+                if let artist { MusicArtistOverviewView(artist: artist, client: client, catalog: catalog) }
+                MusicRecordingCreditsView(track: track, metadata: client, catalog: catalog)
+                MusicWhereToBuyView(track: track, artist: artist, client: client)
+            }
+        }.frame(maxWidth: .infinity, alignment: .leading).accessibilityIdentifier("music-now-panel-about")
+            .task(id: player.currentItem?.id ?? "") {
+                recording = nil; resolved = nil
+                if client == nil { client = player.playbackSession?.makeArtistMetadataClient() }
+                guard let client, let track = player.currentTrack else { return }
+                do {
+                    let value = try await client.recording(track)
+                    try Task.checkCancellation(); recording = value
+                    if value == nil { let canonical = try await client.canonicalArtist(for: track); try Task.checkCancellation(); resolved = canonical }
+                } catch { }
+            }
+            .onDisappear { client?.dispose(); client = nil }
     }
 }
 

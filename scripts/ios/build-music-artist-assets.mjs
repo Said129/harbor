@@ -20,6 +20,9 @@ const inputs = {
   "artist-popularity": "7d95c390711282cfd95062774305d475a8151c1e0a627d220de4baea7c3a94cc",
   "search-normalize": "972d5f2778059adf59ee6d72a6c7f45012f371e93f3dac8dfa0dff2de7aac029",
   "@/lib/cache": "8e7016f707a788993b5d9e6763c03c26e318987a3fb91b905f8fbbdbb4fd9171",
+  "artist-profile": "f6ddc7f30542712edf403bab87dfeb429eee0b09abb8855d9849f4a6b8fe90fd",
+  "artist-genre-cache": "a91e644cfc95ab8388d35d1c03069458c10575b070889618c58a8960ee448fc6",
+  "source-link": "b0adf9f5cfc3580c2c6258ddd61f7344c2684b7bfd9571e3b732561d200f4d48",
 };
 const modules = [],
   files = {};
@@ -67,12 +70,14 @@ const source = `var plugin=(()=>{
       if(name==="@/lib/debug")return {dwarn(){}};
       if(name==="@/lib/secret-store")return {loadSecrets:async()=>{},getSecret:key=>key===${JSON.stringify(keyName)}?apiKey:null};
       if(name==="./lastfm")return {LASTFM_API_KEY:${JSON.stringify(keyName)}};
+      // Desktop persists remembered artist genres in its local store; the native host keeps none.
+      if(name==="./local-store")return {readLocalJson:async()=>null,writeLocalJson(){}};
       const id=name.startsWith("./")?name.slice(2):name;
       if(instances[id])return instances[id];
       if(!factories[id])throw new Error("Unknown pinned artist module");
       const exports={};instances[id]=exports;factories[id](require,exports);return exports;
     }
-    const recordings=new Map();
+    const recordings=new Map(),profiles=new Map();
     return {async content(input){switch(input.operation){
       case "definitions":return require("genre-catalog").MUSIC_GENRES;
       case "roster":return require("genre-artist-roster").loadGenreArtistRoster(input.genre,input.offset??0);
@@ -85,6 +90,13 @@ const source = `var plugin=(()=>{
       case "cancelRecording":recordings.get(input.requestId)?.abort();return null;
       case "parseRecording":return require("recording-profile").parseDeezerRecording(input.recording,input.id,input.match??"provider-id");
       case "resolve":return require("artist-authority").resolveArtist(input.name,input.options??{});
+      case "profile":{
+        const controller=new AbortController();profiles.set(input.requestId,controller);
+        try{return await require("artist-profile").loadArtistProfile(input.artist,input.language??"en",controller.signal);}
+        finally{profiles.delete(input.requestId);}
+      }
+      case "cancelProfile":profiles.get(input.requestId)?.abort();return null;
+      case "parseProfile":return require("artist-profile").parseArtistProfile(input.data,input.id);
       default:throw new Error("Unsupported artist metadata operation");
     }}};
   }
@@ -133,6 +145,25 @@ const labels = new Set([
 ]);
 for (const role of ["main", "featured", "composer", "lyricist", "producer", "performer"])
   labels.add("music.credits." + role);
+for (const key of [
+  "music.artist.about",
+  "music.artist.readMore",
+  "music.artist.readLess",
+  "music.artist.origin",
+  "music.artist.began",
+  "music.artist.aliases",
+  "music.artist.connections",
+  "music.artist.aroundWeb",
+  "music.artist.official",
+  "music.artist.social",
+  "music.artist.store",
+  "music.artist.merch",
+  "music.artist.gallery",
+  "music.extras.tour",
+  "music.buy.title",
+  "music.buy.search",
+])
+  labels.add(key);
 await writeFile(
   path.join(root, "ios/Harbor/DesktopMusicArtistLabels.json"),
   JSON.stringify({ keys: [...labels].sort() }, null, 2) + "\n",
@@ -145,7 +176,7 @@ await writeFile(
       reference_commit: asset.reference,
       original_inputs: files,
       program_sha256: asset.program.sha256,
-      original_modules: 8,
+      original_modules: 11,
       public_secret_key_identifier_only: keyName,
       preserved: [
         "24-artist original tagged MusicBrainz roster and original returned-row cursor",
@@ -155,6 +186,15 @@ await writeFile(
         "three-at-a-time original statistics enrichment",
         "original recording identity/ISRC/title-credit matching and attributed credits",
         "recording consumer coalescing and source-specific cache TTLs",
+        "original MusicBrainz artist profile: aliases, genres, members, store/merch/tour/social links, provider identities",
+        "original Wikidata/Wikipedia biography and portrait with the P434 identity check and 30-minute cache",
+      ],
+      host_shims: [
+        "safe-fetch",
+        "debug",
+        "secret-store",
+        "lastfm key identifier",
+        "local-store (no persistence)",
       ],
       generator_accesses_providers: false,
       generator_executes_apple_tests: false,
@@ -166,5 +206,5 @@ await writeFile(
   ) + "\n",
 );
 console.log(
-  `Original artist metadata: eight modules and public Last.fm key identifier, SHA256 ${asset.program.sha256}`,
+  `Original artist metadata: eleven modules and public Last.fm key identifier, SHA256 ${asset.program.sha256}`,
 );

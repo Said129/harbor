@@ -1,0 +1,537 @@
+{
+  "schema": 1,
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "program_sha256": "02fb263e3723f4ac5e937dd58b9a07bf70cd11e1d0a1e2adc3e9a8d721f5d9bc",
+  "artist_id": "11111111-1111-4111-8111-111111111111",
+  "artist": {
+    "id": "musicbrainz:artist:11111111-1111-4111-8111-111111111111",
+    "connectorId": "catalog",
+    "name": "Owned Artist",
+    "musicBrainzId": "11111111-1111-4111-8111-111111111111"
+  },
+  "language": "es",
+  "musicbrainz": {
+    "id": "11111111-1111-4111-8111-111111111111",
+    "name": "Owned Artist",
+    "begin-area": {
+      "name": "Owned Town"
+    },
+    "area": {
+      "name": "Owned Country"
+    },
+    "life-span": {
+      "begin": "1999-04",
+      "end": "2012"
+    },
+    "aliases": [
+      {
+        "name": "Owned Artist"
+      },
+      {
+        "name": "The Owned"
+      },
+      {
+        "name": "Owned Alias"
+      },
+      {
+        "name": "The Owned"
+      }
+    ],
+    "genres": [
+      {
+        "name": "synth",
+        "count": 3
+      },
+      {
+        "name": "ambient",
+        "count": 9
+      },
+      {
+        "name": "drone",
+        "count": 1
+      }
+    ],
+    "relations": [
+      {
+        "type": "member of band",
+        "artist": {
+          "id": "44444444-4444-4444-8444-444444444444",
+          "name": "Owned Member",
+          "disambiguation": "drums"
+        }
+      },
+      {
+        "type": "collaboration",
+        "artist": {
+          "id": "not-a-uuid",
+          "name": "Rejected"
+        }
+      },
+      {
+        "type": "official homepage",
+        "url": {
+          "resource": "https://owned.example/home"
+        }
+      },
+      {
+        "type": "official homepage",
+        "url": {
+          "resource": "https://owned.example/home"
+        }
+      },
+      {
+        "type": "merchandise",
+        "url": {
+          "resource": "https://shop.owned.example/"
+        }
+      },
+      {
+        "type": "purchase for download",
+        "url": {
+          "resource": "https://www.qobuz.com/artist/1"
+        }
+      },
+      {
+        "type": "purchase for download",
+        "url": {
+          "resource": "https://www.qobuz.com/artist/2"
+        }
+      },
+      {
+        "type": "free streaming",
+        "url": {
+          "resource": "https://owned.bandcamp.com/"
+        }
+      },
+      {
+        "type": "social network",
+        "url": {
+          "resource": "https://www.instagram.com/owned/"
+        }
+      },
+      {
+        "type": "free streaming",
+        "url": {
+          "resource": "https://www.deezer.com/artist/8"
+        }
+      },
+      {
+        "type": "streaming music",
+        "url": {
+          "resource": "https://open.spotify.com/artist/AAAAAAAAAAAAAAAAAAAAAA"
+        }
+      },
+      {
+        "type": "youtube",
+        "url": {
+          "resource": "https://www.youtube.com/channel/UCaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      {
+        "type": "free streaming",
+        "url": {
+          "resource": "https://play.google.com/music/x"
+        }
+      },
+      {
+        "type": "official homepage",
+        "ended": true,
+        "url": {
+          "resource": "https://old.example/"
+        }
+      },
+      {
+        "type": "official homepage",
+        "url": {
+          "resource": "http://127.0.0.1/private"
+        }
+      },
+      {
+        "type": "free streaming",
+        "url": {
+          "resource": "https://songkick.com/artists/1"
+        }
+      },
+      {
+        "type": "wikidata",
+        "url": {
+          "resource": "https://www.wikidata.org/wiki/Q42"
+        }
+      }
+    ]
+  },
+  "responses": {
+    "https://musicbrainz.org/ws/2/artist/11111111-1111-4111-8111-111111111111?inc=url-rels%2Bartist-rels%2Bgenres%2Baliases&fmt=json": {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "name": "Owned Artist",
+      "begin-area": {
+        "name": "Owned Town"
+      },
+      "area": {
+        "name": "Owned Country"
+      },
+      "life-span": {
+        "begin": "1999-04",
+        "end": "2012"
+      },
+      "aliases": [
+        {
+          "name": "Owned Artist"
+        },
+        {
+          "name": "The Owned"
+        },
+        {
+          "name": "Owned Alias"
+        },
+        {
+          "name": "The Owned"
+        }
+      ],
+      "genres": [
+        {
+          "name": "synth",
+          "count": 3
+        },
+        {
+          "name": "ambient",
+          "count": 9
+        },
+        {
+          "name": "drone",
+          "count": 1
+        }
+      ],
+      "relations": [
+        {
+          "type": "member of band",
+          "artist": {
+            "id": "44444444-4444-4444-8444-444444444444",
+            "name": "Owned Member",
+            "disambiguation": "drums"
+          }
+        },
+        {
+          "type": "collaboration",
+          "artist": {
+            "id": "not-a-uuid",
+            "name": "Rejected"
+          }
+        },
+        {
+          "type": "official homepage",
+          "url": {
+            "resource": "https://owned.example/home"
+          }
+        },
+        {
+          "type": "official homepage",
+          "url": {
+            "resource": "https://owned.example/home"
+          }
+        },
+        {
+          "type": "merchandise",
+          "url": {
+            "resource": "https://shop.owned.example/"
+          }
+        },
+        {
+          "type": "purchase for download",
+          "url": {
+            "resource": "https://www.qobuz.com/artist/1"
+          }
+        },
+        {
+          "type": "purchase for download",
+          "url": {
+            "resource": "https://www.qobuz.com/artist/2"
+          }
+        },
+        {
+          "type": "free streaming",
+          "url": {
+            "resource": "https://owned.bandcamp.com/"
+          }
+        },
+        {
+          "type": "social network",
+          "url": {
+            "resource": "https://www.instagram.com/owned/"
+          }
+        },
+        {
+          "type": "free streaming",
+          "url": {
+            "resource": "https://www.deezer.com/artist/8"
+          }
+        },
+        {
+          "type": "streaming music",
+          "url": {
+            "resource": "https://open.spotify.com/artist/AAAAAAAAAAAAAAAAAAAAAA"
+          }
+        },
+        {
+          "type": "youtube",
+          "url": {
+            "resource": "https://www.youtube.com/channel/UCaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        },
+        {
+          "type": "free streaming",
+          "url": {
+            "resource": "https://play.google.com/music/x"
+          }
+        },
+        {
+          "type": "official homepage",
+          "ended": true,
+          "url": {
+            "resource": "https://old.example/"
+          }
+        },
+        {
+          "type": "official homepage",
+          "url": {
+            "resource": "http://127.0.0.1/private"
+          }
+        },
+        {
+          "type": "free streaming",
+          "url": {
+            "resource": "https://songkick.com/artists/1"
+          }
+        },
+        {
+          "type": "wikidata",
+          "url": {
+            "resource": "https://www.wikidata.org/wiki/Q42"
+          }
+        }
+      ]
+    },
+    "https://www.wikidata.org/wiki/Special:EntityData/Q42.json": {
+      "entities": {
+        "Q42": {
+          "claims": {
+            "P434": [
+              {
+                "mainsnak": {
+                  "datavalue": {
+                    "value": "11111111-1111-4111-8111-111111111111"
+                  }
+                }
+              }
+            ],
+            "P18": [
+              {
+                "mainsnak": {
+                  "datavalue": {
+                    "value": "Owned photo.jpg"
+                  }
+                }
+              }
+            ]
+          },
+          "sitelinks": {
+            "eswiki": {
+              "url": "https://es.wikipedia.org/wiki/Owned_Artist",
+              "title": "Owned Artist"
+            },
+            "enwiki": {
+              "url": "https://en.wikipedia.org/wiki/Owned_Artist",
+              "title": "Owned Artist"
+            }
+          },
+          "descriptions": {
+            "es": {
+              "value": "Artista de prueba"
+            },
+            "en": {
+              "value": "Test artist"
+            }
+          }
+        }
+      }
+    },
+    "https://es.wikipedia.org/api/rest_v1/page/summary/Owned%20Artist": {
+      "type": "standard",
+      "extract": "Resumen original del artista de prueba.",
+      "originalimage": {
+        "source": "https://upload.wikimedia.org/owned/photo.jpg"
+      }
+    }
+  },
+  "expected_parse": {
+    "id": "11111111-1111-4111-8111-111111111111",
+    "name": "Owned Artist",
+    "origin": "Owned Town",
+    "began": "1999-04",
+    "ended": "2012",
+    "aliases": ["The Owned", "Owned Alias"],
+    "genres": ["ambient", "synth", "drone"],
+    "links": [
+      {
+        "url": "https://owned.example/home",
+        "kind": "official",
+        "name": "owned.example"
+      },
+      {
+        "url": "https://shop.owned.example/",
+        "kind": "merch",
+        "name": "shop.owned.example"
+      },
+      {
+        "url": "https://www.qobuz.com/artist/1",
+        "kind": "store",
+        "name": "qobuz.com"
+      },
+      {
+        "url": "https://owned.bandcamp.com/",
+        "kind": "store",
+        "name": "owned.bandcamp.com"
+      },
+      {
+        "url": "https://www.instagram.com/owned/",
+        "kind": "social",
+        "name": "instagram.com"
+      },
+      {
+        "url": "https://www.deezer.com/artist/8",
+        "kind": "source",
+        "name": "Deezer"
+      },
+      {
+        "url": "https://open.spotify.com/artist/AAAAAAAAAAAAAAAAAAAAAA",
+        "kind": "source",
+        "name": "Spotify"
+      },
+      {
+        "url": "https://www.youtube.com/channel/UCaaaaaaaaaaaaaaaaaaaaaa",
+        "kind": "source",
+        "name": "YouTube Music"
+      },
+      {
+        "url": "https://songkick.com/artists/1",
+        "kind": "tour",
+        "name": "songkick.com"
+      }
+    ],
+    "members": [
+      {
+        "id": "musicbrainz:artist:44444444-4444-4444-8444-444444444444",
+        "connectorId": "catalog",
+        "name": "Owned Member",
+        "subtitle": "drums"
+      }
+    ],
+    "sources": [
+      {
+        "id": "deezer:artist:8",
+        "connectorId": "catalog",
+        "name": "Owned Artist"
+      },
+      {
+        "id": "spotify:artist:AAAAAAAAAAAAAAAAAAAAAA",
+        "connectorId": "spotify",
+        "name": "Owned Artist"
+      },
+      {
+        "id": "UCaaaaaaaaaaaaaaaaaaaaaa",
+        "connectorId": "youtube",
+        "name": "Owned Artist"
+      }
+    ]
+  },
+  "expected_profile": {
+    "id": "11111111-1111-4111-8111-111111111111",
+    "name": "Owned Artist",
+    "origin": "Owned Town",
+    "began": "1999-04",
+    "ended": "2012",
+    "aliases": ["The Owned", "Owned Alias"],
+    "genres": ["ambient", "synth", "drone"],
+    "links": [
+      {
+        "url": "https://owned.example/home",
+        "kind": "official",
+        "name": "owned.example"
+      },
+      {
+        "url": "https://shop.owned.example/",
+        "kind": "merch",
+        "name": "shop.owned.example"
+      },
+      {
+        "url": "https://www.qobuz.com/artist/1",
+        "kind": "store",
+        "name": "qobuz.com"
+      },
+      {
+        "url": "https://owned.bandcamp.com/",
+        "kind": "store",
+        "name": "owned.bandcamp.com"
+      },
+      {
+        "url": "https://www.instagram.com/owned/",
+        "kind": "social",
+        "name": "instagram.com"
+      },
+      {
+        "url": "https://www.deezer.com/artist/8",
+        "kind": "source",
+        "name": "Deezer"
+      },
+      {
+        "url": "https://open.spotify.com/artist/AAAAAAAAAAAAAAAAAAAAAA",
+        "kind": "source",
+        "name": "Spotify"
+      },
+      {
+        "url": "https://www.youtube.com/channel/UCaaaaaaaaaaaaaaaaaaaaaa",
+        "kind": "source",
+        "name": "YouTube Music"
+      },
+      {
+        "url": "https://songkick.com/artists/1",
+        "kind": "tour",
+        "name": "songkick.com"
+      }
+    ],
+    "members": [
+      {
+        "id": "musicbrainz:artist:44444444-4444-4444-8444-444444444444",
+        "connectorId": "catalog",
+        "name": "Owned Member",
+        "subtitle": "drums"
+      }
+    ],
+    "sources": [
+      {
+        "id": "deezer:artist:8",
+        "connectorId": "catalog",
+        "name": "Owned Artist"
+      },
+      {
+        "id": "spotify:artist:AAAAAAAAAAAAAAAAAAAAAA",
+        "connectorId": "spotify",
+        "name": "Owned Artist"
+      },
+      {
+        "id": "UCaaaaaaaaaaaaaaaaaaaaaa",
+        "connectorId": "youtube",
+        "name": "Owned Artist"
+      }
+    ],
+    "wikidataId": "Q42",
+    "artwork": "https://upload.wikimedia.org/owned/photo.jpg",
+    "biography": "Resumen original del artista de prueba.",
+    "biographyUrl": "https://es.wikipedia.org/wiki/Owned_Artist"
+  },
+  "requests_in_order": [
+    "https://musicbrainz.org/ws/2/artist/11111111-1111-4111-8111-111111111111?inc=url-rels%2Bartist-rels%2Bgenres%2Baliases&fmt=json",
+    "https://www.wikidata.org/wiki/Special:EntityData/Q42.json",
+    "https://es.wikipedia.org/api/rest_v1/page/summary/Owned%20Artist"
+  ]
+}

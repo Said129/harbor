@@ -50,6 +50,34 @@ struct MusicRecordingProfile: Decodable, Sendable {
     let provenance: [Provenance]
     var isrc: String?
 }
+/// Desktop's MusicArtistProfile (lib/music/artist-profile.ts), produced by the
+/// pinned original module. Empty strings mean "not provided".
+struct MusicArtistProfile: Decodable, Equatable, Sendable {
+    struct Link: Decodable, Hashable, Sendable {
+        let url: String
+        /// store, merch, official, source, tour or social.
+        let kind: String
+        let name: String
+    }
+    let id: String
+    let name: String
+    var origin: String?
+    var began: String?
+    var ended: String?
+    let aliases: [String]
+    let genres: [String]
+    let members: [MusicArtistReference]
+    let links: [Link]
+    var biography: String?
+    var biographyUrl: String?
+    var artwork: String?
+    var wikidataId: String?
+    let sources: [MusicArtistReference]
+}
+/// The part of the original artist ranking that the interface needs.
+struct MusicArtistResolution: Decodable, Sendable {
+    let canonical: MusicArtistReference?
+}
 struct MusicArtistAsset: Decodable, Sendable {
     struct Program: Decodable, Sendable { let source: String; let sha256: String }
     let schema: Int
@@ -62,8 +90,8 @@ struct MusicArtistAsset: Decodable, Sendable {
         guard bytes.count <= 2 * 1024 * 1024 else { throw HarborError(code: "music-artist-assets") }
         let value = try JSONDecoder().decode(Self.self, from: bytes)
         let digest = SHA256.hash(data: Data(value.program.source.utf8)).map { String(format: "%02x", $0) }.joined()
-        guard value.schema == 1, value.reference == "0834340cec5531650bfe78cd628628702e636987", value.inputs.count == 9,
-              digest == value.program.sha256, digest == "5b27b579599bf357448882c9d0e49e93d76ecc8c5160df8728e116c8c8143b01" else { throw HarborError(code: "music-artist-assets") }
+        guard value.schema == 1, value.reference == "0834340cec5531650bfe78cd628628702e636987", value.inputs.count == 12,
+              digest == value.program.sha256, digest == "02fb263e3723f4ac5e937dd58b9a07bf70cd11e1d0a1e2adc3e9a8d721f5d9bc" else { throw HarborError(code: "music-artist-assets") }
         return value
     }
     static func read() throws -> Self { try cached.get() }

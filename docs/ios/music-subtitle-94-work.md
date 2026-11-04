@@ -1072,6 +1072,54 @@ All labels already exist in the sixteen catalogues; none were added.
 New native case MusicSignalDetailsTests (original tier vectors and
 phone/tablet/Arabic captures) joins the focused module; it is unexecuted.
 
+## Now-playing "About" tab and the original artist profile (uncompiled)
+
+The expanded player now has Desktop's four detail tabs in its order: up
+next, about, lyrics, signal. About is offered while a playback session
+exists, because it needs a profile-scoped metadata client and the player is
+mounted by the app shell, outside the music screen that owns the shared one
+(MusicPlaybackSession.makeArtistMetadataClient).
+
+The artist data is not re-implemented. build-music-artist-assets.mjs now
+pins three more original Desktop modules by SHA-256 (artist-profile.ts,
+artist-genre-cache.ts, source-link.ts; twelve inputs in total) and exposes
+the operations profile, cancelProfile and parseProfile of the same worker
+that already runs the roster, statistics and recording code. The only host
+shim added is ./local-store without persistence, next to the existing
+safe-fetch, debug and secret-store shims. The unmodified generator was first
+run and reproduced the committed asset byte for byte, so the regenerated
+program (SHA-256 02fb263e3723f4ac5e937dd58b9a07bf70cd11e1d0a1e2adc3e9a8d721f5d9bc)
+differs only by the new modules. The Swift pin in MusicArtistAsset.read() is
+updated to that digest and to twelve inputs.
+
+The transport allows two more public hosts for it: www.wikidata.org and the
+two or three letter \*.wikipedia.org summaries. Everything else, including
+look-alike hosts, is still refused.
+
+The independent expectation is build-music-artist-profile-fixture.mjs: it
+runs the pinned program in Node against owned MusicBrainz, Wikidata and
+Wikipedia responses and stores the outputs in
+music-artist-profile-reference.json. In that evaluation the original code
+drops the ended relation, the loopback address, Google Play and duplicate
+URLs, sorts genres by popularity, keeps one qobuz store link, identifies
+Deezer, Spotify and YouTube Music sources and rejects a profile fetched for a
+different identity. These Node results are not Apple evidence.
+
+New view code: MusicArtistOverviewView (portrait, name, biography with read
+more, origin, active years, aliases, genres, Wikipedia source, connections,
+links around the web, MusicBrainz) and MusicWhereToBuyView (stores and
+merchandise from the profile plus the Bandcamp search), wired into the About
+tab together with the existing recording credits. The profile falls back to
+the original resolveArtist when the recording has no verified primary artist.
+
+Not ported yet: the soundtrack link (Cinemeta match), the artist gallery
+modal, the tour and event extras, the linked biography, genre navigation
+from a chip, and member portraits. MusicArtistProfileTests adds four
+unexecuted native cases (parser against the Node evaluation, the real worker
+against owned responses and hosts, the host and URL policy, and
+phone/tablet/Arabic captures). Nothing here is compiled; it joins the next
+batched validation, with MusicSignalDetailsTests and the pending meter case.
+
 ## Run 41844742608 (da648bfb)
 
 Artifact 13331927916, SHA-256
