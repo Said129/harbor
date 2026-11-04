@@ -38,6 +38,9 @@ import SwiftUI
         Section {
             Text(text("music.audio.scope")).font(.footnote)
             Text(text("music.audio.spotify")).font(.footnote).foregroundStyle(.secondary)
+            if let preferences = session.audio {
+                Toggle(text("music.now.colors"), isOn: Binding(get: { preferences.artworkColors }, set: { preferences.artworkColors = $0 }))
+            }
             if MusicAudioMeter.supported, let preferences = session.audio {
                 Toggle(text("music.quality.levels"), isOn: Binding(get: { preferences.showLevels }, set: { preferences.showLevels = $0 }))
                 Toggle(text("music.now.visualizer"), isOn: Binding(get: { preferences.dockVisualizer }, set: { preferences.dockVisualizer = $0 }))

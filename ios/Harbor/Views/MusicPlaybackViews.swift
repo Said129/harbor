@@ -58,13 +58,12 @@ extension EnvironmentValues {
                         }.frame(height: 44)
                     }
                 }.buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value("Music"))
-                Button { player.togglePause() } label: {
-                    Group { if player.phase == .resolving { ProgressView().tint(HarborTheme.ink) } else { MusicGlyph(player.paused ? "play" : "pause") } }.frame(width: 44, height: 44)
-                }.accessibilityLabel(DesktopInterfaceText.value(player.paused ? "music.play" : "music.pause"))
+                MusicPlayButton(player: player, diameter: 44)
                 Button { player.next() } label: { MusicGlyph("next").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("music.next"))
-            }.padding(.horizontal, 14).padding(.vertical, 7).background(HarborTheme.surface).accessibilityIdentifier("music-shared-mini-player")
+            }.padding(.horizontal, 14).padding(.vertical, 7).background { MusicArtworkBackground() }.accessibilityIdentifier("music-shared-mini-player")
                 .environment(\.musicPlaybackSession, player.playbackSession)
                 .sheet(isPresented: $expanded) { NavigationStack { MusicPlayerView(player: player).toolbar { ToolbarItem(placement: .topBarTrailing) { Button(DesktopInterfaceText.value("Close")) { expanded = false } } } } }
+                .modifier(MusicArtworkTheme(player: player))
         } else if let spotify = SpotifyMusicSelection.shared.active {
             SpotifyMiniPlayer(service: spotify)
         }
@@ -79,42 +78,36 @@ extension EnvironmentValues {
     init() { player = .shared }
     init(player: MusicPlayback) { self.player = player }
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 22) {
-                if let item = player.currentItem {
-                    MusicPlaybackCover(item: item, owner: player.owner).frame(width: 180, height: 180)
-                    VStack(spacing: 5) {
-                        Text(item.track.title).font(.title2.bold()); Text(item.track.artist).foregroundStyle(.secondary)
-                        if let album = item.track.album { Text(album).font(.caption).foregroundStyle(.secondary) }
-                    }.multilineTextAlignment(.center).accessibilityIdentifier("music-shared-current-metadata")
-                    MusicTransportControls(player: player)
-                    if MusicAudioMeter.supported {
-                        if player.playbackSession?.audio?.showLevels != false { MusicAudioMeterView(player: player) }
-                        if player.playbackSession?.audio?.dockVisualizer == true {
-                            MusicAudioMeterView(player: player, presentation: .spectrum).frame(width: 152, height: 32)
+        GeometryReader { geometry in
+            let edge = min(72, max(20, geometry.size.width * 0.038))
+            let width = min(1240, max(0, geometry.size.width - 2 * edge))
+            let gap = min(88, max(32, geometry.size.width * 0.05))
+            ScrollView {
+                VStack(spacing: 30) {
+                    if let item = player.currentItem {
+                        if let preferences = player.playbackSession?.audio { MusicAppearanceControls(preferences: preferences) }
+                        if width >= 650 {
+                            HStack(alignment: .top, spacing: gap) {
+                                artwork(item, width: min(540, (width - gap) / 2))
+                                recording(item).frame(maxWidth: .infinity)
+                            }.accessibilityIdentifier("music-now-two-columns")
+                        } else {
+                            artwork(item, width: min(540, width))
+                            recording(item)
                         }
-                    }
-                    if player.playbackSession != nil {
-                        Button(DesktopInterfaceText.value("music.source.playOn")) { choosingSource = true }.disabled(player.resolving)
-                        Button(DesktopInterfaceText.value("music.audio.title")) { audioSettings = true }
-                    }
-                    DisclosureGroup(DesktopInterfaceText.value("Lyrics")) {
-                        MusicLyricsView(player: player, client: player.lyricsClient)
-                    }
-                    if let error = player.error { Text(error).font(.caption).foregroundStyle(.orange).accessibilityIdentifier("music-shared-error") }
-                    if let error = player.scrobbleError { Text(error).font(.caption).foregroundStyle(.secondary) }
-                    VStack(alignment: .leading, spacing: 12) {
-                        Label(DesktopInterfaceText.value("music.now.next"), image: "music-queue").font(.headline)
-                        NavigationLink(DesktopInterfaceText.value("music.transport.queue")) { MusicQueueView(player: player) }
-                        ForEach(player.upcomingItems) { entry in row(entry) }
-                        DisclosureGroup(DesktopInterfaceText.value("music.search.tracks")) {
-                            ForEach(player.items) { entry in row(entry) }
-                        }
-                    }.accessibilityIdentifier("music-shared-queue")
-                    Button(DesktopInterfaceText.value("music.player.close"), role: .destructive) { player.stop(); dismiss() }
-                } else { ContentUnavailableView(DesktopInterfaceText.value("Music"), image: "nav-music") }
-            }.padding(24).frame(maxWidth: 800).frame(maxWidth: .infinity)
-        }.background(HarborTheme.background).navigationTitle(DesktopInterfaceText.value("Music")).navigationBarTitleDisplayMode(.inline)
+                        VStack(alignment: .leading, spacing: 12) {
+                            Label(DesktopInterfaceText.value("music.now.next"), image: "music-queue").font(.headline)
+                            NavigationLink(DesktopInterfaceText.value("music.transport.queue")) { MusicQueueView(player: player) }
+                            ForEach(player.upcomingItems) { entry in row(entry) }
+                            DisclosureGroup(DesktopInterfaceText.value("music.search.tracks")) {
+                                ForEach(player.items) { entry in row(entry) }
+                            }
+                        }.accessibilityIdentifier("music-shared-queue")
+                        Button(DesktopInterfaceText.value("music.player.close"), role: .destructive) { player.stop(); dismiss() }
+                    } else { ContentUnavailableView(DesktopInterfaceText.value("Music"), image: "nav-music") }
+                }.frame(width: width).padding(edge).frame(maxWidth: .infinity)
+            }
+        }.background { MusicArtworkBackground(expanded: true) }.navigationTitle(DesktopInterfaceText.value("Music")).navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $choosingSource) {
                 if let session = player.playbackSession {
                     NavigationStack { MusicSourcePickerView(player: player, session: session).toolbar {
@@ -127,6 +120,37 @@ extension EnvironmentValues {
             .sheet(isPresented: $audioSettings) {
                 if let session = player.playbackSession { MusicAudioSettingsView(session: session, player: player) }
             }
+            .modifier(MusicArtworkTheme(player: player))
+    }
+    private func artwork(_ item: MusicPlaybackItem, width: CGFloat) -> some View {
+        VStack(spacing: 24) {
+            MusicPlaybackCover(item: item, owner: player.owner).frame(width: width, height: width)
+                .clipShape(.rect(cornerRadius: 12)).accessibilityIdentifier("music-now-artwork")
+            if MusicAudioMeter.supported {
+                if player.playbackSession?.audio?.showLevels != false { MusicAudioMeterView(player: player) }
+                if player.playbackSession?.audio?.dockVisualizer == true {
+                    MusicAudioMeterView(player: player, presentation: .spectrum).frame(width: 152, height: 32)
+                }
+            }
+        }.frame(width: width)
+    }
+    private func recording(_ item: MusicPlaybackItem) -> some View {
+        VStack(alignment: .leading, spacing: 22) {
+            VStack(alignment: .leading, spacing: 5) {
+                Text(item.track.title).font(.title.bold()); Text(item.track.artist).foregroundStyle(.secondary)
+                if let album = item.track.album { Text(album).font(.caption).foregroundStyle(.secondary) }
+            }.accessibilityIdentifier("music-shared-current-metadata")
+            MusicTransportControls(player: player)
+            if player.playbackSession != nil {
+                Button(DesktopInterfaceText.value("music.source.playOn")) { choosingSource = true }.disabled(player.resolving)
+                Button(DesktopInterfaceText.value("music.audio.title")) { audioSettings = true }
+            }
+            DisclosureGroup(DesktopInterfaceText.value("Lyrics")) {
+                MusicLyricsView(player: player, client: player.lyricsClient)
+            }
+            if let error = player.error { Text(error).font(.caption).foregroundStyle(.orange).accessibilityIdentifier("music-shared-error") }
+            if let error = player.scrobbleError { Text(error).font(.caption).foregroundStyle(.secondary) }
+        }
     }
     private func row(_ item: MusicPlaybackItem) -> some View {
         MusicPlaybackRow(item: item, owner: player.owner) { player.play(item) }
@@ -143,6 +167,7 @@ extension EnvironmentValues {
     @Bindable var player: MusicPlayback
     @State private var seek = 0.0
     @State private var editing = false
+    @Environment(\.musicArtworkPalette) private var palette
     var body: some View {
         VStack(spacing: 14) {
             Slider(value: $seek, in: 0...max(player.duration, 1)) { edit in editing = edit; if !edit { player.seek(seek) } }.accessibilityLabel(DesktopInterfaceText.value("music.position"))
@@ -150,17 +175,15 @@ extension EnvironmentValues {
             HStack(spacing: 10) {
                 Button { player.shuffle.toggle() } label: { MusicGlyph("shuffle").foregroundStyle(player.shuffle ? HarborTheme.accent : .secondary).frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("music.transport.shuffle")).accessibilityAddTraits(player.shuffle ? .isSelected : [])
                 Button { player.previous() } label: { MusicGlyph("previous").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("music.previous"))
-                Button { player.togglePause() } label: {
-                    Group { if player.phase == .resolving { ProgressView().tint(HarborTheme.background) } else { MusicGlyph(player.paused ? "play" : "pause", size: 28) } }
-                        .foregroundStyle(HarborTheme.background).frame(width: 54, height: 54).background(HarborTheme.ink, in: .circle)
-                }.accessibilityLabel(DesktopInterfaceText.value(player.paused ? "music.play" : "music.pause"))
+                MusicPlayButton(player: player, diameter: 54)
                 Button { player.next() } label: { MusicGlyph("next").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("music.next"))
                 Menu { Picker(DesktopInterfaceText.value("music.transport.repeat"), selection: $player.repeatMode) { ForEach(MusicRepeat.allCases) { Text($0.title).tag($0) } } } label: {
                     MusicGlyph(player.repeatMode == .one ? "repeat-one" : "repeat").foregroundStyle(player.repeatMode == .off ? .secondary : HarborTheme.accent).frame(width: 44, height: 44)
                 }.accessibilityLabel(DesktopInterfaceText.value("music.transport.repeat")).accessibilityValue(player.repeatMode.title)
             }.buttonStyle(.plain)
             Slider(value: Binding(get: { min(player.volumeMaximum, player.volume) }, set: { player.changeVolume($0) }), in: 0...player.volumeMaximum) { Text(DesktopInterfaceText.value("music.volume")) } minimumValueLabel: { MusicGlyph("volume-low") } maximumValueLabel: { MusicGlyph("volume-high") }
-        }.onChange(of: player.position) { _, value in if !editing { seek = value } }
+        }.tint(MusicArtworkStyle.seek(palette))
+            .onChange(of: player.position) { _, value in if !editing { seek = value } }
             .onChange(of: player.currentItem?.id) { _, _ in editing = false; seek = 0 }
             .onAppear { seek = player.position }
     }

@@ -1,0 +1,52 @@
+{
+  "referenceCommit": "0834340cec5531650bfe78cd628628702e636987",
+  "referenceVersion": "0.9.132 Beta",
+  "canonicalGitSourceSHA256": {
+    "src/lib/music/appearance.ts": "cf6e50a8a3267c6aa706a8a7687403c4327738715a2bef5b271f10e82b065fed",
+    "src/components/music/music-now-playing.tsx": "81dae814714a31bb4c89ddd355ae744bf33e5df49769b669e9edc5d015a7c8b0",
+    "src/components/music/music-now-playing.css": "d249344e735e981460d1e18ead0eb9a60b112bbada9bc4269e8a590477cec916",
+    "src/components/music/music-dock.css": "39c20d3d9adfa0432833134d0c90d738068ce19f95632abc465c3318141f120a",
+    "src/components/music/music-dock-visualizer.css": "cb7c91edcdbce4216a790bd9036b411bdcc25c66a17a6b65b29417992abd23db"
+  },
+  "originalProgramSHA256": "1c2f5cf639e50ccbfa2c18793cf76f1f919cd6ad5e3d7fdb07669e0fd4877dd2",
+  "retained": [
+    "Whole original dominant-colour/palette functions execute in an authenticated, bounded JavaScriptCore program, without network or credential bindings.",
+    "Original alpha/near-black/near-white exclusions, stable weighted buckets, contrast foreground, hue separation and dark-to-light palette order.",
+    "Original relative Oklch lightness/chroma, sRGB surface/seek mixes and expanded diagonal gradient; raw cover colour and its original contrast ink colour the play button.",
+    "Original artwork-colour/default-on, level/default-on and spectrum/default-off controls have profile-owned preferences and all sixteen original language labels.",
+    "Expanded cover/content layout retains the original 540-point cover cap, 1240-point content cap and clamped gaps; compact widths stack the cover and controls."
+  ],
+  "mobileAdaptations": [
+    "ImageIO/CoreGraphics perform bounded 24x24 sRGB pixel decoding off the UI actor. Image data above the original 4 MiB colour-analysis limit is rejected.",
+    "Existing public artwork request coalescing, private Plex artwork service and owned local covers supply bytes; no new public request is made for opaque Plex references.",
+    "An in-memory 128-entry cache is keyed by image-content digest and holds numeric palette results only.",
+    "Task identity, active session validation and credential revision prevent an old cover from colouring a different recording or profile. Disabling colours immediately removes the palette.",
+    "Native sheet presentation and 44-point touch targets replace desktop mouse/window interactions. The active custom canvas determines the local light/dark control appearance."
+  ],
+  "colourMathPrimaryReferences": [
+    "https://bottosson.github.io/posts/oklab/",
+    "https://www.w3.org/TR/2026/CRD-css-color-4-20261103/#specifying-oklab-oklch"
+  ],
+  "validation": {
+    "independentWholeDesktopModuleComparison": {
+      "comparedCases": 73,
+      "invalidInputsRejected": 5,
+      "result": "passed on Windows Node; not Apple execution"
+    },
+    "nativeReferenceVectors": 19,
+    "ownedImage": {
+      "path": "ios/HarborTests/Fixtures/owned-music-artwork.png",
+      "sha256": "6ee0e46480e964fe06c7405d47b4c25de5b3dedc832651bb30ed9365301510eb",
+      "description": "Generated 24x24 RGBA PNG, equal red top/blue bottom halves; verifies image orientation through original stable tie behaviour."
+    },
+    "nativeImageAndProgramExecution": "pending",
+    "nativePhoneTabletArabicCaptureReview": "pending",
+    "nativeProfileAndDisableBehaviour": "pending",
+    "ipaPackaged": false
+  },
+  "remainingPresentationScope": [
+    "Complete queue/about/lyrics/signal expanded panels and related artist/album/video actions",
+    "Miku and GIF visualizers, complete DJ deck and remaining original motion",
+    "Actual authenticated Spotify account execution and complete YouTube Music adaptation"
+  ]
+}

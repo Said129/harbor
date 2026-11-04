@@ -95,9 +95,10 @@ private struct MusicSpectrumBar: View {
     let reduceMotion: Bool
     @State private var height = 0.08
     @State private var opacity = 0.25
+    @Environment(\.musicArtworkPalette) private var palette
     var body: some View {
         RoundedRectangle(cornerRadius: 2).fill(ThemePreferences.shared.color("ink-muted"))
-            .overlay { RoundedRectangle(cornerRadius: 2).fill(HarborTheme.accent.opacity(0.35)) }
+            .overlay { RoundedRectangle(cornerRadius: 2).fill(MusicArtworkStyle.spectrum(palette).opacity(0.35)) }
             .scaleEffect(x: 1, y: height, anchor: .bottom).opacity(opacity)
             .onChange(of: amplitude, initial: true) { previous, next in
                 withAnimation(reduceMotion ? nil : .easeOut(duration: next > previous ? 0.045 : 0.180)) {

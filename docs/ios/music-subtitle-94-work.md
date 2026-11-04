@@ -905,3 +905,35 @@ Installation now has a bounded 300-second phase with its own output and
 resource trace; boot/install/build results are recorded separately. The
 next execution retains the same nine unexecuted cases and compiler cache,
 without repeating earlier approved tests or requesting an IPA.
+
+The new exact-source follow-up is run 41831413613, job 126579263610,
+source 69f581ccc695a06cddc051dff91e086a6f0289e4, on the same validation
+branch. It keeps the nine unexecuted cases. The earlier failed attempt to
+dispatch the reusable ios-focused.yml directly returned 404 and created no
+run; dispatch through the registered ios.yml entry point succeeded.
+
+## Artwork colours and responsive expanded presentation
+
+The five whole original colour functions are extracted from canonical Git
+source, with independently checked input/program digests. A separate
+evaluation of the complete original Desktop module agrees with the native
+bundle on 73 cases; five malformed inputs are rejected. This is Node
+evidence only. Nineteen vectors and an owned two-colour lossless image are
+prepared for actual JavaScriptCore/ImageIO execution.
+
+Mini-player/play/seek/spectrum colours now follow the actual cover, using
+the original contrast, Oklch tone and sRGB mixes. Disabling colours removes
+them immediately; only numeric content-hashed results are cached. Local
+covers and the existing public/private artwork paths are reused off the UI
+actor, with session/recording/credential fences. Original colour, level and
+visualizer switches appear directly in the expanded player and retain all
+sixteen original labels. Their selected translation update produced no
+catalogue differences.
+
+The expanded artwork grows with compact screens and sits beside metadata
+and controls at tablet widths, retaining original maximums and spacing.
+Two new focused native cases cover independent reference vectors, actual
+image decoding, cancellation, profile/disable fences and phone/tablet/Arabic
+captures. They remain unexecuted and the images unreviewed. The complete
+expanded panels, visuals and other Music gaps are still pending; this does
+not establish full Music or port completion. No IPA is packaged.
