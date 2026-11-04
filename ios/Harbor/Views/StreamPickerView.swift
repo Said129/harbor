@@ -290,6 +290,10 @@ struct StreamPickerView: View {
         VStack(spacing: 16) {
             Text(DesktopInterfaceText.value("No playable streams turned up, and no debrid is configured. Real-Debrid, TorBox, AllDebrid, Premiumize, or Debrid-Link will unlock raw torrent results. Some addons bake debrid in (Sootio, Comet/ElfHosted, MediaFusion/ElfHosted) and play without your own keys."))
                 .font(HarborTheme.font(14)).foregroundStyle(ThemePreferences.shared.color("ink-muted")).multilineTextAlignment(.center)
+            // Desktop shows the addon outages beside this state; the addon's own error says why.
+            if let error = model.error, !model.filteredSources {
+                Text(error).font(HarborTheme.font(13)).foregroundStyle(.orange).multilineTextAlignment(.center)
+            }
             if let streamingSettings {
                 NavigationLink { streamingSettings() } label: {
                     Text(DesktopInterfaceText.value("Set up a debrid")).font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 22).frame(minHeight: 44)

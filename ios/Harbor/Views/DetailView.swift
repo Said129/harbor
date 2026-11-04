@@ -178,7 +178,7 @@ struct DetailView: View {
         StreamPickerView(model: model, addons: app.addons, episode: selectedEpisode, selection: streamSelection, downloading: downloading, downloadMessage: downloadMessage,
                          play: { offer in playOffer(offer) }, download: streamDownloadAction,
                          refresh: { refreshStreams() }, back: { showStreams = false },
-                         streamingSettings: { AnyView(StreamSourcesSettingsView(app: app)) })
+                         streamingSettings: { AnyView(StreamSourcesSettingsView(app: app).toolbar(.visible, for: .navigationBar)) })
     }
     private var animeMovieSection: some View {
         VStack(alignment: .leading, spacing: 16) {

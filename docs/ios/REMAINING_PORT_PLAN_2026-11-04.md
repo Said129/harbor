@@ -86,7 +86,8 @@ off` (its clip is not a real release). The safety filter now receives
    start skips episode checks for anime ids as Desktop does. To verify on
    Apple: anime episodes whose listed numbering differs from the IMDb
    coordinates, which Desktop's trust may also reject (its alias filter is not
-   ported). Not ported from the empty ladder: the "still in theatres" state,
+   ported); and the two opt-in Live UI picker flows, whose Big Buck Bunny item
+   has an IMDb id, so its streams now pass through the Strict filter. Not ported from the empty ladder: the "still in theatres" state,
    the unresolved-ID state and the source-outage notice. Still open here: home
    servers (Jellyfin/Emby/Plex video libraries), Easynews, Desktop's custom
    stream filters and facet menu, the per-addon "Waiting for" chip, and placing
