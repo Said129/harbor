@@ -11,6 +11,8 @@ struct StreamPickerView: View {
     let download: ((StreamOffer) -> Void)?
     let refresh: () -> Void
     let back: () -> Void
+    /// Desktop's "Set up a debrid" opens the streaming sources settings.
+    var streamingSettings: (() -> AnyView)? = nil
     @State private var selectedID: Int?
     @State private var quality: String?
     @State private var provider: String?
@@ -135,6 +137,7 @@ struct StreamPickerView: View {
             if let error = model.error { Text(error).font(HarborTheme.font(14)).foregroundStyle(.orange) }
             if let downloadMessage { Text(downloadMessage).font(HarborTheme.font(13)).foregroundStyle(ThemePreferences.shared.color("ink-muted")) }
             if model.loadingStreams { pendingSources }
+            fewSources
             modeToggle
             if StreamPreferences.shared.pickerLayout == "stremio" {
                 stremioList
@@ -272,7 +275,98 @@ struct StreamPickerView: View {
                 .background(active ? HarborTheme.ink : ThemePreferences.shared.color("elevated").opacity(0.5), in: .capsule)
         }.buttonStyle(.plain).accessibilityAddTraits(active ? [.isSelected] : [])
     }
-    private var emptySources: some View {
+    /// Desktop's `PickerEmptyLadder`: without a debrid service it says so; with one, a list the
+    /// safety filter emptied explains why and offers a wider search.
+    @ViewBuilder private var emptySources: some View {
+        if model.debridProviders == 0 && !model.loadingStreams && model.totalRequests > 0 {
+            noDebridState
+        } else if model.receivedStreams > 0 {
+            filteredOutState
+        } else {
+            noSourceState
+        }
+    }
+    private var noDebridState: some View {
+        VStack(spacing: 16) {
+            Text(DesktopInterfaceText.value("No playable streams turned up, and no debrid is configured. Real-Debrid, TorBox, AllDebrid, Premiumize, or Debrid-Link will unlock raw torrent results. Some addons bake debrid in (Sootio, Comet/ElfHosted, MediaFusion/ElfHosted) and play without your own keys."))
+                .font(HarborTheme.font(14)).foregroundStyle(ThemePreferences.shared.color("ink-muted")).multilineTextAlignment(.center)
+            if let streamingSettings {
+                NavigationLink { streamingSettings() } label: {
+                    Text(DesktopInterfaceText.value("Set up a debrid")).font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 22).frame(minHeight: 44)
+                        .foregroundStyle(HarborTheme.background).background(HarborTheme.ink, in: .rect(cornerRadius: 12))
+                }.buttonStyle(.plain).accessibilityIdentifier("stream-picker-setup-debrid")
+            }
+        }.padding(24).frame(maxWidth: .infinity).background(HarborTheme.background.opacity(0.7), in: .rect(cornerRadius: 16))
+            .overlay { RoundedRectangle(cornerRadius: 16).stroke(ThemePreferences.shared.color("edge"), style: StrokeStyle(lineWidth: 1, dash: [5, 4])) }
+            .accessibilityIdentifier("stream-picker-no-debrid")
+    }
+    private var filteredOutState: some View {
+        let count = model.receivedStreams
+        let groups = StreamRejections.groups(model.rejectedReasons)
+        let widen = model.pickerStrict || !model.pickerFilter.showAll
+        return VStack(spacing: 18) {
+            Text(count == 1 ? DesktopInterfaceText.value("1 source · 0 made it through")
+                 : DesktopInterfaceText.value("{n} sources · 0 made it through", variables: ["n": String(count)]))
+                .font(HarborTheme.font(10.5, weight: .bold)).tracking(4).textCase(.uppercase).foregroundStyle(ThemePreferences.shared.color("ink-subtle"))
+                .multilineTextAlignment(.center)
+            Text(DesktopInterfaceText.value("Strict filters dropped everything")).font(HarborTheme.displayFont(30)).multilineTextAlignment(.center)
+            Text(DesktopInterfaceText.value("Harbor blocks suspicious files and mismatched releases by default. For older shows and unusual titles this is sometimes too tight."))
+                .font(HarborTheme.font(14)).foregroundStyle(ThemePreferences.shared.color("ink-muted")).multilineTextAlignment(.center)
+            if !groups.isEmpty {
+                StreamChipLayout(spacing: 8) {
+                    ForEach(Array(groups.prefix(4)), id: \.self) { group in
+                        Text("\(group.count) \(DesktopInterfaceText.value(group.label))").font(HarborTheme.font(12, weight: .semibold))
+                            .foregroundStyle(ThemePreferences.shared.color("ink-muted")).padding(.horizontal, 12).frame(minHeight: 28)
+                            .overlay { Capsule().stroke(ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
+                    }
+                }
+            }
+            if widen {
+                Button { model.searchWider(); refresh() } label: {
+                    Text(DesktopInterfaceText.value("Search wider")).font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 28).frame(minHeight: 48)
+                        .foregroundStyle(HarborTheme.background).background(HarborTheme.ink, in: .capsule)
+                }.buttonStyle(.plain).disabled(model.loadingStreams || busy).accessibilityIdentifier("stream-picker-search-wider")
+            } else {
+                Text(DesktopInterfaceText.value("Wide search · still empty")).font(HarborTheme.font(11, weight: .semibold)).tracking(3).textCase(.uppercase)
+                    .foregroundStyle(ThemePreferences.shared.color("ink-subtle"))
+            }
+        }.padding(.horizontal, 24).padding(.vertical, 32).frame(maxWidth: .infinity)
+            .background(HarborTheme.background.opacity(0.8), in: .rect(cornerRadius: 24))
+            .overlay { RoundedRectangle(cornerRadius: 24).stroke(ThemePreferences.shared.color("edge-soft").opacity(0.7), lineWidth: 1) }
+            .accessibilityIdentifier("stream-picker-filtered-out")
+    }
+    /// Desktop warns when only one or two sources survive and offers the rest anyway.
+    @ViewBuilder private var fewSources: some View {
+        let shown = model.offers.count, dropped = model.receivedStreams - model.offers.count
+        if !model.loadingStreams, (1...2).contains(shown) {
+            VStack(alignment: .leading, spacing: 10) {
+                Text(DesktopInterfaceText.value(shown == 1 ? "Only 1 source after filtering" : "Only 2 sources after filtering"))
+                    .font(HarborTheme.font(13, weight: .semibold)).foregroundStyle(Color.orange)
+                Text(fewSourcesDetail(shown: shown, dropped: dropped)).font(HarborTheme.font(12.5)).foregroundStyle(ThemePreferences.shared.color("ink-muted"))
+                    .fixedSize(horizontal: false, vertical: true)
+                if dropped > 0 && !model.pickerFilter.showAll {
+                    Button { model.showAllSources(); refresh() } label: {
+                        Text(DesktopInterfaceText.value("Show everything anyway")).font(HarborTheme.font(12.5, weight: .semibold)).padding(.horizontal, 16).frame(minHeight: 44)
+                            .overlay { Capsule().stroke(Color.orange.opacity(0.4), lineWidth: 1) }
+                    }.buttonStyle(.plain).disabled(busy).accessibilityIdentifier("stream-picker-show-everything")
+                }
+            }.padding(16).frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.orange.opacity(0.06), in: .rect(cornerRadius: 16))
+                .overlay { RoundedRectangle(cornerRadius: 16).stroke(Color.orange.opacity(0.3), lineWidth: 1) }
+                .accessibilityIdentifier("stream-picker-few-sources")
+        }
+    }
+    private func fewSourcesDetail(shown: Int, dropped: Int) -> String {
+        var text = DesktopInterfaceText.value(shown == 1
+            ? "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing."
+            : "Clean releases for this title are still scarce. Confirm the filename and size before playing.")
+        if dropped > 0 && !model.pickerFilter.showAll {
+            text += " " + DesktopInterfaceText.value(dropped == 1 ? "Harbor dropped {n} suspicious or mismatched result." : "Harbor dropped {n} suspicious or mismatched results.",
+                                                     variables: ["n": String(dropped)])
+        }
+        return text
+    }
+    private var noSourceState: some View {
         VStack(spacing: 16) {
             Text(DesktopInterfaceText.value(model.filteredSources ? "Strict filters dropped everything" : "No source returned a stream")).font(HarborTheme.displayFont(26)).multilineTextAlignment(.center)
             if let error = model.error, !model.filteredSources { Text(error).font(HarborTheme.font(14)).foregroundStyle(ThemePreferences.shared.color("ink-muted")).multilineTextAlignment(.center) }

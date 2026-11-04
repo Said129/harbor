@@ -72,9 +72,22 @@ configure the service in Harbor itself.
    automatic selection without ever emptying it and can be switched live in
    the picker, and a new Stremio layout lists each addon's own text. Policy is
    in `StreamSourcePolicy.swift`, tests in `StreamSourcePolicyTests.swift`.
-   Deliberate differences, to confirm with the owner: the iPhone picker keeps
-   listing every source (the filter governs automatic playback, as before), and
-   the layout defaults to Condensed (Desktop: Stremio). Still open here: home
+   Owner decision (4 November): match Desktop. The picker now shows what the
+   safety filter keeps (automatic play picks from that same list), with
+   Desktop's recovery: "N sources · 0 made it through" with the rejection
+   groups and Search wider (Strict → Balanced → everything), the "Only 1/2
+   sources after filtering" warning with Show everything anyway, and the "no
+   debrid is configured" state with Set up a debrid; the relaxed level lasts
+   until another title, episode or safety level. The layout defaults to
+   Stremio; UI tests of the Condensed picker pass `-streams.pickerLayout
+condensed`, and the synthetic caption flow also passes `-streamFilterLevel
+off` (its clip is not a real release). The safety filter now receives
+   Desktop's IMDb-aligned episode (`effSeason`/`effEpisode`), and the automatic
+   start skips episode checks for anime ids as Desktop does. To verify on
+   Apple: anime episodes whose listed numbering differs from the IMDb
+   coordinates, which Desktop's trust may also reject (its alias filter is not
+   ported). Not ported from the empty ladder: the "still in theatres" state,
+   the unresolved-ID state and the source-outage notice. Still open here: home
    servers (Jellyfin/Emby/Plex video libraries), Easynews, Desktop's custom
    stream filters and facet menu, the per-addon "Waiting for" chip, and placing
    plugin groups in the priority list (they follow all addons).

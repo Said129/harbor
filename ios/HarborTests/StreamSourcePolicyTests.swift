@@ -184,6 +184,29 @@ import XCTest
         XCTAssertTrue(StreamAutoSettle.strong([addon("comet")]))
     }
 
+    func testPickerFilterWidensLikeDesktop() {
+        var strict = StreamPickerFilter()
+        XCTAssertEqual(strict.level("strict"), "strict")
+        strict.widen("strict")
+        XCTAssertEqual(strict.level("strict"), "balanced", "Search wider first relaxes Strict to Balanced")
+        strict.widen("strict")
+        XCTAssertEqual(strict.level("strict"), "off", "A second wider search shows everything")
+        var balanced = StreamPickerFilter()
+        balanced.widen("balanced")
+        XCTAssertEqual(balanced.level("balanced"), "off")
+        XCTAssertEqual(StreamPickerFilter(showAll: true).level("strict"), "off")
+        XCTAssertEqual(StreamPickerFilter().level("off"), "off")
+    }
+
+    func testRejectionGroupsUseDesktopLabels() {
+        let groups = StreamRejections.groups(["title-mismatch", "suspicious-extension:exe", "title-mismatch", "season-mismatch:2-vs-1",
+                                              "episode-mismatch:3-vs-4", "cinema-window-12d", "something-new"])
+        XCTAssertEqual(groups.map(\.label), ["wrong movie", "wrong episode", "sketchy files", "cam rips", "something-new"])
+        XCTAssertEqual(groups.map(\.count), [2, 2, 1, 1, 1])
+        XCTAssertEqual(StreamRejections.label("size-too-large-90gb"), "oversized")
+        XCTAssertEqual(StreamRejections.label("dead-torrent-zero-seeders"), "dead torrents")
+    }
+
     func testDebridVerificationMergeKeepsEachHashOnce() {
         var value = DebridVerification(cached: ["rd": ["a"]], library: [:])
         value.merge(DebridVerification(cached: ["rd": ["a", "b"], "tb": ["c"]], library: ["rd": ["d"]]))

@@ -65,10 +65,14 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-search-history-item-removed")
     }
 
+    /// These flows check the Condensed picker (top pick, quality tiles and drawer); Desktop
+    /// and a fresh profile open on the Stremio layout, so they choose Condensed explicitly.
+    private static let condensedPicker = ["-streams.pickerLayout", "condensed"]
+
     func testDirectQualitySourcesAreVisibleWithoutExpansion() throws {
         guard ProcessInfo.processInfo.environment["HARBOR_LIVE_INTEGRATION"] == "1" else { throw XCTSkip("Live UI integration requires explicit opt-in") }
         continueAfterFailure = false
-        let app = XCUIApplication(); app.launch()
+        let app = XCUIApplication(); app.launchArguments += Self.condensedPicker; app.launch()
         XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 15))
         for url in ["https://raw.githubusercontent.com/Stremio/stremio-static-addon-example/master/manifest.json"] {
             navigate(app, "addons")
@@ -194,6 +198,7 @@ final class LiveNavigationTests: XCTestCase {
         }
         continueAfterFailure = false
         let app = XCUIApplication()
+        app.launchArguments += Self.condensedPicker
         app.launch()
         let movie = app.buttons.matching(identifier: "catalog-movie").firstMatch
         let homeLoaded = movie.waitForExistence(timeout: 45)

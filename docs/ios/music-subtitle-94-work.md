@@ -1214,3 +1214,10 @@ instead of waiting for every addon, which removes the 30 s hold the new
 default wait introduced. Details in REMAINING_PORT_PLAN_2026-11-04.md item 2;
 three more StreamSourcePolicyTests cases (settle floors, episode checks and
 confident start, debrid merge), 12 in that class.
+
+Owner decision, 4 November: match Desktop. The picker applies the safety
+filter with Desktop's recovery (0 made it through + Search wider, Only 1/2
+sources + Show everything anyway, no debrid configured + Set up a debrid) and
+the layout defaults to Stremio. Condensed-picker UI tests pin the layout with
+a launch argument; the synthetic caption flow also turns the filter off.
+Uncompiled; two more StreamSourcePolicyTests cases (14 in that class).

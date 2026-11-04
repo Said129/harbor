@@ -22,9 +22,9 @@ final class StreamPreferences {
     var priority = StreamPreferences.storedPriority() {
         didSet { persist(StreamPreferences.encode(priority), forKey: "streams.priority") }
     }
-    /// "condensed" (top pick, quality tiles and a drawer) or "stremio" (a flat list grouped by addon).
-    /// Desktop opens on Stremio; the iPhone keeps the Condensed picker it already shipped with.
-    var pickerLayout = UserDefaults.standard.string(forKey: "streams.pickerLayout") ?? "condensed" {
+    /// "stremio" (a flat list grouped by addon, Desktop's default) or "condensed"
+    /// (top pick, quality tiles and a drawer).
+    var pickerLayout = UserDefaults.standard.string(forKey: "streams.pickerLayout") ?? "stremio" {
         didSet { persist(pickerLayout, forKey: "streams.pickerLayout") }
     }
     var pickerShowFilename = UserDefaults.standard.object(forKey: "streams.pickerShowFilename") as? Bool ?? false {
@@ -94,7 +94,7 @@ final class StreamPreferences {
         addonTimeoutSeconds = StreamSourceSettings.clamped(UserDefaults.standard.object(forKey: "streams.addonTimeoutSec") as? Int ?? StreamSourceSettings.defaultTimeoutSeconds)
         sourceMode = StreamMode(stored: UserDefaults.standard.string(forKey: "streams.mode"))
         priority = StreamPreferences.storedPriority()
-        pickerLayout = UserDefaults.standard.string(forKey: "streams.pickerLayout") ?? "condensed"
+        pickerLayout = UserDefaults.standard.string(forKey: "streams.pickerLayout") ?? "stremio"
         pickerShowFilename = UserDefaults.standard.object(forKey: "streams.pickerShowFilename") as? Bool ?? false
         fullStreamDescription = UserDefaults.standard.object(forKey: "streams.fullDescription") as? Bool ?? true
         pickerRefreshNextToBack = UserDefaults.standard.object(forKey: "streams.pickerRefreshNextToBack") as? Bool ?? false

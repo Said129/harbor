@@ -108,6 +108,9 @@ final class MobileSourcesAndSubtitlesTests: XCTestCase {
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
         let media = Media(id: "kitsu:9962", type: "series", name: "Danmachi")
         let model = DetailModel(media, service: HarborService(), metadataLoaded: true); model.offers = offers()
+        // These captures are the Condensed picker; a fresh profile opens on Stremio, as Desktop does.
+        let preferences = StreamPreferences.shared, layout = preferences.pickerLayout
+        preferences.pickerLayout = "condensed"; defer { preferences.pickerLayout = layout }
         let picker = StreamPickerView(model: model, addons: [], episode: Episode(id: "kitsu:9962:7", season: 1, episode: 7, name: "Sword Princess"), downloading: false, downloadMessage: nil, play: { _ in }, download: nil, refresh: {}, back: {})
         let host = UIHostingController(rootView: NavigationStack { picker }.preferredColorScheme(.dark))
         window.rootViewController = host; window.makeKeyAndVisible()

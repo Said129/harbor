@@ -13,7 +13,11 @@ import XCTest
         defer { server.stop() }
         try await server.start()
         let app = XCUIApplication()
-        app.launchArguments = ["-uiLanguage", "es", "-tvdbSeasonType", "absolute", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
+        // This flow plays from the Condensed picker's top card; a fresh profile opens on Stremio.
+        // The synthetic clip is not a real release, and the picker now applies the safety filter
+        // as Desktop does, so the filter is off: captions, not filtering, are under test here.
+        app.launchArguments = ["-uiLanguage", "es", "-tvdbSeasonType", "absolute", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES",
+                               "-streams.pickerLayout", "condensed", "-streamFilterLevel", "off"]
         app.launch(); defer { app.terminate(); XCUIDevice.shared.orientation = .portrait }
         XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 45))
         let card = app.buttons.matching(NSPredicate(format: "identifier == 'continue-watching-resume' AND label == 'Continuar viendo Dragon Ball Super'")).firstMatch

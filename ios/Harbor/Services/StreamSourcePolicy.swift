@@ -90,6 +90,59 @@ enum StreamSourcePolicy {
     }
 }
 
+/// Desktop's picker filter for one title (`strictMode` and `forceShowAll` in play-picker.tsx):
+/// the profile's safety level, which "Search wider" relaxes from Strict to Balanced and
+/// "Show everything anyway" turns off, until another title or episode is opened.
+struct StreamPickerFilter: Equatable, Sendable {
+    var relaxed = false
+    var showAll = false
+    func level(_ setting: String) -> String {
+        if showAll || setting == "off" { return "off" }
+        return relaxed || setting == "balanced" ? "balanced" : "strict"
+    }
+    /// Desktop's `onSearchWider`: Strict becomes Balanced first, then everything is shown.
+    mutating func widen(_ setting: String) {
+        if level(setting) == "strict" { relaxed = true } else { showAll = true }
+    }
+}
+
+/// Desktop's rejection groups for the "0 made it through" state (`groupRejections`).
+enum StreamRejections {
+    static func label(_ reason: String) -> String {
+        if reason.hasPrefix("suspicious-extension:") { return "sketchy files" }
+        if reason.hasPrefix("cinema-window-") { return "cam rips" }
+        if reason == "size-stub" { return "tiny stubs" }
+        if reason.hasPrefix("size-too-large-") { return "oversized" }
+        if reason.hasPrefix("year-mismatch") { return "year mismatch" }
+        if reason.hasPrefix("season-mismatch") || reason.hasPrefix("episode-mismatch") { return "wrong episode" }
+        if reason == "season-pack-no-file-idx" { return "season packs" }
+        if reason.hasPrefix("scam-score-") { return "scam metadata" }
+        if reason == "dead-torrent-zero-seeders" { return "dead torrents" }
+        if reason == "language-mismatch" { return "language" }
+        if reason == "trailer-or-extra" { return "trailers/extras" }
+        if reason == "movie-stub-too-small" { return "stub files" }
+        if reason == "title-mismatch" { return "wrong movie" }
+        return reason
+    }
+    struct Group: Hashable, Sendable {
+        let label: String
+        let count: Int
+    }
+    /// Labels by count, most frequent first; equal counts keep their first appearance.
+    static func groups(_ reasons: [String]) -> [Group] {
+        var counts: [String: Int] = [:], order: [String] = []
+        for reason in reasons {
+            let key = label(reason)
+            if counts[key] == nil { order.append(key) }
+            counts[key, default: 0] += 1
+        }
+        return order.enumerated().sorted { left, right in
+            let a = counts[left.element] ?? 0, b = counts[right.element] ?? 0
+            return a == b ? left.offset < right.offset : a > b
+        }.map { Group(label: $0.element, count: counts[$0.element] ?? 0) }
+    }
+}
+
 /// Desktop's automatic start (`use-auto-fire.ts`) while addons are still answering: a
 /// confident top result starts after a short grace, otherwise the list settles once the
 /// top source is playable for a moment, most addons have answered, or 10 s have passed.

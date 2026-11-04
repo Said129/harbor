@@ -58,9 +58,6 @@ struct StreamSourcesSettingsView: View {
         VStack(alignment: .leading, spacing: 28) {
             HarborSettingsSection("Stream safety filter") {
                 detailText("Choose which addon results appear when you pick a stream.")
-                // The iPhone picker lists every source so nothing is hidden behind an extra
-                // button; the level decides what automatic playback may start.
-                detailText("On iPhone the picker lists every source; this filter decides which ones automatic playback may start.")
                 VStack(alignment: .leading, spacing: 10) {
                     option("Strict", detail: "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs.",
                            selected: sources.filterLevel == "strict", isDefault: true, identifier: "settings-stream-filter-strict") { sources.filterLevel = "strict" }

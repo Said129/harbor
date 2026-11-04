@@ -356,6 +356,18 @@ final class DetailModel {
     /// Requests answered so far for the picker's "addons loading" pill.
     private(set) var answeredRequests = 0
     private(set) var totalRequests = 0
+    /// What Desktop's empty and low-count states explain: the streams the addons returned,
+    /// the safety filter's rejection reasons and how many debrid services are configured.
+    private(set) var receivedStreams = 0
+    private(set) var rejectedReasons: [String] = []
+    private(set) var debridProviders = 0
+    private(set) var pickerFilter = StreamPickerFilter()
+    private var pickerFilterKey: String?
+    var pickerStrict: Bool { pickerFilter.level(StreamPreferences.shared.filterLevel) == "strict" }
+    /// Desktop's "Search wider": Strict becomes Balanced for this title, then everything is shown.
+    func searchWider() { pickerFilter.widen(StreamPreferences.shared.filterLevel) }
+    /// Desktop's "Show everything anyway" for this title.
+    func showAllSources() { pickerFilter.showAll = true }
     private var autoplay: StreamAutoplay?
     private var autoSettle = StreamAutoSettle(started: .now)
     private var autoTask: Task<Void, Never>?
@@ -417,7 +429,7 @@ final class DetailModel {
         rankedOffers = []
         rankedAutomatic = []
         offerIDs = [:]; nextOfferID = 0
-        answeredRequests = 0; totalRequests = 0
+        answeredRequests = 0; totalRequests = 0; receivedStreams = 0; rejectedReasons = []
         self.autoplay = autoplay; autoTask = nil
         streamAddons = addons
         warnings = []
@@ -425,6 +437,9 @@ final class DetailModel {
         playback = nil
         let episode = selection == nil ? episode : selection?.episode
         selectedEpisode = episode
+        // Desktop resets Search wider and Show all for another title, episode or safety level.
+        let filterKey = [selection?.key ?? episode?.routingKey ?? media.identity, StreamPreferences.shared.filterLevel].joined(separator: "|")
+        if filterKey != pickerFilterKey { pickerFilter = StreamPickerFilter(); pickerFilterKey = filterKey }
         let selected: Media?
         if let selection {
             let validSource = extraSources[selection.media.id] == selection.media
@@ -445,32 +460,44 @@ final class DetailModel {
             if let provider { plugins = { try await provider(selected, videoID, episode, startingPriority) } }
             else { plugins = nil }
             let debridClient = debrid(), service = service
+            debridProviders = debridClient?.providers.count ?? 0
+            // Desktop's picker shows what the safety filter keeps, and automatic play picks from
+            // that same list; Search wider and Show all relax it for this title only.
+            let level = pickerFilter.level(StreamPreferences.shared.filterLevel)
+            // Desktop's trust expects the IMDb-aligned episode when the anime numbering agrees
+            // with it (`effSeason`/`effEpisode` in episode-pipeline-input.ts).
+            let anime = AnimeService.isAnime(selected.id) || videoID.hasPrefix("kitsu:") || videoID.hasPrefix("mal:")
+            let aligned = !anime || episode?.imdbEpisode == nil || episode?.episode == episode?.imdbEpisode
+            let expected = (season: aligned ? (episode?.imdbSeason ?? episode?.season) : episode?.season,
+                            episode: aligned ? (episode?.imdbEpisode ?? episode?.episode) : episode?.episode)
+            // Desktop's automatic start does not check episode numbers for anime ids.
+            if selected.id.range(of: "^(kitsu|mal|anilist|anidb):", options: .regularExpression) != nil {
+                autoSettle.season = nil; autoSettle.episode = nil
+            }
             // Each partial list replaces the previous one, as Desktop's picker does while addons answer.
             let progress: @MainActor @Sendable (HarborService.StreamBatch) async -> Void = { [weak self] batch in
-                guard let self, self.streamRequest == request, self.contextRevision() == context else { return }
-                let automatic = (try? await service.automaticStreams(batch.offers, media: selected, season: episode?.season, episode: episode?.episode,
-                                                                     debrid: debridClient, addons: addons)) ?? []
-                guard self.streamRequest == request, self.contextRevision() == context, self.loadingStreams else { return }
+                guard let self, self.streamRequest == request, self.contextRevision() == context, self.loadingStreams else { return }
                 self.rankedOffers = self.stable(batch.offers)
-                self.rankedAutomatic = self.stable(automatic)
+                self.rankedAutomatic = self.rankedOffers
                 self.answeredRequests = batch.answered; self.totalRequests = batch.total
                 self.applyStreamMode()
                 self.considerAutoplay(done: false)
             }
-            let result = try await service.streams(selected, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode,
-                unfiltered: true, pluginSource: plugins, debrid: debridClient, progress: progress)
-            let automatic = try await service.automaticStreams(result.0, media: selected, season: episode?.season, episode: episode?.episode, debrid: debridClient, addons: addons)
+            let result = try await service.streamResults(selected, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode,
+                filterLevel: level, trustEpisode: episode == nil ? nil : expected, pluginSource: plugins, debrid: debridClient, progress: progress)
             try Task.checkCancellation()
             guard streamRequest == request, contextRevision() == context else { return }
-            rankedOffers = stable(result.0)
-            rankedAutomatic = stable(automatic)
-            answeredRequests = totalRequests
+            rankedOffers = stable(result.offers)
+            rankedAutomatic = rankedOffers
+            totalRequests = result.requests; answeredRequests = result.requests
+            receivedStreams = result.received
+            rejectedReasons = result.rejected
             applyStreamMode()
-            warnings = result.1
+            warnings = result.errors
             Diagnostics.shared.record(.streamsLoaded, count: offers.count)
             loadingStreams = false
             if offers.isEmpty {
-                if !result.0.isEmpty { filteredSources = true; self.error = DesktopInterfaceText.value("Strict filters dropped everything") }
+                if result.received > 0 { filteredSources = true; self.error = DesktopInterfaceText.value("Strict filters dropped everything") }
                 else { throw HarborError(code: warnings.first ?? "no-streams") }
             }
             considerAutoplay(done: true)

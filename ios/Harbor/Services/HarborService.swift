@@ -192,22 +192,49 @@ struct HarborService: Sendable {
         case verified([String], DebridVerification)
     }
 
-    /// Desktop's `runPipeline`: requests run together, each answer is ranked into a partial
-    /// list for `progress`, and debrid verification runs alongside instead of after.
+    /// The final list with what Desktop's picker needs to explain an empty one: how many
+    /// streams the addons returned and why the safety filter rejected the others.
+    struct StreamResults: Sendable {
+        let offers: [StreamOffer]
+        let errors: [String]
+        let received: Int
+        let rejected: [String]
+        /// Requests sent to addons; none means no addon accepts this title's IDs.
+        let requests: Int
+    }
+
     func streams(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil, unfiltered: Bool = false,
         pluginSource: (@Sendable () async throws -> HarborPluginStreamBatch)? = nil, debrid: DebridClient? = nil,
         progress: (@MainActor @Sendable (StreamBatch) async -> Void)? = nil) async throws -> ([StreamOffer], [String]) {
+        let results = try await streamResults(media, videoID: videoID, addons: addons, season: season, episode: episode,
+                                              filterLevel: unfiltered ? "off" : nil, pluginSource: pluginSource, debrid: debrid, progress: progress)
+        return (results.offers, results.errors)
+    }
+
+    /// Desktop's `runPipeline`: requests run together, each answer is ranked into a partial
+    /// list for `progress`, and debrid verification runs alongside instead of after.
+    /// `filterLevel` overrides the profile's safety level for this title (Search wider, Show all).
+    /// `trustEpisode` is the episode the safety filter expects when it differs from the requested
+    /// coordinates (Desktop's IMDb-aligned `effSeason`/`effEpisode`).
+    func streamResults(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil, filterLevel: String? = nil,
+        trustEpisode: (season: Int?, episode: Int?)? = nil,
+        pluginSource: (@Sendable () async throws -> HarborPluginStreamBatch)? = nil, debrid: DebridClient? = nil,
+        progress: (@MainActor @Sendable (StreamBatch) async -> Void)? = nil) async throws -> StreamResults {
         let preferences = await StreamPreferences.shared.configuration()
         let requested = try await streamRequests(media, videoID: videoID, addons: addons, season: season, episode: episode)
         // The profile's wait time and addon order shape the requests, as in Desktop's pipeline.
         let selection = StreamAddonPriority.tune(requested, settings: preferences.sources, addons: addons)
-        let trust = (unfiltered || AddonOriginPolicy.isNative(media) ? StreamFilterConfiguration(level: "off", addonOrder: preferences.addonOrder, sources: preferences.sources) : preferences).trust(media, season: season, episode: episode)
+        // Items an addon lists itself are never filtered (Desktop's `addonNative`).
+        let level = AddonOriginPolicy.isNative(media) ? "off" : filterLevel ?? preferences.level
+        let expected = trustEpisode ?? (season: season, episode: episode)
+        let trust = StreamFilterConfiguration(level: level, addonOrder: preferences.addonOrder, sources: preferences.sources).trust(media, season: expected.season, episode: expected.episode)
         let active = await debrid?.providers ?? []
         let score = Self.scoring(media, addonOrder: preferences.addonOrder, active: active)
-        func rank(_ raw: [JSONValue], _ verification: DebridVerification) async throws -> [StreamOffer] {
+        func ranked(_ raw: [JSONValue], _ verification: DebridVerification) async throws -> (offers: [StreamOffer], rejected: [String]) {
             let result: JSONValue = try await core.call("rank", ["streams": .array(StreamRequestPolicy.deduplicated(raw)), "trust": trust, "score": score, "debrid": verification.flags])
-            return Self.ordered(result, addons: addons, preferences: preferences)
+            return (Self.ordered(result, addons: addons, preferences: preferences), result["rejected"].array.compactMap { $0["reason"].string })
         }
+        func rank(_ raw: [JSONValue], _ verification: DebridVerification) async throws -> [StreamOffer] { try await ranked(raw, verification).offers }
         func fresh(_ raw: [JSONValue], checked: Set<String>) -> [JSONValue] {
             raw.filter { stream in stream["infoHash"].string.map { !checked.contains($0.lowercased()) } ?? false }
         }
@@ -274,7 +301,8 @@ struct HarborService: Sendable {
             let unchecked = fresh(raw, checked: checked)
             if !unchecked.isEmpty { verification.merge(await DebridStreamVerifier.verify(unchecked, client: debrid)) }
             try Task.checkCancellation()
-            return (try await rank(raw, verification), errors)
+            let final = try await ranked(raw, verification)
+            return StreamResults(offers: final.offers, errors: errors, received: StreamRequestPolicy.deduplicated(raw).count, rejected: final.rejected, requests: total)
         }
     }
 
