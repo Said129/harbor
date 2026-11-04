@@ -3,12 +3,14 @@
   "referenceVersion": "0.9.132 Beta",
   "originalFilesSHA256": {
     "src/components/music/music-queue.tsx": "2a5fad6212f706243b498041df4405d35e37b89dc9f4b4cd49c481494ae81beb",
-    "src/lib/music/player.ts": "c2a2088d6f0b4038178f62a789d266a2a9c36d2b358068274e137e157ffd6792"
+    "src/lib/music/player.ts": "c2a2088d6f0b4038178f62a789d266a2a9c36d2b358068274e137e157ffd6792",
+    "src/lib/music/queue-source.ts": "b8d9814a0a7909932a3708440657514b2c4ccff3d50e2c75328de80e9b849385"
   },
   "retained": [
     "Current recording, raw upcoming queue and previous history are separate. Only upcoming items can be reordered.",
     "Clear removes only upcoming items and priority-next; the current recording and previous queue remain.",
-    "Reordering preserves current recording, decoder, position and pause; priority-next and the existing original shuffle planner retain their own policy."
+    "Reordering preserves current recording, decoder, position and pause; priority-next and the existing original shuffle planner retain their own policy.",
+    "Queued source replacement uses the already accepted original selectableSources and replaceQueueTrack program; credits, collection identity and priority-next are retained without interrupting current audio."
   ],
   "mobileAdaptations": [
     "Native Edit drag handles replace mouse dragging; swipe removal and the existing play-next menu remain available.",
@@ -18,6 +20,7 @@
   "validation": {
     "newQueueOperations": "pending native execution",
     "phoneTabletArabicCaptures": "pending review",
-    "ipaPackaged": false
+    "ipaPackaged": false,
+    "queuedSourceReplacementAndChooser": "pending native execution and phone/tablet/Arabic review"
   }
 }

@@ -77,14 +77,14 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
     @ObservationIgnored private var pendingResume: Double?
     @ObservationIgnored private var checkpointTarget: Double?
     @ObservationIgnored private let checkpoints: (any MusicSessionPersisting)?
-    @ObservationIgnored private var queueRevision = UUID()
+    private(set) var queueRevision = UUID()
     @ObservationIgnored private var checkpointQueueRevision: UUID?
     @ObservationIgnored private var checkpointQueue: [MusicTrack] = []
     @ObservationIgnored private var lastCheckpoint = Date.distantPast
     @ObservationIgnored private var checkpointWrite: Task<Void, Never>?
     @ObservationIgnored private var restoreTask: Task<Void, Never>?
     @ObservationIgnored private var restoreScope: PluginExecutionScope?
-    @ObservationIgnored private var effectLease: UUID?
+    private(set) var effectLease: UUID?
     @ObservationIgnored private var effectRevision = UUID()
     @ObservationIgnored private var meterUsers = Set<UUID>()
     @ObservationIgnored private var meterRevision: UInt64 = 0
@@ -389,7 +389,7 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
         return .init(owner: owner, revision: queueRevision, current: currentItem,
                      previous: Array(items.prefix(index)), upcoming: Array(items.dropFirst(index + 1)))
     }
-    private func ownsQueue(_ snapshot: MusicQueueSnapshot) -> Bool {
+    func ownsQueue(_ snapshot: MusicQueueSnapshot) -> Bool {
         guard snapshot.owner == owner, snapshot.revision == queueRevision, snapshot.current?.id == currentItem?.id else { return false }
         if let resolver { return (try? resolver.validate()) != nil }
         return true
@@ -421,6 +421,16 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
     func prioritizeQueueItem(_ item: MusicPlaybackItem, in snapshot: MusicQueueSnapshot) {
         guard ownsQueue(snapshot) else { return }
         moveAfterCurrent(item)
+    }
+    func replaceQueuedSource(_ selected: MusicTrack, for item: MusicPlaybackItem, in snapshot: MusicQueueSnapshot) throws {
+        guard ownsQueue(snapshot), let session = playbackSession, item.id != currentItem?.id,
+              let index = items.firstIndex(where: { $0.id == item.id }) else { throw CancellationError() }
+        let queue = try session.replacingSource(selected, in: items.map(\.track), at: index)
+        guard queue.count == items.count, MusicQueueOrder.key(queue[index]) == item.id else { throw HarborError(code: "music-source-policy") }
+        let replacement = MusicPlaybackItem(track: queue[index], localRecord: session.localRecord(queue[index]))
+        if priority.map(MusicQueueOrder.key) == item.id { priority = replacement.track }
+        items[index] = replacement
+        refreshUpcoming()
     }
     private func refreshUpcoming() {
         defer { saveCheckpoint(force: true) }

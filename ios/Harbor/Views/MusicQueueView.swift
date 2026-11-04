@@ -2,6 +2,7 @@ import SwiftUI
 
 @MainActor struct MusicQueueView: View {
     @Bindable var player: MusicPlayback
+    @State private var choosingSource: MusicQueueSourceSelection?
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
     var body: some View {
         let snapshot = player.queueSnapshot
@@ -38,6 +39,17 @@ import SwiftUI
                         .disabled(snapshot.upcoming.isEmpty)
                 }
             }.environment(\.musicPlaybackSession, player.playbackSession).accessibilityIdentifier("music-queue-editor")
+            .sheet(item: $choosingSource) { selection in
+                if let session = player.playbackSession, session.scope.owner == selection.queue.owner {
+                    NavigationStack {
+                        MusicSourcePickerView(player: player, session: session, queuedSelection: selection).toolbar {
+                            ToolbarItem(placement: .confirmationAction) { Button(text("Close")) { choosingSource = nil } }
+                        }
+                    }
+                }
+            }.onChange(of: player.queueRevision) { _, _ in
+                if let selection = choosingSource, !player.ownsQueue(selection.queue) { choosingSource = nil }
+            }
     }
     private func row(_ item: MusicPlaybackItem, snapshot: MusicQueueSnapshot) -> some View {
         MusicPlaybackRow(item: item, owner: snapshot.owner) { player.playQueueItem(item, in: snapshot) }
@@ -47,6 +59,9 @@ import SwiftUI
                 }
             }.contextMenu {
                 Button(text("music.queue.playNext")) { player.prioritizeQueueItem(item, in: snapshot) }
+                if player.playbackSession != nil {
+                    Button(text("music.source.another")) { choosingSource = .init(item: item, queue: snapshot) }
+                }
                 if let index = snapshot.upcoming.firstIndex(where: { $0.id == item.id }) {
                     Button {
                         player.moveUpcoming(from: IndexSet(integer: index), to: index - 1, in: snapshot)

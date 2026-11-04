@@ -7,3 +7,9 @@ struct MusicQueueSnapshot {
     let previous: [MusicPlaybackItem]
     let upcoming: [MusicPlaybackItem]
 }
+
+struct MusicQueueSourceSelection: Identifiable {
+    let id = UUID()
+    let item: MusicPlaybackItem
+    let queue: MusicQueueSnapshot
+}

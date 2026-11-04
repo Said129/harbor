@@ -81,6 +81,15 @@ import Foundation
         catch { return [] }
     }
     func choose(_ selected: MusicTrack, for requested: MusicTrack) throws -> MusicTrack { try validate(); return try policy.adopt(selected, requested: requested) }
+    func alternativeSources(for track: MusicTrack) async throws -> [MusicSourceCandidate] {
+        let candidates = try await sources(for: track)
+        try Task.checkCancellation(); try validate()
+        return try policy.selectable(candidates, current: track)
+    }
+    func replacingSource(_ selected: MusicTrack, in queue: [MusicTrack], at index: Int) throws -> [MusicTrack] {
+        try validate()
+        return try policy.replace(queue, at: index, with: selected)
+    }
     private func resolveSelected(_ track: MusicTrack) async throws -> MusicPlaybackResolution {
         try validate(); let version = server.credentialVersion
         let cloudVersion = soundcloud?.connectionRevision

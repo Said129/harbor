@@ -81,6 +81,82 @@ import XCTest
             }
         }
     }
+    func testQueuedSourceAlternativesUseTheOwnedLibraryAndPreserveCurrentAudioAndPriority() async throws {
+        let scope = SharedMusicScope(), owner = scope.scope.owner
+        let file = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "owned-tone", withExtension: "wav", subdirectory: "Fixtures"))
+        let imported = try await MusicFileService.shared.importFile(file, owner: owner).record
+        let raw = imported.local.track
+        let local = MusicTrack(id: raw.id, connectorId: "local", sourceId: raw.sourceId, playbackUrl: nil,
+                               title: "Owned requested recording", artist: "Owned Artist", album: "Owned Album", artwork: "",
+                               durationSeconds: raw.durationSeconds, durationLabel: raw.durationLabel)
+        let record = MusicRecord(local: .init(track: local, albumKey: "owned-album", artistKey: "owned-artist",
+                                             albumArtist: nil, trackNo: nil, discNo: nil, year: nil),
+                                 filename: imported.filename, originalName: imported.originalName, size: imported.size,
+                                 importedAt: imported.importedAt, cover: nil)
+        let server = SubsonicMusicService(scope: scope.scope, currentScope: { scope.scope }, persistence: SharedMusicPairingDisk())
+        let session = MusicPlaybackSession(server: server, playlists: MusicPlaylistStore(owner: owner, persistence: SharedMusicDisk()),
+                                          localRecords: { [record] }, currentScope: { scope.scope })
+        let engine = SharedMusicControlledEngine()
+        let player = MusicPlayback(engine: engine, systemIntegration: false, recordPlayed: { _, _ in })
+        let oldShuffle = player.shuffle, oldRepeat = player.repeatMode, oldLanguage = UserDefaults.standard.string(forKey: "uiLanguage")
+        player.shuffle = false; player.repeatMode = .off
+        defer {
+            player.stop(); server.dispose(); player.shuffle = oldShuffle; player.repeatMode = oldRepeat
+            if let oldLanguage { UserDefaults.standard.set(oldLanguage, forKey: "uiLanguage") }
+            else { UserDefaults.standard.removeObject(forKey: "uiLanguage") }
+        }
+        do {
+            let current = track(100)
+            let requested = MusicTrack(id: "owned-catalog-request", connectorId: "catalog", sourceId: nil, playbackUrl: nil,
+                                       title: local.title, artist: local.artist, album: local.album, artwork: "",
+                                       durationSeconds: local.durationSeconds, durationLabel: local.durationLabel)
+            player.play(current, queue: [current, requested, track(101)], using: session)
+            try await wait { player.loaded }
+            player.setPaused(true); try await wait { player.paused }
+            let queued = try XCTUnwrap(player.items.first { $0.track.id == requested.id })
+            player.prioritizeQueueItem(queued, in: player.queueSnapshot)
+            let snapshot = player.queueSnapshot, position = player.position
+            let selection = MusicQueueSourceSelection(item: queued, queue: snapshot)
+            let candidates = try await session.alternativeSources(for: requested)
+            XCTAssertEqual(candidates.count, 1)
+            let candidate = try XCTUnwrap(candidates.first)
+            XCTAssertEqual(candidate.connectorId, "local"); XCTAssertEqual(candidate.track.id, local.id)
+            let before = await engine.opened
+            for (name, size, language, direction) in [
+                ("phone", CGSize(width: 390, height: 844), "es", LayoutDirection.leftToRight),
+                ("tablet", CGSize(width: 1024, height: 1366), "es", LayoutDirection.leftToRight),
+                ("arabic-phone", CGSize(width: 390, height: 844), "ar", LayoutDirection.rightToLeft)
+            ] {
+                UserDefaults.standard.set(language, forKey: "uiLanguage")
+                try await capture(NavigationStack { MusicSourcePickerView(player: player, session: session, queuedSelection: selection) }
+                    .environment(\.layoutDirection, direction).environment(\.locale, Locale(identifier: language)),
+                                  name: "music-queued-source-" + name, size: size)
+            }
+            try player.replaceQueuedSource(candidate.track, for: queued, in: snapshot)
+            let replacement = try XCTUnwrap(player.items.first { $0.id == queued.id })
+            XCTAssertEqual(replacement.track.connectorId, "local"); XCTAssertEqual(replacement.track.id, local.id)
+            XCTAssertEqual(replacement.track.title, requested.title); XCTAssertEqual(replacement.track.artist, requested.artist)
+            XCTAssertEqual(replacement.track.collectionOrigin?.id, requested.id)
+            XCTAssertEqual(player.currentTrack?.id, current.id); XCTAssertTrue(player.paused)
+            XCTAssertEqual(player.position, position)
+            let untouched = await engine.opened; XCTAssertEqual(untouched.count, before.count)
+            do { try player.replaceQueuedSource(candidate.track, for: queued, in: snapshot); XCTFail("A retired queue cannot replace a source") }
+            catch is CancellationError { }
+            player.next()
+            try await wait { player.loaded && player.currentTrack?.id == local.id }
+            let opened = await engine.opened; XCTAssertEqual(opened.last, imported.filename)
+            XCTAssertEqual(player.currentTrack?.collectionOrigin?.id, requested.id)
+            scope.scope = .init(owner: owner + "-retired", activation: UUID())
+            do { try player.replaceQueuedSource(candidate.track, for: queued, in: player.queueSnapshot); XCTFail("A retired session cannot replace a source") }
+            catch is CancellationError { }
+            player.stop(); await engine.stop(request: .max)
+            try await MusicFileService.shared.remove(imported, owner: owner)
+        } catch {
+            player.stop(); await engine.stop(request: .max)
+            try? await MusicFileService.shared.remove(imported, owner: owner)
+            throw error
+        }
+    }
     private func track(_ index: Int) -> MusicTrack {
         .init(id: "track-\(index)", connectorId: "direct", sourceId: "track-\(index)", playbackUrl: "https://owned.invalid/\(index).wav",
               title: "Owned recording \(index)", artist: "Owned Artist", album: "Owned queue", artwork: "", durationSeconds: 180, durationLabel: "3:00")
