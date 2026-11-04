@@ -298,6 +298,8 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
         guard request == token, resolution?.valid() == true else { return nil }
         return value
     }
+    /// Read-only count of live analysis consumers, for bounded diagnostics.
+    var meterConsumerCount: Int { meterUsers.count }
     func acquireMeter() -> UUID {
         if meterUsers.isEmpty { meterRevision &+= 1 }
         let lease = UUID(); meterUsers.insert(lease)

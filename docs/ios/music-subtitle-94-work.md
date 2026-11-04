@@ -1095,3 +1095,22 @@ owned alternative. Failed, with causes:
   phone/Arabic player captures show the blue (bottom) palette from this bug.
 
 "Unknown artist" in captures is Desktop's own native placeholder data.
+
+## Run 41849651852 (2ccdd217)
+
+Artifact 13335847994, SHA-256
+ac644f857dc0470485fba5a4083b1ef71a399dc844db57feaa94b874c858401b (verified).
+Five of six passed and are retained: measured native bands, both artwork
+cases (19 vectors and the top-first tie), and both signal-detail cases.
+Reviewed capture: the phone signal tab shows "Alta resolución sin pérdida",
+FLAC, 24 bits, 96 kHz, 2400 kbps and the selected output; the Arabic and
+tablet captures were exported but not yet opened. The player controls in
+the artwork capture still use a blue accent for a red/blue cover; whether
+that slot matches Desktop's selection is not verified.
+
+Still failing: the owned-consumers case. The phone capture is attached, then
+the closed views leave harbor_meter in the chain (mpv=none, so no rejected
+toggle). The cause is not established. The failure message now reports the
+live consumer count, whether a signal exists, the exact af string, phase,
+loaded and position, to separate a leaked lease, a rejected release and a
+track that ended. Only this case is rerun.

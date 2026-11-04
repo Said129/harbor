@@ -102,8 +102,8 @@ import XCTest
                 player.seek(0); try await wait { player.position < 0.3 }
                 do { try await capture(player, name: "music-measured-meter-" + name, size: size, direction: direction) }
                 catch {
-                    let failure = await engine.meterFailure
-                    XCTFail("The \(name) meters did not settle: mpv=\(failure ?? "none")")
+                    let failure = await engine.meterFailure, signal = await player.audioSignal()
+                    XCTFail("The \(name) meters did not settle: mpv=\(failure ?? "none"), consumers=\(player.meterConsumerCount), signal=\(signal == nil ? "nil" : "present"), af=\(signal?.filters ?? "-"), phase=\(player.phase), loaded=\(player.loaded), position=\(player.position)")
                     throw error
                 }
             }
