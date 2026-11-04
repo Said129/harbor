@@ -864,3 +864,24 @@ The next selection comprises nine new, failed or visually incomplete cases:
 two meters, three queue operations/chooser cases, the corrected HTTP
 checkpoint, indexed subtitle observation, and the two affected effect cases.
 Unchanged Last.fm/Spotify/recovery and replacement-panel passes are excluded.
+
+The affected run is 41744308491, job 126293354047, on exact source
+4bec28886b74e84fe154a4573906054ff9ff23f1, ref ios/music-validation-94.
+Apple's syntax parser and the isolated 48 kHz CoreAudio route preparation
+both passed. Native build and the nine selected executions remain pending.
+No IPA is requested by this run.
+
+Further validations will reuse that branch so the native compiler cache can
+be shared across its runs. GitHub's cache API showed older caches confined
+to separate sibling refs; restore-key prefixes do not bypass that isolation.
+The existing source-time manifest enables content-verified timestamp reuse
+after this first prepared build. No compilation-speed result is claimed yet.
+Primary reference:
+https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching#restrictions-for-accessing-a-cache
+
+The CI-only audio package download was independently checked before dispatch:
+103,021 bytes and the pinned Homebrew SHA-256. A descriptive Harbor CI user
+agent and binary Accept header are required by the upstream download endpoint;
+its default Python request returned 406. The verified request is now used by
+the CI setup. Primary package record:
+https://raw.githubusercontent.com/Homebrew/homebrew-cask/master/Casks/b/blackhole-2ch.rb
