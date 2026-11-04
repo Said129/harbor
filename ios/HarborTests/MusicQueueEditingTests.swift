@@ -3,6 +3,8 @@ import UIKit
 import XCTest
 @testable import Harbor
 
+@MainActor private final class LookupProbe { var count: Int? }
+
 @MainActor final class MusicQueueEditingTests: XCTestCase {
     func testUpcomingReorderingAndClearingPreserveCurrentClockHistoryAndRejectRetiredSnapshots() async throws {
         let engine = SharedMusicControlledEngine(), resolver = SharedMusicResolver()
@@ -128,9 +130,12 @@ import XCTest
                 ("arabic-phone", CGSize(width: 390, height: 844), "ar", LayoutDirection.rightToLeft)
             ] {
                 UserDefaults.standard.set(language, forKey: "uiLanguage")
-                try await capture(NavigationStack { MusicSourcePickerView(player: player, session: session, queuedSelection: selection) }
+                // Capture the settled chooser, not its pre-lookup frame.
+                let probe = LookupProbe()
+                try await capture(NavigationStack { MusicSourcePickerView(player: player, session: session, queuedSelection: selection, onLookupFinished: { probe.count = $0 }) }
                     .environment(\.layoutDirection, direction).environment(\.locale, Locale(identifier: language)),
-                                  name: "music-queued-source-" + name, size: size)
+                                  name: "music-queued-source-" + name, size: size, ready: { probe.count != nil })
+                XCTAssertEqual(probe.count, 1, "The \(name) chooser must show the owned alternative")
             }
             try player.replaceQueuedSource(candidate.track, for: queued, in: snapshot)
             let replacement = try XCTUnwrap(player.items.first { $0.id == queued.id })
@@ -165,14 +170,16 @@ import XCTest
         for _ in 0..<250 { if predicate() { return }; try await Task.sleep(for: .milliseconds(20)) }
         XCTFail("Owned queue did not settle"); throw HarborError(code: "owned-queue-timeout")
     }
-    private func capture<V: View>(_ view: V, name: String, size: CGSize) async throws {
+    private func capture<V: View>(_ view: V, name: String, size: CGSize, ready: (@MainActor () -> Bool)? = nil) async throws {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let previous = scene.windows.first { $0.isKeyWindow }, window = UIWindow(windowScene: scene)
         window.frame = CGRect(origin: .zero, size: size)
         let host = UIHostingController(rootView: view.preferredColorScheme(.dark))
         window.rootViewController = host; window.makeKeyAndVisible()
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
-        host.view.layoutIfNeeded(); try await Task.sleep(for: .milliseconds(450))
+        host.view.layoutIfNeeded()
+        if let ready { try await wait(ready) }
+        try await Task.sleep(for: .milliseconds(450))
         let image = UIGraphicsImageRenderer(size: size).image { _ in host.view.drawHierarchy(in: CGRect(origin: .zero, size: size), afterScreenUpdates: true) }
         let attachment = XCTAttachment(image: image); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }

@@ -24,7 +24,7 @@ import XCTest
         do {
             try await engine.configure(plan, request: 10)
             try await engine.open(.init(url: file, httpHeaders: [:], mimeType: "audio/wav", bitrate: 0), request: 10, volume: 0, paused: false)
-            try await engine.setMetering(true, request: 10, revision: 1)
+            try await meter(engine, true, revision: 1, phase: "enable-before-load")
             let first = try await measurement(engine, phase: "initial-500Hz") { time, value in time > 0.1 && time < 3 && value.active && value.channels.count == 2 && value.spectrumDb.count == 8 && value.spectrumDb[3] > -40 }
             XCTAssertGreaterThan(first.channels[0].peakDb, first.channels[1].peakDb + 3)
             XCTAssertLessThan(first.channels[0].rmsDb, first.channels[0].peakDb)
@@ -38,7 +38,7 @@ import XCTest
             try await engine.command(.seek(7), request: 10)
             let after = try await measurement(engine, phase: "seek-120Hz") { time, value in time >= 7 && time < 9 && value.active && value.spectrumDb.count == 8 && value.spectrumDb[1] > -40 }
             XCTAssertEqual(after.spectrumDb.enumerated().max(by: { $0.element < $1.element })?.offset, 1)
-            try await engine.setMetering(false, request: 10, revision: 5)
+            try await meter(engine, false, revision: 5, phase: "disable-after-seeks")
             let cleared = await engine.signal(request: 10)
             XCTAssertFalse(cleared?.filters?.contains("harbor_meter") == true)
             XCTAssertTrue(cleared?.filters?.contains("equalizer=") == true)
@@ -100,7 +100,12 @@ import XCTest
                 UserDefaults.standard.set(language, forKey: "uiLanguage")
                 player.seek(0); try await wait { player.position < 0.3 }
                 try await capture(player, name: "music-measured-meter-" + name, size: size, direction: direction)
-                try await waitAsync { await player.audioSignal()?.filters?.contains("harbor_meter") == false }
+                do { try await waitAsync("release-" + name) { await player.audioSignal()?.filters?.contains("harbor_meter") == false } }
+                catch {
+                    let failure = await engine.meterFailure
+                    XCTFail("Closed \(name) meters kept analysis: mpv=\(failure ?? "none")")
+                    throw error
+                }
             }
             XCTAssertNil(player.error)
             player.stop(); await engine.stop(request: .max)
@@ -139,9 +144,17 @@ import XCTest
         for _ in 0..<500 { if condition() { return }; try await Task.sleep(for: .milliseconds(20)) }
         XCTFail("The owned player meter did not settle"); throw HarborError(code: "owned-meter-player-timeout")
     }
-    private func waitAsync(_ condition: @MainActor () async throws -> Bool) async throws {
+    private func waitAsync(_ phase: String = "consumer", _ condition: @MainActor () async throws -> Bool) async throws {
         for _ in 0..<500 { if try await condition() { return }; try await Task.sleep(for: .milliseconds(20)) }
-        XCTFail("The owned analysis consumer did not settle"); throw HarborError(code: "owned-meter-consumer-timeout")
+        XCTFail("The owned analysis consumer did not settle: \(phase)"); throw HarborError(code: "owned-meter-consumer-timeout")
+    }
+    private func meter(_ engine: MusicAudioEngine, _ enabled: Bool, revision: UInt64, phase: String) async throws {
+        do { try await engine.setMetering(enabled, request: 10, revision: revision) }
+        catch {
+            let failure = await engine.meterFailure
+            XCTFail("Native analysis \(phase) failed: \(error), mpv=\(failure ?? "none")")
+            throw error
+        }
     }
     private func capture(_ player: MusicPlayback, name: String, size: CGSize, direction: LayoutDirection) async throws {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
@@ -156,7 +169,7 @@ import XCTest
         window.rootViewController = host; window.makeKeyAndVisible()
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
         host.view.layoutIfNeeded()
-        try await waitAsync { await player.audioSignal()?.filters?.contains("harbor_meter") == true }
+        try await waitAsync("acquire-" + name) { await player.audioSignal()?.filters?.contains("harbor_meter") == true }
         try await Task.sleep(for: .milliseconds(450))
         let image = UIGraphicsImageRenderer(size: size).image { _ in host.view.drawHierarchy(in: CGRect(origin: .zero, size: size), afterScreenUpdates: true) }
         let attachment = XCTAttachment(image: image); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)

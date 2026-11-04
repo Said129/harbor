@@ -24,6 +24,7 @@ struct MusicMeterSnapshot: Sendable {
 /// The pinned Desktop telemetry/spectrum graph: analysis is split from the
 /// audible branch and measured in 50 ms windows, not inferred from volume.
 enum MusicAudioMeter {
+    static let label = "harbor_meter"
     static let frequencies = [60, 120, 250, 500, 1000, 2000, 4000, 8000]
     static let filters = ["asplit", "aresample", "asetnsamples", "bandpass", "astats", "ametadata", "anullsink"]
     static var supported: Bool { MusicAudioRuntime.supports(filters) }
@@ -34,10 +35,23 @@ enum MusicAudioMeter {
         for (index, frequency) in frequencies.enumerated() {
             graph += ";[b\(index)]bandpass=f=\(frequency):t=o:w=1,astats=metadata=1:reset=1:measure_perchannel=none:measure_overall=RMS_level,ametadata@harbor_band_\(index)=print:key=lavfi.astats.Overall.RMS_level,anullsink"
         }
-        return "@harbor_meter:lavfi=[\(graph)]"
+        return "@\(label):lavfi=[\(graph)]"
     }()
     static func chain(_ processing: String, enabled: Bool) -> String {
         !enabled ? processing : processing.isEmpty ? filter : processing + "," + filter
+    }
+    /// Desktop's telemetry::set_enabled: add or remove only the labelled
+    /// analysis branch, synchronously, without rewriting audible processing.
+    static func toggle(_ handle: OpaquePointer, enabled: Bool) -> Int32 {
+        let values = enabled ? ["af", "add", filter] : ["af", "remove", "@" + label]
+        let allocations = values.map { strdup($0) }
+        defer { allocations.forEach { free($0) } }
+        guard allocations.allSatisfy({ $0 != nil }) else { return -1 }
+        var pointers: [UnsafePointer<CChar>?] = allocations.map { $0.map { UnsafePointer<CChar>($0) } } + [nil]
+        return mpv_command(handle, &pointers)
+    }
+    static func failure(_ operation: String, _ status: Int32) -> String {
+        operation + ": " + String(status) + " " + String(cString: mpv_error_string(status))
     }
     static func decibels(_ value: String) -> Double? {
         guard let number = Double(value.trimmingCharacters(in: .whitespacesAndNewlines)) else { return nil }
@@ -64,7 +78,7 @@ enum MusicAudioMeter {
         var rms = Array<Double?>(repeating: nil, count: 8)
         var peaks = rms
         var node = mpv_node()
-        if mpv_get_property(handle, "af-metadata/harbor_meter", MPV_FORMAT_NODE, &node) >= 0 {
+        if mpv_get_property(handle, "af-metadata/" + label, MPV_FORMAT_NODE, &node) >= 0 {
             defer { mpv_free_node_contents(&node) }
             if node.format == MPV_FORMAT_NODE_MAP, let list = node.u.list, let keys = list.pointee.keys, let values = list.pointee.values {
                 for index in 0..<max(0, min(Int(list.pointee.num), 32)) {

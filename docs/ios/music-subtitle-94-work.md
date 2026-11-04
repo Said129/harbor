@@ -937,3 +937,99 @@ image decoding, cancellation, profile/disable fences and phone/tablet/Arabic
 captures. They remain unexecuted and the images unreviewed. The complete
 expanded panels, visuals and other Music gaps are still pending; this does
 not establish full Music or port completion. No IPA is packaged.
+
+## Review of run 41831413613 and meter follow-up (4 November, handoff)
+
+The handoff ZIP matched its published SHA-256 and all 16,970 manifest
+entries. Run 41831413613 executed nine cases on 69f581cc: seven passed and
+both meter cases failed. The seven passes are retained; only the cases whose
+producers change below are selected again.
+
+Of the 20 exported images, 18 were opened; the remaining two are
+byte-identical (SHA-256) to an opened one. The HTTP offsets text was read. Subtitle
+frames: embedded and external captures show CUE 1 at 5 s, CUE 4 at 17 s and
+CUE 5 after the playing seek to 21 s. The three external 21 s frames
+(observed, paused-after-seek and pending-cue) are byte-identical, i.e. the
+same rendered CUE 5 frame held while paused. The fixture video is a static
+red/green split, so these images prove cue selection for each target, not
+alignment against moving video; they do not reproduce the physical drift.
+Music images reviewed: measured phone levels and
+eight bands (L -15.0 / R -21.1 dBFS, real analysis, no invented frames);
+Spanish phone/tablet and Arabic beat-effect controls (the Arabic panel now
+renders, unlike 41734304782); revised audio forms with both new switches;
+editable queue on phone/tablet/Arabic. Two visual findings remain:
+
+- The Arabic queued-source capture shows "no matching source" while the
+  Spanish captures list the owned alternative. The picker started with
+  loading=false, so any frame before its lookup task ran already claimed
+  "none". Desktop's picker starts with useState(true). The case passed, but
+  the image does not validate the RTL chooser.
+- Arabic queue artwork placeholders were still loading in their capture.
+  This is a capture-timing observation, not a confirmed defect.
+
+The connector label "Local file" stays untranslated, as in Desktop, where
+it comes from the native matcher's connector name.
+
+Meter failures, from the job log and attachments:
+
+- testOriginalMeasuredNativeBands... threw music-meter-unavailable after
+  1.4 s from MusicAudioEngine.setMetering. The log cannot distinguish the
+  initial enable from the disable after both seeks; mpv messages are off.
+- testOwnedMeterConsumers... reached and attached the phone capture, then
+  timed out about 10.9 s later with no tablet image. That fits either the
+  wait for the closed phone views to remove harbor_meter or the tablet
+  views' acquire wait; the old messages were identical. The new phase labels
+  separate them. A release that fails in setMetering(false) is recorded
+  silently and leaves the branch attached.
+
+Changes, all from Desktop 0.9.132 behaviour (telemetry.rs, audio-meter.ts,
+music-source-picker.tsx):
+
+- The engine toggles only the labelled branch with `af add <graph>` and
+  `af remove @harbor_meter`, synchronously, as Desktop's set_enabled does,
+  instead of rewriting the whole audible chain. Processing changes still
+  write processing plus meter, as Desktop's audio_filters does. A rejected
+  toggle keeps a bounded diagnostic (operation, mpv status and message).
+- The meter view no longer ends its polling loop on a missing or
+  other-recording snapshot; like Desktop's monitor it keeps the live
+  consumer, shows no stale reading and retries. Only real cancellation
+  releases it.
+- The source picker starts in its loading state and reports the settled
+  candidate count through an optional callback.
+- Tests: each meter toggle names its phase and includes the mpv diagnostic;
+  release/acquire waits name their capture; the queued-source captures wait
+  for the finished lookup and require the alternative in all three images.
+
+No root cause is claimed until these run on Apple. This Windows host has no
+Swift, Git, GitHub CLI, Python or Node; nothing here was compiled or
+executed. Affected selection for the next run (seven HarborChangedTests
+cases, one build):
+
+    MusicMeterTests/testOriginalMeasuredNativeBandsFollowSeeksAndSilenceWithoutChangingTheListeningPlan
+    MusicMeterTests/testOwnedMeterConsumersReleaseAnalysisAndRenderPhoneTabletAndArabicWithoutInventedFrames
+    MusicQueueEditingTests/testQueuedSourceAlternativesUseTheOwnedLibraryAndPreserveCurrentAudioAndPriority
+    MusicArtworkTests/testOriginalArtworkVectorsAndActualImageDecodingRetainTransparentAndStableTieSemantics
+    MusicArtworkTests/testOwnedArtworkColoursRenderResponsivePlayerAndRespectDisableAndProfileRetirement
+    MusicEffectsTests/testBeatEffectControlsRenderWithTouchTargetsOnPhoneTabletAndRightToLeft
+    MusicAudioTests/testAudioAndSpotifyConnectionInterfacesRenderOnPhoneAndTablet
+
+The two artwork cases have never executed; that build is also the first
+Apple compilation of the uncommitted artwork sources; the second of them
+mounts the changed MusicPlayerView and MusicMiniPlayer. The last two were
+accepted before, but the audio form they capture gains the artwork-colour
+switch. SharedMusicPlaybackMountTests also mounts the changed expanded
+player, but it belongs to the HarborTests module (it depends on
+SharedMusicPlaybackTests); it stays pending for the integrated validation
+rather than widening this focused module.
+
+Retained without re-execution, because nothing they exercise changes:
+queue reordering and queue-control rendering (MusicQueueView, row and
+cover are untouched), the paused HTTP checkpoint (session and checkpoint
+code untouched), live beat effects (engine processing and effects paths
+untouched; the new toggle is only reached through metering), and the HTTP
+subtitle observation (no player or subtitle file changed).
+
+The physical subtitle drift is unchanged. On iOS mpv composes subtitles in
+the rendered frame (vo=libmpv, sub-add); no Harbor code changes sub-delay or
+sub-fps on seek. No production subtitle change is made without the
+owner's answer (previous lines vs. correct lines shifted) and the stream type.

@@ -25,13 +25,18 @@ enum MusicMeterPresentation: Equatable { case levels, spectrum }
             var retry = 100
             while !Task.isCancelled {
                 do {
+                    // Desktop's monitor keeps a live consumer through a missing or
+                    // replaced decoder; only a reading for this recording is shown.
                     let value = try await player.meterSnapshot(lease)
-                    guard value?.trackID == player.currentTrack?.id, value?.connectorID == player.currentTrack?.connectorId else { throw CancellationError() }
-                    measurement = value?.measurement; failed = false; retry = 100
+                    if let value, value.trackID == player.currentTrack?.id, value.connectorID == player.currentTrack?.connectorId {
+                        measurement = value.measurement; failed = false
+                    } else { measurement = nil }
+                    retry = 100
                     try await Task.sleep(for: .milliseconds(reduceMotion ? 200 : 50))
-                } catch is CancellationError { return }
-                catch {
-                    failed = true; measurement = nil
+                } catch {
+                    if Task.isCancelled { return }
+                    if !(error is CancellationError) { failed = true }
+                    measurement = nil
                     do { try await Task.sleep(for: .milliseconds(retry)) } catch { return }
                     retry = min(2000, retry * 2)
                 }

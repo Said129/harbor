@@ -37,6 +37,8 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
     private var metering = false
     private var latestMeterRevision: UInt64 = 0
     private var spectrum = MusicAudioSpectrum()
+    /// Bounded diagnostic for the last rejected analysis toggle; no media data.
+    private(set) var meterFailure: String?
     func configure(_ plan: MusicAudioPlan, request: UInt64) async throws {
         guard request >= newest else { throw CancellationError() }
         guard MusicAudioRuntime.supports(plan) else { throw HarborError(code: "music-audio-unavailable") }
@@ -100,12 +102,18 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
         guard enabled != metering else { return }
         guard let handle else { if enabled { throw CancellationError() }; return }
         guard !enabled || MusicAudioMeter.supported else { throw HarborError(code: "music-meter-unavailable") }
-        let next = MusicAudioMeter.chain(processing.filter, enabled: enabled)
-        guard mpv_set_property_string(handle, "af", next) >= 0 else { throw HarborError(code: "music-meter-unavailable") }
-        guard mpv_request_log_messages(handle, enabled ? "v" : "no") >= 0 else {
-            _ = mpv_set_property_string(handle, "af", MusicAudioMeter.chain(processing.filter, enabled: metering))
+        let status = MusicAudioMeter.toggle(handle, enabled: enabled)
+        guard status >= 0 else {
+            meterFailure = MusicAudioMeter.failure(enabled ? "add" : "remove", status)
             throw HarborError(code: "music-meter-unavailable")
         }
+        let logs = mpv_request_log_messages(handle, enabled ? "v" : "no")
+        guard logs >= 0 || !enabled else {
+            _ = MusicAudioMeter.toggle(handle, enabled: false)
+            meterFailure = MusicAudioMeter.failure("logs", logs)
+            throw HarborError(code: "music-meter-unavailable")
+        }
+        meterFailure = nil
         metering = enabled; spectrum.clear()
     }
     func meterSnapshot(request: UInt64) -> MusicMeterMeasurement? {

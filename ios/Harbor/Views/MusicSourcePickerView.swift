@@ -4,9 +4,12 @@ import SwiftUI
     @Bindable var player: MusicPlayback
     let session: MusicPlaybackSession
     var queuedSelection: MusicQueueSourceSelection? = nil
+    /// Reports the settled candidate count once the current lookup finishes.
+    var onLookupFinished: (@MainActor (Int) -> Void)? = nil
     @Environment(\.dismiss) private var dismiss
     @State private var candidates: [MusicSourceCandidate] = []
-    @State private var loading = false
+    // Desktop's picker starts in its search state; "none" requires a finished lookup.
+    @State private var loading = true
     @State private var failed = false
     @State private var retry = 0
     @State private var lookup = UUID()
@@ -45,7 +48,7 @@ import SwiftUI
         }.listStyle(.plain).navigationTitle(DesktopInterfaceText.value(queuedSelection == nil ? "music.source.playOn" : "music.source.another")).navigationBarTitleDisplayMode(.inline)
             .task(id: queryID) {
                 let token = UUID(); lookup = token; candidates = []; loading = true; failed = false
-                defer { if lookup == token { loading = false } }
+                defer { if lookup == token { loading = false; onLookupFinished?(candidates.count) } }
                 guard let track = requested else { return }
                 do {
                     let values: [MusicSourceCandidate]
