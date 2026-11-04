@@ -15,6 +15,7 @@ struct StreamPickerView: View {
     @State private var quality: String?
     @State private var provider: String?
     @State private var overviewExpanded = false
+    @State private var stremioAddon: String?
 
     private var contextMedia: Media { selection?.media ?? model.sourceMedia(for: episode) ?? model.playbackContextMedia }
     private var busy: Bool { model.resolving || model.playback != nil }
@@ -47,26 +48,39 @@ struct StreamPickerView: View {
                 if !model.offers.contains(where: { $0.id == selectedID }) { selectedID = nil }
                 if !model.offers.contains(where: { $0.pickerQualityGroup == quality }) { quality = nil }
                 if !providers.contains(where: { $0.pickerInstance == provider }) { provider = nil }
+                if let stremioAddon, !model.offers.contains(where: { $0.pickerInstance == stremioAddon }) { self.stremioAddon = nil }
             }
-            .onChange(of: selection?.key ?? episode?.routingKey ?? model.media.identity) { _, _ in selectedID = nil; overviewExpanded = false; provider = nil; quality = nil }
+            .onChange(of: selection?.key ?? episode?.routingKey ?? model.media.identity) { _, _ in selectedID = nil; overviewExpanded = false; provider = nil; quality = nil; stremioAddon = nil }
     }
+    /// "Move Refresh next to Back" groups both at the start; otherwise Refresh sits across from Back.
     private var navigation: some View {
         HStack(spacing: 12) {
-            Button(action: back) {
-                HStack(spacing: 10) {
-                    navIcon("stream-back", size: 26)
-                    Text(DesktopInterfaceText.value("Back")).font(HarborTheme.font(17, weight: .semibold))
-                }
-            }.buttonStyle(.plain).accessibilityIdentifier("stream-picker-close")
-            Spacer(minLength: 12)
-            Button(action: refresh) {
-                HStack(spacing: 10) {
-                    navIcon("stream-refresh", size: 20)
-                    Text(DesktopInterfaceText.value("Refresh")).font(HarborTheme.font(17, weight: .semibold))
-                }
-            }.buttonStyle(.plain).disabled(model.loadingStreams || busy)
-                .accessibilityLabel(DesktopInterfaceText.value("Refresh sources")).accessibilityIdentifier("stream-picker-refresh")
+            backButton
+            if StreamPreferences.shared.pickerRefreshNextToBack {
+                refreshButton
+                Spacer(minLength: 12)
+            } else {
+                Spacer(minLength: 12)
+                refreshButton
+            }
         }.foregroundStyle(ThemePreferences.shared.color("ink-muted"))
+    }
+    private var backButton: some View {
+        Button(action: back) {
+            HStack(spacing: 10) {
+                navIcon("stream-back", size: 26)
+                Text(DesktopInterfaceText.value("Back")).font(HarborTheme.font(17, weight: .semibold))
+            }
+        }.buttonStyle(.plain).accessibilityIdentifier("stream-picker-close")
+    }
+    private var refreshButton: some View {
+        Button(action: refresh) {
+            HStack(spacing: 10) {
+                navIcon("stream-refresh", size: 20)
+                Text(DesktopInterfaceText.value("Refresh")).font(HarborTheme.font(17, weight: .semibold))
+            }
+        }.buttonStyle(.plain).disabled(model.loadingStreams || busy)
+            .accessibilityLabel(DesktopInterfaceText.value("Refresh sources")).accessibilityIdentifier("stream-picker-refresh")
     }
     private func navIcon(_ name: String, size: CGFloat) -> some View {
         Image(name).resizable().scaledToFit().frame(width: size, height: size)
@@ -119,12 +133,61 @@ struct StreamPickerView: View {
         } else if let offer = selected {
             if let error = model.error { Text(error).font(HarborTheme.font(14)).foregroundStyle(.orange) }
             if let downloadMessage { Text(downloadMessage).font(HarborTheme.font(13)).foregroundStyle(ThemePreferences.shared.color("ink-muted")) }
-            StreamPrimaryCard(media: contextMedia, episode: episode, offer: offer, addonLogo: logo(offer), busy: busy, downloading: downloading,
-                              play: { play(offer) }, download: download.map { action in { action(offer) } })
-            qualityStrip
-            sourceDrawer
+            modeToggle
+            if StreamPreferences.shared.pickerLayout == "stremio" {
+                stremioList
+            } else {
+                StreamPrimaryCard(media: contextMedia, episode: episode, offer: offer, addonLogo: logo(offer), busy: busy, downloading: downloading,
+                                  play: { play(offer) }, download: download.map { action in { action(offer) } })
+                qualityStrip
+                sourceDrawer
+            }
         } else {
             emptySources
+        }
+    }
+    /// Desktop's source-mode toggle above the list. P2P-first is not offered: the iPhone has
+    /// no torrent engine, so those results only start through a debrid service.
+    private var modeToggle: some View {
+        HStack {
+            Spacer(minLength: 0)
+            HarborSettingsSegmented(selection: Binding(get: { StreamPreferences.shared.sourceMode },
+                                                       set: { StreamPreferences.shared.sourceMode = $0; model.applyStreamMode() }),
+                                    choices: [(DesktopInterfaceText.value("Both"), StreamMode.both), (DesktopInterfaceText.value("Direct/debrid"), StreamMode.addons)])
+                .frame(maxWidth: 300).disabled(busy)
+                .accessibilityLabel(DesktopInterfaceText.value("Source mode")).accessibilityIdentifier("stream-source-mode")
+        }
+    }
+    private var stremioOffers: [StreamOffer] {
+        let ordered = StremioPickerPresentation.ordered(model.offers, addons: addons, preserveOrder: StreamPreferences.shared.addonOrder)
+        guard let stremioAddon else { return ordered }
+        return ordered.filter { $0.pickerInstance == stremioAddon }
+    }
+    /// The Stremio layout: one addon filter and a flat list, with each addon's own text.
+    private var stremioList: some View {
+        let options = StremioPickerPresentation.addonOptions(model.offers, addons: addons)
+        let current = options.first { $0.id == stremioAddon }
+        return VStack(alignment: .leading, spacing: 12) {
+            Menu {
+                Button { stremioAddon = nil } label: { Text("\(DesktopInterfaceText.value("All sources")) · \(model.offers.count)") }
+                ForEach(options) { option in
+                    Button { stremioAddon = option.id } label: { Text("\(option.name) · \(option.count)") }
+                }
+            } label: {
+                HStack(spacing: 12) {
+                    Text(current?.name ?? DesktopInterfaceText.value("All")).font(HarborTheme.font(15, weight: .medium)).lineLimit(1)
+                    Spacer(minLength: 0)
+                    Image("settings-chevron-down").resizable().scaledToFit().frame(width: 16, height: 16).accessibilityHidden(true)
+                }.padding(.horizontal, 16).frame(minHeight: 48)
+                    .background(ThemePreferences.shared.color("elevated").opacity(0.6), in: .rect(cornerRadius: 16))
+                    .overlay { RoundedRectangle(cornerRadius: 16).stroke(ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
+            }.buttonStyle(.plain).disabled(busy).accessibilityIdentifier("stream-stremio-addon")
+            LazyVStack(spacing: 8) {
+                ForEach(stremioOffers) { offer in
+                    StreamStremioRow(offer: offer, addonLogo: logo(offer), full: StreamPreferences.shared.fullStreamDescription, busy: busy,
+                                     downloading: downloading, play: { play(offer) }, download: download.map { action in { action(offer) } })
+                }
+            }
         }
     }
     private var qualityStrip: some View {

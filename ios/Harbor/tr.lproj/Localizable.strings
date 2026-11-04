@@ -14,6 +14,7 @@
 "2020s Hits" = "2020'lerin Hitleri";
 "21:9" = "21:9";
 "2nd" = "2.";
+"30 seconds (default)" = "30 saniye (varsayılan)";
 "30s" = "30 sn";
 "45 min" = "45 dk.";
 "45s" = "45 sn";
@@ -86,11 +87,13 @@
 "Addon" = "Eklenti";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "Eklenti sırası";
+"Addon wait time" = "Eklenti bekleme süresi";
 "Addons" = "Eklentiler";
 "Adjust the text and background. The preview shows your changes as you make them." = "Metni ve arka planı ayarlayın. Önizleme yaptığınız değişiklikleri anında gösterir.";
 "Administrar" = "Yönet";
 "Adult sources" = "Adult sources";
 "Adventure" = "Macera";
+"Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Gözleri yormaz";
 "Agregar a favoritos" = "Favorilere ekle";
 "Agregar clave" = "Anahtar ekle";
@@ -266,6 +269,8 @@
 "Border" = "Kenarlık";
 "Borrar búsqueda" = "Aramayı temizle";
 "Borrar todo" = "Tümünü temizle";
+"Both" = "İkisi de";
+"Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "Her ikisi, doğrudan, debrid ve eşler arası sonuçları birlikte gösterir. Doğrudan/debrid, başka bir şey yoksa P2P sonuçlarını geri planda tutar. P2P ise onları en öne koyar.";
 "Bottom bar" = "Alt çubuk";
 "Bottom left" = "Sol alt";
 "Bottom right" = "Sağ alt";
@@ -356,6 +361,7 @@
 "Choose the frame rate the subtitle was authored for." = "Altyazının hazırlandığı kare hızını seçin.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Sevdiğiniz en fazla 5 film veya diziyi seçin. Harbor bunları öne çıkan içerikleri ve önerileri size göre kişiselleştirmek için kullanır. Tamamen isteğe bağlıdır.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harbor'ın ne zaman profil seçmenizi isteyeceğini belirleyin. Zamanlanmış istemler Harbor'a döndüğünüzde görünür.";
+"Choose which addon results appear when you pick a stream." = "Yayın seçerken hangi eklenti sonuçlarının görüneceğini seçin.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Bilim Kurgu ve Fantastik";
 "Claro" = "Açık";
@@ -404,6 +410,8 @@
 "Completed" = "Tamamlandı";
 "Con serifas" = "Serif";
 "Concentración" = "Focus";
+"Condensed" = "Yoğun";
+"Condensed shows a top pick, quality tiles, and a drawer. Stremio is a flat list grouped by addon, no scoring." = "Yoğun görünümde en iyi seçim, kalite kutucukları ve bir çekmece gösterilir. Stremio ise puanlama olmadan, eklentiye göre gruplandırılmış düz bir listedir.";
 "Conectando" = "Bağlanıyor";
 "Conexión Manga" = "Manga connection";
 "Conexión Suwayomi" = "Suwayomi connection";
@@ -514,6 +522,7 @@
 "Debrid-Link API key" = "Debrid-Link API anahtarı";
 "Default" = "Varsayılan";
 "Default (gold accent)" = "Varsayılan (altın vurgu)";
+"Default. Harbor parses and scores every source and surfaces the best quality first." = "Varsayılan. Harbor her kaynağı ayrıştırıp puanlar ve en iyi kaliteyi ilk sırada gösterir.";
 "Defining the 2010s" = "2010'lara Damga Vuranlar";
 "Dejar de mostrarlo como segundo subtítulo" = "İkinci altyazı olarak göstermeyi bırak";
 "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)" = "Vitrin karuseline içerik sağlamayı durdur (otomatik seçime dön)";
@@ -548,6 +557,7 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "Karartma";
 "Dirección" = "Yön";
+"Direct/debrid" = "Doğrudan/debrid";
 "Direction" = "Yön";
 "Director" = "Yönetmen";
 "Disconnect" = "Bağlantıyı kes";
@@ -700,6 +710,7 @@
 "File is larger than 2 MB." = "Dosya 2 MB'tan büyük.";
 "Fill" = "Doldur";
 "Film" = "Film";
+"Filters" = "Filtreler";
 "Finding lyrics" = "Şarkı sözleri aranıyor";
 "Finnish" = "Fince";
 "Fit" = "Sığdır";
@@ -708,6 +719,7 @@
 "Focus GIF URL" = "Odaklanınca Gösterilen GIF URL'si";
 "Focus mode" = "Odak modu";
 "Focused Card" = "Odaklanılan Kart";
+"Following addon order" = "Eklenti sırasına göre";
 "Fondo" = "Arka plan";
 "Font" = "Yazı tipi";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -753,6 +765,7 @@
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "Sevdiğiniz filmleri ve dizileri gruplandırın. Yeniden izleme rafı, hafta sonu seçkileri veya elinizin altında tutmak istediğiniz başka ne varsa.";
 "Group the movies and shows you want to keep close." = "Elinizin altında tutmak istediğiniz film ve dizileri gruplandırın.";
 "Grouped" = "Gruplandırılmış";
+"Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back." = "Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back.";
 "Guardado" = "Kaydedildi";
 "Guardando" = "Kaydediliyor";
 "Guardar" = "Kaydet";
@@ -777,6 +790,8 @@
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor altyazıları bu sırayla arar. Tercih ettiğiniz dili ilk sıraya koyun.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor, her hizmette şu anda bulunan en popüler yapımları getirir. Abone olmadığınız hizmetleri kapatın.";
+"Harbor ranking" = "Harbor sıralaması";
+"Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Harbor sıralaması, en yüksek puanlı kaynakları öne alır. Eklenti sırası ise Stremio ve Vidi uygulamalarında olduğu gibi her eklentinin sonuçlarını döndürdüğü sırada tutar. Aşağıdaki yayın önceliği, her iki modda da hangi eklentinin önce geleceğini belirler.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Harbor'ın kendi menüleri ve etiketleri. Altyazı dillerini daha sonra seçebilirsiniz; ikisini de Ayarlar'dan değiştirebilirsiniz.";
 "Hard stroke around each letter. High contrast." = "Her harfin çevresinde keskin bir kontur. Yüksek kontrast.";
 "Harvey Award Winners" = "Harvey Ödülü Kazananlar";
@@ -797,6 +812,7 @@
 "Hide end notice" = "Hide end notice";
 "Hide row" = "Satırı gizle";
 "Hide sound effects and speaker names" = "Ses efektlerini ve konuşan adlarını gizle";
+"Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Şüpheli dosyaları, eşleşmeyen sürümleri, olası kamera çekimlerini ve fragmanları gizleyin. Dosya boyutlarını ve sezon paketlerini de denetleyin.";
 "Hide {name} from navigation" = "{name} öğesini gezinmeden gizle";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Bölüm listelerinde spoiler içerebilecek bölüm ayrıntılarını, ilgili bölümleri izleyene kadar gizler.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
@@ -816,6 +832,7 @@
 "Horror" = "Korku";
 "Horror & Supernatural" = "Korku ve Doğaüstü";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long Harbor waits for each addon to return results." = "Harbor'ın her eklentinin sonuçlarını ne kadar bekleyeceği.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "Kaç film?";
 "Hoy" = "Bugün";
@@ -900,6 +917,7 @@
 "Keep original" = "Özgün biçimi koru";
 "Keep same source on next episode" = "Sonraki bölümde aynı kaynağı kullan";
 "Keep screen awake" = "Keep screen awake";
+"Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Şüpheli dosya ve sürüm denetimlerini koruyun; ancak büyük dosyalar ve sezon paketleri dahil daha fazla sonuca izin verin.";
 "Keep watching" = "İzlemeye devam et";
 "Kids & Family" = "Çocuk ve Aile";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, sezon uyumlu";
@@ -1038,13 +1056,16 @@
 "Mostrar páginas" = "İçerik sayfaları";
 "Mostrar {name} en la navegación" = "{name} öğesini gezinmede göster";
 "Motion" = "Hareket";
+"Move Refresh next to Back" = "Yenile'yi Geri'nin yanına taşı";
 "Move down" = "Aşağı taşı";
 "Move earlier" = "Öne taşı";
+"Move to top" = "En üste taşı";
 "Move up" = "Yukarı taşı";
 "Move your watchlist" = "İzleme listenizi taşıyın";
 "Move {language} earlier" = "{language} dilini öne taşı";
 "Move {name} down" = "{name} öğesini aşağı taşı";
 "Move {name} up" = "{name} öğesini yukarı taşı";
+"Moved {name} to position {n} of {total}" = "{name}, toplam {total} konumdan {n}. konuma taşındı";
 "Mover antes" = "Öne taşı";
 "Mover hacia abajo" = "Aşağı taşı";
 "Mover hacia arriba" = "Yukarı taşı";
@@ -1162,6 +1183,7 @@
 "Norwegian" = "Norveççe";
 "Not a stream plugin: it exports no getStreams or streams function." = "Yayın uzantısı değil: getStreams veya streams işlevi dışa aktarmıyor.";
 "Not connected" = "Bağlı değil";
+"Not installed" = "Yüklü değil";
 "Not interested" = "İlgilenmiyorum";
 "Not now" = "Şimdi değil";
 "Not set" = "Ayarlanmadı";
@@ -1278,6 +1300,9 @@
 "Pick what you actually use" = "Kullandığınız hizmetleri seçin";
 "Pick your language" = "Dilinizi seçin";
 "Pick your subtitle languages" = "Altyazı dillerinizi seçin";
+"Picker" = "Seçici";
+"Picker details" = "Seçici ayrıntıları";
+"Picker layout" = "Seçim ekranı düzeni";
 "Picture" = "Resim";
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Görüntü ayarları";
@@ -1325,6 +1350,7 @@
 "Posters, ratings, lists" = "Afişler, puanlar, listeler";
 "Predeterminado" = "Varsayılan";
 "Predeterminado (acento dorado)" = "Varsayılan (altın vurgu)";
+"Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "Devam edilsin mi, baştan mı başlansın diye sor";
 "Premiered This Month" = "Bu Ay Başlayanlar";
 "Premiumize API key" = "Premiumize API anahtarı";
@@ -1339,6 +1365,7 @@
 "Primary copy." = "Birincil metin.";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "Önce bir altyazı parçası seçin.";
+"Priority applies once you have two or more stream addons." = "Öncelik, en az iki yayın eklentiniz olduğunda uygulanır.";
 "Priorizar {language}" = "{language} dilini öne taşı";
 "Producer" = "Yapımcı";
 "Profile PIN" = "Profil PIN'i";
@@ -1492,8 +1519,11 @@
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "Geri yüklendi";
+"Result order" = "Sonuç sıralaması";
 "Resultados" = "Sonuçlar";
 "Results" = "Sonuçlar";
+"Results appear as they arrive. Increase the wait time if an addon often needs a refresh before its results appear." = "Sonuçlar geldikçe görünür. Bir eklentinin sonuçları genellikle yenilemeden sonra görünüyorsa bekleme süresini artırın.";
+"Results from addons higher in this list come first. If one finds nothing, the next fills in." = "Bu listede daha yukarıda olan eklentilerin sonuçları önce gelir. Biri sonuç bulamazsa sıradaki devreye girer.";
 "Resume" = "Devam et";
 "Resume after an audio interruption" = "Resume after an audio interruption";
 "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
@@ -1623,12 +1653,16 @@
 "Show More info button" = "Daha fazla bilgi düğmesini göster";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Harbor algıladığında Jeneriği Atla / Kapanış Jeneriğini Atla düğmesini gösterir. Hiç gösterilmemesi için bunu kapatın. Hatalı bir düğmeyi bölümün geri kalanında gizlemek için düğmedeki X'e de dokunabilirsiniz.";
 "Show adult addons" = "Yetişkinlere yönelik eklentileri göster";
+"Show all results returned by addons, including releases that do not match or may be suspicious." = "Eşleşmeyen veya şüpheli olabilecek sürümler dahil eklentilerin döndürdüğü tüm sonuçları gösterin.";
 "Show as a Top 10 with big numerals" = "Büyük rakamlarla İlk 10 olarak göster";
 "Show as a normal row" = "Normal satır olarak göster";
 "Show as second subtitle" = "İkinci altyazı olarak göster";
+"Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio seçicide, indirmelerde ve Big Picture'da eklenti açıklamalarının tamamını göster.";
 "Show controls" = "Kontrolleri göster";
 "Show details" = "Ayrıntıları göster";
+"Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Her eklentinin sonuçlarını döndürdüğü sırayla, eklenti listenize göre gruplandırarak gösterir. Stremio ve Vidi uygulamalarıyla aynıdır.";
 "Show episode description" = "Bölüm açıklamasını göster";
+"Show full descriptions" = "Açıklamaların tamamını göster";
 "Show less" = "Daha az göster";
 "Show me less like this" = "Buna benzer daha az içerik göster";
 "Show me more like this" = "Buna benzer daha fazla içerik göster";
@@ -1636,6 +1670,8 @@
 "Show more titles" = "Show more titles";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "Yayın seçicide uzantı başına değil depo başına bir kaynak gösterir. Bir depo çok sayıda küçük sağlayıcı içerdiğinde kullanışlıdır.";
 "Show pages" = "İçerik sayfaları";
+"Show release filenames in the Condensed picker and Big Picture." = "Yoğun seçicide ve Big Picture'da sürüm dosyalarının adlarını göster.";
+"Show release name" = "Sürüm adını göster";
 "Show row" = "Satırı göster";
 "Show the Skip button" = "Atla düğmesini göster";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Çevrilmiş adları yukarıda seçilen dilde gösterin. Özgün adları korumak için kapatın.";
@@ -1690,7 +1726,9 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Sırala";
 "Sort by" = "Sıralama ölçütü";
+"Sorting" = "Sıralama";
 "Source" = "Kaynak";
+"Source mode" = "Kaynak modu";
 "Source name" = "Kaynak adı";
 "Sources" = "Kaynaklar";
 "Sources & library" = "Kaynaklar ve kütüphane";
@@ -1730,12 +1768,16 @@
 "Stopped with: {error}" = "Şu hatayla durdu: {error}";
 "Storage overview" = "Depolama alanına genel bakış";
 "Stream" = "Yayın";
+"Stream priority" = "Yayın önceliği";
+"Stream safety filter" = "Yayın güvenlik filtresi";
 "Streaming" = "Yayın";
 "Streaming services" = "Yayın hizmetleri";
+"Streaming sources" = "Yayın kaynakları";
 "Streams" = "Yayınlar";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Klasik Stremio";
 "Stretch" = "Esnet";
+"Strict" = "Katı";
 "Strict filters dropped everything" = "Katı filtreler tüm sonuçları eledi";
 "Styled (ASS) subtitles" = "Biçimlendirilmiş (ASS) altyazılar";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Kendi resminizi yükleyin veya Harbor kataloğundan bir tane seçin.";
@@ -1970,6 +2012,7 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "Okuma erişimi tokenını değil, v3 anahtarını kullanın.";
 "Usar mi estilo" = "Benim stilimi kullan";
+"Use addon order" = "Eklenti sırasını kullan";
 "Use my style" = "Benim stilimi kullan";
 "Use plugins" = "Uzantıları kullan";
 "Use shared settings" = "Paylaşılan ayarları kullan";
@@ -1980,6 +2023,7 @@
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Önbelleği kontrol etmek ve bağlantı kısıtlamalarını kaldırmak için kullanılır. Harbor hesabınıza kendi kendine asla bir şey eklemez veya kaldırmaz.";
 "Username" = "Kullanıcı adı";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "Önbellekte bulunan içerikleri kuyruğa eklemeyi atlayan directdl uç noktasını kullanır.";
+"Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "AIOStreams veya başka bir toplayıcı eklenti mi kullanıyorsunuz? Harbor sonuçları görmeden önce eklentinin kendi sıralama ve filtreleme işlemleri uygulanır; ardından Harbor yukarıdaki yayın filtresini ve sonuç sırasını bunların üzerine uygular. Sonuçlar beklenenden az görünüyorsa taraflardan birini esnek tutun: eklentinin dâhilî filtrelerini gevşetin veya Harbor'ın yayın filtresini Dengeli ya da Kapalı olarak ayarlayın.";
 "VOD sources" = "VOD sources";
 "Velocidad" = "Hız";
 "Ver más" = "Daha fazlasını görüntüle";
@@ -3216,6 +3260,7 @@
 "{name} + {n} más" = "{name} + {n} tane daha";
 "{n} / {max} items" = "{n} / {max} öğe";
 "{n} / {max} lists" = "{n} / {max} liste";
+"{n} addons don't provide streams and aren't listed." = "{n} eklenti yayın sağlamadığı için listelenmiyor.";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} anime başlığı dışarıda bırakılacak (Trakt'ta bunlara ait kimlik numaraları yok).";
 "{n} ep" = "{n} blm";
 "{n} eps" = "{n} blm";
@@ -3227,6 +3272,7 @@
 "{n} semillas" = "{n} seed";
 "{n}d left" = "{n} gün kaldı";
 "{requests} requests" = "{requests} istek";
+"{seconds} seconds" = "{seconds} saniye";
 "{shown} of {total}" = "{total} öğeden {shown} tanesi";
 "{watched} de {total} vistos ({pct}%)." = "{total} içinden {watched} izlendi (%{pct}).";
 "{watched} of {total} watched ({pct}%)." = "{total} içinden {watched} izlendi (%{pct}).";

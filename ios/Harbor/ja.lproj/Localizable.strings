@@ -14,6 +14,7 @@
 "2020s Hits" = "2020年代のヒット作";
 "21:9" = "21:9";
 "2nd" = "第2";
+"30 seconds (default)" = "30秒（既定）";
 "30s" = "30秒";
 "45 min" = "45分";
 "45s" = "45秒";
@@ -86,11 +87,13 @@
 "Addon" = "アドオン";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "アドオン順";
+"Addon wait time" = "アドオンの待ち時間";
 "Addons" = "アドオン";
 "Adjust the text and background. The preview shows your changes as you make them." = "文字と背景を調整します。変更がその場でプレビューに反映されます。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
 "Adventure" = "アドベンチャー";
+"Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "目にやさしい";
 "Agregar a favoritos" = "お気に入りに追加";
 "Agregar clave" = "キーを追加";
@@ -266,6 +269,8 @@
 "Border" = "枠線";
 "Borrar búsqueda" = "検索をクリア";
 "Borrar todo" = "すべて消去";
+"Both" = "両方";
+"Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "「両方」は直接リンク、debrid、P2Pの結果をまとめて表示します。「直接/debrid」は他に候補がない場合を除きP2Pの結果を後回しにします。「P2P」はそれらを先頭に表示します。";
 "Bottom bar" = "下部バー";
 "Bottom left" = "左下";
 "Bottom right" = "右下";
@@ -356,6 +361,7 @@
 "Choose the frame rate the subtitle was authored for." = "字幕の作成時に使用されたフレームレートを選択してください。";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "好きな映画や番組を最大5作品選んでください。Harborが注目作品やおすすめを好みに合わせて調整します。選択は任意です。";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harborでプロフィールの選択を求めるタイミングを選びます。時間に基づく確認は、Harborに戻ったときに表示されます。";
+"Choose which addon results appear when you pick a stream." = "ストリーム選択時に表示するアドオンの結果を選びます。";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "SF＆ファンタジー";
 "Claro" = "ライト";
@@ -404,6 +410,8 @@
 "Completed" = "完了";
 "Con serifas" = "セリフ体";
 "Concentración" = "Focus";
+"Condensed" = "コンパクト";
+"Condensed shows a top pick, quality tiles, and a drawer. Stremio is a flat list grouped by addon, no scoring." = "「コンパクト」ではおすすめ、画質タイル、ドロワーを表示します。「Stremio」ではアドオン別にまとめたフラットなリストを表示し、スコア付けはしません。";
 "Conectando" = "接続中";
 "Conexión Manga" = "Manga connection";
 "Conexión Suwayomi" = "Suwayomi connection";
@@ -514,6 +522,7 @@
 "Debrid-Link API key" = "Debrid-Link APIキー";
 "Default" = "デフォルト";
 "Default (gold accent)" = "デフォルト（ゴールドのアクセント）";
+"Default. Harbor parses and scores every source and surfaces the best quality first." = "デフォルト。Harborが各ソースを解析・評価し、最高画質を最初に表示します。";
 "Defining the 2010s" = "2010年代を象徴する作品";
 "Dejar de mostrarlo como segundo subtítulo" = "第2字幕の表示を停止";
 "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)" = "ヒーローカルーセルへの表示をやめる（自動選択に戻す）";
@@ -548,6 +557,7 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "暗くする";
 "Dirección" = "方向";
+"Direct/debrid" = "直接/debrid";
 "Direction" = "方向";
 "Director" = "監督";
 "Disconnect" = "接続解除";
@@ -700,6 +710,7 @@
 "File is larger than 2 MB." = "ファイルが2 MBを超えています。";
 "Fill" = "画面いっぱいに表示";
 "Film" = "映画";
+"Filters" = "フィルター";
 "Finding lyrics" = "歌詞を検索中";
 "Finnish" = "フィンランド語";
 "Fit" = "全体を表示";
@@ -708,6 +719,7 @@
 "Focus GIF URL" = "フォーカス時のGIF URL";
 "Focus mode" = "集中モード";
 "Focused Card" = "フォーカス中のカード";
+"Following addon order" = "アドオン順";
 "Fondo" = "背景";
 "Font" = "フォント";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -753,6 +765,7 @@
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "お気に入りの映画や番組をまとめましょう。もう一度観たい作品、週末に観たい作品など、いつでもすぐ見られるように整理できます。";
 "Group the movies and shows you want to keep close." = "お気に入りの映画や番組をまとめておけます。";
 "Grouped" = "グループ化済み";
+"Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back." = "Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back.";
 "Guardado" = "保存済み";
 "Guardando" = "保存中";
 "Guardar" = "保存";
@@ -777,6 +790,8 @@
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor はこの順序で字幕を探します。優先する言語を先頭にしてください。";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harborが各サービスで現在最も人気のある作品を取得します。契約していないサービスはオフにしてください。";
+"Harbor ranking" = "Harborの順位付け";
+"Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Harborランキングでは、評価の高いソースが先に表示されます。アドオン順では、StremioやVidiと同様に、各アドオンの結果が返された順に保たれます。どちらのモードでも、先頭にするアドオンは下のストリーム優先順位で決まります。";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Harbor本体のメニューとラベルの言語です。字幕言語は後で選択でき、どちらも設定で変更できます。";
 "Hard stroke around each letter. High contrast." = "各文字をくっきり縁取ります。高コントラストです。";
 "Harvey Award Winners" = "ハーベイ賞受賞作";
@@ -797,6 +812,7 @@
 "Hide end notice" = "Hide end notice";
 "Hide row" = "行を非表示";
 "Hide sound effects and speaker names" = "効果音と話者名を隠す";
+"Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "疑わしいファイル、一致しないリリース、カメラ撮影らしき動画、予告編を非表示にします。ファイルサイズとシーズンパックも確認します。";
 "Hide {name} from navigation" = "ナビゲーションから{name}を非表示";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "視聴するまで、エピソード一覧でネタバレを含む可能性のある詳細を非表示にします。";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
@@ -816,6 +832,7 @@
 "Horror" = "ホラー";
 "Horror & Supernatural" = "ホラー＆超常現象";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long Harbor waits for each addon to return results." = "各アドオンの結果を Harbor が待つ時間です。";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "映画は何本？";
 "Hoy" = "今日";
@@ -900,6 +917,7 @@
 "Keep original" = "オリジナルを維持";
 "Keep same source on next episode" = "次のエピソードでも同じソースを使用";
 "Keep screen awake" = "Keep screen awake";
+"Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "疑わしいファイルやリリースの確認は維持し、大きなファイルやシーズンパックを含む、より多くの結果を許可します。";
 "Keep watching" = "続きを見る";
 "Kids & Family" = "キッズ＆ファミリー";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu、MAL、シーズン対応";
@@ -1038,13 +1056,16 @@
 "Mostrar páginas" = "作品ページ";
 "Mostrar {name} en la navegación" = "ナビゲーションに{name}を表示";
 "Motion" = "モーション";
+"Move Refresh next to Back" = "更新を戻るの隣に移動";
 "Move down" = "下へ移動";
 "Move earlier" = "優先順位を上げる";
+"Move to top" = "一番上へ移動";
 "Move up" = "上へ移動";
 "Move your watchlist" = "ウォッチリストを移行";
 "Move {language} earlier" = "{language}の優先順位を上げる";
 "Move {name} down" = "{name}を下に移動";
 "Move {name} up" = "{name}を上に移動";
+"Moved {name} to position {n} of {total}" = "{name}を{total}件中{n}番目に移動しました";
 "Mover antes" = "優先順位を上げる";
 "Mover hacia abajo" = "下へ移動";
 "Mover hacia arriba" = "上へ移動";
@@ -1162,6 +1183,7 @@
 "Norwegian" = "ノルウェー語";
 "Not a stream plugin: it exports no getStreams or streams function." = "ストリームプラグインではありません: getStreamsまたはstreams関数をエクスポートしていません。";
 "Not connected" = "未接続";
+"Not installed" = "未インストール";
 "Not interested" = "興味なし";
 "Not now" = "今はしない";
 "Not set" = "未設定";
@@ -1278,6 +1300,9 @@
 "Pick what you actually use" = "実際に利用するサービスを選択";
 "Pick your language" = "言語を選択";
 "Pick your subtitle languages" = "字幕の言語を選択";
+"Picker" = "ソース選択";
+"Picker details" = "ソース選択の詳細";
+"Picker layout" = "選択画面のレイアウト";
 "Picture" = "映像";
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "画質調整";
@@ -1325,6 +1350,7 @@
 "Posters, ratings, lists" = "ポスター、評価、リスト";
 "Predeterminado" = "デフォルト";
 "Predeterminado (acento dorado)" = "デフォルト（ゴールドのアクセント）";
+"Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "続きから再生するか最初から再生するか確認";
 "Premiered This Month" = "今月の新作";
 "Premiumize API key" = "Premiumize APIキー";
@@ -1339,6 +1365,7 @@
 "Primary copy." = "メインテキスト。";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "先に字幕トラックを選択してください。";
+"Priority applies once you have two or more stream addons." = "ストリームアドオンが2つ以上ある場合に優先順位が適用されます。";
 "Priorizar {language}" = "{language}の優先順位を上げる";
 "Producer" = "プロデューサー";
 "Profile PIN" = "プロフィールPIN";
@@ -1492,8 +1519,11 @@
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "復元しました";
+"Result order" = "結果の並び順";
 "Resultados" = "結果";
 "Results" = "結果";
+"Results appear as they arrive. Increase the wait time if an addon often needs a refresh before its results appear." = "結果は届き次第表示されます。アドオンの結果を表示するのに更新が必要なことが多い場合は、待機時間を延ばしてください。";
+"Results from addons higher in this list come first. If one finds nothing, the next fills in." = "このリストで上位のアドオンの結果が優先されます。見つからなければ、次のアドオンが補います。";
 "Resume" = "再開";
 "Resume after an audio interruption" = "Resume after an audio interruption";
 "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
@@ -1623,12 +1653,16 @@
 "Show More info button" = "「詳細情報」ボタンを表示";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Harborが検出したときに「イントロをスキップ」/「クレジットをスキップ」ボタンを表示します。今後一切表示しない場合はオフにしてください。誤検出の場合はボタンのXをタップすると、そのエピソード中は非表示にできます。";
 "Show adult addons" = "成人向けアドオンを表示";
+"Show all results returned by addons, including releases that do not match or may be suspicious." = "一致しない、または疑わしいリリースを含め、アドオンからの結果をすべて表示します。";
 "Show as a Top 10 with big numerals" = "大きな数字付きのトップ10として表示";
 "Show as a normal row" = "通常の列として表示";
 "Show as second subtitle" = "第2字幕として表示";
+"Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio のソース選択画面、ダウンロード、ビッグピクチャーでアドオンの説明を全文表示します。";
 "Show controls" = "コントロールを表示";
 "Show details" = "詳細を表示";
+"Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "各アドオンの結果を取得順のまま、アドオンリストの順にまとめて表示します。StremioやVidiアプリと同じ形式です。";
 "Show episode description" = "エピソードのあらすじを表示";
+"Show full descriptions" = "説明を全文表示";
 "Show less" = "折りたたむ";
 "Show me less like this" = "このような作品の表示を減らす";
 "Show me more like this" = "このような作品をもっと表示";
@@ -1636,6 +1670,8 @@
 "Show more titles" = "Show more titles";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "ストリーム選択で、プラグインごとではなくリポジトリごとに1つのソースを表示します。小さなプロバイダーを多数含むリポジトリで便利です。";
 "Show pages" = "作品ページ";
+"Show release filenames in the Condensed picker and Big Picture." = "コンパクト表示のソース選択画面とビッグピクチャーでリリースのファイル名を表示します。";
+"Show release name" = "リリース名を表示";
 "Show row" = "行を表示";
 "Show the Skip button" = "「スキップ」ボタンを表示";
 "Show translated names in the language selected above. Turn off to keep original titles." = "上で選んだ言語の翻訳タイトルを表示します。原題を使う場合はオフにしてください。";
@@ -1690,7 +1726,9 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "並べ替え";
 "Sort by" = "並べ替え";
+"Sorting" = "並べ替え";
 "Source" = "ソース";
+"Source mode" = "ソースモード";
 "Source name" = "配信元名";
 "Sources" = "情報源";
 "Sources & library" = "ソースとライブラリ";
@@ -1730,12 +1768,16 @@
 "Stopped with: {error}" = "次のエラーで停止: {error}";
 "Storage overview" = "ストレージ概要";
 "Stream" = "ストリーム";
+"Stream priority" = "ストリームの優先順位";
+"Stream safety filter" = "ストリーム安全性フィルター";
 "Streaming" = "ストリーミング";
 "Streaming services" = "ストリーミングサービス";
+"Streaming sources" = "ストリーミングソース";
 "Streams" = "ストリーム";
 "Stremio" = "Stremio";
 "Stremio clásico" = "クラシックStremio";
 "Stretch" = "引き伸ばす";
+"Strict" = "厳格";
 "Strict filters dropped everything" = "厳格なフィルターですべて除外されました";
 "Styled (ASS) subtitles" = "装飾付き（ASS）字幕";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "自分の画像をアップロードするか、Harbor のカタログから選んでください。";
@@ -1970,6 +2012,7 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "読み取りアクセストークンではなく、v3キーを使用してください。";
 "Usar mi estilo" = "自分のスタイルを使用";
+"Use addon order" = "アドオン順を使用";
 "Use my style" = "自分のスタイルを使用";
 "Use plugins" = "プラグインを使う";
 "Use shared settings" = "共有設定を使う";
@@ -1980,6 +2023,7 @@
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "キャッシュの確認とリンクの制限解除に使用します。Harborがアカウントに独自に何かを追加または削除することはありません。";
 "Username" = "ユーザー名";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "directdlエンドポイントを使用し、キャッシュ済みのものはキューをスキップします。";
+"Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "AIOStreamsなどのアグリゲーターアドオンを使っていますか？アドオン側の並べ替えと絞り込みは、Harborに結果が届く前にアドオン内で行われ、その後、上記のHarborのストリームフィルターと結果の並び順が適用されます。結果が予想より少ない場合は、どちらか一方の条件を緩めてください。アドオン内のフィルターを緩めるか、Harborのストリームフィルターを「バランス」または「オフ」に設定します。";
 "VOD sources" = "VOD sources";
 "Velocidad" = "再生速度";
 "Ver más" = "もっと見る";
@@ -3216,6 +3260,7 @@
 "{name} + {n} más" = "{name}ほか{n}件";
 "{n} / {max} items" = "{n} / {max}件";
 "{n} / {max} lists" = "{n} / {max}件のリスト";
+"{n} addons don't provide streams and aren't listed." = "{n}件のアドオンはストリームを提供していないため、一覧に表示されません。";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n}件のアニメ作品が除外されます（Traktに対応するIDがないため）。";
 "{n} ep" = "{n}話";
 "{n} eps" = "{n}話";
@@ -3227,6 +3272,7 @@
 "{n} semillas" = "シード数: {n}";
 "{n}d left" = "残り{n}日";
 "{requests} requests" = "{requests}件のリクエスト";
+"{seconds} seconds" = "{seconds}秒";
 "{shown} of {total}" = "{total}件中{shown}件";
 "{watched} de {total} vistos ({pct}%)." = "{total}中{watched}を視聴済み（{pct}%）。";
 "{watched} of {total} watched ({pct}%)." = "{total}中{watched}を視聴済み（{pct}%）。";

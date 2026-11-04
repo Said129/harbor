@@ -16,6 +16,7 @@
 "2020s Hits" = "Хиты 2020-х";
 "21:9" = "21:9";
 "2nd" = "2-е";
+"30 seconds (default)" = "30 секунд (по умолчанию)";
 "30s" = "30 с";
 "45 min" = "45 мин";
 "45s" = "45 с";
@@ -88,11 +89,13 @@
 "Addon" = "Дополнение";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "Порядок дополнений";
+"Addon wait time" = "Время ожидания дополнения";
 "Addons" = "Дополнения";
 "Adjust the text and background. The preview shows your changes as you make them." = "Настройте текст и фон. Изменения сразу видны в предпросмотре.";
 "Administrar" = "Управление";
 "Adult sources" = "Adult sources";
 "Adventure" = "Приключения";
+"Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Мягче для глаз";
 "Agregar a favoritos" = "Добавить в избранное";
 "Agregar clave" = "Добавить ключ";
@@ -270,6 +273,8 @@
 "Border" = "Обводка";
 "Borrar búsqueda" = "Очистить поиск";
 "Borrar todo" = "Очистить всё";
+"Both" = "Оба варианта";
+"Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "«Оба» показывает прямые, debrid и peer-to-peer результаты вместе. «Прямые/debrid» убирает P2P-результаты на второй план, пока есть что-то ещё. «P2P» ставит их первыми.";
 "Bottom bar" = "Нижняя панель";
 "Bottom left" = "Снизу слева";
 "Bottom right" = "Снизу справа";
@@ -360,6 +365,7 @@
 "Choose the frame rate the subtitle was authored for." = "Выберите частоту кадров, для которой были созданы субтитры.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Выберите до 5 фильмов или сериалов, которые вам нравятся. Harbor учтёт их в подборках и рекомендациях. Это необязательно.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Выберите, когда Harbor предлагает выбрать профиль. Запросы по таймеру появляются при возвращении в Harbor.";
+"Choose which addon results appear when you pick a stream." = "Выберите, какие результаты дополнений показывать при выборе потока.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Фантастика и фэнтези";
 "Claro" = "Светлая";
@@ -408,6 +414,8 @@
 "Completed" = "Завершено";
 "Con serifas" = "С засечками";
 "Concentración" = "Focus";
+"Condensed" = "Сжатый";
+"Condensed shows a top pick, quality tiles, and a drawer. Stremio is a flat list grouped by addon, no scoring." = "«Компактно» показывает лучший вариант, плитки качества и панель. «Stremio» – плоский список по дополнениям, без оценок.";
 "Conectando" = "Подключение";
 "Conexión Manga" = "Manga connection";
 "Conexión Suwayomi" = "Suwayomi connection";
@@ -518,6 +526,7 @@
 "Debrid-Link API key" = "API-ключ Debrid-Link";
 "Default" = "По умолчанию";
 "Default (gold accent)" = "По умолчанию (золотой акцент)";
+"Default. Harbor parses and scores every source and surfaces the best quality first." = "По умолчанию. Harbor разбирает и оценивает каждый источник и ставит лучшее качество первым.";
 "Defining the 2010s" = "Знаковые 2010-е";
 "Dejar de mostrarlo como segundo subtítulo" = "Не показывать как вторые субтитры";
 "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)" = "Убрать из главной карусели (снова автоматически)";
@@ -552,6 +561,7 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "Затемнение";
 "Dirección" = "Направление";
+"Direct/debrid" = "Прямые/debrid";
 "Direction" = "Направление";
 "Director" = "Режиссёр";
 "Disconnect" = "Отключить";
@@ -704,6 +714,7 @@
 "File is larger than 2 MB." = "Файл больше 2 МБ.";
 "Fill" = "Заполнить";
 "Film" = "Фильм";
+"Filters" = "Фильтры";
 "Finding lyrics" = "Поиск текста";
 "Finnish" = "Финский";
 "Fit" = "Вписать";
@@ -712,6 +723,7 @@
 "Focus GIF URL" = "URL GIF при фокусе";
 "Focus mode" = "Режим фокуса";
 "Focused Card" = "Выделенная карточка";
+"Following addon order" = "По порядку дополнений";
 "Fondo" = "Фон";
 "Font" = "Шрифт";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -758,6 +770,7 @@
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "Соберите любимые фильмы и сериалы. Полка для пересмотра, подборка на выходные – что угодно, лишь бы они были под рукой.";
 "Group the movies and shows you want to keep close." = "Соберите фильмы и сериалы, которые хотите держать под рукой.";
 "Grouped" = "Сгруппировано";
+"Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back." = "Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back.";
 "Guardado" = "Сохранено";
 "Guardando" = "Сохранение";
 "Guardar" = "Сохранить";
@@ -782,6 +795,8 @@
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor ищет субтитры в этом порядке. Поставьте предпочитаемый язык первым.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor подтягивает самые популярные названия каждого сервиса прямо сейчас. Отключите те, на которые нет подписки.";
+"Harbor ranking" = "Ранжирование Harbor";
+"Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Ранжирование Harbor ставит первыми источники с лучшей оценкой. Порядок дополнений сохраняет результаты каждого дополнения в том порядке, в каком оно их вернуло, как в приложениях Stremio и Vidi. Приоритет потоков ниже определяет, какое дополнение идёт первым, в обоих режимах.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Меню и подписи самого Harbor. Языки субтитров вы выберете позже, и оба параметра можно изменить в Настройках.";
 "Hard stroke around each letter. High contrast." = "Жёсткая обводка каждой буквы. Высокий контраст.";
 "Harvey Award Winners" = "Лауреаты премии Харви";
@@ -802,6 +817,7 @@
 "Hide end notice" = "Hide end notice";
 "Hide row" = "Скрыть ряд";
 "Hide sound effects and speaker names" = "Скрывать звуковые эффекты и имена говорящих";
+"Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Скрывает подозрительные файлы, неподходящие версии, вероятные записи из кинотеатра и трейлеры. Также проверяет размеры файлов и полные сезоны.";
 "Hide {name} from navigation" = "Скрыть {name} из навигации";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Скрывает в списках серий детали со спойлерами, пока вы не посмотрите серию.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
@@ -821,6 +837,7 @@
 "Horror" = "Ужасы";
 "Horror & Supernatural" = "Ужасы и мистика";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long Harbor waits for each addon to return results." = "Как долго Harbor ждёт результаты от каждого дополнения.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "Сколько фильмов?";
 "Hoy" = "Сегодня";
@@ -905,6 +922,7 @@
 "Keep original" = "Оставить оригинал";
 "Keep same source on next episode" = "Сохранять источник для следующей серии";
 "Keep screen awake" = "Keep screen awake";
+"Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Сохраняет проверки подозрительных файлов и версий, но допускает больше результатов, включая крупные файлы и полные сезоны.";
 "Keep watching" = "Продолжить просмотр";
 "Kids & Family" = "Детям и семье";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, учёт сезонов";
@@ -1043,13 +1061,16 @@
 "Mostrar páginas" = "Страницы сериалов";
 "Mostrar {name} en la navegación" = "Показывать «{name}» в навигации";
 "Motion" = "Анимация";
+"Move Refresh next to Back" = "Переместить «Обновить» рядом с «Назад»";
 "Move down" = "Вниз";
 "Move earlier" = "Повысить приоритет";
+"Move to top" = "В начало";
 "Move up" = "Вверх";
 "Move your watchlist" = "Перенести список к просмотру";
 "Move {language} earlier" = "Повысить приоритет языка: {language}";
 "Move {name} down" = "Переместить «{name}» вниз";
 "Move {name} up" = "Переместить «{name}» вверх";
+"Moved {name} to position {n} of {total}" = "{name} перемещено на позицию {n} из {total}";
 "Mover antes" = "Повысить приоритет";
 "Mover hacia abajo" = "Вниз";
 "Mover hacia arriba" = "Вверх";
@@ -1170,6 +1191,7 @@
 "Norwegian" = "Норвежский";
 "Not a stream plugin: it exports no getStreams or streams function." = "Не плагин потоков: не экспортирует функцию getStreams или streams.";
 "Not connected" = "Не подключено";
+"Not installed" = "Не установлено";
 "Not interested" = "Не интересует";
 "Not now" = "Не сейчас";
 "Not set" = "Не задано";
@@ -1289,6 +1311,9 @@
 "Pick what you actually use" = "Отметьте то, чем реально пользуетесь";
 "Pick your language" = "Выберите язык";
 "Pick your subtitle languages" = "Выберите языки субтитров";
+"Picker" = "Выбор потока";
+"Picker details" = "Детали выбора источника";
+"Picker layout" = "Вид списка источников";
 "Picture" = "Изображение";
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Настройка изображения";
@@ -1336,6 +1361,7 @@
 "Posters, ratings, lists" = "Постеры, рейтинги, списки";
 "Predeterminado" = "По умолчанию";
 "Predeterminado (acento dorado)" = "По умолчанию (золотой акцент)";
+"Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "Спрашивать: продолжить или начать сначала";
 "Premiered This Month" = "Премьеры этого месяца";
 "Premiumize API key" = "API-ключ Premiumize";
@@ -1350,6 +1376,7 @@
 "Primary copy." = "Основной текст.";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "Сначала выберите дорожку субтитров.";
+"Priority applies once you have two or more stream addons." = "Приоритет работает, когда установлено два или более дополнения с потоками.";
 "Priorizar {language}" = "Повысить приоритет языка: {language}";
 "Producer" = "Продюсер";
 "Profile PIN" = "PIN профиля";
@@ -1504,8 +1531,11 @@
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "Восстановлено";
+"Result order" = "Порядок результатов";
 "Resultados" = "Результаты";
 "Results" = "Результаты";
+"Results appear as they arrive. Increase the wait time if an addon often needs a refresh before its results appear." = "Результаты появляются по мере поступления. Увеличьте время ожидания, если результаты дополнения часто видны только после обновления.";
+"Results from addons higher in this list come first. If one finds nothing, the next fills in." = "Результаты дополнений, которые выше в этом списке, идут первыми. Если одно ничего не нашло, подключается следующее.";
 "Resume" = "Продолжить";
 "Resume after an audio interruption" = "Resume after an audio interruption";
 "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
@@ -1635,12 +1665,16 @@
 "Show More info button" = "Показывать кнопку \"Подробнее\"";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Показывать кнопку «Пропустить заставку» / «Пропустить титры», когда Harbor их находит. Отключите, чтобы никогда её не показывать. Нажмите X на кнопке, чтобы скрыть ошибочную до конца серии.";
 "Show adult addons" = "Показать дополнения для взрослых";
+"Show all results returned by addons, including releases that do not match or may be suspicious." = "Показывать все результаты дополнений, включая неподходящие или подозрительные релизы.";
 "Show as a Top 10 with big numerals" = "Показывать как Топ-10 с крупными цифрами";
 "Show as a normal row" = "Показывать как обычный ряд";
 "Show as second subtitle" = "Показать как вторые субтитры";
+"Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Показывать полные описания аддонов в списке источников Stremio, загрузках и режиме «Большой экран».";
 "Show controls" = "Показать элементы управления";
 "Show details" = "Показать подробности";
+"Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Показывать результаты каждого дополнения в исходном порядке, по вашему списку дополнений. Как в Stremio и Vidi.";
 "Show episode description" = "Показывать описание серии";
+"Show full descriptions" = "Показывать описания полностью";
 "Show less" = "Свернуть";
 "Show me less like this" = "Показывать меньше такого";
 "Show me more like this" = "Показывать больше такого";
@@ -1648,6 +1682,8 @@
 "Show more titles" = "Show more titles";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "Показывать в списке потоков один источник на репозиторий вместо одного на плагин. Удобно, когда репозиторий содержит много мелких провайдеров.";
 "Show pages" = "Страницы сериалов";
+"Show release filenames in the Condensed picker and Big Picture." = "Показывать имена файлов релизов в сжатом списке источников и в режиме «Большой экран».";
+"Show release name" = "Показывать имя релиза";
 "Show row" = "Показывать ряд";
 "Show the Skip button" = "Показывать кнопку «Пропустить»";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Показывать переведённые названия на выбранном выше языке. Выключите, чтобы сохранить оригинальные названия.";
@@ -1704,7 +1740,9 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Сортировка";
 "Sort by" = "Сортировать по";
+"Sorting" = "Сортировка";
 "Source" = "Источник";
+"Source mode" = "Режим источников";
 "Source name" = "Название источника";
 "Sources" = "Источники";
 "Sources & library" = "Источники и библиотека";
@@ -1744,12 +1782,16 @@
 "Stopped with: {error}" = "Остановлен с ошибкой: {error}";
 "Storage overview" = "Обзор хранилища";
 "Stream" = "Поток";
+"Stream priority" = "Приоритет потоков";
+"Stream safety filter" = "Фильтр безопасности потоков";
 "Streaming" = "Стриминг";
 "Streaming services" = "Стриминговые сервисы";
+"Streaming sources" = "Источники потоков";
 "Streams" = "Потоки";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Классический Stremio";
 "Stretch" = "Растянуть";
+"Strict" = "Строгий";
 "Strict filters dropped everything" = "Строгие фильтры отсеяли всё";
 "Styled (ASS) subtitles" = "Стилизованные субтитры (ASS)";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Загрузите своё изображение или выберите одно из каталога Harbor.";
@@ -1985,6 +2027,7 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "Используйте ключ v3, а не токен доступа для чтения.";
 "Usar mi estilo" = "Мой стиль";
+"Use addon order" = "Использовать порядок дополнений";
 "Use my style" = "Мой стиль";
 "Use plugins" = "Использовать плагины";
 "Use shared settings" = "Использовать общие настройки";
@@ -1995,6 +2038,7 @@
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Используется для проверки кеша и снятия ограничений со ссылок. Harbor никогда ничего не добавляет в ваш аккаунт и не удаляет из него самостоятельно.";
 "Username" = "Имя пользователя";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "Использует endpoint directdl, который не ставит в очередь уже кешированные материалы.";
+"Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "Используете AIOStreams или другое дополнение-агрегатор? Его сортировка и фильтры работают внутри дополнения ещё до того, как Harbor увидит результаты, а затем Harbor применяет сверху фильтр потоков и порядок результатов, заданные выше. Если результатов меньше, чем ожидалось, оставьте одну сторону мягкой: ослабьте внутренние фильтры дополнения или переключите фильтр потоков Harbor на «Сбалансированный» или «Выкл.».";
 "VOD sources" = "VOD sources";
 "Velocidad" = "Скорость";
 "Ver más" = "Показать ещё";
@@ -3231,6 +3275,7 @@
 "{name} + {n} más" = "{name} и ещё {n}";
 "{n} / {max} items" = "{n} / {max} элементов";
 "{n} / {max} lists" = "{n} / {max} списков";
+"{n} addons don't provide streams and aren't listed." = "{n} дополнений не предоставляют потоки и не показаны в списке.";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} аниме будет пропущено (в Trakt нет для них ID).";
 "{n} ep" = "{n} эп";
 "{n} eps" = "{n} эп";
@@ -3242,6 +3287,7 @@
 "{n} semillas" = "Сидов: {n}";
 "{n}d left" = "осталось {n} дн.";
 "{requests} requests" = "{requests} запросов";
+"{seconds} seconds" = "{seconds} сек.";
 "{shown} of {total}" = "{shown} из {total}";
 "{watched} de {total} vistos ({pct}%)." = "Просмотрено {watched} из {total} ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "Просмотрено {watched} из {total} ({pct}%).";

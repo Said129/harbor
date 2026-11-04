@@ -10,7 +10,42 @@ final class StreamPreferences {
     var addonOrder = UserDefaults.standard.object(forKey: "streams.addonOrder") as? Bool ?? true {
         didSet { persist(addonOrder, forKey: "streams.addonOrder") }
     }
-    func configuration() -> StreamFilterConfiguration { .init(level: filterLevel, addonOrder: addonOrder) }
+    /// Seconds Harbor waits for each addon (Desktop "Addon wait time", 8...120, default 30).
+    var addonTimeoutSeconds = StreamSourceSettings.clamped(UserDefaults.standard.object(forKey: "streams.addonTimeoutSec") as? Int ?? StreamSourceSettings.defaultTimeoutSeconds) {
+        didSet { persist(addonTimeoutSeconds, forKey: "streams.addonTimeoutSec") }
+    }
+    /// "Prefer these sources": both, direct/debrid or P2P.
+    var sourceMode = StreamMode(stored: UserDefaults.standard.string(forKey: "streams.mode")) {
+        didSet { persist(sourceMode.rawValue, forKey: "streams.mode") }
+    }
+    /// Addons listed first win ("Stream priority"). Empty follows the addon list.
+    var priority = StreamPreferences.storedPriority() {
+        didSet { persist(StreamPreferences.encode(priority), forKey: "streams.priority") }
+    }
+    /// "condensed" (top pick, quality tiles and a drawer) or "stremio" (a flat list grouped by addon).
+    /// Desktop opens on Stremio; the iPhone keeps the Condensed picker it already shipped with.
+    var pickerLayout = UserDefaults.standard.string(forKey: "streams.pickerLayout") ?? "condensed" {
+        didSet { persist(pickerLayout, forKey: "streams.pickerLayout") }
+    }
+    var pickerShowFilename = UserDefaults.standard.object(forKey: "streams.pickerShowFilename") as? Bool ?? false {
+        didSet { persist(pickerShowFilename, forKey: "streams.pickerShowFilename") }
+    }
+    var fullStreamDescription = UserDefaults.standard.object(forKey: "streams.fullDescription") as? Bool ?? true {
+        didSet { persist(fullStreamDescription, forKey: "streams.fullDescription") }
+    }
+    var pickerRefreshNextToBack = UserDefaults.standard.object(forKey: "streams.pickerRefreshNextToBack") as? Bool ?? false {
+        didSet { persist(pickerRefreshNextToBack, forKey: "streams.pickerRefreshNextToBack") }
+    }
+    var sourceSettings: StreamSourceSettings { .init(timeoutSeconds: addonTimeoutSeconds, mode: sourceMode, priority: priority) }
+    func configuration() -> StreamFilterConfiguration { .init(level: filterLevel, addonOrder: addonOrder, sources: sourceSettings) }
+    private static func storedPriority() -> [StreamPriorityEntry] {
+        guard let text = UserDefaults.standard.string(forKey: "streams.priority"),
+              let entries = try? JSONDecoder().decode([StreamPriorityEntry].self, from: Data(text.utf8)) else { return [] }
+        return Array(entries.prefix(64))
+    }
+    private static func encode(_ entries: [StreamPriorityEntry]) -> String {
+        (try? JSONEncoder().encode(Array(entries.prefix(64)))).flatMap { String(data: $0, encoding: .utf8) } ?? "[]"
+    }
     var automatic = UserDefaults.standard.object(forKey: "streams.automatic") as? Bool ?? true {
         didSet { persist(automatic, forKey: "streams.automatic") }
     }
@@ -56,12 +91,21 @@ final class StreamPreferences {
         excludeCamera = UserDefaults.standard.object(forKey: "streams.excludeCamera") as? Bool ?? true
         maximum = UserDefaults.standard.object(forKey: "streams.maximum") as? Int ?? 2160
         minimum = UserDefaults.standard.object(forKey: "streams.minimum") as? Int ?? 0
+        addonTimeoutSeconds = StreamSourceSettings.clamped(UserDefaults.standard.object(forKey: "streams.addonTimeoutSec") as? Int ?? StreamSourceSettings.defaultTimeoutSeconds)
+        sourceMode = StreamMode(stored: UserDefaults.standard.string(forKey: "streams.mode"))
+        priority = StreamPreferences.storedPriority()
+        pickerLayout = UserDefaults.standard.string(forKey: "streams.pickerLayout") ?? "condensed"
+        pickerShowFilename = UserDefaults.standard.object(forKey: "streams.pickerShowFilename") as? Bool ?? false
+        fullStreamDescription = UserDefaults.standard.object(forKey: "streams.fullDescription") as? Bool ?? true
+        pickerRefreshNextToBack = UserDefaults.standard.object(forKey: "streams.pickerRefreshNextToBack") as? Bool ?? false
     }
 }
 
 struct StreamFilterConfiguration: Sendable {
     let level: String
     let addonOrder: Bool
+    /// Wait time, source mode and addon order; defaults match a fresh Desktop profile.
+    var sources = StreamSourceSettings()
     func trust(_ media: Media, season: Int?, episode: Int?) -> JSONValue {
         let strict = level == "strict"
         return .object(["kind": .string(media.episodic ? "series" : "movie"), "expectedTitle": .string(media.name),

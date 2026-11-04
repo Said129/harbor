@@ -106,6 +106,55 @@ struct StreamSourceRow: View {
     }
 }
 
+/// One row of Desktop's Stremio picker (`stremio-row.tsx`): the addon's logo, its own
+/// headline and description, the format badges and a round Play button.
+struct StreamStremioRow: View {
+    let offer: StreamOffer
+    let addonLogo: String?
+    let full: Bool
+    let busy: Bool
+    let downloading: Bool
+    let play: () -> Void
+    let download: (() -> Void)?
+    var body: some View {
+        HStack(alignment: .center, spacing: 14) {
+            logo
+            VStack(alignment: .leading, spacing: 6) {
+                Text(StremioPickerPresentation.headline(offer)).font(HarborTheme.font(15, weight: .semibold))
+                    .fixedSize(horizontal: false, vertical: true).textSelection(.enabled).accessibilityIdentifier("stream-stremio-title")
+                let detail = StremioPickerPresentation.description(offer, full: full)
+                if !detail.isEmpty {
+                    Text(detail).font(HarborTheme.font(13)).foregroundStyle(ThemePreferences.shared.color("ink-muted"))
+                        .fixedSize(horizontal: false, vertical: true).textSelection(.enabled)
+                }
+                if !offer.pickerBadges.isEmpty { StreamFormatBadges(kinds: offer.pickerBadges, large: false) }
+            }.frame(maxWidth: .infinity, alignment: .leading)
+            if let download, offer.pickerExternalURL == nil {
+                Button(action: download) { Image("stream-download").resizable().scaledToFit().frame(width: 18, height: 18).frame(width: 44, height: 44) }
+                    .buttonStyle(.plain).disabled(busy || downloading).accessibilityLabel(DesktopInterfaceText.value("Download"))
+            }
+            Button(action: play) {
+                Image(offer.pickerExternalURL == nil ? "ui-play-filled" : "stream-external").resizable().scaledToFit().frame(width: 22, height: 22)
+                    .foregroundStyle(HarborTheme.background).frame(width: 52, height: 52).background(HarborTheme.accent, in: .circle)
+            }.buttonStyle(.plain).disabled(busy)
+                .accessibilityLabel(DesktopInterfaceText.value(offer.pickerExternalURL == nil ? "Play" : "Open in browser"))
+                .accessibilityIdentifier("stream-stremio-play")
+        }.padding(16).frame(maxWidth: .infinity, alignment: .leading)
+            .background(ThemePreferences.shared.color("elevated").opacity(0.4), in: .rect(cornerRadius: 16))
+            .overlay { RoundedRectangle(cornerRadius: 16).stroke(ThemePreferences.shared.color("edge-soft").opacity(0.5), lineWidth: 1) }
+    }
+    @ViewBuilder private var logo: some View {
+        if let addonLogo {
+            Artwork(url: addonLogo, fit: .fit, maxPixels: 128, showsPlaceholder: false).frame(width: 44, height: 44)
+                .clipShape(.rect(cornerRadius: 10)).accessibilityHidden(true)
+        } else {
+            Text(String(offer.source.prefix(1)).uppercased()).font(HarborTheme.font(15, weight: .bold))
+                .foregroundStyle(ThemePreferences.shared.color("ink-muted")).frame(width: 44, height: 44)
+                .background(ThemePreferences.shared.color("elevated"), in: .rect(cornerRadius: 10)).accessibilityHidden(true)
+        }
+    }
+}
+
 private struct StreamOfferText: View {
     let media: Media
     let episode: Episode?
@@ -116,7 +165,8 @@ private struct StreamOfferText: View {
         VStack(alignment: .leading, spacing: primary ? 10 : 6) {
             Text(offer.pickerTitle(media: media, episode: episode)).font(.system(size: primary ? 15.5 : 14, design: .monospaced))
                 .lineLimit(primary ? 3 : 2).textSelection(.enabled).accessibilityIdentifier(primary ? "stream-primary-title" : "stream-source-title")
-            if !offer.pickerFilename.isEmpty, offer.pickerFilename != offer.pickerTitle(media: media, episode: episode) {
+            // Desktop shows release filenames in the Condensed picker only when "Show release name" is on.
+            if StreamPreferences.shared.pickerShowFilename, !offer.pickerFilename.isEmpty, offer.pickerFilename != offer.pickerTitle(media: media, episode: episode) {
                 Text(offer.pickerFilename).font(.system(size: primary ? 12.5 : 11, design: .monospaced))
                     .foregroundStyle(ThemePreferences.shared.color("ink-subtle")).lineLimit(2).textSelection(.enabled)
             }

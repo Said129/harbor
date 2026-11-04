@@ -1200,3 +1200,10 @@ non-zero first timestamp, B-frame reordering and sparse keyframes, served
 through the existing Range fixture, with cues keyed to a timecode burned
 into the picture; the measured quantity is displayed timecode versus the
 cue shown, per seek. No production change is made before that measurement.
+
+Streaming sources panel, 4 November (uncompiled, no CI): Desktop's Filters,
+Sorting and Picker tabs are ported with their effect on the stream list
+(wait time, stream priority, source mode, Stremio layout, picker details);
+details and open items are in REMAINING_PORT_PLAN_2026-11-04.md item 2. New
+focused cases: StreamSourcePolicyTests (9 cases, one through the real Rust
+ranking). They join the batched run when macOS runners return.

@@ -14,6 +14,7 @@
 "2020s Hits" = "2020 के दशक के हिट";
 "21:9" = "21:9";
 "2nd" = "दूसरा";
+"30 seconds (default)" = "30 सेकंड (डिफ़ॉल्ट)";
 "30s" = "30 सेकंड";
 "45 min" = "45 मिनट";
 "45s" = "45 सेकंड";
@@ -86,11 +87,13 @@
 "Addon" = "ऐडऑन";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "ऐडऑन क्रम";
+"Addon wait time" = "ऐडऑन प्रतीक्षा समय";
 "Addons" = "ऐडऑन";
 "Adjust the text and background. The preview shows your changes as you make them." = "टेक्स्ट और पृष्ठभूमि समायोजित करें। बदलाव करते ही पूर्वावलोकन में दिखते हैं।";
 "Administrar" = "मैनेज करें";
 "Adult sources" = "Adult sources";
 "Adventure" = "रोमांच";
+"Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "आँखों के लिए आरामदायक";
 "Agregar a favoritos" = "पसंदीदा में जोड़ें";
 "Agregar clave" = "कुंजी जोड़ें";
@@ -266,6 +269,8 @@
 "Border" = "बॉर्डर";
 "Borrar búsqueda" = "खोज मिटाएँ";
 "Borrar todo" = "सभी साफ़ करें";
+"Both" = "दोनों";
+"Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "दोनों में सीधे, डीब्रिड और पीयर-टू-पीयर नतीजे एक साथ दिखते हैं। सीधा/डीब्रिड में P2P नतीजे तभी दिखते हैं जब और कुछ उपलब्ध न हो। P2P में वे सबसे पहले आते हैं।";
 "Bottom bar" = "निचला बार";
 "Bottom left" = "नीचे बाएँ";
 "Bottom right" = "नीचे दाएँ";
@@ -356,6 +361,7 @@
 "Choose the frame rate the subtitle was authored for." = "वह फ़्रेम रेट चुनें जिसके लिए सबटाइटल बनाया गया था।";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "अपनी पसंद की अधिकतम 5 फ़िल्में या शो चुनें। Harbor इनके आधार पर आपके फ़ीचर्ड पिक्स और सुझाव बेहतर बनाता है। यह पूरी तरह वैकल्पिक है।";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "चुनें कि Harbor कब प्रोफ़ाइल चुनने को कहे। समय के आधार पर आने वाले संकेत Harbor पर लौटने पर दिखते हैं।";
+"Choose which addon results appear when you pick a stream." = "स्ट्रीम चुनते समय दिखने वाले ऐड-ऑन परिणाम चुनें।";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "साइंस फ़िक्शन और फ़ैंटेसी";
 "Claro" = "हल्का";
@@ -404,6 +410,8 @@
 "Completed" = "पूरा हुआ";
 "Con serifas" = "सेरिफ़";
 "Concentración" = "Focus";
+"Condensed" = "संक्षिप्त";
+"Condensed shows a top pick, quality tiles, and a drawer. Stremio is a flat list grouped by addon, no scoring." = "कंडेन्स्ड दृश्य में एक टॉप पिक, क्वालिटी टाइलें और एक ड्रॉअर होता है। Stremio में ऐडऑन के अनुसार समूहित एक सीधी सूची होती है, जिसमें स्कोरिंग नहीं होती।";
 "Conectando" = "कनेक्ट हो रहा है";
 "Conexión Manga" = "Manga connection";
 "Conexión Suwayomi" = "Suwayomi connection";
@@ -514,6 +522,7 @@
 "Debrid-Link API key" = "Debrid-Link API कुंजी";
 "Default" = "डिफ़ॉल्ट";
 "Default (gold accent)" = "डिफ़ॉल्ट (सुनहरा एक्सेंट)";
+"Default. Harbor parses and scores every source and surfaces the best quality first." = "डिफ़ॉल्ट। Harbor हर स्रोत को पार्स करके स्कोर देता है और सबसे अच्छी क्वालिटी पहले दिखाता है।";
 "Defining the 2010s" = "2010 के दशक को परिभाषित करने वाली कृतियाँ";
 "Dejar de mostrarlo como segundo subtítulo" = "दूसरे सबटाइटल के रूप में दिखाना बंद करें";
 "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)" = "हीरो कैरोसेल पर असर डालना बंद करें (फिर से ऑटोमैटिक)";
@@ -548,6 +557,7 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "मंद";
 "Dirección" = "दिशा";
+"Direct/debrid" = "सीधा/debrid";
 "Direction" = "दिशा";
 "Director" = "निर्देशक";
 "Disconnect" = "डिस्कनेक्ट करें";
@@ -700,6 +710,7 @@
 "File is larger than 2 MB." = "फ़ाइल 2 MB से बड़ी है।";
 "Fill" = "भरें";
 "Film" = "फ़िल्म";
+"Filters" = "फ़िल्टर";
 "Finding lyrics" = "बोल खोजे जा रहे हैं";
 "Finnish" = "फ़िनिश";
 "Fit" = "फ़िट करें";
@@ -708,6 +719,7 @@
 "Focus GIF URL" = "फ़ोकस GIF URL";
 "Focus mode" = "फ़ोकस मोड";
 "Focused Card" = "फ़ोकस वाला कार्ड";
+"Following addon order" = "ऐडऑन क्रम के अनुसार";
 "Fondo" = "बैकग्राउंड";
 "Font" = "फ़ॉन्ट";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -753,6 +765,7 @@
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "अपनी पसंदीदा फ़िल्मों और शो को समूहित करें। रीवॉच शेल्फ़, वीकेंड की पसंद या ऐसी कोई भी चीज़ जिसे आप पास रखना चाहें।";
 "Group the movies and shows you want to keep close." = "उन फ़िल्मों और शो को समूहित करें जिन्हें आप पास रखना चाहते हैं।";
 "Grouped" = "समूहित";
+"Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back." = "Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back.";
 "Guardado" = "सेव किया गया";
 "Guardando" = "सेव हो रहा है";
 "Guardar" = "सेव करें";
@@ -777,6 +790,8 @@
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor इस क्रम में उपशीर्षक खोजता है। पसंदीदा भाषा सबसे पहले रखें।";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor हर सेवा पर इस समय मौजूद सबसे लोकप्रिय टाइटल लाता है। जिनकी आपने सदस्यता नहीं ली है, उन्हें बंद कर दें।";
+"Harbor ranking" = "Harbor रैंकिंग";
+"Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Harbor रैंकिंग सबसे अच्छे स्कोर वाले स्रोतों को पहले रखती है। ऐडऑन का क्रम हर ऐडऑन के नतीजों को उसी क्रम में रखता है जिसमें उसने उन्हें लौटाया था, ठीक Stremio और Vidi ऐप्स की तरह। नीचे दी गई स्ट्रीम प्राथमिकता तय करती है कि दोनों मोड में कौन-सा ऐडऑन पहले रहेगा।";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Harbor के अपने मेन्यू और लेबल। सबटाइटल की भाषाएँ बाद में सेट की जाती हैं और आप दोनों को सेटिंग्स में बदल सकते हैं।";
 "Hard stroke around each letter. High contrast." = "हर अक्षर के चारों ओर मोटी रेखा। अधिक कंट्रास्ट।";
 "Harvey Award Winners" = "हार्वे पुरस्कार विजेता";
@@ -797,6 +812,7 @@
 "Hide end notice" = "Hide end notice";
 "Hide row" = "पंक्ति छिपाएँ";
 "Hide sound effects and speaker names" = "ध्वनि प्रभाव और वक्ताओं के नाम छिपाएँ";
+"Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "संदिग्ध फ़ाइलें, मेल न खाने वाली रिलीज़, संभावित कैमरा रिकॉर्डिंग और ट्रेलर छिपाएँ। फ़ाइल आकार और सीज़न पैक की भी जाँच करें।";
 "Hide {name} from navigation" = "नेविगेशन में {name} छिपाएँ";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "एपिसोड सूचियों में स्पॉइलर वाले एपिसोड विवरण तब तक छिपाता है, जब तक आप उन्हें देख न लें।";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
@@ -816,6 +832,7 @@
 "Horror" = "हॉरर";
 "Horror & Supernatural" = "हॉरर और अलौकिक";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long Harbor waits for each addon to return results." = "हर ऐडऑन के नतीजों के लिए Harbor कितनी देर इंतज़ार करता है।";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "कितनी फ़िल्में?";
 "Hoy" = "आज";
@@ -900,6 +917,7 @@
 "Keep original" = "मूल रखें";
 "Keep same source on next episode" = "अगले एपिसोड में भी वही स्रोत रखें";
 "Keep screen awake" = "Keep screen awake";
+"Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "संदिग्ध फ़ाइल और रिलीज़ की जाँच जारी रखें, लेकिन बड़ी फ़ाइलों और सीज़न पैक समेत अधिक नतीजे आने दें।";
 "Keep watching" = "देखते रहें";
 "Kids & Family" = "बच्चे और परिवार";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, सीज़न के हिसाब से";
@@ -1038,13 +1056,16 @@
 "Mostrar páginas" = "पेज दिखाएँ";
 "Mostrar {name} en la navegación" = "नेविगेशन में {name} दिखाएँ";
 "Motion" = "मोशन";
+"Move Refresh next to Back" = "रीफ़्रेश को वापस बटन के पास ले जाएँ";
 "Move down" = "नीचे ले जाएँ";
 "Move earlier" = "प्राथमिकता बढ़ाएँ";
+"Move to top" = "सबसे ऊपर ले जाएँ";
 "Move up" = "ऊपर ले जाएँ";
 "Move your watchlist" = "अपनी वॉचलिस्ट ट्रांसफ़र करें";
 "Move {language} earlier" = "{language} की प्राथमिकता बढ़ाएँ";
 "Move {name} down" = "{name} नीचे ले जाएँ";
 "Move {name} up" = "{name} ऊपर ले जाएँ";
+"Moved {name} to position {n} of {total}" = "{name} को {total} में से {n}वें स्थान पर ले जाया गया";
 "Mover antes" = "प्राथमिकता बढ़ाएँ";
 "Mover hacia abajo" = "नीचे ले जाएँ";
 "Mover hacia arriba" = "ऊपर ले जाएँ";
@@ -1162,6 +1183,7 @@
 "Norwegian" = "नॉर्वेजियन";
 "Not a stream plugin: it exports no getStreams or streams function." = "स्ट्रीम प्लगइन नहीं है: यह कोई getStreams या streams फ़ंक्शन एक्सपोर्ट नहीं करता।";
 "Not connected" = "कनेक्ट नहीं है";
+"Not installed" = "इंस्टॉल नहीं है";
 "Not interested" = "दिलचस्पी नहीं है";
 "Not now" = "अभी नहीं";
 "Not set" = "सेट नहीं है";
@@ -1278,6 +1300,9 @@
 "Pick what you actually use" = "वही चुनें जिसका आप सच में इस्तेमाल करते हैं";
 "Pick your language" = "अपनी भाषा चुनें";
 "Pick your subtitle languages" = "अपनी सबटाइटल भाषाएँ चुनें";
+"Picker" = "पिकर";
+"Picker details" = "स्रोत चयन के विवरण";
+"Picker layout" = "पिकर लेआउट";
 "Picture" = "चित्र";
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "चित्र समायोजन";
@@ -1325,6 +1350,7 @@
 "Posters, ratings, lists" = "पोस्टर, रेटिंग, सूचियाँ";
 "Predeterminado" = "डिफ़ॉल्ट";
 "Predeterminado (acento dorado)" = "डिफ़ॉल्ट (सुनहरा एक्सेंट)";
+"Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "वहीं से चलाने या फिर से शुरू करने के लिए पूछें";
 "Premiered This Month" = "इस महीने प्रीमियर हुए";
 "Premiumize API key" = "Premiumize API कुंजी";
@@ -1339,6 +1365,7 @@
 "Primary copy." = "मुख्य टेक्स्ट।";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "पहले एक सबटाइटल ट्रैक चुनें।";
+"Priority applies once you have two or more stream addons." = "प्राथमिकता तब लागू होती है, जब आपके पास दो या अधिक स्ट्रीम ऐडऑन हों।";
 "Priorizar {language}" = "{language} की प्राथमिकता बढ़ाएँ";
 "Producer" = "निर्माता";
 "Profile PIN" = "प्रोफ़ाइल PIN";
@@ -1492,8 +1519,11 @@
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "बहाल किया गया";
+"Result order" = "नतीजों का क्रम";
 "Resultados" = "नतीजे";
 "Results" = "नतीजे";
+"Results appear as they arrive. Increase the wait time if an addon often needs a refresh before its results appear." = "नतीजे आते ही दिखते हैं। किसी ऐडऑन के नतीजे अक्सर रीफ़्रेश करने के बाद ही दिखें तो इंतज़ार का समय बढ़ाएँ।";
+"Results from addons higher in this list come first. If one finds nothing, the next fills in." = "इस सूची में ऊपर मौजूद ऐडऑन के नतीजे पहले आते हैं। अगर किसी ऐडऑन को कुछ नहीं मिलता, तो उसकी जगह अगला नतीजे देता है।";
 "Resume" = "जारी रखें";
 "Resume after an audio interruption" = "Resume after an audio interruption";
 "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
@@ -1623,12 +1653,16 @@
 "Show More info button" = "अधिक जानकारी वाला बटन दिखाएँ";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Harbor को इंट्रो या क्रेडिट मिलने पर इंट्रो छोड़ें / क्रेडिट छोड़ें बटन दिखाएँ। इसे कभी न दिखाने के लिए यह विकल्प बंद करें। अगर पहचान गलत हो, तो बाकी एपिसोड के लिए इसे हटाने हेतु बटन पर मौजूद X टैप करें।";
 "Show adult addons" = "वयस्क ऐडऑन दिखाएँ";
+"Show all results returned by addons, including releases that do not match or may be suspicious." = "ऐडऑन के सभी नतीजे दिखाएँ, जिनमें मेल न खाने वाली या संदिग्ध रिलीज़ भी शामिल हों।";
 "Show as a Top 10 with big numerals" = "बड़े अंकों के साथ Top 10 के रूप में दिखाएँ";
 "Show as a normal row" = "सामान्य पंक्ति के रूप में दिखाएँ";
 "Show as second subtitle" = "दूसरे सबटाइटल के रूप में दिखाएँ";
+"Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio स्रोत चयन, डाउनलोड और बिग पिक्चर में ऐडऑन के पूरे विवरण दिखाएँ।";
 "Show controls" = "कंट्रोल दिखाएँ";
 "Show details" = "विवरण दिखाएँ";
+"Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "हर ऐडऑन के नतीजे उसी क्रम में दिखाएँ जिसमें उसने उन्हें लौटाया था, और उन्हें आपकी ऐडऑन सूची के अनुसार समूहित करें। यह Stremio और Vidi ऐप्स जैसा है।";
 "Show episode description" = "एपिसोड का विवरण दिखाएँ";
+"Show full descriptions" = "पूरे विवरण दिखाएँ";
 "Show less" = "कम दिखाएँ";
 "Show me less like this" = "इस तरह का कंटेंट कम दिखाएँ";
 "Show me more like this" = "इस तरह का और कंटेंट दिखाएँ";
@@ -1636,6 +1670,8 @@
 "Show more titles" = "Show more titles";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "स्ट्रीम चयन में हर प्लगइन के बजाय हर रिपॉज़िटरी के लिए एक स्रोत दिखाएँ। तब उपयोगी जब किसी रिपॉज़िटरी में कई छोटे प्रोवाइडर हों।";
 "Show pages" = "पेज दिखाएँ";
+"Show release filenames in the Condensed picker and Big Picture." = "संक्षिप्त स्रोत चयन और बिग पिक्चर में रिलीज़ की फ़ाइलों के नाम दिखाएँ।";
+"Show release name" = "रिलीज़ का नाम दिखाएँ";
 "Show row" = "पंक्ति दिखाएँ";
 "Show the Skip button" = "स्किप बटन दिखाएँ";
 "Show translated names in the language selected above. Turn off to keep original titles." = "ऊपर चुनी भाषा में अनूदित नाम दिखाएँ। मूल शीर्षक रखने के लिए बंद करें।";
@@ -1690,7 +1726,9 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "क्रमबद्ध करें";
 "Sort by" = "इसके अनुसार क्रमबद्ध करें";
+"Sorting" = "क्रमबद्ध किया जा रहा है";
 "Source" = "स्रोत";
+"Source mode" = "स्रोत मोड";
 "Source name" = "स्रोत का नाम";
 "Sources" = "स्रोत";
 "Sources & library" = "स्रोत और लाइब्रेरी";
@@ -1730,12 +1768,16 @@
 "Stopped with: {error}" = "इस त्रुटि के साथ रुका: {error}";
 "Storage overview" = "स्टोरेज की जानकारी";
 "Stream" = "स्ट्रीम";
+"Stream priority" = "स्ट्रीम प्राथमिकता";
+"Stream safety filter" = "स्ट्रीम सुरक्षा फ़िल्टर";
 "Streaming" = "स्ट्रीमिंग";
 "Streaming services" = "स्ट्रीमिंग सेवाएँ";
+"Streaming sources" = "स्ट्रीमिंग स्रोत";
 "Streams" = "स्ट्रीम्स";
 "Stremio" = "Stremio";
 "Stremio clásico" = "क्लासिक Stremio";
 "Stretch" = "फैलाएँ";
+"Strict" = "सख्त";
 "Strict filters dropped everything" = "सख्त फ़िल्टरों के कारण सब कुछ हट गया";
 "Styled (ASS) subtitles" = "स्टाइल वाले (ASS) सबटाइटल";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "अपना चित्र अपलोड करें या Harbor कैटलॉग से चुनें।";
@@ -1970,6 +2012,7 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "रीड एक्सेस टोकन नहीं, v3 कुंजी इस्तेमाल करें।";
 "Usar mi estilo" = "मेरी शैली इस्तेमाल करें";
+"Use addon order" = "ऐडऑन का क्रम इस्तेमाल करें";
 "Use my style" = "मेरी शैली इस्तेमाल करें";
 "Use plugins" = "प्लगइन इस्तेमाल करें";
 "Use shared settings" = "साझा सेटिंग इस्तेमाल करें";
@@ -1980,6 +2023,7 @@
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "कैश जांचने और लिंक पर लगी पाबंदी हटाने के लिए इस्तेमाल होता है। Harbor कभी भी अपने-आप आपके खाते में कुछ जोड़ता या हटाता नहीं है।";
 "Username" = "यूज़रनेम";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "directdl एंडपॉइंट इस्तेमाल करता है, जो पहले से कैश की गई किसी भी चीज़ को कतार में लगने से बचाता है।";
+"Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "AIOStreams या कोई दूसरा एग्रीगेटर ऐडऑन इस्तेमाल कर रहे हैं? Harbor को नतीजे मिलने से पहले ही ऐडऑन के अंदर उनकी सॉर्टिंग और फ़िल्टरिंग हो जाती है। इसके बाद Harbor उन पर ऊपर दिया गया स्ट्रीम फ़िल्टर और नतीजों का क्रम लागू करता है। अगर नतीजे उम्मीद से कम दिखें, तो किसी एक तरफ़ फ़िल्टर में ढील रखें: या तो ऐडऑन के अंदरूनी फ़िल्टर हल्के करें या Harbor का स्ट्रीम फ़िल्टर बैलेंस्ड या बंद पर सेट करें।";
 "VOD sources" = "VOD sources";
 "Velocidad" = "गति";
 "Ver más" = "और देखें";
@@ -3216,6 +3260,7 @@
 "{name} + {n} más" = "{name} + {n} और";
 "{n} / {max} items" = "{n} / {max} आइटम";
 "{n} / {max} lists" = "{n} / {max} सूचियाँ";
+"{n} addons don't provide streams and aren't listed." = "{n} ऐडऑन स्ट्रीम उपलब्ध नहीं कराते, इसलिए वे सूची में नहीं दिखते।";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} ऐनिमे शीर्षक छोड़ दिए जाएँगे (Trakt में उनके लिए IDs नहीं हैं)।";
 "{n} ep" = "{n} एपिसोड";
 "{n} eps" = "{n} एपिसोड";
@@ -3227,6 +3272,7 @@
 "{n} semillas" = "{n} सीड";
 "{n}d left" = "{n} दिन बाकी";
 "{requests} requests" = "{requests} अनुरोध";
+"{seconds} seconds" = "{seconds} सेकंड";
 "{shown} of {total}" = "{total} में से {shown}";
 "{watched} de {total} vistos ({pct}%)." = "{total} में से {watched} देखे गए ({pct}%)।";
 "{watched} of {total} watched ({pct}%)." = "{total} में से {watched} देखे गए ({pct}%)।";

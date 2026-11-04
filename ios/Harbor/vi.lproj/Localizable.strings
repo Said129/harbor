@@ -14,6 +14,7 @@
 "2020s Hits" = "Phim nổi bật thập niên 2020";
 "21:9" = "21:9";
 "2nd" = "Thứ 2";
+"30 seconds (default)" = "30 giây (mặc định)";
 "30s" = "30 giây";
 "45 min" = "45 phút";
 "45s" = "45 giây";
@@ -86,11 +87,13 @@
 "Addon" = "Tiện ích bổ sung";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "Thứ tự tiện ích bổ sung";
+"Addon wait time" = "Thời gian chờ tiện ích bổ sung";
 "Addons" = "Tiện ích bổ sung";
 "Adjust the text and background. The preview shows your changes as you make them." = "Điều chỉnh chữ và nền. Bản xem trước hiển thị ngay các thay đổi của bạn.";
 "Administrar" = "Quản lý";
 "Adult sources" = "Adult sources";
 "Adventure" = "Phiêu lưu";
+"Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Dịu mắt";
 "Agregar a favoritos" = "Thêm vào mục yêu thích";
 "Agregar clave" = "Thêm khóa";
@@ -266,6 +269,8 @@
 "Border" = "Viền";
 "Borrar búsqueda" = "Xóa tìm kiếm";
 "Borrar todo" = "Xóa tất cả";
+"Both" = "Cả hai";
+"Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "Cả hai hiển thị cùng lúc kết quả trực tiếp, debrid và ngang hàng. Trực tiếp/debrid để kết quả P2P sang một bên trừ khi không còn lựa chọn nào khác. P2P đưa chúng lên đầu.";
 "Bottom bar" = "Thanh dưới";
 "Bottom left" = "Dưới cùng bên trái";
 "Bottom right" = "Dưới cùng bên phải";
@@ -356,6 +361,7 @@
 "Choose the frame rate the subtitle was authored for." = "Chọn tốc độ khung hình dùng khi tạo phụ đề.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Chọn tối đa 5 phim lẻ hoặc phim bộ bạn đã thích. Harbor sẽ dùng chúng để điều chỉnh các đề xuất nổi bật và nội dung gợi ý. Hoàn toàn không bắt buộc.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Chọn khi nào Harbor yêu cầu chọn hồ sơ. Lời nhắc theo thời gian xuất hiện khi bạn quay lại Harbor.";
+"Choose which addon results appear when you pick a stream." = "Chọn kết quả từ tiện ích nào xuất hiện khi chọn luồng.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Khoa học viễn tưởng & kỳ ảo";
 "Claro" = "Sáng";
@@ -404,6 +410,8 @@
 "Completed" = "Đã hoàn thành";
 "Con serifas" = "Có chân";
 "Concentración" = "Focus";
+"Condensed" = "Thu gọn";
+"Condensed shows a top pick, quality tiles, and a drawer. Stremio is a flat list grouped by addon, no scoring." = "Thu gọn hiển thị lựa chọn hàng đầu, các ô chất lượng và một ngăn kéo. Stremio hiển thị danh sách phẳng, nhóm theo tiện ích bổ sung và không chấm điểm.";
 "Conectando" = "Đang kết nối";
 "Conexión Manga" = "Manga connection";
 "Conexión Suwayomi" = "Suwayomi connection";
@@ -514,6 +522,7 @@
 "Debrid-Link API key" = "Khóa API Debrid-Link";
 "Default" = "Mặc định";
 "Default (gold accent)" = "Mặc định (điểm nhấn màu vàng kim)";
+"Default. Harbor parses and scores every source and surfaces the best quality first." = "Mặc định. Harbor phân tích và chấm điểm mọi nguồn, rồi đưa chất lượng tốt nhất lên đầu.";
 "Defining the 2010s" = "Dấu ấn thập niên 2010";
 "Dejar de mostrarlo como segundo subtítulo" = "Dừng hiển thị làm phụ đề thứ hai";
 "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)" = "Ngừng đưa nội dung vào băng chuyền nổi bật (trở lại tự động)";
@@ -548,6 +557,7 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "Tối";
 "Dirección" = "Hướng đọc";
+"Direct/debrid" = "Trực tiếp/debrid";
 "Direction" = "Hướng đọc";
 "Director" = "Đạo diễn";
 "Disconnect" = "Ngắt kết nối";
@@ -700,6 +710,7 @@
 "File is larger than 2 MB." = "Tệp lớn hơn 2 MB.";
 "Fill" = "Lấp đầy";
 "Film" = "Phim điện ảnh";
+"Filters" = "Bộ lọc";
 "Finding lyrics" = "Đang tìm lời bài hát";
 "Finnish" = "Tiếng Phần Lan";
 "Fit" = "Vừa khung";
@@ -708,6 +719,7 @@
 "Focus GIF URL" = "URL GIF khi lấy nét";
 "Focus mode" = "Chế độ tập trung";
 "Focused Card" = "Thẻ được chọn";
+"Following addon order" = "Theo thứ tự tiện ích bổ sung";
 "Fondo" = "Nền";
 "Font" = "Phông chữ";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -753,6 +765,7 @@
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "Nhóm các phim và phim bộ yêu thích. Danh sách xem lại, lựa chọn cuối tuần hoặc bất cứ nội dung nào bạn muốn giữ gần bên.";
 "Group the movies and shows you want to keep close." = "Gom các phim điện ảnh và phim bộ yêu thích vào một nơi.";
 "Grouped" = "Đã nhóm";
+"Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back." = "Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back.";
 "Guardado" = "Đã lưu";
 "Guardando" = "Đang lưu";
 "Guardar" = "Lưu";
@@ -777,6 +790,8 @@
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor tìm phụ đề theo thứ tự này. Đặt ngôn ngữ bạn muốn ở đầu.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor lấy các tựa phim phổ biến nhất hiện có trên từng dịch vụ. Tắt những dịch vụ bạn không đăng ký.";
+"Harbor ranking" = "Xếp hạng của Harbor";
+"Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Cách xếp hạng của Harbor đưa các nguồn có điểm cao nhất lên trước. Thứ tự tiện ích bổ sung giữ nguyên thứ tự kết quả do từng tiện ích trả về, giống như ứng dụng Stremio và Vidi. Mục ưu tiên luồng phát bên dưới quyết định tiện ích nào đứng đầu trong cả hai chế độ.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Các menu và nhãn riêng của Harbor. Ngôn ngữ phụ đề sẽ được chọn sau và bạn có thể thay đổi cả hai trong Cài đặt.";
 "Hard stroke around each letter. High contrast." = "Viền đậm quanh từng chữ. Độ tương phản cao.";
 "Harvey Award Winners" = "Tác phẩm đoạt giải Harvey";
@@ -797,6 +812,7 @@
 "Hide end notice" = "Hide end notice";
 "Hide row" = "Ẩn hàng";
 "Hide sound effects and speaker names" = "Ẩn hiệu ứng âm thanh và tên người nói";
+"Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Ẩn tệp đáng ngờ, bản phát hành không khớp, bản có thể quay bằng camera và đoạn giới thiệu. Đồng thời kiểm tra kích thước tệp và gói mùa.";
 "Hide {name} from navigation" = "Ẩn {name} khỏi thanh điều hướng";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Ẩn các chi tiết dễ tiết lộ nội dung trong danh sách tập cho đến khi bạn xem xong.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
@@ -816,6 +832,7 @@
 "Horror" = "Kinh dị";
 "Horror & Supernatural" = "Kinh dị và siêu nhiên";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long Harbor waits for each addon to return results." = "Thời gian Harbor chờ từng tiện ích trả kết quả.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "Bao nhiêu phim?";
 "Hoy" = "Hôm nay";
@@ -900,6 +917,7 @@
 "Keep original" = "Giữ nguyên bản";
 "Keep same source on next episode" = "Giữ nguyên nguồn cho tập tiếp theo";
 "Keep screen awake" = "Keep screen awake";
+"Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Vẫn kiểm tra tệp và bản phát hành đáng ngờ, nhưng cho phép thêm kết quả, gồm cả tệp lớn và gói trọn mùa.";
 "Keep watching" = "Xem tiếp";
 "Kids & Family" = "Trẻ em & Gia đình";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, nhận biết mùa";
@@ -1038,13 +1056,16 @@
 "Mostrar páginas" = "Trang phim";
 "Mostrar {name} en la navegación" = "Hiện {name} trong điều hướng";
 "Motion" = "Chuyển động";
+"Move Refresh next to Back" = "Chuyển Làm mới đến cạnh Quay lại";
 "Move down" = "Di chuyển xuống";
 "Move earlier" = "Tăng ưu tiên";
+"Move to top" = "Chuyển lên đầu";
 "Move up" = "Di chuyển lên";
 "Move your watchlist" = "Chuyển danh sách xem";
 "Move {language} earlier" = "Tăng ưu tiên cho {language}";
 "Move {name} down" = "Chuyển {name} xuống";
 "Move {name} up" = "Chuyển {name} lên";
+"Moved {name} to position {n} of {total}" = "Đã chuyển {name} đến vị trí {n} trên {total}";
 "Mover antes" = "Tăng ưu tiên";
 "Mover hacia abajo" = "Di chuyển xuống";
 "Mover hacia arriba" = "Di chuyển lên";
@@ -1162,6 +1183,7 @@
 "Norwegian" = "Tiếng Na Uy";
 "Not a stream plugin: it exports no getStreams or streams function." = "Không phải plugin luồng phát: không xuất hàm getStreams hay streams.";
 "Not connected" = "Chưa kết nối";
+"Not installed" = "Chưa cài đặt";
 "Not interested" = "Không quan tâm";
 "Not now" = "Để sau";
 "Not set" = "Chưa đặt";
@@ -1278,6 +1300,9 @@
 "Pick what you actually use" = "Chọn các dịch vụ bạn thực sự dùng";
 "Pick your language" = "Chọn ngôn ngữ";
 "Pick your subtitle languages" = "Chọn ngôn ngữ phụ đề";
+"Picker" = "Trình chọn";
+"Picker details" = "Chi tiết trình chọn";
+"Picker layout" = "Bố cục trình chọn";
 "Picture" = "Hình ảnh";
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Điều chỉnh hình ảnh";
@@ -1325,6 +1350,7 @@
 "Posters, ratings, lists" = "Áp phích, điểm đánh giá, danh sách";
 "Predeterminado" = "Mặc định";
 "Predeterminado (acento dorado)" = "Mặc định (điểm nhấn màu vàng kim)";
+"Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "Hỏi tiếp tục xem hay xem lại từ đầu";
 "Premiered This Month" = "Ra mắt trong tháng này";
 "Premiumize API key" = "Khóa API Premiumize";
@@ -1339,6 +1365,7 @@
 "Primary copy." = "Bản chính.";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "Trước tiên, hãy chọn một rãnh phụ đề.";
+"Priority applies once you have two or more stream addons." = "Tính năng ưu tiên áp dụng khi có ít nhất hai tiện ích bổ sung cung cấp luồng phát.";
 "Priorizar {language}" = "Tăng ưu tiên cho {language}";
 "Producer" = "Nhà sản xuất";
 "Profile PIN" = "Mã PIN hồ sơ";
@@ -1492,8 +1519,11 @@
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "Đã khôi phục";
+"Result order" = "Thứ tự kết quả";
 "Resultados" = "Kết quả";
 "Results" = "Kết quả";
+"Results appear as they arrive. Increase the wait time if an addon often needs a refresh before its results appear." = "Kết quả xuất hiện ngay khi có. Tăng thời gian chờ nếu tiện ích thường cần làm mới mới hiện kết quả.";
+"Results from addons higher in this list come first. If one finds nothing, the next fills in." = "Kết quả từ các tiện ích bổ sung ở vị trí cao hơn trong danh sách này sẽ xuất hiện trước. Nếu một tiện ích không tìm thấy gì, tiện ích tiếp theo sẽ bổ sung.";
 "Resume" = "Tiếp tục";
 "Resume after an audio interruption" = "Resume after an audio interruption";
 "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
@@ -1623,12 +1653,16 @@
 "Show More info button" = "Hiện nút Thông tin thêm";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Hiển thị nút Bỏ qua phần mở đầu / Bỏ qua phần giới thiệu cuối phim khi Harbor phát hiện. Tắt tùy chọn này để không bao giờ hiển thị. Bạn cũng có thể nhấn X trên nút để ẩn mục bị nhận diện sai trong phần còn lại của tập.";
 "Show adult addons" = "Hiện tiện ích bổ sung dành cho người lớn";
+"Show all results returned by addons, including releases that do not match or may be suspicious." = "Hiện mọi kết quả từ tiện ích, kể cả bản phát hành không khớp hoặc có thể đáng ngờ.";
 "Show as a Top 10 with big numerals" = "Hiển thị dạng Top 10 với số lớn";
 "Show as a normal row" = "Hiển thị dưới dạng hàng thông thường";
 "Show as second subtitle" = "Hiển thị làm phụ đề thứ hai";
+"Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Hiển thị mô tả đầy đủ của tiện ích trong trình chọn Stremio, mục tải xuống và Big Picture.";
 "Show controls" = "Hiện điều khiển";
 "Show details" = "Hiện chi tiết";
+"Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Hiển thị kết quả của từng tiện ích bổ sung theo đúng thứ tự trả về, nhóm theo danh sách tiện ích bổ sung của bạn. Giống các ứng dụng Stremio và Vidi.";
 "Show episode description" = "Hiển thị mô tả tập";
+"Show full descriptions" = "Hiển thị mô tả đầy đủ";
 "Show less" = "Hiện ít hơn";
 "Show me less like this" = "Hiển thị ít nội dung tương tự hơn";
 "Show me more like this" = "Hiển thị thêm nội dung tương tự";
@@ -1636,6 +1670,8 @@
 "Show more titles" = "Show more titles";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "Hiển thị một nguồn cho mỗi kho lưu trữ trong trình chọn luồng thay vì một nguồn cho mỗi plugin. Hữu ích khi một kho có nhiều nhà cung cấp nhỏ.";
 "Show pages" = "Trang phim";
+"Show release filenames in the Condensed picker and Big Picture." = "Hiển thị tên tệp của bản phát hành trong trình chọn Thu gọn và Big Picture.";
+"Show release name" = "Hiển thị tên bản phát hành";
 "Show row" = "Hiển thị hàng";
 "Show the Skip button" = "Hiển thị nút Bỏ qua";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Hiện tên đã dịch bằng ngôn ngữ chọn ở trên. Tắt để giữ tên gốc.";
@@ -1690,7 +1726,9 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Sắp xếp";
 "Sort by" = "Sắp xếp theo";
+"Sorting" = "Sắp xếp";
 "Source" = "Nguồn";
+"Source mode" = "Chế độ nguồn";
 "Source name" = "Tên nguồn";
 "Sources" = "Nguồn";
 "Sources & library" = "Nguồn & thư viện";
@@ -1730,12 +1768,16 @@
 "Stopped with: {error}" = "Dừng với lỗi: {error}";
 "Storage overview" = "Tổng quan bộ nhớ";
 "Stream" = "Luồng";
+"Stream priority" = "Ưu tiên luồng phát";
+"Stream safety filter" = "Bộ lọc an toàn luồng phát";
 "Streaming" = "Phát trực tuyến";
 "Streaming services" = "Dịch vụ phát trực tuyến";
+"Streaming sources" = "Nguồn phát trực tuyến";
 "Streams" = "Luồng phát";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Stremio cổ điển";
 "Stretch" = "Kéo giãn";
+"Strict" = "Nghiêm ngặt";
 "Strict filters dropped everything" = "Bộ lọc nghiêm ngặt đã loại bỏ tất cả";
 "Styled (ASS) subtitles" = "Phụ đề có định dạng (ASS)";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Tải lên ảnh của bạn hoặc chọn một ảnh từ danh mục Harbor.";
@@ -1970,6 +2012,7 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "Dùng khóa v3, không dùng mã truy cập đọc.";
 "Usar mi estilo" = "Dùng kiểu của tôi";
+"Use addon order" = "Dùng thứ tự tiện ích bổ sung";
 "Use my style" = "Dùng kiểu của tôi";
 "Use plugins" = "Dùng plugin";
 "Use shared settings" = "Dùng cài đặt chung";
@@ -1980,6 +2023,7 @@
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Dùng để kiểm tra bộ nhớ đệm và bỏ hạn chế liên kết. Harbor không bao giờ tự thêm hoặc xóa bất cứ thứ gì trong tài khoản của bạn.";
 "Username" = "Tên người dùng";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "Dùng endpoint directdl, bỏ qua việc xếp hàng đối với mọi nội dung đã có trong bộ nhớ đệm.";
+"Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "Bạn đang dùng AIOStreams hoặc tiện ích bổ sung tổng hợp khác? Việc sắp xếp và lọc riêng sẽ diễn ra trong tiện ích bổ sung trước khi Harbor nhận kết quả, sau đó Harbor tiếp tục áp dụng bộ lọc luồng phát và thứ tự kết quả ở trên. Nếu kết quả ít hơn dự kiến, hãy để một bên thoáng hơn: nới lỏng bộ lọc nội bộ của tiện ích bổ sung hoặc đặt bộ lọc luồng phát của Harbor thành Cân bằng hoặc Tắt.";
 "VOD sources" = "VOD sources";
 "Velocidad" = "Tốc độ";
 "Ver más" = "Xem thêm";
@@ -3216,6 +3260,7 @@
 "{name} + {n} más" = "{name} + thêm {n}";
 "{n} / {max} items" = "{n} / {max} mục";
 "{n} / {max} lists" = "{n} / {max} danh sách";
+"{n} addons don't provide streams and aren't listed." = "{n} tiện ích bổ sung không cung cấp luồng phát nên không có trong danh sách.";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} tựa anime sẽ bị bỏ qua (Trakt không có ID cho các tựa này).";
 "{n} ep" = "{n} tập";
 "{n} eps" = "{n} tập";
@@ -3227,6 +3272,7 @@
 "{n} semillas" = "{n} seed";
 "{n}d left" = "còn {n} ngày";
 "{requests} requests" = "{requests} yêu cầu";
+"{seconds} seconds" = "{seconds} giây";
 "{shown} of {total}" = "{shown} trên {total}";
 "{watched} de {total} vistos ({pct}%)." = "đã xem {watched}/{total} ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "đã xem {watched}/{total} ({pct}%).";

@@ -14,6 +14,7 @@
 "2020s Hits" = "2020 年代热门佳作";
 "21:9" = "21:9";
 "2nd" = "第二";
+"30 seconds (default)" = "30 秒（默认）";
 "30s" = "30 秒";
 "45 min" = "45 分钟";
 "45s" = "45 秒";
@@ -86,11 +87,13 @@
 "Addon" = "插件";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "插件顺序";
+"Addon wait time" = "插件等待时间";
 "Addons" = "插件";
 "Adjust the text and background. The preview shows your changes as you make them." = "调整文字和背景。预览会实时显示更改。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
 "Adventure" = "冒险";
+"Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "护眼";
 "Agregar a favoritos" = "添加到收藏";
 "Agregar clave" = "添加密钥";
@@ -266,6 +269,8 @@
 "Border" = "边框";
 "Borrar búsqueda" = "清除搜索";
 "Borrar todo" = "全部清除";
+"Both" = "两者";
+"Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "“两者”会同时显示直链、debrid 和 P2P 结果。“直链/debrid”仅在没有其他来源时才显示 P2P 结果。“P2P”则将其排在最前。";
 "Bottom bar" = "底部栏";
 "Bottom left" = "左下角";
 "Bottom right" = "右下角";
@@ -356,6 +361,7 @@
 "Choose the frame rate the subtitle was authored for." = "选择制作此字幕时使用的帧率。";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "最多选择 5 部你已经喜欢的电影或剧集。Harbor 会用它们来优化精选内容和推荐。完全可选。";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "选择 Harbor 何时要求选择个人资料。定时提示会在你返回 Harbor 时出现。";
+"Choose which addon results appear when you pick a stream." = "选择挑选播放源时显示哪些扩展结果。";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "科幻与奇幻";
 "Claro" = "浅色";
@@ -404,6 +410,8 @@
 "Completed" = "已完成";
 "Con serifas" = "衬线体";
 "Concentración" = "Focus";
+"Condensed" = "精简";
+"Condensed shows a top pick, quality tiles, and a drawer. Stremio is a flat list grouped by addon, no scoring." = "“精简”模式会显示首选结果、画质卡片和抽屉列表。“Stremio”模式则按插件分组显示扁平列表，不进行评分。";
 "Conectando" = "正在连接";
 "Conexión Manga" = "Manga connection";
 "Conexión Suwayomi" = "Suwayomi connection";
@@ -514,6 +522,7 @@
 "Debrid-Link API key" = "Debrid-Link API 密钥";
 "Default" = "默认";
 "Default (gold accent)" = "默认（金色强调色）";
+"Default. Harbor parses and scores every source and surfaces the best quality first." = "默认。Harbor 会解析所有来源并评分，优先显示画质最佳的结果。";
 "Defining the 2010s" = "2010 年代代表作";
 "Dejar de mostrarlo como segundo subtítulo" = "不再显示为第二字幕";
 "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)" = "停止将此目录用于焦点轮播（恢复自动选择）";
@@ -548,6 +557,7 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "调暗";
 "Dirección" = "阅读方向";
+"Direct/debrid" = "直连/debrid";
 "Direction" = "阅读方向";
 "Director" = "导演";
 "Disconnect" = "断开连接";
@@ -700,6 +710,7 @@
 "File is larger than 2 MB." = "文件大于 2 MB。";
 "Fill" = "填充";
 "Film" = "电影";
+"Filters" = "筛选";
 "Finding lyrics" = "正在查找歌词";
 "Finnish" = "芬兰语";
 "Fit" = "适应";
@@ -708,6 +719,7 @@
 "Focus GIF URL" = "焦点 GIF URL";
 "Focus mode" = "专注模式";
 "Focused Card" = "聚焦卡片";
+"Following addon order" = "遵循插件顺序";
 "Fondo" = "背景";
 "Font" = "字体";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -753,6 +765,7 @@
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "把你喜爱的电影和剧集整理到一起。重温片单、周末精选，随你怎么收藏。";
 "Group the movies and shows you want to keep close." = "将想随时重温的电影和剧集归到一起。";
 "Grouped" = "已分组";
+"Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back." = "Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back.";
 "Guardado" = "已保存";
 "Guardando" = "正在保存";
 "Guardar" = "保存";
@@ -777,6 +790,8 @@
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor 按此顺序查找字幕。请将首选语言放在最前面。";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor 会获取各服务当前最热门的内容。请关闭未订阅的服务。";
+"Harbor ranking" = "Harbor 排序";
+"Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Harbor 排序会将评分最高的播放源排在前面。插件顺序会保留每个插件返回结果的原始顺序，与 Stremio 和 Vidi 应用一致。在两种模式下，下方的播放源优先级都会决定哪个插件排在最前。";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "用于 Harbor 自身的菜单和标签。字幕语言可稍后设置，这两项都能在设置中更改。";
 "Hard stroke around each letter. High contrast." = "为每个字符添加硬边描边，对比度高。";
 "Harvey Award Winners" = "哈维奖获奖作品";
@@ -797,6 +812,7 @@
 "Hide end notice" = "Hide end notice";
 "Hide row" = "隐藏此行";
 "Hide sound effects and speaker names" = "隐藏音效和说话人姓名";
+"Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "隐藏可疑文件、不匹配的版本、可能的偷拍版和预告片，同时检查文件大小与整季合集。";
 "Hide {name} from navigation" = "在导航中隐藏{name}";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "在你看完之前，隐藏分集列表中容易剧透的剧集详情。";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
@@ -816,6 +832,7 @@
 "Horror" = "恐怖";
 "Horror & Supernatural" = "恐怖与超自然";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long Harbor waits for each addon to return results." = "Harbor 等待各插件返回结果的时间。";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "多少部电影？";
 "Hoy" = "今天";
@@ -900,6 +917,7 @@
 "Keep original" = "保留原样";
 "Keep same source on next episode" = "下一集沿用相同来源";
 "Keep screen awake" = "Keep screen awake";
+"Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "保留可疑文件和版本检查，但允许更多结果，包括较大文件和整季合集。";
 "Keep watching" = "继续观看";
 "Kids & Family" = "儿童与家庭";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu、MAL、支持按季匹配";
@@ -1038,13 +1056,16 @@
 "Mostrar páginas" = "作品页面";
 "Mostrar {name} en la navegación" = "在导航中显示{name}";
 "Motion" = "动态效果";
+"Move Refresh next to Back" = "将“刷新”移到“返回”旁边";
 "Move down" = "下移";
 "Move earlier" = "提高优先级";
+"Move to top" = "移到顶部";
 "Move up" = "上移";
 "Move your watchlist" = "迁移你的片单";
 "Move {language} earlier" = "提高{language}的优先级";
 "Move {name} down" = "下移{name}";
 "Move {name} up" = "上移{name}";
+"Moved {name} to position {n} of {total}" = "已将 {name} 移至第 {n} 位，共 {total} 位";
 "Mover antes" = "提高优先级";
 "Mover hacia abajo" = "下移";
 "Mover hacia arriba" = "上移";
@@ -1162,6 +1183,7 @@
 "Norwegian" = "挪威语";
 "Not a stream plugin: it exports no getStreams or streams function." = "不是播放源脚本插件：它没有导出 getStreams 或 streams 函数。";
 "Not connected" = "未连接";
+"Not installed" = "未安装";
 "Not interested" = "不感兴趣";
 "Not now" = "暂不";
 "Not set" = "未设置";
@@ -1278,6 +1300,9 @@
 "Pick what you actually use" = "选择你实际使用的服务";
 "Pick your language" = "选择你的语言";
 "Pick your subtitle languages" = "选择字幕语言";
+"Picker" = "选择器";
+"Picker details" = "选择器详情";
+"Picker layout" = "选择器布局";
 "Picture" = "画面";
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "画面调整";
@@ -1325,6 +1350,7 @@
 "Posters, ratings, lists" = "海报、评分、列表";
 "Predeterminado" = "默认";
 "Predeterminado (acento dorado)" = "默认（金色强调色）";
+"Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "询问继续播放还是从头开始";
 "Premiered This Month" = "本月首播";
 "Premiumize API key" = "Premiumize API 密钥";
@@ -1339,6 +1365,7 @@
 "Primary copy." = "主要文字。";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "请先选择字幕轨道。";
+"Priority applies once you have two or more stream addons." = "安装两个或更多播放源插件后，优先级才会生效。";
 "Priorizar {language}" = "提高{language}的优先级";
 "Producer" = "制片人";
 "Profile PIN" = "个人资料 PIN";
@@ -1492,8 +1519,11 @@
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "已恢复";
+"Result order" = "结果排序";
 "Resultados" = "赛果";
 "Results" = "赛果";
+"Results appear as they arrive. Increase the wait time if an addon often needs a refresh before its results appear." = "结果到达后即显示。如果某个插件经常需要刷新才能显示结果，请增加等待时间。";
+"Results from addons higher in this list come first. If one finds nothing, the next fills in." = "此列表中位置较高的插件结果会优先显示。如果某个插件没有结果，则由下一个插件补上。";
 "Resume" = "继续播放";
 "Resume after an audio interruption" = "Resume after an audio interruption";
 "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
@@ -1623,12 +1653,16 @@
 "Show More info button" = "显示“更多信息”按钮";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Harbor 检测到片头或片尾时，显示“跳过片头”或“跳过片尾”按钮。关闭后将不再显示。也可点按按钮上的 X，在本集剩余时间内忽略错误识别。";
 "Show adult addons" = "显示成人插件";
+"Show all results returned by addons, including releases that do not match or may be suspicious." = "显示插件返回的所有结果，包括不匹配或可能可疑的版本。";
 "Show as a Top 10 with big numerals" = "显示为带大号排名数字的前 10 名榜单";
 "Show as a normal row" = "显示为普通内容栏";
 "Show as second subtitle" = "设为第二字幕显示";
+"Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "在 Stremio 选择器、下载页面和大屏模式中显示插件的完整描述。";
 "Show controls" = "显示控件";
 "Show details" = "显示详情";
+"Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "按各插件返回的原始顺序显示结果，并依照你的插件列表分组。与 Stremio 和 Vidi 应用一致。";
 "Show episode description" = "显示单集简介";
+"Show full descriptions" = "显示完整简介";
 "Show less" = "收起";
 "Show me less like this" = "少推荐此类内容";
 "Show me more like this" = "多推荐此类内容";
@@ -1636,6 +1670,8 @@
 "Show more titles" = "Show more titles";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "在播放源选择器中按仓库显示一个来源，而不是每个脚本插件一个。当仓库包含许多小型提供源时很有用。";
 "Show pages" = "作品页面";
+"Show release filenames in the Condensed picker and Big Picture." = "在精简选择器和大屏模式中显示资源文件名。";
+"Show release name" = "显示发布名称";
 "Show row" = "显示内容栏";
 "Show the Skip button" = "显示“跳过”按钮";
 "Show translated names in the language selected above. Turn off to keep original titles." = "以上方所选语言显示译名。关闭则保留原始标题。";
@@ -1690,7 +1726,9 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "排序";
 "Sort by" = "排序方式";
+"Sorting" = "排序";
 "Source" = "来源";
+"Source mode" = "来源模式";
 "Source name" = "来源名称";
 "Sources" = "来源";
 "Sources & library" = "来源与媒体库";
@@ -1730,12 +1768,16 @@
 "Stopped with: {error}" = "因以下错误停止：{error}";
 "Storage overview" = "存储空间概览";
 "Stream" = "播放源";
+"Stream priority" = "播放源优先级";
+"Stream safety filter" = "播放源安全筛选";
 "Streaming" = "流媒体";
 "Streaming services" = "流媒体服务";
+"Streaming sources" = "流媒体来源";
 "Streams" = "播放源";
 "Stremio" = "Stremio";
 "Stremio clásico" = "经典 Stremio";
 "Stretch" = "拉伸";
+"Strict" = "严格";
 "Strict filters dropped everything" = "严格筛选已排除所有结果";
 "Styled (ASS) subtitles" = "样式化（ASS）字幕";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "上传自己的图片，或从 Harbor 图库中选择。";
@@ -1970,6 +2012,7 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "请使用 v3 密钥，而不是读取访问令牌。";
 "Usar mi estilo" = "使用我的样式";
+"Use addon order" = "使用插件顺序";
 "Use my style" = "使用我的样式";
 "Use plugins" = "使用脚本插件";
 "Use shared settings" = "使用共享设置";
@@ -1980,6 +2023,7 @@
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "用于检查缓存和解除链接限制。Harbor 绝不会自行在你的账户中添加或移除任何内容。";
 "Username" = "用户名";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "使用 directdl 端点，已缓存的内容均可跳过排队。";
+"Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "正在使用 AIOStreams 或其他聚合插件？在 Harbor 获取结果前，插件会先在内部进行排序和筛选，之后 Harbor 再应用上方的片源筛选和结果排序。如果结果少于预期，请放宽其中一方的限制：放宽插件的内部筛选，或将 Harbor 的片源筛选设为“均衡”或“关闭”。";
 "VOD sources" = "VOD sources";
 "Velocidad" = "速度";
 "Ver más" = "查看更多";
@@ -3216,6 +3260,7 @@
 "{name} + {n} más" = "{name} + 另 {n} 个";
 "{n} / {max} items" = "{n} / {max} 项";
 "{n} / {max} lists" = "{n} / {max} 个列表";
+"{n} addons don't provide streams and aren't listed." = "{n} 个插件不提供播放源，因此未列出。";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "将排除 {n} 部动漫作品（Trakt 中没有对应 ID）。";
 "{n} ep" = "{n} 集";
 "{n} eps" = "{n} 集";
@@ -3227,6 +3272,7 @@
 "{n} semillas" = "{n} 个做种者";
 "{n}d left" = "剩余 {n} 天";
 "{requests} requests" = "{requests} 次请求";
+"{seconds} seconds" = "{seconds} 秒";
 "{shown} of {total}" = "已显示 {shown} 个，共 {total} 个";
 "{watched} de {total} vistos ({pct}%)." = "已观看 {watched}/{total}（{pct}%）。";
 "{watched} of {total} watched ({pct}%)." = "已观看 {watched}/{total}（{pct}%）。";

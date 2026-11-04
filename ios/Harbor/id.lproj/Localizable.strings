@@ -14,6 +14,7 @@
 "2020s Hits" = "Hit 2020-an";
 "21:9" = "21:9";
 "2nd" = "Ke-2";
+"30 seconds (default)" = "30 detik (bawaan)";
 "30s" = "30 dtk";
 "45 min" = "45 mnt";
 "45s" = "45 dtk";
@@ -86,11 +87,13 @@
 "Addon" = "Addon";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "Urutan addon";
+"Addon wait time" = "Waktu tunggu addon";
 "Addons" = "Addon";
 "Adjust the text and background. The preview shows your changes as you make them." = "Sesuaikan teks dan latar belakang. Pratinjau langsung menunjukkan perubahan Anda.";
 "Administrar" = "Kelola";
 "Adult sources" = "Adult sources";
 "Adventure" = "Petualangan";
+"Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Nyaman di mata";
 "Agregar a favoritos" = "Tambahkan ke favorit";
 "Agregar clave" = "Tambah kunci";
@@ -266,6 +269,8 @@
 "Border" = "Bingkai";
 "Borrar búsqueda" = "Hapus pencarian";
 "Borrar todo" = "Hapus semua";
+"Both" = "Keduanya";
+"Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "Keduanya menampilkan hasil langsung, debrid, dan peer-to-peer bersama-sama. Langsung/debrid menyisihkan hasil P2P kecuali tidak ada pilihan lain. P2P menempatkannya di urutan pertama.";
 "Bottom bar" = "Bilah bawah";
 "Bottom left" = "Kiri bawah";
 "Bottom right" = "Kanan bawah";
@@ -356,6 +361,7 @@
 "Choose the frame rate the subtitle was authored for." = "Pilih frame rate yang digunakan saat subtitle dibuat.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Pilih hingga 5 film atau acara yang sudah Anda sukai. Harbor menggunakannya untuk menyesuaikan pilihan unggulan dan rekomendasi Anda. Sepenuhnya opsional.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Pilih kapan Harbor meminta Anda memilih profil. Pengingat berkala muncul saat Anda kembali ke Harbor.";
+"Choose which addon results appear when you pick a stream." = "Pilih hasil addon yang muncul saat memilih stream.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Fiksi Ilmiah & Fantasi";
 "Claro" = "Terang";
@@ -404,6 +410,8 @@
 "Completed" = "Selesai";
 "Con serifas" = "Serif";
 "Concentración" = "Focus";
+"Condensed" = "Padat";
+"Condensed shows a top pick, quality tiles, and a drawer. Stremio is a flat list grouped by addon, no scoring." = "Tampilan Padat menampilkan pilihan teratas, ubin kualitas, dan panel. Stremio berupa daftar datar yang dikelompokkan berdasarkan addon, tanpa penilaian.";
 "Conectando" = "Menghubungkan";
 "Conexión Manga" = "Manga connection";
 "Conexión Suwayomi" = "Suwayomi connection";
@@ -514,6 +522,7 @@
 "Debrid-Link API key" = "Kunci API Debrid-Link";
 "Default" = "Bawaan";
 "Default (gold accent)" = "Bawaan (aksen emas)";
+"Default. Harbor parses and scores every source and surfaces the best quality first." = "Bawaan. Harbor mengurai dan menilai setiap sumber, lalu menampilkan kualitas terbaik terlebih dahulu.";
 "Defining the 2010s" = "Ikon era 2010-an";
 "Dejar de mostrarlo como segundo subtítulo" = "Hentikan penayangan sebagai subtitle kedua";
 "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)" = "Berhenti mengisi karusel utama (kembali ke otomatis)";
@@ -548,6 +557,7 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "Redup";
 "Dirección" = "Arah";
+"Direct/debrid" = "Langsung/debrid";
 "Direction" = "Arah";
 "Director" = "Sutradara";
 "Disconnect" = "Putuskan koneksi";
@@ -700,6 +710,7 @@
 "File is larger than 2 MB." = "File lebih besar dari 2 MB.";
 "Fill" = "Penuhi";
 "Film" = "Film";
+"Filters" = "Filter";
 "Finding lyrics" = "Mencari lirik";
 "Finnish" = "Bahasa Finlandia";
 "Fit" = "Sesuaikan";
@@ -708,6 +719,7 @@
 "Focus GIF URL" = "URL GIF fokus";
 "Focus mode" = "Mode fokus";
 "Focused Card" = "Kartu Terfokus";
+"Following addon order" = "Mengikuti urutan addon";
 "Fondo" = "Latar belakang";
 "Font" = "Font";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -753,6 +765,7 @@
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "Kelompokkan film dan acara yang Anda sukai. Rak untuk ditonton ulang, pilihan akhir pekan, atau apa pun agar semuanya tetap dekat.";
 "Group the movies and shows you want to keep close." = "Kelompokkan film dan acara yang ingin selalu dekat dengan Anda.";
 "Grouped" = "Dikelompokkan";
+"Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back." = "Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back.";
 "Guardado" = "Tersimpan";
 "Guardando" = "Menyimpan";
 "Guardar" = "Simpan";
@@ -777,6 +790,8 @@
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor mencari subtitle dalam urutan ini. Tempatkan bahasa pilihan Anda di urutan pertama.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor mengambil judul terpopuler yang tersedia di setiap layanan saat ini. Nonaktifkan layanan yang tidak Anda langgani.";
+"Harbor ranking" = "Peringkat Harbor";
+"Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Peringkat Harbor menempatkan sumber dengan skor terbaik di awal. Urutan addon mempertahankan urutan hasil yang dikembalikan setiap addon, seperti aplikasi Stremio dan Vidi. Prioritas stream di bawah menentukan addon yang didahulukan dalam kedua mode.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Menu dan label Harbor sendiri. Bahasa subtitle ditentukan nanti, dan keduanya dapat Anda ubah di Pengaturan.";
 "Hard stroke around each letter. High contrast." = "Garis tegas di sekeliling setiap huruf. Kontras tinggi.";
 "Harvey Award Winners" = "Pemenang Harvey Award";
@@ -797,6 +812,7 @@
 "Hide end notice" = "Hide end notice";
 "Hide row" = "Sembunyikan baris";
 "Hide sound effects and speaker names" = "Sembunyikan efek suara dan nama pembicara";
+"Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Sembunyikan berkas mencurigakan, rilis yang tidak cocok, kemungkinan rekaman kamera, dan trailer. Periksa juga ukuran berkas dan paket musim.";
 "Hide {name} from navigation" = "Sembunyikan {name} dari navigasi";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Menyembunyikan detail episode yang berpotensi mengandung spoiler dalam daftar episode hingga Anda menontonnya.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
@@ -816,6 +832,7 @@
 "Horror" = "Horor";
 "Horror & Supernatural" = "Horor & Supranatural";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long Harbor waits for each addon to return results." = "Lama waktu Harbor menunggu hasil dari setiap addon.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "Berapa banyak film?";
 "Hoy" = "Hari ini";
@@ -900,6 +917,7 @@
 "Keep original" = "Pertahankan yang asli";
 "Keep same source on next episode" = "Gunakan sumber yang sama pada episode berikutnya";
 "Keep screen awake" = "Keep screen awake";
+"Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Tetap periksa file dan rilis yang mencurigakan, tetapi izinkan lebih banyak hasil, termasuk file berukuran besar dan paket satu musim.";
 "Keep watching" = "Lanjutkan menonton";
 "Kids & Family" = "Anak & Keluarga";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, mengenali musim";
@@ -1038,13 +1056,16 @@
 "Mostrar páginas" = "Tampilkan halaman";
 "Mostrar {name} en la navegación" = "Tampilkan {name} di navigasi";
 "Motion" = "Gerakan";
+"Move Refresh next to Back" = "Pindahkan Segarkan ke sebelah Kembali";
 "Move down" = "Pindahkan ke bawah";
 "Move earlier" = "Naikkan prioritas";
+"Move to top" = "Pindahkan ke paling atas";
 "Move up" = "Pindahkan ke atas";
 "Move your watchlist" = "Pindahkan daftar tontonan Anda";
 "Move {language} earlier" = "Prioritaskan {language}";
 "Move {name} down" = "Pindahkan {name} ke bawah";
 "Move {name} up" = "Pindahkan {name} ke atas";
+"Moved {name} to position {n} of {total}" = "{name} dipindahkan ke posisi {n} dari {total}";
 "Mover antes" = "Naikkan prioritas";
 "Mover hacia abajo" = "Pindahkan ke bawah";
 "Mover hacia arriba" = "Pindahkan ke atas";
@@ -1162,6 +1183,7 @@
 "Norwegian" = "Norwegia";
 "Not a stream plugin: it exports no getStreams or streams function." = "Bukan plugin stream: tidak mengekspor fungsi getStreams atau streams.";
 "Not connected" = "Tidak terhubung";
+"Not installed" = "Belum terinstal";
 "Not interested" = "Tidak tertarik";
 "Not now" = "Jangan sekarang";
 "Not set" = "Belum diatur";
@@ -1278,6 +1300,9 @@
 "Pick what you actually use" = "Pilih yang benar-benar Anda gunakan";
 "Pick your language" = "Pilih bahasa Anda";
 "Pick your subtitle languages" = "Pilih bahasa subtitle Anda";
+"Picker" = "Pemilih";
+"Picker details" = "Detail pemilih";
+"Picker layout" = "Tata letak pemilih";
 "Picture" = "Gambar";
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Penyesuaian gambar";
@@ -1325,6 +1350,7 @@
 "Posters, ratings, lists" = "Poster, rating, daftar";
 "Predeterminado" = "Bawaan";
 "Predeterminado (acento dorado)" = "Bawaan (aksen emas)";
+"Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "Tanyakan apakah ingin melanjutkan atau memulai dari awal";
 "Premiered This Month" = "Tayang Perdana Bulan Ini";
 "Premiumize API key" = "Kunci API Premiumize";
@@ -1339,6 +1365,7 @@
 "Primary copy." = "Salinan utama.";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "Pilih trek subtitle terlebih dahulu.";
+"Priority applies once you have two or more stream addons." = "Prioritas berlaku setelah Anda memiliki dua addon stream atau lebih.";
 "Priorizar {language}" = "Prioritaskan {language}";
 "Producer" = "Produser";
 "Profile PIN" = "PIN profil";
@@ -1492,8 +1519,11 @@
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "Dipulihkan";
+"Result order" = "Urutan hasil";
 "Resultados" = "Hasil";
 "Results" = "Hasil";
+"Results appear as they arrive. Increase the wait time if an addon often needs a refresh before its results appear." = "Hasil muncul begitu diterima. Tambah waktu tunggu jika hasil dari suatu addon sering baru muncul setelah dimuat ulang.";
+"Results from addons higher in this list come first. If one finds nothing, the next fills in." = "Hasil dari addon yang lebih tinggi dalam daftar ini ditampilkan lebih dahulu. Jika satu addon tidak menemukan apa pun, addon berikutnya akan mengisi kekosongan.";
 "Resume" = "Lanjutkan";
 "Resume after an audio interruption" = "Resume after an audio interruption";
 "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
@@ -1623,12 +1653,16 @@
 "Show More info button" = "Tampilkan tombol Info selengkapnya";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Tampilkan tombol Lewati Intro / Lewati Kredit saat Harbor mendeteksinya. Nonaktifkan ini agar tombol tidak pernah ditampilkan. Anda juga dapat mengetuk X pada tombol untuk menutup tombol yang keliru selama sisa episode.";
 "Show adult addons" = "Tampilkan addon dewasa";
+"Show all results returned by addons, including releases that do not match or may be suspicious." = "Tampilkan semua hasil dari addon, termasuk rilis yang tidak cocok atau mungkin mencurigakan.";
 "Show as a Top 10 with big numerals" = "Tampilkan sebagai Top 10 dengan angka besar";
 "Show as a normal row" = "Tampilkan sebagai baris biasa";
 "Show as second subtitle" = "Tampilkan sebagai subtitle kedua";
+"Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Tampilkan deskripsi addon lengkap di pemilih Stremio, unduhan, dan Big Picture.";
 "Show controls" = "Tampilkan kontrol";
 "Show details" = "Tampilkan detail";
+"Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Tampilkan hasil setiap addon sesuai urutan yang dikembalikan, dikelompokkan berdasarkan daftar addon Anda. Sama seperti aplikasi Stremio dan Vidi.";
 "Show episode description" = "Tampilkan deskripsi episode";
+"Show full descriptions" = "Tampilkan deskripsi lengkap";
 "Show less" = "Tampilkan lebih sedikit";
 "Show me less like this" = "Tampilkan lebih sedikit konten seperti ini";
 "Show me more like this" = "Tampilkan lebih banyak konten seperti ini";
@@ -1636,6 +1670,8 @@
 "Show more titles" = "Show more titles";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "Tampilkan satu sumber per repositori di pemilih stream, bukan satu per plugin. Berguna saat sebuah repositori berisi banyak penyedia kecil.";
 "Show pages" = "Tampilkan halaman";
+"Show release filenames in the Condensed picker and Big Picture." = "Tampilkan nama berkas rilis di pemilih Padat dan Big Picture.";
+"Show release name" = "Tampilkan nama rilis";
 "Show row" = "Tampilkan baris";
 "Show the Skip button" = "Tampilkan tombol Lewati";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Tampilkan nama terjemahan dalam bahasa yang dipilih di atas. Nonaktifkan untuk mempertahankan judul asli.";
@@ -1690,7 +1726,9 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Urutkan";
 "Sort by" = "Urutkan berdasarkan";
+"Sorting" = "Pengurutan";
 "Source" = "Sumber";
+"Source mode" = "Mode sumber";
 "Source name" = "Nama sumber";
 "Sources" = "Sumber";
 "Sources & library" = "Sumber & perpustakaan";
@@ -1730,12 +1768,16 @@
 "Stopped with: {error}" = "Berhenti dengan: {error}";
 "Storage overview" = "Ringkasan penyimpanan";
 "Stream" = "Stream";
+"Stream priority" = "Prioritas stream";
+"Stream safety filter" = "Filter keamanan stream";
 "Streaming" = "Streaming";
 "Streaming services" = "Layanan streaming";
+"Streaming sources" = "Sumber streaming";
 "Streams" = "Stream";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Stremio Klasik";
 "Stretch" = "Bentangkan";
+"Strict" = "Ketat";
 "Strict filters dropped everything" = "Filter ketat menyaring habis semua hasil";
 "Styled (ASS) subtitles" = "Subtitle bergaya (ASS)";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Unggah gambar Anda sendiri atau pilih dari katalog Harbor.";
@@ -1970,6 +2012,7 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "Gunakan kunci v3, bukan token akses baca.";
 "Usar mi estilo" = "Gunakan gaya saya";
+"Use addon order" = "Gunakan urutan addon";
 "Use my style" = "Gunakan gaya saya";
 "Use plugins" = "Gunakan plugin";
 "Use shared settings" = "Gunakan pengaturan bersama";
@@ -1980,6 +2023,7 @@
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Digunakan untuk memeriksa cache dan membuka batasan tautan. Harbor tidak pernah menambahkan atau menghapus apa pun di akun Anda secara otomatis.";
 "Username" = "Nama pengguna";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "Menggunakan endpoint directdl, yang melewati antrean untuk semua yang sudah tersimpan dalam cache.";
+"Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "Menggunakan AIOStreams atau addon agregator lain? Pengurutan dan pemfilteran internalnya dilakukan di dalam addon sebelum Harbor melihat hasilnya, lalu Harbor menambahkan filter stream dan urutan hasil di atas. Jika hasil lebih sedikit dari yang diharapkan, buat salah satu sisi lebih longgar: longgarkan filter internal addon atau atur filter stream Harbor ke Seimbang atau Nonaktif.";
 "VOD sources" = "VOD sources";
 "Velocidad" = "Kecepatan";
 "Ver más" = "Lihat selengkapnya";
@@ -3216,6 +3260,7 @@
 "{name} + {n} más" = "{name} + {n} lainnya";
 "{n} / {max} items" = "{n} / {max} item";
 "{n} / {max} lists" = "{n} / {max} daftar";
+"{n} addons don't provide streams and aren't listed." = "{n} addon tidak menyediakan stream dan tidak dicantumkan.";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} judul anime akan dikecualikan (Trakt tidak memiliki ID untuk judul tersebut).";
 "{n} ep" = "{n} ep";
 "{n} eps" = "{n} ep";
@@ -3227,6 +3272,7 @@
 "{n} semillas" = "{n} seed";
 "{n}d left" = "tersisa {n} hari";
 "{requests} requests" = "{requests} permintaan";
+"{seconds} seconds" = "{seconds} detik";
 "{shown} of {total}" = "{shown} dari {total}";
 "{watched} de {total} vistos ({pct}%)." = "{watched} dari {total} ditonton ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "{watched} dari {total} ditonton ({pct}%).";

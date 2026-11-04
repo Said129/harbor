@@ -10,6 +10,10 @@ final class DetailModel {
     var resolving = false
     var offers: [StreamOffer] = []
     var automaticOffers: [StreamOffer] = []
+    /// The whole ranked list. "Prefer these sources" narrows what the picker shows and
+    /// automatic selection uses, and can change without asking the addons again.
+    private var rankedOffers: [StreamOffer] = []
+    private var rankedAutomatic: [StreamOffer] = []
     var warnings: [String] = []
     var filteredSources = false
     var error: String?
@@ -178,7 +182,7 @@ final class DetailModel {
             guard !selected.name.isEmpty, selected.id == entry.id || (entry.id.hasPrefix("anilist:") && selected.id.hasPrefix("mal:") && AnimeService.isAnime(selected.id)) else { throw HarborError(code: "no-metadata") }
             streamRequest = UUID(); resolutionRequest = UUID(); orderRequest = UUID()
             resolving = false; loadingStreams = false; episodeOrderLoading = false
-            offers = []; automaticOffers = []; warnings = []; filteredSources = false; error = nil
+            offers = []; automaticOffers = []; rankedOffers = []; rankedAutomatic = []; warnings = []; filteredSources = false; error = nil
             playback = nil; selectedEpisode = nil; lastPlayedSource = nil; sourceContinuation = nil; streamAddons = []
             selectedPlaybackMedia = nil; episodePool = nil; loadedEpisodePoolKey = nil; episodePoolRequest = UUID(); loadingEpisodePool = false
             extraSources = [:]; extraRequests = [:]; loadingExtraEntries = []
@@ -333,6 +337,14 @@ final class DetailModel {
         UserDefaults.standard.set(grouping.rawValue, forKey: AnimeEpisodeGrouping.preferenceKey)
     }
 
+    /// Applies "Prefer these sources" to the listed and the automatic offers. Desktop lets the
+    /// picker switch it live; when the favoured kind has nothing, everything stays visible.
+    func applyStreamMode() {
+        let mode = StreamPreferences.shared.sourceMode
+        offers = StreamSourcePolicy.filter(rankedOffers, mode: mode)
+        automaticOffers = StreamPreferences.shared.filter(StreamSourcePolicy.filter(rankedAutomatic, mode: mode))
+    }
+
     func findStreams(_ addons: [Addon], episode: Episode? = nil, selection: MediaPlaybackSelection? = nil) async {
         let request = UUID(), context = contextRevision()
         streamRequest = request
@@ -340,6 +352,8 @@ final class DetailModel {
         error = nil
         offers = []
         automaticOffers = []
+        rankedOffers = []
+        rankedAutomatic = []
         streamAddons = addons
         warnings = []
         filteredSources = false
@@ -357,18 +371,19 @@ final class DetailModel {
         do {
             guard let selected else { throw HarborError(code: "no-metadata") }
             let videoID = episode?.id ?? selected.behaviorHints?.defaultVideoId ?? selected.id
-            let provider = pluginStreams, startingPriority = addons.count
+            let provider = pluginStreams, startingPriority = StreamAddonPriority.pluginStart(addons: addons, settings: StreamPreferences.shared.sourceSettings)
             let plugins: (@Sendable () async throws -> HarborPluginStreamBatch)?
             if let provider { plugins = { try await provider(selected, videoID, episode, startingPriority) } }
             else { plugins = nil }
             let debridClient = debrid()
             let result = try await service.streams(selected, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode,
                 unfiltered: true, pluginSource: plugins, debrid: debridClient)
-            let automatic = try await service.automaticStreams(result.0, media: selected, season: episode?.season, episode: episode?.episode, debrid: debridClient)
+            let automatic = try await service.automaticStreams(result.0, media: selected, season: episode?.season, episode: episode?.episode, debrid: debridClient, addons: addons)
             try Task.checkCancellation()
             guard streamRequest == request, contextRevision() == context else { return }
-            offers = result.0
-            automaticOffers = StreamPreferences.shared.filter(automatic)
+            rankedOffers = result.0
+            rankedAutomatic = automatic
+            applyStreamMode()
             warnings = result.1
             Diagnostics.shared.record(.streamsLoaded, count: offers.count)
             if offers.isEmpty {

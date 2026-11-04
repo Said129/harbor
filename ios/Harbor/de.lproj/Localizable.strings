@@ -14,6 +14,7 @@
 "2020s Hits" = "Hits der 2020er";
 "21:9" = "21:9";
 "2nd" = "2.";
+"30 seconds (default)" = "30 Sekunden (Standard)";
 "30s" = "30 s";
 "45 min" = "45 Min.";
 "45s" = "45 s";
@@ -86,11 +87,13 @@
 "Addon" = "Add-on";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "Add-on-Reihenfolge";
+"Addon wait time" = "Add-on-Wartezeit";
 "Addons" = "Add-ons";
 "Adjust the text and background. The preview shows your changes as you make them." = "Passe Text und Hintergrund an. Die Vorschau zeigt deine Änderungen sofort.";
 "Administrar" = "Verwalten";
 "Adult sources" = "Adult sources";
 "Adventure" = "Abenteuer";
+"Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Angenehm für die Augen";
 "Agregar a favoritos" = "Zu Favoriten hinzufügen";
 "Agregar clave" = "Schlüssel hinzufügen";
@@ -266,6 +269,8 @@
 "Border" = "Rahmen";
 "Borrar búsqueda" = "Suche löschen";
 "Borrar todo" = "Alle löschen";
+"Both" = "Beide";
+"Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "„Beide“ zeigt Direkt-, Debrid- und Peer-to-Peer-Ergebnisse zusammen an. „Direkt/Debrid“ hält P2P-Ergebnisse im Hintergrund, solange etwas anderes verfügbar ist. „P2P“ zeigt sie zuerst.";
 "Bottom bar" = "Untere Leiste";
 "Bottom left" = "Unten links";
 "Bottom right" = "Unten rechts";
@@ -356,6 +361,7 @@
 "Choose the frame rate the subtitle was authored for." = "Wähle die Bildrate, für die der Untertitel erstellt wurde.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Wähle bis zu 5 Filme oder Serien aus, die dir bereits gefallen. Harbor nutzt sie, um deine Top-Auswahl und Empfehlungen anzupassen. Völlig optional.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Lege fest, wann Harbor nach einem Profil fragt. Zeitgesteuerte Abfragen erscheinen, wenn du zu Harbor zurückkehrst.";
+"Choose which addon results appear when you pick a stream." = "Wähle, welche Addon-Ergebnisse bei der Streamauswahl erscheinen.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Science-Fiction & Fantasy";
 "Claro" = "Leicht";
@@ -404,6 +410,8 @@
 "Completed" = "Abgeschlossen";
 "Con serifas" = "Serifenschrift";
 "Concentración" = "Focus";
+"Condensed" = "Kompakt";
+"Condensed shows a top pick, quality tiles, and a drawer. Stremio is a flat list grouped by addon, no scoring." = "„Kompakt“ zeigt eine Top-Empfehlung, Qualitätskacheln und einen ausklappbaren Bereich. „Stremio“ ist eine nach Add-on gruppierte einfache Liste ohne Bewertung.";
 "Conectando" = "Verbindung wird hergestellt";
 "Conexión Manga" = "Manga connection";
 "Conexión Suwayomi" = "Suwayomi connection";
@@ -514,6 +522,7 @@
 "Debrid-Link API key" = "Debrid-Link-API-Schlüssel";
 "Default" = "Standard";
 "Default (gold accent)" = "Standard (goldener Akzent)";
+"Default. Harbor parses and scores every source and surfaces the best quality first." = "Standard. Harbor analysiert und bewertet jede Quelle und zeigt die beste Qualität zuerst an.";
 "Defining the 2010s" = "Prägend für die 2010er";
 "Dejar de mostrarlo como segundo subtítulo" = "Nicht mehr als zweiten Untertitel anzeigen";
 "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)" = "Hero-Karussell nicht mehr manuell bestücken (zurück zu automatisch)";
@@ -548,6 +557,7 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "Abdunkeln";
 "Dirección" = "Richtung";
+"Direct/debrid" = "Direkt/Debrid";
 "Direction" = "Richtung";
 "Director" = "Regisseur";
 "Disconnect" = "Verbindung trennen";
@@ -700,6 +710,7 @@
 "File is larger than 2 MB." = "Die Datei ist größer als 2 MB.";
 "Fill" = "Füllen";
 "Film" = "Film";
+"Filters" = "Filter";
 "Finding lyrics" = "Songtext wird gesucht";
 "Finnish" = "Finnisch";
 "Fit" = "Einpassen";
@@ -708,6 +719,7 @@
 "Focus GIF URL" = "GIF-URL fokussieren";
 "Focus mode" = "Fokusmodus";
 "Focused Card" = "Fokussierte Karte";
+"Following addon order" = "Add-on-Reihenfolge befolgen";
 "Fondo" = "Hintergrund";
 "Font" = "Schriftart";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -753,6 +765,7 @@
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "Gruppiere die Filme und Serien, die du liebst. Ein Regal zum Wiederansehen, Wochenendtipps oder was auch immer du griffbereit haben möchtest.";
 "Group the movies and shows you want to keep close." = "Fasse die Filme und Serien zusammen, die du griffbereit halten möchtest.";
 "Grouped" = "Gruppiert";
+"Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back." = "Groups Refresh beside Back at the start of the picker header. Off keeps it at the far end, across from Back.";
 "Guardado" = "Gespeichert";
 "Guardando" = "Speichern";
 "Guardar" = "Speichern";
@@ -777,6 +790,8 @@
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor sucht Untertitel in dieser Reihenfolge. Setze deine bevorzugte Sprache an die erste Stelle.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor ruft die derzeit beliebtesten Titel jedes Dienstes ab. Deaktiviere alles, was du nicht abonniert hast.";
+"Harbor ranking" = "Harbor-Rangliste";
+"Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Bei der Harbor-Rangfolge stehen die am besten bewerteten Quellen zuerst. Die Add-on-Reihenfolge belässt die Ergebnisse jedes Add-ons in der zurückgegebenen Reihenfolge, wie bei den Apps Stremio und Vidi. Die Stream-Priorität unten bestimmt in beiden Modi, welches Add-on zuerst kommt.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Harbors eigene Menüs und Beschriftungen. Untertitelsprachen folgen später, und du kannst beides in den Einstellungen ändern.";
 "Hard stroke around each letter. High contrast." = "Kräftige Kontur um jeden Buchstaben. Hoher Kontrast.";
 "Harvey Award Winners" = "Gewinner des Harvey Award";
@@ -797,6 +812,7 @@
 "Hide end notice" = "Hide end notice";
 "Hide row" = "Reihe ausblenden";
 "Hide sound effects and speaker names" = "Geräusche und Sprechernamen ausblenden";
+"Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Blendet verdächtige Dateien, unpassende Veröffentlichungen, mögliche Kinoaufnahmen und Trailer aus. Prüft auch Dateigrößen und Staffelpakete.";
 "Hide {name} from navigation" = "{name} in der Navigation ausblenden";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Blendet spoilerträchtige Episodendetails in Episodenlisten aus, bis du die jeweilige Folge angesehen hast.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
@@ -816,6 +832,7 @@
 "Horror" = "Horror";
 "Horror & Supernatural" = "Horror & Übernatürliches";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long Harbor waits for each addon to return results." = "Wie lange Harbor auf Ergebnisse jedes Add-ons wartet.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "Wie viele Filme?";
 "Hoy" = "Heute";
@@ -900,6 +917,7 @@
 "Keep original" = "Original beibehalten";
 "Keep same source on next episode" = "Bei der nächsten Episode dieselbe Quelle verwenden";
 "Keep screen awake" = "Keep screen awake";
+"Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Behält Prüfungen auf verdächtige Dateien und unpassende Veröffentlichungen bei, erlaubt aber mehr Ergebnisse, auch größere Dateien und Staffelpakete.";
 "Keep watching" = "Weiterschauen";
 "Kids & Family" = "Kinder & Familie";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, berücksichtigt Staffeln";
@@ -1038,13 +1056,16 @@
 "Mostrar páginas" = "Seiten anzeigen";
 "Mostrar {name} en la navegación" = "{name} in der Navigation anzeigen";
 "Motion" = "Bewegung";
+"Move Refresh next to Back" = "Aktualisieren neben Zurück verschieben";
 "Move down" = "Nach unten verschieben";
 "Move earlier" = "Höher priorisieren";
+"Move to top" = "Nach ganz oben";
 "Move up" = "Nach oben verschieben";
 "Move your watchlist" = "Deine Merkliste verschieben";
 "Move {language} earlier" = "{language} höher priorisieren";
 "Move {name} down" = "{name} nach unten verschieben";
 "Move {name} up" = "{name} nach oben verschieben";
+"Moved {name} to position {n} of {total}" = "{name} an Position {n} von {total} verschoben";
 "Mover antes" = "Höher priorisieren";
 "Mover hacia abajo" = "Nach unten verschieben";
 "Mover hacia arriba" = "Nach oben verschieben";
@@ -1162,6 +1183,7 @@
 "Norwegian" = "Norwegisch";
 "Not a stream plugin: it exports no getStreams or streams function." = "Kein Stream-Plugin: Es exportiert keine getStreams- oder streams-Funktion.";
 "Not connected" = "Nicht verbunden";
+"Not installed" = "Nicht installiert";
 "Not interested" = "Nicht interessiert";
 "Not now" = "Nicht jetzt";
 "Not set" = "Nicht festgelegt";
@@ -1278,6 +1300,9 @@
 "Pick what you actually use" = "Wähle aus, was du wirklich nutzt";
 "Pick your language" = "Deine Sprache auswählen";
 "Pick your subtitle languages" = "Deine Untertitelsprachen auswählen";
+"Picker" = "Auswahl";
+"Picker details" = "Details der Quellenauswahl";
+"Picker layout" = "Auswahllayout";
 "Picture" = "Bild";
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Bildanpassungen";
@@ -1325,6 +1350,7 @@
 "Posters, ratings, lists" = "Poster, Bewertungen, Listen";
 "Predeterminado" = "Standard";
 "Predeterminado (acento dorado)" = "Standard (goldener Akzent)";
+"Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "Fragen, ob fortgesetzt oder neu begonnen werden soll";
 "Premiered This Month" = "Diesen Monat erschienen";
 "Premiumize API key" = "Premiumize-API-Schlüssel";
@@ -1339,6 +1365,7 @@
 "Primary copy." = "Primäre Kopie.";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "Wähle zuerst eine Untertitelspur aus.";
+"Priority applies once you have two or more stream addons." = "Die Priorität greift, sobald du mindestens zwei Stream-Add-ons hast.";
 "Priorizar {language}" = "{language} höher priorisieren";
 "Producer" = "Produzent";
 "Profile PIN" = "Profil-PIN";
@@ -1492,8 +1519,11 @@
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "Wiederhergestellt";
+"Result order" = "Ergebnisreihenfolge";
 "Resultados" = "Ergebnisse";
 "Results" = "Ergebnisse";
+"Results appear as they arrive. Increase the wait time if an addon often needs a refresh before its results appear." = "Ergebnisse erscheinen, sobald sie eintreffen. Erhöhe die Wartezeit, wenn die Ergebnisse eines Add-ons oft erst nach dem Aktualisieren sichtbar werden.";
+"Results from addons higher in this list come first. If one finds nothing, the next fills in." = "Ergebnisse von Add-ons, die in dieser Liste weiter oben stehen, werden zuerst angezeigt. Findet eines nichts, ergänzt das nächste die Ergebnisse.";
 "Resume" = "Fortsetzen";
 "Resume after an audio interruption" = "Resume after an audio interruption";
 "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
@@ -1623,12 +1653,16 @@
 "Show More info button" = "Schaltfläche „Weitere Infos“ anzeigen";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Zeige die Schaltfläche „Intro überspringen“ / „Abspann überspringen“ an, wenn Harbor einen solchen Abschnitt erkennt. Schalte dies aus, um sie nie anzuzeigen. Du kannst auch auf das X der Schaltfläche tippen, um eine falsche Erkennung für den Rest der Folge auszublenden.";
 "Show adult addons" = "Add-ons für Erwachsene anzeigen";
+"Show all results returned by addons, including releases that do not match or may be suspicious." = "Zeige alle Ergebnisse der Add-ons, auch unpassende oder möglicherweise verdächtige Veröffentlichungen.";
 "Show as a Top 10 with big numerals" = "Als Top 10 mit großen Ziffern anzeigen";
 "Show as a normal row" = "Als normale Zeile anzeigen";
 "Show as second subtitle" = "Als zweiten Untertitel anzeigen";
+"Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Vollständige Addon-Beschreibungen in der Stremio-Quellenauswahl, bei Downloads und im Großbildmodus anzeigen.";
 "Show controls" = "Steuerelemente anzeigen";
 "Show details" = "Details anzeigen";
+"Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Die Ergebnisse jedes Add-ons in der Reihenfolge anzeigen, in der es sie zurückgegeben hat, und entsprechend deiner Add-on-Liste gruppieren. Entspricht den Apps Stremio und Vidi.";
 "Show episode description" = "Folgenbeschreibung anzeigen";
+"Show full descriptions" = "Vollständige Beschreibungen anzeigen";
 "Show less" = "Weniger anzeigen";
 "Show me less like this" = "Weniger davon anzeigen";
 "Show me more like this" = "Mehr davon anzeigen";
@@ -1636,6 +1670,8 @@
 "Show more titles" = "Show more titles";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "Zeigt in der Stream-Auswahl eine Quelle pro Repository statt eine pro Plugin. Praktisch, wenn ein Repository viele kleine Anbieter enthält.";
 "Show pages" = "Seiten anzeigen";
+"Show release filenames in the Condensed picker and Big Picture." = "Dateinamen der Releases in der kompakten Quellenauswahl und im Großbildmodus anzeigen.";
+"Show release name" = "Release-Namen anzeigen";
 "Show row" = "Zeile anzeigen";
 "Show the Skip button" = "Überspringen-Schaltfläche anzeigen";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Zeige übersetzte Namen in der oben gewählten Sprache. Deaktiviere dies, um Originaltitel beizubehalten.";
@@ -1690,7 +1726,9 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Sortieren";
 "Sort by" = "Sortieren nach";
+"Sorting" = "Sortierung";
 "Source" = "Quelle";
+"Source mode" = "Quellenmodus";
 "Source name" = "Quellenname";
 "Sources" = "Quellen";
 "Sources & library" = "Quellen & Mediathek";
@@ -1730,12 +1768,16 @@
 "Stopped with: {error}" = "Abgebrochen mit: {error}";
 "Storage overview" = "Speicherübersicht";
 "Stream" = "Stream";
+"Stream priority" = "Stream-Priorität";
+"Stream safety filter" = "Sicherheitsfilter für Streams";
 "Streaming" = "Streaming";
 "Streaming services" = "Streamingdienste";
+"Streaming sources" = "Streamingquellen";
 "Streams" = "Streams";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Klassisches Stremio";
 "Stretch" = "Strecken";
+"Strict" = "Streng";
 "Strict filters dropped everything" = "Strenge Filter haben alles ausgeschlossen";
 "Styled (ASS) subtitles" = "Formatierte Untertitel (ASS)";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Lade ein eigenes Bild hoch oder wähle eines aus dem Harbor-Katalog.";
@@ -1970,6 +2012,7 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "Verwende den v3-Schlüssel, nicht das Token für den Lesezugriff.";
 "Usar mi estilo" = "Meinen Stil verwenden";
+"Use addon order" = "Add-on-Reihenfolge verwenden";
 "Use my style" = "Meinen Stil verwenden";
 "Use plugins" = "Plugins verwenden";
 "Use shared settings" = "Gemeinsame Einstellungen verwenden";
@@ -1980,6 +2023,7 @@
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Wird zum Prüfen des Caches und Entsperren von Links verwendet. Harbor fügt deinem Konto niemals selbstständig etwas hinzu oder entfernt etwas daraus.";
 "Username" = "Benutzername";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "Verwendet den directdl-Endpunkt, der bei bereits zwischengespeicherten Inhalten die Warteschlange überspringt.";
+"Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "Verwendest du AIOStreams oder ein anderes Aggregator-Add-on? Dessen eigene Sortierung und Filterung erfolgen innerhalb des Add-ons, bevor Harbor die Ergebnisse erhält. Anschließend wendet Harbor zusätzlich den oben festgelegten Streamfilter und die Ergebnisreihenfolge an. Wenn weniger Ergebnisse als erwartet erscheinen, lass eine Seite großzügig eingestellt: Lockere entweder die internen Filter des Add-ons oder stelle Harbors Streamfilter auf Ausgewogen oder Aus.";
 "VOD sources" = "VOD sources";
 "Velocidad" = "Geschwindigkeit";
 "Ver más" = "Mehr anzeigen";
@@ -3216,6 +3260,7 @@
 "{name} + {n} más" = "{name} + {n} weitere";
 "{n} / {max} items" = "{n} / {max} Elemente";
 "{n} / {max} lists" = "{n} / {max} Listen";
+"{n} addons don't provide streams and aren't listed." = "{n} Add-ons bieten keine Streams und werden nicht aufgeführt.";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} Anime-Titel werden ausgelassen (Trakt hat keine IDs dafür).";
 "{n} ep" = "{n} Folge";
 "{n} eps" = "{n} Folgen";
@@ -3227,6 +3272,7 @@
 "{n} semillas" = "{n} Seeds";
 "{n}d left" = "noch {n} T.";
 "{requests} requests" = "{requests} Anfragen";
+"{seconds} seconds" = "{seconds} Sekunden";
 "{shown} of {total}" = "{shown} von {total}";
 "{watched} de {total} vistos ({pct}%)." = "{watched} von {total} angesehen ({pct} %).";
 "{watched} of {total} watched ({pct}%)." = "{watched} von {total} angesehen ({pct} %).";

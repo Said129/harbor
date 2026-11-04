@@ -17,12 +17,13 @@ no mobile form. The list below follows that.
 
 ### Excluded (concrete platform reason)
 
-| Desktop behavior                                                  | Dependency                                                | Why there is no iOS form                                                                          |
-| ----------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| Updates and experimental builds (settings → updates, beta-return) | Tauri self-updater, installer channels                    | Distribution and updates belong to the App Store/TestFlight; an app cannot replace itself.        |
-| Local torrent engine (`torrent_engine.rs`)                        | A resident peer-to-peer daemon and local streaming server | iOS suspends background networking and listening sockets; debrid services cover the same sources. |
-| Big Picture (10-foot interface, `views/big-picture`)              | Television/gamepad navigation shell                       | Not a touch layout. Desktop, Android and Android TV are scheduled after iOS.                      |
-| Game controllers panel for PC games                               | Gamepad mapping for the Games section                     | Tied to the excluded Games section. Gamepad navigation of the app itself is not excluded.         |
+| Desktop behavior                                                  | Dependency                                                   | Why there is no iOS form                                                                                 |
+| ----------------------------------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| Updates and experimental builds (settings → updates, beta-return) | Tauri self-updater, installer channels                       | Distribution and updates belong to the App Store/TestFlight; an app cannot replace itself.               |
+| Local torrent engine (`torrent_engine.rs`)                        | A resident peer-to-peer daemon and local streaming server    | iOS suspends background networking and listening sockets; debrid services cover the same sources.        |
+| Big Picture (10-foot interface, `views/big-picture`)              | Television/gamepad navigation shell                          | Not a touch layout. Desktop, Android and Android TV are scheduled after iOS.                             |
+| Game controllers panel for PC games                               | Gamepad mapping for the Games section                        | Tied to the excluded Games section. Gamepad navigation of the app itself is not excluded.                |
+| "P2P" choice of the picker source mode (`streamMode: "p2p"`)      | Puts peer-to-peer results first for the local torrent engine | Without the engine those results only start through a debrid service; Both and Direct/debrid are ported. |
 
 ### Not excluded, undecided (needs a feasibility review, not a default exclusion)
 
@@ -60,9 +61,23 @@ configure the service in Harbor itself.
    automatic selection limited to verified torrents. Still open: prefetching
    the first prepared links, streams listed from the debrid library, queueing
    an uncached source from the picker and per-provider health badges.
-2. Streaming sources panel: safety filter, sorting, picker layout (the Rust core
-   already scores and filters; the settings and their effect on the list are
-   missing), then home servers and Easynews.
+2. Streaming sources panel (Settings › Streaming sources, uncompiled): Services
+   (link to Debrid), Filters (safety filter, addon wait time), Sorting (Harbor
+   ranking or addon order, stream priority list with move/reset and uninstalled
+   entries, aggregator note) and Picker (Condensed or Stremio layout, source
+   mode, Refresh next to Back, release names, full descriptions). Effects: the
+   wait time is `max(addon budget, setting)` per request as Desktop's
+   `timeoutFor`, the priority list re-ranks the requests and reorders the
+   ranked list (`applyStreamPriority`), the source mode filters the picker and
+   automatic selection without ever emptying it and can be switched live in
+   the picker, and a new Stremio layout lists each addon's own text. Policy is
+   in `StreamSourcePolicy.swift`, tests in `StreamSourcePolicyTests.swift`.
+   Deliberate differences, to confirm with the owner: the iPhone picker keeps
+   listing every source (the filter governs automatic playback, as before), and
+   the layout defaults to Condensed (Desktop: Stremio). Still open here: home
+   servers (Jellyfin/Emby/Plex video libraries), Easynews, Desktop's custom
+   stream filters and facet menu, the addon-loading pill, and placing plugin
+   groups in the priority list (they follow all addons).
 3. Trackers: AniList, MyAnimeList, Letterboxd.
 4. Remaining settings sections and the other features above.
 5. Music gaps from `music-subtitle-94-work.md` and the physical subtitle defect
