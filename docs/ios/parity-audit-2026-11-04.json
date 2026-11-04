@@ -1,0 +1,6878 @@
+{
+  "schema": 1,
+  "date": "2026-11-04",
+  "method": "Code-level parity audit of the Desktop 0.9.132 inventory against the iOS sources (4 November 2026).\n\nEach behavior and setting of docs/ios/desktop-parity-0.9.132.json gets one verdict:\n  D  ported: an iOS implementation of the same behavior exists in the code\n  P  partial: implemented in part, or an earlier review recorded it as Partial\n  M  missing: no iOS implementation found\n  X  excluded: owner exclusion or a recorded platform reason (not in the denominator)\nThe verdicts are a reading of the code, not runtime validation: nothing written since the last\nsuccessful Apple build has been compiled. Run: python -I scripts/ios/parity-audit-2026-11-04.py",
+  "summary": {
+    "behaviors": {
+      "total": 438,
+      "ported": 106,
+      "partial": 203,
+      "missing": 107,
+      "excluded": 22,
+      "counted": 416,
+      "weighted_percent": 49.9,
+      "ported_only_percent": 25.5,
+      "ported_or_partial_percent": 74.3
+    },
+    "settings": {
+      "total": 511,
+      "ported": 104,
+      "partial": 21,
+      "missing": 300,
+      "excluded": 86,
+      "counted": 425,
+      "weighted_percent": 26.9,
+      "ported_only_percent": 24.5,
+      "ported_or_partial_percent": 29.4
+    },
+    "all": {
+      "total": 949,
+      "ported": 210,
+      "partial": 224,
+      "missing": 407,
+      "excluded": 108,
+      "counted": 841,
+      "weighted_percent": 38.3,
+      "ported_only_percent": 25.0,
+      "ported_or_partial_percent": 51.6
+    }
+  },
+  "behavior_areas": [
+    {
+      "area": "Home, Discover and rooms",
+      "range": "B1-B21",
+      "ported": 2,
+      "partial": 18,
+      "missing": 1,
+      "excluded": 0,
+      "weighted_percent": 52.4
+    },
+    {
+      "area": "Search",
+      "range": "B22-B32",
+      "ported": 0,
+      "partial": 5,
+      "missing": 6,
+      "excluded": 0,
+      "weighted_percent": 22.7
+    },
+    {
+      "area": "Details and episodes",
+      "range": "B33-B47",
+      "ported": 3,
+      "partial": 10,
+      "missing": 2,
+      "excluded": 0,
+      "weighted_percent": 53.3
+    },
+    {
+      "area": "Addons and catalogs",
+      "range": "B48-B67",
+      "ported": 4,
+      "partial": 14,
+      "missing": 2,
+      "excluded": 0,
+      "weighted_percent": 55.0
+    },
+    {
+      "area": "Stream pipeline, parser, trust and scoring",
+      "range": "B68-B106",
+      "ported": 24,
+      "partial": 11,
+      "missing": 4,
+      "excluded": 0,
+      "weighted_percent": 75.6
+    },
+    {
+      "area": "Resolution and Debrid",
+      "range": "B107-B135",
+      "ported": 18,
+      "partial": 10,
+      "missing": 0,
+      "excluded": 1,
+      "weighted_percent": 82.1
+    },
+    {
+      "area": "Torrent engine and streaming server",
+      "range": "B136-B153",
+      "ported": 0,
+      "partial": 0,
+      "missing": 4,
+      "excluded": 14,
+      "weighted_percent": 0.0
+    },
+    {
+      "area": "Player, subtitles, skip, trailers and downloads",
+      "range": "B154-B216",
+      "ported": 24,
+      "partial": 20,
+      "missing": 17,
+      "excluded": 2,
+      "weighted_percent": 55.7
+    },
+    {
+      "area": "Live TV, VOD, DVR and multiview",
+      "range": "B217-B238",
+      "ported": 0,
+      "partial": 12,
+      "missing": 10,
+      "excluded": 0,
+      "weighted_percent": 27.3
+    },
+    {
+      "area": "Casting and Watch Together",
+      "range": "B239-B259",
+      "ported": 0,
+      "partial": 1,
+      "missing": 20,
+      "excluded": 0,
+      "weighted_percent": 2.4
+    },
+    {
+      "area": "Stremio account, library and local files",
+      "range": "B260-B273",
+      "ported": 4,
+      "partial": 6,
+      "missing": 4,
+      "excluded": 0,
+      "weighted_percent": 50.0
+    },
+    {
+      "area": "Trackers",
+      "range": "B274-B304",
+      "ported": 10,
+      "partial": 7,
+      "missing": 14,
+      "excluded": 0,
+      "weighted_percent": 43.5
+    },
+    {
+      "area": "Metadata providers, calendar and lists",
+      "range": "B305-B323",
+      "ported": 7,
+      "partial": 5,
+      "missing": 7,
+      "excluded": 0,
+      "weighted_percent": 50.0
+    },
+    {
+      "area": "Profiles, appearance, integrations and system",
+      "range": "B324-B365",
+      "ported": 10,
+      "partial": 11,
+      "missing": 16,
+      "excluded": 5,
+      "weighted_percent": 41.9
+    },
+    {
+      "area": "Manga",
+      "range": "B366-B390",
+      "ported": 0,
+      "partial": 25,
+      "missing": 0,
+      "excluded": 0,
+      "weighted_percent": 50.0
+    },
+    {
+      "area": "Sports",
+      "range": "B391-B401",
+      "ported": 0,
+      "partial": 11,
+      "missing": 0,
+      "excluded": 0,
+      "weighted_percent": 50.0
+    },
+    {
+      "area": "Home customization",
+      "range": "B402-B409",
+      "ported": 0,
+      "partial": 8,
+      "missing": 0,
+      "excluded": 0,
+      "weighted_percent": 50.0
+    },
+    {
+      "area": "VOD details",
+      "range": "B410-B417",
+      "ported": 0,
+      "partial": 8,
+      "missing": 0,
+      "excluded": 0,
+      "weighted_percent": 50.0
+    },
+    {
+      "area": "Spooktober",
+      "range": "B418-B421",
+      "ported": 0,
+      "partial": 4,
+      "missing": 0,
+      "excluded": 0,
+      "weighted_percent": 50.0
+    },
+    {
+      "area": "Music",
+      "range": "B422-B437",
+      "ported": 0,
+      "partial": 16,
+      "missing": 0,
+      "excluded": 0,
+      "weighted_percent": 50.0
+    },
+    {
+      "area": "Subtitle FPS",
+      "range": "B438-B438",
+      "ported": 0,
+      "partial": 1,
+      "missing": 0,
+      "excluded": 0,
+      "weighted_percent": 50.0
+    }
+  ],
+  "behaviors": [
+    {
+      "index": 1,
+      "id": "Home hero and real catalogs",
+      "desktop_source": "src/views/home.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial; personalised rails and physical checks incomplete"
+    },
+    {
+      "index": 2,
+      "id": "Continue Watching on Home",
+      "desktop_source": "src/views/home.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial; personalised rails and physical checks incomplete"
+    },
+    {
+      "index": 3,
+      "id": "Home row customization",
+      "desktop_source": "src/views/home.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial; personalised rails and physical checks incomplete"
+    },
+    {
+      "index": 4,
+      "id": "Classic Stremio Home",
+      "desktop_source": "src/views/home.tsx",
+      "verdict": "D",
+      "note": "homeMode classic"
+    },
+    {
+      "index": 5,
+      "id": "Discover personalized feed",
+      "desktop_source": "src/views/discover.tsx",
+      "verdict": "P",
+      "note": "DiscoverView, DiscoveryRails, DiscoveryPreferences"
+    },
+    {
+      "index": 6,
+      "id": "Daily discovery rails",
+      "desktop_source": "src/views/discover.tsx",
+      "verdict": "P",
+      "note": "DiscoverView, DiscoveryRails, DiscoveryPreferences"
+    },
+    {
+      "index": 7,
+      "id": "Critics Pick",
+      "desktop_source": "src/views/discover.tsx",
+      "verdict": "M",
+      "note": "no Critics Pick rail"
+    },
+    {
+      "index": 8,
+      "id": "Genre discovery",
+      "desktop_source": "src/views/discover.tsx",
+      "verdict": "P",
+      "note": "genre preferences in DiscoveryPreferences"
+    },
+    {
+      "index": 9,
+      "id": "Discovery Queue entry",
+      "desktop_source": "src/views/discover.tsx",
+      "verdict": "D",
+      "note": "DiscoveryQueueView with UI test"
+    },
+    {
+      "index": 10,
+      "id": "Movies room",
+      "desktop_source": "src/views/movies.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 11,
+      "id": "Cinema hero",
+      "desktop_source": "src/views/movies.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 12,
+      "id": "Movie mood and decade rails",
+      "desktop_source": "src/views/movies.tsx",
+      "verdict": "P",
+      "note": "decade rails in TMDBService; no mood rails"
+    },
+    {
+      "index": 13,
+      "id": "Movie catalog pagination",
+      "desktop_source": "src/views/movies.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 14,
+      "id": "Shows room",
+      "desktop_source": "src/views/shows.tsx",
+      "verdict": "P",
+      "note": "generic ContentPageView rooms"
+    },
+    {
+      "index": 15,
+      "id": "Series Continue Watching",
+      "desktop_source": "src/views/shows.tsx",
+      "verdict": "P",
+      "note": "generic ContentPageView rooms"
+    },
+    {
+      "index": 16,
+      "id": "Network and premiere rails",
+      "desktop_source": "src/views/shows.tsx",
+      "verdict": "P",
+      "note": "TMDB premieres; no network rails"
+    },
+    {
+      "index": 17,
+      "id": "Series catalogs",
+      "desktop_source": "src/views/shows.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 18,
+      "id": "Anime room",
+      "desktop_source": "src/views/anime.tsx",
+      "verdict": "P",
+      "note": "DesktopAnimeRows and MAL/AniList public rows"
+    },
+    {
+      "index": 19,
+      "id": "Anime genres and rankings",
+      "desktop_source": "src/views/anime.tsx",
+      "verdict": "P",
+      "note": "DesktopAnimeRows and MAL/AniList public rows"
+    },
+    {
+      "index": 20,
+      "id": "Anime award winners",
+      "desktop_source": "src/views/anime.tsx",
+      "verdict": "P",
+      "note": "DesktopAnimeRows and MAL/AniList public rows"
+    },
+    {
+      "index": 21,
+      "id": "Anime Top Picks",
+      "desktop_source": "src/views/anime.tsx",
+      "verdict": "P",
+      "note": "DesktopAnimeRows and MAL/AniList public rows"
+    },
+    {
+      "index": 22,
+      "id": "Global search",
+      "desktop_source": "src/lib/search.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 23,
+      "id": "Movie search",
+      "desktop_source": "src/lib/search.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 24,
+      "id": "Series search",
+      "desktop_source": "src/lib/search.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 25,
+      "id": "Search provider aggregation",
+      "desktop_source": "src/lib/search.ts",
+      "verdict": "P",
+      "note": "addon search aggregation"
+    },
+    {
+      "index": 26,
+      "id": "Search people",
+      "desktop_source": "src/components/search",
+      "verdict": "M",
+      "note": "no people search"
+    },
+    {
+      "index": 27,
+      "id": "Search anime",
+      "desktop_source": "src/components/search",
+      "verdict": "P",
+      "note": "anime results section in SearchView"
+    },
+    {
+      "index": 28,
+      "id": "Search Live TV",
+      "desktop_source": "src/components/search",
+      "verdict": "M",
+      "note": "no Live TV, direct URL, magnet, guide or AI search"
+    },
+    {
+      "index": 29,
+      "id": "Search direct video URLs",
+      "desktop_source": "src/components/search",
+      "verdict": "M",
+      "note": "no Live TV, direct URL, magnet, guide or AI search"
+    },
+    {
+      "index": 30,
+      "id": "Search magnet links",
+      "desktop_source": "src/components/search",
+      "verdict": "M",
+      "note": "no Live TV, direct URL, magnet, guide or AI search"
+    },
+    {
+      "index": 31,
+      "id": "Search guide",
+      "desktop_source": "src/components/search",
+      "verdict": "M",
+      "note": "no Live TV, direct URL, magnet, guide or AI search"
+    },
+    {
+      "index": 32,
+      "id": "AI search",
+      "desktop_source": "src/components/search",
+      "verdict": "M",
+      "note": "no Live TV, direct URL, magnet, guide or AI search"
+    },
+    {
+      "index": 33,
+      "id": "Real content details",
+      "desktop_source": "src/views/detail.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 34,
+      "id": "Poster / backdrop / logo",
+      "desktop_source": "src/views/detail.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 35,
+      "id": "Synopsis / genres / ratings",
+      "desktop_source": "src/views/detail.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 36,
+      "id": "Cast and crew",
+      "desktop_source": "src/views/detail.tsx",
+      "verdict": "D",
+      "note": "cast and crew in DetailMetadataView"
+    },
+    {
+      "index": 37,
+      "id": "Awards drill-down",
+      "desktop_source": "src/views/detail.tsx",
+      "verdict": "M",
+      "note": "no awards drill-down"
+    },
+    {
+      "index": 38,
+      "id": "Region Watch On links",
+      "desktop_source": "src/views/detail.tsx",
+      "verdict": "M",
+      "note": "no region Watch On links"
+    },
+    {
+      "index": 39,
+      "id": "Recommendations and similar titles",
+      "desktop_source": "src/views/detail.tsx",
+      "verdict": "P",
+      "note": "related titles (loadRelated)"
+    },
+    {
+      "index": 40,
+      "id": "Seasons",
+      "desktop_source": "src/views/detail/series-episodes.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 41,
+      "id": "Episode details",
+      "desktop_source": "src/views/detail/series-episodes.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 42,
+      "id": "Episode selection",
+      "desktop_source": "src/views/detail/series-episodes.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 43,
+      "id": "Episode watched state",
+      "desktop_source": "src/views/detail/series-episodes.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 44,
+      "id": "Episode merge and deduplication",
+      "desktop_source": "src/lib/series-episodes.ts",
+      "verdict": "P",
+      "note": "AnimeEpisodePool and episode projection"
+    },
+    {
+      "index": 45,
+      "id": "Season episode mapping",
+      "desktop_source": "src/lib/series-episodes.ts",
+      "verdict": "P",
+      "note": "AnimeEpisodePool and episode projection"
+    },
+    {
+      "index": 46,
+      "id": "Alternative episode order",
+      "desktop_source": "src/lib/providers/tvdb-order.ts",
+      "verdict": "D",
+      "note": "TVDBEpisodeOrderService, TVDBOrderPanel"
+    },
+    {
+      "index": 47,
+      "id": "TVDB order cache",
+      "desktop_source": "src/lib/providers/tvdb-order.ts",
+      "verdict": "D",
+      "note": "TVDBEpisodeOrderService, TVDBOrderPanel"
+    },
+    {
+      "index": 48,
+      "id": "Install addon URL",
+      "desktop_source": "src/lib/addon-store.ts",
+      "verdict": "P",
+      "note": "earlier review Partial (install, validate, configure, uninstall, enable)"
+    },
+    {
+      "index": 49,
+      "id": "Validate and fetch manifest",
+      "desktop_source": "src/lib/addon-store.ts",
+      "verdict": "P",
+      "note": "earlier review Partial (install, validate, configure, uninstall, enable)"
+    },
+    {
+      "index": 50,
+      "id": "Configure addon URL",
+      "desktop_source": "src/lib/addon-store.ts",
+      "verdict": "P",
+      "note": "earlier review Partial (install, validate, configure, uninstall, enable)"
+    },
+    {
+      "index": 51,
+      "id": "Uninstall addon",
+      "desktop_source": "src/lib/addon-store.ts",
+      "verdict": "P",
+      "note": "earlier review Partial (install, validate, configure, uninstall, enable)"
+    },
+    {
+      "index": 52,
+      "id": "Enable / disable addon",
+      "desktop_source": "src/lib/addon-store.ts",
+      "verdict": "P",
+      "note": "earlier review Partial (install, validate, configure, uninstall, enable)"
+    },
+    {
+      "index": 53,
+      "id": "Addon sharing",
+      "desktop_source": "src/lib/addon-store.ts",
+      "verdict": "M",
+      "note": "no addon sharing"
+    },
+    {
+      "index": 54,
+      "id": "Configured addon credentials persistence",
+      "desktop_source": "src/lib/addon-store.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 55,
+      "id": "Addon order",
+      "desktop_source": "src/lib/addons-store",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 56,
+      "id": "Community addon discovery",
+      "desktop_source": "src/lib/addons-store",
+      "verdict": "D",
+      "note": "CommunityAddons with UI test"
+    },
+    {
+      "index": 57,
+      "id": "Addon recommendations",
+      "desktop_source": "src/lib/addons-store",
+      "verdict": "M",
+      "note": "no addon recommendations"
+    },
+    {
+      "index": 58,
+      "id": "Addon adult filtering",
+      "desktop_source": "src/lib/addons-store",
+      "verdict": "D",
+      "note": "hideContent.adult"
+    },
+    {
+      "index": 59,
+      "id": "Addon browser",
+      "desktop_source": "src/views/addons.tsx",
+      "verdict": "D",
+      "note": "CommunityAddonBrowseView"
+    },
+    {
+      "index": 60,
+      "id": "Installed addons management",
+      "desktop_source": "src/views/addons.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 61,
+      "id": "Addon configuration viewport",
+      "desktop_source": "src/views/addons.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 62,
+      "id": "Addon detail pages",
+      "desktop_source": "src/views/addons.tsx",
+      "verdict": "D",
+      "note": "AddonDetailView"
+    },
+    {
+      "index": 63,
+      "id": "Addon catalog discovery",
+      "desktop_source": "src/lib/addons.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 64,
+      "id": "Catalog extras / filters",
+      "desktop_source": "src/lib/addons.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 65,
+      "id": "Catalog pages",
+      "desktop_source": "src/lib/addons.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 66,
+      "id": "Addon resource matching",
+      "desktop_source": "src/lib/addons.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 67,
+      "id": "Stremio addon collection sync",
+      "desktop_source": "src/lib/addons.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 68,
+      "id": "Real addon stream requests",
+      "desktop_source": "src/lib/streams/addons.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 69,
+      "id": "Concurrent addon requests",
+      "desktop_source": "src/lib/streams/addons.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 70,
+      "id": "Addon timeouts",
+      "desktop_source": "src/lib/streams/addons.ts",
+      "verdict": "D",
+      "note": "addon wait time ported 4 Nov (uncompiled)"
+    },
+    {
+      "index": 71,
+      "id": "Partial stream results",
+      "desktop_source": "src/lib/streams/addons.ts",
+      "verdict": "D",
+      "note": "progressive results ported 4 Nov (uncompiled)"
+    },
+    {
+      "index": 72,
+      "id": "Addon priority / return index",
+      "desktop_source": "src/lib/streams/addons.ts",
+      "verdict": "D",
+      "note": "stream priority ported 4 Nov (uncompiled)"
+    },
+    {
+      "index": 73,
+      "id": "Stream deduplication",
+      "desktop_source": "src/lib/streams/addons.ts",
+      "verdict": "D",
+      "note": "StreamRequestPolicy dedup and multi-ID requests"
+    },
+    {
+      "index": 74,
+      "id": "Multiple anime / IMDb ID matching",
+      "desktop_source": "src/lib/streams/addons.ts",
+      "verdict": "D",
+      "note": "StreamRequestPolicy dedup and multi-ID requests"
+    },
+    {
+      "index": 75,
+      "id": "Tracker preservation",
+      "desktop_source": "src/lib/streams/addons.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 76,
+      "id": "Stream resolution parsing",
+      "desktop_source": "harbor-core/src/parser.rs",
+      "verdict": "D",
+      "note": "shared Rust parser"
+    },
+    {
+      "index": 77,
+      "id": "HDR / DV parsing",
+      "desktop_source": "harbor-core/src/parser.rs",
+      "verdict": "D",
+      "note": "shared Rust parser"
+    },
+    {
+      "index": 78,
+      "id": "Video codec parsing",
+      "desktop_source": "harbor-core/src/parser.rs",
+      "verdict": "D",
+      "note": "shared Rust parser"
+    },
+    {
+      "index": 79,
+      "id": "Audio codec / channels parsing",
+      "desktop_source": "harbor-core/src/parser.rs",
+      "verdict": "D",
+      "note": "shared Rust parser"
+    },
+    {
+      "index": 80,
+      "id": "Language parsing",
+      "desktop_source": "harbor-core/src/parser.rs",
+      "verdict": "D",
+      "note": "shared Rust parser"
+    },
+    {
+      "index": 81,
+      "id": "File size parsing",
+      "desktop_source": "harbor-core/src/parser.rs",
+      "verdict": "P",
+      "note": "iOS parser lacks Desktop's thousands-separator size parsing"
+    },
+    {
+      "index": 82,
+      "id": "Seeder parsing",
+      "desktop_source": "harbor-core/src/parser.rs",
+      "verdict": "D",
+      "note": "shared Rust parser"
+    },
+    {
+      "index": 83,
+      "id": "Container parsing",
+      "desktop_source": "harbor-core/src/parser.rs",
+      "verdict": "D",
+      "note": "shared Rust parser"
+    },
+    {
+      "index": 84,
+      "id": "Release group parsing",
+      "desktop_source": "harbor-core/src/parser.rs",
+      "verdict": "D",
+      "note": "shared Rust parser"
+    },
+    {
+      "index": 85,
+      "id": "Anime filename parsing",
+      "desktop_source": "harbor-core/src/parser.rs",
+      "verdict": "P",
+      "note": "anitomy enrichment of anime names not ported"
+    },
+    {
+      "index": 86,
+      "id": "Season / episode parsing",
+      "desktop_source": "harbor-core/src/parser.rs",
+      "verdict": "P",
+      "note": "iOS parser lacks Desktop's multi-episode spans (episode_end)"
+    },
+    {
+      "index": 87,
+      "id": "Edition / remux parsing",
+      "desktop_source": "harbor-core/src/parser.rs",
+      "verdict": "D",
+      "note": "shared Rust parser"
+    },
+    {
+      "index": 88,
+      "id": "Trust filtering",
+      "desktop_source": "harbor-core/src/trust.rs",
+      "verdict": "P",
+      "note": "iOS trust.rs is about 219 lines behind Desktop 0.9.132"
+    },
+    {
+      "index": 89,
+      "id": "Fake / stub rejection",
+      "desktop_source": "harbor-core/src/trust.rs",
+      "verdict": "P",
+      "note": "known fake groups and fake studios missing from iOS trust"
+    },
+    {
+      "index": 90,
+      "id": "Title / year mismatch rejection",
+      "desktop_source": "harbor-core/src/trust.rs",
+      "verdict": "P",
+      "note": "anime title gate (expectedTitles) missing from iOS trust"
+    },
+    {
+      "index": 91,
+      "id": "Cinema window heuristics",
+      "desktop_source": "harbor-core/src/trust.rs",
+      "verdict": "P",
+      "note": "fresh-cinema-fake-web check missing from iOS trust"
+    },
+    {
+      "index": 92,
+      "id": "Season pack policy",
+      "desktop_source": "harbor-core/src/trust.rs",
+      "verdict": "D",
+      "note": "shared Rust trust"
+    },
+    {
+      "index": 93,
+      "id": "CAM / TS policy",
+      "desktop_source": "harbor-core/src/trust.rs",
+      "verdict": "D",
+      "note": "shared Rust trust"
+    },
+    {
+      "index": 94,
+      "id": "Preferred language requirement",
+      "desktop_source": "harbor-core/src/trust.rs",
+      "verdict": "M",
+      "note": "preferred languages are not passed to trust"
+    },
+    {
+      "index": 95,
+      "id": "Corpus statistics",
+      "desktop_source": "harbor-core/src/scoring.rs",
+      "verdict": "D",
+      "note": "shared Rust scoring (1-line drift)"
+    },
+    {
+      "index": 96,
+      "id": "Stream scoring reasons",
+      "desktop_source": "harbor-core/src/scoring.rs",
+      "verdict": "D",
+      "note": "shared Rust scoring (1-line drift)"
+    },
+    {
+      "index": 97,
+      "id": "Quality tiers",
+      "desktop_source": "harbor-core/src/scoring.rs",
+      "verdict": "D",
+      "note": "shared Rust scoring (1-line drift)"
+    },
+    {
+      "index": 98,
+      "id": "Cached Debrid ranking",
+      "desktop_source": "harbor-core/src/scoring.rs",
+      "verdict": "D",
+      "note": "shared Rust scoring (1-line drift)"
+    },
+    {
+      "index": 99,
+      "id": "Addon order ranking",
+      "desktop_source": "harbor-core/src/scoring.rs",
+      "verdict": "D",
+      "note": "shared Rust scoring (1-line drift)"
+    },
+    {
+      "index": 100,
+      "id": "Best stream selection",
+      "desktop_source": "harbor-core/src/scoring.rs",
+      "verdict": "D",
+      "note": "shared Rust scoring (1-line drift)"
+    },
+    {
+      "index": 101,
+      "id": "Bandwidth scoring",
+      "desktop_source": "harbor-core/src/scoring.rs",
+      "verdict": "D",
+      "note": "shared Rust scoring (1-line drift)"
+    },
+    {
+      "index": 102,
+      "id": "Preferred language scoring",
+      "desktop_source": "harbor-core/src/scoring.rs",
+      "verdict": "P",
+      "note": "preferred languages are not passed to scoring"
+    },
+    {
+      "index": 103,
+      "id": "Full stream orchestration",
+      "desktop_source": "src/lib/streams/pipeline.ts",
+      "verdict": "D",
+      "note": "streamResults pipeline (uncompiled)"
+    },
+    {
+      "index": 104,
+      "id": "Corroborated early leak rescue",
+      "desktop_source": "src/lib/streams/pipeline.ts",
+      "verdict": "M",
+      "note": "corroborated early-leak rescue (TS side) not ported"
+    },
+    {
+      "index": 105,
+      "id": "Anime stream enrichment",
+      "desktop_source": "src/lib/streams/pipeline.ts",
+      "verdict": "M",
+      "note": "anime stream enrichment not ported"
+    },
+    {
+      "index": 106,
+      "id": "Debrid library merge",
+      "desktop_source": "src/lib/streams/pipeline.ts",
+      "verdict": "M",
+      "note": "streams listed from the debrid library not ported"
+    },
+    {
+      "index": 107,
+      "id": "Direct stream resolution",
+      "desktop_source": "src/lib/streams/resolve.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 108,
+      "id": "Playback request headers",
+      "desktop_source": "src/lib/streams/resolve.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 109,
+      "id": "Embedded addon subtitle URLs",
+      "desktop_source": "src/lib/streams/resolve.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 110,
+      "id": "Debrid resolver fallback",
+      "desktop_source": "src/lib/streams/resolve.ts",
+      "verdict": "D",
+      "note": "DebridStreamResolver (uncompiled)"
+    },
+    {
+      "index": 111,
+      "id": "P2P fallback",
+      "desktop_source": "src/lib/streams/resolve.ts",
+      "verdict": "X",
+      "note": "P2P fallback needs the excluded torrent engine"
+    },
+    {
+      "index": 112,
+      "id": "Stub / error video validation",
+      "desktop_source": "src/lib/streams/resolve.ts",
+      "verdict": "D",
+      "note": "error-clip validation and episode file selection (uncompiled)"
+    },
+    {
+      "index": 113,
+      "id": "Episode torrent file selection",
+      "desktop_source": "src/lib/streams/resolve.ts",
+      "verdict": "D",
+      "note": "error-clip validation and episode file selection (uncompiled)"
+    },
+    {
+      "index": 114,
+      "id": "User committed uncached downloads",
+      "desktop_source": "src/lib/streams/resolve.ts",
+      "verdict": "P",
+      "note": "earlier review Partial; queueing uncached sources missing"
+    },
+    {
+      "index": 115,
+      "id": "External / YouTube / NZB error handling",
+      "desktop_source": "src/lib/streams/resolve.ts",
+      "verdict": "P",
+      "note": "external links open; YouTube/NZB handling incomplete"
+    },
+    {
+      "index": 116,
+      "id": "Real-Debrid account",
+      "desktop_source": "src/lib/debrid/realdebrid.ts",
+      "verdict": "D",
+      "note": "Real-Debrid account, cache, playable link (uncompiled)"
+    },
+    {
+      "index": 117,
+      "id": "Real-Debrid cache checking",
+      "desktop_source": "src/lib/debrid/realdebrid.ts",
+      "verdict": "D",
+      "note": "Real-Debrid account, cache, playable link (uncompiled)"
+    },
+    {
+      "index": 118,
+      "id": "Real-Debrid playable URL",
+      "desktop_source": "src/lib/debrid/realdebrid.ts",
+      "verdict": "D",
+      "note": "Real-Debrid account, cache, playable link (uncompiled)"
+    },
+    {
+      "index": 119,
+      "id": "Real-Debrid library",
+      "desktop_source": "src/lib/debrid/realdebrid.ts",
+      "verdict": "P",
+      "note": "library used for verification only"
+    },
+    {
+      "index": 120,
+      "id": "AllDebrid account",
+      "desktop_source": "src/lib/debrid/alldebrid.ts",
+      "verdict": "D",
+      "note": "AllDebrid (uncompiled)"
+    },
+    {
+      "index": 121,
+      "id": "AllDebrid cache checking",
+      "desktop_source": "src/lib/debrid/alldebrid.ts",
+      "verdict": "D",
+      "note": "AllDebrid (uncompiled)"
+    },
+    {
+      "index": 122,
+      "id": "AllDebrid playable URL",
+      "desktop_source": "src/lib/debrid/alldebrid.ts",
+      "verdict": "D",
+      "note": "AllDebrid (uncompiled)"
+    },
+    {
+      "index": 123,
+      "id": "AllDebrid library",
+      "desktop_source": "src/lib/debrid/alldebrid.ts",
+      "verdict": "P",
+      "note": "library used for verification only"
+    },
+    {
+      "index": 124,
+      "id": "Premiumize account",
+      "desktop_source": "src/lib/debrid/premiumize.ts",
+      "verdict": "D",
+      "note": "Premiumize (uncompiled)"
+    },
+    {
+      "index": 125,
+      "id": "Premiumize cache checking",
+      "desktop_source": "src/lib/debrid/premiumize.ts",
+      "verdict": "D",
+      "note": "Premiumize (uncompiled)"
+    },
+    {
+      "index": 126,
+      "id": "Premiumize playable URL",
+      "desktop_source": "src/lib/debrid/premiumize.ts",
+      "verdict": "D",
+      "note": "Premiumize (uncompiled)"
+    },
+    {
+      "index": 127,
+      "id": "Premiumize library",
+      "desktop_source": "src/lib/debrid/premiumize.ts",
+      "verdict": "P",
+      "note": "library used for verification only"
+    },
+    {
+      "index": 128,
+      "id": "TorBox account",
+      "desktop_source": "src/lib/debrid/torbox.ts",
+      "verdict": "D",
+      "note": "TorBox (uncompiled)"
+    },
+    {
+      "index": 129,
+      "id": "TorBox cache checking",
+      "desktop_source": "src/lib/debrid/torbox.ts",
+      "verdict": "D",
+      "note": "TorBox (uncompiled)"
+    },
+    {
+      "index": 130,
+      "id": "TorBox playable URL",
+      "desktop_source": "src/lib/debrid/torbox.ts",
+      "verdict": "D",
+      "note": "TorBox (uncompiled)"
+    },
+    {
+      "index": 131,
+      "id": "TorBox library",
+      "desktop_source": "src/lib/debrid/torbox.ts",
+      "verdict": "P",
+      "note": "library used for verification only"
+    },
+    {
+      "index": 132,
+      "id": "Debrid-Link account",
+      "desktop_source": "src/lib/debrid/debridlink.ts",
+      "verdict": "D",
+      "note": "Debrid-Link (uncompiled)"
+    },
+    {
+      "index": 133,
+      "id": "Debrid-Link cache checking",
+      "desktop_source": "src/lib/debrid/debridlink.ts",
+      "verdict": "D",
+      "note": "Debrid-Link (uncompiled)"
+    },
+    {
+      "index": 134,
+      "id": "Debrid-Link playable URL",
+      "desktop_source": "src/lib/debrid/debridlink.ts",
+      "verdict": "D",
+      "note": "Debrid-Link (uncompiled)"
+    },
+    {
+      "index": 135,
+      "id": "Debrid-Link library",
+      "desktop_source": "src/lib/debrid/debridlink.ts",
+      "verdict": "P",
+      "note": "library used for verification only"
+    },
+    {
+      "index": 136,
+      "id": "Local P2P torrent engine",
+      "desktop_source": "src-tauri/src/torrent_engine.rs",
+      "verdict": "X",
+      "note": "local torrent engine and LAN server excluded (background sockets)"
+    },
+    {
+      "index": 137,
+      "id": "DHT / tracker peer discovery",
+      "desktop_source": "src-tauri/src/torrent_engine.rs",
+      "verdict": "X",
+      "note": "local torrent engine and LAN server excluded (background sockets)"
+    },
+    {
+      "index": 138,
+      "id": "Torrent file selection",
+      "desktop_source": "src-tauri/src/torrent_engine.rs",
+      "verdict": "X",
+      "note": "local torrent engine and LAN server excluded (background sockets)"
+    },
+    {
+      "index": 139,
+      "id": "Torrent cache retention",
+      "desktop_source": "src-tauri/src/torrent_engine.rs",
+      "verdict": "X",
+      "note": "local torrent engine and LAN server excluded (background sockets)"
+    },
+    {
+      "index": 140,
+      "id": "Torrent cache size controls",
+      "desktop_source": "src-tauri/src/torrent_engine.rs",
+      "verdict": "X",
+      "note": "local torrent engine and LAN server excluded (background sockets)"
+    },
+    {
+      "index": 141,
+      "id": "Torrent statistics",
+      "desktop_source": "src-tauri/src/torrent_engine.rs",
+      "verdict": "X",
+      "note": "local torrent engine and LAN server excluded (background sockets)"
+    },
+    {
+      "index": 142,
+      "id": "Torrent engine selftest",
+      "desktop_source": "src-tauri/src/torrent_engine.rs",
+      "verdict": "X",
+      "note": "local torrent engine and LAN server excluded (background sockets)"
+    },
+    {
+      "index": 143,
+      "id": "Torrent restart / hard reset",
+      "desktop_source": "src-tauri/src/torrent_engine.rs",
+      "verdict": "X",
+      "note": "local torrent engine and LAN server excluded (background sockets)"
+    },
+    {
+      "index": 144,
+      "id": "LAN stream server",
+      "desktop_source": "src-tauri/src/torrent_engine.rs",
+      "verdict": "X",
+      "note": "local torrent engine and LAN server excluded (background sockets)"
+    },
+    {
+      "index": 145,
+      "id": "Local torrent HTTP streaming",
+      "desktop_source": "src-tauri/src/torrent_engine/stream_route.rs",
+      "verdict": "X",
+      "note": "local torrent engine and LAN server excluded (background sockets)"
+    },
+    {
+      "index": 146,
+      "id": "Byte ranges / HEAD",
+      "desktop_source": "src-tauri/src/torrent_engine/stream_route.rs",
+      "verdict": "X",
+      "note": "local torrent engine and LAN server excluded (background sockets)"
+    },
+    {
+      "index": 147,
+      "id": "Stremio compatible torrent create route",
+      "desktop_source": "src-tauri/src/torrent_engine/stream_route.rs",
+      "verdict": "X",
+      "note": "local torrent engine and LAN server excluded (background sockets)"
+    },
+    {
+      "index": 148,
+      "id": "Remote engine file listing",
+      "desktop_source": "src-tauri/src/torrent_engine/stream_route.rs",
+      "verdict": "X",
+      "note": "local torrent engine and LAN server excluded (background sockets)"
+    },
+    {
+      "index": 149,
+      "id": "Remote streaming server",
+      "desktop_source": "src/lib/stremio-server.ts",
+      "verdict": "M",
+      "note": "remote Stremio streaming server not ported"
+    },
+    {
+      "index": 150,
+      "id": "Strict remote server policy",
+      "desktop_source": "src/lib/stremio-server.ts",
+      "verdict": "M",
+      "note": "remote Stremio streaming server not ported"
+    },
+    {
+      "index": 151,
+      "id": "Transcode URL generation",
+      "desktop_source": "src/lib/stremio-server.ts",
+      "verdict": "M",
+      "note": "remote Stremio streaming server not ported"
+    },
+    {
+      "index": 152,
+      "id": "Streaming server health",
+      "desktop_source": "src/lib/stremio-server.ts",
+      "verdict": "M",
+      "note": "remote Stremio streaming server not ported"
+    },
+    {
+      "index": 153,
+      "id": "Full torrent download",
+      "desktop_source": "src/lib/torrent/full-download.ts",
+      "verdict": "X",
+      "note": "full torrent download needs the excluded engine"
+    },
+    {
+      "index": 154,
+      "id": "Native libmpv playback",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "D",
+      "note": "libmpv playback, seek, speed, volume, tracks, chapters, hwdec"
+    },
+    {
+      "index": 155,
+      "id": "Load real media URL",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "D",
+      "note": "libmpv playback, seek, speed, volume, tracks, chapters, hwdec"
+    },
+    {
+      "index": 156,
+      "id": "Play / pause",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "D",
+      "note": "libmpv playback, seek, speed, volume, tracks, chapters, hwdec"
+    },
+    {
+      "index": 157,
+      "id": "Seek",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "D",
+      "note": "libmpv playback, seek, speed, volume, tracks, chapters, hwdec"
+    },
+    {
+      "index": 158,
+      "id": "Speed",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "D",
+      "note": "libmpv playback, seek, speed, volume, tracks, chapters, hwdec"
+    },
+    {
+      "index": 159,
+      "id": "Player volume / mute",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "D",
+      "note": "libmpv playback, seek, speed, volume, tracks, chapters, hwdec"
+    },
+    {
+      "index": 160,
+      "id": "Audio track selection",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "D",
+      "note": "libmpv playback, seek, speed, volume, tracks, chapters, hwdec"
+    },
+    {
+      "index": 161,
+      "id": "Subtitle track selection",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "D",
+      "note": "libmpv playback, seek, speed, volume, tracks, chapters, hwdec"
+    },
+    {
+      "index": 162,
+      "id": "Chapters",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "D",
+      "note": "libmpv playback, seek, speed, volume, tracks, chapters, hwdec"
+    },
+    {
+      "index": 163,
+      "id": "Hardware decoding",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "D",
+      "note": "libmpv playback, seek, speed, volume, tracks, chapters, hwdec"
+    },
+    {
+      "index": 164,
+      "id": "HDR / tonemapping",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "P",
+      "note": "tone mapping options only"
+    },
+    {
+      "index": 165,
+      "id": "Playback state events",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "D",
+      "note": "playback events, audio and subtitle delay"
+    },
+    {
+      "index": 166,
+      "id": "Audio delay",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "D",
+      "note": "playback events, audio and subtitle delay"
+    },
+    {
+      "index": 167,
+      "id": "Subtitle delay",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "D",
+      "note": "playback events, audio and subtitle delay"
+    },
+    {
+      "index": 168,
+      "id": "Screenshot / frame grab",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "M",
+      "note": "no screenshot, no advanced mpv properties"
+    },
+    {
+      "index": 169,
+      "id": "Advanced mpv properties",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "M",
+      "note": "no screenshot, no advanced mpv properties"
+    },
+    {
+      "index": 170,
+      "id": "Separate player window",
+      "desktop_source": "src-tauri/src/mpv.rs",
+      "verdict": "X",
+      "note": "separate player window is desktop windowing"
+    },
+    {
+      "index": 171,
+      "id": "Resume prompt",
+      "desktop_source": "src/lib/player",
+      "verdict": "D",
+      "note": "PlayerResumePrompt"
+    },
+    {
+      "index": 172,
+      "id": "Subtitle styling",
+      "desktop_source": "src/lib/player",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 173,
+      "id": "Dual subtitle tracks",
+      "desktop_source": "src/lib/player",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 174,
+      "id": "Custom subtitle fonts",
+      "desktop_source": "src/lib/player",
+      "verdict": "P",
+      "note": "subtitle font choice; no custom subtitle fonts"
+    },
+    {
+      "index": 175,
+      "id": "Playback audio filters",
+      "desktop_source": "src/lib/player",
+      "verdict": "M",
+      "note": "no playback audio filters"
+    },
+    {
+      "index": 176,
+      "id": "RTX HDR policy",
+      "desktop_source": "src/lib/player",
+      "verdict": "X",
+      "note": "RTX HDR needs an NVIDIA Windows driver"
+    },
+    {
+      "index": 177,
+      "id": "Player resilience / errors",
+      "desktop_source": "src/lib/player",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 178,
+      "id": "Motion interpolation policies",
+      "desktop_source": "src/lib/player",
+      "verdict": "M",
+      "note": "no motion interpolation"
+    },
+    {
+      "index": 179,
+      "id": "Touch-equivalent transport controls",
+      "desktop_source": "src/components/player",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 180,
+      "id": "Stream switcher",
+      "desktop_source": "src/components/player",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 181,
+      "id": "Next / previous episode",
+      "desktop_source": "src/components/player",
+      "verdict": "D",
+      "note": "next episode and auto advance"
+    },
+    {
+      "index": 182,
+      "id": "Auto advance",
+      "desktop_source": "src/components/player",
+      "verdict": "D",
+      "note": "next episode and auto advance"
+    },
+    {
+      "index": 183,
+      "id": "A/B loop",
+      "desktop_source": "src/components/player",
+      "verdict": "M",
+      "note": "no A/B loop, sleep timer or stats overlay"
+    },
+    {
+      "index": 184,
+      "id": "Sleep timer",
+      "desktop_source": "src/components/player",
+      "verdict": "M",
+      "note": "no A/B loop, sleep timer or stats overlay"
+    },
+    {
+      "index": 185,
+      "id": "Stats overlay",
+      "desktop_source": "src/components/player",
+      "verdict": "M",
+      "note": "no A/B loop, sleep timer or stats overlay"
+    },
+    {
+      "index": 186,
+      "id": "Custom seek bar",
+      "desktop_source": "src/components/player",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 187,
+      "id": "Player chrome customization",
+      "desktop_source": "src/components/player",
+      "verdict": "M",
+      "note": "no player chrome customization"
+    },
+    {
+      "index": 188,
+      "id": "Player episode panel",
+      "desktop_source": "src/components/player",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 189,
+      "id": "GIF recording",
+      "desktop_source": "src/components/player",
+      "verdict": "M",
+      "note": "no GIF recording or local episode chooser"
+    },
+    {
+      "index": 190,
+      "id": "Local episode chooser",
+      "desktop_source": "src/components/player",
+      "verdict": "M",
+      "note": "no GIF recording or local episode chooser"
+    },
+    {
+      "index": 191,
+      "id": "Anime4K shaders",
+      "desktop_source": "src-tauri/src/anime4k.rs",
+      "verdict": "M",
+      "note": "no Anime4K shaders"
+    },
+    {
+      "index": 192,
+      "id": "AniSkip intro / outro",
+      "desktop_source": "src/lib/skip-intro",
+      "verdict": "D",
+      "note": "AniSkip, TheIntroDB, chapter skips in SkipIntroService"
+    },
+    {
+      "index": 193,
+      "id": "TheIntroDB intro / recap",
+      "desktop_source": "src/lib/skip-intro",
+      "verdict": "D",
+      "note": "AniSkip, TheIntroDB, chapter skips in SkipIntroService"
+    },
+    {
+      "index": 194,
+      "id": "Chapter based skipping",
+      "desktop_source": "src/lib/skip-intro",
+      "verdict": "D",
+      "note": "AniSkip, TheIntroDB, chapter skips in SkipIntroService"
+    },
+    {
+      "index": 195,
+      "id": "Ad corpus / fingerprint skip",
+      "desktop_source": "src/lib/skip-intro",
+      "verdict": "M",
+      "note": "no ad corpus skip"
+    },
+    {
+      "index": 196,
+      "id": "External SRT",
+      "desktop_source": "src/lib/subtitles",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 197,
+      "id": "External ASS / SSA",
+      "desktop_source": "src/lib/subtitles",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 198,
+      "id": "External WebVTT",
+      "desktop_source": "src/lib/subtitles",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 199,
+      "id": "Subtitle encoding detection",
+      "desktop_source": "src/lib/subtitles",
+      "verdict": "P",
+      "note": "encoding handling in SubtitleFileService"
+    },
+    {
+      "index": 200,
+      "id": "Subtitle addon requests",
+      "desktop_source": "src/lib/subtitles",
+      "verdict": "D",
+      "note": "SubtitleAddonService"
+    },
+    {
+      "index": 201,
+      "id": "Subtitle ranking / dedupe",
+      "desktop_source": "src/lib/subtitles",
+      "verdict": "P",
+      "note": "no Desktop subtitle ranking/dedupe"
+    },
+    {
+      "index": 202,
+      "id": "SDH / forced flags",
+      "desktop_source": "src/lib/subtitles",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 203,
+      "id": "Subtitle text resync",
+      "desktop_source": "src/lib/subtitles",
+      "verdict": "P",
+      "note": "SubtitleAutoSync"
+    },
+    {
+      "index": 204,
+      "id": "OpenSubtitles v3",
+      "desktop_source": "src/lib/subtitles",
+      "verdict": "P",
+      "note": "OpenSubtitles through addons only"
+    },
+    {
+      "index": 205,
+      "id": "Wyzie subtitles",
+      "desktop_source": "src/lib/subtitles",
+      "verdict": "M",
+      "note": "no Wyzie"
+    },
+    {
+      "index": 206,
+      "id": "Audio correlation subtitle sync",
+      "desktop_source": "src-tauri/src/subsync",
+      "verdict": "P",
+      "note": "SubtitleAutoSync; embedded tracks via mpv"
+    },
+    {
+      "index": 207,
+      "id": "Subtitle track extraction",
+      "desktop_source": "src-tauri/src/sub_extract.rs",
+      "verdict": "P",
+      "note": "SubtitleAutoSync; embedded tracks via mpv"
+    },
+    {
+      "index": 208,
+      "id": "Picture in Picture",
+      "desktop_source": "src-tauri/src/pip.rs",
+      "verdict": "D",
+      "note": "MPVPictureInPicture"
+    },
+    {
+      "index": 209,
+      "id": "Trickplay seeking previews",
+      "desktop_source": "src-tauri/src/thumbs.rs",
+      "verdict": "M",
+      "note": "no trickplay previews"
+    },
+    {
+      "index": 210,
+      "id": "Shadow mpv thumbnail session",
+      "desktop_source": "src-tauri/src/thumbs.rs",
+      "verdict": "M",
+      "note": "no trickplay previews"
+    },
+    {
+      "index": 211,
+      "id": "YouTube trailer resolution",
+      "desktop_source": "src-tauri/src/trailer.rs",
+      "verdict": "P",
+      "note": "addon trailers; no YouTube resolution in app"
+    },
+    {
+      "index": 212,
+      "id": "Trailer download / merge",
+      "desktop_source": "src-tauri/src/trailer.rs",
+      "verdict": "M",
+      "note": "no trailer download, quality or cache"
+    },
+    {
+      "index": 213,
+      "id": "Trailer quality and cache",
+      "desktop_source": "src-tauri/src/trailer.rs",
+      "verdict": "M",
+      "note": "no trailer download, quality or cache"
+    },
+    {
+      "index": 214,
+      "id": "Media download",
+      "desktop_source": "src-tauri/src/download.rs",
+      "verdict": "D",
+      "note": "DownloadManager"
+    },
+    {
+      "index": 215,
+      "id": "Resumable range download",
+      "desktop_source": "src-tauri/src/download.rs",
+      "verdict": "D",
+      "note": "DownloadManager"
+    },
+    {
+      "index": 216,
+      "id": "Download progress / cancellation",
+      "desktop_source": "src-tauri/src/download.rs",
+      "verdict": "D",
+      "note": "DownloadManager"
+    },
+    {
+      "index": 217,
+      "id": "M3U import",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 218,
+      "id": "Xtream credentials",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 219,
+      "id": "XMLTV EPG",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "P",
+      "note": "Xtream short EPG; no XMLTV guide"
+    },
+    {
+      "index": 220,
+      "id": "Live channel catalogs",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 221,
+      "id": "Channel categories",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 222,
+      "id": "Live favorites",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 223,
+      "id": "Live text search",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 224,
+      "id": "Region top networks",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "M",
+      "note": "no region top networks"
+    },
+    {
+      "index": 225,
+      "id": "Live catchup",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "P",
+      "note": "catch-up fields parsed"
+    },
+    {
+      "index": 226,
+      "id": "Xtream VOD movies",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 227,
+      "id": "Xtream VOD series",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 228,
+      "id": "Playlist export",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "M",
+      "note": "no playlist export"
+    },
+    {
+      "index": 229,
+      "id": "Persistent IPTV cache",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 230,
+      "id": "Channel headers",
+      "desktop_source": "src/lib/iptv",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 231,
+      "id": "Scheduled DVR",
+      "desktop_source": "src-tauri/src/dvr.rs",
+      "verdict": "M",
+      "note": "DVR and multiview not ported (feasibility undecided)"
+    },
+    {
+      "index": 232,
+      "id": "Active recordings",
+      "desktop_source": "src-tauri/src/dvr.rs",
+      "verdict": "M",
+      "note": "DVR and multiview not ported (feasibility undecided)"
+    },
+    {
+      "index": 233,
+      "id": "Recording directory",
+      "desktop_source": "src-tauri/src/dvr.rs",
+      "verdict": "M",
+      "note": "DVR and multiview not ported (feasibility undecided)"
+    },
+    {
+      "index": 234,
+      "id": "DVR stop / delete",
+      "desktop_source": "src-tauri/src/dvr.rs",
+      "verdict": "M",
+      "note": "DVR and multiview not ported (feasibility undecided)"
+    },
+    {
+      "index": 235,
+      "id": "Multiview",
+      "desktop_source": "src-tauri/src/multiview.rs",
+      "verdict": "M",
+      "note": "DVR and multiview not ported (feasibility undecided)"
+    },
+    {
+      "index": 236,
+      "id": "Per tile audio focus",
+      "desktop_source": "src-tauri/src/multiview.rs",
+      "verdict": "M",
+      "note": "DVR and multiview not ported (feasibility undecided)"
+    },
+    {
+      "index": 237,
+      "id": "Multiview geometry",
+      "desktop_source": "src-tauri/src/multiview.rs",
+      "verdict": "M",
+      "note": "DVR and multiview not ported (feasibility undecided)"
+    },
+    {
+      "index": 238,
+      "id": "Live reconnect",
+      "desktop_source": "src-tauri/src/multiview.rs",
+      "verdict": "M",
+      "note": "no live reconnect policy"
+    },
+    {
+      "index": 239,
+      "id": "Chromecast discovery / playback",
+      "desktop_source": "src-tauri/src/cast.rs",
+      "verdict": "M",
+      "note": "no Chromecast or DLNA"
+    },
+    {
+      "index": 240,
+      "id": "Cast control",
+      "desktop_source": "src-tauri/src/cast.rs",
+      "verdict": "M",
+      "note": "no Chromecast or DLNA"
+    },
+    {
+      "index": 241,
+      "id": "Resume locally after cast",
+      "desktop_source": "src-tauri/src/cast.rs",
+      "verdict": "M",
+      "note": "no Chromecast or DLNA"
+    },
+    {
+      "index": 242,
+      "id": "DLNA discovery",
+      "desktop_source": "src-tauri/src/dlna.rs",
+      "verdict": "M",
+      "note": "no Chromecast or DLNA"
+    },
+    {
+      "index": 243,
+      "id": "DLNA vendor capabilities",
+      "desktop_source": "src-tauri/src/dlna.rs",
+      "verdict": "M",
+      "note": "no Chromecast or DLNA"
+    },
+    {
+      "index": 244,
+      "id": "DLNA transport controls",
+      "desktop_source": "src-tauri/src/dlna.rs",
+      "verdict": "M",
+      "note": "no Chromecast or DLNA"
+    },
+    {
+      "index": 245,
+      "id": "AirPlay legacy discovery / playback",
+      "desktop_source": "src-tauri/src/airplay.rs",
+      "verdict": "P",
+      "note": "AirPlay route picker for audio; no video casting flow"
+    },
+    {
+      "index": 246,
+      "id": "Roku discovery / playback",
+      "desktop_source": "src-tauri/src/roku.rs",
+      "verdict": "M",
+      "note": "no Roku or cast transcoding/subtitles"
+    },
+    {
+      "index": 247,
+      "id": "Cast HLS transcoding",
+      "desktop_source": "src-tauri/src/cast_hls.rs",
+      "verdict": "M",
+      "note": "no Roku or cast transcoding/subtitles"
+    },
+    {
+      "index": 248,
+      "id": "Receiver compatible re-encode",
+      "desktop_source": "src-tauri/src/cast_hls.rs",
+      "verdict": "M",
+      "note": "no Roku or cast transcoding/subtitles"
+    },
+    {
+      "index": 249,
+      "id": "Cast subtitle conversion / serving",
+      "desktop_source": "src-tauri/src/cast_subs.rs",
+      "verdict": "M",
+      "note": "no Roku or cast transcoding/subtitles"
+    },
+    {
+      "index": 250,
+      "id": "Watch party create / join",
+      "desktop_source": "src/lib/together",
+      "verdict": "M",
+      "note": "Watch Together and relay not ported"
+    },
+    {
+      "index": 251,
+      "id": "Room invite links",
+      "desktop_source": "src/lib/together",
+      "verdict": "M",
+      "note": "Watch Together and relay not ported"
+    },
+    {
+      "index": 252,
+      "id": "Clock aligned playback sync",
+      "desktop_source": "src/lib/together",
+      "verdict": "M",
+      "note": "Watch Together and relay not ported"
+    },
+    {
+      "index": 253,
+      "id": "Together chat",
+      "desktop_source": "src/lib/together",
+      "verdict": "M",
+      "note": "Watch Together and relay not ported"
+    },
+    {
+      "index": 254,
+      "id": "On-screen cursors",
+      "desktop_source": "src/lib/together",
+      "verdict": "M",
+      "note": "Watch Together and relay not ported"
+    },
+    {
+      "index": 255,
+      "id": "Collaborative drawing",
+      "desktop_source": "src/lib/together",
+      "verdict": "M",
+      "note": "Watch Together and relay not ported"
+    },
+    {
+      "index": 256,
+      "id": "Host summon / invite",
+      "desktop_source": "src/lib/together",
+      "verdict": "M",
+      "note": "Watch Together and relay not ported"
+    },
+    {
+      "index": 257,
+      "id": "Source matching",
+      "desktop_source": "src/lib/together",
+      "verdict": "M",
+      "note": "Watch Together and relay not ported"
+    },
+    {
+      "index": 258,
+      "id": "Self-hosted relay",
+      "desktop_source": "src/lib/together",
+      "verdict": "M",
+      "note": "Watch Together and relay not ported"
+    },
+    {
+      "index": 259,
+      "id": "Cloudflare relay deploy / check / delete",
+      "desktop_source": "src-tauri/src/cf_relay.rs",
+      "verdict": "M",
+      "note": "Watch Together and relay not ported"
+    },
+    {
+      "index": 260,
+      "id": "Stremio login / logout",
+      "desktop_source": "src/lib/stremio.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 261,
+      "id": "Stremio user profile",
+      "desktop_source": "src/lib/stremio.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 262,
+      "id": "Cloud library",
+      "desktop_source": "src/lib/stremio.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 263,
+      "id": "Cloud bookmark add / remove",
+      "desktop_source": "src/lib/stremio.ts",
+      "verdict": "D",
+      "note": "library add/remove and progress writes (LibraryWriteQueue)"
+    },
+    {
+      "index": 264,
+      "id": "Cloud progress persistence",
+      "desktop_source": "src/lib/stremio.ts",
+      "verdict": "D",
+      "note": "library add/remove and progress writes (LibraryWriteQueue)"
+    },
+    {
+      "index": 265,
+      "id": "Stremio library repair",
+      "desktop_source": "src/lib/stremio-library-repair.ts",
+      "verdict": "M",
+      "note": "no library repair"
+    },
+    {
+      "index": 266,
+      "id": "Continue Watching merge",
+      "desktop_source": "src/lib/continue-watching.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 267,
+      "id": "Local playback resume",
+      "desktop_source": "src/lib/resume.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 268,
+      "id": "Playback history",
+      "desktop_source": "src/lib/playback-history.ts",
+      "verdict": "D",
+      "note": "LibraryHistory"
+    },
+    {
+      "index": 269,
+      "id": "Watchlist",
+      "desktop_source": "src/lib/watchlist.ts",
+      "verdict": "P",
+      "note": "watchlist through trackers and library"
+    },
+    {
+      "index": 270,
+      "id": "Manual watched state",
+      "desktop_source": "src/lib/mark-watched.ts",
+      "verdict": "D",
+      "note": "ManualWatchedSelection"
+    },
+    {
+      "index": 271,
+      "id": "Local file library scanning",
+      "desktop_source": "src-tauri/src/local_lib.rs",
+      "verdict": "M",
+      "note": "no local video library"
+    },
+    {
+      "index": 272,
+      "id": "Local media import",
+      "desktop_source": "src-tauri/src/local_lib.rs",
+      "verdict": "M",
+      "note": "no local video library"
+    },
+    {
+      "index": 273,
+      "id": "Local episode discovery",
+      "desktop_source": "src-tauri/src/local_lib.rs",
+      "verdict": "M",
+      "note": "no local video library"
+    },
+    {
+      "index": 274,
+      "id": "Trakt device login",
+      "desktop_source": "src/lib/trakt",
+      "verdict": "D",
+      "note": "Trakt login, refresh, profile, history, watchlist"
+    },
+    {
+      "index": 275,
+      "id": "Trakt token refresh",
+      "desktop_source": "src/lib/trakt",
+      "verdict": "D",
+      "note": "Trakt login, refresh, profile, history, watchlist"
+    },
+    {
+      "index": 276,
+      "id": "Trakt profile",
+      "desktop_source": "src/lib/trakt",
+      "verdict": "D",
+      "note": "Trakt login, refresh, profile, history, watchlist"
+    },
+    {
+      "index": 277,
+      "id": "Trakt history sync",
+      "desktop_source": "src/lib/trakt",
+      "verdict": "D",
+      "note": "Trakt login, refresh, profile, history, watchlist"
+    },
+    {
+      "index": 278,
+      "id": "Trakt watchlist",
+      "desktop_source": "src/lib/trakt",
+      "verdict": "D",
+      "note": "Trakt login, refresh, profile, history, watchlist"
+    },
+    {
+      "index": 279,
+      "id": "Trakt watchlist import / export",
+      "desktop_source": "src/lib/trakt",
+      "verdict": "P",
+      "note": "Trakt import/export, lists, recommendations partial"
+    },
+    {
+      "index": 280,
+      "id": "Trakt lists",
+      "desktop_source": "src/lib/trakt",
+      "verdict": "P",
+      "note": "Trakt import/export, lists, recommendations partial"
+    },
+    {
+      "index": 281,
+      "id": "Trakt recommendations",
+      "desktop_source": "src/lib/trakt",
+      "verdict": "P",
+      "note": "Trakt import/export, lists, recommendations partial"
+    },
+    {
+      "index": 282,
+      "id": "Trakt scrobble",
+      "desktop_source": "src/lib/trakt",
+      "verdict": "D",
+      "note": "TraktPlaybackTracking"
+    },
+    {
+      "index": 283,
+      "id": "Trakt calendar",
+      "desktop_source": "src/lib/trakt",
+      "verdict": "P",
+      "note": "Trakt calendar in TraktHome"
+    },
+    {
+      "index": 284,
+      "id": "Trakt comments",
+      "desktop_source": "src/lib/trakt",
+      "verdict": "M",
+      "note": "no Trakt comments"
+    },
+    {
+      "index": 285,
+      "id": "AniList login",
+      "desktop_source": "src/lib/anilist",
+      "verdict": "M",
+      "note": "AniList and MyAnimeList accounts not ported"
+    },
+    {
+      "index": 286,
+      "id": "AniList watched sync",
+      "desktop_source": "src/lib/anilist",
+      "verdict": "M",
+      "note": "AniList and MyAnimeList accounts not ported"
+    },
+    {
+      "index": 287,
+      "id": "AniList lists",
+      "desktop_source": "src/lib/anilist",
+      "verdict": "M",
+      "note": "AniList and MyAnimeList accounts not ported"
+    },
+    {
+      "index": 288,
+      "id": "AniList recommendations",
+      "desktop_source": "src/lib/anilist",
+      "verdict": "M",
+      "note": "AniList and MyAnimeList accounts not ported"
+    },
+    {
+      "index": 289,
+      "id": "AniList profile / avatar",
+      "desktop_source": "src/lib/anilist",
+      "verdict": "M",
+      "note": "AniList and MyAnimeList accounts not ported"
+    },
+    {
+      "index": 290,
+      "id": "AniList relations / threads",
+      "desktop_source": "src/lib/anilist",
+      "verdict": "M",
+      "note": "AniList and MyAnimeList accounts not ported"
+    },
+    {
+      "index": 291,
+      "id": "MyAnimeList login",
+      "desktop_source": "src/lib/mal",
+      "verdict": "M",
+      "note": "AniList and MyAnimeList accounts not ported"
+    },
+    {
+      "index": 292,
+      "id": "MAL profile",
+      "desktop_source": "src/lib/mal",
+      "verdict": "M",
+      "note": "AniList and MyAnimeList accounts not ported"
+    },
+    {
+      "index": 293,
+      "id": "MAL lists",
+      "desktop_source": "src/lib/mal",
+      "verdict": "M",
+      "note": "AniList and MyAnimeList accounts not ported"
+    },
+    {
+      "index": 294,
+      "id": "MAL watched sync",
+      "desktop_source": "src/lib/mal",
+      "verdict": "M",
+      "note": "AniList and MyAnimeList accounts not ported"
+    },
+    {
+      "index": 295,
+      "id": "Simkl device login",
+      "desktop_source": "src/lib/simkl",
+      "verdict": "D",
+      "note": "Simkl login, history, watchlist, scrobble"
+    },
+    {
+      "index": 296,
+      "id": "Simkl history",
+      "desktop_source": "src/lib/simkl",
+      "verdict": "D",
+      "note": "Simkl login, history, watchlist, scrobble"
+    },
+    {
+      "index": 297,
+      "id": "Simkl watchlist",
+      "desktop_source": "src/lib/simkl",
+      "verdict": "D",
+      "note": "Simkl login, history, watchlist, scrobble"
+    },
+    {
+      "index": 298,
+      "id": "Simkl scrobble",
+      "desktop_source": "src/lib/simkl",
+      "verdict": "D",
+      "note": "Simkl login, history, watchlist, scrobble"
+    },
+    {
+      "index": 299,
+      "id": "Simkl calendar",
+      "desktop_source": "src/lib/simkl",
+      "verdict": "P",
+      "note": "Simkl calendar, ratings, anime grouping partial"
+    },
+    {
+      "index": 300,
+      "id": "Simkl user ratings",
+      "desktop_source": "src/lib/simkl",
+      "verdict": "P",
+      "note": "Simkl calendar, ratings, anime grouping partial"
+    },
+    {
+      "index": 301,
+      "id": "Simkl anime grouping",
+      "desktop_source": "src/lib/simkl",
+      "verdict": "P",
+      "note": "Simkl calendar, ratings, anime grouping partial"
+    },
+    {
+      "index": 302,
+      "id": "Letterboxd / Stremboxd session",
+      "desktop_source": "src/lib/stremboxd",
+      "verdict": "M",
+      "note": "Letterboxd not ported"
+    },
+    {
+      "index": 303,
+      "id": "Letterboxd home rails",
+      "desktop_source": "src/lib/stremboxd",
+      "verdict": "M",
+      "note": "Letterboxd not ported"
+    },
+    {
+      "index": 304,
+      "id": "Letterboxd catalog integration",
+      "desktop_source": "src/lib/stremboxd",
+      "verdict": "M",
+      "note": "Letterboxd not ported"
+    },
+    {
+      "index": 305,
+      "id": "Cinemeta metadata",
+      "desktop_source": "src/lib/providers",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 306,
+      "id": "TMDB catalog / metadata",
+      "desktop_source": "src/lib/providers",
+      "verdict": "D",
+      "note": "TMDBService, MovieCollection, IMDb resolution"
+    },
+    {
+      "index": 307,
+      "id": "TMDB cast / crew / collections",
+      "desktop_source": "src/lib/providers",
+      "verdict": "D",
+      "note": "TMDBService, MovieCollection, IMDb resolution"
+    },
+    {
+      "index": 308,
+      "id": "TMDB IMDb ID resolution",
+      "desktop_source": "src/lib/providers",
+      "verdict": "D",
+      "note": "TMDBService, MovieCollection, IMDb resolution"
+    },
+    {
+      "index": 309,
+      "id": "TMDB images / trailers / providers",
+      "desktop_source": "src/lib/providers",
+      "verdict": "P",
+      "note": "TMDB images and trailers; no watch providers"
+    },
+    {
+      "index": 310,
+      "id": "OMDB ratings and budget",
+      "desktop_source": "src/lib/providers",
+      "verdict": "M",
+      "note": "no OMDB, RPDB, Fanart or MDBList"
+    },
+    {
+      "index": 311,
+      "id": "RPDB rated posters",
+      "desktop_source": "src/lib/providers",
+      "verdict": "M",
+      "note": "no OMDB, RPDB, Fanart or MDBList"
+    },
+    {
+      "index": 312,
+      "id": "Fanart artwork",
+      "desktop_source": "src/lib/providers",
+      "verdict": "M",
+      "note": "no OMDB, RPDB, Fanart or MDBList"
+    },
+    {
+      "index": 313,
+      "id": "MDBList ratings",
+      "desktop_source": "src/lib/providers",
+      "verdict": "M",
+      "note": "no OMDB, RPDB, Fanart or MDBList"
+    },
+    {
+      "index": 314,
+      "id": "Wikidata awards / people",
+      "desktop_source": "src/lib/providers",
+      "verdict": "M",
+      "note": "Wikidata used for music/books only"
+    },
+    {
+      "index": 315,
+      "id": "TVDB metadata / IDs",
+      "desktop_source": "src/lib/providers",
+      "verdict": "D",
+      "note": "TVDBService"
+    },
+    {
+      "index": 316,
+      "id": "TVMaze schedules",
+      "desktop_source": "src/lib/providers",
+      "verdict": "M",
+      "note": "no TVMaze"
+    },
+    {
+      "index": 317,
+      "id": "Kitsu anime / episodes",
+      "desktop_source": "src/lib/providers",
+      "verdict": "D",
+      "note": "Kitsu (AnimeService), AniZip mappings"
+    },
+    {
+      "index": 318,
+      "id": "AniZip mappings",
+      "desktop_source": "src/lib/providers",
+      "verdict": "D",
+      "note": "Kitsu (AnimeService), AniZip mappings"
+    },
+    {
+      "index": 319,
+      "id": "Jikan MAL ratings",
+      "desktop_source": "src/lib/providers",
+      "verdict": "P",
+      "note": "Jikan in AnimeService"
+    },
+    {
+      "index": 320,
+      "id": "Release Calendar",
+      "desktop_source": "src/lib/calendar.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 321,
+      "id": "Calendar source filters",
+      "desktop_source": "src/lib/calendar.ts",
+      "verdict": "M",
+      "note": "no calendar source filters"
+    },
+    {
+      "index": 322,
+      "id": "Library release calendar",
+      "desktop_source": "src/lib/calendar.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 323,
+      "id": "Custom lists",
+      "desktop_source": "src/lib/custom-lists.ts",
+      "verdict": "D",
+      "note": "CustomListStore"
+    },
+    {
+      "index": 324,
+      "id": "Multiple profiles",
+      "desktop_source": "src/lib/profiles.tsx",
+      "verdict": "D",
+      "note": "household profiles, switching, per-profile settings, identity sync"
+    },
+    {
+      "index": 325,
+      "id": "Profile switching",
+      "desktop_source": "src/lib/profiles.tsx",
+      "verdict": "D",
+      "note": "household profiles, switching, per-profile settings, identity sync"
+    },
+    {
+      "index": 326,
+      "id": "Per-profile configuration",
+      "desktop_source": "src/lib/profiles.tsx",
+      "verdict": "D",
+      "note": "household profiles, switching, per-profile settings, identity sync"
+    },
+    {
+      "index": 327,
+      "id": "Profile identity sync",
+      "desktop_source": "src/lib/profiles.tsx",
+      "verdict": "D",
+      "note": "household profiles, switching, per-profile settings, identity sync"
+    },
+    {
+      "index": 328,
+      "id": "Parental PIN gates",
+      "desktop_source": "src/lib/parental.tsx",
+      "verdict": "X",
+      "note": "Kids/parental excluded by owner"
+    },
+    {
+      "index": 329,
+      "id": "Content categories",
+      "desktop_source": "src/lib/parental.tsx",
+      "verdict": "P",
+      "note": "hideContent categories"
+    },
+    {
+      "index": 330,
+      "id": "Age restrictions",
+      "desktop_source": "src/lib/parental.tsx",
+      "verdict": "X",
+      "note": "Kids/parental excluded by owner"
+    },
+    {
+      "index": 331,
+      "id": "Curfew controls",
+      "desktop_source": "src/lib/curfew.ts",
+      "verdict": "X",
+      "note": "Kids/parental excluded by owner"
+    },
+    {
+      "index": 332,
+      "id": "Harbor visual identity",
+      "desktop_source": "src/lib/theme.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 333,
+      "id": "Theme presets",
+      "desktop_source": "src/lib/theme.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 334,
+      "id": "Font pairings",
+      "desktop_source": "src/lib/theme.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 335,
+      "id": "Card / button styles",
+      "desktop_source": "src/lib/theme.ts",
+      "verdict": "P",
+      "note": "poster appearance and navigation layout"
+    },
+    {
+      "index": 336,
+      "id": "Custom navigation layouts",
+      "desktop_source": "src/lib/theme.ts",
+      "verdict": "P",
+      "note": "poster appearance and navigation layout"
+    },
+    {
+      "index": 337,
+      "id": "Theme Studio",
+      "desktop_source": "src/views/settings/theme-panel",
+      "verdict": "M",
+      "note": "no Theme Studio, code editor, import/export, library, custom background"
+    },
+    {
+      "index": 338,
+      "id": "Theme code editor",
+      "desktop_source": "src/views/settings/theme-panel",
+      "verdict": "M",
+      "note": "no Theme Studio, code editor, import/export, library, custom background"
+    },
+    {
+      "index": 339,
+      "id": "Theme import / export",
+      "desktop_source": "src/views/settings/theme-panel",
+      "verdict": "M",
+      "note": "no Theme Studio, code editor, import/export, library, custom background"
+    },
+    {
+      "index": 340,
+      "id": "Theme library",
+      "desktop_source": "src/views/settings/theme-panel",
+      "verdict": "M",
+      "note": "no Theme Studio, code editor, import/export, library, custom background"
+    },
+    {
+      "index": 341,
+      "id": "Custom background / logo",
+      "desktop_source": "src/views/settings/theme-panel",
+      "verdict": "M",
+      "note": "no Theme Studio, code editor, import/export, library, custom background"
+    },
+    {
+      "index": 342,
+      "id": "Remappable hotkeys",
+      "desktop_source": "src/lib/hotkeys.ts",
+      "verdict": "M",
+      "note": "no hotkeys (iPad keyboard)"
+    },
+    {
+      "index": 343,
+      "id": "Custom font upload",
+      "desktop_source": "src/lib/custom-fonts.ts",
+      "verdict": "P",
+      "note": "reading fonts only"
+    },
+    {
+      "index": 344,
+      "id": "Discord / Telegram webhooks",
+      "desktop_source": "src/lib/webhook-engine.ts",
+      "verdict": "M",
+      "note": "no webhooks or content notifications"
+    },
+    {
+      "index": 345,
+      "id": "Content notifications",
+      "desktop_source": "src/lib/webhook-engine.ts",
+      "verdict": "M",
+      "note": "no webhooks or content notifications"
+    },
+    {
+      "index": 346,
+      "id": "Discord Rich Presence",
+      "desktop_source": "src-tauri/src/discord_rp.rs",
+      "verdict": "X",
+      "note": "Discord Rich Presence needs the Discord desktop client"
+    },
+    {
+      "index": 347,
+      "id": "AI assisted recommendations / search",
+      "desktop_source": "src/lib/ai-search.ts",
+      "verdict": "M",
+      "note": "no AI, song identification or Wrapped"
+    },
+    {
+      "index": 348,
+      "id": "Song identification",
+      "desktop_source": "src-tauri/src/song_id.rs",
+      "verdict": "M",
+      "note": "no AI, song identification or Wrapped"
+    },
+    {
+      "index": 349,
+      "id": "Watching statistics / Wrapped",
+      "desktop_source": "src/lib/wrapped",
+      "verdict": "M",
+      "note": "no AI, song identification or Wrapped"
+    },
+    {
+      "index": 350,
+      "id": "Interface languages",
+      "desktop_source": "src/lib/i18n",
+      "verdict": "D",
+      "note": "16 interface languages, RTL layout"
+    },
+    {
+      "index": 351,
+      "id": "RTL-aware interface",
+      "desktop_source": "src/lib/i18n",
+      "verdict": "D",
+      "note": "16 interface languages, RTL layout"
+    },
+    {
+      "index": 352,
+      "id": "Remote control sessions",
+      "desktop_source": "src/lib/remote",
+      "verdict": "M",
+      "note": "no remote control"
+    },
+    {
+      "index": 353,
+      "id": "Remote player binding",
+      "desktop_source": "src/lib/remote",
+      "verdict": "M",
+      "note": "no remote control"
+    },
+    {
+      "index": 354,
+      "id": "Remote text entry",
+      "desktop_source": "src/lib/remote",
+      "verdict": "M",
+      "note": "no remote control"
+    },
+    {
+      "index": 355,
+      "id": "Stream header proxy",
+      "desktop_source": "src-tauri/src/stream_proxy.rs",
+      "verdict": "D",
+      "note": "request headers passed to mpv natively"
+    },
+    {
+      "index": 356,
+      "id": "Progressive media proxy",
+      "desktop_source": "src-tauri/src/stream_proxy.rs",
+      "verdict": "X",
+      "note": "progressive proxy serves Desktop's web player only"
+    },
+    {
+      "index": 357,
+      "id": "Optional web receiver / remote interface",
+      "desktop_source": "src-tauri/src/web_server.rs",
+      "verdict": "M",
+      "note": "no web receiver/remote interface"
+    },
+    {
+      "index": 358,
+      "id": "Metadata cache",
+      "desktop_source": "src/lib/cache.ts",
+      "verdict": "D",
+      "note": "metadata cache, settings persistence"
+    },
+    {
+      "index": 359,
+      "id": "Settings persistence",
+      "desktop_source": "src/lib/settings",
+      "verdict": "D",
+      "note": "metadata cache, settings persistence"
+    },
+    {
+      "index": 360,
+      "id": "Profile settings migration",
+      "desktop_source": "src/lib/settings",
+      "verdict": "P",
+      "note": "migrations and advanced configuration partial"
+    },
+    {
+      "index": 361,
+      "id": "Advanced configuration",
+      "desktop_source": "src/lib/settings",
+      "verdict": "P",
+      "note": "migrations and advanced configuration partial"
+    },
+    {
+      "index": 362,
+      "id": "Startup crash detection",
+      "desktop_source": "src-tauri/src/crash_report.rs",
+      "verdict": "M",
+      "note": "no startup crash detection"
+    },
+    {
+      "index": 363,
+      "id": "Crash diagnostics",
+      "desktop_source": "src-tauri/src/crash_report.rs",
+      "verdict": "P",
+      "note": "Diagnostics log export"
+    },
+    {
+      "index": 364,
+      "id": "Harbor / Stremio deep links",
+      "desktop_source": "src/lib/deep-link.ts",
+      "verdict": "P",
+      "note": "deep links partial"
+    },
+    {
+      "index": 365,
+      "id": "Onboarding / replay",
+      "desktop_source": "src/lib/onboarding.tsx",
+      "verdict": "D",
+      "note": "onboarding and replay"
+    },
+    {
+      "index": 366,
+      "id": "Manga Suwayomi connection",
+      "desktop_source": "src/lib/manga/sources/suwayomi/api.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 367,
+      "id": "Manga Suwayomi source discovery",
+      "desktop_source": "src/lib/manga/sources/suwayomi/api.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 368,
+      "id": "Manga popular/latest/search pagination",
+      "desktop_source": "src/lib/manga/sources/suwayomi/api.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 369,
+      "id": "Manga Suwayomi library",
+      "desktop_source": "src/lib/manga/sources/suwayomi/api.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 370,
+      "id": "Manga extension install/update/remove",
+      "desktop_source": "src/lib/manga/sources/suwayomi/graphql.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 371,
+      "id": "Manga extension repositories",
+      "desktop_source": "src/lib/manga/sources/suwayomi/graphql.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 372,
+      "id": "Manga local CBZ/ZIP",
+      "desktop_source": "src/lib/manga/sources/local.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 373,
+      "id": "Manga image-folder chapters",
+      "desktop_source": "src/lib/manga/sources/local.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 374,
+      "id": "Manga natural page ordering",
+      "desktop_source": "src/lib/manga/sources/local.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 375,
+      "id": "Manga vertical/horizontal strips",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 376,
+      "id": "Manga single/double pages",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 377,
+      "id": "Manga book page turns",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 378,
+      "id": "Manga width/height/original fit",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 379,
+      "id": "Manga zoom",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 380,
+      "id": "Manga RTL direction",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 381,
+      "id": "Manga backgrounds",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 382,
+      "id": "Manga navigation placement",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 383,
+      "id": "Manga double-page gap",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 384,
+      "id": "Manga focus mode",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 385,
+      "id": "Manga automatic next chapter",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 386,
+      "id": "Manga chapter-end hint",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 387,
+      "id": "Manga page download",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 388,
+      "id": "Manga page-turn sound",
+      "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 389,
+      "id": "Manga chapter progress sync",
+      "desktop_source": "src/lib/manga/sources/suwayomi/sync.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 390,
+      "id": "Manga source filters",
+      "desktop_source": "src/lib/manga/sources/suwayomi/rest.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 391,
+      "id": "Sports original league catalog",
+      "desktop_source": "src/lib/sports/espn-leagues.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 392,
+      "id": "Sports calendar and scores",
+      "desktop_source": "src/lib/sports/espn-scoreboard.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 393,
+      "id": "Sports live/upcoming/final filtering",
+      "desktop_source": "src/lib/sports/espn-scoreboard.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 394,
+      "id": "Sports live score refresh",
+      "desktop_source": "src/lib/sports/espn-scoreboard.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 395,
+      "id": "Sports score periods and statistics",
+      "desktop_source": "src/lib/sports/espn-summary.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 396,
+      "id": "Sports event commentary",
+      "desktop_source": "src/lib/sports/espn-summary.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 397,
+      "id": "Sports favorite leagues and teams",
+      "desktop_source": "src/lib/sports/favourites.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 398,
+      "id": "Sports external-service consent",
+      "desktop_source": "src/lib/sports/usage-notice.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 399,
+      "id": "Sports event reminders",
+      "desktop_source": "src/lib/sports/reminders.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 400,
+      "id": "Sports standings",
+      "desktop_source": "src/lib/sports/standings.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 401,
+      "id": "Sports configured broadcast sources",
+      "desktop_source": "src/lib/sports/stream-resolver.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 402,
+      "id": "Home row ordering",
+      "desktop_source": "src/lib/home-customization.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 403,
+      "id": "Home row visibility",
+      "desktop_source": "src/lib/home-customization.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 404,
+      "id": "Home row titles",
+      "desktop_source": "src/lib/home-customization.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 405,
+      "id": "Home Top 10 numerals",
+      "desktop_source": "src/lib/home-customization.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 406,
+      "id": "Home hero source selection",
+      "desktop_source": "src/lib/home-customization.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 407,
+      "id": "Home play button shape",
+      "desktop_source": "src/lib/home-customization.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 408,
+      "id": "Home secondary button selection",
+      "desktop_source": "src/lib/home-customization.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 409,
+      "id": "Home Continue Watching placement",
+      "desktop_source": "src/lib/home-customization.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 410,
+      "id": "M3U VOD classification",
+      "desktop_source": "src/lib/iptv/vod.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 411,
+      "id": "VOD M3U episode grouping",
+      "desktop_source": "src/lib/iptv/vod.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 412,
+      "id": "VOD title normalization",
+      "desktop_source": "src/lib/iptv/vod-title.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 413,
+      "id": "Xtream short EPG",
+      "desktop_source": "src/lib/iptv/xtream.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 414,
+      "id": "Xtream live container selection",
+      "desktop_source": "src/lib/iptv/xtream.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 415,
+      "id": "VOD metadata enrichment",
+      "desktop_source": "src/lib/iptv/vod-enrich.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 416,
+      "id": "VOD Arabic-aware search",
+      "desktop_source": "src/lib/iptv/rtl.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 417,
+      "id": "VOD episode progress display",
+      "desktop_source": "src/views/playlist-vod/episode-row.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 418,
+      "id": "Spooktober seasonal availability",
+      "desktop_source": "src/lib/spooktober-season.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 419,
+      "id": "Spooktober invitation and dismissal",
+      "desktop_source": "src/views/spooktober/spooktober-entry.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 420,
+      "id": "Spooktober original curated selections",
+      "desktop_source": "public/spooktober/content.json",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 421,
+      "id": "Spooktober native detail navigation",
+      "desktop_source": "src/views/spooktober/spooktober-view.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 422,
+      "id": "Local music file import",
+      "desktop_source": "src-tauri/src/music/connectors/local/tags.rs",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 423,
+      "id": "Music album and artist grouping",
+      "desktop_source": "src-tauri/src/music/connectors/local/tags.rs",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 424,
+      "id": "Music audio cover import",
+      "desktop_source": "src-tauri/src/music/connectors/local/tags.rs",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 425,
+      "id": "Music native audio playback",
+      "desktop_source": "src-tauri/src/music/commands/playback.rs",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 426,
+      "id": "Music playback queue",
+      "desktop_source": "src-tauri/src/music/commands/playback.rs",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 427,
+      "id": "Music system controls",
+      "desktop_source": "src-tauri/src/music/commands/playback.rs",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 428,
+      "id": "Music and video coordination",
+      "desktop_source": "src-tauri/src/music/commands/playback.rs",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 429,
+      "id": "Music playlist creation and rename",
+      "desktop_source": "src-tauri/src/music/library.rs",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 430,
+      "id": "Music playlist track membership",
+      "desktop_source": "src-tauri/src/music/library.rs",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 431,
+      "id": "Music playlist track ordering",
+      "desktop_source": "src-tauri/src/music/library.rs",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 432,
+      "id": "Music playlist deletion preserving library",
+      "desktop_source": "src-tauri/src/music/library.rs",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 433,
+      "id": "Music local folder scanning",
+      "desktop_source": "src-tauri/src/music/connectors/local/scan.rs",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 434,
+      "id": "Music playlist search and content filters",
+      "desktop_source": "src/lib/music/playlist-filters.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 435,
+      "id": "Music playlist listening order",
+      "desktop_source": "src/lib/music/playlist-filters.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 436,
+      "id": "Music playlist compact view",
+      "desktop_source": "src/components/music/music-playlist-toolbar.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 437,
+      "id": "Music track title copying",
+      "desktop_source": "src/components/music/music-track-menu.tsx",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 438,
+      "id": "Subtitle source FPS correction",
+      "desktop_source": "src/lib/player/subtitle-fps.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    }
+  ],
+  "settings": [
+    {
+      "index": 1,
+      "id": "soundTheme",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no UI sounds or comments"
+    },
+    {
+      "index": 2,
+      "id": "sfxVolume",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no UI sounds or comments"
+    },
+    {
+      "index": 3,
+      "id": "playerVolumeSfx",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no UI sounds or comments"
+    },
+    {
+      "index": 4,
+      "id": "blurComments",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no UI sounds or comments"
+    },
+    {
+      "index": 5,
+      "id": "blurEpisodes",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "blurEpisodes, TMDB key"
+    },
+    {
+      "index": 6,
+      "id": "tmdbKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "blurEpisodes, TMDB key"
+    },
+    {
+      "index": 7,
+      "id": "omdbKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no OMDB/RPDB/IMDb fallback/Fanart keys"
+    },
+    {
+      "index": 8,
+      "id": "rpdbKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no OMDB/RPDB/IMDb fallback/Fanart keys"
+    },
+    {
+      "index": 9,
+      "id": "imdbApiFallback",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no OMDB/RPDB/IMDb fallback/Fanart keys"
+    },
+    {
+      "index": 10,
+      "id": "fanartKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no OMDB/RPDB/IMDb fallback/Fanart keys"
+    },
+    {
+      "index": 11,
+      "id": "tvdbKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "TVDB used without a user key setting"
+    },
+    {
+      "index": 12,
+      "id": "rdKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "debrid keys, region"
+    },
+    {
+      "index": 13,
+      "id": "tbKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "debrid keys, region"
+    },
+    {
+      "index": 14,
+      "id": "adKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "debrid keys, region"
+    },
+    {
+      "index": 15,
+      "id": "pmKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "debrid keys, region"
+    },
+    {
+      "index": 16,
+      "id": "dlKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "debrid keys, region"
+    },
+    {
+      "index": 17,
+      "id": "region",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "debrid keys, region"
+    },
+    {
+      "index": 18,
+      "id": "preferredLanguages",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "preferred stream languages not ported"
+    },
+    {
+      "index": 19,
+      "id": "requirePreferredLanguage",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "preferred stream languages not ported"
+    },
+    {
+      "index": 20,
+      "id": "showImdbBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 21,
+      "id": "showSubtitleIndicator",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 22,
+      "id": "showTmdbBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 23,
+      "id": "showRtBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 24,
+      "id": "showMalBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 25,
+      "id": "animeCardRating",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 26,
+      "id": "showMetacriticBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 27,
+      "id": "showLetterboxdBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 28,
+      "id": "showMdblistBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 29,
+      "id": "showTraktBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 30,
+      "id": "showDetailRatings",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 31,
+      "id": "showImdbDetail",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 32,
+      "id": "showTmdbDetail",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 33,
+      "id": "showMalDetail",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 34,
+      "id": "showRtDetail",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 35,
+      "id": "showRtAudienceDetail",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 36,
+      "id": "showLetterboxdDetail",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 37,
+      "id": "showMetacriticDetail",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 38,
+      "id": "showTraktDetail",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 39,
+      "id": "showMdblistDetail",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 40,
+      "id": "showTraktComments",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 41,
+      "id": "showSimklBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 42,
+      "id": "showSimklDetail",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 43,
+      "id": "showDubBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 44,
+      "id": "simklShowCommunityRatings",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "rating badges and detail ratings not ported"
+    },
+    {
+      "index": 45,
+      "id": "simklEnableUserRatings",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 46,
+      "id": "simklGranularFilters",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "card badges and home languages not ported"
+    },
+    {
+      "index": 47,
+      "id": "cardBadgeLimit",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "card badges and home languages not ported"
+    },
+    {
+      "index": 48,
+      "id": "showQualityBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "card badges and home languages not ported"
+    },
+    {
+      "index": 49,
+      "id": "qualityBadgeStyle",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "card badges and home languages not ported"
+    },
+    {
+      "index": 50,
+      "id": "showCardBadges",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "card badges and home languages not ported"
+    },
+    {
+      "index": 51,
+      "id": "homeLanguages",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "card badges and home languages not ported"
+    },
+    {
+      "index": 52,
+      "id": "posterScale",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "poster settings"
+    },
+    {
+      "index": 53,
+      "id": "posterRadius",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "poster settings"
+    },
+    {
+      "index": 54,
+      "id": "posterEffect",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "poster settings"
+    },
+    {
+      "index": 55,
+      "id": "posterQuality",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "poster settings"
+    },
+    {
+      "index": 56,
+      "id": "liquidGlass",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no liquid glass settings"
+    },
+    {
+      "index": 57,
+      "id": "defaultLiquidGlassBlur",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no liquid glass settings"
+    },
+    {
+      "index": 58,
+      "id": "defaultLiquidGlassTint",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no liquid glass settings"
+    },
+    {
+      "index": 59,
+      "id": "experimentalLiquidGlassEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no liquid glass settings"
+    },
+    {
+      "index": 60,
+      "id": "experimentalLiquidGlassOpacity",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no liquid glass settings"
+    },
+    {
+      "index": 61,
+      "id": "posterBackdropExpansion",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "poster behavior settings"
+    },
+    {
+      "index": 62,
+      "id": "posterFocusedCard",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "poster behavior settings"
+    },
+    {
+      "index": 63,
+      "id": "posterDockMagnification",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "poster behavior settings"
+    },
+    {
+      "index": 64,
+      "id": "posterDockTransitionMs",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "poster behavior settings"
+    },
+    {
+      "index": 65,
+      "id": "top10Ribbon",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "Top 10 rail without ribbon options"
+    },
+    {
+      "index": 66,
+      "id": "top10RibbonSide",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "ribbon side, award tabs, title scales, UI scale"
+    },
+    {
+      "index": 67,
+      "id": "awardTabs",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "ribbon side, award tabs, title scales, UI scale"
+    },
+    {
+      "index": 68,
+      "id": "awardTabPosition",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "ribbon side, award tabs, title scales, UI scale"
+    },
+    {
+      "index": 69,
+      "id": "rowTitleScale",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "ribbon side, award tabs, title scales, UI scale"
+    },
+    {
+      "index": 70,
+      "id": "playerTitleScale",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "ribbon side, award tabs, title scales, UI scale"
+    },
+    {
+      "index": 71,
+      "id": "playerTitleSeriesFirst",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "ribbon side, award tabs, title scales, UI scale"
+    },
+    {
+      "index": 72,
+      "id": "uiScale",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "ribbon side, award tabs, title scales, UI scale"
+    },
+    {
+      "index": 73,
+      "id": "serveWebUi",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 74,
+      "id": "remoteControlEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 75,
+      "id": "controllerSupportEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 76,
+      "id": "controllerBackgroundInput",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 77,
+      "id": "controllerDeadzone",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 78,
+      "id": "controllerCursorSpeed",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 79,
+      "id": "controllerCursor",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 80,
+      "id": "controllerCursorImage",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 81,
+      "id": "controllerCursorSize",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 82,
+      "id": "controllerCursorEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 83,
+      "id": "controllerCursorHideMs",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 84,
+      "id": "controllerKeyboardSize",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 85,
+      "id": "controllerRepeatMs",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 86,
+      "id": "controllerInitialDelayMs",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "no web UI, remote or controller settings"
+    },
+    {
+      "index": 87,
+      "id": "trailerQuality",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 88,
+      "id": "detailTrailerAutoplay",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 89,
+      "id": "heroBackdropCarousel",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "interface.autoRotateBanners"
+    },
+    {
+      "index": 90,
+      "id": "detailTrailerAudio",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hero trailer and hero layout settings"
+    },
+    {
+      "index": 91,
+      "id": "heroShadow",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hero trailer and hero layout settings"
+    },
+    {
+      "index": 92,
+      "id": "heroFull",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hero trailer and hero layout settings"
+    },
+    {
+      "index": 93,
+      "id": "heroFullQuality",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hero trailer and hero layout settings"
+    },
+    {
+      "index": 94,
+      "id": "heroFeed",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hero trailer and hero layout settings"
+    },
+    {
+      "index": 95,
+      "id": "heroTrailers",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hero trailer and hero layout settings"
+    },
+    {
+      "index": 96,
+      "id": "heroTrailerAudio",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hero trailer and hero layout settings"
+    },
+    {
+      "index": 97,
+      "id": "navIconAnimations",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 98,
+      "id": "bigPicturePlayerUi",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Big Picture excluded"
+    },
+    {
+      "index": 99,
+      "id": "screensaver",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "iOS auto-lock replaces an idle screensaver"
+    },
+    {
+      "index": 100,
+      "id": "screensaverStyle",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "iOS auto-lock replaces an idle screensaver"
+    },
+    {
+      "index": 101,
+      "id": "screensaverMedia",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "iOS auto-lock replaces an idle screensaver"
+    },
+    {
+      "index": 102,
+      "id": "screensaverMediaId",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "iOS auto-lock replaces an idle screensaver"
+    },
+    {
+      "index": 103,
+      "id": "screensaverDelayMin",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "iOS auto-lock replaces an idle screensaver"
+    },
+    {
+      "index": 104,
+      "id": "resumePrompt",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "resume settings"
+    },
+    {
+      "index": 105,
+      "id": "resumePlayback",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "resume settings"
+    },
+    {
+      "index": 106,
+      "id": "keepFullscreenOnExit",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop fullscreen windowing"
+    },
+    {
+      "index": 107,
+      "id": "fullscreenRestorePosition",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop fullscreen windowing"
+    },
+    {
+      "index": 108,
+      "id": "contentAdvisoryToast",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advisory toasts, volume HUD, speed and sleep presets"
+    },
+    {
+      "index": 109,
+      "id": "contentAdvisoryTheme",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advisory toasts, volume HUD, speed and sleep presets"
+    },
+    {
+      "index": 110,
+      "id": "contentAdvisoryShowIgnore",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advisory toasts, volume HUD, speed and sleep presets"
+    },
+    {
+      "index": 111,
+      "id": "playerVolumeHud",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advisory toasts, volume HUD, speed and sleep presets"
+    },
+    {
+      "index": 112,
+      "id": "playerVolumeHudPosition",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advisory toasts, volume HUD, speed and sleep presets"
+    },
+    {
+      "index": 113,
+      "id": "customPlaybackSpeeds",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advisory toasts, volume HUD, speed and sleep presets"
+    },
+    {
+      "index": 114,
+      "id": "customSleepMinutes",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advisory toasts, volume HUD, speed and sleep presets"
+    },
+    {
+      "index": 115,
+      "id": "defaultPlaybackSpeed",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "default speed"
+    },
+    {
+      "index": 116,
+      "id": "navbarSleepTimer",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 117,
+      "id": "badgePlacement",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 118,
+      "id": "watchlistBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 119,
+      "id": "showWatchedButton",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 120,
+      "id": "showPopcornBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 121,
+      "id": "episodeLayout",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 122,
+      "id": "episodeCardScale",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 123,
+      "id": "episodeSort",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 124,
+      "id": "showEpisodeRating",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 125,
+      "id": "showEpisodeDescription",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 126,
+      "id": "episodeHiding",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 127,
+      "id": "hdEpisodeImages",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 128,
+      "id": "episodeArcGroups",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 129,
+      "id": "episodeOrderProvider",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "episode order via TVDB season type"
+    },
+    {
+      "index": 130,
+      "id": "tvdbSeasonType",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 131,
+      "id": "tvdbOrderPanel",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 132,
+      "id": "tvdbPin",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 133,
+      "id": "harborAvatar",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "Harbor avatar and colour"
+    },
+    {
+      "index": 134,
+      "id": "harborColor",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "Harbor avatar and colour"
+    },
+    {
+      "index": 135,
+      "id": "anilistAutoSync",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "AniList/MAL sync, comments and tracker avatars"
+    },
+    {
+      "index": 136,
+      "id": "malAutoSync",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "AniList/MAL sync, comments and tracker avatars"
+    },
+    {
+      "index": 137,
+      "id": "anilistBlurComments",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "AniList/MAL sync, comments and tracker avatars"
+    },
+    {
+      "index": 138,
+      "id": "showAnilistComments",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "AniList/MAL sync, comments and tracker avatars"
+    },
+    {
+      "index": 139,
+      "id": "useAnilistAvatar",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "AniList/MAL sync, comments and tracker avatars"
+    },
+    {
+      "index": 140,
+      "id": "useTraktAvatar",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "AniList/MAL sync, comments and tracker avatars"
+    },
+    {
+      "index": 141,
+      "id": "useSimklAvatar",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "AniList/MAL sync, comments and tracker avatars"
+    },
+    {
+      "index": 142,
+      "id": "useMalAvatar",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "AniList/MAL sync, comments and tracker avatars"
+    },
+    {
+      "index": 143,
+      "id": "traktClientId",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "Trakt session, streaming catalogs, adult addons"
+    },
+    {
+      "index": 144,
+      "id": "traktClientSecret",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "Trakt session, streaming catalogs, adult addons"
+    },
+    {
+      "index": 145,
+      "id": "traktAccessToken",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "Trakt session, streaming catalogs, adult addons"
+    },
+    {
+      "index": 146,
+      "id": "traktRefreshToken",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "Trakt session, streaming catalogs, adult addons"
+    },
+    {
+      "index": 147,
+      "id": "traktExpiresAt",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "Trakt session, streaming catalogs, adult addons"
+    },
+    {
+      "index": 148,
+      "id": "traktUsername",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "Trakt session, streaming catalogs, adult addons"
+    },
+    {
+      "index": 149,
+      "id": "streaming",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "Trakt session, streaming catalogs, adult addons"
+    },
+    {
+      "index": 150,
+      "id": "showAdultAddons",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "Trakt session, streaming catalogs, adult addons"
+    },
+    {
+      "index": 151,
+      "id": "togetherRelayUrl",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Watch Together settings"
+    },
+    {
+      "index": 152,
+      "id": "togetherCfToken",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Watch Together settings"
+    },
+    {
+      "index": 153,
+      "id": "togetherCfAccountId",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Watch Together settings"
+    },
+    {
+      "index": 154,
+      "id": "togetherCfDeployed",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Watch Together settings"
+    },
+    {
+      "index": 155,
+      "id": "togetherShareCursors",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Watch Together settings"
+    },
+    {
+      "index": 156,
+      "id": "togetherGuestsPick",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Watch Together settings"
+    },
+    {
+      "index": 157,
+      "id": "discordRichPresence",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Discord Rich Presence"
+    },
+    {
+      "index": 158,
+      "id": "discordHideTitle",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Discord Rich Presence"
+    },
+    {
+      "index": 159,
+      "id": "discordShowWhenPaused",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Discord Rich Presence"
+    },
+    {
+      "index": 160,
+      "id": "discordShowWhenBrowsing",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Discord Rich Presence"
+    },
+    {
+      "index": 161,
+      "id": "discordShowPoster",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Discord Rich Presence"
+    },
+    {
+      "index": 162,
+      "id": "discordShowTimestamp",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Discord Rich Presence"
+    },
+    {
+      "index": 163,
+      "id": "discordShowPartyJoin",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Discord Rich Presence"
+    },
+    {
+      "index": 164,
+      "id": "discordMusicPresence",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Discord Rich Presence"
+    },
+    {
+      "index": 165,
+      "id": "discordHideMusicWhenPaused",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Discord Rich Presence"
+    },
+    {
+      "index": 166,
+      "id": "playerEngine",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "single native player engine"
+    },
+    {
+      "index": 167,
+      "id": "pipBehavior",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "PiP behavior, player shells and chrome, screen lock, seek preview"
+    },
+    {
+      "index": 168,
+      "id": "playerShellId",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "PiP behavior, player shells and chrome, screen lock, seek preview"
+    },
+    {
+      "index": 169,
+      "id": "playerChromeTheme",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "PiP behavior, player shells and chrome, screen lock, seek preview"
+    },
+    {
+      "index": 170,
+      "id": "playerMenuBlack",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "PiP behavior, player shells and chrome, screen lock, seek preview"
+    },
+    {
+      "index": 171,
+      "id": "playerScreenLockEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "PiP behavior, player shells and chrome, screen lock, seek preview"
+    },
+    {
+      "index": 172,
+      "id": "seekPreviewEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "PiP behavior, player shells and chrome, screen lock, seek preview"
+    },
+    {
+      "index": 173,
+      "id": "instantPlay",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "instant play"
+    },
+    {
+      "index": 174,
+      "id": "instantPlaybackPreparation",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "preparation, stall switching"
+    },
+    {
+      "index": 175,
+      "id": "autoNextStreamOnStall",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "preparation, stall switching"
+    },
+    {
+      "index": 176,
+      "id": "autoNextStreamOnStallSec",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "preparation, stall switching"
+    },
+    {
+      "index": 177,
+      "id": "fullscreenMode",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop fullscreen mode"
+    },
+    {
+      "index": 178,
+      "id": "seasonSourceLock",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "season source lock, remember last stream"
+    },
+    {
+      "index": 179,
+      "id": "rememberLastStream",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "season source lock, remember last stream"
+    },
+    {
+      "index": 180,
+      "id": "keepSourceNextEpisode",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 181,
+      "id": "playerHdrToSdr",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "tone mapping without the SDR toggle"
+    },
+    {
+      "index": 182,
+      "id": "playerRtxHdr",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "RTX, macOS EDR, display panel"
+    },
+    {
+      "index": 183,
+      "id": "playerRtxVsr",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "RTX, macOS EDR, display panel"
+    },
+    {
+      "index": 184,
+      "id": "playerMacEdr",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "RTX, macOS EDR, display panel"
+    },
+    {
+      "index": 185,
+      "id": "playerDisplayPanel",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "RTX, macOS EDR, display panel"
+    },
+    {
+      "index": 186,
+      "id": "playerMotionInterp",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "motion interpolation, Anime4K"
+    },
+    {
+      "index": 187,
+      "id": "playerAnime4k",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "motion interpolation, Anime4K"
+    },
+    {
+      "index": 188,
+      "id": "playerAnime4kAnimeOnly",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "motion interpolation, Anime4K"
+    },
+    {
+      "index": 189,
+      "id": "playerAnime4kIndicator",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "motion interpolation, Anime4K"
+    },
+    {
+      "index": 190,
+      "id": "playerMpvEmbed",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "embedded/separate desktop player windows"
+    },
+    {
+      "index": 191,
+      "id": "playerSeparateDisplay",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "embedded/separate desktop player windows"
+    },
+    {
+      "index": 192,
+      "id": "playerSeparateCoverTaskbar",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "embedded/separate desktop player windows"
+    },
+    {
+      "index": 193,
+      "id": "playerP2pChip",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "P2P chip needs the torrent engine"
+    },
+    {
+      "index": 194,
+      "id": "showQualityInfo",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 195,
+      "id": "stremioServerTranscode",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 196,
+      "id": "directTorrentStream",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "torrent engine settings"
+    },
+    {
+      "index": 197,
+      "id": "torrentsDisabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "torrent engine settings"
+    },
+    {
+      "index": 198,
+      "id": "torrentFullDownload",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "torrent engine settings"
+    },
+    {
+      "index": 199,
+      "id": "keepStreamDownloadsInBackground",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "torrent engine settings"
+    },
+    {
+      "index": 200,
+      "id": "deferTorrentEngine",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "torrent engine settings"
+    },
+    {
+      "index": 201,
+      "id": "p2pAutoConsent",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "torrent engine settings"
+    },
+    {
+      "index": 202,
+      "id": "streamMode",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "source mode (P2P choice excluded)"
+    },
+    {
+      "index": 203,
+      "id": "queueDrivesNav",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 204,
+      "id": "streamCacheRetentionHours",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "torrent cache"
+    },
+    {
+      "index": 205,
+      "id": "streamCacheMaxGb",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "torrent cache"
+    },
+    {
+      "index": 206,
+      "id": "deleteWatchedDownloads",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 207,
+      "id": "streamCacheDir",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop cache folders"
+    },
+    {
+      "index": 208,
+      "id": "playbackCacheDir",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop cache folders"
+    },
+    {
+      "index": 209,
+      "id": "remoteStreamServerUrl",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "remote streaming server, cast transcoding"
+    },
+    {
+      "index": 210,
+      "id": "remoteStreamServerStrict",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "remote streaming server, cast transcoding"
+    },
+    {
+      "index": 211,
+      "id": "castAlwaysTranscode",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "remote streaming server, cast transcoding"
+    },
+    {
+      "index": 212,
+      "id": "playerAnime4kShaders",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Anime4K and shaders"
+    },
+    {
+      "index": 213,
+      "id": "playerAnime4kMode",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Anime4K and shaders"
+    },
+    {
+      "index": 214,
+      "id": "playerAnime4kTier",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Anime4K and shaders"
+    },
+    {
+      "index": 215,
+      "id": "playerAnime4kFolder",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Anime4K and shaders"
+    },
+    {
+      "index": 216,
+      "id": "playerAnime4kOverride",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Anime4K and shaders"
+    },
+    {
+      "index": 217,
+      "id": "playerShaders",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Anime4K and shaders"
+    },
+    {
+      "index": 218,
+      "id": "preferredSubLangs",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "subtitle languages and style"
+    },
+    {
+      "index": 219,
+      "id": "preferredAudioLangs",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "subtitle languages and style"
+    },
+    {
+      "index": 220,
+      "id": "subFontSize",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "subtitle languages and style"
+    },
+    {
+      "index": 221,
+      "id": "subFontColor",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "subtitle languages and style"
+    },
+    {
+      "index": 222,
+      "id": "subBorderColor",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "subtitle languages and style"
+    },
+    {
+      "index": 223,
+      "id": "subBorderSize",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "subtitle languages and style"
+    },
+    {
+      "index": 224,
+      "id": "subMarginY",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "subtitle languages and style"
+    },
+    {
+      "index": 225,
+      "id": "subAlignX",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "subtitle languages and style"
+    },
+    {
+      "index": 226,
+      "id": "subAssOverride",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "subtitle languages and style"
+    },
+    {
+      "index": 227,
+      "id": "subAssNormalizeSize",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 228,
+      "id": "subStyle",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 229,
+      "id": "subFontFamily",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 230,
+      "id": "subBold",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 231,
+      "id": "customFonts",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "reading fonts only"
+    },
+    {
+      "index": 232,
+      "id": "subBoxOpacity",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 233,
+      "id": "subBoxColor",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 234,
+      "id": "subOpacity",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 235,
+      "id": "subLineSpacing",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 236,
+      "id": "subProvidersEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "subtitle providers, offset indicator, PiP subtitles"
+    },
+    {
+      "index": 237,
+      "id": "subOffsetIndicatorEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "subtitle providers, offset indicator, PiP subtitles"
+    },
+    {
+      "index": 238,
+      "id": "subOffsetIndicatorPosition",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "subtitle providers, offset indicator, PiP subtitles"
+    },
+    {
+      "index": 239,
+      "id": "subOffsetIndicatorSize",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "subtitle providers, offset indicator, PiP subtitles"
+    },
+    {
+      "index": 240,
+      "id": "subShowInPip",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "subtitle providers, offset indicator, PiP subtitles"
+    },
+    {
+      "index": 241,
+      "id": "subHideSdh",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 242,
+      "id": "secondarySubLang",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 243,
+      "id": "subSecondaryPlacement",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 244,
+      "id": "subSecondaryScale",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 245,
+      "id": "subtitleAutoSync",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 246,
+      "id": "autoSyncApplyStructural",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advanced auto-sync options"
+    },
+    {
+      "index": 247,
+      "id": "autoSyncDrift",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advanced auto-sync options"
+    },
+    {
+      "index": 248,
+      "id": "subtitleAutoSyncAsr",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advanced auto-sync options"
+    },
+    {
+      "index": 249,
+      "id": "subtitleAutoSyncPivot",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advanced auto-sync options"
+    },
+    {
+      "index": 250,
+      "id": "subtitleAutoSyncCrowd",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advanced auto-sync options"
+    },
+    {
+      "index": 251,
+      "id": "communitySyncUrl",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advanced auto-sync options"
+    },
+    {
+      "index": 252,
+      "id": "communitySyncOptOut",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "advanced auto-sync options"
+    },
+    {
+      "index": 253,
+      "id": "subtitlesOffByDefault",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 254,
+      "id": "preferEmbeddedSubs",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 255,
+      "id": "subtitleAutoUpgrade",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 256,
+      "id": "subtitlePreselect",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 257,
+      "id": "betaUpdates",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "updates belong to the App Store/TestFlight"
+    },
+    {
+      "index": 258,
+      "id": "autoSkipIntro",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "automatic skips"
+    },
+    {
+      "index": 259,
+      "id": "autoSkipRecap",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "automatic skips"
+    },
+    {
+      "index": 260,
+      "id": "autoSkipOutro",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "automatic skips"
+    },
+    {
+      "index": 261,
+      "id": "autoSkipAd",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "automatic skips"
+    },
+    {
+      "index": 262,
+      "id": "showSkipButton",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "skip button"
+    },
+    {
+      "index": 263,
+      "id": "skipButtonHideSec",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 264,
+      "id": "trackBlockWords",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 265,
+      "id": "forcedSubsWhenNativeAudio",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "forced subtitles option partial"
+    },
+    {
+      "index": 266,
+      "id": "tmdbLanguage",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 267,
+      "id": "tmdbImageLangs",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 268,
+      "id": "nfoPosterSize",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "NFO and local library"
+    },
+    {
+      "index": 269,
+      "id": "nfoBackdropSize",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "NFO and local library"
+    },
+    {
+      "index": 270,
+      "id": "nfoLogoSize",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "NFO and local library"
+    },
+    {
+      "index": 271,
+      "id": "showLocalLibraryBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "NFO and local library"
+    },
+    {
+      "index": 272,
+      "id": "showWatchedBadge",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "watched markers without the badge option"
+    },
+    {
+      "index": 273,
+      "id": "localPlaybackMode",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "local playback, media servers, catalog pins, poster URL"
+    },
+    {
+      "index": 274,
+      "id": "playbackSourcePreference",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "local playback, media servers, catalog pins, poster URL"
+    },
+    {
+      "index": 275,
+      "id": "preferredMediaServerId",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "local playback, media servers, catalog pins, poster URL"
+    },
+    {
+      "index": 276,
+      "id": "localMinFileSizeMb",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "local playback, media servers, catalog pins, poster URL"
+    },
+    {
+      "index": 277,
+      "id": "localAutoScan",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "local playback, media servers, catalog pins, poster URL"
+    },
+    {
+      "index": 278,
+      "id": "localScanMode",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "local playback, media servers, catalog pins, poster URL"
+    },
+    {
+      "index": 279,
+      "id": "catalogsPinned",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "local playback, media servers, catalog pins, poster URL"
+    },
+    {
+      "index": 280,
+      "id": "catalogsHidden",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "local playback, media servers, catalog pins, poster URL"
+    },
+    {
+      "index": 281,
+      "id": "posterBaseUrl",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "local playback, media servers, catalog pins, poster URL"
+    },
+    {
+      "index": 282,
+      "id": "hidePosterTitles",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "local playback, media servers, catalog pins, poster URL"
+    },
+    {
+      "index": 283,
+      "id": "hoverPreviewEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "pointer hover previews have no touch form"
+    },
+    {
+      "index": 284,
+      "id": "hoverPreviewPlacement",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "pointer hover previews have no touch form"
+    },
+    {
+      "index": 285,
+      "id": "cardHoverStyle",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "pointer hover previews have no touch form"
+    },
+    {
+      "index": 286,
+      "id": "rowCardStyle",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 287,
+      "id": "tvCardLogoPos",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 288,
+      "id": "scrollUpTrailer",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 289,
+      "id": "cardHoverShine",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "pointer hover styles"
+    },
+    {
+      "index": 290,
+      "id": "customHoverId",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "pointer hover styles"
+    },
+    {
+      "index": 291,
+      "id": "mdblistKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "MDBList, song ID, AI keys"
+    },
+    {
+      "index": 292,
+      "id": "auddKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "MDBList, song ID, AI keys"
+    },
+    {
+      "index": 293,
+      "id": "songIdProvider",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "MDBList, song ID, AI keys"
+    },
+    {
+      "index": 294,
+      "id": "songIdAiKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "MDBList, song ID, AI keys"
+    },
+    {
+      "index": 295,
+      "id": "songIdAiModel",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "MDBList, song ID, AI keys"
+    },
+    {
+      "index": 296,
+      "id": "aiSearchKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "MDBList, song ID, AI keys"
+    },
+    {
+      "index": 297,
+      "id": "steamSearchShortcut",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Games excluded"
+    },
+    {
+      "index": 298,
+      "id": "gameAgeRatingAgency",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Games excluded"
+    },
+    {
+      "index": 299,
+      "id": "gameArtworkSelection",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Games excluded"
+    },
+    {
+      "index": 300,
+      "id": "gameArtworkScreenshots",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Games excluded"
+    },
+    {
+      "index": 301,
+      "id": "gameArtworkCoverIcon",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Games excluded"
+    },
+    {
+      "index": 302,
+      "id": "aiSearchModel",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "AI search settings"
+    },
+    {
+      "index": 303,
+      "id": "aiSearchProvider",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "AI search settings"
+    },
+    {
+      "index": 304,
+      "id": "aiGroqKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "AI search settings"
+    },
+    {
+      "index": 305,
+      "id": "jinaKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "AI search settings"
+    },
+    {
+      "index": 306,
+      "id": "aiWebSearch",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "AI search settings"
+    },
+    {
+      "index": 307,
+      "id": "playerD3d11Flip",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Direct3D flip model"
+    },
+    {
+      "index": 308,
+      "id": "mpvExtraOptions",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 309,
+      "id": "mpvQuality",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 310,
+      "id": "mpvHwdec",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 311,
+      "id": "mpvRenderer",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop renderer and graphics backend"
+    },
+    {
+      "index": 312,
+      "id": "uiGraphicsBackend",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop renderer and graphics backend"
+    },
+    {
+      "index": 313,
+      "id": "mpvForceYuv420p",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 314,
+      "id": "mpvBufferBoost",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "buffer size without boost"
+    },
+    {
+      "index": 315,
+      "id": "mpvBufferSize",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 316,
+      "id": "mpvDownmixStereo",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 317,
+      "id": "volumeBoostMax",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 318,
+      "id": "mpvTweaks",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 319,
+      "id": "playerSvp",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "SVP is Windows software"
+    },
+    {
+      "index": 320,
+      "id": "svpVpyPath",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "SVP is Windows software"
+    },
+    {
+      "index": 321,
+      "id": "svpScope",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "SVP is Windows software"
+    },
+    {
+      "index": 322,
+      "id": "svpTargetFps",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "SVP is Windows software"
+    },
+    {
+      "index": 323,
+      "id": "seekBackStepSec",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "seek steps"
+    },
+    {
+      "index": 324,
+      "id": "seekForwardStepSec",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "seek steps"
+    },
+    {
+      "index": 325,
+      "id": "seekBackStepShortSec",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 326,
+      "id": "seekForwardStepShortSec",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 327,
+      "id": "shareWatchPresence",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 328,
+      "id": "playerHdrOpaqueWindow",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop HDR window and Esc key"
+    },
+    {
+      "index": 329,
+      "id": "playerEscExitsFullscreen",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop HDR window and Esc key"
+    },
+    {
+      "index": 330,
+      "id": "playerConfirmLeave",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 331,
+      "id": "tvNavigation",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "TV and Big Picture navigation"
+    },
+    {
+      "index": 332,
+      "id": "playerTvNavigation",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "TV and Big Picture navigation"
+    },
+    {
+      "index": 333,
+      "id": "bigPictureButton",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "TV and Big Picture navigation"
+    },
+    {
+      "index": 334,
+      "id": "bigPictureAutoStart",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "TV and Big Picture navigation"
+    },
+    {
+      "index": 335,
+      "id": "bigPictureDisplay",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "TV and Big Picture navigation"
+    },
+    {
+      "index": 336,
+      "id": "bigPictureSound",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "TV and Big Picture navigation"
+    },
+    {
+      "index": 337,
+      "id": "bigPictureMosaic",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "TV and Big Picture navigation"
+    },
+    {
+      "index": 338,
+      "id": "bigPictureBackdropZoom",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "TV and Big Picture navigation"
+    },
+    {
+      "index": 339,
+      "id": "tabHotkeys",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 340,
+      "id": "bigPictureOverscan",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Big Picture overscan, desktop HDR stage"
+    },
+    {
+      "index": 341,
+      "id": "playerHdrStage",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Big Picture overscan, desktop HDR stage"
+    },
+    {
+      "index": 342,
+      "id": "opensubtitlesApiKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "subtitle provider keys, audio normalisation and profile"
+    },
+    {
+      "index": 343,
+      "id": "theIntroDbKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "subtitle provider keys, audio normalisation and profile"
+    },
+    {
+      "index": 344,
+      "id": "jimakuToken",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "subtitle provider keys, audio normalisation and profile"
+    },
+    {
+      "index": 345,
+      "id": "subdlApiKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "subtitle provider keys, audio normalisation and profile"
+    },
+    {
+      "index": 346,
+      "id": "subsourceApiKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "subtitle provider keys, audio normalisation and profile"
+    },
+    {
+      "index": 347,
+      "id": "audioNormalize",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "subtitle provider keys, audio normalisation and profile"
+    },
+    {
+      "index": 348,
+      "id": "audioProfile",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "subtitle provider keys, audio normalisation and profile"
+    },
+    {
+      "index": 349,
+      "id": "audioDevice",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "route picker instead of a device setting"
+    },
+    {
+      "index": 350,
+      "id": "bandwidthMbps",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 351,
+      "id": "nextEpisodeLeadSec",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 352,
+      "id": "autoPlayNextEpisode",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 353,
+      "id": "stillWatching",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 354,
+      "id": "stillWatchingAfter",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 355,
+      "id": "keyboardPauseShowsControls",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 356,
+      "id": "hideWatchedInCatalogs",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 357,
+      "id": "hideUnreleased",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 358,
+      "id": "localEpisodeSortDesc",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 359,
+      "id": "localReviewDismissedCount",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 360,
+      "id": "smoothScroll",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "native iOS scrolling"
+    },
+    {
+      "index": 361,
+      "id": "showSimklCard",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 362,
+      "id": "showLetterboxdCard",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 363,
+      "id": "externalContinueWatching",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "external continue watching via cwSources"
+    },
+    {
+      "index": 364,
+      "id": "cwSources",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 365,
+      "id": "showPlaylistsTab",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 366,
+      "id": "skipProfileScreen",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "profile prompt interval"
+    },
+    {
+      "index": 367,
+      "id": "profilePromptInterval",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 368,
+      "id": "defaultProfileId",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 369,
+      "id": "sportsLeagues",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "sports favourites"
+    },
+    {
+      "index": 370,
+      "id": "sportsShowOdds",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 371,
+      "id": "sportsWithoutProvider",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 372,
+      "id": "hideSpoilers",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 373,
+      "id": "spoilerHideThumbnails",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "episode blur covers thumbnails"
+    },
+    {
+      "index": 374,
+      "id": "spoilerHideTitles",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 375,
+      "id": "spoilerHideDescriptions",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 376,
+      "id": "spoilerSkipNext",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 377,
+      "id": "streamBackdropBlur",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 378,
+      "id": "songIdEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 379,
+      "id": "songCardStyle",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 380,
+      "id": "songCardDetails",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 381,
+      "id": "hideContent",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 382,
+      "id": "theme",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 383,
+      "id": "customLogoMark",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "custom logos, app icons, music seek thumbs"
+    },
+    {
+      "index": 384,
+      "id": "customLogoWordmark",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "custom logos, app icons, music seek thumbs"
+    },
+    {
+      "index": 385,
+      "id": "customAppIcon",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "custom logos, app icons, music seek thumbs"
+    },
+    {
+      "index": 386,
+      "id": "customAppIconPreset",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "custom logos, app icons, music seek thumbs"
+    },
+    {
+      "index": 387,
+      "id": "musicArtworkAppIcon",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "custom logos, app icons, music seek thumbs"
+    },
+    {
+      "index": 388,
+      "id": "musicSeekThumb",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "custom logos, app icons, music seek thumbs"
+    },
+    {
+      "index": 389,
+      "id": "musicSeekThumbHover",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "pointer hover"
+    },
+    {
+      "index": 390,
+      "id": "musicSpeedPresets",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 391,
+      "id": "homeMode",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 392,
+      "id": "homeShowAllAddonRows",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 393,
+      "id": "homeNewEpisodes",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 394,
+      "id": "libraryBookmarkedOnly",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 395,
+      "id": "librarySort",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "library sort"
+    },
+    {
+      "index": 396,
+      "id": "preferCustomMetaAddon",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 397,
+      "id": "cinemetaEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 398,
+      "id": "animeOnlyInAnimeRoom",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 399,
+      "id": "animeCwEnd",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 400,
+      "id": "cwAdvanceNext",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 401,
+      "id": "cwHideCaughtUp",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 402,
+      "id": "useNativeTitleBar",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop title bar"
+    },
+    {
+      "index": 403,
+      "id": "fullscreenClockEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "fullscreen clock"
+    },
+    {
+      "index": 404,
+      "id": "fullscreenClockFormat",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "fullscreen clock"
+    },
+    {
+      "index": 405,
+      "id": "fullscreenClockStyle",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "fullscreen clock"
+    },
+    {
+      "index": 406,
+      "id": "fullscreenClockShowSeconds",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "fullscreen clock"
+    },
+    {
+      "index": 407,
+      "id": "fullscreenClockShowEndTime",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "fullscreen clock"
+    },
+    {
+      "index": 408,
+      "id": "fullscreenClockWindowed",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "fullscreen clock"
+    },
+    {
+      "index": 409,
+      "id": "fullscreenClockSizePx",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "fullscreen clock"
+    },
+    {
+      "index": 410,
+      "id": "hybridTitleBar",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop title bar"
+    },
+    {
+      "index": 411,
+      "id": "topbarScrollBlur",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "top bar appearance"
+    },
+    {
+      "index": 412,
+      "id": "transparentTopBar",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "top bar appearance"
+    },
+    {
+      "index": 413,
+      "id": "topbarAppearance",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "top bar appearance"
+    },
+    {
+      "index": 414,
+      "id": "dragAnywhere",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "window dragging"
+    },
+    {
+      "index": 415,
+      "id": "resumeDetailScroll",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 416,
+      "id": "pluginsEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 417,
+      "id": "pluginsOutsideTab",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 418,
+      "id": "pluginsGroupByRepo",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 419,
+      "id": "pluginsAutoCheck",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 420,
+      "id": "pluginsBackground",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 421,
+      "id": "pluginsPosterLanguages",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 422,
+      "id": "pluginsPosterQuality",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 423,
+      "id": "cwPerProfile",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 424,
+      "id": "closeToTray",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "tray and window focus"
+    },
+    {
+      "index": 425,
+      "id": "trayAlwaysOnTop",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "tray and window focus"
+    },
+    {
+      "index": 426,
+      "id": "pauseMinimized",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "tray and window focus"
+    },
+    {
+      "index": 427,
+      "id": "pauseUnfocused",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "tray and window focus"
+    },
+    {
+      "index": 428,
+      "id": "cwSnapshotRetentionDays",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 429,
+      "id": "cwSnapshotFullQuality",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 430,
+      "id": "cwPreferEpisodeStill",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 431,
+      "id": "streamFilterLevel",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 432,
+      "id": "blockTrackers",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 433,
+      "id": "homeRows",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "home rows and navigation names"
+    },
+    {
+      "index": 434,
+      "id": "navCustomization",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "home rows and navigation names"
+    },
+    {
+      "index": 435,
+      "id": "navCustomizationOwn",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 436,
+      "id": "animeRows",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "anime rows"
+    },
+    {
+      "index": 437,
+      "id": "hotkeys",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hotkeys and anime picks settings"
+    },
+    {
+      "index": 438,
+      "id": "animeFavoriteGenres",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hotkeys and anime picks settings"
+    },
+    {
+      "index": 439,
+      "id": "animeExcludeOrigins",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hotkeys and anime picks settings"
+    },
+    {
+      "index": 440,
+      "id": "animeHideWatchedPicks",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hotkeys and anime picks settings"
+    },
+    {
+      "index": 441,
+      "id": "animePicksDismissedAt",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hotkeys and anime picks settings"
+    },
+    {
+      "index": 442,
+      "id": "animeAnilistRowsHidden",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hotkeys and anime picks settings"
+    },
+    {
+      "index": 443,
+      "id": "animeMalRowsHidden",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "hotkeys and anime picks settings"
+    },
+    {
+      "index": 444,
+      "id": "addonTimeoutSec",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 445,
+      "id": "profileAudio",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 446,
+      "id": "syncIndicator",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 447,
+      "id": "syncIndicatorPosition",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 448,
+      "id": "pickerLayout",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "picker settings"
+    },
+    {
+      "index": 449,
+      "id": "streamSort",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "picker settings"
+    },
+    {
+      "index": 450,
+      "id": "streamPriority",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "picker settings"
+    },
+    {
+      "index": 451,
+      "id": "fullStreamDescription",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "picker settings"
+    },
+    {
+      "index": 452,
+      "id": "pickerShowFilename",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "picker settings"
+    },
+    {
+      "index": 453,
+      "id": "pickerRefreshNextToBack",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "picker settings"
+    },
+    {
+      "index": 454,
+      "id": "customStreamFilters",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "custom stream filters"
+    },
+    {
+      "index": 455,
+      "id": "activeStreamFilterId",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "custom stream filters"
+    },
+    {
+      "index": 456,
+      "id": "seekBarStyle",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "seek bar style and height"
+    },
+    {
+      "index": 457,
+      "id": "seekBarHeight",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "seek bar style and height"
+    },
+    {
+      "index": 458,
+      "id": "seekBarColor",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 459,
+      "id": "seekBarImage",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 460,
+      "id": "seekBarFill",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 461,
+      "id": "seekBarFillOpacity",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 462,
+      "id": "seekDotShape",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 463,
+      "id": "seekDotHover",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "pointer hover"
+    },
+    {
+      "index": 464,
+      "id": "seekDotSize",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 465,
+      "id": "seekDotImage",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 466,
+      "id": "customCss",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "custom CSS/JS/HTML for Desktop's web interface"
+    },
+    {
+      "index": 467,
+      "id": "customJs",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "custom CSS/JS/HTML for Desktop's web interface"
+    },
+    {
+      "index": 468,
+      "id": "customHtml",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "custom CSS/JS/HTML for Desktop's web interface"
+    },
+    {
+      "index": 469,
+      "id": "webhooks",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 470,
+      "id": "calendarSource",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 471,
+      "id": "simklHomeRailsEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Simkl rails"
+    },
+    {
+      "index": 472,
+      "id": "simklUpNextRailEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Simkl rails"
+    },
+    {
+      "index": 473,
+      "id": "simklTrendingRailEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": "Simkl rails"
+    },
+    {
+      "index": 474,
+      "id": "simklScrobbleEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 475,
+      "id": "simklAnimeTitleLanguage",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 476,
+      "id": "weekStartsMonday",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "calendar settings"
+    },
+    {
+      "index": 477,
+      "id": "calendarPosterSize",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": "calendar settings"
+    },
+    {
+      "index": 478,
+      "id": "customCalendar",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 479,
+      "id": "webhookRules",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 480,
+      "id": "downloadDir",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop download folders"
+    },
+    {
+      "index": 481,
+      "id": "downloadCreateFolders",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop download folders"
+    },
+    {
+      "index": 482,
+      "id": "ebookDownloadDir",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop download folders"
+    },
+    {
+      "index": 483,
+      "id": "ebookDownloadCreateFolders",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "desktop download folders"
+    },
+    {
+      "index": 484,
+      "id": "nytKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 485,
+      "id": "sportsApiKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 486,
+      "id": "stremioDeeplinkInstall",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "addon deep-link install"
+    },
+    {
+      "index": 487,
+      "id": "iptvPlaylists",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 488,
+      "id": "iptvLiveContainer",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "P",
+      "note": "earlier review Partial"
+    },
+    {
+      "index": 489,
+      "id": "iptvForceProxy",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 490,
+      "id": "iptvEpgOffsetHours",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 491,
+      "id": "sidebarCollapsed",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 492,
+      "id": "showQuickGameLibrary",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Games excluded"
+    },
+    {
+      "index": 493,
+      "id": "gamesOpenInLibrary",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "X",
+      "note": "Games excluded"
+    },
+    {
+      "index": 494,
+      "id": "wrappedButton",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 495,
+      "id": "libraryHero",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 496,
+      "id": "mangaEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 497,
+      "id": "feedLocaleBias",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 498,
+      "id": "uiLanguage",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 499,
+      "id": "arabicWelcomeSeen",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 500,
+      "id": "cropMode",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 501,
+      "id": "customLists",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 502,
+      "id": "pauseListStatusOnPause",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 503,
+      "id": "translateTitles",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "D",
+      "note": ""
+    },
+    {
+      "index": 504,
+      "id": "translateDescriptions",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 505,
+      "id": "letterboxd",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 506,
+      "id": "adSkipEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 507,
+      "id": "adReportAlwaysShow",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 508,
+      "id": "adReportFirstSeen",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 509,
+      "id": "xrayEnabled",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 510,
+      "id": "xrayLiveScan",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    },
+    {
+      "index": 511,
+      "id": "auddApiKey",
+      "desktop_source": "src/lib/settings/types.ts",
+      "verdict": "M",
+      "note": ""
+    }
+  ]
+}
