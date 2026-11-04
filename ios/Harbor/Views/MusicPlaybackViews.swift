@@ -95,14 +95,7 @@ extension EnvironmentValues {
                             artwork(item, width: min(540, width))
                             recording(item)
                         }
-                        VStack(alignment: .leading, spacing: 12) {
-                            Label(DesktopInterfaceText.value("music.now.next"), image: "music-queue").font(.headline)
-                            NavigationLink(DesktopInterfaceText.value("music.transport.queue")) { MusicQueueView(player: player) }
-                            ForEach(player.upcomingItems) { entry in row(entry) }
-                            DisclosureGroup(DesktopInterfaceText.value("music.search.tracks")) {
-                                ForEach(player.items) { entry in row(entry) }
-                            }
-                        }.accessibilityIdentifier("music-shared-queue")
+                        MusicNowPanels(player: player)
                         Button(DesktopInterfaceText.value("music.player.close"), role: .destructive) { player.stop(); dismiss() }
                     } else { ContentUnavailableView(DesktopInterfaceText.value("Music"), image: "nav-music") }
                 }.frame(width: width).padding(edge).frame(maxWidth: .infinity)
@@ -145,11 +138,51 @@ extension EnvironmentValues {
                 Button(DesktopInterfaceText.value("music.source.playOn")) { choosingSource = true }.disabled(player.resolving)
                 Button(DesktopInterfaceText.value("music.audio.title")) { audioSettings = true }
             }
-            DisclosureGroup(DesktopInterfaceText.value("Lyrics")) {
-                MusicLyricsView(player: player, client: player.lyricsClient)
-            }
             if let error = player.error { Text(error).font(.caption).foregroundStyle(.orange).accessibilityIdentifier("music-shared-error") }
             if let error = player.scrobbleError { Text(error).font(.caption).foregroundStyle(.secondary) }
+        }
+    }
+}
+
+/// Desktop's now-playing detail tabs. The about tab (artist overview, credits,
+/// where to buy) is not ported yet and is therefore not offered.
+@MainActor private struct MusicNowPanels: View {
+    enum Panel: String, CaseIterable, Identifiable {
+        case queue, lyrics, signal
+        var id: String { rawValue }
+        var label: String {
+            switch self {
+            case .queue: "music.now.next"
+            case .lyrics: "Lyrics"
+            case .signal: "music.now.signal"
+            }
+        }
+    }
+    @Bindable var player: MusicPlayback
+    @State private var panel = Panel.queue
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(spacing: 8) {
+                Picker(DesktopInterfaceText.value("music.now.details"), selection: $panel) {
+                    ForEach(Panel.allCases) { Text(DesktopInterfaceText.value($0.label)).tag($0) }
+                }.pickerStyle(.segmented).accessibilityIdentifier("music-now-tabs")
+                NavigationLink { MusicQueueView(player: player) } label: {
+                    Image("music-queue").frame(width: 44, height: 44)
+                }.accessibilityLabel(DesktopInterfaceText.value("music.transport.openQueue")).accessibilityIdentifier("music-now-open-queue")
+            }
+            switch panel {
+            case .queue:
+                VStack(alignment: .leading, spacing: 12) {
+                    ForEach(player.upcomingItems) { entry in row(entry) }
+                    DisclosureGroup(DesktopInterfaceText.value("music.search.tracks")) {
+                        ForEach(player.items) { entry in row(entry) }
+                    }
+                }.accessibilityIdentifier("music-shared-queue")
+            case .lyrics:
+                MusicLyricsView(player: player, client: player.lyricsClient).accessibilityIdentifier("music-now-panel-lyrics")
+            case .signal:
+                MusicSignalDetailsView(player: player)
+            }
         }
     }
     private func row(_ item: MusicPlaybackItem) -> some View {

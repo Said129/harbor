@@ -1033,3 +1033,41 @@ The physical subtitle drift is unchanged. On iOS mpv composes subtitles in
 the rendered frame (vo=libmpv, sub-add); no Harbor code changes sub-delay or
 sub-fps on seek. No production subtitle change is made without the
 owner's answer (previous lines vs. correct lines shifted) and the stream type.
+
+Owner answer, 4 November: the displayed lines are the correct ones,
+shifted by a few seconds; the stream came from AIOStreams (stream type
+unknown). External subtitles are downloaded whole, written unchanged and
+preloaded by mpv from disk, and mpv renders them against each frame's pts;
+requests already carry videoHash/videoSize/filename. Two explanations fit
+and need opposite fixes: the subtitle belongs to another release (cut or
+23.976/24 fps difference, so the offset depends on the episode position and
+only becomes visible far from the start), or the stream's timestamps after
+a seek differ from those of linear playback. A seek back to the first
+minutes distinguishes them: back in sync means a release/timing mismatch,
+still shifted means a seek-time defect. No production change until then.
+The owner cannot run that check yet; it stays pending.
+
+## Now-playing detail tabs
+
+The expanded player now groups its details like Desktop's now-playing panel
+(music-now-playing.tsx): a segmented "music.now.details" control with
+"music.now.next", "Lyrics" and "music.now.signal", plus the open-queue
+action. The queue panel keeps the existing upcoming rows, all-tracks list
+and row actions; the lyrics panel is the existing synced-lyrics view.
+
+The signal panel ports music-signal-details.tsx and lib/music/quality.ts:
+the declared source stage (codec or local extension, depth only for
+non-lossy sources, decoded rate, bitrate, unverified when undeclared) and
+the output stage (current route, negotiated output rate read from the
+decoder, equalizer, ReplayGain and crossfeed state). Tiers, ranges and the
+kHz label follow the original exactly; no value is inferred.
+
+Desktop's fourth tab, "music.artist.about" (compact artist overview,
+recording credits, where to buy, soundtrack link), is not offered yet: the
+sheet has no catalog client for the credit links and the overview,
+where-to-buy and soundtrack pieces are not ported. Lyric-tab disabling
+when lyrics are switched off and the in-panel search are also pending.
+All labels already exist in the sixteen catalogues; none were added.
+
+New native case MusicSignalDetailsTests (original tier vectors and
+phone/tablet/Arabic captures) joins the focused module; it is unexecuted.

@@ -168,6 +168,7 @@ targets:
       - path: HarborTests/MusicEffectsTests.swift
       - path: HarborTests/MusicMeterTests.swift
       - path: HarborTests/MusicArtworkTests.swift
+      - path: HarborTests/MusicSignalDetailsTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift
