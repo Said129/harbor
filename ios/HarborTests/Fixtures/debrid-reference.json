@@ -19,7 +19,7 @@
     "data": {
       "url": "https://cdn.owned.example/Owned.Show.S01E01.mkv",
       "filename": "Owned.Show.S01E01.mkv",
-      "filesize": 1000
+      "filesize": 1500000000
     }
   },
   "unauthorized_code": "unauthorized",
@@ -56,7 +56,7 @@
               {
                 "id": 1,
                 "path": "/Owned.Show.S01E01.mkv",
-                "bytes": 1000,
+                "bytes": 1500000000,
                 "selected": 0
               },
               {
@@ -79,7 +79,7 @@
               {
                 "id": 1,
                 "path": "/Owned.Show.S01E01.mkv",
-                "bytes": 1000,
+                "bytes": 1500000000,
                 "selected": 1
               },
               {
@@ -105,7 +105,7 @@
           "body": {
             "download": "https://cdn.owned.example/Owned.Show.S01E01.mkv",
             "filename": "Owned.Show.S01E01.mkv",
-            "filesize": 1000
+            "filesize": 1500000000
           }
         }
       ]

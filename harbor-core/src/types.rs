@@ -230,6 +230,9 @@ pub struct ParsedStream {
     pub cached: std::collections::BTreeMap<String, bool>,
     #[serde(default)]
     pub in_library: std::collections::BTreeMap<String, bool>,
+    /// Set only from a real provider check, never from addon text markers.
+    #[serde(default)]
+    pub cache_verified: std::collections::BTreeMap<String, bool>,
     pub container: Option<Container>,
     pub release_group: Option<String>,
     pub release_group_normalized: Option<String>,
@@ -331,6 +334,17 @@ fn default_true() -> bool {
 pub struct Rejection {
     pub stream: ParsedStream,
     pub reason: String,
+}
+
+/// Provider-verified availability from the native host: debrid slug to the
+/// lowercase info hashes that its cache check or library listing confirmed.
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct DebridFlags {
+    #[serde(default)]
+    pub cached: std::collections::BTreeMap<String, Vec<String>>,
+    #[serde(default)]
+    pub library: std::collections::BTreeMap<String, Vec<String>>,
 }
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]

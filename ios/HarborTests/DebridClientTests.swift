@@ -1,8 +1,8 @@
 import XCTest
 @testable import Harbor
 
-private struct ScriptedResponse: Decodable { let status: Int; let body: JSONValue? }
-private struct DebridFixture: Decodable {
+struct ScriptedResponse: Decodable { let status: Int; let body: JSONValue? }
+struct DebridFixture: Decodable {
     struct Request: Decodable, Equatable { let method: String; let url: String; let body: String? }
     let reference: String
     let program_sha256: String
@@ -16,7 +16,7 @@ private struct DebridFixture: Decodable {
     let requests: [Request]
 }
 
-private actor DebridFixtureNetwork: HarborNativeNetworkCalling {
+actor DebridFixtureNetwork: HarborNativeNetworkCalling {
     struct Observation: Sendable { let method: String; let url: String; let body: String?; let authorization: String?; let publicOnly: Bool }
     private var queue: [String: [ScriptedResponse]]
     private(set) var observations: [Observation] = []
@@ -34,7 +34,7 @@ private actor DebridFixtureNetwork: HarborNativeNetworkCalling {
     }
 }
 
-@MainActor private final class DebridScope {
+@MainActor final class DebridScope {
     var value = PluginExecutionScope(owner: "owned-debrid-" + UUID().uuidString, activation: UUID())
 }
 

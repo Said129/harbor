@@ -684,6 +684,7 @@ mod tests {
             seeders: Some(50),
             cached: Default::default(),
             in_library: Default::default(),
+            cache_verified: Default::default(),
             container: Some(Container::Mkv),
             release_group: None,
             release_group_normalized: None,

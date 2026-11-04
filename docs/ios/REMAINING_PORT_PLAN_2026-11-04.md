@@ -52,9 +52,14 @@ exclusion is recorded.
 Debrid first because it blocks playing a whole class of streams for users who
 configure the service in Harbor itself.
 
-1. Debrid: clients and key storage (done in this commit), then the stream
-   pipeline (cache verification, library lookup, prepared links, play-time
-   resolution) and the play-picker states.
+1. Debrid: clients, key storage and the settings page (done), and the stream
+   pipeline connection (done, uncompiled): provider cache and library
+   verification before ranking through a new Rust `DebridFlags` input and
+   `cacheVerified` field, active debrids in the score options, torrent-only
+   streams resolved at play time (cached-first order, error-clip validation),
+   automatic selection limited to verified torrents. Still open: prefetching
+   the first prepared links, streams listed from the debrid library, queueing
+   an uncached source from the picker and per-provider health badges.
 2. Streaming sources panel: safety filter, sorting, picker layout (the Rust core
    already scores and filters; the settings and their effect on the list are
    missing), then home servers and Easynews.

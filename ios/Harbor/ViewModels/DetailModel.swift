@@ -21,6 +21,7 @@ final class DetailModel {
     }
     private let service: HarborService
     private let pluginStreams: HarborPluginStreamProvider?
+    private let debrid: @MainActor () -> DebridClient?
     private let contextRevision: @MainActor () -> UUID
     private var metadataLoaded: Bool
     var metadataReady: Bool { metadataLoaded && !loadingMetadata }
@@ -111,9 +112,9 @@ final class DetailModel {
     func cancelResolution() { resolutionRequest = UUID(); resolving = false }
 
     init(_ media: Media, service: HarborService, metadataLoaded: Bool = false, contextRevision: @escaping @MainActor () -> UUID = { AppProfileContext.shared.activationID },
-        pluginStreams: HarborPluginStreamProvider? = nil) {
+        pluginStreams: HarborPluginStreamProvider? = nil, debrid: @escaping @MainActor () -> DebridClient? = { nil }) {
         self.media = media; self.service = service; self.metadataLoaded = metadataLoaded; self.contextRevision = contextRevision
-        self.pluginStreams = pluginStreams
+        self.pluginStreams = pluginStreams; self.debrid = debrid
     }
 
     func load(_ addons: [Addon], owner: String, library: LibraryModel, fetch: (@MainActor () async throws -> Media)? = nil) async {
@@ -360,9 +361,10 @@ final class DetailModel {
             let plugins: (@Sendable () async throws -> HarborPluginStreamBatch)?
             if let provider { plugins = { try await provider(selected, videoID, episode, startingPriority) } }
             else { plugins = nil }
+            let debridClient = debrid()
             let result = try await service.streams(selected, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode,
-                unfiltered: true, pluginSource: plugins)
-            let automatic = try await service.automaticStreams(result.0, media: selected, season: episode?.season, episode: episode?.episode)
+                unfiltered: true, pluginSource: plugins, debrid: debridClient)
+            let automatic = try await service.automaticStreams(result.0, media: selected, season: episode?.season, episode: episode?.episode, debrid: debridClient)
             try Task.checkCancellation()
             guard streamRequest == request, contextRevision() == context else { return }
             offers = result.0
@@ -389,7 +391,7 @@ final class DetailModel {
         let continuation = sourceContinuation
         defer { if resolutionRequest == resolution { resolving = false } }
         do {
-            let source = try await service.resolve(offer)
+            let source = try await service.resolve(offer, debrid: debrid(), season: episode?.season, episode: episode?.episode)
             try Task.checkCancellation()
             guard owner == library.owner, personalOwner == library.personalOwner, contextRevision() == context, request == streamRequest, resolution == resolutionRequest else { return }
             let target = ResumeTarget(id: selected.id, season: episode?.season, episode: episode?.episode, videoId: episode?.id)

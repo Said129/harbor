@@ -870,6 +870,7 @@ pub fn parse_stream(stream: Stream) -> ParsedStream {
         seeders,
         cached,
         in_library,
+        cache_verified: BTreeMap::new(),
         container,
         release_group,
         release_group_normalized,

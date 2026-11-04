@@ -138,7 +138,7 @@ const script = {
         status: "waiting_files_selection",
         progress: 0,
         files: [
-          { id: 1, path: "/Owned.Show.S01E01.mkv", bytes: 1000, selected: 0 },
+          { id: 1, path: "/Owned.Show.S01E01.mkv", bytes: 1_500_000_000, selected: 0 },
           { id: 2, path: "/readme.nfo", bytes: 1, selected: 0 },
         ],
         links: [],
@@ -151,7 +151,7 @@ const script = {
         status: "downloaded",
         progress: 100,
         files: [
-          { id: 1, path: "/Owned.Show.S01E01.mkv", bytes: 1000, selected: 1 },
+          { id: 1, path: "/Owned.Show.S01E01.mkv", bytes: 1_500_000_000, selected: 1 },
           { id: 2, path: "/readme.nfo", bytes: 1, selected: 0 },
         ],
         links: ["https://real-debrid.com/d/OWNED"],
@@ -165,7 +165,7 @@ const script = {
       body: {
         download: "https://cdn.owned.example/Owned.Show.S01E01.mkv",
         filename: "Owned.Show.S01E01.mkv",
-        filesize: 1000,
+        filesize: 1_500_000_000,
       },
     },
   ],
@@ -313,11 +313,16 @@ await writeFile(
         "original result codes: unauthorized, not-premium, rate-limited, not-cached and the rest",
       ],
       host_shims: ["safe-fetch over the native HTTP transport", "debug (no logging)"],
+      connected_natively: [
+        "cache and library verification of a title's hashes before ranking (Rust applyDebridFlags equivalent)",
+        "provider order cached-first, error-clip link validation and play-time resolution",
+        "automatic selection only of provider-verified torrents",
+      ],
       not_ported_yet: [
-        "stream pipeline cache verification",
-        "library lookup in the stream list",
-        "prepared-link prefetch",
-        "play-time resolution",
+        "prepared-link prefetch of the first cached streams",
+        "streams listed from the debrid library itself",
+        "queueing an uncached source from the picker",
+        "per-provider health badges",
       ],
       generator_accesses_providers: false,
       contains_personal_api_key: false,

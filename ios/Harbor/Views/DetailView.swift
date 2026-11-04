@@ -35,7 +35,7 @@ struct DetailView: View {
         _model = State(initialValue: DetailModel(media, service: app.service, metadataLoaded: metadataLoaded, pluginStreams: { [weak app] media, videoID, episode, priority in
             guard let app else { throw CancellationError() }
             return try await app.pluginStreams(media: media, videoID: videoID, episode: episode, startingPriority: priority)
-        }))
+        }, debrid: { [weak app] in app?.debridClient() }))
     }
 
     var body: some View {
@@ -366,7 +366,7 @@ struct DetailView: View {
         defer { downloading = false }
         let owner = app.personalOwner, scope = app.accountOperationScope, media = model.playbackContextMedia, episode = selectedEpisode
         do {
-            let source = try await app.service.resolve(offer)
+            let source = try await app.service.resolve(offer, debrid: app.debridClient(), season: episode?.season, episode: episode?.episode)
             guard owner == app.personalOwner, scope == app.accountOperationScope else { return }
             try DownloadManager.shared.start(source: source, media: media, episode: episode, owner: owner, cellular: cellularDownloads)
             if media.identity == model.playbackContextMedia.identity { downloadMessage = DesktopInterfaceText.value("Download started") }

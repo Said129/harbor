@@ -166,8 +166,16 @@ struct HarborService: Sendable {
         return CatalogRow(plan: plan, metas: parsed, receivedCount: values.count)
     }
 
+    /// Desktop's score options with the configured debrid providers, so a stream
+    /// cached on one of them ranks as such.
+    private static func scoring(_ media: Media, addonOrder: Bool, active: [DebridProvider]) -> JSONValue {
+        guard case .object(var fields) = AddonOriginPolicy.score(media, addonOrder: addonOrder) else { return AddonOriginPolicy.score(media, addonOrder: addonOrder) }
+        if !active.isEmpty { fields["activeDebrids"] = .array(active.map { JSONValue.string($0.rawValue) }) }
+        return .object(fields)
+    }
+
     func streams(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil, unfiltered: Bool = false,
-        pluginSource: (@Sendable () async throws -> HarborPluginStreamBatch)? = nil) async throws -> ([StreamOffer], [String]) {
+        pluginSource: (@Sendable () async throws -> HarborPluginStreamBatch)? = nil, debrid: DebridClient? = nil) async throws -> ([StreamOffer], [String]) {
         async let pluginResponse = Self.pluginResponse(pluginSource)
         let selection = try await streamRequests(media, videoID: videoID, addons: addons, season: season, episode: episode)
         let responses = try await fetch(selection.plans, fallbacks: selection.fallbacks)
@@ -184,7 +192,12 @@ struct HarborService: Sendable {
         try Task.checkCancellation()
         let preferences = await StreamPreferences.shared.configuration()
         let trust = (unfiltered || AddonOriginPolicy.isNative(media) ? StreamFilterConfiguration(level: "off", addonOrder: preferences.addonOrder) : preferences).trust(media, season: season, episode: episode)
-        let result: JSONValue = try await core.call("rank", ["streams": .array(StreamRequestPolicy.deduplicated(raw)), "trust": trust, "score": AddonOriginPolicy.score(media, addonOrder: preferences.addonOrder)])
+        let candidates = StreamRequestPolicy.deduplicated(raw)
+        // Providers confirm which hashes they hold before ranking, as Desktop's pipeline does.
+        let verification = await DebridStreamVerifier.verify(candidates, client: debrid)
+        try Task.checkCancellation()
+        let active = await debrid?.providers ?? []
+        let result: JSONValue = try await core.call("rank", ["streams": .array(candidates), "trust": trust, "score": Self.scoring(media, addonOrder: preferences.addonOrder, active: active), "debrid": verification.flags])
         return (result["picker"]["all"].array.enumerated().map { StreamOffer(id: $0.offset, raw: $0.element) }, errors)
     }
 
@@ -227,14 +240,21 @@ struct HarborService: Sendable {
         catch { try Task.checkCancellation(); return .init(errors: ["plugin-source"]) }
     }
 
-    func resolve(_ offer: StreamOffer) async throws -> PlaybackSource {
-        try await core.call("resolveDirect", ["stream": offer.raw])
+    /// A stream with a URL plays directly. One that is only a torrent hash is
+    /// resolved through the profile's debrid services, as Desktop does.
+    func resolve(_ offer: StreamOffer, debrid: DebridClient? = nil, season: Int? = nil, episode: Int? = nil) async throws -> PlaybackSource {
+        let hasURL = offer.raw["url"].string?.isEmpty == false, hasHash = offer.raw["infoHash"].string?.isEmpty == false
+        if hasURL || !hasHash { return try await core.call("resolveDirect", ["stream": offer.raw]) }
+        return try await DebridStreamResolver.resolve(offer.raw, client: debrid, season: season, episode: episode)
     }
 
-    func automaticStreams(_ offers: [StreamOffer], media: Media, season: Int?, episode: Int?) async throws -> [StreamOffer] {
+    func automaticStreams(_ offers: [StreamOffer], media: Media, season: Int?, episode: Int?, debrid: DebridClient? = nil) async throws -> [StreamOffer] {
         let preferences = await StreamPreferences.shared.configuration()
         let trust = (AddonOriginPolicy.isNative(media) ? StreamFilterConfiguration(level: "off", addonOrder: preferences.addonOrder) : preferences).trust(media, season: season, episode: episode)
-        let result: JSONValue = try await core.call("rank", ["streams": .array(offers.map(\.raw)), "trust": trust, "score": AddonOriginPolicy.score(media, addonOrder: preferences.addonOrder)])
+        // Ranking again must keep the provider verification the first ranking applied.
+        let verification = DebridVerification.from(offers: offers.map(\.raw))
+        let active = await debrid?.providers ?? []
+        let result: JSONValue = try await core.call("rank", ["streams": .array(offers.map(\.raw)), "trust": trust, "score": Self.scoring(media, addonOrder: preferences.addonOrder, active: active), "debrid": verification.flags])
         return result["picker"]["all"].array.enumerated().map { StreamOffer(id: $0.offset, raw: $0.element) }
     }
 

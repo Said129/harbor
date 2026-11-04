@@ -1326,6 +1326,7 @@ mod tests {
             seeders: None,
             cached: Default::default(),
             in_library: Default::default(),
+            cache_verified: Default::default(),
             container: None,
             release_group: None,
             release_group_normalized: None,

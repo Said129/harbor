@@ -20,11 +20,16 @@
     "original result codes: unauthorized, not-premium, rate-limited, not-cached and the rest"
   ],
   "host_shims": ["safe-fetch over the native HTTP transport", "debug (no logging)"],
+  "connected_natively": [
+    "cache and library verification of a title's hashes before ranking (Rust applyDebridFlags equivalent)",
+    "provider order cached-first, error-clip link validation and play-time resolution",
+    "automatic selection only of provider-verified torrents"
+  ],
   "not_ported_yet": [
-    "stream pipeline cache verification",
-    "library lookup in the stream list",
-    "prepared-link prefetch",
-    "play-time resolution"
+    "prepared-link prefetch of the first cached streams",
+    "streams listed from the debrid library itself",
+    "queueing an uncached source from the picker",
+    "per-provider health badges"
   ],
   "generator_accesses_providers": false,
   "contains_personal_api_key": false

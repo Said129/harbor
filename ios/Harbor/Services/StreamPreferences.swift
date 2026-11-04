@@ -99,8 +99,13 @@ extension StreamOffer {
     var automaticallyPlayable: Bool {
         guard let value = raw["url"].string, value.rangeOfCharacter(from: .controlCharacters) == nil,
               let url = URLComponents(string: value), ["http", "https"].contains(url.scheme?.lowercased() ?? ""),
-              let host = url.host, !host.isEmpty else { return false }
+              let host = url.host, !host.isEmpty else { return debridVerified }
         return true
+    }
+    /// A torrent hash that one of the profile's debrid services confirmed as cached
+    /// or in its library. Desktop never starts an unverified torrent on its own.
+    var debridVerified: Bool {
+        raw["infoHash"].string?.isEmpty == false && raw["cacheVerified"].objectValue.values.contains(JSONValue.bool(true))
     }
     var videoHeight: Int {
         if quality.hasPrefix("4K") { return 2160 }

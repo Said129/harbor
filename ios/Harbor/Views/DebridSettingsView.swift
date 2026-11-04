@@ -6,7 +6,8 @@ import SwiftUI
     private enum Status: Equatable {
         case checking, active(days: Int?), expired, failed(String)
     }
-    @State private var client: DebridClient
+    /// The profile's shared client, so a key saved here serves the next playback.
+    private let client: DebridClient
     @State private var drafts: [DebridProvider: String] = [:]
     @State private var status: [DebridProvider: Status] = [:]
     @State private var saved: DebridProvider?
@@ -15,9 +16,9 @@ import SwiftUI
 
     /// The scope is the active profile's; a locked app has none and never offers this page.
     init(app: AppModel, scope: PluginExecutionScope) {
-        _client = State(initialValue: DebridClient(scope: scope, currentScope: { [weak app] in
+        client = DebridClientCache.shared.client(for: scope) { [weak app] in
             app?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
-        }))
+        }
     }
 
     var body: some View {
@@ -34,7 +35,6 @@ import SwiftUI
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
             .navigationTitle(text("Debrid services")).navigationBarTitleDisplayMode(.inline)
             .task { for provider in client.providers { await check(provider) } }
-            .onDisappear { client.dispose() }
             .accessibilityIdentifier("debrid-settings")
     }
 

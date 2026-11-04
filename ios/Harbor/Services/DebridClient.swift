@@ -39,6 +39,7 @@ struct DebridTransport: HarborPluginHostTransport {
     }
     private static func keyName(_ provider: DebridProvider, _ owner: String) -> String { "debrid-key-" + provider.rawValue + "-" + EBookShelf.hash(owner) }
 
+    var isDisposed: Bool { disposed }
     /// Providers with a saved key, in Desktop's order.
     var providers: [DebridProvider] { DebridProvider.allCases.filter { keys[$0] != nil } }
     func hasKey(_ provider: DebridProvider) -> Bool { keys[provider] != nil }
@@ -109,4 +110,29 @@ struct DebridTransport: HarborPluginHostTransport {
         if let version, version != revision { throw CancellationError() }
     }
     func dispose() { guard !disposed else { return }; disposed = true; runtime?.dispose(); runtime = nil; keys = [:] }
+}
+
+/// One client per active profile, shared by Settings and the stream pipeline so a
+/// key saved on the settings page is used by the next playback. A new profile
+/// scope retires the previous client and its keys.
+@MainActor final class DebridClientCache {
+    static let shared = DebridClientCache()
+    private var current: DebridClient?
+    func client(for scope: PluginExecutionScope, currentScope: @escaping @MainActor () -> PluginExecutionScope) -> DebridClient {
+        if let current, current.scope == scope, !current.isDisposed { return current }
+        current?.dispose()
+        let client = DebridClient(scope: scope, currentScope: currentScope)
+        current = client
+        return client
+    }
+}
+
+extension AppModel {
+    /// The active profile's debrid client, or nil while the app is locked.
+    func debridClient() -> DebridClient? {
+        guard let scope = pluginExecutionScope else { return nil }
+        return DebridClientCache.shared.client(for: scope) { [weak self] in
+            self?.pluginExecutionScope ?? PluginExecutionScope(owner: "locked", activation: scope.activation)
+        }
+    }
 }
