@@ -40,11 +40,14 @@ private actor HeldEffectsEngine: MusicAudioEngineOperating {
         let engine = MusicAudioEngine(), player = MusicPlayback(engine: engine, systemIntegration: false, recordPlayed: { _, _ in })
         let oldVolume = player.volume; player.changeVolume(0)
         defer { player.stop(); player.volume = oldVolume; server.dispose(); cleanup(owner) }
+        var phase = "initial native audio"
         do {
             player.play(record.local.track, queue: [record.local.track], using: session)
             try await wait { player.loaded && player.position > 0.1 }
+            phase = "pause"
             player.setPaused(true); try await wait { player.paused }
             let position = player.position, first = try player.beginEffects(using: session)
+            phase = "echo and saved processing"
             try await player.applyEffects(.init(kind: "echo", depth: 0.6, beats: 0.75, bpm: 100), lease: first, using: session)
             let initial = await player.audioSignal()
             XCTAssertTrue(initial?.filters?.contains("aecho=") == true); XCTAssertTrue(initial?.filters?.contains("equalizer=") == true)
@@ -57,6 +60,7 @@ private actor HeldEffectsEngine: MusicAudioEngineOperating {
             let saved = try await MusicAudioPreferences(owner: owner).plan()
             XCTAssertEqual(saved.effects.kind, "off", "A temporary performance effect must not become a saved listening preference")
             let second = try player.beginEffects(using: session)
+            phase = "panel replacement and wide effect"
             await player.endEffects(first, using: session)
             XCTAssertEqual(player.audioEffects.kind, "echo", "A retired panel cannot clear the newer panel's audio")
             try await player.applyEffects(.init(kind: "wide", depth: 0.4), lease: second, using: session)
@@ -72,6 +76,9 @@ private actor HeldEffectsEngine: MusicAudioEngineOperating {
             player.stop(); await engine.stop(request: .max)
             try await MusicFileService.shared.remove(record, owner: owner)
         } catch {
+            let signal = await player.audioSignal()
+            let attachment = XCTAttachment(string: "\(phase)\nloaded=\(player.loaded), paused=\(player.paused), position=\(player.position), error=\(player.error ?? "none"), outputRate=\(String(describing: signal?.outputRate)), backend=\(signal?.backend ?? "none")")
+            attachment.name = "owned-live-effects-failure-phase"; attachment.lifetime = .keepAlways; add(attachment)
             player.stop(); await engine.stop(request: .max)
             try? await MusicFileService.shared.remove(record, owner: owner)
             throw error
@@ -125,8 +132,10 @@ private actor HeldEffectsEngine: MusicAudioEngineOperating {
             ("rtl-phone", CGSize(width: 390, height: 844), LayoutDirection.rightToLeft)
         ] {
             UserDefaults.standard.set(direction == .rightToLeft ? "ar" : "es", forKey: "uiLanguage")
-            try await capture(NavigationStack { Form { MusicBeatEffectsSection(player: player, session: session) } }.environment(\.layoutDirection, direction),
-                              name: "music-beat-effects-" + name, size: size)
+            let lease = UUID()
+            try await capture(NavigationStack { Form { MusicBeatEffectsSection(player: player, session: session, owner: lease) } }.environment(\.layoutDirection, direction),
+                              name: "music-beat-effects-" + name, size: size, ready: { player.effectLease == lease })
+            await player.endEffects(lease, using: session)
         }
         UserDefaults.standard.set("es", forKey: "uiLanguage")
         for (name, size) in [("phone", CGSize(width: 390, height: 844)), ("tablet", CGSize(width: 1024, height: 1366))] {
@@ -148,14 +157,16 @@ private actor HeldEffectsEngine: MusicAudioEngineOperating {
         for _ in 0..<500 { if condition() { return }; try await Task.sleep(for: .milliseconds(20)) }
         XCTFail("Owned live effects did not settle"); throw HarborError(code: "owned-effects-timeout")
     }
-    private func capture<V: View>(_ view: V, name: String, size: CGSize) async throws {
+    private func capture<V: View>(_ view: V, name: String, size: CGSize, ready: (@MainActor () -> Bool)? = nil) async throws {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let previous = scene.windows.first { $0.isKeyWindow }, window = UIWindow(windowScene: scene)
         window.frame = CGRect(origin: .zero, size: size)
         let host = UIHostingController(rootView: view.preferredColorScheme(.dark))
         window.rootViewController = host; window.makeKeyAndVisible()
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
-        host.view.layoutIfNeeded(); try await Task.sleep(for: .milliseconds(450))
+        host.view.layoutIfNeeded()
+        if let ready { try await wait(ready) }
+        try await Task.sleep(for: .milliseconds(450))
         let image = UIGraphicsImageRenderer(size: size).image { _ in host.view.drawHierarchy(in: CGRect(origin: .zero, size: size), afterScreenUpdates: true) }
         let attachment = XCTAttachment(image: image); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }

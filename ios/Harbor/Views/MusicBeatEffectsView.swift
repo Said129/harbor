@@ -7,6 +7,7 @@ import SwiftUI
     private(set) var draft: MusicAudioEffects
     private(set) var applying = false
     private(set) var failed = false
+    var current: Bool { player.effectLease == lease }
     @ObservationIgnored private let player: MusicPlayback
     @ObservationIgnored private let session: MusicPlaybackSession
     @ObservationIgnored private let lease: UUID
@@ -69,7 +70,8 @@ import SwiftUI
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
     var body: some View {
         Section(text("dj.fx.beat")) {
-            if let model { MusicBeatEffectsControls(model: model) }
+            if let model { MusicBeatEffectsControls(model: model).disabled(!model.current) }
+            else if !failed { ProgressView(text("music.loading")).accessibilityIdentifier("music-beat-fx-loading") }
             if failed { Text(text("music.audio.saveError")).font(.caption).foregroundStyle(.orange) }
         }.task {
             guard model == nil else { return }

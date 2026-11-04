@@ -24,8 +24,8 @@
   ],
   "validation": {
     "originalExtendedFilterExecution": "accepted run 41544752262 on 0c4a1202; unchanged algorithms are not repeated",
-    "newPlayerIntegration": "pending",
-    "replacementLoadOwnership": "pending",
-    "newPhoneTabletAndArabicCaptures": "pending"
+    "newPlayerIntegration": "run 41734304782 timed out at initial native audio with a missing default CoreAudio device and 0 Hz host format; explicit isolated-host route and labeled affected follow-up pending",
+    "replacementLoadOwnership": "passed on d5eacba8 in run 41734304782; unchanged case retained",
+    "newPhoneTabletAndArabicCaptures": "all five exports inspected from run 41734304782; Spanish panels fit, Arabic controls were not ready despite the XCTest pass. Loading feedback and lease-based capture readiness now require affected review"
   }
 }

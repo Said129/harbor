@@ -801,3 +801,66 @@ The manifest stays inside the existing intermediate cache. It cannot name
 extra files to mutate, and symlink/out-of-root inputs are rejected. The helper
 only runs in isolated CI, not against the user's checkout. This is preparation
 for useful incremental builds; no build-speed claim is made before execution.
+
+## Queued source replacement and analysis component
+
+The queue can now choose another source for an upcoming or previous recording
+without touching the current decoder. It runs the already accepted original
+selectableSources and replaceQueueTrack program: one non-offline alternative
+per service, original requested credits and collection identity retained.
+Replacing a priority-next recording updates that priority to its chosen
+source. A queue/profile revision invalidates an open chooser and late results;
+lookup generations prevent a cancelled lookup from hiding a newer load.
+The current source picker retains its playback-switch behavior.
+
+A new affected journey searches the real owned local library through the
+native session, captures the queued chooser on phone/tablet/Arabic, changes
+only the pending source and checks that the current decoder stays untouched,
+then verifies priority-next opens the selected owned file. Original policy
+math is unchanged; the accepted 48 decision cases are not repeated.
+
+The seventeen-filter component run 41734710275 succeeded on cb230f53. The
+downloaded artifact matches GitHub SHA-256
+1048d901b19c5b9ea62135e3e0140a978f99baa86b743dea3865d74b4637e57d;
+its component is
+1e38b1df04dc3f4bf990ec011b6a1074850955bd8bcf55be2a21e807430ac0ec.
+Actual archive CPU tags cover arm64 device and arm64/x86_64 simulator, and
+ten public headers, licenses and the upstream FFmpeg patch match the accepted
+component. The candidate archive is replaced for the next affected execution;
+the accepted fourteen-filter archive/evidence is preserved separately. New
+native execution is explicitly unverified. The default project and delivered
+IPA 93 remain unchanged.
+
+## Beat-effect results and affected follow-up
+
+Run 41734304782 on d5eacba8 executed all three selected cases without a
+restart. The delayed replacement/old-panel ownership case passed and is
+retained unchanged. The control case reported a pass, but visual review of
+all five images found that the Arabic capture contained only the section
+heading: model initialization had not produced controls before capture.
+The two Spanish effect panels and revised audio forms fit their viewports.
+This does not establish the missing Arabic controls as visually validated.
+
+The section now shows a loading indicator while its model initializes,
+disables a retired panel, and its capture waits for the actual owning lease.
+The affected control case must run again, including the new meter switches
+enabled by the seventeen-filter candidate. An assertion pass alone is not
+accepted as proof that those controls rendered.
+
+The native effect journey timed out during initial audio. Its host log
+reports missing default output device ID 0 and a 0 Hz RemoteIO format.
+The simulator host will receive the official BlackHole 2ch 0.7.1 package,
+verified against SHA-256
+57b540f27a3e29c37e310e01bee0fdfab76733087e47f997ef9dccf851400dcf
+from the primary Homebrew cask. A small CoreAudio helper verifies a live
+48 kHz default route before testing. It runs only in disposable macOS CI;
+the driver/helper are not linked or embedded in Harbor, and no app audio
+fallback, DSP bypass or test assertion is substituted. The failed journey
+now attaches its exact phase and bounded player/output state.
+
+The original evidence archive is retained with SHA-256
+7aba03a686f9fe53221fa37aea2d724009ff5164a490c070a8e08a5e17a07315.
+The next selection comprises nine new, failed or visually incomplete cases:
+two meters, three queue operations/chooser cases, the corrected HTTP
+checkpoint, indexed subtitle observation, and the two affected effect cases.
+Unchanged Last.fm/Spotify/recovery and replacement-panel passes are excluded.

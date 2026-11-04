@@ -100,6 +100,7 @@ subprocess.run(["python3", "scripts/ios/reuse-native-source-times.py"], check=Tr
 run(command + selection + ["build-for-testing"], "focused-build", timeout=2700)
 # The resource trace showed simulator services competing with the compiler.
 # Build for the selected device first; launch it only for actual execution.
+subprocess.run(["python3", "scripts/ios/prepare-ci-audio.py", "--verify"], check=True)
 subprocess.run(["xcrun", "simctl", "bootstatus", device, "-b"], check=True, timeout=300)
 report["simulator_boot_after_build"] = True
 app = build / "DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app"
