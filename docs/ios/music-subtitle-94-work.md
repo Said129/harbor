@@ -1127,6 +1127,13 @@ its Apple host from the existing apple_runner input (default unchanged,
 macos-15-intel); the native cache key already includes the architecture, so
 an arm64 host starts cold. The next dispatch uses macos-15.
 
+Run 41865981171 on macos-15 also never acquired a runner. Its annotation
+says that, due to capacity constraints, jobs targeting macOS arm64 runners
+may experience longer queue times. Four consecutive dispatches (two Intel
+after the earlier success, one more Intel, one arm64) produced no test
+result. The pending case is unchanged and still has to run on Apple
+hardware; it is retried when macOS capacity returns, not repeated blindly.
+
 Subtitles, owner report 4 November (later): the shift appears after seeking
 forward or backward, with audio and video in sync. A wrong-release subtitle
 would be in sync again near the start, so this leans toward a seek-time
