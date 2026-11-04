@@ -124,6 +124,72 @@ import XCTest
         XCTAssertEqual(ordered.map(\.id), [0, 1, 2], "Offers are numbered after reordering")
     }
 
+    func testAutoplaySettlesOnThePlayableFloorQuorumOrCap() {
+        let start = ContinuousClock.now
+        let playable = offer(0, ["url": .string("https://cdn.example.org/a.mp4"), "title": .string("Film.2020.1080p")])
+        let unnamed = offer(1, ["url": .string("https://cdn.example.org/b.mp4"), "nameAbsent": .bool(true)])
+        var floor = StreamAutoSettle(started: start)
+        XCTAssertFalse(floor.shouldStart(now: start, top: nil, candidates: [], hasResults: false, answered: 0, total: 5, done: false, protecting: false))
+        XCTAssertFalse(floor.shouldStart(now: start + .milliseconds(100), top: playable, candidates: [playable], hasResults: true, answered: 1, total: 5, done: false, protecting: false),
+                       "Too soon after the first result")
+        XCTAssertTrue(floor.shouldStart(now: start + .milliseconds(1700), top: playable, candidates: [playable], hasResults: true, answered: 1, total: 5, done: false, protecting: false),
+                      "A playable top settles 1.5 s after the first result")
+
+        var quorum = StreamAutoSettle(started: start)
+        XCTAssertFalse(quorum.shouldStart(now: start, top: unnamed, candidates: [unnamed], hasResults: true, answered: 3, total: 5, done: false, protecting: false))
+        XCTAssertFalse(quorum.shouldStart(now: start + .milliseconds(1600), top: unnamed, candidates: [unnamed], hasResults: true, answered: 3, total: 5, done: false, protecting: false),
+                       "A top without its own name waits for most addons")
+        XCTAssertTrue(quorum.shouldStart(now: start + .milliseconds(1700), top: unnamed, candidates: [unnamed], hasResults: true, answered: 4, total: 5, done: false, protecting: false),
+                      "80 % of the addons answered")
+
+        var cap = StreamAutoSettle(started: start)
+        XCTAssertFalse(cap.shouldStart(now: start + .seconds(2), top: unnamed, candidates: [unnamed], hasResults: true, answered: 1, total: 5, done: false, protecting: false))
+        XCTAssertTrue(cap.shouldStart(now: start + .seconds(10), top: unnamed, candidates: [unnamed], hasResults: true, answered: 1, total: 5, done: false, protecting: false),
+                      "Ten seconds after the start nothing waits any longer")
+
+        var done = StreamAutoSettle(started: start)
+        XCTAssertFalse(done.shouldStart(now: start, top: nil, candidates: [], hasResults: false, answered: 5, total: 5, done: true, protecting: false))
+        XCTAssertTrue(done.shouldStart(now: start, top: unnamed, candidates: [unnamed], hasResults: true, answered: 5, total: 5, done: true, protecting: true),
+                      "Every addon answered: start even a protected choice")
+    }
+
+    func testAutoplayEpisodeChecksAndConfidentStart() {
+        let start = ContinuousClock.now
+        let named = offer(0, ["url": .string("https://cdn.example.org/a.mkv"), "behaviorHints": .object(["filename": .string("Show.S01E03.1080p.WEB-DL.mkv")])])
+        let otherEpisode = offer(1, ["url": .string("https://cdn.example.org/b.mkv"), "episode": .integer(4), "season": .integer(1)])
+        let pack = offer(2, ["url": .string("https://cdn.example.org/c.mkv"), "behaviorHints": .object(["filename": .string("Show.S01.Complete.1080p.mkv")])])
+        let settle = StreamAutoSettle(started: start, season: 1, episode: 3)
+        XCTAssertTrue(settle.qualifies(named)); XCTAssertFalse(settle.qualifies(otherEpisode)); XCTAssertFalse(settle.qualifies(pack))
+        XCTAssertTrue(settle.qualifies(offer(3, ["episode": .integer(3), "season": .integer(1)])))
+        XCTAssertTrue(StreamAutoSettle(started: start).qualifies(pack), "A film has no episode to check")
+
+        var waitsForPack = StreamAutoSettle(started: start, season: 1, episode: 3)
+        _ = waitsForPack.shouldStart(now: start, top: pack, candidates: [pack], hasResults: true, answered: 1, total: 5, done: false, protecting: false)
+        XCTAssertFalse(waitsForPack.shouldStart(now: start + .seconds(5), top: pack, candidates: [pack], hasResults: true, answered: 1, total: 5, done: false, protecting: false),
+                       "A season pack is not the episode, so only the quorum or the cap can settle")
+
+        let instant = offer(4, ["url": .string("https://cdn.example.org/d.mkv"), "name": .string("⚡ Instant 1080p"), "episode": .integer(3), "season": .integer(1)])
+        var confident = StreamAutoSettle(started: start, season: 1, episode: 3)
+        XCTAssertFalse(confident.shouldStart(now: start, top: instant, candidates: [instant], hasResults: true, answered: 1, total: 5, done: false, protecting: false))
+        XCTAssertTrue(confident.shouldStart(now: start + .milliseconds(400), top: instant, candidates: [instant], hasResults: true, answered: 1, total: 5, done: false, protecting: false),
+                      "A confident instant source starts after the 350 ms grace")
+        var protected = StreamAutoSettle(started: start, season: 1, episode: 3)
+        _ = protected.shouldStart(now: start, top: instant, candidates: [instant], hasResults: true, answered: 1, total: 5, done: false, protecting: true)
+        XCTAssertFalse(protected.shouldStart(now: start + .seconds(3), top: instant, candidates: [instant], hasResults: true, answered: 1, total: 5, done: false, protecting: true),
+                       "The remembered source has not answered yet")
+
+        let torrentio = offer(5, ["url": .string("https://cdn.example.org/e.mkv"), "name": .string("⚡ Instant"), "addonName": .string("Torrentio")])
+        XCTAssertTrue(StreamAutoSettle(started: start).highConfidence(torrentio))
+        XCTAssertFalse(StreamAutoSettle(started: start, strongAddon: true).highConfidence(torrentio), "MediaFusion or Comet outrank Torrentio's own marker")
+        XCTAssertTrue(StreamAutoSettle.strong([addon("comet")]))
+    }
+
+    func testDebridVerificationMergeKeepsEachHashOnce() {
+        var value = DebridVerification(cached: ["rd": ["a"]], library: [:])
+        value.merge(DebridVerification(cached: ["rd": ["a", "b"], "tb": ["c"]], library: ["rd": ["d"]]))
+        XCTAssertEqual(value, DebridVerification(cached: ["rd": ["a", "b"], "tb": ["c"]], library: ["rd": ["d"]]))
+    }
+
     func testStremioRowTextAndOrder() {
         let long = String(repeating: "a", count: 95)
         let row = offer(0, ["name": .string("  "), "title": .string(long + "\nsecond line")])

@@ -965,6 +965,7 @@
 "Load file" = "Muat file";
 "Load more" = "Muat lebih banyak";
 "Loading" = "Memuat";
+"Loading more sources" = "Memuat lebih banyak sumber";
 "Loading music" = "Memuat musik";
 "Loading plugins..." = "Memuat plugin...";
 "Loading your history…" = "Memuat riwayat Anda…";
@@ -3261,7 +3262,9 @@
 "{name} + {n} más" = "{name} + {n} lainnya";
 "{n} / {max} items" = "{n} / {max} item";
 "{n} / {max} lists" = "{n} / {max} daftar";
+"{n} addon loading" = "{n} addon sedang dimuat";
 "{n} addons don't provide streams and aren't listed." = "{n} addon tidak menyediakan stream dan tidak dicantumkan.";
+"{n} addons loading" = "{n} addon sedang dimuat";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} judul anime akan dikecualikan (Trakt tidak memiliki ID untuk judul tersebut).";
 "{n} ep" = "{n} ep";
 "{n} eps" = "{n} ep";

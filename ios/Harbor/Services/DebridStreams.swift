@@ -8,6 +8,11 @@ struct DebridVerification: Sendable, Equatable {
     var flags: JSONValue { .object(["cached": Self.object(cached), "library": Self.object(library)]) }
     var isEmpty: Bool { cached.values.allSatisfy(\.isEmpty) && library.values.allSatisfy(\.isEmpty) }
     private static func object(_ map: [String: [String]]) -> JSONValue { .object(map.mapValues { .array($0.map(JSONValue.string)) }) }
+    /// Adds what a later check confirmed, as Desktop accumulates results per provider.
+    mutating func merge(_ other: DebridVerification) {
+        for (slug, hashes) in other.cached { cached[slug, default: []] += hashes.filter { !(cached[slug] ?? []).contains($0) } }
+        for (slug, hashes) in other.library { library[slug, default: []] += hashes.filter { !(library[slug] ?? []).contains($0) } }
+    }
 
     /// Rebuilds the flags a previous ranking applied, so ranking the same offers
     /// again (automatic selection) does not lose them.

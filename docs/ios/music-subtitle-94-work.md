@@ -1207,3 +1207,10 @@ Sorting and Picker tabs are ported with their effect on the stream list
 details and open items are in REMAINING_PORT_PLAN_2026-11-04.md item 2. New
 focused cases: StreamSourcePolicyTests (9 cases, one through the real Rust
 ranking). They join the batched run when macOS runners return.
+
+Progressive stream results, 4 November (uncompiled, no CI): the picker now
+fills as addons answer and automatic play settles with Desktop's timings
+instead of waiting for every addon, which removes the 30 s hold the new
+default wait introduced. Details in REMAINING_PORT_PLAN_2026-11-04.md item 2;
+three more StreamSourcePolicyTests cases (settle floors, episode checks and
+confident start, debrid merge), 12 in that class.

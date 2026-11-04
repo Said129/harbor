@@ -965,6 +965,7 @@
 "Load file" = "파일 불러오기";
 "Load more" = "더 불러오기";
 "Loading" = "로딩 중";
+"Loading more sources" = "더 많은 소스 로드 중";
 "Loading music" = "음악 불러오는 중";
 "Loading plugins..." = "플러그인 불러오는 중...";
 "Loading your history…" = "기록을 불러오는 중…";
@@ -3261,7 +3262,9 @@
 "{name} + {n} más" = "{name} 외 {n}개";
 "{n} / {max} items" = "항목 {n} / {max}개";
 "{n} / {max} lists" = "목록 {n} / {max}개";
+"{n} addon loading" = "애드온 {n}개 로드 중";
 "{n} addons don't provide streams and aren't listed." = "{n}개 애드온은 스트림을 제공하지 않아 목록에 표시되지 않습니다.";
+"{n} addons loading" = "애드온 {n}개 로드 중";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "애니메이션 제목 {n}개가 제외됩니다(Trakt에 해당 ID가 없음).";
 "{n} ep" = "에피소드 {n}개";
 "{n} eps" = "에피소드 {n}개";

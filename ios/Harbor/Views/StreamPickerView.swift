@@ -128,11 +128,13 @@ struct StreamPickerView: View {
         }
     }
     @ViewBuilder private var content: some View {
-        if model.loadingStreams {
+        // Desktop lists sources as addons answer; the loader only covers the wait for the first one.
+        if model.loadingStreams && model.offers.isEmpty {
             HarborLoader(size: 72).frame(maxWidth: .infinity).padding(.vertical, 48)
         } else if let offer = selected {
             if let error = model.error { Text(error).font(HarborTheme.font(14)).foregroundStyle(.orange) }
             if let downloadMessage { Text(downloadMessage).font(HarborTheme.font(13)).foregroundStyle(ThemePreferences.shared.color("ink-muted")) }
+            if model.loadingStreams { pendingSources }
             modeToggle
             if StreamPreferences.shared.pickerLayout == "stremio" {
                 stremioList
@@ -145,6 +147,19 @@ struct StreamPickerView: View {
         } else {
             emptySources
         }
+    }
+    /// Desktop's pending-addons pill while the list is still growing.
+    private var pendingSources: some View {
+        let waiting = max(0, model.totalRequests - model.answeredRequests)
+        let label = waiting == 0 ? DesktopInterfaceText.value("Loading more sources")
+            : DesktopInterfaceText.value(waiting == 1 ? "{n} addon loading" : "{n} addons loading", variables: ["n": String(waiting)])
+        return HStack(spacing: 10) {
+            ProgressView().controlSize(.small)
+            Text(label).font(HarborTheme.font(13, weight: .medium)).foregroundStyle(ThemePreferences.shared.color("ink-muted"))
+        }.padding(.horizontal, 14).frame(minHeight: 36)
+            .background(ThemePreferences.shared.color("elevated").opacity(0.9), in: .capsule)
+            .overlay { Capsule().stroke(ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
+            .frame(maxWidth: .infinity).accessibilityElement(children: .combine).accessibilityIdentifier("stream-sources-loading")
     }
     /// Desktop's source-mode toggle above the list. P2P-first is not offered: the iPhone has
     /// no torrent engine, so those results only start through a debrid service.

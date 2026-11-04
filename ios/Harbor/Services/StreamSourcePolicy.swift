@@ -90,6 +90,79 @@ enum StreamSourcePolicy {
     }
 }
 
+/// Desktop's automatic start (`use-auto-fire.ts`) while addons are still answering: a
+/// confident top result starts after a short grace, otherwise the list settles once the
+/// top source is playable for a moment, most addons have answered, or 10 s have passed.
+struct StreamAutoSettle: Sendable {
+    static let settle = Duration.milliseconds(1500)
+    static let packSettle = Duration.milliseconds(4000)
+    static let highConfidenceGrace = Duration.milliseconds(350)
+    static let cap = Duration.seconds(10)
+    static let quorumRatio = 0.8
+
+    var started: ContinuousClock.Instant
+    var season: Int?
+    var episode: Int?
+    /// An addon whose results Desktop trusts over Torrentio's own instant marker.
+    var strongAddon = false
+    private(set) var firstResult: ContinuousClock.Instant?
+    private(set) var highConfidenceSince: ContinuousClock.Instant?
+    /// Desktop's `autoSettleReady`: once set it stays set for this request.
+    private(set) var settled = false
+
+    init(started: ContinuousClock.Instant, season: Int? = nil, episode: Int? = nil, strongAddon: Bool = false) {
+        self.started = started; self.season = season; self.episode = episode; self.strongAddon = strongAddon
+    }
+
+    static func strong(_ addons: [Addon]) -> Bool {
+        addons.contains { $0.name.range(of: "(?i)mediafusion|comet", options: .regularExpression) != nil }
+    }
+
+    /// The release answers for the requested episode; a file without episode numbers
+    /// must name it (`episodeVariantMatch`).
+    func qualifies(_ offer: StreamOffer) -> Bool {
+        guard let episode else { return true }
+        let parsedSeason = offer.raw["season"].integer, parsedEpisode = offer.raw["episode"].integer
+        if parsedEpisode == episode, season == nil || parsedSeason == nil || parsedSeason == season { return true }
+        if parsedEpisode != nil { return false }
+        let pattern = season.map { "(?i)(?:\\bS0*\($0)[ ._-]?E0*\(episode)|\\b\($0)x0*\(episode))(?!\\d)" } ?? "(?i)(?:\\bE|\\bEp\\.?\\s?)0*\(episode)(?!\\d)"
+        return offer.pickerFilename.range(of: pattern, options: .regularExpression) != nil
+    }
+
+    private func named(_ offer: StreamOffer) -> Bool { offer.raw["nameAbsent"] != .bool(true) }
+    private func instantMarker(_ offer: StreamOffer) -> Bool {
+        [offer.raw["name"].string, offer.raw["title"].string, offer.raw["description"].string].map { $0 ?? "" }.joined(separator: " ")
+            .range(of: "(?i)\\binstant\\b|⚡", options: .regularExpression) != nil
+    }
+    func highConfidence(_ offer: StreamOffer) -> Bool {
+        instantMarker(offer) && offer.automaticallyPlayable && qualifies(offer) && named(offer)
+            && !(strongAddon && offer.source.range(of: "(?i)torrentio", options: .regularExpression) != nil)
+    }
+
+    /// Whether automatic play may start `top` now. `protecting` keeps a remembered source
+    /// that has not answered yet from being skipped before every addon has finished.
+    mutating func shouldStart(now: ContinuousClock.Instant, top: StreamOffer?, candidates: [StreamOffer], hasResults: Bool,
+                              answered: Int, total: Int, done: Bool, protecting: Bool) -> Bool {
+        if hasResults, firstResult == nil { firstResult = now }
+        if done { return top != nil }
+        guard let top else { highConfidenceSince = nil; return false }
+        if !settled, !protecting, let first = firstResult {
+            let sinceFirst = now - first
+            let exact = candidates.contains { $0.automaticallyPlayable && qualifies($0) }
+            let baseline = episode != nil && !exact ? Self.packSettle : Self.settle
+            let floor = top.automaticallyPlayable && named(top) && qualifies(top) && sinceFirst >= baseline
+            let quorum = total > 0 && Double(answered) / Double(total) >= Self.quorumRatio && sinceFirst >= Self.settle
+            if floor || quorum || now - started >= Self.cap { settled = true }
+        }
+        if !protecting, highConfidence(top) {
+            let since = highConfidenceSince ?? now
+            highConfidenceSince = since
+            if now - since >= Self.highConfidenceGrace { return true }
+        } else { highConfidenceSince = nil }
+        return settled
+    }
+}
+
 /// Desktop's Stremio picker layout (`stremio-layout.tsx`, `stremio-row.tsx`): a flat list
 /// grouped by addon, with each addon's own headline and description and no scoring.
 enum StremioPickerPresentation {

@@ -798,6 +798,7 @@
 "Load file" = "Load file";
 "Load more" = "Load more";
 "Loading" = "Loading";
+"Loading more sources" = "Loading more sources";
 "Loading music" = "Loading music";
 "Loading your history…" = "Loading your history…";
 "Loading..." = "Loading...";
@@ -2861,7 +2862,9 @@
 "{name} + {n} más" = "{name} + {n} more";
 "{n} / {max} items" = "{n} / {max} items";
 "{n} / {max} lists" = "{n} / {max} lists";
+"{n} addon loading" = "{n} addon loading";
 "{n} addons don't provide streams and aren't listed." = "{n} addons don't provide streams and aren't listed.";
+"{n} addons loading" = "{n} addons loading";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} anime titles will be left out (Trakt has no IDs for them).";
 "{n} item" = "{n} item";
 "{n} items" = "{n} items";

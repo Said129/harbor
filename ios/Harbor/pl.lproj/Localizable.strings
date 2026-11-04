@@ -965,6 +965,7 @@
 "Load file" = "Wczytaj plik";
 "Load more" = "Wczytaj więcej";
 "Loading" = "Wczytywanie";
+"Loading more sources" = "Ładowanie kolejnych źródeł";
 "Loading music" = "Wczytywanie muzyki";
 "Loading plugins..." = "Wczytywanie wtyczek...";
 "Loading your history…" = "Wczytywanie historii…";
@@ -3261,7 +3262,9 @@
 "{name} + {n} más" = "{name} i jeszcze {n}";
 "{n} / {max} items" = "{n} / {max} pozycji";
 "{n} / {max} lists" = "{n} / {max} list";
+"{n} addon loading" = "Ładowanie {n} dodatku";
 "{n} addons don't provide streams and aren't listed." = "{n} dodatków nie udostępnia strumieni i nie figuruje na liście.";
+"{n} addons loading" = "Wczytywanie {n} dodatków";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} tytułów anime zostanie pominiętych (Trakt nie ma ich identyfikatorów).";
 "{n} ep" = "{n} odc.";
 "{n} eps" = "{n} odc.";

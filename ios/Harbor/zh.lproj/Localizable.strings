@@ -965,6 +965,7 @@
 "Load file" = "加载文件";
 "Load more" = "加载更多";
 "Loading" = "正在加载";
+"Loading more sources" = "正在加载更多来源";
 "Loading music" = "正在加载音乐";
 "Loading plugins..." = "正在加载插件…";
 "Loading your history…" = "正在加载历史记录…";
@@ -3261,7 +3262,9 @@
 "{name} + {n} más" = "{name} + 另 {n} 个";
 "{n} / {max} items" = "{n} / {max} 项";
 "{n} / {max} lists" = "{n} / {max} 个列表";
+"{n} addon loading" = "{n} 个插件正在加载";
 "{n} addons don't provide streams and aren't listed." = "{n} 个插件不提供播放源，因此未列出。";
+"{n} addons loading" = "正在加载 {n} 个插件";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "将排除 {n} 部动漫作品（Trakt 中没有对应 ID）。";
 "{n} ep" = "{n} 集";
 "{n} eps" = "{n} 集";

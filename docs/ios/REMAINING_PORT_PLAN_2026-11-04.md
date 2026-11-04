@@ -76,18 +76,25 @@ configure the service in Harbor itself.
    listing every source (the filter governs automatic playback, as before), and
    the layout defaults to Condensed (Desktop: Stremio). Still open here: home
    servers (Jellyfin/Emby/Plex video libraries), Easynews, Desktop's custom
-   stream filters and facet menu, the addon-loading pill, and placing plugin
-   groups in the priority list (they follow all addons).
-   **Blocker before any IPA:** Desktop shows results as they arrive, so its
-   30 s wait costs nothing; the iPhone list still appears only when every
-   request has finished. With the new default a dead fast addon now holds the
-   picker up to 30 s instead of 8 s. Progressive results (rank each batch,
-   show the picker while addons are still loading, settle automatic play as
-   Desktop's quorum does) are the next step of this block. Retained cases to
-   rerun with it: LiveNavigationTests source-picker and change-source flows
-   (they wait 15–30 s for offers and assume the Condensed picker),
-   NativeDataTests stream preferences, MobileSourcesAndSubtitlesTests and
-   DebridStreamTests automatic ranking.
+   stream filters and facet menu, the per-addon "Waiting for" chip, and placing
+   plugin groups in the priority list (they follow all addons).
+   Progressive results (uncompiled), as Desktop's `runPipeline` and
+   `use-auto-fire.ts`: every answer is ranked into a partial list (at most every
+   250 ms) that the picker shows with an "addons loading" pill; debrid
+   verification runs alongside on new hashes (at most every 1.5 s) and once
+   more before the final list; offers keep a stable identity across partials
+   so a selection does not jump. Automatic play starts a confident instant
+   source after 350 ms, otherwise once the list settles (playable top 1.5 s
+   after the first result, 4 s for an episode without an exact cached file,
+   80 % of the requests answered, or 10 s), and always when every addon has
+   answered; a remembered next-episode source that has not answered yet is
+   waited for. Not ported in the settle: preferred-language checks, Watch
+   Together host source, Desktop's own automatic candidate ranking (iPhone
+   keeps `StreamPreferences.preferred`). Retained cases to rerun with this:
+   LiveNavigationTests source-picker and change-source flows (they wait
+   15–30 s for offers and assume the Condensed picker), NativeDataTests stream
+   preferences, MobileSourcesAndSubtitlesTests and DebridStreamTests automatic
+   ranking, LiveServicesTests streams.
 3. Trackers: AniList, MyAnimeList, Letterboxd.
 4. Remaining settings sections and the other features above.
 5. Music gaps from `music-subtitle-94-work.md` and the physical subtitle defect

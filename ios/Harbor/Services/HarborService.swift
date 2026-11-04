@@ -174,33 +174,108 @@ struct HarborService: Sendable {
         return .object(fields)
     }
 
+    /// One partial list while addons are still answering: the ranked offers so far and how
+    /// many of the requests have finished (Desktop's `onProgress` and addon quorum).
+    struct StreamBatch: Sendable {
+        let offers: [StreamOffer]
+        let answered: Int
+        let total: Int
+    }
+    /// Desktop emits a partial at most every 250 ms and re-checks debrid caches at most
+    /// every 1.5 s, so a burst of answers neither floods the list nor the providers.
+    static let partialInterval = Duration.milliseconds(250)
+    static let debridCheckInterval = Duration.milliseconds(1500)
+
+    private enum StreamEvent: Sendable {
+        case reply(RequestPlan, JSONValue?, String?)
+        case plugin(HarborPluginStreamBatch)
+        case verified([String], DebridVerification)
+    }
+
+    /// Desktop's `runPipeline`: requests run together, each answer is ranked into a partial
+    /// list for `progress`, and debrid verification runs alongside instead of after.
     func streams(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil, unfiltered: Bool = false,
-        pluginSource: (@Sendable () async throws -> HarborPluginStreamBatch)? = nil, debrid: DebridClient? = nil) async throws -> ([StreamOffer], [String]) {
+        pluginSource: (@Sendable () async throws -> HarborPluginStreamBatch)? = nil, debrid: DebridClient? = nil,
+        progress: (@MainActor @Sendable (StreamBatch) async -> Void)? = nil) async throws -> ([StreamOffer], [String]) {
         let preferences = await StreamPreferences.shared.configuration()
-        async let pluginResponse = Self.pluginResponse(pluginSource)
         let requested = try await streamRequests(media, videoID: videoID, addons: addons, season: season, episode: episode)
         // The profile's wait time and addon order shape the requests, as in Desktop's pipeline.
         let selection = StreamAddonPriority.tune(requested, settings: preferences.sources, addons: addons)
-        let responses = try await fetch(selection.plans, fallbacks: selection.fallbacks)
-        var raw: [JSONValue] = []
-        var errors = responses.errors
-        for (plan, response) in responses.values {
-            do {
-                let streams: [JSONValue] = try await core.call("mapStreams", ["plan": try .encoded(plan), "response": response])
-                raw.append(contentsOf: streams)
-            } catch { errors.append("stream-response") }
-        }
-        let plugins = try await pluginResponse
-        raw.append(contentsOf: plugins.streams); errors.append(contentsOf: plugins.errors)
-        try Task.checkCancellation()
         let trust = (unfiltered || AddonOriginPolicy.isNative(media) ? StreamFilterConfiguration(level: "off", addonOrder: preferences.addonOrder, sources: preferences.sources) : preferences).trust(media, season: season, episode: episode)
-        let candidates = StreamRequestPolicy.deduplicated(raw)
-        // Providers confirm which hashes they hold before ranking, as Desktop's pipeline does.
-        let verification = await DebridStreamVerifier.verify(candidates, client: debrid)
-        try Task.checkCancellation()
         let active = await debrid?.providers ?? []
-        let result: JSONValue = try await core.call("rank", ["streams": .array(candidates), "trust": trust, "score": Self.scoring(media, addonOrder: preferences.addonOrder, active: active), "debrid": verification.flags])
-        return (Self.ordered(result, addons: addons, preferences: preferences), errors)
+        let score = Self.scoring(media, addonOrder: preferences.addonOrder, active: active)
+        func rank(_ raw: [JSONValue], _ verification: DebridVerification) async throws -> [StreamOffer] {
+            let result: JSONValue = try await core.call("rank", ["streams": .array(StreamRequestPolicy.deduplicated(raw)), "trust": trust, "score": score, "debrid": verification.flags])
+            return Self.ordered(result, addons: addons, preferences: preferences)
+        }
+        func fresh(_ raw: [JSONValue], checked: Set<String>) -> [JSONValue] {
+            raw.filter { stream in stream["infoHash"].string.map { !checked.contains($0.lowercased()) } ?? false }
+        }
+        let total = selection.plans.count, clock = ContinuousClock()
+        return try await withThrowingTaskGroup(of: StreamEvent.self) { group in
+            for plan in selection.plans {
+                let fallbacks = selection.fallbacks[plan.key] ?? []
+                group.addTask {
+                    let (answered, data, error) = try await AddonOriginReplies.fetch(plan, fallbacks: fallbacks)
+                    return .reply(answered, data, error)
+                }
+            }
+            if let pluginSource {
+                group.addTask {
+                    let batch = try await Self.pluginResponse(pluginSource)
+                    return .plugin(batch)
+                }
+            }
+            var raw: [JSONValue] = [], errors: [String] = [], answered = 0
+            var outstanding = selection.plans.count + (pluginSource == nil ? 0 : 1)
+            var verification = DebridVerification(), checked = Set<String>(), verifying = false
+            var lastCheck: ContinuousClock.Instant?, lastPartial: ContinuousClock.Instant?
+            while let event = try await group.next() {
+                outstanding -= 1
+                var forcePartial = false
+                switch event {
+                case .reply(let plan, let data, let error):
+                    answered += 1
+                    if let error { errors.append(error) }
+                    if let data {
+                        do {
+                            let streams: [JSONValue] = try await core.call("mapStreams", ["plan": try .encoded(plan), "response": data])
+                            raw += streams
+                        } catch { errors.append("stream-response") }
+                    }
+                case .plugin(let batch):
+                    raw += batch.streams; errors += batch.errors
+                case .verified(let hashes, let result):
+                    checked.formUnion(hashes); verification.merge(result); verifying = false; lastCheck = clock.now
+                    forcePartial = !result.isEmpty
+                }
+                try Task.checkCancellation()
+                // Providers confirm the new hashes while the other addons keep answering.
+                let unchecked = fresh(raw, checked: checked)
+                if debrid != nil, !active.isEmpty, !verifying, !unchecked.isEmpty, outstanding > 0,
+                   lastCheck.map({ clock.now - $0 >= Self.debridCheckInterval }) ?? true {
+                    verifying = true; outstanding += 1
+                    let hashes = DebridStreamVerifier.hashes(unchecked)
+                    group.addTask {
+                        let result = await DebridStreamVerifier.verify(unchecked, client: debrid)
+                        return .verified(hashes, result)
+                    }
+                }
+                // The last answer goes straight to the final list instead of a partial.
+                guard let progress, !raw.isEmpty, outstanding > 0,
+                      forcePartial || lastPartial.map({ clock.now - $0 >= Self.partialInterval }) ?? true else { continue }
+                lastPartial = clock.now
+                if let offers = try? await rank(raw, verification), !offers.isEmpty {
+                    await progress(StreamBatch(offers: offers, answered: answered, total: total))
+                }
+            }
+            try Task.checkCancellation()
+            // Anything that arrived after the last check is confirmed before the final list.
+            let unchecked = fresh(raw, checked: checked)
+            if !unchecked.isEmpty { verification.merge(await DebridStreamVerifier.verify(unchecked, client: debrid)) }
+            try Task.checkCancellation()
+            return (try await rank(raw, verification), errors)
+        }
     }
 
     /// The ranked list in the order the profile asked for, numbered after any reordering.

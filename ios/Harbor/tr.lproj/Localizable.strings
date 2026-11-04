@@ -965,6 +965,7 @@
 "Load file" = "Dosya yükle";
 "Load more" = "Daha fazla yükle";
 "Loading" = "Yükleniyor";
+"Loading more sources" = "Daha fazla kaynak yükleniyor";
 "Loading music" = "Müzik yükleniyor";
 "Loading plugins..." = "Eklentiler yükleniyor...";
 "Loading your history…" = "Geçmişiniz yükleniyor…";
@@ -3261,7 +3262,9 @@
 "{name} + {n} más" = "{name} + {n} tane daha";
 "{n} / {max} items" = "{n} / {max} öğe";
 "{n} / {max} lists" = "{n} / {max} liste";
+"{n} addon loading" = "{n} eklenti yükleniyor";
 "{n} addons don't provide streams and aren't listed." = "{n} eklenti yayın sağlamadığı için listelenmiyor.";
+"{n} addons loading" = "{n} eklenti yükleniyor";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} anime başlığı dışarıda bırakılacak (Trakt'ta bunlara ait kimlik numaraları yok).";
 "{n} ep" = "{n} blm";
 "{n} eps" = "{n} blm";

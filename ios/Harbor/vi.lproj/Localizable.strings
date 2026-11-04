@@ -965,6 +965,7 @@
 "Load file" = "Tải tệp";
 "Load more" = "Tải thêm";
 "Loading" = "Đang tải";
+"Loading more sources" = "Đang tải thêm nguồn";
 "Loading music" = "Đang tải nhạc";
 "Loading plugins..." = "Đang tải plugin...";
 "Loading your history…" = "Đang tải lịch sử…";
@@ -3261,7 +3262,9 @@
 "{name} + {n} más" = "{name} + thêm {n}";
 "{n} / {max} items" = "{n} / {max} mục";
 "{n} / {max} lists" = "{n} / {max} danh sách";
+"{n} addon loading" = "Đang tải {n} tiện ích bổ sung";
 "{n} addons don't provide streams and aren't listed." = "{n} tiện ích bổ sung không cung cấp luồng phát nên không có trong danh sách.";
+"{n} addons loading" = "Đang tải {n} tiện ích bổ sung";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} tựa anime sẽ bị bỏ qua (Trakt không có ID cho các tựa này).";
 "{n} ep" = "{n} tập";
 "{n} eps" = "{n} tập";

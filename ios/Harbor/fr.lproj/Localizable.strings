@@ -965,6 +965,7 @@
 "Load file" = "Charger un fichier";
 "Load more" = "Charger plus";
 "Loading" = "Chargement";
+"Loading more sources" = "Chargement de sources supplémentaires";
 "Loading music" = "Chargement de la musique";
 "Loading plugins..." = "Chargement des plugins...";
 "Loading your history…" = "Chargement de votre historique…";
@@ -3261,7 +3262,9 @@
 "{name} + {n} más" = "{name} + {n} autres";
 "{n} / {max} items" = "{n} / {max} éléments";
 "{n} / {max} lists" = "{n} / {max} listes";
+"{n} addon loading" = "{n} extension en cours de chargement";
 "{n} addons don't provide streams and aren't listed." = "{n} extensions ne fournissent aucun flux et ne sont pas répertoriées.";
+"{n} addons loading" = "Chargement de {n} extensions";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} titres d’anime seront exclus (Trakt ne dispose d’aucun identifiant pour eux).";
 "{n} ep" = "{n} ép.";
 "{n} eps" = "{n} ép.";

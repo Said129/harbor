@@ -149,11 +149,13 @@ struct DetailView: View {
                         defer { if revision == selectionRevision, model.playback == nil { showConnecting = false } }
                         await app.refreshAddons()
                         guard !Task.isCancelled, owner == app.library.owner, scope == app.accountOperationScope else { return }
-                        await model.findStreams(app.addons, episode: selectedEpisode, selection: streamSelection)
-                        guard !Task.isCancelled, owner == app.library.owner, scope == app.accountOperationScope, shouldAutoplay, revision == selectionRevision else { return }
-                        if let offer = isContinuation ? model.continuationOffer : StreamPreferences.shared.preferred(model.automaticOffers) {
+                        // Automatic play settles while addons are still answering, as Desktop's picker does.
+                        let autoplay: DetailModel.StreamAutoplay? = shouldAutoplay ? .init(continuation: isContinuation, wanted: {
+                            !Task.isCancelled && owner == app.library.owner && scope == app.accountOperationScope && revision == selectionRevision
+                        }, start: { offer in
                             await model.play(offer, resume: app.resume, library: app.library)
-                        }
+                        }) : nil
+                        await model.findStreams(app.addons, episode: selectedEpisode, selection: streamSelection, autoplay: autoplay)
                     }
                     resolutionTask = task
                     await withTaskCancellationHandler { await task.value } onCancel: { task.cancel() }

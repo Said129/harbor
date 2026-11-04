@@ -345,7 +345,69 @@ final class DetailModel {
         automaticOffers = StreamPreferences.shared.filter(StreamSourcePolicy.filter(rankedAutomatic, mode: mode))
     }
 
-    func findStreams(_ addons: [Addon], episode: Episode? = nil, selection: MediaPlaybackSelection? = nil) async {
+    /// Automatic play for one stream request. `wanted` is asked right before starting, so a
+    /// selection that changed meanwhile never plays; `start` resolves and opens the source.
+    struct StreamAutoplay {
+        let continuation: Bool
+        let wanted: @MainActor () -> Bool
+        let start: @MainActor (StreamOffer) async -> Void
+    }
+
+    /// Requests answered so far for the picker's "addons loading" pill.
+    private(set) var answeredRequests = 0
+    private(set) var totalRequests = 0
+    private var autoplay: StreamAutoplay?
+    private var autoSettle = StreamAutoSettle(started: .now)
+    private var autoTask: Task<Void, Never>?
+    /// Offers keep their identity while partial lists replace each other, so a selection
+    /// in the picker stays on the same source as more addons answer.
+    private var offerIDs: [String: Int] = [:]
+    private var nextOfferID = 0
+
+    private static func identity(_ raw: JSONValue) -> String {
+        let source: String
+        if let hash = raw["infoHash"].string, !hash.isEmpty { source = "hash:" + hash.lowercased() + ":" + (raw["fileIdx"].textValue ?? "") }
+        else if let url = raw["url"].string, !url.isEmpty { source = "url:" + url }
+        else { source = "name:" + (raw["name"].string ?? "") + ":" + (raw["title"].string ?? "") + ":" + (raw["externalUrl"].string ?? raw["ytId"].string ?? "") }
+        return (raw["addonId"].string ?? "") + "|" + source
+    }
+    private func stable(_ list: [StreamOffer]) -> [StreamOffer] {
+        var used = Set<Int>()
+        return list.map { offer in
+            let key = Self.identity(offer.raw)
+            var id: Int
+            if let known = offerIDs[key] { id = known } else { id = nextOfferID; nextOfferID += 1; offerIDs[key] = id }
+            if !used.insert(id).inserted { id = nextOfferID; nextOfferID += 1; used.insert(id) }
+            return StreamOffer(id: id, raw: offer.raw)
+        }
+    }
+
+    /// Desktop's `use-auto-fire.ts`: starts the automatic source once the list has settled,
+    /// or at once when every addon has answered. Never while a source is already starting.
+    private func considerAutoplay(done: Bool) {
+        guard let autoplay, autoTask == nil, !resolving, playback == nil else { return }
+        guard autoplay.wanted() else { self.autoplay = nil; return }
+        let preferences = StreamPreferences.shared
+        let remembered = autoplay.continuation && preferences.keepSourceNextEpisode ? lastPlayedSource : nil
+        let protecting = remembered.map { identity in !automaticOffers.contains { identity.matches($0) } } ?? false
+        let top = autoplay.continuation ? continuationOffer : preferences.preferred(automaticOffers)
+        guard autoSettle.shouldStart(now: .now, top: top, candidates: automaticOffers, hasResults: !rankedOffers.isEmpty,
+                                     answered: answeredRequests, total: totalRequests, done: done, protecting: protecting),
+              let top else { return }
+        self.autoplay = nil
+        let start = autoplay.start
+        autoTask = Task { await start(top) }
+    }
+
+    private func tickAutoplay(_ request: UUID) async {
+        while !Task.isCancelled {
+            try? await Task.sleep(for: .milliseconds(250))
+            guard !Task.isCancelled, streamRequest == request, loadingStreams, autoplay != nil else { return }
+            considerAutoplay(done: false)
+        }
+    }
+
+    func findStreams(_ addons: [Addon], episode: Episode? = nil, selection: MediaPlaybackSelection? = nil, autoplay: StreamAutoplay? = nil) async {
         let request = UUID(), context = contextRevision()
         streamRequest = request
         loadingStreams = true
@@ -354,6 +416,9 @@ final class DetailModel {
         automaticOffers = []
         rankedOffers = []
         rankedAutomatic = []
+        offerIDs = [:]; nextOfferID = 0
+        answeredRequests = 0; totalRequests = 0
+        self.autoplay = autoplay; autoTask = nil
         streamAddons = addons
         warnings = []
         filteredSources = false
@@ -367,31 +432,54 @@ final class DetailModel {
             selected = validSource && validEpisode ? selection.media : nil
         } else { selected = sourceMedia(for: episode) }
         selectedPlaybackMedia = selected
+        autoSettle = StreamAutoSettle(started: .now, season: episode?.season, episode: episode?.episode, strongAddon: StreamAutoSettle.strong(addons))
         defer { if streamRequest == request { loadingStreams = false } }
         do {
             guard let selected else { throw HarborError(code: "no-metadata") }
+            // Desktop re-evaluates its settle timers; a child tick does the same between
+            // answers and is cancelled with this request.
+            async let _ = tickAutoplay(request)
             let videoID = episode?.id ?? selected.behaviorHints?.defaultVideoId ?? selected.id
             let provider = pluginStreams, startingPriority = StreamAddonPriority.pluginStart(addons: addons, settings: StreamPreferences.shared.sourceSettings)
             let plugins: (@Sendable () async throws -> HarborPluginStreamBatch)?
             if let provider { plugins = { try await provider(selected, videoID, episode, startingPriority) } }
             else { plugins = nil }
-            let debridClient = debrid()
+            let debridClient = debrid(), service = service
+            // Each partial list replaces the previous one, as Desktop's picker does while addons answer.
+            let progress: @MainActor @Sendable (HarborService.StreamBatch) async -> Void = { [weak self] batch in
+                guard let self, self.streamRequest == request, self.contextRevision() == context else { return }
+                let automatic = (try? await service.automaticStreams(batch.offers, media: selected, season: episode?.season, episode: episode?.episode,
+                                                                     debrid: debridClient, addons: addons)) ?? []
+                guard self.streamRequest == request, self.contextRevision() == context, self.loadingStreams else { return }
+                self.rankedOffers = self.stable(batch.offers)
+                self.rankedAutomatic = self.stable(automatic)
+                self.answeredRequests = batch.answered; self.totalRequests = batch.total
+                self.applyStreamMode()
+                self.considerAutoplay(done: false)
+            }
             let result = try await service.streams(selected, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode,
-                unfiltered: true, pluginSource: plugins, debrid: debridClient)
+                unfiltered: true, pluginSource: plugins, debrid: debridClient, progress: progress)
             let automatic = try await service.automaticStreams(result.0, media: selected, season: episode?.season, episode: episode?.episode, debrid: debridClient, addons: addons)
             try Task.checkCancellation()
             guard streamRequest == request, contextRevision() == context else { return }
-            rankedOffers = result.0
-            rankedAutomatic = automatic
+            rankedOffers = stable(result.0)
+            rankedAutomatic = stable(automatic)
+            answeredRequests = totalRequests
             applyStreamMode()
             warnings = result.1
             Diagnostics.shared.record(.streamsLoaded, count: offers.count)
+            loadingStreams = false
             if offers.isEmpty {
                 if !result.0.isEmpty { filteredSources = true; self.error = DesktopInterfaceText.value("Strict filters dropped everything") }
                 else { throw HarborError(code: warnings.first ?? "no-streams") }
             }
-        } catch is CancellationError { return }
+            considerAutoplay(done: true)
+        } catch is CancellationError { autoTask?.cancel(); return }
         catch { if streamRequest == request, contextRevision() == context { self.error = safeMessage(error) } }
+        // A source started early keeps this request alive until it has opened or failed.
+        if let running = autoTask {
+            await withTaskCancellationHandler { await running.value } onCancel: { running.cancel() }
+        }
     }
 
     func play(_ offer: StreamOffer, resume: ResumeStore, library: LibraryModel) async {

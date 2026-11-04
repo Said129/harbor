@@ -970,6 +970,7 @@
 "Load file" = "Загрузить файл";
 "Load more" = "Показать ещё";
 "Loading" = "Загрузка";
+"Loading more sources" = "Загрузка дополнительных источников";
 "Loading music" = "Загрузка музыки";
 "Loading plugins..." = "Загрузка плагинов...";
 "Loading your history…" = "Загрузка истории…";
@@ -3276,7 +3277,9 @@
 "{name} + {n} más" = "{name} и ещё {n}";
 "{n} / {max} items" = "{n} / {max} элементов";
 "{n} / {max} lists" = "{n} / {max} списков";
+"{n} addon loading" = "Загружается дополнение: {n}";
 "{n} addons don't provide streams and aren't listed." = "{n} дополнений не предоставляют потоки и не показаны в списке.";
+"{n} addons loading" = "Загрузка дополнений: {n}";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} аниме будет пропущено (в Trakt нет для них ID).";
 "{n} ep" = "{n} эп";
 "{n} eps" = "{n} эп";

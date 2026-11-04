@@ -965,6 +965,7 @@
 "Load file" = "फ़ाइल लोड करें";
 "Load more" = "और लोड करें";
 "Loading" = "लोड हो रहा है";
+"Loading more sources" = "और स्रोत लोड हो रहे हैं";
 "Loading music" = "संगीत लोड हो रहा है";
 "Loading plugins..." = "प्लगइन लोड हो रहे हैं...";
 "Loading your history…" = "आपकी हिस्ट्री लोड हो रही है…";
@@ -3261,7 +3262,9 @@
 "{name} + {n} más" = "{name} + {n} और";
 "{n} / {max} items" = "{n} / {max} आइटम";
 "{n} / {max} lists" = "{n} / {max} सूचियाँ";
+"{n} addon loading" = "{n} ऐडऑन लोड हो रहा है";
 "{n} addons don't provide streams and aren't listed." = "{n} ऐडऑन स्ट्रीम उपलब्ध नहीं कराते, इसलिए वे सूची में नहीं दिखते।";
+"{n} addons loading" = "{n} ऐडऑन लोड हो रहे हैं";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} ऐनिमे शीर्षक छोड़ दिए जाएँगे (Trakt में उनके लिए IDs नहीं हैं)।";
 "{n} ep" = "{n} एपिसोड";
 "{n} eps" = "{n} एपिसोड";
