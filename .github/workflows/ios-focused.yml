@@ -11,6 +11,9 @@ on:
       runtime_candidate:
         type: boolean
         default: false
+      runner:
+        type: string
+        default: macos-15-intel
   workflow_dispatch:
     inputs:
       selection:
@@ -25,6 +28,11 @@ on:
         description: Validate the verified audio filter candidate without changing the default runtime
         type: boolean
         default: false
+      runner:
+        description: Apple build host; the native cache is keyed by its architecture
+        type: choice
+        options: [macos-15-intel, macos-15]
+        default: macos-15-intel
 permissions:
   contents: read
 concurrency:
@@ -32,7 +40,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   changed:
-    runs-on: macos-15-intel
+    runs-on: ${{ inputs.runner || 'macos-15-intel' }}
     timeout-minutes: 120
     env:
       HARBOR_FOCUSED_SELECTION: ${{ inputs.selection }}

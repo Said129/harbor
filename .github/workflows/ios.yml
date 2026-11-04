@@ -181,6 +181,7 @@ jobs:
       selection: ${{ inputs.native_test_selection }}
       package: ${{ !inputs.validation_only }}
       runtime_candidate: ${{ inputs.music_runtime_candidate }}
+      runner: ${{ inputs.apple_runner }}
   apple:
     name: Apple SDK / Swift / iPhone
     if: ${{ github.event_name == 'workflow_dispatch' && github.event.repository.private == false && inputs.validation_scope != 'music-runtime' && inputs.validation_scope != 'review-results' && inputs.validation_scope != 'focused' && inputs.validation_scope != 'reuse' && inputs.validation_scope != 'continuation-sendable' }}

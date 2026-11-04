@@ -1120,9 +1120,28 @@ not acquired by Runner of type hosted even after multiple attempts" and
 cancelled it after 15 minutes. It is an infrastructure failure, not a test
 result, and the same single case is dispatched again.
 
+Run 41857532741 and run 41860272503 hit the same hosted-runner
+acquisition failure (macos-15-intel, 15 minutes each, no test executed)
+while GitHub reported Actions operational. The focused workflow now takes
+its Apple host from the existing apple_runner input (default unchanged,
+macos-15-intel); the native cache key already includes the architecture, so
+an arm64 host starts cold. The next dispatch uses macos-15.
+
 Subtitles, owner report 4 November (later): the shift appears after seeking
 forward or backward, with audio and video in sync. A wrong-release subtitle
 would be in sync again near the start, so this leans toward a seek-time
 defect. The static red/green fixture cannot show it; reproducing it needs
 moving content with burned-in timecode and cues keyed to it, served over
 HTTP Range. Not built yet.
+
+The owner then confirmed the shift is constant: it does not grow with the
+episode position or the seek distance. That excludes frame-rate or ratio
+drift (which would grow) and a mismatched edit that only appears far from
+the start. What remains is a fixed offset between the picture's timeline and
+the subtitle's after a seek, for example a stream start time that is
+rebased differently once mpv seeks, or timestamps that restart in a new
+segment. Candidate inputs for the reproduction: a Matroska stream with a
+non-zero first timestamp, B-frame reordering and sparse keyframes, served
+through the existing Range fixture, with cues keyed to a timecode burned
+into the picture; the measured quantity is displayed timecode versus the
+cue shown, per seek. No production change is made before that measurement.
