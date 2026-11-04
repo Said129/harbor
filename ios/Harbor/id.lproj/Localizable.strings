@@ -1221,6 +1221,7 @@
 "On Hold" = "Ditunda";
 "On The Air" = "Sedang Tayang";
 "On Tonight" = "Tayang Malam Ini";
+"On iPhone the picker lists every source; this filter decides which ones automatic playback may start." = "Di iPhone, pemilih menampilkan semua sumber; filter ini menentukan sumber mana yang boleh dimulai oleh pemutaran otomatis.";
 "On start" = "On start";
 "Onboarding" = "Pengenalan awal";
 "One list" = "Satu daftar";

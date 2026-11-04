@@ -38,12 +38,12 @@ final class StreamPreferences {
     }
     var sourceSettings: StreamSourceSettings { .init(timeoutSeconds: addonTimeoutSeconds, mode: sourceMode, priority: priority) }
     func configuration() -> StreamFilterConfiguration { .init(level: filterLevel, addonOrder: addonOrder, sources: sourceSettings) }
-    private static func storedPriority() -> [StreamPriorityEntry] {
+    private nonisolated static func storedPriority() -> [StreamPriorityEntry] {
         guard let text = UserDefaults.standard.string(forKey: "streams.priority"),
               let entries = try? JSONDecoder().decode([StreamPriorityEntry].self, from: Data(text.utf8)) else { return [] }
         return Array(entries.prefix(64))
     }
-    private static func encode(_ entries: [StreamPriorityEntry]) -> String {
+    private nonisolated static func encode(_ entries: [StreamPriorityEntry]) -> String {
         (try? JSONEncoder().encode(Array(entries.prefix(64)))).flatMap { String(data: $0, encoding: .utf8) } ?? "[]"
     }
     var automatic = UserDefaults.standard.object(forKey: "streams.automatic") as? Bool ?? true {

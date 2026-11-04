@@ -1221,6 +1221,7 @@
 "On Hold" = "Tạm hoãn";
 "On The Air" = "Đang phát sóng";
 "On Tonight" = "Chiếu tối nay";
+"On iPhone the picker lists every source; this filter decides which ones automatic playback may start." = "Trên iPhone, bộ chọn hiển thị mọi nguồn; bộ lọc này quyết định nguồn nào được phép tự động phát.";
 "On start" = "On start";
 "Onboarding" = "Hướng dẫn ban đầu";
 "One list" = "Một danh sách";

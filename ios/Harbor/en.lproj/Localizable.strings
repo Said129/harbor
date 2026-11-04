@@ -1012,6 +1012,7 @@
 "On" = "On";
 "On Hold" = "On Hold";
 "On The Air" = "On The Air";
+"On iPhone the picker lists every source; this filter decides which ones automatic playback may start." = "On iPhone the picker lists every source; this filter decides which ones automatic playback may start.";
 "On start" = "On start";
 "One list" = "One list";
 "Opacidad" = "Opacity";

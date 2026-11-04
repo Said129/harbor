@@ -1221,6 +1221,7 @@
 "On Hold" = "Beklemede";
 "On The Air" = "Yayındaki Diziler";
 "On Tonight" = "Bu Akşam Yayında";
+"On iPhone the picker lists every source; this filter decides which ones automatic playback may start." = "iPhone'da seçici tüm kaynakları gösterir; bu filtre, otomatik oynatmanın hangilerini başlatabileceğine karar verir.";
 "On start" = "On start";
 "Onboarding" = "Başlangıç rehberi";
 "One list" = "Tek liste";

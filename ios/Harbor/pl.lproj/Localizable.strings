@@ -1221,6 +1221,7 @@
 "On Hold" = "Wstrzymane";
 "On The Air" = "Obecnie emitowane";
 "On Tonight" = "Dziś wieczorem";
+"On iPhone the picker lists every source; this filter decides which ones automatic playback may start." = "Na iPhonie selektor pokazuje wszystkie źródła; ten filtr decyduje, które z nich może uruchomić automatyczne odtwarzanie.";
 "On start" = "On start";
 "Onboarding" = "Wprowadzenie";
 "One list" = "Jedna lista";

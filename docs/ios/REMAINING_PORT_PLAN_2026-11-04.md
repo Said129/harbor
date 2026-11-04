@@ -78,6 +78,16 @@ configure the service in Harbor itself.
    servers (Jellyfin/Emby/Plex video libraries), Easynews, Desktop's custom
    stream filters and facet menu, the addon-loading pill, and placing plugin
    groups in the priority list (they follow all addons).
+   **Blocker before any IPA:** Desktop shows results as they arrive, so its
+   30 s wait costs nothing; the iPhone list still appears only when every
+   request has finished. With the new default a dead fast addon now holds the
+   picker up to 30 s instead of 8 s. Progressive results (rank each batch,
+   show the picker while addons are still loading, settle automatic play as
+   Desktop's quorum does) are the next step of this block. Retained cases to
+   rerun with it: LiveNavigationTests source-picker and change-source flows
+   (they wait 15–30 s for offers and assume the Condensed picker),
+   NativeDataTests stream preferences, MobileSourcesAndSubtitlesTests and
+   DebridStreamTests automatic ranking.
 3. Trackers: AniList, MyAnimeList, Letterboxd.
 4. Remaining settings sections and the other features above.
 5. Music gaps from `music-subtitle-94-work.md` and the physical subtitle defect

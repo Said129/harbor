@@ -1221,6 +1221,7 @@
 "On Hold" = "保留中";
 "On The Air" = "放送中";
 "On Tonight" = "今夜放送";
+"On iPhone the picker lists every source; this filter decides which ones automatic playback may start." = "iPhone ではピッカーにすべてのソースが表示されます。このフィルターは、自動再生で開始できるソースを決めます。";
 "On start" = "On start";
 "Onboarding" = "初期ガイド";
 "One list" = "1件のリスト";

@@ -1230,6 +1230,7 @@
 "On Hold" = "Отложено";
 "On The Air" = "В эфире";
 "On Tonight" = "Сегодня в эфире";
+"On iPhone the picker lists every source; this filter decides which ones automatic playback may start." = "На iPhone в списке видны все источники; этот фильтр определяет, какие из них может запускать автоматическое воспроизведение.";
 "On start" = "On start";
 "Onboarding" = "Начало работы";
 "One list" = "Один список";

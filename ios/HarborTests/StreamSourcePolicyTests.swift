@@ -102,15 +102,22 @@ import XCTest
 
     func testRealRankingFollowsTheChosenAddonOrder() async throws {
         let media = Media(id: "tt0000001", type: "movie", name: "Owned Film", releaseInfo: "2020")
-        func stream(_ name: String, priority: Int, index: Int) -> JSONValue {
+        // Beta carries the rank the chosen order gives its requests (0) but a far worse release,
+        // so Harbor ranking alone puts Alpha first and only the priority reorder can lift Beta.
+        func stream(_ name: String, priority: Int, index: Int, title: String) -> JSONValue {
             .object(["addonId": .string(name), "addonName": .string(name), "addonPriority": .integer(Int64(priority)), "addonReturnIdx": .integer(Int64(index)),
-                     "title": .string("Owned.Film.2020.1080p.WEB-DL.H264.AAC"), "url": .string("https://\(name).example.org/\(index).mp4")])
+                     "title": .string(title), "url": .string("https://\(name).example.org/\(index).mkv"), "size": .integer(title.contains("2160p") ? 40_000_000_000 : 700_000_000)])
         }
+        let best = "Owned.Film.2020.2160p.BluRay.REMUX.HEVC.DTS-HD.MA.7.1", worst = "Owned.Film.2020.480p.DVDRip.XviD.MP3"
         let ranked: JSONValue = try await CoreBridge().call("rank", [
-            "streams": .array([stream("alpha", priority: 1, index: 0), stream("beta", priority: 0, index: 0), stream("alpha", priority: 1, index: 1)]),
+            "streams": .array([stream("alpha", priority: 1, index: 0, title: best), stream("beta", priority: 0, index: 0, title: worst),
+                               stream("alpha", priority: 1, index: 1, title: best)]),
             "trust": StreamFilterConfiguration(level: "off", addonOrder: false).trust(media, season: nil, episode: nil),
             // Harbor ranking, so only the chosen priority can put Beta first.
             "score": AddonOriginPolicy.score(media, addonOrder: false)])
+        XCTAssertEqual(ranked["picker"]["all"].array.first?["addonId"].string, "alpha", "Precondition: the score alone ranks Alpha first")
+        let unordered = HarborService.ordered(ranked, addons: [addon("alpha"), addon("beta")], preferences: StreamFilterConfiguration(level: "off", addonOrder: false))
+        XCTAssertEqual(unordered.first?.raw["addonId"].string, "alpha", "Without a chosen order the ranking is untouched")
         let preferences = StreamFilterConfiguration(level: "off", addonOrder: false, sources: StreamSourceSettings(priority: [.init(key: "beta", name: "Beta")]))
         let ordered = HarborService.ordered(ranked, addons: [addon("alpha"), addon("beta")], preferences: preferences)
         XCTAssertEqual(ordered.map { $0.raw["addonId"].string }, ["beta", "alpha", "alpha"])

@@ -1221,6 +1221,7 @@
 "On Hold" = "搁置";
 "On The Air" = "正在播出";
 "On Tonight" = "今晚播出";
+"On iPhone the picker lists every source; this filter decides which ones automatic playback may start." = "在 iPhone 上，选择器会列出所有来源；此过滤器决定自动播放可以启动哪些来源。";
 "On start" = "On start";
 "Onboarding" = "新手引导";
 "One list" = "单个列表";

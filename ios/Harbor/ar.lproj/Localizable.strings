@@ -1250,6 +1250,7 @@
 "On Hold" = "متوقّف مؤقتًا";
 "On The Air" = "تُعرض حاليًا";
 "On Tonight" = "يعرض الليلة";
+"On iPhone the picker lists every source; this filter decides which ones automatic playback may start." = "على iPhone يعرض المحدد كل المصادر؛ ويحدد هذا المرشح المصادر التي يمكن أن يبدأها التشغيل التلقائي.";
 "On start" = "On start";
 "Onboarding" = "الإعداد الأولي";
 "One list" = "قائمة واحدة";
