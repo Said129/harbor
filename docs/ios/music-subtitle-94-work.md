@@ -1114,3 +1114,15 @@ toggle). The cause is not established. The failure message now reports the
 live consumer count, whether a signal exists, the exact af string, phase,
 loaded and position, to separate a leaked lease, a rejected release and a
 track that ended. Only this case is rerun.
+
+Run 41854576393 (75ca13f0) produced no result: GitHub reported "The job was
+not acquired by Runner of type hosted even after multiple attempts" and
+cancelled it after 15 minutes. It is an infrastructure failure, not a test
+result, and the same single case is dispatched again.
+
+Subtitles, owner report 4 November (later): the shift appears after seeking
+forward or backward, with audio and video in sync. A wrong-release subtitle
+would be in sync again near the start, so this leans toward a seek-time
+defect. The static red/green fixture cannot show it; reproducing it needs
+moving content with burned-in timecode and cues keyed to it, served over
+HTTP Range. Not built yet.
