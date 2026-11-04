@@ -98,13 +98,18 @@ command = ["xcodebuild", "-project", "ios/Harbor.xcodeproj", "-scheme", scheme, 
 selection = ["-only-testing:" + name for name in selected]
 subprocess.run(["python3", "scripts/ios/reuse-native-source-times.py"], check=True)
 run(command + selection + ["build-for-testing"], "focused-build", timeout=2700)
+report["build_succeeded"] = True
 # The resource trace showed simulator services competing with the compiler.
 # Build for the selected device first; launch it only for actual execution.
 subprocess.run(["python3", "scripts/ios/prepare-ci-audio.py", "--verify"], check=True)
-subprocess.run(["xcrun", "simctl", "bootstatus", device, "-b"], check=True, timeout=300)
+run(["xcrun", "simctl", "bootstatus", device, "-b"], "simulator-boot", timeout=300)
 report["simulator_boot_after_build"] = True
 app = build / "DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app"
-subprocess.run(["xcrun", "simctl", "install", device, str(app)], check=True, timeout=90)
+# A freshly migrated simulator exceeded the former 90-second installation
+# limit after a successful build. Keep the operation bounded and preserve its
+# own phase, output and resource trace rather than reporting a build failure.
+run(["xcrun", "simctl", "install", device, str(app)], "simulator-install", timeout=300)
+report["simulator_install_succeeded"] = True
 container = subprocess.check_output(["xcrun", "simctl", "get_app_container", device, "site.harbor.iphone", "data"], text=True).strip()
 subprocess.run(["python3", "scripts/ios/prepare-model-test-startup.py", "--container", container], check=True)
 test_status = run(command + selection + ["-resultBundlePath", "ios/build/FocusedTests.xcresult", "test-without-building"], "focused-tests", allow_failure=True)

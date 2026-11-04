@@ -885,3 +885,23 @@ agent and binary Accept header are required by the upstream download endpoint;
 its default Python request returned 406. The verified request is now used by
 the CI setup. Primary package record:
 https://raw.githubusercontent.com/Homebrew/homebrew-cask/master/Casks/b/blackhole-2ch.rb
+
+## Native build accepted; initial simulator installation incomplete
+
+Run 41744308491 is terminal. Its source 4bec28886b compiled the app and
+changed test target successfully with the seventeen-filter candidate.
+Only the recorded OpenGLES/AppIntents baseline warnings appear. Both
+pre-build and post-build CoreAudio route checks read a live 48 kHz device.
+The simulator completed its initial migration/boot, but installation then
+exceeded the old 90-second limit. None of the nine selected tests executed;
+this is not a test pass or a demonstrated app/subtitle failure.
+
+The downloaded 40,727-byte artifact 13283164123 matches GitHub's digest
+cce84daa58b9e229a1545c1c48c94f8621590ada94962950db32e232a996d689.
+Its original build log, resource trace, route proof and the complete job log
+are retained outside the repository. No xcresult was produced.
+
+Installation now has a bounded 300-second phase with its own output and
+resource trace; boot/install/build results are recorded separately. The
+next execution retains the same nine unexecuted cases and compiler cache,
+without repeating earlier approved tests or requesting an IPA.
