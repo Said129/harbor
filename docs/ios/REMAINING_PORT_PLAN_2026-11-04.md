@@ -89,8 +89,11 @@ configure the service in Harbor itself.
    80 % of the requests answered, or 10 s), and always when every addon has
    answered; a remembered next-episode source that has not answered yet is
    waited for. Not ported in the settle: preferred-language checks, Watch
-   Together host source, Desktop's own automatic candidate ranking (iPhone
-   keeps `StreamPreferences.preferred`). Retained cases to rerun with this:
+   Together host source, Desktop's own automatic candidate ranking
+   (`use-auto-candidates.ts`; iPhone keeps `StreamPreferences.preferred`), so
+   its title-name check (`nameKnown` → `nameAbsent`) never applies, and the
+   retry with the next candidate after a failed automatic start
+   (`autoAttemptIdx`; iPhone stops and shows the picker with the error). Retained cases to rerun with this:
    LiveNavigationTests source-picker and change-source flows (they wait
    15–30 s for offers and assume the Condensed picker), NativeDataTests stream
    preferences, MobileSourcesAndSubtitlesTests and DebridStreamTests automatic

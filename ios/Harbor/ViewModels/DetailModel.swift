@@ -390,10 +390,10 @@ final class DetailModel {
         let preferences = StreamPreferences.shared
         let remembered = autoplay.continuation && preferences.keepSourceNextEpisode ? lastPlayedSource : nil
         let protecting = remembered.map { identity in !automaticOffers.contains { identity.matches($0) } } ?? false
-        let top = autoplay.continuation ? continuationOffer : preferences.preferred(automaticOffers)
-        guard autoSettle.shouldStart(now: .now, top: top, candidates: automaticOffers, hasResults: !rankedOffers.isEmpty,
+        let candidate = autoplay.continuation ? continuationOffer : preferences.preferred(automaticOffers)
+        guard autoSettle.shouldStart(now: .now, top: candidate, candidates: automaticOffers, hasResults: !rankedOffers.isEmpty,
                                      answered: answeredRequests, total: totalRequests, done: done, protecting: protecting),
-              let top else { return }
+              let top = candidate else { return }
         self.autoplay = nil
         let start = autoplay.start
         autoTask = Task { await start(top) }
@@ -438,7 +438,7 @@ final class DetailModel {
             guard let selected else { throw HarborError(code: "no-metadata") }
             // Desktop re-evaluates its settle timers; a child tick does the same between
             // answers and is cancelled with this request.
-            async let _ = tickAutoplay(request)
+            async let ticking: Void = tickAutoplay(request)
             let videoID = episode?.id ?? selected.behaviorHints?.defaultVideoId ?? selected.id
             let provider = pluginStreams, startingPriority = StreamAddonPriority.pluginStart(addons: addons, settings: StreamPreferences.shared.sourceSettings)
             let plugins: (@Sendable () async throws -> HarborPluginStreamBatch)?
@@ -474,6 +474,7 @@ final class DetailModel {
                 else { throw HarborError(code: warnings.first ?? "no-streams") }
             }
             considerAutoplay(done: true)
+            _ = await ticking
         } catch is CancellationError { autoTask?.cancel(); return }
         catch { if streamRequest == request, contextRevision() == context { self.error = safeMessage(error) } }
         // A source started early keeps this request alive until it has opened or failed.

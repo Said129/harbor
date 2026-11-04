@@ -154,6 +154,9 @@ struct DetailView: View {
                             !Task.isCancelled && owner == app.library.owner && scope == app.accountOperationScope && revision == selectionRevision
                         }, start: { offer in
                             await model.play(offer, resume: app.resume, library: app.library)
+                            // A source that fails while other addons still answer shows the
+                            // picker and its error instead of the connecting screen.
+                            if model.playback == nil, revision == selectionRevision { showConnecting = false }
                         }) : nil
                         await model.findStreams(app.addons, episode: selectedEpisode, selection: streamSelection, autoplay: autoplay)
                     }
