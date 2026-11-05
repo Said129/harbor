@@ -25,6 +25,7 @@
 "A continuación" = "A seguir";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "De A a Z";
+"A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
 "AFC Asian Cup" = "Copa da Ásia";
 "AFC Champions League Elite" = "Liga dos Campeões da AFC Elite";
@@ -394,6 +395,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Versões limpas para este título ainda são escassas. Confirme o nome do arquivo e o tamanho antes de reproduzir.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Ainda não surgiram versões limpas para este título. O resultado abaixo pode não corresponder ao título que você procura, então confirme o nome do arquivo e o tamanho antes de reproduzir.";
 "Clear" = "Limpar";
+"Clear A-B loop" = "Limpar repetição A-B";
 "Clear all" = "Limpar tudo";
 "Clear cache" = "Limpar cache agora";
 "Clear cache now" = "Limpar cache agora";
@@ -1011,6 +1013,7 @@
 "Logo position" = "Posição da logo";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "Logos";
+"Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "O FPS da legenda não está disponível nesta versão do libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "O FPS da legenda não está disponível enquanto houver uma legenda secundária ativa.";
 "Los FPS del video no están disponibles." = "O FPS do vídeo não está disponível.";
@@ -1679,6 +1682,8 @@
 "Services changes waiting to sync" = "Alterações nos serviços à espera de sincronização";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Conectado ao Stremio";
+"Set A" = "Set A";
+"Set B" = "Set B";
 "Set a PIN" = "Defina um PIN";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";

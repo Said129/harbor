@@ -25,6 +25,7 @@
 "A continuación" = "다음 콘텐츠";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "이름순";
+"A-B loop" = "A-B loop";
 "A-Z" = "가나다순";
 "AMC+" = "AMC+";
 "API key" = "API 키";
@@ -378,6 +379,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "아직 이 작품의 정확한 릴리스가 많지 않습니다. 재생 전에 파일 이름과 크기를 확인하세요.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "아직 이 작품의 정확한 릴리스를 찾지 못했습니다. 아래 결과는 찾는 작품과 다를 수 있으니 재생 전에 파일 이름과 크기를 확인하세요.";
 "Clear" = "지우기";
+"Clear A-B loop" = "A-B 구간 반복 해제";
 "Clear all" = "모두 삭제";
 "Clear cache" = "지금 캐시 지우기";
 "Clear cache now" = "지금 캐시 지우기";
@@ -991,6 +993,7 @@
 "Logo position" = "로고 위치";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "로고";
+"Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "이 libmpv 런타임에서는 자막 FPS를 사용할 수 없습니다.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "보조 자막이 활성화된 동안에는 자막 FPS를 사용할 수 없습니다.";
 "Los FPS del video no están disponibles." = "동영상 FPS를 사용할 수 없습니다.";
@@ -1657,6 +1660,8 @@
 "Services changes waiting to sync" = "서비스 변경 사항 동기화 대기 중";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio에 로그인됨";
+"Set A" = "Set A";
+"Set B" = "Set B";
 "Set a PIN" = "PIN 설정";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";

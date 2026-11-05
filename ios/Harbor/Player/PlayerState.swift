@@ -20,6 +20,8 @@ final class PlayerState {
     var tracks: [Track] = []
     var chapters: [Chapter] = []
     var speed = 1.0
+    /// Desktop's A-B loop for this video; a new video starts a new state.
+    var abLoop = ABLoop()
     var volume = 100.0
     var muted = false
     var audioOutput = ""

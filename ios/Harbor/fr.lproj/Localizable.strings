@@ -25,6 +25,7 @@
 "A continuación" = "À suivre";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "De A à Z";
+"A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "Clé API";
@@ -378,6 +379,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Les versions fiables de ce titre sont encore rares. Vérifiez le nom du fichier et sa taille avant de lancer la lecture.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Aucune version fiable de ce titre n’est encore disponible. Le résultat ci-dessous peut ne pas correspondre au titre que vous recherchez. Vérifiez donc le nom du fichier et sa taille avant de lancer la lecture.";
 "Clear" = "Effacer";
+"Clear A-B loop" = "Effacer la boucle A-B";
 "Clear all" = "Tout effacer";
 "Clear cache" = "Vider le cache maintenant";
 "Clear cache now" = "Vider le cache maintenant";
@@ -991,6 +993,7 @@
 "Logo position" = "Position du logo";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "Logos";
+"Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Les FPS des sous-titres ne sont pas disponibles dans cet environnement d’exécution libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Les FPS des sous-titres ne sont pas disponibles lorsqu’un sous-titre secondaire est actif.";
 "Los FPS del video no están disponibles." = "La fréquence d’images de la vidéo n’est pas disponible.";
@@ -1657,6 +1660,8 @@
 "Services changes waiting to sync" = "Modifications des services en attente de synchronisation";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Connecté à Stremio";
+"Set A" = "Set A";
+"Set B" = "Set B";
 "Set a PIN" = "Définir un code PIN";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";

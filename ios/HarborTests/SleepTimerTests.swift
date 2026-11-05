@@ -84,3 +84,37 @@ import XCTest
         XCTAssertEqual(SleepTimer.presets.map(\.id), ["15", "30", "45", "60", "120", "180", "240", "360", "ep", "ep2"], "Desktop's ten presets")
     }
 }
+
+/// Desktop's A-B loop rules (`use-ab-loop.ts`).
+final class ABLoopTests: XCTestCase {
+    func testPointsFollowDesktopsRules() {
+        var loop = ABLoop()
+        loop.setB(at: 30)
+        XCTAssertNil(loop.b, "B needs an A first")
+        loop.setA(at: 10)
+        XCTAssertFalse(loop.active)
+        loop.setB(at: 10)
+        XCTAssertNil(loop.b, "B must be after A")
+        loop.setB(at: 25)
+        XCTAssertTrue(loop.active)
+        XCTAssertEqual(loop.summary(), "0:10 → 0:25")
+        loop.setB(at: 5)
+        XCTAssertEqual(loop.b, 25, "A B that is not after A leaves the loop as it was")
+        loop.setA(at: 40)
+        XCTAssertEqual(loop.a, 40); XCTAssertNil(loop.b, "Moving A past B drops B")
+        XCTAssertFalse(loop.active)
+    }
+
+    func testMpvValuesAndClearing() {
+        var loop = ABLoop()
+        XCTAssertEqual(loop.mpvValues.a, "no"); XCTAssertEqual(loop.mpvValues.b, "no")
+        loop.setA(at: -3)
+        XCTAssertEqual(loop.a, 0, "Negative positions clamp to the start")
+        loop.setA(at: 3_725.5); loop.setB(at: 3_800)
+        XCTAssertEqual(loop.mpvValues.a, "3725.5"); XCTAssertEqual(loop.mpvValues.b, "3800.0")
+        XCTAssertEqual(loop.summary(), "1:02:05 → 1:03:20")
+        XCTAssertTrue(loop.isSet)
+        loop.clear()
+        XCTAssertFalse(loop.isSet); XCTAssertEqual(loop.summary(), "— → —")
+    }
+}

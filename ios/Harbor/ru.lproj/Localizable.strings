@@ -27,6 +27,7 @@
 "A continuación" = "Далее";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "По алфавиту";
+"A-B loop" = "A-B loop";
 "A-Z" = "А-Я";
 "AMC+" = "AMC+";
 "API key" = "API-ключ";
@@ -382,6 +383,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Чистых релизов для этого названия пока мало. Проверьте имя файла и размер перед воспроизведением.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Чистых релизов для этого названия пока нет. Результат ниже может не соответствовать нужному названию, поэтому проверьте имя файла и размер перед воспроизведением.";
 "Clear" = "Очистить";
+"Clear A-B loop" = "Сбросить повтор A-B";
 "Clear all" = "Очистить всё";
 "Clear cache" = "Очистить кэш сейчас";
 "Clear cache now" = "Очистить кэш сейчас";
@@ -996,6 +998,7 @@
 "Logo position" = "Положение логотипа";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "Логотипы";
+"Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Настройка частоты кадров субтитров недоступна в этой версии libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Настройка частоты кадров недоступна, пока включены вторые субтитры.";
 "Los FPS del video no están disponibles." = "Частота кадров видео недоступна.";
@@ -1669,6 +1672,8 @@
 "Services changes waiting to sync" = "Изменения сервисов ожидают синхронизации";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Вход в Stremio выполнен";
+"Set A" = "Set A";
+"Set B" = "Set B";
 "Set a PIN" = "Задать PIN";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";

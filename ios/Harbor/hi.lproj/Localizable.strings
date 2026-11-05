@@ -25,6 +25,7 @@
 "A continuación" = "इसके बाद";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "A से Z";
+"A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "API कुंजी";
@@ -378,6 +379,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "इस शीर्षक की सही रिलीज़ अभी भी कम हैं। चलाने से पहले फ़ाइल नाम और साइज़ की पुष्टि करें।";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "इस शीर्षक की सही रिलीज़ अभी तक नहीं मिली हैं। नीचे दिया गया नतीजा शायद आपके खोजे गए शीर्षक से मेल न खाए, इसलिए चलाने से पहले फ़ाइल नाम और साइज़ की पुष्टि करें।";
 "Clear" = "साफ़ करें";
+"Clear A-B loop" = "A-B लूप हटाएँ";
 "Clear all" = "सभी साफ़ करें";
 "Clear cache" = "कैश अभी साफ़ करें";
 "Clear cache now" = "कैश अभी साफ़ करें";
@@ -991,6 +993,7 @@
 "Logo position" = "लोगो की स्थिति";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "लोगो";
+"Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "इस libmpv रनटाइम में सबटाइटल FPS उपलब्ध नहीं है।";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "दूसरा सबटाइटल सक्रिय होने पर सबटाइटल FPS उपलब्ध नहीं है।";
 "Los FPS del video no están disponibles." = "वीडियो FPS उपलब्ध नहीं है।";
@@ -1657,6 +1660,8 @@
 "Services changes waiting to sync" = "सेवाओं के बदलाव सिंक होने की प्रतीक्षा में हैं";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio में साइन इन हैं";
+"Set A" = "Set A";
+"Set B" = "Set B";
 "Set a PIN" = "PIN सेट करें";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";

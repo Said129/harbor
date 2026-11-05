@@ -15,6 +15,7 @@
 "A continuación" = "Up Next";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "A to Z";
+"A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
 "API key" = "API key";
 "API token" = "API token";
@@ -304,6 +305,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Clean releases for this title are still scarce. Confirm the filename and size before playing.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing.";
 "Clear" = "Clear";
+"Clear A-B loop" = "Clear A-B loop";
 "Clear all" = "Clear all";
 "Clear cache" = "Clear cache now";
 "Clear cache now" = "Clear cache now";
@@ -820,6 +822,7 @@
 "Local app files" = "Local app files";
 "Logo position" = "Logo position";
 "Logo reset to default" = "Logo reset to default";
+"Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Subtitle FPS is unavailable in this libmpv runtime.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Subtitle FPS is unavailable while a secondary subtitle is active.";
 "Los FPS del video no están disponibles." = "Video FPS is unavailable.";
@@ -1386,6 +1389,8 @@
 "Services changes waiting to sync" = "Services changes waiting to sync";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Signed in to Stremio";
+"Set A" = "Set A";
+"Set B" = "Set B";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";

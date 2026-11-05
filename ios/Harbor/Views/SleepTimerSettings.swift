@@ -89,6 +89,38 @@ struct SleepTimerSettings: View {
     }
 }
 
+/// Desktop's A-B loop for touch: its Shift+I, Shift+O and Shift+L shortcuts become three buttons.
+struct ABLoopSettings: View {
+    let state: PlayerState
+    private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
+
+    private func apply() {
+        let values = state.abLoop.mpvValues
+        state.controller?.set("ab-loop-a", values.a)
+        state.controller?.set("ab-loop-b", values.b)
+    }
+    var body: some View {
+        HarborSettingsSection("A-B loop") {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack(spacing: 8) {
+                    Image(systemName: "repeat").font(.system(size: 13, weight: .semibold))
+                    Text(state.abLoop.summary()).font(HarborTheme.font(15, weight: .medium)).monospacedDigit()
+                        .accessibilityIdentifier("ab-loop-summary")
+                    if state.abLoop.active { Text(text("Looping")).font(HarborTheme.font(12, weight: .semibold)).foregroundStyle(HarborTheme.accent) }
+                }
+                HStack(spacing: 10) {
+                    Button(text("Set A")) { state.abLoop.setA(at: state.position); apply() }.accessibilityIdentifier("ab-loop-set-a")
+                    Button(text("Set B")) { state.abLoop.setB(at: state.position); apply() }
+                        .disabled(state.abLoop.a == nil).accessibilityIdentifier("ab-loop-set-b")
+                    if state.abLoop.isSet {
+                        Button(text("Clear A-B loop"), role: .destructive) { state.abLoop.clear(); apply() }.accessibilityIdentifier("ab-loop-clear")
+                    }
+                }
+            }
+        }
+    }
+}
+
 private extension SleepMode {
     var minutesValue: Int? { if case .minutes(let value) = self { return value }; return nil }
 }

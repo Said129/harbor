@@ -25,6 +25,7 @@
 "A continuación" = "A seguire";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "Dalla A alla Z";
+"A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "Chiave API";
@@ -378,6 +379,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Le release di buona qualità per questo titolo sono ancora poche. Controlla il nome e le dimensioni del file prima della riproduzione.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Non sono ancora disponibili release di buona qualità per questo titolo. Il risultato qui sotto potrebbe non corrispondere al titolo che cerchi, quindi controlla il nome e le dimensioni del file prima della riproduzione.";
 "Clear" = "Cancella";
+"Clear A-B loop" = "Cancella ripetizione A-B";
 "Clear all" = "Cancella tutto";
 "Clear cache" = "Svuota la cache ora";
 "Clear cache now" = "Svuota la cache ora";
@@ -991,6 +993,7 @@
 "Logo position" = "Posizione del logo";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "Loghi";
+"Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Gli FPS dei sottotitoli non sono disponibili in questo runtime di libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Gli FPS dei sottotitoli non sono disponibili mentre è attivo un sottotitolo secondario.";
 "Los FPS del video no están disponibles." = "Gli FPS del video non sono disponibili.";
@@ -1657,6 +1660,8 @@
 "Services changes waiting to sync" = "Modifiche ai servizi in attesa di sincronizzazione";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Accesso a Stremio effettuato";
+"Set A" = "Set A";
+"Set B" = "Set B";
 "Set a PIN" = "Imposta un PIN";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";

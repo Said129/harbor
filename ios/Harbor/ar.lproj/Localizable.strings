@@ -27,6 +27,7 @@
 "A continuación" = "التالي";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "أبجديًا";
+"A-B loop" = "A-B loop";
 "A-Z" = "أ-ي";
 "AFC Asian Cup" = "كأس آسيا";
 "AFC Champions League Elite" = "دوري أبطال آسيا للنخبة";
@@ -398,6 +399,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "لا تزال الإصدارات النظيفة لهذا العمل نادرة. تأكد من اسم الملف وحجمه قبل التشغيل.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "لم تظهر إصدارات نظيفة لهذا العمل بعد. قد لا تتطابق النتيجة أدناه مع ما تبحث عنه، لذا تأكد من اسم الملف وحجمه قبل التشغيل.";
 "Clear" = "مسح";
+"Clear A-B loop" = "مسح حلقة A-B";
 "Clear all" = "مسح الكل";
 "Clear cache" = "مسح التخزين المؤقت الآن";
 "Clear cache now" = "مسح التخزين المؤقت الآن";
@@ -1016,6 +1018,7 @@
 "Logo position" = "موضع الشعار";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "الشعارات";
+"Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "معدل إطارات الترجمة غير متوفر في إصدار libmpv الحالي.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "لا يتوفر تعديل معدل إطارات الترجمة أثناء تفعيل ترجمة ثانوية.";
 "Los FPS del video no están disponibles." = "معدل إطارات الفيديو غير متوفر.";
@@ -1691,6 +1694,8 @@
 "Services changes waiting to sync" = "تغييرات الخدمات بانتظار المزامنة";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "تم تسجيل الدخول إلى Stremio";
+"Set A" = "Set A";
+"Set B" = "Set B";
 "Set a PIN" = "تعيين رمز PIN";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";

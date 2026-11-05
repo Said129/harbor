@@ -25,6 +25,7 @@
 "A continuación" = "A continuación";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "De la A a la Z";
+"A-B loop" = "Bucle A-B";
 "A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "Clave de API";
@@ -378,6 +379,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Aún hay pocas versiones limpias de este título. Confirma el nombre y el tamaño del archivo antes de reproducirlo.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Aún no han aparecido versiones limpias de este título. Es posible que el resultado de abajo no coincida con el título que buscas, así que confirma el nombre y el tamaño del archivo antes de reproducirlo.";
 "Clear" = "Borrar";
+"Clear A-B loop" = "Borrar bucle A-B";
 "Clear all" = "Borrar todo";
 "Clear cache" = "Borrar caché ahora";
 "Clear cache now" = "Borrar caché ahora";
@@ -991,6 +993,7 @@
 "Logo position" = "Posición del logo";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "Logos";
+"Looping" = "En bucle";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo.";
 "Los FPS del video no están disponibles." = "Los FPS del video no están disponibles.";
@@ -1657,6 +1660,8 @@
 "Services changes waiting to sync" = "Cambios de servicios pendientes de sincronizar";
 "Servidor Xtream" = "Servidor Xtream";
 "Sesión iniciada en Stremio" = "Sesión iniciada en Stremio";
+"Set A" = "Marcar A";
+"Set B" = "Marcar B";
 "Set a PIN" = "Establecer un PIN";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";

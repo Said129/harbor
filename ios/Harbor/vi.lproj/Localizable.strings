@@ -25,6 +25,7 @@
 "A continuación" = "Tiếp theo";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "A đến Z";
+"A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "Khóa API";
@@ -378,6 +379,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Vẫn có rất ít bản phát hành phù hợp cho tựa phim này. Hãy kiểm tra tên tệp và dung lượng trước khi phát.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Chưa tìm thấy bản phát hành phù hợp cho tựa phim này. Kết quả bên dưới có thể không khớp với tựa phim bạn đang tìm, vì vậy hãy kiểm tra tên tệp và dung lượng trước khi phát.";
 "Clear" = "Xóa";
+"Clear A-B loop" = "Xóa vòng lặp A-B";
 "Clear all" = "Xóa tất cả";
 "Clear cache" = "Xóa bộ nhớ đệm ngay";
 "Clear cache now" = "Xóa bộ nhớ đệm ngay";
@@ -991,6 +993,7 @@
 "Logo position" = "Vị trí logo";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "Logo";
+"Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "FPS phụ đề không khả dụng trong môi trường chạy libmpv này.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "FPS phụ đề không khả dụng khi đang bật phụ đề thứ hai.";
 "Los FPS del video no están disponibles." = "FPS video không khả dụng.";
@@ -1657,6 +1660,8 @@
 "Services changes waiting to sync" = "Các thay đổi dịch vụ đang chờ đồng bộ";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Đã đăng nhập vào Stremio";
+"Set A" = "Set A";
+"Set B" = "Set B";
 "Set a PIN" = "Đặt mã PIN";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";

@@ -25,6 +25,7 @@
 "A continuación" = "次のエピソード";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "名前順";
+"A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "APIキー";
@@ -378,6 +379,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "この作品に正しく一致するリリースはまだわずかです。再生前にファイル名とサイズを確認してください。";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "この作品に正しく一致するリリースはまだ見つかっていません。下の結果はお探しの作品と異なる可能性があるため、再生前にファイル名とサイズを確認してください。";
 "Clear" = "クリア";
+"Clear A-B loop" = "A-Bリピートを解除";
 "Clear all" = "すべて消去";
 "Clear cache" = "今すぐキャッシュを消去";
 "Clear cache now" = "今すぐキャッシュを消去";
@@ -991,6 +993,7 @@
 "Logo position" = "ロゴの位置";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "ロゴ";
+"Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "このlibmpvランタイムでは字幕FPSを使用できません。";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "第2字幕が有効な間は字幕FPSを使用できません。";
 "Los FPS del video no están disponibles." = "動画FPSを取得できません。";
@@ -1657,6 +1660,8 @@
 "Services changes waiting to sync" = "サービスの変更は同期待ちです";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremioにログイン済み";
+"Set A" = "Set A";
+"Set B" = "Set B";
 "Set a PIN" = "PINを設定";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";

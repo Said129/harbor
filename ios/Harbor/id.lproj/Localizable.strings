@@ -25,6 +25,7 @@
 "A continuación" = "Berikutnya";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "A sampai Z";
+"A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "Kunci API";
@@ -378,6 +379,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Rilis yang cocok untuk judul ini masih langka. Periksa nama file dan ukurannya sebelum memutar.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Rilis yang cocok untuk judul ini belum tersedia. Hasil di bawah mungkin tidak cocok dengan judul yang Anda cari, jadi periksa nama file dan ukurannya sebelum memutar.";
 "Clear" = "Bersihkan";
+"Clear A-B loop" = "Hapus loop A-B";
 "Clear all" = "Hapus semua";
 "Clear cache" = "Bersihkan cache sekarang";
 "Clear cache now" = "Bersihkan cache sekarang";
@@ -991,6 +993,7 @@
 "Logo position" = "Posisi logo";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "Logo";
+"Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "FPS subtitle tidak tersedia di runtime libmpv ini.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "FPS subtitle tidak tersedia saat subtitle sekunder aktif.";
 "Los FPS del video no están disponibles." = "FPS video tidak tersedia.";
@@ -1657,6 +1660,8 @@
 "Services changes waiting to sync" = "Perubahan layanan menunggu sinkronisasi";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Sudah masuk ke Stremio";
+"Set A" = "Set A";
+"Set B" = "Set B";
 "Set a PIN" = "Atur PIN";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";

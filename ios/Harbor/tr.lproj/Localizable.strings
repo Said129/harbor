@@ -25,6 +25,7 @@
 "A continuación" = "Sıradaki";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "A'dan Z'ye";
+"A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "API anahtarı";
@@ -378,6 +379,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Bu içerik için sorunsuz sürümler hâlâ az sayıda. Oynatmadan önce dosya adını ve boyutunu kontrol edin.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Bu içerik için düzgün sürümler henüz bulunamadı. Aşağıdaki sonuç aradığınız içerikle eşleşmeyebilir; oynatmadan önce dosya adını ve boyutunu doğrulayın.";
 "Clear" = "Temizle";
+"Clear A-B loop" = "A-B döngüsünü kaldır";
 "Clear all" = "Tümünü temizle";
 "Clear cache" = "Önbelleği şimdi temizle";
 "Clear cache now" = "Önbelleği şimdi temizle";
@@ -991,6 +993,7 @@
 "Logo position" = "Logo konumu";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "Logolar";
+"Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Altyazı FPS'si bu libmpv çalışma ortamında kullanılamıyor.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "İkincil altyazı etkinken altyazı FPS'si kullanılamaz.";
 "Los FPS del video no están disponibles." = "Video FPS'si kullanılamıyor.";
@@ -1657,6 +1660,8 @@
 "Services changes waiting to sync" = "Hizmet değişiklikleri eşitlenmeyi bekliyor";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio oturumu açık";
+"Set A" = "Set A";
+"Set B" = "Set B";
 "Set a PIN" = "PIN belirle";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";

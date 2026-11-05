@@ -25,6 +25,7 @@
 "A continuación" = "接下来播放";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "按名称";
+"A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "API 密钥";
@@ -378,6 +379,7 @@
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "与此条目准确匹配的版本仍然很少。播放前请确认文件名和大小。";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "目前还没有找到与此条目准确匹配的版本。下方结果可能与你要找的条目不符，播放前请确认文件名和大小。";
 "Clear" = "清除";
+"Clear A-B loop" = "清除 A-B 循环";
 "Clear all" = "全部清除";
 "Clear cache" = "立即清除缓存";
 "Clear cache now" = "立即清除缓存";
@@ -991,6 +993,7 @@
 "Logo position" = "徽标位置";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "徽标";
+"Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "此 libmpv 运行时不支持字幕 FPS。";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "启用第二字幕时，字幕 FPS 不可用。";
 "Los FPS del video no están disponibles." = "视频 FPS 不可用。";
@@ -1657,6 +1660,8 @@
 "Services changes waiting to sync" = "服务更改等待同步";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "已登录 Stremio";
+"Set A" = "Set A";
+"Set B" = "Set B";
 "Set a PIN" = "设置 PIN";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
