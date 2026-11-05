@@ -16,25 +16,25 @@
     },
     "settings": {
       "total": 511,
-      "ported": 118,
+      "ported": 119,
       "partial": 21,
-      "missing": 286,
+      "missing": 285,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 30.2,
-      "ported_only_percent": 27.8,
-      "ported_or_partial_percent": 32.7
+      "weighted_percent": 30.5,
+      "ported_only_percent": 28.0,
+      "ported_or_partial_percent": 32.9
     },
     "all": {
       "total": 949,
-      "ported": 237,
+      "ported": 238,
       "partial": 224,
-      "missing": 380,
+      "missing": 379,
       "excluded": 108,
       "counted": 841,
-      "weighted_percent": 41.5,
-      "ported_only_percent": 28.2,
-      "ported_or_partial_percent": 54.8
+      "weighted_percent": 41.6,
+      "ported_only_percent": 28.3,
+      "ported_or_partial_percent": 54.9
     }
   },
   "behavior_areas": [
@@ -4176,8 +4176,8 @@
       "index": 126,
       "id": "episodeHiding",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "hide and skip episodes: menu, list filter and Up Next (5 Nov, uncompiled)"
     },
     {
       "index": 127,

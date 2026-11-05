@@ -95,6 +95,7 @@
 "Addon order" = "Ordre des extensions";
 "Addon wait time" = "Délai d’attente des extensions";
 "Addons" = "Extensions";
+"Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Ajoute une option Masquer lorsque vous faites un clic droit sur un épisode. Les épisodes masqués disparaissent de la liste et sont ignorés par À suivre. L’option Afficher les épisodes masqués de chaque série permet de les faire réapparaître.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Réglez le texte et le fond. L’aperçu affiche vos modifications en direct.";
 "Administrar" = "Gérer";
 "Adult sources" = "Adult sources";
@@ -315,6 +316,7 @@
 "Browse services" = "Parcourir les services";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Parcourez vos listes d’anime dans Harbor et actualisez votre progression au fil du visionnage. Connectez-vous à AniList pour l’associer.";
 "Browse your catalogs" = "Parcourir vos catalogues";
+"Browsing" = "Navigation";
 "Buffer" = "Buffer";
 "Build" = "Version";
 "Build your own palette" = "Créez votre propre palette";
@@ -868,9 +870,12 @@
 "Hide" = "Masquer";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "Masquer toutes les sources";
+"Hide and skip episodes" = "Masquer et ignorer des épisodes";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide details" = "Masquer les détails";
 "Hide end notice" = "Hide end notice";
+"Hide episode" = "Masquer l’épisode";
+"Hide hidden episodes" = "Masquer les épisodes cachés";
 "Hide row" = "Masquer la rangée";
 "Hide sound effects and speaker names" = "Masquer les bruitages et les noms de personnages";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Masquez les fichiers suspects, les versions non correspondantes, les probables captations en salle et les bandes-annonces. Vérifiez aussi les tailles et les packs de saisons.";
@@ -1754,9 +1759,11 @@
 "Show controls" = "Afficher les commandes";
 "Show details" = "Afficher les détails";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Afficher les résultats de chaque extension dans l’ordre où elle les a renvoyés, regroupés selon votre liste d’extensions. Comme dans les applications Stremio et Vidi.";
+"Show episode" = "Afficher l’épisode";
 "Show episode description" = "Afficher le résumé de l’épisode";
 "Show everything anyway" = "Tout afficher quand même";
 "Show full descriptions" = "Afficher les descriptions complètes";
+"Show hidden episodes" = "Afficher les épisodes masqués";
 "Show less" = "Afficher moins";
 "Show me less like this" = "M’en montrer moins comme celui-ci";
 "Show me more like this" = "M’en montrer plus comme celui-ci";

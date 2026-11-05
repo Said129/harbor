@@ -54,7 +54,7 @@ struct ContinueWatchingPreferences: Sendable {
         "posterFocusedCard", "posterBackdropExpansion", "posterDockMagnification", "posterDockTransitionMs",
         "simklEnableUserRatings", "simklScrobbleEnabled", "cwSources",
         "tmdbImageLangs", "harbor:title-logos", "harbor:title-posters", "harbor:title-backdrops",
-        "showWatchedButton", "showEpisodeDescription", "episodeSort", "hideSpoilers", "blurEpisodes", "spoilerHideTitles", "spoilerHideDescriptions",
+        "showWatchedButton", "showEpisodeDescription", "episodeSort", "episodeHiding", "hideSpoilers", "blurEpisodes", "spoilerHideTitles", "spoilerHideDescriptions",
         "iphone.theme.preset", "iphone.theme.custom", "iphone.theme.font", "iphone.theme.colors", "seekBarColor",
         "iphone.player-options.v1", "mpvHwdec", "resumePlayback", "resumePrompt", "subtitleAutoSync",
         "streamFilterLevel", "streams.addonOrder", "streams.automatic", "keepSourceNextEpisode", "streams.excludeCamera", "streams.maximum", "streams.minimum",

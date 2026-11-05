@@ -273,7 +273,8 @@ SETTINGS = expand("""
 123 D episode sort menu: oldest or newest first (5 Nov, uncompiled)
 124 M
 125 D
-126-128 M
+126 D hide and skip episodes: menu, list filter and Up Next (5 Nov, uncompiled)
+127-128 M
 129 P episode order via TVDB season type
 130-131 D
 132 M

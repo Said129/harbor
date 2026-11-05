@@ -95,6 +95,7 @@
 "Addon order" = "插件顺序";
 "Addon wait time" = "插件等待时间";
 "Addons" = "插件";
+"Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "右键单击某一集时增加“隐藏”选项。隐藏的单集会从列表中消失，“接下来播放”也会跳过它们。每部作品中的“显示隐藏内容”开关可让它们重新显示。";
 "Adjust the text and background. The preview shows your changes as you make them." = "调整文字和背景。预览会实时显示更改。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
@@ -315,6 +316,7 @@
 "Browse services" = "浏览服务";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "在 Harbor 中浏览动画列表，并在观看时更新剧集进度。登录 AniList 以连接。";
 "Browse your catalogs" = "浏览你的内容目录";
+"Browsing" = "正在浏览";
 "Buffer" = "Buffer";
 "Build" = "构建版本";
 "Build your own palette" = "创建自己的配色方案";
@@ -868,9 +870,12 @@
 "Hide" = "隐藏";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "隐藏所有片源";
+"Hide and skip episodes" = "隐藏并跳过单集";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide details" = "隐藏详情";
 "Hide end notice" = "Hide end notice";
+"Hide episode" = "隐藏剧集";
+"Hide hidden episodes" = "不显示隐藏剧集";
 "Hide row" = "隐藏此行";
 "Hide sound effects and speaker names" = "隐藏音效和说话人姓名";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "隐藏可疑文件、不匹配的版本、可能的偷拍版和预告片，同时检查文件大小与整季合集。";
@@ -1754,9 +1759,11 @@
 "Show controls" = "显示控件";
 "Show details" = "显示详情";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "按各插件返回的原始顺序显示结果，并依照你的插件列表分组。与 Stremio 和 Vidi 应用一致。";
+"Show episode" = "显示剧集";
 "Show episode description" = "显示单集简介";
 "Show everything anyway" = "仍要显示全部";
 "Show full descriptions" = "显示完整简介";
+"Show hidden episodes" = "显示隐藏剧集";
 "Show less" = "收起";
 "Show me less like this" = "少推荐此类内容";
 "Show me more like this" = "多推荐此类内容";

@@ -400,7 +400,8 @@ struct PlayerView: View {
     }
     private var episodeNavigationIdentity: [String] { episodeOrder?.sections.flatMap(\.episodes).map(\.routingKey) ?? (media?.videos ?? []).map(\.routingKey) }
     private func updateAdjacentEpisodes() {
-        adjacent = EpisodeSequence.adjacent(episodeOrder?.videos ?? media?.videos ?? [], current: session.target, presentation: episodeOrder)
+        adjacent = EpisodeSequence.adjacent(episodeOrder?.videos ?? media?.videos ?? [], current: session.target, presentation: episodeOrder,
+                                            hidden: InterfacePreferences.shared.episodeHiding ? HiddenEpisodes.all() : [])
     }
     private var canChangeEpisode: Bool {
         let oneOff = media.map { $0.type == "movie" || AnimeOneOffPresentation.isOneOff($0) } ?? false

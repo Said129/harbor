@@ -24,15 +24,42 @@ struct EpisodeList: View {
     @State private var preferredApplied = false
     @State private var orderSection = ""
     @State private var revealed = Set<String>()
+    @State private var hiddenKeys = HiddenEpisodes.all()
+    @State private var showHidden = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private var videos: [Episode] { ordering?.videos ?? WatchedCodec.ordered(media.videos ?? []) }
     private var seasons: [Int] { Array(Set(videos.compactMap(\.listedSeason))).sorted() }
     private var sections: [EpisodeOrderSection] { ordering?.sections ?? [] }
     private var currentSection: EpisodeOrderSection? { sections.first { $0.id == orderSection } ?? sections.first }
     private var visible: [Episode] { currentSection?.episodes ?? videos.filter { ($0.listedSeason ?? season) == season } }
-    private var visibleRows: [EpisodeOrderRow] {
+    private var orderedRows: [EpisodeOrderRow] {
         let rows = currentSection?.rows ?? visible.map(EpisodeOrderRow.episode)
         return InterfacePreferences.shared.episodeSort == "newest" ? rows.reversed() : rows
+    }
+    private func hiddenKey(_ episode: Episode) -> String {
+        HiddenEpisodes.key(episode.sourceMetaID ?? media.id, season: episode.season ?? 0, episode: episode.episode ?? 0)
+    }
+    private func isHidden(_ row: EpisodeOrderRow) -> Bool {
+        if case .episode(let episode) = row { return hiddenKeys.contains(hiddenKey(episode)) }
+        return false
+    }
+    /// With "Hide and skip episodes" on, hidden episodes leave the list until "Show hidden episodes" is switched on.
+    private var visibleRows: [EpisodeOrderRow] {
+        guard InterfacePreferences.shared.episodeHiding, !showHidden, !hiddenKeys.isEmpty else { return orderedRows }
+        return orderedRows.filter { !isHidden($0) }
+    }
+    private func setHidden(_ hidden: Bool, _ episode: Episode) {
+        HiddenEpisodes.set(hidden, metaID: episode.sourceMetaID ?? media.id, season: episode.season ?? 0, episode: episode.episode ?? 0)
+        hiddenKeys = HiddenEpisodes.all()
+    }
+    private var hiddenToggle: some View {
+        let count = orderedRows.filter(isHidden).count
+        return Button { showHidden.toggle() } label: {
+            Label("\(count)", systemImage: showHidden ? "eye" : "eye.slash").font(.footnote.weight(.semibold)).monospacedDigit()
+                .padding(.horizontal, 12).frame(minHeight: 40).foregroundStyle(showHidden ? HarborTheme.background : HarborTheme.ink)
+                .background(showHidden ? HarborTheme.ink : Color.white.opacity(0.06), in: .capsule)
+        }
+        .accessibilityLabel(DesktopInterfaceText.value(showHidden ? "Hide hidden episodes" : "Show hidden episodes")).accessibilityIdentifier("episode-show-hidden")
     }
     /// Desktop's episode sort menu (`episode-grid-controls.tsx`).
     private var sortMenu: some View {
@@ -66,6 +93,7 @@ struct EpisodeList: View {
                 Text("Episodios").font(.title2.bold()).accessibilityIdentifier("detail-episode-summary")
                     .accessibilityValue(episodeSummary)
                 Spacer()
+                if InterfacePreferences.shared.episodeHiding && orderedRows.contains(where: isHidden) { hiddenToggle }
                 sortMenu
                 if let ordering, richOrderPanel {
                     TVDBOrderPanel(sections: sections, options: orderOptions, activeKind: ordering.kind,
@@ -152,6 +180,14 @@ struct EpisodeList: View {
             }
             if !episode.available { Text("Próximamente").font(.caption).foregroundStyle(HarborTheme.accent) }
             Divider()
+        }.contextMenu {
+            if InterfacePreferences.shared.episodeHiding {
+                if hiddenKeys.contains(hiddenKey(episode)) {
+                    Button(DesktopInterfaceText.value("Show episode"), systemImage: "eye") { setHidden(false, episode) }
+                } else {
+                    Button(DesktopInterfaceText.value("Hide episode"), systemImage: "eye.slash") { setHidden(true, episode) }
+                }
+            }
         }
     }
 

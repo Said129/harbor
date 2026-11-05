@@ -45,6 +45,10 @@ struct InterfaceSettingsView: View {
                 HarborSettingsSection(DesktopInterfaceText.value("Episode cards")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Show episode description"), note: DesktopInterfaceText.value("Shows the episode synopsis on the cards. Turn it off to hide it."), isOn: $preferences.showEpisodeDescription)
                 }
+                HarborSettingsSection(DesktopInterfaceText.value("Browsing")) {
+                    HarborSettingsToggle(DesktopInterfaceText.value("Hide and skip episodes"), note: DesktopInterfaceText.value("Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back."), isOn: $preferences.episodeHiding)
+                        .accessibilityIdentifier("settings-episode-hiding")
+                }
                 HarborSettingsSection(DesktopInterfaceText.value("Spoilers")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Blur spoilers"), note: DesktopInterfaceText.value("Hides spoiler-prone episode details in episode lists until you have watched them."), isOn: $preferences.hideSpoilers)
                     if preferences.hideSpoilers {

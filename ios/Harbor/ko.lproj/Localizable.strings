@@ -95,6 +95,7 @@
 "Addon order" = "애드온 순서";
 "Addon wait time" = "애드온 대기 시간";
 "Addons" = "애드온";
+"Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "에피소드를 마우스 오른쪽 버튼으로 클릭하면 숨기기 옵션이 표시됩니다. 숨긴 에피소드는 목록에서 사라지고 다음 재생에서도 건너뜁니다. 각 프로그램의 숨긴 항목 표시 토글을 켜면 다시 볼 수 있습니다.";
 "Adjust the text and background. The preview shows your changes as you make them." = "텍스트와 배경을 조정합니다. 변경 사항이 바로 미리보기에 표시됩니다.";
 "Administrar" = "관리";
 "Adult sources" = "Adult sources";
@@ -315,6 +316,7 @@
 "Browse services" = "서비스 둘러보기";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Harbor에서 애니메이션 목록을 탐색하고 시청하면서 에피소드 진행 상황을 업데이트합니다. 연결하려면 AniList에 로그인하세요.";
 "Browse your catalogs" = "내 카탈로그 둘러보기";
+"Browsing" = "탐색 중";
 "Buffer" = "Buffer";
 "Build" = "빌드";
 "Build your own palette" = "나만의 팔레트 만들기";
@@ -868,9 +870,12 @@
 "Hide" = "숨기기";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "모든 소스 숨기기";
+"Hide and skip episodes" = "에피소드 숨기기 및 건너뛰기";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide details" = "세부 정보 숨기기";
 "Hide end notice" = "Hide end notice";
+"Hide episode" = "에피소드 숨기기";
+"Hide hidden episodes" = "숨긴 에피소드 감추기";
 "Hide row" = "행 숨기기";
 "Hide sound effects and speaker names" = "효과음과 화자 이름 숨기기";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "의심스러운 파일, 일치하지 않는 릴리스, 캠 촬영 추정 영상, 예고편을 숨깁니다. 파일 크기와 시즌 묶음도 확인합니다.";
@@ -1754,9 +1759,11 @@
 "Show controls" = "컨트롤 표시";
 "Show details" = "세부 정보 표시";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "각 애드온이 반환한 순서대로 결과를 표시하고 애드온 목록에 따라 그룹화합니다. Stremio 및 Vidi 앱과 같은 방식입니다.";
+"Show episode" = "에피소드 표시";
 "Show episode description" = "에피소드 설명 표시";
 "Show everything anyway" = "그래도 모두 표시";
 "Show full descriptions" = "전체 설명 표시";
+"Show hidden episodes" = "숨긴 에피소드 표시";
 "Show less" = "간략히 보기";
 "Show me less like this" = "비슷한 작품 덜 보기";
 "Show me more like this" = "비슷한 작품 더 보기";

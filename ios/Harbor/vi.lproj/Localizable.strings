@@ -95,6 +95,7 @@
 "Addon order" = "Thứ tự tiện ích bổ sung";
 "Addon wait time" = "Thời gian chờ tiện ích bổ sung";
 "Addons" = "Tiện ích bổ sung";
+"Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Thêm tùy chọn Ẩn khi bạn nhấp chuột phải vào một tập. Các tập đã ẩn sẽ biến mất khỏi danh sách và bị Tiếp theo bỏ qua. Nút bật tắt Hiện mục đã ẩn trên mỗi phim bộ cho phép hiển thị lại các tập đó.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Điều chỉnh chữ và nền. Bản xem trước hiển thị ngay các thay đổi của bạn.";
 "Administrar" = "Quản lý";
 "Adult sources" = "Adult sources";
@@ -315,6 +316,7 @@
 "Browse services" = "Duyệt dịch vụ";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Duyệt danh sách anime trong Harbor và cập nhật tiến độ tập khi xem. Đăng nhập AniList để kết nối.";
 "Browse your catalogs" = "Duyệt các danh mục";
+"Browsing" = "Duyệt nội dung";
 "Buffer" = "Buffer";
 "Build" = "Tạo";
 "Build your own palette" = "Tạo bảng màu riêng";
@@ -868,9 +870,12 @@
 "Hide" = "Ẩn";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "Ẩn tất cả nguồn";
+"Hide and skip episodes" = "Ẩn và bỏ qua tập";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide details" = "Ẩn chi tiết";
 "Hide end notice" = "Hide end notice";
+"Hide episode" = "Ẩn tập";
+"Hide hidden episodes" = "Ẩn các tập bị ẩn";
 "Hide row" = "Ẩn hàng";
 "Hide sound effects and speaker names" = "Ẩn hiệu ứng âm thanh và tên người nói";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Ẩn tệp đáng ngờ, bản phát hành không khớp, bản có thể quay bằng camera và đoạn giới thiệu. Đồng thời kiểm tra kích thước tệp và gói mùa.";
@@ -1754,9 +1759,11 @@
 "Show controls" = "Hiện điều khiển";
 "Show details" = "Hiện chi tiết";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Hiển thị kết quả của từng tiện ích bổ sung theo đúng thứ tự trả về, nhóm theo danh sách tiện ích bổ sung của bạn. Giống các ứng dụng Stremio và Vidi.";
+"Show episode" = "Hiện tập";
 "Show episode description" = "Hiển thị mô tả tập";
 "Show everything anyway" = "Vẫn hiển thị tất cả";
 "Show full descriptions" = "Hiển thị mô tả đầy đủ";
+"Show hidden episodes" = "Hiển thị các tập bị ẩn";
 "Show less" = "Hiện ít hơn";
 "Show me less like this" = "Hiển thị ít nội dung tương tự hơn";
 "Show me more like this" = "Hiển thị thêm nội dung tương tự";

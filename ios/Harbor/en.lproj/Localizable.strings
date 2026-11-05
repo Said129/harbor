@@ -78,6 +78,7 @@
 "Addon order" = "Addon order";
 "Addon wait time" = "Addon wait time";
 "Addons" = "Addons";
+"Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Adjust the text and background. The preview shows your changes as you make them.";
 "Administrar" = "Manage";
 "Adult sources" = "Adult sources";
@@ -253,6 +254,7 @@
 "Browse by category" = "Browse by category";
 "Browse services" = "Browse services";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect.";
+"Browsing" = "Browsing";
 "Buffer" = "Buffer";
 "Build your own palette" = "Build your own palette";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
@@ -721,9 +723,12 @@
 "Hide" = "Hide";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "Hide all sources";
+"Hide and skip episodes" = "Hide and skip episodes";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide details" = "Hide details";
 "Hide end notice" = "Hide end notice";
+"Hide episode" = "Hide episode";
+"Hide hidden episodes" = "Hide hidden episodes";
 "Hide row" = "Hide row";
 "Hide sound effects and speaker names" = "Hide sound effects and speaker names";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs.";
@@ -1479,9 +1484,11 @@
 "Show controls" = "Show controls";
 "Show details" = "Show details";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps.";
+"Show episode" = "Show episode";
 "Show episode description" = "Show episode description";
 "Show everything anyway" = "Show everything anyway";
 "Show full descriptions" = "Show full descriptions";
+"Show hidden episodes" = "Show hidden episodes";
 "Show less" = "Show less";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";

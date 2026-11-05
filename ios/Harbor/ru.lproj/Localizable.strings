@@ -97,6 +97,7 @@
 "Addon order" = "Порядок дополнений";
 "Addon wait time" = "Время ожидания дополнения";
 "Addons" = "Дополнения";
+"Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Добавляет пункт «Скрыть» в меню по правому клику на серии. Скрытые серии исчезают из списка и пропускаются в «Далее». Переключатель «Показать скрытые» у каждого сериала вернёт их обратно.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Настройте текст и фон. Изменения сразу видны в предпросмотре.";
 "Administrar" = "Управление";
 "Adult sources" = "Adult sources";
@@ -319,6 +320,7 @@
 "Browse services" = "Просмотр сервисов";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Просматривайте списки аниме в Harbor и обновляйте прогресс по мере просмотра. Для подключения войдите в AniList.";
 "Browse your catalogs" = "Обзор ваших каталогов";
+"Browsing" = "Навигация";
 "Buffer" = "Buffer";
 "Build" = "Сборка";
 "Build your own palette" = "Создать свою палитру";
@@ -873,9 +875,12 @@
 "Hide" = "Скрыть";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "Скрыть все источники";
+"Hide and skip episodes" = "Скрывать и пропускать серии";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide details" = "Скрыть подробности";
 "Hide end notice" = "Hide end notice";
+"Hide episode" = "Скрыть серию";
+"Hide hidden episodes" = "Скрыть скрытые серии";
 "Hide row" = "Скрыть ряд";
 "Hide sound effects and speaker names" = "Скрывать звуковые эффекты и имена говорящих";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Скрывает подозрительные файлы, неподходящие версии, вероятные записи из кинотеатра и трейлеры. Также проверяет размеры файлов и полные сезоны.";
@@ -1766,9 +1771,11 @@
 "Show controls" = "Показать элементы управления";
 "Show details" = "Показать подробности";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Показывать результаты каждого дополнения в исходном порядке, по вашему списку дополнений. Как в Stremio и Vidi.";
+"Show episode" = "Показать серию";
 "Show episode description" = "Показывать описание серии";
 "Show everything anyway" = "Всё равно показать всё";
 "Show full descriptions" = "Показывать описания полностью";
+"Show hidden episodes" = "Показать скрытые серии";
 "Show less" = "Свернуть";
 "Show me less like this" = "Показывать меньше такого";
 "Show me more like this" = "Показывать больше такого";

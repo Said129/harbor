@@ -95,6 +95,7 @@
 "Addon order" = "Ordine degli Add-on";
 "Addon wait time" = "Tempo di attesa degli Add-on";
 "Addons" = "Add-on";
+"Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Aggiunge l'opzione Nascondi quando fai clic con il pulsante destro su un episodio. Gli episodi nascosti scompaiono dalla Lista e vengono saltati da Prossimo. L'opzione Mostra nascosti in ogni serie consente di visualizzarli di nuovo.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Regola testo e sfondo. L’anteprima mostra le modifiche mentre le apporti.";
 "Administrar" = "Gestisci";
 "Adult sources" = "Adult sources";
@@ -315,6 +316,7 @@
 "Browse services" = "Esplora i servizi";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Sfoglia le tue liste anime in Harbor e aggiorna i progressi mentre guardi. Accedi ad AniList per collegarlo.";
 "Browse your catalogs" = "Esplora i tuoi cataloghi";
+"Browsing" = "Esplorazione";
 "Buffer" = "Buffer";
 "Build" = "Build";
 "Build your own palette" = "Crea la tua palette";
@@ -868,9 +870,12 @@
 "Hide" = "Nascondi";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "Nascondi tutte le fonti";
+"Hide and skip episodes" = "Nascondi e salta episodi";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide details" = "Nascondi informazioni";
 "Hide end notice" = "Hide end notice";
+"Hide episode" = "Nascondi episodio";
+"Hide hidden episodes" = "Nascondi episodi nascosti";
 "Hide row" = "Nascondi riga";
 "Hide sound effects and speaker names" = "Nascondi effetti sonori e nomi dei personaggi";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Nascondi file sospetti, versioni non corrispondenti, probabili riprese in sala e trailer. Controlla anche dimensioni e pacchetti di stagioni.";
@@ -1754,9 +1759,11 @@
 "Show controls" = "Mostra i controlli";
 "Show details" = "Mostra i dettagli";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Mostra i risultati di ogni Add-on nell'ordine in cui vengono restituiti, raggruppati in base alla tua Lista di Add-on. Come nelle app Stremio e Vidi.";
+"Show episode" = "Mostra episodio";
 "Show episode description" = "Mostra la descrizione dell'episodio";
 "Show everything anyway" = "Mostra comunque tutto";
 "Show full descriptions" = "Mostra descrizioni complete";
+"Show hidden episodes" = "Mostra episodi nascosti";
 "Show less" = "Mostra meno";
 "Show me less like this" = "Mostramene meno simili a questo";
 "Show me more like this" = "Mostramene altri simili a questo";

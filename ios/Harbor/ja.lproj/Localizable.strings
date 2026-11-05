@@ -95,6 +95,7 @@
 "Addon order" = "アドオン順";
 "Addon wait time" = "アドオンの待ち時間";
 "Addons" = "アドオン";
+"Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "エピソードの右クリックメニューに「非表示」を追加します。非表示のエピソードは一覧から消え、「次のエピソード」でもスキップされます。各番組の「非表示を表示」切り替えで再表示できます。";
 "Adjust the text and background. The preview shows your changes as you make them." = "文字と背景を調整します。変更がその場でプレビューに反映されます。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
@@ -315,6 +316,7 @@
 "Browse services" = "サービスを見る";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Harborでアニメのリストを閲覧し、視聴に合わせて進捗を更新します。接続するにはAniListにサインインしてください。";
 "Browse your catalogs" = "カタログを見る";
+"Browsing" = "閲覧時";
 "Buffer" = "Buffer";
 "Build" = "ビルド";
 "Build your own palette" = "独自のパレットを作成";
@@ -868,9 +870,12 @@
 "Hide" = "非表示";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "すべてのソースを非表示";
+"Hide and skip episodes" = "エピソードを非表示にしてスキップ";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide details" = "詳細を隠す";
 "Hide end notice" = "Hide end notice";
+"Hide episode" = "エピソードを非表示";
+"Hide hidden episodes" = "非表示のエピソードを隠す";
 "Hide row" = "行を非表示";
 "Hide sound effects and speaker names" = "効果音と話者名を隠す";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "疑わしいファイル、一致しないリリース、カメラ撮影らしき動画、予告編を非表示にします。ファイルサイズとシーズンパックも確認します。";
@@ -1754,9 +1759,11 @@
 "Show controls" = "コントロールを表示";
 "Show details" = "詳細を表示";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "各アドオンの結果を取得順のまま、アドオンリストの順にまとめて表示します。StremioやVidiアプリと同じ形式です。";
+"Show episode" = "エピソードを表示";
 "Show episode description" = "エピソードのあらすじを表示";
 "Show everything anyway" = "それでもすべて表示";
 "Show full descriptions" = "説明を全文表示";
+"Show hidden episodes" = "非表示のエピソードを表示";
 "Show less" = "折りたたむ";
 "Show me less like this" = "このような作品の表示を減らす";
 "Show me more like this" = "このような作品をもっと表示";

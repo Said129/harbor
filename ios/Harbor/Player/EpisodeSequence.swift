@@ -46,7 +46,8 @@ enum EpisodeSequence {
         } ?? resumed
     }
 
-    static func adjacent(_ videos: [Episode], current: ResumeTarget, now: Date = Date(), presentation: EpisodeOrderProjection? = nil) -> (previous: Episode?, next: Episode?) {
+    /// `hidden` holds `HiddenEpisodes` keys: with "Hide and skip episodes" on, Up Next steps over those episodes.
+    static func adjacent(_ videos: [Episode], current: ResumeTarget, now: Date = Date(), presentation: EpisodeOrderProjection? = nil, hidden: Set<String> = []) -> (previous: Episode?, next: Episode?) {
         let selected = presentation.flatMap { $0.applies(to: videos) ? $0 : nil }
         let ordered = ordered(videos, presentation: selected)
         guard let playing = ordered.first(where: { ($0.sourceMetaID == nil || $0.sourceMetaID == current.id) && $0.id == current.videoId }) ?? ordered.first(where: { $0.belongs(to: current) }),
@@ -56,6 +57,8 @@ enum EpisodeSequence {
         // Specials have their own sequence. Ordinary episodes cross season
         // boundaries without entering specials or unaired episodes.
         let available = ordered.filter {
+            if !hidden.isEmpty, $0.navigationKey != playing.navigationKey,
+               hidden.contains(HiddenEpisodes.key($0.sourceMetaID ?? current.id, season: $0.season ?? 0, episode: $0.episode ?? 0)) { return false }
             guard let candidateSeason = $0.season, let number = $0.episode, number > 0,
                   (sequence?.contains($0.routingKey) ?? (season == 0 ? candidateSeason == 0 : candidateSeason > 0)),
                   ($0.releaseDate.map({ $0 <= now }) ?? true) else { return false }

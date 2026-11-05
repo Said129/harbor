@@ -95,6 +95,7 @@
 "Addon order" = "ऐडऑन क्रम";
 "Addon wait time" = "ऐडऑन प्रतीक्षा समय";
 "Addons" = "ऐडऑन";
+"Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "किसी एपिसोड पर राइट-क्लिक करने पर छिपाएँ विकल्प जोड़ता है। छिपे हुए एपिसोड सूची से गायब हो जाते हैं और अप नेक्स्ट में छोड़ दिए जाते हैं। हर शो में छिपे एपिसोड दिखाएँ टॉगल से उन्हें फिर से दिखाया जा सकता है।";
 "Adjust the text and background. The preview shows your changes as you make them." = "टेक्स्ट और पृष्ठभूमि समायोजित करें। बदलाव करते ही पूर्वावलोकन में दिखते हैं।";
 "Administrar" = "मैनेज करें";
 "Adult sources" = "Adult sources";
@@ -315,6 +316,7 @@
 "Browse services" = "सेवाएँ देखें";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Harbor में अपनी एनीमे सूचियाँ ब्राउज़ करें और देखते समय एपिसोड की प्रगति अपडेट करें। जोड़ने के लिए AniList में साइन इन करें।";
 "Browse your catalogs" = "अपने कैटलॉग ब्राउज़ करें";
+"Browsing" = "ब्राउज़िंग";
 "Buffer" = "Buffer";
 "Build" = "बिल्ड";
 "Build your own palette" = "अपना पैलेट बनाएँ";
@@ -868,9 +870,12 @@
 "Hide" = "छिपाएँ";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "सभी स्रोत छिपाएँ";
+"Hide and skip episodes" = "एपिसोड छिपाएँ और छोड़ें";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide details" = "विवरण छिपाएँ";
 "Hide end notice" = "Hide end notice";
+"Hide episode" = "एपिसोड छिपाएँ";
+"Hide hidden episodes" = "छिपे हुए एपिसोड छिपाएँ";
 "Hide row" = "पंक्ति छिपाएँ";
 "Hide sound effects and speaker names" = "ध्वनि प्रभाव और वक्ताओं के नाम छिपाएँ";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "संदिग्ध फ़ाइलें, मेल न खाने वाली रिलीज़, संभावित कैमरा रिकॉर्डिंग और ट्रेलर छिपाएँ। फ़ाइल आकार और सीज़न पैक की भी जाँच करें।";
@@ -1754,9 +1759,11 @@
 "Show controls" = "कंट्रोल दिखाएँ";
 "Show details" = "विवरण दिखाएँ";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "हर ऐडऑन के नतीजे उसी क्रम में दिखाएँ जिसमें उसने उन्हें लौटाया था, और उन्हें आपकी ऐडऑन सूची के अनुसार समूहित करें। यह Stremio और Vidi ऐप्स जैसा है।";
+"Show episode" = "एपिसोड दिखाएँ";
 "Show episode description" = "एपिसोड का विवरण दिखाएँ";
 "Show everything anyway" = "फिर भी सब कुछ दिखाएँ";
 "Show full descriptions" = "पूरे विवरण दिखाएँ";
+"Show hidden episodes" = "छिपे हुए एपिसोड दिखाएँ";
 "Show less" = "कम दिखाएँ";
 "Show me less like this" = "इस तरह का कंटेंट कम दिखाएँ";
 "Show me more like this" = "इस तरह का और कंटेंट दिखाएँ";

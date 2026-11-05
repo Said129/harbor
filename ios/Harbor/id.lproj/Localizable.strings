@@ -95,6 +95,7 @@
 "Addon order" = "Urutan addon";
 "Addon wait time" = "Waktu tunggu addon";
 "Addons" = "Addon";
+"Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Menambahkan opsi Sembunyikan saat Anda mengeklik kanan episode. Episode yang disembunyikan akan hilang dari daftar dan dilewati oleh Berikutnya. Sakelar Tampilkan yang disembunyikan di setiap acara memungkinkan Anda menampilkannya kembali.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Sesuaikan teks dan latar belakang. Pratinjau langsung menunjukkan perubahan Anda.";
 "Administrar" = "Kelola";
 "Adult sources" = "Adult sources";
@@ -315,6 +316,7 @@
 "Browse services" = "Jelajahi layanan";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Jelajahi daftar anime di Harbor dan perbarui progres episode sambil menonton. Masuk ke AniList untuk menghubungkan.";
 "Browse your catalogs" = "Jelajahi katalog Anda";
+"Browsing" = "Menjelajah";
 "Buffer" = "Buffer";
 "Build" = "Build";
 "Build your own palette" = "Buat palet Anda sendiri";
@@ -868,9 +870,12 @@
 "Hide" = "Sembunyikan";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "Sembunyikan semua sumber";
+"Hide and skip episodes" = "Sembunyikan dan lewati episode";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide details" = "Sembunyikan detail";
 "Hide end notice" = "Hide end notice";
+"Hide episode" = "Sembunyikan episode";
+"Hide hidden episodes" = "Sembunyikan episode tersembunyi";
 "Hide row" = "Sembunyikan baris";
 "Hide sound effects and speaker names" = "Sembunyikan efek suara dan nama pembicara";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Sembunyikan berkas mencurigakan, rilis yang tidak cocok, kemungkinan rekaman kamera, dan trailer. Periksa juga ukuran berkas dan paket musim.";
@@ -1754,9 +1759,11 @@
 "Show controls" = "Tampilkan kontrol";
 "Show details" = "Tampilkan detail";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Tampilkan hasil setiap addon sesuai urutan yang dikembalikan, dikelompokkan berdasarkan daftar addon Anda. Sama seperti aplikasi Stremio dan Vidi.";
+"Show episode" = "Tampilkan episode";
 "Show episode description" = "Tampilkan deskripsi episode";
 "Show everything anyway" = "Tetap tampilkan semuanya";
 "Show full descriptions" = "Tampilkan deskripsi lengkap";
+"Show hidden episodes" = "Tampilkan episode tersembunyi";
 "Show less" = "Tampilkan lebih sedikit";
 "Show me less like this" = "Tampilkan lebih sedikit konten seperti ini";
 "Show me more like this" = "Tampilkan lebih banyak konten seperti ini";

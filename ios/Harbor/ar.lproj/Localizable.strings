@@ -102,6 +102,7 @@
 "Addon order" = "ترتيب الإضافة";
 "Addon wait time" = "مدة انتظار الإضافة";
 "Addons" = "الإضافات";
+"Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "يضيف خيار \"إخفاء\" عند النقر بزر الفأرة الأيمن على حلقة. تختفي الحلقات المخفية من القائمة ويتخطّاها \"التالي\". يتيح لك مفتاح \"إظهار المخفية\" في كل مسلسل استعادتها.";
 "Adjust the text and background. The preview shows your changes as you make them." = "اضبط النص والخلفية. تُظهر المعاينة تغييراتك فور إجرائها.";
 "Administrar" = "إدارة";
 "Adult sources" = "Adult sources";
@@ -329,6 +330,7 @@
 "Browse services" = "استعراض الخدمات";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "تصفّح قوائم الأنمي في Harbor وحدّث تقدّم الحلقات أثناء المشاهدة. سجّل الدخول إلى AniList للربط.";
 "Browse your catalogs" = "تصفّح كتالوجاتك";
+"Browsing" = "التصفح";
 "Buffer" = "Buffer";
 "Build" = "البناء";
 "Build your own palette" = "أنشئ لوحة ألوانك الخاصة";
@@ -893,9 +895,12 @@
 "Hide" = "إخفاء";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "إخفاء كل المصادر";
+"Hide and skip episodes" = "إخفاء الحلقات وتخطّيها";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide details" = "إخفاء التفاصيل";
 "Hide end notice" = "Hide end notice";
+"Hide episode" = "إخفاء الحلقة";
+"Hide hidden episodes" = "إخفاء الحلقات المخفية";
 "Hide row" = "إخفاء الصف";
 "Hide sound effects and speaker names" = "إخفاء المؤثرات الصوتية وأسماء المتحدثين";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "أخفِ الملفات المشبوهة والإصدارات غير المطابقة والتسجيلات المحتمل تصويرها بكاميرا والمقاطع الدعائية. تحقّق أيضًا من أحجام الملفات وحزم المواسم.";
@@ -1788,9 +1793,11 @@
 "Show controls" = "إظهار عناصر التحكم";
 "Show details" = "إظهار التفاصيل";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "عرض نتائج كل إضافة بالترتيب الذي أرسلته، ومجمعة حسب قائمة إضافاتك. يطابق تطبيقي Stremio و Vidi.";
+"Show episode" = "عرض الحلقة";
 "Show episode description" = "إظهار وصف الحلقة";
 "Show everything anyway" = "إظهار كل شيء على أي حال";
 "Show full descriptions" = "إظهار الأوصاف الكاملة";
+"Show hidden episodes" = "إظهار الحلقات المخفية";
 "Show less" = "عرض أقل";
 "Show me less like this" = "عرض أقل من هذا القبيل";
 "Show me more like this" = "عرض المزيد من هذا القبيل";
