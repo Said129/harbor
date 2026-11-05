@@ -21,6 +21,7 @@
 "45 min" = "45 dk.";
 "45s" = "45 sn";
 "4:3" = "4:3";
+"A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "AniList'te bir tarayıcı sekmesi açıldı. Harbor'a orada izin verin, ardından gösterilen metni kopyalayıp aşağıya yapıştırın.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio protokolü için bir istemci. Kurulumu iki dakika sürer ve çoğu adım isteğe bağlıdır. Her anahtarın kontrolü sizde kalır.";
 "A continuación" = "Sıradaki";
 "A short note about this list" = "A short note about this list";
@@ -147,6 +148,8 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
+"AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList sync" = "AniList eşitlemesi";
 "Animals" = "Animals";
 "Animated Movies" = "Animasyon Filmleri";
 "Animation" = "Animasyon";
@@ -189,8 +192,10 @@
 "Audio not labeled" = "Ses bilgisi belirtilmemiş";
 "Audio sin etiqueta" = "Ses bilgisi belirtilmemiş";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on AniList" = "Harbor'ı AniList'te yetkilendir";
 "Authorize Harbor on Simkl" = "Harbor'ı Simkl'de yetkilendir";
 "Authorize Harbor on Trakt" = "Harbor'ı Trakt'ta yetkilendir";
+"Authorized {when}" = "{when} yetkilendirildi";
 "Auto" = "Otomatik";
 "Auto (match video)" = "Otomatik (videoyla eşleştir)";
 "Auto-hide the Skip button after" = "Atla düğmesini şu süreden sonra otomatik gizle";
@@ -305,6 +310,7 @@
 "Browse by Genre" = "Türe göre göz at";
 "Browse by category" = "Kategoriye göre göz at";
 "Browse services" = "Hizmetlere göz at";
+"Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Anime listelerinize Harbor'da göz atın ve izlerken bölüm ilerlemenizi güncelleyin. Bağlanmak için AniList'te oturum açın.";
 "Browse your catalogs" = "Kataloglarınıza göz atın";
 "Buffer" = "Buffer";
 "Build" = "Derleme";
@@ -370,6 +376,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "Bölümler";
 "Check it works" = "Çalıştığını denetle";
+"Checking with AniList..." = "AniList ile kontrol ediliyor...";
 "Checking…" = "Denetleniyor…";
 "Checksum did not match the manifest." = "Sağlama toplamı manifest ile eşleşmedi.";
 "Chinese" = "Çince";
@@ -445,10 +452,14 @@
 "Confirm your PIN" = "PIN'inizi doğrulayın";
 "Confirm your current PIN to remove the lock." = "Kilidi kaldırmak için geçerli PIN'inizi doğrulayın.";
 "Confirm your current PIN, then pick a new one." = "Geçerli PIN'inizi doğrulayın, ardından yeni bir PIN seçin.";
+"Connect" = "Bağlan";
+"Connect AniList" = "AniList'i bağla";
 "Connect Simkl" = "Simkl'ı bağla";
 "Connect TMDB" = "TMDB'yi bağla";
 "Connect Trakt" = "Trakt'ı bağla";
 "Connected" = "Bağlı";
+"Connected as {username}" = "{username} olarak bağlandı";
+"Connected to AniList" = "AniList'e bağlandı";
 "Connected to Simkl" = "Simkl'e bağlandı";
 "Connecting" = "Bağlanıyor";
 "Conservar original" = "Özgün biçimi koru";
@@ -498,7 +509,9 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Otomatik eşitlenemedi";
+"Couldn't connect to AniList" = "AniList'e bağlanılamadı";
 "Couldn't install. Double-check the URL and try again." = "Yüklenemedi. URL'yi tekrar kontrol edip yeniden deneyin.";
+"Couldn't reach AniList." = "AniList'e ulaşılamadı.";
 "Couldn't reach Simkl" = "Simkl'a ulaşılamadı";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt'a erişilemedi. Bağlantınızı kontrol edip tekrar deneyin.";
 "Cover Image URL" = "Kapak Görseli URL'si";
@@ -586,6 +599,8 @@
 "Direction" = "Yön";
 "Director" = "Yönetmen";
 "Disconnect" = "Bağlantıyı kes";
+"Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "AniList bağlantısı kesilsin mi? Yeniden bağlanana kadar listeleriniz Anime sayfasında gösterilmeyecek.";
+"Disconnect from AniList" = "AniList bağlantısını kes";
 "Discover" = "Keşfet";
 "Discovery Queue" = "Keşif Kuyruğu";
 "Diseño de Inicio" = "Ana sayfa düzeni";
@@ -742,6 +757,7 @@
 "Filters" = "Filtreler";
 "Finding lyrics" = "Şarkı sözleri aranıyor";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
+"Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Bir anime bölümünü bitirdiğinizde AniList ilerlemeniz güncellenir. Yalnızca ileriye doğru işler; mevcut sayınızı asla düşürmez.";
 "Finnish" = "Fince";
 "Fit" = "Sığdır";
 "Flechas" = "Ok tuşları";
@@ -1240,6 +1256,7 @@
 "Now" = "Şimdi";
 "Now Playing" = "Şimdi oynatılıyor";
 "Now playing: {label}" = "Şimdi oynatılıyor: {label}";
+"Now watching on AniList" = "AniList'te izleniyor";
 "Nuevos estrenos de anime" = "Yeni Çıkan Animeler";
 "Nítido (anime y caricaturas)" = "Net (anime ve çizgi film)";
 "OK" = "OK";
@@ -1279,6 +1296,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open AniList again" = "AniList'i yeniden aç";
 "Open a title and tap Add to Watchlist to save it here." = "Bir başlığı açıp buraya kaydetmek için «İzleme listesine ekle» seçeneğine dokun.";
 "Open image" = "Görseli aç";
 "Open in Safari" = "Open in Safari";
@@ -1286,6 +1304,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Başlangıçta bu profili açın. Süreli profil istemleri daha sonra yine görünebilir. PIN korumalı profiller varsayılan yapılamaz.";
+"Opening AniList..." = "AniList açılıyor...";
 "Opening book…" = "Opening book…";
 "Options" = "Seçenekler";
 "Orden de addons" = "Eklenti sırası";
@@ -1319,6 +1338,7 @@
 "Password" = "Parola";
 "Paste JSON" = "JSON Yapıştır";
 "Paste the manifest URL the configure page gave you" = "Yapılandırma sayfasının verdiği manifest URL'sini yapıştırın";
+"Paste the text from AniList" = "AniList'teki metni yapıştırın";
 "Peacock" = "Peacock";
 "Peligro" = "Tehlike";
 "Películas" = "Filmler";
@@ -1878,7 +1898,10 @@
 "Sync Offset" = "Senkronizasyon farkı";
 "Sync addons" = "Sync addons";
 "Sync subtitles with audio" = "Sync subtitles with audio";
+"Sync watch progress" = "İzleme ilerlemesini eşitle";
+"Synced to AniList" = "AniList ile eşitlendi";
 "Syncing subtitles…" = "Syncing subtitles…";
+"Syncing to AniList" = "AniList ile eşitleniyor";
 "System" = "Sistem";
 "System UI" = "Sistem arayüzü";
 "S{season} E{episode}" = "S{season} B{episode}";
@@ -2008,6 +2031,7 @@
 "Torrents" = "Torrentler";
 "Track" = "Parça";
 "Tracking" = "Tracking";
+"Tracking what you watch" = "İzlediklerinizi takip etme";
 "Tracks" = "Parçalar";
 "Traducir títulos" = "Başlıkları çevir";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
@@ -2092,6 +2116,7 @@
 "Velocidad" = "Hız";
 "Ver más" = "Daha fazlasını görüntüle";
 "Ver todo" = "Tümünü görüntüle";
+"Verifying" = "Doğrulanıyor";
 "Version" = "Sürüm";
 "Versión" = "Sürüm";
 "Video" = "Video";
@@ -3319,6 +3344,7 @@
 "title" = "başlık";
 "titles" = "başlık";
 "to" = "ila";
+"today" = "bugün";
 "trailers/extras" = "fragmanlar/ekstralar";
 "unknown" = "bilinmiyor";
 "username" = "kullanıcı adı";
@@ -3345,12 +3371,16 @@
 "{n} addons don't provide streams and aren't listed." = "{n} eklenti yayın sağlamadığı için listelenmiyor.";
 "{n} addons loading" = "{n} eklenti yükleniyor";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} anime başlığı dışarıda bırakılacak (Trakt'ta bunlara ait kimlik numaraları yok).";
+"{n} day ago" = "{n} gün önce";
+"{n} days ago" = "{n} gün önce";
 "{n} ep" = "{n} blm";
 "{n} eps" = "{n} blm";
 "{n} hr" = "{n} sa.";
 "{n} item" = "{n} öğe";
 "{n} items" = "{n} öğe";
 "{n} min" = "{n} dk";
+"{n} month ago" = "{n} ay önce";
+"{n} months ago" = "{n} ay önce";
 "{n} not matched" = "{n} eşleşmedi";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
@@ -3359,6 +3389,7 @@
 "{requests} requests" = "{requests} istek";
 "{seconds} seconds" = "{seconds} saniye";
 "{shown} of {total}" = "{total} öğeden {shown} tanesi";
+"{title} · Episode {episode}" = "{title} · Bölüm {episode}";
 "{watched} de {total} vistos ({pct}%)." = "{total} içinden {watched} izlendi (%{pct}).";
 "{watched} of {total} watched ({pct}%)." = "{total} içinden {watched} izlendi (%{pct}).";
 "Álbumes" = "Albümler";

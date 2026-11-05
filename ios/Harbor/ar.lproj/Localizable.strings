@@ -23,6 +23,7 @@
 "45 min" = "45 د";
 "45s" = "45 ثانية";
 "4:3" = "4:3";
+"A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "فُتحت علامة تبويب في المتصفح على AniList. وافق على Harbor هناك، ثم انسخ النص الظاهر والصقه في الأسفل.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "عميل لبروتوكول Stremio. دقيقتان للإعداد، ومعظمه اختياري. تبقى أنت المتحكّم في كل مفتاح.";
 "A continuación" = "التالي";
 "A short note about this list" = "A short note about this list";
@@ -156,6 +157,8 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "توقف التحليل لإعطاء الأولوية للمشاهدة. أعد المحاولة بعد اكتمال التحميل.";
 "Analyzing audio… Keep watching." = "جارٍ تحليل الصوت… يمكنك متابعة المشاهدة.";
 "AniList" = "أني ليست (AniList)";
+"AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList sync" = "مزامنة AniList";
 "Animals" = "Animals";
 "Animated Movies" = "أفلام الرسوم المتحركة";
 "Animated sidebar icons" = "Animated sidebar icons";
@@ -200,8 +203,10 @@
 "Audio not labeled" = "الصوت بلا تسمية";
 "Audio sin etiqueta" = "الصوت بلا تسمية";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on AniList" = "تفويض Harbor على AniList";
 "Authorize Harbor on Simkl" = "تفويض Harbor على Simkl";
 "Authorize Harbor on Trakt" = "تفويض Harbor على Trakt";
+"Authorized {when}" = "تم التفويض {when}";
 "Auto" = "تلقائي";
 "Auto (match video)" = "تلقائي (مطابقة الفيديو)";
 "Auto-hide the Skip button after" = "إخفاء زر التخطي تلقائيًا بعد";
@@ -319,6 +324,7 @@
 "Browse by Genre" = "تصفح حسب التصنيف";
 "Browse by category" = "تصفّح حسب الفئة";
 "Browse services" = "استعراض الخدمات";
+"Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "تصفّح قوائم الأنمي في Harbor وحدّث تقدّم الحلقات أثناء المشاهدة. سجّل الدخول إلى AniList للربط.";
 "Browse your catalogs" = "تصفّح كتالوجاتك";
 "Buffer" = "Buffer";
 "Build" = "البناء";
@@ -390,6 +396,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "الفصول";
 "Check it works" = "التحقق من عمله";
+"Checking with AniList..." = "جارٍ التحقق مع AniList...";
 "Checking…" = "جارٍ التحقق…";
 "Checksum did not match the manifest." = "المجموع الاختباري لا يطابق ملف manifest.";
 "Chinese" = "الصينية";
@@ -465,10 +472,14 @@
 "Confirm your PIN" = "أكّد رمز PIN الخاص بك";
 "Confirm your current PIN to remove the lock." = "أكّد رمز PIN الحالي لإزالة القفل.";
 "Confirm your current PIN, then pick a new one." = "أكّد رمز PIN الحالي، ثم اختر رمزًا جديدًا.";
+"Connect" = "ربط";
+"Connect AniList" = "ربط AniList";
 "Connect Simkl" = "ربط Simkl";
 "Connect TMDB" = "ربط TMDB";
 "Connect Trakt" = "ربط Trakt";
 "Connected" = "متصل";
+"Connected as {username}" = "متصل باسم {username}";
+"Connected to AniList" = "متصل بـ AniList";
 "Connected to Simkl" = "تم الاتصال بـ Simkl";
 "Connecting" = "جارٍ الاتصال";
 "Conservar original" = "الاحتفاظ بالأصل";
@@ -522,7 +533,9 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "تعذرت المزامنة التلقائية";
+"Couldn't connect to AniList" = "تعذّر الاتصال بـ AniList";
 "Couldn't install. Double-check the URL and try again." = "تعذّر التثبيت. تحقّق من الرابط وحاول مجددًا.";
+"Couldn't reach AniList." = "تعذّر الوصول إلى AniList.";
 "Couldn't reach Simkl" = "تعذّر الوصول إلى Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "تعذّر الوصول إلى Trakt. تحقق من اتصالك وحاول مرة أخرى.";
 "Cover Image URL" = "رابط الصورة (Cover Image URL)";
@@ -610,6 +623,8 @@
 "Direction" = "الاتجاه";
 "Director" = "المخرج";
 "Disconnect" = "إلغاء الارتباط";
+"Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "هل تريد إلغاء ربط AniList؟ ستتوقف قوائمك عن الظهور في صفحة الأنمي حتى تقوم بإعادة الربط.";
+"Disconnect from AniList" = "إلغاء الارتباط بـ AniList";
 "Discover" = "استكشف";
 "Discovery Queue" = "قائمة الاكتشاف";
 "Diseño de Inicio" = "تخطيط الرئيسية";
@@ -766,6 +781,7 @@
 "Filters" = "المرشّحات";
 "Finding lyrics" = "جارٍ البحث عن الكلمات";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
+"Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "إكمال حلقة أنمي يحدّث تقدمك على AniList. للتقدم فقط: لا يُنقص أبدًا عددًا لديك بالفعل.";
 "Finnish" = "الفنلندية";
 "Fit" = "ملاءمة";
 "Flechas" = "الأسهم";
@@ -1268,6 +1284,7 @@
 "Now" = "الآن";
 "Now Playing" = "قيد التشغيل الآن";
 "Now playing: {label}" = "يُعرض الآن: {label}";
+"Now watching on AniList" = "تشاهده الآن على AniList";
 "Nuevos estrenos de anime" = "أحدث إصدارات الأنمي";
 "Nítido (anime y caricaturas)" = "واضح (أنمي وكرتون)";
 "OK" = "OK";
@@ -1308,6 +1325,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open AniList again" = "افتح AniList مرة أخرى";
 "Open a title and tap Add to Watchlist to save it here." = "افتح عنوانًا واضغط على «إضافة إلى قائمة المشاهدة» لحفظه هنا.";
 "Open image" = "فتح الصورة";
 "Open in Safari" = "Open in Safari";
@@ -1315,6 +1333,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "افتح هذا الملف الشخصي عند بدء التشغيل. قد تظهر المطالبات الموقّتة لاحقًا. لا يمكن تعيين ملف شخصي محمي برمز PIN كملف افتراضي.";
+"Opening AniList..." = "جارٍ فتح AniList...";
 "Opening book…" = "جارٍ فتح الكتاب…";
 "Options" = "خيارات";
 "Orden de addons" = "ترتيب الإضافة";
@@ -1350,6 +1369,7 @@
 "Password" = "كلمة المرور";
 "Paste JSON" = "لصق JSON";
 "Paste the manifest URL the configure page gave you" = "الصق رابط البيان الذي أعطته إياك صفحة الإعداد";
+"Paste the text from AniList" = "الصق النص من AniList";
 "Peacock" = "Peacock";
 "Peligro" = "خطر";
 "Películas" = "الأفلام";
@@ -1915,7 +1935,10 @@
 "Sync Offset" = "إزاحة المزامنة";
 "Sync addons" = "Sync addons";
 "Sync subtitles with audio" = "Sync subtitles with audio";
+"Sync watch progress" = "مزامنة تقدم المشاهدة";
+"Synced to AniList" = "تمت المزامنة مع AniList";
 "Syncing subtitles…" = "جارٍ مزامنة الترجمة…";
+"Syncing to AniList" = "جارٍ المزامنة مع AniList";
 "System" = "النظام";
 "System UI" = "واجهة النظام";
 "S{season} E{episode}" = "م{season} ح{episode}";
@@ -2046,6 +2069,7 @@
 "Torrents" = "التورنت";
 "Track" = "المسار";
 "Tracking" = "Tracking";
+"Tracking what you watch" = "تتبُّع ما تشاهده";
 "Tracks" = "المسارات";
 "Traducir títulos" = "ترجمة العناوين";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
@@ -2130,6 +2154,7 @@
 "Velocidad" = "السرعة";
 "Ver más" = "عرض المزيد";
 "Ver todo" = "عرض الكل";
+"Verifying" = "جارٍ التأكّد";
 "Version" = "الإصدار";
 "Versión" = "الإصدار";
 "Video" = "فيديو";
@@ -3361,6 +3386,7 @@
 "title" = "عنوان";
 "titles" = "عناوين";
 "to" = "إلى";
+"today" = "اليوم";
 "trailers/extras" = "إعلانات تشويقية/إضافات";
 "unknown" = "غير معروف";
 "username" = "اسم المستخدم";
@@ -3387,12 +3413,16 @@
 "{n} addons don't provide streams and aren't listed." = "{n} من الإضافات لا توفّر بثًا ولا تظهر هنا.";
 "{n} addons loading" = "جارٍ تحميل {n} إضافة";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "سيتم استبعاد {n} عنوان أنمي (لا تملك Trakt معرّفات لها).";
+"{n} day ago" = "منذ {n} يوم";
+"{n} days ago" = "منذ {n} أيام";
 "{n} ep" = "{n} حلقة";
 "{n} eps" = "{n} حلقة";
 "{n} hr" = "{n} س";
 "{n} item" = "{n} عنصر";
 "{n} items" = "{n} عناصر";
 "{n} min" = "{n} دقيقة";
+"{n} month ago" = "منذ {n} شهر";
+"{n} months ago" = "منذ {n} أشهر";
 "{n} not matched" = "{n} غير مطابق";
 "{n} seeds" = "{n} موزع";
 "{n} semillas" = "{n} موزع";
@@ -3401,6 +3431,7 @@
 "{requests} requests" = "{requests} طلبًا";
 "{seconds} seconds" = "{seconds} ثانية";
 "{shown} of {total}" = "{shown} من {total}";
+"{title} · Episode {episode}" = "{title} · الحلقة {episode}";
 "{watched} de {total} vistos ({pct}%)." = "تمت مشاهدة {watched} من {total} ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "تمت مشاهدة {watched} من {total} ({pct}%).";
 "Álbumes" = "الألبومات";

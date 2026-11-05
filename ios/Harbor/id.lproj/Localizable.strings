@@ -21,6 +21,7 @@
 "45 min" = "45 mnt";
 "45s" = "45 dtk";
 "4:3" = "4:3";
+"A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Tab browser dibuka di AniList. Setujui Harbor di sana, lalu salin teks yang ditampilkan dan tempelkan di bawah.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Klien untuk protokol Stremio. Hanya perlu dua menit untuk disiapkan; sebagian besar bersifat opsional. Anda tetap memegang kendali atas setiap kunci.";
 "A continuación" = "Berikutnya";
 "A short note about this list" = "A short note about this list";
@@ -147,6 +148,8 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
+"AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList sync" = "Sinkronisasi AniList";
 "Animals" = "Animals";
 "Animated Movies" = "Film Animasi";
 "Animation" = "Animasi";
@@ -189,8 +192,10 @@
 "Audio not labeled" = "Audio tanpa label";
 "Audio sin etiqueta" = "Audio tanpa label";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on AniList" = "Izinkan Harbor di AniList";
 "Authorize Harbor on Simkl" = "Izinkan Harbor di Simkl";
 "Authorize Harbor on Trakt" = "Izinkan Harbor di Trakt";
+"Authorized {when}" = "Diizinkan {when}";
 "Auto" = "Otomatis";
 "Auto (match video)" = "Otomatis (sesuai video)";
 "Auto-hide the Skip button after" = "Sembunyikan tombol Lewati secara otomatis setelah";
@@ -305,6 +310,7 @@
 "Browse by Genre" = "Jelajahi berdasarkan Genre";
 "Browse by category" = "Jelajahi berdasarkan kategori";
 "Browse services" = "Jelajahi layanan";
+"Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Jelajahi daftar anime di Harbor dan perbarui progres episode sambil menonton. Masuk ke AniList untuk menghubungkan.";
 "Browse your catalogs" = "Jelajahi katalog Anda";
 "Buffer" = "Buffer";
 "Build" = "Build";
@@ -370,6 +376,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "Bab";
 "Check it works" = "Periksa apakah berfungsi";
+"Checking with AniList..." = "Memeriksa di AniList...";
 "Checking…" = "Memeriksa…";
 "Checksum did not match the manifest." = "Checksum tidak cocok dengan manifest.";
 "Chinese" = "Bahasa Tionghoa";
@@ -445,10 +452,14 @@
 "Confirm your PIN" = "Konfirmasi PIN Anda";
 "Confirm your current PIN to remove the lock." = "Konfirmasikan PIN Anda saat ini untuk menonaktifkan kunci.";
 "Confirm your current PIN, then pick a new one." = "Konfirmasikan PIN saat ini, lalu pilih PIN baru.";
+"Connect" = "Hubungkan";
+"Connect AniList" = "Hubungkan AniList";
 "Connect Simkl" = "Hubungkan Simkl";
 "Connect TMDB" = "Hubungkan TMDB";
 "Connect Trakt" = "Hubungkan Trakt";
 "Connected" = "Terhubung";
+"Connected as {username}" = "Terhubung sebagai {username}";
+"Connected to AniList" = "Terhubung ke AniList";
 "Connected to Simkl" = "Terhubung ke Simkl";
 "Connecting" = "Menghubungkan";
 "Conservar original" = "Pertahankan yang asli";
@@ -498,7 +509,9 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Tidak dapat menyinkronkan otomatis";
+"Couldn't connect to AniList" = "Tidak dapat terhubung ke AniList";
 "Couldn't install. Double-check the URL and try again." = "Tidak dapat menginstal. Periksa kembali URL lalu coba lagi.";
+"Couldn't reach AniList." = "Tidak dapat menghubungi AniList.";
 "Couldn't reach Simkl" = "Tidak dapat menghubungi Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Tidak dapat menghubungi Trakt. Periksa koneksi Anda lalu coba lagi.";
 "Cover Image URL" = "URL Gambar Sampul";
@@ -586,6 +599,8 @@
 "Direction" = "Arah";
 "Director" = "Sutradara";
 "Disconnect" = "Putuskan koneksi";
+"Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "Putuskan koneksi AniList? Daftar Anda tidak akan ditampilkan di halaman Anime sampai Anda menghubungkannya kembali.";
+"Disconnect from AniList" = "Putuskan koneksi dari AniList";
 "Discover" = "Jelajahi";
 "Discovery Queue" = "Antrean Jelajah";
 "Diseño de Inicio" = "Tata letak Beranda";
@@ -742,6 +757,7 @@
 "Filters" = "Filter";
 "Finding lyrics" = "Mencari lirik";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
+"Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Menyelesaikan episode anime akan memperbarui progres AniList Anda. Hanya bertambah: jumlah yang sudah ada tidak akan pernah dikurangi.";
 "Finnish" = "Bahasa Finlandia";
 "Fit" = "Sesuaikan";
 "Flechas" = "Panah";
@@ -1240,6 +1256,7 @@
 "Now" = "Sekarang";
 "Now Playing" = "Sedang Diputar";
 "Now playing: {label}" = "Sedang diputar: {label}";
+"Now watching on AniList" = "Sedang menonton di AniList";
 "Nuevos estrenos de anime" = "Rilisan Anime Baru";
 "Nítido (anime y caricaturas)" = "Tajam (anime & kartun)";
 "OK" = "OK";
@@ -1279,6 +1296,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open AniList again" = "Buka AniList lagi";
 "Open a title and tap Add to Watchlist to save it here." = "Buka judul dan ketuk «Tambah ke Daftar Tontonan» untuk menyimpannya di sini.";
 "Open image" = "Buka gambar";
 "Open in Safari" = "Open in Safari";
@@ -1286,6 +1304,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Buka profil ini saat aplikasi dimulai. Permintaan terjadwal tetap dapat muncul nanti. Profil dengan PIN tidak dapat dijadikan default.";
+"Opening AniList..." = "Membuka AniList...";
 "Opening book…" = "Opening book…";
 "Options" = "Opsi";
 "Orden de addons" = "Urutan addon";
@@ -1319,6 +1338,7 @@
 "Password" = "Kata Sandi";
 "Paste JSON" = "Tempel JSON";
 "Paste the manifest URL the configure page gave you" = "Tempel URL manifes yang diberikan halaman konfigurasi";
+"Paste the text from AniList" = "Tempel teks dari AniList";
 "Peacock" = "Peacock";
 "Peligro" = "Bahaya";
 "Películas" = "Film";
@@ -1878,7 +1898,10 @@
 "Sync Offset" = "Offset Sinkronisasi";
 "Sync addons" = "Sync addons";
 "Sync subtitles with audio" = "Sync subtitles with audio";
+"Sync watch progress" = "Sinkronkan progres tontonan";
+"Synced to AniList" = "Tersinkron ke AniList";
 "Syncing subtitles…" = "Syncing subtitles…";
+"Syncing to AniList" = "Menyinkronkan ke AniList";
 "System" = "Sistem";
 "System UI" = "UI Sistem";
 "S{season} E{episode}" = "S{season} E{episode}";
@@ -2008,6 +2031,7 @@
 "Torrents" = "Torrent";
 "Track" = "Lacak";
 "Tracking" = "Tracking";
+"Tracking what you watch" = "Melacak tontonan Anda";
 "Tracks" = "Trek";
 "Traducir títulos" = "Terjemahkan judul";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
@@ -2092,6 +2116,7 @@
 "Velocidad" = "Kecepatan";
 "Ver más" = "Lihat selengkapnya";
 "Ver todo" = "Lihat semua";
+"Verifying" = "Memverifikasi";
 "Version" = "Versi";
 "Versión" = "Versi";
 "Video" = "Video";
@@ -3319,6 +3344,7 @@
 "title" = "judul";
 "titles" = "judul";
 "to" = "ke";
+"today" = "hari ini";
 "trailers/extras" = "trailer/ekstra";
 "unknown" = "tidak diketahui";
 "username" = "nama pengguna";
@@ -3345,12 +3371,16 @@
 "{n} addons don't provide streams and aren't listed." = "{n} addon tidak menyediakan stream dan tidak dicantumkan.";
 "{n} addons loading" = "{n} addon sedang dimuat";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} judul anime akan dikecualikan (Trakt tidak memiliki ID untuk judul tersebut).";
+"{n} day ago" = "{n} hari lalu";
+"{n} days ago" = "{n} hari lalu";
 "{n} ep" = "{n} ep";
 "{n} eps" = "{n} ep";
 "{n} hr" = "{n} jam";
 "{n} item" = "{n} item";
 "{n} items" = "{n} item";
 "{n} min" = "{n} mnt";
+"{n} month ago" = "{n} bulan lalu";
+"{n} months ago" = "{n} bulan lalu";
 "{n} not matched" = "{n} tidak berhasil dicocokkan";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
@@ -3359,6 +3389,7 @@
 "{requests} requests" = "{requests} permintaan";
 "{seconds} seconds" = "{seconds} detik";
 "{shown} of {total}" = "{shown} dari {total}";
+"{title} · Episode {episode}" = "{title} · Episode {episode}";
 "{watched} de {total} vistos ({pct}%)." = "{watched} dari {total} ditonton ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "{watched} dari {total} ditonton ({pct}%).";
 "Álbumes" = "Album";

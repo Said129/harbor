@@ -143,6 +143,9 @@ actor AnimeFranchiseService {
         return nil
     }
 
+    /// Desktop's `kitsuToAnilist` for the AniList tracker: the ARM relation first, then the AniZip mapping.
+    func anilistMediaID(kitsu: Int) async -> Int? { await anilistID(kitsu).id }
+
     private func anilistID(_ kitsu: Int) async -> (id: Int?, complete: Bool) {
         var complete = true
         do {

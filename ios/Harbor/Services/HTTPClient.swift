@@ -92,6 +92,30 @@ struct HTTPClient: Sendable {
         catch { let error = HarborError(code: "network"); await Diagnostics.shared.recordFailure(error); throw error }
     }
 
+    /// AniList's GraphQL endpoint and Harbor's token exchange for the signed-in tracker. The reply keeps the
+    /// status and body because AniList reports an expired token as a 400 whose GraphQL errors say so.
+    func anilistReply(_ request: URLRequest) async throws -> AniListReply {
+        guard let parts = request.url.flatMap({ URLComponents(url: $0, resolvingAgainstBaseURL: false) }), parts.scheme == "https",
+              parts.user == nil, parts.password == nil, parts.port == nil,
+              (parts.host == "graphql.anilist.co" && ["", "/"].contains(parts.path)) || (parts.host == "bugs.harbor.site" && parts.path == "/v1/anilist/token") else { throw HarborError(code: "anilist-request") }
+        await Diagnostics.shared.record(.requestStarted)
+        do {
+            let (bytes, response) = try await Self.publicTVDBSession.bytes(for: request)
+            guard let response = response as? HTTPURLResponse else { throw HarborError(code: "invalid-http-response") }
+            let limit = 8 * 1_024 * 1_024
+            guard response.expectedContentLength <= Int64(limit) else { throw HarborError(code: "response-too-large") }
+            var data = Data()
+            for try await byte in bytes {
+                try Task.checkCancellation(); guard data.count < limit else { throw HarborError(code: "response-too-large") }; data.append(byte)
+            }
+            await Diagnostics.shared.record(.requestCompleted, count: data.count)
+            return AniListReply(status: response.statusCode, data: data, retryAfter: response.value(forHTTPHeaderField: "Retry-After"))
+        } catch is CancellationError { throw CancellationError() }
+        catch let error as HarborError { await Diagnostics.shared.recordFailure(error); throw error }
+        catch let error as URLError where error.code == .cancelled { throw CancellationError() }
+        catch { let error = HarborError(code: "network"); await Diagnostics.shared.recordFailure(error); throw error }
+    }
+
     func anilist(query: String, variables: JSONValue) async throws -> JSONValue {
         var request = URLRequest(url: URL(string: "https://graphql.anilist.co")!, timeoutInterval: 20)
         request.httpMethod = "POST"

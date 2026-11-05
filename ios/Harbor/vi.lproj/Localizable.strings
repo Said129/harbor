@@ -21,6 +21,7 @@
 "45 min" = "45 phút";
 "45s" = "45 giây";
 "4:3" = "4:3";
+"A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Một thẻ trình duyệt đã mở trên AniList. Hãy phê duyệt Harbor tại đó, rồi sao chép nội dung hiển thị và dán vào bên dưới.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Ứng dụng khách cho giao thức Stremio. Chỉ mất hai phút để thiết lập; hầu hết đều không bắt buộc. Bạn luôn toàn quyền kiểm soát mọi khóa.";
 "A continuación" = "Tiếp theo";
 "A short note about this list" = "A short note about this list";
@@ -147,6 +148,8 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
+"AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList sync" = "Đồng bộ AniList";
 "Animals" = "Animals";
 "Animated Movies" = "Phim hoạt hình";
 "Animation" = "Hoạt hình";
@@ -189,8 +192,10 @@
 "Audio not labeled" = "Âm thanh không có nhãn";
 "Audio sin etiqueta" = "Âm thanh không có nhãn";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on AniList" = "Ủy quyền Harbor trên AniList";
 "Authorize Harbor on Simkl" = "Ủy quyền Harbor trên Simkl";
 "Authorize Harbor on Trakt" = "Ủy quyền Harbor trên Trakt";
+"Authorized {when}" = "Đã ủy quyền {when}";
 "Auto" = "Tự động";
 "Auto (match video)" = "Tự động (khớp video)";
 "Auto-hide the Skip button after" = "Tự động ẩn nút Bỏ qua sau";
@@ -305,6 +310,7 @@
 "Browse by Genre" = "Duyệt theo thể loại";
 "Browse by category" = "Duyệt theo danh mục";
 "Browse services" = "Duyệt dịch vụ";
+"Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Duyệt danh sách anime trong Harbor và cập nhật tiến độ tập khi xem. Đăng nhập AniList để kết nối.";
 "Browse your catalogs" = "Duyệt các danh mục";
 "Buffer" = "Buffer";
 "Build" = "Tạo";
@@ -370,6 +376,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "Các chương";
 "Check it works" = "Kiểm tra hoạt động";
+"Checking with AniList..." = "Đang kiểm tra với AniList...";
 "Checking…" = "Đang kiểm tra…";
 "Checksum did not match the manifest." = "Tổng kiểm tra không khớp với manifest.";
 "Chinese" = "Tiếng Trung";
@@ -445,10 +452,14 @@
 "Confirm your PIN" = "Xác nhận mã PIN";
 "Confirm your current PIN to remove the lock." = "Xác nhận mã PIN hiện tại để bỏ khóa.";
 "Confirm your current PIN, then pick a new one." = "Xác nhận mã PIN hiện tại, rồi chọn mã mới.";
+"Connect" = "Kết nối";
+"Connect AniList" = "Kết nối AniList";
 "Connect Simkl" = "Kết nối Simkl";
 "Connect TMDB" = "Kết nối TMDB";
 "Connect Trakt" = "Kết nối Trakt";
 "Connected" = "Đã kết nối";
+"Connected as {username}" = "Đã kết nối với tên {username}";
+"Connected to AniList" = "Đã kết nối với AniList";
 "Connected to Simkl" = "Đã kết nối với Simkl";
 "Connecting" = "Đang kết nối";
 "Conservar original" = "Giữ nguyên bản";
@@ -498,7 +509,9 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Không thể tự động đồng bộ";
+"Couldn't connect to AniList" = "Không thể kết nối với AniList";
 "Couldn't install. Double-check the URL and try again." = "Không thể cài đặt. Hãy kiểm tra lại URL rồi thử lại.";
+"Couldn't reach AniList." = "Không thể kết nối với AniList.";
 "Couldn't reach Simkl" = "Không thể kết nối với Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Không thể kết nối với Trakt. Hãy kiểm tra kết nối rồi thử lại.";
 "Cover Image URL" = "URL ảnh bìa";
@@ -586,6 +599,8 @@
 "Direction" = "Hướng đọc";
 "Director" = "Đạo diễn";
 "Disconnect" = "Ngắt kết nối";
+"Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "Ngắt kết nối AniList? Danh sách của bạn sẽ không còn hiển thị trên trang Anime cho đến khi bạn kết nối lại.";
+"Disconnect from AniList" = "Ngắt kết nối AniList";
 "Discover" = "Khám phá";
 "Discovery Queue" = "Hàng chờ khám phá";
 "Diseño de Inicio" = "Bố cục trang chủ";
@@ -742,6 +757,7 @@
 "Filters" = "Bộ lọc";
 "Finding lyrics" = "Đang tìm lời bài hát";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
+"Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Khi xem xong một tập anime, tiến độ AniList của bạn sẽ được cập nhật. Chỉ tăng tiến độ: số tập hiện có sẽ không bao giờ bị giảm.";
 "Finnish" = "Tiếng Phần Lan";
 "Fit" = "Vừa khung";
 "Flechas" = "Phím mũi tên";
@@ -1240,6 +1256,7 @@
 "Now" = "Bây giờ";
 "Now Playing" = "Đang phát";
 "Now playing: {label}" = "Đang phát: {label}";
+"Now watching on AniList" = "Đang xem trên AniList";
 "Nuevos estrenos de anime" = "Anime mới phát hành";
 "Nítido (anime y caricaturas)" = "Sắc nét (anime & hoạt hình)";
 "OK" = "OK";
@@ -1279,6 +1296,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open AniList again" = "Mở lại AniList";
 "Open a title and tap Add to Watchlist to save it here." = "Mở một tựa phim và chạm vào «Thêm vào danh sách xem» để lưu tại đây.";
 "Open image" = "Mở ảnh";
 "Open in Safari" = "Open in Safari";
@@ -1286,6 +1304,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Mở hồ sơ này khi khởi động. Lời nhắc theo thời gian vẫn có thể xuất hiện sau đó. Không thể đặt hồ sơ có mã PIN làm mặc định.";
+"Opening AniList..." = "Đang mở AniList...";
 "Opening book…" = "Opening book…";
 "Options" = "Tùy chọn";
 "Orden de addons" = "Thứ tự tiện ích bổ sung";
@@ -1319,6 +1338,7 @@
 "Password" = "Mật khẩu";
 "Paste JSON" = "Dán JSON";
 "Paste the manifest URL the configure page gave you" = "Dán URL manifest do trang cấu hình cung cấp";
+"Paste the text from AniList" = "Dán văn bản từ AniList";
 "Peacock" = "Peacock";
 "Peligro" = "Nguy hiểm";
 "Películas" = "Phim điện ảnh";
@@ -1878,7 +1898,10 @@
 "Sync Offset" = "Độ lệch đồng bộ";
 "Sync addons" = "Sync addons";
 "Sync subtitles with audio" = "Sync subtitles with audio";
+"Sync watch progress" = "Đồng bộ tiến độ xem";
+"Synced to AniList" = "Đã đồng bộ với AniList";
 "Syncing subtitles…" = "Syncing subtitles…";
+"Syncing to AniList" = "Đang đồng bộ với AniList";
 "System" = "Hệ thống";
 "System UI" = "Giao diện hệ thống";
 "S{season} E{episode}" = "M{season} T{episode}";
@@ -2008,6 +2031,7 @@
 "Torrents" = "Torrent";
 "Track" = "Bản nhạc";
 "Tracking" = "Tracking";
+"Tracking what you watch" = "Theo dõi nội dung bạn xem";
 "Tracks" = "Rãnh";
 "Traducir títulos" = "Dịch tiêu đề";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
@@ -2092,6 +2116,7 @@
 "Velocidad" = "Tốc độ";
 "Ver más" = "Xem thêm";
 "Ver todo" = "Xem tất cả";
+"Verifying" = "Đang xác minh";
 "Version" = "Phiên bản";
 "Versión" = "Phiên bản";
 "Video" = "Video";
@@ -3319,6 +3344,7 @@
 "title" = "tựa phim";
 "titles" = "tựa phim";
 "to" = "đến";
+"today" = "hôm nay";
 "trailers/extras" = "trailer/nội dung bổ sung";
 "unknown" = "không xác định";
 "username" = "tên người dùng";
@@ -3345,12 +3371,16 @@
 "{n} addons don't provide streams and aren't listed." = "{n} tiện ích bổ sung không cung cấp luồng phát nên không có trong danh sách.";
 "{n} addons loading" = "Đang tải {n} tiện ích bổ sung";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} tựa anime sẽ bị bỏ qua (Trakt không có ID cho các tựa này).";
+"{n} day ago" = "{n} ngày trước";
+"{n} days ago" = "{n} ngày trước";
 "{n} ep" = "{n} tập";
 "{n} eps" = "{n} tập";
 "{n} hr" = "{n} giờ";
 "{n} item" = "{n} mục";
 "{n} items" = "{n} mục";
 "{n} min" = "{n} phút";
+"{n} month ago" = "{n} tháng trước";
+"{n} months ago" = "{n} tháng trước";
 "{n} not matched" = "{n} mục chưa khớp";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
@@ -3359,6 +3389,7 @@
 "{requests} requests" = "{requests} yêu cầu";
 "{seconds} seconds" = "{seconds} giây";
 "{shown} of {total}" = "{shown} trên {total}";
+"{title} · Episode {episode}" = "{title} · Tập {episode}";
 "{watched} de {total} vistos ({pct}%)." = "đã xem {watched}/{total} ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "đã xem {watched}/{total} ({pct}%).";
 "Álbumes" = "Album";

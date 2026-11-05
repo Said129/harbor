@@ -23,6 +23,7 @@
 "45 min" = "45 мин";
 "45s" = "45 с";
 "4:3" = "4:3";
+"A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Открылась вкладка браузера с AniList. Подтвердите доступ для Harbor, затем скопируйте показанный текст и вставьте его ниже.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Клиент для протокола Stremio. Две минуты на настройку, и почти всё – по желанию. Все ключи остаются под вашим контролем.";
 "A continuación" = "Далее";
 "A short note about this list" = "A short note about this list";
@@ -149,6 +150,8 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Анализ остановлен ради воспроизведения. Повторите попытку после буферизации.";
 "Analyzing audio… Keep watching." = "Анализ звука… Продолжайте просмотр.";
 "AniList" = "AniList";
+"AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList sync" = "Синхронизация с AniList";
 "Animals" = "Animals";
 "Animated Movies" = "Мультфильмы";
 "Animated sidebar icons" = "Animated sidebar icons";
@@ -192,8 +195,10 @@
 "Audio not labeled" = "Аудио без метки";
 "Audio sin etiqueta" = "Аудио без метки";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on AniList" = "Авторизовать Harbor в AniList";
 "Authorize Harbor on Simkl" = "Авторизовать Harbor в Simkl";
 "Authorize Harbor on Trakt" = "Авторизовать Harbor в Trakt";
+"Authorized {when}" = "Авторизовано {when}";
 "Auto" = "Авто";
 "Auto (match video)" = "Авто (как у видео)";
 "Auto-hide the Skip button after" = "Скрывать кнопку «Пропустить» через";
@@ -309,6 +314,7 @@
 "Browse by Genre" = "По жанрам";
 "Browse by category" = "По категориям";
 "Browse services" = "Просмотр сервисов";
+"Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Просматривайте списки аниме в Harbor и обновляйте прогресс по мере просмотра. Для подключения войдите в AniList.";
 "Browse your catalogs" = "Обзор ваших каталогов";
 "Buffer" = "Buffer";
 "Build" = "Сборка";
@@ -374,6 +380,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "Главы";
 "Check it works" = "Проверить работу";
+"Checking with AniList..." = "Проверка в AniList...";
 "Checking…" = "Проверка…";
 "Checksum did not match the manifest." = "Контрольная сумма не совпадает с манифестом.";
 "Chinese" = "Китайский";
@@ -449,10 +456,14 @@
 "Confirm your PIN" = "Подтвердите PIN";
 "Confirm your current PIN to remove the lock." = "Подтвердите текущий PIN, чтобы снять блокировку.";
 "Confirm your current PIN, then pick a new one." = "Подтвердите текущий PIN, затем задайте новый.";
+"Connect" = "Подключить";
+"Connect AniList" = "Подключить AniList";
 "Connect Simkl" = "Подключить Simkl";
 "Connect TMDB" = "Подключить TMDB";
 "Connect Trakt" = "Подключить Trakt";
 "Connected" = "Подключено";
+"Connected as {username}" = "Подключено как {username}";
+"Connected to AniList" = "Подключено к AniList";
 "Connected to Simkl" = "Подключено к Simkl";
 "Connecting" = "Подключение";
 "Conservar original" = "Оставить оригинал";
@@ -502,7 +513,9 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Не удалось синхронизировать";
+"Couldn't connect to AniList" = "Не удалось подключиться к AniList";
 "Couldn't install. Double-check the URL and try again." = "Не удалось установить. Проверьте URL и попробуйте снова.";
+"Couldn't reach AniList." = "Не удалось связаться с AniList.";
 "Couldn't reach Simkl" = "Не удалось связаться с Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Не удалось связаться с Trakt. Проверьте подключение и повторите попытку.";
 "Cover Image URL" = "URL обложки";
@@ -590,6 +603,8 @@
 "Direction" = "Направление";
 "Director" = "Режиссёр";
 "Disconnect" = "Отключить";
+"Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "Отключить AniList? Ваши списки исчезнут со страницы «Аниме» до повторного подключения.";
+"Disconnect from AniList" = "Отключить AniList";
 "Discover" = "Обзор";
 "Discovery Queue" = "Очередь открытий";
 "Diseño de Inicio" = "Макет главной";
@@ -746,6 +761,7 @@
 "Filters" = "Фильтры";
 "Finding lyrics" = "Поиск текста";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
+"Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Досмотренный эпизод аниме обновляет прогресс в AniList. Только вперёд: уже засчитанное количество никогда не уменьшается.";
 "Finnish" = "Финский";
 "Fit" = "Вписать";
 "Flechas" = "Стрелки";
@@ -1248,6 +1264,7 @@
 "Now" = "Сейчас";
 "Now Playing" = "Сейчас воспроизводится";
 "Now playing: {label}" = "Сейчас в эфире: {label}";
+"Now watching on AniList" = "Просмотр отмечен в AniList";
 "Nuevos estrenos de anime" = "Новинки аниме";
 "Nítido (anime y caricaturas)" = "Чётко (аниме и мультфильмы)";
 "OK" = "OK";
@@ -1288,6 +1305,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open AniList again" = "Открыть AniList снова";
 "Open a title and tap Add to Watchlist to save it here." = "Откройте произведение и нажмите «Добавить в список просмотра», чтобы сохранить его здесь.";
 "Open image" = "Открыть изображение";
 "Open in Safari" = "Open in Safari";
@@ -1295,6 +1313,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Открывать этот профиль при запуске. Запросы по таймеру могут появляться и позже. Профиль с PIN-кодом нельзя сделать профилем по умолчанию.";
+"Opening AniList..." = "Открытие AniList...";
 "Opening book…" = "Открытие книги…";
 "Options" = "Параметры";
 "Orden de addons" = "Порядок дополнений";
@@ -1330,6 +1349,7 @@
 "Password" = "Пароль";
 "Paste JSON" = "Вставить JSON";
 "Paste the manifest URL the configure page gave you" = "Вставьте URL манифеста со страницы настройки";
+"Paste the text from AniList" = "Вставьте текст из AniList";
 "Peacock" = "Peacock";
 "Peligro" = "Опасно";
 "Películas" = "Фильмы";
@@ -1892,7 +1912,10 @@
 "Sync Offset" = "Смещение синхронизации";
 "Sync addons" = "Sync addons";
 "Sync subtitles with audio" = "Sync subtitles with audio";
+"Sync watch progress" = "Синхронизировать прогресс просмотра";
+"Synced to AniList" = "Синхронизировано с AniList";
 "Syncing subtitles…" = "Синхронизация субтитров…";
+"Syncing to AniList" = "Синхронизация с AniList";
 "System" = "Системный";
 "System UI" = "System UI";
 "S{season} E{episode}" = "S{season} E{episode}";
@@ -2023,6 +2046,7 @@
 "Torrents" = "Торренты";
 "Track" = "Дорожка";
 "Tracking" = "Tracking";
+"Tracking what you watch" = "Отслеживание просмотров";
 "Tracks" = "Дорожки";
 "Traducir títulos" = "Переводить названия";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
@@ -2107,6 +2131,7 @@
 "Velocidad" = "Скорость";
 "Ver más" = "Показать ещё";
 "Ver todo" = "Показать все";
+"Verifying" = "Проверка";
 "Version" = "Версия";
 "Versión" = "Версия";
 "Video" = "Видео";
@@ -3334,6 +3359,7 @@
 "title" = "название";
 "titles" = "названий";
 "to" = "до";
+"today" = "сегодня";
 "trailers/extras" = "трейлеры и допматериалы";
 "unknown" = "неизвестно";
 "username" = "имя пользователя";
@@ -3360,12 +3386,16 @@
 "{n} addons don't provide streams and aren't listed." = "{n} дополнений не предоставляют потоки и не показаны в списке.";
 "{n} addons loading" = "Загрузка дополнений: {n}";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} аниме будет пропущено (в Trakt нет для них ID).";
+"{n} day ago" = "{n} дней назад";
+"{n} days ago" = "{n} дн. назад";
 "{n} ep" = "{n} эп";
 "{n} eps" = "{n} эп";
 "{n} hr" = "{n} ч";
 "{n} item" = "{n} элементов";
 "{n} items" = "{n} элементов";
 "{n} min" = "{n} мин";
+"{n} month ago" = "{n} месяцев назад";
+"{n} months ago" = "{n} мес. назад";
 "{n} not matched" = "Не сопоставлено: {n}";
 "{n} seeds" = "Сидов: {n}";
 "{n} semillas" = "Сидов: {n}";
@@ -3374,6 +3404,7 @@
 "{requests} requests" = "{requests} запросов";
 "{seconds} seconds" = "{seconds} сек.";
 "{shown} of {total}" = "{shown} из {total}";
+"{title} · Episode {episode}" = "{title} · Серия {episode}";
 "{watched} de {total} vistos ({pct}%)." = "Просмотрено {watched} из {total} ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "Просмотрено {watched} из {total} ({pct}%).";
 "Álbumes" = "Альбомы";

@@ -21,6 +21,7 @@
 "45 min" = "45 Min.";
 "45s" = "45 s";
 "4:3" = "4:3";
+"A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Ein Browser-Tab mit AniList wurde geöffnet. Autorisiere dort Harbor, kopiere dann den angezeigten Text und füge ihn unten ein.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Ein Client für das Stremio-Protokoll. Die Einrichtung dauert zwei Minuten, und das meiste ist optional. Du behältst die Kontrolle über jeden Schlüssel.";
 "A continuación" = "Als Nächstes";
 "A short note about this list" = "A short note about this list";
@@ -147,6 +148,8 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
+"AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList sync" = "AniList-Synchronisierung";
 "Animals" = "Animals";
 "Animated Movies" = "Animationsfilme";
 "Animation" = "Animation";
@@ -189,8 +192,10 @@
 "Audio not labeled" = "Audio nicht beschriftet";
 "Audio sin etiqueta" = "Audio nicht beschriftet";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on AniList" = "Harbor auf AniList autorisieren";
 "Authorize Harbor on Simkl" = "Harbor bei Simkl autorisieren";
 "Authorize Harbor on Trakt" = "Harbor bei Trakt autorisieren";
+"Authorized {when}" = "Autorisiert {when}";
 "Auto" = "Automatisch";
 "Auto (match video)" = "Automatisch (an das Video anpassen)";
 "Auto-hide the Skip button after" = "Schaltfläche „Überspringen“ automatisch ausblenden nach";
@@ -305,6 +310,7 @@
 "Browse by Genre" = "Nach Genre durchsuchen";
 "Browse by category" = "Nach Kategorie durchsuchen";
 "Browse services" = "Dienste durchsuchen";
+"Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Durchsuche deine Anime-Listen in Harbor und aktualisiere deinen Folgenfortschritt beim Ansehen. Melde dich zum Verbinden bei AniList an.";
 "Browse your catalogs" = "Deine Kataloge durchsuchen";
 "Buffer" = "Buffer";
 "Build" = "Build";
@@ -370,6 +376,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "Kapitel";
 "Check it works" = "Funktion prüfen";
+"Checking with AniList..." = "Abfrage bei AniList...";
 "Checking…" = "Wird geprüft…";
 "Checksum did not match the manifest." = "Die Prüfsumme stimmt nicht mit dem Manifest überein.";
 "Chinese" = "Chinesisch";
@@ -445,10 +452,14 @@
 "Confirm your PIN" = "Bestätige deine PIN";
 "Confirm your current PIN to remove the lock." = "Bestätige deine aktuelle PIN, um die Sperre zu entfernen.";
 "Confirm your current PIN, then pick a new one." = "Bestätige deine aktuelle PIN und lege dann eine neue fest.";
+"Connect" = "Verbinden";
+"Connect AniList" = "AniList verbinden";
 "Connect Simkl" = "Mit Simkl verbinden";
 "Connect TMDB" = "TMDB verbinden";
 "Connect Trakt" = "Mit Trakt verbinden";
 "Connected" = "Verbunden";
+"Connected as {username}" = "Verbunden als {username}";
+"Connected to AniList" = "Mit AniList verbunden";
 "Connected to Simkl" = "Mit Simkl verbunden";
 "Connecting" = "Verbindung wird hergestellt";
 "Conservar original" = "Original beibehalten";
@@ -498,7 +509,9 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Automatische Synchronisierung nicht möglich";
+"Couldn't connect to AniList" = "Verbindung zu AniList fehlgeschlagen";
 "Couldn't install. Double-check the URL and try again." = "Installation fehlgeschlagen. Überprüfe die URL und versuche es erneut.";
+"Couldn't reach AniList." = "AniList konnte nicht erreicht werden.";
 "Couldn't reach Simkl" = "Simkl konnte nicht erreicht werden";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt konnte nicht erreicht werden. Prüfe deine Verbindung und versuche es erneut.";
 "Cover Image URL" = "URL des Titelbilds";
@@ -586,6 +599,8 @@
 "Direction" = "Richtung";
 "Director" = "Regisseur";
 "Disconnect" = "Verbindung trennen";
+"Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "Verbindung zu AniList trennen? Deine Listen werden nicht mehr auf der Anime-Seite angezeigt, bis du die Verbindung wiederherstellst.";
+"Disconnect from AniList" = "Verbindung zu AniList trennen";
 "Discover" = "Entdecken";
 "Discovery Queue" = "Entdeckungswarteschlange";
 "Diseño de Inicio" = "Startseitenlayout";
@@ -742,6 +757,7 @@
 "Filters" = "Filter";
 "Finding lyrics" = "Songtext wird gesucht";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
+"Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Wenn du eine Anime-Folge zu Ende schaust, wird dein Fortschritt bei AniList aktualisiert. Nur vorwärts: Ein bereits erreichter Stand wird nie herabgesetzt.";
 "Finnish" = "Finnisch";
 "Fit" = "Einpassen";
 "Flechas" = "Pfeile";
@@ -1240,6 +1256,7 @@
 "Now" = "Jetzt";
 "Now Playing" = "Läuft gerade";
 "Now playing: {label}" = "Jetzt läuft: {label}";
+"Now watching on AniList" = "Wird jetzt auf AniList angesehen";
 "Nuevos estrenos de anime" = "Anime-Neuerscheinungen";
 "Nítido (anime y caricaturas)" = "Gestochen scharf (Anime & Cartoons)";
 "OK" = "OK";
@@ -1279,6 +1296,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open AniList again" = "AniList erneut öffnen";
 "Open a title and tap Add to Watchlist to save it here." = "Öffne einen Titel und tippe auf „Zur Merkliste hinzufügen“, um ihn hier zu speichern.";
 "Open image" = "Bild öffnen";
 "Open in Safari" = "Open in Safari";
@@ -1286,6 +1304,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Öffne dieses Profil beim Start. Zeitgesteuerte Abfragen können später weiterhin erscheinen. Profile mit PIN können nicht als Standard verwendet werden.";
+"Opening AniList..." = "AniList wird geöffnet...";
 "Opening book…" = "Opening book…";
 "Options" = "Optionen";
 "Orden de addons" = "Add-on-Reihenfolge";
@@ -1319,6 +1338,7 @@
 "Password" = "Passwort";
 "Paste JSON" = "JSON einfügen";
 "Paste the manifest URL the configure page gave you" = "Füge die Manifest-URL ein, die dir die Konfigurationsseite angezeigt hat";
+"Paste the text from AniList" = "Text aus AniList einfügen";
 "Peacock" = "Peacock";
 "Peligro" = "Gefahr";
 "Películas" = "Filme";
@@ -1878,7 +1898,10 @@
 "Sync Offset" = "Synchronversatz";
 "Sync addons" = "Sync addons";
 "Sync subtitles with audio" = "Sync subtitles with audio";
+"Sync watch progress" = "Wiedergabefortschritt synchronisieren";
+"Synced to AniList" = "Mit AniList synchronisiert";
 "Syncing subtitles…" = "Syncing subtitles…";
+"Syncing to AniList" = "Synchronisierung mit AniList";
 "System" = "System";
 "System UI" = "Systemoberfläche";
 "S{season} E{episode}" = "S{season} E{episode}";
@@ -2008,6 +2031,7 @@
 "Torrents" = "Torrents";
 "Track" = "Tonspur";
 "Tracking" = "Tracking";
+"Tracking what you watch" = "Erfassung deiner Wiedergaben";
 "Tracks" = "Tonspuren";
 "Traducir títulos" = "Titel übersetzen";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
@@ -2092,6 +2116,7 @@
 "Velocidad" = "Geschwindigkeit";
 "Ver más" = "Mehr anzeigen";
 "Ver todo" = "Alle anzeigen";
+"Verifying" = "Wird überprüft";
 "Version" = "Version";
 "Versión" = "Version";
 "Video" = "Video";
@@ -3319,6 +3344,7 @@
 "title" = "Titel";
 "titles" = "Titel";
 "to" = "bis";
+"today" = "heute";
 "trailers/extras" = "Trailer/Extras";
 "unknown" = "unbekannt";
 "username" = "Benutzername";
@@ -3345,12 +3371,16 @@
 "{n} addons don't provide streams and aren't listed." = "{n} Add-ons bieten keine Streams und werden nicht aufgeführt.";
 "{n} addons loading" = "{n} Add-ons werden geladen";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} Anime-Titel werden ausgelassen (Trakt hat keine IDs dafür).";
+"{n} day ago" = "vor {n} Tag";
+"{n} days ago" = "vor {n} Tagen";
 "{n} ep" = "{n} Folge";
 "{n} eps" = "{n} Folgen";
 "{n} hr" = "{n} Std.";
 "{n} item" = "{n} Element";
 "{n} items" = "{n} Elemente";
 "{n} min" = "{n} Min.";
+"{n} month ago" = "vor {n} Monat";
+"{n} months ago" = "vor {n} Monaten";
 "{n} not matched" = "{n} nicht zugeordnet";
 "{n} seeds" = "{n} Seeds";
 "{n} semillas" = "{n} Seeds";
@@ -3359,6 +3389,7 @@
 "{requests} requests" = "{requests} Anfragen";
 "{seconds} seconds" = "{seconds} Sekunden";
 "{shown} of {total}" = "{shown} von {total}";
+"{title} · Episode {episode}" = "{title} · Episode {episode}";
 "{watched} de {total} vistos ({pct}%)." = "{watched} von {total} angesehen ({pct} %).";
 "{watched} of {total} watched ({pct}%)." = "{watched} von {total} angesehen ({pct} %).";
 "Álbumes" = "Alben";

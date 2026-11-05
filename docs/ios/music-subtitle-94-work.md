@@ -1233,3 +1233,15 @@ that clashes with `NSObject.hash`, both fixed. Dispatching a new run cancels the
 one in progress, so each run must finish before the next. The pending Music and
 subtitle cases from this log are part of the same selection and are reported with
 the run that finishes them.
+
+Focused run 41958341805 (commit ad3fd8d2, macos-15-intel): the app and the test
+bundle compiled, `harbor-core` passed 109 tests, and 50 of the 53 selected cases
+passed, among them every Debrid, stream policy, sleep timer, A-B loop, auto-skip,
+playback speed, magnet-link and Music artist/artwork/signal case of the selection.
+Three failed: the stream-language test compared a `JSONValue` with `nil` (a missing
+key is `.null`); the owned-meter test let its twelve-second tones end before the
+captures began (position 12.0, loaded false), so it now loops the track; and the
+artist overview capture never saw its profile requests, so the view's task now
+starts on a container instead of an empty `Group` and the capture waits longer for
+the web worker. Run 42011211733 (commit 92a633a3) reruns those three together
+with the seven new still-watching, hotkey and Watch on cases.

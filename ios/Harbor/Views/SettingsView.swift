@@ -36,7 +36,7 @@ struct SettingsView: View {
                         }
                     }
                 }
-                if matches("Simkl", group: "Tracking") || matches("Trakt", group: "Tracking") {
+                if matches("Simkl", group: "Tracking") || matches("Trakt", group: "Tracking") || matches("AniList", group: "Tracking") {
                     group("Tracking") {
                         if matches("Simkl", group: "Tracking") {
                         NavigationLink { SimklSettingsView(app: app).id(app.accountOperationScope).toolbar(.visible, for: .navigationBar) } label: {
@@ -47,6 +47,11 @@ struct SettingsView: View {
                             NavigationLink { TraktSettingsView(app: app).id(app.accountOperationScope).toolbar(.visible, for: .navigationBar) } label: {
                                 SettingsRow(title: "Trakt", icon: "tracker-trakt")
                             }.accessibilityIdentifier("settings-trakt")
+                        }
+                        if matches("AniList", group: "Tracking") {
+                            NavigationLink { AniListSettingsView(app: app).id(app.accountOperationScope).toolbar(.visible, for: .navigationBar) } label: {
+                                SettingsRow(title: "AniList", icon: "tracker-anilist")
+                            }.accessibilityIdentifier("settings-anilist")
                         }
                     }
                 }

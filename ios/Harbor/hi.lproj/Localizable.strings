@@ -21,6 +21,7 @@
 "45 min" = "45 मिनट";
 "45s" = "45 सेकंड";
 "4:3" = "4:3";
+"A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "AniList पर एक ब्राउज़र टैब खुला है। वहाँ Harbor को अनुमति दें, फिर दिखाई देने वाला टेक्स्ट कॉपी करके नीचे पेस्ट करें।";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio प्रोटोकॉल के लिए एक क्लाइंट। सेटअप में दो मिनट लगते हैं; ज़्यादातर चीज़ें वैकल्पिक हैं। हर कुंजी का नियंत्रण आपके पास रहता है।";
 "A continuación" = "इसके बाद";
 "A short note about this list" = "A short note about this list";
@@ -147,6 +148,8 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
+"AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList sync" = "AniList सिंक";
 "Animals" = "Animals";
 "Animated Movies" = "एनिमेटेड फ़िल्में";
 "Animation" = "एनीमेशन";
@@ -189,8 +192,10 @@
 "Audio not labeled" = "ऑडियो का लेबल नहीं है";
 "Audio sin etiqueta" = "ऑडियो का लेबल नहीं है";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on AniList" = "AniList पर Harbor को अधिकृत करें";
 "Authorize Harbor on Simkl" = "Simkl पर Harbor को अधिकृत करें";
 "Authorize Harbor on Trakt" = "Trakt पर Harbor को अधिकृत करें";
+"Authorized {when}" = "अधिकृत: {when}";
 "Auto" = "ऑटो";
 "Auto (match video)" = "ऑटो (वीडियो के अनुरूप)";
 "Auto-hide the Skip button after" = "इतने समय बाद स्किप बटन अपने-आप छिपाएँ";
@@ -305,6 +310,7 @@
 "Browse by Genre" = "शैली के अनुसार ब्राउज़ करें";
 "Browse by category" = "कैटेगरी के अनुसार ब्राउज़ करें";
 "Browse services" = "सेवाएँ देखें";
+"Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Harbor में अपनी एनीमे सूचियाँ ब्राउज़ करें और देखते समय एपिसोड की प्रगति अपडेट करें। जोड़ने के लिए AniList में साइन इन करें।";
 "Browse your catalogs" = "अपने कैटलॉग ब्राउज़ करें";
 "Buffer" = "Buffer";
 "Build" = "बिल्ड";
@@ -370,6 +376,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "अध्याय";
 "Check it works" = "जाँचें कि यह काम करता है";
+"Checking with AniList..." = "AniList पर जाँच हो रही है...";
 "Checking…" = "जाँच हो रही है…";
 "Checksum did not match the manifest." = "चेकसम मैनिफ़ेस्ट से मेल नहीं खाया।";
 "Chinese" = "चीनी";
@@ -445,10 +452,14 @@
 "Confirm your PIN" = "अपने PIN की पुष्टि करें";
 "Confirm your current PIN to remove the lock." = "लॉक हटाने के लिए अपने मौजूदा PIN की पुष्टि करें।";
 "Confirm your current PIN, then pick a new one." = "अपने मौजूदा PIN की पुष्टि करें, फिर नया PIN चुनें।";
+"Connect" = "कनेक्ट करें";
+"Connect AniList" = "AniList कनेक्ट करें";
 "Connect Simkl" = "Simkl कनेक्ट करें";
 "Connect TMDB" = "TMDB कनेक्ट करें";
 "Connect Trakt" = "Trakt कनेक्ट करें";
 "Connected" = "कनेक्टेड";
+"Connected as {username}" = "{username} के रूप में कनेक्टेड";
+"Connected to AniList" = "AniList से कनेक्टेड";
 "Connected to Simkl" = "Simkl से कनेक्टेड";
 "Connecting" = "कनेक्ट हो रहा है";
 "Conservar original" = "मूल रखें";
@@ -498,7 +509,9 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "अपने-आप सिंक नहीं हो सका";
+"Couldn't connect to AniList" = "AniList से कनेक्ट नहीं हो सका";
 "Couldn't install. Double-check the URL and try again." = "इंस्टॉल नहीं हो सका। URL दोबारा जाँचें और फिर कोशिश करें।";
+"Couldn't reach AniList." = "AniList से संपर्क नहीं हो सका।";
 "Couldn't reach Simkl" = "Simkl से संपर्क नहीं हो सका";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt से संपर्क नहीं हो सका। अपना कनेक्शन जाँचें और फिर कोशिश करें।";
 "Cover Image URL" = "कवर इमेज URL";
@@ -586,6 +599,8 @@
 "Direction" = "दिशा";
 "Director" = "निर्देशक";
 "Disconnect" = "डिस्कनेक्ट करें";
+"Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "AniList को डिस्कनेक्ट करें? दोबारा कनेक्ट करने तक आपकी सूचियाँ एनीमे पेज पर दिखना बंद हो जाएँगी।";
+"Disconnect from AniList" = "AniList से डिस्कनेक्ट करें";
 "Discover" = "खोजें";
 "Discovery Queue" = "डिस्कवरी क्यू";
 "Diseño de Inicio" = "होम लेआउट";
@@ -742,6 +757,7 @@
 "Filters" = "फ़िल्टर";
 "Finding lyrics" = "बोल खोजे जा रहे हैं";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
+"Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "एनीमे एपिसोड पूरा करने पर आपकी AniList प्रगति अपडेट होती है। प्रगति केवल आगे बढ़ती है: यह आपकी मौजूदा गिनती कभी कम नहीं करता।";
 "Finnish" = "फ़िनिश";
 "Fit" = "फ़िट करें";
 "Flechas" = "तीर";
@@ -1240,6 +1256,7 @@
 "Now" = "अभी";
 "Now Playing" = "अभी चल रहा है";
 "Now playing: {label}" = "अभी चल रहा है: {label}";
+"Now watching on AniList" = "अब AniList पर देख रहे हैं";
 "Nuevos estrenos de anime" = "नई एनीमे रिलीज़";
 "Nítido (anime y caricaturas)" = "शार्प (एनीमे और कार्टून)";
 "OK" = "OK";
@@ -1279,6 +1296,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open AniList again" = "AniList फिर से खोलें";
 "Open a title and tap Add to Watchlist to save it here." = "कोई शीर्षक खोलें और उसे यहाँ सहेजने के लिए «वॉचलिस्ट में जोड़ें» पर टैप करें।";
 "Open image" = "चित्र खोलें";
 "Open in Safari" = "Open in Safari";
@@ -1286,6 +1304,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "शुरू होने पर यह प्रोफ़ाइल खोलें। समय पर आने वाले संकेत बाद में भी दिख सकते हैं। PIN वाली प्रोफ़ाइल डिफ़ॉल्ट नहीं बन सकती।";
+"Opening AniList..." = "AniList खोला जा रहा है...";
 "Opening book…" = "Opening book…";
 "Options" = "विकल्प";
 "Orden de addons" = "ऐडऑन क्रम";
@@ -1319,6 +1338,7 @@
 "Password" = "पासवर्ड";
 "Paste JSON" = "JSON पेस्ट करें";
 "Paste the manifest URL the configure page gave you" = "कॉन्फ़िगर पेज से मिला मैनिफ़ेस्ट URL पेस्ट करें";
+"Paste the text from AniList" = "AniList से टेक्स्ट पेस्ट करें";
 "Peacock" = "Peacock";
 "Peligro" = "खतरा";
 "Películas" = "फ़िल्में";
@@ -1878,7 +1898,10 @@
 "Sync Offset" = "सिंक ऑफ़सेट";
 "Sync addons" = "Sync addons";
 "Sync subtitles with audio" = "Sync subtitles with audio";
+"Sync watch progress" = "देखने की प्रगति सिंक करें";
+"Synced to AniList" = "AniList के साथ सिंक किया गया";
 "Syncing subtitles…" = "Syncing subtitles…";
+"Syncing to AniList" = "AniList के साथ सिंक किया जा रहा है";
 "System" = "सिस्टम";
 "System UI" = "सिस्टम UI";
 "S{season} E{episode}" = "S{season} E{episode}";
@@ -2008,6 +2031,7 @@
 "Torrents" = "टोरेंट";
 "Track" = "ट्रैक करें";
 "Tracking" = "Tracking";
+"Tracking what you watch" = "आप जो देखते हैं उसे ट्रैक करना";
 "Tracks" = "ट्रैक";
 "Traducir títulos" = "टाइटल का अनुवाद करें";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
@@ -2092,6 +2116,7 @@
 "Velocidad" = "गति";
 "Ver más" = "और देखें";
 "Ver todo" = "सभी देखें";
+"Verifying" = "सत्यापन हो रहा है";
 "Version" = "वर्ज़न";
 "Versión" = "वर्ज़न";
 "Video" = "वीडियो";
@@ -3319,6 +3344,7 @@
 "title" = "शीर्षक";
 "titles" = "शीर्षक";
 "to" = "तक";
+"today" = "आज";
 "trailers/extras" = "ट्रेलर/अतिरिक्त सामग्री";
 "unknown" = "अज्ञात";
 "username" = "उपयोगकर्ता नाम";
@@ -3345,12 +3371,16 @@
 "{n} addons don't provide streams and aren't listed." = "{n} ऐडऑन स्ट्रीम उपलब्ध नहीं कराते, इसलिए वे सूची में नहीं दिखते।";
 "{n} addons loading" = "{n} ऐडऑन लोड हो रहे हैं";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} ऐनिमे शीर्षक छोड़ दिए जाएँगे (Trakt में उनके लिए IDs नहीं हैं)।";
+"{n} day ago" = "{n} दिन पहले";
+"{n} days ago" = "{n} दिन पहले";
 "{n} ep" = "{n} एपिसोड";
 "{n} eps" = "{n} एपिसोड";
 "{n} hr" = "{n} घंटे";
 "{n} item" = "{n} आइटम";
 "{n} items" = "{n} आइटम";
 "{n} min" = "{n} मिनट";
+"{n} month ago" = "{n} महीने पहले";
+"{n} months ago" = "{n} महीने पहले";
 "{n} not matched" = "{n} का मिलान नहीं हुआ";
 "{n} seeds" = "{n} सीड";
 "{n} semillas" = "{n} सीड";
@@ -3359,6 +3389,7 @@
 "{requests} requests" = "{requests} अनुरोध";
 "{seconds} seconds" = "{seconds} सेकंड";
 "{shown} of {total}" = "{total} में से {shown}";
+"{title} · Episode {episode}" = "{title} · एपिसोड {episode}";
 "{watched} de {total} vistos ({pct}%)." = "{total} में से {watched} देखे गए ({pct}%)।";
 "{watched} of {total} watched ({pct}%)." = "{total} में से {watched} देखे गए ({pct}%)।";
 "Álbumes" = "एल्बम";
