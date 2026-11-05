@@ -22,6 +22,7 @@
 "45s" = "45 सेकंड";
 "4:3" = "4:3";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "AniList पर एक ब्राउज़र टैब खुला है। वहाँ Harbor को अनुमति दें, फिर दिखाई देने वाला टेक्स्ट कॉपी करके नीचे पेस्ट करें।";
+"A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "MyAnimeList पर एक ब्राउज़र टैब खुला है। वहाँ Harbor को अनुमति दें, फिर कोड या पेज URL कॉपी करके नीचे पेस्ट करें।";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio प्रोटोकॉल के लिए एक क्लाइंट। सेटअप में दो मिनट लगते हैं; ज़्यादातर चीज़ें वैकल्पिक हैं। हर कुंजी का नियंत्रण आपके पास रहता है।";
 "A continuación" = "इसके बाद";
 "A short note about this list" = "A short note about this list";
@@ -193,6 +194,7 @@
 "Audio sin etiqueta" = "ऑडियो का लेबल नहीं है";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on AniList" = "AniList पर Harbor को अधिकृत करें";
+"Authorize Harbor on MyAnimeList" = "MyAnimeList पर Harbor को अधिकृत करें";
 "Authorize Harbor on Simkl" = "Simkl पर Harbor को अधिकृत करें";
 "Authorize Harbor on Trakt" = "Trakt पर Harbor को अधिकृत करें";
 "Authorized {when}" = "अधिकृत: {when}";
@@ -302,6 +304,7 @@
 "Brightness" = "ब्राइटनेस";
 "Brillo" = "ब्राइटनेस";
 "Bring in your library" = "अपनी लाइब्रेरी लाएँ";
+"Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "अपनी एनीमे सूची Harbor में लाएँ और देखते समय एपिसोड की गिनती अपडेट करें। मौजूदा प्रगति बनी रहती है।";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "वेलकम फ़्लो दोबारा चलाए बिना, आपके पहले बंद किए गए छोटे इन-ऐप सुझाव वापस लाता है।";
 "BritBox" = "BritBox";
 "Browse" = "ब्राउज़ करें";
@@ -377,6 +380,7 @@
 "Chapters" = "अध्याय";
 "Check it works" = "जाँचें कि यह काम करता है";
 "Checking with AniList..." = "AniList पर जाँच हो रही है...";
+"Checking with MyAnimeList..." = "MyAnimeList पर जाँच हो रही है...";
 "Checking…" = "जाँच हो रही है…";
 "Checksum did not match the manifest." = "चेकसम मैनिफ़ेस्ट से मेल नहीं खाया।";
 "Chinese" = "चीनी";
@@ -454,12 +458,14 @@
 "Confirm your current PIN, then pick a new one." = "अपने मौजूदा PIN की पुष्टि करें, फिर नया PIN चुनें।";
 "Connect" = "कनेक्ट करें";
 "Connect AniList" = "AniList कनेक्ट करें";
+"Connect MyAnimeList" = "MyAnimeList कनेक्ट करें";
 "Connect Simkl" = "Simkl कनेक्ट करें";
 "Connect TMDB" = "TMDB कनेक्ट करें";
 "Connect Trakt" = "Trakt कनेक्ट करें";
 "Connected" = "कनेक्टेड";
 "Connected as {username}" = "{username} के रूप में कनेक्टेड";
 "Connected to AniList" = "AniList से कनेक्टेड";
+"Connected to MyAnimeList" = "MyAnimeList से कनेक्टेड";
 "Connected to Simkl" = "Simkl से कनेक्टेड";
 "Connecting" = "कनेक्ट हो रहा है";
 "Conservar original" = "मूल रखें";
@@ -510,8 +516,10 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "अपने-आप सिंक नहीं हो सका";
 "Couldn't connect to AniList" = "AniList से कनेक्ट नहीं हो सका";
+"Couldn't connect to MyAnimeList" = "MyAnimeList से कनेक्ट नहीं हो सका";
 "Couldn't install. Double-check the URL and try again." = "इंस्टॉल नहीं हो सका। URL दोबारा जाँचें और फिर कोशिश करें।";
 "Couldn't reach AniList." = "AniList से संपर्क नहीं हो सका।";
+"Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Simkl से संपर्क नहीं हो सका";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt से संपर्क नहीं हो सका। अपना कनेक्शन जाँचें और फिर कोशिश करें।";
 "Cover Image URL" = "कवर इमेज URL";
@@ -600,7 +608,9 @@
 "Director" = "निर्देशक";
 "Disconnect" = "डिस्कनेक्ट करें";
 "Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "AniList को डिस्कनेक्ट करें? दोबारा कनेक्ट करने तक आपकी सूचियाँ एनीमे पेज पर दिखना बंद हो जाएँगी।";
+"Disconnect MyAnimeList? Your progress will stop syncing until you reconnect." = "MyAnimeList को डिस्कनेक्ट करें? दोबारा कनेक्ट करने तक आपकी प्रगति सिंक नहीं होगी।";
 "Disconnect from AniList" = "AniList से डिस्कनेक्ट करें";
+"Disconnect from MyAnimeList" = "MyAnimeList से डिस्कनेक्ट करें";
 "Discover" = "खोजें";
 "Discovery Queue" = "डिस्कवरी क्यू";
 "Diseño de Inicio" = "होम लेआउट";
@@ -758,6 +768,7 @@
 "Finding lyrics" = "बोल खोजे जा रहे हैं";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "एनीमे एपिसोड पूरा करने पर आपकी AniList प्रगति अपडेट होती है। प्रगति केवल आगे बढ़ती है: यह आपकी मौजूदा गिनती कभी कम नहीं करता।";
+"Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have." = "एनीमे एपिसोड पूरा करने पर आपकी MyAnimeList प्रगति अपडेट होती है। प्रगति केवल आगे बढ़ती है: यह आपकी मौजूदा गिनती कभी कम नहीं करता।";
 "Finnish" = "फ़िनिश";
 "Fit" = "फ़िट करें";
 "Flechas" = "तीर";
@@ -837,6 +848,7 @@
 "Harbor dropped {n} suspicious or mismatched result." = "Harbor ने {n} संदिग्ध या बेमेल नतीजा हटा दिया।";
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor ने {n} संदिग्ध या बेमेल नतीजे हटा दिए।";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
+"Harbor keeps your MyAnimeList watch progress in sync." = "Harbor आपकी MyAnimeList वॉच प्रोग्रेस को सिंक रखता है।";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor इस क्रम में उपशीर्षक खोजता है। पसंदीदा भाषा सबसे पहले रखें।";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor हर सेवा पर इस समय मौजूद सबसे लोकप्रिय टाइटल लाता है। जिनकी आपने सदस्यता नहीं ली है, उन्हें बंद कर दें।";
 "Harbor ranking" = "Harbor रैंकिंग";
@@ -1043,6 +1055,7 @@
 "Líneas más definidas y un poco más de impacto visual." = "ज़्यादा शार्प लाइनें और थोड़ी ज़्यादा स्पष्टता।";
 "M3U playlist" = "M3U प्लेलिस्ट";
 "MAL" = "MAL";
+"MAL did not confirm the update." = "MAL did not confirm the update.";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1142,6 +1155,7 @@
 "My channels" = "My channels";
 "My library" = "मेरी लाइब्रेरी";
 "My lists" = "मेरी सूचियाँ";
+"MyAnimeList sync" = "MyAnimeList सिंक";
 "Mystery" = "रहस्य";
 "Márgenes" = "हाशिए";
 "Más leídos del momento" = "Popular reads";
@@ -1257,6 +1271,7 @@
 "Now Playing" = "अभी चल रहा है";
 "Now playing: {label}" = "अभी चल रहा है: {label}";
 "Now watching on AniList" = "अब AniList पर देख रहे हैं";
+"Now watching on MyAnimeList" = "अब MyAnimeList पर देख रहे हैं";
 "Nuevos estrenos de anime" = "नई एनीमे रिलीज़";
 "Nítido (anime y caricaturas)" = "शार्प (एनीमे और कार्टून)";
 "OK" = "OK";
@@ -1297,6 +1312,7 @@
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "AniList फिर से खोलें";
+"Open MyAnimeList again" = "MyAnimeList फिर से खोलें";
 "Open a title and tap Add to Watchlist to save it here." = "कोई शीर्षक खोलें और उसे यहाँ सहेजने के लिए «वॉचलिस्ट में जोड़ें» पर टैप करें।";
 "Open image" = "चित्र खोलें";
 "Open in Safari" = "Open in Safari";
@@ -1305,6 +1321,7 @@
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "शुरू होने पर यह प्रोफ़ाइल खोलें। समय पर आने वाले संकेत बाद में भी दिख सकते हैं। PIN वाली प्रोफ़ाइल डिफ़ॉल्ट नहीं बन सकती।";
 "Opening AniList..." = "AniList खोला जा रहा है...";
+"Opening MyAnimeList..." = "MyAnimeList खोला जा रहा है...";
 "Opening book…" = "Opening book…";
 "Options" = "विकल्प";
 "Orden de addons" = "ऐडऑन क्रम";
@@ -1337,6 +1354,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "पासवर्ड";
 "Paste JSON" = "JSON पेस्ट करें";
+"Paste the code or page URL" = "कोड या पेज URL पेस्ट करें";
 "Paste the manifest URL the configure page gave you" = "कॉन्फ़िगर पेज से मिला मैनिफ़ेस्ट URL पेस्ट करें";
 "Paste the text from AniList" = "AniList से टेक्स्ट पेस्ट करें";
 "Peacock" = "Peacock";
@@ -1900,8 +1918,10 @@
 "Sync subtitles with audio" = "Sync subtitles with audio";
 "Sync watch progress" = "देखने की प्रगति सिंक करें";
 "Synced to AniList" = "AniList के साथ सिंक किया गया";
+"Synced to MyAnimeList" = "MyAnimeList के साथ सिंक किया गया";
 "Syncing subtitles…" = "Syncing subtitles…";
 "Syncing to AniList" = "AniList के साथ सिंक किया जा रहा है";
+"Syncing to MyAnimeList" = "MyAnimeList के साथ सिंक किया जा रहा है";
 "System" = "सिस्टम";
 "System UI" = "सिस्टम UI";
 "S{season} E{episode}" = "S{season} E{episode}";

@@ -335,6 +335,7 @@ struct PlayerView: View {
         .modifier(SimklPlaybackTracking(state: state, session: session, media: media, library: library, resumePending: resumePending))
         .modifier(TraktPlaybackTracking(state: state, session: session, media: media, library: library, resumePending: resumePending))
         .modifier(AniListPlaybackSync(state: state, session: session, media: media, library: library, resumePending: resumePending))
+        .modifier(MyAnimeListPlaybackSync(state: state, session: session, media: media, library: library, resumePending: resumePending))
         .task(id: autoAdvanceReady) {
             guard autoAdvanceReady, let next = adjacent.next else { return }
             // Desktop's check-in: after several episodes in a row with no input, ask before the next one.

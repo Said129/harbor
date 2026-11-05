@@ -13,6 +13,7 @@
 "2nd" = "2nd";
 "30 seconds (default)" = "30 seconds (default)";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below.";
+"A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below.";
 "A continuación" = "Up Next";
 "A short note about this list" = "A short note about this list";
 "A to Z" = "A to Z";
@@ -165,6 +166,7 @@
 "Audio sin etiqueta" = "Audio not labeled";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on AniList" = "Authorize Harbor on AniList";
+"Authorize Harbor on MyAnimeList" = "Authorize Harbor on MyAnimeList";
 "Authorize Harbor on Simkl" = "Authorize Harbor on Simkl";
 "Authorize Harbor on Trakt" = "Authorize Harbor on Trakt";
 "Authorized {when}" = "Authorized {when}";
@@ -244,6 +246,7 @@
 "Brighten dark movies" = "Brighten dark movies";
 "Brightness" = "Brightness";
 "Brillo" = "Brightness";
+"Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept.";
 "Browse" = "Browse";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "Browse addons";
@@ -308,6 +311,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "Chapters";
 "Checking with AniList..." = "Checking with AniList...";
+"Checking with MyAnimeList..." = "Checking with MyAnimeList...";
 "Choose an avatar" = "Choose an avatar";
 "Choose the frame rate the subtitle was authored for." = "Choose the frame rate the subtitle was authored for.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor.";
@@ -374,12 +378,14 @@
 "Confirm remove from history" = "Confirm remove from history";
 "Connect" = "Connect";
 "Connect AniList" = "Connect AniList";
+"Connect MyAnimeList" = "Connect MyAnimeList";
 "Connect Simkl" = "Connect Simkl";
 "Connect TMDB" = "Connect TMDB";
 "Connect Trakt" = "Connect Trakt";
 "Connected" = "Connected";
 "Connected as {username}" = "Connected as {username}";
 "Connected to AniList" = "Connected to AniList";
+"Connected to MyAnimeList" = "Connected to MyAnimeList";
 "Connected to Simkl" = "Connected to Simkl";
 "Connecting" = "Connecting";
 "Conservar original" = "Keep original";
@@ -427,8 +433,10 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Couldn't auto-sync";
 "Couldn't connect to AniList" = "Couldn't connect to AniList";
+"Couldn't connect to MyAnimeList" = "Couldn't connect to MyAnimeList";
 "Couldn't install. Double-check the URL and try again." = "Couldn't install. Double-check the URL and try again.";
 "Couldn't reach AniList." = "Couldn't reach AniList.";
+"Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Couldn't reach Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Couldn't reach Trakt. Check your connection and try again.";
 "Cover Image URL" = "Cover Image URL";
@@ -502,7 +510,9 @@
 "Director" = "Director";
 "Disconnect" = "Disconnect";
 "Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect.";
+"Disconnect MyAnimeList? Your progress will stop syncing until you reconnect." = "Disconnect MyAnimeList? Your progress will stop syncing until you reconnect.";
 "Disconnect from AniList" = "Disconnect from AniList";
+"Disconnect from MyAnimeList" = "Disconnect from MyAnimeList";
 "Discover" = "Discover";
 "Diseño de Inicio" = "Home layout";
 "Dismiss" = "Dismiss";
@@ -635,6 +645,7 @@
 "Finding lyrics" = "Finding lyrics";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have.";
+"Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have." = "Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have.";
 "Fit" = "Fit";
 "Flechas" = "Arrows";
 "Focus" = "Focus";
@@ -697,6 +708,7 @@
 "Harbor dropped {n} suspicious or mismatched result." = "Harbor dropped {n} suspicious or mismatched result.";
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor dropped {n} suspicious or mismatched results.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
+"Harbor keeps your MyAnimeList watch progress in sync." = "Harbor keeps your MyAnimeList watch progress in sync.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor looks for subtitles in this order. Put your preferred language first.";
 "Harbor ranking" = "Harbor ranking";
 "Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes.";
@@ -871,6 +883,7 @@
 "Lyrics later" = "Lyrics later";
 "Líneas más definidas y un poco más de impacto visual." = "Sharper lines and a little more pop.";
 "M3U playlist" = "M3U playlist";
+"MAL did not confirm the update." = "MAL did not confirm the update.";
 "Magnet stream" = "Magnet stream";
 "Make it yours" = "Make it yours";
 "Manage" = "Manage";
@@ -959,6 +972,7 @@
 "My channels" = "My channels";
 "My library" = "My library";
 "My lists" = "My lists";
+"MyAnimeList sync" = "MyAnimeList sync";
 "Mystery" = "Mystery";
 "Márgenes" = "Margins";
 "Más leídos del momento" = "Popular reads";
@@ -1051,6 +1065,7 @@
 "Now Playing" = "Now Playing";
 "Now playing: {label}" = "Now playing: {label}";
 "Now watching on AniList" = "Now watching on AniList";
+"Now watching on MyAnimeList" = "Now watching on MyAnimeList";
 "Nuevos estrenos de anime" = "New Anime Releases";
 "Nítido (anime y caricaturas)" = "Crisp (anime & cartoons)";
 "OK" = "OK";
@@ -1085,6 +1100,7 @@
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "Open AniList again";
+"Open MyAnimeList again" = "Open MyAnimeList again";
 "Open a title and tap Add to Watchlist to save it here." = "Open a title and tap Add to Watchlist to save it here.";
 "Open image" = "Open image";
 "Open in Safari" = "Open in Safari";
@@ -1093,6 +1109,7 @@
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default.";
 "Opening AniList..." = "Opening AniList...";
+"Opening MyAnimeList..." = "Opening MyAnimeList...";
 "Opening book…" = "Opening book…";
 "Options" = "Options";
 "Orden de addons" = "Addon order";
@@ -1117,6 +1134,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Password";
 "Paste JSON" = "Paste JSON";
+"Paste the code or page URL" = "Paste the code or page URL";
 "Paste the manifest URL the configure page gave you" = "Paste the manifest URL the configure page gave you";
 "Paste the text from AniList" = "Paste the text from AniList";
 "Peligro" = "Danger";
@@ -1599,8 +1617,10 @@
 "Sync subtitles with audio" = "Sync subtitles with audio";
 "Sync watch progress" = "Sync watch progress";
 "Synced to AniList" = "Synced to AniList";
+"Synced to MyAnimeList" = "Synced to MyAnimeList";
 "Syncing subtitles…" = "Syncing subtitles…";
 "Syncing to AniList" = "Syncing to AniList";
+"Syncing to MyAnimeList" = "Syncing to MyAnimeList";
 "System" = "System";
 "System UI" = "System UI";
 "S{season} E{episode}" = "S{season} E{episode}";

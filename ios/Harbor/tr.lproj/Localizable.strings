@@ -22,6 +22,7 @@
 "45s" = "45 sn";
 "4:3" = "4:3";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "AniList'te bir tarayıcı sekmesi açıldı. Harbor'a orada izin verin, ardından gösterilen metni kopyalayıp aşağıya yapıştırın.";
+"A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "MyAnimeList'te bir tarayıcı sekmesi açıldı. Harbor'a orada izin verin, ardından kodu veya sayfa URL'sini kopyalayıp aşağıya yapıştırın.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio protokolü için bir istemci. Kurulumu iki dakika sürer ve çoğu adım isteğe bağlıdır. Her anahtarın kontrolü sizde kalır.";
 "A continuación" = "Sıradaki";
 "A short note about this list" = "A short note about this list";
@@ -193,6 +194,7 @@
 "Audio sin etiqueta" = "Ses bilgisi belirtilmemiş";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on AniList" = "Harbor'ı AniList'te yetkilendir";
+"Authorize Harbor on MyAnimeList" = "Harbor'ı MyAnimeList'te yetkilendir";
 "Authorize Harbor on Simkl" = "Harbor'ı Simkl'de yetkilendir";
 "Authorize Harbor on Trakt" = "Harbor'ı Trakt'ta yetkilendir";
 "Authorized {when}" = "{when} yetkilendirildi";
@@ -302,6 +304,7 @@
 "Brightness" = "Parlaklık";
 "Brillo" = "Parlaklık";
 "Bring in your library" = "Kütüphanenizi aktarın";
+"Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Anime listenizi Harbor'a getirin ve izlerken bölüm sayınızı güncelleyin. Mevcut ilerlemeniz korunur.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Karşılama akışını yeniden başlatmadan, kapattığınız küçük uygulama içi ipuçlarını geri getirir.";
 "BritBox" = "BritBox";
 "Browse" = "Göz at";
@@ -377,6 +380,7 @@
 "Chapters" = "Bölümler";
 "Check it works" = "Çalıştığını denetle";
 "Checking with AniList..." = "AniList ile kontrol ediliyor...";
+"Checking with MyAnimeList..." = "MyAnimeList ile kontrol ediliyor...";
 "Checking…" = "Denetleniyor…";
 "Checksum did not match the manifest." = "Sağlama toplamı manifest ile eşleşmedi.";
 "Chinese" = "Çince";
@@ -454,12 +458,14 @@
 "Confirm your current PIN, then pick a new one." = "Geçerli PIN'inizi doğrulayın, ardından yeni bir PIN seçin.";
 "Connect" = "Bağlan";
 "Connect AniList" = "AniList'i bağla";
+"Connect MyAnimeList" = "MyAnimeList'e bağlan";
 "Connect Simkl" = "Simkl'ı bağla";
 "Connect TMDB" = "TMDB'yi bağla";
 "Connect Trakt" = "Trakt'ı bağla";
 "Connected" = "Bağlı";
 "Connected as {username}" = "{username} olarak bağlandı";
 "Connected to AniList" = "AniList'e bağlandı";
+"Connected to MyAnimeList" = "MyAnimeList'e bağlandı";
 "Connected to Simkl" = "Simkl'e bağlandı";
 "Connecting" = "Bağlanıyor";
 "Conservar original" = "Özgün biçimi koru";
@@ -510,8 +516,10 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Otomatik eşitlenemedi";
 "Couldn't connect to AniList" = "AniList'e bağlanılamadı";
+"Couldn't connect to MyAnimeList" = "MyAnimeList'e bağlanılamadı";
 "Couldn't install. Double-check the URL and try again." = "Yüklenemedi. URL'yi tekrar kontrol edip yeniden deneyin.";
 "Couldn't reach AniList." = "AniList'e ulaşılamadı.";
+"Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Simkl'a ulaşılamadı";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt'a erişilemedi. Bağlantınızı kontrol edip tekrar deneyin.";
 "Cover Image URL" = "Kapak Görseli URL'si";
@@ -600,7 +608,9 @@
 "Director" = "Yönetmen";
 "Disconnect" = "Bağlantıyı kes";
 "Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "AniList bağlantısı kesilsin mi? Yeniden bağlanana kadar listeleriniz Anime sayfasında gösterilmeyecek.";
+"Disconnect MyAnimeList? Your progress will stop syncing until you reconnect." = "MyAnimeList bağlantısı kesilsin mi? Yeniden bağlanana kadar ilerlemeniz eşitlenmez.";
 "Disconnect from AniList" = "AniList bağlantısını kes";
+"Disconnect from MyAnimeList" = "MyAnimeList bağlantısını kes";
 "Discover" = "Keşfet";
 "Discovery Queue" = "Keşif Kuyruğu";
 "Diseño de Inicio" = "Ana sayfa düzeni";
@@ -758,6 +768,7 @@
 "Finding lyrics" = "Şarkı sözleri aranıyor";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Bir anime bölümünü bitirdiğinizde AniList ilerlemeniz güncellenir. Yalnızca ileriye doğru işler; mevcut sayınızı asla düşürmez.";
+"Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have." = "Bir anime bölümünü bitirdiğinizde MyAnimeList ilerlemeniz güncellenir. Yalnızca ileri yönde çalışır; kaydedilmiş bölüm sayınızı asla düşürmez.";
 "Finnish" = "Fince";
 "Fit" = "Sığdır";
 "Flechas" = "Ok tuşları";
@@ -837,6 +848,7 @@
 "Harbor dropped {n} suspicious or mismatched result." = "Harbor, şüpheli veya eşleşmeyen {n} sonucu eledi.";
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor, şüpheli veya eşleşmeyen {n} sonucu eledi.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
+"Harbor keeps your MyAnimeList watch progress in sync." = "Harbor, MyAnimeList izleme ilerlemenizi senkronize tutar.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor altyazıları bu sırayla arar. Tercih ettiğiniz dili ilk sıraya koyun.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor, her hizmette şu anda bulunan en popüler yapımları getirir. Abone olmadığınız hizmetleri kapatın.";
 "Harbor ranking" = "Harbor sıralaması";
@@ -1043,6 +1055,7 @@
 "Líneas más definidas y un poco más de impacto visual." = "Daha keskin çizgiler ve biraz daha canlı bir görünüm sunar.";
 "M3U playlist" = "M3U oynatma listesi";
 "MAL" = "MAL";
+"MAL did not confirm the update." = "MAL did not confirm the update.";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1142,6 +1155,7 @@
 "My channels" = "My channels";
 "My library" = "Kitaplığım";
 "My lists" = "Listelerim";
+"MyAnimeList sync" = "MyAnimeList eşitlemesi";
 "Mystery" = "Gizem";
 "Márgenes" = "Kenar boşlukları";
 "Más leídos del momento" = "Popular reads";
@@ -1257,6 +1271,7 @@
 "Now Playing" = "Şimdi oynatılıyor";
 "Now playing: {label}" = "Şimdi oynatılıyor: {label}";
 "Now watching on AniList" = "AniList'te izleniyor";
+"Now watching on MyAnimeList" = "MyAnimeList'te izleniyor";
 "Nuevos estrenos de anime" = "Yeni Çıkan Animeler";
 "Nítido (anime y caricaturas)" = "Net (anime ve çizgi film)";
 "OK" = "OK";
@@ -1297,6 +1312,7 @@
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "AniList'i yeniden aç";
+"Open MyAnimeList again" = "MyAnimeList'i yeniden aç";
 "Open a title and tap Add to Watchlist to save it here." = "Bir başlığı açıp buraya kaydetmek için «İzleme listesine ekle» seçeneğine dokun.";
 "Open image" = "Görseli aç";
 "Open in Safari" = "Open in Safari";
@@ -1305,6 +1321,7 @@
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Başlangıçta bu profili açın. Süreli profil istemleri daha sonra yine görünebilir. PIN korumalı profiller varsayılan yapılamaz.";
 "Opening AniList..." = "AniList açılıyor...";
+"Opening MyAnimeList..." = "MyAnimeList açılıyor...";
 "Opening book…" = "Opening book…";
 "Options" = "Seçenekler";
 "Orden de addons" = "Eklenti sırası";
@@ -1337,6 +1354,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Parola";
 "Paste JSON" = "JSON Yapıştır";
+"Paste the code or page URL" = "Kodu veya sayfa URL'sini yapıştırın";
 "Paste the manifest URL the configure page gave you" = "Yapılandırma sayfasının verdiği manifest URL'sini yapıştırın";
 "Paste the text from AniList" = "AniList'teki metni yapıştırın";
 "Peacock" = "Peacock";
@@ -1900,8 +1918,10 @@
 "Sync subtitles with audio" = "Sync subtitles with audio";
 "Sync watch progress" = "İzleme ilerlemesini eşitle";
 "Synced to AniList" = "AniList ile eşitlendi";
+"Synced to MyAnimeList" = "MyAnimeList ile eşitlendi";
 "Syncing subtitles…" = "Syncing subtitles…";
 "Syncing to AniList" = "AniList ile eşitleniyor";
+"Syncing to MyAnimeList" = "MyAnimeList ile eşitleniyor";
 "System" = "Sistem";
 "System UI" = "Sistem arayüzü";
 "S{season} E{episode}" = "S{season} B{episode}";

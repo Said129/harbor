@@ -146,6 +146,17 @@ actor AnimeFranchiseService {
     /// Desktop's `kitsuToAnilist` for the AniList tracker: the ARM relation first, then the AniZip mapping.
     func anilistMediaID(kitsu: Int) async -> Int? { await anilistID(kitsu).id }
 
+    /// Desktop's `kitsuToMal`: the ARM relation, then the AniZip mapping.
+    func malMediaID(kitsu: Int) async -> Int? { await malID(source: "kitsu", id: kitsu) }
+    /// Desktop's `anilistToMal` before its AniList `idMal` fallback.
+    func malMediaID(anilist: Int) async -> Int? { await malID(source: "anilist", id: anilist) }
+
+    private func malID(source: String, id: Int) async -> Int? {
+        if let arm = try? await response(.relations(source: source, id: id)), let mal = arm["mal"].integer, mal > 0 { return mal }
+        if let mapping = try? await response(.mapping("\(source):\(id)")), let mal = mapping["mappings"]["mal_id"].integer, mal > 0 { return mal }
+        return nil
+    }
+
     private func anilistID(_ kitsu: Int) async -> (id: Int?, complete: Bool) {
         var complete = true
         do {

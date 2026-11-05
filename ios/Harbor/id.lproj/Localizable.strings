@@ -22,6 +22,7 @@
 "45s" = "45 dtk";
 "4:3" = "4:3";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Tab browser dibuka di AniList. Setujui Harbor di sana, lalu salin teks yang ditampilkan dan tempelkan di bawah.";
+"A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Tab browser dibuka di MyAnimeList. Setujui Harbor di sana, lalu salin kode atau URL halaman dan tempelkan di bawah.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Klien untuk protokol Stremio. Hanya perlu dua menit untuk disiapkan; sebagian besar bersifat opsional. Anda tetap memegang kendali atas setiap kunci.";
 "A continuación" = "Berikutnya";
 "A short note about this list" = "A short note about this list";
@@ -193,6 +194,7 @@
 "Audio sin etiqueta" = "Audio tanpa label";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on AniList" = "Izinkan Harbor di AniList";
+"Authorize Harbor on MyAnimeList" = "Izinkan Harbor di MyAnimeList";
 "Authorize Harbor on Simkl" = "Izinkan Harbor di Simkl";
 "Authorize Harbor on Trakt" = "Izinkan Harbor di Trakt";
 "Authorized {when}" = "Diizinkan {when}";
@@ -302,6 +304,7 @@
 "Brightness" = "Kecerahan";
 "Brillo" = "Kecerahan";
 "Bring in your library" = "Impor perpustakaan Anda";
+"Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Tampilkan daftar anime Anda di Harbor dan perbarui jumlah episode saat menonton. Progres yang sudah ada tetap tersimpan.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Menampilkan kembali tips singkat dalam aplikasi yang telah Anda tutup tanpa mengulangi alur sambutan.";
 "BritBox" = "BritBox";
 "Browse" = "Jelajahi";
@@ -377,6 +380,7 @@
 "Chapters" = "Bab";
 "Check it works" = "Periksa apakah berfungsi";
 "Checking with AniList..." = "Memeriksa di AniList...";
+"Checking with MyAnimeList..." = "Memeriksa di MyAnimeList...";
 "Checking…" = "Memeriksa…";
 "Checksum did not match the manifest." = "Checksum tidak cocok dengan manifest.";
 "Chinese" = "Bahasa Tionghoa";
@@ -454,12 +458,14 @@
 "Confirm your current PIN, then pick a new one." = "Konfirmasikan PIN saat ini, lalu pilih PIN baru.";
 "Connect" = "Hubungkan";
 "Connect AniList" = "Hubungkan AniList";
+"Connect MyAnimeList" = "Hubungkan MyAnimeList";
 "Connect Simkl" = "Hubungkan Simkl";
 "Connect TMDB" = "Hubungkan TMDB";
 "Connect Trakt" = "Hubungkan Trakt";
 "Connected" = "Terhubung";
 "Connected as {username}" = "Terhubung sebagai {username}";
 "Connected to AniList" = "Terhubung ke AniList";
+"Connected to MyAnimeList" = "Terhubung ke MyAnimeList";
 "Connected to Simkl" = "Terhubung ke Simkl";
 "Connecting" = "Menghubungkan";
 "Conservar original" = "Pertahankan yang asli";
@@ -510,8 +516,10 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Tidak dapat menyinkronkan otomatis";
 "Couldn't connect to AniList" = "Tidak dapat terhubung ke AniList";
+"Couldn't connect to MyAnimeList" = "Tidak dapat terhubung ke MyAnimeList";
 "Couldn't install. Double-check the URL and try again." = "Tidak dapat menginstal. Periksa kembali URL lalu coba lagi.";
 "Couldn't reach AniList." = "Tidak dapat menghubungi AniList.";
+"Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Tidak dapat menghubungi Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Tidak dapat menghubungi Trakt. Periksa koneksi Anda lalu coba lagi.";
 "Cover Image URL" = "URL Gambar Sampul";
@@ -600,7 +608,9 @@
 "Director" = "Sutradara";
 "Disconnect" = "Putuskan koneksi";
 "Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "Putuskan koneksi AniList? Daftar Anda tidak akan ditampilkan di halaman Anime sampai Anda menghubungkannya kembali.";
+"Disconnect MyAnimeList? Your progress will stop syncing until you reconnect." = "Putuskan koneksi MyAnimeList? Progres Anda tidak akan disinkronkan sampai Anda menghubungkannya kembali.";
 "Disconnect from AniList" = "Putuskan koneksi dari AniList";
+"Disconnect from MyAnimeList" = "Putuskan koneksi dari MyAnimeList";
 "Discover" = "Jelajahi";
 "Discovery Queue" = "Antrean Jelajah";
 "Diseño de Inicio" = "Tata letak Beranda";
@@ -758,6 +768,7 @@
 "Finding lyrics" = "Mencari lirik";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Menyelesaikan episode anime akan memperbarui progres AniList Anda. Hanya bertambah: jumlah yang sudah ada tidak akan pernah dikurangi.";
+"Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have." = "Menyelesaikan episode anime akan memperbarui progres MyAnimeList Anda. Hanya bertambah: jumlah yang sudah ada tidak akan pernah dikurangi.";
 "Finnish" = "Bahasa Finlandia";
 "Fit" = "Sesuaikan";
 "Flechas" = "Panah";
@@ -837,6 +848,7 @@
 "Harbor dropped {n} suspicious or mismatched result." = "Harbor menyingkirkan {n} hasil yang mencurigakan atau tidak cocok.";
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor menyingkirkan {n} hasil yang mencurigakan atau tidak cocok.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
+"Harbor keeps your MyAnimeList watch progress in sync." = "Harbor menjaga progres tontonan MyAnimeList Anda tetap tersinkron.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor mencari subtitle dalam urutan ini. Tempatkan bahasa pilihan Anda di urutan pertama.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor mengambil judul terpopuler yang tersedia di setiap layanan saat ini. Nonaktifkan layanan yang tidak Anda langgani.";
 "Harbor ranking" = "Peringkat Harbor";
@@ -1043,6 +1055,7 @@
 "Líneas más definidas y un poco más de impacto visual." = "Garis lebih tajam dan tampilan sedikit lebih menonjol.";
 "M3U playlist" = "Playlist M3U";
 "MAL" = "MAL";
+"MAL did not confirm the update." = "MAL did not confirm the update.";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1142,6 +1155,7 @@
 "My channels" = "My channels";
 "My library" = "Perpustakaan saya";
 "My lists" = "Daftar saya";
+"MyAnimeList sync" = "Sinkronisasi MyAnimeList";
 "Mystery" = "Misteri";
 "Márgenes" = "Margin";
 "Más leídos del momento" = "Popular reads";
@@ -1257,6 +1271,7 @@
 "Now Playing" = "Sedang Diputar";
 "Now playing: {label}" = "Sedang diputar: {label}";
 "Now watching on AniList" = "Sedang menonton di AniList";
+"Now watching on MyAnimeList" = "Sedang menonton di MyAnimeList";
 "Nuevos estrenos de anime" = "Rilisan Anime Baru";
 "Nítido (anime y caricaturas)" = "Tajam (anime & kartun)";
 "OK" = "OK";
@@ -1297,6 +1312,7 @@
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "Buka AniList lagi";
+"Open MyAnimeList again" = "Buka MyAnimeList lagi";
 "Open a title and tap Add to Watchlist to save it here." = "Buka judul dan ketuk «Tambah ke Daftar Tontonan» untuk menyimpannya di sini.";
 "Open image" = "Buka gambar";
 "Open in Safari" = "Open in Safari";
@@ -1305,6 +1321,7 @@
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Buka profil ini saat aplikasi dimulai. Permintaan terjadwal tetap dapat muncul nanti. Profil dengan PIN tidak dapat dijadikan default.";
 "Opening AniList..." = "Membuka AniList...";
+"Opening MyAnimeList..." = "Membuka MyAnimeList...";
 "Opening book…" = "Opening book…";
 "Options" = "Opsi";
 "Orden de addons" = "Urutan addon";
@@ -1337,6 +1354,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Kata Sandi";
 "Paste JSON" = "Tempel JSON";
+"Paste the code or page URL" = "Tempel kode atau URL halaman";
 "Paste the manifest URL the configure page gave you" = "Tempel URL manifes yang diberikan halaman konfigurasi";
 "Paste the text from AniList" = "Tempel teks dari AniList";
 "Peacock" = "Peacock";
@@ -1900,8 +1918,10 @@
 "Sync subtitles with audio" = "Sync subtitles with audio";
 "Sync watch progress" = "Sinkronkan progres tontonan";
 "Synced to AniList" = "Tersinkron ke AniList";
+"Synced to MyAnimeList" = "Tersinkron ke MyAnimeList";
 "Syncing subtitles…" = "Syncing subtitles…";
 "Syncing to AniList" = "Menyinkronkan ke AniList";
+"Syncing to MyAnimeList" = "Menyinkronkan ke MyAnimeList";
 "System" = "Sistem";
 "System UI" = "UI Sistem";
 "S{season} E{episode}" = "S{season} E{episode}";

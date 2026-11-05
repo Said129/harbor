@@ -22,6 +22,7 @@
 "45s" = "45 giây";
 "4:3" = "4:3";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Một thẻ trình duyệt đã mở trên AniList. Hãy phê duyệt Harbor tại đó, rồi sao chép nội dung hiển thị và dán vào bên dưới.";
+"A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Một thẻ trình duyệt đã mở trên MyAnimeList. Hãy phê duyệt Harbor tại đó, rồi sao chép mã hoặc URL của trang và dán vào bên dưới.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Ứng dụng khách cho giao thức Stremio. Chỉ mất hai phút để thiết lập; hầu hết đều không bắt buộc. Bạn luôn toàn quyền kiểm soát mọi khóa.";
 "A continuación" = "Tiếp theo";
 "A short note about this list" = "A short note about this list";
@@ -193,6 +194,7 @@
 "Audio sin etiqueta" = "Âm thanh không có nhãn";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on AniList" = "Ủy quyền Harbor trên AniList";
+"Authorize Harbor on MyAnimeList" = "Ủy quyền Harbor trên MyAnimeList";
 "Authorize Harbor on Simkl" = "Ủy quyền Harbor trên Simkl";
 "Authorize Harbor on Trakt" = "Ủy quyền Harbor trên Trakt";
 "Authorized {when}" = "Đã ủy quyền {when}";
@@ -302,6 +304,7 @@
 "Brightness" = "Độ sáng";
 "Brillo" = "Độ sáng";
 "Bring in your library" = "Nhập thư viện của bạn";
+"Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Đưa danh sách anime vào Harbor và cập nhật số tập khi xem. Tiến độ hiện có được giữ nguyên.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Hiển thị lại các mẹo nhỏ trong ứng dụng mà bạn đã ẩn mà không cần thực hiện lại quy trình chào mừng.";
 "BritBox" = "BritBox";
 "Browse" = "Duyệt";
@@ -377,6 +380,7 @@
 "Chapters" = "Các chương";
 "Check it works" = "Kiểm tra hoạt động";
 "Checking with AniList..." = "Đang kiểm tra với AniList...";
+"Checking with MyAnimeList..." = "Đang kiểm tra với MyAnimeList...";
 "Checking…" = "Đang kiểm tra…";
 "Checksum did not match the manifest." = "Tổng kiểm tra không khớp với manifest.";
 "Chinese" = "Tiếng Trung";
@@ -454,12 +458,14 @@
 "Confirm your current PIN, then pick a new one." = "Xác nhận mã PIN hiện tại, rồi chọn mã mới.";
 "Connect" = "Kết nối";
 "Connect AniList" = "Kết nối AniList";
+"Connect MyAnimeList" = "Kết nối MyAnimeList";
 "Connect Simkl" = "Kết nối Simkl";
 "Connect TMDB" = "Kết nối TMDB";
 "Connect Trakt" = "Kết nối Trakt";
 "Connected" = "Đã kết nối";
 "Connected as {username}" = "Đã kết nối với tên {username}";
 "Connected to AniList" = "Đã kết nối với AniList";
+"Connected to MyAnimeList" = "Đã kết nối với MyAnimeList";
 "Connected to Simkl" = "Đã kết nối với Simkl";
 "Connecting" = "Đang kết nối";
 "Conservar original" = "Giữ nguyên bản";
@@ -510,8 +516,10 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Không thể tự động đồng bộ";
 "Couldn't connect to AniList" = "Không thể kết nối với AniList";
+"Couldn't connect to MyAnimeList" = "Không thể kết nối với MyAnimeList";
 "Couldn't install. Double-check the URL and try again." = "Không thể cài đặt. Hãy kiểm tra lại URL rồi thử lại.";
 "Couldn't reach AniList." = "Không thể kết nối với AniList.";
+"Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Không thể kết nối với Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Không thể kết nối với Trakt. Hãy kiểm tra kết nối rồi thử lại.";
 "Cover Image URL" = "URL ảnh bìa";
@@ -600,7 +608,9 @@
 "Director" = "Đạo diễn";
 "Disconnect" = "Ngắt kết nối";
 "Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "Ngắt kết nối AniList? Danh sách của bạn sẽ không còn hiển thị trên trang Anime cho đến khi bạn kết nối lại.";
+"Disconnect MyAnimeList? Your progress will stop syncing until you reconnect." = "Ngắt kết nối MyAnimeList? Tiến trình của bạn sẽ ngừng đồng bộ cho đến khi kết nối lại.";
 "Disconnect from AniList" = "Ngắt kết nối AniList";
+"Disconnect from MyAnimeList" = "Ngắt kết nối khỏi MyAnimeList";
 "Discover" = "Khám phá";
 "Discovery Queue" = "Hàng chờ khám phá";
 "Diseño de Inicio" = "Bố cục trang chủ";
@@ -758,6 +768,7 @@
 "Finding lyrics" = "Đang tìm lời bài hát";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Khi xem xong một tập anime, tiến độ AniList của bạn sẽ được cập nhật. Chỉ tăng tiến độ: số tập hiện có sẽ không bao giờ bị giảm.";
+"Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have." = "Xem xong một tập anime sẽ cập nhật tiến trình MyAnimeList. Chỉ tăng: không bao giờ giảm số tập hiện có.";
 "Finnish" = "Tiếng Phần Lan";
 "Fit" = "Vừa khung";
 "Flechas" = "Phím mũi tên";
@@ -837,6 +848,7 @@
 "Harbor dropped {n} suspicious or mismatched result." = "Harbor đã loại {n} kết quả đáng ngờ hoặc không khớp.";
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor đã loại {n} kết quả đáng ngờ hoặc không khớp.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
+"Harbor keeps your MyAnimeList watch progress in sync." = "Harbor luôn đồng bộ tiến độ xem trên MyAnimeList của bạn.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor tìm phụ đề theo thứ tự này. Đặt ngôn ngữ bạn muốn ở đầu.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor lấy các tựa phim phổ biến nhất hiện có trên từng dịch vụ. Tắt những dịch vụ bạn không đăng ký.";
 "Harbor ranking" = "Xếp hạng của Harbor";
@@ -1043,6 +1055,7 @@
 "Líneas más definidas y un poco más de impacto visual." = "Đường nét rõ hơn và hình ảnh nổi bật hơn một chút.";
 "M3U playlist" = "Danh sách phát M3U";
 "MAL" = "MAL";
+"MAL did not confirm the update." = "MAL did not confirm the update.";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1142,6 +1155,7 @@
 "My channels" = "My channels";
 "My library" = "Thư viện của tôi";
 "My lists" = "Danh sách của tôi";
+"MyAnimeList sync" = "Đồng bộ MyAnimeList";
 "Mystery" = "Bí ẩn";
 "Márgenes" = "Lề";
 "Más leídos del momento" = "Popular reads";
@@ -1257,6 +1271,7 @@
 "Now Playing" = "Đang phát";
 "Now playing: {label}" = "Đang phát: {label}";
 "Now watching on AniList" = "Đang xem trên AniList";
+"Now watching on MyAnimeList" = "Đang xem trên MyAnimeList";
 "Nuevos estrenos de anime" = "Anime mới phát hành";
 "Nítido (anime y caricaturas)" = "Sắc nét (anime & hoạt hình)";
 "OK" = "OK";
@@ -1297,6 +1312,7 @@
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "Mở lại AniList";
+"Open MyAnimeList again" = "Mở lại MyAnimeList";
 "Open a title and tap Add to Watchlist to save it here." = "Mở một tựa phim và chạm vào «Thêm vào danh sách xem» để lưu tại đây.";
 "Open image" = "Mở ảnh";
 "Open in Safari" = "Open in Safari";
@@ -1305,6 +1321,7 @@
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Mở hồ sơ này khi khởi động. Lời nhắc theo thời gian vẫn có thể xuất hiện sau đó. Không thể đặt hồ sơ có mã PIN làm mặc định.";
 "Opening AniList..." = "Đang mở AniList...";
+"Opening MyAnimeList..." = "Đang mở MyAnimeList...";
 "Opening book…" = "Opening book…";
 "Options" = "Tùy chọn";
 "Orden de addons" = "Thứ tự tiện ích bổ sung";
@@ -1337,6 +1354,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Mật khẩu";
 "Paste JSON" = "Dán JSON";
+"Paste the code or page URL" = "Dán mã hoặc URL trang";
 "Paste the manifest URL the configure page gave you" = "Dán URL manifest do trang cấu hình cung cấp";
 "Paste the text from AniList" = "Dán văn bản từ AniList";
 "Peacock" = "Peacock";
@@ -1900,8 +1918,10 @@
 "Sync subtitles with audio" = "Sync subtitles with audio";
 "Sync watch progress" = "Đồng bộ tiến độ xem";
 "Synced to AniList" = "Đã đồng bộ với AniList";
+"Synced to MyAnimeList" = "Đã đồng bộ với MyAnimeList";
 "Syncing subtitles…" = "Syncing subtitles…";
 "Syncing to AniList" = "Đang đồng bộ với AniList";
+"Syncing to MyAnimeList" = "Đang đồng bộ với MyAnimeList";
 "System" = "Hệ thống";
 "System UI" = "Giao diện hệ thống";
 "S{season} E{episode}" = "M{season} T{episode}";

@@ -22,6 +22,7 @@
 "45s" = "45 秒";
 "4:3" = "4:3";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "已在浏览器标签页中打开 AniList。请在那里授权 Harbor，然后复制显示的文本并粘贴到下方。";
+"A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "已在浏览器标签页中打开 MyAnimeList。请在那里授权 Harbor，然后复制代码或页面 URL 并粘贴到下方。";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 协议客户端。两分钟即可完成设置，其中大部分为可选项。所有密钥均由你掌控。";
 "A continuación" = "接下来播放";
 "A short note about this list" = "A short note about this list";
@@ -193,6 +194,7 @@
 "Audio sin etiqueta" = "音频未标注";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on AniList" = "在 AniList 上授权 Harbor";
+"Authorize Harbor on MyAnimeList" = "在 MyAnimeList 上授权 Harbor";
 "Authorize Harbor on Simkl" = "在 Simkl 上授权 Harbor";
 "Authorize Harbor on Trakt" = "在 Trakt 上授权 Harbor";
 "Authorized {when}" = "已于 {when} 授权";
@@ -302,6 +304,7 @@
 "Brightness" = "亮度";
 "Brillo" = "亮度";
 "Bring in your library" = "导入你的媒体库";
+"Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "将动画列表导入 Harbor，并在观看时更新已看集数。现有进度会保留。";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "恢复已忽略的应用内小提示，无需重新进行欢迎流程。";
 "BritBox" = "BritBox";
 "Browse" = "浏览";
@@ -377,6 +380,7 @@
 "Chapters" = "章节";
 "Check it works" = "检查是否可用";
 "Checking with AniList..." = "正在通过 AniList 检查…";
+"Checking with MyAnimeList..." = "正在通过 MyAnimeList 检查…";
 "Checking…" = "正在检查…";
 "Checksum did not match the manifest." = "校验和与清单不匹配。";
 "Chinese" = "中文";
@@ -454,12 +458,14 @@
 "Confirm your current PIN, then pick a new one." = "确认当前 PIN，然后设置新 PIN。";
 "Connect" = "连接";
 "Connect AniList" = "连接 AniList";
+"Connect MyAnimeList" = "连接 MyAnimeList";
 "Connect Simkl" = "连接 Simkl";
 "Connect TMDB" = "连接 TMDB";
 "Connect Trakt" = "连接 Trakt";
 "Connected" = "已连接";
 "Connected as {username}" = "已以 {username} 的身份连接";
 "Connected to AniList" = "已连接到 AniList";
+"Connected to MyAnimeList" = "已连接到 MyAnimeList";
 "Connected to Simkl" = "已连接到 Simkl";
 "Connecting" = "正在连接";
 "Conservar original" = "保留原样";
@@ -510,8 +516,10 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "无法自动同步";
 "Couldn't connect to AniList" = "无法连接到 AniList";
+"Couldn't connect to MyAnimeList" = "无法连接到 MyAnimeList";
 "Couldn't install. Double-check the URL and try again." = "无法安装。请仔细检查 URL 后重试。";
 "Couldn't reach AniList." = "无法连接 AniList。";
+"Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "无法连接 Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "无法连接到 Trakt。请检查网络连接后重试。";
 "Cover Image URL" = "封面图片 URL";
@@ -600,7 +608,9 @@
 "Director" = "导演";
 "Disconnect" = "断开连接";
 "Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "要断开 AniList 连接吗？重新连接前，您的列表将不再显示在动漫页面。";
+"Disconnect MyAnimeList? Your progress will stop syncing until you reconnect." = "要断开与 MyAnimeList 的连接吗？重新连接前，观看进度将停止同步。";
 "Disconnect from AniList" = "断开 AniList 连接";
+"Disconnect from MyAnimeList" = "断开与 MyAnimeList 的连接";
 "Discover" = "发现";
 "Discovery Queue" = "探索队列";
 "Diseño de Inicio" = "首页布局";
@@ -758,6 +768,7 @@
 "Finding lyrics" = "正在查找歌词";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "看完一集动漫后会更新你的 AniList 进度。只增不减：绝不会降低已有集数。";
+"Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have." = "看完一集动漫后会更新你的 MyAnimeList 进度。只增不减：绝不会降低已有集数。";
 "Finnish" = "芬兰语";
 "Fit" = "适应";
 "Flechas" = "箭头";
@@ -837,6 +848,7 @@
 "Harbor dropped {n} suspicious or mismatched result." = "Harbor 已剔除 {n} 个可疑或不匹配的结果。";
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor 已剔除 {n} 个可疑或不匹配的结果。";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
+"Harbor keeps your MyAnimeList watch progress in sync." = "Harbor 会同步你的 MyAnimeList 观看进度。";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor 按此顺序查找字幕。请将首选语言放在最前面。";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor 会获取各服务当前最热门的内容。请关闭未订阅的服务。";
 "Harbor ranking" = "Harbor 排序";
@@ -1043,6 +1055,7 @@
 "Líneas más definidas y un poco más de impacto visual." = "线条更锐利，画面更有活力。";
 "M3U playlist" = "M3U 播放列表";
 "MAL" = "MAL";
+"MAL did not confirm the update." = "MAL did not confirm the update.";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1142,6 +1155,7 @@
 "My channels" = "My channels";
 "My library" = "我的媒体库";
 "My lists" = "我的列表";
+"MyAnimeList sync" = "MyAnimeList 同步";
 "Mystery" = "悬疑";
 "Márgenes" = "页边距";
 "Más leídos del momento" = "Popular reads";
@@ -1257,6 +1271,7 @@
 "Now Playing" = "正在播放";
 "Now playing: {label}" = "正在播放：{label}";
 "Now watching on AniList" = "已在 AniList 标记为正在观看";
+"Now watching on MyAnimeList" = "已在 MyAnimeList 标记为正在观看";
 "Nuevos estrenos de anime" = "动漫新作";
 "Nítido (anime y caricaturas)" = "清晰（动漫和卡通）";
 "OK" = "OK";
@@ -1297,6 +1312,7 @@
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "再次打开 AniList";
+"Open MyAnimeList again" = "再次打开 MyAnimeList";
 "Open a title and tap Add to Watchlist to save it here." = "打开一个条目，轻点“添加到待看列表”即可将其保存到这里。";
 "Open image" = "打开图片";
 "Open in Safari" = "Open in Safari";
@@ -1305,6 +1321,7 @@
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "启动时打开此个人资料。之后仍可能显示定时提示。设置了 PIN 的资料不能设为默认。";
 "Opening AniList..." = "正在打开 AniList...";
+"Opening MyAnimeList..." = "正在打开 MyAnimeList...";
 "Opening book…" = "Opening book…";
 "Options" = "选项";
 "Orden de addons" = "插件顺序";
@@ -1337,6 +1354,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "密码";
 "Paste JSON" = "粘贴 JSON";
+"Paste the code or page URL" = "粘贴代码或页面 URL";
 "Paste the manifest URL the configure page gave you" = "粘贴配置页面提供的 manifest URL";
 "Paste the text from AniList" = "粘贴来自 AniList 的文本";
 "Peacock" = "Peacock";
@@ -1900,8 +1918,10 @@
 "Sync subtitles with audio" = "Sync subtitles with audio";
 "Sync watch progress" = "同步观看进度";
 "Synced to AniList" = "已同步到 AniList";
+"Synced to MyAnimeList" = "已同步到 MyAnimeList";
 "Syncing subtitles…" = "Syncing subtitles…";
 "Syncing to AniList" = "正在同步到 AniList";
+"Syncing to MyAnimeList" = "正在同步到 MyAnimeList";
 "System" = "跟随系统";
 "System UI" = "系统界面";
 "S{season} E{episode}" = "第{season}季 第{episode}集";

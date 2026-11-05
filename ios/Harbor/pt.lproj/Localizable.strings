@@ -22,6 +22,7 @@
 "45s" = "45s";
 "4:3" = "4:3";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Uma aba do navegador foi aberta no AniList. Aprove o Harbor lá, depois copie o texto exibido e cole abaixo.";
+"A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Uma aba do navegador foi aberta no MyAnimeList. Aprove o Harbor lá, depois copie o código ou a URL da página e cole abaixo.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Um cliente para o protocolo Stremio. Dois minutos para configurar; a maior parte é opcional. Você mantém o controle total de cada chave.";
 "A continuación" = "A seguir";
 "A short note about this list" = "A short note about this list";
@@ -201,6 +202,7 @@
 "Audio sin etiqueta" = "Áudio sem identificação";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on AniList" = "Autorizar o Harbor no AniList";
+"Authorize Harbor on MyAnimeList" = "Autorizar o Harbor no MyAnimeList";
 "Authorize Harbor on Simkl" = "Autorizar o Harbor no Simkl";
 "Authorize Harbor on Trakt" = "Autorizar o Harbor no Trakt";
 "Authorized {when}" = "Autorizado {when}";
@@ -312,6 +314,7 @@
 "Brightness" = "Brilho";
 "Brillo" = "Brilho";
 "Bring in your library" = "Traga sua biblioteca";
+"Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Traga sua lista de animes para o Harbor e atualize os episódios assistidos enquanto vê. Seu progresso atual é mantido.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Traz de volta as pequenas dicas do app que você dispensou, sem refazer o fluxo de boas-vindas.";
 "BritBox" = "BritBox";
 "Browse" = "Explorar";
@@ -393,6 +396,7 @@
 "Chapters" = "Capítulos";
 "Check it works" = "Verificar se funciona";
 "Checking with AniList..." = "Verificando com AniList...";
+"Checking with MyAnimeList..." = "Verificando com MyAnimeList...";
 "Checking…" = "Verificando…";
 "Checksum did not match the manifest." = "A soma de verificação não bate com o manifesto.";
 "Chinese" = "Chinês";
@@ -470,12 +474,14 @@
 "Confirm your current PIN, then pick a new one." = "Confirme seu PIN atual e escolha um novo.";
 "Connect" = "Conectar";
 "Connect AniList" = "Conectar AniList";
+"Connect MyAnimeList" = "Conectar MyAnimeList";
 "Connect Simkl" = "Conectar Simkl";
 "Connect TMDB" = "Conectar TMDB";
 "Connect Trakt" = "Conectar Trakt";
 "Connected" = "Conectado";
 "Connected as {username}" = "Conectado como {username}";
 "Connected to AniList" = "Conectado ao AniList";
+"Connected to MyAnimeList" = "Conectado ao MyAnimeList";
 "Connected to Simkl" = "Conectado ao Simkl";
 "Connecting" = "Conectando";
 "Conservar original" = "Manter original";
@@ -530,8 +536,10 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Não foi possível sincronizar";
 "Couldn't connect to AniList" = "Não foi possível conectar ao AniList";
+"Couldn't connect to MyAnimeList" = "Não foi possível conectar ao MyAnimeList";
 "Couldn't install. Double-check the URL and try again." = "Não foi possível instalar. Verifique a URL novamente e tente de novo.";
 "Couldn't reach AniList." = "Não foi possível conectar ao AniList.";
+"Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Não foi possível conectar ao Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Não foi possível conectar ao Trakt. Verifique sua conexão e tente novamente.";
 "Cover Image URL" = "URL da Imagem de Capa";
@@ -620,7 +628,9 @@
 "Director" = "Diretor";
 "Disconnect" = "Desconectar";
 "Disconnect AniList? Your lists will stop showing on the Anime page until you reconnect." = "Desconectar do AniList? Suas listas deixarão de aparecer na página de Anime até você reconectar.";
+"Disconnect MyAnimeList? Your progress will stop syncing until you reconnect." = "Desconectar do MyAnimeList? Seu progresso deixará de sincronizar até você reconectar.";
 "Disconnect from AniList" = "Desconectar do AniList";
+"Disconnect from MyAnimeList" = "Desconectar do MyAnimeList";
 "Discover" = "Descobrir";
 "Discovery Queue" = "Fila de Descoberta";
 "Diseño de Inicio" = "Layout do Início";
@@ -778,6 +788,7 @@
 "Finding lyrics" = "Procurando a letra";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Terminar um episódio de anime atualiza seu progresso no AniList. Só avança: nunca reduz uma contagem que você já tem.";
+"Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have." = "Terminar um episódio de anime atualiza seu progresso no MyAnimeList. Só avança: nunca reduz uma contagem que você já tem.";
 "Finnish" = "Finlandês";
 "Fit" = "Ajustar";
 "Flechas" = "Setas";
@@ -857,6 +868,7 @@
 "Harbor dropped {n} suspicious or mismatched result." = "O Harbor descartou {n} resultado suspeito ou incompatível.";
 "Harbor dropped {n} suspicious or mismatched results." = "O Harbor descartou {n} resultados suspeitos ou incompatíveis.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
+"Harbor keeps your MyAnimeList watch progress in sync." = "O Harbor mantém seu progresso de visualização do MyAnimeList sincronizado.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "O Harbor busca legendas nesta ordem. Coloque seu idioma preferido primeiro.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "O Harbor busca os títulos mais populares que cada serviço tem no momento. Desative qualquer serviço ao qual você não seja assinante.";
 "Harbor ranking" = "Classificação do Harbor";
@@ -1063,6 +1075,7 @@
 "Líneas más definidas y un poco más de impacto visual." = "Linhas mais nítidas e um pouco mais de destaque.";
 "M3U playlist" = "Playlist M3U";
 "MAL" = "MAL";
+"MAL did not confirm the update." = "MAL did not confirm the update.";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1162,6 +1175,7 @@
 "My channels" = "My channels";
 "My library" = "Minha biblioteca";
 "My lists" = "Minhas listas";
+"MyAnimeList sync" = "Sincronização com o MyAnimeList";
 "Mystery" = "Mistério";
 "Márgenes" = "Margens";
 "Más leídos del momento" = "Popular reads";
@@ -1277,6 +1291,7 @@
 "Now Playing" = "Tocando Agora";
 "Now playing: {label}" = "Tocando agora: {label}";
 "Now watching on AniList" = "Assistindo agora no AniList";
+"Now watching on MyAnimeList" = "Assistindo agora no MyAnimeList";
 "Nuevos estrenos de anime" = "Novos Lançamentos de Anime";
 "Nítido (anime y caricaturas)" = "Nítido (anime e desenhos)";
 "OK" = "OK";
@@ -1317,6 +1332,7 @@
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "Abrir AniList novamente";
+"Open MyAnimeList again" = "Abrir MyAnimeList novamente";
 "Open a title and tap Add to Watchlist to save it here." = "Abra um título e toque em «Adicionar à lista» para guardá-lo aqui.";
 "Open image" = "Abrir imagem";
 "Open in Safari" = "Open in Safari";
@@ -1325,6 +1341,7 @@
 "Open navigation" = "Open navigation";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Abra este perfil ao iniciar. Os pedidos programados ainda podem aparecer depois. Perfis com PIN não podem ser definidos como padrão.";
 "Opening AniList..." = "Abrindo AniList...";
+"Opening MyAnimeList..." = "Abrindo MyAnimeList...";
 "Opening book…" = "Abrindo livro…";
 "Options" = "Opções";
 "Orden de addons" = "Ordem dos addons";
@@ -1357,6 +1374,7 @@
 "Pasar páginas horizontalmente" = "Virar páginas na horizontal";
 "Password" = "Senha";
 "Paste JSON" = "Colar JSON";
+"Paste the code or page URL" = "Cole o código ou a URL da página";
 "Paste the manifest URL the configure page gave you" = "Cole a URL do manifesto fornecida pela página de configuração";
 "Paste the text from AniList" = "Cole o texto do AniList";
 "Peacock" = "Peacock";
@@ -1923,8 +1941,10 @@
 "Sync subtitles with audio" = "Sync subtitles with audio";
 "Sync watch progress" = "Sincronizar progresso de exibição";
 "Synced to AniList" = "Sincronizado com o AniList";
+"Synced to MyAnimeList" = "Sincronizado com o MyAnimeList";
 "Syncing subtitles…" = "Sincronizando legendas…";
 "Syncing to AniList" = "Sincronizando com o AniList";
+"Syncing to MyAnimeList" = "Sincronizando com o MyAnimeList";
 "System" = "Sistema";
 "System UI" = "System UI";
 "S{season} E{episode}" = "T{season} E{episode}";

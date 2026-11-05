@@ -176,6 +176,7 @@ targets:
       - path: HarborTests/SleepTimerTests.swift
       - path: HarborTests/TorrentLinkTests.swift
       - path: HarborTests/AniListTests.swift
+      - path: HarborTests/MyAnimeListTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift
