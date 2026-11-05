@@ -93,7 +93,7 @@ enum StreamSourcePolicy {
 /// Desktop's picker filter for one title (`strictMode` and `forceShowAll` in play-picker.tsx):
 /// the profile's safety level, which "Search wider" relaxes from Strict to Balanced and
 /// "Show everything anyway" turns off, until another title or episode is opened.
-struct StreamPickerFilter: Equatable, Sendable {
+struct StreamSafetyOverride: Equatable, Sendable {
     var relaxed = false
     var showAll = false
     func level(_ setting: String) -> String {

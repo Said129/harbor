@@ -361,7 +361,7 @@ final class DetailModel {
     private(set) var receivedStreams = 0
     private(set) var rejectedReasons: [String] = []
     private(set) var debridProviders = 0
-    private(set) var pickerFilter = StreamPickerFilter()
+    private(set) var pickerFilter = StreamSafetyOverride()
     private var pickerFilterKey: String?
     var pickerStrict: Bool { pickerFilter.level(StreamPreferences.shared.filterLevel) == "strict" }
     /// Desktop's "Search wider": Strict becomes Balanced for this title, then everything is shown.
@@ -439,7 +439,7 @@ final class DetailModel {
         selectedEpisode = episode
         // Desktop resets Search wider and Show all for another title, episode or safety level.
         let filterKey = [selection?.key ?? episode?.routingKey ?? media.identity, StreamPreferences.shared.filterLevel].joined(separator: "|")
-        if filterKey != pickerFilterKey { pickerFilter = StreamPickerFilter(); pickerFilterKey = filterKey }
+        if filterKey != pickerFilterKey { pickerFilter = StreamSafetyOverride(); pickerFilterKey = filterKey }
         let selected: Media?
         if let selection {
             let validSource = extraSources[selection.media.id] == selection.media

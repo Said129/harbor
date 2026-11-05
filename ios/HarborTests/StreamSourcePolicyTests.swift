@@ -185,17 +185,17 @@ import XCTest
     }
 
     func testPickerFilterWidensLikeDesktop() {
-        var strict = StreamPickerFilter()
+        var strict = StreamSafetyOverride()
         XCTAssertEqual(strict.level("strict"), "strict")
         strict.widen("strict")
         XCTAssertEqual(strict.level("strict"), "balanced", "Search wider first relaxes Strict to Balanced")
         strict.widen("strict")
         XCTAssertEqual(strict.level("strict"), "off", "A second wider search shows everything")
-        var balanced = StreamPickerFilter()
+        var balanced = StreamSafetyOverride()
         balanced.widen("balanced")
         XCTAssertEqual(balanced.level("balanced"), "off")
-        XCTAssertEqual(StreamPickerFilter(showAll: true).level("strict"), "off")
-        XCTAssertEqual(StreamPickerFilter().level("off"), "off")
+        XCTAssertEqual(StreamSafetyOverride(showAll: true).level("strict"), "off")
+        XCTAssertEqual(StreamSafetyOverride().level("off"), "off")
     }
 
     func testRejectionGroupsUseDesktopLabels() {
