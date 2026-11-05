@@ -16,25 +16,25 @@
     },
     "settings": {
       "total": 511,
-      "ported": 124,
+      "ported": 127,
       "partial": 21,
-      "missing": 280,
+      "missing": 277,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 31.6,
-      "ported_only_percent": 29.2,
-      "ported_or_partial_percent": 34.1
+      "weighted_percent": 32.4,
+      "ported_only_percent": 29.9,
+      "ported_or_partial_percent": 34.8
     },
     "all": {
       "total": 949,
-      "ported": 245,
+      "ported": 248,
       "partial": 225,
-      "missing": 371,
+      "missing": 368,
       "excluded": 108,
       "counted": 841,
-      "weighted_percent": 42.5,
-      "ported_only_percent": 29.1,
-      "ported_or_partial_percent": 55.9
+      "weighted_percent": 42.9,
+      "ported_only_percent": 29.5,
+      "ported_or_partial_percent": 56.2
     }
   },
   "behavior_areas": [
@@ -4947,35 +4947,35 @@
       "id": "subProvidersEnabled",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "subtitle providers, offset indicator, PiP subtitles"
+      "note": "subtitle providers"
     },
     {
       "index": 237,
       "id": "subOffsetIndicatorEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "subtitle providers, offset indicator, PiP subtitles"
+      "verdict": "D",
+      "note": "subtitle sync indicator: switch, position and size (5 Nov, uncompiled)"
     },
     {
       "index": 238,
       "id": "subOffsetIndicatorPosition",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "subtitle providers, offset indicator, PiP subtitles"
+      "verdict": "D",
+      "note": "subtitle sync indicator: switch, position and size (5 Nov, uncompiled)"
     },
     {
       "index": 239,
       "id": "subOffsetIndicatorSize",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "subtitle providers, offset indicator, PiP subtitles"
+      "verdict": "D",
+      "note": "subtitle sync indicator: switch, position and size (5 Nov, uncompiled)"
     },
     {
       "index": 240,
       "id": "subShowInPip",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "subtitle providers, offset indicator, PiP subtitles"
+      "note": "PiP subtitles"
     },
     {
       "index": 241,

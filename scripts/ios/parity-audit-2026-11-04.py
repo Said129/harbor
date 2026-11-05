@@ -316,7 +316,9 @@ SETTINGS = expand("""
 228-230 D
 231 P reading fonts only
 232-235 D
-236-240 M subtitle providers, offset indicator, PiP subtitles
+236 M subtitle providers
+237-239 D subtitle sync indicator: switch, position and size (5 Nov, uncompiled)
+240 M PiP subtitles
 241-243 D
 244 M
 245 D

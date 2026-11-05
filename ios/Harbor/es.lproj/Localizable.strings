@@ -302,6 +302,7 @@
 "Borrar todo" = "Borrar todo";
 "Both" = "Ambos";
 "Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "Ambos muestra juntos los resultados directos, de debrid y P2P. Directo/debrid deja los resultados P2P en segundo plano salvo que no haya otra opción. P2P los pone primero.";
+"Bottom" = "Inferior";
 "Bottom bar" = "Barra inferior";
 "Bottom left" = "Abajo a la izquierda";
 "Bottom right" = "Abajo a la derecha";
@@ -1021,6 +1022,7 @@
 "Languages" = "Idiomas";
 "Languages & subtitles" = "Idiomas y subtítulos";
 "Large" = "Grande";
+"Larger" = "Más grande";
 "Laterales" = "Laterales";
 "Lectura" = "Lectura";
 "Left" = "Izquierda";
@@ -1464,6 +1466,7 @@
 "Portuguese (Brazil)" = "Portugués (Brasil)";
 "Posición de la canción" = "Posición de la canción";
 "Posición de reproducción" = "Posición de reproducción";
+"Position" = "Posición";
 "Position and size only" = "Solo posición y tamaño";
 "Poster" = "Póster";
 "Poster card style" = "Estilo de las tarjetas de póster";
@@ -1508,6 +1511,7 @@
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "Color más intenso";
 "Puntuaciones" = "Puntuaciones";
+"Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Página anterior" = "Página anterior";
 "Página siguiente" = "Página siguiente";
 "Pósteres, calificaciones y listas" = "Pósteres, calificaciones y listas";
@@ -1812,6 +1816,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "Mostrar los nombres de archivo de las versiones en la vista Condensada y en Pantalla grande.";
 "Show release name" = "Mostrar el nombre del release";
 "Show row" = "Mostrar fila";
+"Show subtitle sync indicator" = "Mostrar el indicador de sincronización de subtítulos";
 "Show the Skip button" = "Mostrar el botón Saltar";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales.";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos.";
@@ -1855,6 +1860,7 @@
 "Sleep timer" = "Temporizador de suspensión";
 "Slice of Life" = "Vida cotidiana";
 "Slightly lighter than background." = "Un poco más claro que el fondo.";
+"Smaller" = "Más pequeño";
 "Sobre la línea principal" = "Sobre la línea principal";
 "Soft halo around the text. Cleanest on most content." = "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido.";
 "Softer and dimmer, kinder for late-night watching." = "Más suave y tenue, ideal para ver por la noche.";
@@ -1940,6 +1946,7 @@
 "Subtitle languages" = "Idiomas de subtítulos";
 "Subtitle source FPS" = "FPS de origen de los subtítulos";
 "Subtitle style" = "Estilo de los subtítulos";
+"Subtitle sync" = "Sincronización de subtítulos";
 "Subtitle track" = "Pista de subtítulos";
 "Subtitles" = "Subtítulos";
 "Subtitles from your addons" = "Subtítulos de tus addons";
@@ -2069,6 +2076,7 @@
 "Todos los géneros" = "Todos los géneros";
 "Todos los idiomas" = "Todos los idiomas";
 "Tonight's main event" = "Evento principal de esta noche";
+"Top" = "Arriba";
 "Top 10 Comedy" = "Top 10 de comedia";
 "Top 10 Drama" = "Top 10 de drama";
 "Top 10 Movies Today" = "Top 10 de películas de hoy";
@@ -2091,10 +2099,12 @@
 "Top Rated on MAL" = "Mejor valorado en MAL";
 "Top Series" = "Series destacadas";
 "Top Series on MAL" = "Series destacadas en MAL";
+"Top left" = "Arriba a la izquierda";
 "Top of the screen" = "Parte superior de la pantalla";
 "Top rated" = "Mejor valorado";
 "Top rated on {site}" = "Mejor valorado en {site}";
 "Top result" = "Mejor resultado";
+"Top right" = "Parte superior derecha";
 "Top rising" = "En ascenso";
 "Top tracks" = "Canciones populares";
 "TorBox API key" = "Clave de API de TorBox";

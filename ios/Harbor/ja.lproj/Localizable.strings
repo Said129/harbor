@@ -302,6 +302,7 @@
 "Borrar todo" = "すべて消去";
 "Both" = "両方";
 "Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "「両方」は直接リンク、debrid、P2Pの結果をまとめて表示します。「直接/debrid」は他に候補がない場合を除きP2Pの結果を後回しにします。「P2P」はそれらを先頭に表示します。";
+"Bottom" = "下";
 "Bottom bar" = "下部バー";
 "Bottom left" = "左下";
 "Bottom right" = "右下";
@@ -1021,6 +1022,7 @@
 "Languages" = "言語";
 "Languages & subtitles" = "言語と字幕";
 "Large" = "大";
+"Larger" = "大きく";
 "Laterales" = "見開き";
 "Lectura" = "読書中";
 "Left" = "左揃え";
@@ -1464,6 +1466,7 @@
 "Portuguese (Brazil)" = "ポルトガル語（ブラジル）";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
+"Position" = "順位";
 "Position and size only" = "位置とサイズのみ";
 "Poster" = "ポスター";
 "Poster card style" = "ポスターカードのスタイル";
@@ -1508,6 +1511,7 @@
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "色を鮮やかに";
 "Puntuaciones" = "スコア";
+"Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Página anterior" = "前のページ";
 "Página siguiente" = "次のページ";
 "Pósteres, calificaciones y listas" = "ポスター、評価、リスト";
@@ -1812,6 +1816,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "コンパクト表示のソース選択画面とビッグピクチャーでリリースのファイル名を表示します。";
 "Show release name" = "リリース名を表示";
 "Show row" = "行を表示";
+"Show subtitle sync indicator" = "字幕同期インジケーターを表示";
 "Show the Skip button" = "「スキップ」ボタンを表示";
 "Show translated names in the language selected above. Turn off to keep original titles." = "上で選んだ言語の翻訳タイトルを表示します。原題を使う場合はオフにしてください。";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "2つの言語の字幕を同時に表示します。語学学習や一緒に視聴するときに便利です。";
@@ -1855,6 +1860,7 @@
 "Sleep timer" = "スリープタイマー";
 "Slice of Life" = "日常系";
 "Slightly lighter than background." = "背景よりわずかに明るい色。";
+"Smaller" = "小さく";
 "Sobre la línea principal" = "メイン字幕の上";
 "Soft halo around the text. Cleanest on most content." = "テキストの周囲に柔らかな光彩を付けます。ほとんどの映像ですっきり表示されます。";
 "Softer and dimmer, kinder for late-night watching." = "柔らかく暗めの映像にし、深夜でも目に負担をかけずに視聴できます。";
@@ -1940,6 +1946,7 @@
 "Subtitle languages" = "字幕言語";
 "Subtitle source FPS" = "字幕のソースFPS";
 "Subtitle style" = "字幕スタイル";
+"Subtitle sync" = "字幕の同期";
 "Subtitle track" = "字幕トラック";
 "Subtitles" = "字幕";
 "Subtitles from your addons" = "Subtitles from your addons";
@@ -2069,6 +2076,7 @@
 "Todos los géneros" = "すべてのジャンル";
 "Todos los idiomas" = "すべての言語";
 "Tonight's main event" = "今夜のメイン";
+"Top" = "上";
 "Top 10 Comedy" = "コメディ トップ10";
 "Top 10 Drama" = "ドラマ トップ10";
 "Top 10 Movies Today" = "今日の映画トップ10";
@@ -2091,10 +2099,12 @@
 "Top Rated on MAL" = "MALで最高評価";
 "Top Series" = "人気シリーズ";
 "Top Series on MAL" = "MALの人気シリーズ";
+"Top left" = "左上";
 "Top of the screen" = "画面上部";
 "Top rated" = "評価が高い順";
 "Top rated on {site}" = "{site}で高評価";
 "Top result" = "最上位の結果";
+"Top right" = "右上";
 "Top rising" = "人気急上昇";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "TorBox APIキー";

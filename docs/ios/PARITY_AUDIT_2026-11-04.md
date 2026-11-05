@@ -21,8 +21,8 @@ in `parity-audit-2026-11-04.json`, produced by
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
 | Behaviors |   438 |    121 |     204 |      91 |       22 |           53.6 % |      29.1 % |            78.1 % |
-| Settings  |   511 |    124 |      21 |     280 |       86 |           31.6 % |      29.2 % |            34.1 % |
-| All       |   949 |    245 |     225 |     371 |      108 |           42.5 % |      29.1 % |            55.9 % |
+| Settings  |   511 |    127 |      21 |     277 |       86 |           32.4 % |      29.9 % |            34.8 % |
+| All       |   949 |    248 |     225 |     368 |      108 |           42.9 % |      29.5 % |            56.2 % |
 
 Figures above are the 5 November refresh (first audit, 4 November: 38.3 % weighted,
 25.0 % ported only, 51.6 % ported or partial): the Rust trust/parser/types core

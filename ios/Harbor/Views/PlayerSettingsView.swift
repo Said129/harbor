@@ -205,6 +205,17 @@ struct PlayerSettingsView: View {
         HarborSettingsSection(DesktopInterfaceText.value("Sync Offset")) {
             dial(DesktopInterfaceText.value("Sync Offset"), value: $preferences.options.subtitleDelay, range: -10...10, step: 0.1, suffix: " s")
         }
+        HarborSettingsSection(DesktopInterfaceText.value("Show subtitle sync indicator"),
+                              note: DesktopInterfaceText.value("Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.")) {
+            HarborSettingsToggle(DesktopInterfaceText.value("Show subtitle sync indicator"), isOn: $preferences.options.subOffsetIndicator)
+                .accessibilityIdentifier("settings-sub-offset-indicator")
+            if preferences.options.subOffsetIndicator {
+                HarborSettingsChoice(DesktopInterfaceText.value("Position"), selection: $preferences.options.subOffsetPosition,
+                                     choices: SubtitleOffsetPosition.allCases.map { (DesktopInterfaceText.value($0.label), $0.rawValue) }, identifier: "settings-sub-offset-position")
+                HarborSettingsChoice(DesktopInterfaceText.value("Size"), selection: $preferences.options.subOffsetSize,
+                                     choices: SubtitleOffsetSize.allCases.map { (DesktopInterfaceText.value($0.label), $0.rawValue) }, identifier: "settings-sub-offset-size")
+            }
+        }
         HarborSettingsSection(DesktopInterfaceText.value("Subtitle style"), note: DesktopInterfaceText.value("Adjust the text and background. The preview shows your changes as you make them.")) {
             SubtitleStylePreview(options: preferences.options)
             Text(DesktopInterfaceText.value("Background")).font(HarborTheme.font(14, weight: .semibold))

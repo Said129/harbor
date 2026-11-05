@@ -302,6 +302,7 @@
 "Borrar todo" = "Hapus semua";
 "Both" = "Keduanya";
 "Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "Keduanya menampilkan hasil langsung, debrid, dan peer-to-peer bersama-sama. Langsung/debrid menyisihkan hasil P2P kecuali tidak ada pilihan lain. P2P menempatkannya di urutan pertama.";
+"Bottom" = "Bawah";
 "Bottom bar" = "Bilah bawah";
 "Bottom left" = "Kiri bawah";
 "Bottom right" = "Kanan bawah";
@@ -1021,6 +1022,7 @@
 "Languages" = "Bahasa";
 "Languages & subtitles" = "Bahasa & subtitle";
 "Large" = "Besar";
+"Larger" = "Lebih besar";
 "Laterales" = "Sisi";
 "Lectura" = "Sedang membaca";
 "Left" = "Kiri";
@@ -1464,6 +1466,7 @@
 "Portuguese (Brazil)" = "Portugis (Brasil)";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
+"Position" = "Posisi";
 "Position and size only" = "Hanya posisi dan ukuran";
 "Poster" = "Poster";
 "Poster card style" = "Gaya kartu poster";
@@ -1508,6 +1511,7 @@
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "Warna lebih tegas";
 "Puntuaciones" = "Skor";
+"Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Página anterior" = "Halaman sebelumnya";
 "Página siguiente" = "Halaman berikutnya";
 "Pósteres, calificaciones y listas" = "Poster, rating, daftar";
@@ -1812,6 +1816,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "Tampilkan nama berkas rilis di pemilih Padat dan Big Picture.";
 "Show release name" = "Tampilkan nama rilis";
 "Show row" = "Tampilkan baris";
+"Show subtitle sync indicator" = "Tampilkan indikator sinkronisasi subtitle";
 "Show the Skip button" = "Tampilkan tombol Lewati";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Tampilkan nama terjemahan dalam bahasa yang dipilih di atas. Nonaktifkan untuk mempertahankan judul asli.";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "Tampilkan dua bahasa subtitle sekaligus. Berguna untuk belajar bahasa atau menonton bersama.";
@@ -1855,6 +1860,7 @@
 "Sleep timer" = "Timer tidur";
 "Slice of Life" = "Kehidupan Sehari-hari";
 "Slightly lighter than background." = "Sedikit lebih terang daripada latar belakang.";
+"Smaller" = "Lebih kecil";
 "Sobre la línea principal" = "Di atas baris utama";
 "Soft halo around the text. Cleanest on most content." = "Pendar lembut di sekitar teks. Paling bersih pada sebagian besar konten.";
 "Softer and dimmer, kinder for late-night watching." = "Lebih lembut dan redup, lebih nyaman untuk menonton larut malam.";
@@ -1940,6 +1946,7 @@
 "Subtitle languages" = "Bahasa subtitle";
 "Subtitle source FPS" = "FPS sumber subtitle";
 "Subtitle style" = "Gaya subtitle";
+"Subtitle sync" = "Sinkronisasi subtitle";
 "Subtitle track" = "Trek subtitle";
 "Subtitles" = "Subtitle";
 "Subtitles from your addons" = "Subtitles from your addons";
@@ -2069,6 +2076,7 @@
 "Todos los géneros" = "Semua genre";
 "Todos los idiomas" = "Semua bahasa";
 "Tonight's main event" = "Acara utama malam ini";
+"Top" = "Teratas";
 "Top 10 Comedy" = "10 Komedi Teratas";
 "Top 10 Drama" = "10 Drama Teratas";
 "Top 10 Movies Today" = "10 Film Teratas Hari Ini";
@@ -2091,10 +2099,12 @@
 "Top Rated on MAL" = "Peringkat Teratas di MAL";
 "Top Series" = "Serial Teratas";
 "Top Series on MAL" = "Serial Teratas di MAL";
+"Top left" = "Kiri atas";
 "Top of the screen" = "Bagian atas layar";
 "Top rated" = "Peringkat teratas";
 "Top rated on {site}" = "Peringkat teratas di {site}";
 "Top result" = "Hasil teratas";
+"Top right" = "Kanan atas";
 "Top rising" = "Paling melejit";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "Kunci API TorBox";

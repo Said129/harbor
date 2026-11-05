@@ -89,6 +89,8 @@ struct PlayerView: View {
     @State private var autoSkipped: Set<String> = []
     @State private var stillWatchingEpisode: Episode?
     @State private var screenLocked = false
+    @State private var offsetShown: Double?
+    @State private var offsetTask: Task<Void, Never>?
     @State private var unlockVisible = false
     @State private var unlockTask: Task<Void, Never>?
     @Bindable private var preferences = PlaybackPreferences.shared
@@ -106,6 +108,15 @@ struct PlayerView: View {
             // A question that needs an answer, or switching the option off, ends the lock.
             .onChange(of: stillWatchingEpisode) { _, episode in if episode != nil, screenLocked { unlockScreen() } }
             .onChange(of: preferences.options.screenLock) { _, enabled in if !enabled, screenLocked { unlockScreen() } }
+            // Desktop shows the new subtitle delay for 1.8 s whenever it is nudged.
+            .onChange(of: state.subtitleDelay) { old, new in
+                guard preferences.options.subOffsetIndicator, state.loaded, old != new else { return }
+                offsetTask?.cancel(); offsetShown = new
+                offsetTask = Task {
+                    try? await Task.sleep(for: .milliseconds(SubtitleOffset.visibleMilliseconds))
+                    if !Task.isCancelled { offsetShown = nil }
+                }
+            }
             .statusBarHidden(!controlsVisible)
             .persistentSystemOverlays(controlsVisible ? .visible : .hidden)
             .sheet(item: $settingsPage, onDismiss: {
@@ -192,6 +203,10 @@ struct PlayerView: View {
                 }, stop: {
                     StillWatching.shared.reset(); stillWatchingEpisode = nil; dismiss()
                 }).transition(.opacity).zIndex(10)
+            }
+            if preferences.options.subOffsetIndicator {
+                SubtitleOffsetIndicator(delay: offsetShown, position: SubtitleOffsetPosition.sanitized(preferences.options.subOffsetPosition),
+                                        size: SubtitleOffsetSize.sanitized(preferences.options.subOffsetSize))
             }
             if preferences.options.showStats {
                 VStack { HStack { PlayerStatsOverlay(state: state); Spacer(minLength: 0) }; Spacer() }

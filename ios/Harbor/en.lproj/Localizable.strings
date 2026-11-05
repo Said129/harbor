@@ -245,6 +245,7 @@
 "Borrar todo" = "Clear all";
 "Both" = "Both";
 "Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first.";
+"Bottom" = "Bottom";
 "Bottom bar" = "Bottom bar";
 "Bottom left" = "Bottom left";
 "Bottom right" = "Bottom right";
@@ -856,6 +857,7 @@
 "Languages" = "Languages";
 "Languages & subtitles" = "Languages & subtitles";
 "Large" = "Large";
+"Larger" = "Larger";
 "Laterales" = "Sides";
 "Lectura" = "Reading";
 "Left" = "Left";
@@ -1224,6 +1226,7 @@
 "Popular reads" = "Popular reads";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
+"Position" = "Position";
 "Position and size only" = "Position and size only";
 "Poster" = "Poster";
 "Poster card style" = "Poster card style";
@@ -1263,6 +1266,7 @@
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "Punchier color";
 "Puntuaciones" = "Scores";
+"Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Página anterior" = "Previous page";
 "Página siguiente" = "Next page";
 "Pósteres, calificaciones y listas" = "Posters, ratings, lists";
@@ -1534,6 +1538,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "Show release filenames in the Condensed picker and Big Picture.";
 "Show release name" = "Show release name";
 "Show row" = "Show row";
+"Show subtitle sync indicator" = "Show subtitle sync indicator";
 "Show the Skip button" = "Show the Skip button";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Show translated names in the language selected above. Turn off to keep original titles.";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "Show two subtitle languages at once. Useful for learning a language or watching together.";
@@ -1572,6 +1577,7 @@
 "Sleep timer" = "Sleep timer";
 "Slice of Life" = "Slice of Life";
 "Slightly lighter than background." = "Slightly lighter than background.";
+"Smaller" = "Smaller";
 "Sobre la línea principal" = "Above the main line";
 "Soft halo around the text. Cleanest on most content." = "Soft halo around the text. Cleanest on most content.";
 "Softer and dimmer, kinder for late-night watching." = "Softer and dimmer, kinder for late-night watching.";
@@ -1642,6 +1648,7 @@
 "Subtitle languages" = "Subtitle languages";
 "Subtitle source FPS" = "Subtitle source FPS";
 "Subtitle style" = "Subtitle style";
+"Subtitle sync" = "Subtitle sync";
 "Subtitle track" = "Subtitle track";
 "Subtitles" = "Subtitles";
 "Subtitles from your addons" = "Subtitles from your addons";
@@ -1751,6 +1758,7 @@
 "Todos los géneros" = "All genres";
 "Todos los idiomas" = "All languages";
 "Tonight's main event" = "Tonight's main event";
+"Top" = "Top";
 "Top 10 Comedy" = "Top 10 Comedy";
 "Top 10 Drama" = "Top 10 Drama";
 "Top 10 de comedia" = "Top 10 Comedy";
@@ -1764,10 +1772,12 @@
 "Top Rated Series" = "Top Rated Series";
 "Top Rated on MAL" = "Top Rated on MAL";
 "Top Series on MAL" = "Top Series on MAL";
+"Top left" = "Top left";
 "Top of the screen" = "Top of the screen";
 "Top rated" = "Top rated";
 "Top rated on {site}" = "Top rated on {site}";
 "Top result" = "Top result";
+"Top right" = "Top right";
 "Top rising" = "Top rising";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "TorBox API key";

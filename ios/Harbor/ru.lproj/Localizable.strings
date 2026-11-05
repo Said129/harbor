@@ -306,6 +306,7 @@
 "Borrar todo" = "Очистить всё";
 "Both" = "Оба варианта";
 "Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "«Оба» показывает прямые, debrid и peer-to-peer результаты вместе. «Прямые/debrid» убирает P2P-результаты на второй план, пока есть что-то ещё. «P2P» ставит их первыми.";
+"Bottom" = "Снизу";
 "Bottom bar" = "Нижняя панель";
 "Bottom left" = "Снизу слева";
 "Bottom right" = "Снизу справа";
@@ -1026,6 +1027,7 @@
 "Languages" = "Языки";
 "Languages & subtitles" = "Языки и субтитры";
 "Large" = "Крупный";
+"Larger" = "Больше";
 "Laterales" = "Стороны";
 "Lectura" = "Чтение";
 "Left" = "Слева";
@@ -1475,6 +1477,7 @@
 "Portuguese (Brazil)" = "Португальский (Бразилия)";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
+"Position" = "Позиция";
 "Position and size only" = "Только положение и размер";
 "Poster" = "Постер";
 "Poster card style" = "Стиль карточек постеров";
@@ -1519,6 +1522,7 @@
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "Насыщеннее цвет";
 "Puntuaciones" = "Оценки";
+"Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Página anterior" = "Предыдущая страница";
 "Página siguiente" = "Следующая страница";
 "Pósteres, calificaciones y listas" = "Постеры, рейтинги, списки";
@@ -1824,6 +1828,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "Показывать имена файлов релизов в сжатом списке источников и в режиме «Большой экран».";
 "Show release name" = "Показывать имя релиза";
 "Show row" = "Показывать ряд";
+"Show subtitle sync indicator" = "Показывать индикатор синхронизации субтитров";
 "Show the Skip button" = "Показывать кнопку «Пропустить»";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Показывать переведённые названия на выбранном выше языке. Выключите, чтобы сохранить оригинальные названия.";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "Показывать субтитры на двух языках одновременно. Удобно для изучения языка или совместного просмотра.";
@@ -1868,6 +1873,7 @@
 "Sleep timer" = "Таймер сна";
 "Slice of Life" = "Повседневность";
 "Slightly lighter than background." = "Чуть светлее фона.";
+"Smaller" = "Меньше";
 "Sobre la línea principal" = "Над основной строкой";
 "Soft halo around the text. Cleanest on most content." = "Мягкий ореол вокруг текста. Аккуратнее всего на большинстве видео.";
 "Softer and dimmer, kinder for late-night watching." = "Мягче и темнее, удобнее для ночного просмотра.";
@@ -1954,6 +1960,7 @@
 "Subtitle languages" = "Языки субтитров";
 "Subtitle source FPS" = "Исходная частота кадров субтитров";
 "Subtitle style" = "Стиль субтитров";
+"Subtitle sync" = "Синхронизация субтитров";
 "Subtitle track" = "Дорожка субтитров";
 "Subtitles" = "Субтитры";
 "Subtitles from your addons" = "Subtitles from your addons";
@@ -2084,6 +2091,7 @@
 "Todos los géneros" = "Все жанры";
 "Todos los idiomas" = "Все языки";
 "Tonight's main event" = "Главное событие вечера";
+"Top" = "Сверху";
 "Top 10 Comedy" = "Топ-10 комедий";
 "Top 10 Drama" = "Топ-10 драм";
 "Top 10 Movies Today" = "Топ-10 фильмов за сегодня";
@@ -2106,10 +2114,12 @@
 "Top Rated on MAL" = "Высший рейтинг на MAL";
 "Top Series" = "Лучшие сериалы";
 "Top Series on MAL" = "Лучшие сериалы на MAL";
+"Top left" = "Сверху слева";
 "Top of the screen" = "Вверху экрана";
 "Top rated" = "Лучшие по рейтингу";
 "Top rated on {site}" = "Лучшие по рейтингу на {site}";
 "Top result" = "Лучший результат";
+"Top right" = "Сверху справа";
 "Top rising" = "Набирают популярность";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "API-ключ TorBox";

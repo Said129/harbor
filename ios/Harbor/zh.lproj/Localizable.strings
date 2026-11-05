@@ -302,6 +302,7 @@
 "Borrar todo" = "全部清除";
 "Both" = "两者";
 "Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "“两者”会同时显示直链、debrid 和 P2P 结果。“直链/debrid”仅在没有其他来源时才显示 P2P 结果。“P2P”则将其排在最前。";
+"Bottom" = "底部";
 "Bottom bar" = "底部栏";
 "Bottom left" = "左下角";
 "Bottom right" = "右下角";
@@ -1021,6 +1022,7 @@
 "Languages" = "语言";
 "Languages & subtitles" = "语言与字幕";
 "Large" = "大号";
+"Larger" = "较大";
 "Laterales" = "双页";
 "Lectura" = "正在读取";
 "Left" = "左对齐";
@@ -1464,6 +1466,7 @@
 "Portuguese (Brazil)" = "葡萄牙语（巴西）";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
+"Position" = "排名";
 "Position and size only" = "仅位置和大小";
 "Poster" = "海报";
 "Poster card style" = "海报卡片样式";
@@ -1508,6 +1511,7 @@
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "更鲜艳的色彩";
 "Puntuaciones" = "评分";
+"Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Página anterior" = "上一页";
 "Página siguiente" = "下一页";
 "Pósteres, calificaciones y listas" = "海报、评分、列表";
@@ -1812,6 +1816,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "在精简选择器和大屏模式中显示资源文件名。";
 "Show release name" = "显示发布名称";
 "Show row" = "显示内容栏";
+"Show subtitle sync indicator" = "显示字幕同步指示器";
 "Show the Skip button" = "显示“跳过”按钮";
 "Show translated names in the language selected above. Turn off to keep original titles." = "以上方所选语言显示译名。关闭则保留原始标题。";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "同时显示两种语言的字幕。适合语言学习或一起观看。";
@@ -1855,6 +1860,7 @@
 "Sleep timer" = "睡眠定时器";
 "Slice of Life" = "日常";
 "Slightly lighter than background." = "比背景稍亮。";
+"Smaller" = "较小";
 "Sobre la línea principal" = "主字幕上方";
 "Soft halo around the text. Cleanest on most content." = "在文字周围添加柔和光晕，适合大多数内容，效果最简洁。";
 "Softer and dimmer, kinder for late-night watching." = "画面更柔和、更暗，适合深夜观看。";
@@ -1940,6 +1946,7 @@
 "Subtitle languages" = "字幕语言";
 "Subtitle source FPS" = "字幕源 FPS";
 "Subtitle style" = "字幕样式";
+"Subtitle sync" = "字幕同步";
 "Subtitle track" = "字幕轨道";
 "Subtitles" = "字幕";
 "Subtitles from your addons" = "Subtitles from your addons";
@@ -2069,6 +2076,7 @@
 "Todos los géneros" = "所有类型";
 "Todos los idiomas" = "所有语言";
 "Tonight's main event" = "今晚重头戏";
+"Top" = "顶部";
 "Top 10 Comedy" = "十大热门喜剧片";
 "Top 10 Drama" = "十大热门剧情片";
 "Top 10 Movies Today" = "今日电影前 10 名";
@@ -2091,10 +2099,12 @@
 "Top Rated on MAL" = "MAL 评分榜";
 "Top Series" = "剧集榜单";
 "Top Series on MAL" = "MAL 剧集榜";
+"Top left" = "左上角";
 "Top of the screen" = "屏幕顶部";
 "Top rated" = "评分最高";
 "Top rated on {site}" = "{site} 评分最高";
 "Top result" = "最佳结果";
+"Top right" = "右上角";
 "Top rising" = "飙升榜";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "TorBox API 密钥";

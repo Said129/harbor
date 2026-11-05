@@ -314,6 +314,7 @@
 "Borrar todo" = "مسح الكل";
 "Both" = "كلاهما";
 "Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "يعرض خيار «كلاهما» نتائج الروابط المباشرة وdebrid والنظير إلى النظير معًا. يُبقي خيار «مباشر/debrid» نتائج P2P بعيدًا ما لم يتوفر غيرها. أما خيار «P2P» فيقدّمها أولًا.";
+"Bottom" = "أسفل";
 "Bottom bar" = "الشريط السفلي";
 "Bottom left" = "أسفل اليسار";
 "Bottom right" = "أسفل اليمين";
@@ -1046,6 +1047,7 @@
 "Languages" = "اللغات";
 "Languages & subtitles" = "اللغات والترجمات";
 "Large" = "كبير";
+"Larger" = "أكبر";
 "Laterales" = "الجوانب";
 "Lectura" = "جارٍ القراءة";
 "Left" = "يسار";
@@ -1495,6 +1497,7 @@
 "Portuguese (Brazil)" = "البرتغالية (البرازيل)";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
+"Position" = "المركز";
 "Position and size only" = "الموضع والحجم فقط";
 "Poster" = "الملصق";
 "Poster card style" = "نمط بطاقة الملصق";
@@ -1539,6 +1542,7 @@
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "ألوان أكثر حيوية";
 "Puntuaciones" = "التقييمات";
+"Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Página anterior" = "الصفحة السابقة";
 "Página siguiente" = "الصفحة التالية";
 "Pósteres, calificaciones y listas" = "الملصقات والتقييمات والقوائم";
@@ -1846,6 +1850,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "عرض أسماء ملفات الإصدارات في محدد المصادر المكثف ووضع الشاشة الكبيرة.";
 "Show release name" = "إظهار اسم الإصدار";
 "Show row" = "إظهار الصف";
+"Show subtitle sync indicator" = "عرض مؤشر مزامنة الترجمة";
 "Show the Skip button" = "إظهار زر التخطّي";
 "Show translated names in the language selected above. Turn off to keep original titles." = "اعرض الأسماء المترجمة باللغة المحدّدة أعلاه. عطّل هذا الخيار للاحتفاظ بالعناوين الأصلية.";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "اعرض ترجمات بلغتين في الوقت نفسه. مفيد لتعلّم لغة أو المشاهدة مع الآخرين.";
@@ -1890,6 +1895,7 @@
 "Sleep timer" = "مؤقت الإيقاف";
 "Slice of Life" = "شريحة من الحياة";
 "Slightly lighter than background." = "أفتح قليلًا من الخلفية.";
+"Smaller" = "أصغر";
 "Sobre la línea principal" = "فوق السطر الأساسي";
 "Soft halo around the text. Cleanest on most content." = "هالة ناعمة حول النص. الأفضل لمعظم المحتوى.";
 "Softer and dimmer, kinder for late-night watching." = "أكثر نعومة وخفوتًا، ألطف للمشاهدة في وقت متأخر من الليل.";
@@ -1976,6 +1982,7 @@
 "Subtitle languages" = "لغات الترجمة";
 "Subtitle source FPS" = "معدل إطارات مصدر الترجمة";
 "Subtitle style" = "نمط الترجمة";
+"Subtitle sync" = "مزامنة الترجمة";
 "Subtitle track" = "مسار الترجمة";
 "Subtitles" = "الترجمة";
 "Subtitles from your addons" = "Subtitles from your addons";
@@ -2107,6 +2114,7 @@
 "Todos los géneros" = "جميع الأنواع";
 "Todos los idiomas" = "كل اللغات";
 "Tonight's main event" = "الحدث الرئيسي الليلة";
+"Top" = "أعلى";
 "Top 10 Comedy" = "أفضل 10 كوميديا";
 "Top 10 Drama" = "أفضل 10 دراما";
 "Top 10 Movies Today" = "أفضل 10 أفلام اليوم";
@@ -2129,10 +2137,12 @@
 "Top Rated on MAL" = "الأعلى تقييمًا على MAL";
 "Top Series" = "أفضل المسلسلات";
 "Top Series on MAL" = "أفضل المسلسلات على MAL";
+"Top left" = "أعلى اليسار";
 "Top of the screen" = "أعلى الشاشة";
 "Top rated" = "الأعلى تقييمًا";
 "Top rated on {site}" = "الأعلى تقييمًا على {site}";
 "Top result" = "أفضل نتيجة";
+"Top right" = "أعلى اليمين";
 "Top rising" = "الأكثر صعودًا";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "مفتاح API لـ TorBox";

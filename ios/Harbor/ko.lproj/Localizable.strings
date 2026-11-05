@@ -302,6 +302,7 @@
 "Borrar todo" = "모두 삭제";
 "Both" = "둘 다";
 "Both shows direct, debrid, and peer-to-peer results together. Direct/debrid keeps P2P results out of the way unless nothing else is available. P2P puts them first." = "둘 다는 직접, 디브리드, P2P 결과를 함께 표시합니다. 직접/디브리드는 다른 결과가 없을 때만 P2P 결과를 보여 줍니다. P2P는 P2P 결과를 맨 앞에 둡니다.";
+"Bottom" = "하단";
 "Bottom bar" = "하단 표시줄";
 "Bottom left" = "왼쪽 아래";
 "Bottom right" = "오른쪽 아래";
@@ -1021,6 +1022,7 @@
 "Languages" = "언어";
 "Languages & subtitles" = "언어 및 자막";
 "Large" = "크게";
+"Larger" = "더 크게";
 "Laterales" = "양면";
 "Lectura" = "읽는 중";
 "Left" = "왼쪽";
@@ -1464,6 +1466,7 @@
 "Portuguese (Brazil)" = "포르투갈어(브라질)";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
+"Position" = "순위";
 "Position and size only" = "위치와 크기만";
 "Poster" = "포스터";
 "Poster card style" = "포스터 카드 스타일";
@@ -1508,6 +1511,7 @@
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "더 선명한 색감";
 "Puntuaciones" = "평점";
+"Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Página anterior" = "이전 페이지";
 "Página siguiente" = "다음 페이지";
 "Pósteres, calificaciones y listas" = "포스터, 평점, 목록";
@@ -1812,6 +1816,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "간결 보기 선택기와 빅 픽처에서 릴리스 파일명을 표시합니다.";
 "Show release name" = "릴리스 이름 표시";
 "Show row" = "행 표시";
+"Show subtitle sync indicator" = "자막 동기화 표시기 표시";
 "Show the Skip button" = "건너뛰기 버튼 표시";
 "Show translated names in the language selected above. Turn off to keep original titles." = "위에서 선택한 언어로 번역된 제목을 표시합니다. 원제를 유지하려면 끄세요.";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "두 언어의 자막을 동시에 표시합니다. 언어 학습이나 함께 시청할 때 유용합니다.";
@@ -1855,6 +1860,7 @@
 "Sleep timer" = "취침 타이머";
 "Slice of Life" = "일상물";
 "Slightly lighter than background." = "배경보다 약간 밝습니다.";
+"Smaller" = "더 작게";
 "Sobre la línea principal" = "기본 자막 위";
 "Soft halo around the text. Cleanest on most content." = "텍스트 주변의 부드러운 후광입니다. 대부분의 콘텐츠에서 가장 깔끔합니다.";
 "Softer and dimmer, kinder for late-night watching." = "더 부드럽고 어둡게 조정해 심야 시청 시 눈의 부담을 줄입니다.";
@@ -1940,6 +1946,7 @@
 "Subtitle languages" = "자막 언어";
 "Subtitle source FPS" = "자막 소스 FPS";
 "Subtitle style" = "자막 스타일";
+"Subtitle sync" = "자막 싱크";
 "Subtitle track" = "자막 트랙";
 "Subtitles" = "자막";
 "Subtitles from your addons" = "Subtitles from your addons";
@@ -2069,6 +2076,7 @@
 "Todos los géneros" = "모든 장르";
 "Todos los idiomas" = "모든 언어";
 "Tonight's main event" = "오늘 밤의 메인 이벤트";
+"Top" = "상단";
 "Top 10 Comedy" = "코미디 Top 10";
 "Top 10 Drama" = "드라마 Top 10";
 "Top 10 Movies Today" = "오늘의 영화 상위 10개";
@@ -2091,10 +2099,12 @@
 "Top Rated on MAL" = "MAL 최고 평점작";
 "Top Series" = "최고의 시리즈";
 "Top Series on MAL" = "MAL 시리즈 인기 순위";
+"Top left" = "왼쪽 상단";
 "Top of the screen" = "화면 상단";
 "Top rated" = "평점순";
 "Top rated on {site}" = "{site} 최고 평점 콘텐츠";
 "Top result" = "최상위 결과";
+"Top right" = "오른쪽 상단";
 "Top rising" = "급상승";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "TorBox API 키";

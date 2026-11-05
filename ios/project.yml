@@ -182,6 +182,7 @@ targets:
       - path: HarborTests/PlayerAudioFilterTests.swift
       - path: HarborTests/PlaybackStatsTests.swift
       - path: HarborTests/TraktCommentsTests.swift
+      - path: HarborTests/SubtitleOffsetIndicatorTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift

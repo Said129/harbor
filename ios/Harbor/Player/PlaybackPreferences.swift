@@ -88,6 +88,10 @@ enum AudioProfile: String, CaseIterable, Sendable {
 /// event stream remains authoritative for the running player's transport state.
 struct PlaybackOptions: Codable, Equatable {
     var autoHideControls = true
+    /// Desktop's `subOffsetIndicator*`: show the subtitle delay on the picture while it is nudged, where and how large.
+    var subOffsetIndicator = true
+    var subOffsetPosition = SubtitleOffsetPosition.bottom.rawValue
+    var subOffsetSize = SubtitleOffsetSize.medium.rawValue
     /// Desktop's playback stats card, which its hotkey I shows and hides.
     var showStats = false
     /// Desktop's `audioNormalize`: a dynamic loudness normalizer.
