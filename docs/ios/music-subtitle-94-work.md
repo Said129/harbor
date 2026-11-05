@@ -1266,3 +1266,16 @@ failed: the seek to the start was ignored while the looped track restarted, so
 each capture now starts the track again instead (commit 3158e6f8, run
 42021364643, together with the six StreamPlaybackHistoryTests cases for
 "Remember last stream").
+
+Focused run 42021364643 (commit 3158e6f8): all 7 cases passed, including the
+owned-meter case that had failed in every earlier run. Starting the track again
+for each capture (instead of looping it) leaves every capture a freshly loaded,
+playing track, and the release wait accepts the no-signal state. The six
+StreamPlaybackHistoryTests cases for "Remember last stream" passed on their first
+execution. With this, no Music case from this log is open on the Apple side;
+the physical subtitle drift remains unreproduced.
+Run 42025901122 (commit 0c9f5c01) executes the three retained picker cases of the
+HarborTests module (automatic playback order, manual picker sources under the
+automatic filters, the direct source picker layout) against the new build, which
+also compiles the automatic retry chain, "Remember last stream" in the detail
+flow and the episode sort menu.
