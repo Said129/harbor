@@ -14,7 +14,8 @@ import SwiftUI
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
 
     var body: some View {
-        Group { if let profile { story(profile) } }
+        // A container, not a Group: a task on content that is empty until the profile arrives may never start.
+        ZStack(alignment: .topLeading) { if let profile { story(profile) } }
             .task(id: artist.id + "|" + language) {
                 profile = nil; expanded = false
                 do {

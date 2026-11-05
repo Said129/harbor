@@ -227,7 +227,8 @@ import XCTest
         XCTAssertEqual(score["runtimeMinutes"], .integer(148))
         XCTAssertEqual(HarborService.runtimeMinutes("2h 28min"), 2, "Desktop reads the first number")
         XCTAssertNil(HarborService.runtimeMinutes("unknown"))
-        XCTAssertNil(HarborService.scoring(media, addonOrder: false, active: [])["preferredLanguages"])
+        XCTAssertEqual(HarborService.scoring(media, addonOrder: false, active: [], sources: StreamSourceSettings())["preferredLanguages"], .null,
+                       "Without a chosen language the scorer is not given one")
     }
 
     func testDebridVerificationMergeKeepsEachHashOnce() {

@@ -64,10 +64,13 @@ import XCTest
         let session = MusicPlaybackSession(server: server, playlists: MusicPlaylistStore(owner: owner, persistence: SharedMusicDisk()),
                                           localRecords: { [record] }, audio: audio, currentScope: { scope.scope })
         let engine = MusicAudioEngine(), player = MusicPlayback(engine: engine, systemIntegration: false, recordPlayed: { _, _ in })
-        let oldVolume = player.volume, oldLanguage = UserDefaults.standard.string(forKey: "uiLanguage")
+        let oldVolume = player.volume, oldLanguage = UserDefaults.standard.string(forKey: "uiLanguage"), oldRepeat = player.repeatMode
         player.changeVolume(0)
+        // The tones last twelve seconds and a slow runner spends longer than that before the captures start;
+        // looping keeps the track loaded instead of ending with the player paused at its last second.
+        player.repeatMode = .one
         defer {
-            player.stop(); player.volume = oldVolume; server.dispose()
+            player.stop(); player.volume = oldVolume; player.repeatMode = oldRepeat; server.dispose()
             for prefix in ["music-levels-", "music-spectrum-"] { UserDefaults.standard.removeObject(forKey: prefix + EBookShelf.hash(owner)) }
             if let oldLanguage { UserDefaults.standard.set(oldLanguage, forKey: "uiLanguage") }
             else { UserDefaults.standard.removeObject(forKey: "uiLanguage") }

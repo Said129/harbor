@@ -134,7 +134,8 @@ private struct ProfileFixture: Decodable {
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
         host.view.layoutIfNeeded()
         var settled = false
-        for _ in 0..<500 { if await ready() { settled = true; break }; try await Task.sleep(for: .milliseconds(20)) }
+        // A new web worker is created for every capture, and a loaded runner can take well over ten seconds to boot it.
+        for _ in 0..<2000 { if await ready() { settled = true; break }; try await Task.sleep(for: .milliseconds(20)) }
         XCTAssertTrue(settled, "The profile requests did not complete for " + name)
         try await Task.sleep(for: .milliseconds(700))
         let image = UIGraphicsImageRenderer(size: size).image { _ in host.view.drawHierarchy(in: CGRect(origin: .zero, size: size), afterScreenUpdates: true) }
