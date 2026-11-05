@@ -592,6 +592,8 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "Escurecer";
 "Dirección" = "Direção";
+"Direct link" = "Link direto";
+"Direct stream" = "Transmissão direta";
 "Direct/debrid" = "Direto/debrid";
 "Direction" = "Direção";
 "Director" = "Diretor";
@@ -1037,6 +1039,7 @@
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
+"Magnet stream" = "Streaming via magnet";
 "Make it yours" = "Deixe do seu jeito";
 "Manage" = "Gerenciar";
 "Manage profiles" = "Gerenciar perfis";
@@ -1813,6 +1816,7 @@
 "Start Watching" = "Começar a Assistir";
 "Start as" = "Iniciar como";
 "Start with subtitles off" = "Iniciar com legendas desativadas";
+"Starting" = "Iniciando";
 "Startup & default" = "Inicialização e padrão";
 "Status" = "Status";
 "Step 1 · Metadata" = "Etapa 1 · Metadados";
@@ -1926,6 +1930,7 @@
 "Textos auxiliares y antetítulos." = "Legendas, sobretítulos.";
 "Thai" = "Tailandês";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Essa configuração não é válida. Verifique baseUrl, popularPath, list, chapters e pages.";
+"That does not look like a valid magnet link or infohash." = "Isso não parece ser um link magnet ou infohash válido.";
 "That link did not answer." = "Esse link não respondeu.";
 "That route wouldn't chart. Try a different direction." = "Não foi possível traçar essa rota. Tente outra direção.";
 "The CW" = "The CW";
@@ -2004,6 +2009,8 @@
 "Top rising" = "Em ascensão";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "Chave de API do TorBox";
+"Torrent link" = "Link de torrent";
+"Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
 "Torrents" = "Torrents";
 "Track" = "Faixa";
 "Tracking" = "Tracking";

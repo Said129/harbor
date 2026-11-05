@@ -576,6 +576,8 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "Затемнение";
 "Dirección" = "Направление";
+"Direct link" = "Прямая ссылка";
+"Direct stream" = "Прямой поток";
 "Direct/debrid" = "Прямые/debrid";
 "Direction" = "Направление";
 "Director" = "Режиссёр";
@@ -1022,6 +1024,7 @@
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
+"Magnet stream" = "Поток по magnet-ссылке";
 "Make it yours" = "Настройте под себя";
 "Manage" = "Управление";
 "Manage profiles" = "Управление профилями";
@@ -1805,6 +1808,7 @@
 "Start Watching" = "Начать просмотр";
 "Start as" = "Запускать как";
 "Start with subtitles off" = "Запускать с выключенными субтитрами";
+"Starting" = "Запуск";
 "Startup & default" = "Запуск и профиль по умолчанию";
 "Status" = "Статус";
 "Step 1 · Metadata" = "Шаг 1 · Метаданные";
@@ -1917,6 +1921,7 @@
 "Textos auxiliares y antetítulos." = "Подписи, надзаголовки.";
 "Thai" = "Тайский";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Эта конфигурация некорректна. Проверьте baseUrl, popularPath, list, chapters и pages.";
+"That does not look like a valid magnet link or infohash." = "Это не похоже на действительную magnet-ссылку или инфохеш.";
 "That link did not answer." = "Эта ссылка не ответила.";
 "That route wouldn't chart. Try a different direction." = "Не удалось проложить маршрут. Попробуйте другое направление.";
 "The CW" = "The CW";
@@ -1996,6 +2001,8 @@
 "Top rising" = "Набирают популярность";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "API-ключ TorBox";
+"Torrent link" = "Торрент-ссылка";
+"Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
 "Torrents" = "Торренты";
 "Track" = "Дорожка";
 "Tracking" = "Tracking";

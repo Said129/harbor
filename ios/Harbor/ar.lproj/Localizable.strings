@@ -596,6 +596,8 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "تعتيم";
 "Dirección" = "الاتجاه";
+"Direct link" = "رابط مباشر";
+"Direct stream" = "بث مباشر";
 "Direct/debrid" = "مباشر/ديبريد";
 "Direction" = "الاتجاه";
 "Director" = "المخرج";
@@ -1042,6 +1044,7 @@
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
+"Magnet stream" = "بث Magnet";
 "Make it yours" = "اجعلها تخصّك";
 "Manage" = "إدارة";
 "Manage profiles" = "إدارة الملفات الشخصية";
@@ -1827,6 +1830,7 @@
 "Start Watching" = "بدء المشاهدة";
 "Start as" = "البدء كـ";
 "Start with subtitles off" = "البدء مع إيقاف الترجمة";
+"Starting" = "قيد البدء";
 "Startup & default" = "بدء التشغيل والافتراضي";
 "Status" = "الحالة";
 "Step 1 · Metadata" = "الخطوة 1 · البيانات الوصفية";
@@ -1940,6 +1944,7 @@
 "Textos auxiliares y antetítulos." = "التسميات التوضيحية، العناوين العلوية.";
 "Thai" = "التايلندية";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "هذا الإعداد غير صالح. تحقّق من baseUrl وpopularPath وlist وchapters وpages.";
+"That does not look like a valid magnet link or infohash." = "لا يبدو هذا رابط magnet أو infohash صالحًا.";
 "That link did not answer." = "لم يستجب هذا الرابط.";
 "That route wouldn't chart. Try a different direction." = "تعذّر رسم هذا المسار. جرّب اتجاهًا آخر.";
 "The CW" = "The CW";
@@ -2019,6 +2024,8 @@
 "Top rising" = "الأكثر صعودًا";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "مفتاح API لـ TorBox";
+"Torrent link" = "رابط تورنت";
+"Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
 "Torrents" = "التورنت";
 "Track" = "المسار";
 "Tracking" = "Tracking";

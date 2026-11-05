@@ -474,6 +474,8 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "Dim";
 "Dirección" = "Direction";
+"Direct link" = "Direct link";
+"Direct stream" = "Direct stream";
 "Direct/debrid" = "Direct/debrid";
 "Direction" = "Direction";
 "Director" = "Director";
@@ -842,6 +844,7 @@
 "Lyrics later" = "Lyrics later";
 "Líneas más definidas y un poco más de impacto visual." = "Sharper lines and a little more pop.";
 "M3U playlist" = "M3U playlist";
+"Magnet stream" = "Magnet stream";
 "Make it yours" = "Make it yours";
 "Manage" = "Manage";
 "Manga" = "Manga";
@@ -1502,6 +1505,7 @@
 "Start Over" = "Start Over";
 "Start Watching" = "Start Watching";
 "Start with subtitles off" = "Start with subtitles off";
+"Starting" = "Starting";
 "Status" = "Status";
 "Step 1 · Open Simkl" = "Step 1 · Open Simkl";
 "Step 1 · Open Trakt" = "Step 1 · Open Trakt";
@@ -1596,6 +1600,7 @@
 "Texto silenciado" = "Muted text";
 "Texto sutil" = "Subtle text";
 "Textos auxiliares y antetítulos." = "Captions, eyebrows.";
+"That does not look like a valid magnet link or infohash." = "That does not look like a valid magnet link or infohash.";
 "The addons did not return metadata for this title." = "The addons did not return metadata for this title.";
 "The authorization code timed out before you finished. Try again." = "The authorization code timed out before you finished. Try again.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
@@ -1654,6 +1659,8 @@
 "Top rising" = "Top rising";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "TorBox API key";
+"Torrent link" = "Torrent link";
+"Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
 "Torrents" = "Torrents";
 "Track" = "Track";
 "Tracking" = "Tracking";

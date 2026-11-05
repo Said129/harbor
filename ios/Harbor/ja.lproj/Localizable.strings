@@ -572,6 +572,8 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "暗くする";
 "Dirección" = "方向";
+"Direct link" = "直接リンク";
+"Direct stream" = "ダイレクトストリーム";
 "Direct/debrid" = "直接/debrid";
 "Direction" = "方向";
 "Director" = "監督";
@@ -1017,6 +1019,7 @@
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
+"Magnet stream" = "マグネットストリーム";
 "Make it yours" = "自分好みにカスタマイズ";
 "Manage" = "管理";
 "Manage profiles" = "プロフィールを管理";
@@ -1791,6 +1794,7 @@
 "Start Watching" = "視聴を開始";
 "Start as" = "起動プロフィール";
 "Start with subtitles off" = "字幕をオフで再生開始";
+"Starting" = "起動中";
 "Startup & default" = "起動とデフォルト";
 "Status" = "ステータス";
 "Step 1 · Metadata" = "ステップ1 · メタデータ";
@@ -1903,6 +1907,7 @@
 "Textos auxiliares y antetítulos." = "キャプション、アイブロウ。";
 "Thai" = "タイ語";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "この設定は無効です。baseUrl、popularPath、list、chapters、pagesを確認してください。";
+"That does not look like a valid magnet link or infohash." = "有効なマグネットリンクまたはinfohashではないようです。";
 "That link did not answer." = "そのリンクは応答しませんでした。";
 "That route wouldn't chart. Try a different direction." = "そのルートは作成できませんでした。別の方向をお試しください。";
 "The CW" = "The CW";
@@ -1981,6 +1986,8 @@
 "Top rising" = "人気急上昇";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "TorBox APIキー";
+"Torrent link" = "Torrentリンク";
+"Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
 "Torrents" = "トレント";
 "Track" = "トラック";
 "Tracking" = "Tracking";

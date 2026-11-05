@@ -19,11 +19,12 @@ struct SearchView: View {
                     Button("Reintentar") { Task { ArtworkRefresh.shared.retryFailedImages(); await search() } }
                 }.padding()
             }
+            if !isTitleQuery { SearchLinkCard(app: app, input: linkInput).padding().id(linkInput) }
             if query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 recentSearches
                 if history.items.isEmpty { ContentUnavailableView("Busca en tus addons", systemImage: "magnifyingglass", description: Text("Películas, series y catálogos instalados.")) }
             }
-            else if rows.isEmpty && !loading { ContentUnavailableView.search(text: query) }
+            else if isTitleQuery && rows.isEmpty && !loading { ContentUnavailableView.search(text: query) }
             if let completedQuery {
                 Text("Resultados para «\(completedQuery)»").font(.headline).padding()
                     .accessibilityIdentifier("search-results-query")
@@ -37,6 +38,9 @@ struct SearchView: View {
         .refreshable { ArtworkRefresh.shared.retryFailedImages(); await search() }
         .task(id: query + app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined()) { await search() }
     }
+    /// A pasted magnet, info hash or direct video link gets a Play card instead of a catalog search.
+    private var linkInput: SearchInput { SearchInput.classify(query) }
+    private var isTitleQuery: Bool { if case .query = linkInput { true } else { false } }
     private var searchTitles: [String: String] {
         Dictionary(rows.map { ($0.id, $0.isAnimeCatalog ? "Anime" : ["movie": "Películas", "series": "Series", "tv": "TV", "channel": "TV"][$0.plan.kind] ?? "Resultados") }, uniquingKeysWith: { first, _ in first })
     }
@@ -66,7 +70,7 @@ struct SearchView: View {
         let request = UUID(); generation = request
         let requestedQuery = query.trimmingCharacters(in: .whitespacesAndNewlines)
         rows = []; error = nil; completedQuery = nil; loading = !requestedQuery.isEmpty
-        guard !requestedQuery.isEmpty else { return }
+        guard !requestedQuery.isEmpty, case .query = SearchInput.classify(requestedQuery) else { loading = false; return }
         do {
             try await Task.sleep(for: .milliseconds(300))
             let providers = try await app.service.catalogProviders(app.addons)

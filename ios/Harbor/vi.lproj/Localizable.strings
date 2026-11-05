@@ -572,6 +572,8 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "Tối";
 "Dirección" = "Hướng đọc";
+"Direct link" = "Liên kết trực tiếp";
+"Direct stream" = "Luồng trực tiếp";
 "Direct/debrid" = "Trực tiếp/debrid";
 "Direction" = "Hướng đọc";
 "Director" = "Đạo diễn";
@@ -1017,6 +1019,7 @@
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
+"Magnet stream" = "Luồng magnet";
 "Make it yours" = "Tùy biến theo ý bạn";
 "Manage" = "Quản lý";
 "Manage profiles" = "Quản lý hồ sơ";
@@ -1791,6 +1794,7 @@
 "Start Watching" = "Bắt đầu xem";
 "Start as" = "Bắt đầu với";
 "Start with subtitles off" = "Tắt phụ đề khi bắt đầu";
+"Starting" = "Đang khởi động";
 "Startup & default" = "Khởi động và mặc định";
 "Status" = "Trạng thái";
 "Step 1 · Metadata" = "Bước 1 · Siêu dữ liệu";
@@ -1903,6 +1907,7 @@
 "Textos auxiliares y antetítulos." = "Chú thích, tiêu đề phụ.";
 "Thai" = "Tiếng Thái";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Cấu hình này không hợp lệ. Hãy kiểm tra baseUrl, popularPath, list, chapters và pages.";
+"That does not look like a valid magnet link or infohash." = "Đây có vẻ không phải là liên kết magnet hoặc infohash hợp lệ.";
 "That link did not answer." = "Liên kết đó không phản hồi.";
 "That route wouldn't chart. Try a different direction." = "Không thể lập hải trình đó. Hãy thử một hướng khác.";
 "The CW" = "The CW";
@@ -1981,6 +1986,8 @@
 "Top rising" = "Đang lên";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "Khóa API TorBox";
+"Torrent link" = "Liên kết torrent";
+"Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
 "Torrents" = "Torrent";
 "Track" = "Bản nhạc";
 "Tracking" = "Tracking";

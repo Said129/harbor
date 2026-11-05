@@ -572,6 +572,8 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "Karartma";
 "Dirección" = "Yön";
+"Direct link" = "Doğrudan bağlantı";
+"Direct stream" = "Doğrudan yayın";
 "Direct/debrid" = "Doğrudan/debrid";
 "Direction" = "Yön";
 "Director" = "Yönetmen";
@@ -1017,6 +1019,7 @@
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
+"Magnet stream" = "Magnet yayını";
 "Make it yours" = "Kendinize göre düzenleyin";
 "Manage" = "Yönet";
 "Manage profiles" = "Profilleri yönet";
@@ -1791,6 +1794,7 @@
 "Start Watching" = "İzlemeye Başla";
 "Start as" = "Başlangıç profili";
 "Start with subtitles off" = "Altyazıları kapalı başlat";
+"Starting" = "Başlatılıyor";
 "Startup & default" = "Başlangıç ve varsayılan";
 "Status" = "Durum";
 "Step 1 · Metadata" = "1. Adım · Meta veriler";
@@ -1903,6 +1907,7 @@
 "Textos auxiliares y antetítulos." = "Açıklamalar, üst başlıklar.";
 "Thai" = "Tayca";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Bu yapılandırma geçerli değil. baseUrl, popularPath, list, chapters ve pages alanlarını kontrol edin.";
+"That does not look like a valid magnet link or infohash." = "Bu, geçerli bir magnet bağlantısı veya infohash gibi görünmüyor.";
 "That link did not answer." = "Bu bağlantı yanıt vermedi.";
 "That route wouldn't chart. Try a different direction." = "Bu rota çizilemedi. Farklı bir yön deneyin.";
 "The CW" = "The CW";
@@ -1981,6 +1986,8 @@
 "Top rising" = "En hızlı yükselenler";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "TorBox API anahtarı";
+"Torrent link" = "Torrent bağlantısı";
+"Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
 "Torrents" = "Torrentler";
 "Track" = "Parça";
 "Tracking" = "Tracking";

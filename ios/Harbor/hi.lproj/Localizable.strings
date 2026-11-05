@@ -572,6 +572,8 @@
 "Detener reproducción" = "Stop playback";
 "Dim" = "मंद";
 "Dirección" = "दिशा";
+"Direct link" = "सीधा लिंक";
+"Direct stream" = "सीधी स्ट्रीम";
 "Direct/debrid" = "सीधा/debrid";
 "Direction" = "दिशा";
 "Director" = "निर्देशक";
@@ -1017,6 +1019,7 @@
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
+"Magnet stream" = "मैग्नेट स्ट्रीम";
 "Make it yours" = "इसे अपना बनाएँ";
 "Manage" = "मैनेज करें";
 "Manage profiles" = "प्रोफ़ाइल मैनेज करें";
@@ -1791,6 +1794,7 @@
 "Start Watching" = "देखना शुरू करें";
 "Start as" = "इस रूप में शुरू करें";
 "Start with subtitles off" = "सबटाइटल बंद रखकर शुरू करें";
+"Starting" = "शुरू हो रहा है";
 "Startup & default" = "स्टार्टअप और डिफ़ॉल्ट";
 "Status" = "स्थिति";
 "Step 1 · Metadata" = "चरण 1 · मेटाडेटा";
@@ -1903,6 +1907,7 @@
 "Textos auxiliares y antetítulos." = "कैप्शन, आइब्रो टेक्स्ट।";
 "Thai" = "थाई";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "वह कॉन्फ़िग मान्य नहीं है। baseUrl, popularPath, list, chapters और pages जाँचें।";
+"That does not look like a valid magnet link or infohash." = "यह मान्य मैग्नेट लिंक या इन्फोहैश नहीं लगता।";
 "That link did not answer." = "उस लिंक ने जवाब नहीं दिया।";
 "That route wouldn't chart. Try a different direction." = "उस रूट का चार्ट नहीं बन सका। कोई दूसरी दिशा आज़माएँ।";
 "The CW" = "The CW";
@@ -1981,6 +1986,8 @@
 "Top rising" = "सबसे तेज़ उभरते";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "TorBox API कुंजी";
+"Torrent link" = "टोरेंट लिंक";
+"Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
 "Torrents" = "टोरेंट";
 "Track" = "ट्रैक करें";
 "Tracking" = "Tracking";
