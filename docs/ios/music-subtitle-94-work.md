@@ -1279,3 +1279,13 @@ HarborTests module (automatic playback order, manual picker sources under the
 automatic filters, the direct source picker layout) against the new build, which
 also compiles the automatic retry chain, "Remember last stream" in the detail
 flow and the episode sort menu.
+
+Focused run 42025901122 (commit 0c9f5c01): the app compiled with the automatic retry
+chain, "Remember last stream" in the detail flow and the episode sort menu, and the
+three retained HarborTests picker cases passed (automatic playback order,
+manual picker sources under the automatic filters, the direct source picker
+layout). Run 42107765914 (commit 37239570) executes the three HiddenEpisodesTests
+cases for "Hide and skip episodes", which are the only new code not yet compiled.
+Still not run on Apple: the LiveNavigation and PlayerCaption UI flows whose launch
+arguments changed, and the automatic retry chain itself (it needs a source that
+fails to resolve).
