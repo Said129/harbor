@@ -1289,3 +1289,9 @@ cases for "Hide and skip episodes", which are the only new code not yet compiled
 Still not run on Apple: the LiveNavigation and PlayerCaption UI flows whose launch
 arguments changed, and the automatic retry chain itself (it needs a source that
 fails to resolve).
+
+Focused run 42107765914 (commit 37239570): the app compiled and the three
+HiddenEpisodesTests cases passed (the store per show/season/number, Up Next
+stepping over hidden episodes while the playing one keeps its neighbours, and a
+multi-entry anime using each entry's own hidden episodes). Run 10 (commit 47661760) compiles the player screen lock and repeats the player cases that share
+PlayerView (check-in, hotkeys, auto-skip).
