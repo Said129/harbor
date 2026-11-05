@@ -58,7 +58,7 @@ struct ContinueWatchingPreferences: Sendable {
         "iphone.theme.preset", "iphone.theme.custom", "iphone.theme.font", "iphone.theme.colors", "seekBarColor",
         "iphone.player-options.v1", "mpvHwdec", "resumePlayback", "resumePrompt", "subtitleAutoSync",
         "streamFilterLevel", "streams.addonOrder", "streams.automatic", "keepSourceNextEpisode", "streams.excludeCamera", "streams.maximum", "streams.minimum",
-        "streams.addonTimeoutSec", "streams.mode", "streams.priority", "streams.pickerLayout", "streams.pickerShowFilename", "streams.fullDescription", "streams.pickerRefreshNextToBack", "streams.languages", "streams.requireLanguage", "customSleepMinutes",
+        "streams.addonTimeoutSec", "streams.mode", "streams.priority", "streams.pickerLayout", "streams.pickerShowFilename", "streams.fullDescription", "streams.pickerRefreshNextToBack", "streams.languages", "streams.requireLanguage", "customSleepMinutes", "customPlaybackSpeeds",
         "pluginsEnabled", "pluginsGroupByRepo", "blockTrackers", "hideContent.adult",
         "metadata.region", "metadata.language", "metadata.translateTitles", "cwPerProfile", "downloadsCellular",
         "profilePromptInterval", "defaultProfileId", "tvdbSeasonType", "tvdbOrderPanel",

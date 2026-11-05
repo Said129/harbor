@@ -89,6 +89,37 @@ struct SleepTimerSettings: View {
     }
 }
 
+/// Desktop's "Customize" for speeds: add a speed such as 1.35, or remove the ones added.
+struct CustomSpeedRow: View {
+    let current: Double
+    @State private var custom = PlaybackSpeeds.custom()
+    @State private var draft = ""
+    private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 10) {
+                TextField(text("e.g. 1.35"), text: $draft).keyboardType(.decimalPad).textFieldStyle(.roundedBorder).frame(minHeight: 44)
+                    .accessibilityIdentifier("custom-speed-field")
+                Text("×").font(HarborTheme.font(13)).foregroundStyle(.secondary)
+                Button(text("Add preset")) {
+                    if let value = Double(draft.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: ",", with: ".")), PlaybackSpeeds.add(value) {
+                        custom = PlaybackSpeeds.custom(); draft = ""
+                    }
+                }.accessibilityIdentifier("custom-speed-add")
+            }
+            ForEach(custom, id: \.self) { speed in
+                HStack {
+                    Text("\(speed.formatted())×").font(HarborTheme.font(14))
+                    Spacer(minLength: 0)
+                    Button { PlaybackSpeeds.remove(speed); custom = PlaybackSpeeds.custom() } label: {
+                        Image(systemName: "xmark").font(.system(size: 13, weight: .semibold)).frame(width: 44, height: 44)
+                    }.buttonStyle(.plain).accessibilityLabel(text("Remove preset"))
+                }
+            }
+        }
+    }
+}
+
 /// Desktop's A-B loop for touch: its Shift+I, Shift+O and Shift+L shortcuts become three buttons.
 struct ABLoopSettings: View {
     let state: PlayerState

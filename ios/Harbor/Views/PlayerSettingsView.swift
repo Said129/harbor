@@ -88,7 +88,8 @@ struct PlayerSettingsView: View {
             HarborSettingsToggle("Reanudar al volver a la app", isOn: $preferences.options.resumeOnForeground)
             HarborSettingsChoice("Salto al retroceder", selection: $preferences.options.seekBackSeconds, choices: [5.0, 10, 15, 30, 60].map { ("\(Int($0)) segundos", $0) })
             HarborSettingsChoice("Salto al avanzar", selection: $preferences.options.seekForwardSeconds, choices: [5.0, 10, 15, 30, 60].map { ("\(Int($0)) segundos", $0) })
-            HarborSettingsChoice("Velocidad inicial", selection: $preferences.options.speed, choices: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2].map { ("\($0.formatted())×", $0) })
+            HarborSettingsChoice("Velocidad inicial", selection: $preferences.options.speed, choices: PlaybackSpeeds.choices(current: preferences.options.speed).map { ("\($0.formatted())×", $0) })
+            CustomSpeedRow(current: preferences.options.speed)
         }
         HarborSettingsSection(DesktopInterfaceText.value("Resume")) {
             HarborSettingsToggle(DesktopInterfaceText.value("Resume where you left off"), note: DesktopInterfaceText.value("Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows."), isOn: $resumePlayback)

@@ -145,3 +145,23 @@ final class AutoSkipTests: XCTestCase {
         XCTAssertFalse(PlaybackOptions().autoSkipsAnySegment)
     }
 }
+/// Desktop's custom playback speeds (`speed-menu.tsx`).
+final class PlaybackSpeedsTests: XCTestCase {
+    func testCustomSpeedsAreValidatedSortedAndRemovable() throws {
+        let suite = "harbor.speeds.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        XCTAssertEqual(PlaybackSpeeds.custom(defaults), [])
+        XCTAssertFalse(PlaybackSpeeds.add(1.5, defaults), "1.5 is a preset")
+        XCTAssertFalse(PlaybackSpeeds.add(0.05, defaults)); XCTAssertFalse(PlaybackSpeeds.add(4.5, defaults))
+        XCTAssertFalse(PlaybackSpeeds.add(.nan, defaults)); XCTAssertFalse(PlaybackSpeeds.add(.infinity, defaults))
+        XCTAssertTrue(PlaybackSpeeds.add(1.347, defaults), "Two decimals, like Desktop")
+        XCTAssertTrue(PlaybackSpeeds.add(3, defaults)); XCTAssertTrue(PlaybackSpeeds.add(0.1, defaults))
+        XCTAssertFalse(PlaybackSpeeds.add(1.35, defaults), "No duplicates")
+        XCTAssertEqual(PlaybackSpeeds.custom(defaults), [0.1, 1.35, 3])
+        XCTAssertEqual(PlaybackSpeeds.choices(current: 1, defaults), [0.1, 0.5, 0.75, 1, 1.25, 1.35, 1.5, 1.75, 2, 3])
+        XCTAssertEqual(PlaybackSpeeds.choices(current: 2.5, defaults).contains(2.5), true, "The current speed is always listed")
+        PlaybackSpeeds.remove(1.35, defaults)
+        XCTAssertEqual(PlaybackSpeeds.custom(defaults), [0.1, 3])
+    }
+}
