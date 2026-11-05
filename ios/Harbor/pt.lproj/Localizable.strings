@@ -104,6 +104,11 @@
 "Adventure" = "Aventura";
 "Africa Cup of Nations" = "Copa Africana de Nações";
 "Africa Cup of Nations Qualifying" = "Eliminatórias da Copa Africana de Nações";
+"After 2" = "Após 2";
+"After 3" = "Após 3";
+"After 4" = "Após 4";
+"After 5" = "Após 5";
+"After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Depois de vários episódios reproduzidos automaticamente em sequência sem interação, pausa e verifica se você ainda está por perto antes de continuar. Desativado por padrão.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Suave para os olhos";
 "Agregar a favoritos" = "Adicionar aos favoritos";
@@ -182,6 +187,7 @@
 "Arrows" = "Setas";
 "Artistas" = "Artistas";
 "Artists" = "Artistas";
+"Ask if you're still watching" = "Perguntar se você ainda está assistindo";
 "Ask to resume or start over" = "Perguntar se deseja continuar ou começar de novo";
 "Aspect ratio" = "Proporção de tela";
 "Así se verán tus subtítulos." = "É assim que suas legendas vão ficar.";
@@ -879,6 +885,7 @@
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Quanto tempo o Harbor espera pelos resultados de cada complemento.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
+"How many episodes auto-play back to back before Harbor pauses to ask." = "How many episodes auto-play back to back before Harbor pauses to ask.";
 "How many films?" = "Quantos filmes?";
 "Hoy" = "Hoje";
 "Hulu" = "Hulu";
@@ -1826,6 +1833,9 @@
 "Step 2 · Stremio" = "Etapa 2 · Stremio";
 "Step 3 · Streaming" = "Etapa 3 · Streaming";
 "Step 4 · Subtitles" = "Etapa 4 · Legendas";
+"Still watching check-in" = "Still watching check-in";
+"Still watching?" = "Ainda está assistindo?";
+"Stop ({n})" = "Parar ({n})";
 "Stop feeding the hero carousel (back to automatic)" = "Parar de alimentar o carrossel principal (voltar ao automático)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "Deixar de mostrar como segunda legenda";

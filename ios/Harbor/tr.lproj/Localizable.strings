@@ -97,6 +97,11 @@
 "Administrar" = "Yönet";
 "Adult sources" = "Adult sources";
 "Adventure" = "Macera";
+"After 2" = "2 bölüm sonra";
+"After 3" = "3 bölüm sonra";
+"After 4" = "4 bölüm sonra";
+"After 5" = "5'ten sonra";
+"After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Herhangi bir giriş olmadan art arda birkaç bölüm otomatik oynatıldıktan sonra duraklatır ve devam etmeden önce hâlâ orada olup olmadığınızı sorar. Varsayılan olarak kapalıdır.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Gözleri yormaz";
 "Agregar a favoritos" = "Favorilere ekle";
@@ -174,6 +179,7 @@
 "Arrows" = "Ok tuşları";
 "Artistas" = "Sanatçılar";
 "Artists" = "Sanatçılar";
+"Ask if you're still watching" = "Hâlâ izleyip izlemediğimi sor";
 "Ask to resume or start over" = "Devam edilsin mi, baştan mı başlansın diye sor";
 "Aspect ratio" = "En-boy oranı";
 "Así se verán tus subtítulos." = "Altyazılarınız böyle görünecek.";
@@ -859,6 +865,7 @@
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Harbor'ın her eklentinin sonuçlarını ne kadar bekleyeceği.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
+"How many episodes auto-play back to back before Harbor pauses to ask." = "How many episodes auto-play back to back before Harbor pauses to ask.";
 "How many films?" = "Kaç film?";
 "Hoy" = "Bugün";
 "Hulu" = "Hulu";
@@ -1804,6 +1811,9 @@
 "Step 2 · Stremio" = "2. Adım · Stremio";
 "Step 3 · Streaming" = "3. Adım · Yayın hizmetleri";
 "Step 4 · Subtitles" = "4. Adım · Altyazılar";
+"Still watching check-in" = "Still watching check-in";
+"Still watching?" = "Hâlâ izliyor musunuz?";
+"Stop ({n})" = "Durdur ({n})";
 "Stop feeding the hero carousel (back to automatic)" = "Vitrin karuseline içerik sağlamayı durdur (otomatik seçime dön)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "İkinci altyazı olarak göstermeyi bırak";

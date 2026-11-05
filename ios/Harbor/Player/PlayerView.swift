@@ -86,6 +86,7 @@ struct PlayerView: View {
     @State private var chapterSkipSegments: [SkipSegment] = []
     @State private var dismissedSkips: Set<String> = []
     @State private var autoSkipped: Set<String> = []
+    @State private var stillWatchingEpisode: Episode?
     @Bindable private var preferences = PlaybackPreferences.shared
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     @Environment(\.dismiss) private var dismiss
@@ -128,7 +129,7 @@ struct PlayerView: View {
             // This sibling receives taps only on the video, so a transport
             // button or a slider never also toggles the entire interface.
             Color.clear.ignoresSafeArea().contentShape(Rectangle())
-                .onTapGesture { guard !resumePending else { return }; withAnimation(.easeInOut(duration: 0.2)) { controlsVisible.toggle() }; restartHideTimer() }
+                .onTapGesture { StillWatching.shared.reset(); guard !resumePending else { return }; withAnimation(.easeInOut(duration: 0.2)) { controlsVisible.toggle() }; restartHideTimer() }
                 .simultaneousGesture(MagnifyGesture().onEnded { value in
                     guard !resumePending, state.loaded, state.error == nil, scenePhase == .active else { return }
                     let scale = value.magnification
@@ -154,7 +155,7 @@ struct PlayerView: View {
             }.padding().allowsHitTesting(false)
             if !state.loaded && !state.ended && state.error == nil { HarborPlaybackConnecting(media: media, cancelIdentifier: "player-close") { dismiss() } }
             if let error = state.error { failureNotice(error) }
-            if !resumePending && controlsVisible && (state.loaded || state.error != nil) { controls.environment(\.layoutDirection, .leftToRight).transition(.opacity) }
+            if !resumePending && controlsVisible && (state.loaded || state.error != nil) { controls.environment(\.layoutDirection, .leftToRight).transition(.opacity).simultaneousGesture(TapGesture().onEnded { StillWatching.shared.reset() }) }
             if let next = adjacent.next, showUpNext {
                 VStack {
                     Spacer()
@@ -172,6 +173,13 @@ struct PlayerView: View {
                     .padding(.horizontal, 16).padding(.bottom, (controlsVisible ? (verticalSizeClass == .compact ? 115.0 : 160) : 24) + (showUpNext && verticalSizeClass != .compact ? 140 : 0))
             }
             SubtitleSyncFeedback(state: state)
+            if let episode = stillWatchingEpisode {
+                StillWatchingPrompt(show: title, nextLabel: "\(DesktopInterfaceText.value("Episode")) \(episode.listedEpisode ?? 0)", keepWatching: {
+                    StillWatching.shared.reset(); stillWatchingEpisode = nil; requestEpisode(episode)
+                }, stop: {
+                    StillWatching.shared.reset(); stillWatchingEpisode = nil; dismiss()
+                }).transition(.opacity).zIndex(10)
+            }
         }
     }
 
@@ -322,6 +330,10 @@ struct PlayerView: View {
         .modifier(TraktPlaybackTracking(state: state, session: session, media: media, library: library, resumePending: resumePending))
         .task(id: autoAdvanceReady) {
             guard autoAdvanceReady, let next = adjacent.next else { return }
+            // Desktop's check-in: after several episodes in a row with no input, ask before the next one.
+            if StillWatching.shared.gate(enabled: preferences.options.autoPlayNextEpisode && preferences.options.stillWatching, threshold: preferences.options.stillWatchingAfter) {
+                stillWatchingEpisode = next; return
+            }
             requestEpisode(next)
         }
         .task(id: hideRevision) {

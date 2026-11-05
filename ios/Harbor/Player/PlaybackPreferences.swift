@@ -73,6 +73,9 @@ struct PlaybackOptions: Codable, Equatable {
     var skipButtonHideSeconds = 0.0
     var keepScreenAwake = true
     var autoPlayNextEpisode = true
+    /// Desktop's "Ask if you're still watching": pause after this many episodes start by themselves.
+    var stillWatching = false
+    var stillWatchingAfter = 3
     var nextEpisodeLeadSeconds = -1.0
     var resumeAfterInterruption = true
     var resumeOnForeground = false

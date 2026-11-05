@@ -97,6 +97,11 @@
 "Administrar" = "Verwalten";
 "Adult sources" = "Adult sources";
 "Adventure" = "Abenteuer";
+"After 2" = "Nach 2";
+"After 3" = "Nach 3";
+"After 4" = "Nach 4";
+"After 5" = "Nach 5";
+"After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Nach mehreren automatisch nacheinander abgespielten Episoden ohne Eingabe pausieren und vor dem Fortfahren prüfen, ob du noch da bist. Standardmäßig deaktiviert.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Angenehm für die Augen";
 "Agregar a favoritos" = "Zu Favoriten hinzufügen";
@@ -174,6 +179,7 @@
 "Arrows" = "Pfeile";
 "Artistas" = "Künstler";
 "Artists" = "Künstler";
+"Ask if you're still watching" = "Nachfragen, ob du noch zusiehst";
 "Ask to resume or start over" = "Fragen, ob fortgesetzt oder neu begonnen werden soll";
 "Aspect ratio" = "Seitenverhältnis";
 "Así se verán tus subtítulos." = "So werden deine Untertitel aussehen.";
@@ -859,6 +865,7 @@
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Wie lange Harbor auf Ergebnisse jedes Add-ons wartet.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
+"How many episodes auto-play back to back before Harbor pauses to ask." = "How many episodes auto-play back to back before Harbor pauses to ask.";
 "How many films?" = "Wie viele Filme?";
 "Hoy" = "Heute";
 "Hulu" = "Hulu";
@@ -1804,6 +1811,9 @@
 "Step 2 · Stremio" = "Schritt 2 · Stremio";
 "Step 3 · Streaming" = "Schritt 3 · Streaming";
 "Step 4 · Subtitles" = "Schritt 4 · Untertitel";
+"Still watching check-in" = "Still watching check-in";
+"Still watching?" = "Schaust du noch?";
+"Stop ({n})" = "Stoppen ({n})";
 "Stop feeding the hero carousel (back to automatic)" = "Hero-Karussell nicht mehr manuell bestücken (zurück zu automatisch)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "Nicht mehr als zweiten Untertitel anzeigen";

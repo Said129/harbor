@@ -106,6 +106,11 @@
 "Adventure" = "مغامرة";
 "Africa Cup of Nations" = "كأس الأمم الأفريقية";
 "Africa Cup of Nations Qualifying" = "تصفيات كأس الأمم الأفريقية";
+"After 2" = "بعد 2";
+"After 3" = "بعد 3";
+"After 4" = "بعد 4";
+"After 5" = "بعد 5";
+"After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "بعد تشغيل عدة حلقات تلقائياً بالتتابع دون أي تفاعل، يتوقف مؤقتاً للتأكد من وجودك قبل المتابعة. مُعطَّل افتراضياً.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "مريح للعين";
 "Agregar a favoritos" = "إضافة إلى المفضّلة";
@@ -185,6 +190,7 @@
 "Arrows" = "الأسهم";
 "Artistas" = "الفنانون";
 "Artists" = "الفنانون";
+"Ask if you're still watching" = "السؤال إن كنت لا تزال تشاهد";
 "Ask to resume or start over" = "السؤال عن الاستئناف أو البدء من جديد";
 "Aspect ratio" = "نسبة العرض إلى الارتفاع";
 "Así se verán tus subtítulos." = "هكذا ستبدو الترجمة.";
@@ -884,6 +890,7 @@
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "مدة انتظار Harbor لنتائج كل إضافة.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
+"How many episodes auto-play back to back before Harbor pauses to ask." = "How many episodes auto-play back to back before Harbor pauses to ask.";
 "How many films?" = "كم عدد الأفلام؟";
 "Hoy" = "اليوم";
 "Hulu" = "Hulu";
@@ -1840,6 +1847,9 @@
 "Step 2 · Stremio" = "الخطوة 2 · Stremio";
 "Step 3 · Streaming" = "الخطوة 3 · البث";
 "Step 4 · Subtitles" = "الخطوة 4 · الترجمات";
+"Still watching check-in" = "Still watching check-in";
+"Still watching?" = "هل ما زلت تشاهد؟";
+"Stop ({n})" = "إيقاف ({n})";
 "Stop feeding the hero carousel (back to automatic)" = "إيقاف تغذية شريط العرض الرئيسي (العودة إلى التلقائي)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "إيقاف عرضها كترجمة ثانية";

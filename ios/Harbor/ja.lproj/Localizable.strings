@@ -97,6 +97,11 @@
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
 "Adventure" = "アドベンチャー";
+"After 2" = "2話後";
+"After 3" = "3話後";
+"After 4" = "4話後";
+"After 5" = "5話後";
+"After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "操作なしで複数のエピソードが連続自動再生されたら、一時停止して視聴を続けているか確認します。初期設定ではオフです。";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "目にやさしい";
 "Agregar a favoritos" = "お気に入りに追加";
@@ -174,6 +179,7 @@
 "Arrows" = "矢印キー";
 "Artistas" = "アーティスト";
 "Artists" = "アーティスト";
+"Ask if you're still watching" = "まだ視聴中か確認";
 "Ask to resume or start over" = "続きから再生するか最初から再生するか確認";
 "Aspect ratio" = "アスペクト比";
 "Así se verán tus subtítulos." = "字幕はこのように表示されます。";
@@ -859,6 +865,7 @@
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "各アドオンの結果を Harbor が待つ時間です。";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
+"How many episodes auto-play back to back before Harbor pauses to ask." = "How many episodes auto-play back to back before Harbor pauses to ask.";
 "How many films?" = "映画は何本？";
 "Hoy" = "今日";
 "Hulu" = "Hulu";
@@ -1804,6 +1811,9 @@
 "Step 2 · Stremio" = "ステップ2 · Stremio";
 "Step 3 · Streaming" = "ステップ3 · ストリーミング";
 "Step 4 · Subtitles" = "ステップ4 · 字幕";
+"Still watching check-in" = "Still watching check-in";
+"Still watching?" = "まだ視聴中ですか？";
+"Stop ({n})" = "停止（{n}）";
 "Stop feeding the hero carousel (back to automatic)" = "ヒーローカルーセルへの表示をやめる（自動選択に戻す）";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "第2字幕の表示を停止";

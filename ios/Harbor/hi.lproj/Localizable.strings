@@ -97,6 +97,11 @@
 "Administrar" = "मैनेज करें";
 "Adult sources" = "Adult sources";
 "Adventure" = "रोमांच";
+"After 2" = "2 के बाद";
+"After 3" = "3 के बाद";
+"After 4" = "4 के बाद";
+"After 5" = "5 के बाद";
+"After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "बिना किसी इनपुट के लगातार कई एपिसोड अपने आप चलने के बाद, आगे बढ़ने से पहले रुककर जाँचें कि आप अभी भी मौजूद हैं। डिफ़ॉल्ट रूप से बंद है।";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "आँखों के लिए आरामदायक";
 "Agregar a favoritos" = "पसंदीदा में जोड़ें";
@@ -174,6 +179,7 @@
 "Arrows" = "तीर";
 "Artistas" = "कलाकार";
 "Artists" = "कलाकार";
+"Ask if you're still watching" = "पूछें कि क्या आप अब भी देख रहे हैं";
 "Ask to resume or start over" = "वहीं से चलाने या फिर से शुरू करने के लिए पूछें";
 "Aspect ratio" = "आस्पेक्ट रेशियो";
 "Así se verán tus subtítulos." = "आपके सबटाइटल ऐसे दिखेंगे।";
@@ -859,6 +865,7 @@
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "हर ऐडऑन के नतीजों के लिए Harbor कितनी देर इंतज़ार करता है।";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
+"How many episodes auto-play back to back before Harbor pauses to ask." = "How many episodes auto-play back to back before Harbor pauses to ask.";
 "How many films?" = "कितनी फ़िल्में?";
 "Hoy" = "आज";
 "Hulu" = "Hulu";
@@ -1804,6 +1811,9 @@
 "Step 2 · Stremio" = "चरण 2 · Stremio";
 "Step 3 · Streaming" = "चरण 3 · स्ट्रीमिंग";
 "Step 4 · Subtitles" = "चरण 4 · सबटाइटल";
+"Still watching check-in" = "Still watching check-in";
+"Still watching?" = "अभी भी देख रहे हैं?";
+"Stop ({n})" = "रोकें ({n})";
 "Stop feeding the hero carousel (back to automatic)" = "हीरो कैरोसेल पर असर डालना बंद करें (फिर से ऑटोमैटिक)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "दूसरे सबटाइटल के रूप में दिखाना बंद करें";

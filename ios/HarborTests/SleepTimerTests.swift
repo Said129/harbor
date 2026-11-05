@@ -165,3 +165,26 @@ final class PlaybackSpeedsTests: XCTestCase {
         XCTAssertEqual(PlaybackSpeeds.custom(defaults), [0.1, 3])
     }
 }
+/// Desktop's "Still watching?" counter (`use-still-watching.ts`).
+final class StillWatchingTests: XCTestCase {
+    func testCheckInComesAfterTheChosenNumberOfAutomaticEpisodes() {
+        var counter = StillWatchingCounter()
+        XCTAssertFalse(counter.gate(enabled: true, threshold: 3)); XCTAssertFalse(counter.gate(enabled: true, threshold: 3))
+        XCTAssertEqual(counter.runs, 2)
+        XCTAssertTrue(counter.gate(enabled: true, threshold: 3), "The third automatic episode waits for an answer")
+        XCTAssertEqual(counter.runs, 2, "A held episode is not counted")
+        XCTAssertTrue(counter.gate(enabled: true, threshold: 3))
+        counter.reset()
+        XCTAssertEqual(counter.runs, 0)
+        XCTAssertFalse(counter.gate(enabled: true, threshold: 3), "A touch or an answer starts the count again")
+    }
+
+    func testDisabledOrZeroThresholdNeverAsks() {
+        var counter = StillWatchingCounter()
+        for _ in 0..<6 { XCTAssertFalse(counter.gate(enabled: false, threshold: 2)) }
+        for _ in 0..<6 { XCTAssertFalse(counter.gate(enabled: true, threshold: 0)) }
+        XCTAssertEqual(counter.runs, 0, "Nothing is counted while the check-in is off")
+        var two = StillWatchingCounter()
+        XCTAssertFalse(two.gate(enabled: true, threshold: 2)); XCTAssertTrue(two.gate(enabled: true, threshold: 2))
+    }
+}

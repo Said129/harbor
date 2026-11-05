@@ -76,6 +76,17 @@ struct PlayerNextEpisodeSettings: View {
                 .accessibilityIdentifier("settings-next-prompt")
             HarborSettingsToggle(DesktopInterfaceText.value("Auto-play next episode"), note: DesktopInterfaceText.value("When an episode ends, automatically start the next one. Off lets the episode finish and stop."), isOn: $preferences.options.autoPlayNextEpisode)
                 .accessibilityIdentifier("settings-auto-next")
+            if preferences.options.autoPlayNextEpisode {
+                HarborSettingsToggle(DesktopInterfaceText.value("Ask if you're still watching"), note: DesktopInterfaceText.value("After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default."), isOn: $preferences.options.stillWatching)
+                    .accessibilityIdentifier("settings-still-watching")
+            }
+            if preferences.options.autoPlayNextEpisode && preferences.options.stillWatching {
+                Text(DesktopInterfaceText.value("Still watching check-in")).font(HarborTheme.font(14, weight: .semibold))
+                Text(DesktopInterfaceText.value("How many episodes auto-play back to back before Harbor pauses to ask."))
+                    .font(HarborTheme.font(13)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                HarborSettingsSegmented(selection: $preferences.options.stillWatchingAfter, choices: [2, 3, 4, 5].map { (DesktopInterfaceText.value("After \($0)"), $0) })
+                    .accessibilityIdentifier("settings-still-watching-after")
+            }
             HarborSettingsToggle(DesktopInterfaceText.value("Keep same source on next episode"), note: DesktopInterfaceText.value("When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available."), isOn: $sources.keepSourceNextEpisode)
                 .accessibilityIdentifier("settings-next-source")
         }
