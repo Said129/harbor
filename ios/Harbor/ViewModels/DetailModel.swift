@@ -407,9 +407,22 @@ final class DetailModel {
                                      answered: answeredRequests, total: totalRequests, done: done, protecting: protecting),
               let top = candidate else { return }
         self.autoplay = nil
-        let start = autoplay.start
-        autoTask = Task { await start(top) }
+        let start = autoplay.start, wanted = autoplay.wanted
+        autoTask = Task { [weak self] in
+            var tried: Set<Int> = [top.id]
+            await start(top)
+            // Desktop's attempt chain (`use-auto-fire.ts`): a source that could not be opened is set aside and the
+            // next candidate tried, so one dead link does not leave the person in the picker.
+            while let self, !Task.isCancelled, self.playback == nil, self.error != nil, tried.count < Self.autoAttemptLimit, wanted() {
+                guard let next = StreamPreferences.shared.preferred(self.automaticOffers.filter { !tried.contains($0.id) }) else { break }
+                tried.insert(next.id)
+                self.error = nil
+                await start(next)
+            }
+        }
     }
+    /// How many sources an automatic start tries before it leaves the choice to the picker.
+    static let autoAttemptLimit = 8
 
     private func tickAutoplay(_ request: UUID) async {
         while !Task.isCancelled {

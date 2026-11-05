@@ -1245,3 +1245,13 @@ artist overview capture never saw its profile requests, so the view's task now
 starts on a container instead of an empty `Group` and the capture waits longer for
 the web worker. Run 42011211733 (commit 92a633a3) reruns those three together
 with the seven new still-watching, hotkey and Watch on cases.
+
+Focused run 42011211733 (commit 92a633a3): 9 of 10 passed: the artist overview
+capture (its profile task now starts on a container), the stream-language test,
+and the still-watching, hotkey and Watch on cases, which also shows that the
+Easynews card, the hotkeys and the player check-in compiled. The owned-meter case
+still failed: the looped track gets past the capture but is restarting (no signal,
+phase resolving) when the release is checked, so the release wait now asks for no
+consumers and no filter instead of an explicit false, and the loop waits for the
+track to be loaded before it seeks. Run 42015909434 (commit 8866e84a) covers the
+AniList and MyAnimeList tracker cases (27) with the first of those changes.

@@ -102,7 +102,9 @@ import XCTest
                 ("arabic-phone", CGSize(width: 390, height: 844), "ar", LayoutDirection.rightToLeft)
             ] {
                 UserDefaults.standard.set(language, forKey: "uiLanguage")
-                player.seek(0); try await wait { player.position < 0.3 }
+                // The looped track may be restarting (not loaded, position 0): wait until it plays again before seeking.
+                try await wait { player.loaded }
+                player.seek(0); try await wait { player.loaded && player.position < 0.3 }
                 do { try await capture(player, name: "music-measured-meter-" + name, size: size, direction: direction) }
                 catch {
                     let failure = await engine.meterFailure, signal = await player.audioSignal()

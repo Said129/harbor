@@ -116,8 +116,10 @@ off` (its clip is not a real release). The safety filter now receives
    Together host source, Desktop's own automatic candidate ranking
    (`use-auto-candidates.ts`; iPhone keeps `StreamPreferences.preferred`), so
    its title-name check (`nameKnown` → `nameAbsent`) never applies, and the
-   retry with the next candidate after a failed automatic start
-   (`autoAttemptIdx`; iPhone stops and shows the picker with the error). Retained cases to rerun with this:
+   retry with the next candidate after a failed automatic start: ported for sources
+   that cannot be resolved (up to 8 candidates, `autoAttemptIdx`; uncompiled), not
+   yet for a stream the player fails to open or stalls on (`autoNextStreamOnStall`).
+   Retained cases to rerun with this:
    LiveNavigationTests source-picker and change-source flows (they wait
    15–30 s for offers and assume the Condensed picker), NativeDataTests stream
    preferences, MobileSourcesAndSubtitlesTests and DebridStreamTests automatic
