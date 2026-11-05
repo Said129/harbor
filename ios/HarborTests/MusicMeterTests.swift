@@ -64,13 +64,10 @@ import XCTest
         let session = MusicPlaybackSession(server: server, playlists: MusicPlaylistStore(owner: owner, persistence: SharedMusicDisk()),
                                           localRecords: { [record] }, audio: audio, currentScope: { scope.scope })
         let engine = MusicAudioEngine(), player = MusicPlayback(engine: engine, systemIntegration: false, recordPlayed: { _, _ in })
-        let oldVolume = player.volume, oldLanguage = UserDefaults.standard.string(forKey: "uiLanguage"), oldRepeat = player.repeatMode
+        let oldVolume = player.volume, oldLanguage = UserDefaults.standard.string(forKey: "uiLanguage")
         player.changeVolume(0)
-        // The tones last twelve seconds and a slow runner spends longer than that before the captures start;
-        // looping keeps the track loaded instead of ending with the player paused at its last second.
-        player.repeatMode = .one
         defer {
-            player.stop(); player.volume = oldVolume; player.repeatMode = oldRepeat; server.dispose()
+            player.stop(); player.volume = oldVolume; server.dispose()
             for prefix in ["music-levels-", "music-spectrum-"] { UserDefaults.standard.removeObject(forKey: prefix + EBookShelf.hash(owner)) }
             if let oldLanguage { UserDefaults.standard.set(oldLanguage, forKey: "uiLanguage") }
             else { UserDefaults.standard.removeObject(forKey: "uiLanguage") }
@@ -102,9 +99,10 @@ import XCTest
                 ("arabic-phone", CGSize(width: 390, height: 844), "ar", LayoutDirection.rightToLeft)
             ] {
                 UserDefaults.standard.set(language, forKey: "uiLanguage")
-                // The looped track may be restarting (not loaded, position 0): wait until it plays again before seeking.
-                try await wait { player.loaded }
-                player.seek(0); try await wait { player.loaded && player.position < 0.3 }
+                // The tones last twelve seconds and a slow runner can spend longer than that on the steps above or on an
+                // earlier capture. Starting the track again makes every capture begin with a playing, freshly loaded player.
+                player.play(record.local.track, queue: [record.local.track], using: session)
+                try await wait { player.loaded && player.position > 0.1 && player.position < 3 }
                 do { try await capture(player, name: "music-measured-meter-" + name, size: size, direction: direction) }
                 catch {
                     let failure = await engine.meterFailure, signal = await player.audioSignal()
