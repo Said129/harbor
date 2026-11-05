@@ -1411,7 +1411,10 @@
 "Playback position" = "Playback position";
 "Playback time" = "Playback time";
 "Player" = "选手";
+"Player controls locked" = "播放器控件已锁定";
+"Player controls unlocked" = "播放器控件已解锁";
 "Player options" = "Player options";
+"Player screen lock" = "播放器屏幕锁定";
 "Playlists" = "播放列表";
 "Playlists and servers" = "Playlists and servers";
 "Please add your TMDB API key in the Library & Metadata settings to view this folder." = "请在“媒体库与元数据”设置中添加 TMDB API 密钥，以查看此文件夹。";
@@ -1750,6 +1753,7 @@
 "Show" = "显示";
 "Show More info button" = "显示“更多信息”按钮";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Harbor 检测到片头或片尾时，显示“跳过片头”或“跳过片尾”按钮。关闭后将不再显示。也可点按按钮上的 X，在本集剩余时间内忽略错误识别。";
+"Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "在播放器中显示锁定控件，锁定后将屏蔽鼠标、键盘、遥控器和媒体键输入，直至解锁。";
 "Show adult addons" = "显示成人插件";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "显示插件返回的所有结果，包括不匹配或可能可疑的版本。";
 "Show as a Top 10 with big numerals" = "显示为带大号排名数字的前 10 名榜单";
@@ -2114,6 +2118,7 @@
 "Unavailable" = "不可用";
 "Undo" = "撤销";
 "Unknown" = "未知";
+"Unlock controls" = "解锁控件";
 "Unmute" = "取消静音";
 "Unverified" = "未经验证";
 "Up Next" = "接下来播放";

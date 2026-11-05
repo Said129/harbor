@@ -285,7 +285,9 @@ SETTINGS = expand("""
 151-156 M Watch Together settings
 157-165 X Discord Rich Presence
 166 X single native player engine
-167-172 M PiP behavior, player shells and chrome, screen lock, seek preview
+167-170 M PiP behavior, player shells and chrome
+171 D player screen lock (5 Nov, uncompiled)
+172 M seek preview
 173 D instant play
 174-176 M preparation, stall switching
 177 X desktop fullscreen mode

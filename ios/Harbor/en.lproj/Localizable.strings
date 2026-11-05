@@ -1179,7 +1179,10 @@
 "Playback position" = "Playback position";
 "Playback time" = "Playback time";
 "Player" = "Player";
+"Player controls locked" = "Player controls locked";
+"Player controls unlocked" = "Player controls unlocked";
 "Player options" = "Player options";
+"Player screen lock" = "Player screen lock";
 "Playlists" = "Playlists";
 "Playlists and servers" = "Playlists and servers";
 "Please add your TMDB API key in the Library & Metadata settings to view this folder." = "Please add your TMDB API key in the Library & Metadata settings to view this folder.";
@@ -1475,6 +1478,7 @@
 "Sharper lines and a little more pop." = "Sharper lines and a little more pop.";
 "Show More info button" = "Show More info button";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode.";
+"Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it.";
 "Show adult addons" = "Show adult addons";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "Show all results returned by addons, including releases that do not match or may be suspicious.";
 "Show as a Top 10 with big numerals" = "Show as a Top 10 with big numerals";
@@ -1777,6 +1781,7 @@
 "Unavailable" = "Unavailable";
 "Undo" = "Undo";
 "Unknown" = "Unknown";
+"Unlock controls" = "Unlock controls";
 "Unmute" = "Unmute";
 "Unverified" = "Unverified";
 "Up Next" = "Up Next";

@@ -1411,7 +1411,10 @@
 "Playback position" = "Playback position";
 "Playback time" = "Playback time";
 "Player" = "Spieler";
+"Player controls locked" = "Wiedergabesteuerung gesperrt";
+"Player controls unlocked" = "Wiedergabesteuerung entsperrt";
 "Player options" = "Player options";
+"Player screen lock" = "Bildschirmsperre im Player";
 "Playlists" = "Wiedergabelisten";
 "Playlists and servers" = "Playlists and servers";
 "Please add your TMDB API key in the Library & Metadata settings to view this folder." = "Füge bitte deinen TMDB-API-Schlüssel in den Einstellungen unter „Mediathek & Metadaten“ hinzu, um diesen Ordner anzuzeigen.";
@@ -1750,6 +1753,7 @@
 "Show" = "Anzeigen";
 "Show More info button" = "Schaltfläche „Weitere Infos“ anzeigen";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Zeige die Schaltfläche „Intro überspringen“ / „Abspann überspringen“ an, wenn Harbor einen solchen Abschnitt erkennt. Schalte dies aus, um sie nie anzuzeigen. Du kannst auch auf das X der Schaltfläche tippen, um eine falsche Erkennung für den Rest der Folge auszublenden.";
+"Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "Zeige im Player eine Sperrschaltfläche an, die Eingaben per Maus, Tastatur, Fernbedienung und Medientasten blockiert, bis du sie entsperrst.";
 "Show adult addons" = "Add-ons für Erwachsene anzeigen";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "Zeige alle Ergebnisse der Add-ons, auch unpassende oder möglicherweise verdächtige Veröffentlichungen.";
 "Show as a Top 10 with big numerals" = "Als Top 10 mit großen Ziffern anzeigen";
@@ -2114,6 +2118,7 @@
 "Unavailable" = "Nicht verfügbar";
 "Undo" = "Rückgängig";
 "Unknown" = "Unbekannt";
+"Unlock controls" = "Bedienelemente entsperren";
 "Unmute" = "Stummschaltung aufheben";
 "Unverified" = "Nicht verifiziert";
 "Up Next" = "Als Nächstes";

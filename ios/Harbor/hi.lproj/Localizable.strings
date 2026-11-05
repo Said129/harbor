@@ -1411,7 +1411,10 @@
 "Playback position" = "Playback position";
 "Playback time" = "Playback time";
 "Player" = "खिलाड़ी";
+"Player controls locked" = "प्लेयर कंट्रोल लॉक हैं";
+"Player controls unlocked" = "प्लेयर कंट्रोल अनलॉक हैं";
 "Player options" = "Player options";
+"Player screen lock" = "प्लेयर स्क्रीन लॉक";
 "Playlists" = "प्लेलिस्ट";
 "Playlists and servers" = "Playlists and servers";
 "Please add your TMDB API key in the Library & Metadata settings to view this folder." = "यह फ़ोल्डर देखने के लिए कृपया लाइब्रेरी और मेटाडेटा सेटिंग्स में अपनी TMDB API कुंजी जोड़ें।";
@@ -1750,6 +1753,7 @@
 "Show" = "दिखाएँ";
 "Show More info button" = "अधिक जानकारी वाला बटन दिखाएँ";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Harbor को इंट्रो या क्रेडिट मिलने पर इंट्रो छोड़ें / क्रेडिट छोड़ें बटन दिखाएँ। इसे कभी न दिखाने के लिए यह विकल्प बंद करें। अगर पहचान गलत हो, तो बाकी एपिसोड के लिए इसे हटाने हेतु बटन पर मौजूद X टैप करें।";
+"Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "प्लेयर में लॉक कंट्रोल दिखाएँ, जो तब तक माउस, कीबोर्ड, रिमोट और मीडिया-की इनपुट को ब्लॉक करता है, जब तक आप इसे अनलॉक न करें।";
 "Show adult addons" = "वयस्क ऐडऑन दिखाएँ";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "ऐडऑन के सभी नतीजे दिखाएँ, जिनमें मेल न खाने वाली या संदिग्ध रिलीज़ भी शामिल हों।";
 "Show as a Top 10 with big numerals" = "बड़े अंकों के साथ Top 10 के रूप में दिखाएँ";
@@ -2114,6 +2118,7 @@
 "Unavailable" = "उपलब्ध नहीं";
 "Undo" = "पहले जैसा करें";
 "Unknown" = "अज्ञात";
+"Unlock controls" = "कंट्रोल अनलॉक करें";
 "Unmute" = "आवाज़ चालू करें";
 "Unverified" = "असत्यापित";
 "Up Next" = "इसके बाद";

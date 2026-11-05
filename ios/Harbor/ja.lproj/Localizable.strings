@@ -1411,7 +1411,10 @@
 "Playback position" = "Playback position";
 "Playback time" = "Playback time";
 "Player" = "選手";
+"Player controls locked" = "プレーヤー操作をロックしました";
+"Player controls unlocked" = "プレーヤー操作のロックを解除しました";
 "Player options" = "Player options";
+"Player screen lock" = "プレイヤー画面ロック";
 "Playlists" = "プレイリスト";
 "Playlists and servers" = "Playlists and servers";
 "Please add your TMDB API key in the Library & Metadata settings to view this folder." = "このフォルダーを表示するには、「ライブラリとメタデータ」設定でTMDB APIキーを追加してください。";
@@ -1750,6 +1753,7 @@
 "Show" = "表示";
 "Show More info button" = "「詳細情報」ボタンを表示";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Harborが検出したときに「イントロをスキップ」/「クレジットをスキップ」ボタンを表示します。今後一切表示しない場合はオフにしてください。誤検出の場合はボタンのXをタップすると、そのエピソード中は非表示にできます。";
+"Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "ロックを解除するまで、マウス、キーボード、リモコン、メディアキーの入力を無効にするロック操作をプレイヤーに表示します。";
 "Show adult addons" = "成人向けアドオンを表示";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "一致しない、または疑わしいリリースを含め、アドオンからの結果をすべて表示します。";
 "Show as a Top 10 with big numerals" = "大きな数字付きのトップ10として表示";
@@ -2114,6 +2118,7 @@
 "Unavailable" = "利用できません";
 "Undo" = "元に戻す";
 "Unknown" = "不明";
+"Unlock controls" = "操作のロックを解除";
 "Unmute" = "ミュート解除";
 "Unverified" = "未確認";
 "Up Next" = "次のエピソード";

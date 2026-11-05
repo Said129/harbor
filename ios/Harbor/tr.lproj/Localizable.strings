@@ -1411,7 +1411,10 @@
 "Playback position" = "Playback position";
 "Playback time" = "Playback time";
 "Player" = "Oyuncu";
+"Player controls locked" = "Oynatıcı kontrolleri kilitlendi";
+"Player controls unlocked" = "Oynatıcı kontrollerinin kilidi açıldı";
 "Player options" = "Player options";
+"Player screen lock" = "Oynatıcı ekran kilidi";
 "Playlists" = "Oynatma Listeleri";
 "Playlists and servers" = "Playlists and servers";
 "Please add your TMDB API key in the Library & Metadata settings to view this folder." = "Bu klasörü görüntülemek için lütfen Kütüphane ve Meta Veriler ayarlarına TMDB API anahtarınızı ekleyin.";
@@ -1750,6 +1753,7 @@
 "Show" = "Göster";
 "Show More info button" = "Daha fazla bilgi düğmesini göster";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Harbor algıladığında Jeneriği Atla / Kapanış Jeneriğini Atla düğmesini gösterir. Hiç gösterilmemesi için bunu kapatın. Hatalı bir düğmeyi bölümün geri kalanında gizlemek için düğmedeki X'e de dokunabilirsiniz.";
+"Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "Oynatıcıda, kilidi açana kadar fare, klavye, uzaktan kumanda ve medya tuşu girişlerini engelleyen bir kilit denetimi göster.";
 "Show adult addons" = "Yetişkinlere yönelik eklentileri göster";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "Eşleşmeyen veya şüpheli olabilecek sürümler dahil eklentilerin döndürdüğü tüm sonuçları gösterin.";
 "Show as a Top 10 with big numerals" = "Büyük rakamlarla İlk 10 olarak göster";
@@ -2114,6 +2118,7 @@
 "Unavailable" = "Kullanılamıyor";
 "Undo" = "Geri al";
 "Unknown" = "Bilinmiyor";
+"Unlock controls" = "Kontrollerin kilidini aç";
 "Unmute" = "Sesi aç";
 "Unverified" = "Doğrulanmamış";
 "Up Next" = "Sıradaki";

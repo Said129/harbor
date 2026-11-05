@@ -1431,7 +1431,10 @@
 "Playback position" = "Playback position";
 "Playback time" = "Playback time";
 "Player" = "Jogador";
+"Player controls locked" = "Controlos do leitor bloqueados";
+"Player controls unlocked" = "Controlos do leitor desbloqueados";
 "Player options" = "Player options";
+"Player screen lock" = "Bloqueio da tela do player";
 "Playlists" = "Playlists";
 "Playlists and servers" = "Playlists and servers";
 "Please add your TMDB API key in the Library & Metadata settings to view this folder." = "Por favor, adicione sua chave de API do TMDB nas configurações de Biblioteca e Metadados para visualizar esta pasta.";
@@ -1772,6 +1775,7 @@
 "Show" = "Mostrar";
 "Show More info button" = "Mostrar o botão Mais informações";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Mostra um botão Pular Abertura / Pular Créditos quando o Harbor detecta um. Desative para nunca mostrar. Você também pode tocar no X do botão para dispensar um errado pelo resto do episódio.";
+"Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "Mostra no player um controle que bloqueia o mouse, o teclado, o controle remoto e as teclas de mídia até ser desbloqueado.";
 "Show adult addons" = "Mostrar addons adultos";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "Mostre todos os resultados dos complementos, incluindo versões incompatíveis ou suspeitas.";
 "Show as a Top 10 with big numerals" = "Mostrar como um Top 10 com números grandes";
@@ -2137,6 +2141,7 @@
 "Unavailable" = "Indisponível";
 "Undo" = "Desfazer";
 "Unknown" = "Desconhecido";
+"Unlock controls" = "Desbloquear controles";
 "Unmute" = "Ativar som";
 "Unverified" = "Não verificado";
 "Up Next" = "A seguir";

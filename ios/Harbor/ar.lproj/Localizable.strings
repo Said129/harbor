@@ -1442,7 +1442,10 @@
 "Playback position" = "Playback position";
 "Playback time" = "Playback time";
 "Player" = "اللاعب";
+"Player controls locked" = "عناصر تحكم المشغّل مقفلة";
+"Player controls unlocked" = "عناصر تحكم المشغّل غير مقفلة";
 "Player options" = "Player options";
+"Player screen lock" = "قفل شاشة المشغّل";
 "Playlists" = "قوائم التشغيل";
 "Playlists and servers" = "Playlists and servers";
 "Please add your TMDB API key in the Library & Metadata settings to view this folder." = "يرجى إضافة مفتاح TMDB API الخاص بك في إعدادات المكتبة والبيانات الوصفية لعرض هذه المجموعة.";
@@ -1784,6 +1787,7 @@
 "Show" = "إظهار";
 "Show More info button" = "عرض زر \"مزيد من المعلومات\"";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "إظهار زر تخطّي المقدمة / تخطّي الشارة عندما يكتشف Harbor واحداً منها. عطّل هذا الخيار لعدم إظهاره أبداً. يمكنك أيضاً النقر على X على الزر لتجاهل زر خاطئ لبقية الحلقة.";
+"Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "يعرض زر قفل في المشغّل يمنع إدخال الفأرة ولوحة المفاتيح وجهاز التحكم ومفاتيح الوسائط حتى إلغاء القفل.";
 "Show adult addons" = "إظهار إضافات البالغين";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "اعرض جميع نتائج الإضافات، بما فيها الإصدارات غير المطابقة أو التي قد تكون مشبوهة.";
 "Show as a Top 10 with big numerals" = "العرض كأفضل 10 بأرقام كبيرة";
@@ -2152,6 +2156,7 @@
 "Unavailable" = "غير متاح";
 "Undo" = "تراجع";
 "Unknown" = "غير معروف";
+"Unlock controls" = "إلغاء قفل عناصر التحكم";
 "Unmute" = "إلغاء الكتم";
 "Unverified" = "غير موثّق";
 "Up Next" = "التالي";

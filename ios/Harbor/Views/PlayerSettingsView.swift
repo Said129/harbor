@@ -83,6 +83,8 @@ struct PlayerSettingsView: View {
         }
         HarborSettingsSection("Controles") {
             HarborSettingsToggle("Ocultar controles automáticamente", isOn: $preferences.options.autoHideControls)
+            HarborSettingsToggle(DesktopInterfaceText.value("Player screen lock"), note: DesktopInterfaceText.value("Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it."), isOn: $preferences.options.screenLock)
+                .accessibilityIdentifier("settings-screen-lock")
             HarborSettingsToggle("Mantener la pantalla encendida", isOn: $preferences.options.keepScreenAwake)
             HarborSettingsToggle("Reanudar tras una interrupción de audio", isOn: $preferences.options.resumeAfterInterruption)
             HarborSettingsToggle("Reanudar al volver a la app", isOn: $preferences.options.resumeOnForeground)

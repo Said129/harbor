@@ -1411,7 +1411,10 @@
 "Playback position" = "Playback position";
 "Playback time" = "Playback time";
 "Player" = "Pemain";
+"Player controls locked" = "Kontrol pemutar dikunci";
+"Player controls unlocked" = "Kunci kontrol pemutar dibuka";
 "Player options" = "Player options";
+"Player screen lock" = "Kunci layar pemutar";
 "Playlists" = "Daftar putar";
 "Playlists and servers" = "Playlists and servers";
 "Please add your TMDB API key in the Library & Metadata settings to view this folder." = "Tambahkan kunci API TMDB Anda di Pengaturan Perpustakaan & Metadata untuk melihat folder ini.";
@@ -1750,6 +1753,7 @@
 "Show" = "Acara";
 "Show More info button" = "Tampilkan tombol Info selengkapnya";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Tampilkan tombol Lewati Intro / Lewati Kredit saat Harbor mendeteksinya. Nonaktifkan ini agar tombol tidak pernah ditampilkan. Anda juga dapat mengetuk X pada tombol untuk menutup tombol yang keliru selama sisa episode.";
+"Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "Tampilkan kontrol kunci di pemutar yang memblokir input mouse, keyboard, remote, dan tombol media hingga Anda membukanya.";
 "Show adult addons" = "Tampilkan addon dewasa";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "Tampilkan semua hasil dari addon, termasuk rilis yang tidak cocok atau mungkin mencurigakan.";
 "Show as a Top 10 with big numerals" = "Tampilkan sebagai Top 10 dengan angka besar";
@@ -2114,6 +2118,7 @@
 "Unavailable" = "Tidak tersedia";
 "Undo" = "Urungkan";
 "Unknown" = "Tidak diketahui";
+"Unlock controls" = "Buka kunci kontrol";
 "Unmute" = "Aktifkan suara";
 "Unverified" = "Belum diverifikasi";
 "Up Next" = "Berikutnya";

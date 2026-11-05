@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 private struct PlayerSurface: UIViewControllerRepresentable {
     let source: PlaybackSource
@@ -87,6 +88,9 @@ struct PlayerView: View {
     @State private var dismissedSkips: Set<String> = []
     @State private var autoSkipped: Set<String> = []
     @State private var stillWatchingEpisode: Episode?
+    @State private var screenLocked = false
+    @State private var unlockVisible = false
+    @State private var unlockTask: Task<Void, Never>?
     @Bindable private var preferences = PlaybackPreferences.shared
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     @Environment(\.dismiss) private var dismiss
@@ -99,6 +103,9 @@ struct PlayerView: View {
             .onChange(of: state.subtitleSyncRevision) { _, _ in
                 if state.subtitleSyncPhase == .analyzing { settingsPage = nil }
             }
+            // A question that needs an answer, or switching the option off, ends the lock.
+            .onChange(of: stillWatchingEpisode) { _, episode in if episode != nil, screenLocked { unlockScreen() } }
+            .onChange(of: preferences.options.screenLock) { _, enabled in if !enabled, screenLocked { unlockScreen() } }
             .statusBarHidden(!controlsVisible)
             .persistentSystemOverlays(controlsVisible ? .visible : .hidden)
             .sheet(item: $settingsPage, onDismiss: {
@@ -174,7 +181,7 @@ struct PlayerView: View {
             }
             SubtitleSyncFeedback(state: state)
             // Desktop's default hotkeys for an iPad keyboard: Space, arrows, comma and period, M, Home, End, Esc.
-            PlayerKeyboardShortcuts(state: state, enabled: active && !resumePending && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && stillWatchingEpisode == nil,
+            PlayerKeyboardShortcuts(state: state, enabled: active && !resumePending && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && stillWatchingEpisode == nil && !screenLocked,
                                     seekBack: preferences.options.seekBackSeconds, seekForward: preferences.options.seekForwardSeconds,
                                     jump: { jump($0); restartHideTimer() },
                                     togglePause: { if state.ended { state.controller?.replay() } else { state.controller?.togglePause() }; restartHideTimer() },
@@ -186,6 +193,44 @@ struct PlayerView: View {
                     StillWatching.shared.reset(); stillWatchingEpisode = nil; dismiss()
                 }).transition(.opacity).zIndex(10)
             }
+            if screenLocked { lockOverlay.zIndex(20) }
+        }
+    }
+
+    /// Desktop's player screen lock: touches reach nothing but the unlock control, which shows for 2.2 seconds after any touch.
+    private var lockOverlay: some View {
+        ZStack {
+            Color.black.opacity(0.001).ignoresSafeArea().contentShape(Rectangle())
+                .gesture(DragGesture(minimumDistance: 0).onChanged { _ in wakeUnlockButton() })
+                .accessibilityHidden(true)
+            if unlockVisible || voiceOver {
+                VStack {
+                    Spacer()
+                    Button { unlockScreen() } label: {
+                        Label(DesktopInterfaceText.value("Unlock controls"), systemImage: "lock.open.fill").font(HarborTheme.font(14, weight: .semibold))
+                            .padding(.horizontal, 18).frame(minHeight: 48).background(.black.opacity(0.7), in: .capsule)
+                    }.accessibilityIdentifier("player-unlock")
+                }.padding(.bottom, 36).transition(.opacity)
+            }
+        }
+    }
+    private func lockScreen() {
+        guard preferences.options.screenLock else { return }
+        screenLocked = true; controlsVisible = false; settingsPage = nil; showEpisodes = false
+        wakeUnlockButton()
+        UIAccessibility.post(notification: .announcement, argument: DesktopInterfaceText.value("Player controls locked"))
+    }
+    private func unlockScreen() {
+        unlockTask?.cancel(); unlockVisible = false; screenLocked = false; controlsVisible = true
+        restartHideTimer()
+        UIAccessibility.post(notification: .announcement, argument: DesktopInterfaceText.value("Player controls unlocked"))
+    }
+    private func wakeUnlockButton() {
+        unlockTask?.cancel()
+        withAnimation(.easeInOut(duration: 0.2)) { unlockVisible = true }
+        unlockTask = Task {
+            try? await Task.sleep(for: .seconds(2.2))
+            if !Task.isCancelled { withAnimation(.easeInOut(duration: 0.2)) { unlockVisible = false } }
         }
     }
 
@@ -484,6 +529,10 @@ struct PlayerView: View {
                 if canChangeEpisode {
                     Button { showEpisodes = true; restartHideTimer() } label: { Image("nav-shows").resizable().scaledToFit().frame(width: 24, height: 24).frame(width: 44, height: 44) }
                         .accessibilityLabel("Temporadas y episodios").accessibilityIdentifier("player-episodes")
+                }
+                if preferences.options.screenLock {
+                    Button { lockScreen() } label: { Image(systemName: "lock").frame(width: 44, height: 44) }
+                        .accessibilityLabel(DesktopInterfaceText.value("Player screen lock")).accessibilityIdentifier("player-lock")
                 }
                 Button { settingsPage = .options } label: { Image("nav-settings").frame(width: 44, height: 44) }
                     .accessibilityLabel("Opciones del reproductor").accessibilityIdentifier("player-options")

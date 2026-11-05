@@ -16,25 +16,25 @@
     },
     "settings": {
       "total": 511,
-      "ported": 119,
+      "ported": 120,
       "partial": 21,
-      "missing": 285,
+      "missing": 284,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 30.5,
-      "ported_only_percent": 28.0,
-      "ported_or_partial_percent": 32.9
+      "weighted_percent": 30.7,
+      "ported_only_percent": 28.2,
+      "ported_or_partial_percent": 33.2
     },
     "all": {
       "total": 949,
-      "ported": 238,
+      "ported": 239,
       "partial": 224,
-      "missing": 379,
+      "missing": 378,
       "excluded": 108,
       "counted": 841,
-      "weighted_percent": 41.6,
-      "ported_only_percent": 28.3,
-      "ported_or_partial_percent": 54.9
+      "weighted_percent": 41.7,
+      "ported_only_percent": 28.4,
+      "ported_or_partial_percent": 55.1
     }
   },
   "behavior_areas": [
@@ -4464,42 +4464,42 @@
       "id": "pipBehavior",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "PiP behavior, player shells and chrome, screen lock, seek preview"
+      "note": "PiP behavior, player shells and chrome"
     },
     {
       "index": 168,
       "id": "playerShellId",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "PiP behavior, player shells and chrome, screen lock, seek preview"
+      "note": "PiP behavior, player shells and chrome"
     },
     {
       "index": 169,
       "id": "playerChromeTheme",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "PiP behavior, player shells and chrome, screen lock, seek preview"
+      "note": "PiP behavior, player shells and chrome"
     },
     {
       "index": 170,
       "id": "playerMenuBlack",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "PiP behavior, player shells and chrome, screen lock, seek preview"
+      "note": "PiP behavior, player shells and chrome"
     },
     {
       "index": 171,
       "id": "playerScreenLockEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "PiP behavior, player shells and chrome, screen lock, seek preview"
+      "verdict": "D",
+      "note": "player screen lock (5 Nov, uncompiled)"
     },
     {
       "index": 172,
       "id": "seekPreviewEnabled",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "PiP behavior, player shells and chrome, screen lock, seek preview"
+      "note": "seek preview"
     },
     {
       "index": 173,

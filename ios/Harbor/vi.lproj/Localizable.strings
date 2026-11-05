@@ -1411,7 +1411,10 @@
 "Playback position" = "Playback position";
 "Playback time" = "Playback time";
 "Player" = "Tuyển thủ";
+"Player controls locked" = "Đã khóa điều khiển trình phát";
+"Player controls unlocked" = "Đã mở khóa điều khiển trình phát";
 "Player options" = "Player options";
+"Player screen lock" = "Khóa màn hình trình phát";
 "Playlists" = "Danh sách phát";
 "Playlists and servers" = "Playlists and servers";
 "Please add your TMDB API key in the Library & Metadata settings to view this folder." = "Vui lòng thêm khóa API TMDB trong phần cài đặt Thư viện & Siêu dữ liệu để xem thư mục này.";
@@ -1750,6 +1753,7 @@
 "Show" = "Hiển thị";
 "Show More info button" = "Hiện nút Thông tin thêm";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Hiển thị nút Bỏ qua phần mở đầu / Bỏ qua phần giới thiệu cuối phim khi Harbor phát hiện. Tắt tùy chọn này để không bao giờ hiển thị. Bạn cũng có thể nhấn X trên nút để ẩn mục bị nhận diện sai trong phần còn lại của tập.";
+"Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "Hiển thị nút khóa trong trình phát để chặn thao tác từ chuột, bàn phím, điều khiển từ xa và phím đa phương tiện cho đến khi mở khóa.";
 "Show adult addons" = "Hiện tiện ích bổ sung dành cho người lớn";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "Hiện mọi kết quả từ tiện ích, kể cả bản phát hành không khớp hoặc có thể đáng ngờ.";
 "Show as a Top 10 with big numerals" = "Hiển thị dạng Top 10 với số lớn";
@@ -2114,6 +2118,7 @@
 "Unavailable" = "Không khả dụng";
 "Undo" = "Hoàn tác";
 "Unknown" = "Không xác định";
+"Unlock controls" = "Mở khóa điều khiển";
 "Unmute" = "Bật tiếng";
 "Unverified" = "Chưa xác minh";
 "Up Next" = "Tiếp theo";

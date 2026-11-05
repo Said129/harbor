@@ -1422,7 +1422,10 @@
 "Playback position" = "Playback position";
 "Playback time" = "Playback time";
 "Player" = "Игрок";
+"Player controls locked" = "Элементы управления плеером заблокированы";
+"Player controls unlocked" = "Элементы управления плеером разблокированы";
 "Player options" = "Player options";
+"Player screen lock" = "Блокировка управления плеером";
 "Playlists" = "Плейлисты";
 "Playlists and servers" = "Playlists and servers";
 "Please add your TMDB API key in the Library & Metadata settings to view this folder." = "Добавьте ключ TMDB API в настройках «Библиотека и метаданные», чтобы открыть эту папку.";
@@ -1762,6 +1765,7 @@
 "Show" = "Показать";
 "Show More info button" = "Показывать кнопку \"Подробнее\"";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Показывать кнопку «Пропустить заставку» / «Пропустить титры», когда Harbor их находит. Отключите, чтобы никогда её не показывать. Нажмите X на кнопке, чтобы скрыть ошибочную до конца серии.";
+"Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "Показывать в плеере кнопку блокировки, которая отключает мышь, клавиатуру, пульт и мультимедийные клавиши до разблокировки.";
 "Show adult addons" = "Показать дополнения для взрослых";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "Показывать все результаты дополнений, включая неподходящие или подозрительные релизы.";
 "Show as a Top 10 with big numerals" = "Показывать как Топ-10 с крупными цифрами";
@@ -2129,6 +2133,7 @@
 "Unavailable" = "Недоступно";
 "Undo" = "Отменить";
 "Unknown" = "Неизвестно";
+"Unlock controls" = "Разблокировать управление";
 "Unmute" = "Включить звук";
 "Unverified" = "Не подтверждён";
 "Up Next" = "Далее";

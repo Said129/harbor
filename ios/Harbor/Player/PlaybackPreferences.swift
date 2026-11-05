@@ -64,6 +64,8 @@ enum PicturePreset: String, CaseIterable, Identifiable {
 /// event stream remains authoritative for the running player's transport state.
 struct PlaybackOptions: Codable, Equatable {
     var autoHideControls = true
+    /// Desktop's `playerScreenLockEnabled`: show a lock control that blocks touches until it is unlocked.
+    var screenLock = false
     var showSkipIntro = true
     /// Desktop's auto-skip: jump past a detected segment the moment it starts (intros, recaps, credits).
     var autoSkipIntro = false

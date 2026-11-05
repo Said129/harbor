@@ -1411,7 +1411,10 @@
 "Playback position" = "Playback position";
 "Playback time" = "Playback time";
 "Player" = "Joueur";
+"Player controls locked" = "Commandes du lecteur verrouillées";
+"Player controls unlocked" = "Commandes du lecteur déverrouillées";
 "Player options" = "Player options";
+"Player screen lock" = "Verrouillage de l’écran du lecteur";
 "Playlists" = "Listes de lecture";
 "Playlists and servers" = "Playlists and servers";
 "Please add your TMDB API key in the Library & Metadata settings to view this folder." = "Ajoutez votre clé API TMDB dans les paramètres Bibliothèque et métadonnées pour afficher ce dossier.";
@@ -1750,6 +1753,7 @@
 "Show" = "Afficher";
 "Show More info button" = "Afficher le bouton Plus d’infos";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Afficher un bouton Passer l’intro / Passer le générique lorsque Harbor en détecte un. Désactivez cette option pour ne jamais l’afficher. Vous pouvez aussi toucher le X du bouton pour masquer une détection erronée jusqu’à la fin de l’épisode.";
+"Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "Afficher dans le lecteur une commande de verrouillage qui bloque la souris, le clavier, la télécommande et les touches multimédias jusqu’au déverrouillage.";
 "Show adult addons" = "Afficher les extensions pour adultes";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "Affichez tous les résultats des extensions, y compris les versions non correspondantes ou potentiellement suspectes.";
 "Show as a Top 10 with big numerals" = "Afficher comme un Top 10 avec de grands chiffres";
@@ -2114,6 +2118,7 @@
 "Unavailable" = "Indisponible";
 "Undo" = "Annuler";
 "Unknown" = "Inconnu";
+"Unlock controls" = "Déverrouiller les commandes";
 "Unmute" = "Réactiver le son";
 "Unverified" = "Non vérifié";
 "Up Next" = "À suivre";
