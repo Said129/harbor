@@ -438,6 +438,7 @@
 "Configuración" = "설정";
 "Configurar Sports" = "Configure Sports";
 "Configurar addon" = "Configure addon";
+"Configure" = "구성";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
 "Confirm remove from history" = "기록에서 삭제 확인";
@@ -497,6 +498,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "자동 동기화하지 못했습니다";
+"Couldn't install. Double-check the URL and try again." = "설치할 수 없습니다. URL을 다시 확인한 후 재시도하세요.";
 "Couldn't reach Simkl" = "Simkl에 연결할 수 없음";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt에 연결하지 못했습니다. 연결을 확인하고 다시 시도하세요.";
 "Cover Image URL" = "표지 이미지 URL";
@@ -724,6 +726,7 @@
 "Family" = "가족";
 "Fantasy" = "판타지";
 "Fantasía" = "판타지";
+"Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns." = "이미 Usenet을 구독 중이라면 P2P보다 빠르고 조용합니다. 애드온 페이지에서 구성한 후 반환된 매니페스트 URL을 붙여 넣으세요.";
 "Favorites" = "즐겨찾기";
 "Favorites only" = "Favorites only";
 "Favoritos" = "즐겨찾기";
@@ -738,6 +741,7 @@
 "Film" = "영화";
 "Filters" = "필터";
 "Finding lyrics" = "가사를 찾는 중";
+"Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finnish" = "핀란드어";
 "Fit" = "맞춤";
 "Flechas" = "화살표 키";
@@ -1039,6 +1043,7 @@
 "Manga options" = "Manga options";
 "Manga popular" = "Popular manga";
 "Manga sources" = "만화 소스";
+"Manifest URL" = "매니페스트 URL";
 "Mantener la misma fuente en el siguiente episodio" = "다음 에피소드에서 같은 소스 유지";
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "북마크";
@@ -1313,6 +1318,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "비밀번호";
 "Paste JSON" = "JSON 붙여넣기";
+"Paste the manifest URL the configure page gave you" = "설정 페이지에서 제공한 매니페스트 URL을 붙여넣으세요";
 "Peacock" = "Peacock";
 "Peligro" = "위험";
 "Películas" = "영화";
@@ -1637,6 +1643,7 @@
 "Search subtitles again" = "Search subtitles again";
 "Search title…" = "제목 검색…";
 "Search wider" = "검색 범위 넓히기";
+"Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "Easynews에서 직접 검색하고 스트리밍합니다. 디브리드는 필요하지 않습니다. Easynews 로그인 정보만 있으면 됩니다.";
 "Searching..." = "검색 중...";
 "Season" = "시즌";
 "Season {n}" = "시즌 {n}";
@@ -2077,6 +2084,7 @@
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "55% / 25% 알파로 사용됩니다.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "캐시를 확인하고 링크 제한을 해제하는 데 사용됩니다. Harbor는 자체적으로 계정에 무언가를 추가하거나 제거하지 않습니다.";
+"Usenet" = "Usenet";
 "Username" = "사용자 이름";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "directdl 엔드포인트를 사용하여 이미 캐시된 항목은 대기열에 추가하지 않습니다.";
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "AIOStreams 또는 다른 통합 애드온을 사용 중인가요? 애드온 자체의 정렬과 필터링은 Harbor가 결과를 받기 전에 애드온 내부에서 적용되고, 그 위에 위에서 설정한 Harbor의 스트림 필터와 결과 순서가 적용됩니다. 결과가 예상보다 적다면 한쪽 필터를 느슨하게 유지하세요. 애드온의 내부 필터를 완화하거나 Harbor의 스트림 필터를 균형 또는 끄기로 설정하세요.";

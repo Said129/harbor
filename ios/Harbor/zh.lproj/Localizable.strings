@@ -438,6 +438,7 @@
 "Configuración" = "设置";
 "Configurar Sports" = "Configure Sports";
 "Configurar addon" = "Configure addon";
+"Configure" = "配置";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
 "Confirm remove from history" = "确认从历史记录中移除";
@@ -497,6 +498,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "无法自动同步";
+"Couldn't install. Double-check the URL and try again." = "无法安装。请仔细检查 URL 后重试。";
 "Couldn't reach Simkl" = "无法连接 Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "无法连接到 Trakt。请检查网络连接后重试。";
 "Cover Image URL" = "封面图片 URL";
@@ -724,6 +726,7 @@
 "Family" = "家庭";
 "Fantasy" = "奇幻";
 "Fantasía" = "奇幻";
+"Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns." = "如果你已订阅 Usenet，它比 P2P 更快、更省心。请在插件页面进行配置，然后粘贴其返回的 manifest URL。";
 "Favorites" = "收藏";
 "Favorites only" = "Favorites only";
 "Favoritos" = "收藏";
@@ -738,6 +741,7 @@
 "Film" = "电影";
 "Filters" = "筛选";
 "Finding lyrics" = "正在查找歌词";
+"Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finnish" = "芬兰语";
 "Fit" = "适应";
 "Flechas" = "箭头";
@@ -1039,6 +1043,7 @@
 "Manga options" = "Manga options";
 "Manga popular" = "Popular manga";
 "Manga sources" = "漫画来源";
+"Manifest URL" = "清单 URL";
 "Mantener la misma fuente en el siguiente episodio" = "下一集沿用相同来源";
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "书签";
@@ -1313,6 +1318,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "密码";
 "Paste JSON" = "粘贴 JSON";
+"Paste the manifest URL the configure page gave you" = "粘贴配置页面提供的 manifest URL";
 "Peacock" = "Peacock";
 "Peligro" = "危险";
 "Películas" = "电影";
@@ -1637,6 +1643,7 @@
 "Search subtitles again" = "Search subtitles again";
 "Search title…" = "搜索片名…";
 "Search wider" = "扩大搜索范围";
+"Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "直接从 Easynews 搜索并播放。无需 Debrid，只需 Easynews 登录信息。";
 "Searching..." = "正在搜索…";
 "Season" = "季";
 "Season {n}" = "第 {n} 季";
@@ -2077,6 +2084,7 @@
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "使用 55% / 25% 不透明度。";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "用于检查缓存和解除链接限制。Harbor 绝不会自行在你的账户中添加或移除任何内容。";
+"Usenet" = "Usenet";
 "Username" = "用户名";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "使用 directdl 端点，已缓存的内容均可跳过排队。";
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "正在使用 AIOStreams 或其他聚合插件？在 Harbor 获取结果前，插件会先在内部进行排序和筛选，之后 Harbor 再应用上方的片源筛选和结果排序。如果结果少于预期，请放宽其中一方的限制：放宽插件的内部筛选，或将 Harbor 的片源筛选设为“均衡”或“关闭”。";

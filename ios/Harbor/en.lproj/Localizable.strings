@@ -361,6 +361,7 @@
 "Configuración" = "Settings";
 "Configurar Sports" = "Configure Sports";
 "Configurar addon" = "Configure addon";
+"Configure" = "Configure";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
 "Confirm remove from history" = "Confirm remove from history";
@@ -414,6 +415,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Couldn't auto-sync";
+"Couldn't install. Double-check the URL and try again." = "Couldn't install. Double-check the URL and try again.";
 "Couldn't reach Simkl" = "Couldn't reach Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Couldn't reach Trakt. Check your connection and try again.";
 "Cover Image URL" = "Cover Image URL";
@@ -604,6 +606,7 @@
 "Failed to fetch JSON" = "Failed to fetch JSON";
 "Fantasy" = "Fantasy";
 "Fantasía" = "Fantasy";
+"Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns." = "Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns.";
 "Favorites" = "Favorites";
 "Favorites only" = "Favorites only";
 "Favoritos" = "Favorites";
@@ -615,6 +618,7 @@
 "Film" = "Film";
 "Filters" = "Filters";
 "Finding lyrics" = "Finding lyrics";
+"Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Fit" = "Fit";
 "Flechas" = "Arrows";
 "Focus" = "Focus";
@@ -863,6 +867,7 @@
 "Manga options" = "Manga options";
 "Manga popular" = "Popular manga";
 "Manga sources" = "Manga sources";
+"Manifest URL" = "Manifest URL";
 "Mantener la misma fuente en el siguiente episodio" = "Keep same source on next episode";
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "Bookmarks";
@@ -1093,6 +1098,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Password";
 "Paste JSON" = "Paste JSON";
+"Paste the manifest URL the configure page gave you" = "Paste the manifest URL the configure page gave you";
 "Peligro" = "Danger";
 "Películas" = "Movies";
 "Películas animadas" = "Animated Movies";
@@ -1372,6 +1378,7 @@
 "Search subtitles again" = "Search subtitles again";
 "Search title…" = "Search title…";
 "Search wider" = "Search wider";
+"Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "Searches and streams directly off Easynews. No debrid needed. Just your Easynews login.";
 "Searching..." = "Searching...";
 "Season" = "Season";
 "Season {n}" = "Season {n}";
@@ -1738,6 +1745,7 @@
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "Used at 55% / 25% alpha.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own.";
+"Usenet" = "Usenet";
 "Username" = "Username";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "Uses the directdl endpoint, which skips queueing for anything already cached.";
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off.";

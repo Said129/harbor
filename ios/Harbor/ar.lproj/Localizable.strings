@@ -458,6 +458,7 @@
 "Configuración" = "الإعدادات";
 "Configurar Sports" = "Configure Sports";
 "Configurar addon" = "Configure addon";
+"Configure" = "تهيئة";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
 "Confirm remove from history" = "تأكيد الإزالة من السجل";
@@ -521,6 +522,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "تعذرت المزامنة التلقائية";
+"Couldn't install. Double-check the URL and try again." = "تعذّر التثبيت. تحقّق من الرابط وحاول مجددًا.";
 "Couldn't reach Simkl" = "تعذّر الوصول إلى Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "تعذّر الوصول إلى Trakt. تحقق من اتصالك وحاول مرة أخرى.";
 "Cover Image URL" = "رابط الصورة (Cover Image URL)";
@@ -748,6 +750,7 @@
 "Family" = "عائلي";
 "Fantasy" = "فانتازيا";
 "Fantasía" = "فانتازيا";
+"Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns." = "أسرع وأكثر هدوءًا من P2P إذا كنت تدفع مقابل Usenet. قم بتكوينه على صفحة الإضافة والصق رابط manifest.";
 "Favorites" = "المفضّلة";
 "Favorites only" = "Favorites only";
 "Favoritos" = "المفضّلة";
@@ -762,6 +765,7 @@
 "Film" = "فيلم";
 "Filters" = "المرشّحات";
 "Finding lyrics" = "جارٍ البحث عن الكلمات";
+"Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finnish" = "الفنلندية";
 "Fit" = "ملاءمة";
 "Flechas" = "الأسهم";
@@ -1064,6 +1068,7 @@
 "Manga options" = "Manga options";
 "Manga popular" = "Popular manga";
 "Manga sources" = "مصادر المانجا";
+"Manifest URL" = "رابط الـ manifest";
 "Mantener la misma fuente en el siguiente episodio" = "الإبقاء على المصدر نفسه في الحلقة التالية";
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "الإشارات المرجعية";
@@ -1344,6 +1349,7 @@
 "Pasar páginas horizontalmente" = "تقليب الصفحات أفقيًا";
 "Password" = "كلمة المرور";
 "Paste JSON" = "لصق JSON";
+"Paste the manifest URL the configure page gave you" = "الصق رابط البيان الذي أعطته إياك صفحة الإعداد";
 "Peacock" = "Peacock";
 "Peligro" = "خطر";
 "Películas" = "الأفلام";
@@ -1671,6 +1677,7 @@
 "Search subtitles again" = "Search subtitles again";
 "Search title…" = "ابحث عن عنوان…";
 "Search wider" = "بحث أوسع";
+"Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "يبحث ويبث مباشرة من Easynews. لا حاجة لـ debrid. فقط تسجيل دخولك إلى Easynews.";
 "Searching..." = "جارٍ البحث...";
 "Season" = "الموسم";
 "Season {n}" = "موسم {n}";
@@ -2115,6 +2122,7 @@
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "يُستخدم بقيمة ألفا 55% / 25%.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "يُستخدم للتحقق من ذاكرة التخزين المؤقت وإلغاء قيود الروابط. لا يضيف Harbor أي شيء إلى حسابك أو يزيله من تلقاء نفسه مطلقًا.";
+"Usenet" = "Usenet";
 "Username" = "اسم المستخدم";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "يستخدم نقطة النهاية directdl، التي تتجاوز قائمة الانتظار لأي محتوى مخزّن مؤقتًا بالفعل.";
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "هل تستخدم AIOStreams أو إضافة تجميع أخرى؟ الفرز والتصفية الخاصة بها تحدث داخل الإضافة قبل أن يرى Harbor النتائج، ثم يُطبق Harbor فلتر أمان البث وترتيب النتائج أعلاه. إذا كانت النتائج أقل من المتوقع، اجعل أحدهما أكثر مرونة: إما أن تخفف الفلاتر الداخلية للإضافة أو تعين فلتر Harbor على متوازن أو إيقاف.";

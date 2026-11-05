@@ -438,6 +438,7 @@
 "Configuración" = "Cài đặt";
 "Configurar Sports" = "Configure Sports";
 "Configurar addon" = "Configure addon";
+"Configure" = "Cấu hình";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
 "Confirm remove from history" = "Xác nhận xóa khỏi lịch sử";
@@ -497,6 +498,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Không thể tự động đồng bộ";
+"Couldn't install. Double-check the URL and try again." = "Không thể cài đặt. Hãy kiểm tra lại URL rồi thử lại.";
 "Couldn't reach Simkl" = "Không thể kết nối với Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Không thể kết nối với Trakt. Hãy kiểm tra kết nối rồi thử lại.";
 "Cover Image URL" = "URL ảnh bìa";
@@ -724,6 +726,7 @@
 "Family" = "Gia đình";
 "Fantasy" = "Kỳ ảo";
 "Fantasía" = "Kỳ ảo";
+"Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns." = "Nhanh hơn và ít ồn hơn P2P nếu bạn đã trả phí cho Usenet. Hãy cấu hình trên trang tiện ích bổ sung rồi dán URL manifest được trả về.";
 "Favorites" = "Yêu thích";
 "Favorites only" = "Favorites only";
 "Favoritos" = "Yêu thích";
@@ -738,6 +741,7 @@
 "Film" = "Phim điện ảnh";
 "Filters" = "Bộ lọc";
 "Finding lyrics" = "Đang tìm lời bài hát";
+"Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finnish" = "Tiếng Phần Lan";
 "Fit" = "Vừa khung";
 "Flechas" = "Phím mũi tên";
@@ -1039,6 +1043,7 @@
 "Manga options" = "Manga options";
 "Manga popular" = "Popular manga";
 "Manga sources" = "Nguồn manga";
+"Manifest URL" = "URL manifest";
 "Mantener la misma fuente en el siguiente episodio" = "Giữ nguyên nguồn cho tập tiếp theo";
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "Dấu trang";
@@ -1313,6 +1318,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Mật khẩu";
 "Paste JSON" = "Dán JSON";
+"Paste the manifest URL the configure page gave you" = "Dán URL manifest do trang cấu hình cung cấp";
 "Peacock" = "Peacock";
 "Peligro" = "Nguy hiểm";
 "Películas" = "Phim điện ảnh";
@@ -1637,6 +1643,7 @@
 "Search subtitles again" = "Search subtitles again";
 "Search title…" = "Tìm kiếm tiêu đề…";
 "Search wider" = "Tìm kiếm rộng hơn";
+"Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "Tìm kiếm và phát trực tiếp từ Easynews. Không cần dịch vụ debrid. Chỉ cần thông tin đăng nhập Easynews.";
 "Searching..." = "Đang tìm...";
 "Season" = "Mùa";
 "Season {n}" = "Mùa {n}";
@@ -2077,6 +2084,7 @@
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "Dùng ở độ trong suốt 55% / 25%.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Dùng để kiểm tra bộ nhớ đệm và bỏ hạn chế liên kết. Harbor không bao giờ tự thêm hoặc xóa bất cứ thứ gì trong tài khoản của bạn.";
+"Usenet" = "Usenet";
 "Username" = "Tên người dùng";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "Dùng endpoint directdl, bỏ qua việc xếp hàng đối với mọi nội dung đã có trong bộ nhớ đệm.";
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "Bạn đang dùng AIOStreams hoặc tiện ích bổ sung tổng hợp khác? Việc sắp xếp và lọc riêng sẽ diễn ra trong tiện ích bổ sung trước khi Harbor nhận kết quả, sau đó Harbor tiếp tục áp dụng bộ lọc luồng phát và thứ tự kết quả ở trên. Nếu kết quả ít hơn dự kiến, hãy để một bên thoáng hơn: nới lỏng bộ lọc nội bộ của tiện ích bổ sung hoặc đặt bộ lọc luồng phát của Harbor thành Cân bằng hoặc Tắt.";

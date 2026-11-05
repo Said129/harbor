@@ -438,6 +438,7 @@
 "Configuración" = "Pengaturan";
 "Configurar Sports" = "Configure Sports";
 "Configurar addon" = "Configure addon";
+"Configure" = "Konfigurasikan";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
 "Confirm remove from history" = "Konfirmasi penghapusan dari riwayat";
@@ -497,6 +498,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Tidak dapat menyinkronkan otomatis";
+"Couldn't install. Double-check the URL and try again." = "Tidak dapat menginstal. Periksa kembali URL lalu coba lagi.";
 "Couldn't reach Simkl" = "Tidak dapat menghubungi Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Tidak dapat menghubungi Trakt. Periksa koneksi Anda lalu coba lagi.";
 "Cover Image URL" = "URL Gambar Sampul";
@@ -724,6 +726,7 @@
 "Family" = "Keluarga";
 "Fantasy" = "Fantasi";
 "Fantasía" = "Fantasi";
+"Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns." = "Lebih cepat dan senyap daripada P2P jika Anda sudah berlangganan Usenet. Konfigurasikan di halaman addon, lalu tempel URL manifes yang diberikan.";
 "Favorites" = "Favorit";
 "Favorites only" = "Favorites only";
 "Favoritos" = "Favorit";
@@ -738,6 +741,7 @@
 "Film" = "Film";
 "Filters" = "Filter";
 "Finding lyrics" = "Mencari lirik";
+"Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finnish" = "Bahasa Finlandia";
 "Fit" = "Sesuaikan";
 "Flechas" = "Panah";
@@ -1039,6 +1043,7 @@
 "Manga options" = "Manga options";
 "Manga popular" = "Popular manga";
 "Manga sources" = "Sumber manga";
+"Manifest URL" = "URL manifest";
 "Mantener la misma fuente en el siguiente episodio" = "Gunakan sumber yang sama pada episode berikutnya";
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "Penanda buku";
@@ -1313,6 +1318,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Kata Sandi";
 "Paste JSON" = "Tempel JSON";
+"Paste the manifest URL the configure page gave you" = "Tempel URL manifes yang diberikan halaman konfigurasi";
 "Peacock" = "Peacock";
 "Peligro" = "Bahaya";
 "Películas" = "Film";
@@ -1637,6 +1643,7 @@
 "Search subtitles again" = "Search subtitles again";
 "Search title…" = "Cari judul…";
 "Search wider" = "Perluas pencarian";
+"Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "Mencari dan melakukan stream langsung dari Easynews. Tidak perlu debrid. Cukup gunakan informasi login Easynews Anda.";
 "Searching..." = "Mencari...";
 "Season" = "Musim";
 "Season {n}" = "Musim {n}";
@@ -2077,6 +2084,7 @@
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "Digunakan pada alpha 55% / 25%.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Digunakan untuk memeriksa cache dan membuka batasan tautan. Harbor tidak pernah menambahkan atau menghapus apa pun di akun Anda secara otomatis.";
+"Usenet" = "Usenet";
 "Username" = "Nama pengguna";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "Menggunakan endpoint directdl, yang melewati antrean untuk semua yang sudah tersimpan dalam cache.";
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "Menggunakan AIOStreams atau addon agregator lain? Pengurutan dan pemfilteran internalnya dilakukan di dalam addon sebelum Harbor melihat hasilnya, lalu Harbor menambahkan filter stream dan urutan hasil di atas. Jika hasil lebih sedikit dari yang diharapkan, buat salah satu sisi lebih longgar: longgarkan filter internal addon atau atur filter stream Harbor ke Seimbang atau Nonaktif.";

@@ -442,6 +442,7 @@
 "Configuración" = "Настройки";
 "Configurar Sports" = "Configure Sports";
 "Configurar addon" = "Configure addon";
+"Configure" = "Настроить";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
 "Confirm remove from history" = "Подтвердите удаление из истории";
@@ -501,6 +502,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Не удалось синхронизировать";
+"Couldn't install. Double-check the URL and try again." = "Не удалось установить. Проверьте URL и попробуйте снова.";
 "Couldn't reach Simkl" = "Не удалось связаться с Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Не удалось связаться с Trakt. Проверьте подключение и повторите попытку.";
 "Cover Image URL" = "URL обложки";
@@ -728,6 +730,7 @@
 "Family" = "Семейный";
 "Fantasy" = "Фэнтези";
 "Fantasía" = "Фэнтези";
+"Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns." = "Быстрее и тише P2P, если у вас уже есть Usenet. Настройте на странице дополнения и вставьте полученный URL манифеста.";
 "Favorites" = "Избранное";
 "Favorites only" = "Favorites only";
 "Favoritos" = "Избранное";
@@ -742,6 +745,7 @@
 "Film" = "Фильм";
 "Filters" = "Фильтры";
 "Finding lyrics" = "Поиск текста";
+"Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finnish" = "Финский";
 "Fit" = "Вписать";
 "Flechas" = "Стрелки";
@@ -1044,6 +1048,7 @@
 "Manga options" = "Manga options";
 "Manga popular" = "Popular manga";
 "Manga sources" = "Источники манги";
+"Manifest URL" = "URL манифеста";
 "Mantener la misma fuente en el siguiente episodio" = "Сохранять источник для следующей серии";
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "Закладки";
@@ -1324,6 +1329,7 @@
 "Pasar páginas horizontalmente" = "Листать страницы горизонтально";
 "Password" = "Пароль";
 "Paste JSON" = "Вставить JSON";
+"Paste the manifest URL the configure page gave you" = "Вставьте URL манифеста со страницы настройки";
 "Peacock" = "Peacock";
 "Peligro" = "Опасно";
 "Películas" = "Фильмы";
@@ -1649,6 +1655,7 @@
 "Search subtitles again" = "Search subtitles again";
 "Search title…" = "Поиск по названию…";
 "Search wider" = "Расширить поиск";
+"Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "Ищет и транслирует напрямую с Easynews. Debrid не нужен, только ваш вход в Easynews.";
 "Searching..." = "Поиск...";
 "Season" = "Сезон";
 "Season {n}" = "Сезон {n}";
@@ -2092,6 +2099,7 @@
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "Используется с непрозрачностью 55% / 25%.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Используется для проверки кеша и снятия ограничений со ссылок. Harbor никогда ничего не добавляет в ваш аккаунт и не удаляет из него самостоятельно.";
+"Usenet" = "Usenet";
 "Username" = "Имя пользователя";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "Использует endpoint directdl, который не ставит в очередь уже кешированные материалы.";
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "Используете AIOStreams или другое дополнение-агрегатор? Его сортировка и фильтры работают внутри дополнения ещё до того, как Harbor увидит результаты, а затем Harbor применяет сверху фильтр потоков и порядок результатов, заданные выше. Если результатов меньше, чем ожидалось, оставьте одну сторону мягкой: ослабьте внутренние фильтры дополнения или переключите фильтр потоков Harbor на «Сбалансированный» или «Выкл.».";

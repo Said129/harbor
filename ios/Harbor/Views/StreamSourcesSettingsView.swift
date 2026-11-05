@@ -19,6 +19,10 @@ struct StreamSourcesSettingsView: View {
     let app: AppModel
     @Bindable private var sources = StreamPreferences.shared
     @State private var tab = Tab.services
+    @State private var easynewsDraft = ""
+    @State private var easynewsBusy = false
+    @State private var easynewsError: String?
+    @Environment(\.openURL) private var openURL
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
 
     var body: some View {
@@ -42,14 +46,76 @@ struct StreamSourcesSettingsView: View {
     // MARK: Services
 
     @ViewBuilder private var services: some View {
-        HarborSettingsSection("Debrid services", note: "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local.") {
-            if let scope = app.pluginExecutionScope {
-                NavigationLink { DebridSettingsView(app: app, scope: scope).toolbar(.visible, for: .navigationBar) } label: {
-                    SettingsRow(title: text("Debrid services"), icon: "nav-download")
-                }.background(HarborTheme.surface.opacity(0.65), in: .rect(cornerRadius: 12))
-                    .accessibilityIdentifier("streaming-sources-debrid")
+        VStack(alignment: .leading, spacing: 28) {
+            HarborSettingsSection("Debrid services", note: "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local.") {
+                if let scope = app.pluginExecutionScope {
+                    NavigationLink { DebridSettingsView(app: app, scope: scope).toolbar(.visible, for: .navigationBar) } label: {
+                        SettingsRow(title: text("Debrid services"), icon: "nav-download")
+                    }.background(HarborTheme.surface.opacity(0.65), in: .rect(cornerRadius: 12))
+                        .accessibilityIdentifier("streaming-sources-debrid")
+                }
+            }
+            HarborSettingsSection("Usenet", note: "Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns.") {
+                easynewsCard
             }
         }
+    }
+
+    // MARK: Easynews (Desktop's ManualAddonCard)
+
+    private static let easynewsConfigureURL = URL(string: "https://b89262c192b0-stremio-easynews-addon.baby-beamup.club/configure")
+    private var easynewsAddon: Addon? {
+        app.addons.first { ($0.manifest["id"].string ?? "").localizedCaseInsensitiveContains("easynews") || $0.name.localizedCaseInsensitiveContains("easynews") }
+    }
+    private var easynewsCard: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .firstTextBaseline, spacing: 10) {
+                Text("Easynews+").font(HarborTheme.font(16, weight: .semibold))
+                if easynewsAddon != nil {
+                    Text(text("Installed")).font(HarborTheme.font(11, weight: .bold)).textCase(.uppercase).foregroundStyle(HarborTheme.accent)
+                        .padding(.horizontal, 8).frame(height: 22).background(HarborTheme.accent.opacity(0.15), in: .rect(cornerRadius: 6))
+                }
+            }
+            detailText("Searches and streams directly off Easynews. No debrid needed. Just your Easynews login.")
+            HStack(spacing: 10) {
+                if let configure = Self.easynewsConfigureURL {
+                    Button { openURL(configure) } label: { Label(text("Configure"), systemImage: "arrow.up.right.square") }
+                        .accessibilityIdentifier("easynews-configure")
+                }
+                if let addon = easynewsAddon {
+                    Button(text("Remove"), role: .destructive) { removeEasynews(addon) }.accessibilityIdentifier("easynews-remove")
+                }
+            }
+            if easynewsAddon == nil {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(text("Manifest URL")).font(HarborTheme.font(14, weight: .semibold))
+                    detailText("Finish the setup on the configure page, then paste the manifest URL it hands back here.")
+                    HStack(spacing: 10) {
+                        TextField(text("Paste the manifest URL the configure page gave you"), text: $easynewsDraft)
+                            .textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL).textFieldStyle(.roundedBorder).frame(minHeight: 44)
+                            .accessibilityIdentifier("easynews-manifest-url")
+                        Button { installEasynews() } label: {
+                            if easynewsBusy { ProgressView().controlSize(.small) } else { Text(text("Install")) }
+                        }.disabled(easynewsDraft.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || easynewsBusy).accessibilityIdentifier("easynews-install")
+                    }
+                }
+            }
+            if let easynewsError { Text(easynewsError).font(HarborTheme.font(13)).foregroundStyle(.orange) }
+        }
+    }
+    private func installEasynews() {
+        let url = easynewsDraft.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !url.isEmpty, !easynewsBusy else { return }
+        easynewsBusy = true; easynewsError = nil
+        Task {
+            defer { easynewsBusy = false }
+            do { try await app.install(url); easynewsDraft = "" }
+            catch { easynewsError = (error is CancellationError) ? nil : text("Couldn't install. Double-check the URL and try again.") }
+        }
+    }
+    private func removeEasynews(_ addon: Addon) {
+        guard let index = app.addons.firstIndex(where: { $0.id == addon.id }) else { return }
+        Task { do { try await app.remove(IndexSet(integer: index)) } catch { easynewsError = safeMessage(error) } }
     }
 
     // MARK: Filters

@@ -438,6 +438,7 @@
 "Configuración" = "Einstellungen";
 "Configurar Sports" = "Configure Sports";
 "Configurar addon" = "Configure addon";
+"Configure" = "Konfigurieren";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
 "Confirm remove from history" = "Entfernen aus dem Verlauf bestätigen";
@@ -497,6 +498,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Automatische Synchronisierung nicht möglich";
+"Couldn't install. Double-check the URL and try again." = "Installation fehlgeschlagen. Überprüfe die URL und versuche es erneut.";
 "Couldn't reach Simkl" = "Simkl konnte nicht erreicht werden";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt konnte nicht erreicht werden. Prüfe deine Verbindung und versuche es erneut.";
 "Cover Image URL" = "URL des Titelbilds";
@@ -724,6 +726,7 @@
 "Family" = "Familie";
 "Fantasy" = "Fantasy";
 "Fantasía" = "Fantasy";
+"Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns." = "Schneller und unauffälliger als P2P, wenn du bereits für Usenet bezahlst. Konfiguriere das Add-on auf der Add-on-Seite und füge die dort ausgegebene Manifest-URL ein.";
 "Favorites" = "Favoriten";
 "Favorites only" = "Favorites only";
 "Favoritos" = "Favoriten";
@@ -738,6 +741,7 @@
 "Film" = "Film";
 "Filters" = "Filter";
 "Finding lyrics" = "Songtext wird gesucht";
+"Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finnish" = "Finnisch";
 "Fit" = "Einpassen";
 "Flechas" = "Pfeile";
@@ -1039,6 +1043,7 @@
 "Manga options" = "Manga options";
 "Manga popular" = "Popular manga";
 "Manga sources" = "Manga-Quellen";
+"Manifest URL" = "Manifest-URL";
 "Mantener la misma fuente en el siguiente episodio" = "Bei der nächsten Episode dieselbe Quelle verwenden";
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "Lesezeichen";
@@ -1313,6 +1318,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Passwort";
 "Paste JSON" = "JSON einfügen";
+"Paste the manifest URL the configure page gave you" = "Füge die Manifest-URL ein, die dir die Konfigurationsseite angezeigt hat";
 "Peacock" = "Peacock";
 "Peligro" = "Gefahr";
 "Películas" = "Filme";
@@ -1637,6 +1643,7 @@
 "Search subtitles again" = "Search subtitles again";
 "Search title…" = "Titel suchen…";
 "Search wider" = "Suche ausweiten";
+"Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "Sucht und streamt direkt über Easynews. Kein Debrid nötig, nur deine Easynews-Anmeldedaten.";
 "Searching..." = "Suche läuft...";
 "Season" = "Staffel";
 "Season {n}" = "Staffel {n}";
@@ -2077,6 +2084,7 @@
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "Mit 55% / 25% Alpha verwendet.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Wird zum Prüfen des Caches und Entsperren von Links verwendet. Harbor fügt deinem Konto niemals selbstständig etwas hinzu oder entfernt etwas daraus.";
+"Usenet" = "Usenet";
 "Username" = "Benutzername";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "Verwendet den directdl-Endpunkt, der bei bereits zwischengespeicherten Inhalten die Warteschlange überspringt.";
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "Verwendest du AIOStreams oder ein anderes Aggregator-Add-on? Dessen eigene Sortierung und Filterung erfolgen innerhalb des Add-ons, bevor Harbor die Ergebnisse erhält. Anschließend wendet Harbor zusätzlich den oben festgelegten Streamfilter und die Ergebnisreihenfolge an. Wenn weniger Ergebnisse als erwartet erscheinen, lass eine Seite großzügig eingestellt: Lockere entweder die internen Filter des Add-ons oder stelle Harbors Streamfilter auf Ausgewogen oder Aus.";

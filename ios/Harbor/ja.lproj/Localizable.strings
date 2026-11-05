@@ -438,6 +438,7 @@
 "Configuración" = "設定";
 "Configurar Sports" = "Configure Sports";
 "Configurar addon" = "Configure addon";
+"Configure" = "設定";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
 "Confirm remove from history" = "履歴から削除しますか";
@@ -497,6 +498,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "自動同期できませんでした";
+"Couldn't install. Double-check the URL and try again." = "インストールできませんでした。URLを確認して、もう一度お試しください。";
 "Couldn't reach Simkl" = "Simklに接続できませんでした";
 "Couldn't reach Trakt. Check your connection and try again." = "Traktに接続できませんでした。接続を確認して、もう一度お試しください。";
 "Cover Image URL" = "カバー画像URL";
@@ -724,6 +726,7 @@
 "Family" = "ファミリー";
 "Fantasy" = "ファンタジー";
 "Fantasía" = "ファンタジー";
+"Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns." = "すでにUsenetを契約している場合は、P2Pより高速で静かです。アドオンのページで設定し、返されたマニフェストURLを貼り付けてください。";
 "Favorites" = "お気に入り";
 "Favorites only" = "Favorites only";
 "Favoritos" = "お気に入り";
@@ -738,6 +741,7 @@
 "Film" = "映画";
 "Filters" = "フィルター";
 "Finding lyrics" = "歌詞を検索中";
+"Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finnish" = "フィンランド語";
 "Fit" = "全体を表示";
 "Flechas" = "矢印キー";
@@ -1039,6 +1043,7 @@
 "Manga options" = "Manga options";
 "Manga popular" = "Popular manga";
 "Manga sources" = "漫画ソース";
+"Manifest URL" = "マニフェストURL";
 "Mantener la misma fuente en el siguiente episodio" = "次のエピソードでも同じソースを使用";
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "しおり";
@@ -1313,6 +1318,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "パスワード";
 "Paste JSON" = "JSONを貼り付け";
+"Paste the manifest URL the configure page gave you" = "設定ページで発行されたマニフェストURLを貼り付け";
 "Peacock" = "Peacock";
 "Peligro" = "危険";
 "Películas" = "映画";
@@ -1637,6 +1643,7 @@
 "Search subtitles again" = "Search subtitles again";
 "Search title…" = "タイトルを検索…";
 "Search wider" = "検索範囲を広げる";
+"Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "Easynewsから直接検索してストリーミングします。Debridは不要です。Easynewsのログイン情報だけで利用できます。";
 "Searching..." = "検索中...";
 "Season" = "シーズン";
 "Season {n}" = "シーズン{n}";
@@ -2077,6 +2084,7 @@
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "55% / 25%のアルファ値で使用。";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "キャッシュの確認とリンクの制限解除に使用します。Harborがアカウントに独自に何かを追加または削除することはありません。";
+"Usenet" = "Usenet";
 "Username" = "ユーザー名";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "directdlエンドポイントを使用し、キャッシュ済みのものはキューをスキップします。";
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "AIOStreamsなどのアグリゲーターアドオンを使っていますか？アドオン側の並べ替えと絞り込みは、Harborに結果が届く前にアドオン内で行われ、その後、上記のHarborのストリームフィルターと結果の並び順が適用されます。結果が予想より少ない場合は、どちらか一方の条件を緩めてください。アドオン内のフィルターを緩めるか、Harborのストリームフィルターを「バランス」または「オフ」に設定します。";

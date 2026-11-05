@@ -438,6 +438,7 @@
 "Configuración" = "Configuración";
 "Configurar Sports" = "Configurar Sports";
 "Configurar addon" = "Configurar addon";
+"Configure" = "Configurar";
 "Configure Sports" = "Configurar Sports";
 "Configure addon" = "Configurar addon";
 "Confirm remove from history" = "Confirmar eliminación del historial";
@@ -497,6 +498,7 @@
 "Could not save your choices. Try again." = "No se pudieron guardar tus elecciones. Vuelve a intentarlo.";
 "Could not save your tracks or listening history. Try again." = "No se pudieron guardar tus canciones o tu historial. Inténtalo de nuevo.";
 "Couldn't auto-sync" = "No se pudo sincronizar";
+"Couldn't install. Double-check the URL and try again." = "No se pudo instalar. Verifica la URL e inténtalo de nuevo.";
 "Couldn't reach Simkl" = "No se pudo acceder a Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "No se pudo acceder a Trakt. Comprueba tu conexión e inténtalo de nuevo.";
 "Cover Image URL" = "URL de la imagen de portada";
@@ -724,6 +726,7 @@
 "Family" = "Familia";
 "Fantasy" = "Fantasía";
 "Fantasía" = "Fantasía";
+"Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns." = "Más rápido y silencioso que P2P si ya pagas por Usenet. Configúralo en la página del complemento y pega la URL del manifiesto que genera.";
 "Favorites" = "Favoritos";
 "Favorites only" = "Sólo favoritos";
 "Favoritos" = "Favoritos";
@@ -738,6 +741,7 @@
 "Film" = "Película";
 "Filters" = "Filtros";
 "Finding lyrics" = "Buscando la letra";
+"Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finnish" = "Finés";
 "Fit" = "Ajustar";
 "Flechas" = "Flechas";
@@ -1039,6 +1043,7 @@
 "Manga options" = "Opciones de Manga";
 "Manga popular" = "Manga popular";
 "Manga sources" = "Fuentes de manga";
+"Manifest URL" = "URL del manifiesto";
 "Mantener la misma fuente en el siguiente episodio" = "Mantener la misma fuente en el siguiente episodio";
 "Mantener la pantalla encendida" = "Mantener la pantalla encendida";
 "Marcadores" = "Marcadores";
@@ -1313,6 +1318,7 @@
 "Pasar páginas horizontalmente" = "Pasar páginas horizontalmente";
 "Password" = "Contraseña";
 "Paste JSON" = "Pegar JSON";
+"Paste the manifest URL the configure page gave you" = "Pega la URL del manifiesto que te proporcionó la página de configuración";
 "Peacock" = "Peacock";
 "Peligro" = "Peligro";
 "Películas" = "Películas";
@@ -1637,6 +1643,7 @@
 "Search subtitles again" = "Buscar subtítulos de nuevo";
 "Search title…" = "Buscar título…";
 "Search wider" = "Ampliar la búsqueda";
+"Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "Busca y reproduce directamente desde Easynews. No se necesita debrid. Solo tu inicio de sesión de Easynews.";
 "Searching..." = "Buscando...";
 "Season" = "Temporada";
 "Season {n}" = "Temporada {n}";
@@ -2077,6 +2084,7 @@
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite.";
 "Used at 55% / 25% alpha." = "Se usa con 55 % / 25 % de opacidad.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Se usa para comprobar la caché y desbloquear enlaces. Harbor nunca agrega ni elimina nada de tu cuenta por sí solo.";
+"Usenet" = "Usenet";
 "Username" = "Nombre de usuario";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "Usa el endpoint directdl, que omite la cola para todo lo que ya esté en caché.";
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "¿Usas AIOStreams u otro complemento agregador? Su propia clasificación y filtrado se realizan dentro del complemento antes de que Harbor vea los resultados. Luego, Harbor aplica además el filtro de fuentes y el orden de resultados configurados arriba. Si aparecen menos resultados de lo esperado, mantén una de las partes flexible: relaja los filtros internos del complemento o establece el filtro de fuentes de Harbor en Equilibrado o Desactivado.";

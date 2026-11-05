@@ -438,6 +438,7 @@
 "Configuración" = "सेटिंग्स";
 "Configurar Sports" = "Configure Sports";
 "Configurar addon" = "Configure addon";
+"Configure" = "कॉन्फ़िगर करें";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
 "Confirm remove from history" = "हिस्ट्री से निकालने की पुष्टि करें";
@@ -497,6 +498,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "अपने-आप सिंक नहीं हो सका";
+"Couldn't install. Double-check the URL and try again." = "इंस्टॉल नहीं हो सका। URL दोबारा जाँचें और फिर कोशिश करें।";
 "Couldn't reach Simkl" = "Simkl से संपर्क नहीं हो सका";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt से संपर्क नहीं हो सका। अपना कनेक्शन जाँचें और फिर कोशिश करें।";
 "Cover Image URL" = "कवर इमेज URL";
@@ -724,6 +726,7 @@
 "Family" = "परिवार";
 "Fantasy" = "फ़ैंटेसी";
 "Fantasía" = "फ़ैंटेसी";
+"Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns." = "अगर आप पहले से Usenet के लिए भुगतान करते हैं, तो यह P2P के मुकाबले तेज़ और कम झंझट वाला है। ऐडऑन पेज पर इसे कॉन्फ़िगर करें और उससे मिला मैनिफ़ेस्ट URL पेस्ट करें।";
 "Favorites" = "पसंदीदा";
 "Favorites only" = "Favorites only";
 "Favoritos" = "पसंदीदा";
@@ -738,6 +741,7 @@
 "Film" = "फ़िल्म";
 "Filters" = "फ़िल्टर";
 "Finding lyrics" = "बोल खोजे जा रहे हैं";
+"Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finnish" = "फ़िनिश";
 "Fit" = "फ़िट करें";
 "Flechas" = "तीर";
@@ -1039,6 +1043,7 @@
 "Manga options" = "Manga options";
 "Manga popular" = "Popular manga";
 "Manga sources" = "मांगा स्रोत";
+"Manifest URL" = "मैनिफ़ेस्ट URL";
 "Mantener la misma fuente en el siguiente episodio" = "अगले एपिसोड में भी वही स्रोत रखें";
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "बुकमार्क";
@@ -1313,6 +1318,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "पासवर्ड";
 "Paste JSON" = "JSON पेस्ट करें";
+"Paste the manifest URL the configure page gave you" = "कॉन्फ़िगर पेज से मिला मैनिफ़ेस्ट URL पेस्ट करें";
 "Peacock" = "Peacock";
 "Peligro" = "खतरा";
 "Películas" = "फ़िल्में";
@@ -1637,6 +1643,7 @@
 "Search subtitles again" = "Search subtitles again";
 "Search title…" = "शीर्षक खोजें…";
 "Search wider" = "दायरा बढ़ाकर खोजें";
+"Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "Easynews से सीधे खोजता और स्ट्रीम करता है। किसी डीब्रिड की ज़रूरत नहीं। बस आपका Easynews लॉगिन चाहिए।";
 "Searching..." = "खोज जारी है...";
 "Season" = "सीज़न";
 "Season {n}" = "सीज़न {n}";
@@ -2077,6 +2084,7 @@
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "55% / 25% अल्फ़ा पर इस्तेमाल होता है।";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "कैश जांचने और लिंक पर लगी पाबंदी हटाने के लिए इस्तेमाल होता है। Harbor कभी भी अपने-आप आपके खाते में कुछ जोड़ता या हटाता नहीं है।";
+"Usenet" = "Usenet";
 "Username" = "यूज़रनेम";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "directdl एंडपॉइंट इस्तेमाल करता है, जो पहले से कैश की गई किसी भी चीज़ को कतार में लगने से बचाता है।";
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "AIOStreams या कोई दूसरा एग्रीगेटर ऐडऑन इस्तेमाल कर रहे हैं? Harbor को नतीजे मिलने से पहले ही ऐडऑन के अंदर उनकी सॉर्टिंग और फ़िल्टरिंग हो जाती है। इसके बाद Harbor उन पर ऊपर दिया गया स्ट्रीम फ़िल्टर और नतीजों का क्रम लागू करता है। अगर नतीजे उम्मीद से कम दिखें, तो किसी एक तरफ़ फ़िल्टर में ढील रखें: या तो ऐडऑन के अंदरूनी फ़िल्टर हल्के करें या Harbor का स्ट्रीम फ़िल्टर बैलेंस्ड या बंद पर सेट करें।";

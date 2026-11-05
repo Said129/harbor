@@ -438,6 +438,7 @@
 "Configuración" = "Ayarlar";
 "Configurar Sports" = "Configure Sports";
 "Configurar addon" = "Configure addon";
+"Configure" = "Yapılandır";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
 "Confirm remove from history" = "Geçmişten kaldırmayı onayla";
@@ -497,6 +498,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Otomatik eşitlenemedi";
+"Couldn't install. Double-check the URL and try again." = "Yüklenemedi. URL'yi tekrar kontrol edip yeniden deneyin.";
 "Couldn't reach Simkl" = "Simkl'a ulaşılamadı";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt'a erişilemedi. Bağlantınızı kontrol edip tekrar deneyin.";
 "Cover Image URL" = "Kapak Görseli URL'si";
@@ -724,6 +726,7 @@
 "Family" = "Aile";
 "Fantasy" = "Fantastik";
 "Fantasía" = "Fantastik";
+"Faster and quieter than P2P if you already pay for Usenet. Configure on the addon page, paste the manifest URL it returns." = "Usenet'e zaten aboneyseniz P2P'den daha hızlıdır ve daha az dikkat çeker. Eklenti sayfasında yapılandırın ve döndürülen manifest URL'sini yapıştırın.";
 "Favorites" = "Favoriler";
 "Favorites only" = "Favorites only";
 "Favoritos" = "Favoriler";
@@ -738,6 +741,7 @@
 "Film" = "Film";
 "Filters" = "Filtreler";
 "Finding lyrics" = "Şarkı sözleri aranıyor";
+"Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finnish" = "Fince";
 "Fit" = "Sığdır";
 "Flechas" = "Ok tuşları";
@@ -1039,6 +1043,7 @@
 "Manga options" = "Manga options";
 "Manga popular" = "Popular manga";
 "Manga sources" = "Manga kaynakları";
+"Manifest URL" = "Manifest URL'si";
 "Mantener la misma fuente en el siguiente episodio" = "Sonraki bölümde aynı kaynağı kullan";
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "Yer İmleri";
@@ -1313,6 +1318,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Parola";
 "Paste JSON" = "JSON Yapıştır";
+"Paste the manifest URL the configure page gave you" = "Yapılandırma sayfasının verdiği manifest URL'sini yapıştırın";
 "Peacock" = "Peacock";
 "Peligro" = "Tehlike";
 "Películas" = "Filmler";
@@ -1637,6 +1643,7 @@
 "Search subtitles again" = "Search subtitles again";
 "Search title…" = "Başlık ara…";
 "Search wider" = "Daha kapsamlı ara";
+"Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "İçerikleri doğrudan Easynews'te arar ve oynatır. Debrid gerekmez. Yalnızca Easynews giriş bilgileriniz yeterlidir.";
 "Searching..." = "Aranıyor...";
 "Season" = "Sezon";
 "Season {n}" = "Sezon {n}";
@@ -2077,6 +2084,7 @@
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "%55 / %25 alfa ile kullanılır.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Önbelleği kontrol etmek ve bağlantı kısıtlamalarını kaldırmak için kullanılır. Harbor hesabınıza kendi kendine asla bir şey eklemez veya kaldırmaz.";
+"Usenet" = "Usenet";
 "Username" = "Kullanıcı adı";
 "Uses the directdl endpoint, which skips queueing for anything already cached." = "Önbellekte bulunan içerikleri kuyruğa eklemeyi atlayan directdl uç noktasını kullanır.";
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "AIOStreams veya başka bir toplayıcı eklenti mi kullanıyorsunuz? Harbor sonuçları görmeden önce eklentinin kendi sıralama ve filtreleme işlemleri uygulanır; ardından Harbor yukarıdaki yayın filtresini ve sonuç sırasını bunların üzerine uygular. Sonuçlar beklenenden az görünüyorsa taraflardan birini esnek tutun: eklentinin dâhilî filtrelerini gevşetin veya Harbor'ın yayın filtresini Dengeli ya da Kapalı olarak ayarlayın.";
