@@ -186,12 +186,12 @@ BEHAVIORS = expand("""
 282 D TraktPlaybackTracking
 283 P Trakt calendar in TraktHome
 284 M no Trakt comments
-285 D AniList PIN-code login and session (5 Nov, uncompiled)
+285 D AniList PIN-code login and session (5 Nov, compiled; 14 cases passed)
 286 P AniList progress is pushed while watching; the watched map from the lists is not read
 287-288 M AniList lists and recommendations not ported
 289 P AniList name and avatar in Settings; not used as the Harbor avatar
 290 M AniList relations and threads not ported
-291 D MyAnimeList login, token refresh and session (5 Nov, uncompiled)
+291 D MyAnimeList login, token refresh and session (5 Nov, compiled; 13 cases passed)
 292 P MyAnimeList name shown; no avatar
 293 M MyAnimeList lists not ported
 294 P MyAnimeList progress is pushed while watching; the watched map is not read
@@ -276,7 +276,7 @@ SETTINGS = expand("""
 130-131 D
 132 M
 133-134 D Harbor avatar and colour
-135-136 D AniList and MyAnimeList sync of watch progress (5 Nov, uncompiled)
+135-136 D AniList and MyAnimeList sync of watch progress (5 Nov, compiled; cases passed)
 137-142 M tracker comments and avatars
 143-150 D Trakt session, streaming catalogs, adult addons
 151-156 M Watch Together settings

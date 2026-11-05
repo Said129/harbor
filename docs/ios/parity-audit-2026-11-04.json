@@ -2222,7 +2222,7 @@
       "id": "AniList login",
       "desktop_source": "src/lib/anilist",
       "verdict": "D",
-      "note": "AniList PIN-code login and session (5 Nov, uncompiled)"
+      "note": "AniList PIN-code login and session (5 Nov, compiled; 14 cases passed)"
     },
     {
       "index": 286,
@@ -2264,7 +2264,7 @@
       "id": "MyAnimeList login",
       "desktop_source": "src/lib/mal",
       "verdict": "D",
-      "note": "MyAnimeList login, token refresh and session (5 Nov, uncompiled)"
+      "note": "MyAnimeList login, token refresh and session (5 Nov, compiled; 13 cases passed)"
     },
     {
       "index": 292,
@@ -4240,14 +4240,14 @@
       "id": "anilistAutoSync",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "AniList and MyAnimeList sync of watch progress (5 Nov, uncompiled)"
+      "note": "AniList and MyAnimeList sync of watch progress (5 Nov, compiled; cases passed)"
     },
     {
       "index": 136,
       "id": "malAutoSync",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "AniList and MyAnimeList sync of watch progress (5 Nov, uncompiled)"
+      "note": "AniList and MyAnimeList sync of watch progress (5 Nov, compiled; cases passed)"
     },
     {
       "index": 137,

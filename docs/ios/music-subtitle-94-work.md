@@ -1255,3 +1255,14 @@ phase resolving) when the release is checked, so the release wait now asks for n
 consumers and no filter instead of an explicit false, and the loop waits for the
 track to be loaded before it seeks. Run 42015909434 (commit 8866e84a) covers the
 AniList and MyAnimeList tracker cases (27) with the first of those changes.
+
+Focused run 42015909434 (commit 8866e84a): the app and the tests compiled, and all
+27 AniList and MyAnimeList cases passed on the first execution (sign-in codes and
+addresses, the rate-limit retry, GraphQL and HTTP errors, token refresh and
+rejection, the request allow-lists, tracker targets from Kitsu stream ids, the
+90 s and 70 % phases, forward-only sync plans, the form and GraphQL writes, the
+unconfirmed-write retry, and the account stores). The owned-meter case still
+failed: the seek to the start was ignored while the looped track restarted, so
+each capture now starts the track again instead (commit 3158e6f8, run
+42021364643, together with the six StreamPlaybackHistoryTests cases for
+"Remember last stream").
