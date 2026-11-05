@@ -104,6 +104,7 @@
 "Addon wait time" = "مدة انتظار الإضافة";
 "Addons" = "الإضافات";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "يضيف خيار \"إخفاء\" عند النقر بزر الفأرة الأيمن على حلقة. تختفي الحلقات المخفية من القائمة ويتخطّاها \"التالي\". يتيح لك مفتاح \"إظهار المخفية\" في كل مسلسل استعادتها.";
+"Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "اضبط النص والخلفية. تُظهر المعاينة تغييراتك فور إجرائها.";
 "Administrar" = "إدارة";
 "Adult sources" = "Adult sources";
@@ -293,6 +294,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "شريط أسود";
 "Bloques resaltados." = "كتل مميّزة.";
+"Blur comments and reviews by default" = "تمويه التعليقات والمراجعات افتراضيًا";
 "Blur descriptions" = "تمويه الأوصاف";
 "Blur spoilers" = "تمويه الحرق";
 "Blur thumbnails" = "تمويه الصور المصغّرة";
@@ -460,6 +462,10 @@
 "Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "قريبًا في دور العرض";
+"Comments" = "التعليقات";
+"Comments and reviews on detail pages stay blurred until you reveal them, even when they are not tagged as spoilers. This one switch covers Trakt and Letterboxd." = "تبقى التعليقات والمراجعات في صفحات التفاصيل مموّهة حتى تكشفها، حتى لو لم تُوسم كحرق للأحداث. هذا المفتاح الواحد يشمل Trakt وLetterboxd.";
+"Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
+"Comments are hidden" = "التعليقات مخفية";
 "Community index" = "فهرس المجتمع";
 "Compact" = "مضغوط";
 "Compacta" = "مضغوط";
@@ -531,6 +537,7 @@
 "Could not apply the timing. The original subtitle is kept." = "تعذر تطبيق التوقيت. تم الاحتفاظ بالترجمة الأصلية.";
 "Could not complete this action. Try again." = "تعذّر إكمال هذا الإجراء. حاول مجددًا.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not identify this title on Trakt." = "تعذّر التعرف على هذا العنوان على Trakt.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "تعذر تحميل هذه الصفحة. حاول مرة أخرى.";
@@ -909,6 +916,7 @@
 "Hide all sources" = "إخفاء كل المصادر";
 "Hide and skip episodes" = "إخفاء الحلقات وتخطّيها";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide comments" = "إخفاء التعليقات";
 "Hide details" = "إخفاء التفاصيل";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "إخفاء الحلقة";
@@ -1049,6 +1057,7 @@
 "Libros" = "الكتب";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "يرفع الظلال حتى تصبح المشاهد شديدة السواد قابلة للمشاهدة.";
 "Light" = "فاتح";
+"Likes" = "الإعجابات";
 "Limited Series & Miniseries" = "مسلسلات محدودة وقصيرة";
 "Limpiar filtros" = "مسح المرشّحات";
 "Line height" = "ارتفاع السطر";
@@ -1072,7 +1081,9 @@
 "Load effect" = "تحميل التأثير";
 "Load file" = "تحميل ملف";
 "Load more" = "تحميل المزيد";
+"Load more comments" = "تحميل المزيد من التعليقات";
 "Loading" = "جارٍ التحميل";
+"Loading more" = "جاري تحميل المزيد";
 "Loading more sources" = "جارٍ تحميل مزيد من المصادر";
 "Loading music" = "جارٍ تحميل الموسيقى";
 "Loading plugins..." = "جارٍ تحميل الإضافات...";
@@ -1247,6 +1258,7 @@
 "No Label" = "بدون تسمية";
 "No catalogs match your search." = "لا توجد كتالوجات تطابق بحثك.";
 "No catalogs yet" = "لا توجد كتالوجات بعد";
+"No comments yet" = "لا توجد تعليقات بعد";
 "No correction" = "بلا تصحيح";
 "No correction (default)" = "بلا تصحيح (الافتراضي)";
 "No date" = "بلا تاريخ";
@@ -1371,6 +1383,7 @@
 "Open in browser" = "فتح في المتصفح";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on Trakt" = "فتح على Trakt";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "افتح هذا الملف الشخصي عند بدء التشغيل. قد تظهر المطالبات الموقّتة لاحقًا. لا يمكن تعيين ملف شخصي محمي برمز PIN كملف افتراضي.";
 "Opening AniList..." = "جارٍ فتح AniList...";
 "Opening MyAnimeList..." = "جارٍ فتح MyAnimeList...";
@@ -1684,6 +1697,7 @@
 "Retry reading progress" = "Retry reading progress";
 "Retry statistics" = "Retry statistics";
 "Reveal" = "إظهار";
+"Reveal comments" = "إظهار التعليقات";
 "Reverse order" = "Reverse order";
 "Revert" = "تراجع";
 "Rich season and order panel" = "لوحة المواسم والترتيب التفصيلية";
@@ -1811,6 +1825,8 @@
 "Show as a Top 10 with big numerals" = "العرض كأفضل 10 بأرقام كبيرة";
 "Show as a normal row" = "العرض كصف عادي";
 "Show as second subtitle" = "عرضها كترجمة ثانية";
+"Show comments" = "إظهار التعليقات";
+"Show comments on detail pages" = "إظهار التعليقات في صفحات التفاصيل";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "عرض أوصاف الإضافات كاملة في محدد مصادر Stremio والتنزيلات ووضع الشاشة الكبيرة.";
 "Show controls" = "إظهار عناصر التحكم";
 "Show details" = "إظهار التفاصيل";
@@ -1900,6 +1916,8 @@
 "Spanish (Latin America)" = "الإسبانية (أمريكا اللاتينية)";
 "Specials" = "الحلقات الخاصة";
 "Speed" = "السرعة";
+"Spoiler — Click" = "حرق، انقر";
+"Spoiler — Click to reveal" = "حرق، انقر للإظهار";
 "Spoilers" = "الحرق";
 "Spooky Season" = "موسم الرعب";
 "Sport" = "Sport";
@@ -2126,9 +2144,11 @@
 "Tracking what you watch" = "تتبُّع ما تشاهده";
 "Tracks" = "المسارات";
 "Traducir títulos" = "ترجمة العناوين";
+"Trakt Comments" = "تعليقات Trakt";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "تم بلوغ حد حساب Trakt. قم بالترقية إلى Trakt VIP أو قلّص قائمة المشاهدة.";
+"Trakt comments are not available for anime titles." = "تعليقات Trakt غير متوفرة لعناوين الأنمي.";
 "Trakt history" = "سجلّ Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "يواجه Trakt مشكلة في الخادم (HTTP {n}). حاول مجددًا بعد قليل.";
 "Trakt is rate-limiting. Wait a minute and try again." = "يفرض Trakt حدًا على الطلبات. انتظر دقيقة ثم حاول مجددًا.";
@@ -2326,6 +2346,7 @@
 "hidden" = "مخفي";
 "hr" = "ساعة";
 "item" = "عنصر";
+"just now" = "الآن";
 "language" = "اللغة";
 "left" = "اليسار";
 "local" = "محلي";
@@ -3486,7 +3507,11 @@
 "{n} seeds" = "{n} موزع";
 "{n} semillas" = "{n} موزع";
 "{n} sources · 0 made it through" = "{n} مصادر · لم يجتز أي منها";
+"{n}d ago" = "قبل {n} يوم";
 "{n}d left" = "متبقي {n} يوم";
+"{n}h ago" = "قبل {n} ساعة";
+"{n}m ago" = "قبل {n} دقيقة";
+"{n}mo ago" = "قبل {n} شهر";
 "{requests} requests" = "{requests} طلبًا";
 "{seconds} seconds" = "{seconds} ثانية";
 "{shown} of {total}" = "{shown} من {total}";

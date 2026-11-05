@@ -97,6 +97,7 @@
 "Addon wait time" = "Eklenti bekleme süresi";
 "Addons" = "Eklentiler";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Bir bölüme sağ tıkladığınızda Gizle seçeneğini ekler. Gizlenen bölümler listede görünmez ve Sıradaki tarafından atlanır. Her dizideki Gizlenenleri göster seçeneğiyle onları geri getirebilirsiniz.";
+"Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Metni ve arka planı ayarlayın. Önizleme yaptığınız değişiklikleri anında gösterir.";
 "Administrar" = "Yönet";
 "Adult sources" = "Adult sources";
@@ -281,6 +282,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "Siyah şerit";
 "Bloques resaltados." = "Vurgulanan bloklar.";
+"Blur comments and reviews by default" = "Yorumları ve incelemeleri varsayılan olarak bulanıklaştır";
 "Blur descriptions" = "Açıklamaları bulanıklaştır";
 "Blur spoilers" = "Spoilerları bulanıklaştır";
 "Blur thumbnails" = "Küçük görselleri bulanıklaştır";
@@ -440,6 +442,10 @@
 "Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Yakında Sinemalarda";
+"Comments" = "Yorumlar";
+"Comments and reviews on detail pages stay blurred until you reveal them, even when they are not tagged as spoilers. This one switch covers Trakt and Letterboxd." = "Ayrıntı sayfalarındaki yorumlar ve incelemeler, spoiler olarak etiketlenmemiş olsalar bile siz gösterene kadar bulanık kalır. Bu tek ayar hem Trakt'ı hem de Letterboxd'ı kapsar.";
+"Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
+"Comments are hidden" = "Yorumlar gizli";
 "Community index" = "Topluluk endeksi";
 "Compact" = "Kompakt";
 "Compacta" = "Kompakt";
@@ -507,6 +513,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "Bu işlem tamamlanamadı. Tekrar deneyin.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not identify this title on Trakt." = "Bu içerik Trakt'ta tanımlanamadı.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Bu sayfa yüklenemedi. Tekrar deneyin.";
@@ -884,6 +891,7 @@
 "Hide all sources" = "Tüm kaynakları gizle";
 "Hide and skip episodes" = "Bölümleri gizle ve atla";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide comments" = "Yorumları gizle";
 "Hide details" = "Ayrıntıları gizle";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "Bölümü gizle";
@@ -1024,6 +1032,7 @@
 "Libros" = "Kitaplar";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Gölgeleri açarak zifiri karanlık sahneleri izlenebilir hâle getirir.";
 "Light" = "Açık";
+"Likes" = "Beğeniler";
 "Limited Series & Miniseries" = "Tek Sezonluk Diziler ve Mini Diziler";
 "Limpiar filtros" = "Filtreleri temizle";
 "Line height" = "Satır yüksekliği";
@@ -1047,7 +1056,9 @@
 "Load effect" = "Yükleme efekti";
 "Load file" = "Dosya yükle";
 "Load more" = "Daha fazla yükle";
+"Load more comments" = "Daha fazla yorum yükle";
 "Loading" = "Yükleniyor";
+"Loading more" = "Daha fazlası yükleniyor";
 "Loading more sources" = "Daha fazla kaynak yükleniyor";
 "Loading music" = "Müzik yükleniyor";
 "Loading plugins..." = "Eklentiler yükleniyor...";
@@ -1219,6 +1230,7 @@
 "No Label" = "Etiket Yok";
 "No catalogs match your search." = "Aramanızla eşleşen katalog yok.";
 "No catalogs yet" = "Henüz katalog yok";
+"No comments yet" = "Henüz yorum yok";
 "No correction" = "Düzeltme yok";
 "No correction (default)" = "Düzeltme yok (varsayılan)";
 "No date" = "Tarih yok";
@@ -1342,6 +1354,7 @@
 "Open in browser" = "Tarayıcıda aç";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on Trakt" = "Trakt'ta aç";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Başlangıçta bu profili açın. Süreli profil istemleri daha sonra yine görünebilir. PIN korumalı profiller varsayılan yapılamaz.";
 "Opening AniList..." = "AniList açılıyor...";
 "Opening MyAnimeList..." = "MyAnimeList açılıyor...";
@@ -1652,6 +1665,7 @@
 "Retry reading progress" = "Retry reading progress";
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Göster";
+"Reveal comments" = "Yorumları göster";
 "Reverse order" = "Reverse order";
 "Revert" = "Geri al";
 "Rich season and order panel" = "Ayrıntılı sezon ve sıralama paneli";
@@ -1777,6 +1791,8 @@
 "Show as a Top 10 with big numerals" = "Büyük rakamlarla İlk 10 olarak göster";
 "Show as a normal row" = "Normal satır olarak göster";
 "Show as second subtitle" = "İkinci altyazı olarak göster";
+"Show comments" = "Yorumları göster";
+"Show comments on detail pages" = "Ayrıntı sayfalarında yorumları göster";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio seçicide, indirmelerde ve Big Picture'da eklenti açıklamalarının tamamını göster.";
 "Show controls" = "Kontrolleri göster";
 "Show details" = "Ayrıntıları göster";
@@ -1864,6 +1880,8 @@
 "Spanish (Latin America)" = "İspanyolca (Latin Amerika)";
 "Specials" = "Özel Bölümler";
 "Speed" = "Hız";
+"Spoiler — Click" = "Spoiler. Tıklayın";
+"Spoiler — Click to reveal" = "Spoiler. Görmek için tıklayın";
 "Spoilers" = "Spoilerlar";
 "Spooky Season" = "Korku Mevsimi";
 "Sport" = "Sport";
@@ -2088,9 +2106,11 @@
 "Tracking what you watch" = "İzlediklerinizi takip etme";
 "Tracks" = "Parçalar";
 "Traducir títulos" = "Başlıkları çevir";
+"Trakt Comments" = "Trakt Yorumları";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Trakt hesap sınırına ulaşıldı. Trakt VIP'ye yükseltin veya izleme listenizi kısaltın.";
+"Trakt comments are not available for anime titles." = "Trakt yorumları anime yapımlarında kullanılamaz.";
 "Trakt history" = "Trakt geçmişi";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt sunucu sorunu yaşıyor (HTTP {n}). Kısa süre sonra tekrar deneyin.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt istek hızını sınırlıyor. Bir dakika bekleyip tekrar deneyin.";
@@ -2284,6 +2304,7 @@
 "hidden" = "gizli";
 "hr" = "sa.";
 "item" = "öğe";
+"just now" = "az önce";
 "language" = "dil";
 "left" = "sol";
 "local" = "yerel";
@@ -3444,7 +3465,11 @@
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} kaynak · 0 tanesi filtreleri geçti";
+"{n}d ago" = "{n} gün önce";
 "{n}d left" = "{n} gün kaldı";
+"{n}h ago" = "{n} saat önce";
+"{n}m ago" = "{n} dakika önce";
+"{n}mo ago" = "{n} ay önce";
 "{requests} requests" = "{requests} istek";
 "{seconds} seconds" = "{seconds} saniye";
 "{shown} of {total}" = "{total} öğeden {shown} tanesi";

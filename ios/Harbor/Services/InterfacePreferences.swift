@@ -16,6 +16,10 @@ final class InterfacePreferences {
     var episodeSort = UserDefaults.standard.string(forKey: "episodeSort") == "newest" ? "newest" : "oldest" { didSet { persist(episodeSort, forKey: "episodeSort") } }
     /// Desktop's `episodeHiding`: adds Hide episode to the episode menu and skips hidden episodes in Up Next.
     var episodeHiding = UserDefaults.standard.object(forKey: "episodeHiding") as? Bool ?? false { didSet { persist(episodeHiding, forKey: "episodeHiding") } }
+    /// Desktop's `showTraktComments`: a comments section on movie and show pages.
+    var showTraktComments = UserDefaults.standard.object(forKey: "showTraktComments") as? Bool ?? false { didSet { persist(showTraktComments, forKey: "showTraktComments") } }
+    /// Desktop's `blurComments`: comments stay blurred until revealed, spoiler or not.
+    var blurComments = UserDefaults.standard.object(forKey: "blurComments") as? Bool ?? false { didSet { persist(blurComments, forKey: "blurComments") } }
     var hideSpoilers = UserDefaults.standard.object(forKey: "hideSpoilers") as? Bool ?? false { didSet { persist(hideSpoilers, forKey: "hideSpoilers") } }
     var blurEpisodes = UserDefaults.standard.object(forKey: "blurEpisodes") as? Bool ?? false { didSet { persist(blurEpisodes, forKey: "blurEpisodes") } }
     var spoilerHideTitles = UserDefaults.standard.object(forKey: "spoilerHideTitles") as? Bool ?? true { didSet { persist(spoilerHideTitles, forKey: "spoilerHideTitles") } }
@@ -52,6 +56,8 @@ final class InterfacePreferences {
         showEpisodeDescription = UserDefaults.standard.object(forKey: "showEpisodeDescription") as? Bool ?? true
         episodeSort = UserDefaults.standard.string(forKey: "episodeSort") == "newest" ? "newest" : "oldest"
         episodeHiding = UserDefaults.standard.object(forKey: "episodeHiding") as? Bool ?? false
+        showTraktComments = UserDefaults.standard.object(forKey: "showTraktComments") as? Bool ?? false
+        blurComments = UserDefaults.standard.object(forKey: "blurComments") as? Bool ?? false
         hideSpoilers = UserDefaults.standard.object(forKey: "hideSpoilers") as? Bool ?? false
         blurEpisodes = UserDefaults.standard.object(forKey: "blurEpisodes") as? Bool ?? false
         spoilerHideTitles = UserDefaults.standard.object(forKey: "spoilerHideTitles") as? Bool ?? true

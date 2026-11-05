@@ -9,6 +9,7 @@ struct TraktSettingsView: View {
     @State private var disconnecting = false
     @AppStorage("cwSources") private var sources = ContinueWatchingSources.defaultValue
     @AppStorage("cwPerProfile") private var privateContinuing = false
+    @Bindable private var interface = InterfacePreferences.shared
     @MainActor init(app: AppModel) {
         let owner = app.personalOwner, scope = app.accountOperationScope
         self.init(model: TraktAccountModel(store: .forOwner(owner), active: { [weak app] in
@@ -46,6 +47,14 @@ struct TraktSettingsView: View {
                     .disabled(privateContinuing).accessibilityIdentifier("trakt-enable-progress")
                 if privateContinuing {
                     Text(text("Unavailable while Continue Watching is kept private to each profile, because Trakt progress is shared across every profile on this account.")).font(.caption).foregroundStyle(.secondary)
+                }
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(text("Comments")).font(HarborTheme.font(13, weight: .semibold)).foregroundStyle(.secondary)
+                    Text(text("Comments and reviews posted by other Trakt members.")).font(.caption).foregroundStyle(.secondary)
+                    HarborSettingsToggle(text("Show comments on detail pages"), note: text("Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them."), isOn: $interface.showTraktComments)
+                        .accessibilityIdentifier("trakt-show-comments")
+                    HarborSettingsToggle(text("Blur comments and reviews by default"), note: text("Comments and reviews on detail pages stay blurred until you reveal them, even when they are not tagged as spoilers. This one switch covers Trakt and Letterboxd."), isOn: $interface.blurComments)
+                        .accessibilityIdentifier("trakt-blur-comments")
                 }
                 if model.store.session != nil, let library, let transfers { TraktWatchlistTransferView(model: transfers, library: library) }
                 Link(destination: URL(string: "https://trakt.tv")!) { Label("trakt.tv", systemImage: "arrow.up.right.square").frame(minHeight: 44) }.accessibilityIdentifier("trakt-website")

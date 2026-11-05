@@ -97,6 +97,7 @@
 "Addon wait time" = "插件等待时间";
 "Addons" = "插件";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "右键单击某一集时增加“隐藏”选项。隐藏的单集会从列表中消失，“接下来播放”也会跳过它们。每部作品中的“显示隐藏内容”开关可让它们重新显示。";
+"Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "调整文字和背景。预览会实时显示更改。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
@@ -281,6 +282,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "黑色条幅";
 "Bloques resaltados." = "高亮区块。";
+"Blur comments and reviews by default" = "默认模糊评论和影评";
 "Blur descriptions" = "模糊简介";
 "Blur spoilers" = "模糊剧透内容";
 "Blur thumbnails" = "模糊缩略图";
@@ -440,6 +442,10 @@
 "Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "即将上映";
+"Comments" = "评论";
+"Comments and reviews on detail pages stay blurred until you reveal them, even when they are not tagged as spoilers. This one switch covers Trakt and Letterboxd." = "详情页上的评论和影评会保持模糊，直到你主动显示，即使它们未标记为剧透。此开关同时适用于 Trakt 和 Letterboxd。";
+"Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
+"Comments are hidden" = "评论已隐藏";
 "Community index" = "社区指数";
 "Compact" = "紧凑";
 "Compacta" = "紧凑";
@@ -507,6 +513,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "无法完成此操作。请重试。";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not identify this title on Trakt." = "无法在 Trakt 上识别此条目。";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "无法加载此页面。请重试。";
@@ -884,6 +891,7 @@
 "Hide all sources" = "隐藏所有片源";
 "Hide and skip episodes" = "隐藏并跳过单集";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide comments" = "隐藏评论";
 "Hide details" = "隐藏详情";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "隐藏剧集";
@@ -1024,6 +1032,7 @@
 "Libros" = "书籍";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "提亮阴影，让漆黑场景也能看清。";
 "Light" = "浅色";
+"Likes" = "点赞";
 "Limited Series & Miniseries" = "限定剧与迷你剧";
 "Limpiar filtros" = "清除筛选条件";
 "Line height" = "行高";
@@ -1047,7 +1056,9 @@
 "Load effect" = "加载效果";
 "Load file" = "加载文件";
 "Load more" = "加载更多";
+"Load more comments" = "加载更多评论";
 "Loading" = "正在加载";
+"Loading more" = "正在加载更多";
 "Loading more sources" = "正在加载更多来源";
 "Loading music" = "正在加载音乐";
 "Loading plugins..." = "正在加载插件…";
@@ -1219,6 +1230,7 @@
 "No Label" = "无标签";
 "No catalogs match your search." = "没有与搜索匹配的目录。";
 "No catalogs yet" = "暂无目录";
+"No comments yet" = "暂无评论";
 "No correction" = "不校正";
 "No correction (default)" = "不校正（默认）";
 "No date" = "无日期";
@@ -1342,6 +1354,7 @@
 "Open in browser" = "在浏览器中打开";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on Trakt" = "在 Trakt 上打开";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "启动时打开此个人资料。之后仍可能显示定时提示。设置了 PIN 的资料不能设为默认。";
 "Opening AniList..." = "正在打开 AniList...";
 "Opening MyAnimeList..." = "正在打开 MyAnimeList...";
@@ -1652,6 +1665,7 @@
 "Retry reading progress" = "Retry reading progress";
 "Retry statistics" = "Retry statistics";
 "Reveal" = "显示";
+"Reveal comments" = "显示评论";
 "Reverse order" = "Reverse order";
 "Revert" = "还原";
 "Rich season and order panel" = "功能丰富的季与播放顺序面板";
@@ -1777,6 +1791,8 @@
 "Show as a Top 10 with big numerals" = "显示为带大号排名数字的前 10 名榜单";
 "Show as a normal row" = "显示为普通内容栏";
 "Show as second subtitle" = "设为第二字幕显示";
+"Show comments" = "显示评论";
+"Show comments on detail pages" = "在详情页显示评论";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "在 Stremio 选择器、下载页面和大屏模式中显示插件的完整描述。";
 "Show controls" = "显示控件";
 "Show details" = "显示详情";
@@ -1864,6 +1880,8 @@
 "Spanish (Latin America)" = "拉丁美洲西班牙语";
 "Specials" = "特别篇";
 "Speed" = "速度";
+"Spoiler — Click" = "剧透，点击";
+"Spoiler — Click to reveal" = "剧透，点击显示";
 "Spoilers" = "剧透";
 "Spooky Season" = "惊悚季";
 "Sport" = "Sport";
@@ -2088,9 +2106,11 @@
 "Tracking what you watch" = "记录你的观看内容";
 "Tracks" = "轨道";
 "Traducir títulos" = "翻译标题";
+"Trakt Comments" = "Trakt 评论";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "已达到 Trakt 账户上限。请升级到 Trakt VIP 或精简片单。";
+"Trakt comments are not available for anime titles." = "动漫作品不支持 Trakt 评论。";
 "Trakt history" = "Trakt 观看历史";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt 服务器出现问题（HTTP {n}）。请稍后重试。";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt 正在限制请求频率。请等待一分钟后重试。";
@@ -2284,6 +2304,7 @@
 "hidden" = "隐藏";
 "hr" = "小时";
 "item" = "项目";
+"just now" = "刚刚";
 "language" = "语言";
 "left" = "左";
 "local" = "本地";
@@ -3444,7 +3465,11 @@
 "{n} seeds" = "{n} 个做种者";
 "{n} semillas" = "{n} 个做种者";
 "{n} sources · 0 made it through" = "{n} 个片源 · 0 个通过筛选";
+"{n}d ago" = "{n} 天前";
 "{n}d left" = "剩余 {n} 天";
+"{n}h ago" = "{n} 小时前";
+"{n}m ago" = "{n} 分钟前";
+"{n}mo ago" = "{n} 个月前";
 "{requests} requests" = "{requests} 次请求";
 "{seconds} seconds" = "{seconds} 秒";
 "{shown} of {total}" = "已显示 {shown} 个，共 {total} 个";

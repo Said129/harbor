@@ -102,6 +102,7 @@
 "Addon wait time" = "Tempo de espera do addon";
 "Addons" = "Addons";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Adiciona uma opção Ocultar quando você clica com o botão direito em um episódio. Episódios ocultos desaparecem da lista e são ignorados pelo A Seguir. Uma opção Mostrar ocultos em cada série permite trazê-los de volta.";
+"Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Ajuste o texto e o fundo. A prévia mostra as alterações em tempo real.";
 "Administrar" = "Gerenciar";
 "Adult sources" = "Adult sources";
@@ -289,6 +290,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "Barra preta";
 "Bloques resaltados." = "Blocos destacados.";
+"Blur comments and reviews by default" = "Desfocar comentários e avaliações por padrão";
 "Blur descriptions" = "Desfocar descrições";
 "Blur spoilers" = "Desfocar spoilers";
 "Blur thumbnails" = "Desfocar miniaturas";
@@ -456,6 +458,10 @@
 "Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Em Breve nos Cinemas";
+"Comments" = "Comentários";
+"Comments and reviews on detail pages stay blurred until you reveal them, even when they are not tagged as spoilers. This one switch covers Trakt and Letterboxd." = "Comentários e avaliações nas páginas de detalhes ficam borrados até você revelá-los, mesmo quando não estão marcados como spoilers. Esta única opção vale para Trakt e Letterboxd.";
+"Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
+"Comments are hidden" = "Os comentários estão ocultos";
 "Community index" = "Índice da comunidade";
 "Compact" = "Compacto";
 "Compacta" = "Compacto";
@@ -527,6 +533,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Não foi possível aplicar o ajuste. A legenda original foi mantida.";
 "Could not complete this action. Try again." = "Não foi possível concluir esta ação. Tenta novamente.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not identify this title on Trakt." = "Não foi possível identificar este título no Trakt.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Não foi possível carregar esta página. Tente novamente.";
@@ -904,6 +911,7 @@
 "Hide all sources" = "Ocultar todas as fontes";
 "Hide and skip episodes" = "Ocultar e pular episódios";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide comments" = "Ocultar comentários";
 "Hide details" = "Ocultar detalhes";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "Ocultar episódio";
@@ -1044,6 +1052,7 @@
 "Libros" = "Livros";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Realça as sombras para que as cenas bem escuras fiquem realmente visíveis.";
 "Light" = "Claro";
+"Likes" = "Curtidas";
 "Limited Series & Miniseries" = "Séries Limitadas e Minisséries";
 "Limpiar filtros" = "Limpar filtros";
 "Line height" = "Altura da linha";
@@ -1067,7 +1076,9 @@
 "Load effect" = "Carregar efeito";
 "Load file" = "Carregar arquivo";
 "Load more" = "Carregar mais";
+"Load more comments" = "Carregar mais comentários";
 "Loading" = "Carregando";
+"Loading more" = "Carregando mais";
 "Loading more sources" = "Carregando mais fontes";
 "Loading music" = "Carregando músicas";
 "Loading plugins..." = "Carregando plugins...";
@@ -1239,6 +1250,7 @@
 "No Label" = "Sem rótulo";
 "No catalogs match your search." = "Nenhum catálogo corresponde à sua pesquisa.";
 "No catalogs yet" = "Nenhum catálogo ainda";
+"No comments yet" = "Nenhum comentário ainda";
 "No correction" = "Sem correção";
 "No correction (default)" = "Sem correção (padrão)";
 "No date" = "Sem data";
@@ -1362,6 +1374,7 @@
 "Open in browser" = "Abrir no navegador";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on Trakt" = "Abrir no Trakt";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Abra este perfil ao iniciar. Os pedidos programados ainda podem aparecer depois. Perfis com PIN não podem ser definidos como padrão.";
 "Opening AniList..." = "Abrindo AniList...";
 "Opening MyAnimeList..." = "Abrindo MyAnimeList...";
@@ -1672,6 +1685,7 @@
 "Retry reading progress" = "Retry reading progress";
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Mostrar";
+"Reveal comments" = "Mostrar comentários";
 "Reverse order" = "Reverse order";
 "Revert" = "Reverter";
 "Rich season and order panel" = "Painel detalhado de temporada e ordem";
@@ -1799,6 +1813,8 @@
 "Show as a Top 10 with big numerals" = "Mostrar como um Top 10 com números grandes";
 "Show as a normal row" = "Mostrar como uma fileira normal";
 "Show as second subtitle" = "Mostrar como segunda legenda";
+"Show comments" = "Mostrar comentários";
+"Show comments on detail pages" = "Mostrar comentários nas páginas de detalhes";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Mostrar as descrições completas dos addons no seletor Stremio, nos downloads e no Modo Big Picture.";
 "Show controls" = "Mostrar controles";
 "Show details" = "Mostrar detalhes";
@@ -1886,6 +1902,8 @@
 "Spanish (Latin America)" = "Espanhol (América Latina)";
 "Specials" = "Especiais";
 "Speed" = "Velocidade";
+"Spoiler — Click" = "Spoiler · Clique";
+"Spoiler — Click to reveal" = "Spoiler · Clique para revelar";
 "Spoilers" = "Spoilers";
 "Spooky Season" = "Temporada Assombrada";
 "Sport" = "Sport";
@@ -2111,9 +2129,11 @@
 "Tracking what you watch" = "Acompanhar o que você assiste";
 "Tracks" = "Faixas";
 "Traducir títulos" = "Traduzir títulos";
+"Trakt Comments" = "Comentários do Trakt";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Limite da conta Trakt atingido. Faça upgrade para Trakt VIP ou reduza sua watchlist.";
+"Trakt comments are not available for anime titles." = "Comentários do Trakt não estão disponíveis para títulos de anime.";
 "Trakt history" = "Histórico do Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "O Trakt está com problemas no servidor (HTTP {n}). Tente novamente em breve.";
 "Trakt is rate-limiting. Wait a minute and try again." = "O Trakt está limitando as requisições. Aguarde um minuto e tente novamente.";
@@ -2311,6 +2331,7 @@
 "hidden" = "oculto";
 "hr" = "h";
 "item" = "item";
+"just now" = "agora mesmo";
 "language" = "idioma";
 "left" = "esquerda";
 "local" = "local";
@@ -3471,7 +3492,11 @@
 "{n} seeds" = "{n} seeds";
 "{n} semillas" = "{n} seeds";
 "{n} sources · 0 made it through" = "{n} fontes · 0 passaram pelos filtros";
+"{n}d ago" = "há {n}d";
 "{n}d left" = "{n}d restantes";
+"{n}h ago" = "há {n}h";
+"{n}m ago" = "há {n}m";
+"{n}mo ago" = "há {n}mes";
 "{requests} requests" = "{requests} solicitações";
 "{seconds} seconds" = "{seconds} segundos";
 "{shown} of {total}" = "{shown} de {total}";

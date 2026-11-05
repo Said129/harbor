@@ -97,6 +97,7 @@
 "Addon wait time" = "アドオンの待ち時間";
 "Addons" = "アドオン";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "エピソードの右クリックメニューに「非表示」を追加します。非表示のエピソードは一覧から消え、「次のエピソード」でもスキップされます。各番組の「非表示を表示」切り替えで再表示できます。";
+"Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "文字と背景を調整します。変更がその場でプレビューに反映されます。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
@@ -281,6 +282,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "黒い帯";
 "Bloques resaltados." = "ハイライトされたブロック。";
+"Blur comments and reviews by default" = "コメントとレビューをデフォルトでぼかす";
 "Blur descriptions" = "説明をぼかす";
 "Blur spoilers" = "ネタバレをぼかす";
 "Blur thumbnails" = "サムネイルをぼかす";
@@ -440,6 +442,10 @@
 "Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "近日劇場公開";
+"Comments" = "コメント";
+"Comments and reviews on detail pages stay blurred until you reveal them, even when they are not tagged as spoilers. This one switch covers Trakt and Letterboxd." = "詳細ページのコメントとレビューは、スポイラーとしてタグ付けされていない場合でも、表示するまでぼかされます。この設定はTraktとLetterboxdの両方に適用されます。";
+"Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
+"Comments are hidden" = "コメントは非表示です";
 "Community index" = "コミュニティインデックス";
 "Compact" = "コンパクト";
 "Compacta" = "コンパクト";
@@ -507,6 +513,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "この操作を完了できませんでした。もう一度お試しください。";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not identify this title on Trakt." = "Traktでこの作品を特定できませんでした。";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "このページを読み込めませんでした。もう一度お試しください。";
@@ -884,6 +891,7 @@
 "Hide all sources" = "すべてのソースを非表示";
 "Hide and skip episodes" = "エピソードを非表示にしてスキップ";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide comments" = "コメントを非表示";
 "Hide details" = "詳細を隠す";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "エピソードを非表示";
@@ -1024,6 +1032,7 @@
 "Libros" = "書籍";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "シャドウを持ち上げ、真っ暗なシーンも見やすくします。";
 "Light" = "ライト";
+"Likes" = "いいね";
 "Limited Series & Miniseries" = "リミテッドシリーズ＆ミニシリーズ";
 "Limpiar filtros" = "フィルターをクリア";
 "Line height" = "行の高さ";
@@ -1047,7 +1056,9 @@
 "Load effect" = "読み込み効果";
 "Load file" = "ファイルを読み込む";
 "Load more" = "さらに読み込む";
+"Load more comments" = "コメントをさらに読み込む";
 "Loading" = "読み込み中";
+"Loading more" = "さらに読み込み中";
 "Loading more sources" = "他のソースを読み込み中";
 "Loading music" = "音楽を読み込み中";
 "Loading plugins..." = "プラグインを読み込み中...";
@@ -1219,6 +1230,7 @@
 "No Label" = "ラベルなし";
 "No catalogs match your search." = "検索に一致するカタログはありません。";
 "No catalogs yet" = "カタログはまだありません";
+"No comments yet" = "まだコメントはありません";
 "No correction" = "補正なし";
 "No correction (default)" = "補正なし（デフォルト）";
 "No date" = "日付未定";
@@ -1342,6 +1354,7 @@
 "Open in browser" = "ブラウザで開く";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on Trakt" = "Traktで開く";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "起動時にこのプロフィールを開きます。その後も時間による確認は表示される場合があります。PIN 付きのプロフィールは既定にできません。";
 "Opening AniList..." = "AniListを開いています...";
 "Opening MyAnimeList..." = "MyAnimeListを開いています...";
@@ -1652,6 +1665,7 @@
 "Retry reading progress" = "Retry reading progress";
 "Retry statistics" = "Retry statistics";
 "Reveal" = "表示";
+"Reveal comments" = "コメントを表示";
 "Reverse order" = "Reverse order";
 "Revert" = "元に戻す";
 "Rich season and order panel" = "詳細なシーズン／視聴順パネル";
@@ -1777,6 +1791,8 @@
 "Show as a Top 10 with big numerals" = "大きな数字付きのトップ10として表示";
 "Show as a normal row" = "通常の列として表示";
 "Show as second subtitle" = "第2字幕として表示";
+"Show comments" = "コメントを表示";
+"Show comments on detail pages" = "詳細ページにコメントを表示";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio のソース選択画面、ダウンロード、ビッグピクチャーでアドオンの説明を全文表示します。";
 "Show controls" = "コントロールを表示";
 "Show details" = "詳細を表示";
@@ -1864,6 +1880,8 @@
 "Spanish (Latin America)" = "スペイン語（ラテンアメリカ）";
 "Specials" = "スペシャル";
 "Speed" = "再生速度";
+"Spoiler — Click" = "ネタバレ：クリック";
+"Spoiler — Click to reveal" = "ネタバレ：クリックして表示";
 "Spoilers" = "ネタバレ";
 "Spooky Season" = "ホラーの季節";
 "Sport" = "Sport";
@@ -2088,9 +2106,11 @@
 "Tracking what you watch" = "視聴履歴の記録";
 "Tracks" = "トラック";
 "Traducir títulos" = "タイトルを翻訳";
+"Trakt Comments" = "Traktのコメント";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Traktアカウントの上限に達しました。Trakt VIPにアップグレードするか、ウォッチリストを整理してください。";
+"Trakt comments are not available for anime titles." = "アニメ作品ではTraktのコメントを利用できません。";
 "Trakt history" = "Trakt視聴履歴";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Traktでサーバー障害が発生しています（HTTP {n}）。しばらくしてからもう一度お試しください。";
 "Trakt is rate-limiting. Wait a minute and try again." = "Traktによってリクエスト回数が制限されています。1分ほど待ってからもう一度お試しください。";
@@ -2284,6 +2304,7 @@
 "hidden" = "非表示";
 "hr" = "時間";
 "item" = "項目";
+"just now" = "たった今";
 "language" = "言語";
 "left" = "左";
 "local" = "ローカル";
@@ -3444,7 +3465,11 @@
 "{n} seeds" = "シード数: {n}";
 "{n} semillas" = "シード数: {n}";
 "{n} sources · 0 made it through" = "{n}件のソース · 利用可能 0件";
+"{n}d ago" = "{n}日前";
 "{n}d left" = "残り{n}日";
+"{n}h ago" = "{n}時間前";
+"{n}m ago" = "{n}分前";
+"{n}mo ago" = "{n}か月前";
 "{requests} requests" = "{requests}件のリクエスト";
 "{seconds} seconds" = "{seconds}秒";
 "{shown} of {total}" = "{total}件中{shown}件";

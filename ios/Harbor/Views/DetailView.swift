@@ -69,6 +69,7 @@ struct DetailView: View {
                     }
                 }.padding()
                 DetailMetadataView(media: model.media, app: app)
+                if InterfacePreferences.shared.showTraktComments { TraktCommentsSection(media: model.media).padding(.horizontal).padding(.bottom, 24) }
             }
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
         .background { PlayerOrientationAnchor(enabled: showStreams && (showConnecting || model.resolving || model.playback != nil || pendingEpisode != nil)).allowsHitTesting(false) }

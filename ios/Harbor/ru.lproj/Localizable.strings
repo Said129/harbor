@@ -99,6 +99,7 @@
 "Addon wait time" = "Время ожидания дополнения";
 "Addons" = "Дополнения";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Добавляет пункт «Скрыть» в меню по правому клику на серии. Скрытые серии исчезают из списка и пропускаются в «Далее». Переключатель «Показать скрытые» у каждого сериала вернёт их обратно.";
+"Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Настройте текст и фон. Изменения сразу видны в предпросмотре.";
 "Administrar" = "Управление";
 "Adult sources" = "Adult sources";
@@ -285,6 +286,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "Чёрная плашка";
 "Bloques resaltados." = "Выделенные блоки.";
+"Blur comments and reviews by default" = "Размывать комментарии и отзывы по умолчанию";
 "Blur descriptions" = "Размывать описания";
 "Blur spoilers" = "Размывать спойлеры";
 "Blur thumbnails" = "Размывать миниатюры";
@@ -444,6 +446,10 @@
 "Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Скоро в кино";
+"Comments" = "Комментарии";
+"Comments and reviews on detail pages stay blurred until you reveal them, even when they are not tagged as spoilers. This one switch covers Trakt and Letterboxd." = "Комментарии и отзывы на страницах с описанием остаются размытыми, пока вы их не откроете, даже если они не помечены как спойлеры. Один переключатель для Trakt и Letterboxd.";
+"Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
+"Comments are hidden" = "Комментарии скрыты";
 "Community index" = "Рейтинг сообщества";
 "Compact" = "Компактный";
 "Compacta" = "Компактный";
@@ -511,6 +517,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Не удалось применить синхронизацию. Исходные субтитры сохранены.";
 "Could not complete this action. Try again." = "Не удалось выполнить действие. Попробуйте ещё раз.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not identify this title on Trakt." = "Не удалось определить это название в Trakt.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Не удалось загрузить эту страницу. Повторите попытку.";
@@ -889,6 +896,7 @@
 "Hide all sources" = "Скрыть все источники";
 "Hide and skip episodes" = "Скрывать и пропускать серии";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide comments" = "Скрыть комментарии";
 "Hide details" = "Скрыть подробности";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "Скрыть серию";
@@ -1029,6 +1037,7 @@
 "Libros" = "Книги";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Поднимает тени, чтобы совсем тёмные сцены было видно.";
 "Light" = "Светлая";
+"Likes" = "Лайки";
 "Limited Series & Miniseries" = "Лимитированные и мини-сериалы";
 "Limpiar filtros" = "Сбросить фильтры";
 "Line height" = "Межстрочный интервал";
@@ -1052,7 +1061,9 @@
 "Load effect" = "Эффект загрузки";
 "Load file" = "Загрузить файл";
 "Load more" = "Показать ещё";
+"Load more comments" = "Загрузить ещё комментарии";
 "Loading" = "Загрузка";
+"Loading more" = "Загрузка ещё";
 "Loading more sources" = "Загрузка дополнительных источников";
 "Loading music" = "Загрузка музыки";
 "Loading plugins..." = "Загрузка плагинов...";
@@ -1227,6 +1238,7 @@
 "No Label" = "Без метки";
 "No catalogs match your search." = "Нет каталогов по вашему запросу.";
 "No catalogs yet" = "Каталогов пока нет";
+"No comments yet" = "Пока нет комментариев";
 "No correction" = "Без коррекции";
 "No correction (default)" = "Без коррекции (по умолчанию)";
 "No date" = "Без даты";
@@ -1351,6 +1363,7 @@
 "Open in browser" = "Открыть в браузере";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on Trakt" = "Открыть на Trakt";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Открывать этот профиль при запуске. Запросы по таймеру могут появляться и позже. Профиль с PIN-кодом нельзя сделать профилем по умолчанию.";
 "Opening AniList..." = "Открытие AniList...";
 "Opening MyAnimeList..." = "Открытие MyAnimeList...";
@@ -1664,6 +1677,7 @@
 "Retry reading progress" = "Retry reading progress";
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Показать";
+"Reveal comments" = "Показать комментарии";
 "Reverse order" = "Reverse order";
 "Revert" = "Вернуть";
 "Rich season and order panel" = "Расширенная панель сезонов и порядка";
@@ -1789,6 +1803,8 @@
 "Show as a Top 10 with big numerals" = "Показывать как Топ-10 с крупными цифрами";
 "Show as a normal row" = "Показывать как обычный ряд";
 "Show as second subtitle" = "Показать как вторые субтитры";
+"Show comments" = "Показать комментарии";
+"Show comments on detail pages" = "Показывать комментарии на страницах деталей";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Показывать полные описания аддонов в списке источников Stremio, загрузках и режиме «Большой экран».";
 "Show controls" = "Показать элементы управления";
 "Show details" = "Показать подробности";
@@ -1878,6 +1894,8 @@
 "Spanish (Latin America)" = "Испанский (Латинская Америка)";
 "Specials" = "Спецвыпуски";
 "Speed" = "Скорость";
+"Spoiler — Click" = "Спойлер – нажмите";
+"Spoiler — Click to reveal" = "Спойлер – нажмите, чтобы показать";
 "Spoilers" = "Спойлеры";
 "Spooky Season" = "Сезон ужасов";
 "Sport" = "Sport";
@@ -2103,9 +2121,11 @@
 "Tracking what you watch" = "Отслеживание просмотров";
 "Tracks" = "Дорожки";
 "Traducir títulos" = "Переводить названия";
+"Trakt Comments" = "Комментарии Trakt";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Достигнут лимит аккаунта Trakt. Оформите Trakt VIP или сократите список к просмотру.";
+"Trakt comments are not available for anime titles." = "Комментарии Trakt недоступны для аниме.";
 "Trakt history" = "История Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "У Trakt проблемы с сервером (HTTP {n}). Попробуйте позже.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt ограничивает частоту запросов. Подождите минуту и повторите.";
@@ -2299,6 +2319,7 @@
 "hidden" = "скрытых";
 "hr" = "ч";
 "item" = "элемент";
+"just now" = "только что";
 "language" = "язык";
 "left" = "слева";
 "local" = "локально";
@@ -3459,7 +3480,11 @@
 "{n} seeds" = "Сидов: {n}";
 "{n} semillas" = "Сидов: {n}";
 "{n} sources · 0 made it through" = "{n} источников · ни один не прошёл отбор";
+"{n}d ago" = "{n} д. назад";
 "{n}d left" = "осталось {n} дн.";
+"{n}h ago" = "{n} ч. назад";
+"{n}m ago" = "{n} мин. назад";
+"{n}mo ago" = "{n} мес. назад";
 "{requests} requests" = "{requests} запросов";
 "{seconds} seconds" = "{seconds} сек.";
 "{shown} of {total}" = "{shown} из {total}";

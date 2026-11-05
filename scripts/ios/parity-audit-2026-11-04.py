@@ -185,7 +185,7 @@ BEHAVIORS = expand("""
 279-281 P Trakt import/export, lists, recommendations partial
 282 D TraktPlaybackTracking
 283 P Trakt calendar in TraktHome
-284 M no Trakt comments
+284 P Trakt comments of movies and shows: sort, spoilers, replies, paging (5 Nov, uncompiled); posting, likes and ratings not ported
 285 D AniList PIN-code login and session (5 Nov, compiled; 14 cases passed)
 286 P AniList progress is pushed while watching; the watched map from the lists is not read
 287-288 M AniList lists and recommendations not ported
@@ -238,7 +238,8 @@ BEHAVIORS = expand("""
 """)
 
 SETTINGS = expand("""
-1-4 M no UI sounds or comments
+1-3 M no UI sounds
+4 D blur comments until revealed (5 Nov, uncompiled)
 5-6 D blurEpisodes, TMDB key
 7-10 M no OMDB/RPDB/IMDb fallback/Fanart keys
 11 P TVDB used without a user key setting
@@ -247,7 +248,9 @@ SETTINGS = expand("""
 20 D
 21 M
 22 D
-23-44 M rating badges and detail ratings not ported
+23-39 M rating badges and detail ratings not ported
+40 D show Trakt comments on detail pages (5 Nov, uncompiled)
+41-44 M rating badges and detail ratings not ported
 45 D
 46-51 M card badges and home languages not ported
 52-55 D poster settings

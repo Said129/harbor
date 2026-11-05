@@ -97,6 +97,7 @@
 "Addon wait time" = "Thời gian chờ tiện ích bổ sung";
 "Addons" = "Tiện ích bổ sung";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Thêm tùy chọn Ẩn khi bạn nhấp chuột phải vào một tập. Các tập đã ẩn sẽ biến mất khỏi danh sách và bị Tiếp theo bỏ qua. Nút bật tắt Hiện mục đã ẩn trên mỗi phim bộ cho phép hiển thị lại các tập đó.";
+"Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Điều chỉnh chữ và nền. Bản xem trước hiển thị ngay các thay đổi của bạn.";
 "Administrar" = "Quản lý";
 "Adult sources" = "Adult sources";
@@ -281,6 +282,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "Nền đen";
 "Bloques resaltados." = "Các khối được tô sáng.";
+"Blur comments and reviews by default" = "Mặc định làm mờ bình luận và bài đánh giá";
 "Blur descriptions" = "Làm mờ mô tả";
 "Blur spoilers" = "Làm mờ nội dung tiết lộ";
 "Blur thumbnails" = "Làm mờ ảnh thu nhỏ";
@@ -440,6 +442,10 @@
 "Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Sắp ra rạp";
+"Comments" = "Bình luận";
+"Comments and reviews on detail pages stay blurred until you reveal them, even when they are not tagged as spoilers. This one switch covers Trakt and Letterboxd." = "Bình luận và bài đánh giá trên trang chi tiết sẽ bị làm mờ cho đến khi bạn hiển thị, ngay cả khi không được gắn nhãn tiết lộ nội dung. Công tắc này áp dụng cho cả Trakt và Letterboxd.";
+"Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
+"Comments are hidden" = "Bình luận đã bị ẩn";
 "Community index" = "Bảng xếp hạng cộng đồng";
 "Compact" = "Gọn";
 "Compacta" = "Gọn";
@@ -507,6 +513,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "Không thể hoàn tất thao tác này. Hãy thử lại.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not identify this title on Trakt." = "Không thể xác định nội dung này trên Trakt.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Không thể tải trang này. Vui lòng thử lại.";
@@ -884,6 +891,7 @@
 "Hide all sources" = "Ẩn tất cả nguồn";
 "Hide and skip episodes" = "Ẩn và bỏ qua tập";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide comments" = "Ẩn bình luận";
 "Hide details" = "Ẩn chi tiết";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "Ẩn tập";
@@ -1024,6 +1032,7 @@
 "Libros" = "Sách";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Làm sáng vùng tối để những cảnh đen kịt vẫn có thể xem rõ.";
 "Light" = "Sáng";
+"Likes" = "Lượt thích";
 "Limited Series & Miniseries" = "Phim bộ giới hạn và phim bộ ngắn tập";
 "Limpiar filtros" = "Xóa bộ lọc";
 "Line height" = "Chiều cao dòng";
@@ -1047,7 +1056,9 @@
 "Load effect" = "Hiệu ứng tải";
 "Load file" = "Tải tệp";
 "Load more" = "Tải thêm";
+"Load more comments" = "Tải thêm bình luận";
 "Loading" = "Đang tải";
+"Loading more" = "Đang tải thêm";
 "Loading more sources" = "Đang tải thêm nguồn";
 "Loading music" = "Đang tải nhạc";
 "Loading plugins..." = "Đang tải plugin...";
@@ -1219,6 +1230,7 @@
 "No Label" = "Không nhãn";
 "No catalogs match your search." = "Không có danh mục nào khớp với nội dung tìm kiếm.";
 "No catalogs yet" = "Chưa có danh mục";
+"No comments yet" = "Chưa có bình luận";
 "No correction" = "Không hiệu chỉnh";
 "No correction (default)" = "Không hiệu chỉnh (mặc định)";
 "No date" = "Không có ngày";
@@ -1342,6 +1354,7 @@
 "Open in browser" = "Mở trong trình duyệt";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on Trakt" = "Mở trên Trakt";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Mở hồ sơ này khi khởi động. Lời nhắc theo thời gian vẫn có thể xuất hiện sau đó. Không thể đặt hồ sơ có mã PIN làm mặc định.";
 "Opening AniList..." = "Đang mở AniList...";
 "Opening MyAnimeList..." = "Đang mở MyAnimeList...";
@@ -1652,6 +1665,7 @@
 "Retry reading progress" = "Retry reading progress";
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Hiện";
+"Reveal comments" = "Hiện bình luận";
 "Reverse order" = "Reverse order";
 "Revert" = "Hoàn nguyên";
 "Rich season and order panel" = "Bảng mùa và thứ tự chi tiết";
@@ -1777,6 +1791,8 @@
 "Show as a Top 10 with big numerals" = "Hiển thị dạng Top 10 với số lớn";
 "Show as a normal row" = "Hiển thị dưới dạng hàng thông thường";
 "Show as second subtitle" = "Hiển thị làm phụ đề thứ hai";
+"Show comments" = "Hiện bình luận";
+"Show comments on detail pages" = "Hiển thị bình luận trên trang chi tiết";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Hiển thị mô tả đầy đủ của tiện ích trong trình chọn Stremio, mục tải xuống và Big Picture.";
 "Show controls" = "Hiện điều khiển";
 "Show details" = "Hiện chi tiết";
@@ -1864,6 +1880,8 @@
 "Spanish (Latin America)" = "Tiếng Tây Ban Nha (Mỹ Latinh)";
 "Specials" = "Tập đặc biệt";
 "Speed" = "Tốc độ";
+"Spoiler — Click" = "Nội dung tiết lộ - Nhấp";
+"Spoiler — Click to reveal" = "Nội dung tiết lộ - Nhấp để hiện";
 "Spoilers" = "Nội dung tiết lộ";
 "Spooky Season" = "Mùa rùng rợn";
 "Sport" = "Sport";
@@ -2088,9 +2106,11 @@
 "Tracking what you watch" = "Theo dõi nội dung bạn xem";
 "Tracks" = "Rãnh";
 "Traducir títulos" = "Dịch tiêu đề";
+"Trakt Comments" = "Bình luận trên Trakt";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Đã đạt giới hạn tài khoản Trakt. Nâng cấp lên Trakt VIP hoặc rút gọn danh sách xem.";
+"Trakt comments are not available for anime titles." = "Bình luận Trakt không hỗ trợ các tựa anime.";
 "Trakt history" = "Lịch sử Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Máy chủ Trakt đang gặp sự cố (HTTP {n}). Hãy thử lại sau ít phút.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt đang giới hạn tần suất yêu cầu. Hãy đợi một phút rồi thử lại.";
@@ -2284,6 +2304,7 @@
 "hidden" = "ẩn";
 "hr" = "giờ";
 "item" = "mục";
+"just now" = "vừa xong";
 "language" = "ngôn ngữ";
 "left" = "trái";
 "local" = "cục bộ";
@@ -3444,7 +3465,11 @@
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} nguồn · 0 nguồn vượt qua";
+"{n}d ago" = "{n} ngày trước";
 "{n}d left" = "còn {n} ngày";
+"{n}h ago" = "{n} giờ trước";
+"{n}m ago" = "{n} phút trước";
+"{n}mo ago" = "{n} tháng trước";
 "{requests} requests" = "{requests} yêu cầu";
 "{seconds} seconds" = "{seconds} giây";
 "{shown} of {total}" = "{shown} trên {total}";

@@ -97,6 +97,7 @@
 "Addon wait time" = "Waktu tunggu addon";
 "Addons" = "Addon";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Menambahkan opsi Sembunyikan saat Anda mengeklik kanan episode. Episode yang disembunyikan akan hilang dari daftar dan dilewati oleh Berikutnya. Sakelar Tampilkan yang disembunyikan di setiap acara memungkinkan Anda menampilkannya kembali.";
+"Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Sesuaikan teks dan latar belakang. Pratinjau langsung menunjukkan perubahan Anda.";
 "Administrar" = "Kelola";
 "Adult sources" = "Adult sources";
@@ -281,6 +282,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "Bilah hitam";
 "Bloques resaltados." = "Blok yang disorot.";
+"Blur comments and reviews by default" = "Buramkan komentar dan ulasan secara default";
 "Blur descriptions" = "Buramkan deskripsi";
 "Blur spoilers" = "Buramkan spoiler";
 "Blur thumbnails" = "Buramkan gambar mini";
@@ -440,6 +442,10 @@
 "Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Segera Hadir di Bioskop";
+"Comments" = "Komentar";
+"Comments and reviews on detail pages stay blurred until you reveal them, even when they are not tagged as spoilers. This one switch covers Trakt and Letterboxd." = "Komentar dan ulasan di halaman detail tetap diburamkan hingga Anda menampilkannya, meskipun tidak ditandai sebagai spoiler. Satu pengaturan ini berlaku untuk Trakt dan Letterboxd.";
+"Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
+"Comments are hidden" = "Komentar disembunyikan";
 "Community index" = "Indeks komunitas";
 "Compact" = "Ringkas";
 "Compacta" = "Ringkas";
@@ -507,6 +513,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "Tindakan ini tidak dapat diselesaikan. Coba lagi.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not identify this title on Trakt." = "Tidak dapat mengidentifikasi judul ini di Trakt.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Halaman ini tidak dapat dimuat. Coba lagi.";
@@ -884,6 +891,7 @@
 "Hide all sources" = "Sembunyikan semua sumber";
 "Hide and skip episodes" = "Sembunyikan dan lewati episode";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide comments" = "Sembunyikan komentar";
 "Hide details" = "Sembunyikan detail";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "Sembunyikan episode";
@@ -1024,6 +1032,7 @@
 "Libros" = "Buku";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Mencerahkan bayangan agar adegan yang sangat gelap tetap dapat ditonton.";
 "Light" = "Terang";
+"Likes" = "Suka";
 "Limited Series & Miniseries" = "Seri Terbatas & Miniseri";
 "Limpiar filtros" = "Hapus filter";
 "Line height" = "Tinggi baris";
@@ -1047,7 +1056,9 @@
 "Load effect" = "Efek pemuatan";
 "Load file" = "Muat file";
 "Load more" = "Muat lebih banyak";
+"Load more comments" = "Muat lebih banyak komentar";
 "Loading" = "Memuat";
+"Loading more" = "Memuat lebih banyak";
 "Loading more sources" = "Memuat lebih banyak sumber";
 "Loading music" = "Memuat musik";
 "Loading plugins..." = "Memuat plugin...";
@@ -1219,6 +1230,7 @@
 "No Label" = "Tanpa Label";
 "No catalogs match your search." = "Tidak ada katalog yang cocok dengan pencarian Anda.";
 "No catalogs yet" = "Belum ada katalog";
+"No comments yet" = "Belum ada komentar";
 "No correction" = "Tanpa koreksi";
 "No correction (default)" = "Tanpa koreksi (default)";
 "No date" = "Tidak ada tanggal";
@@ -1342,6 +1354,7 @@
 "Open in browser" = "Buka di browser";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on Trakt" = "Buka di Trakt";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Buka profil ini saat aplikasi dimulai. Permintaan terjadwal tetap dapat muncul nanti. Profil dengan PIN tidak dapat dijadikan default.";
 "Opening AniList..." = "Membuka AniList...";
 "Opening MyAnimeList..." = "Membuka MyAnimeList...";
@@ -1652,6 +1665,7 @@
 "Retry reading progress" = "Retry reading progress";
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Tampilkan";
+"Reveal comments" = "Tampilkan komentar";
 "Reverse order" = "Reverse order";
 "Revert" = "Kembalikan";
 "Rich season and order panel" = "Panel musim dan urutan yang lengkap";
@@ -1777,6 +1791,8 @@
 "Show as a Top 10 with big numerals" = "Tampilkan sebagai Top 10 dengan angka besar";
 "Show as a normal row" = "Tampilkan sebagai baris biasa";
 "Show as second subtitle" = "Tampilkan sebagai subtitle kedua";
+"Show comments" = "Tampilkan komentar";
+"Show comments on detail pages" = "Tampilkan komentar di halaman detail";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Tampilkan deskripsi addon lengkap di pemilih Stremio, unduhan, dan Big Picture.";
 "Show controls" = "Tampilkan kontrol";
 "Show details" = "Tampilkan detail";
@@ -1864,6 +1880,8 @@
 "Spanish (Latin America)" = "Bahasa Spanyol (Amerika Latin)";
 "Specials" = "Acara spesial";
 "Speed" = "Kecepatan";
+"Spoiler — Click" = "Spoiler - Klik";
+"Spoiler — Click to reveal" = "Spoiler - Klik untuk menampilkan";
 "Spoilers" = "Spoiler";
 "Spooky Season" = "Musim Seram";
 "Sport" = "Sport";
@@ -2088,9 +2106,11 @@
 "Tracking what you watch" = "Melacak tontonan Anda";
 "Tracks" = "Trek";
 "Traducir títulos" = "Terjemahkan judul";
+"Trakt Comments" = "Komentar Trakt";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Batas akun Trakt tercapai. Tingkatkan ke Trakt VIP atau kurangi daftar tontonan Anda.";
+"Trakt comments are not available for anime titles." = "Komentar Trakt tidak tersedia untuk judul anime.";
 "Trakt history" = "Riwayat Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Server Trakt sedang bermasalah (HTTP {n}). Coba lagi sebentar lagi.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt sedang membatasi jumlah permintaan. Tunggu sebentar, lalu coba lagi.";
@@ -2284,6 +2304,7 @@
 "hidden" = "tersembunyi";
 "hr" = "jam";
 "item" = "item";
+"just now" = "baru saja";
 "language" = "bahasa";
 "left" = "kiri";
 "local" = "lokal";
@@ -3444,7 +3465,11 @@
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} sumber · 0 lolos";
+"{n}d ago" = "{n} hari lalu";
 "{n}d left" = "tersisa {n} hari";
+"{n}h ago" = "{n} jam lalu";
+"{n}m ago" = "{n} mnt lalu";
+"{n}mo ago" = "{n} bln lalu";
 "{requests} requests" = "{requests} permintaan";
 "{seconds} seconds" = "{seconds} detik";
 "{shown} of {total}" = "{shown} dari {total}";

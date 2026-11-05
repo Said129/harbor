@@ -97,6 +97,7 @@
 "Addon wait time" = "ऐडऑन प्रतीक्षा समय";
 "Addons" = "ऐडऑन";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "किसी एपिसोड पर राइट-क्लिक करने पर छिपाएँ विकल्प जोड़ता है। छिपे हुए एपिसोड सूची से गायब हो जाते हैं और अप नेक्स्ट में छोड़ दिए जाते हैं। हर शो में छिपे एपिसोड दिखाएँ टॉगल से उन्हें फिर से दिखाया जा सकता है।";
+"Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "टेक्स्ट और पृष्ठभूमि समायोजित करें। बदलाव करते ही पूर्वावलोकन में दिखते हैं।";
 "Administrar" = "मैनेज करें";
 "Adult sources" = "Adult sources";
@@ -281,6 +282,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "काली पट्टी";
 "Bloques resaltados." = "हाइलाइट किए गए ब्लॉक।";
+"Blur comments and reviews by default" = "टिप्पणियाँ और समीक्षाएँ डिफ़ॉल्ट रूप से ब्लर करें";
 "Blur descriptions" = "विवरण ब्लर करें";
 "Blur spoilers" = "स्पॉइलर ब्लर करें";
 "Blur thumbnails" = "थंबनेल ब्लर करें";
@@ -440,6 +442,10 @@
 "Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "सिनेमाघरों में जल्द";
+"Comments" = "टिप्पणियाँ";
+"Comments and reviews on detail pages stay blurred until you reveal them, even when they are not tagged as spoilers. This one switch covers Trakt and Letterboxd." = "विवरण पेजों पर टिप्पणियाँ और समीक्षाएँ तब तक धुंधली रहेंगी, जब तक आप उन्हें नहीं दिखाते, भले ही उन पर स्पॉइलर का टैग न हो। यह एक सेटिंग Trakt और Letterboxd दोनों पर लागू होती है।";
+"Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
+"Comments are hidden" = "टिप्पणियाँ छिपी हुई हैं";
 "Community index" = "कम्युनिटी इंडेक्स";
 "Compact" = "कॉम्पैक्ट";
 "Compacta" = "कॉम्पैक्ट";
@@ -507,6 +513,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "यह कार्रवाई पूरी नहीं हो सकी। फिर से कोशिश करें।";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not identify this title on Trakt." = "Trakt पर इस शीर्षक की पहचान नहीं हो सकी।";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "यह पेज लोड नहीं हो सका। फिर से कोशिश करें।";
@@ -884,6 +891,7 @@
 "Hide all sources" = "सभी स्रोत छिपाएँ";
 "Hide and skip episodes" = "एपिसोड छिपाएँ और छोड़ें";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide comments" = "टिप्पणियाँ छिपाएँ";
 "Hide details" = "विवरण छिपाएँ";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "एपिसोड छिपाएँ";
@@ -1024,6 +1032,7 @@
 "Libros" = "किताबें";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "छायाएँ उजली करता है, ताकि घुप अँधेरे दृश्य भी ठीक से देखे जा सकें।";
 "Light" = "हल्का";
+"Likes" = "लाइक";
 "Limited Series & Miniseries" = "सीमित सीरीज़ और मिनीसीरीज़";
 "Limpiar filtros" = "फ़िल्टर हटाएँ";
 "Line height" = "लाइन की ऊँचाई";
@@ -1047,7 +1056,9 @@
 "Load effect" = "लोड इफ़ेक्ट";
 "Load file" = "फ़ाइल लोड करें";
 "Load more" = "और लोड करें";
+"Load more comments" = "और टिप्पणियाँ लोड करें";
 "Loading" = "लोड हो रहा है";
+"Loading more" = "और सामग्री लोड हो रही है";
 "Loading more sources" = "और स्रोत लोड हो रहे हैं";
 "Loading music" = "संगीत लोड हो रहा है";
 "Loading plugins..." = "प्लगइन लोड हो रहे हैं...";
@@ -1219,6 +1230,7 @@
 "No Label" = "कोई लेबल नहीं";
 "No catalogs match your search." = "आपकी खोज से कोई कैटलॉग मेल नहीं खाता।";
 "No catalogs yet" = "अभी तक कोई कैटलॉग नहीं है";
+"No comments yet" = "अभी तक कोई टिप्पणी नहीं";
 "No correction" = "कोई सुधार नहीं";
 "No correction (default)" = "कोई सुधार नहीं (डिफ़ॉल्ट)";
 "No date" = "कोई तारीख नहीं";
@@ -1342,6 +1354,7 @@
 "Open in browser" = "ब्राउज़र में खोलें";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on Trakt" = "Trakt पर खोलें";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "शुरू होने पर यह प्रोफ़ाइल खोलें। समय पर आने वाले संकेत बाद में भी दिख सकते हैं। PIN वाली प्रोफ़ाइल डिफ़ॉल्ट नहीं बन सकती।";
 "Opening AniList..." = "AniList खोला जा रहा है...";
 "Opening MyAnimeList..." = "MyAnimeList खोला जा रहा है...";
@@ -1652,6 +1665,7 @@
 "Retry reading progress" = "Retry reading progress";
 "Retry statistics" = "Retry statistics";
 "Reveal" = "दिखाएँ";
+"Reveal comments" = "टिप्पणियाँ दिखाएँ";
 "Reverse order" = "Reverse order";
 "Revert" = "पहले जैसा करें";
 "Rich season and order panel" = "विस्तृत सीज़न और क्रम पैनल";
@@ -1777,6 +1791,8 @@
 "Show as a Top 10 with big numerals" = "बड़े अंकों के साथ Top 10 के रूप में दिखाएँ";
 "Show as a normal row" = "सामान्य पंक्ति के रूप में दिखाएँ";
 "Show as second subtitle" = "दूसरे सबटाइटल के रूप में दिखाएँ";
+"Show comments" = "टिप्पणियाँ दिखाएँ";
+"Show comments on detail pages" = "विवरण पेजों पर टिप्पणियाँ दिखाएँ";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio स्रोत चयन, डाउनलोड और बिग पिक्चर में ऐडऑन के पूरे विवरण दिखाएँ।";
 "Show controls" = "कंट्रोल दिखाएँ";
 "Show details" = "विवरण दिखाएँ";
@@ -1864,6 +1880,8 @@
 "Spanish (Latin America)" = "स्पैनिश (लैटिन अमेरिका)";
 "Specials" = "विशेष एपिसोड";
 "Speed" = "गति";
+"Spoiler — Click" = "स्पॉइलर - क्लिक करें";
+"Spoiler — Click to reveal" = "स्पॉइलर - देखने के लिए क्लिक करें";
 "Spoilers" = "स्पॉइलर";
 "Spooky Season" = "स्पूकी सीज़न";
 "Sport" = "Sport";
@@ -2088,9 +2106,11 @@
 "Tracking what you watch" = "आप जो देखते हैं उसे ट्रैक करना";
 "Tracks" = "ट्रैक";
 "Traducir títulos" = "टाइटल का अनुवाद करें";
+"Trakt Comments" = "Trakt टिप्पणियाँ";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Trakt अकाउंट की सीमा पूरी हो गई है। Trakt VIP में अपग्रेड करें या अपनी वॉचलिस्ट छोटी करें।";
+"Trakt comments are not available for anime titles." = "एनीमे टाइटल के लिए Trakt टिप्पणियाँ उपलब्ध नहीं हैं।";
 "Trakt history" = "Trakt इतिहास";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt के सर्वर में समस्या है (HTTP {n})। थोड़ी देर बाद फिर कोशिश करें।";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt अनुरोधों की दर सीमित कर रहा है। एक मिनट रुककर फिर कोशिश करें।";
@@ -2284,6 +2304,7 @@
 "hidden" = "छिपा हुआ";
 "hr" = "घं";
 "item" = "आइटम";
+"just now" = "अभी-अभी";
 "language" = "भाषा";
 "left" = "बाएँ";
 "local" = "लोकल";
@@ -3444,7 +3465,11 @@
 "{n} seeds" = "{n} सीड";
 "{n} semillas" = "{n} सीड";
 "{n} sources · 0 made it through" = "{n} स्रोत · 0 सफल रहे";
+"{n}d ago" = "{n} दिन पहले";
 "{n}d left" = "{n} दिन बाकी";
+"{n}h ago" = "{n} घंटे पहले";
+"{n}m ago" = "{n} मिनट पहले";
+"{n}mo ago" = "{n} महीने पहले";
 "{requests} requests" = "{requests} अनुरोध";
 "{seconds} seconds" = "{seconds} सेकंड";
 "{shown} of {total}" = "{total} में से {shown}";

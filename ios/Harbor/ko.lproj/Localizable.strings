@@ -97,6 +97,7 @@
 "Addon wait time" = "애드온 대기 시간";
 "Addons" = "애드온";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "에피소드를 마우스 오른쪽 버튼으로 클릭하면 숨기기 옵션이 표시됩니다. 숨긴 에피소드는 목록에서 사라지고 다음 재생에서도 건너뜁니다. 각 프로그램의 숨긴 항목 표시 토글을 켜면 다시 볼 수 있습니다.";
+"Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "텍스트와 배경을 조정합니다. 변경 사항이 바로 미리보기에 표시됩니다.";
 "Administrar" = "관리";
 "Adult sources" = "Adult sources";
@@ -281,6 +282,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "검은색 바";
 "Bloques resaltados." = "강조된 블록.";
+"Blur comments and reviews by default" = "댓글과 리뷰 기본 흐림 처리";
 "Blur descriptions" = "설명 흐리게 표시";
 "Blur spoilers" = "스포일러 흐리게 표시";
 "Blur thumbnails" = "썸네일 흐리게 표시";
@@ -440,6 +442,10 @@
 "Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "극장 개봉 예정작";
+"Comments" = "댓글";
+"Comments and reviews on detail pages stay blurred until you reveal them, even when they are not tagged as spoilers. This one switch covers Trakt and Letterboxd." = "상세 페이지의 댓글과 리뷰는 스포일러로 표시되지 않았더라도 직접 표시할 때까지 흐리게 처리됩니다. 이 설정 하나로 Trakt와 Letterboxd에 모두 적용됩니다.";
+"Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
+"Comments are hidden" = "댓글이 숨겨져 있습니다";
 "Community index" = "커뮤니티 지수";
 "Compact" = "작게";
 "Compacta" = "작게";
@@ -507,6 +513,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "이 작업을 완료하지 못했습니다. 다시 시도하세요.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not identify this title on Trakt." = "Trakt에서 이 작품을 식별하지 못했습니다.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "이 페이지를 불러오지 못했습니다. 다시 시도해 주세요.";
@@ -884,6 +891,7 @@
 "Hide all sources" = "모든 소스 숨기기";
 "Hide and skip episodes" = "에피소드 숨기기 및 건너뛰기";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide comments" = "댓글 숨기기";
 "Hide details" = "세부 정보 숨기기";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "에피소드 숨기기";
@@ -1024,6 +1032,7 @@
 "Libros" = "도서";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "암부를 밝혀 아주 어두운 장면도 제대로 볼 수 있게 합니다.";
 "Light" = "라이트";
+"Likes" = "좋아요";
 "Limited Series & Miniseries" = "리미티드 시리즈 및 미니시리즈";
 "Limpiar filtros" = "필터 초기화";
 "Line height" = "줄 높이";
@@ -1047,7 +1056,9 @@
 "Load effect" = "로드 효과";
 "Load file" = "파일 불러오기";
 "Load more" = "더 불러오기";
+"Load more comments" = "댓글 더 보기";
 "Loading" = "로딩 중";
+"Loading more" = "더 불러오는 중";
 "Loading more sources" = "더 많은 소스 로드 중";
 "Loading music" = "음악 불러오는 중";
 "Loading plugins..." = "플러그인 불러오는 중...";
@@ -1219,6 +1230,7 @@
 "No Label" = "레이블 없음";
 "No catalogs match your search." = "검색과 일치하는 카탈로그가 없습니다.";
 "No catalogs yet" = "아직 카탈로그가 없습니다";
+"No comments yet" = "아직 댓글이 없습니다";
 "No correction" = "보정 안 함";
 "No correction (default)" = "보정 안 함(기본값)";
 "No date" = "날짜 없음";
@@ -1342,6 +1354,7 @@
 "Open in browser" = "브라우저에서 열기";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on Trakt" = "Trakt에서 열기";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "시작할 때 이 프로필을 엽니다. 이후에도 시간에 따른 확인 메시지가 표시될 수 있습니다. PIN이 있는 프로필은 기본으로 설정할 수 없습니다.";
 "Opening AniList..." = "AniList 여는 중...";
 "Opening MyAnimeList..." = "MyAnimeList 여는 중...";
@@ -1652,6 +1665,7 @@
 "Retry reading progress" = "Retry reading progress";
 "Retry statistics" = "Retry statistics";
 "Reveal" = "표시";
+"Reveal comments" = "댓글 표시";
 "Reverse order" = "Reverse order";
 "Revert" = "되돌리기";
 "Rich season and order panel" = "상세 시즌 및 순서 패널";
@@ -1777,6 +1791,8 @@
 "Show as a Top 10 with big numerals" = "큰 숫자가 있는 상위 10개로 표시";
 "Show as a normal row" = "일반 행으로 표시";
 "Show as second subtitle" = "두 번째 자막으로 표시";
+"Show comments" = "댓글 보기";
+"Show comments on detail pages" = "상세 페이지에 댓글 표시";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio 선택기, 다운로드 및 빅 픽처에서 애드온 설명 전체를 표시합니다.";
 "Show controls" = "컨트롤 표시";
 "Show details" = "세부 정보 표시";
@@ -1864,6 +1880,8 @@
 "Spanish (Latin America)" = "스페인어(라틴 아메리카)";
 "Specials" = "스페셜";
 "Speed" = "속도";
+"Spoiler — Click" = "스포일러 · 클릭";
+"Spoiler — Click to reveal" = "스포일러 · 클릭하여 표시";
 "Spoilers" = "스포일러";
 "Spooky Season" = "오싹한 계절";
 "Sport" = "Sport";
@@ -2088,9 +2106,11 @@
 "Tracking what you watch" = "시청 기록 추적";
 "Tracks" = "트랙";
 "Traducir títulos" = "제목 번역";
+"Trakt Comments" = "Trakt 댓글";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Trakt 계정 한도에 도달했습니다. Trakt VIP로 업그레이드하거나 관심 목록을 줄이세요.";
+"Trakt comments are not available for anime titles." = "애니메이션 작품에는 Trakt 댓글을 사용할 수 없습니다.";
 "Trakt history" = "Trakt 시청 기록";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt 서버에 문제가 있습니다(HTTP {n}). 잠시 후 다시 시도하세요.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt 요청 한도에 도달했습니다. 1분 후 다시 시도하세요.";
@@ -2284,6 +2304,7 @@
 "hidden" = "숨김";
 "hr" = "시간";
 "item" = "항목";
+"just now" = "방금";
 "language" = "언어";
 "left" = "왼쪽";
 "local" = "로컬";
@@ -3444,7 +3465,11 @@
 "{n} seeds" = "시드 {n}개";
 "{n} semillas" = "시드 {n}개";
 "{n} sources · 0 made it through" = "소스 {n}개 · 통과 0개";
+"{n}d ago" = "{n}일 전";
 "{n}d left" = "{n}일 남음";
+"{n}h ago" = "{n}시간 전";
+"{n}m ago" = "{n}분 전";
+"{n}mo ago" = "{n}개월 전";
 "{requests} requests" = "요청 {requests}개";
 "{seconds} seconds" = "{seconds}초";
 "{shown} of {total}" = "{total}개 중 {shown}개";

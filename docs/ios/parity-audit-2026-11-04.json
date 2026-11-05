@@ -6,35 +6,35 @@
     "behaviors": {
       "total": 438,
       "ported": 121,
-      "partial": 203,
-      "missing": 92,
+      "partial": 204,
+      "missing": 91,
       "excluded": 22,
       "counted": 416,
-      "weighted_percent": 53.5,
+      "weighted_percent": 53.6,
       "ported_only_percent": 29.1,
-      "ported_or_partial_percent": 77.9
+      "ported_or_partial_percent": 78.1
     },
     "settings": {
       "total": 511,
-      "ported": 122,
+      "ported": 124,
       "partial": 21,
-      "missing": 282,
+      "missing": 280,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 31.2,
-      "ported_only_percent": 28.7,
-      "ported_or_partial_percent": 33.6
+      "weighted_percent": 31.6,
+      "ported_only_percent": 29.2,
+      "ported_or_partial_percent": 34.1
     },
     "all": {
       "total": 949,
-      "ported": 243,
-      "partial": 224,
-      "missing": 374,
+      "ported": 245,
+      "partial": 225,
+      "missing": 371,
       "excluded": 108,
       "counted": 841,
-      "weighted_percent": 42.2,
-      "ported_only_percent": 28.9,
-      "ported_or_partial_percent": 55.5
+      "weighted_percent": 42.5,
+      "ported_only_percent": 29.1,
+      "ported_or_partial_percent": 55.9
     }
   },
   "behavior_areas": [
@@ -141,10 +141,10 @@
       "area": "Trackers",
       "range": "B274-B304",
       "ported": 12,
-      "partial": 11,
-      "missing": 8,
+      "partial": 12,
+      "missing": 7,
       "excluded": 0,
-      "weighted_percent": 56.5
+      "weighted_percent": 58.1
     },
     {
       "area": "Metadata providers, calendar and lists",
@@ -2214,8 +2214,8 @@
       "index": 284,
       "id": "Trakt comments",
       "desktop_source": "src/lib/trakt",
-      "verdict": "M",
-      "note": "no Trakt comments"
+      "verdict": "P",
+      "note": "Trakt comments of movies and shows: sort, spoilers, replies, paging (5 Nov, uncompiled); posting, likes and ratings not ported"
     },
     {
       "index": 285,
@@ -3302,28 +3302,28 @@
       "id": "soundTheme",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "no UI sounds or comments"
+      "note": "no UI sounds"
     },
     {
       "index": 2,
       "id": "sfxVolume",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "no UI sounds or comments"
+      "note": "no UI sounds"
     },
     {
       "index": 3,
       "id": "playerVolumeSfx",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "no UI sounds or comments"
+      "note": "no UI sounds"
     },
     {
       "index": 4,
       "id": "blurComments",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no UI sounds or comments"
+      "verdict": "D",
+      "note": "blur comments until revealed (5 Nov, uncompiled)"
     },
     {
       "index": 5,
@@ -3574,8 +3574,8 @@
       "index": 40,
       "id": "showTraktComments",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "verdict": "D",
+      "note": "show Trakt comments on detail pages (5 Nov, uncompiled)"
     },
     {
       "index": 41,
