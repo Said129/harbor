@@ -1295,3 +1295,9 @@ HiddenEpisodesTests cases passed (the store per show/season/number, Up Next
 stepping over hidden episodes while the playing one keeps its neighbours, and a
 multi-entry anime using each entry's own hidden episodes). Run 10 (commit 47661760) compiles the player screen lock and repeats the player cases that share
 PlayerView (check-in, hotkeys, auto-skip).
+
+Focused run 42112564237 (commit 47661760): the app compiled with the player screen
+lock and the five player cases that share PlayerView passed (check-in, hotkeys,
+auto-skip). The lock itself has no unit case: it is a view-state feature to be
+checked on a device (lock button in the top bar, touches ignored, Unlock controls
+shown for 2.2 s after a touch).
