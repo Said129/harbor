@@ -176,7 +176,11 @@ import XCTest
         // Closing is the production path: both consumers leave a visible
         // hierarchy. Hiding a test window does not represent a closed panel.
         presence.shown = false; host.view.layoutIfNeeded()
-        try await waitAsync("release-" + name) { await player.audioSignal()?.filters?.contains("harbor_meter") == false }
+        // While the looped track restarts there is no signal at all, which also means no meter filter is left behind.
+        try await waitAsync("release-" + name) {
+            let present = await player.audioSignal()?.filters?.contains("harbor_meter") ?? false
+            return player.meterConsumerCount == 0 && !present
+        }
     }
 }
 
