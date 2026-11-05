@@ -5,36 +5,36 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 119,
+      "ported": 121,
       "partial": 203,
-      "missing": 94,
+      "missing": 92,
       "excluded": 22,
       "counted": 416,
-      "weighted_percent": 53.0,
-      "ported_only_percent": 28.6,
-      "ported_or_partial_percent": 77.4
+      "weighted_percent": 53.5,
+      "ported_only_percent": 29.1,
+      "ported_or_partial_percent": 77.9
     },
     "settings": {
       "total": 511,
-      "ported": 120,
+      "ported": 122,
       "partial": 21,
-      "missing": 284,
+      "missing": 282,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 30.7,
-      "ported_only_percent": 28.2,
-      "ported_or_partial_percent": 33.2
+      "weighted_percent": 31.2,
+      "ported_only_percent": 28.7,
+      "ported_or_partial_percent": 33.6
     },
     "all": {
       "total": 949,
-      "ported": 239,
+      "ported": 243,
       "partial": 224,
-      "missing": 378,
+      "missing": 374,
       "excluded": 108,
       "counted": 841,
-      "weighted_percent": 41.7,
-      "ported_only_percent": 28.4,
-      "ported_or_partial_percent": 55.1
+      "weighted_percent": 42.2,
+      "ported_only_percent": 28.9,
+      "ported_or_partial_percent": 55.5
     }
   },
   "behavior_areas": [
@@ -104,11 +104,11 @@
     {
       "area": "Player, subtitles, skip, trailers and downloads",
       "range": "B154-B216",
-      "ported": 26,
+      "ported": 28,
       "partial": 20,
-      "missing": 15,
+      "missing": 13,
       "excluded": 2,
-      "weighted_percent": 59.0
+      "weighted_percent": 62.3
     },
     {
       "area": "Live TV, VOD, DVR and multiview",
@@ -1451,8 +1451,8 @@
       "index": 175,
       "id": "Playback audio filters",
       "desktop_source": "src/lib/player",
-      "verdict": "M",
-      "note": "no playback audio filters"
+      "verdict": "D",
+      "note": "loudness normalizer and sound profiles through an mpv audio filter chain (5 Nov, uncompiled)"
     },
     {
       "index": 176,
@@ -1521,8 +1521,8 @@
       "index": 185,
       "id": "Stats overlay",
       "desktop_source": "src/components/player",
-      "verdict": "M",
-      "note": "no stats overlay"
+      "verdict": "D",
+      "note": "playback stats card read from mpv once a second; iPad hotkey I and a switch in Playback options (5 Nov, uncompiled)"
     },
     {
       "index": 186,
@@ -5689,49 +5689,49 @@
       "id": "opensubtitlesApiKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "subtitle provider keys, audio normalisation and profile"
+      "note": "subtitle provider keys"
     },
     {
       "index": 343,
       "id": "theIntroDbKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "subtitle provider keys, audio normalisation and profile"
+      "note": "subtitle provider keys"
     },
     {
       "index": 344,
       "id": "jimakuToken",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "subtitle provider keys, audio normalisation and profile"
+      "note": "subtitle provider keys"
     },
     {
       "index": 345,
       "id": "subdlApiKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "subtitle provider keys, audio normalisation and profile"
+      "note": "subtitle provider keys"
     },
     {
       "index": 346,
       "id": "subsourceApiKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "subtitle provider keys, audio normalisation and profile"
+      "note": "subtitle provider keys"
     },
     {
       "index": 347,
       "id": "audioNormalize",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "subtitle provider keys, audio normalisation and profile"
+      "verdict": "D",
+      "note": "audio normalizer and sound profile (5 Nov, uncompiled)"
     },
     {
       "index": 348,
       "id": "audioProfile",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "subtitle provider keys, audio normalisation and profile"
+      "verdict": "D",
+      "note": "audio normalizer and sound profile (5 Nov, uncompiled)"
     },
     {
       "index": 349,

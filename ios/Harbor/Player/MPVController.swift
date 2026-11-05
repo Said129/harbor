@@ -200,6 +200,12 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
     func run(_ values: [String]) {
         do { try command(values) } catch { state.error = safeMessage(error) }
     }
+    /// One mpv property in its string form, for the stats overlay; nil when the player has none or is closed.
+    func stat(_ name: String) -> String? {
+        guard !didClose, let handle, let pointer = mpv_get_property_string(handle, name) else { return nil }
+        defer { mpv_free(pointer) }
+        return String(cString: pointer)
+    }
     func replay() {
         restartPlayback(positionMs: nil, autoplay: nil)
     }

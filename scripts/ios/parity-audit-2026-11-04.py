@@ -129,7 +129,7 @@ BEHAVIORS = expand("""
 171 D PlayerResumePrompt
 172-173 P earlier review Partial
 174 P subtitle font choice; no custom subtitle fonts
-175 M no playback audio filters
+175 D loudness normalizer and sound profiles through an mpv audio filter chain (5 Nov, uncompiled)
 176 X RTX HDR needs an NVIDIA Windows driver
 177 P earlier review Partial
 178 M no motion interpolation
@@ -137,7 +137,7 @@ BEHAVIORS = expand("""
 181-182 D next episode and auto advance
 183 D A-B loop (5 Nov, uncompiled)
 184 D sleep timer (5 Nov, uncompiled)
-185 M no stats overlay
+185 D playback stats card read from mpv once a second; iPad hotkey I and a switch in Playback options (5 Nov, uncompiled)
 186 P earlier review Partial
 187 M no player chrome customization
 188 P earlier review Partial
@@ -355,7 +355,8 @@ SETTINGS = expand("""
 331-338 X TV and Big Picture navigation
 339 M
 340-341 X Big Picture overscan, desktop HDR stage
-342-348 M subtitle provider keys, audio normalisation and profile
+342-346 M subtitle provider keys
+347-348 D audio normalizer and sound profile (5 Nov, uncompiled)
 349 P route picker instead of a device setting
 350 M
 351-352 D

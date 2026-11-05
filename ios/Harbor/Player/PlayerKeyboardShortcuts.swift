@@ -4,7 +4,7 @@ import SwiftUI
 /// The bindings are Desktop's defaults; remapping them is not ported.
 enum PlayerShortcut: String, CaseIterable, Identifiable, Sendable {
     case playPause, seekBack, seekForward, seekBackShort, seekForwardShort, seekBack30, seekForward30
-    case start, end, volumeUp, volumeDown, mute, subtitleDelayDown, subtitleDelayUp, close
+    case start, end, volumeUp, volumeDown, mute, subtitleDelayDown, subtitleDelayUp, stats, close
     var id: String { rawValue }
 
     var key: KeyEquivalent {
@@ -21,6 +21,7 @@ enum PlayerShortcut: String, CaseIterable, Identifiable, Sendable {
         case .mute: KeyEquivalent("m")
         case .subtitleDelayDown: KeyEquivalent("z")
         case .subtitleDelayUp: KeyEquivalent("x")
+        case .stats: KeyEquivalent("i")
         case .close: .escape
         }
     }
@@ -76,6 +77,7 @@ struct PlayerKeyboardShortcuts: View {
         case .mute: state.controller?.set("mute", state.muted ? "no" : "yes")
         case .subtitleDelayDown: state.controller?.run(["add", "sub-delay", "-0.1"])
         case .subtitleDelayUp: state.controller?.run(["add", "sub-delay", "0.1"])
+        case .stats: PlaybackPreferences.shared.options.showStats.toggle()
         case .close: close()
         default: break
         }

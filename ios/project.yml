@@ -179,6 +179,8 @@ targets:
       - path: HarborTests/MyAnimeListTests.swift
       - path: HarborTests/StreamPlaybackHistoryTests.swift
       - path: HarborTests/HiddenEpisodesTests.swift
+      - path: HarborTests/PlayerAudioFilterTests.swift
+      - path: HarborTests/PlaybackStatsTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift

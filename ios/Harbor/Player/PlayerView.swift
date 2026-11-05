@@ -193,6 +193,10 @@ struct PlayerView: View {
                     StillWatching.shared.reset(); stillWatchingEpisode = nil; dismiss()
                 }).transition(.opacity).zIndex(10)
             }
+            if preferences.options.showStats {
+                VStack { HStack { PlayerStatsOverlay(state: state); Spacer(minLength: 0) }; Spacer() }
+                    .padding(.horizontal, 16).padding(.top, 64)
+            }
             if screenLocked { lockOverlay.zIndex(20) }
         }
     }
@@ -413,7 +417,9 @@ struct PlayerView: View {
         .onChange(of: state.error) { _, error in if error != nil { controlsVisible = true }; restartHideTimer() }
         .onChange(of: preferences.options) { old, new in
             let previous = Dictionary(uniqueKeysWithValues: old.mpvOptions)
-            for (name, value) in new.mpvOptions where previous[name] != value { state.controller?.set(name, value) }
+            for (name, value) in new.mpvOptions where previous[name] != value && name != "af" { state.controller?.set(name, value) }
+            // An empty chain has to be sent to take the filters off, which a property diff would not do.
+            if old.audioFilters != new.audioFilters { state.controller?.run(["af", "set", new.audioFilters]) }
             if old.secondarySubtitleLanguage != new.secondarySubtitleLanguage { state.controller?.applyPreferredSecondary(reset: true) }
             if !new.autoHideControls { controlsVisible = true }
             restartHideTimer(); updateIdleTimer()

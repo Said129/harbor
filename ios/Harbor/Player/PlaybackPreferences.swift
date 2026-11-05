@@ -60,10 +60,40 @@ enum PicturePreset: String, CaseIterable, Identifiable {
     }
 }
 
+/// Desktop's sound profiles (`AUDIO_PROFILE_AF` in `lib/player/mpv.ts`).
+enum AudioProfile: String, CaseIterable, Sendable {
+    case off, bass, voice, bassReduce = "bass-reduce", night
+
+    var filter: String? {
+        switch self {
+        case .off: nil
+        case .bass: "lavfi=[bass=g=7:f=110:w=0.6]"
+        case .voice: "lavfi=[equalizer=f=300:t=q:w=1:g=-3,equalizer=f=2800:t=q:w=1:g=5]"
+        case .bassReduce: "lavfi=[bass=g=-8:f=110:w=0.6]"
+        case .night: "lavfi=[acompressor=ratio=3:threshold=-20dB:attack=20:release=300:makeup=4dB]"
+        }
+    }
+    var label: String {
+        switch self {
+        case .off: DesktopInterfaceText.value("Flat")
+        case .bass: DesktopInterfaceText.value("Bass boost")
+        case .voice: DesktopInterfaceText.value("Vocal clarity")
+        case .bassReduce: DesktopInterfaceText.value("Less bass")
+        case .night: DesktopInterfaceText.value("Night mode")
+        }
+    }
+}
+
 /// Persisted native equivalents of Desktop's player/subtitle options. The mpv
 /// event stream remains authoritative for the running player's transport state.
 struct PlaybackOptions: Codable, Equatable {
     var autoHideControls = true
+    /// Desktop's playback stats card, which its hotkey I shows and hides.
+    var showStats = false
+    /// Desktop's `audioNormalize`: a dynamic loudness normalizer.
+    var audioNormalize = false
+    /// Desktop's `audioProfile`: one of `AudioProfile`'s raw values.
+    var audioProfile = AudioProfile.off.rawValue
     /// Desktop's `playerScreenLockEnabled`: show a lock control that blocks touches until it is unlocked.
     var screenLock = false
     var showSkipIntro = true
@@ -133,8 +163,17 @@ struct PlaybackOptions: Codable, Equatable {
         saturation = values.saturation; gamma = values.gamma; sharpen = values.sharpen
     }
 
+    /// Desktop's `applyAudioFilters`: the normalizer and the sound profile, behind a limiter that keeps peaks below clipping.
+    var audioFilters: String {
+        var parts: [String] = []
+        if audioNormalize { parts.append("dynaudnorm=f=500:g=31:p=0.9:m=4:b=1") }
+        if let profile = AudioProfile(rawValue: audioProfile)?.filter { parts.append(profile) }
+        if !parts.isEmpty { parts.append("lavfi=[alimiter=limit=0.97]") }
+        return parts.joined(separator: ",")
+    }
+
     var mpvOptions: [(String, String)] {
-        [
+        var options: [(String, String)] = [
             ("speed", String(speed)), ("volume", String(volume)), ("panscan", fit == .fill ? "1" : "0"),
             ("video-aspect-override", fit.aspect), ("keepaspect", fit == .stretch ? "no" : "yes"),
             ("video-zoom", fit == .zoom ? String(zoom) : "0"), ("sharpen", String(sharpen)),
@@ -155,6 +194,10 @@ struct PlaybackOptions: Codable, Equatable {
             ("sub-border-style", subtitleStyle == "box" ? "background-box" : "outline-and-shadow"),
             ("sub-back-color", Self.alphaColor(subtitleBoxColor, opacity: subtitleStyle == "box" ? boxOpacity * subtitleOpacity : 0))
         ]
+        // Left out when empty so a player without filters never asks libmpv for an audio filter chain.
+        let filters = audioFilters
+        if !filters.isEmpty { options.append(("af", filters)) }
+        return options
     }
 
     private static func alphaColor(_ color: String, opacity: Double) -> String {

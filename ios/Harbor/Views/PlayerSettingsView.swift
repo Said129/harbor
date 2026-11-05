@@ -73,7 +73,11 @@ struct PlayerSettingsView: View {
 
     @ViewBuilder private var playbackSettings: some View {
         // The sleep timer belongs to a running video, as in Desktop's speed menu.
-        if let state { SleepTimerSettings(); ABLoopSettings(state: state) }
+        if let state {
+            SleepTimerSettings(); ABLoopSettings(state: state)
+            HarborSettingsToggle(DesktopInterfaceText.value("Playback stats · press I to hide"), isOn: $preferences.options.showStats)
+                .accessibilityIdentifier("settings-playback-stats")
+        }
         PlayerPlayModeSettings(automatic: $sources.automatic)
         HarborSettingsSection("Fuentes y calidad") {
             Text("Estos límites de calidad se aplican a la reproducción automática; el filtro de seguridad, el orden de resultados y el diseño del selector están en Ajustes › Fuentes de streaming.").font(HarborTheme.font(12)).foregroundStyle(.secondary)
@@ -155,7 +159,13 @@ struct PlayerSettingsView: View {
             HarborLanguagesPicker(value: $preferences.options.audioLanguage, identifier: "settings-audio-languages")
         }
         HarborSettingsSection(DesktopInterfaceText.value("Audio")) {
+            HarborSettingsToggle(DesktopInterfaceText.value("Normalize loudness"), note: DesktopInterfaceText.value("Evens out quiet dialogue and loud action scenes with a dynamic normalizer."), isOn: $preferences.options.audioNormalize)
+                .accessibilityIdentifier("settings-audio-normalize")
             HarborSettingsToggle(DesktopInterfaceText.value("Mix surround sound down to stereo"), isOn: $preferences.options.stereo)
+            HarborSettingsChoice(DesktopInterfaceText.value("Sound profile"), selection: $preferences.options.audioProfile,
+                                 choices: AudioProfile.allCases.map { ($0.label, $0.rawValue) }, identifier: "settings-audio-profile")
+            Text(DesktopInterfaceText.value("Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer."))
+                .font(HarborTheme.font(12)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
         }
         HarborSettingsSection(DesktopInterfaceText.value("Sync Offset")) {
             dial(DesktopInterfaceText.value("Sync Offset"), value: $preferences.options.audioDelay, range: -10...10, step: 0.1, suffix: " s")
