@@ -187,11 +187,17 @@
 "Authorize Harbor on Trakt" = "Harbor'ı Trakt'ta yetkilendir";
 "Auto" = "Otomatik";
 "Auto (match video)" = "Otomatik (videoyla eşleştir)";
+"Auto-hide the Skip button after" = "Atla düğmesini şu süreden sonra otomatik gizle";
 "Auto-play next episode" = "Sonraki bölümü otomatik oynat";
+"Auto-skip credit outros" = "Kapanış jeneriğini otomatik atla";
+"Auto-skip intros" = "İntroları otomatik atla";
+"Auto-skip recaps" = "Özetleri otomatik atla";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "Otomatik";
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
+"Automatically jump past recap segments." = "Özet bölümlerini otomatik olarak atlar.";
+"Automatically skip ending credits and trigger the next episode countdown immediately." = "Kapanış jeneriğini otomatik olarak atlar ve sonraki bölüm geri sayımını hemen başlatır.";
 "Automatically sync with audio" = "Automatically sync with audio";
 "Automatically track what you are playing and save watch progress in real-time." = "Oynattıklarınızı otomatik olarak takip eder ve izleme ilerlemesini gerçek zamanlı olarak kaydeder.";
 "Automática" = "Otomatik";
@@ -831,6 +837,7 @@
 "Hide {name} from navigation" = "{name} öğesini gezinmeden gizle";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Bölüm listelerinde spoiler içerebilecek bölüm ayrıntılarını, ilgili bölümleri izleyene kadar gizler.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Tercih edilen dillerden hiçbirinin algılanmadığı yayınları gizler. Çoklu ses içeren sürümler eşleşme sayılır.";
+"Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "Hatalı bir düğmenin bölüm boyunca ekranda kalmaması için birkaç saniye sonra düğmeyi otomatik olarak gizler.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "Yüksek";
@@ -927,6 +934,7 @@
 "JSON cannot be empty" = "JSON boş olamaz";
 "Japan's top science-fiction comic honor" = "Japonya'nın en prestijli bilim kurgu çizgi roman ödülü";
 "Japanese" = "Japonca";
+"Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Açılış başlar başlamaz otomatik olarak atlayın. Açılışa geri sararsanız yeniden atlanmadan oynatılır. Atla düğmesi yukarıdaki ayara uyar.";
 "Just added" = "Yeni eklenenler";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";

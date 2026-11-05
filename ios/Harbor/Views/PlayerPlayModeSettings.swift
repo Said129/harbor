@@ -57,6 +57,19 @@ struct PlayerNextEpisodeSettings: View {
         HarborSettingsSection(DesktopInterfaceText.value("Next episode prompt")) {
             HarborSettingsToggle(DesktopInterfaceText.value("Show the Skip button"), note: DesktopInterfaceText.value("Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode."), isOn: $preferences.options.showSkipIntro)
                 .accessibilityIdentifier("settings-skip-intro")
+            HarborSettingsToggle(DesktopInterfaceText.value("Auto-skip intros"), note: DesktopInterfaceText.value("Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above."), isOn: $preferences.options.autoSkipIntro)
+                .accessibilityIdentifier("settings-auto-skip-intro")
+            HarborSettingsToggle(DesktopInterfaceText.value("Auto-skip recaps"), note: DesktopInterfaceText.value("Automatically jump past recap segments."), isOn: $preferences.options.autoSkipRecap)
+                .accessibilityIdentifier("settings-auto-skip-recap")
+            HarborSettingsToggle(DesktopInterfaceText.value("Auto-skip credit outros"), note: DesktopInterfaceText.value("Automatically skip ending credits and trigger the next episode countdown immediately."), isOn: $preferences.options.autoSkipOutro)
+                .accessibilityIdentifier("settings-auto-skip-outro")
+            if preferences.options.showSkipIntro {
+                Text(DesktopInterfaceText.value("Auto-hide the Skip button after")).font(HarborTheme.font(14, weight: .semibold))
+                Text(DesktopInterfaceText.value("Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode."))
+                    .font(HarborTheme.font(13)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                HarborSettingsSegmented(selection: $preferences.options.skipButtonHideSeconds, choices: [(DesktopInterfaceText.value("Off"), 0), ("5s", 5), ("10s", 10), ("15s", 15), ("30s", 30)])
+                    .accessibilityIdentifier("settings-skip-hide")
+            }
             Text(DesktopInterfaceText.value("When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it."))
                 .font(HarborTheme.font(13)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
             HarborSettingsSegmented(selection: $preferences.options.nextEpisodeLeadSeconds, choices: choices)

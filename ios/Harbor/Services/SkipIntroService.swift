@@ -15,6 +15,12 @@ struct SkipSegment: Identifiable, Equatable, Sendable {
         }
     }
     func active(at position: Double) -> Bool { position.isFinite && position >= start && position < end - 0.75 }
+    /// The segment Desktop would skip by itself at this moment (`skip-pill-container.tsx`): the active one,
+    /// when its kind is switched on, once per segment so seeking back into an intro replays it.
+    static func autoSkipCandidate(at position: Double, in segments: [Self], options: PlaybackOptions, skipped: Set<String>) -> Self? {
+        guard position > 0, let segment = segments.first(where: { $0.active(at: position) }), options.autoSkips(segment.kind), !skipped.contains(segment.id) else { return nil }
+        return segment
+    }
     static func merge(_ sources: [[Self]], duration: Double) -> [Self] {
         guard duration.isFinite, duration > 0 else { return [] }
         var result: [Self] = []
@@ -40,6 +46,17 @@ struct SkipSegment: Identifiable, Equatable, Sendable {
             return Self(kind: kind, start: chapter.time, end: index + 1 < ordered.count ? ordered[index + 1].time : duration, source: "chapters")
         }
     }
+}
+
+extension PlaybackOptions {
+    func autoSkips(_ kind: SkipSegment.Kind) -> Bool {
+        switch kind {
+        case .intro: autoSkipIntro
+        case .recap: autoSkipRecap
+        case .outro: autoSkipOutro
+        }
+    }
+    var autoSkipsAnySegment: Bool { autoSkipIntro || autoSkipRecap || autoSkipOutro }
 }
 
 actor SkipIntroService {

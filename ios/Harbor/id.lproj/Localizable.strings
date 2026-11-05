@@ -187,11 +187,17 @@
 "Authorize Harbor on Trakt" = "Izinkan Harbor di Trakt";
 "Auto" = "Otomatis";
 "Auto (match video)" = "Otomatis (sesuai video)";
+"Auto-hide the Skip button after" = "Sembunyikan tombol Lewati secara otomatis setelah";
 "Auto-play next episode" = "Putar episode berikutnya secara otomatis";
+"Auto-skip credit outros" = "Lewati outro kredit secara otomatis";
+"Auto-skip intros" = "Lewati intro secara otomatis";
+"Auto-skip recaps" = "Lewati rekap secara otomatis";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "Otomatis";
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
+"Automatically jump past recap segments." = "Lewati segmen rekap secara otomatis.";
+"Automatically skip ending credits and trigger the next episode countdown immediately." = "Lewati kredit penutup secara otomatis dan langsung mulai hitung mundur ke episode berikutnya.";
 "Automatically sync with audio" = "Automatically sync with audio";
 "Automatically track what you are playing and save watch progress in real-time." = "Lacak secara otomatis apa yang sedang Anda putar dan simpan progres tontonan secara real-time.";
 "Automática" = "Otomatis";
@@ -831,6 +837,7 @@
 "Hide {name} from navigation" = "Sembunyikan {name} dari navigasi";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Menyembunyikan detail episode yang berpotensi mengandung spoiler dalam daftar episode hingga Anda menontonnya.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Menyembunyikan stream tanpa bahasa pilihan yang terdeteksi. Rilis multi-audio dianggap cocok.";
+"Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "Menyembunyikan tombol secara otomatis setelah beberapa detik agar tombol yang salah tidak terus muncul sepanjang episode.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "Tinggi";
@@ -927,6 +934,7 @@
 "JSON cannot be empty" = "JSON tidak boleh kosong";
 "Japan's top science-fiction comic honor" = "Penghargaan komik fiksi ilmiah tertinggi di Jepang";
 "Japanese" = "Bahasa Jepang";
+"Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Lewati pembuka secara otomatis begitu dimulai. Kembali ke bagian pembuka akan memutarnya tanpa melewati lagi. Tombol Lewati mengikuti pengaturan di atas.";
 "Just added" = "Baru ditambahkan";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";

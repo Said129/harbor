@@ -187,11 +187,17 @@
 "Authorize Harbor on Trakt" = "Ủy quyền Harbor trên Trakt";
 "Auto" = "Tự động";
 "Auto (match video)" = "Tự động (khớp video)";
+"Auto-hide the Skip button after" = "Tự động ẩn nút Bỏ qua sau";
 "Auto-play next episode" = "Tự động phát tập tiếp theo";
+"Auto-skip credit outros" = "Tự động bỏ qua phần danh đề cuối phim";
+"Auto-skip intros" = "Tự động bỏ qua phần mở đầu";
+"Auto-skip recaps" = "Tự động bỏ qua phần tóm tắt";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "Tự động";
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
+"Automatically jump past recap segments." = "Tự động chuyển qua các đoạn tóm tắt.";
+"Automatically skip ending credits and trigger the next episode countdown immediately." = "Tự động bỏ qua danh đề cuối phim và bắt đầu ngay đếm ngược sang tập tiếp theo.";
 "Automatically sync with audio" = "Automatically sync with audio";
 "Automatically track what you are playing and save watch progress in real-time." = "Tự động theo dõi nội dung đang phát và lưu tiến độ xem theo thời gian thực.";
 "Automática" = "Tự động";
@@ -831,6 +837,7 @@
 "Hide {name} from navigation" = "Ẩn {name} khỏi thanh điều hướng";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Ẩn các chi tiết dễ tiết lộ nội dung trong danh sách tập cho đến khi bạn xem xong.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Ẩn các luồng không phát hiện được ngôn ngữ ưu tiên. Bản phát hành đa âm thanh vẫn được tính là khớp.";
+"Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "Tự ẩn nút sau vài giây để nút không chính xác không hiện suốt cả tập.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "Cao";
@@ -927,6 +934,7 @@
 "JSON cannot be empty" = "JSON không được để trống";
 "Japan's top science-fiction comic honor" = "Giải thưởng truyện tranh khoa học viễn tưởng hàng đầu Nhật Bản";
 "Japanese" = "Tiếng Nhật";
+"Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Tự động bỏ qua phần mở đầu ngay khi bắt đầu. Tua lại vào phần mở đầu sẽ phát phần đó mà không bỏ qua lần nữa. Nút Bỏ qua tuân theo cài đặt ở trên.";
 "Just added" = "Mới thêm";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";

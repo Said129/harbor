@@ -187,11 +187,17 @@
 "Authorize Harbor on Trakt" = "在 Trakt 上授权 Harbor";
 "Auto" = "自动";
 "Auto (match video)" = "自动（匹配视频）";
+"Auto-hide the Skip button after" = "自动隐藏“跳过”按钮的等待时间";
 "Auto-play next episode" = "自动播放下一集";
+"Auto-skip credit outros" = "自动跳过片尾字幕";
+"Auto-skip intros" = "自动跳过片头";
+"Auto-skip recaps" = "自动跳过前情回顾";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "自动";
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
+"Automatically jump past recap segments." = "自动跳过前情回顾片段。";
+"Automatically skip ending credits and trigger the next episode countdown immediately." = "自动跳过片尾字幕，并立即开始下一集倒计时。";
 "Automatically sync with audio" = "Automatically sync with audio";
 "Automatically track what you are playing and save watch progress in real-time." = "自动跟踪正在播放的内容，并实时保存观看进度。";
 "Automática" = "自动";
@@ -831,6 +837,7 @@
 "Hide {name} from navigation" = "在导航中隐藏{name}";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "在你看完之前，隐藏分集列表中容易剧透的剧集详情。";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "隐藏未检测到首选语言的视频流。多音轨版本也视为匹配。";
+"Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "几秒后自动隐藏按钮，以免错误的按钮在整集播放期间一直显示。";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "高";
@@ -927,6 +934,7 @@
 "JSON cannot be empty" = "JSON 不能为空";
 "Japan's top science-fiction comic honor" = "日本顶级科幻漫画奖项";
 "Japanese" = "日语";
+"Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "片头一开始就自动跳过。回退到片头会重新播放，不会再次跳过。跳过按钮遵循上方设置。";
 "Just added" = "最新添加";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";

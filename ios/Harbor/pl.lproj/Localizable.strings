@@ -187,11 +187,17 @@
 "Authorize Harbor on Trakt" = "Autoryzuj Harbor w Trakt";
 "Auto" = "Automatycznie";
 "Auto (match video)" = "Automatycznie (dopasuj do filmu)";
+"Auto-hide the Skip button after" = "Automatycznie ukryj przycisk Pomiń po";
 "Auto-play next episode" = "Automatycznie odtwarzaj następny odcinek";
+"Auto-skip credit outros" = "Automatycznie pomijaj napisy końcowe";
+"Auto-skip intros" = "Automatycznie pomijaj czołówki";
+"Auto-skip recaps" = "Automatycznie pomijaj streszczenia";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "Automatycznie";
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
+"Automatically jump past recap segments." = "Automatycznie przeskakuj segmenty ze streszczeniem.";
+"Automatically skip ending credits and trigger the next episode countdown immediately." = "Automatycznie pomijaj napisy końcowe i od razu uruchamiaj odliczanie do następnego odcinka.";
 "Automatically sync with audio" = "Automatically sync with audio";
 "Automatically track what you are playing and save watch progress in real-time." = "Automatycznie śledź odtwarzane materiały i zapisuj postęp oglądania w czasie rzeczywistym.";
 "Automática" = "Automatycznie";
@@ -831,6 +837,7 @@
 "Hide {name} from navigation" = "Ukryj {name} w nawigacji";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Ukrywa na listach odcinków szczegóły, które mogą zdradzać fabułę, dopóki odcinki nie zostaną obejrzane.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Ukrywa strumienie, w których nie wykryto żadnego preferowanego języka. Wydania z wieloma ścieżkami dźwiękowymi są uznawane za zgodne.";
+"Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "Automatycznie ukrywa przycisk po kilku sekundach, aby błędny przycisk nie pozostawał widoczny przez cały odcinek.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "Wysoki";
@@ -927,6 +934,7 @@
 "JSON cannot be empty" = "Kod JSON nie może być pusty";
 "Japan's top science-fiction comic honor" = "Najważniejsze japońskie wyróżnienie dla komiksu science fiction";
 "Japanese" = "japoński";
+"Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Automatycznie pomijaj czołówki, gdy się zaczynają. Cofnięcie do czołówki odtworzy ją bez ponownego pomijania. Przycisk Pomiń działa zgodnie z ustawieniem powyżej.";
 "Just added" = "Ostatnio dodane";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";

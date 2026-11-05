@@ -187,11 +187,17 @@
 "Authorize Harbor on Trakt" = "TraktでHarborを認証";
 "Auto" = "自動";
 "Auto (match video)" = "自動（動画に合わせる）";
+"Auto-hide the Skip button after" = "スキップボタンを自動で隠すまでの時間";
 "Auto-play next episode" = "次のエピソードを自動再生";
+"Auto-skip credit outros" = "エンディングクレジットを自動スキップ";
+"Auto-skip intros" = "イントロを自動スキップ";
+"Auto-skip recaps" = "前回までのあらすじを自動スキップ";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "自動";
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
+"Automatically jump past recap segments." = "前回までのあらすじ部分を自動的にスキップします。";
+"Automatically skip ending credits and trigger the next episode countdown immediately." = "エンディングクレジットを自動的にスキップし、次のエピソードへのカウントダウンをすぐに開始します。";
 "Automatically sync with audio" = "Automatically sync with audio";
 "Automatically track what you are playing and save watch progress in real-time." = "再生中の作品を自動的に記録し、視聴進捗をリアルタイムで保存します。";
 "Automática" = "自動";
@@ -831,6 +837,7 @@
 "Hide {name} from navigation" = "ナビゲーションから{name}を非表示";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "視聴するまで、エピソード一覧でネタバレを含む可能性のある詳細を非表示にします。";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "優先言語が検出されないストリームを非表示にします。複数音声のリリースは一致と見なされます。";
+"Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "数秒後にボタンを自動で隠し、誤ったボタンがエピソード中ずっと表示されないようにします。";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "高";
@@ -927,6 +934,7 @@
 "JSON cannot be empty" = "JSONを入力してください";
 "Japan's top science-fiction comic honor" = "日本最高峰のSFコミック賞";
 "Japanese" = "日本語";
+"Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "オープニングが始まると自動でスキップします。イントロに巻き戻した場合は再度スキップせず再生します。スキップボタンは上の設定に従います。";
 "Just added" = "新着";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";

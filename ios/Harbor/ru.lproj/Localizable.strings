@@ -190,11 +190,17 @@
 "Authorize Harbor on Trakt" = "Авторизовать Harbor в Trakt";
 "Auto" = "Авто";
 "Auto (match video)" = "Авто (как у видео)";
+"Auto-hide the Skip button after" = "Скрывать кнопку «Пропустить» через";
 "Auto-play next episode" = "Автовоспроизведение следующей серии";
+"Auto-skip credit outros" = "Автопропуск финальных титров";
+"Auto-skip intros" = "Автопропуск заставок";
+"Auto-skip recaps" = "Автопропуск краткого содержания";
 "Auto-sync" = "Автосинхронизация";
 "Automatic" = "Автоматически";
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
+"Automatically jump past recap segments." = "Автоматически пропускать сегменты с кратким содержанием.";
+"Automatically skip ending credits and trigger the next episode countdown immediately." = "Автоматически пропускать финальные титры и сразу запускать отсчёт до следующей серии.";
 "Automatically sync with audio" = "Automatically sync with audio";
 "Automatically track what you are playing and save watch progress in real-time." = "Автоматически отслеживать, что вы смотрите, и сохранять прогресс в реальном времени.";
 "Automática" = "Автоматически";
@@ -836,6 +842,7 @@
 "Hide {name} from navigation" = "Скрыть {name} из навигации";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Скрывает в списках серий детали со спойлерами, пока вы не посмотрите серию.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Скрывает потоки, в которых не найден предпочитаемый язык. Релизы с несколькими дорожками считаются подходящими.";
+"Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "Кнопка сама скрывается через несколько секунд, чтобы ошибочная не висела всю серию.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "Высокое";
@@ -932,6 +939,7 @@
 "JSON cannot be empty" = "JSON не может быть пустым";
 "Japan's top science-fiction comic honor" = "Главная японская награда за научно-фантастические комиксы";
 "Japanese" = "Японский";
+"Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Автоматически пропускает заставки сразу после начала. При перемотке назад заставка воспроизводится без повторного пропуска. Кнопка пропуска следует настройке выше.";
 "Just added" = "Только что добавлены";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";

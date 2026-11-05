@@ -198,11 +198,17 @@
 "Authorize Harbor on Trakt" = "تفويض Harbor على Trakt";
 "Auto" = "تلقائي";
 "Auto (match video)" = "تلقائي (مطابقة الفيديو)";
+"Auto-hide the Skip button after" = "إخفاء زر التخطي تلقائيًا بعد";
 "Auto-play next episode" = "التشغيل التلقائي للحلقة التالية";
+"Auto-skip credit outros" = "تخطّي شارة النهاية تلقائيًا";
+"Auto-skip intros" = "تخطي المقدمات تلقائياً";
+"Auto-skip recaps" = "تخطّي الملخصات تلقائيًا";
 "Auto-sync" = "مزامنة تلقائية";
 "Automatic" = "تلقائي";
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
+"Automatically jump past recap segments." = "القفز تلقائيًا عبر مقاطع الملخّص.";
+"Automatically skip ending credits and trigger the next episode countdown immediately." = "تخطّي شارة النهاية تلقائيًا وبدء العد التنازلي للحلقة التالية فورًا.";
 "Automatically sync with audio" = "Automatically sync with audio";
 "Automatically track what you are playing and save watch progress in real-time." = "تتبّع ما تشاهده تلقائيًا وحفظ تقدّم المشاهدة في الوقت الفعلي.";
 "Automática" = "تلقائي";
@@ -856,6 +862,7 @@
 "Hide {name} from navigation" = "إخفاء {name} من التنقل";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "يخفي تفاصيل الحلقات المعرّضة للحرق في قوائم الحلقات حتى تشاهدها.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "يخفي البثوث التي لا توجد بها لغة مفضّلة مكتشفة. وتُحتسب الإصدارات متعددة الصوت كمطابقة.";
+"Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "يخفي الزر تلقائيًا بعد بضع ثوانٍ حتى لا يبقى زر خاطئ ظاهرًا طوال الحلقة.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "عالية";
@@ -952,6 +959,7 @@
 "JSON cannot be empty" = "JSON لا يمكن أن يكون فارغاً";
 "Japan's top science-fiction comic honor" = "أرفع جائزة يابانية لقصص الخيال العلمي المصوّرة";
 "Japanese" = "اليابانية";
+"Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "تجاوز المقدّمات تلقائيًا فور بدئها. الرجوع إلى مقدّمة يعيد تشغيلها دون تجاوزها مجددًا. يتبع زر التجاوز الإعداد أعلاه.";
 "Just added" = "أُضيف حديثًا";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";

@@ -187,11 +187,17 @@
 "Authorize Harbor on Trakt" = "Trakt पर Harbor को अधिकृत करें";
 "Auto" = "ऑटो";
 "Auto (match video)" = "ऑटो (वीडियो के अनुरूप)";
+"Auto-hide the Skip button after" = "इतने समय बाद स्किप बटन अपने-आप छिपाएँ";
 "Auto-play next episode" = "अगला एपिसोड अपने-आप चलाएँ";
+"Auto-skip credit outros" = "अंतिम क्रेडिट अपने-आप स्किप करें";
+"Auto-skip intros" = "इंट्रो अपने-आप स्किप करें";
+"Auto-skip recaps" = "पुनर्कथन अपने-आप स्किप करें";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "स्वचालित";
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
+"Automatically jump past recap segments." = "पुनर्कथन वाले हिस्सों को अपने-आप छोड़कर आगे जाएँ।";
+"Automatically skip ending credits and trigger the next episode countdown immediately." = "अंतिम क्रेडिट अपने-आप स्किप करें और अगले एपिसोड की उलटी गिनती तुरंत शुरू करें।";
 "Automatically sync with audio" = "Automatically sync with audio";
 "Automatically track what you are playing and save watch progress in real-time." = "चलाए जा रहे कॉन्टेंट को अपने-आप ट्रैक करें और देखने की प्रोग्रेस रीयल-टाइम में सेव करें।";
 "Automática" = "स्वचालित";
@@ -831,6 +837,7 @@
 "Hide {name} from navigation" = "नेविगेशन में {name} छिपाएँ";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "एपिसोड सूचियों में स्पॉइलर वाले एपिसोड विवरण तब तक छिपाता है, जब तक आप उन्हें देख न लें।";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "ऐसी स्ट्रीम छिपाता है जिनमें कोई पसंदीदा भाषा नहीं मिली। मल्टी-ऑडियो रिलीज़ को मेल माना जाता है।";
+"Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "कुछ सेकंड बाद बटन अपने आप छिपा देता है, ताकि गलत बटन पूरे एपिसोड के दौरान दिखाई न देता रहे।";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "उच्च";
@@ -927,6 +934,7 @@
 "JSON cannot be empty" = "JSON खाली नहीं हो सकता";
 "Japan's top science-fiction comic honor" = "जापान का सर्वोच्च साइंस-फिक्शन कॉमिक सम्मान";
 "Japanese" = "जापानी";
+"Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "ओपनिंग शुरू होते ही अपने-आप आगे बढ़ें। इंट्रो पर वापस जाने पर वह दोबारा चलेगा और फिर स्किप नहीं होगा। स्किप बटन ऊपर की सेटिंग का पालन करता है।";
 "Just added" = "हाल ही में जोड़ा गया";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";

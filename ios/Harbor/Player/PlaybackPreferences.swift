@@ -65,6 +65,12 @@ enum PicturePreset: String, CaseIterable, Identifiable {
 struct PlaybackOptions: Codable, Equatable {
     var autoHideControls = true
     var showSkipIntro = true
+    /// Desktop's auto-skip: jump past a detected segment the moment it starts (intros, recaps, credits).
+    var autoSkipIntro = false
+    var autoSkipRecap = false
+    var autoSkipOutro = false
+    /// Seconds after which the Skip button hides itself; 0 keeps it for the whole segment.
+    var skipButtonHideSeconds = 0.0
     var keepScreenAwake = true
     var autoPlayNextEpisode = true
     var nextEpisodeLeadSeconds = -1.0

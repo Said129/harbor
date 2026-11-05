@@ -85,6 +85,7 @@ struct PlayerView: View {
     @State private var skipSegments: [SkipSegment] = []
     @State private var chapterSkipSegments: [SkipSegment] = []
     @State private var dismissedSkips: Set<String> = []
+    @State private var autoSkipped: Set<String> = []
     @Bindable private var preferences = PlaybackPreferences.shared
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     @Environment(\.dismiss) private var dismiss
@@ -174,6 +175,15 @@ struct PlayerView: View {
         }
     }
 
+    /// Desktop's auto-skip: the moment a switched-on segment starts, jump to its end, once.
+    private func autoSkipIfWanted(at position: Double) {
+        guard active, !resumePending, state.loaded, !state.ended, !state.restarting, state.error == nil, scenePhase == .active,
+              preferences.options.autoSkipsAnySegment, library.map({ $0.owner == session.owner }) ?? true else { return }
+        let segments = SkipSegment.merge([skipSegments, chapterSkipSegments], duration: state.duration)
+        guard let segment = SkipSegment.autoSkipCandidate(at: position, in: segments, options: preferences.options, skipped: autoSkipped) else { return }
+        autoSkipped.insert(segment.id)
+        PlayerSkipAction.perform(segment, state: state)
+    }
     private var resumePending: Bool { session.promptForResume && !resumeAcknowledged }
     private var activeSkip: SkipSegment? {
         guard active, preferences.options.showSkipIntro, !resumePending, state.loaded, !state.ended, !state.restarting, state.error == nil,
@@ -262,9 +272,16 @@ struct PlayerView: View {
         content
         .onChange(of: state.chapters) { _, chapters in chapterSkipSegments = SkipSegment.chapters(chapters, duration: state.duration) }
         .onChange(of: state.duration) { _, duration in chapterSkipSegments = SkipSegment.chapters(state.chapters, duration: duration) }
-        .task(id: "skip:\(state.mediaGeneration):\(state.loaded && state.duration > 0):\(preferences.options.showSkipIntro)") {
-            skipSegments = []; dismissedSkips = []
-            guard preferences.options.showSkipIntro, state.loaded, state.duration > 0 else { return }
+        .onChange(of: state.position) { _, position in autoSkipIfWanted(at: position) }
+        // Desktop hides the Skip button on its own after a few seconds, so a wrong one does not stay all episode.
+        .task(id: activeSkip?.id ?? "") {
+            guard let id = activeSkip?.id, preferences.options.skipButtonHideSeconds > 0 else { return }
+            try? await Task.sleep(for: .seconds(preferences.options.skipButtonHideSeconds))
+            if !Task.isCancelled { dismissedSkips.insert(id) }
+        }
+        .task(id: "skip:\(state.mediaGeneration):\(state.loaded && state.duration > 0):\(preferences.options.showSkipIntro):\(preferences.options.autoSkipsAnySegment)") {
+            skipSegments = []; dismissedSkips = []; autoSkipped = []
+            guard preferences.options.showSkipIntro || preferences.options.autoSkipsAnySegment, state.loaded, state.duration > 0 else { return }
             let generation = state.mediaGeneration
             do {
                 let segments = try await SkipIntroService.shared.segments(target: session.target, media: media, duration: state.duration)

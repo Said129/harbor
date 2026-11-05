@@ -159,11 +159,17 @@
 "Authorize Harbor on Trakt" = "Authorize Harbor on Trakt";
 "Auto" = "Auto";
 "Auto (match video)" = "Auto (match video)";
+"Auto-hide the Skip button after" = "Auto-hide the Skip button after";
 "Auto-play next episode" = "Auto-play next episode";
+"Auto-skip credit outros" = "Auto-skip credit outros";
+"Auto-skip intros" = "Auto-skip intros";
+"Auto-skip recaps" = "Auto-skip recaps";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "Automatic";
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
+"Automatically jump past recap segments." = "Automatically jump past recap segments.";
+"Automatically skip ending credits and trigger the next episode countdown immediately." = "Automatically skip ending credits and trigger the next episode countdown immediately.";
 "Automatically sync with audio" = "Automatically sync with audio";
 "Automatically track what you are playing and save watch progress in real-time." = "Automatically track what you are playing and save watch progress in real-time.";
 "Automática" = "Automatic";
@@ -684,6 +690,7 @@
 "Hide {name} from navigation" = "Hide {name} from navigation";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Hides spoiler-prone episode details in episode lists until you have watched them.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Hides streams with no detected preferred language. Multi-audio releases count as a match.";
+"Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "High";
@@ -765,6 +772,7 @@
 "Izquierda a derecha" = "Left to right";
 "JSON URL" = "JSON URL";
 "JSON cannot be empty" = "JSON cannot be empty";
+"Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above.";
 "Just added" = "Just added";
 "Kawaii" = "Kawaii";
 "Keep original" = "Keep original";

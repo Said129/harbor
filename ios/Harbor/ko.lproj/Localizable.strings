@@ -187,11 +187,17 @@
 "Authorize Harbor on Trakt" = "Trakt에서 Harbor 승인";
 "Auto" = "자동";
 "Auto (match video)" = "자동(동영상에 맞춤)";
+"Auto-hide the Skip button after" = "건너뛰기 버튼 자동 숨김 시간";
 "Auto-play next episode" = "다음 에피소드 자동 재생";
+"Auto-skip credit outros" = "엔딩 크레딧 자동 건너뛰기";
+"Auto-skip intros" = "인트로 자동 건너뛰기";
+"Auto-skip recaps" = "지난 이야기 자동 건너뛰기";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "자동";
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
+"Automatically jump past recap segments." = "지난 이야기 구간을 자동으로 건너뜁니다.";
+"Automatically skip ending credits and trigger the next episode countdown immediately." = "엔딩 크레딧을 자동으로 건너뛰고 다음 에피소드 카운트다운을 즉시 시작합니다.";
 "Automatically sync with audio" = "Automatically sync with audio";
 "Automatically track what you are playing and save watch progress in real-time." = "재생 중인 콘텐츠를 자동으로 추적하고 시청 진행 상황을 실시간으로 저장합니다.";
 "Automática" = "자동";
@@ -831,6 +837,7 @@
 "Hide {name} from navigation" = "탐색에서 {name} 숨기기";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "시청하기 전까지 에피소드 목록에서 스포일러가 될 수 있는 세부 정보를 숨깁니다.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "선호 언어가 감지되지 않은 스트림을 숨깁니다. 다중 오디오 릴리스도 일치 항목으로 간주됩니다.";
+"Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "잘못된 버튼이 에피소드 내내 표시되지 않도록 몇 초 후 자동으로 숨깁니다.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "높음";
@@ -927,6 +934,7 @@
 "JSON cannot be empty" = "JSON은 비워 둘 수 없습니다.";
 "Japan's top science-fiction comic honor" = "일본 최고 권위의 SF 만화상";
 "Japanese" = "일본어";
+"Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "오프닝이 시작되면 즉시 자동으로 건너뜁니다. 오프닝으로 되돌리면 다시 건너뛰지 않고 재생합니다. 건너뛰기 버튼은 위 설정을 따릅니다.";
 "Just added" = "최근 추가순";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";

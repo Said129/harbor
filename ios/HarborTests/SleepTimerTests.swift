@@ -118,3 +118,30 @@ final class ABLoopTests: XCTestCase {
         XCTAssertFalse(loop.isSet); XCTAssertEqual(loop.summary(), "— → —")
     }
 }
+/// Desktop's auto-skip of intros, recaps and credits (`skip-pill-container.tsx`).
+final class AutoSkipTests: XCTestCase {
+    func testOnlySwitchedOnKindsSkipOncePerSegment() {
+        let intro = SkipSegment(kind: .intro, start: 60, end: 150, source: "aniskip")
+        let recap = SkipSegment(kind: .recap, start: 0, end: 30, source: "chapters")
+        let outro = SkipSegment(kind: .outro, start: 1_300, end: 1_400, source: "introdb")
+        let segments = [recap, intro, outro]
+        var options = PlaybackOptions()
+        func candidate(_ position: Double, skipped: Set<String> = []) -> SkipSegment? {
+            SkipSegment.autoSkipCandidate(at: position, in: segments, options: options, skipped: skipped)
+        }
+        XCTAssertNil(candidate(70), "Nothing is switched on by default")
+        options.autoSkipIntro = true
+        XCTAssertEqual(candidate(70), intro)
+        XCTAssertNil(candidate(70, skipped: [intro.id]), "Seeking back into an intro replays it without skipping again")
+        XCTAssertNil(candidate(149.5), "The last moments of a segment are not active")
+        XCTAssertNil(candidate(155)); XCTAssertNil(candidate(1_350), "Outros stay until switched on")
+        XCTAssertNil(candidate(5), "Recaps stay until switched on")
+        options.autoSkipRecap = true
+        XCTAssertEqual(candidate(5), recap)
+        XCTAssertNil(candidate(0), "Nothing is skipped before playback has a position")
+        options.autoSkipOutro = true
+        XCTAssertEqual(candidate(1_350), outro)
+        XCTAssertTrue(options.autoSkipsAnySegment)
+        XCTAssertFalse(PlaybackOptions().autoSkipsAnySegment)
+    }
+}
