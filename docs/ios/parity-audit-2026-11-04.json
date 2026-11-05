@@ -5,36 +5,36 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 117,
-      "partial": 199,
-      "missing": 100,
+      "ported": 119,
+      "partial": 203,
+      "missing": 94,
       "excluded": 22,
       "counted": 416,
-      "weighted_percent": 52.0,
-      "ported_only_percent": 28.1,
-      "ported_or_partial_percent": 76.0
+      "weighted_percent": 53.0,
+      "ported_only_percent": 28.6,
+      "ported_or_partial_percent": 77.4
     },
     "settings": {
       "total": 511,
-      "ported": 114,
+      "ported": 116,
       "partial": 21,
-      "missing": 290,
+      "missing": 288,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 29.3,
-      "ported_only_percent": 26.8,
-      "ported_or_partial_percent": 31.8
+      "weighted_percent": 29.8,
+      "ported_only_percent": 27.3,
+      "ported_or_partial_percent": 32.2
     },
     "all": {
       "total": 949,
-      "ported": 231,
-      "partial": 220,
-      "missing": 390,
+      "ported": 235,
+      "partial": 224,
+      "missing": 382,
       "excluded": 108,
       "counted": 841,
-      "weighted_percent": 40.5,
-      "ported_only_percent": 27.5,
-      "ported_or_partial_percent": 53.6
+      "weighted_percent": 41.3,
+      "ported_only_percent": 27.9,
+      "ported_or_partial_percent": 54.6
     }
   },
   "behavior_areas": [
@@ -140,11 +140,11 @@
     {
       "area": "Trackers",
       "range": "B274-B304",
-      "ported": 10,
-      "partial": 7,
-      "missing": 14,
+      "ported": 12,
+      "partial": 11,
+      "missing": 8,
       "excluded": 0,
-      "weighted_percent": 43.5
+      "weighted_percent": 56.5
     },
     {
       "area": "Metadata providers, calendar and lists",
@@ -2221,71 +2221,71 @@
       "index": 285,
       "id": "AniList login",
       "desktop_source": "src/lib/anilist",
-      "verdict": "M",
-      "note": "AniList and MyAnimeList accounts not ported"
+      "verdict": "D",
+      "note": "AniList PIN-code login and session (5 Nov, uncompiled)"
     },
     {
       "index": 286,
       "id": "AniList watched sync",
       "desktop_source": "src/lib/anilist",
-      "verdict": "M",
-      "note": "AniList and MyAnimeList accounts not ported"
+      "verdict": "P",
+      "note": "AniList progress is pushed while watching; the watched map from the lists is not read"
     },
     {
       "index": 287,
       "id": "AniList lists",
       "desktop_source": "src/lib/anilist",
       "verdict": "M",
-      "note": "AniList and MyAnimeList accounts not ported"
+      "note": "AniList lists and recommendations not ported"
     },
     {
       "index": 288,
       "id": "AniList recommendations",
       "desktop_source": "src/lib/anilist",
       "verdict": "M",
-      "note": "AniList and MyAnimeList accounts not ported"
+      "note": "AniList lists and recommendations not ported"
     },
     {
       "index": 289,
       "id": "AniList profile / avatar",
       "desktop_source": "src/lib/anilist",
-      "verdict": "M",
-      "note": "AniList and MyAnimeList accounts not ported"
+      "verdict": "P",
+      "note": "AniList name and avatar in Settings; not used as the Harbor avatar"
     },
     {
       "index": 290,
       "id": "AniList relations / threads",
       "desktop_source": "src/lib/anilist",
       "verdict": "M",
-      "note": "AniList and MyAnimeList accounts not ported"
+      "note": "AniList relations and threads not ported"
     },
     {
       "index": 291,
       "id": "MyAnimeList login",
       "desktop_source": "src/lib/mal",
-      "verdict": "M",
-      "note": "AniList and MyAnimeList accounts not ported"
+      "verdict": "D",
+      "note": "MyAnimeList login, token refresh and session (5 Nov, uncompiled)"
     },
     {
       "index": 292,
       "id": "MAL profile",
       "desktop_source": "src/lib/mal",
-      "verdict": "M",
-      "note": "AniList and MyAnimeList accounts not ported"
+      "verdict": "P",
+      "note": "MyAnimeList name shown; no avatar"
     },
     {
       "index": 293,
       "id": "MAL lists",
       "desktop_source": "src/lib/mal",
       "verdict": "M",
-      "note": "AniList and MyAnimeList accounts not ported"
+      "note": "MyAnimeList lists not ported"
     },
     {
       "index": 294,
       "id": "MAL watched sync",
       "desktop_source": "src/lib/mal",
-      "verdict": "M",
-      "note": "AniList and MyAnimeList accounts not ported"
+      "verdict": "P",
+      "note": "MyAnimeList progress is pushed while watching; the watched map is not read"
     },
     {
       "index": 295,
@@ -4239,57 +4239,57 @@
       "index": 135,
       "id": "anilistAutoSync",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "AniList/MAL sync, comments and tracker avatars"
+      "verdict": "D",
+      "note": "AniList and MyAnimeList sync of watch progress (5 Nov, uncompiled)"
     },
     {
       "index": 136,
       "id": "malAutoSync",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "AniList/MAL sync, comments and tracker avatars"
+      "verdict": "D",
+      "note": "AniList and MyAnimeList sync of watch progress (5 Nov, uncompiled)"
     },
     {
       "index": 137,
       "id": "anilistBlurComments",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "AniList/MAL sync, comments and tracker avatars"
+      "note": "tracker comments and avatars"
     },
     {
       "index": 138,
       "id": "showAnilistComments",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "AniList/MAL sync, comments and tracker avatars"
+      "note": "tracker comments and avatars"
     },
     {
       "index": 139,
       "id": "useAnilistAvatar",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "AniList/MAL sync, comments and tracker avatars"
+      "note": "tracker comments and avatars"
     },
     {
       "index": 140,
       "id": "useTraktAvatar",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "AniList/MAL sync, comments and tracker avatars"
+      "note": "tracker comments and avatars"
     },
     {
       "index": 141,
       "id": "useSimklAvatar",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "AniList/MAL sync, comments and tracker avatars"
+      "note": "tracker comments and avatars"
     },
     {
       "index": 142,
       "id": "useMalAvatar",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "AniList/MAL sync, comments and tracker avatars"
+      "note": "tracker comments and avatars"
     },
     {
       "index": 143,

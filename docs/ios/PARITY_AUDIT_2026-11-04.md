@@ -20,15 +20,16 @@ in `parity-audit-2026-11-04.json`, produced by
 
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
-| Behaviors |   438 |    117 |     199 |     100 |       22 |           52.0 % |      28.1 % |            76.0 % |
-| Settings  |   511 |    114 |      21 |     290 |       86 |           29.3 % |      26.8 % |            31.8 % |
-| All       |   949 |    231 |     220 |     390 |      108 |           40.5 % |      27.5 % |            53.6 % |
+| Behaviors |   438 |    119 |     203 |      94 |       22 |           53.0 % |      28.6 % |            77.4 % |
+| Settings  |   511 |    116 |      21 |     288 |       86 |           29.8 % |      27.3 % |            32.2 % |
+| All       |   949 |    235 |     224 |     382 |      108 |           41.3 % |      27.9 % |            54.6 % |
 
 Figures above are the 5 November refresh (first audit, 4 November: 38.3 % weighted,
 25.0 % ported only, 51.6 % ported or partial): the Rust trust/parser/types core
 was synced with Desktop and sleep timer, A-B loop, auto-skip, custom speeds,
 stream languages, pasted magnet/direct links, the "Still watching?" check-in,
-Desktop's default player hotkeys and the Watch on providers were ported. All of it is read
+Desktop's default player hotkeys, the Watch on providers and the AniList and
+MyAnimeList trackers (sign-in, token refresh, progress sync) were ported. All of it is read
 from code and uncompiled; the focused CI run that compiles it is described in
 the plan.
 
@@ -46,7 +47,7 @@ Behaviors by area (weighted, P = ½; refreshed 5 November where it changed):
 | Subtitle source FPS correction                                    |      0 |       1 |       0 |        0 |   50.0 % |
 | Stremio account, library and local files                          |      4 |       6 |       4 |        0 |   50.0 % |
 | Metadata providers, calendar and lists                            |      7 |       5 |       7 |        0 |   50.0 % |
-| Trackers                                                          |     10 |       7 |      14 |        0 |   43.5 % |
+| Trackers                                                          |     12 |      11 |       8 |        0 |   56.5 % |
 | Profiles, appearance, integrations and system                     |     10 |      12 |      15 |        5 |   43.2 % |
 | Live TV, VOD, DVR and multiview                                   |      0 |      12 |      10 |        0 |   27.3 % |
 | Search                                                            |      1 |       6 |       4 |        0 |   36.4 % |
@@ -58,7 +59,7 @@ Behaviors by area (weighted, P = ½; refreshed 5 November where it changed):
 - **Not a measure of effort.** Every item weighs the same: "Torrent
   statistics" counts as much as "Native libmpv playback", and a rating-badge
   toggle as much as the stream filter.
-- **Partial is a wide bucket.** 199 behaviors are Partial, many because an
+- **Partial is a wide bucket.** 203 behaviors are Partial, many because an
   earlier review said so. Manga, Sports, Music, VOD details, Home customization
   and Spooktober were
   not re-read item by item and sit at 50 %; some of them are probably close to

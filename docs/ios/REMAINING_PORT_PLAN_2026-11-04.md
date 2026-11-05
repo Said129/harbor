@@ -158,6 +158,14 @@ follows each commit; results are in `music-subtitle-94-work.md`):
 - Search recognises a pasted magnet, info hash or direct video URL and shows a
   Play card (torrent links play through the profile's debrid services).
 - Easynews+ card in Streaming sources > Services.
+- AniList and MyAnimeList trackers (Settings > Tracking): sign-in with the code each
+  site shows (Harbor's server trades it for tokens, kept in the Keychain per profile),
+  MyAnimeList token refresh, and Desktop's progress sync while an episode of a
+  `kitsu:`, `mal:` or `anilist:` entry plays (Current/Watching after 90 s, the watched
+  count written forward from 70 %, never lowering it, leaving Completed and re-watched
+  entries alone). Not ported: the lists, recommendations, relations and threads, the
+  watched maps read from the lists, tracker avatars and comments, the sync toast, and
+  anime reached through IMDb or TMDB ids (Desktop's `resolveAnimeIdentity`).
 
 Not ported, with the reason: the anime title gate does not receive the alias
 titles yet (Desktop fetches them from Kitsu), so it stays inactive; ad skip has no
