@@ -72,6 +72,8 @@ struct PlayerSettingsView: View {
     }
 
     @ViewBuilder private var playbackSettings: some View {
+        // The sleep timer belongs to a running video, as in Desktop's speed menu.
+        if state != nil { SleepTimerSettings() }
         PlayerPlayModeSettings(automatic: $sources.automatic)
         HarborSettingsSection("Fuentes y calidad") {
             Text("Estos límites de calidad se aplican a la reproducción automática; el filtro de seguridad, el orden de resultados y el diseño del selector están en Ajustes › Fuentes de streaming.").font(HarborTheme.font(12)).foregroundStyle(.secondary)

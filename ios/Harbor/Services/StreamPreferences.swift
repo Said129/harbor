@@ -36,7 +36,19 @@ final class StreamPreferences {
     var pickerRefreshNextToBack = UserDefaults.standard.object(forKey: "streams.pickerRefreshNextToBack") as? Bool ?? false {
         didSet { persist(pickerRefreshNextToBack, forKey: "streams.pickerRefreshNextToBack") }
     }
-    var sourceSettings: StreamSourceSettings { .init(timeoutSeconds: addonTimeoutSeconds, mode: sourceMode, priority: priority) }
+    /// Languages whose streams rank first ("Stream ranking"). Until chosen they follow the playback
+    /// audio languages, as Desktop's region cascade seeds `preferredLanguages` from the audio language.
+    var streamLanguages = UserDefaults.standard.string(forKey: "streams.languages") ?? PlaybackPreferences.shared.options.audioLanguage {
+        didSet { persist(streamLanguages, forKey: "streams.languages") }
+    }
+    var requireStreamLanguage = UserDefaults.standard.object(forKey: "streams.requireLanguage") as? Bool ?? false {
+        didSet { persist(requireStreamLanguage, forKey: "streams.requireLanguage") }
+    }
+    var sourceSettings: StreamSourceSettings {
+        .init(timeoutSeconds: addonTimeoutSeconds, mode: sourceMode, priority: priority,
+              languages: StreamSourceSettings.names(streamLanguages), audioLanguages: StreamSourceSettings.names(PlaybackPreferences.shared.options.audioLanguage),
+              requireLanguage: requireStreamLanguage)
+    }
     func configuration() -> StreamFilterConfiguration { .init(level: filterLevel, addonOrder: addonOrder, sources: sourceSettings) }
     private nonisolated static func storedPriority() -> [StreamPriorityEntry] {
         guard let text = UserDefaults.standard.string(forKey: "streams.priority"),
@@ -98,6 +110,8 @@ final class StreamPreferences {
         pickerShowFilename = UserDefaults.standard.object(forKey: "streams.pickerShowFilename") as? Bool ?? false
         fullStreamDescription = UserDefaults.standard.object(forKey: "streams.fullDescription") as? Bool ?? true
         pickerRefreshNextToBack = UserDefaults.standard.object(forKey: "streams.pickerRefreshNextToBack") as? Bool ?? false
+        streamLanguages = UserDefaults.standard.string(forKey: "streams.languages") ?? PlaybackPreferences.shared.options.audioLanguage
+        requireStreamLanguage = UserDefaults.standard.object(forKey: "streams.requireLanguage") as? Bool ?? false
     }
 }
 
@@ -114,7 +128,10 @@ struct StreamFilterConfiguration: Sendable {
                         "expectedSeason": season.map { .integer(Int64($0)) } ?? .null,
                         "expectedEpisode": episode.map { .integer(Int64($0)) } ?? .null,
                         "isAnime": .bool(AnimeService.isAnime(media.id)), "strict": .bool(strict), "disabled": .bool(level == "off"),
-                        "allowSeasonPacks": .bool(!strict), "allowSizeOutliers": .bool(!strict)])
+                        "allowSeasonPacks": .bool(!strict), "allowSizeOutliers": .bool(!strict),
+                        "preferredLanguages": .array(sources.languages.map(JSONValue.string)),
+                        "preferredAudioLangs": .array(sources.audioLanguages.map(JSONValue.string)),
+                        "requirePreferredLanguage": .bool(strict && sources.requireLanguage)])
     }
 }
 

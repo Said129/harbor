@@ -74,6 +74,7 @@ struct PlayerView: View {
     @State private var retrying = false
     @State private var pendingSourceChange = false
     @State private var autoNextCancelled = false
+    private let sleepTimer = SleepTimer.shared
     @State private var restartStartedAtMs: Double?
     @State private var adjacent: (previous: Episode?, next: Episode?) = (nil, nil)
     @State private var previousIdleTimer = false
@@ -339,6 +340,8 @@ struct PlayerView: View {
         .onChange(of: hardwareDecoding) { _, mode in state.controller?.set("hwdec", mode.mpvValue) }
         .onChange(of: state.ended) { _, ended in
             if ended { controlsVisible = true; saveCheckpoint(exiting: false); if scenePhase != .active { autoNextCancelled = true } }
+            // Desktop's sleep timer: an episode that finished by itself ends the night, or counts down.
+            if ended, state.endedNaturally, sleepTimer.episodeEnded() { autoNextCancelled = true }
             updateIdleTimer()
         }
         .onChange(of: scenePhase) { _, phase in if phase != .active { saveCheckpoint(exiting: false) }; restartHideTimer(); updateIdleTimer() }
@@ -348,8 +351,11 @@ struct PlayerView: View {
         .onAppear {
             updateAdjacentEpisodes()
             previousIdleTimer = UIApplication.shared.isIdleTimerDisabled; active = true; updateIdleTimer()
+            // A minutes timer pauses this video; "end of episode" set for an earlier video is dropped.
+            sleepTimer.videoChanged()
+            sleepTimer.onFire = { [state] in if !state.paused { state.controller?.togglePause() } }
         }
-        .onDisappear { active = false; UIApplication.shared.isIdleTimerDisabled = previousIdleTimer; saveCheckpoint(exiting: true) }
+        .onDisappear { active = false; UIApplication.shared.isIdleTimerDisabled = previousIdleTimer; saveCheckpoint(exiting: true); sleepTimer.onFire = nil }
     }
 
     private var canAutoHide: Bool {
@@ -502,7 +508,15 @@ struct PlayerView: View {
             Button { settingsPage = .audio } label: { PlayerGlyph(name: "audio").frame(width: 44, height: 44) }.accessibilityLabel("Audio").accessibilityIdentifier("player-audio")
             Button { settingsPage = .subtitles } label: { PlayerGlyph(name: "subtitle").frame(width: 44, height: 44) }.accessibilityLabel("Subtítulos").accessibilityIdentifier("player-subtitles")
             Button { settingsPage = .video } label: { PlayerGlyph(name: "aspect").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("Picture")).accessibilityIdentifier("player-picture")
-            Button { settingsPage = .playback } label: { VStack(spacing: 1) { PlayerGlyph(name: "speed", size: 19); Text("\(state.speed.formatted())×").font(.system(size: 9)) } }.accessibilityLabel("Velocidad").accessibilityValue("\(state.speed.formatted())×").frame(minWidth: 44, minHeight: 44)
+            Button { settingsPage = .playback } label: {
+                VStack(spacing: 1) {
+                    PlayerGlyph(name: "speed", size: 19)
+                    // Desktop shows the sleep countdown (or what it waits for) in place of the speed.
+                    TimelineView(.periodic(from: .now, by: 1)) { context in
+                        Text(sleepTimer.badge(at: context.date) ?? "\(state.speed.formatted())×").font(.system(size: 9)).monospacedDigit()
+                    }
+                }
+            }.accessibilityLabel("Velocidad").accessibilityValue(sleepTimer.badge() ?? "\(state.speed.formatted())×").frame(minWidth: 44, minHeight: 44)
             AudioRoutePicker(state: state)
             if state.pictureInPictureSupported {
                 Button { state.controller?.togglePictureInPicture(); restartHideTimer() } label: {

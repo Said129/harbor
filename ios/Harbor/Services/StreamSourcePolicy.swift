@@ -25,6 +25,22 @@ struct StreamSourceSettings: Equatable, Sendable {
     var timeoutSeconds = StreamSourceSettings.defaultTimeoutSeconds
     var mode = StreamMode.both
     var priority: [StreamPriorityEntry] = []
+    /// "Stream ranking" languages, as the English names the Rust parser reports ("Spanish").
+    var languages: [String] = []
+    /// The playback audio languages the trust stage also accepts (Desktop `preferredAudioLangs`).
+    var audioLanguages: [String] = []
+    /// Desktop "Only show streams in my languages"; it only applies under the Strict filter.
+    var requireLanguage = false
+
+    /// Stored language codes ("es-419,en") as parser names: the base language of each, once.
+    static func names(_ codes: String) -> [String] {
+        var seen = Set<String>()
+        return SubtitleLanguages.preferredCodes(codes).compactMap { code -> String? in
+            guard code != "original" else { return nil }
+            let name = SubtitleLanguages.preferenceName(String(code.split(separator: "-").first ?? Substring(code)))
+            return seen.insert(name).inserted ? name : nil
+        }
+    }
 
     /// Desktop clamps the wait to 8...120 seconds and treats anything else as 30.
     static func clamped(_ seconds: Int) -> Int { max(8, min(120, seconds)) }

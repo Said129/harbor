@@ -67,6 +67,11 @@ struct StreamSourcesSettingsView: View {
                            selected: sources.filterLevel == "off", identifier: "settings-stream-filter-off") { sources.filterLevel = "off" }
                 }
             }
+            HarborSettingsSection("Stream ranking", note: "Sources in these languages sort to the top of the picker.") {
+                HarborLanguagesPicker(value: $sources.streamLanguages, identifier: "settings-stream-languages")
+                HarborSettingsToggle("Only show streams in my languages", note: "Hides streams with no detected preferred language. Multi-audio releases count as a match.",
+                                     isOn: $sources.requireStreamLanguage).accessibilityIdentifier("settings-stream-require-language")
+            }
             HarborSettingsSection("Addon wait time", note: "Results appear as they arrive. Increase the wait time if an addon often needs a refresh before its results appear.") {
                 HarborSettingsChoice("Addon wait time", selection: $sources.addonTimeoutSeconds, choices: timeoutChoices, localizeChoices: false,
                                      identifier: "settings-addon-timeout")

@@ -168,10 +168,19 @@ struct HarborService: Sendable {
 
     /// Desktop's score options with the configured debrid providers, so a stream
     /// cached on one of them ranks as such.
-    private static func scoring(_ media: Media, addonOrder: Bool, active: [DebridProvider]) -> JSONValue {
+    static func scoring(_ media: Media, addonOrder: Bool, active: [DebridProvider], sources: StreamSourceSettings = .init()) -> JSONValue {
         guard case .object(var fields) = AddonOriginPolicy.score(media, addonOrder: addonOrder) else { return AddonOriginPolicy.score(media, addonOrder: addonOrder) }
         if !active.isEmpty { fields["activeDebrids"] = .array(active.map { JSONValue.string($0.rawValue) }) }
+        // The rest of Desktop's score options: language preference, release date and runtime.
+        if !sources.languages.isEmpty { fields["preferredLanguages"] = .array(sources.languages.map(JSONValue.string)) }
+        if let released = media.released, !released.isEmpty { fields["releaseDate"] = .string(released) }
+        if let runtime = Self.runtimeMinutes(media.runtime) { fields["runtimeMinutes"] = .integer(Int64(runtime)) }
         return .object(fields)
+    }
+    /// Desktop's `runtimeMinutes`: the first number of "148 min" or "2h 28min" style text.
+    static func runtimeMinutes(_ text: String?) -> Int? {
+        guard let text, let range = text.range(of: "[0-9]+", options: .regularExpression), let value = Int(text[range]), value > 0 else { return nil }
+        return value
     }
 
     /// One partial list while addons are still answering: the ranked offers so far and how
@@ -229,7 +238,7 @@ struct HarborService: Sendable {
         let expected = trustEpisode ?? (season: season, episode: episode)
         let trust = StreamFilterConfiguration(level: level, addonOrder: preferences.addonOrder, sources: preferences.sources).trust(media, season: expected.season, episode: expected.episode)
         let active = await debrid?.providers ?? []
-        let score = Self.scoring(media, addonOrder: preferences.addonOrder, active: active)
+        let score = Self.scoring(media, addonOrder: preferences.addonOrder, active: active, sources: preferences.sources)
         func ranked(_ raw: [JSONValue], _ verification: DebridVerification) async throws -> (offers: [StreamOffer], rejected: [String]) {
             let result: JSONValue = try await core.call("rank", ["streams": .array(StreamRequestPolicy.deduplicated(raw)), "trust": trust, "score": score, "debrid": verification.flags])
             return (Self.ordered(result, addons: addons, preferences: preferences), result["rejected"].array.compactMap { $0["reason"].string })
@@ -366,7 +375,7 @@ struct HarborService: Sendable {
         // Ranking again must keep the provider verification the first ranking applied.
         let verification = DebridVerification.from(offers: offers.map(\.raw))
         let active = await debrid?.providers ?? []
-        let result: JSONValue = try await core.call("rank", ["streams": .array(offers.map(\.raw)), "trust": trust, "score": Self.scoring(media, addonOrder: preferences.addonOrder, active: active), "debrid": verification.flags])
+        let result: JSONValue = try await core.call("rank", ["streams": .array(offers.map(\.raw)), "trust": trust, "score": Self.scoring(media, addonOrder: preferences.addonOrder, active: active, sources: preferences.sources), "debrid": verification.flags])
         return Self.ordered(result, addons: addons, preferences: preferences)
     }
 

@@ -173,6 +173,7 @@ targets:
       - path: HarborTests/DebridClientTests.swift
       - path: HarborTests/DebridStreamTests.swift
       - path: HarborTests/StreamSourcePolicyTests.swift
+      - path: HarborTests/SleepTimerTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift

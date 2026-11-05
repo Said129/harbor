@@ -207,6 +207,29 @@ import XCTest
         XCTAssertEqual(StreamRejections.label("dead-torrent-zero-seeders"), "dead torrents")
     }
 
+    func testStreamLanguagesBecomeParserNamesAndReachTrustAndScore() {
+        XCTAssertEqual(StreamSourceSettings.names("es-419,en,es,pt-br,original"), ["Spanish", "English", "Portuguese"],
+                       "Regional codes use their base language, once, and Original is not a language name")
+        XCTAssertEqual(StreamSourceSettings.names(""), [])
+        let settings = StreamSourceSettings(languages: ["Spanish"], audioLanguages: ["Spanish", "Japanese"], requireLanguage: true)
+        let media = Media(id: "tt0000001", type: "movie", name: "Owned Film", releaseInfo: "2020")
+        let strict = StreamFilterConfiguration(level: "strict", addonOrder: false, sources: settings).trust(media, season: nil, episode: nil)
+        XCTAssertEqual(strict["preferredLanguages"], .array([.string("Spanish")]))
+        XCTAssertEqual(strict["preferredAudioLangs"], .array([.string("Spanish"), .string("Japanese")]))
+        XCTAssertEqual(strict["requirePreferredLanguage"], .bool(true))
+        let balanced = StreamFilterConfiguration(level: "balanced", addonOrder: false, sources: settings).trust(media, season: nil, episode: nil)
+        XCTAssertEqual(balanced["requirePreferredLanguage"], .bool(false), "Only the Strict filter requires the language")
+
+        var film = media; film.released = "2020-05-01T00:00:00.000Z"; film.runtime = "148 min"
+        let score = HarborService.scoring(film, addonOrder: false, active: [.rd], sources: settings)
+        XCTAssertEqual(score["preferredLanguages"], .array([.string("Spanish")]))
+        XCTAssertEqual(score["releaseDate"], .string("2020-05-01T00:00:00.000Z"))
+        XCTAssertEqual(score["runtimeMinutes"], .integer(148))
+        XCTAssertEqual(HarborService.runtimeMinutes("2h 28min"), 2, "Desktop reads the first number")
+        XCTAssertNil(HarborService.runtimeMinutes("unknown"))
+        XCTAssertNil(HarborService.scoring(media, addonOrder: false, active: [])["preferredLanguages"])
+    }
+
     func testDebridVerificationMergeKeepsEachHashOnce() {
         var value = DebridVerification(cached: ["rd": ["a"]], library: [:])
         value.merge(DebridVerification(cached: ["rd": ["a", "b"], "tb": ["c"]], library: ["rd": ["d"]]))
