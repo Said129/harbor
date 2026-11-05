@@ -56,7 +56,10 @@ BEHAVIORS = expand("""
 25 P addon search aggregation
 26 M no people search
 27 P anime results section in SearchView
-28-32 M no Live TV, direct URL, magnet, guide or AI search
+28 M no Live TV search
+29 D direct video URL card (5 Nov, uncompiled)
+30 P magnet and info-hash card plays through debrid only (5 Nov, uncompiled)
+31-32 M no search guide or AI search
 33-35 P earlier review Partial
 36 D cast and crew in DetailMetadataView
 37 M no awards drill-down
@@ -82,19 +85,19 @@ BEHAVIORS = expand("""
 73-74 D StreamRequestPolicy dedup and multi-ID requests
 75 P earlier review Partial
 76-80 D shared Rust parser
-81 P iOS parser lacks Desktop's thousands-separator size parsing
+81 D size parsing with thousands separators synced (5 Nov, uncompiled)
 82-84 D shared Rust parser
 85 P anitomy enrichment of anime names not ported
-86 P iOS parser lacks Desktop's multi-episode spans (episode_end)
+86 D multi-episode spans synced (5 Nov, uncompiled)
 87 D shared Rust parser
-88 P iOS trust.rs is about 219 lines behind Desktop 0.9.132
-89 P known fake groups ported 4 Nov (uncompiled); stub and size checks still behind Desktop
-90 P anime title gate (expectedTitles) missing from iOS trust
-91 P fresh-cinema-fake-web check missing from iOS trust
+88 D trust.rs synced with Desktop 0.9.132 (5 Nov, uncompiled)
+89 D fake-group, stub and size checks synced with Desktop (5 Nov, uncompiled)
+90 P title gate synced, but the anime alias titles are not passed yet
+91 D cinema-window checks synced with Desktop (5 Nov, uncompiled)
 92-93 D shared Rust trust
-94 M preferred languages are not passed to trust
+94 D preferred languages reach trust (5 Nov, uncompiled)
 95-101 D shared Rust scoring (1-line drift)
-102 P preferred languages are not passed to scoring
+102 D preferred languages reach scoring (5 Nov, uncompiled)
 103 D streamResults pipeline (uncompiled)
 104 M corroborated early-leak rescue (TS side) not ported
 105 M anime stream enrichment not ported
@@ -132,7 +135,9 @@ BEHAVIORS = expand("""
 178 M no motion interpolation
 179-180 P earlier review Partial
 181-182 D next episode and auto advance
-183-185 M no A/B loop, sleep timer or stats overlay
+183 D A-B loop (5 Nov, uncompiled)
+184 D sleep timer (5 Nov, uncompiled)
+185 M no stats overlay
 186 P earlier review Partial
 187 M no player chrome customization
 188 P earlier review Partial
@@ -230,7 +235,7 @@ SETTINGS = expand("""
 7-10 M no OMDB/RPDB/IMDb fallback/Fanart keys
 11 P TVDB used without a user key setting
 12-17 D debrid keys, region
-18-19 M preferred stream languages not ported
+18-19 D stream ranking languages and require-language (5 Nov, uncompiled)
 20 D
 21 M
 22 D
@@ -251,7 +256,8 @@ SETTINGS = expand("""
 99-103 X iOS auto-lock replaces an idle screensaver
 104-105 D resume settings
 106-107 X desktop fullscreen windowing
-108-114 M advisory toasts, volume HUD, speed and sleep presets
+108-112 M advisory toasts and volume HUD
+113-114 D custom playback speeds and sleep minutes (5 Nov, uncompiled)
 115 D default speed
 116-118 M
 119 D
@@ -300,9 +306,11 @@ SETTINGS = expand("""
 253 D
 254-256 M
 257 X updates belong to the App Store/TestFlight
-258-261 M automatic skips
+258-260 D auto-skip intros, recaps and outros (5 Nov, uncompiled)
+261 M no ad skip source
 262 D skip button
-263-264 M
+263 D skip button auto-hide (5 Nov, uncompiled)
+264 M
 265 P forced subtitles option partial
 266-267 D
 268-271 M NFO and local library

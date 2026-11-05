@@ -20,17 +20,24 @@ in `parity-audit-2026-11-04.json`, produced by
 
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
-| Behaviors |   438 |    106 |     203 |     107 |       22 |           49.9 % |      25.5 % |            74.3 % |
-| Settings  |   511 |    104 |      21 |     300 |       86 |           26.9 % |      24.5 % |            29.4 % |
-| All       |   949 |    210 |     224 |     407 |      108 |           38.3 % |      25.0 % |            51.6 % |
+| Behaviors |   438 |    116 |     198 |     102 |       22 |           51.7 % |      27.9 % |            75.5 % |
+| Settings  |   511 |    112 |      21 |     292 |       86 |           28.8 % |      26.4 % |            31.3 % |
+| All       |   949 |    228 |     219 |     394 |      108 |           40.1 % |      27.1 % |            53.2 % |
 
-Behaviors by area (weighted, P = ½):
+Figures above are the 5 November refresh (first audit, 4 November: 38.3 % weighted,
+25.0 % ported only, 51.6 % ported or partial): the Rust trust/parser/types core
+was synced with Desktop and sleep timer, A-B loop, auto-skip, custom speeds,
+stream languages and pasted magnet/direct links were ported. All of it is read
+from code and uncompiled; the focused CI run that compiles it is described in
+the plan.
+
+Behaviors by area (weighted, P = ½; refreshed 5 November where it changed):
 
 | Area                                                              | Ported | Partial | Missing | Excluded | Weighted |
 | ----------------------------------------------------------------- | -----: | ------: | ------: | -------: | -------: |
 | Resolution and Debrid                                             |     18 |      10 |       0 |        1 |   82.1 % |
-| Stream pipeline, parser, trust and scoring                        |     24 |      11 |       4 |        0 |   75.6 % |
-| Player, subtitles, skip, trailers and downloads                   |     24 |      20 |      17 |        2 |   55.7 % |
+| Stream pipeline, parser, trust and scoring                        |     31 |       5 |       3 |        0 |   85.9 % |
+| Player, subtitles, skip, trailers and downloads                   |     26 |      20 |      15 |        2 |   59.0 % |
 | Addons and catalogs                                               |      4 |      14 |       2 |        0 |   55.0 % |
 | Details and episodes                                              |      3 |      10 |       2 |        0 |   53.3 % |
 | Home, Discover and rooms                                          |      2 |      18 |       1 |        0 |   52.4 % |
@@ -41,7 +48,7 @@ Behaviors by area (weighted, P = ½):
 | Trackers                                                          |     10 |       7 |      14 |        0 |   43.5 % |
 | Profiles, appearance, integrations and system                     |     10 |      11 |      16 |        5 |   41.9 % |
 | Live TV, VOD, DVR and multiview                                   |      0 |      12 |      10 |        0 |   27.3 % |
-| Search                                                            |      0 |       5 |       6 |        0 |   22.7 % |
+| Search                                                            |      1 |       6 |       4 |        0 |   36.4 % |
 | Casting and Watch Together                                        |      0 |       1 |      20 |        0 |    2.4 % |
 | Torrent engine and streaming server                               |      0 |       0 |       4 |       14 |    0.0 % |
 

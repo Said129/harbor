@@ -4,7 +4,7 @@ import XCTest
 /// Desktop's streaming-sources settings: source mode (`lib/streams/mode.ts`), stream priority
 /// (`addon-priority.ts`, `priority-partition.ts`), addon wait time and the Stremio picker layout.
 @MainActor final class StreamSourcePolicyTests: XCTestCase {
-    private let hash = "aabbccddeeff00112233445566778899aabbccdd"
+    private let infoHash = "aabbccddeeff00112233445566778899aabbccdd"
 
     private func offer(_ id: Int, _ fields: [String: JSONValue]) -> StreamOffer {
         var value: [String: JSONValue] = ["addonId": .string("owned"), "addonName": .string("Owned")]
@@ -18,10 +18,10 @@ import XCTest
     }
 
     func testPeerToPeerExcludesDebridMarkedAndProviderConfirmedTorrents() {
-        XCTAssertTrue(StreamSourcePolicy.isPeerToPeer(offer(0, ["infoHash": .string(hash), "title": .string("Show.S01E01.1080p")]).raw))
-        XCTAssertFalse(StreamSourcePolicy.isPeerToPeer(offer(0, ["infoHash": .string(hash), "name": .string("[RD+] Torrentio")]).raw))
-        XCTAssertFalse(StreamSourcePolicy.isPeerToPeer(offer(0, ["infoHash": .string(hash), "name": .string("Comet ⚡")]).raw))
-        XCTAssertFalse(StreamSourcePolicy.isPeerToPeer(offer(0, ["infoHash": .string(hash), "cached": .object(["rd": .bool(true)])]).raw))
+        XCTAssertTrue(StreamSourcePolicy.isPeerToPeer(offer(0, ["infoHash": .string(infoHash), "title": .string("Show.S01E01.1080p")]).raw))
+        XCTAssertFalse(StreamSourcePolicy.isPeerToPeer(offer(0, ["infoHash": .string(infoHash), "name": .string("[RD+] Torrentio")]).raw))
+        XCTAssertFalse(StreamSourcePolicy.isPeerToPeer(offer(0, ["infoHash": .string(infoHash), "name": .string("Comet ⚡")]).raw))
+        XCTAssertFalse(StreamSourcePolicy.isPeerToPeer(offer(0, ["infoHash": .string(infoHash), "cached": .object(["rd": .bool(true)])]).raw))
         XCTAssertFalse(StreamSourcePolicy.isPeerToPeer(offer(0, ["url": .string("https://cdn.example.org/a.mkv")]).raw), "A link is never P2P")
     }
 
@@ -33,12 +33,12 @@ import XCTest
         XCTAssertTrue(StreamSourcePolicy.hasDirectMediaEvidence(offer(0, ["url": .string("https://example.org/v"), "behaviorHints": .object(["proxyHeaders": .object(["request": .object(["Referer": .string("x")])])])]).raw))
         XCTAssertTrue(StreamSourcePolicy.hasDirectMediaEvidence(offer(0, ["url": .string("rtmp://live.example.org/a")]).raw))
         XCTAssertFalse(StreamSourcePolicy.hasDirectMediaEvidence(offer(0, ["url": .string("#")]).raw))
-        XCTAssertTrue(StreamSourcePolicy.hasDirectMediaEvidence(offer(0, ["infoHash": .string(hash), "name": .string("[TB+]")]).raw))
-        XCTAssertFalse(StreamSourcePolicy.hasDirectMediaEvidence(offer(0, ["infoHash": .string(hash)]).raw))
+        XCTAssertTrue(StreamSourcePolicy.hasDirectMediaEvidence(offer(0, ["infoHash": .string(infoHash), "name": .string("[TB+]")]).raw))
+        XCTAssertFalse(StreamSourcePolicy.hasDirectMediaEvidence(offer(0, ["infoHash": .string(infoHash)]).raw))
     }
 
     func testSourceModeNeverEmptiesThePicker() {
-        let peer = offer(0, ["infoHash": .string(hash)])
+        let peer = offer(0, ["infoHash": .string(infoHash)])
         let direct = offer(1, ["url": .string("https://cdn.example.org/a.mp4")])
         let watchPage = offer(2, ["url": .string("https://example.org/watch")])
         XCTAssertEqual(StreamSourcePolicy.filter([peer, direct, watchPage], mode: .both).map(\.id), [0, 1, 2])

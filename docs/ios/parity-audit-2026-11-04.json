@@ -5,36 +5,36 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 106,
-      "partial": 203,
-      "missing": 107,
+      "ported": 116,
+      "partial": 198,
+      "missing": 102,
       "excluded": 22,
       "counted": 416,
-      "weighted_percent": 49.9,
-      "ported_only_percent": 25.5,
-      "ported_or_partial_percent": 74.3
+      "weighted_percent": 51.7,
+      "ported_only_percent": 27.9,
+      "ported_or_partial_percent": 75.5
     },
     "settings": {
       "total": 511,
-      "ported": 104,
+      "ported": 112,
       "partial": 21,
-      "missing": 300,
+      "missing": 292,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 26.9,
-      "ported_only_percent": 24.5,
-      "ported_or_partial_percent": 29.4
+      "weighted_percent": 28.8,
+      "ported_only_percent": 26.4,
+      "ported_or_partial_percent": 31.3
     },
     "all": {
       "total": 949,
-      "ported": 210,
-      "partial": 224,
-      "missing": 407,
+      "ported": 228,
+      "partial": 219,
+      "missing": 394,
       "excluded": 108,
       "counted": 841,
-      "weighted_percent": 38.3,
-      "ported_only_percent": 25.0,
-      "ported_or_partial_percent": 51.6
+      "weighted_percent": 40.1,
+      "ported_only_percent": 27.1,
+      "ported_or_partial_percent": 53.2
     }
   },
   "behavior_areas": [
@@ -50,11 +50,11 @@
     {
       "area": "Search",
       "range": "B22-B32",
-      "ported": 0,
-      "partial": 5,
-      "missing": 6,
+      "ported": 1,
+      "partial": 6,
+      "missing": 4,
       "excluded": 0,
-      "weighted_percent": 22.7
+      "weighted_percent": 36.4
     },
     {
       "area": "Details and episodes",
@@ -77,11 +77,11 @@
     {
       "area": "Stream pipeline, parser, trust and scoring",
       "range": "B68-B106",
-      "ported": 24,
-      "partial": 11,
-      "missing": 4,
+      "ported": 31,
+      "partial": 5,
+      "missing": 3,
       "excluded": 0,
-      "weighted_percent": 75.6
+      "weighted_percent": 85.9
     },
     {
       "area": "Resolution and Debrid",
@@ -104,11 +104,11 @@
     {
       "area": "Player, subtitles, skip, trailers and downloads",
       "range": "B154-B216",
-      "ported": 24,
+      "ported": 26,
       "partial": 20,
-      "missing": 17,
+      "missing": 15,
       "excluded": 2,
-      "weighted_percent": 55.7
+      "weighted_percent": 59.0
     },
     {
       "area": "Live TV, VOD, DVR and multiview",
@@ -423,35 +423,35 @@
       "id": "Search Live TV",
       "desktop_source": "src/components/search",
       "verdict": "M",
-      "note": "no Live TV, direct URL, magnet, guide or AI search"
+      "note": "no Live TV search"
     },
     {
       "index": 29,
       "id": "Search direct video URLs",
       "desktop_source": "src/components/search",
-      "verdict": "M",
-      "note": "no Live TV, direct URL, magnet, guide or AI search"
+      "verdict": "D",
+      "note": "direct video URL card (5 Nov, uncompiled)"
     },
     {
       "index": 30,
       "id": "Search magnet links",
       "desktop_source": "src/components/search",
-      "verdict": "M",
-      "note": "no Live TV, direct URL, magnet, guide or AI search"
+      "verdict": "P",
+      "note": "magnet and info-hash card plays through debrid only (5 Nov, uncompiled)"
     },
     {
       "index": 31,
       "id": "Search guide",
       "desktop_source": "src/components/search",
       "verdict": "M",
-      "note": "no Live TV, direct URL, magnet, guide or AI search"
+      "note": "no search guide or AI search"
     },
     {
       "index": 32,
       "id": "AI search",
       "desktop_source": "src/components/search",
       "verdict": "M",
-      "note": "no Live TV, direct URL, magnet, guide or AI search"
+      "note": "no search guide or AI search"
     },
     {
       "index": 33,
@@ -793,8 +793,8 @@
       "index": 81,
       "id": "File size parsing",
       "desktop_source": "harbor-core/src/parser.rs",
-      "verdict": "P",
-      "note": "iOS parser lacks Desktop's thousands-separator size parsing"
+      "verdict": "D",
+      "note": "size parsing with thousands separators synced (5 Nov, uncompiled)"
     },
     {
       "index": 82,
@@ -828,8 +828,8 @@
       "index": 86,
       "id": "Season / episode parsing",
       "desktop_source": "harbor-core/src/parser.rs",
-      "verdict": "P",
-      "note": "iOS parser lacks Desktop's multi-episode spans (episode_end)"
+      "verdict": "D",
+      "note": "multi-episode spans synced (5 Nov, uncompiled)"
     },
     {
       "index": 87,
@@ -842,29 +842,29 @@
       "index": 88,
       "id": "Trust filtering",
       "desktop_source": "harbor-core/src/trust.rs",
-      "verdict": "P",
-      "note": "iOS trust.rs is about 219 lines behind Desktop 0.9.132"
+      "verdict": "D",
+      "note": "trust.rs synced with Desktop 0.9.132 (5 Nov, uncompiled)"
     },
     {
       "index": 89,
       "id": "Fake / stub rejection",
       "desktop_source": "harbor-core/src/trust.rs",
-      "verdict": "P",
-      "note": "known fake groups ported 4 Nov (uncompiled); stub and size checks still behind Desktop"
+      "verdict": "D",
+      "note": "fake-group, stub and size checks synced with Desktop (5 Nov, uncompiled)"
     },
     {
       "index": 90,
       "id": "Title / year mismatch rejection",
       "desktop_source": "harbor-core/src/trust.rs",
       "verdict": "P",
-      "note": "anime title gate (expectedTitles) missing from iOS trust"
+      "note": "title gate synced, but the anime alias titles are not passed yet"
     },
     {
       "index": 91,
       "id": "Cinema window heuristics",
       "desktop_source": "harbor-core/src/trust.rs",
-      "verdict": "P",
-      "note": "fresh-cinema-fake-web check missing from iOS trust"
+      "verdict": "D",
+      "note": "cinema-window checks synced with Desktop (5 Nov, uncompiled)"
     },
     {
       "index": 92,
@@ -884,8 +884,8 @@
       "index": 94,
       "id": "Preferred language requirement",
       "desktop_source": "harbor-core/src/trust.rs",
-      "verdict": "M",
-      "note": "preferred languages are not passed to trust"
+      "verdict": "D",
+      "note": "preferred languages reach trust (5 Nov, uncompiled)"
     },
     {
       "index": 95,
@@ -940,8 +940,8 @@
       "index": 102,
       "id": "Preferred language scoring",
       "desktop_source": "harbor-core/src/scoring.rs",
-      "verdict": "P",
-      "note": "preferred languages are not passed to scoring"
+      "verdict": "D",
+      "note": "preferred languages reach scoring (5 Nov, uncompiled)"
     },
     {
       "index": 103,
@@ -1507,22 +1507,22 @@
       "index": 183,
       "id": "A/B loop",
       "desktop_source": "src/components/player",
-      "verdict": "M",
-      "note": "no A/B loop, sleep timer or stats overlay"
+      "verdict": "D",
+      "note": "A-B loop (5 Nov, uncompiled)"
     },
     {
       "index": 184,
       "id": "Sleep timer",
       "desktop_source": "src/components/player",
-      "verdict": "M",
-      "note": "no A/B loop, sleep timer or stats overlay"
+      "verdict": "D",
+      "note": "sleep timer (5 Nov, uncompiled)"
     },
     {
       "index": 185,
       "id": "Stats overlay",
       "desktop_source": "src/components/player",
       "verdict": "M",
-      "note": "no A/B loop, sleep timer or stats overlay"
+      "note": "no stats overlay"
     },
     {
       "index": 186,
@@ -3420,15 +3420,15 @@
       "index": 18,
       "id": "preferredLanguages",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "preferred stream languages not ported"
+      "verdict": "D",
+      "note": "stream ranking languages and require-language (5 Nov, uncompiled)"
     },
     {
       "index": 19,
       "id": "requirePreferredLanguage",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "preferred stream languages not ported"
+      "verdict": "D",
+      "note": "stream ranking languages and require-language (5 Nov, uncompiled)"
     },
     {
       "index": 20,
@@ -4051,49 +4051,49 @@
       "id": "contentAdvisoryToast",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "advisory toasts, volume HUD, speed and sleep presets"
+      "note": "advisory toasts and volume HUD"
     },
     {
       "index": 109,
       "id": "contentAdvisoryTheme",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "advisory toasts, volume HUD, speed and sleep presets"
+      "note": "advisory toasts and volume HUD"
     },
     {
       "index": 110,
       "id": "contentAdvisoryShowIgnore",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "advisory toasts, volume HUD, speed and sleep presets"
+      "note": "advisory toasts and volume HUD"
     },
     {
       "index": 111,
       "id": "playerVolumeHud",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "advisory toasts, volume HUD, speed and sleep presets"
+      "note": "advisory toasts and volume HUD"
     },
     {
       "index": 112,
       "id": "playerVolumeHudPosition",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "advisory toasts, volume HUD, speed and sleep presets"
+      "note": "advisory toasts and volume HUD"
     },
     {
       "index": 113,
       "id": "customPlaybackSpeeds",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advisory toasts, volume HUD, speed and sleep presets"
+      "verdict": "D",
+      "note": "custom playback speeds and sleep minutes (5 Nov, uncompiled)"
     },
     {
       "index": 114,
       "id": "customSleepMinutes",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advisory toasts, volume HUD, speed and sleep presets"
+      "verdict": "D",
+      "note": "custom playback speeds and sleep minutes (5 Nov, uncompiled)"
     },
     {
       "index": 115,
@@ -5100,29 +5100,29 @@
       "index": 258,
       "id": "autoSkipIntro",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "automatic skips"
+      "verdict": "D",
+      "note": "auto-skip intros, recaps and outros (5 Nov, uncompiled)"
     },
     {
       "index": 259,
       "id": "autoSkipRecap",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "automatic skips"
+      "verdict": "D",
+      "note": "auto-skip intros, recaps and outros (5 Nov, uncompiled)"
     },
     {
       "index": 260,
       "id": "autoSkipOutro",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "automatic skips"
+      "verdict": "D",
+      "note": "auto-skip intros, recaps and outros (5 Nov, uncompiled)"
     },
     {
       "index": 261,
       "id": "autoSkipAd",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "automatic skips"
+      "note": "no ad skip source"
     },
     {
       "index": 262,
@@ -5135,8 +5135,8 @@
       "index": 263,
       "id": "skipButtonHideSec",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "skip button auto-hide (5 Nov, uncompiled)"
     },
     {
       "index": 264,
