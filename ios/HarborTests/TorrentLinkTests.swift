@@ -52,3 +52,41 @@ final class TorrentLinkTests: XCTestCase {
         XCTAssertEqual(SearchInput.classify(""), .query(""))
     }
 }
+
+/// Desktop's "Watch on" providers (`tmdb-watch.ts`).
+final class WatchProvidersTests: XCTestCase {
+    private func provider(_ id: Int, _ name: String, logo: String? = "/logo.png", priority: Int? = nil) -> JSONValue {
+        var fields: [String: JSONValue] = ["provider_id": .integer(Int64(id)), "provider_name": .string(name)]
+        if let logo { fields["logo_path"] = .string(logo) }
+        if let priority { fields["display_priority"] = .integer(Int64(priority)) }
+        return .object(fields)
+    }
+
+    func testRegionListsServicesByPriorityOnceEachWithALogo() {
+        let spain: JSONValue = .object(["link": .string("https://www.themoviedb.org/movie/1/watch?locale=ES"),
+            "flatrate": .array([provider(8, "Netflix", priority: 5), provider(9, "Prime", priority: 1), provider(8, "Netflix again", priority: 0)]),
+            "free": .array([provider(10, "No logo", logo: nil), provider(11, "Free TV")]),
+            "ads": .array([provider(12, "Ads", priority: 2)]),
+            "rent": .array([provider(13, "Rental")])])
+        let found = TMDBService.watchProviders(.object(["results": .object(["ES": spain, "US": .object([:])])]), region: "es")
+        XCTAssertEqual(found.map(\.name), ["Netflix again", "Prime", "Ads", "Free TV"], "By priority, once per service, skipping services without a logo and rentals")
+        XCTAssertEqual(found.first?.link, "https://www.themoviedb.org/movie/1/watch?locale=ES")
+        XCTAssertEqual(found.first?.logo, "https://image.tmdb.org/t/p/w154/logo.png")
+    }
+
+    func testMissingRegionFallsBackToTheUnitedStatesAndCapsAtEight() {
+        let many: [JSONValue] = (1...12).map { provider($0, "Service \($0)") }
+        let us: JSONValue = .object(["flatrate": .array(many)])
+        let found = TMDBService.watchProviders(.object(["results": .object(["US": us])]), region: "ZZ")
+        XCTAssertEqual(found.count, 8); XCTAssertEqual(found.first?.name, "Service 1", "Equal priorities keep TMDB's order")
+        XCTAssertEqual(found.first?.link, "", "A region without a link has none")
+        XCTAssertTrue(TMDBService.watchProviders(.object(["results": .object([:])]), region: "ES").isEmpty)
+        XCTAssertTrue(TMDBService.watchProviders(.null, region: "ES").isEmpty)
+    }
+
+    func testDetailsSavedBeforeProvidersExistedStillDecode() throws {
+        let data = Data(#"{"countries":[],"studios":[],"cast":[],"crew":[],"recommendations":[],"similar":[],"trailers":[],"backdrops":[],"posters":[],"logos":[],"collection":[]}"#.utf8)
+        let details = try JSONDecoder().decode(MediaDetails.self, from: data)
+        XCTAssertNil(details.watchProviders)
+    }
+}

@@ -126,3 +126,40 @@ off` (its clip is not a real release). The safety filter now receives
 4. Remaining settings sections and the other features above.
 5. Music gaps from `music-subtitle-94-work.md` and the physical subtitle defect
    run in parallel; they need Apple hardware or CI to validate.
+
+## 5 November (autonomous session until 05:30)
+
+The owner left the exclusion and porting decisions to this session. Decisions made:
+the idle screensaver and pointer hover exclusions were approved; no new exclusion
+was needed beyond the ones recorded above.
+
+CI facts. A macOS runner (macos-15-intel) was free from 02:26 UTC and has stayed
+free. The first focused runs established: the Rust workspace compiles and the 109
+`harbor-core` tests pass with the Debrid flags and the Desktop 0.9.132 trust,
+parser and types sync; the Swift app compiled with the Debrid, streaming sources,
+progressive results and filtered picker work, and the only errors were a type
+named like an existing one (`StreamPickerFilter`, renamed `StreamSafetyOverride`)
+and a test property named `hash` (clashes with `NSObject.hash`, now `infoHash`).
+A new dispatch cancels the run in progress (the workflow cancels in-flight runs of
+the same ref), so a run must finish before the next is dispatched.
+
+Ported this session (code written, compiled and tested by the focused run that
+follows each commit; results are in `music-subtitle-94-work.md`):
+
+- Rust core synced with Desktop 0.9.132: trust (fake groups, cinema-window and
+  episode-range checks, anime title gate, no rejection of uncached markers),
+  parser (multi-episode spans, sizes with thousands separators) and types.
+- Stream ranking languages and "Only show streams in my languages", with the
+  release date and runtime in the score options.
+- Sleep timer (minutes, end of episode, end of next episode, custom minutes),
+  A-B loop, custom playback speeds, auto-skip of intros/recaps/outros and the
+  Skip button auto-hide, the "Still watching?" check-in and Desktop's default
+  hotkeys for an iPad keyboard (not remappable).
+- Search recognises a pasted magnet, info hash or direct video URL and shows a
+  Play card (torrent links play through the profile's debrid services).
+- Easynews+ card in Streaming sources > Services.
+
+Not ported, with the reason: the anime title gate does not receive the alias
+titles yet (Desktop fetches them from Kitsu), so it stays inactive; ad skip has no
+iOS data source; the TV guide needs an XMLTV pipeline; remappable hotkeys need the
+hotkeys panel.

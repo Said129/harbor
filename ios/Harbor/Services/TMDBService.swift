@@ -186,9 +186,35 @@ struct TMDBService: Sendable {
         if let id = value["belongs_to_collection"]["id"].integer, let collection = try? await self.collection(id, configuration: configuration) {
             details.collectionName = collection.name; details.collection = collection.parts
         }
+        // Where the title streams in the user's region; the page works without it when the lookup fails.
+        if let found = try? await get("\(path)/watch/providers", configuration: configuration) {
+            let providers = Self.watchProviders(found, region: configuration.region)
+            details.watchProviders = providers.isEmpty ? nil : providers
+        }
         try Task.checkCancellation()
         result.details = details.includingTrailers(from: media.details)
         return result
+    }
+    /// Desktop's `tmdbWatchProviders`: subscription, free and ad-supported services of the region (the US when
+    /// the region has none), by TMDB's display priority, once each and with a logo, at most eight.
+    static func watchProviders(_ value: JSONValue, region: String) -> [WatchProvider] {
+        let results = value["results"]
+        let regional = results[region.uppercased()]
+        let entry = regional == .null ? results["US"] : regional
+        guard entry != .null else { return [] }
+        let link = entry["link"].string ?? ""
+        let listed = (entry["flatrate"].array + entry["free"].array + entry["ads"].array).enumerated().sorted { left, right in
+            let a = left.element["display_priority"].integer ?? 99, b = right.element["display_priority"].integer ?? 99
+            return a == b ? left.offset < right.offset : a < b
+        }.map(\.element)
+        var seen = Set<Int>(), output: [WatchProvider] = []
+        for provider in listed {
+            guard let id = provider["provider_id"].integer, let name = provider["provider_name"].string,
+                  let logo = provider["logo_path"].string, !logo.isEmpty, seen.insert(id).inserted else { continue }
+            output.append(WatchProvider(id: id, name: name, logo: "https://image.tmdb.org/t/p/w154" + logo, link: link))
+            if output.count >= 8 { break }
+        }
+        return output
     }
     func pluginReference(imdb: String, type: String, key: String) async throws -> HarborPluginTMDBReference? {
         guard imdb.range(of: "^tt[0-9]+$", options: .regularExpression) != nil, ["movie", "series"].contains(type) else { return nil }

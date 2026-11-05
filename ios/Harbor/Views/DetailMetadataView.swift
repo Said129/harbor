@@ -30,8 +30,31 @@ struct DetailMetadataView: View {
         if let votes = details?.votes, votes > 0 { fields.append(("Valoraciones en TMDB", votes.formatted())) }
         return fields
     }
+    /// Desktop's "Watch on": the services that carry the title in the user's region, opening TMDB's page for it.
+    private func watchOn(_ providers: [WatchProvider]) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(DesktopInterfaceText.value("Watch on")).font(HarborTheme.font(12, weight: .medium)).tracking(2.5).textCase(.uppercase)
+                .foregroundStyle(HarborTheme.ink.opacity(0.5)).accessibilityAddTraits(.isHeader)
+            StreamChipLayout(spacing: 10) {
+                ForEach(providers) { provider in
+                    Button {
+                        if let url = URL(string: provider.link), ["https", "http"].contains(url.scheme?.lowercased() ?? ""), url.host?.isEmpty == false { openURL(url) }
+                    } label: {
+                        HStack(spacing: 10) {
+                            Artwork(url: provider.logo, fit: .fit, maxPixels: 120, showsPlaceholder: false).frame(width: 28, height: 28)
+                                .clipShape(.rect(cornerRadius: 6)).accessibilityHidden(true)
+                            Text(provider.name).font(HarborTheme.font(13.5, weight: .semibold))
+                        }.padding(.leading, 8).padding(.trailing, 14).frame(minHeight: 44)
+                            .background(HarborTheme.ink.opacity(0.06), in: .rect(cornerRadius: 12))
+                    }.buttonStyle(.plain).disabled(provider.link.isEmpty).accessibilityLabel(provider.name)
+                        .accessibilityIdentifier("watch-on-" + String(provider.id))
+                }
+            }
+        }.accessibilityElement(children: .contain).accessibilityIdentifier("detail-watch-on")
+    }
     var body: some View {
         VStack(alignment: .leading, spacing: 30) {
+            if let providers = details?.watchProviders, !providers.isEmpty { watchOn(providers) }
             if !crewInformation.isEmpty { informationGrid(crewInformation) }
             if let credits = details?.cast, !credits.isEmpty {
                 VStack(alignment: .leading, spacing: 14) {

@@ -92,6 +92,15 @@ struct MediaAddonOrigin: Codable, Hashable, Sendable {
     }
 }
 
+/// A streaming service that carries a title in the user's region (Desktop's `WatchProvider`).
+struct WatchProvider: Codable, Hashable, Identifiable, Sendable {
+    let id: Int
+    let name: String
+    let logo: String
+    /// TMDB's page for the title in that region, which lists where to watch.
+    let link: String
+}
+
 struct MediaDetails: Codable, Hashable, Sendable {
     struct Credit: Codable, Hashable, Identifiable, Sendable {
         let id: Int
@@ -131,6 +140,8 @@ struct MediaDetails: Codable, Hashable, Sendable {
     var logos: [String] = []
     var collectionName: String?
     var collection: [Media] = []
+    /// Optional so details saved before this field existed still decode.
+    var watchProviders: [WatchProvider]?
     func includingTrailers(from fallback: MediaDetails?) -> MediaDetails {
         var result = self
         var seen = Set<String>()
