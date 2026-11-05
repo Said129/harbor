@@ -850,7 +850,7 @@
       "id": "Fake / stub rejection",
       "desktop_source": "harbor-core/src/trust.rs",
       "verdict": "P",
-      "note": "known fake groups and fake studios missing from iOS trust"
+      "note": "known fake groups ported 4 Nov (uncompiled); stub and size checks still behind Desktop"
     },
     {
       "index": 90,

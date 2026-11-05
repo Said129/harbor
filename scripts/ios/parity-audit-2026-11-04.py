@@ -88,7 +88,7 @@ BEHAVIORS = expand("""
 86 P iOS parser lacks Desktop's multi-episode spans (episode_end)
 87 D shared Rust parser
 88 P iOS trust.rs is about 219 lines behind Desktop 0.9.132
-89 P known fake groups and fake studios missing from iOS trust
+89 P known fake groups ported 4 Nov (uncompiled); stub and size checks still behind Desktop
 90 P anime title gate (expectedTitles) missing from iOS trust
 91 P fresh-cinema-fake-web check missing from iOS trust
 92-93 D shared Rust trust

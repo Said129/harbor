@@ -68,7 +68,11 @@ static SHORT_FORMAT_RX: Lazy<Regex> = Lazy::new(|| {
     .unwrap()
 });
 
-static UNCACHED_EMOJI_RX: Lazy<Regex> = Lazy::new(|| Regex::new(r"[⬇⏳⌛⏬🔽📥☁]").unwrap());
+// Desktop 0.9.132 no longer rejects uncached markers (⬇/⏳/☁): the picker shows those
+// results and the debrid queue handles them. Known fake groups are rejected instead.
+static FAKE_STUDIO_RX: Lazy<Regex> = Lazy::new(|| {
+    Regex::new(r"(?i)(?:^|[^a-z0-9])(?:dragon[\s._-]?money|telesynch)(?:$|[^a-z0-9])").unwrap()
+});
 
 static PLACEHOLDER_BANNER_RX: Lazy<Regex> = Lazy::new(|| {
     Regex::new(
@@ -223,8 +227,8 @@ fn check_one(
         return Some("trailer-or-extra".to_string());
     }
 
-    if UNCACHED_EMOJI_RX.is_match(&title_name_desc) {
-        return Some("addon-uncached-emoji".to_string());
+    if is_fake_group(s, &haystack) {
+        return Some("known-fake-group".to_string());
     }
 
     if let Some(sz) = s.size {
@@ -403,6 +407,18 @@ fn behavior_hint_filename(s: &ParsedStream) -> Option<&str> {
     bh.get("filename")
         .and_then(|v| v.as_str())
         .or_else(|| bh.get("fileName").and_then(|v| v.as_str()))
+}
+
+fn is_fake_group(s: &ParsedStream, haystack: &str) -> bool {
+    if let Some(g) = s.release_group_normalized.as_deref() {
+        if matches!(
+            g,
+            "LAMA" | "DJT" | "TELLY" | "RUDE" | "TELESYNC" | "TELESYNCH" | "DRAGONMONEY"
+        ) {
+            return true;
+        }
+    }
+    FAKE_STUDIO_RX.is_match(haystack)
 }
 
 fn is_short_format(s: &ParsedStream) -> bool {
@@ -899,12 +915,30 @@ mod tests {
     }
 
     #[test]
-    fn rejects_uncached_emoji() {
+    fn does_not_hard_reject_uncached_emoji() {
         let mut s = base_stream();
         s.stream.name = Some("⏳ Cloud only".into());
         let result = apply_trust(vec![s], &opts_strict());
+        assert!(result.rejected.iter().all(|r| r.reason != "addon-uncached-emoji"));
+    }
+
+    #[test]
+    fn rejects_known_fake_group_by_release_group() {
+        let mut s = base_stream();
+        s.release_group_normalized = Some("LAMA".into());
+        let result = apply_trust(vec![s], &opts_strict());
         assert_eq!(result.rejected.len(), 1);
-        assert_eq!(result.rejected[0].reason, "addon-uncached-emoji");
+        assert_eq!(result.rejected[0].reason, "known-fake-group");
+    }
+
+    #[test]
+    fn rejects_known_fake_group_ad_studio_haystack() {
+        let mut s = base_stream();
+        s.stream.behavior_hints =
+            Some(json!({ "filename": "The.Odyssey.2025.1080p.WEB-DL.Dragon.Money.mkv" }));
+        let result = apply_trust(vec![s], &opts_strict());
+        assert_eq!(result.rejected.len(), 1);
+        assert_eq!(result.rejected[0].reason, "known-fake-group");
     }
 
     #[test]
