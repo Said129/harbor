@@ -1301,3 +1301,10 @@ lock and the five player cases that share PlayerView passed (check-in, hotkeys,
 auto-skip). The lock itself has no unit case: it is a view-state feature to be
 checked on a device (lock button in the top bar, touches ignored, Unlock controls
 shown for 2.2 s after a touch).
+
+Focused run 42118442254 (commit 66337ffa): all 11 cases passed and the app compiled
+with the audio filter chain (5 cases: normalizer, each profile, stacking and the
+limiter, nothing sent while off, saved options without the new keys), the playback
+stats card (4 cases: mpv string parsing, bitrate units, row order and translation)
+and the new `i` hotkey (2 existing shortcut cases). Run 42132367263 (commit
+00f91191) executes the five TraktCommentsTests cases.
