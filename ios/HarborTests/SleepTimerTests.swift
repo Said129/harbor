@@ -188,3 +188,22 @@ final class StillWatchingTests: XCTestCase {
         XCTAssertFalse(two.gate(enabled: true, threshold: 2)); XCTAssertTrue(two.gate(enabled: true, threshold: 2))
     }
 }
+/// The iPad keyboard shortcuts that follow Desktop's default hotkeys (`lib/hotkeys.ts`).
+final class PlayerShortcutTests: XCTestCase {
+    func testSeekShortcutsMoveByDesktopsSteps() {
+        XCTAssertEqual(PlayerShortcut.seekBack.seekSeconds(back: 15, forward: 20), -15)
+        XCTAssertEqual(PlayerShortcut.seekForward.seekSeconds(back: 15, forward: 20), 20)
+        XCTAssertEqual(PlayerShortcut.seekBackShort.seekSeconds(back: 15, forward: 20), -5)
+        XCTAssertEqual(PlayerShortcut.seekForwardShort.seekSeconds(back: 15, forward: 20), 5)
+        XCTAssertEqual(PlayerShortcut.seekBack30.seekSeconds(back: 5, forward: 5), -30)
+        XCTAssertEqual(PlayerShortcut.seekForward30.seekSeconds(back: 5, forward: 5), 30)
+        XCTAssertNil(PlayerShortcut.playPause.seekSeconds(back: 10, forward: 10)); XCTAssertNil(PlayerShortcut.mute.seekSeconds(back: 10, forward: 10))
+    }
+
+    func testNoTwoShortcutsShareAKeyChord() {
+        let chords = PlayerShortcut.allCases.map { "\($0.key.character)|\($0.modifiers.rawValue)" }
+        XCTAssertEqual(Set(chords).count, chords.count, "Every shortcut has its own key and modifiers")
+        XCTAssertEqual(PlayerShortcut.seekBackShort.modifiers, .shift); XCTAssertEqual(PlayerShortcut.seekBack.modifiers, [])
+        XCTAssertEqual(PlayerShortcut.playPause.key, .space); XCTAssertEqual(PlayerShortcut.close.key, .escape)
+    }
+}

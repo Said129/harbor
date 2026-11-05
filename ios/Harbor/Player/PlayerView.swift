@@ -173,6 +173,12 @@ struct PlayerView: View {
                     .padding(.horizontal, 16).padding(.bottom, (controlsVisible ? (verticalSizeClass == .compact ? 115.0 : 160) : 24) + (showUpNext && verticalSizeClass != .compact ? 140 : 0))
             }
             SubtitleSyncFeedback(state: state)
+            // Desktop's default hotkeys for an iPad keyboard: Space, arrows, comma and period, M, Home, End, Esc.
+            PlayerKeyboardShortcuts(state: state, enabled: active && !resumePending && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && stillWatchingEpisode == nil,
+                                    seekBack: preferences.options.seekBackSeconds, seekForward: preferences.options.seekForwardSeconds,
+                                    jump: { jump($0); restartHideTimer() },
+                                    togglePause: { if state.ended { state.controller?.replay() } else { state.controller?.togglePause() }; restartHideTimer() },
+                                    close: { dismiss() })
             if let episode = stillWatchingEpisode {
                 StillWatchingPrompt(show: title, nextLabel: "\(DesktopInterfaceText.value("Episode")) \(episode.listedEpisode ?? 0)", keepWatching: {
                     StillWatching.shared.reset(); stillWatchingEpisode = nil; requestEpisode(episode)
