@@ -1221,3 +1221,15 @@ sources + Show everything anyway, no debrid configured + Set up a debrid) and
 the layout defaults to Stremio. Condensed-picker UI tests pin the layout with
 a launch argument; the synthetic caption flow also turns the filter off.
 Uncompiled; two more StreamSourcePolicyTests cases (14 in that class).
+
+5 November, macOS runner available again (autonomous session). The first
+focused dispatch (run 41955266363, macos-15-intel) acquired a runner in
+seconds. Findings so far: the Rust workspace compiles and `harbor-core`'s tests
+pass (97 before the Desktop 0.9.132 sync of trust, parser and types, 109 after
+it, including Desktop's own tests); the Swift app compiled with the Debrid,
+streaming sources, progressive results and filtered picker; the only errors were
+a duplicate type name (`StreamPickerFilter`) and a test property named `hash`
+that clashes with `NSObject.hash`, both fixed. Dispatching a new run cancels the
+one in progress, so each run must finish before the next. The pending Music and
+subtitle cases from this log are part of the same selection and are reported with
+the run that finishes them.

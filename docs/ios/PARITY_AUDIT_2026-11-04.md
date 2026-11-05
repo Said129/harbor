@@ -20,14 +20,15 @@ in `parity-audit-2026-11-04.json`, produced by
 
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
-| Behaviors |   438 |    116 |     198 |     102 |       22 |           51.7 % |      27.9 % |            75.5 % |
-| Settings  |   511 |    112 |      21 |     292 |       86 |           28.8 % |      26.4 % |            31.3 % |
-| All       |   949 |    228 |     219 |     394 |      108 |           40.1 % |      27.1 % |            53.2 % |
+| Behaviors |   438 |    117 |     199 |     100 |       22 |           52.0 % |      28.1 % |            76.0 % |
+| Settings  |   511 |    114 |      21 |     290 |       86 |           29.3 % |      26.8 % |            31.8 % |
+| All       |   949 |    231 |     220 |     390 |      108 |           40.5 % |      27.5 % |            53.6 % |
 
 Figures above are the 5 November refresh (first audit, 4 November: 38.3 % weighted,
 25.0 % ported only, 51.6 % ported or partial): the Rust trust/parser/types core
 was synced with Desktop and sleep timer, A-B loop, auto-skip, custom speeds,
-stream languages and pasted magnet/direct links were ported. All of it is read
+stream languages, pasted magnet/direct links, the "Still watching?" check-in,
+Desktop's default player hotkeys and the Watch on providers were ported. All of it is read
 from code and uncompiled; the focused CI run that compiles it is described in
 the plan.
 
@@ -39,14 +40,14 @@ Behaviors by area (weighted, P = ½; refreshed 5 November where it changed):
 | Stream pipeline, parser, trust and scoring                        |     31 |       5 |       3 |        0 |   85.9 % |
 | Player, subtitles, skip, trailers and downloads                   |     26 |      20 |      15 |        2 |   59.0 % |
 | Addons and catalogs                                               |      4 |      14 |       2 |        0 |   55.0 % |
-| Details and episodes                                              |      3 |      10 |       2 |        0 |   53.3 % |
+| Details and episodes                                              |      4 |      10 |       1 |        0 |   60.0 % |
 | Home, Discover and rooms                                          |      2 |      18 |       1 |        0 |   52.4 % |
 | Manga, Sports, Music, VOD details, Home customization, Spooktober |      0 |      72 |       0 |        0 |   50.0 % |
 | Subtitle source FPS correction                                    |      0 |       1 |       0 |        0 |   50.0 % |
 | Stremio account, library and local files                          |      4 |       6 |       4 |        0 |   50.0 % |
 | Metadata providers, calendar and lists                            |      7 |       5 |       7 |        0 |   50.0 % |
 | Trackers                                                          |     10 |       7 |      14 |        0 |   43.5 % |
-| Profiles, appearance, integrations and system                     |     10 |      11 |      16 |        5 |   41.9 % |
+| Profiles, appearance, integrations and system                     |     10 |      12 |      15 |        5 |   43.2 % |
 | Live TV, VOD, DVR and multiview                                   |      0 |      12 |      10 |        0 |   27.3 % |
 | Search                                                            |      1 |       6 |       4 |        0 |   36.4 % |
 | Casting and Watch Together                                        |      0 |       1 |      20 |        0 |    2.4 % |
@@ -57,7 +58,7 @@ Behaviors by area (weighted, P = ½; refreshed 5 November where it changed):
 - **Not a measure of effort.** Every item weighs the same: "Torrent
   statistics" counts as much as "Native libmpv playback", and a rating-badge
   toggle as much as the stream filter.
-- **Partial is a wide bucket.** 203 behaviors are Partial, many because an
+- **Partial is a wide bucket.** 199 behaviors are Partial, many because an
   earlier review said so. Manga, Sports, Music, VOD details, Home customization
   and Spooktober were
   not re-read item by item and sit at 50 %; some of them are probably close to

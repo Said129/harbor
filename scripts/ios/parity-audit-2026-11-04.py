@@ -63,7 +63,7 @@ BEHAVIORS = expand("""
 33-35 P earlier review Partial
 36 D cast and crew in DetailMetadataView
 37 M no awards drill-down
-38 M no region Watch On links
+38 D Watch on row with TMDB providers (5 Nov, uncompiled)
 39 P related titles (loadRelated)
 40-43 P earlier review Partial
 44-45 P AnimeEpisodePool and episode projection
@@ -192,7 +192,7 @@ BEHAVIORS = expand("""
 302-304 M Letterboxd not ported
 305 P earlier review Partial
 306-308 D TMDBService, MovieCollection, IMDb resolution
-309 P TMDB images and trailers; no watch providers
+309 P TMDB images, trailers and watch providers
 310-313 M no OMDB, RPDB, Fanart or MDBList
 314 M Wikidata used for music/books only
 315 D TVDBService
@@ -210,7 +210,7 @@ BEHAVIORS = expand("""
 332-334 P earlier review Partial
 335-336 P poster appearance and navigation layout
 337-341 M no Theme Studio, code editor, import/export, library, custom background
-342 M no hotkeys (iPad keyboard)
+342 P Desktop's default hotkeys on an iPad keyboard (5 Nov, uncompiled); no remapping
 343 P reading fonts only
 344-345 M no webhooks or content notifications
 346 X Discord Rich Presence needs the Discord desktop client
@@ -344,7 +344,7 @@ SETTINGS = expand("""
 349 P route picker instead of a device setting
 350 M
 351-352 D
-353-354 M
+353-354 D still-watching check-in and its threshold (5 Nov, uncompiled)
 355 M
 356-359 M
 360 X native iOS scrolling
@@ -452,5 +452,5 @@ for start, end, title in BEHAVIOR_AREAS:
                   "excluded": counts["X"], "weighted_percent": round(weighted, 1)})
 out = {"schema": 1, "date": "2026-11-04", "method": __doc__.strip(), "summary": summary, "behavior_areas": areas,
        "behaviors": behaviors, "settings": settings}
-(ROOT / "docs/ios/parity-audit-2026-11-04.json").write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", "utf-8", newline="\n")
+(ROOT / "docs/ios/parity-audit-2026-11-04.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", "utf-8", newline="\n")
 print(json.dumps({"summary": summary, "areas": areas}, indent=1))

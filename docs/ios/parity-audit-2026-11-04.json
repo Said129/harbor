@@ -5,36 +5,36 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 116,
-      "partial": 198,
-      "missing": 102,
+      "ported": 117,
+      "partial": 199,
+      "missing": 100,
       "excluded": 22,
       "counted": 416,
-      "weighted_percent": 51.7,
-      "ported_only_percent": 27.9,
-      "ported_or_partial_percent": 75.5
+      "weighted_percent": 52.0,
+      "ported_only_percent": 28.1,
+      "ported_or_partial_percent": 76.0
     },
     "settings": {
       "total": 511,
-      "ported": 112,
+      "ported": 114,
       "partial": 21,
-      "missing": 292,
+      "missing": 290,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 28.8,
-      "ported_only_percent": 26.4,
-      "ported_or_partial_percent": 31.3
+      "weighted_percent": 29.3,
+      "ported_only_percent": 26.8,
+      "ported_or_partial_percent": 31.8
     },
     "all": {
       "total": 949,
-      "ported": 228,
-      "partial": 219,
-      "missing": 394,
+      "ported": 231,
+      "partial": 220,
+      "missing": 390,
       "excluded": 108,
       "counted": 841,
-      "weighted_percent": 40.1,
-      "ported_only_percent": 27.1,
-      "ported_or_partial_percent": 53.2
+      "weighted_percent": 40.5,
+      "ported_only_percent": 27.5,
+      "ported_or_partial_percent": 53.6
     }
   },
   "behavior_areas": [
@@ -59,11 +59,11 @@
     {
       "area": "Details and episodes",
       "range": "B33-B47",
-      "ported": 3,
+      "ported": 4,
       "partial": 10,
-      "missing": 2,
+      "missing": 1,
       "excluded": 0,
-      "weighted_percent": 53.3
+      "weighted_percent": 60.0
     },
     {
       "area": "Addons and catalogs",
@@ -159,10 +159,10 @@
       "area": "Profiles, appearance, integrations and system",
       "range": "B324-B365",
       "ported": 10,
-      "partial": 11,
-      "missing": 16,
+      "partial": 12,
+      "missing": 15,
       "excluded": 5,
-      "weighted_percent": 41.9
+      "weighted_percent": 43.2
     },
     {
       "area": "Manga",
@@ -492,8 +492,8 @@
       "index": 38,
       "id": "Region Watch On links",
       "desktop_source": "src/views/detail.tsx",
-      "verdict": "M",
-      "note": "no region Watch On links"
+      "verdict": "D",
+      "note": "Watch on row with TMDB providers (5 Nov, uncompiled)"
     },
     {
       "index": 39,
@@ -2390,7 +2390,7 @@
       "id": "TMDB images / trailers / providers",
       "desktop_source": "src/lib/providers",
       "verdict": "P",
-      "note": "TMDB images and trailers; no watch providers"
+      "note": "TMDB images, trailers and watch providers"
     },
     {
       "index": 310,
@@ -2620,8 +2620,8 @@
       "index": 342,
       "id": "Remappable hotkeys",
       "desktop_source": "src/lib/hotkeys.ts",
-      "verdict": "M",
-      "note": "no hotkeys (iPad keyboard)"
+      "verdict": "P",
+      "note": "Desktop's default hotkeys on an iPad keyboard (5 Nov, uncompiled); no remapping"
     },
     {
       "index": 343,
@@ -5765,15 +5765,15 @@
       "index": 353,
       "id": "stillWatching",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "still-watching check-in and its threshold (5 Nov, uncompiled)"
     },
     {
       "index": 354,
       "id": "stillWatchingAfter",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "still-watching check-in and its threshold (5 Nov, uncompiled)"
     },
     {
       "index": 355,
