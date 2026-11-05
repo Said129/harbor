@@ -269,7 +269,9 @@ SETTINGS = expand("""
 115 D default speed
 116-118 M
 119 D
-120-124 M
+120-122 M
+123 D episode sort menu: oldest or newest first (5 Nov, uncompiled)
+124 M
 125 D
 126-128 M
 129 P episode order via TVDB season type

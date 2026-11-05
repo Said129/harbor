@@ -16,25 +16,25 @@
     },
     "settings": {
       "total": 511,
-      "ported": 117,
+      "ported": 118,
       "partial": 21,
-      "missing": 287,
+      "missing": 286,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 30.0,
-      "ported_only_percent": 27.5,
-      "ported_or_partial_percent": 32.5
+      "weighted_percent": 30.2,
+      "ported_only_percent": 27.8,
+      "ported_or_partial_percent": 32.7
     },
     "all": {
       "total": 949,
-      "ported": 236,
+      "ported": 237,
       "partial": 224,
-      "missing": 381,
+      "missing": 380,
       "excluded": 108,
       "counted": 841,
-      "weighted_percent": 41.4,
-      "ported_only_percent": 28.1,
-      "ported_or_partial_percent": 54.7
+      "weighted_percent": 41.5,
+      "ported_only_percent": 28.2,
+      "ported_or_partial_percent": 54.8
     }
   },
   "behavior_areas": [
@@ -4155,8 +4155,8 @@
       "index": 123,
       "id": "episodeSort",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "episode sort menu: oldest or newest first (5 Nov, uncompiled)"
     },
     {
       "index": 124,

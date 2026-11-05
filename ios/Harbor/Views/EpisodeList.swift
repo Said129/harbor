@@ -30,7 +30,25 @@ struct EpisodeList: View {
     private var sections: [EpisodeOrderSection] { ordering?.sections ?? [] }
     private var currentSection: EpisodeOrderSection? { sections.first { $0.id == orderSection } ?? sections.first }
     private var visible: [Episode] { currentSection?.episodes ?? videos.filter { ($0.listedSeason ?? season) == season } }
-    private var visibleRows: [EpisodeOrderRow] { currentSection?.rows ?? visible.map(EpisodeOrderRow.episode) }
+    private var visibleRows: [EpisodeOrderRow] {
+        let rows = currentSection?.rows ?? visible.map(EpisodeOrderRow.episode)
+        return InterfacePreferences.shared.episodeSort == "newest" ? rows.reversed() : rows
+    }
+    /// Desktop's episode sort menu (`episode-grid-controls.tsx`).
+    private var sortMenu: some View {
+        let current = InterfacePreferences.shared.episodeSort
+        return Menu {
+            ForEach(["oldest", "newest"], id: \.self) { value in
+                Button { InterfacePreferences.shared.episodeSort = value } label: {
+                    if current == value { Label(DesktopInterfaceText.value(value == "newest" ? "Newest" : "Oldest"), systemImage: "checkmark") }
+                    else { Text(DesktopInterfaceText.value(value == "newest" ? "Newest" : "Oldest")) }
+                }
+            }
+        } label: {
+            Image(systemName: "arrow.up.arrow.down").frame(width: 40, height: 40).background(.white.opacity(0.06), in: .circle)
+        }
+        .accessibilityLabel(DesktopInterfaceText.value(current == "newest" ? "Newest" : "Oldest")).accessibilityIdentifier("episode-sort")
+    }
     private var episodeSummary: String {
         let count = ordering == nil ? seasons.filter { $0 > 0 }.count : sections.filter { !$0.extra }.count
         return "\(videos.filter { ($0.listedSeason ?? 1) > 0 }.count) episodios · \(count) \(count == 1 ? "temporada" : "temporadas")"
@@ -48,6 +66,7 @@ struct EpisodeList: View {
                 Text("Episodios").font(.title2.bold()).accessibilityIdentifier("detail-episode-summary")
                     .accessibilityValue(episodeSummary)
                 Spacer()
+                sortMenu
                 if let ordering, richOrderPanel {
                     TVDBOrderPanel(sections: sections, options: orderOptions, activeKind: ordering.kind,
                         selection: Binding(get: { currentSection?.id ?? "" }, set: { orderSection = $0 }), selectOrder: selectOrder, loading: orderLoading)

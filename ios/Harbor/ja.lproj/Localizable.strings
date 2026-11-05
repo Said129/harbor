@@ -1180,6 +1180,7 @@
 "New list" = "新しいリスト";
 "New profile" = "新しいプロフィール";
 "New voyage" = "新しい航海";
+"Newest" = "新しい順";
 "Next" = "次へ";
 "Next chapter" = "次の話";
 "Next day" = "Next day";
@@ -1291,6 +1292,7 @@
 "Ocultar {name} de la navegación" = "ナビゲーションから{name}を非表示";
 "Oculto" = "非表示";
 "Off" = "オフ";
+"Oldest" = "古い順";
 "On" = "オン";
 "On Hold" = "保留中";
 "On The Air" = "放送中";

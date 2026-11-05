@@ -1208,6 +1208,7 @@
 "New list" = "قائمة جديدة";
 "New profile" = "ملف شخصي جديد";
 "New voyage" = "رحلة جديدة";
+"Newest" = "الأحدث";
 "Next" = "التالي";
 "Next chapter" = "الفصل التالي";
 "Next day" = "Next day";
@@ -1320,6 +1321,7 @@
 "Ocultar {name} de la navegación" = "إخفاء {name} من التنقل";
 "Oculto" = "مخفي";
 "Off" = "إيقاف";
+"Oldest" = "الأقدم";
 "On" = "تشغيل";
 "On Hold" = "متوقّف مؤقتًا";
 "On The Air" = "تُعرض حاليًا";

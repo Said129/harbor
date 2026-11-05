@@ -1188,6 +1188,7 @@
 "New list" = "Новый список";
 "New profile" = "Новый профиль";
 "New voyage" = "Новое плавание";
+"Newest" = "Новые";
 "Next" = "Далее";
 "Next chapter" = "Следующая глава";
 "Next day" = "Next day";
@@ -1300,6 +1301,7 @@
 "Ocultar {name} de la navegación" = "Скрыть {name} из навигации";
 "Oculto" = "Скрыто";
 "Off" = "Выключено";
+"Oldest" = "Старые";
 "On" = "Вкл.";
 "On Hold" = "Отложено";
 "On The Air" = "В эфире";
