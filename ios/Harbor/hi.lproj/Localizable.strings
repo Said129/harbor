@@ -1536,6 +1536,7 @@
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "आस्पेक्ट रेशियो";
 "Rellenar" = "भरें";
+"Remember last stream" = "पिछली स्ट्रीम याद रखें";
 "Reminder" = "Reminder";
 "Remove" = "हटाएँ";
 "Remove addon" = "Remove addon";
@@ -2173,6 +2174,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "प्लेबैक शुरू होने पर Harbor इनमें से किसी एक भाषा में सबटाइटल अपने-आप ढूँढकर लोड करता है। उपलब्ध पहला मेल चुना जाता है, इसलिए अपनी मुख्य भाषा सबसे पहले रखें।";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "एपिसोड खत्म होने से कितनी देर पहले अगला पिल दिखाई दे। ऑटो इसे एपिसोड की अवधि के अनुसार समायोजित करता है, ताकि छोटे एपिसोड में यह बहुत जल्दी न दिखे। बंद करने पर यह छिप जाता है।";
 "When you press Play" = "जब आप चलाएँ दबाएँ";
+"When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "जिसे आप देख रहे थे उसे जारी रखने पर पिकर फिर से खोलने के बजाय पिछली बार इस्तेमाल की गई ठीक वही स्ट्रीम (वही ऐडऑन और सोर्स) चलाएँ। हर बार फिर से चुनने के लिए इसे बंद करें।";
 "Where it shows" = "यह कहाँ दिखता है";
 "Where to today?" = "आज कहाँ चलें?";
 "Where to watch" = "कहाँ देखें";

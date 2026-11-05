@@ -157,7 +157,7 @@ struct DetailView: View {
                             // A source that fails while other addons still answer shows the
                             // picker and its error instead of the connecting screen.
                             if model.playback == nil, revision == selectionRevision { showConnecting = false }
-                        }) : nil
+                        }, owner: owner) : nil
                         await model.findStreams(app.addons, episode: selectedEpisode, selection: streamSelection, autoplay: autoplay)
                     }
                     resolutionTask = task

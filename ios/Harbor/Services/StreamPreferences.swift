@@ -64,6 +64,10 @@ final class StreamPreferences {
     var keepSourceNextEpisode = UserDefaults.standard.object(forKey: "keepSourceNextEpisode") as? Bool ?? false {
         didSet { persist(keepSourceNextEpisode, forKey: "keepSourceNextEpisode") }
     }
+    /// Desktop's "Remember last stream": playing something again starts the stream last used for it.
+    var rememberLastStream = UserDefaults.standard.object(forKey: "streams.rememberLast") as? Bool ?? true {
+        didSet { persist(rememberLastStream, forKey: "streams.rememberLast") }
+    }
     var excludeCamera = UserDefaults.standard.object(forKey: "streams.excludeCamera") as? Bool ?? true {
         didSet { persist(excludeCamera, forKey: "streams.excludeCamera") }
     }
@@ -100,6 +104,7 @@ final class StreamPreferences {
         addonOrder = UserDefaults.standard.object(forKey: "streams.addonOrder") as? Bool ?? true
         automatic = UserDefaults.standard.object(forKey: "streams.automatic") as? Bool ?? true
         keepSourceNextEpisode = UserDefaults.standard.object(forKey: "keepSourceNextEpisode") as? Bool ?? false
+        rememberLastStream = UserDefaults.standard.object(forKey: "streams.rememberLast") as? Bool ?? true
         excludeCamera = UserDefaults.standard.object(forKey: "streams.excludeCamera") as? Bool ?? true
         maximum = UserDefaults.standard.object(forKey: "streams.maximum") as? Int ?? 2160
         minimum = UserDefaults.standard.object(forKey: "streams.minimum") as? Int ?? 0

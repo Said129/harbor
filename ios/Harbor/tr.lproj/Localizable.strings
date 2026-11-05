@@ -1536,6 +1536,7 @@
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "En-boy oranı";
 "Rellenar" = "Doldur";
+"Remember last stream" = "Son yayını hatırla";
 "Reminder" = "Reminder";
 "Remove" = "Kaldır";
 "Remove addon" = "Remove addon";
@@ -2173,6 +2174,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "Oynatma başladığında Harbor, bu dillerden birinde altyazıyı otomatik olarak bulup yükler. Bulunan ilk uygun altyazı kullanılır; bu nedenle ana dilinizi ilk sıraya koyun.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Bölüm bitmeden önce Sıradaki rozetinin ne zaman görüneceğini belirler. Otomatik seçeneği bölüm uzunluğuna göre ayarlanır, böylece kısa bölümlerde bildirim çok erken gösterilmez. Kapalı seçeneği bildirimi gizler.";
 "When you press Play" = "Oynat'a bastığınızda";
+"When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "İzlemeye devam ettiğinizde seçim ekranını yeniden açmak yerine son kullandığınız yayını (aynı eklenti ve kaynak) oynatır. Her zaman yeniden seçim yapmak için kapatın.";
 "Where it shows" = "Gösterileceği yer";
 "Where to today?" = "Bugün nereye?";
 "Where to watch" = "Nerede izlenir";

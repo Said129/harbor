@@ -1536,6 +1536,7 @@
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "Rasio aspek";
 "Rellenar" = "Penuhi";
+"Remember last stream" = "Ingat stream terakhir";
 "Reminder" = "Reminder";
 "Remove" = "Hapus";
 "Remove addon" = "Remove addon";
@@ -2173,6 +2174,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "Saat pemutaran dimulai, Harbor otomatis mencari dan memuat subtitle dalam salah satu bahasa ini. Kecocokan pertama yang tersedia akan digunakan, jadi tempatkan bahasa utama Anda paling awal.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Waktu munculnya label Berikutnya sebelum episode berakhir. Otomatis menyesuaikan dengan durasi episode agar episode pendek tidak memunculkannya terlalu dini. Jika dinonaktifkan, label akan disembunyikan.";
 "When you press Play" = "Saat Anda menekan Putar";
+"When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "Saat Anda melanjutkan sesuatu yang sedang ditonton, putar kembali stream persis seperti yang terakhir digunakan (addon dan sumber yang sama), bukan membuka pemilih lagi. Nonaktifkan agar selalu memilih yang baru.";
 "Where it shows" = "Tempat kemunculannya";
 "Where to today?" = "Ke mana hari ini?";
 "Where to watch" = "Tempat menonton";

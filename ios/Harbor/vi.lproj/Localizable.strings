@@ -1536,6 +1536,7 @@
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "Tỷ lệ khung hình";
 "Rellenar" = "Lấp đầy";
+"Remember last stream" = "Ghi nhớ luồng gần nhất";
 "Reminder" = "Reminder";
 "Remove" = "Gỡ";
 "Remove addon" = "Remove addon";
@@ -2173,6 +2174,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "Khi bắt đầu phát, Harbor sẽ tự động tìm và tải phụ đề bằng một trong các ngôn ngữ này. Kết quả khớp đầu tiên có sẵn sẽ được chọn, vì vậy hãy đặt ngôn ngữ chính lên đầu.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Thời điểm nhãn Tập tiếp theo xuất hiện trước khi tập kết thúc. Tự động điều chỉnh theo độ dài tập để không nhắc quá sớm với các tập ngắn. Tắt để ẩn.";
 "When you press Play" = "Khi bạn nhấn Phát";
+"When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "Khi tiếp tục nội dung đang xem dở, phát lại đúng luồng đã dùng gần nhất (cùng tiện ích bổ sung và nguồn) thay vì mở lại trình chọn. Tắt để luôn chọn nguồn mới.";
 "Where it shows" = "Vị trí hiển thị";
 "Where to today?" = "Hôm nay đi đâu?";
 "Where to watch" = "Xem ở đâu";

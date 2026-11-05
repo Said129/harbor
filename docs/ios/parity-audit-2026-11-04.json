@@ -16,25 +16,25 @@
     },
     "settings": {
       "total": 511,
-      "ported": 116,
+      "ported": 117,
       "partial": 21,
-      "missing": 288,
+      "missing": 287,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 29.8,
-      "ported_only_percent": 27.3,
-      "ported_or_partial_percent": 32.2
+      "weighted_percent": 30.0,
+      "ported_only_percent": 27.5,
+      "ported_or_partial_percent": 32.5
     },
     "all": {
       "total": 949,
-      "ported": 235,
+      "ported": 236,
       "partial": 224,
-      "missing": 382,
+      "missing": 381,
       "excluded": 108,
       "counted": 841,
-      "weighted_percent": 41.3,
-      "ported_only_percent": 27.9,
-      "ported_or_partial_percent": 54.6
+      "weighted_percent": 41.4,
+      "ported_only_percent": 28.1,
+      "ported_or_partial_percent": 54.7
     }
   },
   "behavior_areas": [
@@ -4541,14 +4541,14 @@
       "id": "seasonSourceLock",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "season source lock, remember last stream"
+      "note": "season source lock"
     },
     {
       "index": 179,
       "id": "rememberLastStream",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "season source lock, remember last stream"
+      "verdict": "D",
+      "note": "remember last stream (5 Nov, uncompiled)"
     },
     {
       "index": 180,

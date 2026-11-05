@@ -1548,6 +1548,7 @@
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "Соотношение сторон";
 "Rellenar" = "Заполнить";
+"Remember last stream" = "Запоминать последний поток";
 "Reminder" = "Reminder";
 "Remove" = "Удалить";
 "Remove addon" = "Remove addon";
@@ -2188,6 +2189,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "При запуске воспроизведения Harbor сам находит и загружает субтитры на одном из этих языков. Побеждает первое совпадение, поэтому ставьте основной язык первым.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Когда плашка «Далее» появляется перед концом серии. «Авто» подстраивается под длину серии, чтобы короткие серии не предлагали переход слишком рано. «Выкл.» скрывает её.";
 "When you press Play" = "Когда вы нажимаете «Воспроизвести»";
+"When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "При продолжении просмотра запускать тот же поток, что и в прошлый раз (то же дополнение и источник), не открывая выбор заново. Отключите, чтобы каждый раз выбирать заново.";
 "Where it shows" = "Где показывать";
 "Where to today?" = "Куда сегодня?";
 "Where to watch" = "Где смотреть";

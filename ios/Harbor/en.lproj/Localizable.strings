@@ -1284,6 +1284,7 @@
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "Aspect ratio";
 "Rellenar" = "Fill";
+"Remember last stream" = "Remember last stream";
 "Reminder" = "Reminder";
 "Remove" = "Remove";
 "Remove addon" = "Remove addon";
@@ -1828,6 +1829,7 @@
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it.";
 "When you press Play" = "When you press Play";
+"When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh.";
 "Where it shows" = "Where it shows";
 "Where to watch" = "Where to watch";
 "Where your video comes from" = "Where your video comes from";

@@ -1536,6 +1536,7 @@
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "Format d’image";
 "Rellenar" = "Remplir";
+"Remember last stream" = "Mémoriser le dernier flux";
 "Reminder" = "Reminder";
 "Remove" = "Supprimer";
 "Remove addon" = "Remove addon";
@@ -2173,6 +2174,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "Au démarrage de la lecture, Harbor recherche et charge automatiquement un sous-titre dans l’une de ces langues. La première correspondance disponible est utilisée, placez donc votre langue principale en premier.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Moment où la pastille À suivre apparaît avant la fin d’un épisode. Auto s’adapte à la durée de l’épisode pour éviter de l’afficher trop tôt sur les épisodes courts. Désactivé la masque.";
 "When you press Play" = "Lorsque vous appuyez sur Lire";
+"When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "Lorsque vous reprenez un contenu en cours, relancez exactement le dernier flux utilisé (même extension et même source) au lieu de rouvrir le sélecteur. Désactivez cette option pour toujours faire un nouveau choix.";
 "Where it shows" = "Où cela s’affiche";
 "Where to today?" = "Où aller aujourd’hui ?";
 "Where to watch" = "Où regarder";

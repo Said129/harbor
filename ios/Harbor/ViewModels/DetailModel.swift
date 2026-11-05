@@ -351,7 +351,11 @@ final class DetailModel {
         let continuation: Bool
         let wanted: @MainActor () -> Bool
         let start: @MainActor (StreamOffer) async -> Void
+        /// The profile whose "Remember last stream" history applies.
+        var owner = ""
     }
+    /// What was last played for this title or episode, when "Remember last stream" is on.
+    private var rememberedStream: StreamPlaybackEntry?
 
     /// Requests answered so far for the picker's "addons loading" pill.
     private(set) var answeredRequests = 0
@@ -402,7 +406,9 @@ final class DetailModel {
         let preferences = StreamPreferences.shared
         let remembered = autoplay.continuation && preferences.keepSourceNextEpisode ? lastPlayedSource : nil
         let protecting = remembered.map { identity in !automaticOffers.contains { identity.matches($0) } } ?? false
-        let candidate = autoplay.continuation ? continuationOffer : preferences.preferred(automaticOffers)
+        // Desktop puts the stream last played for this episode ahead of the ranking when it can start at once.
+        let previous = rememberedStream.flatMap { entry in automaticOffers.first { entry.matches($0) && $0.automaticallyPlayable } }
+        let candidate = autoplay.continuation ? continuationOffer : (previous ?? preferences.preferred(automaticOffers))
         guard autoSettle.shouldStart(now: .now, top: candidate, candidates: automaticOffers, hasResults: !rankedOffers.isEmpty,
                                      answered: answeredRequests, total: totalRequests, done: done, protecting: protecting),
               let top = candidate else { return }
@@ -460,6 +466,10 @@ final class DetailModel {
             selected = validSource && validEpisode ? selection.media : nil
         } else { selected = sourceMedia(for: episode) }
         selectedPlaybackMedia = selected
+        rememberedStream = nil
+        if let autoplay, !autoplay.continuation, !autoplay.owner.isEmpty, StreamPreferences.shared.rememberLastStream, let selected {
+            rememberedStream = StreamPlaybackHistory.entry(metaID: selected.id, season: episode?.season, episode: episode?.episode, owner: autoplay.owner)
+        }
         autoSettle = StreamAutoSettle(started: .now, season: episode?.season, episode: episode?.episode, strongAddon: StreamAutoSettle.strong(addons))
         defer { if streamRequest == request { loadingStreams = false } }
         do {
@@ -563,6 +573,7 @@ final class DetailModel {
             try Task.checkCancellation()
             guard owner == library.owner, personalOwner == library.personalOwner, contextRevision() == context, request == streamRequest, resolution == resolutionRequest else { return }
             lastPlayedSource = StreamSourceIdentity(offer)
+            StreamPlaybackHistory.save(StreamPlaybackEntry(offer), metaID: selected.id, season: episode?.season, episode: episode?.episode, owner: owner)
             sourceContinuation = nil
             playback = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled, owner: owner, resumeStore: resume, preservePosition: preservedPosition != nil, advanceStartedAtMs: preservedPosition == nil ? nil : continuation?.advanceStartedAtMs, promptForResume: start.prompt)
             playback?.media = selected

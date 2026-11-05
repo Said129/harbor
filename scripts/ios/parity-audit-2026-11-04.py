@@ -286,7 +286,8 @@ SETTINGS = expand("""
 173 D instant play
 174-176 M preparation, stall switching
 177 X desktop fullscreen mode
-178-179 M season source lock, remember last stream
+178 M season source lock
+179 D remember last stream (5 Nov, uncompiled)
 180 D
 181 P tone mapping without the SDR toggle
 182-185 X RTX, macOS EDR, display panel
