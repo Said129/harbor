@@ -1308,3 +1308,10 @@ limiter, nothing sent while off, saved options without the new keys), the playba
 stats card (4 cases: mpv string parsing, bitrate units, row order and translation)
 and the new `i` hotkey (2 existing shortcut cases). Run 42132367263 (commit
 00f91191) executes the five TraktCommentsTests cases.
+
+Focused run 42132367263 (commit 00f91191): the app compiled with the Trakt comments
+section and its five TraktCommentsTests cases passed (comment parsing with its
+fallbacks, the age buckets, movie/show/anime/unidentified targets with their paths
+and Trakt links, the request with its API headers and paging and no account, and
+failures answering an empty list). Run 42135176976 (commit decaf0b7) executes the
+subtitle sync indicator cases (format, fallbacks, defaults, Shift fine steps).
