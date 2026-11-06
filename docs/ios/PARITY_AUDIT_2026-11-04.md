@@ -66,12 +66,12 @@ Behaviors by area (weighted, P = ½; refreshed 5 November where it changed):
 - **Not a measure of effort.** Every item weighs the same: "Torrent
   statistics" counts as much as "Native libmpv playback", and a rating-badge
   toggle as much as the stream filter.
-- **Partial is a wide bucket.** 203 behaviors are Partial, many because an
+- **Partial is a wide bucket.** 206 behaviors are Partial, many because an
   earlier review said so. Manga, Sports, Music, VOD details, Home customization
   and Spooktober were
   not re-read item by item and sit at 50 %; some of them are probably close to
-  complete. The honest range is therefore 25 % (ported only) to 52 % (ported or
-  partial) overall, with 38 % as the weighted figure.
+  complete. The honest range is therefore 31 % (ported only) to 58 % (ported or
+  partial) overall, with 44 % as the weighted figure.
 - **Settings lag behind behaviors.** Most missing settings are fine-grained
   Desktop options: rating chips on cards (9), controllers (12),
   hero/trailer layout (8), fullscreen clock (7), Anime4K and shaders (11),

@@ -1347,3 +1347,9 @@ on both screens (the detail page first used the personal owner and would have lo
 in another profile's keys); the OMDb key is never cached on disk (the metadata
 session has no URL cache); a corrected OMDb key now clears an earlier refusal.
 `ProviderRatingsTests` has 12 cases. Run 14 compiles it.
+
+After the review that followed the push: the detail page asks OMDb without a type, as
+Desktop's `detail.tsx` does (MDBList still gets movie or show); both screens read the
+keys under `MetadataPreferences.shared.settingsOwner`; every Details default on Desktop
+is true, which the empty hidden set matches. These edits are not in run 14 and need the
+next run.

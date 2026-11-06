@@ -281,7 +281,9 @@ struct DetailView: View {
                         ForEach(model.media.genres ?? [], id: \.self) { badge($0) }
                     }
                 }.scrollIndicators(.hidden)
-                DetailProviderRatings(media: model.media, owner: app.settingsOwner)
+                // The settings screen saves the keys under this same owner.
+                DetailProviderRatings(media: model.media, owner: MetadataPreferences.shared.settingsOwner ?? "guest")
+                    .id(MetadataPreferences.shared.settingsOwner ?? "guest")
                 primaryActions
                 secondaryActions
                 SimklDetailControls(media: model.media, app: app).id(app.accountOperationScope + "|" + model.media.identity)

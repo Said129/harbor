@@ -161,16 +161,17 @@ struct DetailProviderRatings: View {
         omdb = nil; mdblist = nil
         guard let imdbID else { return }
         let omdbKey = store.key(.omdb), mdblistKey = store.key(.mdblist), show = media.type != "movie"
-        async let first = Self.omdbScores(key: omdbKey, imdbID: imdbID, show: show)
+        async let first = Self.omdbScores(key: omdbKey, imdbID: imdbID)
         async let second = Self.mdblistScores(key: mdblistKey, imdbID: imdbID, show: show)
         let (found, others) = await (first, second)
         guard !Task.isCancelled else { return }
         omdb = found; mdblist = others
     }
 
-    private static func omdbScores(key: String, imdbID: String, show: Bool) async -> OmdbScores? {
+    /// Desktop's detail page asks OMDb without a type: an extra one can turn a hit into a miss, and a miss costs a request.
+    private static func omdbScores(key: String, imdbID: String) async -> OmdbScores? {
         if key.isEmpty { return nil }
-        return await OmdbService.shared.scores(key: key, imdbID: imdbID, type: show ? "series" : "movie")
+        return await OmdbService.shared.scores(key: key, imdbID: imdbID)
     }
     private static func mdblistScores(key: String, imdbID: String, show: Bool) async -> MdblistScores? {
         if key.isEmpty { return nil }
