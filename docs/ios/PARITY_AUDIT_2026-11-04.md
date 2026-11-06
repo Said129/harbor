@@ -28,8 +28,9 @@ The 6 November refresh adds the OMDb and MDBList ratings on the detail page (the
 provider keys, the Details column of the ratings matrix and the scores row), on top
 of the AniList/MyAnimeList trackers, Trakt comments, the audio filter chain, the
 playback stats card, screen lock, hide-episodes and the subtitle sync indicator.
-The detail-ratings work is still uncompiled when this is written; the other items
-were compiled and tested by focused runs 1 to 13.
+Everything above was compiled and tested by focused runs 1 to 14; run 14 passed the 12
+ProviderRatingsTests cases. A review pass after that run (OMDb without a type, one key
+owner on both screens) is not compiled yet.
 
 Figures above are the 5 November refresh (first audit, 4 November: 38.3 % weighted,
 25.0 % ported only, 51.6 % ported or partial): the Rust trust/parser/types core

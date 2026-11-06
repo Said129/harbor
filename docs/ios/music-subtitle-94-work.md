@@ -1353,3 +1353,11 @@ Desktop's `detail.tsx` does (MDBList still gets movie or show); both screens rea
 keys under `MetadataPreferences.shared.settingsOwner`; every Details default on Desktop
 is true, which the empty hidden set matches. These edits are not in run 14 and need the
 next run.
+
+Focused run 42312093016 (commit a36c55b4): the app compiled with the ratings work and all 12
+ProviderRatingsTests cases passed (OMDb reply parsing and fallbacks, certified-fresh
+threshold, error classes, UTC-midnight budget and prefetch share, cache for 90 days and
+across restarts, refused key until reset, misses and the daily limit, prefetch reserve,
+MDBList parsing and aliases, legacy endpoint, day and minute caches, the ratings row
+with order, links and rounding, the matrix list and Metacritic colours). The chips row
+itself is a view-state feature to be checked on a device.

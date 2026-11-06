@@ -2397,7 +2397,7 @@
       "id": "OMDB ratings and budget",
       "desktop_source": "src/lib/providers",
       "verdict": "P",
-      "note": "OmdbService: scores, 90-day cache, daily budget, refused key; no awards, season ratings or budget panel (6 Nov, uncompiled)"
+      "note": "OmdbService: scores, 90-day cache, daily budget, refused key; no awards, season ratings or budget panel (7 Nov, compiled; cases passed)"
     },
     {
       "index": 311,
@@ -2418,7 +2418,7 @@
       "id": "MDBList ratings",
       "desktop_source": "src/lib/providers",
       "verdict": "P",
-      "note": "MdblistService: scores on the detail row; no cards chips (6 Nov, uncompiled)"
+      "note": "MdblistService: scores on the detail row; no cards chips (7 Nov, compiled; cases passed)"
     },
     {
       "index": 314,
@@ -3344,7 +3344,7 @@
       "id": "omdbKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "OMDb key kept in the Keychain per profile, saving it resets the budget (6 Nov, uncompiled)"
+      "note": "OMDb key kept in the Keychain per profile, saving it resets the budget (7 Nov, compiled; cases passed)"
     },
     {
       "index": 8,
@@ -3505,21 +3505,21 @@
       "id": "showDetailRatings",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "no master switch: each provider has its own Details toggle (6 Nov, uncompiled)"
+      "note": "no master switch: each provider has its own Details toggle (7 Nov, compiled; cases passed)"
     },
     {
       "index": 31,
       "id": "showImdbDetail",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "IMDb/TMDB detail rating toggles (6 Nov, uncompiled)"
+      "note": "IMDb/TMDB detail rating toggles (7 Nov, compiled; cases passed)"
     },
     {
       "index": 32,
       "id": "showTmdbDetail",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "IMDb/TMDB detail rating toggles (6 Nov, uncompiled)"
+      "note": "IMDb/TMDB detail rating toggles (7 Nov, compiled; cases passed)"
     },
     {
       "index": 33,
@@ -3533,42 +3533,42 @@
       "id": "showRtDetail",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (6 Nov, uncompiled)"
+      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (7 Nov, compiled; cases passed)"
     },
     {
       "index": 35,
       "id": "showRtAudienceDetail",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (6 Nov, uncompiled)"
+      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (7 Nov, compiled; cases passed)"
     },
     {
       "index": 36,
       "id": "showLetterboxdDetail",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (6 Nov, uncompiled)"
+      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (7 Nov, compiled; cases passed)"
     },
     {
       "index": 37,
       "id": "showMetacriticDetail",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (6 Nov, uncompiled)"
+      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (7 Nov, compiled; cases passed)"
     },
     {
       "index": 38,
       "id": "showTraktDetail",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (6 Nov, uncompiled)"
+      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (7 Nov, compiled; cases passed)"
     },
     {
       "index": 39,
       "id": "showMdblistDetail",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (6 Nov, uncompiled)"
+      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (7 Nov, compiled; cases passed)"
     },
     {
       "index": 40,
@@ -3589,7 +3589,7 @@
       "id": "showSimklDetail",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "SIMKL detail toggle; the value comes from MDBList only, not SIMKL's community rating (6 Nov, uncompiled)"
+      "note": "SIMKL detail toggle; the value comes from MDBList only, not SIMKL's community rating (7 Nov, compiled; cases passed)"
     },
     {
       "index": 43,
@@ -5332,7 +5332,7 @@
       "id": "mdblistKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "MDBList key kept in the Keychain per profile (6 Nov, uncompiled)"
+      "note": "MDBList key kept in the Keychain per profile (7 Nov, compiled; cases passed)"
     },
     {
       "index": 292,
