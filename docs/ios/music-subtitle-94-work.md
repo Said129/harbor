@@ -1315,3 +1315,11 @@ fallbacks, the age buckets, movie/show/anime/unidentified targets with their pat
 and Trakt links, the request with its API headers and paging and no account, and
 failures answering an empty list). Run 42135176976 (commit decaf0b7) executes the
 subtitle sync indicator cases (format, fallbacks, defaults, Shift fine steps).
+
+Focused run 42135176976 (commit decaf0b7): the app compiled with the subtitle sync
+indicator and all 6 cases passed (4 SubtitleOffsetIndicatorTests: whole-millisecond
+format with a plus sign for positive delays, position and size fallbacks like
+Desktop, on at the bottom by default with saved options still decoding, Shift
+halving the delay step; 2 PlayerShortcutTests: no shared key chord, seek steps).
+The indicator overlay itself is a view-state feature to be checked on a device.
+The physical subtitle drift after a seek is still not reproduced in CI.
