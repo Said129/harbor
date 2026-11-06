@@ -22,6 +22,7 @@
 "45 min" = "45分";
 "45s" = "45秒";
 "4:3" = "4:3";
+"8-character key" = "8文字のキー";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "ブラウザでAniListのタブが開きました。そこでHarborを承認し、表示されたテキストをコピーして下に貼り付けてください。";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "ブラウザでMyAnimeListのタブが開きました。そこでHarborを承認し、コードまたはページのURLをコピーして下に貼り付けてください。";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremioプロトコル対応クライアント。設定は2分ほどで、ほとんどの項目は任意です。すべてのキーをご自身で管理できます。";
@@ -96,6 +97,7 @@
 "Addon order" = "アドオン順";
 "Addon wait time" = "アドオンの待ち時間";
 "Addons" = "アドオン";
+"Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "詳細ページにLetterboxdとTraktのコミュニティ評価を追加し、OMDbで不足している情報を補います。";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "エピソードの右クリックメニューに「非表示」を追加します。非表示のエピソードは一覧から消え、「次のエピソード」でもスキップされます。各番組の「非表示を表示」切り替えで再表示できます。";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "文字と背景を調整します。変更がその場でプレビューに反映されます。";
@@ -191,6 +193,7 @@
 "Aspect ratio" = "アスペクト比";
 "Así se verán tus subtítulos." = "字幕はこのように表示されます。";
 "Atrás" = "戻る";
+"Audience" = "視聴者";
 "Audio" = "オーディオ";
 "Audio bitrate" = "音声ビットレート";
 "Audio codec" = "音声コーデック";
@@ -401,6 +404,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "好きな映画や番組を最大5作品選んでください。Harborが注目作品やおすすめを好みに合わせて調整します。選択は任意です。";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harborでプロフィールの選択を求めるタイミングを選びます。時間に基づく確認は、Harborに戻ったときに表示されます。";
 "Choose which addon results appear when you pick a stream." = "ストリーム選択時に表示するアドオンの結果を選びます。";
+"Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "カードと詳細ページに表示する評価を選びます。ロックされたカード評価には、「メタデータ」でプロバイダーのキーを設定する必要があります。";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "SF＆ファンタジー";
 "Claro" = "ライト";
@@ -1030,6 +1034,8 @@
 "Legal" = "法的情報";
 "Less bass" = "低音を抑える";
 "Letter spacing" = "文字間隔";
+"Letterboxd" = "Letterboxd";
+"Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd、Trakt、Metacritic、視聴者のスコア。";
 "Library" = "ライブラリ";
 "Libros" = "書籍";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "シャドウを持ち上げ、真っ暗なシーンも見やすくします。";
@@ -1087,6 +1093,7 @@
 "M3U playlist" = "M3Uプレイリスト";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1121,6 +1128,7 @@
 "Mejor valorado en {site}" = "{site}で高評価";
 "Mes anterior" = "前の月";
 "Mes siguiente" = "次の月";
+"Metacritic" = "Metacritic";
 "Metadata" = "メタデータ";
 "Metadata language" = "メタデータの言語";
 "Metadata providers" = "メタデータプロバイダー";
@@ -1545,6 +1553,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "閲覧モード";
 "Reading options" = "Reading options";
+"Real IMDb and Rotten Tomatoes scores." = "IMDbとRotten Tomatoesの実際の評価スコア。";
 "Real-Debrid API token" = "Real-Debrid APIトークン";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid、TorBox、AllDebrid、Premiumize、Debrid-Link。キャッシュ済みストリームは直接再生されます。キーはローカルに保存されます。";
 "Reality" = "リアリティ番組";
@@ -1680,6 +1689,9 @@
 "Romanian" = "ルーマニア語";
 "Rostro" = "塗り";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
+"Rotten Tomatoes" = "Rotten Tomatoes";
+"Rotten Tomatoes Audience" = "Rotten Tomatoes 観客評価";
+"Rotten Tomatoes Critics" = "Rotten Tomatoes 批評家評価";
 "Rounded" = "丸ゴシック";
 "Rounded background panel behind the text. Most readable." = "テキストの背後に角丸の背景を表示します。最も読みやすい設定です。";
 "Row card style" = "横並びカードのスタイル";
@@ -1688,6 +1700,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "現在はCinemetaを使用しています。準備ができたら、いつでも「設定」からTMDBキーを追加できます。";
 "Runs this plugin on a real title and shows what came back." = "実際のタイトルでこのプラグインを実行し、返ってきた結果を表示します。";
 "Russian" = "ロシア語";
+"SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "ピクチャ・イン・ピクチャを終了";
 "Saltar créditos" = "クレジットをスキップ";
@@ -1777,6 +1790,7 @@
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
 "Set up a debrid" = "デブリッドを設定";
+"Set up rating providers" = "評価プロバイダーを設定";
 "Settings" = "設定";
 "Settings changed. Please reopen this page." = "設定が変更されました。このページを開き直してください。";
 "Share" = "共有";
@@ -2038,11 +2052,13 @@
 "The most-watched movies and series on {name} right now in {region}." = "現在{region}の{name}で最も視聴されている映画とシリーズです。";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "素早い茶色のキツネが、のろまな犬を飛び越える";
+"The ratings row on a title's detail page, next to runtime and genre." = "作品の詳細ページで、再生時間やジャンルの横に表示される評価欄です。";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "ホームページ全体のレイアウトです。以下の項目では、その中の各行を調整します。";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "TMDBキーを設定すると、これらのレールが有効になります。後からいつでも「設定」で変更できます。";
+"They email an activation link the first time. Click it, then come back and save." = "初回はアクティベーションリンクがメールで届きます。リンクをクリックしてから、ここに戻って保存してください。";
 "This file has one audio track." = "このファイルには音声トラックが1つあります。";
 "This is a manga repository. Add it from the Manga page." = "これはマンガのリポジトリです。マンガページから追加してください。";
 "This is how your subtitles will look." = "字幕はこのように表示されます。";
@@ -2116,6 +2132,7 @@
 "Tracking what you watch" = "視聴履歴の記録";
 "Tracks" = "トラック";
 "Traducir títulos" = "タイトルを翻訳";
+"Trakt" = "Trakt";
 "Trakt Comments" = "Traktのコメント";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
@@ -2318,6 +2335,7 @@
 "language" = "言語";
 "left" = "左";
 "local" = "ローカル";
+"mdblist api key" = "mdblist APIキー";
 "min" = "分";
 "movies" = "映画";
 "music.action.error" = "操作を完了できませんでした。再試行してください。";

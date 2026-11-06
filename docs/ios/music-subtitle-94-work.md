@@ -1323,3 +1323,27 @@ Desktop, on at the bottom by default with saved options still decoding, Shift
 halving the delay step; 2 PlayerShortcutTests: no shared key chord, seek steps).
 The indicator overlay itself is a view-state feature to be checked on a device.
 The physical subtitle drift after a seek is still not reproduced in CI.
+
+## OMDb and MDBList ratings on the detail page (7 November)
+
+Desktop's `lib/providers/omdb.ts`, `mdblist.ts`, `views/detail/hero-ratings.tsx`,
+`library-panel/provider-keys.tsx` and the Details column of `ratings-matrix.tsx` are
+ported. `OmdbService` (actor) keeps scores for 90 days, remembers misses for a day,
+counts the 1,000-request daily allowance from UTC midnight, stops when the key is
+refused or the allowance is spent, and saving a key resets the budget as Desktop's
+`resetOmdbBudget` does. `MdblistService` tries the api endpoint then the legacy one,
+keeps a result for a day and a failure for a minute, and does not reuse an answer
+across keys. Keys live in the Keychain per profile (`ProviderKeyStore`); the detail
+page shows Rotten Tomatoes critics and audience, Letterboxd, Metacritic (MDBList's
+value, else OMDb's Metascore), Trakt, SIMKL and MDBList chips with Desktop's links,
+and each provider can be turned off in Settings > Metadata > Set up rating providers.
+
+Not ported, recorded as partial: the Cards column (score chips on posters), OMDb awards
+and season ratings, the budget panel, the SIMKL community rating (the chip uses
+MDBList's SIMKL value), the MAL chip for anime, RPDB and Fanart.
+
+Reviewed before the first compile: the Keychain store is keyed by the settings owner
+on both screens (the detail page first used the personal owner and would have looked
+in another profile's keys); the OMDb key is never cached on disk (the metadata
+session has no URL cache); a corrected OMDb key now clears an earlier refusal.
+`ProviderRatingsTests` has 12 cases. Run 14 compiles it.

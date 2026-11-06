@@ -22,6 +22,7 @@
 "45 min" = "45 phút";
 "45s" = "45 giây";
 "4:3" = "4:3";
+"8-character key" = "Khóa 8 ký tự";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Một thẻ trình duyệt đã mở trên AniList. Hãy phê duyệt Harbor tại đó, rồi sao chép nội dung hiển thị và dán vào bên dưới.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Một thẻ trình duyệt đã mở trên MyAnimeList. Hãy phê duyệt Harbor tại đó, rồi sao chép mã hoặc URL của trang và dán vào bên dưới.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Ứng dụng khách cho giao thức Stremio. Chỉ mất hai phút để thiết lập; hầu hết đều không bắt buộc. Bạn luôn toàn quyền kiểm soát mọi khóa.";
@@ -96,6 +97,7 @@
 "Addon order" = "Thứ tự tiện ích bổ sung";
 "Addon wait time" = "Thời gian chờ tiện ích bổ sung";
 "Addons" = "Tiện ích bổ sung";
+"Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "Thêm điểm cộng đồng Letterboxd và Trakt vào trang chi tiết, bổ sung những nội dung OMDb còn thiếu.";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Thêm tùy chọn Ẩn khi bạn nhấp chuột phải vào một tập. Các tập đã ẩn sẽ biến mất khỏi danh sách và bị Tiếp theo bỏ qua. Nút bật tắt Hiện mục đã ẩn trên mỗi phim bộ cho phép hiển thị lại các tập đó.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Điều chỉnh chữ và nền. Bản xem trước hiển thị ngay các thay đổi của bạn.";
@@ -191,6 +193,7 @@
 "Aspect ratio" = "Tỷ lệ khung hình";
 "Así se verán tus subtítulos." = "Phụ đề của bạn sẽ hiển thị như thế này.";
 "Atrás" = "Quay lại";
+"Audience" = "Khán giả";
 "Audio" = "Âm thanh";
 "Audio bitrate" = "Tốc độ bit âm thanh";
 "Audio codec" = "Bộ mã hóa âm thanh";
@@ -401,6 +404,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Chọn tối đa 5 phim lẻ hoặc phim bộ bạn đã thích. Harbor sẽ dùng chúng để điều chỉnh các đề xuất nổi bật và nội dung gợi ý. Hoàn toàn không bắt buộc.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Chọn khi nào Harbor yêu cầu chọn hồ sơ. Lời nhắc theo thời gian xuất hiện khi bạn quay lại Harbor.";
 "Choose which addon results appear when you pick a stream." = "Chọn kết quả từ tiện ích nào xuất hiện khi chọn luồng.";
+"Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Chọn điểm đánh giá xuất hiện trên thẻ và trang chi tiết. Điểm bị khóa trên thẻ cần khóa nhà cung cấp trong Siêu dữ liệu.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Khoa học viễn tưởng & kỳ ảo";
 "Claro" = "Sáng";
@@ -1030,6 +1034,8 @@
 "Legal" = "Pháp lý";
 "Less bass" = "Giảm âm trầm";
 "Letter spacing" = "Khoảng cách chữ";
+"Letterboxd" = "Letterboxd";
+"Letterboxd, Trakt, Metacritic, and audience scores." = "Điểm Letterboxd, Trakt, Metacritic và khán giả.";
 "Library" = "Thư viện";
 "Libros" = "Sách";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Làm sáng vùng tối để những cảnh đen kịt vẫn có thể xem rõ.";
@@ -1087,6 +1093,7 @@
 "M3U playlist" = "Danh sách phát M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1121,6 +1128,7 @@
 "Mejor valorado en {site}" = "Được đánh giá cao nhất trên {site}";
 "Mes anterior" = "Tháng trước";
 "Mes siguiente" = "Tháng sau";
+"Metacritic" = "Metacritic";
 "Metadata" = "Siêu dữ liệu";
 "Metadata language" = "Ngôn ngữ siêu dữ liệu";
 "Metadata providers" = "Nhà cung cấp siêu dữ liệu";
@@ -1545,6 +1553,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "Chế độ đọc";
 "Reading options" = "Reading options";
+"Real IMDb and Rotten Tomatoes scores." = "Điểm IMDb và Rotten Tomatoes thực.";
 "Real-Debrid API token" = "Token API Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Luồng đã lưu đệm được phát trực tiếp. Các khóa chỉ được lưu cục bộ.";
 "Reality" = "Truyền hình thực tế";
@@ -1680,6 +1689,9 @@
 "Romanian" = "Tiếng Romania";
 "Rostro" = "Khuôn mặt";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
+"Rotten Tomatoes" = "Rotten Tomatoes";
+"Rotten Tomatoes Audience" = "Khán giả Rotten Tomatoes";
+"Rotten Tomatoes Critics" = "Giới phê bình Rotten Tomatoes";
 "Rounded" = "Bo tròn";
 "Rounded background panel behind the text. Most readable." = "Nền bo góc phía sau chữ. Dễ đọc nhất.";
 "Row card style" = "Kiểu thẻ theo hàng";
@@ -1688,6 +1700,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Hiện đang dùng Cinemeta. Bạn có thể thêm khóa TMDB trong Cài đặt bất cứ khi nào sẵn sàng.";
 "Runs this plugin on a real title and shows what came back." = "Chạy plugin này với một tiêu đề thật và hiển thị kết quả trả về.";
 "Russian" = "Tiếng Nga";
+"SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "Thoát chế độ Hình trong hình";
 "Saltar créditos" = "Bỏ qua phần danh đề";
@@ -1777,6 +1790,7 @@
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
 "Set up a debrid" = "Thiết lập dịch vụ debrid";
+"Set up rating providers" = "Thiết lập nguồn điểm đánh giá";
 "Settings" = "Cài đặt";
 "Settings changed. Please reopen this page." = "Cài đặt đã thay đổi. Vui lòng mở lại trang này.";
 "Share" = "Chia sẻ";
@@ -2038,11 +2052,13 @@
 "The most-watched movies and series on {name} right now in {region}." = "Các phim điện ảnh và phim bộ được xem nhiều nhất trên {name} hiện nay tại {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "Con cáo nâu nhanh nhẹn nhảy qua chú chó lười biếng";
+"The ratings row on a title's detail page, next to runtime and genre." = "Hàng điểm đánh giá trên trang chi tiết nội dung, bên cạnh thời lượng và thể loại.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Bố cục tổng thể của trang chủ. Mọi tùy chọn bên dưới điều chỉnh các hàng trong trang.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Các hàng này sẽ được kích hoạt sau khi đặt khóa TMDB. Bạn có thể quay lại đây bất cứ lúc nào trong Cài đặt.";
+"They email an activation link the first time. Click it, then come back and save." = "Lần đầu, họ sẽ gửi liên kết kích hoạt qua email. Hãy nhấp vào đó, rồi quay lại và lưu.";
 "This file has one audio track." = "Tệp này có một rãnh âm thanh.";
 "This is a manga repository. Add it from the Manga page." = "Đây là kho lưu trữ manga. Hãy thêm từ trang Manga.";
 "This is how your subtitles will look." = "Phụ đề của bạn sẽ hiển thị như thế này.";
@@ -2116,6 +2132,7 @@
 "Tracking what you watch" = "Theo dõi nội dung bạn xem";
 "Tracks" = "Rãnh";
 "Traducir títulos" = "Dịch tiêu đề";
+"Trakt" = "Trakt";
 "Trakt Comments" = "Bình luận trên Trakt";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
@@ -2318,6 +2335,7 @@
 "language" = "ngôn ngữ";
 "left" = "trái";
 "local" = "cục bộ";
+"mdblist api key" = "Khóa API mdblist";
 "min" = "phút";
 "movies" = "phim";
 "music.action.error" = "Không thể hoàn tất thao tác. Vui lòng thử lại.";

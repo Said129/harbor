@@ -22,6 +22,7 @@
 "45 min" = "45 min";
 "45s" = "45 s";
 "4:3" = "4:3";
+"8-character key" = "Clé de 8 caractères";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Un onglet du navigateur s’est ouvert sur AniList. Autorisez-y Harbor, puis copiez le texte affiché et collez-le ci-dessous.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Un onglet du navigateur s’est ouvert sur MyAnimeList. Autorisez-y Harbor, puis copiez le code ou l’URL de la page et collez-le ci-dessous.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Un client pour le protocole Stremio. Deux minutes suffisent pour le configurer, et presque tout est facultatif. Vous gardez le contrôle de chaque clé.";
@@ -96,6 +97,7 @@
 "Addon order" = "Ordre des extensions";
 "Addon wait time" = "Délai d’attente des extensions";
 "Addons" = "Extensions";
+"Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "Ajoute les notes des communautés Letterboxd et Trakt aux pages de détails pour compléter celles d’OMDb.";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Ajoute une option Masquer lorsque vous faites un clic droit sur un épisode. Les épisodes masqués disparaissent de la liste et sont ignorés par À suivre. L’option Afficher les épisodes masqués de chaque série permet de les faire réapparaître.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Réglez le texte et le fond. L’aperçu affiche vos modifications en direct.";
@@ -191,6 +193,7 @@
 "Aspect ratio" = "Format d’image";
 "Así se verán tus subtítulos." = "Voici l’apparence de vos sous-titres.";
 "Atrás" = "Retour";
+"Audience" = "Public";
 "Audio" = "Audio";
 "Audio bitrate" = "Débit audio";
 "Audio codec" = "Codec audio";
@@ -401,6 +404,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Choisissez jusqu’à 5 films ou séries que vous aimez déjà. Harbor s’en servira pour affiner vos sélections à la une et vos recommandations. C’est entièrement facultatif.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Choisissez quand Harbor vous demande de sélectionner un profil. Les demandes programmées s’affichent à votre retour dans Harbor.";
 "Choose which addon results appear when you pick a stream." = "Choisissez les résultats d’extensions affichés lors de la sélection d’un flux.";
+"Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Choisissez les notes affichées sur les cartes et les fiches. Les notes verrouillées nécessitent une clé fournisseur dans Métadonnées.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Science-fiction et fantastique";
 "Claro" = "Léger";
@@ -1030,6 +1034,8 @@
 "Legal" = "Mentions légales";
 "Less bass" = "Moins de basses";
 "Letter spacing" = "Espacement des lettres";
+"Letterboxd" = "Letterboxd";
+"Letterboxd, Trakt, Metacritic, and audience scores." = "Notes de Letterboxd, Trakt, Metacritic et du public.";
 "Library" = "Bibliothèque";
 "Libros" = "Livres";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Éclaircit les ombres pour que les scènes plongées dans le noir soient enfin regardables.";
@@ -1087,6 +1093,7 @@
 "M3U playlist" = "Playlist M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1121,6 +1128,7 @@
 "Mejor valorado en {site}" = "Les mieux notés sur {site}";
 "Mes anterior" = "Mois précédent";
 "Mes siguiente" = "Mois prochain";
+"Metacritic" = "Metacritic";
 "Metadata" = "Métadonnées";
 "Metadata language" = "Langue des métadonnées";
 "Metadata providers" = "Fournisseurs de métadonnées";
@@ -1545,6 +1553,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "Mode de lecture";
 "Reading options" = "Reading options";
+"Real IMDb and Rotten Tomatoes scores." = "Les vrais scores IMDb et Rotten Tomatoes.";
 "Real-Debrid API token" = "Jeton d’API Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Les flux en cache sont lus directement. Les clés restent en local.";
 "Reality" = "Téléréalité";
@@ -1680,6 +1689,9 @@
 "Romanian" = "Roumain";
 "Rostro" = "Visage";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
+"Rotten Tomatoes" = "Rotten Tomatoes";
+"Rotten Tomatoes Audience" = "Public Rotten Tomatoes";
+"Rotten Tomatoes Critics" = "Critiques Rotten Tomatoes";
 "Rounded" = "Arrondi";
 "Rounded background panel behind the text. Most readable." = "Panneau arrondi derrière le texte. Lisibilité optimale.";
 "Row card style" = "Style des vignettes des lignes";
@@ -1688,6 +1700,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Cinemeta est utilisé pour le moment. Ajoutez une clé TMDB dans les paramètres quand vous le souhaitez.";
 "Runs this plugin on a real title and shows what came back." = "Exécute ce plugin sur un vrai titre et affiche ce qui est revenu.";
 "Russian" = "Russe";
+"SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "Quitter le mode Image dans l’image";
 "Saltar créditos" = "Passer le générique";
@@ -1777,6 +1790,7 @@
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
 "Set up a debrid" = "Configurer un service de débridage";
+"Set up rating providers" = "Configurer les fournisseurs de notes";
 "Settings" = "Paramètres";
 "Settings changed. Please reopen this page." = "Les paramètres ont changé. Rouvrez cette page.";
 "Share" = "Partager";
@@ -2038,11 +2052,13 @@
 "The most-watched movies and series on {name} right now in {region}." = "Les films et séries les plus regardés sur {name} en ce moment dans la région {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "Portez ce vieux whisky au juge blond qui fume";
+"The ratings row on a title's detail page, next to runtime and genre." = "La ligne des notes sur la page de détails d’un titre, à côté de la durée et du genre.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "La structure de toute la page d’accueil. Tous les réglages ci-dessous ajustent les lignes qu’elle contient.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Ces rangées s’activent dès qu’une clé TMDB est définie. Vous pourrez y revenir à tout moment dans les Paramètres.";
+"They email an activation link the first time. Click it, then come back and save." = "Un lien d’activation vous est envoyé par e-mail la première fois. Cliquez dessus, puis revenez et enregistrez.";
 "This file has one audio track." = "Ce fichier comporte une piste audio.";
 "This is a manga repository. Add it from the Manga page." = "C'est un dépôt de manga. Ajoutez-le depuis la page Manga.";
 "This is how your subtitles will look." = "Voici l’apparence de vos sous-titres.";
@@ -2116,6 +2132,7 @@
 "Tracking what you watch" = "Suivi de vos visionnages";
 "Tracks" = "Pistes";
 "Traducir títulos" = "Traduire les titres";
+"Trakt" = "Trakt";
 "Trakt Comments" = "Commentaires Trakt";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
@@ -2318,6 +2335,7 @@
 "language" = "langue";
 "left" = "gauche";
 "local" = "local";
+"mdblist api key" = "clé API mdblist";
 "min" = "min";
 "movies" = "films";
 "music.action.error" = "Impossible de terminer cette action. Réessayez.";

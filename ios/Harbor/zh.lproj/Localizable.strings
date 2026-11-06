@@ -22,6 +22,7 @@
 "45 min" = "45 分钟";
 "45s" = "45 秒";
 "4:3" = "4:3";
+"8-character key" = "8 位密钥";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "已在浏览器标签页中打开 AniList。请在那里授权 Harbor，然后复制显示的文本并粘贴到下方。";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "已在浏览器标签页中打开 MyAnimeList。请在那里授权 Harbor，然后复制代码或页面 URL 并粘贴到下方。";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 协议客户端。两分钟即可完成设置，其中大部分为可选项。所有密钥均由你掌控。";
@@ -96,6 +97,7 @@
 "Addon order" = "插件顺序";
 "Addon wait time" = "插件等待时间";
 "Addons" = "插件";
+"Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "在详情页添加 Letterboxd 和 Trakt 社区评分，补充 OMDb 未涵盖的内容。";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "右键单击某一集时增加“隐藏”选项。隐藏的单集会从列表中消失，“接下来播放”也会跳过它们。每部作品中的“显示隐藏内容”开关可让它们重新显示。";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "调整文字和背景。预览会实时显示更改。";
@@ -191,6 +193,7 @@
 "Aspect ratio" = "画面比例";
 "Así se verán tus subtítulos." = "字幕将显示为这样。";
 "Atrás" = "返回";
+"Audience" = "观众";
 "Audio" = "音频";
 "Audio bitrate" = "音频比特率";
 "Audio codec" = "音频编解码器";
@@ -401,6 +404,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "最多选择 5 部你已经喜欢的电影或剧集。Harbor 会用它们来优化精选内容和推荐。完全可选。";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "选择 Harbor 何时要求选择个人资料。定时提示会在你返回 Harbor 时出现。";
 "Choose which addon results appear when you pick a stream." = "选择挑选播放源时显示哪些扩展结果。";
+"Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "选择在卡片和详情页显示哪些评分。已锁定的卡片评分需要在“元数据”中添加提供方密钥。";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "科幻与奇幻";
 "Claro" = "浅色";
@@ -1030,6 +1034,8 @@
 "Legal" = "法律信息";
 "Less bass" = "减弱低音";
 "Letter spacing" = "字间距";
+"Letterboxd" = "Letterboxd";
+"Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd、Trakt、Metacritic 和观众评分。";
 "Library" = "媒体库";
 "Libros" = "书籍";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "提亮阴影，让漆黑场景也能看清。";
@@ -1087,6 +1093,7 @@
 "M3U playlist" = "M3U 播放列表";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1121,6 +1128,7 @@
 "Mejor valorado en {site}" = "{site} 评分最高";
 "Mes anterior" = "上个月";
 "Mes siguiente" = "下个月";
+"Metacritic" = "Metacritic";
 "Metadata" = "元数据";
 "Metadata language" = "元数据语言";
 "Metadata providers" = "元数据提供商";
@@ -1545,6 +1553,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "阅读模式";
 "Reading options" = "Reading options";
+"Real IMDb and Rotten Tomatoes scores." = "真实的 IMDb 和 Rotten Tomatoes 评分。";
 "Real-Debrid API token" = "Real-Debrid API 令牌";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "支持 Real-Debrid、TorBox、AllDebrid、Premiumize 和 Debrid-Link。已缓存的播放源可直接播放。密钥仅保存在本地。";
 "Reality" = "真人秀";
@@ -1680,6 +1689,9 @@
 "Romanian" = "罗马尼亚语";
 "Rostro" = "字体";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
+"Rotten Tomatoes" = "Rotten Tomatoes";
+"Rotten Tomatoes Audience" = "Rotten Tomatoes 观众评分";
+"Rotten Tomatoes Critics" = "Rotten Tomatoes 影评人评分";
 "Rounded" = "圆体";
 "Rounded background panel behind the text. Most readable." = "文字后方的圆角背景面板，可读性最佳。";
 "Row card style" = "横排卡片样式";
@@ -1688,6 +1700,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "目前使用 Cinemeta。准备好后，可随时在“设置”中添加 TMDB 密钥。";
 "Runs this plugin on a real title and shows what came back." = "用一个真实标题运行此脚本插件，并显示返回的结果。";
 "Russian" = "俄语";
+"SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "退出画中画";
 "Saltar créditos" = "跳过片尾";
@@ -1777,6 +1790,7 @@
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
 "Set up a debrid" = "配置 Debrid";
+"Set up rating providers" = "设置评分提供商";
 "Settings" = "设置";
 "Settings changed. Please reopen this page." = "设置已更改。请重新打开此页面。";
 "Share" = "分享";
@@ -2038,11 +2052,13 @@
 "The most-watched movies and series on {name} right now in {region}." = "{region} 当前在 {name} 上观看人数最多的电影和剧集。";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "敏捷的棕狐跃过懒狗";
+"The ratings row on a title's detail page, next to runtime and genre." = "影片详情页中位于时长和类型旁边的评分栏。";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "整个首页的布局。下方各项用于调整其中的内容行。";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "设置 TMDB 密钥后，这些内容栏便会启用。你随时可以在“设置”中返回这里。";
+"They email an activation link the first time. Click it, then come back and save." = "首次使用时，他们会通过电子邮件发送激活链接。点击该链接，然后返回并保存。";
 "This file has one audio track." = "此文件只有一条音轨。";
 "This is a manga repository. Add it from the Manga page." = "这是漫画仓库。请在漫画页面添加。";
 "This is how your subtitles will look." = "字幕将显示为这样。";
@@ -2116,6 +2132,7 @@
 "Tracking what you watch" = "记录你的观看内容";
 "Tracks" = "轨道";
 "Traducir títulos" = "翻译标题";
+"Trakt" = "Trakt";
 "Trakt Comments" = "Trakt 评论";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
@@ -2318,6 +2335,7 @@
 "language" = "语言";
 "left" = "左";
 "local" = "本地";
+"mdblist api key" = "MDBList API 密钥";
 "min" = "分钟";
 "movies" = "电影";
 "music.action.error" = "无法完成操作。请重试。";

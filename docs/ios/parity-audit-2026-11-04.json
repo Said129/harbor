@@ -6,35 +6,35 @@
     "behaviors": {
       "total": 438,
       "ported": 121,
-      "partial": 204,
-      "missing": 91,
+      "partial": 206,
+      "missing": 89,
       "excluded": 22,
       "counted": 416,
-      "weighted_percent": 53.6,
+      "weighted_percent": 53.8,
       "ported_only_percent": 29.1,
-      "ported_or_partial_percent": 78.1
+      "ported_or_partial_percent": 78.6
     },
     "settings": {
       "total": 511,
-      "ported": 127,
-      "partial": 21,
-      "missing": 277,
+      "ported": 137,
+      "partial": 23,
+      "missing": 265,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 32.4,
-      "ported_only_percent": 29.9,
-      "ported_or_partial_percent": 34.8
+      "weighted_percent": 34.9,
+      "ported_only_percent": 32.2,
+      "ported_or_partial_percent": 37.6
     },
     "all": {
       "total": 949,
-      "ported": 248,
-      "partial": 225,
-      "missing": 368,
+      "ported": 258,
+      "partial": 229,
+      "missing": 354,
       "excluded": 108,
       "counted": 841,
-      "weighted_percent": 42.9,
-      "ported_only_percent": 29.5,
-      "ported_or_partial_percent": 56.2
+      "weighted_percent": 44.3,
+      "ported_only_percent": 30.7,
+      "ported_or_partial_percent": 57.9
     }
   },
   "behavior_areas": [
@@ -150,10 +150,10 @@
       "area": "Metadata providers, calendar and lists",
       "range": "B305-B323",
       "ported": 7,
-      "partial": 5,
-      "missing": 7,
+      "partial": 7,
+      "missing": 5,
       "excluded": 0,
-      "weighted_percent": 50.0
+      "weighted_percent": 55.3
     },
     {
       "area": "Profiles, appearance, integrations and system",
@@ -2396,29 +2396,29 @@
       "index": 310,
       "id": "OMDB ratings and budget",
       "desktop_source": "src/lib/providers",
-      "verdict": "M",
-      "note": "no OMDB, RPDB, Fanart or MDBList"
+      "verdict": "P",
+      "note": "OmdbService: scores, 90-day cache, daily budget, refused key; no awards, season ratings or budget panel (6 Nov, uncompiled)"
     },
     {
       "index": 311,
       "id": "RPDB rated posters",
       "desktop_source": "src/lib/providers",
       "verdict": "M",
-      "note": "no OMDB, RPDB, Fanart or MDBList"
+      "note": "no RPDB or Fanart"
     },
     {
       "index": 312,
       "id": "Fanart artwork",
       "desktop_source": "src/lib/providers",
       "verdict": "M",
-      "note": "no OMDB, RPDB, Fanart or MDBList"
+      "note": "no RPDB or Fanart"
     },
     {
       "index": 313,
       "id": "MDBList ratings",
       "desktop_source": "src/lib/providers",
-      "verdict": "M",
-      "note": "no OMDB, RPDB, Fanart or MDBList"
+      "verdict": "P",
+      "note": "MdblistService: scores on the detail row; no cards chips (6 Nov, uncompiled)"
     },
     {
       "index": 314,
@@ -3343,29 +3343,29 @@
       "index": 7,
       "id": "omdbKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no OMDB/RPDB/IMDb fallback/Fanart keys"
+      "verdict": "D",
+      "note": "OMDb key kept in the Keychain per profile, saving it resets the budget (6 Nov, uncompiled)"
     },
     {
       "index": 8,
       "id": "rpdbKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "no OMDB/RPDB/IMDb fallback/Fanart keys"
+      "note": "no RPDB/IMDb fallback/Fanart keys"
     },
     {
       "index": 9,
       "id": "imdbApiFallback",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "no OMDB/RPDB/IMDb fallback/Fanart keys"
+      "note": "no RPDB/IMDb fallback/Fanart keys"
     },
     {
       "index": 10,
       "id": "fanartKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "no OMDB/RPDB/IMDb fallback/Fanart keys"
+      "note": "no RPDB/IMDb fallback/Fanart keys"
     },
     {
       "index": 11,
@@ -3456,119 +3456,119 @@
       "id": "showRtBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "note": "card rating chips not ported"
     },
     {
       "index": 24,
       "id": "showMalBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "note": "card rating chips not ported"
     },
     {
       "index": 25,
       "id": "animeCardRating",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "note": "card rating chips not ported"
     },
     {
       "index": 26,
       "id": "showMetacriticBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "note": "card rating chips not ported"
     },
     {
       "index": 27,
       "id": "showLetterboxdBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "note": "card rating chips not ported"
     },
     {
       "index": 28,
       "id": "showMdblistBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "note": "card rating chips not ported"
     },
     {
       "index": 29,
       "id": "showTraktBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "note": "card rating chips not ported"
     },
     {
       "index": 30,
       "id": "showDetailRatings",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "verdict": "P",
+      "note": "no master switch: each provider has its own Details toggle (6 Nov, uncompiled)"
     },
     {
       "index": 31,
       "id": "showImdbDetail",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "verdict": "D",
+      "note": "IMDb/TMDB detail rating toggles (6 Nov, uncompiled)"
     },
     {
       "index": 32,
       "id": "showTmdbDetail",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "verdict": "D",
+      "note": "IMDb/TMDB detail rating toggles (6 Nov, uncompiled)"
     },
     {
       "index": 33,
       "id": "showMalDetail",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "note": "no MAL detail rating"
     },
     {
       "index": 34,
       "id": "showRtDetail",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "verdict": "D",
+      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (6 Nov, uncompiled)"
     },
     {
       "index": 35,
       "id": "showRtAudienceDetail",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "verdict": "D",
+      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (6 Nov, uncompiled)"
     },
     {
       "index": 36,
       "id": "showLetterboxdDetail",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "verdict": "D",
+      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (6 Nov, uncompiled)"
     },
     {
       "index": 37,
       "id": "showMetacriticDetail",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "verdict": "D",
+      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (6 Nov, uncompiled)"
     },
     {
       "index": 38,
       "id": "showTraktDetail",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "verdict": "D",
+      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (6 Nov, uncompiled)"
     },
     {
       "index": 39,
       "id": "showMdblistDetail",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "verdict": "D",
+      "note": "Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (6 Nov, uncompiled)"
     },
     {
       "index": 40,
@@ -3582,28 +3582,28 @@
       "id": "showSimklBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "note": "card rating chips not ported"
     },
     {
       "index": 42,
       "id": "showSimklDetail",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "verdict": "P",
+      "note": "SIMKL detail toggle; the value comes from MDBList only, not SIMKL's community rating (6 Nov, uncompiled)"
     },
     {
       "index": 43,
       "id": "showDubBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "note": "rating badges not ported"
     },
     {
       "index": 44,
       "id": "simklShowCommunityRatings",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "rating badges and detail ratings not ported"
+      "note": "rating badges not ported"
     },
     {
       "index": 45,
@@ -5331,43 +5331,43 @@
       "index": 291,
       "id": "mdblistKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "MDBList, song ID, AI keys"
+      "verdict": "D",
+      "note": "MDBList key kept in the Keychain per profile (6 Nov, uncompiled)"
     },
     {
       "index": 292,
       "id": "auddKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "MDBList, song ID, AI keys"
+      "note": "song ID, AI keys"
     },
     {
       "index": 293,
       "id": "songIdProvider",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "MDBList, song ID, AI keys"
+      "note": "song ID, AI keys"
     },
     {
       "index": 294,
       "id": "songIdAiKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "MDBList, song ID, AI keys"
+      "note": "song ID, AI keys"
     },
     {
       "index": 295,
       "id": "songIdAiModel",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "MDBList, song ID, AI keys"
+      "note": "song ID, AI keys"
     },
     {
       "index": 296,
       "id": "aiSearchKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "M",
-      "note": "MDBList, song ID, AI keys"
+      "note": "song ID, AI keys"
     },
     {
       "index": 297,

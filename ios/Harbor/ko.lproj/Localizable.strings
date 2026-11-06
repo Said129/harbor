@@ -22,6 +22,7 @@
 "45 min" = "45분";
 "45s" = "45초";
 "4:3" = "4:3";
+"8-character key" = "8자 키";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "브라우저의 새 탭에서 AniList가 열렸습니다. 그곳에서 Harbor를 승인한 다음, 표시되는 텍스트를 복사하여 아래에 붙여넣으세요.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "브라우저의 새 탭에서 MyAnimeList가 열렸습니다. 그곳에서 Harbor를 승인한 다음, 코드 또는 페이지 URL을 복사하여 아래에 붙여넣으세요.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 프로토콜용 클라이언트입니다. 설정에는 2분이면 충분하며 대부분은 선택 사항입니다. 모든 키는 사용자가 직접 관리합니다.";
@@ -96,6 +97,7 @@
 "Addon order" = "애드온 순서";
 "Addon wait time" = "애드온 대기 시간";
 "Addons" = "애드온";
+"Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "상세 페이지에 Letterboxd 및 Trakt 커뮤니티 평점을 추가하여 OMDb에서 누락된 항목을 보완합니다.";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "에피소드를 마우스 오른쪽 버튼으로 클릭하면 숨기기 옵션이 표시됩니다. 숨긴 에피소드는 목록에서 사라지고 다음 재생에서도 건너뜁니다. 각 프로그램의 숨긴 항목 표시 토글을 켜면 다시 볼 수 있습니다.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "텍스트와 배경을 조정합니다. 변경 사항이 바로 미리보기에 표시됩니다.";
@@ -191,6 +193,7 @@
 "Aspect ratio" = "화면비";
 "Así se verán tus subtítulos." = "자막은 이렇게 표시됩니다.";
 "Atrás" = "뒤로";
+"Audience" = "관객";
 "Audio" = "오디오";
 "Audio bitrate" = "오디오 비트레이트";
 "Audio codec" = "오디오 코덱";
@@ -401,6 +404,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "이미 좋아하는 영화 또는 프로그램을 최대 5개 선택하세요. Harbor가 이를 활용해 추천 콘텐츠와 맞춤 추천을 조정합니다. 선택 사항입니다.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harbor에서 프로필 선택을 요청할 시점을 정하세요. 시간 설정에 따른 요청은 Harbor로 돌아올 때 표시됩니다.";
 "Choose which addon results appear when you pick a stream." = "스트림을 고를 때 표시할 애드온 결과를 선택하세요.";
+"Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "카드와 상세 페이지에 표시할 평점을 선택하세요. 잠긴 카드 평점은 메타데이터에서 제공업체 키를 설정해야 합니다.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "SF & 판타지";
 "Claro" = "라이트";
@@ -1030,6 +1034,8 @@
 "Legal" = "법적 고지";
 "Less bass" = "저음 줄이기";
 "Letter spacing" = "자간";
+"Letterboxd" = "Letterboxd";
+"Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd, Trakt, Metacritic 및 관객 평점입니다.";
 "Library" = "라이브러리";
 "Libros" = "도서";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "암부를 밝혀 아주 어두운 장면도 제대로 볼 수 있게 합니다.";
@@ -1087,6 +1093,7 @@
 "M3U playlist" = "M3U 재생목록";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1121,6 +1128,7 @@
 "Mejor valorado en {site}" = "{site} 최고 평점 콘텐츠";
 "Mes anterior" = "이전 달";
 "Mes siguiente" = "다음 달";
+"Metacritic" = "Metacritic";
 "Metadata" = "메타데이터";
 "Metadata language" = "메타데이터 언어";
 "Metadata providers" = "메타데이터 제공업체";
@@ -1545,6 +1553,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "읽기 모드";
 "Reading options" = "Reading options";
+"Real IMDb and Rotten Tomatoes scores." = "실제 IMDb 및 Rotten Tomatoes 평점입니다.";
 "Real-Debrid API token" = "Real-Debrid API 토큰";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link를 지원합니다. 캐시된 스트림은 바로 재생되며 키는 로컬에 보관됩니다.";
 "Reality" = "리얼리티";
@@ -1680,6 +1689,9 @@
 "Romanian" = "루마니아어";
 "Rostro" = "얼굴";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
+"Rotten Tomatoes" = "Rotten Tomatoes";
+"Rotten Tomatoes Audience" = "Rotten Tomatoes 관객";
+"Rotten Tomatoes Critics" = "Rotten Tomatoes 평론가";
 "Rounded" = "둥근 글꼴";
 "Rounded background panel behind the text. Most readable." = "텍스트 뒤의 둥근 배경 패널입니다. 가독성이 가장 높습니다.";
 "Row card style" = "행 카드 스타일";
@@ -1688,6 +1700,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "현재는 Cinemeta로 실행됩니다. 준비되면 언제든 설정에서 TMDB 키를 추가하세요.";
 "Runs this plugin on a real title and shows what came back." = "실제 제목으로 이 플러그인을 실행하고 반환된 결과를 보여 줍니다.";
 "Russian" = "러시아어";
+"SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "화면 속 화면 종료";
 "Saltar créditos" = "크레딧 건너뛰기";
@@ -1777,6 +1790,7 @@
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
 "Set up a debrid" = "debrid 설정";
+"Set up rating providers" = "평점 제공업체 설정";
 "Settings" = "설정";
 "Settings changed. Please reopen this page." = "설정이 변경되었습니다. 이 페이지를 다시 여세요.";
 "Share" = "공유";
@@ -2038,11 +2052,13 @@
 "The most-watched movies and series on {name} right now in {region}." = "현재 {region}의 {name}에서 가장 많이 시청한 영화와 시리즈입니다.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "다람쥐 헌 쳇바퀴에 타고파";
+"The ratings row on a title's detail page, next to runtime and genre." = "제목 상세 페이지에서 재생 시간 및 장르 옆에 표시되는 평점 행입니다.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "홈 페이지 전체의 구성입니다. 아래의 모든 설정은 그 안의 행을 조정합니다.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "TMDB 키를 설정하면 이 콘텐츠 줄이 활성화됩니다. 설정에서 언제든 다시 변경할 수 있습니다.";
+"They email an activation link the first time. Click it, then come back and save." = "처음에는 활성화 링크가 이메일로 전송됩니다. 링크를 클릭한 다음 돌아와 저장하세요.";
 "This file has one audio track." = "이 파일에는 오디오 트랙이 하나 있습니다.";
 "This is a manga repository. Add it from the Manga page." = "만화 저장소입니다. 만화 페이지에서 추가하세요.";
 "This is how your subtitles will look." = "자막은 이렇게 표시됩니다.";
@@ -2116,6 +2132,7 @@
 "Tracking what you watch" = "시청 기록 추적";
 "Tracks" = "트랙";
 "Traducir títulos" = "제목 번역";
+"Trakt" = "Trakt";
 "Trakt Comments" = "Trakt 댓글";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
@@ -2318,6 +2335,7 @@
 "language" = "언어";
 "left" = "왼쪽";
 "local" = "로컬";
+"mdblist api key" = "mdblist API 키";
 "min" = "분";
 "movies" = "영화";
 "music.action.error" = "작업을 완료하지 못했습니다. 다시 시도하세요.";

@@ -20,9 +20,16 @@ in `parity-audit-2026-11-04.json`, produced by
 
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
-| Behaviors |   438 |    121 |     204 |      91 |       22 |           53.6 % |      29.1 % |            78.1 % |
-| Settings  |   511 |    127 |      21 |     277 |       86 |           32.4 % |      29.9 % |            34.8 % |
-| All       |   949 |    248 |     225 |     368 |      108 |           42.9 % |      29.5 % |            56.2 % |
+| Behaviors |   438 |    121 |     206 |      89 |       22 |           53.8 % |      29.1 % |            78.6 % |
+| Settings  |   511 |    137 |      23 |     265 |       86 |           34.9 % |      32.2 % |            37.6 % |
+| All       |   949 |    258 |     229 |     354 |      108 |           44.3 % |      30.7 % |            57.9 % |
+
+The 6 November refresh adds the OMDb and MDBList ratings on the detail page (the two
+provider keys, the Details column of the ratings matrix and the scores row), on top
+of the AniList/MyAnimeList trackers, Trakt comments, the audio filter chain, the
+playback stats card, screen lock, hide-episodes and the subtitle sync indicator.
+The detail-ratings work is still uncompiled when this is written; the other items
+were compiled and tested by focused runs 1 to 13.
 
 Figures above are the 5 November refresh (first audit, 4 November: 38.3 % weighted,
 25.0 % ported only, 51.6 % ported or partial): the Rust trust/parser/types core
@@ -39,15 +46,15 @@ Behaviors by area (weighted, P = ½; refreshed 5 November where it changed):
 | ----------------------------------------------------------------- | -----: | ------: | ------: | -------: | -------: |
 | Resolution and Debrid                                             |     18 |      10 |       0 |        1 |   82.1 % |
 | Stream pipeline, parser, trust and scoring                        |     31 |       5 |       3 |        0 |   85.9 % |
-| Player, subtitles, skip, trailers and downloads                   |     26 |      20 |      15 |        2 |   59.0 % |
+| Player, subtitles, skip, trailers and downloads                   |     28 |      20 |      13 |        2 |   62.3 % |
 | Addons and catalogs                                               |      4 |      14 |       2 |        0 |   55.0 % |
 | Details and episodes                                              |      4 |      10 |       1 |        0 |   60.0 % |
 | Home, Discover and rooms                                          |      2 |      18 |       1 |        0 |   52.4 % |
 | Manga, Sports, Music, VOD details, Home customization, Spooktober |      0 |      72 |       0 |        0 |   50.0 % |
 | Subtitle source FPS correction                                    |      0 |       1 |       0 |        0 |   50.0 % |
 | Stremio account, library and local files                          |      4 |       6 |       4 |        0 |   50.0 % |
-| Metadata providers, calendar and lists                            |      7 |       5 |       7 |        0 |   50.0 % |
-| Trackers                                                          |     12 |      11 |       8 |        0 |   56.5 % |
+| Metadata providers, calendar and lists                            |      7 |       7 |       5 |        0 |   55.3 % |
+| Trackers                                                          |     12 |      12 |       7 |        0 |   58.1 % |
 | Profiles, appearance, integrations and system                     |     10 |      12 |      15 |        5 |   43.2 % |
 | Live TV, VOD, DVR and multiview                                   |      0 |      12 |      10 |        0 |   27.3 % |
 | Search                                                            |      1 |       6 |       4 |        0 |   36.4 % |
@@ -66,7 +73,7 @@ Behaviors by area (weighted, P = ½; refreshed 5 November where it changed):
   complete. The honest range is therefore 25 % (ported only) to 52 % (ported or
   partial) overall, with 38 % as the weighted figure.
 - **Settings lag behind behaviors.** Most missing settings are fine-grained
-  Desktop options: rating badges and detail ratings (22), controllers (12),
+  Desktop options: rating chips on cards (9), controllers (12),
   hero/trailer layout (8), fullscreen clock (7), Anime4K and shaders (11),
   advanced subtitle auto-sync (7), AniList/MAL (8), AI and song ID (11).
 - **Code, not runtime.** Nothing written since the last successful Apple build

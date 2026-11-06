@@ -22,6 +22,7 @@
 "45 min" = "45 dk.";
 "45s" = "45 sn";
 "4:3" = "4:3";
+"8-character key" = "8 karakterli anahtar";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "AniList'te bir tarayıcı sekmesi açıldı. Harbor'a orada izin verin, ardından gösterilen metni kopyalayıp aşağıya yapıştırın.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "MyAnimeList'te bir tarayıcı sekmesi açıldı. Harbor'a orada izin verin, ardından kodu veya sayfa URL'sini kopyalayıp aşağıya yapıştırın.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio protokolü için bir istemci. Kurulumu iki dakika sürer ve çoğu adım isteğe bağlıdır. Her anahtarın kontrolü sizde kalır.";
@@ -96,6 +97,7 @@
 "Addon order" = "Eklenti sırası";
 "Addon wait time" = "Eklenti bekleme süresi";
 "Addons" = "Eklentiler";
+"Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "Ayrıntı sayfalarına Letterboxd ve Trakt topluluk puanlarını ekleyerek OMDb'nin eksik bıraktığı alanları tamamlar.";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Bir bölüme sağ tıkladığınızda Gizle seçeneğini ekler. Gizlenen bölümler listede görünmez ve Sıradaki tarafından atlanır. Her dizideki Gizlenenleri göster seçeneğiyle onları geri getirebilirsiniz.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Metni ve arka planı ayarlayın. Önizleme yaptığınız değişiklikleri anında gösterir.";
@@ -191,6 +193,7 @@
 "Aspect ratio" = "En-boy oranı";
 "Así se verán tus subtítulos." = "Altyazılarınız böyle görünecek.";
 "Atrás" = "Geri";
+"Audience" = "İzleyici";
 "Audio" = "Ses";
 "Audio bitrate" = "Ses bit hızı";
 "Audio codec" = "Ses kodeği";
@@ -401,6 +404,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Sevdiğiniz en fazla 5 film veya diziyi seçin. Harbor bunları öne çıkan içerikleri ve önerileri size göre kişiselleştirmek için kullanır. Tamamen isteğe bağlıdır.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harbor'ın ne zaman profil seçmenizi isteyeceğini belirleyin. Zamanlanmış istemler Harbor'a döndüğünüzde görünür.";
 "Choose which addon results appear when you pick a stream." = "Yayın seçerken hangi eklenti sonuçlarının görüneceğini seçin.";
+"Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Kartlarda ve ayrıntı sayfalarında hangi puanların görüneceğini seçin. Kilitli kart puanları için Meta Veri bölümüne sağlayıcı anahtarı eklenmelidir.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Bilim Kurgu ve Fantastik";
 "Claro" = "Açık";
@@ -1030,6 +1034,8 @@
 "Legal" = "Yasal bilgiler";
 "Less bass" = "Daha az bas";
 "Letter spacing" = "Harf aralığı";
+"Letterboxd" = "Letterboxd";
+"Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd, Trakt, Metacritic ve izleyici puanları.";
 "Library" = "Kütüphane";
 "Libros" = "Kitaplar";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Gölgeleri açarak zifiri karanlık sahneleri izlenebilir hâle getirir.";
@@ -1087,6 +1093,7 @@
 "M3U playlist" = "M3U oynatma listesi";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1121,6 +1128,7 @@
 "Mejor valorado en {site}" = "{site} üzerinde en yüksek puan alanlar";
 "Mes anterior" = "Önceki ay";
 "Mes siguiente" = "Sonraki ay";
+"Metacritic" = "Metacritic";
 "Metadata" = "Meta veriler";
 "Metadata language" = "Meta veri dili";
 "Metadata providers" = "Meta veri sağlayıcıları";
@@ -1545,6 +1553,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "Okuma modu";
 "Reading options" = "Reading options";
+"Real IMDb and Rotten Tomatoes scores." = "Gerçek IMDb ve Rotten Tomatoes puanları.";
 "Real-Debrid API token" = "Real-Debrid API belirteci";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Önbelleğe alınmış yayınlar doğrudan oynatılır. Anahtarlar cihazınızda kalır.";
 "Reality" = "Reality programları";
@@ -1680,6 +1689,9 @@
 "Romanian" = "Rumence";
 "Rostro" = "Yüz";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
+"Rotten Tomatoes" = "Rotten Tomatoes";
+"Rotten Tomatoes Audience" = "Rotten Tomatoes İzleyicileri";
+"Rotten Tomatoes Critics" = "Rotten Tomatoes Eleştirmenleri";
 "Rounded" = "Yuvarlak";
 "Rounded background panel behind the text. Most readable." = "Metnin arkasında yuvarlatılmış arka plan paneli. Okunması en kolay seçenek.";
 "Row card style" = "Satır kartı stili";
@@ -1688,6 +1700,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Şimdilik Cinemeta kullanılıyor. Hazır olduğunuzda Ayarlar'dan bir TMDB anahtarı ekleyebilirsiniz.";
 "Runs this plugin on a real title and shows what came back." = "Bu uzantıyı gerçek bir başlıkta çalıştırır ve dönen sonucu gösterir.";
 "Russian" = "Rusça";
+"SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "Resim İçinde Resim modundan çık";
 "Saltar créditos" = "Jeneriği Atla";
@@ -1777,6 +1790,7 @@
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
 "Set up a debrid" = "Debrid hizmeti kur";
+"Set up rating providers" = "Puan sağlayıcılarını ayarla";
 "Settings" = "Ayarlar";
 "Settings changed. Please reopen this page." = "Ayarlar değişti. Lütfen bu sayfayı yeniden açın.";
 "Share" = "Paylaş";
@@ -2038,11 +2052,13 @@
 "The most-watched movies and series on {name} right now in {region}." = "Şu anda {region} bölgesinde {name} platformunda en çok izlenen filmler ve diziler.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "Pijamalı hasta yağız şoföre çabucak güvendi";
+"The ratings row on a title's detail page, next to runtime and genre." = "Bir içeriğin ayrıntı sayfasında süre ve türün yanında yer alan puanlar satırı.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Ana Sayfanın genel düzeni. Aşağıdaki seçeneklerin tümü içindeki satırları ayarlar.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Bu satırlar, bir TMDB anahtarı ayarlandığında etkinleşir. Bu bölüme dilediğiniz zaman Ayarlar'dan dönebilirsiniz.";
+"They email an activation link the first time. Click it, then come back and save." = "İlk seferde e-postayla bir etkinleştirme bağlantısı gönderirler. Bağlantıya tıklayın, ardından buraya dönüp kaydedin.";
 "This file has one audio track." = "Bu dosyada tek bir ses parçası var.";
 "This is a manga repository. Add it from the Manga page." = "Bu bir manga deposu. Manga sayfasından ekleyin.";
 "This is how your subtitles will look." = "Altyazılarınız böyle görünecek.";
@@ -2116,6 +2132,7 @@
 "Tracking what you watch" = "İzlediklerinizi takip etme";
 "Tracks" = "Parçalar";
 "Traducir títulos" = "Başlıkları çevir";
+"Trakt" = "Trakt";
 "Trakt Comments" = "Trakt Yorumları";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
@@ -2318,6 +2335,7 @@
 "language" = "dil";
 "left" = "sol";
 "local" = "yerel";
+"mdblist api key" = "MDBList API anahtarı";
 "min" = "dk";
 "movies" = "filmler";
 "music.action.error" = "İşlem tamamlanamadı. Yeniden deneyin.";

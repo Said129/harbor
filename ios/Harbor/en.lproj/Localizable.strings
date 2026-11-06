@@ -13,6 +13,7 @@
 "2020s Hits" = "2020s Hits";
 "2nd" = "2nd";
 "30 seconds (default)" = "30 seconds (default)";
+"8-character key" = "8-character key";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below.";
 "A continuación" = "Up Next";
@@ -79,6 +80,7 @@
 "Addon order" = "Addon order";
 "Addon wait time" = "Addon wait time";
 "Addons" = "Addons";
+"Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses.";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Adjust the text and background. The preview shows your changes as you make them.";
@@ -163,6 +165,7 @@
 "Aspect ratio" = "Aspect ratio";
 "Así se verán tus subtítulos." = "This is how your subtitles will look.";
 "Atrás" = "Back";
+"Audience" = "Audience";
 "Audio" = "Audio";
 "Audio bitrate" = "Audio bitrate";
 "Audio codec" = "Audio codec";
@@ -327,6 +330,7 @@
 "Choose the frame rate the subtitle was authored for." = "Choose the frame rate the subtitle was authored for.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor.";
 "Choose which addon results appear when you pick a stream." = "Choose which addon results appear when you pick a stream.";
+"Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Sci-Fi & Fantasy";
 "Claro" = "Light";
@@ -864,6 +868,8 @@
 "Left to right" = "Left to right";
 "Less bass" = "Less bass";
 "Letter spacing" = "Letter spacing";
+"Letterboxd" = "Letterboxd";
+"Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd, Trakt, Metacritic, and audience scores.";
 "Library" = "Library";
 "Libros" = "Books";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Lifts shadows so the pitch-black scenes are actually watchable.";
@@ -915,6 +921,7 @@
 "Líneas más definidas y un poco más de impacto visual." = "Sharper lines and a little more pop.";
 "M3U playlist" = "M3U playlist";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MDBList" = "MDBList";
 "Magnet stream" = "Magnet stream";
 "Make it yours" = "Make it yours";
 "Manage" = "Manage";
@@ -943,6 +950,7 @@
 "Mejor valorado en {site}" = "Top rated on {site}";
 "Mes anterior" = "Previous month";
 "Mes siguiente" = "Next month";
+"Metacritic" = "Metacritic";
 "Metadata" = "Metadata";
 "Metadata language" = "Metadata language";
 "Metadata providers" = "Metadata providers";
@@ -1295,6 +1303,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "Reading mode";
 "Reading options" = "Reading options";
+"Real IMDb and Rotten Tomatoes scores." = "Real IMDb and Rotten Tomatoes scores.";
 "Real-Debrid API token" = "Real-Debrid API token";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local.";
 "Reanudar" = "Resume";
@@ -1419,9 +1428,13 @@
 "Romance" = "Romance";
 "Rostro" = "Face";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
+"Rotten Tomatoes" = "Rotten Tomatoes";
+"Rotten Tomatoes Audience" = "Rotten Tomatoes Audience";
+"Rotten Tomatoes Critics" = "Rotten Tomatoes Critics";
 "Rounded" = "Rounded";
 "Rounded background panel behind the text. Most readable." = "Rounded background panel behind the text. Most readable.";
 "Row card style" = "Row card style";
+"SIMKL" = "SIMKL";
 "Salir de imagen en imagen" = "Exit Picture in Picture";
 "Saltar créditos" = "Skip Credits";
 "Saltar intro" = "Skip Intro";
@@ -1505,6 +1518,7 @@
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
 "Set up a debrid" = "Set up a debrid";
+"Set up rating providers" = "Set up rating providers";
 "Settings" = "Settings";
 "Settings changed. Please reopen this page." = "Settings changed. Please reopen this page.";
 "Share" = "Share";
@@ -1512,6 +1526,7 @@
 "Sharp" = "Sharp";
 "Sharpen" = "Sharpen";
 "Sharper lines and a little more pop." = "Sharper lines and a little more pop.";
+"Show" = "Show";
 "Show More info button" = "Show More info button";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode.";
 "Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it.";
@@ -1725,9 +1740,11 @@
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "The quick brown fox jumps over the lazy dog";
+"The ratings row on a title's detail page, next to runtime and genre." = "The ratings row on a title's detail page, next to runtime and genre.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "The shape of the whole Home page. Everything below tunes the rows inside it.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
 "Theater Capture" = "Theater Capture";
+"They email an activation link the first time. Click it, then come back and save." = "They email an activation link the first time. Click it, then come back and save.";
 "This file has one audio track." = "This file has one audio track.";
 "This is how your subtitles will look." = "This is how your subtitles will look.";
 "This list is full ({max} items)" = "This list is full ({max} items)";
@@ -1789,6 +1806,7 @@
 "Tracking what you watch" = "Tracking what you watch";
 "Tracks" = "Tracks";
 "Traducir títulos" = "Translate titles";
+"Trakt" = "Trakt";
 "Trakt Comments" = "Trakt Comments";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
@@ -1948,6 +1966,7 @@
 "h" = "h";
 "just now" = "just now";
 "language" = "language";
+"mdblist api key" = "mdblist api key";
 "min" = "min";
 "music.action.error" = "Couldn’t complete that action. Please try again.";
 "music.artist.about" = "About the artist";

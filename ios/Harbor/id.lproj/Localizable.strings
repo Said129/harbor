@@ -22,6 +22,7 @@
 "45 min" = "45 mnt";
 "45s" = "45 dtk";
 "4:3" = "4:3";
+"8-character key" = "Kunci 8 karakter";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Tab browser dibuka di AniList. Setujui Harbor di sana, lalu salin teks yang ditampilkan dan tempelkan di bawah.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Tab browser dibuka di MyAnimeList. Setujui Harbor di sana, lalu salin kode atau URL halaman dan tempelkan di bawah.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Klien untuk protokol Stremio. Hanya perlu dua menit untuk disiapkan; sebagian besar bersifat opsional. Anda tetap memegang kendali atas setiap kunci.";
@@ -96,6 +97,7 @@
 "Addon order" = "Urutan addon";
 "Addon wait time" = "Waktu tunggu addon";
 "Addons" = "Addon";
+"Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "Menambahkan rating komunitas Letterboxd dan Trakt ke halaman detail untuk melengkapi data yang tidak tersedia di OMDb.";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Menambahkan opsi Sembunyikan saat Anda mengeklik kanan episode. Episode yang disembunyikan akan hilang dari daftar dan dilewati oleh Berikutnya. Sakelar Tampilkan yang disembunyikan di setiap acara memungkinkan Anda menampilkannya kembali.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Sesuaikan teks dan latar belakang. Pratinjau langsung menunjukkan perubahan Anda.";
@@ -191,6 +193,7 @@
 "Aspect ratio" = "Rasio aspek";
 "Así se verán tus subtítulos." = "Beginilah tampilan subtitle Anda.";
 "Atrás" = "Kembali";
+"Audience" = "Penonton";
 "Audio" = "Audio";
 "Audio bitrate" = "Bitrate audio";
 "Audio codec" = "Codec audio";
@@ -401,6 +404,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Pilih hingga 5 film atau acara yang sudah Anda sukai. Harbor menggunakannya untuk menyesuaikan pilihan unggulan dan rekomendasi Anda. Sepenuhnya opsional.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Pilih kapan Harbor meminta Anda memilih profil. Pengingat berkala muncul saat Anda kembali ke Harbor.";
 "Choose which addon results appear when you pick a stream." = "Pilih hasil addon yang muncul saat memilih stream.";
+"Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Pilih penilaian yang tampil pada kartu dan halaman detail. Penilaian kartu yang terkunci memerlukan kunci penyedia di Metadata.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Fiksi Ilmiah & Fantasi";
 "Claro" = "Terang";
@@ -1030,6 +1034,8 @@
 "Legal" = "Hukum";
 "Less bass" = "Bass lebih rendah";
 "Letter spacing" = "Jarak antarhuruf";
+"Letterboxd" = "Letterboxd";
+"Letterboxd, Trakt, Metacritic, and audience scores." = "Skor Letterboxd, Trakt, Metacritic, dan penonton.";
 "Library" = "Perpustakaan";
 "Libros" = "Buku";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Mencerahkan bayangan agar adegan yang sangat gelap tetap dapat ditonton.";
@@ -1087,6 +1093,7 @@
 "M3U playlist" = "Playlist M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1121,6 +1128,7 @@
 "Mejor valorado en {site}" = "Peringkat teratas di {site}";
 "Mes anterior" = "Bulan sebelumnya";
 "Mes siguiente" = "Bulan depan";
+"Metacritic" = "Metacritic";
 "Metadata" = "Metadata";
 "Metadata language" = "Bahasa metadata";
 "Metadata providers" = "Penyedia metadata";
@@ -1545,6 +1553,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "Mode baca";
 "Reading options" = "Reading options";
+"Real IMDb and Rotten Tomatoes scores." = "Skor IMDb dan Rotten Tomatoes yang sebenarnya.";
 "Real-Debrid API token" = "Token API Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Stream yang di-cache diputar langsung. Kunci tetap tersimpan secara lokal.";
 "Reality" = "Realitas";
@@ -1680,6 +1689,9 @@
 "Romanian" = "Rumania";
 "Rostro" = "Wajah";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
+"Rotten Tomatoes" = "Rotten Tomatoes";
+"Rotten Tomatoes Audience" = "Penonton Rotten Tomatoes";
+"Rotten Tomatoes Critics" = "Kritikus Rotten Tomatoes";
 "Rounded" = "Bersudut membulat";
 "Rounded background panel behind the text. Most readable." = "Panel latar bersudut membulat di belakang teks. Paling mudah dibaca.";
 "Row card style" = "Gaya kartu baris";
@@ -1688,6 +1700,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Untuk saat ini menggunakan Cinemeta. Tambahkan kunci TMDB dari Pengaturan kapan pun Anda siap.";
 "Runs this plugin on a real title and shows what came back." = "Menjalankan plugin ini pada judul sungguhan dan menampilkan hasilnya.";
 "Russian" = "Rusia";
+"SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "Keluar dari Picture in Picture";
 "Saltar créditos" = "Lewati Kredit";
@@ -1777,6 +1790,7 @@
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
 "Set up a debrid" = "Siapkan debrid";
+"Set up rating providers" = "Siapkan penyedia rating";
 "Settings" = "Pengaturan";
 "Settings changed. Please reopen this page." = "Pengaturan telah berubah. Buka kembali halaman ini.";
 "Share" = "Bagikan";
@@ -2038,11 +2052,13 @@
 "The most-watched movies and series on {name} right now in {region}." = "Film dan serial yang paling banyak ditonton di {name} saat ini di {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "Rubah cokelat yang gesit melompati anjing malas";
+"The ratings row on a title's detail page, next to runtime and genre." = "Baris rating di halaman detail judul, di sebelah durasi dan genre.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Bentuk keseluruhan halaman Beranda. Semua pengaturan di bawah menyesuaikan baris di dalamnya.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Deretan ini akan aktif setelah kunci TMDB ditetapkan. Anda dapat kembali ke sini kapan saja melalui Pengaturan.";
+"They email an activation link the first time. Click it, then come back and save." = "Mereka akan mengirim tautan aktivasi lewat email untuk pertama kalinya. Klik tautan itu, lalu kembali dan pilih Simpan.";
 "This file has one audio track." = "File ini memiliki satu trek audio.";
 "This is a manga repository. Add it from the Manga page." = "Ini repositori manga. Tambahkan dari halaman Manga.";
 "This is how your subtitles will look." = "Beginilah tampilan subtitle Anda.";
@@ -2116,6 +2132,7 @@
 "Tracking what you watch" = "Melacak tontonan Anda";
 "Tracks" = "Trek";
 "Traducir títulos" = "Terjemahkan judul";
+"Trakt" = "Trakt";
 "Trakt Comments" = "Komentar Trakt";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
@@ -2318,6 +2335,7 @@
 "language" = "bahasa";
 "left" = "kiri";
 "local" = "lokal";
+"mdblist api key" = "kunci API mdblist";
 "min" = "mnt";
 "movies" = "film";
 "music.action.error" = "Tindakan tidak dapat diselesaikan. Coba lagi.";

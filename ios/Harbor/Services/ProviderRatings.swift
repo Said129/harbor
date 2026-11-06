@@ -45,11 +45,11 @@ enum OmdbParser {
         func value(_ source: String) -> String? { ratings.first { $0["Source"].string == source }?["Value"].string }
         let voteCount = votes(json["imdbVotes"].string)
         let critics = percent(value("Rotten Tomatoes"))
-        let imdb = json["imdbRating"].string.flatMap { $0 == "N/A" || $0.isEmpty ? nil : $0 }
-        let trimmedRating = json["Rated"].string?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let rated: String? = trimmedRating.flatMap { text in
-            text.isEmpty || text.range(of: "^(n/a|not rated|unrated|nr)$", options: [.regularExpression, .caseInsensitive]) != nil ? nil : text
-        }
+        var imdb: String?
+        if let text = json["imdbRating"].string, !text.isEmpty, text != "N/A" { imdb = text }
+        var rated: String?
+        if let text = json["Rated"].string?.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty,
+           text.range(of: "^(n/a|not rated|unrated|nr)$", options: [.regularExpression, .caseInsensitive]) == nil { rated = text }
         var fresh = false
         if let critics, let voteCount { fresh = critics >= 75 && voteCount >= certifiedFreshMinimumVotes }
         return .scores(OmdbScores(imdbRating: imdb, rated: rated, imdbVotes: voteCount, rtCritics: critics, metascore: percent(value("Metacritic")),
@@ -145,6 +145,11 @@ actor OmdbService {
 
     func budget(now: Date = Date()) -> OmdbBudget {
         load(now: now); budgetValue = budgetValue.current(at: now); return budgetValue
+    }
+
+    /// Desktop's `resetOmdbBudget`, run when a key is saved: a new allowance and no refusal held against the new key.
+    func resetBudget(now: Date = Date()) {
+        load(now: now); budgetValue = .fresh(now: now); persist()
     }
 
     func cached(_ imdbID: String, now: Date = Date()) -> OmdbScores? {
@@ -271,9 +276,10 @@ actor MdblistService {
         let id = [apiKey, type, imdbID].joined(separator: "|")
         if let hit = cache[id] { if now < hit.expires { return hit.scores }; cache[id] = nil }
         if let pending = inflight[id] { return await pending.value }
-        let urls = Self.urls(key: apiKey, imdbID: imdbID, type: type), fetch = fetch
+        let urls = Self.urls(key: apiKey, imdbID: imdbID, type: type)
+        let load = self.fetch
         let task = Task<MdblistScores?, Never> {
-            for url in urls { if let json = await fetch(url), let parsed = MdblistParser.parse(json) { return parsed } }
+            for url in urls { if let json = await load(url), let parsed = MdblistParser.parse(json) { return parsed } }
             return nil
         }
         inflight[id] = task

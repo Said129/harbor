@@ -94,10 +94,14 @@ private struct RatingProviderKeyField: View {
     }
 
     private func save() {
-        do { try store.set(draft, for: provider); error = nil } catch { self.error = safeMessage(error) }
+        do { try store.set(draft, for: provider); error = nil; keyChanged() } catch { self.error = safeMessage(error) }
     }
     private func remove() {
-        do { try store.set("", for: provider); draft = ""; error = nil } catch { self.error = safeMessage(error) }
+        do { try store.set("", for: provider); draft = ""; error = nil; keyChanged() } catch { self.error = safeMessage(error) }
+    }
+    /// A new OMDb key starts a fresh daily allowance, as on Desktop.
+    private func keyChanged() {
+        if provider == .omdb { Task { await OmdbService.shared.resetBudget() } }
     }
 }
 

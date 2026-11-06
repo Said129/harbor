@@ -24,6 +24,7 @@
 "45 min" = "45 د";
 "45s" = "45 ثانية";
 "4:3" = "4:3";
+"8-character key" = "مفتاح من 8 أحرف";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "فُتحت علامة تبويب في المتصفح على AniList. وافق على Harbor هناك، ثم انسخ النص الظاهر والصقه في الأسفل.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "فُتحت علامة تبويب في المتصفح على MyAnimeList. وافق على Harbor هناك، ثم انسخ الرمز أو رابط URL الصفحة والصقه أدناه.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "عميل لبروتوكول Stremio. دقيقتان للإعداد، ومعظمه اختياري. تبقى أنت المتحكّم في كل مفتاح.";
@@ -103,6 +104,7 @@
 "Addon order" = "ترتيب الإضافة";
 "Addon wait time" = "مدة انتظار الإضافة";
 "Addons" = "الإضافات";
+"Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "يضيف تقييمات مجتمعَي Letterboxd وTrakt إلى صفحات التفاصيل، لاستكمال ما يفوته OMDb.";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "يضيف خيار \"إخفاء\" عند النقر بزر الفأرة الأيمن على حلقة. تختفي الحلقات المخفية من القائمة ويتخطّاها \"التالي\". يتيح لك مفتاح \"إظهار المخفية\" في كل مسلسل استعادتها.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "اضبط النص والخلفية. تُظهر المعاينة تغييراتك فور إجرائها.";
@@ -202,6 +204,7 @@
 "Aspect ratio" = "نسبة العرض إلى الارتفاع";
 "Así se verán tus subtítulos." = "هكذا ستبدو الترجمة.";
 "Atrás" = "رجوع";
+"Audience" = "الجمهور";
 "Audio" = "الصوت";
 "Audio bitrate" = "معدل بِت الصوت";
 "Audio codec" = "ترميز الصوت";
@@ -421,6 +424,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "اختر حتى 5 أفلام أو مسلسلات تحبها بالفعل. يستخدمها Harbor لضبط مختاراتك المميزة وتوصياتك. اختياري تمامًا.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "اختر متى يطلب Harbor اختيار ملف شخصي. تظهر المطالبات المؤقّتة عند العودة إلى Harbor.";
 "Choose which addon results appear when you pick a stream." = "اختر نتائج الإضافات التي تظهر عند اختيار بث.";
+"Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "اختر التقييمات التي تظهر على البطاقات وصفحات التفاصيل. تتطلّب التقييمات المقفلة مفتاح مزوّد في البيانات الوصفية.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "خيال علمي وفانتازيا";
 "Claro" = "فاتح";
@@ -1055,6 +1059,8 @@
 "Legal" = "إشعار قانوني";
 "Less bass" = "باس أقل";
 "Letter spacing" = "تباعد الأحرف";
+"Letterboxd" = "Letterboxd";
+"Letterboxd, Trakt, Metacritic, and audience scores." = "تقييمات Letterboxd وTrakt وMetacritic والجمهور.";
 "Library" = "المكتبة";
 "Libros" = "الكتب";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "يرفع الظلال حتى تصبح المشاهد شديدة السواد قابلة للمشاهدة.";
@@ -1112,6 +1118,7 @@
 "M3U playlist" = "قائمة M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1146,6 +1153,7 @@
 "Mejor valorado en {site}" = "الأعلى تقييمًا على {site}";
 "Mes anterior" = "الشهر السابق";
 "Mes siguiente" = "الشهر التالي";
+"Metacritic" = "Metacritic";
 "Metadata" = "البيانات الوصفية";
 "Metadata language" = "لغة البيانات الوصفية";
 "Metadata providers" = "مزوّدو البيانات الوصفية";
@@ -1576,6 +1584,7 @@
 "Reading help" = "كيفية استخدام المانغا والكتب الإلكترونية";
 "Reading mode" = "وضع القراءة";
 "Reading options" = "Reading options";
+"Real IMDb and Rotten Tomatoes scores." = "تقييمات IMDb وRotten Tomatoes الحقيقية.";
 "Real-Debrid API token" = "رمز API لـ Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid و TorBox و AllDebrid و Premiumize و Debrid-Link. البث المؤقت يعمل مباشرة. المفاتيح تبقى محلية.";
 "Reality" = "تلفزيون الواقع";
@@ -1712,6 +1721,9 @@
 "Romanian" = "الرومانية";
 "Rostro" = "التعبئة";
 "Rotate featured banners automatically" = "تغيير اللافتات المميزة تلقائيًا";
+"Rotten Tomatoes" = "Rotten Tomatoes";
+"Rotten Tomatoes Audience" = "جمهور Rotten Tomatoes";
+"Rotten Tomatoes Critics" = "نقّاد Rotten Tomatoes";
 "Rounded" = "مستدير";
 "Rounded background panel behind the text. Most readable." = "لوحة خلفية دائرية خلف النص. الأكثر قابلية للقراءة.";
 "Row card style" = "شكل بطاقات الصفوف";
@@ -1720,6 +1732,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "يعمل على Cinemeta حاليًا. أضف مفتاح TMDB من الإعدادات متى كنت مستعدًا.";
 "Runs this plugin on a real title and shows what came back." = "يشغّل هذا المكوّن الإضافي على عنوان حقيقي ويعرض ما أعاده.";
 "Russian" = "الروسية";
+"SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "الخروج من صورة داخل صورة";
 "Saltar créditos" = "تخطّي الشارة";
@@ -1811,6 +1824,7 @@
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
 "Set up a debrid" = "إعداد debrid";
+"Set up rating providers" = "إعداد مزوّدي التقييمات";
 "Settings" = "الإعدادات";
 "Settings changed. Please reopen this page." = "تغيّرت الإعدادات. أعد فتح هذه الصفحة.";
 "Share" = "مشاركة";
@@ -2075,11 +2089,13 @@
 "The most-watched movies and series on {name} right now in {region}." = "أكثر الأفلام والمسلسلات مشاهدةً على {name} الآن في {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "تم الاحتفاظ بالأصل. صدّر الترجمة بترميز UTF-8 أو UTF-16 لمزامنتها.";
 "The quick brown fox jumps over the lazy dog" = "أبجد هوز حطي كلمن سعفص قرشت ثخذ ضظغ";
+"The ratings row on a title's detail page, next to runtime and genre." = "صف التقييمات في صفحة تفاصيل العنوان، بجوار مدة العرض والنوع.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "شكل صفحة الرئيسية بأكملها. كل ما بالأسفل يضبط الصفوف داخلها.";
 "The subtitle already matches the audio." = "تتطابق الترجمة مع الصوت بالفعل.";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "تُفعَّل هذه الصفوف بمجرد تعيين مفتاح TMDB. يمكنك العودة إلى هذا في أي وقت من الإعدادات.";
+"They email an activation link the first time. Click it, then come back and save." = "سيرسلون رابط تفعيل بالبريد الإلكتروني في المرة الأولى. اضغط عليه، ثم عُد واحفظ.";
 "This file has one audio track." = "هذا الملف يحتوي على مسار صوتي واحد.";
 "This is a Stremio addon manifest. Add it from the Addons page instead." = "هذا ملف تعريف إضافة Stremio. أضفها من صفحة الإضافات بدلاً من ذلك.";
 "This is a manga repository. Add it from the Manga page." = "هذا مستودع مانغا. أضفه من صفحة المانغا.";
@@ -2154,6 +2170,7 @@
 "Tracking what you watch" = "تتبُّع ما تشاهده";
 "Tracks" = "المسارات";
 "Traducir títulos" = "ترجمة العناوين";
+"Trakt" = "Trakt";
 "Trakt Comments" = "تعليقات Trakt";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
@@ -2360,6 +2377,7 @@
 "language" = "اللغة";
 "left" = "اليسار";
 "local" = "محلي";
+"mdblist api key" = "مفتاح MDBList API";
 "min" = "دقيقة";
 "movies" = "أفلام";
 "music.action.error" = "تعذّر إكمال الإجراء. أعد المحاولة.";

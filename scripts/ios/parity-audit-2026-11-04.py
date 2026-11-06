@@ -201,7 +201,9 @@ BEHAVIORS = expand("""
 305 P earlier review Partial
 306-308 D TMDBService, MovieCollection, IMDb resolution
 309 P TMDB images, trailers and watch providers
-310-313 M no OMDB, RPDB, Fanart or MDBList
+310 P OmdbService: scores, 90-day cache, daily budget, refused key; no awards, season ratings or budget panel (6 Nov, uncompiled)
+311-312 M no RPDB or Fanart
+313 P MdblistService: scores on the detail row; no cards chips (6 Nov, uncompiled)
 314 M Wikidata used for music/books only
 315 D TVDBService
 316 M no TVMaze
@@ -241,16 +243,23 @@ SETTINGS = expand("""
 1-3 M no UI sounds
 4 D blur comments until revealed (5 Nov, uncompiled)
 5-6 D blurEpisodes, TMDB key
-7-10 M no OMDB/RPDB/IMDb fallback/Fanart keys
+7 D OMDb key kept in the Keychain per profile, saving it resets the budget (6 Nov, uncompiled)
+8-10 M no RPDB/IMDb fallback/Fanart keys
 11 P TVDB used without a user key setting
 12-17 D debrid keys, region
 18-19 D stream ranking languages and require-language (5 Nov, uncompiled)
 20 D
 21 M
 22 D
-23-39 M rating badges and detail ratings not ported
+23-29 M card rating chips not ported
+30 P no master switch: each provider has its own Details toggle (6 Nov, uncompiled)
+31-32 D IMDb/TMDB detail rating toggles (6 Nov, uncompiled)
+33 M no MAL detail rating
+34-39 D Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (6 Nov, uncompiled)
 40 D show Trakt comments on detail pages (5 Nov, uncompiled)
-41-44 M rating badges and detail ratings not ported
+41 M card rating chips not ported
+42 P SIMKL detail toggle; the value comes from MDBList only, not SIMKL's community rating (6 Nov, uncompiled)
+43-44 M rating badges not ported
 45 D
 46-51 M card badges and home languages not ported
 52-55 D poster settings
@@ -340,7 +349,8 @@ SETTINGS = expand("""
 286-287 D
 288 M
 289-290 X pointer hover styles
-291-296 M MDBList, song ID, AI keys
+291 D MDBList key kept in the Keychain per profile (6 Nov, uncompiled)
+292-296 M song ID, AI keys
 297-301 X Games excluded
 302-306 M AI search settings
 307 X Direct3D flip model

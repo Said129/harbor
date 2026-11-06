@@ -281,7 +281,7 @@ struct DetailView: View {
                         ForEach(model.media.genres ?? [], id: \.self) { badge($0) }
                     }
                 }.scrollIndicators(.hidden)
-                DetailProviderRatings(media: model.media, owner: app.personalOwner)
+                DetailProviderRatings(media: model.media, owner: app.settingsOwner)
                 primaryActions
                 secondaryActions
                 SimklDetailControls(media: model.media, app: app).id(app.accountOperationScope + "|" + model.media.identity)

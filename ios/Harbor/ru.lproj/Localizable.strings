@@ -24,6 +24,7 @@
 "45 min" = "45 мин";
 "45s" = "45 с";
 "4:3" = "4:3";
+"8-character key" = "ключ из 8 символов";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Открылась вкладка браузера с AniList. Подтвердите доступ для Harbor, затем скопируйте показанный текст и вставьте его ниже.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Открылась вкладка браузера с MyAnimeList. Подтвердите доступ для Harbor, затем скопируйте код или URL страницы и вставьте его ниже.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Клиент для протокола Stremio. Две минуты на настройку, и почти всё – по желанию. Все ключи остаются под вашим контролем.";
@@ -98,6 +99,7 @@
 "Addon order" = "Порядок дополнений";
 "Addon wait time" = "Время ожидания дополнения";
 "Addons" = "Дополнения";
+"Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "Добавляет на страницы сведений оценки сообществ Letterboxd и Trakt, восполняя пробелы OMDb.";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Добавляет пункт «Скрыть» в меню по правому клику на серии. Скрытые серии исчезают из списка и пропускаются в «Далее». Переключатель «Показать скрытые» у каждого сериала вернёт их обратно.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Настройте текст и фон. Изменения сразу видны в предпросмотре.";
@@ -194,6 +196,7 @@
 "Aspect ratio" = "Соотношение сторон";
 "Así se verán tus subtítulos." = "Так будут выглядеть ваши субтитры.";
 "Atrás" = "Назад";
+"Audience" = "Аудитория";
 "Audio" = "Звук";
 "Audio bitrate" = "Битрейт аудио";
 "Audio codec" = "Аудиокодек";
@@ -405,6 +408,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Выберите до 5 фильмов или сериалов, которые вам нравятся. Harbor учтёт их в подборках и рекомендациях. Это необязательно.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Выберите, когда Harbor предлагает выбрать профиль. Запросы по таймеру появляются при возвращении в Harbor.";
 "Choose which addon results appear when you pick a stream." = "Выберите, какие результаты дополнений показывать при выборе потока.";
+"Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Выберите оценки для карточек и страниц с подробностями. Для заблокированных оценок на карточках нужен ключ провайдера в разделе метаданных.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Фантастика и фэнтези";
 "Claro" = "Светлая";
@@ -1035,6 +1039,8 @@
 "Legal" = "Правовая информация";
 "Less bass" = "Меньше басов";
 "Letter spacing" = "Межбуквенный интервал";
+"Letterboxd" = "Letterboxd";
+"Letterboxd, Trakt, Metacritic, and audience scores." = "Оценки Letterboxd, Trakt, Metacritic и зрителей.";
 "Library" = "Библиотека";
 "Libros" = "Книги";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Поднимает тени, чтобы совсем тёмные сцены было видно.";
@@ -1092,6 +1098,7 @@
 "M3U playlist" = "Плейлист M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
 "MUBI" = "MUBI";
@@ -1126,6 +1133,7 @@
 "Mejor valorado en {site}" = "Лучшие по рейтингу на {site}";
 "Mes anterior" = "Предыдущий месяц";
 "Mes siguiente" = "Следующий месяц";
+"Metacritic" = "Metacritic";
 "Metadata" = "Метаданные";
 "Metadata language" = "Язык метаданных";
 "Metadata providers" = "Провайдеры метаданных";
@@ -1556,6 +1564,7 @@
 "Reading help" = "Как пользоваться Manga и eBook";
 "Reading mode" = "Режим чтения";
 "Reading options" = "Reading options";
+"Real IMDb and Rotten Tomatoes scores." = "Настоящие оценки IMDb и Rotten Tomatoes.";
 "Real-Debrid API token" = "API-токен Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Кэшированные потоки воспроизводятся напрямую. Ключи хранятся локально.";
 "Reality" = "Реалити";
@@ -1692,6 +1701,9 @@
 "Romanian" = "Румынский";
 "Rostro" = "Заливка";
 "Rotate featured banners automatically" = "Автоматически менять избранные баннеры";
+"Rotten Tomatoes" = "Rotten Tomatoes";
+"Rotten Tomatoes Audience" = "Зрители Rotten Tomatoes";
+"Rotten Tomatoes Critics" = "Критики Rotten Tomatoes";
 "Rounded" = "Скруглённый";
 "Rounded background panel behind the text. Most readable." = "Скруглённая подложка за текстом. Максимальная читаемость.";
 "Row card style" = "Стиль карточек в рядах";
@@ -1700,6 +1712,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Пока используется Cinemeta. Добавьте ключ TMDB в Настройках, когда будете готовы.";
 "Runs this plugin on a real title and shows what came back." = "Запускает плагин на реальном названии и показывает, что он вернул.";
 "Russian" = "Русский";
+"SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "Выйти из картинки в картинке";
 "Saltar créditos" = "Пропустить титры";
@@ -1789,6 +1802,7 @@
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
 "Set up a debrid" = "Настроить дебрид";
+"Set up rating providers" = "Настроить источники рейтингов";
 "Settings" = "Настройки";
 "Settings changed. Please reopen this page." = "Настройки изменились. Откройте эту страницу заново.";
 "Share" = "Поделиться";
@@ -2052,11 +2066,13 @@
 "The most-watched movies and series on {name} right now in {region}." = "Самые просматриваемые фильмы и сериалы на {name} сейчас в регионе {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "Оригинал сохранён. Для синхронизации экспортируйте субтитры в UTF-8 или UTF-16.";
 "The quick brown fox jumps over the lazy dog" = "Съешь же ещё этих мягких французских булок да выпей чаю";
+"The ratings row on a title's detail page, next to runtime and genre." = "Строка рейтингов на странице названия, рядом с длительностью и жанром.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Общий вид всей главной страницы. Всё ниже настраивает ряды внутри неё.";
 "The subtitle already matches the audio." = "Субтитры уже совпадают со звуком.";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Эти ряды заработают после добавления ключа TMDB. Вернуться к этому можно в любой момент в Настройках.";
+"They email an activation link the first time. Click it, then come back and save." = "При первом использовании ссылка для активации придёт по электронной почте. Перейдите по ней, затем вернитесь и сохраните.";
 "This file has one audio track." = "В этом файле одна аудиодорожка.";
 "This is a Stremio addon manifest. Add it from the Addons page instead." = "This is a Stremio addon manifest. Add it from the Addons page instead.";
 "This is a manga repository. Add it from the Manga page." = "Это репозиторий манги. Добавьте его на странице «Манга».";
@@ -2131,6 +2147,7 @@
 "Tracking what you watch" = "Отслеживание просмотров";
 "Tracks" = "Дорожки";
 "Traducir títulos" = "Переводить названия";
+"Trakt" = "Trakt";
 "Trakt Comments" = "Комментарии Trakt";
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
@@ -2333,6 +2350,7 @@
 "language" = "язык";
 "left" = "слева";
 "local" = "локально";
+"mdblist api key" = "api-ключ mdblist";
 "min" = "мин";
 "movies" = "фильмов";
 "music.action.error" = "Не удалось выполнить действие. Повторите попытку.";
