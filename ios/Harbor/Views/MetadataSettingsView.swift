@@ -30,6 +30,11 @@ struct MetadataSettingsView: View {
                         .overlay { RoundedRectangle(cornerRadius: 10).stroke(ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
                     if let error = preferences.error { Text(error).font(HarborTheme.font(13)).foregroundStyle(ThemePreferences.shared.color("danger")) }
                 }
+                HarborSettingsSection(DesktopInterfaceText.value("Set up rating providers")) {
+                    NavigationLink { RatingProvidersSettingsView(owner: preferences.settingsOwner ?? "guest").toolbar(.visible, for: .navigationBar) } label: {
+                        SettingsRow(title: DesktopInterfaceText.value("Set up rating providers"), icon: "nav-catalogs")
+                    }.background(HarborTheme.surface.opacity(0.65), in: .rect(cornerRadius: 12)).accessibilityIdentifier("metadata-rating-providers")
+                }
                 HarborSettingsSection(DesktopInterfaceText.value("Region & language")) {
                     HarborSettingsChoice(DesktopInterfaceText.value("Region"), selection: $preferences.region, choices: countries.map { (Locale.current.localizedString(forRegionCode: $0) ?? $0, $0) })
                 }

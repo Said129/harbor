@@ -276,11 +276,12 @@ struct DetailView: View {
                 ScrollView(.horizontal) {
                     HStack(spacing: 8) {
                         if let year = model.media.releaseInfo { badge(year) }
-                        if let rating = model.media.imdbRating { ratingBadge(rating) }
+                        if let rating = model.media.imdbRating, !InterfacePreferences.shared.detailRatingsHidden.contains(model.media.ratingSource == "TMDB" ? "tmdb" : "imdb") { ratingBadge(rating) }
                         if let runtime = model.media.runtime { badge(runtime) }
                         ForEach(model.media.genres ?? [], id: \.self) { badge($0) }
                     }
                 }.scrollIndicators(.hidden)
+                DetailProviderRatings(media: model.media, owner: app.personalOwner)
                 primaryActions
                 secondaryActions
                 SimklDetailControls(media: model.media, app: app).id(app.accountOperationScope + "|" + model.media.identity)
