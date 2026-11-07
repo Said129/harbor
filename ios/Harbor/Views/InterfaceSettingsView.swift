@@ -23,6 +23,13 @@ struct InterfaceSettingsView: View {
                     Text(DesktopInterfaceText.value("The shape of the whole Home page. Everything below tunes the rows inside it."))
                         .font(HarborTheme.font(13)).foregroundStyle(.secondary)
                     HomeStylePicker(selection: $preferences.homeMode)
+                    NavigationLink { HeroTrailerSettingsView() } label: {
+                        HStack {
+                            Text(DesktopInterfaceText.value("Hero trailers")).font(HarborTheme.font(14, weight: .semibold))
+                            Spacer()
+                            Image("desktop-chevron-right").resizable().scaledToFit().frame(width: 16, height: 16)
+                        }.frame(minHeight: 44).contentShape(Rectangle())
+                    }.buttonStyle(.plain).accessibilityIdentifier("settings-hero-trailers-link")
                     NavigationLink { NavigationSettingsView(identity: identity) } label: {
                         HStack {
                             Text(DesktopInterfaceText.value("Navigation items")).font(HarborTheme.font(14, weight: .semibold))

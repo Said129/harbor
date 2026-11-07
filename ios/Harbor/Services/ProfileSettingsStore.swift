@@ -74,7 +74,8 @@ struct ContinueWatchingPreferences: Sendable {
         "harbor.music.playlistView", "harbor.music.tab", "harbor.music.genres.explore.v1", "harbor.music.preferredSource", "music.shuffle", "music.repeat", "music.volume",
         "remoteStreamServerUrl", "remoteStreamServerStrict", "castAlwaysTranscode", "stremioServerTranscode",
         "episodeAlerts.enabled", "episodeAlerts.leadMinutes", "episodeAlerts.movies", "episodeAlerts.series", "episodeAlerts.anime", "episodeAlerts.library",
-        "localMinFileSizeMb", "localEpisodeSortDesc", "localLibrary.sort", "localLibrary.sortDescending"
+        "localMinFileSizeMb", "localEpisodeSortDesc", "localLibrary.sort", "localLibrary.sortDescending",
+        "heroTrailers", "heroTrailerAudio", "detailTrailerAutoplay", "detailTrailerAudio"
     ]
     private let defaults: UserDefaults
     private let persistence: any ProfileSettingsPersistence
