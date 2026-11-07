@@ -7,6 +7,7 @@
 "1,5 min" = "1,5 mnt";
 "1.5 min" = "1,5 mnt";
 "1.85:1" = "1.85:1";
+"123456" = "123456";
 "15s" = "15 dtk";
 "16:9" = "16:9";
 "2 min" = "2 mnt";
@@ -23,10 +24,13 @@
 "45s" = "45 dtk";
 "4:3" = "4:3";
 "8-character key" = "Kunci 8 karakter";
+"A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Tab browser dibuka di AniList. Setujui Harbor di sana, lalu salin teks yang ditampilkan dan tempelkan di bawah.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Tab browser dibuka di MyAnimeList. Setujui Harbor di sana, lalu salin kode atau URL halaman dan tempelkan di bawah.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Klien untuk protokol Stremio. Hanya perlu dua menit untuk disiapkan; sebagian besar bersifat opsional. Anda tetap memegang kendali atas setiap kunci.";
 "A continuación" = "Berikutnya";
+"A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
+"A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Lompatan yang lebih pendek dengan Shift dan tombol panah untuk bergeser beberapa detik setiap kali.";
@@ -39,6 +43,7 @@
 "Abajo a la derecha" = "Kanan bawah";
 "Abajo a la izquierda" = "Kiri bawah";
 "About" = "Tentang";
+"About Stremboxd" = "Tentang Stremboxd";
 "Above the main line" = "Di atas baris utama";
 "Abriendo libro…" = "Opening book…";
 "Abrir en Safari" = "Open in Safari";
@@ -73,6 +78,7 @@
 "Add a TMDB API key in Metadata settings to search for titles." = "Tambahkan kunci API TMDB di pengaturan metadata untuk mencari judul.";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Tambahkan kunci TMDB di Pengaturan untuk membuka seluruh feed penemuan.";
 "Add a TMDB key in settings first" = "Tambahkan kunci TMDB di pengaturan terlebih dahulu";
+"Add a list" = "Tambah daftar";
 "Add a movie or show to this list..." = "Tambahkan film atau acara ke daftar ini...";
 "Add a repository" = "Tambah repositori";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "Tambahkan anime ke AniList agar muncul di sini, dikelompokkan berdasarkan status dan siap diedit.";
@@ -104,6 +110,7 @@
 "Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "Menambahkan rating komunitas Letterboxd dan Trakt ke halaman detail untuk melengkapi data yang tidak tersedia di OMDb.";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Menambahkan opsi Sembunyikan saat Anda mengeklik kanan episode. Episode yang disembunyikan akan hilang dari daftar dan dilewati oleh Berikutnya. Sakelar Tampilkan yang disembunyikan di setiap acara memungkinkan Anda menampilkannya kembali.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
+"Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "Menambahkan baris di bawah Lanjutkan Menonton yang mencantumkan episode yang baru-baru ini ditayangkan dari acara yang sudah Anda ikuti. Singkirkan satu per satu atau hapus seluruh baris. Dinonaktifkan secara default.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Sesuaikan teks dan latar belakang. Pratinjau langsung menunjukkan perubahan Anda.";
 "Administrar" = "Kelola";
 "Adult sources" = "Adult sources";
@@ -124,6 +131,7 @@
 "Ahora no" = "Jangan sekarang";
 "Aired" = "Telah Tayang";
 "Airing Now" = "Sedang Tayang";
+"Airing now" = "Sedang tayang sekarang";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "Sesuaikan teks dan latar belakang. Pratinjau langsung menunjukkan perubahan Anda.";
 "Ajustar" = "Sesuaikan";
 "Ajuste de imagen" = "Picture adjustment";
@@ -166,6 +174,7 @@
 "AniList sync" = "Sinkronisasi AniList";
 "Animals" = "Animals";
 "Animated Movies" = "Film Animasi";
+"Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "Animasi";
 "Animation speed" = "Kecepatan animasi";
 "Anime" = "Anime";
@@ -194,6 +203,7 @@
 "Apply custom theme" = "Terapkan tema khusus";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "Arab";
+"Arcs" = "Alur cerita";
 "Arrows" = "Panah";
 "Artistas" = "Artis";
 "Artists" = "Artis";
@@ -329,6 +339,7 @@
 "Brightness" = "Kecerahan";
 "Brillo" = "Kecerahan";
 "Bring in your library" = "Impor perpustakaan Anda";
+"Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Tampilkan daftar anime Anda di Harbor dan perbarui jumlah episode saat menonton. Progres yang sudah ada tetap tersimpan.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Menampilkan kembali tips singkat dalam aplikasi yang telah Anda tutup tanpa mengulangi alur sambutan.";
 "BritBox" = "BritBox";
@@ -337,6 +348,7 @@
 "Browse addons" = "Jelajahi addon";
 "Browse by Genre" = "Jelajahi berdasarkan Genre";
 "Browse by category" = "Jelajahi berdasarkan kategori";
+"Browse by story arc on supported shows, such as One Piece. Requires a TMDB key." = "Jelajahi berdasarkan alur cerita pada acara yang didukung, seperti One Piece. Memerlukan kunci TMDB.";
 "Browse services" = "Jelajahi layanan";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Jelajahi daftar anime di Harbor dan perbarui progres episode sambil menonton. Masuk ke AniList untuk menghubungkan.";
 "Browse your catalogs" = "Jelajahi katalog Anda";
@@ -382,12 +394,15 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "Subtitle dalam bahasa Anda";
 "Captions, eyebrows." = "Teks keterangan, teks pengantar.";
 "Capítulo anterior" = "Bab sebelumnya";
 "Capítulo siguiente" = "Bab berikutnya";
 "Capítulos" = "Bab";
 "Card behaviour" = "Perilaku kartu";
+"Card size" = "Ukuran kartu";
+"Cards" = "Kartu";
 "Cards, panels." = "Kartu, panel.";
 "Cargar archivo" = "Muat file";
 "Cargar más" = "Muat lebih banyak";
@@ -412,6 +427,7 @@
 "Checking with AniList..." = "Memeriksa di AniList...";
 "Checking with MyAnimeList..." = "Memeriksa di MyAnimeList...";
 "Checking…" = "Memeriksa…";
+"Checks the username against Stremboxd and turns on the catalogs it finds." = "Checks the username against Stremboxd and turns on the catalogs it finds.";
 "Checksum did not match the manifest." = "Checksum tidak cocok dengan manifest.";
 "China" = "Tiongkok";
 "Chinese" = "Bahasa Tionghoa";
@@ -423,6 +439,7 @@
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Pilih kapan Harbor meminta Anda memilih profil. Pengingat berkala muncul saat Anda kembali ke Harbor.";
 "Choose which addon results appear when you pick a stream." = "Pilih hasil addon yang muncul saat memilih stream.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Pilih penilaian yang tampil pada kartu dan halaman detail. Penilaian kartu yang terkunci memerlukan kunci penyedia di Metadata.";
+"Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Fiksi Ilmiah & Fantasi";
 "Claro" = "Terang";
@@ -507,6 +524,7 @@
 "Connected to AniList" = "Terhubung ke AniList";
 "Connected to MyAnimeList" = "Terhubung ke MyAnimeList";
 "Connected to Simkl" = "Terhubung ke Simkl";
+"Connected. {n} catalogs are available." = "Connected. {n} catalogs are available.";
 "Connecting" = "Menghubungkan";
 "Conservar original" = "Pertahankan yang asli";
 "Contenido" = "Konten";
@@ -516,6 +534,7 @@
 "Continue" = "Lanjutkan";
 "Continue Watching" = "Lanjutkan Menonton";
 "Continue Watching at top" = "Lanjutkan Menonton di bagian atas";
+"Continue Watching sources" = "Continue Watching sources";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "Lanjutkan Menonton, lalu katalog addon Anda sesuai urutan pemasangan. Tanpa hero, tanpa baris Harbor.";
 "Continue reading" = "Lanjutkan membaca";
 "Continue to next chapter" = "Continue to next chapter";
@@ -549,6 +568,7 @@
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "Daftar Anda tidak dapat dibaca. Data tersimpan tetap dipertahankan.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
+"Could not resolve that Letterboxd list URL." = "Tidak dapat memproses URL daftar Letterboxd tersebut.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Layanan Anda tidak dapat dipulihkan. Versi yang tersimpan tetap disimpan.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
@@ -661,6 +681,7 @@
 "Discovery Queue" = "Antrean Jelajah";
 "Diseño de Inicio" = "Tata letak Beranda";
 "Dismiss" = "Tutup";
+"Dismiss all" = "Tutup semua";
 "Dismiss tip" = "Dismiss tip";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "Disney+ Originals";
@@ -730,6 +751,7 @@
 "En directo" = "Langsung";
 "En reproducción" = "Sedang Diputar";
 "En reproducción: {label}" = "Sedang diputar: {label}";
+"Enable Letterboxd integration" = "Aktifkan integrasi Letterboxd";
 "Enable User Ratings" = "Aktifkan Rating Pengguna";
 "Enable addon" = "Enable addon";
 "Enabled" = "Diaktifkan";
@@ -795,6 +817,7 @@
 "External" = "Eksternal";
 "External subtitle" = "Subtitle eksternal";
 "Externo" = "Eksternal";
+"Extra large" = "Ekstra besar";
 "Extras" = "Ekstra";
 "FPS de los subtítulos" = "FPS subtitle";
 "FPS de origen de los subtítulos" = "FPS sumber subtitle";
@@ -862,8 +885,11 @@
 "Fuentes para adultos" = "Adult sources";
 "Fuentes y biblioteca" = "Sumber & perpustakaan";
 "Fuentes y calidad" = "Sources and quality";
+"Full" = "Penuh";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
+"Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
 "Gamma" = "Gamma";
 "Genre" = "Genre";
 "Genres" = "Genre";
@@ -878,9 +904,11 @@
 "Grand Prize" = "Hadiah Utama";
 "Gray" = "Gray";
 "Green" = "Hijau";
+"Grid view" = "Tampilan kisi";
 "Gris" = "Gray";
 "Grosor del contorno" = "Ketebalan garis tepi";
 "Group by repository" = "Kelompokkan per repositori";
+"Group episodes by story arc" = "Kelompokkan episode berdasarkan alur cerita";
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "Kelompokkan film dan acara yang Anda sukai. Rak untuk ditonton ulang, pilihan akhir pekan, atau apa pun agar semuanya tetap dekat.";
 "Group the movies and shows you want to keep close." = "Kelompokkan film dan acara yang ingin selalu dekat dengan Anda.";
 "Grouped" = "Dikelompokkan";
@@ -912,6 +940,7 @@
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor menyingkirkan {n} hasil yang mencurigakan atau tidak cocok.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "Harbor menjaga progres tontonan MyAnimeList Anda tetap tersinkron.";
+"Harbor library" = "Harbor library";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor mencari subtitle dalam urutan ini. Tempatkan bahasa pilihan Anda di urutan pertama.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor mengambil judul terpopuler yang tersedia di setiap layanan saat ini. Nonaktifkan layanan yang tidak Anda langgani.";
 "Harbor ranking" = "Peringkat Harbor";
@@ -945,6 +974,7 @@
 "Hide this catalog" = "Sembunyikan katalog ini";
 "Hide titles under posters" = "Sembunyikan judul di bawah poster";
 "Hide unreleased titles" = "Sembunyikan judul yang belum dirilis";
+"Hide until the next episode airs, or keep showing a countdown to when it drops." = "Sembunyikan hingga episode berikutnya tayang, atau tetap tampilkan hitung mundur menuju waktu tayangnya.";
 "Hide watched titles in catalogs" = "Sembunyikan judul yang sudah ditonton di katalog";
 "Hide {name} from navigation" = "Sembunyikan {name} dari navigasi";
 "Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "Menyembunyikan anime dari baris Lanjutkan Menonton di Beranda. Anime tersebut tetap muncul di Lanjutkan Menonton pada tab Anime.";
@@ -967,8 +997,10 @@
 "Home style" = "Gaya Beranda";
 "Hoopla" = "Hoopla";
 "Horizontal" = "Horizontal";
+"Horizontal view" = "Tampilan horizontal";
 "Horror" = "Horor";
 "Horror & Supernatural" = "Horor & Supranatural";
+"How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "Ukuran kartu episode dalam tata letak strip dan kisi. Kartu yang lebih besar menampilkan gambar yang lebih besar.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "Seberapa jauh volume dapat dinaikkan melampaui 100 persen pada bilah volume. Pengaturan yang lebih tinggi dapat membuat volumenya sangat keras.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Lama waktu Harbor menunggu hasil dari setiap addon.";
@@ -1060,6 +1092,7 @@
 "Just added" = "Baru ditambahkan";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep Continue Watching private to each profile" = "Pastikan Lanjutkan Menonton tetap bersifat pribadi untuk setiap profil";
 "Keep anime in the Anime room only" = "Batasi anime hanya di ruang Anime";
 "Keep original" = "Pertahankan yang asli";
 "Keep same source on next episode" = "Gunakan sumber yang sama pada episode berikutnya";
@@ -1090,6 +1123,9 @@
 "Less bass" = "Bass lebih rendah";
 "Letter spacing" = "Jarak antarhuruf";
 "Letterboxd" = "Letterboxd";
+"Letterboxd asked for a second step. Enter the six digit code, then connect again." = "Letterboxd asked for a second step. Enter the six digit code, then connect again.";
+"Letterboxd password" = "Kata sandi Letterboxd";
+"Letterboxd username" = "Nama pengguna Letterboxd";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Skor Letterboxd, Trakt, Metacritic, dan penonton.";
 "Library" = "Perpustakaan";
 "Libros" = "Buku";
@@ -1103,6 +1139,7 @@
 "List" = "Daftar";
 "List name" = "Nama daftar";
 "List settings" = "Pengaturan daftar";
+"List view" = "Tampilan daftar";
 "Lista" = "Daftar";
 "Lista M3U" = "Playlist M3U";
 "Listas" = "Daftar putar";
@@ -1199,6 +1236,7 @@
 "Missing TMDB Key" = "Kunci TMDB belum ada";
 "Misterio" = "Misteri";
 "Mix surround sound down to stereo" = "Gabungkan suara surround menjadi stereo";
+"Mode" = "Mode";
 "Modo de concentración" = "Mode fokus";
 "Modo de lectura" = "Mode baca";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Waktu munculnya label Berikutnya sebelum episode berakhir. Otomatis menyesuaikan dengan durasi episode agar episode pendek tidak memunculkannya terlalu dini. Jika dinonaktifkan, label akan disembunyikan.";
@@ -1281,6 +1319,8 @@
 "Netflix Originals" = "Netflix Originals";
 "Never" = "Tidak pernah";
 "New Anime Releases" = "Rilisan Anime Baru";
+"New Episodes" = "Episode Baru";
+"New Episodes row" = "Baris Episode Baru";
 "New Face Award" = "Penghargaan Wajah Baru";
 "New list" = "Daftar baru";
 "New profile" = "Profil baru";
@@ -1291,6 +1331,9 @@
 "Next chapter" = "Bab berikutnya";
 "Next day" = "Next day";
 "Next episode prompt" = "Pemberitahuan episode berikutnya";
+"Next in {days}d {hours}h" = "Berikutnya dalam {days} hari {hours} jam";
+"Next in {hours}h {minutes}m" = "Berikutnya dalam {hours} jam {minutes} menit";
+"Next in {minutes}m" = "Berikutnya dalam {minutes} menit";
 "Next month" = "Bulan depan";
 "Next page" = "Halaman berikutnya";
 "Next song" = "Next song";
@@ -1422,6 +1465,7 @@
 "On Hold" = "Ditunda";
 "On The Air" = "Sedang Tayang";
 "On Tonight" = "Tayang Malam Ini";
+"On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "Aktif secara default: setelah Anda menonton semua episode yang telah tayang, acara akan keluar dari Lanjutkan Menonton dan kembali saat episode baru dirilis. Nonaktifkan agar acara yang sudah ditonton hingga episode terbaru tetap ada di baris.";
 "On start" = "On start";
 "Onboarding" = "Pengenalan awal";
 "One list" = "Satu daftar";
@@ -1453,6 +1497,7 @@
 "Opening AniList..." = "Membuka AniList...";
 "Opening MyAnimeList..." = "Membuka MyAnimeList...";
 "Opening book…" = "Opening book…";
+"Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Options" = "Opsi";
 "Orden de addons" = "Urutan addon";
 "Orden de idiomas preferidos" = "Urutan bahasa pilihan";
@@ -1486,6 +1531,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Kata Sandi";
 "Paste JSON" = "Tempel JSON";
+"Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "Tempel kode atau URL halaman";
 "Paste the manifest URL the configure page gave you" = "Tempel URL manifes yang diberikan halaman konfigurasi";
 "Paste the text from AniList" = "Tempel teks dari AniList";
@@ -1575,6 +1621,7 @@
 "Posters, ratings, lists" = "Poster, rating, daftar";
 "Predeterminado" = "Bawaan";
 "Predeterminado (acento dorado)" = "Bawaan (aksen emas)";
+"Prefer episode still artwork" = "Prefer episode still artwork";
 "Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "Tanyakan apakah ingin melanjutkan atau memulai dari awal";
 "Premiered This Month" = "Tayang Perdana Bulan Ini";
@@ -1606,10 +1653,15 @@
 "Próximos" = "Mendatang";
 "Próximos animes" = "Anime Mendatang";
 "Psychological" = "Psikologis";
+"Public" = "Publik";
+"Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed." = "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed.";
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
+"Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account." = "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account.";
+"Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "Warna lebih tegas";
 "Puntuaciones" = "Skor";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
+"Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "Halaman sebelumnya";
 "Página siguiente" = "Halaman berikutnya";
 "Pósteres, calificaciones y listas" = "Poster, rating, daftar";
@@ -1699,6 +1751,7 @@
 "Remove from watchlist" = "Hapus dari daftar tontonan";
 "Remove preset" = "Hapus preset";
 "Remove saved book" = "Remove saved book";
+"Remove shows once you're caught up" = "Hapus acara setelah Anda selesai menonton episode terbarunya";
 "Remove {language}" = "Hapus {language}";
 "Remove {name}" = "Hapus {name}";
 "Removed" = "Dihapus";
@@ -1788,6 +1841,7 @@
 "Rounded" = "Bersudut membulat";
 "Rounded background panel behind the text. Most readable." = "Panel latar bersudut membulat di belakang teks. Paling mudah dibaca.";
 "Row card style" = "Gaya kartu baris";
+"Rows" = "Baris";
 "Royal" = "Kerajaan";
 "Rugby" = "Rugbi";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Untuk saat ini menggunakan Cinemeta. Tambahkan kunci TMDB dari Pengaturan kapan pun Anda siap.";
@@ -1861,6 +1915,7 @@
 "Selected" = "Dipilih";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Mengirim ke Trakt…";
+"Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n} dikirim ke Trakt";
 "Serie dramática" = "Serial Drama";
 "Series" = "Acara";
@@ -1923,6 +1978,7 @@
 "Show me more like this" = "Tampilkan lebih banyak konten seperti ini";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show my rating on movie posters" = "Tampilkan rating saya di poster film";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "Tampilkan satu sumber per repositori di pemilih stream, bukan satu per plugin. Berguna saat sebuah repositori berisi banyak penyedia kecil.";
 "Show pages" = "Tampilkan halaman";
 "Show release filenames in the Condensed picker and Big Picture." = "Tampilkan nama berkas rilis di pemilih Padat dan Big Picture.";
@@ -1943,14 +1999,18 @@
 "Sides" = "Sisi";
 "Sign in" = "Masuk";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "Masuk untuk menyinkronkan Lanjutkan Menonton, daftar tontonan, dan addon yang telah Anda kurasi. Opsional; Harbor tetap berfungsi penuh tanpa masuk.";
+"Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "Masuk dengan Stremio";
 "Sign out" = "Keluar";
+"Signed in" = "Signed in";
+"Signs in to Letterboxd and unlocks your diary, friends activity and ratings." = "Signs in to Letterboxd and unlocks your diary, friends activity and ratings.";
 "Siguiente" = "Berikutnya";
 "Siguiente canción" = "Next song";
 "Silenciar" = "Bisukan";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl tidak mencantumkan acara atau anime baru yang tayang perdana bulan ini. Coba bulan lain.";
 "Simkl premieres" = "Tayang perdana Simkl";
+"Simkl progress" = "Simkl progress";
 "Simkl sign-in expired, reconnect it" = "Sesi masuk Simkl kedaluwarsa, hubungkan kembali";
 "Sin configurar" = "Belum diatur";
 "Sin corrección" = "Tanpa koreksi";
@@ -2047,6 +2107,7 @@
 "Streaming services" = "Layanan streaming";
 "Streaming sources" = "Sumber streaming";
 "Streams" = "Stream";
+"Stremboxd error ({status})." = "Stremboxd error ({status}).";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Stremio Klasik";
 "Stretch" = "Bentangkan";
@@ -2163,6 +2224,8 @@
 "The comics industry's highest honor" = "Penghargaan tertinggi industri komik";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The little score chip printed on poster cards across your rows and grids." = "Chip skor kecil yang ditampilkan pada kartu poster di seluruh baris dan kisi Anda.";
 "The most anticipated upcoming releases on Trakt" = "Rilisan mendatang yang paling dinantikan di Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Film dan serial yang paling banyak ditonton di {name} saat ini di {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
@@ -2199,6 +2262,7 @@
 "Tipografía" = "Tipografi";
 "Titles" = "Judul";
 "Titles and descriptions" = "Judul dan deskripsi";
+"Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "Semua";
 "Todas las categorías" = "Semua kategori";
@@ -2267,6 +2331,7 @@
 "Trakt history" = "Riwayat Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Server Trakt sedang bermasalah (HTTP {n}). Coba lagi sebentar lagi.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt sedang membatasi jumlah permintaan. Tunggu sebentar, lalu coba lagi.";
+"Trakt progress" = "Trakt progress";
 "Trakt rejected the request (HTTP {n})." = "Trakt menolak permintaan (HTTP {n}).";
 "Trakt rejected the request (account locked or permission denied)." = "Trakt menolak permintaan (akun terkunci atau izin ditolak).";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt melaporkan bahwa otorisasi ditolak. Coba lagi jika ini tidak disengaja.";
@@ -2293,9 +2358,11 @@
 "Tune your recommendations" = "Sesuaikan rekomendasi Anda";
 "Turkish" = "Turki";
 "Turn pages horizontally" = "Turn pages horizontally";
+"Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "Addon Anda";
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
+"Two-factor authentication code" = "Kode autentikasi dua faktor";
 "Type" = "Jenis";
 "Type on your keyboard or tap the digits above." = "Ketik dengan keyboard atau ketuk angka di atas.";
 "Type the same 4-digit PIN again." = "Ketik lagi PIN 4 digit yang sama.";
@@ -2310,6 +2377,7 @@
 "Ultra HD · HDR" = "Ultra HD · HDR";
 "Un poco más claro que el fondo." = "Sedikit lebih terang daripada latar belakang.";
 "Unavailable" = "Tidak tersedia";
+"Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "Urungkan";
 "United Kingdom" = "Britania Raya";
 "United States" = "Amerika Serikat";
@@ -2351,6 +2419,7 @@
 "Velocidad" = "Kecepatan";
 "Ver más" = "Lihat selengkapnya";
 "Ver todo" = "Lihat semua";
+"Verify & connect" = "Verifikasi & hubungkan";
 "Verifying" = "Memverifikasi";
 "Version" = "Versi";
 "Versión" = "Versi";
@@ -2379,6 +2448,7 @@
 "War" = "Perang";
 "Watch on" = "Tonton di";
 "Watched" = "Sudah ditonton";
+"Watched by {name}" = "Ditonton oleh {name}";
 "Watching" = "Sedang menonton";
 "Watchlist" = "Daftar tontonan";
 "Watchlist only" = "Hanya daftar tontonan";
@@ -2403,6 +2473,7 @@
 "Where to today?" = "Ke mana hari ini?";
 "Where to watch" = "Tempat menonton";
 "Where your video comes from" = "Sumber video Anda";
+"Which end of the poster the score chip rides on." = "Di sisi poster mana label skor ditempatkan.";
 "Which order" = "Urutannya";
 "Who's watching" = "Siapa yang menonton";
 "Who's watching?" = "Siapa yang menonton?";
@@ -2423,8 +2494,10 @@
 "You've hidden the one catalog that matched." = "Anda telah menyembunyikan satu-satunya katalog yang cocok.";
 "You've reached the end · {n} addons" = "Anda telah mencapai akhir · {n} addon";
 "YouTube" = "YouTube";
+"Your AniList" = "AniList Anda";
 "Your AniList is empty" = "AniList Anda kosong";
 "Your Discovery Queue" = "Antrean Penemuan Anda";
+"Your Letterboxd password" = "Kata sandi Letterboxd Anda";
 "Your Stremio library + addons sync in untouched." = "Perpustakaan Stremio + addon Anda disinkronkan tanpa perubahan.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Daftar tontonan Trakt Anda kosong, tidak ada yang dapat diimpor.";
@@ -2439,6 +2512,7 @@
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "Daftar Anda disimpan dalam memori. Simpan sebelum menutup aplikasi.";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
+"Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "Profil Anda";
 "Your rating" = "Rating Anda";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "Acara yang Anda simpan tidak memiliki episode yang dijadwalkan bulan ini. Beralihlah ke Semua yang akan datang untuk melihat kalender rilis lengkap.";
@@ -2486,6 +2560,7 @@
 "just now" = "baru saja";
 "language" = "bahasa";
 "left" = "kiri";
+"letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "lokal";
 "mdblist api key" = "kunci API mdblist";
 "min" = "mnt";
@@ -3614,6 +3689,7 @@
 "wrong movie" = "film yang salah";
 "year mismatch" = "tahun tidak cocok";
 "yes" = "ya";
+"your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} sendiri tidak menghosting, mendistribusikan, atau mengindeks media apa pun. Semua stream berasal dari addon pihak ketiga, layanan debrid, atau akun {service} milik Anda yang Anda konfigurasi sendiri. Anda bertanggung jawab atas apa yang Anda pilih untuk diputar dan atas kepatuhan terhadap hukum di yurisdiksi Anda.";
 "{count} picks ready" = "{count} pilihan sudah siap";
 "{count} results" = "{count} hasil";
@@ -3636,6 +3712,7 @@
 "{n} days ago" = "{n} hari lalu";
 "{n} ep" = "{n} ep";
 "{n} eps" = "{n} ep";
+"{n} films." = "{n} films.";
 "{n} hr" = "{n} jam";
 "{n} in a day" = "{n} dalam sehari";
 "{n} item" = "{n} item";

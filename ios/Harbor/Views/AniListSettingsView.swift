@@ -16,6 +16,17 @@ struct AniListSettingsView: View {
         _account = State(initialValue: account); _connectModel = State(initialValue: AniListConnectModel(account: account))
     }
     private func text(_ key: String, _ variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables) }
+    private var listsRowLabel: some View {
+        HStack(spacing: 12) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(text("Your AniList")).font(HarborTheme.font(16, weight: .semibold))
+                Text(text("Harbor shows your AniList lists on the Anime page and keeps your progress in sync."))
+                    .font(HarborTheme.font(13)).foregroundStyle(.secondary).multilineTextAlignment(.leading)
+            }
+            Spacer(minLength: 0)
+            Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(.secondary)
+        }.frame(minHeight: 44).contentShape(Rectangle())
+    }
 
     var body: some View {
         ScrollView {
@@ -42,11 +53,8 @@ struct AniListSettingsView: View {
                         Link(destination: profile) { Label("anilist.co", systemImage: "arrow.up.right.square").frame(minHeight: 44) }
                             .accessibilityIdentifier("anilist-profile")
                     }
-                    NavigationLink { AniListListsView(app: app) } label: {
-                        Text(text("Harbor shows your AniList lists on the Anime page and keeps your progress in sync."))
-                            .multilineTextAlignment(.leading).frame(maxWidth: .infinity, alignment: .leading).frame(minHeight: 44)
-                    }
-                    .accessibilityIdentifier("anilist-lists")
+                    NavigationLink { AniListListsView(app: app) } label: { listsRowLabel }
+                        .accessibilityIdentifier("anilist-lists")
                     VStack(alignment: .leading, spacing: 10) {
                         Text(text("Tracking what you watch")).font(HarborTheme.font(13, weight: .semibold)).foregroundStyle(.secondary)
                         HarborSettingsToggle(text("Sync watch progress"),

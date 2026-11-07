@@ -7,6 +7,7 @@
 "1,5 min" = "1.5 मिनट";
 "1.5 min" = "1.5 मिनट";
 "1.85:1" = "1.85:1";
+"123456" = "123456";
 "15s" = "15 सेकंड";
 "16:9" = "16:9";
 "2 min" = "2 मिनट";
@@ -23,10 +24,13 @@
 "45s" = "45 सेकंड";
 "4:3" = "4:3";
 "8-character key" = "8-अक्षरों की कुंजी";
+"A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "AniList पर एक ब्राउज़र टैब खुला है। वहाँ Harbor को अनुमति दें, फिर दिखाई देने वाला टेक्स्ट कॉपी करके नीचे पेस्ट करें।";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "MyAnimeList पर एक ब्राउज़र टैब खुला है। वहाँ Harbor को अनुमति दें, फिर कोड या पेज URL कॉपी करके नीचे पेस्ट करें।";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio प्रोटोकॉल के लिए एक क्लाइंट। सेटअप में दो मिनट लगते हैं; ज़्यादातर चीज़ें वैकल्पिक हैं। हर कुंजी का नियंत्रण आपके पास रहता है।";
 "A continuación" = "इसके बाद";
+"A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
+"A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift और ऐरो कुंजियों से छोटा जंप, ताकि हर बार कुछ सेकंड आगे-पीछे किया जा सके।";
@@ -39,6 +43,7 @@
 "Abajo a la derecha" = "नीचे दाएँ";
 "Abajo a la izquierda" = "नीचे बाएँ";
 "About" = "इसके बारे में";
+"About Stremboxd" = "Stremboxd के बारे में";
 "Above the main line" = "मुख्य पंक्ति के ऊपर";
 "Abriendo libro…" = "Opening book…";
 "Abrir en Safari" = "Open in Safari";
@@ -73,6 +78,7 @@
 "Add a TMDB API key in Metadata settings to search for titles." = "शीर्षक खोजने के लिए मेटाडेटा सेटिंग में TMDB API कुंजी जोड़ें।";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "पूरी डिस्कवरी फ़ीड अनलॉक करने के लिए सेटिंग्स में TMDB कुंजी जोड़ें।";
 "Add a TMDB key in settings first" = "पहले सेटिंग्स में TMDB कुंजी जोड़ें";
+"Add a list" = "एक सूची जोड़ें";
 "Add a movie or show to this list..." = "इस सूची में कोई फ़िल्म या शो जोड़ें...";
 "Add a repository" = "रिपॉज़िटरी जोड़ें";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "अपने AniList में ऐनिमे जोड़ें और वे यहाँ स्थिति के अनुसार समूहित और संपादन के लिए तैयार दिखाई देंगे।";
@@ -104,6 +110,7 @@
 "Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "विवरण पेजों पर Letterboxd और Trakt की कम्युनिटी रेटिंग जोड़ता है, ताकि OMDb से छूटी रेटिंग भी शामिल हो सके।";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "किसी एपिसोड पर राइट-क्लिक करने पर छिपाएँ विकल्प जोड़ता है। छिपे हुए एपिसोड सूची से गायब हो जाते हैं और अप नेक्स्ट में छोड़ दिए जाते हैं। हर शो में छिपे एपिसोड दिखाएँ टॉगल से उन्हें फिर से दिखाया जा सकता है।";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
+"Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "देखना जारी रखें के नीचे एक पंक्ति जोड़ता है, जिसमें उन शो के हाल में प्रसारित एपिसोड होते हैं जिन्हें आप पहले से देख रहे थे। उन्हें एक-एक करके हटाएँ या पूरी पंक्ति साफ़ करें। डिफ़ॉल्ट रूप से बंद है।";
 "Adjust the text and background. The preview shows your changes as you make them." = "टेक्स्ट और पृष्ठभूमि समायोजित करें। बदलाव करते ही पूर्वावलोकन में दिखते हैं।";
 "Administrar" = "मैनेज करें";
 "Adult sources" = "Adult sources";
@@ -124,6 +131,7 @@
 "Ahora no" = "अभी नहीं";
 "Aired" = "प्रसारित";
 "Airing Now" = "अभी प्रसारित हो रहा है";
+"Airing now" = "अभी प्रसारित हो रहा है";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "टेक्स्ट और पृष्ठभूमि समायोजित करें। बदलाव करते ही पूर्वावलोकन में दिखते हैं।";
 "Ajustar" = "फ़िट करें";
 "Ajuste de imagen" = "Picture adjustment";
@@ -166,6 +174,7 @@
 "AniList sync" = "AniList सिंक";
 "Animals" = "Animals";
 "Animated Movies" = "एनिमेटेड फ़िल्में";
+"Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "एनीमेशन";
 "Animation speed" = "एनीमेशन की गति";
 "Anime" = "एनीमे";
@@ -194,6 +203,7 @@
 "Apply custom theme" = "कस्टम थीम लागू करें";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "अरबी";
+"Arcs" = "कथा-खंड";
 "Arrows" = "तीर";
 "Artistas" = "कलाकार";
 "Artists" = "कलाकार";
@@ -329,6 +339,7 @@
 "Brightness" = "ब्राइटनेस";
 "Brillo" = "ब्राइटनेस";
 "Bring in your library" = "अपनी लाइब्रेरी लाएँ";
+"Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "अपनी एनीमे सूची Harbor में लाएँ और देखते समय एपिसोड की गिनती अपडेट करें। मौजूदा प्रगति बनी रहती है।";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "वेलकम फ़्लो दोबारा चलाए बिना, आपके पहले बंद किए गए छोटे इन-ऐप सुझाव वापस लाता है।";
 "BritBox" = "BritBox";
@@ -337,6 +348,7 @@
 "Browse addons" = "ऐडऑन ब्राउज़ करें";
 "Browse by Genre" = "शैली के अनुसार ब्राउज़ करें";
 "Browse by category" = "कैटेगरी के अनुसार ब्राउज़ करें";
+"Browse by story arc on supported shows, such as One Piece. Requires a TMDB key." = "One Piece जैसे समर्थित शो को कहानी के खंड के अनुसार ब्राउज़ करें। TMDB कुंजी आवश्यक है।";
 "Browse services" = "सेवाएँ देखें";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Harbor में अपनी एनीमे सूचियाँ ब्राउज़ करें और देखते समय एपिसोड की प्रगति अपडेट करें। जोड़ने के लिए AniList में साइन इन करें।";
 "Browse your catalogs" = "अपने कैटलॉग ब्राउज़ करें";
@@ -382,12 +394,15 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "आपकी भाषा में सबटाइटल";
 "Captions, eyebrows." = "कैप्शन, आइब्रो टेक्स्ट।";
 "Capítulo anterior" = "पिछला अध्याय";
 "Capítulo siguiente" = "अगला अध्याय";
 "Capítulos" = "अध्याय";
 "Card behaviour" = "कार्ड का व्यवहार";
+"Card size" = "कार्ड का आकार";
+"Cards" = "कार्ड";
 "Cards, panels." = "कार्ड, पैनल।";
 "Cargar archivo" = "फ़ाइल लोड करें";
 "Cargar más" = "और लोड करें";
@@ -412,6 +427,7 @@
 "Checking with AniList..." = "AniList पर जाँच हो रही है...";
 "Checking with MyAnimeList..." = "MyAnimeList पर जाँच हो रही है...";
 "Checking…" = "जाँच हो रही है…";
+"Checks the username against Stremboxd and turns on the catalogs it finds." = "Checks the username against Stremboxd and turns on the catalogs it finds.";
 "Checksum did not match the manifest." = "चेकसम मैनिफ़ेस्ट से मेल नहीं खाया।";
 "China" = "चीन";
 "Chinese" = "चीनी";
@@ -423,6 +439,7 @@
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "चुनें कि Harbor कब प्रोफ़ाइल चुनने को कहे। समय के आधार पर आने वाले संकेत Harbor पर लौटने पर दिखते हैं।";
 "Choose which addon results appear when you pick a stream." = "स्ट्रीम चुनते समय दिखने वाले ऐड-ऑन परिणाम चुनें।";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "कार्ड और विवरण पृष्ठों पर दिखने वाली रेटिंग चुनें। लॉक की गई कार्ड रेटिंग के लिए मेटाडेटा में प्रदाता की कुंजी चाहिए।";
+"Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "साइंस फ़िक्शन और फ़ैंटेसी";
 "Claro" = "हल्का";
@@ -507,6 +524,7 @@
 "Connected to AniList" = "AniList से कनेक्टेड";
 "Connected to MyAnimeList" = "MyAnimeList से कनेक्टेड";
 "Connected to Simkl" = "Simkl से कनेक्टेड";
+"Connected. {n} catalogs are available." = "Connected. {n} catalogs are available.";
 "Connecting" = "कनेक्ट हो रहा है";
 "Conservar original" = "मूल रखें";
 "Contenido" = "कॉन्टेंट";
@@ -516,6 +534,7 @@
 "Continue" = "जारी रखें";
 "Continue Watching" = "देखना जारी रखें";
 "Continue Watching at top" = "देखना जारी रखें को सबसे ऊपर रखें";
+"Continue Watching sources" = "Continue Watching sources";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "‘देखना जारी रखें’, फिर इंस्टॉल क्रम में आपके ऐडऑन कैटलॉग। न हीरो सेक्शन, न Harbor की पंक्तियाँ।";
 "Continue reading" = "पढ़ना जारी रखें";
 "Continue to next chapter" = "Continue to next chapter";
@@ -549,6 +568,7 @@
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "आपकी सूचियाँ पढ़ी नहीं जा सकीं। सहेजा गया डेटा सुरक्षित है।";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
+"Could not resolve that Letterboxd list URL." = "उस Letterboxd लिस्ट के URL को पहचाना नहीं जा सका।";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "आपकी सेवाएँ बहाल नहीं हो सकीं। सहेजा गया संस्करण सुरक्षित है।";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
@@ -661,6 +681,7 @@
 "Discovery Queue" = "डिस्कवरी क्यू";
 "Diseño de Inicio" = "होम लेआउट";
 "Dismiss" = "बंद करें";
+"Dismiss all" = "सभी बंद करें";
 "Dismiss tip" = "Dismiss tip";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "Disney+ ओरिजिनल्स";
@@ -730,6 +751,7 @@
 "En directo" = "लाइव";
 "En reproducción" = "अभी चल रहा है";
 "En reproducción: {label}" = "अभी चल रहा है: {label}";
+"Enable Letterboxd integration" = "Letterboxd इंटीग्रेशन सक्षम करें";
 "Enable User Ratings" = "यूज़र रेटिंग सक्षम करें";
 "Enable addon" = "Enable addon";
 "Enabled" = "सक्षम";
@@ -795,6 +817,7 @@
 "External" = "बाहरी";
 "External subtitle" = "बाहरी सबटाइटल";
 "Externo" = "बाहरी";
+"Extra large" = "बहुत बड़ा";
 "Extras" = "अतिरिक्त सामग्री";
 "FPS de los subtítulos" = "सबटाइटल FPS";
 "FPS de origen de los subtítulos" = "सबटाइटल स्रोत का FPS";
@@ -862,8 +885,11 @@
 "Fuentes para adultos" = "Adult sources";
 "Fuentes y biblioteca" = "स्रोत और लाइब्रेरी";
 "Fuentes y calidad" = "Sources and quality";
+"Full" = "पूर्ण";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
+"Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
 "Gamma" = "गामा";
 "Genre" = "शैली";
 "Genres" = "शैलियाँ";
@@ -878,9 +904,11 @@
 "Grand Prize" = "महापुरस्कार";
 "Gray" = "Gray";
 "Green" = "हरा";
+"Grid view" = "ग्रिड व्यू";
 "Gris" = "Gray";
 "Grosor del contorno" = "आउटलाइन की मोटाई";
 "Group by repository" = "रिपॉज़िटरी के अनुसार समूह बनाएँ";
+"Group episodes by story arc" = "एपिसोड को कहानी के आर्क के अनुसार समूहित करें";
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "अपनी पसंदीदा फ़िल्मों और शो को समूहित करें। रीवॉच शेल्फ़, वीकेंड की पसंद या ऐसी कोई भी चीज़ जिसे आप पास रखना चाहें।";
 "Group the movies and shows you want to keep close." = "उन फ़िल्मों और शो को समूहित करें जिन्हें आप पास रखना चाहते हैं।";
 "Grouped" = "समूहित";
@@ -912,6 +940,7 @@
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor ने {n} संदिग्ध या बेमेल नतीजे हटा दिए।";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "Harbor आपकी MyAnimeList वॉच प्रोग्रेस को सिंक रखता है।";
+"Harbor library" = "Harbor library";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor इस क्रम में उपशीर्षक खोजता है। पसंदीदा भाषा सबसे पहले रखें।";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor हर सेवा पर इस समय मौजूद सबसे लोकप्रिय टाइटल लाता है। जिनकी आपने सदस्यता नहीं ली है, उन्हें बंद कर दें।";
 "Harbor ranking" = "Harbor रैंकिंग";
@@ -945,6 +974,7 @@
 "Hide this catalog" = "यह कैटलॉग छिपाएँ";
 "Hide titles under posters" = "पोस्टर के नीचे के शीर्षक छिपाएँ";
 "Hide unreleased titles" = "रिलीज़ न हुए शीर्षक छिपाएँ";
+"Hide until the next episode airs, or keep showing a countdown to when it drops." = "अगला एपिसोड प्रसारित होने तक छिपाएँ, या उसके आने तक की उलटी गिनती दिखाते रहें।";
 "Hide watched titles in catalogs" = "कैटलॉग में देखे हुए शीर्षक छिपाएँ";
 "Hide {name} from navigation" = "नेविगेशन में {name} छिपाएँ";
 "Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "एनीमे को होम की 'देखना जारी रखें' पंक्ति से छिपाता है। यह अब भी एनीमे टैब की अपनी 'देखना जारी रखें' पंक्ति में दिखाई देता है।";
@@ -967,8 +997,10 @@
 "Home style" = "होम स्टाइल";
 "Hoopla" = "Hoopla";
 "Horizontal" = "क्षैतिज";
+"Horizontal view" = "क्षैतिज दृश्य";
 "Horror" = "हॉरर";
 "Horror & Supernatural" = "हॉरर और अलौकिक";
+"How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "स्ट्रिप और ग्रिड लेआउट में एपिसोड कार्ड कितने बड़े हों। बड़े कार्ड में बड़ा आर्टवर्क दिखाई देता है।";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "वॉल्यूम बार पर आवाज़ को 100 प्रतिशत से कितना ज़्यादा बढ़ा सकते हैं। मान बढ़ाने पर आवाज़ बहुत तेज़ हो सकती है।";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "हर ऐडऑन के नतीजों के लिए Harbor कितनी देर इंतज़ार करता है।";
@@ -1060,6 +1092,7 @@
 "Just added" = "हाल ही में जोड़ा गया";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep Continue Watching private to each profile" = "देखना जारी रखें को हर प्रोफ़ाइल के लिए निजी रखें";
 "Keep anime in the Anime room only" = "ऐनिमे को केवल ऐनिमे रूम में रखें";
 "Keep original" = "मूल रखें";
 "Keep same source on next episode" = "अगले एपिसोड में भी वही स्रोत रखें";
@@ -1090,6 +1123,9 @@
 "Less bass" = "कम बेस";
 "Letter spacing" = "अक्षरों के बीच की दूरी";
 "Letterboxd" = "Letterboxd";
+"Letterboxd asked for a second step. Enter the six digit code, then connect again." = "Letterboxd asked for a second step. Enter the six digit code, then connect again.";
+"Letterboxd password" = "Letterboxd पासवर्ड";
+"Letterboxd username" = "Letterboxd यूज़रनेम";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd, Trakt, Metacritic और दर्शकों के स्कोर।";
 "Library" = "लाइब्रेरी";
 "Libros" = "किताबें";
@@ -1103,6 +1139,7 @@
 "List" = "सूची";
 "List name" = "सूची का नाम";
 "List settings" = "सूची की सेटिंग्स";
+"List view" = "लिस्ट व्यू";
 "Lista" = "सूची";
 "Lista M3U" = "M3U प्लेलिस्ट";
 "Listas" = "प्लेलिस्ट";
@@ -1199,6 +1236,7 @@
 "Missing TMDB Key" = "TMDB कुंजी नहीं मिली";
 "Misterio" = "रहस्य";
 "Mix surround sound down to stereo" = "सराउंड साउंड को स्टीरियो में मिक्स करें";
+"Mode" = "मोड";
 "Modo de concentración" = "फ़ोकस मोड";
 "Modo de lectura" = "पढ़ने का मोड";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "एपिसोड खत्म होने से कितनी देर पहले अगला पिल दिखाई दे। ऑटो इसे एपिसोड की अवधि के अनुसार समायोजित करता है, ताकि छोटे एपिसोड में यह बहुत जल्दी न दिखे। बंद करने पर यह छिप जाता है।";
@@ -1281,6 +1319,8 @@
 "Netflix Originals" = "Netflix ओरिजिनल्स";
 "Never" = "कभी नहीं";
 "New Anime Releases" = "नई एनीमे रिलीज़";
+"New Episodes" = "नए एपिसोड";
+"New Episodes row" = "नए एपिसोड की पंक्ति";
 "New Face Award" = "नया चेहरा पुरस्कार";
 "New list" = "नई सूची";
 "New profile" = "नई प्रोफ़ाइल";
@@ -1291,6 +1331,9 @@
 "Next chapter" = "अगला अध्याय";
 "Next day" = "Next day";
 "Next episode prompt" = "अगले एपिसोड की सूचना";
+"Next in {days}d {hours}h" = "अगला: {days} दिन {hours} घंटे में";
+"Next in {hours}h {minutes}m" = "अगला: {hours} घंटे {minutes} मिनट में";
+"Next in {minutes}m" = "अगला: {minutes} मिनट में";
 "Next month" = "अगला महीना";
 "Next page" = "अगला पेज";
 "Next song" = "Next song";
@@ -1422,6 +1465,7 @@
 "On Hold" = "होल्ड पर";
 "On The Air" = "प्रसारण जारी है";
 "On Tonight" = "आज रात प्रसारण में";
+"On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "डिफ़ॉल्ट रूप से चालू: प्रसारित हो चुके सभी एपिसोड देखने के बाद शो 'देखना जारी रखें' से हट जाता है और नया एपिसोड आने पर लौट आता है। जिन शो के सभी उपलब्ध एपिसोड आप देख चुके हैं, उन्हें इस पंक्ति में बनाए रखने के लिए इसे बंद करें।";
 "On start" = "On start";
 "Onboarding" = "शुरुआती सेटअप";
 "One list" = "एक सूची";
@@ -1453,6 +1497,7 @@
 "Opening AniList..." = "AniList खोला जा रहा है...";
 "Opening MyAnimeList..." = "MyAnimeList खोला जा रहा है...";
 "Opening book…" = "Opening book…";
+"Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Options" = "विकल्प";
 "Orden de addons" = "ऐडऑन क्रम";
 "Orden de idiomas preferidos" = "भाषाओं की प्राथमिकता";
@@ -1486,6 +1531,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "पासवर्ड";
 "Paste JSON" = "JSON पेस्ट करें";
+"Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "कोड या पेज URL पेस्ट करें";
 "Paste the manifest URL the configure page gave you" = "कॉन्फ़िगर पेज से मिला मैनिफ़ेस्ट URL पेस्ट करें";
 "Paste the text from AniList" = "AniList से टेक्स्ट पेस्ट करें";
@@ -1575,6 +1621,7 @@
 "Posters, ratings, lists" = "पोस्टर, रेटिंग, सूचियाँ";
 "Predeterminado" = "डिफ़ॉल्ट";
 "Predeterminado (acento dorado)" = "डिफ़ॉल्ट (सुनहरा एक्सेंट)";
+"Prefer episode still artwork" = "Prefer episode still artwork";
 "Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "वहीं से चलाने या फिर से शुरू करने के लिए पूछें";
 "Premiered This Month" = "इस महीने प्रीमियर हुए";
@@ -1606,10 +1653,15 @@
 "Próximos" = "आगामी";
 "Próximos animes" = "आगामी ऐनिमे";
 "Psychological" = "मनोवैज्ञानिक";
+"Public" = "सार्वजनिक";
+"Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed." = "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed.";
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
+"Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account." = "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account.";
+"Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "अधिक चटख रंग";
 "Puntuaciones" = "स्कोर";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
+"Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "पिछला पेज";
 "Página siguiente" = "अगला पेज";
 "Pósteres, calificaciones y listas" = "पोस्टर, रेटिंग, सूचियाँ";
@@ -1699,6 +1751,7 @@
 "Remove from watchlist" = "वॉचलिस्ट से हटाएँ";
 "Remove preset" = "प्रीसेट हटाएँ";
 "Remove saved book" = "Remove saved book";
+"Remove shows once you're caught up" = "जब आप शो के सभी उपलब्ध एपिसोड देख लें, तो उसे हटाएँ";
 "Remove {language}" = "{language} हटाएँ";
 "Remove {name}" = "{name} हटाएँ";
 "Removed" = "हटाया गया";
@@ -1788,6 +1841,7 @@
 "Rounded" = "गोलाकार";
 "Rounded background panel behind the text. Most readable." = "टेक्स्ट के पीछे गोल कोनों वाला बैकग्राउंड पैनल। पढ़ने में सबसे आसान।";
 "Row card style" = "पंक्ति कार्ड की शैली";
+"Rows" = "पंक्तियाँ";
 "Royal" = "शाही";
 "Rugby" = "रग्बी";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "फ़िलहाल Cinemeta पर चल रहा है। जब आप तैयार हों, सेटिंग्स से TMDB कुंजी जोड़ें।";
@@ -1861,6 +1915,7 @@
 "Selected" = "चुना गया";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Trakt को भेजा जा रहा है…";
+"Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n} को Trakt पर भेजा गया";
 "Serie dramática" = "ड्रामा सीरीज़";
 "Series" = "शो";
@@ -1923,6 +1978,7 @@
 "Show me more like this" = "इस तरह का और कंटेंट दिखाएँ";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show my rating on movie posters" = "फ़िल्म के पोस्टर पर मेरी रेटिंग दिखाएँ";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "स्ट्रीम चयन में हर प्लगइन के बजाय हर रिपॉज़िटरी के लिए एक स्रोत दिखाएँ। तब उपयोगी जब किसी रिपॉज़िटरी में कई छोटे प्रोवाइडर हों।";
 "Show pages" = "पेज दिखाएँ";
 "Show release filenames in the Condensed picker and Big Picture." = "संक्षिप्त स्रोत चयन और बिग पिक्चर में रिलीज़ की फ़ाइलों के नाम दिखाएँ।";
@@ -1943,14 +1999,18 @@
 "Sides" = "किनारे";
 "Sign in" = "साइन इन करें";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "अपने 'देखना जारी रखें' सेक्शन, वॉचलिस्ट और पहले से चुने गए ऐडऑन को मिरर करने के लिए साइन इन करें। यह वैकल्पिक है; साइन आउट रहने पर भी Harbor पूरी तरह काम करता है।";
+"Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "Stremio से साइन इन करें";
 "Sign out" = "साइन आउट करें";
+"Signed in" = "Signed in";
+"Signs in to Letterboxd and unlocks your diary, friends activity and ratings." = "Signs in to Letterboxd and unlocks your diary, friends activity and ratings.";
 "Siguiente" = "अगला";
 "Siguiente canción" = "Next song";
 "Silenciar" = "म्यूट करें";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl में इस महीने प्रीमियर होने वाले कोई नए शो या ऐनिमे सूचीबद्ध नहीं हैं। कोई दूसरा महीना आज़माएँ।";
 "Simkl premieres" = "Simkl प्रीमियर";
+"Simkl progress" = "Simkl progress";
 "Simkl sign-in expired, reconnect it" = "Simkl साइन-इन की समय-सीमा खत्म हो गई है, इसे फिर से कनेक्ट करें";
 "Sin configurar" = "सेट नहीं है";
 "Sin corrección" = "कोई सुधार नहीं";
@@ -2047,6 +2107,7 @@
 "Streaming services" = "स्ट्रीमिंग सेवाएँ";
 "Streaming sources" = "स्ट्रीमिंग स्रोत";
 "Streams" = "स्ट्रीम्स";
+"Stremboxd error ({status})." = "Stremboxd error ({status}).";
 "Stremio" = "Stremio";
 "Stremio clásico" = "क्लासिक Stremio";
 "Stretch" = "फैलाएँ";
@@ -2163,6 +2224,8 @@
 "The comics industry's highest honor" = "कॉमिक्स उद्योग का सर्वोच्च सम्मान";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The little score chip printed on poster cards across your rows and grids." = "आपकी पंक्तियों और ग्रिड में पोस्टर कार्ड पर दिखने वाली छोटी स्कोर चिप।";
 "The most anticipated upcoming releases on Trakt" = "Trakt पर आने वाली सबसे बहुप्रतीक्षित रिलीज़";
 "The most-watched movies and series on {name} right now in {region}." = "{region} में इस समय {name} पर सबसे ज़्यादा देखी जा रही फ़िल्में और सीरीज़।";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
@@ -2199,6 +2262,7 @@
 "Tipografía" = "टाइपोग्राफ़ी";
 "Titles" = "शीर्षक";
 "Titles and descriptions" = "शीर्षक और विवरण";
+"Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "सभी";
 "Todas las categorías" = "सभी श्रेणियाँ";
@@ -2267,6 +2331,7 @@
 "Trakt history" = "Trakt इतिहास";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt के सर्वर में समस्या है (HTTP {n})। थोड़ी देर बाद फिर कोशिश करें।";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt अनुरोधों की दर सीमित कर रहा है। एक मिनट रुककर फिर कोशिश करें।";
+"Trakt progress" = "Trakt progress";
 "Trakt rejected the request (HTTP {n})." = "Trakt ने अनुरोध अस्वीकार कर दिया (HTTP {n})।";
 "Trakt rejected the request (account locked or permission denied)." = "Trakt ने अनुरोध अस्वीकार कर दिया (खाता लॉक है या अनुमति नहीं मिली)।";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt के अनुसार प्राधिकरण अस्वीकार कर दिया गया था। अगर ऐसा अनजाने में हुआ, तो फिर कोशिश करें।";
@@ -2293,9 +2358,11 @@
 "Tune your recommendations" = "अपने सुझावों को बेहतर बनाएँ";
 "Turkish" = "तुर्की";
 "Turn pages horizontally" = "Turn pages horizontally";
+"Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "आपके ऐडऑन";
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
+"Two-factor authentication code" = "टू-फ़ैक्टर ऑथेंटिकेशन कोड";
 "Type" = "प्रकार";
 "Type on your keyboard or tap the digits above." = "अपने कीबोर्ड पर टाइप करें या ऊपर दिए गए अंकों पर टैप करें।";
 "Type the same 4-digit PIN again." = "वही 4-अंकों का PIN फिर से टाइप करें।";
@@ -2310,6 +2377,7 @@
 "Ultra HD · HDR" = "Ultra HD · HDR";
 "Un poco más claro que el fondo." = "बैकग्राउंड से थोड़ा हल्का।";
 "Unavailable" = "उपलब्ध नहीं";
+"Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "पहले जैसा करें";
 "United Kingdom" = "यूनाइटेड किंगडम";
 "United States" = "संयुक्त राज्य अमेरिका";
@@ -2351,6 +2419,7 @@
 "Velocidad" = "गति";
 "Ver más" = "और देखें";
 "Ver todo" = "सभी देखें";
+"Verify & connect" = "सत्यापित करें और कनेक्ट करें";
 "Verifying" = "सत्यापन हो रहा है";
 "Version" = "वर्ज़न";
 "Versión" = "वर्ज़न";
@@ -2379,6 +2448,7 @@
 "War" = "युद्ध";
 "Watch on" = "इस पर देखें";
 "Watched" = "देख लिया";
+"Watched by {name}" = "{name} ने देखा";
 "Watching" = "देख रहे हैं";
 "Watchlist" = "वॉचलिस्ट";
 "Watchlist only" = "सिर्फ़ वॉचलिस्ट";
@@ -2403,6 +2473,7 @@
 "Where to today?" = "आज कहाँ चलें?";
 "Where to watch" = "कहाँ देखें";
 "Where your video comes from" = "आपका वीडियो कहाँ से आता है";
+"Which end of the poster the score chip rides on." = "स्कोर चिप पोस्टर के किस किनारे पर रहती है।";
 "Which order" = "किस क्रम में";
 "Who's watching" = "कौन देख रहा है";
 "Who's watching?" = "कौन देख रहा है?";
@@ -2423,8 +2494,10 @@
 "You've hidden the one catalog that matched." = "आपने मेल खाने वाला एकमात्र कैटलॉग छिपा दिया है।";
 "You've reached the end · {n} addons" = "आप अंत तक पहुँच गए हैं · {n} ऐडऑन";
 "YouTube" = "YouTube";
+"Your AniList" = "आपका AniList";
 "Your AniList is empty" = "आपका AniList खाली है";
 "Your Discovery Queue" = "आपकी डिस्कवरी क्यू";
+"Your Letterboxd password" = "आपका Letterboxd पासवर्ड";
 "Your Stremio library + addons sync in untouched." = "आपकी Stremio लाइब्रेरी + ऐडऑन बिना किसी बदलाव के सिंक हो जाते हैं।";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "आपकी Trakt वॉचलिस्ट खाली है, इंपोर्ट करने के लिए कुछ नहीं है।";
@@ -2439,6 +2512,7 @@
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "आपकी सूचियाँ मेमोरी में रखी गई हैं। ऐप बंद करने से पहले उन्हें सहेजें।";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
+"Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "आपकी प्रोफ़ाइल";
 "Your rating" = "आपकी रेटिंग";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "आपके सेव किए गए किसी भी शो का कोई एपिसोड इस महीने के लिए शेड्यूल नहीं है। पूरा रिलीज़ कैलेंडर देखने के लिए सभी आगामी पर जाएँ।";
@@ -2486,6 +2560,7 @@
 "just now" = "अभी-अभी";
 "language" = "भाषा";
 "left" = "बाएँ";
+"letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "लोकल";
 "mdblist api key" = "mdblist API कुंजी";
 "min" = "मिनट";
@@ -3614,6 +3689,7 @@
 "wrong movie" = "गलत फ़िल्म";
 "year mismatch" = "वर्ष मेल नहीं खाता";
 "yes" = "हाँ";
+"your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} स्वयं किसी मीडिया को होस्ट, वितरित या इंडेक्स नहीं करता। सभी स्ट्रीम तृतीय-पक्ष ऐडऑन, डीब्रिड सेवाओं या आपके अपने {service} अकाउंट से आती हैं, जिसे आप स्वयं कॉन्फ़िगर करते हैं। आप क्या चलाना चुनते हैं और अपने अधिकार क्षेत्र के कानूनों का पालन करते हैं, इसकी ज़िम्मेदारी आपकी है।";
 "{count} picks ready" = "{count} चुने हुए विकल्प तैयार हैं";
 "{count} results" = "{count} नतीजे";
@@ -3636,6 +3712,7 @@
 "{n} days ago" = "{n} दिन पहले";
 "{n} ep" = "{n} एपिसोड";
 "{n} eps" = "{n} एपिसोड";
+"{n} films." = "{n} films.";
 "{n} hr" = "{n} घंटे";
 "{n} in a day" = "एक दिन में {n}";
 "{n} item" = "{n} आइटम";

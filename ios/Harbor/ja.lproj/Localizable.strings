@@ -7,6 +7,7 @@
 "1,5 min" = "1分30秒";
 "1.5 min" = "1分30秒";
 "1.85:1" = "1.85:1";
+"123456" = "123456";
 "15s" = "15秒";
 "16:9" = "16:9";
 "2 min" = "2分";
@@ -23,10 +24,13 @@
 "45s" = "45秒";
 "4:3" = "4:3";
 "8-character key" = "8文字のキー";
+"A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "ブラウザでAniListのタブが開きました。そこでHarborを承認し、表示されたテキストをコピーして下に貼り付けてください。";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "ブラウザでMyAnimeListのタブが開きました。そこでHarborを承認し、コードまたはページのURLをコピーして下に貼り付けてください。";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremioプロトコル対応クライアント。設定は2分ほどで、ほとんどの項目は任意です。すべてのキーをご自身で管理できます。";
 "A continuación" = "次のエピソード";
+"A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
+"A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shiftと矢印キーで短く移動し、数秒ずつ微調整できます。";
@@ -39,6 +43,7 @@
 "Abajo a la derecha" = "右下";
 "Abajo a la izquierda" = "左下";
 "About" = "Harborについて";
+"About Stremboxd" = "Stremboxdについて";
 "Above the main line" = "メイン字幕の上";
 "Abriendo libro…" = "Opening book…";
 "Abrir en Safari" = "Open in Safari";
@@ -73,6 +78,7 @@
 "Add a TMDB API key in Metadata settings to search for titles." = "作品を検索するには、メタデータ設定で TMDB API キーを追加してください。";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "すべての発見フィードを利用するには、設定でTMDBキーを追加してください。";
 "Add a TMDB key in settings first" = "先に設定でTMDBキーを追加してください";
+"Add a list" = "リストを追加";
 "Add a movie or show to this list..." = "映画や番組をこのリストに追加...";
 "Add a repository" = "リポジトリを追加";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "AniListにアニメを追加すると、ステータス別にまとめられてここに表示され、そのまま編集できます。";
@@ -104,6 +110,7 @@
 "Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "詳細ページにLetterboxdとTraktのコミュニティ評価を追加し、OMDbで不足している情報を補います。";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "エピソードの右クリックメニューに「非表示」を追加します。非表示のエピソードは一覧から消え、「次のエピソード」でもスキップされます。各番組の「非表示を表示」切り替えで再表示できます。";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
+"Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "「視聴を続ける」の下に、視聴中の作品で最近放送されたエピソードを表示する列を追加します。1件ずつ非表示にすることも、列全体を消去することもできます。デフォルトではオフです。";
 "Adjust the text and background. The preview shows your changes as you make them." = "文字と背景を調整します。変更がその場でプレビューに反映されます。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
@@ -124,6 +131,7 @@
 "Ahora no" = "今はしない";
 "Aired" = "放送順";
 "Airing Now" = "放送中";
+"Airing now" = "放送中";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "文字と背景を調整します。変更がその場でプレビューに反映されます。";
 "Ajustar" = "全体を表示";
 "Ajuste de imagen" = "Picture adjustment";
@@ -166,6 +174,7 @@
 "AniList sync" = "AniList同期";
 "Animals" = "Animals";
 "Animated Movies" = "アニメ映画";
+"Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "アニメーション";
 "Animation speed" = "アニメーション速度";
 "Anime" = "アニメ";
@@ -194,6 +203,7 @@
 "Apply custom theme" = "カスタムテーマを適用";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "アラビア語";
+"Arcs" = "編";
 "Arrows" = "矢印キー";
 "Artistas" = "アーティスト";
 "Artists" = "アーティスト";
@@ -329,6 +339,7 @@
 "Brightness" = "明るさ";
 "Brillo" = "明るさ";
 "Bring in your library" = "ライブラリを取り込む";
+"Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "アニメのリストをHarborに取り込み、視聴に合わせて話数を更新します。これまでの進捗は保持されます。";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "ウェルカムガイドをやり直さずに、閉じたアプリ内のヒントを再表示します。";
 "BritBox" = "BritBox";
@@ -337,6 +348,7 @@
 "Browse addons" = "アドオンを見る";
 "Browse by Genre" = "ジャンルから探す";
 "Browse by category" = "カテゴリーから探す";
+"Browse by story arc on supported shows, such as One Piece. Requires a TMDB key." = "ONE PIECEなどの対応作品をストーリー編ごとに閲覧できます。TMDBキーが必要です。";
 "Browse services" = "サービスを見る";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Harborでアニメのリストを閲覧し、視聴に合わせて進捗を更新します。接続するにはAniListにサインインしてください。";
 "Browse your catalogs" = "カタログを見る";
@@ -382,12 +394,15 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "あなたの言語の字幕";
 "Captions, eyebrows." = "キャプション、アイブロウ。";
 "Capítulo anterior" = "前のチャプター";
 "Capítulo siguiente" = "次の話";
 "Capítulos" = "話";
 "Card behaviour" = "カードの動作";
+"Card size" = "カードサイズ";
+"Cards" = "カード";
 "Cards, panels." = "カード、パネル。";
 "Cargar archivo" = "ファイルを読み込む";
 "Cargar más" = "さらに読み込む";
@@ -412,6 +427,7 @@
 "Checking with AniList..." = "AniListで確認中...";
 "Checking with MyAnimeList..." = "MyAnimeListで確認中...";
 "Checking…" = "確認中…";
+"Checks the username against Stremboxd and turns on the catalogs it finds." = "Checks the username against Stremboxd and turns on the catalogs it finds.";
 "Checksum did not match the manifest." = "チェックサムがマニフェストと一致しませんでした。";
 "China" = "中国";
 "Chinese" = "中国語";
@@ -423,6 +439,7 @@
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harborでプロフィールの選択を求めるタイミングを選びます。時間に基づく確認は、Harborに戻ったときに表示されます。";
 "Choose which addon results appear when you pick a stream." = "ストリーム選択時に表示するアドオンの結果を選びます。";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "カードと詳細ページに表示する評価を選びます。ロックされたカード評価には、「メタデータ」でプロバイダーのキーを設定する必要があります。";
+"Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "SF＆ファンタジー";
 "Claro" = "ライト";
@@ -507,6 +524,7 @@
 "Connected to AniList" = "AniListに接続済み";
 "Connected to MyAnimeList" = "MyAnimeListに接続済み";
 "Connected to Simkl" = "Simklに接続済み";
+"Connected. {n} catalogs are available." = "Connected. {n} catalogs are available.";
 "Connecting" = "接続中";
 "Conservar original" = "オリジナルを維持";
 "Contenido" = "コンテンツ";
@@ -516,6 +534,7 @@
 "Continue" = "続ける";
 "Continue Watching" = "続きを見る";
 "Continue Watching at top" = "「視聴を続ける」を一番上に表示";
+"Continue Watching sources" = "Continue Watching sources";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "「視聴を続ける」の後に、アドオンのカタログをインストール順で表示します。ヒーローやHarborのレールはありません。";
 "Continue reading" = "続きを読む";
 "Continue to next chapter" = "Continue to next chapter";
@@ -549,6 +568,7 @@
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "リストを読み込めませんでした。保存済みデータは保持されています。";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
+"Could not resolve that Letterboxd list URL." = "そのLetterboxdリストのURLを特定できませんでした。";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "サービスを復元できませんでした。保存済みのバージョンは保持されます。";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
@@ -661,6 +681,7 @@
 "Discovery Queue" = "発見キュー";
 "Diseño de Inicio" = "ホームのレイアウト";
 "Dismiss" = "閉じる";
+"Dismiss all" = "すべて閉じる";
 "Dismiss tip" = "Dismiss tip";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "Disney+オリジナル";
@@ -730,6 +751,7 @@
 "En directo" = "ライブ";
 "En reproducción" = "再生中";
 "En reproducción: {label}" = "再生中: {label}";
+"Enable Letterboxd integration" = "Letterboxd連携を有効にする";
 "Enable User Ratings" = "ユーザー評価を有効化";
 "Enable addon" = "Enable addon";
 "Enabled" = "有効";
@@ -795,6 +817,7 @@
 "External" = "外部";
 "External subtitle" = "外部字幕";
 "Externo" = "外部";
+"Extra large" = "特大";
 "Extras" = "特典映像";
 "FPS de los subtítulos" = "字幕FPS";
 "FPS de origen de los subtítulos" = "字幕のソースFPS";
@@ -862,8 +885,11 @@
 "Fuentes para adultos" = "Adult sources";
 "Fuentes y biblioteca" = "ソースとライブラリ";
 "Fuentes y calidad" = "Sources and quality";
+"Full" = "全体";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
+"Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
 "Gamma" = "ガンマ";
 "Genre" = "ジャンル";
 "Genres" = "ジャンル";
@@ -878,9 +904,11 @@
 "Grand Prize" = "大賞";
 "Gray" = "Gray";
 "Green" = "緑";
+"Grid view" = "グリッド表示";
 "Gris" = "Gray";
 "Grosor del contorno" = "縁取りの太さ";
 "Group by repository" = "リポジトリごとにまとめる";
+"Group episodes by story arc" = "エピソードをストーリーアーク別にまとめる";
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "お気に入りの映画や番組をまとめましょう。もう一度観たい作品、週末に観たい作品など、いつでもすぐ見られるように整理できます。";
 "Group the movies and shows you want to keep close." = "お気に入りの映画や番組をまとめておけます。";
 "Grouped" = "グループ化済み";
@@ -912,6 +940,7 @@
 "Harbor dropped {n} suspicious or mismatched results." = "Harborは不審または不一致の検索結果を{n}件除外しました。";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "HarborがMyAnimeListの視聴進捗を同期します。";
+"Harbor library" = "Harbor library";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor はこの順序で字幕を探します。優先する言語を先頭にしてください。";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harborが各サービスで現在最も人気のある作品を取得します。契約していないサービスはオフにしてください。";
 "Harbor ranking" = "Harborの順位付け";
@@ -945,6 +974,7 @@
 "Hide this catalog" = "このカタログを非表示";
 "Hide titles under posters" = "ポスター下のタイトルを非表示";
 "Hide unreleased titles" = "未公開タイトルを非表示";
+"Hide until the next episode airs, or keep showing a countdown to when it drops." = "次のエピソードが配信されるまで隠すか、配信までのカウントダウンを表示し続けます。";
 "Hide watched titles in catalogs" = "カタログで視聴済み作品を非表示";
 "Hide {name} from navigation" = "ナビゲーションから{name}を非表示";
 "Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "ホームの「視聴を続ける」行からアニメを非表示にします。「アニメ」タブ内の「視聴を続ける」には引き続き表示されます。";
@@ -967,8 +997,10 @@
 "Home style" = "ホームのスタイル";
 "Hoopla" = "Hoopla";
 "Horizontal" = "横向き";
+"Horizontal view" = "横表示";
 "Horror" = "ホラー";
 "Horror & Supernatural" = "ホラー＆超常現象";
+"How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "ストリップ表示とグリッド表示のエピソードカードの大きさです。大きくするとアートワークも大きく表示されます。";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "音量バーで100%を超えて増幅できる上限です。高く設定すると非常に大きな音になる場合があります。";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "各アドオンの結果を Harbor が待つ時間です。";
@@ -1060,6 +1092,7 @@
 "Just added" = "新着";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep Continue Watching private to each profile" = "「視聴を続ける」をプロフィールごとに非公開";
 "Keep anime in the Anime room only" = "アニメは「アニメ」内にのみ表示";
 "Keep original" = "オリジナルを維持";
 "Keep same source on next episode" = "次のエピソードでも同じソースを使用";
@@ -1090,6 +1123,9 @@
 "Less bass" = "低音を抑える";
 "Letter spacing" = "文字間隔";
 "Letterboxd" = "Letterboxd";
+"Letterboxd asked for a second step. Enter the six digit code, then connect again." = "Letterboxd asked for a second step. Enter the six digit code, then connect again.";
+"Letterboxd password" = "Letterboxdパスワード";
+"Letterboxd username" = "Letterboxdユーザー名";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd、Trakt、Metacritic、視聴者のスコア。";
 "Library" = "ライブラリ";
 "Libros" = "書籍";
@@ -1103,6 +1139,7 @@
 "List" = "リスト";
 "List name" = "リスト名";
 "List settings" = "リスト設定";
+"List view" = "リスト表示";
 "Lista" = "リスト";
 "Lista M3U" = "M3Uプレイリスト";
 "Listas" = "プレイリスト";
@@ -1199,6 +1236,7 @@
 "Missing TMDB Key" = "TMDBキーがありません";
 "Misterio" = "ミステリー";
 "Mix surround sound down to stereo" = "サラウンド音声をステレオにダウンミックス";
+"Mode" = "モード";
 "Modo de concentración" = "集中モード";
 "Modo de lectura" = "閲覧モード";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "エピソード終了の何秒前に「次のエピソード」を表示するかを設定します。自動ではエピソードの長さに合わせて調整し、短いエピソードで早く表示されすぎないようにします。オフにすると非表示になります。";
@@ -1281,6 +1319,8 @@
 "Netflix Originals" = "Netflixオリジナル";
 "Never" = "しない";
 "New Anime Releases" = "新作アニメ";
+"New Episodes" = "新着エピソード";
+"New Episodes row" = "「新着エピソード」行";
 "New Face Award" = "新人賞";
 "New list" = "新しいリスト";
 "New profile" = "新しいプロフィール";
@@ -1291,6 +1331,9 @@
 "Next chapter" = "次の話";
 "Next day" = "Next day";
 "Next episode prompt" = "次のエピソードの案内";
+"Next in {days}d {hours}h" = "次回まで{days}日{hours}時間";
+"Next in {hours}h {minutes}m" = "次回まで{hours}時間{minutes}分";
+"Next in {minutes}m" = "次回まで{minutes}分";
 "Next month" = "次の月";
 "Next page" = "次のページ";
 "Next song" = "Next song";
@@ -1422,6 +1465,7 @@
 "On Hold" = "保留中";
 "On The Air" = "放送中";
 "On Tonight" = "今夜放送";
+"On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "デフォルトではオンです。配信済みの全エピソードを視聴すると、その番組は「視聴を続ける」から非表示になり、新しいエピソードの配信時に戻ります。視聴済みの番組を列に残すにはオフにしてください。";
 "On start" = "On start";
 "Onboarding" = "初期ガイド";
 "One list" = "1件のリスト";
@@ -1453,6 +1497,7 @@
 "Opening AniList..." = "AniListを開いています...";
 "Opening MyAnimeList..." = "MyAnimeListを開いています...";
 "Opening book…" = "Opening book…";
+"Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Options" = "オプション";
 "Orden de addons" = "アドオン順";
 "Orden de idiomas preferidos" = "言語の優先順位";
@@ -1486,6 +1531,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "パスワード";
 "Paste JSON" = "JSONを貼り付け";
+"Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "コードまたはページのURLを貼り付け";
 "Paste the manifest URL the configure page gave you" = "設定ページで発行されたマニフェストURLを貼り付け";
 "Paste the text from AniList" = "AniListのテキストを貼り付け";
@@ -1575,6 +1621,7 @@
 "Posters, ratings, lists" = "ポスター、評価、リスト";
 "Predeterminado" = "デフォルト";
 "Predeterminado (acento dorado)" = "デフォルト（ゴールドのアクセント）";
+"Prefer episode still artwork" = "Prefer episode still artwork";
 "Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "続きから再生するか最初から再生するか確認";
 "Premiered This Month" = "今月の新作";
@@ -1606,10 +1653,15 @@
 "Próximos" = "開催予定";
 "Próximos animes" = "近日公開アニメ";
 "Psychological" = "心理";
+"Public" = "公開";
+"Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed." = "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed.";
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
+"Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account." = "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account.";
+"Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "色を鮮やかに";
 "Puntuaciones" = "スコア";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
+"Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "前のページ";
 "Página siguiente" = "次のページ";
 "Pósteres, calificaciones y listas" = "ポスター、評価、リスト";
@@ -1699,6 +1751,7 @@
 "Remove from watchlist" = "ウォッチリストから削除";
 "Remove preset" = "プリセットを削除";
 "Remove saved book" = "Remove saved book";
+"Remove shows once you're caught up" = "最新話まで視聴した作品を削除";
 "Remove {language}" = "{language}を削除";
 "Remove {name}" = "{name}を削除";
 "Removed" = "削除済み";
@@ -1788,6 +1841,7 @@
 "Rounded" = "丸ゴシック";
 "Rounded background panel behind the text. Most readable." = "テキストの背後に角丸の背景を表示します。最も読みやすい設定です。";
 "Row card style" = "横並びカードのスタイル";
+"Rows" = "行";
 "Royal" = "ロイヤル";
 "Rugby" = "ラグビー";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "現在はCinemetaを使用しています。準備ができたら、いつでも「設定」からTMDBキーを追加できます。";
@@ -1861,6 +1915,7 @@
 "Selected" = "選択済み";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Traktに送信中…";
+"Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n}件をTraktに送信しました";
 "Serie dramática" = "ドラマシリーズ";
 "Series" = "番組";
@@ -1923,6 +1978,7 @@
 "Show me more like this" = "このような作品をもっと表示";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show my rating on movie posters" = "映画ポスターに自分の評価を表示";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "ストリーム選択で、プラグインごとではなくリポジトリごとに1つのソースを表示します。小さなプロバイダーを多数含むリポジトリで便利です。";
 "Show pages" = "作品ページ";
 "Show release filenames in the Condensed picker and Big Picture." = "コンパクト表示のソース選択画面とビッグピクチャーでリリースのファイル名を表示します。";
@@ -1943,14 +1999,18 @@
 "Sides" = "見開き";
 "Sign in" = "サインイン";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "ログインすると、「視聴を続ける」、ウォッチリスト、追加済みのアドオンを同期できます。任意のため、ログインしなくてもHarborのすべての機能を利用できます。";
+"Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "Stremioでサインイン";
 "Sign out" = "サインアウト";
+"Signed in" = "Signed in";
+"Signs in to Letterboxd and unlocks your diary, friends activity and ratings." = "Signs in to Letterboxd and unlocks your diary, friends activity and ratings.";
 "Siguiente" = "次へ";
 "Siguiente canción" = "Next song";
 "Silenciar" = "ミュート";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Simkl lists no new shows or anime premiering this month. Try a different month." = "今月Simklで配信開始する新作ドラマやアニメはありません。別の月をお試しください。";
 "Simkl premieres" = "Simklプレミア";
+"Simkl progress" = "Simkl progress";
 "Simkl sign-in expired, reconnect it" = "Simklへのサインインの有効期限が切れました。再接続してください";
 "Sin configurar" = "未設定";
 "Sin corrección" = "補正なし";
@@ -2047,6 +2107,7 @@
 "Streaming services" = "ストリーミングサービス";
 "Streaming sources" = "ストリーミングソース";
 "Streams" = "ストリーム";
+"Stremboxd error ({status})." = "Stremboxd error ({status}).";
 "Stremio" = "Stremio";
 "Stremio clásico" = "クラシックStremio";
 "Stretch" = "引き伸ばす";
@@ -2163,6 +2224,8 @@
 "The comics industry's highest honor" = "コミック業界最高の栄誉";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The little score chip printed on poster cards across your rows and grids." = "各行やグリッドのポスターカードに表示される小さなスコアバッジです。";
 "The most anticipated upcoming releases on Trakt" = "Traktで最も期待されている新作";
 "The most-watched movies and series on {name} right now in {region}." = "現在{region}の{name}で最も視聴されている映画とシリーズです。";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
@@ -2199,6 +2262,7 @@
 "Tipografía" = "タイポグラフィ";
 "Titles" = "作品";
 "Titles and descriptions" = "タイトルと説明";
+"Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "すべて";
 "Todas las categorías" = "すべてのカテゴリー";
@@ -2267,6 +2331,7 @@
 "Trakt history" = "Trakt視聴履歴";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Traktでサーバー障害が発生しています（HTTP {n}）。しばらくしてからもう一度お試しください。";
 "Trakt is rate-limiting. Wait a minute and try again." = "Traktによってリクエスト回数が制限されています。1分ほど待ってからもう一度お試しください。";
+"Trakt progress" = "Trakt progress";
 "Trakt rejected the request (HTTP {n})." = "Traktがリクエストを拒否しました（HTTP {n}）。";
 "Trakt rejected the request (account locked or permission denied)." = "Traktがリクエストを拒否しました（アカウントがロックされているか、権限がありません）。";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Traktで認証が拒否されました。意図しない場合は、もう一度お試しください。";
@@ -2293,9 +2358,11 @@
 "Tune your recommendations" = "おすすめを調整";
 "Turkish" = "トルコ語";
 "Turn pages horizontally" = "Turn pages horizontally";
+"Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "あなたのアドオン";
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
+"Two-factor authentication code" = "2段階認証コード";
 "Type" = "タイプ";
 "Type on your keyboard or tap the digits above." = "キーボードで入力するか、上の数字をタップしてください。";
 "Type the same 4-digit PIN again." = "同じ4桁のPINをもう一度入力してください。";
@@ -2310,6 +2377,7 @@
 "Ultra HD · HDR" = "Ultra HD · HDR";
 "Un poco más claro que el fondo." = "背景よりわずかに明るい色。";
 "Unavailable" = "利用できません";
+"Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "元に戻す";
 "United Kingdom" = "イギリス";
 "United States" = "アメリカ";
@@ -2351,6 +2419,7 @@
 "Velocidad" = "再生速度";
 "Ver más" = "もっと見る";
 "Ver todo" = "すべて表示";
+"Verify & connect" = "確認して接続";
 "Verifying" = "認証中";
 "Version" = "バージョン";
 "Versión" = "バージョン";
@@ -2379,6 +2448,7 @@
 "War" = "戦争";
 "Watch on" = "視聴先";
 "Watched" = "視聴済み";
+"Watched by {name}" = "{name}が視聴済み";
 "Watching" = "視聴中";
 "Watchlist" = "ウォッチリスト";
 "Watchlist only" = "ウォッチリストのみ";
@@ -2403,6 +2473,7 @@
 "Where to today?" = "今日はどこへ？";
 "Where to watch" = "視聴方法";
 "Where your video comes from" = "動画の配信元";
+"Which end of the poster the score chip rides on." = "ポスターのどちら側に評価バッジを表示するか。";
 "Which order" = "並び順";
 "Who's watching" = "視聴する人";
 "Who's watching?" = "どなたが視聴しますか？";
@@ -2423,8 +2494,10 @@
 "You've hidden the one catalog that matched." = "一致した唯一のカタログが非表示になっています。";
 "You've reached the end · {n} addons" = "以上です・アドオン{n}件";
 "YouTube" = "YouTube";
+"Your AniList" = "あなたのAniList";
 "Your AniList is empty" = "AniListは空です";
 "Your Discovery Queue" = "あなたの発見キュー";
+"Your Letterboxd password" = "Letterboxdのパスワード";
 "Your Stremio library + addons sync in untouched." = "Stremioのライブラリとアドオンをそのまま同期。";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Traktのウォッチリストは空です。インポートする項目はありません。";
@@ -2439,6 +2512,7 @@
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "リストはメモリ内に保持されています。アプリを閉じる前に保存してください。";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
+"Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "あなたのプロフィール";
 "Your rating" = "あなたの評価";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "保存した番組には、今月配信予定のエピソードがありません。配信カレンダーをすべて見るには、「すべての配信予定」に切り替えてください。";
@@ -2486,6 +2560,7 @@
 "just now" = "たった今";
 "language" = "言語";
 "left" = "左";
+"letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "ローカル";
 "mdblist api key" = "mdblist APIキー";
 "min" = "分";
@@ -3614,6 +3689,7 @@
 "wrong movie" = "別の映画";
 "year mismatch" = "公開年の不一致";
 "yes" = "はい";
+"your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app}自体がメディアをホスト、配信、インデックス化することはありません。すべてのストリームは、サードパーティー製アドオン、デブリッドサービス、またはご自身で設定した{service}アカウントから提供されます。何を再生するかを判断し、お住まいの地域の法律を順守する責任はお客様にあります。";
 "{count} picks ready" = "おすすめ{count}件を用意しました";
 "{count} results" = "{count}件の結果";
@@ -3636,6 +3712,7 @@
 "{n} days ago" = "{n}日前";
 "{n} ep" = "{n}話";
 "{n} eps" = "{n}話";
+"{n} films." = "{n} films.";
 "{n} hr" = "{n}時間";
 "{n} in a day" = "1日で{n}本";
 "{n} item" = "{n}件";

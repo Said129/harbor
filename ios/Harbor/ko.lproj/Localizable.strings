@@ -7,6 +7,7 @@
 "1,5 min" = "1.5분";
 "1.5 min" = "1.5분";
 "1.85:1" = "1.85:1";
+"123456" = "123456";
 "15s" = "15초";
 "16:9" = "16:9";
 "2 min" = "2분";
@@ -23,10 +24,13 @@
 "45s" = "45초";
 "4:3" = "4:3";
 "8-character key" = "8자 키";
+"A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "브라우저의 새 탭에서 AniList가 열렸습니다. 그곳에서 Harbor를 승인한 다음, 표시되는 텍스트를 복사하여 아래에 붙여넣으세요.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "브라우저의 새 탭에서 MyAnimeList가 열렸습니다. 그곳에서 Harbor를 승인한 다음, 코드 또는 페이지 URL을 복사하여 아래에 붙여넣으세요.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 프로토콜용 클라이언트입니다. 설정에는 2분이면 충분하며 대부분은 선택 사항입니다. 모든 키는 사용자가 직접 관리합니다.";
 "A continuación" = "다음 콘텐츠";
+"A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
+"A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift와 방향키를 함께 눌러 몇 초씩 미세하게 이동합니다.";
@@ -39,6 +43,7 @@
 "Abajo a la derecha" = "오른쪽 아래";
 "Abajo a la izquierda" = "왼쪽 아래";
 "About" = "정보";
+"About Stremboxd" = "Stremboxd 정보";
 "Above the main line" = "기본 자막 위";
 "Abriendo libro…" = "Opening book…";
 "Abrir en Safari" = "Open in Safari";
@@ -73,6 +78,7 @@
 "Add a TMDB API key in Metadata settings to search for titles." = "작품을 검색하려면 메타데이터 설정에서 TMDB API 키를 추가하세요.";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "전체 발견 피드를 이용하려면 설정에서 TMDB 키를 추가하세요.";
 "Add a TMDB key in settings first" = "먼저 설정에서 TMDB 키를 추가하세요";
+"Add a list" = "목록 하나 추가";
 "Add a movie or show to this list..." = "이 목록에 영화 또는 시리즈 추가...";
 "Add a repository" = "저장소 추가";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "AniList에 애니메이션을 추가하면 상태별로 묶여 여기에 표시되며 바로 편집할 수 있습니다.";
@@ -104,6 +110,7 @@
 "Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "상세 페이지에 Letterboxd 및 Trakt 커뮤니티 평점을 추가하여 OMDb에서 누락된 항목을 보완합니다.";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "에피소드를 마우스 오른쪽 버튼으로 클릭하면 숨기기 옵션이 표시됩니다. 숨긴 에피소드는 목록에서 사라지고 다음 재생에서도 건너뜁니다. 각 프로그램의 숨긴 항목 표시 토글을 켜면 다시 볼 수 있습니다.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
+"Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "이미 시청 중인 시리즈에서 최근 방영된 에피소드를 이어서 시청 아래의 행에 표시합니다. 하나씩 숨기거나 행 전체를 지울 수 있습니다. 기본값은 꺼짐입니다.";
 "Adjust the text and background. The preview shows your changes as you make them." = "텍스트와 배경을 조정합니다. 변경 사항이 바로 미리보기에 표시됩니다.";
 "Administrar" = "관리";
 "Adult sources" = "Adult sources";
@@ -124,6 +131,7 @@
 "Ahora no" = "나중에";
 "Aired" = "방영됨";
 "Airing Now" = "현재 방영 중";
+"Airing now" = "현재 방영 중";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "텍스트와 배경을 조정합니다. 변경 사항이 바로 미리보기에 표시됩니다.";
 "Ajustar" = "맞춤";
 "Ajuste de imagen" = "Picture adjustment";
@@ -166,6 +174,7 @@
 "AniList sync" = "AniList 동기화";
 "Animals" = "Animals";
 "Animated Movies" = "애니메이션 영화";
+"Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "애니메이션";
 "Animation speed" = "애니메이션 속도";
 "Anime" = "애니메이션";
@@ -194,6 +203,7 @@
 "Apply custom theme" = "사용자 지정 테마 적용";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "아랍어";
+"Arcs" = "스토리 아크";
 "Arrows" = "화살표 키";
 "Artistas" = "아티스트";
 "Artists" = "아티스트";
@@ -329,6 +339,7 @@
 "Brightness" = "밝기";
 "Brillo" = "밝기";
 "Bring in your library" = "보관함 가져오기";
+"Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "애니메이션 목록을 Harbor로 가져오고 시청하면서 시청한 화수를 업데이트합니다. 기존 진행 상황은 유지됩니다.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "환영 절차를 다시 진행하지 않고 닫았던 작은 앱 내 팁을 다시 표시합니다.";
 "BritBox" = "BritBox";
@@ -337,6 +348,7 @@
 "Browse addons" = "애드온 탐색";
 "Browse by Genre" = "장르별 탐색";
 "Browse by category" = "카테고리별 탐색";
+"Browse by story arc on supported shows, such as One Piece. Requires a TMDB key." = "One Piece 등 지원되는 작품을 스토리 편별로 탐색합니다. TMDB 키가 필요합니다.";
 "Browse services" = "서비스 둘러보기";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Harbor에서 애니메이션 목록을 탐색하고 시청하면서 에피소드 진행 상황을 업데이트합니다. 연결하려면 AniList에 로그인하세요.";
 "Browse your catalogs" = "내 카탈로그 둘러보기";
@@ -382,12 +394,15 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "내 언어로 된 자막";
 "Captions, eyebrows." = "캡션, 상단 레이블.";
 "Capítulo anterior" = "이전 챕터";
 "Capítulo siguiente" = "다음 챕터";
 "Capítulos" = "챕터";
 "Card behaviour" = "카드 동작";
+"Card size" = "카드 크기";
+"Cards" = "카드";
 "Cards, panels." = "카드, 패널.";
 "Cargar archivo" = "파일 불러오기";
 "Cargar más" = "더 불러오기";
@@ -412,6 +427,7 @@
 "Checking with AniList..." = "AniList에서 확인 중...";
 "Checking with MyAnimeList..." = "MyAnimeList에서 확인 중...";
 "Checking…" = "확인 중…";
+"Checks the username against Stremboxd and turns on the catalogs it finds." = "Checks the username against Stremboxd and turns on the catalogs it finds.";
 "Checksum did not match the manifest." = "체크섬이 매니페스트와 일치하지 않습니다.";
 "China" = "중국";
 "Chinese" = "중국어";
@@ -423,6 +439,7 @@
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harbor에서 프로필 선택을 요청할 시점을 정하세요. 시간 설정에 따른 요청은 Harbor로 돌아올 때 표시됩니다.";
 "Choose which addon results appear when you pick a stream." = "스트림을 고를 때 표시할 애드온 결과를 선택하세요.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "카드와 상세 페이지에 표시할 평점을 선택하세요. 잠긴 카드 평점은 메타데이터에서 제공업체 키를 설정해야 합니다.";
+"Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "SF & 판타지";
 "Claro" = "라이트";
@@ -507,6 +524,7 @@
 "Connected to AniList" = "AniList에 연결됨";
 "Connected to MyAnimeList" = "MyAnimeList에 연결됨";
 "Connected to Simkl" = "Simkl에 연결됨";
+"Connected. {n} catalogs are available." = "Connected. {n} catalogs are available.";
 "Connecting" = "연결 중";
 "Conservar original" = "원본 유지";
 "Contenido" = "콘텐츠";
@@ -516,6 +534,7 @@
 "Continue" = "계속";
 "Continue Watching" = "이어 보기";
 "Continue Watching at top" = "맨 위에 이어 보기 표시";
+"Continue Watching sources" = "Continue Watching sources";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "이어보기 다음에 설치 순서대로 애드온 카탈로그가 표시됩니다. 히어로와 Harbor 콘텐츠 줄은 표시되지 않습니다.";
 "Continue reading" = "계속 읽기";
 "Continue to next chapter" = "Continue to next chapter";
@@ -549,6 +568,7 @@
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "목록을 읽을 수 없습니다. 저장된 데이터는 유지됩니다.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
+"Could not resolve that Letterboxd list URL." = "해당 Letterboxd 리스트 URL을 확인할 수 없습니다.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "서비스를 복원하지 못했습니다. 저장된 버전은 유지됩니다.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
@@ -661,6 +681,7 @@
 "Discovery Queue" = "발견 대기열";
 "Diseño de Inicio" = "홈 레이아웃";
 "Dismiss" = "닫기";
+"Dismiss all" = "모두 닫기";
 "Dismiss tip" = "Dismiss tip";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "Disney+ 오리지널";
@@ -730,6 +751,7 @@
 "En directo" = "라이브";
 "En reproducción" = "현재 재생 중";
 "En reproducción: {label}" = "현재 재생 중: {label}";
+"Enable Letterboxd integration" = "Letterboxd 연동 사용";
 "Enable User Ratings" = "사용자 평점 사용";
 "Enable addon" = "Enable addon";
 "Enabled" = "사용";
@@ -795,6 +817,7 @@
 "External" = "외부";
 "External subtitle" = "외부 자막";
 "Externo" = "외부";
+"Extra large" = "매우 크게";
 "Extras" = "부가 콘텐츠";
 "FPS de los subtítulos" = "자막 FPS";
 "FPS de origen de los subtítulos" = "자막 소스 FPS";
@@ -862,8 +885,11 @@
 "Fuentes para adultos" = "Adult sources";
 "Fuentes y biblioteca" = "소스 및 라이브러리";
 "Fuentes y calidad" = "Sources and quality";
+"Full" = "전체";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
+"Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
 "Gamma" = "감마";
 "Genre" = "장르";
 "Genres" = "장르";
@@ -878,9 +904,11 @@
 "Grand Prize" = "대상";
 "Gray" = "Gray";
 "Green" = "초록색";
+"Grid view" = "격자 보기";
 "Gris" = "Gray";
 "Grosor del contorno" = "외곽선 두께";
 "Group by repository" = "저장소별로 묶기";
+"Group episodes by story arc" = "스토리 아크별로 에피소드 묶기";
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "좋아하는 영화와 시리즈를 모아 보세요. 다시 볼 작품, 주말 추천작 등 가까이 두고 싶은 콘텐츠를 자유롭게 정리할 수 있습니다.";
 "Group the movies and shows you want to keep close." = "가까이 두고 싶은 영화와 시리즈를 모아 보세요.";
 "Grouped" = "그룹화됨";
@@ -912,6 +940,7 @@
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor가 의심스럽거나 일치하지 않는 결과 {n}개를 제외했습니다.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "Harbor가 MyAnimeList 시청 진행 상황을 동기화합니다.";
+"Harbor library" = "Harbor library";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor는 이 순서로 자막을 찾습니다. 선호하는 언어를 맨 위에 두세요.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor는 각 서비스에서 현재 가장 인기 있는 콘텐츠를 가져옵니다. 구독하지 않는 서비스는 끄세요.";
 "Harbor ranking" = "Harbor 순위";
@@ -945,6 +974,7 @@
 "Hide this catalog" = "이 카탈로그 숨기기";
 "Hide titles under posters" = "포스터 아래 제목 숨기기";
 "Hide unreleased titles" = "미공개 작품 숨기기";
+"Hide until the next episode airs, or keep showing a countdown to when it drops." = "다음 에피소드가 방영될 때까지 숨기거나, 공개 시점까지의 카운트다운을 계속 표시합니다.";
 "Hide watched titles in catalogs" = "카탈로그에서 시청한 작품 숨기기";
 "Hide {name} from navigation" = "탐색에서 {name} 숨기기";
 "Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "홈의 이어보기 행에서 애니메이션을 숨깁니다. 애니메이션 탭의 이어보기에는 계속 표시됩니다.";
@@ -967,8 +997,10 @@
 "Home style" = "홈 스타일";
 "Hoopla" = "Hoopla";
 "Horizontal" = "가로";
+"Horizontal view" = "가로 보기";
 "Horror" = "호러";
 "Horror & Supernatural" = "공포 및 초자연";
+"How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "스트립 및 그리드 레이아웃의 에피소드 카드 크기입니다. 카드가 클수록 아트워크도 크게 표시됩니다.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "음량 막대에서 100%를 넘어 얼마나 증폭할 수 있는지 설정합니다. 높게 설정하면 소리가 매우 커질 수 있습니다.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Harbor가 각 애드온의 결과를 기다리는 시간입니다.";
@@ -1060,6 +1092,7 @@
 "Just added" = "최근 추가순";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep Continue Watching private to each profile" = "프로필별로 이어보기를 비공개로 유지";
 "Keep anime in the Anime room only" = "애니메이션은 애니메이션 공간에만 표시";
 "Keep original" = "원본 유지";
 "Keep same source on next episode" = "다음 에피소드에서 같은 소스 유지";
@@ -1090,6 +1123,9 @@
 "Less bass" = "저음 줄이기";
 "Letter spacing" = "자간";
 "Letterboxd" = "Letterboxd";
+"Letterboxd asked for a second step. Enter the six digit code, then connect again." = "Letterboxd asked for a second step. Enter the six digit code, then connect again.";
+"Letterboxd password" = "Letterboxd 비밀번호";
+"Letterboxd username" = "Letterboxd 사용자 이름";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd, Trakt, Metacritic 및 관객 평점입니다.";
 "Library" = "라이브러리";
 "Libros" = "도서";
@@ -1103,6 +1139,7 @@
 "List" = "목록";
 "List name" = "목록 이름";
 "List settings" = "목록 설정";
+"List view" = "목록 보기";
 "Lista" = "목록";
 "Lista M3U" = "M3U 재생목록";
 "Listas" = "재생목록";
@@ -1199,6 +1236,7 @@
 "Missing TMDB Key" = "TMDB 키 없음";
 "Misterio" = "미스터리";
 "Mix surround sound down to stereo" = "서라운드 사운드를 스테레오로 다운믹스";
+"Mode" = "모드";
 "Modo de concentración" = "집중 모드";
 "Modo de lectura" = "읽기 모드";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "에피소드가 끝나기 전에 다음 재생 알림을 표시할 시점을 설정합니다. 자동은 에피소드 길이에 맞춰 조절하므로 짧은 에피소드에서 너무 일찍 표시되지 않습니다. 끄면 숨깁니다.";
@@ -1281,6 +1319,8 @@
 "Netflix Originals" = "Netflix 오리지널";
 "Never" = "안 함";
 "New Anime Releases" = "최신 애니메이션";
+"New Episodes" = "새 에피소드";
+"New Episodes row" = "새 에피소드 행";
 "New Face Award" = "신인상";
 "New list" = "새 목록";
 "New profile" = "새 프로필";
@@ -1291,6 +1331,9 @@
 "Next chapter" = "다음 챕터";
 "Next day" = "Next day";
 "Next episode prompt" = "다음 에피소드 알림";
+"Next in {days}d {hours}h" = "다음 공개까지 {days}일 {hours}시간";
+"Next in {hours}h {minutes}m" = "다음 공개까지 {hours}시간 {minutes}분";
+"Next in {minutes}m" = "다음 공개까지 {minutes}분";
 "Next month" = "다음 달";
 "Next page" = "다음 페이지";
 "Next song" = "Next song";
@@ -1422,6 +1465,7 @@
 "On Hold" = "보류 중";
 "On The Air" = "방영 중";
 "On Tonight" = "오늘 밤 방송";
+"On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "기본적으로 켜져 있습니다. 방영된 모든 에피소드를 시청하면 해당 프로그램이 이어보기에서 사라지고 새 에피소드가 공개될 때 다시 나타납니다. 정주행을 마친 프로그램을 계속 표시하려면 끄세요.";
 "On start" = "On start";
 "Onboarding" = "시작 안내";
 "One list" = "목록 하나";
@@ -1453,6 +1497,7 @@
 "Opening AniList..." = "AniList 여는 중...";
 "Opening MyAnimeList..." = "MyAnimeList 여는 중...";
 "Opening book…" = "Opening book…";
+"Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Options" = "옵션";
 "Orden de addons" = "애드온 순서";
 "Orden de idiomas preferidos" = "언어 우선순위";
@@ -1486,6 +1531,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "비밀번호";
 "Paste JSON" = "JSON 붙여넣기";
+"Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "코드 또는 페이지 URL 붙여넣기";
 "Paste the manifest URL the configure page gave you" = "설정 페이지에서 제공한 매니페스트 URL을 붙여넣으세요";
 "Paste the text from AniList" = "AniList의 텍스트 붙여넣기";
@@ -1575,6 +1621,7 @@
 "Posters, ratings, lists" = "포스터, 평점, 목록";
 "Predeterminado" = "기본값";
 "Predeterminado (acento dorado)" = "기본값(골드 강조색)";
+"Prefer episode still artwork" = "Prefer episode still artwork";
 "Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "이어 보기 또는 처음부터 보기 확인";
 "Premiered This Month" = "이번 달 공개작";
@@ -1606,10 +1653,15 @@
 "Próximos" = "예정";
 "Próximos animes" = "공개 예정 애니메이션";
 "Psychological" = "심리";
+"Public" = "공개";
+"Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed." = "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed.";
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
+"Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account." = "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account.";
+"Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "더 선명한 색감";
 "Puntuaciones" = "평점";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
+"Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "이전 페이지";
 "Página siguiente" = "다음 페이지";
 "Pósteres, calificaciones y listas" = "포스터, 평점, 목록";
@@ -1699,6 +1751,7 @@
 "Remove from watchlist" = "관심 목록에서 제거";
 "Remove preset" = "프리셋 삭제";
 "Remove saved book" = "Remove saved book";
+"Remove shows once you're caught up" = "시청 완료한 시리즈 제거";
 "Remove {language}" = "{language} 제거";
 "Remove {name}" = "{name} 삭제";
 "Removed" = "삭제됨";
@@ -1788,6 +1841,7 @@
 "Rounded" = "둥근 글꼴";
 "Rounded background panel behind the text. Most readable." = "텍스트 뒤의 둥근 배경 패널입니다. 가독성이 가장 높습니다.";
 "Row card style" = "행 카드 스타일";
+"Rows" = "행";
 "Royal" = "로열";
 "Rugby" = "럭비";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "현재는 Cinemeta로 실행됩니다. 준비되면 언제든 설정에서 TMDB 키를 추가하세요.";
@@ -1861,6 +1915,7 @@
 "Selected" = "선택됨";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Trakt로 전송 중…";
+"Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n}개를 Trakt로 전송함";
 "Serie dramática" = "드라마 시리즈";
 "Series" = "프로그램";
@@ -1923,6 +1978,7 @@
 "Show me more like this" = "비슷한 작품 더 보기";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show my rating on movie posters" = "영화 포스터에 내 평점 표시";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "스트림 선택에서 플러그인마다가 아니라 저장소마다 소스 하나를 표시합니다. 작은 제공자가 많은 저장소에 유용합니다.";
 "Show pages" = "작품 페이지";
 "Show release filenames in the Condensed picker and Big Picture." = "간결 보기 선택기와 빅 픽처에서 릴리스 파일명을 표시합니다.";
@@ -1943,14 +1999,18 @@
 "Sides" = "양면";
 "Sign in" = "로그인";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "로그인하면 이어보기, 관심 목록, 기존에 구성한 애드온을 그대로 동기화할 수 있습니다. 선택 사항이며, 로그아웃 상태에서도 Harbor의 모든 기능을 사용할 수 있습니다.";
+"Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "Stremio로 로그인";
 "Sign out" = "로그아웃";
+"Signed in" = "Signed in";
+"Signs in to Letterboxd and unlocks your diary, friends activity and ratings." = "Signs in to Letterboxd and unlocks your diary, friends activity and ratings.";
 "Siguiente" = "다음";
 "Siguiente canción" = "Next song";
 "Silenciar" = "음소거";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Simkl lists no new shows or anime premiering this month. Try a different month." = "이번 달에는 Simkl에서 첫 공개되는 새 시리즈나 애니메이션이 없습니다. 다른 달을 선택해 보세요.";
 "Simkl premieres" = "Simkl 첫 공개작";
+"Simkl progress" = "Simkl progress";
 "Simkl sign-in expired, reconnect it" = "Simkl 로그인이 만료되었습니다. 다시 연결하세요.";
 "Sin configurar" = "설정되지 않음";
 "Sin corrección" = "보정 안 함";
@@ -2047,6 +2107,7 @@
 "Streaming services" = "스트리밍 서비스";
 "Streaming sources" = "스트리밍 소스";
 "Streams" = "스트림";
+"Stremboxd error ({status})." = "Stremboxd error ({status}).";
 "Stremio" = "Stremio";
 "Stremio clásico" = "클래식 Stremio";
 "Stretch" = "늘이기";
@@ -2163,6 +2224,8 @@
 "The comics industry's highest honor" = "만화계 최고 권위의 상";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The little score chip printed on poster cards across your rows and grids." = "행과 그리드의 포스터 카드에 표시되는 작은 평점 칩입니다.";
 "The most anticipated upcoming releases on Trakt" = "Trakt에서 가장 기대되는 공개 예정작";
 "The most-watched movies and series on {name} right now in {region}." = "현재 {region}의 {name}에서 가장 많이 시청한 영화와 시리즈입니다.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
@@ -2199,6 +2262,7 @@
 "Tipografía" = "타이포그래피";
 "Titles" = "작품";
 "Titles and descriptions" = "제목 및 설명";
+"Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "전체";
 "Todas las categorías" = "모든 카테고리";
@@ -2267,6 +2331,7 @@
 "Trakt history" = "Trakt 시청 기록";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt 서버에 문제가 있습니다(HTTP {n}). 잠시 후 다시 시도하세요.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt 요청 한도에 도달했습니다. 1분 후 다시 시도하세요.";
+"Trakt progress" = "Trakt progress";
 "Trakt rejected the request (HTTP {n})." = "Trakt에서 요청을 거부했습니다(HTTP {n}).";
 "Trakt rejected the request (account locked or permission denied)." = "Trakt에서 요청을 거부했습니다(계정 잠김 또는 권한 거부).";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt에서 인증이 거부되었다고 응답했습니다. 의도한 것이 아니라면 다시 시도하세요.";
@@ -2293,9 +2358,11 @@
 "Tune your recommendations" = "추천 맞춤 설정";
 "Turkish" = "튀르키예어";
 "Turn pages horizontally" = "Turn pages horizontally";
+"Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "내 애드온";
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
+"Two-factor authentication code" = "2단계 인증 코드";
 "Type" = "유형";
 "Type on your keyboard or tap the digits above." = "키보드로 입력하거나 위의 숫자를 탭하세요.";
 "Type the same 4-digit PIN again." = "같은 4자리 PIN을 다시 입력하세요.";
@@ -2310,6 +2377,7 @@
 "Ultra HD · HDR" = "Ultra HD · HDR";
 "Un poco más claro que el fondo." = "배경보다 약간 밝습니다.";
 "Unavailable" = "사용할 수 없음";
+"Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "실행 취소";
 "United Kingdom" = "영국";
 "United States" = "미국";
@@ -2351,6 +2419,7 @@
 "Velocidad" = "속도";
 "Ver más" = "더 보기";
 "Ver todo" = "모두 보기";
+"Verify & connect" = "확인 후 연결";
 "Verifying" = "인증 중";
 "Version" = "버전";
 "Versión" = "버전";
@@ -2379,6 +2448,7 @@
 "War" = "전쟁";
 "Watch on" = "다음에서 시청";
 "Watched" = "시청함";
+"Watched by {name}" = "{name} 님이 시청함";
 "Watching" = "시청 중";
 "Watchlist" = "관심 목록";
 "Watchlist only" = "관심 목록만";
@@ -2403,6 +2473,7 @@
 "Where to today?" = "오늘은 어디로 갈까요?";
 "Where to watch" = "시청 가능한 곳";
 "Where your video comes from" = "동영상 제공 출처";
+"Which end of the poster the score chip rides on." = "포스터에서 평점 칩을 표시할 쪽입니다.";
 "Which order" = "정렬 순서";
 "Who's watching" = "시청자 선택";
 "Who's watching?" = "누가 시청하나요?";
@@ -2423,8 +2494,10 @@
 "You've hidden the one catalog that matched." = "일치하는 유일한 카탈로그를 숨겼습니다.";
 "You've reached the end · {n} addons" = "마지막입니다 · 애드온 {n}개";
 "YouTube" = "YouTube";
+"Your AniList" = "내 AniList";
 "Your AniList is empty" = "내 AniList가 비어 있음";
 "Your Discovery Queue" = "내 탐색 대기열";
+"Your Letterboxd password" = "Letterboxd 비밀번호";
 "Your Stremio library + addons sync in untouched." = "Stremio 보관함과 애드온을 그대로 동기화합니다.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Trakt 관심 목록이 비어 있어 가져올 항목이 없습니다.";
@@ -2439,6 +2512,7 @@
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "목록이 메모리에 보관되어 있습니다. 앱을 닫기 전에 저장하세요.";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
+"Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "내 프로필";
 "Your rating" = "내 평점";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "저장한 시리즈 중 이번 달에 공개 예정인 에피소드가 없습니다. 전체 공개 캘린더를 보려면 모든 공개 예정으로 전환하세요.";
@@ -2486,6 +2560,7 @@
 "just now" = "방금";
 "language" = "언어";
 "left" = "왼쪽";
+"letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "로컬";
 "mdblist api key" = "mdblist API 키";
 "min" = "분";
@@ -3614,6 +3689,7 @@
 "wrong movie" = "다른 영화";
 "year mismatch" = "연도 불일치";
 "yes" = "예";
+"your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} 자체는 어떠한 미디어도 호스팅, 배포 또는 색인하지 않습니다. 모든 스트림은 서드 파티 애드온, Debrid 서비스 또는 사용자가 직접 구성한 {service} 계정에서 제공됩니다. 재생할 콘텐츠를 선택하고 관할 지역의 법률을 준수할 책임은 사용자에게 있습니다.";
 "{count} picks ready" = "추천 {count}개 준비됨";
 "{count} results" = "결과 {count}개";
@@ -3636,6 +3712,7 @@
 "{n} days ago" = "{n}일 전";
 "{n} ep" = "에피소드 {n}개";
 "{n} eps" = "에피소드 {n}개";
+"{n} films." = "{n} films.";
 "{n} hr" = "{n}시간";
 "{n} in a day" = "하루에 {n}개";
 "{n} item" = "항목 {n}개";

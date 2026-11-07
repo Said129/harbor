@@ -195,6 +195,10 @@ targets:
       - path: HarborTests/WatchStatisticsTests.swift
       - path: HarborTests/AniListListsTests.swift
       - path: HarborTests/ThemeLibraryTests.swift
+      - path: HarborTests/EpisodeLayoutTests.swift
+      - path: HarborTests/CardRatingsTests.swift
+      - path: HarborTests/StremboxdTests.swift
+      - path: HarborTests/NewEpisodesTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift

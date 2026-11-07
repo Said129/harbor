@@ -7,6 +7,7 @@
 "1,5 min" = "1,5 phút";
 "1.5 min" = "1,5 phút";
 "1.85:1" = "1.85:1";
+"123456" = "123456";
 "15s" = "15s";
 "16:9" = "16:9";
 "2 min" = "2 phút";
@@ -23,10 +24,13 @@
 "45s" = "45 giây";
 "4:3" = "4:3";
 "8-character key" = "Khóa 8 ký tự";
+"A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Một thẻ trình duyệt đã mở trên AniList. Hãy phê duyệt Harbor tại đó, rồi sao chép nội dung hiển thị và dán vào bên dưới.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Một thẻ trình duyệt đã mở trên MyAnimeList. Hãy phê duyệt Harbor tại đó, rồi sao chép mã hoặc URL của trang và dán vào bên dưới.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Ứng dụng khách cho giao thức Stremio. Chỉ mất hai phút để thiết lập; hầu hết đều không bắt buộc. Bạn luôn toàn quyền kiểm soát mọi khóa.";
 "A continuación" = "Tiếp theo";
+"A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
+"A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Tua một quãng ngắn hơn bằng Shift kết hợp với các phím mũi tên để dịch chuyển vài giây mỗi lần.";
@@ -39,6 +43,7 @@
 "Abajo a la derecha" = "Dưới cùng bên phải";
 "Abajo a la izquierda" = "Dưới cùng bên trái";
 "About" = "Giới thiệu";
+"About Stremboxd" = "Giới thiệu về Stremboxd";
 "Above the main line" = "Phía trên dòng chính";
 "Abriendo libro…" = "Opening book…";
 "Abrir en Safari" = "Open in Safari";
@@ -73,6 +78,7 @@
 "Add a TMDB API key in Metadata settings to search for titles." = "Thêm khóa API TMDB trong cài đặt siêu dữ liệu để tìm tựa phim.";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Thêm khóa TMDB trong Cài đặt để mở khóa toàn bộ nguồn cấp khám phá.";
 "Add a TMDB key in settings first" = "Trước tiên, hãy thêm khóa TMDB trong Cài đặt";
+"Add a list" = "Thêm một danh sách";
 "Add a movie or show to this list..." = "Thêm phim điện ảnh hoặc phim bộ vào danh sách này...";
 "Add a repository" = "Thêm kho lưu trữ";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "Thêm anime vào AniList để chúng xuất hiện tại đây, được nhóm theo trạng thái và sẵn sàng chỉnh sửa.";
@@ -104,6 +110,7 @@
 "Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "Thêm điểm cộng đồng Letterboxd và Trakt vào trang chi tiết, bổ sung những nội dung OMDb còn thiếu.";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Thêm tùy chọn Ẩn khi bạn nhấp chuột phải vào một tập. Các tập đã ẩn sẽ biến mất khỏi danh sách và bị Tiếp theo bỏ qua. Nút bật tắt Hiện mục đã ẩn trên mỗi phim bộ cho phép hiển thị lại các tập đó.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
+"Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "Thêm một hàng bên dưới Xem tiếp, liệt kê các tập mới phát gần đây của những phim bộ bạn đang xem. Có thể ẩn từng tập hoặc xóa toàn bộ hàng. Mặc định tắt.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Điều chỉnh chữ và nền. Bản xem trước hiển thị ngay các thay đổi của bạn.";
 "Administrar" = "Quản lý";
 "Adult sources" = "Adult sources";
@@ -124,6 +131,7 @@
 "Ahora no" = "Để sau";
 "Aired" = "Đã phát sóng";
 "Airing Now" = "Đang phát sóng";
+"Airing now" = "Đang phát sóng";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "Điều chỉnh chữ và nền. Bản xem trước hiển thị ngay các thay đổi của bạn.";
 "Ajustar" = "Vừa khung";
 "Ajuste de imagen" = "Picture adjustment";
@@ -166,6 +174,7 @@
 "AniList sync" = "Đồng bộ AniList";
 "Animals" = "Animals";
 "Animated Movies" = "Phim hoạt hình";
+"Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "Hoạt hình";
 "Animation speed" = "Tốc độ hiệu ứng";
 "Anime" = "Anime";
@@ -194,6 +203,7 @@
 "Apply custom theme" = "Áp dụng giao diện tùy chỉnh";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "Tiếng Ả Rập";
+"Arcs" = "Phần truyện";
 "Arrows" = "Phím mũi tên";
 "Artistas" = "Nghệ sĩ";
 "Artists" = "Nghệ sĩ";
@@ -329,6 +339,7 @@
 "Brightness" = "Độ sáng";
 "Brillo" = "Độ sáng";
 "Bring in your library" = "Nhập thư viện của bạn";
+"Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Đưa danh sách anime vào Harbor và cập nhật số tập khi xem. Tiến độ hiện có được giữ nguyên.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Hiển thị lại các mẹo nhỏ trong ứng dụng mà bạn đã ẩn mà không cần thực hiện lại quy trình chào mừng.";
 "BritBox" = "BritBox";
@@ -337,6 +348,7 @@
 "Browse addons" = "Duyệt tiện ích bổ sung";
 "Browse by Genre" = "Duyệt theo thể loại";
 "Browse by category" = "Duyệt theo danh mục";
+"Browse by story arc on supported shows, such as One Piece. Requires a TMDB key." = "Duyệt theo phần cốt truyện của các bộ phim được hỗ trợ, như One Piece. Cần khóa TMDB.";
 "Browse services" = "Duyệt dịch vụ";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Duyệt danh sách anime trong Harbor và cập nhật tiến độ tập khi xem. Đăng nhập AniList để kết nối.";
 "Browse your catalogs" = "Duyệt các danh mục";
@@ -382,12 +394,15 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "Phụ đề bằng ngôn ngữ của bạn";
 "Captions, eyebrows." = "Chú thích, tiêu đề phụ.";
 "Capítulo anterior" = "Chương trước";
 "Capítulo siguiente" = "Chương tiếp theo";
 "Capítulos" = "Các chương";
 "Card behaviour" = "Cách thẻ hoạt động";
+"Card size" = "Kích thước thẻ";
+"Cards" = "Thẻ";
 "Cards, panels." = "Thẻ, bảng.";
 "Cargar archivo" = "Tải tệp";
 "Cargar más" = "Tải thêm";
@@ -412,6 +427,7 @@
 "Checking with AniList..." = "Đang kiểm tra với AniList...";
 "Checking with MyAnimeList..." = "Đang kiểm tra với MyAnimeList...";
 "Checking…" = "Đang kiểm tra…";
+"Checks the username against Stremboxd and turns on the catalogs it finds." = "Checks the username against Stremboxd and turns on the catalogs it finds.";
 "Checksum did not match the manifest." = "Tổng kiểm tra không khớp với manifest.";
 "China" = "Trung Quốc";
 "Chinese" = "Tiếng Trung";
@@ -423,6 +439,7 @@
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Chọn khi nào Harbor yêu cầu chọn hồ sơ. Lời nhắc theo thời gian xuất hiện khi bạn quay lại Harbor.";
 "Choose which addon results appear when you pick a stream." = "Chọn kết quả từ tiện ích nào xuất hiện khi chọn luồng.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Chọn điểm đánh giá xuất hiện trên thẻ và trang chi tiết. Điểm bị khóa trên thẻ cần khóa nhà cung cấp trong Siêu dữ liệu.";
+"Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Khoa học viễn tưởng & kỳ ảo";
 "Claro" = "Sáng";
@@ -507,6 +524,7 @@
 "Connected to AniList" = "Đã kết nối với AniList";
 "Connected to MyAnimeList" = "Đã kết nối với MyAnimeList";
 "Connected to Simkl" = "Đã kết nối với Simkl";
+"Connected. {n} catalogs are available." = "Connected. {n} catalogs are available.";
 "Connecting" = "Đang kết nối";
 "Conservar original" = "Giữ nguyên bản";
 "Contenido" = "Nội dung";
@@ -516,6 +534,7 @@
 "Continue" = "Tiếp tục";
 "Continue Watching" = "Xem tiếp";
 "Continue Watching at top" = "Đưa mục Xem tiếp lên đầu";
+"Continue Watching sources" = "Continue Watching sources";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "Xem tiếp, sau đó là các danh mục tiện ích bổ sung theo thứ tự cài đặt. Không có mục nổi bật hay các hàng của Harbor.";
 "Continue reading" = "Đọc tiếp";
 "Continue to next chapter" = "Continue to next chapter";
@@ -549,6 +568,7 @@
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "Không thể đọc danh sách của bạn. Dữ liệu đã lưu vẫn được giữ nguyên.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
+"Could not resolve that Letterboxd list URL." = "Không thể nhận dạng URL danh sách Letterboxd đó.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Không thể khôi phục các dịch vụ của bạn. Phiên bản đã lưu vẫn được giữ lại.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
@@ -661,6 +681,7 @@
 "Discovery Queue" = "Hàng chờ khám phá";
 "Diseño de Inicio" = "Bố cục trang chủ";
 "Dismiss" = "Đóng";
+"Dismiss all" = "Bỏ qua tất cả";
 "Dismiss tip" = "Dismiss tip";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "Nội dung gốc Disney+";
@@ -730,6 +751,7 @@
 "En directo" = "Trực tiếp";
 "En reproducción" = "Đang phát";
 "En reproducción: {label}" = "Đang phát: {label}";
+"Enable Letterboxd integration" = "Bật tích hợp Letterboxd";
 "Enable User Ratings" = "Bật điểm đánh giá của người dùng";
 "Enable addon" = "Enable addon";
 "Enabled" = "Đã bật";
@@ -795,6 +817,7 @@
 "External" = "Bên ngoài";
 "External subtitle" = "Phụ đề ngoài";
 "Externo" = "Bên ngoài";
+"Extra large" = "Cực lớn";
 "Extras" = "Nội dung bổ sung";
 "FPS de los subtítulos" = "FPS phụ đề";
 "FPS de origen de los subtítulos" = "FPS nguồn phụ đề";
@@ -862,8 +885,11 @@
 "Fuentes para adultos" = "Adult sources";
 "Fuentes y biblioteca" = "Nguồn & thư viện";
 "Fuentes y calidad" = "Sources and quality";
+"Full" = "Đầy đủ";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
+"Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
 "Gamma" = "Gamma";
 "Genre" = "Thể loại";
 "Genres" = "Thể loại";
@@ -878,9 +904,11 @@
 "Grand Prize" = "Giải thưởng lớn";
 "Gray" = "Gray";
 "Green" = "Xanh lá";
+"Grid view" = "Chế độ xem lưới";
 "Gris" = "Gray";
 "Grosor del contorno" = "Độ dày đường viền";
 "Group by repository" = "Nhóm theo kho lưu trữ";
+"Group episodes by story arc" = "Nhóm các tập theo mạch truyện";
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "Nhóm các phim và phim bộ yêu thích. Danh sách xem lại, lựa chọn cuối tuần hoặc bất cứ nội dung nào bạn muốn giữ gần bên.";
 "Group the movies and shows you want to keep close." = "Gom các phim điện ảnh và phim bộ yêu thích vào một nơi.";
 "Grouped" = "Đã nhóm";
@@ -912,6 +940,7 @@
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor đã loại {n} kết quả đáng ngờ hoặc không khớp.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "Harbor luôn đồng bộ tiến độ xem trên MyAnimeList của bạn.";
+"Harbor library" = "Harbor library";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor tìm phụ đề theo thứ tự này. Đặt ngôn ngữ bạn muốn ở đầu.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor lấy các tựa phim phổ biến nhất hiện có trên từng dịch vụ. Tắt những dịch vụ bạn không đăng ký.";
 "Harbor ranking" = "Xếp hạng của Harbor";
@@ -945,6 +974,7 @@
 "Hide this catalog" = "Ẩn danh mục này";
 "Hide titles under posters" = "Ẩn tiêu đề dưới áp phích";
 "Hide unreleased titles" = "Ẩn các tựa phim chưa phát hành";
+"Hide until the next episode airs, or keep showing a countdown to when it drops." = "Ẩn cho đến khi tập tiếp theo lên sóng hoặc tiếp tục hiển thị đếm ngược đến lúc phát hành.";
 "Hide watched titles in catalogs" = "Ẩn các phim đã xem trong danh mục";
 "Hide {name} from navigation" = "Ẩn {name} khỏi thanh điều hướng";
 "Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "Ẩn anime khỏi hàng Xem tiếp trên Trang chủ. Nội dung này vẫn xuất hiện trong hàng Xem tiếp riêng của thẻ Anime.";
@@ -967,8 +997,10 @@
 "Home style" = "Kiểu trang chủ";
 "Hoopla" = "Hoopla";
 "Horizontal" = "Ngang";
+"Horizontal view" = "Chế độ xem ngang";
 "Horror" = "Kinh dị";
 "Horror & Supernatural" = "Kinh dị và siêu nhiên";
+"How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "Kích thước thẻ tập trong bố cục dải và lưới. Thẻ lớn hơn sẽ hiển thị hình ảnh lớn hơn.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "Mức có thể tăng vượt quá 100 phần trăm trên thanh âm lượng. Cài đặt cao hơn có thể tạo âm lượng rất lớn.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Thời gian Harbor chờ từng tiện ích trả kết quả.";
@@ -1060,6 +1092,7 @@
 "Just added" = "Mới thêm";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep Continue Watching private to each profile" = "Giữ Tiếp tục xem riêng tư cho từng hồ sơ";
 "Keep anime in the Anime room only" = "Chỉ giữ anime trong khu vực Anime";
 "Keep original" = "Giữ nguyên bản";
 "Keep same source on next episode" = "Giữ nguyên nguồn cho tập tiếp theo";
@@ -1090,6 +1123,9 @@
 "Less bass" = "Giảm âm trầm";
 "Letter spacing" = "Khoảng cách chữ";
 "Letterboxd" = "Letterboxd";
+"Letterboxd asked for a second step. Enter the six digit code, then connect again." = "Letterboxd asked for a second step. Enter the six digit code, then connect again.";
+"Letterboxd password" = "Mật khẩu Letterboxd";
+"Letterboxd username" = "Tên người dùng Letterboxd";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Điểm Letterboxd, Trakt, Metacritic và khán giả.";
 "Library" = "Thư viện";
 "Libros" = "Sách";
@@ -1103,6 +1139,7 @@
 "List" = "Danh sách";
 "List name" = "Tên danh sách";
 "List settings" = "Cài đặt danh sách";
+"List view" = "Chế độ xem danh sách";
 "Lista" = "Danh sách";
 "Lista M3U" = "Danh sách phát M3U";
 "Listas" = "Danh sách phát";
@@ -1199,6 +1236,7 @@
 "Missing TMDB Key" = "Thiếu khóa TMDB";
 "Misterio" = "Bí ẩn";
 "Mix surround sound down to stereo" = "Trộn âm thanh vòm xuống stereo";
+"Mode" = "Chế độ";
 "Modo de concentración" = "Chế độ tập trung";
 "Modo de lectura" = "Chế độ đọc";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Thời điểm nhãn Tập tiếp theo xuất hiện trước khi tập kết thúc. Tự động điều chỉnh theo độ dài tập để không nhắc quá sớm với các tập ngắn. Tắt để ẩn.";
@@ -1281,6 +1319,8 @@
 "Netflix Originals" = "Nội dung gốc Netflix";
 "Never" = "Không bao giờ";
 "New Anime Releases" = "Anime mới phát hành";
+"New Episodes" = "Tập mới";
+"New Episodes row" = "Hàng Tập mới";
 "New Face Award" = "Giải Gương mặt mới";
 "New list" = "Danh sách mới";
 "New profile" = "Hồ sơ mới";
@@ -1291,6 +1331,9 @@
 "Next chapter" = "Chương tiếp theo";
 "Next day" = "Next day";
 "Next episode prompt" = "Nhắc tập tiếp theo";
+"Next in {days}d {hours}h" = "Tiếp theo sau {days} ngày {hours} giờ";
+"Next in {hours}h {minutes}m" = "Tiếp theo sau {hours} giờ {minutes} phút";
+"Next in {minutes}m" = "Tiếp theo sau {minutes} phút";
 "Next month" = "Tháng sau";
 "Next page" = "Trang tiếp theo";
 "Next song" = "Next song";
@@ -1422,6 +1465,7 @@
 "On Hold" = "Tạm hoãn";
 "On The Air" = "Đang phát sóng";
 "On Tonight" = "Chiếu tối nay";
+"On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "Bật theo mặc định: sau khi bạn xem hết các tập đã phát sóng, phim bộ sẽ rời khỏi Xem tiếp và xuất hiện lại khi có tập mới. Tắt tùy chọn này để giữ các phim bộ đã xem kịp tiến độ trong hàng.";
 "On start" = "On start";
 "Onboarding" = "Hướng dẫn ban đầu";
 "One list" = "Một danh sách";
@@ -1453,6 +1497,7 @@
 "Opening AniList..." = "Đang mở AniList...";
 "Opening MyAnimeList..." = "Đang mở MyAnimeList...";
 "Opening book…" = "Opening book…";
+"Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Options" = "Tùy chọn";
 "Orden de addons" = "Thứ tự tiện ích bổ sung";
 "Orden de idiomas preferidos" = "Thứ tự ưu tiên ngôn ngữ";
@@ -1486,6 +1531,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Mật khẩu";
 "Paste JSON" = "Dán JSON";
+"Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "Dán mã hoặc URL trang";
 "Paste the manifest URL the configure page gave you" = "Dán URL manifest do trang cấu hình cung cấp";
 "Paste the text from AniList" = "Dán văn bản từ AniList";
@@ -1575,6 +1621,7 @@
 "Posters, ratings, lists" = "Áp phích, điểm đánh giá, danh sách";
 "Predeterminado" = "Mặc định";
 "Predeterminado (acento dorado)" = "Mặc định (điểm nhấn màu vàng kim)";
+"Prefer episode still artwork" = "Prefer episode still artwork";
 "Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "Hỏi tiếp tục xem hay xem lại từ đầu";
 "Premiered This Month" = "Ra mắt trong tháng này";
@@ -1606,10 +1653,15 @@
 "Próximos" = "Sắp tới";
 "Próximos animes" = "Anime sắp ra mắt";
 "Psychological" = "Tâm lý";
+"Public" = "Công khai";
+"Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed." = "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed.";
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
+"Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account." = "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account.";
+"Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "Màu sắc nổi bật hơn";
 "Puntuaciones" = "Điểm số";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
+"Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "Trang trước";
 "Página siguiente" = "Trang tiếp theo";
 "Pósteres, calificaciones y listas" = "Áp phích, điểm đánh giá, danh sách";
@@ -1699,6 +1751,7 @@
 "Remove from watchlist" = "Xóa khỏi danh sách xem";
 "Remove preset" = "Xóa cài đặt sẵn";
 "Remove saved book" = "Remove saved book";
+"Remove shows once you're caught up" = "Xóa phim bộ khi bạn đã xem hết tập mới nhất";
 "Remove {language}" = "Xóa {language}";
 "Remove {name}" = "Xóa {name}";
 "Removed" = "Đã gỡ";
@@ -1788,6 +1841,7 @@
 "Rounded" = "Bo tròn";
 "Rounded background panel behind the text. Most readable." = "Nền bo góc phía sau chữ. Dễ đọc nhất.";
 "Row card style" = "Kiểu thẻ theo hàng";
+"Rows" = "Hàng";
 "Royal" = "Hoàng gia";
 "Rugby" = "Bóng bầu dục";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Hiện đang dùng Cinemeta. Bạn có thể thêm khóa TMDB trong Cài đặt bất cứ khi nào sẵn sàng.";
@@ -1861,6 +1915,7 @@
 "Selected" = "Đã chọn";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Đang gửi đến Trakt…";
+"Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "Đã gửi {n} mục đến Trakt";
 "Serie dramática" = "Phim bộ chính kịch";
 "Series" = "Phim bộ";
@@ -1923,6 +1978,7 @@
 "Show me more like this" = "Hiển thị thêm nội dung tương tự";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show my rating on movie posters" = "Hiển thị điểm đánh giá của tôi trên áp phích phim";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "Hiển thị một nguồn cho mỗi kho lưu trữ trong trình chọn luồng thay vì một nguồn cho mỗi plugin. Hữu ích khi một kho có nhiều nhà cung cấp nhỏ.";
 "Show pages" = "Trang phim";
 "Show release filenames in the Condensed picker and Big Picture." = "Hiển thị tên tệp của bản phát hành trong trình chọn Thu gọn và Big Picture.";
@@ -1943,14 +1999,18 @@
 "Sides" = "Hai bên";
 "Sign in" = "Đăng nhập";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "Đăng nhập để đồng bộ mục Xem tiếp, danh sách xem và mọi tiện ích bổ sung bạn đã tuyển chọn. Không bắt buộc; Harbor vẫn hoạt động đầy đủ khi chưa đăng nhập.";
+"Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "Đăng nhập bằng Stremio";
 "Sign out" = "Đăng xuất";
+"Signed in" = "Signed in";
+"Signs in to Letterboxd and unlocks your diary, friends activity and ratings." = "Signs in to Letterboxd and unlocks your diary, friends activity and ratings.";
 "Siguiente" = "Tiếp theo";
 "Siguiente canción" = "Next song";
 "Silenciar" = "Tắt tiếng";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl không liệt kê phim bộ hoặc anime mới nào công chiếu trong tháng này. Hãy thử một tháng khác.";
 "Simkl premieres" = "Nội dung ra mắt trên Simkl";
+"Simkl progress" = "Simkl progress";
 "Simkl sign-in expired, reconnect it" = "Phiên đăng nhập Simkl đã hết hạn, hãy kết nối lại";
 "Sin configurar" = "Chưa đặt";
 "Sin corrección" = "Không hiệu chỉnh";
@@ -2047,6 +2107,7 @@
 "Streaming services" = "Dịch vụ phát trực tuyến";
 "Streaming sources" = "Nguồn phát trực tuyến";
 "Streams" = "Luồng phát";
+"Stremboxd error ({status})." = "Stremboxd error ({status}).";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Stremio cổ điển";
 "Stretch" = "Kéo giãn";
@@ -2163,6 +2224,8 @@
 "The comics industry's highest honor" = "Giải thưởng danh giá nhất của ngành truyện tranh";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The little score chip printed on poster cards across your rows and grids." = "Nhãn điểm nhỏ hiển thị trên các thẻ áp phích trong các hàng và lưới.";
 "The most anticipated upcoming releases on Trakt" = "Các nội dung sắp ra mắt được mong đợi nhất trên Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Các phim điện ảnh và phim bộ được xem nhiều nhất trên {name} hiện nay tại {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
@@ -2199,6 +2262,7 @@
 "Tipografía" = "Kiểu chữ";
 "Titles" = "Tựa phim";
 "Titles and descriptions" = "Tiêu đề và mô tả";
+"Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "Tất cả";
 "Todas las categorías" = "Tất cả danh mục";
@@ -2267,6 +2331,7 @@
 "Trakt history" = "Lịch sử Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Máy chủ Trakt đang gặp sự cố (HTTP {n}). Hãy thử lại sau ít phút.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt đang giới hạn tần suất yêu cầu. Hãy đợi một phút rồi thử lại.";
+"Trakt progress" = "Trakt progress";
 "Trakt rejected the request (HTTP {n})." = "Trakt đã từ chối yêu cầu (HTTP {n}).";
 "Trakt rejected the request (account locked or permission denied)." = "Trakt đã từ chối yêu cầu (tài khoản bị khóa hoặc quyền truy cập bị từ chối).";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt cho biết yêu cầu cấp quyền đã bị từ chối. Hãy thử lại nếu bạn không chủ ý từ chối.";
@@ -2293,9 +2358,11 @@
 "Tune your recommendations" = "Điều chỉnh đề xuất";
 "Turkish" = "Tiếng Thổ Nhĩ Kỳ";
 "Turn pages horizontally" = "Turn pages horizontally";
+"Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "Tiện ích bổ sung của bạn";
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
+"Two-factor authentication code" = "Mã xác thực hai yếu tố";
 "Type" = "Loại";
 "Type on your keyboard or tap the digits above." = "Nhập bằng bàn phím hoặc chạm vào các chữ số phía trên.";
 "Type the same 4-digit PIN again." = "Nhập lại cùng mã PIN 4 chữ số.";
@@ -2310,6 +2377,7 @@
 "Ultra HD · HDR" = "Ultra HD · HDR";
 "Un poco más claro que el fondo." = "Sáng hơn nền một chút.";
 "Unavailable" = "Không khả dụng";
+"Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "Hoàn tác";
 "United Kingdom" = "Vương quốc Anh";
 "United States" = "Hoa Kỳ";
@@ -2351,6 +2419,7 @@
 "Velocidad" = "Tốc độ";
 "Ver más" = "Xem thêm";
 "Ver todo" = "Xem tất cả";
+"Verify & connect" = "Xác minh và kết nối";
 "Verifying" = "Đang xác minh";
 "Version" = "Phiên bản";
 "Versión" = "Phiên bản";
@@ -2379,6 +2448,7 @@
 "War" = "Chiến tranh";
 "Watch on" = "Xem trên";
 "Watched" = "Đã xem";
+"Watched by {name}" = "Đã được {name} xem";
 "Watching" = "Đang xem";
 "Watchlist" = "Danh sách xem";
 "Watchlist only" = "Chỉ danh sách xem";
@@ -2403,6 +2473,7 @@
 "Where to today?" = "Hôm nay đi đâu?";
 "Where to watch" = "Xem ở đâu";
 "Where your video comes from" = "Nguồn video";
+"Which end of the poster the score chip rides on." = "Huy hiệu điểm nằm ở đầu nào của áp phích.";
 "Which order" = "Thứ tự nào";
 "Who's watching" = "Ai đang xem";
 "Who's watching?" = "Ai đang xem?";
@@ -2423,8 +2494,10 @@
 "You've hidden the one catalog that matched." = "Bạn đã ẩn danh mục duy nhất khớp.";
 "You've reached the end · {n} addons" = "Bạn đã xem hết · {n} tiện ích bổ sung";
 "YouTube" = "YouTube";
+"Your AniList" = "AniList của bạn";
 "Your AniList is empty" = "AniList của bạn đang trống";
 "Your Discovery Queue" = "Hàng đợi khám phá của bạn";
+"Your Letterboxd password" = "Mật khẩu Letterboxd của bạn";
 "Your Stremio library + addons sync in untouched." = "Thư viện Stremio và tiện ích bổ sung của bạn được đồng bộ nguyên vẹn.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Danh sách xem Trakt của bạn đang trống, không có gì để nhập.";
@@ -2439,6 +2512,7 @@
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "Danh sách của bạn đang được giữ trong bộ nhớ. Hãy lưu trước khi đóng ứng dụng.";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
+"Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "Hồ sơ của bạn";
 "Your rating" = "Đánh giá của bạn";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "Các phim bộ đã lưu không có tập nào dự kiến phát trong tháng này. Chuyển sang Tất cả nội dung sắp phát để xem toàn bộ lịch phát hành.";
@@ -2486,6 +2560,7 @@
 "just now" = "vừa xong";
 "language" = "ngôn ngữ";
 "left" = "trái";
+"letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "cục bộ";
 "mdblist api key" = "Khóa API mdblist";
 "min" = "phút";
@@ -3614,6 +3689,7 @@
 "wrong movie" = "sai phim";
 "year mismatch" = "sai năm";
 "yes" = "có";
+"your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "Bản thân {app} không lưu trữ, phân phối hay lập chỉ mục bất kỳ nội dung nghe nhìn nào. Mọi luồng phát đều đến từ tiện ích bổ sung của bên thứ ba, dịch vụ debrid hoặc tài khoản {service} do chính bạn cấu hình. Bạn chịu trách nhiệm về nội dung mình chọn phát và việc tuân thủ luật pháp tại nơi mình sinh sống.";
 "{count} picks ready" = "{count} lựa chọn đã sẵn sàng";
 "{count} results" = "{count} kết quả";
@@ -3636,6 +3712,7 @@
 "{n} days ago" = "{n} ngày trước";
 "{n} ep" = "{n} tập";
 "{n} eps" = "{n} tập";
+"{n} films." = "{n} films.";
 "{n} hr" = "{n} giờ";
 "{n} in a day" = "{n} trong một ngày";
 "{n} item" = "{n} mục";

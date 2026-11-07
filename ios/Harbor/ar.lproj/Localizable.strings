@@ -9,6 +9,7 @@
 "1,5 min" = "1.5 دقيقة";
 "1.5 min" = "1.5 دقيقة";
 "1.85:1" = "1.85:1";
+"123456" = "123456";
 "15s" = "15 ث";
 "16:9" = "16:9";
 "2 min" = "2 دقيقة";
@@ -25,10 +26,13 @@
 "45s" = "45 ثانية";
 "4:3" = "4:3";
 "8-character key" = "مفتاح من 8 أحرف";
+"A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "فُتحت علامة تبويب في المتصفح على AniList. وافق على Harbor هناك، ثم انسخ النص الظاهر والصقه في الأسفل.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "فُتحت علامة تبويب في المتصفح على MyAnimeList. وافق على Harbor هناك، ثم انسخ الرمز أو رابط URL الصفحة والصقه أدناه.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "عميل لبروتوكول Stremio. دقيقتان للإعداد، ومعظمه اختياري. تبقى أنت المتحكّم في كل مفتاح.";
 "A continuación" = "التالي";
+"A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
+"A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "قفزة أقصر باستخدام Shift مع مفاتيح الأسهم، للتنقّل بضع ثوانٍ في كل مرة.";
@@ -46,6 +50,7 @@
 "Abajo a la derecha" = "أسفل اليمين";
 "Abajo a la izquierda" = "أسفل اليسار";
 "About" = "حول";
+"About Stremboxd" = "حول Stremboxd";
 "Above the main line" = "فوق السطر الأساسي";
 "Abriendo libro…" = "جارٍ فتح الكتاب…";
 "Abrir en Safari" = "Open in Safari";
@@ -80,6 +85,7 @@
 "Add a TMDB API key in Metadata settings to search for titles." = "أضف مفتاح API لخدمة TMDB في إعدادات البيانات الوصفية للبحث عن العناوين.";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "أضف مفتاح TMDB في الإعدادات لفتح موجز الاكتشاف الكامل.";
 "Add a TMDB key in settings first" = "أضف مفتاح TMDB في الإعدادات أولًا";
+"Add a list" = "إضافة قائمة";
 "Add a movie or show to this list..." = "أضف فيلمًا أو مسلسلًا إلى هذه القائمة...";
 "Add a repository" = "إضافة مستودع";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "أضف أنمي إلى AniList الخاص بك ليظهر هنا، مجمّعًا حسب الحالة وجاهزًا للتعديل.";
@@ -111,6 +117,7 @@
 "Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "يضيف تقييمات مجتمعَي Letterboxd وTrakt إلى صفحات التفاصيل، لاستكمال ما يفوته OMDb.";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "يضيف خيار \"إخفاء\" عند النقر بزر الفأرة الأيمن على حلقة. تختفي الحلقات المخفية من القائمة ويتخطّاها \"التالي\". يتيح لك مفتاح \"إظهار المخفية\" في كل مسلسل استعادتها.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
+"Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "يضيف صفًا أسفل «متابعة المشاهدة» يعرض الحلقات التي عُرضت مؤخرًا من المسلسلات التي كنت تشاهدها. تجاهلها واحدة تلو الأخرى أو امسح الصف بالكامل. معطّل افتراضيًا.";
 "Adjust the text and background. The preview shows your changes as you make them." = "اضبط النص والخلفية. تُظهر المعاينة تغييراتك فور إجرائها.";
 "Administrar" = "إدارة";
 "Adult sources" = "Adult sources";
@@ -133,6 +140,7 @@
 "Ahora no" = "ليس الآن";
 "Aired" = "حسب العرض";
 "Airing Now" = "يُعرض الآن";
+"Airing now" = "يُعرض الآن";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "اضبط النص والخلفية. تُظهر المعاينة تغييراتك فور إجرائها.";
 "Ajustar" = "ملاءمة";
 "Ajuste de imagen" = "Picture adjustment";
@@ -205,6 +213,7 @@
 "Applying subtitle timing…" = "جارٍ تطبيق توقيت الترجمة…";
 "Arabian Gulf Cup" = "كأس الخليج العربي";
 "Arabic" = "العربية";
+"Arcs" = "الأقواس القصصية";
 "Arrows" = "الأسهم";
 "Artistas" = "الفنانون";
 "Artists" = "الفنانون";
@@ -343,6 +352,7 @@
 "Brightness" = "السطوع";
 "Brillo" = "السطوع";
 "Bring in your library" = "أحضِر مكتبتك";
+"Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "أحضر قائمة الأنمي إلى Harbor وحدّث عدد الحلقات أثناء المشاهدة. سيُحفَظ تقدّمك الحالي.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "يعيد التلميحات الصغيرة داخل التطبيق التي رفضتها دون إعادة تدفّق الترحيب.";
 "BritBox" = "BritBox";
@@ -351,6 +361,7 @@
 "Browse addons" = "تصفح الإضافات";
 "Browse by Genre" = "تصفح حسب التصنيف";
 "Browse by category" = "تصفّح حسب الفئة";
+"Browse by story arc on supported shows, such as One Piece. Requires a TMDB key." = "تصفّح حسب الأرك في المسلسلات المدعومة، مثل One Piece. يتطلّب مفتاح TMDB.";
 "Browse services" = "استعراض الخدمات";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "تصفّح قوائم الأنمي في Harbor وحدّث تقدّم الحلقات أثناء المشاهدة. سجّل الدخول إلى AniList للربط.";
 "Browse your catalogs" = "تصفّح كتالوجاتك";
@@ -402,12 +413,15 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "ترجمات بلغتك";
 "Captions, eyebrows." = "التسميات التوضيحية، العناوين العلوية.";
 "Capítulo anterior" = "الفصل السابق";
 "Capítulo siguiente" = "الفصل التالي";
 "Capítulos" = "الفصول";
 "Card behaviour" = "سلوك البطاقات";
+"Card size" = "حجم البطاقة";
+"Cards" = "البطاقات";
 "Cards, panels." = "بطاقات، لوحات.";
 "Cargar archivo" = "تحميل ملف";
 "Cargar más" = "تحميل المزيد";
@@ -432,6 +446,7 @@
 "Checking with AniList..." = "جارٍ التحقق مع AniList...";
 "Checking with MyAnimeList..." = "جارٍ التحقق مع MyAnimeList...";
 "Checking…" = "جارٍ التحقق…";
+"Checks the username against Stremboxd and turns on the catalogs it finds." = "Checks the username against Stremboxd and turns on the catalogs it finds.";
 "Checksum did not match the manifest." = "المجموع الاختباري لا يطابق ملف manifest.";
 "China" = "الصين";
 "Chinese" = "الصينية";
@@ -443,6 +458,7 @@
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "اختر متى يطلب Harbor اختيار ملف شخصي. تظهر المطالبات المؤقّتة عند العودة إلى Harbor.";
 "Choose which addon results appear when you pick a stream." = "اختر نتائج الإضافات التي تظهر عند اختيار بث.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "اختر التقييمات التي تظهر على البطاقات وصفحات التفاصيل. تتطلّب التقييمات المقفلة مفتاح مزوّد في البيانات الوصفية.";
+"Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "خيال علمي وفانتازيا";
 "Claro" = "فاتح";
@@ -527,6 +543,7 @@
 "Connected to AniList" = "متصل بـ AniList";
 "Connected to MyAnimeList" = "تم الاتصال بـ MyAnimeList";
 "Connected to Simkl" = "تم الاتصال بـ Simkl";
+"Connected. {n} catalogs are available." = "Connected. {n} catalogs are available.";
 "Connecting" = "جارٍ الاتصال";
 "Conservar original" = "الاحتفاظ بالأصل";
 "Contenido" = "المحتوى";
@@ -536,6 +553,7 @@
 "Continue" = "متابعة";
 "Continue Watching" = "متابعة المشاهدة";
 "Continue Watching at top" = "متابعة المشاهدة في الأعلى";
+"Continue Watching sources" = "Continue Watching sources";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "متابعة المشاهدة، ثم كتالوجات إضافاتك بترتيب التثبيت. بلا واجهة بارزة، وبلا صفوف Harbor.";
 "Continue reading" = "متابعة القراءة";
 "Continue to next chapter" = "Continue to next chapter";
@@ -573,6 +591,7 @@
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "تعذرت قراءة قوائمك. بياناتك المحفوظة محفوظة.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
+"Could not resolve that Letterboxd list URL." = "لا يمكن جلب رابط قائمة ليتربوكسد هذه.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "تعذّرت استعادة خدماتك. تم الاحتفاظ بالنسخة المحفوظة.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
@@ -685,6 +704,7 @@
 "Discovery Queue" = "قائمة الاكتشاف";
 "Diseño de Inicio" = "تخطيط الرئيسية";
 "Dismiss" = "تجاهل";
+"Dismiss all" = "تجاهل الكل";
 "Dismiss tip" = "Dismiss tip";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "أعمال ديزني+ الأصلية";
@@ -754,6 +774,7 @@
 "En directo" = "مباشر";
 "En reproducción" = "قيد التشغيل الآن";
 "En reproducción: {label}" = "يُعرض الآن: {label}";
+"Enable Letterboxd integration" = "تفعيل دمج ليتربوكسد (Letterboxd)";
 "Enable User Ratings" = "تفعيل تقييمات المستخدمين";
 "Enable addon" = "Enable addon";
 "Enabled" = "مُفعّلة";
@@ -819,6 +840,7 @@
 "External" = "خارجي";
 "External subtitle" = "ترجمة خارجية";
 "Externo" = "خارجي";
+"Extra large" = "كبير جدًا";
 "Extras" = "الإضافات";
 "FPS de los subtítulos" = "معدل إطارات الترجمة";
 "FPS de origen de los subtítulos" = "معدل إطارات مصدر الترجمة";
@@ -886,8 +908,11 @@
 "Fuentes para adultos" = "Adult sources";
 "Fuentes y biblioteca" = "المصادر والمكتبة";
 "Fuentes y calidad" = "Sources and quality";
+"Full" = "كامل";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
+"Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
 "GB" = "GB";
 "Gamma" = "جاما";
 "Genre" = "النوع";
@@ -903,9 +928,11 @@
 "Grand Prize" = "الجائزة الكبرى";
 "Gray" = "Gray";
 "Green" = "أخضر";
+"Grid view" = "عرض شبكي";
 "Gris" = "Gray";
 "Grosor del contorno" = "سُمك الإطار";
 "Group by repository" = "التجميع حسب المستودع";
+"Group episodes by story arc" = "تجميع الحلقات حسب القوس القصصي";
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "اجمع الأفلام والمسلسلات التي تحبها. رفّ لإعادة المشاهدة، اختيارات نهاية الأسبوع، أي شيء يبقيها قريبة منك.";
 "Group the movies and shows you want to keep close." = "اجمع الأفلام والمسلسلات التي تريد إبقاءها قريبة.";
 "Grouped" = "مُجمّع";
@@ -937,6 +964,7 @@
 "Harbor dropped {n} suspicious or mismatched results." = "استبعد Harbor عددًا قدره {n} من النتائج المشبوهة أو غير المتطابقة.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "يبقي Harbor تقدّم مشاهدتك في MyAnimeList متزامنًا.";
+"Harbor library" = "Harbor library";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "يبحث Harbor عن الترجمات بهذا الترتيب. ضع لغتك المفضّلة أولًا.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "يجلب Harbor أكثر العناوين شهرة لدى كل خدمة الآن. عطّل أي خدمة لست مشتركًا بها.";
 "Harbor ranking" = "ترتيب Harbor";
@@ -970,6 +998,7 @@
 "Hide this catalog" = "إخفاء هذا الكتالوج";
 "Hide titles under posters" = "إخفاء العناوين أسفل الملصقات";
 "Hide unreleased titles" = "إخفاء العناوين غير الصادرة";
+"Hide until the next episode airs, or keep showing a countdown to when it drops." = "أخفِه حتى تُعرض الحلقة التالية، أو أبقِ عدًّا تنازليًا حتى موعد نزولها.";
 "Hide watched titles in catalogs" = "إخفاء العناوين المُشاهدة من القوائم";
 "Hide {name} from navigation" = "إخفاء {name} من التنقل";
 "Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "يخفي الأنمي من صف متابعة المشاهدة في الرئيسية. ويظل يظهر في متابعة المشاهدة الخاصة بعلامة تبويب الأنمي.";
@@ -992,8 +1021,10 @@
 "Home style" = "نمط الصفحة الرئيسية";
 "Hoopla" = "Hoopla";
 "Horizontal" = "أفقي";
+"Horizontal view" = "عرض أفقي";
 "Horror" = "رعب";
 "Horror & Supernatural" = "رعب وخوارق";
+"How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "حجم بطاقات الحلقات في تخطيطَي الشريط والشبكة. البطاقات الأكبر تعرض صورًا أكبر.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "إلى أي مدى يمكنك تجاوز 100 بالمئة على شريط الصوت. القيم الأعلى قد تجعل الصوت مرتفعًا جدًا.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "مدة انتظار Harbor لنتائج كل إضافة.";
@@ -1085,6 +1116,7 @@
 "Just added" = "أُضيف حديثًا";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep Continue Watching private to each profile" = "إبقاء \"متابعة المشاهدة\" خاصة بكل ملف شخصي";
 "Keep anime in the Anime room only" = "إبقاء الأنمي في غرفة الأنمي فقط";
 "Keep original" = "الاحتفاظ بالأصل";
 "Keep same source on next episode" = "الإبقاء على المصدر نفسه في الحلقة التالية";
@@ -1115,6 +1147,9 @@
 "Less bass" = "باس أقل";
 "Letter spacing" = "تباعد الأحرف";
 "Letterboxd" = "Letterboxd";
+"Letterboxd asked for a second step. Enter the six digit code, then connect again." = "Letterboxd asked for a second step. Enter the six digit code, then connect again.";
+"Letterboxd password" = "كلمة مرور ليتربوكسد";
+"Letterboxd username" = "اسم مستخدم ليتربوكسد";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "تقييمات Letterboxd وTrakt وMetacritic والجمهور.";
 "Library" = "المكتبة";
 "Libros" = "الكتب";
@@ -1128,6 +1163,7 @@
 "List" = "قائمة";
 "List name" = "اسم القائمة";
 "List settings" = "إعدادات القائمة";
+"List view" = "عرض القائمة";
 "Lista" = "قائمة";
 "Lista M3U" = "قائمة M3U";
 "Listas" = "قوائم التشغيل";
@@ -1224,6 +1260,7 @@
 "Missing TMDB Key" = "مفتاح TMDB مفقود";
 "Misterio" = "غموض";
 "Mix surround sound down to stereo" = "دمج الصوت المحيطي إلى ستيريو (Stereo)";
+"Mode" = "الوضع";
 "Modo de concentración" = "وضع التركيز";
 "Modo de lectura" = "وضع القراءة";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "متى يظهر تنبيه الحلقة القادمة قبل انتهاء الحلقة. يتم ضبطه تلقائياً بناءً على طول الحلقة. 'إيقاف' يخفيه تماماً.";
@@ -1309,6 +1346,8 @@
 "Never" = "أبدًا";
 "Never shown again" = "لن يظهر مجددًا";
 "New Anime Releases" = "أحدث إصدارات الأنمي";
+"New Episodes" = "حلقات جديدة";
+"New Episodes row" = "صف الحلقات الجديدة";
 "New Face Award" = "جائزة الوجه الجديد";
 "New list" = "قائمة جديدة";
 "New profile" = "ملف شخصي جديد";
@@ -1319,6 +1358,9 @@
 "Next chapter" = "الفصل التالي";
 "Next day" = "Next day";
 "Next episode prompt" = "تنبيه الحلقة القادمة";
+"Next in {days}d {hours}h" = "التالية بعد {days}ي {hours}س";
+"Next in {hours}h {minutes}m" = "التالية بعد {hours}س {minutes}د";
+"Next in {minutes}m" = "التالية بعد {minutes}د";
 "Next month" = "الشهر التالي";
 "Next page" = "الصفحة التالية";
 "Next song" = "Next song";
@@ -1451,6 +1493,7 @@
 "On Hold" = "متوقّف مؤقتًا";
 "On The Air" = "تُعرض حاليًا";
 "On Tonight" = "يعرض الليلة";
+"On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "مفعّل افتراضيًا: بمجرد مشاهدتك كل حلقة عُرضت، يغادر المسلسل متابعة المشاهدة ويعود عند نزول حلقة جديدة. عطّله لإبقاء المسلسلات المكتملة في الصف.";
 "On start" = "On start";
 "Onboarding" = "الإعداد الأولي";
 "One list" = "قائمة واحدة";
@@ -1482,6 +1525,7 @@
 "Opening AniList..." = "جارٍ فتح AniList...";
 "Opening MyAnimeList..." = "جارٍ فتح MyAnimeList...";
 "Opening book…" = "جارٍ فتح الكتاب…";
+"Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Options" = "خيارات";
 "Orden de addons" = "ترتيب الإضافة";
 "Orden de idiomas preferidos" = "ترتيب اللغات المفضّلة";
@@ -1517,6 +1561,7 @@
 "Pasar páginas horizontalmente" = "تقليب الصفحات أفقيًا";
 "Password" = "كلمة المرور";
 "Paste JSON" = "لصق JSON";
+"Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "الصق الرمز أو رابط URL الصفحة";
 "Paste the manifest URL the configure page gave you" = "الصق رابط البيان الذي أعطته إياك صفحة الإعداد";
 "Paste the text from AniList" = "الصق النص من AniList";
@@ -1606,6 +1651,7 @@
 "Posters, ratings, lists" = "الملصقات والتقييمات والقوائم";
 "Predeterminado" = "الافتراضي";
 "Predeterminado (acento dorado)" = "افتراضي (تمييز ذهبي)";
+"Prefer episode still artwork" = "Prefer episode still artwork";
 "Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "السؤال عن الاستئناف أو البدء من جديد";
 "Premiered This Month" = "عرض هذا الشهر";
@@ -1637,10 +1683,15 @@
 "Próximos" = "قادم";
 "Próximos animes" = "أنمي قادم";
 "Psychological" = "نفسي";
+"Public" = "عام (Public)";
+"Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed." = "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed.";
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
+"Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account." = "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account.";
+"Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "ألوان أكثر حيوية";
 "Puntuaciones" = "التقييمات";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
+"Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "الصفحة السابقة";
 "Página siguiente" = "الصفحة التالية";
 "Pósteres, calificaciones y listas" = "الملصقات والتقييمات والقوائم";
@@ -1731,6 +1782,7 @@
 "Remove from watchlist" = "إزالة من قائمة المشاهدة";
 "Remove preset" = "أزِل الإعداد المسبق";
 "Remove saved book" = "Remove saved book";
+"Remove shows once you're caught up" = "إزالة المسلسلات بعد اللحاق بجميع الحلقات";
 "Remove {language}" = "إزالة {language}";
 "Remove {name}" = "إزالة {name}";
 "Removed" = "تمت الإزالة";
@@ -1820,6 +1872,7 @@
 "Rounded" = "مستدير";
 "Rounded background panel behind the text. Most readable." = "لوحة خلفية دائرية خلف النص. الأكثر قابلية للقراءة.";
 "Row card style" = "شكل بطاقات الصفوف";
+"Rows" = "الصفوف";
 "Royal" = "ملكي";
 "Rugby" = "الرغبي";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "يعمل على Cinemeta حاليًا. أضف مفتاح TMDB من الإعدادات متى كنت مستعدًا.";
@@ -1895,6 +1948,7 @@
 "Selected" = "تم الاختيار";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "جارٍ الإرسال إلى Trakt…";
+"Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "تم إرسال {n} إلى Trakt";
 "Serie dramática" = "مسلسلات درامية";
 "Series" = "مسلسلات";
@@ -1957,6 +2011,7 @@
 "Show me more like this" = "عرض المزيد من هذا القبيل";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show my rating on movie posters" = "إظهار تقييمي على ملصقات الأفلام";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "اعرض مصدرًا واحدًا لكل مستودع في قائمة اختيار البث بدلًا من مصدر لكل مكوّن إضافي. مفيد عندما يضم المستودع كثيرًا من المزوّدين الصغار.";
 "Show pages" = "صفحات المسلسلات";
 "Show release filenames in the Condensed picker and Big Picture." = "عرض أسماء ملفات الإصدارات في محدد المصادر المكثف ووضع الشاشة الكبيرة.";
@@ -1977,14 +2032,18 @@
 "Sides" = "الجوانب";
 "Sign in" = "تسجيل الدخول";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "سجّل الدخول لتعكس متابعة المشاهدة وقائمة مشاهدتك وأي إضافات نظّمتها مسبقًا. اختياري؛ يعمل Harbor بالكامل دون تسجيل الدخول.";
+"Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "تسجيل الدخول باستخدام Stremio";
 "Sign out" = "تسجيل الخروج";
+"Signed in" = "Signed in";
+"Signs in to Letterboxd and unlocks your diary, friends activity and ratings." = "Signs in to Letterboxd and unlocks your diary, friends activity and ratings.";
 "Siguiente" = "التالي";
 "Siguiente canción" = "Next song";
 "Silenciar" = "كتم الصوت";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Simkl lists no new shows or anime premiering this month. Try a different month." = "لا تُدرج Simkl أي مسلسلات أو أنمي جديدة تُعرض لأول مرة هذا الشهر. جرّب شهرًا مختلفًا.";
 "Simkl premieres" = "العروض الأولى على Simkl";
+"Simkl progress" = "Simkl progress";
 "Simkl sign-in expired, reconnect it" = "انتهت صلاحية تسجيل الدخول إلى Simkl، أعد ربطه";
 "Sin configurar" = "غير محدد";
 "Sin corrección" = "بلا تصحيح";
@@ -2083,6 +2142,7 @@
 "Streaming services" = "خدمات البث";
 "Streaming sources" = "مصادر البث";
 "Streams" = "البثوث";
+"Stremboxd error ({status})." = "Stremboxd error ({status}).";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Stremio الكلاسيكي";
 "Stretch" = "تمديد";
@@ -2200,6 +2260,8 @@
 "The comics industry's highest honor" = "أرفع تكريم في صناعة القصص المصوّرة";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The little score chip printed on poster cards across your rows and grids." = "شارة الدرجة الصغيرة المطبوعة على بطاقات الملصقات في صفوفك وشبكاتك.";
 "The most anticipated upcoming releases on Trakt" = "أكثر الإصدارات القادمة ترقبًا على Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "أكثر الأفلام والمسلسلات مشاهدةً على {name} الآن في {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "تم الاحتفاظ بالأصل. صدّر الترجمة بترميز UTF-8 أو UTF-16 لمزامنتها.";
@@ -2237,6 +2299,7 @@
 "Tipografía" = "الخطوط";
 "Titles" = "العناوين";
 "Titles and descriptions" = "العناوين والأوصاف";
+"Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "الكل";
 "Todas las categorías" = "كل الفئات";
@@ -2305,6 +2368,7 @@
 "Trakt history" = "سجلّ Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "يواجه Trakt مشكلة في الخادم (HTTP {n}). حاول مجددًا بعد قليل.";
 "Trakt is rate-limiting. Wait a minute and try again." = "يفرض Trakt حدًا على الطلبات. انتظر دقيقة ثم حاول مجددًا.";
+"Trakt progress" = "Trakt progress";
 "Trakt rejected the request (HTTP {n})." = "رفض Trakt الطلب (HTTP {n}).";
 "Trakt rejected the request (account locked or permission denied)." = "رفض Trakt الطلب (الحساب مقفل أو تم رفض الإذن).";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "أفاد Trakt بأنه تم رفض التفويض. حاول مرة أخرى إن لم يكن ذلك مقصودًا.";
@@ -2331,9 +2395,11 @@
 "Tune your recommendations" = "تحسين توصياتك";
 "Turkish" = "التركية";
 "Turn pages horizontally" = "تقليب الصفحات أفقيًا";
+"Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "إضافاتك";
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
+"Two-factor authentication code" = "رمز المصادقة الثنائية (2FA)";
 "Type" = "النوع";
 "Type on your keyboard or tap the digits above." = "اكتب باستخدام لوحة المفاتيح أو انقر الأرقام أعلاه.";
 "Type the same 4-digit PIN again." = "اكتب رمز PIN نفسه المكوّن من 4 أرقام مرة أخرى.";
@@ -2348,6 +2414,7 @@
 "Ultra HD · HDR" = "Ultra HD · HDR";
 "Un poco más claro que el fondo." = "أفتح قليلًا من الخلفية.";
 "Unavailable" = "غير متاح";
+"Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "تراجع";
 "United Kingdom" = "المملكة المتحدة";
 "United States" = "الولايات المتحدة";
@@ -2389,6 +2456,7 @@
 "Velocidad" = "السرعة";
 "Ver más" = "عرض المزيد";
 "Ver todo" = "عرض الكل";
+"Verify & connect" = "تحقق وربط";
 "Verifying" = "جارٍ التأكّد";
 "Version" = "الإصدار";
 "Versión" = "الإصدار";
@@ -2417,6 +2485,7 @@
 "War" = "حرب";
 "Watch on" = "المشاهدة على";
 "Watched" = "تمت المشاهدة";
+"Watched by {name}" = "شاهده {name}";
 "Watching" = "قيد المشاهدة";
 "Watchlist" = "قائمة المشاهدة";
 "Watchlist only" = "قائمة المشاهدة فقط";
@@ -2441,6 +2510,7 @@
 "Where to today?" = "إلى أين اليوم؟";
 "Where to watch" = "أين تشاهد";
 "Where your video comes from" = "من أين يأتي الفيديو الخاص بك";
+"Which end of the poster the score chip rides on." = "على أي طرف من الملصق تستقر شارة التقييم.";
 "Which order" = "أي ترتيب";
 "Who's watching" = "من يشاهد";
 "Who's watching?" = "من يشاهد؟";
@@ -2465,8 +2535,10 @@
 "You've hidden the one catalog that matched." = "لقد أخفيت الكتالوج الوحيد المطابق.";
 "You've reached the end · {n} addons" = "لقد وصلت إلى النهاية · {n} إضافة";
 "YouTube" = "YouTube";
+"Your AniList" = "AniList الخاص بك";
 "Your AniList is empty" = "AniList الخاص بك فارغ";
 "Your Discovery Queue" = "طابور الاستكشاف الخاص بك";
+"Your Letterboxd password" = "كلمة مرور ليتربوكسد الخاصة بك";
 "Your Stremio library + addons sync in untouched." = "تتزامن مكتبة Stremio وإضافاتك كما هي دون تغيير.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "قائمة المشاهدة في Trakt فارغة، لا شيء لاستيراده.";
@@ -2481,6 +2553,7 @@
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "قوائمك محفوظة في الذاكرة. احفظها قبل إغلاق التطبيق.";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
+"Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "ملفك الشخصي";
 "Your rating" = "تقييمك";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "ليس لمسلسلاتك المحفوظة حلقات مجدولة هذا الشهر. بدّل إلى \"كل القادم\" لتصفّح تقويم الإصدارات الكامل.";
@@ -2528,6 +2601,7 @@
 "just now" = "الآن";
 "language" = "اللغة";
 "left" = "اليسار";
+"letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "محلي";
 "mdblist api key" = "مفتاح MDBList API";
 "min" = "دقيقة";
@@ -3656,6 +3730,7 @@
 "wrong movie" = "فيلم خاطئ";
 "year mismatch" = "السنة غير متطابقة";
 "yes" = "نعم";
+"your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "لا يستضيف {app} نفسه أي وسائط أو يوزعها أو يفهرسها. تأتي جميع عمليات البث من إضافات تابعة لجهات خارجية أو خدمات debrid أو حسابك في {service} الذي تضبطه بنفسك. أنت مسؤول عما تختار تشغيله وعن الامتثال لقوانين نطاقك القضائي.";
 "{count} picks ready" = "{count} اختيارات جاهزة";
 "{count} results" = "{count} نتيجة";
@@ -3678,6 +3753,7 @@
 "{n} days ago" = "منذ {n} أيام";
 "{n} ep" = "{n} حلقة";
 "{n} eps" = "{n} حلقة";
+"{n} films." = "{n} films.";
 "{n} hr" = "{n} س";
 "{n} in a day" = "{n} في يوم واحد";
 "{n} item" = "{n} عنصر";

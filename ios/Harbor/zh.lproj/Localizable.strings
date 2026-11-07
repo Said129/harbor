@@ -7,6 +7,7 @@
 "1,5 min" = "1.5 分钟";
 "1.5 min" = "1.5 分钟";
 "1.85:1" = "1.85:1";
+"123456" = "123456";
 "15s" = "15 秒";
 "16:9" = "16:9";
 "2 min" = "2 分钟";
@@ -23,10 +24,13 @@
 "45s" = "45 秒";
 "4:3" = "4:3";
 "8-character key" = "8 位密钥";
+"A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "已在浏览器标签页中打开 AniList。请在那里授权 Harbor，然后复制显示的文本并粘贴到下方。";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "已在浏览器标签页中打开 MyAnimeList。请在那里授权 Harbor，然后复制代码或页面 URL 并粘贴到下方。";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 协议客户端。两分钟即可完成设置，其中大部分为可选项。所有密钥均由你掌控。";
 "A continuación" = "接下来播放";
+"A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
+"A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "按住 Shift 并按方向键时进行更短距离的跳转，便于每次微调几秒。";
@@ -39,6 +43,7 @@
 "Abajo a la derecha" = "右下角";
 "Abajo a la izquierda" = "左下角";
 "About" = "关于";
+"About Stremboxd" = "关于 Stremboxd";
 "Above the main line" = "主字幕上方";
 "Abriendo libro…" = "Opening book…";
 "Abrir en Safari" = "Open in Safari";
@@ -73,6 +78,7 @@
 "Add a TMDB API key in Metadata settings to search for titles." = "请在元数据设置中添加 TMDB API 密钥以搜索作品。";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "在设置中添加 TMDB 密钥，即可解锁完整的探索信息流。";
 "Add a TMDB key in settings first" = "请先在设置中添加 TMDB 密钥";
+"Add a list" = "添加列表";
 "Add a movie or show to this list..." = "将电影或剧集添加到此片单…";
 "Add a repository" = "添加仓库";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "添加到 AniList 的动漫会按状态分组显示在这里，并可随时编辑。";
@@ -104,6 +110,7 @@
 "Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "在详情页添加 Letterboxd 和 Trakt 社区评分，补充 OMDb 未涵盖的内容。";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "右键单击某一集时增加“隐藏”选项。隐藏的单集会从列表中消失，“接下来播放”也会跳过它们。每部作品中的“显示隐藏内容”开关可让它们重新显示。";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
+"Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "在“继续观看”下方添加一行，列出你已在观看的剧集最近播出的单集。可逐个忽略，也可清空整行。默认关闭。";
 "Adjust the text and background. The preview shows your changes as you make them." = "调整文字和背景。预览会实时显示更改。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
@@ -124,6 +131,7 @@
 "Ahora no" = "暂不";
 "Aired" = "已播出";
 "Airing Now" = "正在播出";
+"Airing now" = "正在播出";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "调整文字和背景。预览会实时显示更改。";
 "Ajustar" = "适应";
 "Ajuste de imagen" = "Picture adjustment";
@@ -166,6 +174,7 @@
 "AniList sync" = "AniList 同步";
 "Animals" = "Animals";
 "Animated Movies" = "动画电影";
+"Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "动画";
 "Animation speed" = "动画速度";
 "Anime" = "动漫";
@@ -194,6 +203,7 @@
 "Apply custom theme" = "应用自定义主题";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "阿拉伯语";
+"Arcs" = "篇章";
 "Arrows" = "箭头";
 "Artistas" = "艺人";
 "Artists" = "艺人";
@@ -329,6 +339,7 @@
 "Brightness" = "亮度";
 "Brillo" = "亮度";
 "Bring in your library" = "导入你的媒体库";
+"Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "将动画列表导入 Harbor，并在观看时更新已看集数。现有进度会保留。";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "恢复已忽略的应用内小提示，无需重新进行欢迎流程。";
 "BritBox" = "BritBox";
@@ -337,6 +348,7 @@
 "Browse addons" = "浏览插件";
 "Browse by Genre" = "按类型浏览";
 "Browse by category" = "按类别浏览";
+"Browse by story arc on supported shows, such as One Piece. Requires a TMDB key." = "在《海贼王》等受支持的剧集中按剧情篇章浏览。需要 TMDB 密钥。";
 "Browse services" = "浏览服务";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "在 Harbor 中浏览动画列表，并在观看时更新剧集进度。登录 AniList 以连接。";
 "Browse your catalogs" = "浏览你的内容目录";
@@ -382,12 +394,15 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "您所选语言的字幕";
 "Captions, eyebrows." = "说明文字、眉题。";
 "Capítulo anterior" = "上一章";
 "Capítulo siguiente" = "下一章";
 "Capítulos" = "章节";
 "Card behaviour" = "卡片行为";
+"Card size" = "卡片大小";
+"Cards" = "卡片";
 "Cards, panels." = "卡片、面板。";
 "Cargar archivo" = "加载文件";
 "Cargar más" = "加载更多";
@@ -412,6 +427,7 @@
 "Checking with AniList..." = "正在通过 AniList 检查…";
 "Checking with MyAnimeList..." = "正在通过 MyAnimeList 检查…";
 "Checking…" = "正在检查…";
+"Checks the username against Stremboxd and turns on the catalogs it finds." = "Checks the username against Stremboxd and turns on the catalogs it finds.";
 "Checksum did not match the manifest." = "校验和与清单不匹配。";
 "China" = "中国";
 "Chinese" = "中文";
@@ -423,6 +439,7 @@
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "选择 Harbor 何时要求选择个人资料。定时提示会在你返回 Harbor 时出现。";
 "Choose which addon results appear when you pick a stream." = "选择挑选播放源时显示哪些扩展结果。";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "选择在卡片和详情页显示哪些评分。已锁定的卡片评分需要在“元数据”中添加提供方密钥。";
+"Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "科幻与奇幻";
 "Claro" = "浅色";
@@ -507,6 +524,7 @@
 "Connected to AniList" = "已连接到 AniList";
 "Connected to MyAnimeList" = "已连接到 MyAnimeList";
 "Connected to Simkl" = "已连接到 Simkl";
+"Connected. {n} catalogs are available." = "Connected. {n} catalogs are available.";
 "Connecting" = "正在连接";
 "Conservar original" = "保留原样";
 "Contenido" = "内容";
@@ -516,6 +534,7 @@
 "Continue" = "继续";
 "Continue Watching" = "继续观看";
 "Continue Watching at top" = "将“继续观看”置顶";
+"Continue Watching sources" = "Continue Watching sources";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "先显示“继续观看”，再按安装顺序显示插件目录。不显示焦点推荐和 Harbor 内容栏。";
 "Continue reading" = "继续阅读";
 "Continue to next chapter" = "Continue to next chapter";
@@ -549,6 +568,7 @@
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "无法读取你的列表。已保存的数据仍然保留。";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
+"Could not resolve that Letterboxd list URL." = "无法解析该 Letterboxd 列表 URL。";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "无法恢复你的服务。已保留保存的版本。";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
@@ -661,6 +681,7 @@
 "Discovery Queue" = "探索队列";
 "Diseño de Inicio" = "首页布局";
 "Dismiss" = "关闭";
+"Dismiss all" = "全部清除";
 "Dismiss tip" = "Dismiss tip";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "Disney+ 原创";
@@ -730,6 +751,7 @@
 "En directo" = "直播";
 "En reproducción" = "正在播放";
 "En reproducción: {label}" = "正在播放：{label}";
+"Enable Letterboxd integration" = "启用 Letterboxd 集成";
 "Enable User Ratings" = "启用用户评分";
 "Enable addon" = "Enable addon";
 "Enabled" = "已启用";
@@ -795,6 +817,7 @@
 "External" = "外部";
 "External subtitle" = "外部字幕";
 "Externo" = "外部";
+"Extra large" = "超大";
 "Extras" = "花絮";
 "FPS de los subtítulos" = "字幕 FPS";
 "FPS de origen de los subtítulos" = "字幕源 FPS";
@@ -862,8 +885,11 @@
 "Fuentes para adultos" = "Adult sources";
 "Fuentes y biblioteca" = "来源与媒体库";
 "Fuentes y calidad" = "Sources and quality";
+"Full" = "完整";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
+"Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
 "Gamma" = "伽马";
 "Genre" = "类型";
 "Genres" = "类型";
@@ -878,9 +904,11 @@
 "Grand Prize" = "大奖";
 "Gray" = "Gray";
 "Green" = "绿色";
+"Grid view" = "网格视图";
 "Gris" = "Gray";
 "Grosor del contorno" = "描边粗细";
 "Group by repository" = "按仓库分组";
+"Group episodes by story arc" = "按剧情篇章对剧集分组";
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "把你喜爱的电影和剧集整理到一起。重温片单、周末精选，随你怎么收藏。";
 "Group the movies and shows you want to keep close." = "将想随时重温的电影和剧集归到一起。";
 "Grouped" = "已分组";
@@ -912,6 +940,7 @@
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor 已剔除 {n} 个可疑或不匹配的结果。";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "Harbor 会同步你的 MyAnimeList 观看进度。";
+"Harbor library" = "Harbor library";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor 按此顺序查找字幕。请将首选语言放在最前面。";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor 会获取各服务当前最热门的内容。请关闭未订阅的服务。";
 "Harbor ranking" = "Harbor 排序";
@@ -945,6 +974,7 @@
 "Hide this catalog" = "隐藏此目录";
 "Hide titles under posters" = "隐藏海报下方的标题";
 "Hide unreleased titles" = "隐藏未上映作品";
+"Hide until the next episode airs, or keep showing a countdown to when it drops." = "隐藏至下一集播出，或继续显示上线倒计时。";
 "Hide watched titles in catalogs" = "在目录中隐藏已观看的影片";
 "Hide {name} from navigation" = "在导航中隐藏{name}";
 "Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "从首页的“继续观看”内容栏中隐藏动漫。动漫仍会显示在“动漫”标签页自己的“继续观看”内容栏中。";
@@ -967,8 +997,10 @@
 "Home style" = "首页样式";
 "Hoopla" = "Hoopla";
 "Horizontal" = "横向";
+"Horizontal view" = "横向视图";
 "Horror" = "恐怖";
 "Horror & Supernatural" = "恐怖与超自然";
+"How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "剧集卡片在条带和网格布局中的大小。卡片越大，图稿越大。";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "设置音量条可超过 100% 的最大增益。较高的设置可能会非常响。";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Harbor 等待各插件返回结果的时间。";
@@ -1060,6 +1092,7 @@
 "Just added" = "最新添加";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep Continue Watching private to each profile" = "让每个个人资料的“继续观看”保持私密";
 "Keep anime in the Anime room only" = "仅在动漫专区显示动漫";
 "Keep original" = "保留原样";
 "Keep same source on next episode" = "下一集沿用相同来源";
@@ -1090,6 +1123,9 @@
 "Less bass" = "减弱低音";
 "Letter spacing" = "字间距";
 "Letterboxd" = "Letterboxd";
+"Letterboxd asked for a second step. Enter the six digit code, then connect again." = "Letterboxd asked for a second step. Enter the six digit code, then connect again.";
+"Letterboxd password" = "Letterboxd 密码";
+"Letterboxd username" = "Letterboxd 用户名";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd、Trakt、Metacritic 和观众评分。";
 "Library" = "媒体库";
 "Libros" = "书籍";
@@ -1103,6 +1139,7 @@
 "List" = "列表";
 "List name" = "片单名称";
 "List settings" = "片单设置";
+"List view" = "列表视图";
 "Lista" = "列表";
 "Lista M3U" = "M3U 播放列表";
 "Listas" = "播放列表";
@@ -1199,6 +1236,7 @@
 "Missing TMDB Key" = "缺少 TMDB 密钥";
 "Misterio" = "悬疑";
 "Mix surround sound down to stereo" = "将环绕声下混为立体声";
+"Mode" = "模式";
 "Modo de concentración" = "专注模式";
 "Modo de lectura" = "阅读模式";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "设置本集结束前显示“接下来播放”提示的时间。“自动”会根据剧集时长调整，避免短剧集过早提示。“关闭”会隐藏提示。";
@@ -1281,6 +1319,8 @@
 "Netflix Originals" = "Netflix 原创";
 "Never" = "从不";
 "New Anime Releases" = "动漫新作";
+"New Episodes" = "新剧集";
+"New Episodes row" = "“新剧集”行";
 "New Face Award" = "新人奖";
 "New list" = "新建片单";
 "New profile" = "新建个人资料";
@@ -1291,6 +1331,9 @@
 "Next chapter" = "下一章";
 "Next day" = "Next day";
 "Next episode prompt" = "下一集提示";
+"Next in {days}d {hours}h" = "还有 {days}天 {hours}小时";
+"Next in {hours}h {minutes}m" = "还有 {hours}小时 {minutes}分钟";
+"Next in {minutes}m" = "还有 {minutes}分钟";
 "Next month" = "下个月";
 "Next page" = "下一页";
 "Next song" = "Next song";
@@ -1422,6 +1465,7 @@
 "On Hold" = "搁置";
 "On The Air" = "正在播出";
 "On Tonight" = "今晚播出";
+"On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "默认开启：看完所有已播出的剧集后，该节目会从「继续观看」中移除，并在新一集上线时重新出现。关闭后，已追完的节目会继续显示在该行中。";
 "On start" = "On start";
 "Onboarding" = "新手引导";
 "One list" = "单个列表";
@@ -1453,6 +1497,7 @@
 "Opening AniList..." = "正在打开 AniList...";
 "Opening MyAnimeList..." = "正在打开 MyAnimeList...";
 "Opening book…" = "Opening book…";
+"Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Options" = "选项";
 "Orden de addons" = "插件顺序";
 "Orden de idiomas preferidos" = "语言优先顺序";
@@ -1486,6 +1531,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "密码";
 "Paste JSON" = "粘贴 JSON";
+"Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "粘贴代码或页面 URL";
 "Paste the manifest URL the configure page gave you" = "粘贴配置页面提供的 manifest URL";
 "Paste the text from AniList" = "粘贴来自 AniList 的文本";
@@ -1575,6 +1621,7 @@
 "Posters, ratings, lists" = "海报、评分、列表";
 "Predeterminado" = "默认";
 "Predeterminado (acento dorado)" = "默认（金色强调色）";
+"Prefer episode still artwork" = "Prefer episode still artwork";
 "Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "询问继续播放还是从头开始";
 "Premiered This Month" = "本月首播";
@@ -1606,10 +1653,15 @@
 "Próximos" = "即将开始";
 "Próximos animes" = "即将上线的动漫";
 "Psychological" = "心理";
+"Public" = "公开";
+"Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed." = "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed.";
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
+"Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account." = "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account.";
+"Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "更鲜艳的色彩";
 "Puntuaciones" = "评分";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
+"Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "上一页";
 "Página siguiente" = "下一页";
 "Pósteres, calificaciones y listas" = "海报、评分、列表";
@@ -1699,6 +1751,7 @@
 "Remove from watchlist" = "从想看列表中移除";
 "Remove preset" = "删除预设";
 "Remove saved book" = "Remove saved book";
+"Remove shows once you're caught up" = "追完后移除剧集";
 "Remove {language}" = "移除{language}";
 "Remove {name}" = "移除 {name}";
 "Removed" = "已移除";
@@ -1788,6 +1841,7 @@
 "Rounded" = "圆体";
 "Rounded background panel behind the text. Most readable." = "文字后方的圆角背景面板，可读性最佳。";
 "Row card style" = "横排卡片样式";
+"Rows" = "行";
 "Royal" = "皇家";
 "Rugby" = "英式橄榄球";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "目前使用 Cinemeta。准备好后，可随时在“设置”中添加 TMDB 密钥。";
@@ -1861,6 +1915,7 @@
 "Selected" = "已选择";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "正在发送到 Trakt…";
+"Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "已向 Trakt 发送 {n} 项";
 "Serie dramática" = "剧情剧集";
 "Series" = "剧集";
@@ -1923,6 +1978,7 @@
 "Show me more like this" = "多推荐此类内容";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show my rating on movie posters" = "在电影海报上显示我的评分";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "在播放源选择器中按仓库显示一个来源，而不是每个脚本插件一个。当仓库包含许多小型提供源时很有用。";
 "Show pages" = "作品页面";
 "Show release filenames in the Condensed picker and Big Picture." = "在精简选择器和大屏模式中显示资源文件名。";
@@ -1943,14 +1999,18 @@
 "Sides" = "双页";
 "Sign in" = "登录";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "登录后可同步“继续观看”、片单和已配置的插件。此操作可选；不登录也能完整使用 Harbor。";
+"Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "使用 Stremio 登录";
 "Sign out" = "退出登录";
+"Signed in" = "Signed in";
+"Signs in to Letterboxd and unlocks your diary, friends activity and ratings." = "Signs in to Letterboxd and unlocks your diary, friends activity and ratings.";
 "Siguiente" = "下一个";
 "Siguiente canción" = "Next song";
 "Silenciar" = "静音";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl 本月没有新剧或动漫首播。请尝试其他月份。";
 "Simkl premieres" = "Simkl 首播";
+"Simkl progress" = "Simkl progress";
 "Simkl sign-in expired, reconnect it" = "Simkl 登录已过期，请重新连接";
 "Sin configurar" = "未设置";
 "Sin corrección" = "不校正";
@@ -2047,6 +2107,7 @@
 "Streaming services" = "流媒体服务";
 "Streaming sources" = "流媒体来源";
 "Streams" = "播放源";
+"Stremboxd error ({status})." = "Stremboxd error ({status}).";
 "Stremio" = "Stremio";
 "Stremio clásico" = "经典 Stremio";
 "Stretch" = "拉伸";
@@ -2163,6 +2224,8 @@
 "The comics industry's highest honor" = "漫画行业的最高荣誉";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The little score chip printed on poster cards across your rows and grids." = "各内容行和网格中的海报卡片上显示的小型评分标签。";
 "The most anticipated upcoming releases on Trakt" = "Trakt 上最受期待的即将上线内容";
 "The most-watched movies and series on {name} right now in {region}." = "{region} 当前在 {name} 上观看人数最多的电影和剧集。";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
@@ -2199,6 +2262,7 @@
 "Tipografía" = "字体排版";
 "Titles" = "片名";
 "Titles and descriptions" = "标题和简介";
+"Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "全部";
 "Todas las categorías" = "所有类别";
@@ -2267,6 +2331,7 @@
 "Trakt history" = "Trakt 观看历史";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt 服务器出现问题（HTTP {n}）。请稍后重试。";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt 正在限制请求频率。请等待一分钟后重试。";
+"Trakt progress" = "Trakt progress";
 "Trakt rejected the request (HTTP {n})." = "Trakt 拒绝了请求（HTTP {n}）。";
 "Trakt rejected the request (account locked or permission denied)." = "Trakt 拒绝了请求（账户已锁定或权限被拒绝）。";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt 报告授权被拒绝。如果并非有意拒绝，请重试。";
@@ -2293,9 +2358,11 @@
 "Tune your recommendations" = "调整你的推荐";
 "Turkish" = "土耳其语";
 "Turn pages horizontally" = "Turn pages horizontally";
+"Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "你的插件";
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
+"Two-factor authentication code" = "双重身份验证码";
 "Type" = "类型";
 "Type on your keyboard or tap the digits above." = "使用键盘输入，或点击上方数字。";
 "Type the same 4-digit PIN again." = "再次输入相同的 4 位 PIN。";
@@ -2310,6 +2377,7 @@
 "Ultra HD · HDR" = "Ultra HD · HDR";
 "Un poco más claro que el fondo." = "比背景稍亮。";
 "Unavailable" = "不可用";
+"Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "撤销";
 "United Kingdom" = "英国";
 "United States" = "美国";
@@ -2351,6 +2419,7 @@
 "Velocidad" = "速度";
 "Ver más" = "查看更多";
 "Ver todo" = "查看全部";
+"Verify & connect" = "验证并连接";
 "Verifying" = "正在验证";
 "Version" = "版本";
 "Versión" = "版本";
@@ -2379,6 +2448,7 @@
 "War" = "战争";
 "Watch on" = "在以下平台观看";
 "Watched" = "已观看";
+"Watched by {name}" = "{name} 已观看";
 "Watching" = "正在观看";
 "Watchlist" = "想看清单";
 "Watchlist only" = "仅待看清单";
@@ -2403,6 +2473,7 @@
 "Where to today?" = "今天去哪儿？";
 "Where to watch" = "观看平台";
 "Where your video comes from" = "视频来源";
+"Which end of the poster the score chip rides on." = "评分标签位于海报的哪一侧。";
 "Which order" = "排序方式";
 "Who's watching" = "谁在观看";
 "Who's watching?" = "谁在看？";
@@ -2423,8 +2494,10 @@
 "You've hidden the one catalog that matched." = "你隐藏了唯一匹配的目录。";
 "You've reached the end · {n} addons" = "已到底 · 共 {n} 个插件";
 "YouTube" = "YouTube";
+"Your AniList" = "您的 AniList";
 "Your AniList is empty" = "您的 AniList 为空";
 "Your Discovery Queue" = "你的发现队列";
+"Your Letterboxd password" = "你的 Letterboxd 密码";
 "Your Stremio library + addons sync in untouched." = "你的 Stremio 媒体库和插件将原样同步。";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "你的 Trakt 片单为空，没有可导入的内容。";
@@ -2439,6 +2512,7 @@
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "你的列表暂存在内存中。请在关闭应用前保存。";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
+"Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "你的个人资料";
 "Your rating" = "你的评分";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "你保存的节目本月没有计划播出的剧集。切换到“全部即将上线”即可浏览完整的上线日历。";
@@ -2486,6 +2560,7 @@
 "just now" = "刚刚";
 "language" = "语言";
 "left" = "左";
+"letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "本地";
 "mdblist api key" = "MDBList API 密钥";
 "min" = "分钟";
@@ -3614,6 +3689,7 @@
 "wrong movie" = "电影不符";
 "year mismatch" = "年份不符";
 "yes" = "是";
+"your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} 本身不托管、分发或索引任何媒体。所有流均来自第三方插件、Debrid 服务或您自行配置的 {service} 账户。您须对自己选择播放的内容以及遵守所在司法管辖区的法律负责。";
 "{count} picks ready" = "有 {count} 个推荐待探索";
 "{count} results" = "{count} 个结果";
@@ -3636,6 +3712,7 @@
 "{n} days ago" = "{n} 天前";
 "{n} ep" = "{n} 集";
 "{n} eps" = "{n} 集";
+"{n} films." = "{n} films.";
 "{n} hr" = "{n} 小时";
 "{n} in a day" = "一天内 {n} 部";
 "{n} item" = "{n} 个项目";

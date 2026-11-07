@@ -7,6 +7,7 @@
 "1,5 min" = "1,5 dk";
 "1.5 min" = "1,5 dk";
 "1.85:1" = "1.85:1";
+"123456" = "123456";
 "15s" = "15 sn.";
 "16:9" = "16:9";
 "2 min" = "2 dk";
@@ -23,10 +24,13 @@
 "45s" = "45 sn";
 "4:3" = "4:3";
 "8-character key" = "8 karakterli anahtar";
+"A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "AniList'te bir tarayıcı sekmesi açıldı. Harbor'a orada izin verin, ardından gösterilen metni kopyalayıp aşağıya yapıştırın.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "MyAnimeList'te bir tarayıcı sekmesi açıldı. Harbor'a orada izin verin, ardından kodu veya sayfa URL'sini kopyalayıp aşağıya yapıştırın.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio protokolü için bir istemci. Kurulumu iki dakika sürer ve çoğu adım isteğe bağlıdır. Her anahtarın kontrolü sizde kalır.";
 "A continuación" = "Sıradaki";
+"A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
+"A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift ile ok tuşlarına basıldığında her seferinde birkaç saniyelik daha kısa bir atlama yapar.";
@@ -39,6 +43,7 @@
 "Abajo a la derecha" = "Sağ alt";
 "Abajo a la izquierda" = "Sol alt";
 "About" = "Hakkında";
+"About Stremboxd" = "Stremboxd Hakkında";
 "Above the main line" = "Ana satırın üstü";
 "Abriendo libro…" = "Opening book…";
 "Abrir en Safari" = "Open in Safari";
@@ -73,6 +78,7 @@
 "Add a TMDB API key in Metadata settings to search for titles." = "Başlık aramak için meta veri ayarlarına bir TMDB API anahtarı ekleyin.";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Tam keşif akışının kilidini açmak için Ayarlar'a bir TMDB anahtarı ekleyin.";
 "Add a TMDB key in settings first" = "Önce ayarlardan bir TMDB anahtarı ekleyin";
+"Add a list" = "Liste ekleyin";
 "Add a movie or show to this list..." = "Bu listeye film veya dizi ekleyin...";
 "Add a repository" = "Depo ekle";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "AniList'inize anime eklediğinizde burada duruma göre gruplandırılmış ve düzenlenmeye hazır olarak görünürler.";
@@ -104,6 +110,7 @@
 "Adds Letterboxd and Trakt community ratings to detail pages, covering what OMDb misses." = "Ayrıntı sayfalarına Letterboxd ve Trakt topluluk puanlarını ekleyerek OMDb'nin eksik bıraktığı alanları tamamlar.";
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Bir bölüme sağ tıkladığınızda Gizle seçeneğini ekler. Gizlenen bölümler listede görünmez ve Sıradaki tarafından atlanır. Her dizideki Gizlenenleri göster seçeneğiyle onları geri getirebilirsiniz.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
+"Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "İzlemeye Devam Et'in altına, hâlihazırda izlediğiniz dizilerin yakın zamanda yayımlanan bölümlerini listeleyen bir satır ekler. Bölümleri tek tek kaldırabilir veya satırın tamamını temizleyebilirsiniz. Varsayılan olarak kapalıdır.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Metni ve arka planı ayarlayın. Önizleme yaptığınız değişiklikleri anında gösterir.";
 "Administrar" = "Yönet";
 "Adult sources" = "Adult sources";
@@ -124,6 +131,7 @@
 "Ahora no" = "Şimdi değil";
 "Aired" = "Yayınlandı";
 "Airing Now" = "Şu Anda Yayında";
+"Airing now" = "Şu anda yayında";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "Metni ve arka planı ayarlayın. Önizleme yaptığınız değişiklikleri anında gösterir.";
 "Ajustar" = "Sığdır";
 "Ajuste de imagen" = "Picture adjustment";
@@ -166,6 +174,7 @@
 "AniList sync" = "AniList eşitlemesi";
 "Animals" = "Animals";
 "Animated Movies" = "Animasyon Filmleri";
+"Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "Animasyon";
 "Animation speed" = "Animasyon hızı";
 "Anime" = "Anime";
@@ -194,6 +203,7 @@
 "Apply custom theme" = "Özel temayı uygula";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "Arapça";
+"Arcs" = "Hikâye bölümleri";
 "Arrows" = "Ok tuşları";
 "Artistas" = "Sanatçılar";
 "Artists" = "Sanatçılar";
@@ -329,6 +339,7 @@
 "Brightness" = "Parlaklık";
 "Brillo" = "Parlaklık";
 "Bring in your library" = "Kütüphanenizi aktarın";
+"Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Anime listenizi Harbor'a getirin ve izlerken bölüm sayınızı güncelleyin. Mevcut ilerlemeniz korunur.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Karşılama akışını yeniden başlatmadan, kapattığınız küçük uygulama içi ipuçlarını geri getirir.";
 "BritBox" = "BritBox";
@@ -337,6 +348,7 @@
 "Browse addons" = "Eklentilere göz at";
 "Browse by Genre" = "Türe göre göz at";
 "Browse by category" = "Kategoriye göre göz at";
+"Browse by story arc on supported shows, such as One Piece. Requires a TMDB key." = "One Piece gibi desteklenen dizilerde hikâye arklarına göre gezinin. TMDB anahtarı gerekir.";
 "Browse services" = "Hizmetlere göz at";
 "Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect." = "Anime listelerinize Harbor'da göz atın ve izlerken bölüm ilerlemenizi güncelleyin. Bağlanmak için AniList'te oturum açın.";
 "Browse your catalogs" = "Kataloglarınıza göz atın";
@@ -382,12 +394,15 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "Dilinizde altyazılar";
 "Captions, eyebrows." = "Açıklamalar, üst başlıklar.";
 "Capítulo anterior" = "Önceki bölüm";
 "Capítulo siguiente" = "Sonraki bölüm";
 "Capítulos" = "Bölümler";
 "Card behaviour" = "Kart davranışı";
+"Card size" = "Kart boyutu";
+"Cards" = "Kartlar";
 "Cards, panels." = "Kartlar, paneller.";
 "Cargar archivo" = "Dosya yükle";
 "Cargar más" = "Daha fazla yükle";
@@ -412,6 +427,7 @@
 "Checking with AniList..." = "AniList ile kontrol ediliyor...";
 "Checking with MyAnimeList..." = "MyAnimeList ile kontrol ediliyor...";
 "Checking…" = "Denetleniyor…";
+"Checks the username against Stremboxd and turns on the catalogs it finds." = "Checks the username against Stremboxd and turns on the catalogs it finds.";
 "Checksum did not match the manifest." = "Sağlama toplamı manifest ile eşleşmedi.";
 "China" = "Çin";
 "Chinese" = "Çince";
@@ -423,6 +439,7 @@
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harbor'ın ne zaman profil seçmenizi isteyeceğini belirleyin. Zamanlanmış istemler Harbor'a döndüğünüzde görünür.";
 "Choose which addon results appear when you pick a stream." = "Yayın seçerken hangi eklenti sonuçlarının görüneceğini seçin.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Kartlarda ve ayrıntı sayfalarında hangi puanların görüneceğini seçin. Kilitli kart puanları için Meta Veri bölümüne sağlayıcı anahtarı eklenmelidir.";
+"Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Bilim Kurgu ve Fantastik";
 "Claro" = "Açık";
@@ -507,6 +524,7 @@
 "Connected to AniList" = "AniList'e bağlandı";
 "Connected to MyAnimeList" = "MyAnimeList'e bağlandı";
 "Connected to Simkl" = "Simkl'e bağlandı";
+"Connected. {n} catalogs are available." = "Connected. {n} catalogs are available.";
 "Connecting" = "Bağlanıyor";
 "Conservar original" = "Özgün biçimi koru";
 "Contenido" = "İçerik";
@@ -516,6 +534,7 @@
 "Continue" = "Devam et";
 "Continue Watching" = "İzlemeye Devam Et";
 "Continue Watching at top" = "İzlemeye Devam Et bölümü en üstte";
+"Continue Watching sources" = "Continue Watching sources";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "Önce İzlemeye Devam Et, ardından kurulum sırasına göre eklenti kataloglarınız gösterilir. Öne çıkan alan ve Harbor satırları gösterilmez.";
 "Continue reading" = "Okumaya devam et";
 "Continue to next chapter" = "Continue to next chapter";
@@ -549,6 +568,7 @@
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "Listeleriniz okunamadı. Kayıtlı verileriniz korunuyor.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
+"Could not resolve that Letterboxd list URL." = "Bu Letterboxd listesinin URL'si çözümlenemedi.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Hizmetleriniz geri yüklenemedi. Kayıtlı sürüm korunuyor.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
@@ -661,6 +681,7 @@
 "Discovery Queue" = "Keşif Kuyruğu";
 "Diseño de Inicio" = "Ana sayfa düzeni";
 "Dismiss" = "Kapat";
+"Dismiss all" = "Tümünü kapat";
 "Dismiss tip" = "Dismiss tip";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "Disney+ Orijinal Yapımları";
@@ -730,6 +751,7 @@
 "En directo" = "Canlı";
 "En reproducción" = "Şimdi oynatılıyor";
 "En reproducción: {label}" = "Şimdi oynatılıyor: {label}";
+"Enable Letterboxd integration" = "Letterboxd entegrasyonunu etkinleştir";
 "Enable User Ratings" = "Kullanıcı Puanlarını Etkinleştir";
 "Enable addon" = "Enable addon";
 "Enabled" = "Etkin";
@@ -795,6 +817,7 @@
 "External" = "Harici";
 "External subtitle" = "Harici altyazı";
 "Externo" = "Harici";
+"Extra large" = "Çok büyük";
 "Extras" = "Ekstralar";
 "FPS de los subtítulos" = "Altyazı FPS'si";
 "FPS de origen de los subtítulos" = "Altyazı kaynak FPS'si";
@@ -862,8 +885,11 @@
 "Fuentes para adultos" = "Adult sources";
 "Fuentes y biblioteca" = "Kaynaklar ve kütüphane";
 "Fuentes y calidad" = "Sources and quality";
+"Full" = "Tam";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
+"Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
 "Gamma" = "Gama";
 "Genre" = "Tür";
 "Genres" = "Türler";
@@ -878,9 +904,11 @@
 "Grand Prize" = "Büyük Ödül";
 "Gray" = "Gray";
 "Green" = "Yeşil";
+"Grid view" = "Izgara görünümü";
 "Gris" = "Gray";
 "Grosor del contorno" = "Kontur kalınlığı";
 "Group by repository" = "Depoya göre grupla";
+"Group episodes by story arc" = "Bölümleri hikâye arkına göre grupla";
 "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close." = "Sevdiğiniz filmleri ve dizileri gruplandırın. Yeniden izleme rafı, hafta sonu seçkileri veya elinizin altında tutmak istediğiniz başka ne varsa.";
 "Group the movies and shows you want to keep close." = "Elinizin altında tutmak istediğiniz film ve dizileri gruplandırın.";
 "Grouped" = "Gruplandırılmış";
@@ -912,6 +940,7 @@
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor, şüpheli veya eşleşmeyen {n} sonucu eledi.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "Harbor, MyAnimeList izleme ilerlemenizi senkronize tutar.";
+"Harbor library" = "Harbor library";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor altyazıları bu sırayla arar. Tercih ettiğiniz dili ilk sıraya koyun.";
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor, her hizmette şu anda bulunan en popüler yapımları getirir. Abone olmadığınız hizmetleri kapatın.";
 "Harbor ranking" = "Harbor sıralaması";
@@ -945,6 +974,7 @@
 "Hide this catalog" = "Bu kataloğu gizle";
 "Hide titles under posters" = "Posterlerin altındaki başlıkları gizle";
 "Hide unreleased titles" = "Henüz yayımlanmamış içerikleri gizle";
+"Hide until the next episode airs, or keep showing a countdown to when it drops." = "Sonraki bölüm yayınlanana kadar gizleyin veya yayınlanacağı zamana geri sayımı göstermeye devam edin.";
 "Hide watched titles in catalogs" = "İzlenen yapımları kataloglarda gizle";
 "Hide {name} from navigation" = "{name} öğesini gezinmeden gizle";
 "Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "Animeyi Ana Sayfa'daki İzlemeye Devam Et satırından gizler. Anime sekmesinin kendi İzlemeye Devam Et bölümünde görünmeye devam eder.";
@@ -967,8 +997,10 @@
 "Home style" = "Ana Sayfa stili";
 "Hoopla" = "Hoopla";
 "Horizontal" = "Yatay";
+"Horizontal view" = "Yatay görünüm";
 "Horror" = "Korku";
 "Horror & Supernatural" = "Korku ve Doğaüstü";
+"How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "Şerit ve ızgara düzenlerindeki bölüm kartlarının boyutu. Daha büyük kartlar, görselleri daha büyük gösterir.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "Ses çubuğunda yüzde 100'ün ne kadar üzerine çıkabileceğinizi belirleyin. Yüksek ayarlar sesi çok fazla yükseltebilir.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Harbor'ın her eklentinin sonuçlarını ne kadar bekleyeceği.";
@@ -1060,6 +1092,7 @@
 "Just added" = "Yeni eklenenler";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep Continue Watching private to each profile" = "İzlemeye Devam Et'i her profile özel tut";
 "Keep anime in the Anime room only" = "Animeyi yalnızca Anime bölümünde tut";
 "Keep original" = "Özgün biçimi koru";
 "Keep same source on next episode" = "Sonraki bölümde aynı kaynağı kullan";
@@ -1090,6 +1123,9 @@
 "Less bass" = "Daha az bas";
 "Letter spacing" = "Harf aralığı";
 "Letterboxd" = "Letterboxd";
+"Letterboxd asked for a second step. Enter the six digit code, then connect again." = "Letterboxd asked for a second step. Enter the six digit code, then connect again.";
+"Letterboxd password" = "Letterboxd parolası";
+"Letterboxd username" = "Letterboxd kullanıcı adı";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd, Trakt, Metacritic ve izleyici puanları.";
 "Library" = "Kütüphane";
 "Libros" = "Kitaplar";
@@ -1103,6 +1139,7 @@
 "List" = "Liste";
 "List name" = "Liste adı";
 "List settings" = "Liste ayarları";
+"List view" = "Liste görünümü";
 "Lista" = "Liste";
 "Lista M3U" = "M3U oynatma listesi";
 "Listas" = "Oynatma Listeleri";
@@ -1199,6 +1236,7 @@
 "Missing TMDB Key" = "TMDB Anahtarı Eksik";
 "Misterio" = "Gizem";
 "Mix surround sound down to stereo" = "Çevresel sesi stereoya indirge";
+"Mode" = "Mod";
 "Modo de concentración" = "Odak modu";
 "Modo de lectura" = "Okuma modu";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Bölüm bitmeden önce Sıradaki rozetinin ne zaman görüneceğini belirler. Otomatik seçeneği bölüm uzunluğuna göre ayarlanır, böylece kısa bölümlerde bildirim çok erken gösterilmez. Kapalı seçeneği bildirimi gizler.";
@@ -1281,6 +1319,8 @@
 "Netflix Originals" = "Netflix Orijinal Yapımları";
 "Never" = "Asla";
 "New Anime Releases" = "Yeni Çıkan Animeler";
+"New Episodes" = "Yeni Bölümler";
+"New Episodes row" = "Yeni Bölümler satırı";
 "New Face Award" = "Yeni Yüz Ödülü";
 "New list" = "Yeni liste";
 "New profile" = "Yeni profil";
@@ -1291,6 +1331,9 @@
 "Next chapter" = "Sonraki bölüm";
 "Next day" = "Next day";
 "Next episode prompt" = "Sonraki bölüm bildirimi";
+"Next in {days}d {hours}h" = "Sonraki bölüm {days} gün {hours} sa. içinde";
+"Next in {hours}h {minutes}m" = "Sonraki bölüm {hours} sa. {minutes} dk. içinde";
+"Next in {minutes}m" = "Sonraki bölüm {minutes} dk. içinde";
 "Next month" = "Sonraki ay";
 "Next page" = "Sonraki sayfa";
 "Next song" = "Next song";
@@ -1422,6 +1465,7 @@
 "On Hold" = "Beklemede";
 "On The Air" = "Yayındaki Diziler";
 "On Tonight" = "Bu Akşam Yayında";
+"On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "Varsayılan olarak açık: Yayınlanan tüm bölümleri izlediğinizde dizi İzlemeye Devam Et'ten kaldırılır ve yeni bir bölüm yayınlandığında geri döner. Yayınlanan tüm bölümleri izlenmiş dizileri sırada tutmak için kapatın.";
 "On start" = "On start";
 "Onboarding" = "Başlangıç rehberi";
 "One list" = "Tek liste";
@@ -1453,6 +1497,7 @@
 "Opening AniList..." = "AniList açılıyor...";
 "Opening MyAnimeList..." = "MyAnimeList açılıyor...";
 "Opening book…" = "Opening book…";
+"Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Options" = "Seçenekler";
 "Orden de addons" = "Eklenti sırası";
 "Orden de idiomas preferidos" = "Dil tercih sırası";
@@ -1486,6 +1531,7 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Parola";
 "Paste JSON" = "JSON Yapıştır";
+"Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "Kodu veya sayfa URL'sini yapıştırın";
 "Paste the manifest URL the configure page gave you" = "Yapılandırma sayfasının verdiği manifest URL'sini yapıştırın";
 "Paste the text from AniList" = "AniList'teki metni yapıştırın";
@@ -1575,6 +1621,7 @@
 "Posters, ratings, lists" = "Afişler, puanlar, listeler";
 "Predeterminado" = "Varsayılan";
 "Predeterminado (acento dorado)" = "Varsayılan (altın vurgu)";
+"Prefer episode still artwork" = "Prefer episode still artwork";
 "Prefer these sources" = "Prefer these sources";
 "Preguntar si reanudar o empezar de nuevo" = "Devam edilsin mi, baştan mı başlansın diye sor";
 "Premiered This Month" = "Bu Ay Başlayanlar";
@@ -1606,10 +1653,15 @@
 "Próximos" = "Yaklaşan";
 "Próximos animes" = "Yakında Çıkacak Animeler";
 "Psychological" = "Psikolojik";
+"Public" = "Herkese Açık";
+"Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed." = "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed.";
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
+"Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account." = "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account.";
+"Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "Daha canlı renkler";
 "Puntuaciones" = "Puanlar";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
+"Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "Önceki sayfa";
 "Página siguiente" = "Sonraki sayfa";
 "Pósteres, calificaciones y listas" = "Afişler, puanlar, listeler";
@@ -1699,6 +1751,7 @@
 "Remove from watchlist" = "İzleme listesinden kaldır";
 "Remove preset" = "Hazır ayarı kaldır";
 "Remove saved book" = "Remove saved book";
+"Remove shows once you're caught up" = "Güncel bölüme ulaştığınız dizileri kaldır";
 "Remove {language}" = "{language} dilini kaldır";
 "Remove {name}" = "{name} öğesini kaldır";
 "Removed" = "Kaldırıldı";
@@ -1788,6 +1841,7 @@
 "Rounded" = "Yuvarlak";
 "Rounded background panel behind the text. Most readable." = "Metnin arkasında yuvarlatılmış arka plan paneli. Okunması en kolay seçenek.";
 "Row card style" = "Satır kartı stili";
+"Rows" = "Satırlar";
 "Royal" = "Asil";
 "Rugby" = "Ragbi";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Şimdilik Cinemeta kullanılıyor. Hazır olduğunuzda Ayarlar'dan bir TMDB anahtarı ekleyebilirsiniz.";
@@ -1861,6 +1915,7 @@
 "Selected" = "Seçildi";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Trakt'a gönderiliyor…";
+"Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n} öğe Trakt'a gönderildi";
 "Serie dramática" = "Dram Dizileri";
 "Series" = "Diziler";
@@ -1923,6 +1978,7 @@
 "Show me more like this" = "Buna benzer daha fazla içerik göster";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show my rating on movie posters" = "Film afişlerinde puanımı göster";
 "Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "Yayın seçicide uzantı başına değil depo başına bir kaynak gösterir. Bir depo çok sayıda küçük sağlayıcı içerdiğinde kullanışlıdır.";
 "Show pages" = "İçerik sayfaları";
 "Show release filenames in the Condensed picker and Big Picture." = "Yoğun seçicide ve Big Picture'da sürüm dosyalarının adlarını göster.";
@@ -1943,14 +1999,18 @@
 "Sides" = "Kenarlar";
 "Sign in" = "Oturum aç";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "İzlemeye Devam Et listenizi, İzleme Listenizi ve daha önce düzenlediğiniz eklentileri eşitlemek için giriş yapın. Bu adım isteğe bağlıdır; Harbor, giriş yapmadan da tüm özellikleriyle çalışır.";
+"Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "Stremio ile oturum aç";
 "Sign out" = "Oturumu kapat";
+"Signed in" = "Signed in";
+"Signs in to Letterboxd and unlocks your diary, friends activity and ratings." = "Signs in to Letterboxd and unlocks your diary, friends activity and ratings.";
 "Siguiente" = "Sonraki";
 "Siguiente canción" = "Next song";
 "Silenciar" = "Sesi kapat";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl'da bu ay prömiyer yapacak yeni dizi veya anime yok. Başka bir ay deneyin.";
 "Simkl premieres" = "Simkl prömiyerleri";
+"Simkl progress" = "Simkl progress";
 "Simkl sign-in expired, reconnect it" = "Simkl oturumunun süresi doldu, yeniden bağlayın";
 "Sin configurar" = "Ayarlanmadı";
 "Sin corrección" = "Düzeltme yok";
@@ -2047,6 +2107,7 @@
 "Streaming services" = "Yayın hizmetleri";
 "Streaming sources" = "Yayın kaynakları";
 "Streams" = "Yayınlar";
+"Stremboxd error ({status})." = "Stremboxd error ({status}).";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Klasik Stremio";
 "Stretch" = "Esnet";
@@ -2163,6 +2224,8 @@
 "The comics industry's highest honor" = "Çizgi roman sektörünün en büyük onuru";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The little score chip printed on poster cards across your rows and grids." = "Satır ve ızgaralarınızdaki poster kartlarında gösterilen küçük puan etiketi.";
 "The most anticipated upcoming releases on Trakt" = "Trakt'ta yakında yayınlanacak en çok beklenen içerikler";
 "The most-watched movies and series on {name} right now in {region}." = "Şu anda {region} bölgesinde {name} platformunda en çok izlenen filmler ve diziler.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
@@ -2199,6 +2262,7 @@
 "Tipografía" = "Tipografi";
 "Titles" = "Başlıklar";
 "Titles and descriptions" = "Başlıklar ve açıklamalar";
+"Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "Tümü";
 "Todas las categorías" = "Tüm kategoriler";
@@ -2267,6 +2331,7 @@
 "Trakt history" = "Trakt geçmişi";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt sunucu sorunu yaşıyor (HTTP {n}). Kısa süre sonra tekrar deneyin.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt istek hızını sınırlıyor. Bir dakika bekleyip tekrar deneyin.";
+"Trakt progress" = "Trakt progress";
 "Trakt rejected the request (HTTP {n})." = "Trakt isteği reddetti (HTTP {n}).";
 "Trakt rejected the request (account locked or permission denied)." = "Trakt isteği reddetti (hesap kilitli veya izin reddedildi).";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt, yetkilendirmenin reddedildiğini bildirdi. Bunu istemeden yaptıysanız tekrar deneyin.";
@@ -2293,9 +2358,11 @@
 "Tune your recommendations" = "Önerilerini özelleştir";
 "Turkish" = "Türkçe";
 "Turn pages horizontally" = "Turn pages horizontally";
+"Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "Eklentilerin";
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
+"Two-factor authentication code" = "İki faktörlü kimlik doğrulama kodu";
 "Type" = "Tür";
 "Type on your keyboard or tap the digits above." = "Klavyenizden yazın veya yukarıdaki rakamlara dokunun.";
 "Type the same 4-digit PIN again." = "Aynı 4 haneli PIN'i tekrar girin.";
@@ -2310,6 +2377,7 @@
 "Ultra HD · HDR" = "Ultra HD · HDR";
 "Un poco más claro que el fondo." = "Arka plandan biraz daha açık.";
 "Unavailable" = "Kullanılamıyor";
+"Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "Geri al";
 "United Kingdom" = "Birleşik Krallık";
 "United States" = "Amerika Birleşik Devletleri";
@@ -2351,6 +2419,7 @@
 "Velocidad" = "Hız";
 "Ver más" = "Daha fazlasını görüntüle";
 "Ver todo" = "Tümünü görüntüle";
+"Verify & connect" = "Doğrula ve bağlan";
 "Verifying" = "Doğrulanıyor";
 "Version" = "Sürüm";
 "Versión" = "Sürüm";
@@ -2379,6 +2448,7 @@
 "War" = "Savaş";
 "Watch on" = "Şurada izle";
 "Watched" = "İzlendi";
+"Watched by {name}" = "{name} tarafından izlendi";
 "Watching" = "İzleniyor";
 "Watchlist" = "İzleme Listesi";
 "Watchlist only" = "Yalnızca İzleme Listesi";
@@ -2403,6 +2473,7 @@
 "Where to today?" = "Bugün nereye?";
 "Where to watch" = "Nerede izlenir";
 "Where your video comes from" = "Video kaynakları";
+"Which end of the poster the score chip rides on." = "Puan rozetinin posterin hangi kenarında yer alacağı.";
 "Which order" = "Sıralama";
 "Who's watching" = "Kim izliyor?";
 "Who's watching?" = "Kim izliyor?";
@@ -2423,8 +2494,10 @@
 "You've hidden the one catalog that matched." = "Eşleşen tek kataloğu gizlediniz.";
 "You've reached the end · {n} addons" = "Sona ulaştınız · {n} eklenti";
 "YouTube" = "YouTube";
+"Your AniList" = "AniList'iniz";
 "Your AniList is empty" = "AniList'iniz boş";
 "Your Discovery Queue" = "Keşif Kuyruğunuz";
+"Your Letterboxd password" = "Letterboxd parolanız";
 "Your Stremio library + addons sync in untouched." = "Stremio kütüphaneniz ve eklentileriniz değişmeden eşitlenir.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Trakt izleme listeniz boş, içe aktarılacak bir şey yok.";
@@ -2439,6 +2512,7 @@
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "Listeleriniz bellekte tutuluyor. Uygulamayı kapatmadan önce kaydedin.";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
+"Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "Profiliniz";
 "Your rating" = "Puanınız";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "Kaydettiğiniz dizilerin bu ay yayınlanması planlanan bölümü yok. Tüm yayın takvimine göz atmak için Yakında Yayınlanacakların Tümü'ne geçin.";
@@ -2486,6 +2560,7 @@
 "just now" = "az önce";
 "language" = "dil";
 "left" = "sol";
+"letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "yerel";
 "mdblist api key" = "MDBList API anahtarı";
 "min" = "dk";
@@ -3614,6 +3689,7 @@
 "wrong movie" = "yanlış film";
 "year mismatch" = "yıl uyuşmazlığı";
 "yes" = "evet";
+"your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} hiçbir medyayı barındırmaz, dağıtmaz veya dizine eklemez. Tüm yayınlar üçüncü taraf eklentilerden, debrid hizmetlerinden veya kendi yapılandırdığınız {service} hesabınızdan gelir. Oynatmayı seçtiğiniz içeriklerden ve bulunduğunuz yargı alanındaki yasalara uymaktan siz sorumlusunuz.";
 "{count} picks ready" = "{count} öneri hazır";
 "{count} results" = "{count} sonuç";
@@ -3636,6 +3712,7 @@
 "{n} days ago" = "{n} gün önce";
 "{n} ep" = "{n} blm";
 "{n} eps" = "{n} blm";
+"{n} films." = "{n} films.";
 "{n} hr" = "{n} sa.";
 "{n} in a day" = "Bir günde {n}";
 "{n} item" = "{n} öğe";
