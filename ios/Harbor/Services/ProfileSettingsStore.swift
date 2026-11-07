@@ -56,6 +56,7 @@ struct ContinueWatchingPreferences: Sendable {
         "tmdbImageLangs", "harbor:title-logos", "harbor:title-posters", "harbor:title-backdrops",
         "showWatchedButton", "wrappedButton", "showEpisodeDescription", "showEpisodeRating", "hideWatchedInCatalogs", "hideUnreleased", "homeShowAllAddonRows", "catalogsPinned", "catalogsHidden", "homeLanguages", "animeOnlyInAnimeRoom", "libraryBookmarkedOnly", "cwAdvanceNext", "episodeSort", "episodeHiding", "showTraktComments", "blurComments", "ratings.detailHidden", "hideSpoilers", "blurEpisodes", "spoilerHideTitles", "spoilerHideDescriptions",
         "iphone.theme.preset", "iphone.theme.custom", "iphone.theme.font", "iphone.theme.colors", "seekBarColor",
+        "iphone.theme.library", "iphone.theme.backgroundFile", "iphone.theme.backgroundDim",
         "iphone.player-options.v1", "mpvHwdec", "resumePlayback", "resumePrompt", "subtitleAutoSync",
         "streamFilterLevel", "streams.addonOrder", "streams.automatic", "keepSourceNextEpisode", "streams.excludeCamera", "streams.maximum", "streams.minimum",
         "streams.addonTimeoutSec", "streams.mode", "streams.priority", "streams.pickerLayout", "streams.pickerShowFilename", "streams.fullDescription", "streams.pickerRefreshNextToBack", "streams.languages", "streams.requireLanguage", "streams.rememberLast", "customSleepMinutes", "customPlaybackSpeeds", "anilistAutoSync", "malAutoSync",

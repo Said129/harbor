@@ -1,7 +1,8 @@
 import SwiftUI
 
 @MainActor enum HarborTheme {
-    static var background: Color { ThemePreferences.shared.color("canvas") }
+    /// With a custom background image, screens go transparent so ThemeBackdrop (drawn at the app root) shows through.
+    static var background: Color { ThemePreferences.shared.hasBackgroundImage ? Color.clear : ThemePreferences.shared.color("canvas") }
     static var accent: Color { ThemePreferences.shared.color("accent") }
     static var surface: Color { ThemePreferences.shared.color("surface") }
     static var ink: Color { ThemePreferences.shared.color("ink") }
