@@ -64,6 +64,7 @@ struct ContinueWatchingPreferences: Sendable {
         "preferEmbeddedSubs", "subtitlePreselect", "subtitleAutoUpgrade", "trackBlockWords", "subAssNormalizeSize", "subSecondaryScale",
         "streamFilterLevel", "streams.addonOrder", "streams.automatic", "keepSourceNextEpisode", "autoNextStreamOnStall", "autoNextStreamOnStallSec", "seasonSourceLock", "streams.excludeCamera", "streams.maximum", "streams.minimum",
         "streams.addonTimeoutSec", "streams.mode", "streams.priority", "streams.pickerLayout", "streams.pickerShowFilename", "streams.fullDescription", "streams.pickerRefreshNextToBack", "streams.languages", "streams.requireLanguage", "streams.rememberLast", "customStreamFilters", "activeStreamFilterId", "customSleepMinutes", "customPlaybackSpeeds", "anilistAutoSync", "malAutoSync", "animeFavoriteGenres", "animeExcludeOrigins", "animeHideWatchedPicks",
+        "showAnilistComments", "anilistBlurComments", "useAnilistAvatar",
         "pluginsEnabled", "pluginsGroupByRepo", "blockTrackers", "hideContent.adult",
         "metadata.region", "metadata.language", "metadata.translateTitles", "cwPerProfile", "downloadsCellular",
         "profilePromptInterval", "defaultProfileId", "tvdbSeasonType", "tvdbOrderPanel",

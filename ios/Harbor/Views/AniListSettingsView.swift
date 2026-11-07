@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Desktop's AniList panel (`settings/anilist-panel.tsx`): connect with a pasted code, sync watch progress.
-/// The lists open from here (`AniListListsView`, read-only); comments and avatar options of that panel are not ported.
+/// The lists open from here (`AniListListsView`, read-only); the comment and avatar options open from `TrackerAvatarSettingsView`.
 struct AniListSettingsView: View {
     @State private var account: AniListAccount
     @State private var connectModel: AniListConnectModel
@@ -55,6 +55,17 @@ struct AniListSettingsView: View {
                     }
                     NavigationLink { AniListListsView(app: app) } label: { listsRowLabel }
                         .accessibilityIdentifier("anilist-lists")
+                    NavigationLink { TrackerAvatarSettingsView(app: app) } label: {
+                        HStack(spacing: 12) {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(text("Comments")).font(HarborTheme.font(16, weight: .semibold))
+                                Text(text("Show forum threads and comments from AniList on anime detail pages.")).font(HarborTheme.font(13)).foregroundStyle(.secondary).multilineTextAlignment(.leading)
+                            }
+                            Spacer(minLength: 0)
+                            Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(.secondary)
+                        }.frame(minHeight: 44).contentShape(Rectangle())
+                    }
+                    .accessibilityIdentifier("anilist-comments-settings")
                     VStack(alignment: .leading, spacing: 10) {
                         Text(text("Tracking what you watch")).font(HarborTheme.font(13, weight: .semibold)).foregroundStyle(.secondary)
                         HarborSettingsToggle(text("Sync watch progress"),
