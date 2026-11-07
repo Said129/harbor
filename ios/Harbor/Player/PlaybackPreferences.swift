@@ -92,6 +92,8 @@ struct PlaybackOptions: Codable, Equatable {
     var subOffsetIndicator = true
     var subOffsetPosition = SubtitleOffsetPosition.bottom.rawValue
     var subOffsetSize = SubtitleOffsetSize.medium.rawValue
+    /// Desktop's `subShowInPip`: keep subtitles on the floating Picture in Picture window. Off hides them there only.
+    var subShowInPip = true
     /// Desktop's playback stats card, which its hotkey I shows and hides.
     var showStats = false
     /// Desktop's `audioNormalize`: a dynamic loudness normalizer.

@@ -231,6 +231,7 @@ targets:
       - path: HarborTests/HeroLayoutPolicyTests.swift
       - path: HarborTests/LiveReconnectTests.swift
       - path: HarborTests/TogetherTests.swift
+      - path: HarborTests/PictureInPictureRulesTests.swift
       - path: HarborTests/TheIntroDBTests.swift
       - path: HarborTests/DetailSettingsRulesTests.swift
       - path: HarborTests/QualityBadgePolicyTests.swift
