@@ -303,7 +303,7 @@ final class AppModel {
             InterfacePreferences.shared.reloadPreferences(); ThemePreferences.shared.reloadPreferences()
             PlaybackPreferences.shared.reloadPreferences(); StreamPreferences.shared.reloadPreferences()
             MetadataPreferences.shared.reloadPreferences(); MusicPlayback.shared.reloadPreferences()
-            TitleArtworkPreferences.shared.reloadPreferences()
+            TitleArtworkPreferences.shared.reloadPreferences(); StremioServerPreferences.shared.reloadPreferences()
         }
         try MetadataPreferences.shared.bind(ProfileSettingsStore.shared)
         _ = pageCustomization("home"); _ = pageCustomization("anime")
