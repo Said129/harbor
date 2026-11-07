@@ -178,12 +178,13 @@ enum DebridLibraryMerge {
             let sources = stream["sources"].array.compactMap { $0.string }
             if !sources.isEmpty {
                 var united: [String] = []
-                for source in prior["sources"].array.compactMap({ $0.string }) + sources where !united.contains(source) {
+                let known: [String] = (prior["sources"]?.array ?? []).compactMap { $0.string }
+                for source in known + sources where !united.contains(source) {
                     united.append(source)
                 }
                 prior["sources"] = .array(united.map(JSONValue.string))
             }
-            if (prior["url"].string ?? "").isEmpty, let url = stream["url"].string, !url.isEmpty { prior["url"] = .string(url) }
+            if (prior["url"]?.string ?? "").isEmpty, let url = stream["url"].string, !url.isEmpty { prior["url"] = .string(url) }
             seen[key] = prior
         }
         return order.compactMap { key in seen[key].map { JSONValue.object($0) } }
@@ -203,7 +204,7 @@ enum DebridLibraryMerge {
     }
 
     private static func addContributor(_ entry: inout [String: JSONValue], _ stream: JSONValue) {
-        var list = entry["contributors"].array
+        var list = entry["contributors"]?.array ?? []
         let id = stream["addonId"]
         if !list.contains(where: { $0["id"] == id }) { list.append(contributor(stream)) }
         entry["contributors"] = .array(list)
