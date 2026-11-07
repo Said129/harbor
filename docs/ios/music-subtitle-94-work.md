@@ -1516,3 +1516,21 @@ and the optional subtitle providers (SUBDL and Subsource are searched but their 
 filtered out until the player can load them). These hooks are wired and compiled, but only the parsing, policy and
 request building are covered by tests: nothing was exercised against a real server, Wyzie or an AI provider. The
 decode-error transcode retry is still not wired.
+
+## Regression runs 25 to 28 (8 November)
+
+Run 24 (66 cases, round 5) and run 25 (85 cases, round 6) passed in full. Run 26 re-ran 35 older and new classes
+(375 cases) over the shared code that rounds 4 to 6 touched: 372 passed and 3 failed, all in `SubtitleSeekTests`
+(real mpv seeks on a simulator GL surface): `testDownloadedCommunityWebVTTCuesFollowSeeksAfterResumingMidVideo` and
+`testEmbeddedAndExternalCuesFollowForwardBackwardAndPausedSeeks` never reached the paused start (position 0.0, "Native
+seek did not settle"), and `testHTTPRangeSeeksRetainEmbeddedAndExternalCuesAndRenderedSubtitles` missed its playing-seek
+window (position 29.7 instead of 21 to 23). Run 27 (side branch `ios/wip-simkl-batch`, 37 cases: the three SIMKL batching
+tests, CardRatingsTests, ProviderRatingsTests and SubtitleSeekTests alone) passed everything except two of the three
+seek cases, so the failures are not caused by the order of the large run. Run 28 (`ios/wip-seek-bisect`, branch cut at
+`02278d3e`, the commit before the player control settings) runs the same three cases to tell a regression from tonight's
+player changes (`volume-max` and the short seek steps in `PlaybackOptions.mpvOptions`) from an older or environmental
+failure; its result was not read before the shutdown (run 42343468637). Nothing in these cases exercises the new
+subtitle provider hook, which only appends candidates after the addon search.
+
+SIMKL poster chips now share one request across cards (`SimklCommunityRatings.coalescedRating`, 60 ms window, batches of
+120), as Desktop's card lookups do; three tests passed in run 27.
