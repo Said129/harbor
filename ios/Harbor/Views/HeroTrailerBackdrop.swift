@@ -2,11 +2,12 @@ import Network
 import SwiftUI
 import WebKit
 
-/// The network state the trailer policy reads. It follows the live path and is never persisted.
+/// The network state the trailer policy reads. It follows the live path and is never persisted. Until the first path
+/// update arrives both flags are set, so nothing loads on a metered connection before the system has answered.
 @MainActor @Observable final class HeroTrailerNetwork {
     static let shared = HeroTrailerNetwork()
-    private(set) var expensive = false
-    private(set) var constrained = false
+    private(set) var expensive = true
+    private(set) var constrained = true
     @ObservationIgnored private let monitor = NWPathMonitor()
 
     private init() {
