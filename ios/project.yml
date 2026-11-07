@@ -232,6 +232,7 @@ targets:
       - path: HarborTests/LiveReconnectTests.swift
       - path: HarborTests/TogetherTests.swift
       - path: HarborTests/TheIntroDBTests.swift
+      - path: HarborTests/DetailSettingsRulesTests.swift
       - path: HarborTests/TogetherPlayerSyncTests.swift
       - path: HarborTests/CastChromecastTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
