@@ -82,20 +82,21 @@ final class CalendarModel {
             let configuration = MetadataPreferences.shared.configuration()
             items = await fetcher.allUpcoming(key: configuration.tmdbKey, region: configuration.region, year: year, month: number)
         case .trakt:
-            let owner = app.personalOwner, scope = app.accountOperationScope
-            let account = TraktAccountStore.forOwner(owner)
-            do { if !account.ready { try account.load() } } catch { return }
-            guard account.session != nil else { return }
-            let lease: TraktClient.Active = { [weak app] in app?.personalOwner == owner && app?.accountOperationScope == scope && app?.storageReady == true }
-            fetcher.mine = { endpoint in
-                guard let value = try? await account.response(.home(endpoint), active: lease), case .array = value else { return nil }
-                return value
-            }
+            guard connectTrakt(&fetcher, app: app) else { return }
             items = await fetcher.myTrakt(year: year, month: number)
         case .anticipated:
             items = await fetcher.anticipated(year: year, month: number)
         case .simklAnticipated:
             items = await fetcher.simklPremieres(year: year, month: number)
+        case .custom:
+            let configuration = MetadataPreferences.shared.configuration()
+            let filters = CustomCalendarStore.shared.value
+            guard !configuration.tmdbKey.isEmpty else { return }
+            // Desktop adds the Trakt sources the person switched on; either one failing just leaves it out.
+            var extra: [CalendarItem] = []
+            if filters.includeTraktAnticipated { extra += await fetcher.anticipated(year: year, month: number) }
+            if filters.includeTraktWatchlist, connectTrakt(&fetcher, app: app) { extra += await fetcher.myTrakt(year: year, month: number) }
+            items = await fetcher.customCalendar(key: configuration.tmdbKey, region: configuration.region, filters: filters, year: year, month: number, extra: extra)
         case .anime:
             items = animeDub ? await fetcher.animeDub(year: year, month: number) : await fetcher.animeAiring(year: year, month: number)
         }
@@ -104,6 +105,19 @@ final class CalendarModel {
             guard let date = item.instant ?? CalendarTime.startOfDay(item.releaseDate, calendar: calendar) else { return nil }
             return ReleaseEvent(media: item.media, episode: nil, date: date, label: item.name, hasTime: item.instant != nil, isAnime: item.isAnime)
         }
+    }
+    /// Gives the fetcher the signed-in Trakt account's calendar; false when Trakt is not connected.
+    private func connectTrakt(_ fetcher: inout CalendarFetcher, app: AppModel) -> Bool {
+        let owner = app.personalOwner, scope = app.accountOperationScope
+        let account = TraktAccountStore.forOwner(owner)
+        do { if !account.ready { try account.load() } } catch { return false }
+        guard account.session != nil else { return false }
+        let lease: TraktClient.Active = { [weak app] in app?.personalOwner == owner && app?.accountOperationScope == scope && app?.storageReady == true }
+        fetcher.mine = { endpoint in
+            guard let value = try? await account.response(.home(endpoint), active: lease), case .array = value else { return nil }
+            return value
+        }
+        return true
     }
     private func parseDate(_ raw: String) -> Date? {
         ISO8601DateFormatter().date(from: raw) ?? ISO8601DateFormatter().date(from: String(raw.prefix(10)) + "T00:00:00Z")

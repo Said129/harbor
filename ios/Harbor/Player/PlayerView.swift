@@ -89,6 +89,7 @@ struct PlayerView: View {
     @State private var autoSkipped: Set<String> = []
     @State private var stillWatchingEpisode: Episode?
     @State private var screenLocked = false
+    @State private var leaveConfirm = false
     @State private var offsetShown: Double?
     @State private var offsetTask: Task<Void, Never>?
     @State private var unlockVisible = false
@@ -192,11 +193,12 @@ struct PlayerView: View {
             }
             SubtitleSyncFeedback(state: state)
             // Desktop's default hotkeys for an iPad keyboard: Space, arrows, comma and period, M, Home, End, Esc.
-            PlayerKeyboardShortcuts(state: state, enabled: active && !resumePending && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && stillWatchingEpisode == nil && !screenLocked,
+            PlayerKeyboardShortcuts(state: state, enabled: active && !resumePending && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && stillWatchingEpisode == nil && !screenLocked && !leaveConfirm,
                                     seekBack: preferences.options.seekBackSeconds, seekForward: preferences.options.seekForwardSeconds,
+                                    seekBackShort: preferences.options.seekBackShortSeconds, seekForwardShort: preferences.options.seekForwardShortSeconds,
                                     jump: { jump($0); restartHideTimer() },
                                     togglePause: { if state.ended { state.controller?.replay() } else { state.controller?.togglePause() }; restartHideTimer() },
-                                    close: { dismiss() })
+                                    close: { requestClose() })
             if let episode = stillWatchingEpisode {
                 StillWatchingPrompt(show: title, nextLabel: "\(DesktopInterfaceText.value("Episode")) \(episode.listedEpisode ?? 0)", keepWatching: {
                     StillWatching.shared.reset(); stillWatchingEpisode = nil; requestEpisode(episode)
@@ -448,6 +450,14 @@ struct PlayerView: View {
             updateIdleTimer()
         }
         .onChange(of: scenePhase) { _, phase in if phase != .active { saveCheckpoint(exiting: false) }; restartHideTimer(); updateIdleTimer() }
+        .overlay {
+            if leaveConfirm {
+                PlayerLeaveConfirm(keep: { leaveConfirm = false }, leave: { remember in
+                    if remember { preferences.options.confirmLeave = false }
+                    leaveConfirm = false; dismiss()
+                })
+            }
+        }
         .onChange(of: library?.owner) { _, owner in if let owner, owner != session.owner { dismiss() } }
         .onChange(of: episodeNavigationIdentity) { _, _ in updateAdjacentEpisodes() }
         .onChange(of: AppProfileContext.shared.activationID) { _, _ in dismiss() }
@@ -636,6 +646,12 @@ struct PlayerView: View {
             }
         }
     }
+    /// Desktop's `requestPlayerClose`: Esc leaves at once, or asks first while "Ask before leaving" is on.
+    private func requestClose() {
+        if leaveConfirm { leaveConfirm = false; return }
+        if preferences.options.confirmLeave { leaveConfirm = true } else { dismiss() }
+    }
+
     private func jump(_ seconds: Double) {
         guard !retrying, !state.restarting, !sourceChanging, !episodeChanging, state.loaded else { return }
         state.controller?.seekRelative(seconds); restartHideTimer()

@@ -1,9 +1,10 @@
 import Foundation
 
-/// The calendar's sources (Desktop's `calendarSource` setting, same values). My Simkl, Custom and Games are not offered yet.
+/// The calendar's sources (Desktop's `calendarSource` setting, same values). My Simkl and Games are not offered yet.
 enum CalendarSource: String, CaseIterable, Sendable {
     case library, all, trakt, anticipated, anime
     case simklAnticipated = "simkl-anticipated"
+    case custom
 
     /// Desktop's label, a translation key.
     var label: String {
@@ -14,6 +15,7 @@ enum CalendarSource: String, CaseIterable, Sendable {
         case .anticipated: "Trakt anticipated"
         case .simklAnticipated: "Simkl premieres"
         case .anime: "Anime"
+        case .custom: "Custom"
         }
     }
     var hint: String {
@@ -24,6 +26,7 @@ enum CalendarSource: String, CaseIterable, Sendable {
         case .anticipated: "The most anticipated upcoming releases on Trakt"
         case .simklAnticipated: "New shows and anime premiering this month, from Simkl"
         case .anime: "Anime episodes airing this month, sub or dub"
+        case .custom: "Build your own feed from actors, directors, and Trakt lists"
         }
     }
     var icon: String {
@@ -33,6 +36,7 @@ enum CalendarSource: String, CaseIterable, Sendable {
         case .trakt, .anticipated: "tracker-trakt"
         case .simklAnticipated: "tracker-simkl"
         case .anime: "nav-anime"
+        case .custom: "desktop-star"
         }
     }
     /// Desktop hides "My Trakt" until Trakt is connected, and the Simkl source until Simkl is.
@@ -360,6 +364,106 @@ enum CalendarSources {
         return byDate(items)
     }
 
+    // MARK: Custom (people, genres, providers and countries)
+
+    /// Desktop's `discoverFiltered`: a month of TMDB discover narrowed by genre, provider and origin country. No filter, no request.
+    static func discoverFiltered(key: String, start: String, end: String, region: String, kind: String, genreIDs: [Int], providerIDs: [Int], countries: [String]) -> URL? {
+        guard !(genreIDs.isEmpty && providerIDs.isEmpty && countries.isEmpty), kind == "movie" || kind == "tv" else { return nil }
+        var query: [(String, String)] = []
+        if kind == "movie" {
+            query += [("primary_release_date.gte", start), ("primary_release_date.lte", end)]
+            if !region.isEmpty { query.append(("region", region)) }
+            query.append(("with_runtime.gte", "30"))
+        } else {
+            query += [("first_air_date.gte", start), ("first_air_date.lte", end)]
+        }
+        query += [("sort_by", "popularity.desc"), ("include_adult", "false")]
+        if !genreIDs.isEmpty { query.append(("with_genres", genreIDs.map(String.init).joined(separator: ","))) }
+        if !providerIDs.isEmpty {
+            query.append(("with_watch_providers", providerIDs.map(String.init).joined(separator: "|")))
+            query.append(("watch_region", region.isEmpty ? "US" : region))
+        }
+        if !countries.isEmpty { query.append(("with_origin_country", countries.joined(separator: "|"))) }
+        return tmdbURL("/discover/\(kind)", key: key, query)
+    }
+    static func personCreditsURL(key: String, personID: Int, kind: String) -> URL? {
+        guard personID > 0, kind == "movie" || kind == "tv" else { return nil }
+        return tmdbURL("/person/\(personID)/\(kind)_credits", key: key, [])
+    }
+    static func searchPeopleURL(key: String, query: String) -> URL? {
+        tmdbURL("/search/person", key: key, [("query", query), ("include_adult", "false")])
+    }
+
+    private static func firstText(_ values: JSONValue...) -> String {
+        values.compactMap { $0.string }.first { !$0.isEmpty } ?? "Untitled"
+    }
+
+    /// A TMDB movie or show row as an item, with Desktop's name fallbacks (title, original title, "Untitled").
+    static func tmdbRowItem(_ row: JSONValue, movie: Bool) -> CalendarItem? {
+        guard let id = row["id"].integer else { return nil }
+        func picture(_ field: String, _ size: String) -> String? {
+            guard let path = row[field].string, !path.isEmpty else { return nil }
+            return "\(image)/\(size)\(path)"
+        }
+        let date = row[movie ? "release_date" : "first_air_date"].string ?? ""
+        return CalendarItem(id: "tmdb:\(movie ? "movie" : "tv"):\(id)", imdbID: nil, isMovie: movie,
+                            name: movie ? firstText(row["title"], row["original_title"]) : firstText(row["name"], row["original_name"]),
+                            poster: picture("poster_path", "w342"), background: picture("backdrop_path", "w780"), releaseDate: String(date.prefix(10)),
+                            isAnime: isAnimeRow(row), overview: row["overview"].string ?? "", voteAverage: row["vote_average"].numericValue ?? 0)
+    }
+
+    /// Desktop's `discoverFiltered` mapping.
+    static func discoverItems(_ rows: [JSONValue], movie: Bool) -> [CalendarItem] { rows.compactMap { tmdbRowItem($0, movie: movie) } }
+
+    /// Desktop's `fetchPersonUpcoming` mapping: a person's cast and crew credits dated inside the window, once per title.
+    static func personItems(movies: [JSONValue], shows: [JSONValue], start: String, end: String) -> [CalendarItem] {
+        func inWindow(_ date: String?) -> Bool {
+            guard let date, !date.isEmpty else { return false }
+            let day = String(date.prefix(10))
+            return day >= start && day <= end
+        }
+        var items: [CalendarItem] = []
+        var seen = Set<String>()
+        for row in movies where inWindow(row["release_date"].string) {
+            if let item = tmdbRowItem(row, movie: true), seen.insert(item.id).inserted { items.append(item) }
+        }
+        for row in shows where inWindow(row["first_air_date"].string) {
+            if let item = tmdbRowItem(row, movie: false), seen.insert(item.id).inserted { items.append(item) }
+        }
+        return items
+    }
+
+    /// Desktop's `fetchCustomCalendar` merge: the extra sources first, then the people and discover batches; only the
+    /// media types the person wants (anime has its own switch), one item per title, by day.
+    static func customItems(batches: [[CalendarItem]], extra: [CalendarItem], mediaTypes: CustomCalendar.MediaTypes) -> [CalendarItem] {
+        var seen = Set<String>()
+        var kept: [CalendarItem] = []
+        for item in extra + batches.flatMap({ $0 }) {
+            let wanted = item.isAnime ? mediaTypes.anime : (item.isMovie ? mediaTypes.movie : mediaTypes.tv)
+            guard wanted, seen.insert(item.id).inserted else { continue }
+            kept.append(item)
+        }
+        return byDate(kept)
+    }
+
+    struct PersonResult: Equatable, Sendable, Identifiable {
+        let id: Int
+        let name: String
+        let profile: String?
+        let knownFor: String
+    }
+
+    /// People from a TMDB person search, as Desktop's search lists them: what they are known for, else their department.
+    static func people(from json: JSONValue?, limit: Int = 8) -> [PersonResult] {
+        guard let json else { return [] }
+        return json["results"].array.compactMap { row -> PersonResult? in
+            guard let id = row["id"].integer, let name = row["name"].string, !name.isEmpty else { return nil }
+            let known = row["known_for"].array.map { $0["title"].string ?? $0["name"].string ?? "" }.filter { !$0.isEmpty }.prefix(2).joined(separator: ", ")
+            let profile = row["profile_path"].string.flatMap { $0.isEmpty ? nil : $0 }
+            return PersonResult(id: id, name: name, profile: profile, knownFor: known.isEmpty ? (row["known_for_department"].string ?? "Cast") : known)
+        }.prefix(limit).map { $0 }
+    }
+
     // MARK: Library names and empty months
 
     /// Desktop's `normalizeName`.
@@ -390,7 +494,7 @@ enum CalendarSources {
         case .anime:
             if animeDub { return EmptyMonth(heading: "No dubbed episodes this month", message: "The dub schedule has no episodes releasing this month. Try a different month.") }
             return EmptyMonth(heading: "Nothing airing this month", message: "AniList has no anime episodes scheduled to air this month. Try a different month.")
-        case .all:
+        case .all, .custom:
             if watchlistOnly { return EmptyMonth(heading: "Nothing this month", message: "Nothing from your library lands this month. Toggle Watchlist off to see all releases.") }
             if filter == "all" { return EmptyMonth(heading: "Nothing this month", message: "TMDB has no notable releases for this month and region.") }
             return EmptyMonth(heading: "Nothing this month", message: "No {kind} releases this month. Try a different filter.", variables: ["kind": filter == "movie" ? "movies" : "TV"])
@@ -516,6 +620,55 @@ struct CalendarFetcher: Sendable {
         async let movies = simklCatalog("movie", year: year, month: month)
         let (a, b, c) = await (shows, anime, movies)
         return CalendarSources.byDate(a + b + c)
+    }
+
+    private func credits(_ url: URL?) async -> [JSONValue] {
+        guard let url, let data = await json(url) else { return [] }
+        return data["cast"].array + data["crew"].array
+    }
+
+    private func discover(_ url: URL?, movie: Bool) async -> [CalendarItem] { CalendarSources.discoverItems(await results(url), movie: movie) }
+
+    /// Custom: the people followed, the discover queries their genres, providers and countries make, and any extra sources,
+    /// kept to the media types wanted. Needs the TMDB key.
+    func customCalendar(key: String, region: String, filters: CustomCalendar, year: Int, month: Int, extra: [CalendarItem] = []) async -> [CalendarItem] {
+        guard !key.isEmpty, let range = CalendarTime.monthRange(year: year, month: month, calendar: calendar) else { return [] }
+        let movieGenres = filters.genres.filter { $0.mediaType == "movie" }.map(\.id)
+        let tvGenres = filters.genres.filter { $0.mediaType == "tv" }.map(\.id)
+        let providers = filters.watchProviders.map(\.id)
+        let wantsMovies = filters.mediaTypes.movie || filters.mediaTypes.anime
+        let wantsShows = filters.mediaTypes.tv || filters.mediaTypes.anime
+        var jobs: [@Sendable () async -> [CalendarItem]] = []
+        for person in filters.trackedPeople {
+            jobs.append { @Sendable in
+                async let movies = self.credits(CalendarSources.personCreditsURL(key: key, personID: person.id, kind: "movie"))
+                async let shows = self.credits(CalendarSources.personCreditsURL(key: key, personID: person.id, kind: "tv"))
+                let (m, s) = await (movies, shows)
+                return CalendarSources.personItems(movies: m, shows: s, start: range.start, end: range.end)
+            }
+        }
+        if wantsMovies {
+            let url = CalendarSources.discoverFiltered(key: key, start: range.start, end: range.end, region: region, kind: "movie", genreIDs: movieGenres, providerIDs: providers, countries: filters.originCountries)
+            jobs.append { @Sendable in await self.discover(url, movie: true) }
+        }
+        if wantsShows {
+            let url = CalendarSources.discoverFiltered(key: key, start: range.start, end: range.end, region: region, kind: "tv", genreIDs: tvGenres, providerIDs: providers, countries: filters.originCountries)
+            jobs.append { @Sendable in await self.discover(url, movie: false) }
+        }
+        let batches = await withTaskGroup(of: (Int, [CalendarItem]).self) { group -> [[CalendarItem]] in
+            for (index, job) in jobs.enumerated() { group.addTask { (index, await job()) } }
+            var found: [Int: [CalendarItem]] = [:]
+            for await (index, items) in group { found[index] = items }
+            return jobs.indices.map { found[$0] ?? [] }
+        }
+        return CalendarSources.customItems(batches: batches, extra: extra, mediaTypes: filters.mediaTypes)
+    }
+
+    /// A person search for the Custom source's "Track people" field.
+    func searchPeople(key: String, query: String) async -> [CalendarSources.PersonResult] {
+        let text = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !key.isEmpty, !text.isEmpty, let url = CalendarSources.searchPeopleURL(key: key, query: text) else { return [] }
+        return CalendarSources.people(from: await json(url))
     }
 
     /// Anime (Dub): the dub schedule's episodes of the month.

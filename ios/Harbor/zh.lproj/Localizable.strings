@@ -28,6 +28,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 协议客户端。两分钟即可完成设置，其中大部分为可选项。所有密钥均由你掌控。";
 "A continuación" = "接下来播放";
 "A short note about this list" = "A short note about this list";
+"A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "按住 Shift 并按方向键时进行更短距离的跳转，便于每次微调几秒。";
 "A to Z" = "按名称";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
@@ -70,6 +71,7 @@
 "Add Source" = "添加来源";
 "Add a TMDB API key in Metadata settings to search for titles." = "请在元数据设置中添加 TMDB API 密钥以搜索作品。";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "在设置中添加 TMDB 密钥，即可解锁完整的探索信息流。";
+"Add a TMDB key in settings first" = "请先在设置中添加 TMDB 密钥";
 "Add a movie or show to this list..." = "将电影或剧集添加到此片单…";
 "Add a repository" = "添加仓库";
 "Add bookmark" = "Add bookmark";
@@ -192,6 +194,7 @@
 "Arrows" = "箭头";
 "Artistas" = "艺人";
 "Artists" = "艺人";
+"Ask before leaving" = "离开前询问";
 "Ask if you're still watching" = "询问你是否仍在观看";
 "Ask to resume or start over" = "询问继续播放还是从头开始";
 "Aspect ratio" = "画面比例";
@@ -205,6 +208,7 @@
 "Audio not labeled" = "音频未标注";
 "Audio sin etiqueta" = "音频未标注";
 "Audio track" = "音轨";
+"Australia" = "澳大利亚";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on AniList" = "在 AniList 上授权 Harbor";
 "Authorize Harbor on MyAnimeList" = "在 MyAnimeList 上授权 Harbor";
@@ -316,6 +320,7 @@
 "Botón Marcar como visto" = "“标为已看”按钮";
 "Botón cuadrado de reproducción" = "方形播放按钮";
 "Box color" = "背景框颜色";
+"Brazil" = "巴西";
 "Brighten dark movies" = "提亮昏暗影片";
 "Brightness" = "亮度";
 "Brillo" = "亮度";
@@ -334,6 +339,7 @@
 "Browsing" = "正在浏览";
 "Buffer" = "Buffer";
 "Build" = "构建版本";
+"Build your own feed from actors, directors, and Trakt lists" = "使用演员、导演和 Trakt 清单创建专属信息流";
 "Build your own palette" = "创建自己的配色方案";
 "Built for Adventure!" = "为冒险而生！";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
@@ -358,6 +364,7 @@
 "Cambiar nombre de {name}" = "重命名 {name}";
 "Cambiar orden de capítulos" = "Change chapter order";
 "Can't decide?" = "拿不定主意？";
+"Canada" = "加拿大";
 "Canales OTA + IPTV" = "OTA 频道 + IPTV";
 "Cancel" = "取消";
 "Cancel analysis" = "Cancel analysis";
@@ -401,6 +408,7 @@
 "Checking with MyAnimeList..." = "正在通过 MyAnimeList 检查…";
 "Checking…" = "正在检查…";
 "Checksum did not match the manifest." = "校验和与清单不匹配。";
+"China" = "中国";
 "Chinese" = "中文";
 "Chinese (Simplified)" = "简体中文";
 "Choose an avatar" = "选择头像";
@@ -485,6 +493,7 @@
 "Connect Simkl" = "连接 Simkl";
 "Connect TMDB" = "连接 TMDB";
 "Connect Trakt" = "连接 Trakt";
+"Connect Trakt in settings first" = "请先在“设置”中连接 Trakt";
 "Connected" = "已连接";
 "Connected as {username}" = "已以 {username} 的身份连接";
 "Connected to AniList" = "已连接到 AniList";
@@ -650,6 +659,7 @@
 "Documentary" = "纪录片";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
+"Don't ask me again" = "不再询问";
 "Done" = "完成";
 "Done editing" = "完成编辑";
 "Download" = "下载";
@@ -793,6 +803,8 @@
 "File is larger than 2 MB." = "文件大于 2 MB。";
 "Fill" = "填充";
 "Film" = "电影";
+"Filter countries" = "筛选国家/地区";
+"Filter genres" = "筛选类型";
 "Filters" = "筛选";
 "Finding lyrics" = "正在查找歌词";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
@@ -819,6 +831,7 @@
 "Found {count} streams in {seconds}s." = "在 {seconds} 秒内找到 {count} 个播放源。";
 "Foundation Years (90s)" = "奠基年代（90 年代）";
 "Frame rate" = "帧率";
+"France" = "法国";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "免费注册，仅需两分钟。可解锁“热门趋势”、“正在上映”、“高分内容”和各流媒体平台目录（Netflix、Disney+、Hulu 等）。密钥仅保存在此设备上。";
 "French" = "法语";
 "From" = "来源";
@@ -837,8 +850,10 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "伽马";
 "Genre" = "类型";
+"Genres" = "类型";
 "Gently magnify nearby posters as you move across a poster row." = "在海报行中移动时，轻微放大附近的海报。";
 "German" = "德语";
+"Germany" = "德国";
 "Get Started" = "开始使用";
 "Get a free key at themoviedb.org" = "前往 themoviedb.org 获取免费密钥";
 "Get an API key" = "获取 API 密钥";
@@ -930,6 +945,7 @@
 "Horizontal" = "横向";
 "Horror" = "恐怖";
 "Horror & Supernatural" = "恐怖与超自然";
+"How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "设置音量条可超过 100% 的最大增益。较高的设置可能会非常响。";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Harbor 等待各插件返回结果的时间。";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
@@ -977,6 +993,7 @@
 "In Theaters Now" = "正在热映";
 "In Watchlist" = "已在待看清单中";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"India" = "印度";
 "Indonesian" = "印度尼西亚语";
 "Información" = "信息";
 "Information" = "信息";
@@ -1005,10 +1022,12 @@
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "它与 {product} 的制作者，以及应用内提及的任何公司、插件作者或商标持有人均无关联。";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "它不隶属于 {company}，也未获得其认可或赞助，与其不存在任何形式的关联。";
 "Italian" = "意大利语";
+"Italy" = "意大利";
 "Izquierda" = "左对齐";
 "Izquierda a derecha" = "从左到右";
 "JSON URL" = "JSON URL";
 "JSON cannot be empty" = "JSON 不能为空";
+"Japan" = "日本";
 "Japan's top science-fiction comic honor" = "日本顶级科幻漫画奖项";
 "Japanese" = "日语";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "片头一开始就自动跳过。回退到片头会重新播放，不会再次跳过。跳过按钮遵循上方设置。";
@@ -1034,6 +1053,8 @@
 "Large" = "大号";
 "Larger" = "较大";
 "Laterales" = "双页";
+"Leave" = "离开";
+"Leave the show?" = "要离开此节目吗？";
 "Lectura" = "正在读取";
 "Left" = "左对齐";
 "Left to right" = "从左到右";
@@ -1128,6 +1149,7 @@
 "Mark watched button" = "“标为已看”按钮";
 "Max" = "最大";
 "Maximum" = "最高";
+"Maximum volume boost" = "最大音量增益";
 "Mecha" = "机甲";
 "Media" = "媒体";
 "Mejor valorado" = "评分最高";
@@ -1138,6 +1160,7 @@
 "Metadata" = "元数据";
 "Metadata language" = "元数据语言";
 "Metadata providers" = "元数据提供商";
+"Mexico" = "墨西哥";
 "Mezclar sonido envolvente a estéreo" = "将环绕声下混为立体声";
 "Mi biblioteca" = "我的媒体库";
 "Mis canales" = "My channels";
@@ -1154,6 +1177,7 @@
 "More info" = "更多信息";
 "Most Popular" = "最受欢迎";
 "Most Popular on MAL" = "MAL 人气榜";
+"Most-anticipated upcoming releases on Trakt" = "Trakt 上最受期待的即将上线作品";
 "Mostrar" = "显示";
 "Mostrar botón Más información" = "显示“更多信息”按钮";
 "Mostrar como Top 10 con números grandes" = "显示为带大号排名数字的前 10 名榜单";
@@ -1198,6 +1222,7 @@
 "Muted text" = "弱化文本";
 "My Library" = "我的媒体库";
 "My Trakt" = "我的 Trakt";
+"My Trakt watchlist" = "我的 Trakt 待看列表";
 "My channels" = "My channels";
 "My library" = "我的媒体库";
 "My lists" = "我的列表";
@@ -1259,6 +1284,7 @@
 "No episodes found for this season." = "未找到本季剧集。";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "暂无收藏";
+"No filters" = "无筛选条件";
 "No hay coincidencias." = "无匹配结果。";
 "No hay descripción disponible." = "暂无简介。";
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
@@ -1276,6 +1302,7 @@
 "No matches for these filters." = "没有符合这些筛选条件的结果。";
 "No matches." = "无匹配结果。";
 "No matches. Try another title." = "无匹配结果。请尝试其他片名。";
+"No people found" = "未找到人物";
 "No picks loaded. TMDB might be unreachable." = "未加载任何推荐。可能无法连接 TMDB。";
 "No playable streams turned up, and no debrid is configured. Real-Debrid, TorBox, AllDebrid, Premiumize, or Debrid-Link will unlock raw torrent results. Some addons bake debrid in (Sootio, Comet/ElfHosted, MediaFusion/ElfHosted) and play without your own keys." = "未找到可播放的视频流，且尚未配置 Debrid。Real-Debrid、TorBox、AllDebrid、Premiumize 或 Debrid-Link 可解锁原始种子结果。部分插件已内置 Debrid（Sootio、Comet/ElfHosted、MediaFusion/ElfHosted），无需你自己的密钥即可播放。";
 "No preferred languages selected." = "未选择首选语言。";
@@ -1328,6 +1355,7 @@
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "没有可发送的内容。片单中的全部 {n} 个项目都是动漫，而 Trakt 无法跟踪动漫。";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "尚未观看任何内容";
+"Nothing yet" = "暂无内容";
 "Notify me" = "Notify me";
 "Now" = "现在";
 "Now Playing" = "正在播放";
@@ -1394,6 +1422,7 @@
 "Orden inverso" = "Reverse order";
 "Ordenar" = "排序";
 "Ordenar por" = "排序方式";
+"Origin country" = "制片国家";
 "Original" = "原图";
 "Original language" = "原始语言";
 "Oscuro" = "深色";
@@ -1628,6 +1657,7 @@
 "Remove preset" = "删除预设";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "移除{language}";
+"Remove {name}" = "移除 {name}";
 "Removed" = "已移除";
 "Removed from \"{name}\"" = "已从“{name}”中移除";
 "Rename" = "重命名";
@@ -1751,6 +1781,7 @@
 "Se muestra al mismo tiempo que el subtítulo principal." = "与主字幕同时显示。";
 "Se usa con 55 % / 25 % de opacidad." = "使用 55% / 25% 不透明度。";
 "Search" = "搜索";
+"Search actors, directors…" = "搜索演员、导演…";
 "Search addons" = "搜索插件";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
 "Search is too long." = "Search is too long.";
@@ -1819,6 +1850,7 @@
 "Sharpen" = "锐化";
 "Sharper lines and a little more pop." = "线条更锐利，画面更有活力。";
 "Short of the Year" = "年度短片奖";
+"Short seek (Shift + arrows)" = "短距离跳转（Shift + 方向键）";
 "Show" = "显示";
 "Show More info button" = "显示“更多信息”按钮";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Harbor 检测到片头或片尾时，显示“跳过片头”或“跳过片尾”按钮。关闭后将不再显示。也可点按按钮上的 X，在本集剩余时间内忽略错误识别。";
@@ -1836,6 +1868,7 @@
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "按各插件返回的原始顺序显示结果，并依照你的插件列表分组。与 Stremio 和 Vidi 应用一致。";
 "Show episode" = "显示剧集";
 "Show episode description" = "显示单集简介";
+"Show episode ratings" = "显示剧集评分";
 "Show everything anyway" = "仍要显示全部";
 "Show full descriptions" = "显示完整简介";
 "Show hidden episodes" = "显示隐藏剧集";
@@ -1916,7 +1949,9 @@
 "Sources & library" = "来源与媒体库";
 "Sources and quality" = "Sources and quality";
 "Sources in these languages sort to the top of the picker." = "这些语言的来源将在选择器中优先显示。";
+"South Korea" = "韩国";
 "Space" = "空格";
+"Spain" = "西班牙";
 "Spanish" = "西班牙语";
 "Spanish (Latin America)" = "拉丁美洲西班牙语";
 "Specials" = "特别篇";
@@ -2154,6 +2189,7 @@
 "Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
 "Torrents" = "种子";
 "Track" = "轨道";
+"Track people" = "关注人物";
 "Tracking" = "Tracking";
 "Tracking what you watch" = "记录你的观看内容";
 "Tracks" = "轨道";
@@ -2173,6 +2209,7 @@
 "Trakt rejected the request (account locked or permission denied)." = "Trakt 拒绝了请求（账户已锁定或权限被拒绝）。";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt 报告授权被拒绝。如果并非有意拒绝，请重试。";
 "Trakt sign-in expired. Reconnect Trakt in settings and try again." = "Trakt 登录已过期。请在设置中重新连接 Trakt，然后重试。";
+"Trakt sources" = "Trakt 片源";
 "Trakt watchlist" = "Trakt 待看清单";
 "Transfer primary" = "转移主个人资料";
 "Translate titles" = "翻译标题";
@@ -2212,6 +2249,8 @@
 "Un poco más claro que el fondo." = "比背景稍亮。";
 "Unavailable" = "不可用";
 "Undo" = "撤销";
+"United Kingdom" = "英国";
+"United States" = "美国";
 "Unknown" = "未知";
 "Unlock controls" = "解锁控件";
 "Unmute" = "取消静音";
@@ -2223,6 +2262,7 @@
 "Upcoming Season" = "下一季新番";
 "Upcoming episodes and movies from your Trakt watchlist" = "Trakt 待看清单中即将上线的剧集和电影";
 "Upcoming episodes and movies from your saved shows" = "你保存的节目中即将上线的剧集和电影";
+"Upcoming items from your watchlist" = "待看清单中即将上线的内容";
 "Update" = "更新";
 "Update all" = "全部更新";
 "Updated {when}" = "更新于 {when}";
@@ -2279,10 +2319,12 @@
 "Watching" = "正在观看";
 "Watchlist" = "想看清单";
 "Watchlist only" = "仅待看清单";
+"We'll save your spot so you can pick up right where you left off." = "我们会保存你的观看位置，方便你下次从上次停下的地方继续。";
 "Weekend watchlist" = "周末片单";
 "Welcome to Harbor" = "欢迎使用 Harbor";
 "Western" = "西部";
 "What everyone is reading" = "大家都在读";
+"When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "当按 Esc 将关闭播放器时，先显示快速确认提示。你可以在提示中勾选“不再询问”，以后按 Esc 将直接退出。";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "当一个版本包含多个音轨时，Harbor 会选择此列表中第一个匹配的音轨。";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "一集结束后自动播放下一集。关闭后，本集播放完即停止。";
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "自动播放下一集时，继续使用刚才观看的同一版本或播放源，而非 Harbor 排名最高的播放源。如果该播放源不可用，则回退到最佳播放源。";
@@ -2332,6 +2374,8 @@
 "Your watchlist is empty, nothing to send." = "你的片单为空，没有可发送的内容。";
 "Yours" = "你的";
 "Zoom" = "缩放";
+"active" = "已启用";
+"added" = "已添加";
 "anime" = "动漫";
 "auto" = "自动";
 "cam rips" = "枪版";
@@ -3503,6 +3547,7 @@
 "{ms} ms" = "{ms} 毫秒";
 "{m}m left" = "剩余 {m} 分钟";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} 以及所有其他名称、徽标和品牌标识均为其各自所有者的财产，此处仅用于兼容和识别。";
+"{name} (TV)" = "{name}（电视剧）";
 "{name} + {n} more" = "{name} + 另 {n} 个";
 "{name} + {n} más" = "{name} + 另 {n} 个";
 "{n} / {max} items" = "{n} / {max} 项";

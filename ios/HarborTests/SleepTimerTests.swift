@@ -193,8 +193,8 @@ final class PlayerShortcutTests: XCTestCase {
     func testSeekShortcutsMoveByDesktopsSteps() {
         XCTAssertEqual(PlayerShortcut.seekBack.seekSeconds(back: 15, forward: 20), -15)
         XCTAssertEqual(PlayerShortcut.seekForward.seekSeconds(back: 15, forward: 20), 20)
-        XCTAssertEqual(PlayerShortcut.seekBackShort.seekSeconds(back: 15, forward: 20), -5)
-        XCTAssertEqual(PlayerShortcut.seekForwardShort.seekSeconds(back: 15, forward: 20), 5)
+        XCTAssertEqual(PlayerShortcut.seekBackShort.seekSeconds(back: 15, forward: 20), -3, "Desktop's short seek is 3 seconds until it is changed")
+        XCTAssertEqual(PlayerShortcut.seekForwardShort.seekSeconds(back: 15, forward: 20), 3)
         XCTAssertEqual(PlayerShortcut.seekBack30.seekSeconds(back: 5, forward: 5), -30)
         XCTAssertEqual(PlayerShortcut.seekForward30.seekSeconds(back: 5, forward: 5), 30)
         XCTAssertNil(PlayerShortcut.playPause.seekSeconds(back: 10, forward: 10)); XCTAssertNil(PlayerShortcut.mute.seekSeconds(back: 10, forward: 10))

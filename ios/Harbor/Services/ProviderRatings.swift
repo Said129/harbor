@@ -34,6 +34,17 @@ enum OmdbParser {
 
     static func votes(_ text: String?) -> Int? { text.flatMap { Int($0.replacingOccurrences(of: ",", with: "")) } }
 
+    /// Desktop's `performSeasonFetch` reading: episode number to IMDb rating, leaving out "N/A" and zero.
+    static func seasonRatings(_ json: JSONValue) -> [Int: Double] {
+        var ratings: [Int: Double] = [:]
+        for episode in json["Episodes"].array {
+            guard let text = episode["Episode"].string, let found = text.range(of: "^[0-9]+", options: .regularExpression), let number = Int(text[found]),
+                  let rating = episode["imdbRating"].string, rating != "N/A", let value = Double(rating), value > 0 else { continue }
+            ratings[number] = value
+        }
+        return ratings
+    }
+
     static func parse(_ json: JSONValue, now: Date = Date()) -> OmdbOutcome {
         if json["Response"].string == "False" {
             let message = json["Error"].string ?? ""
@@ -101,6 +112,9 @@ actor OmdbService {
     private var budgetValue = OmdbBudget()
     private var inflight: [String: Task<OmdbScores?, Never>] = [:]
     private var loaded = false
+    private var seasonCache: [String: [Int: Double]] = [:]
+    private var seasonInflight: [String: Task<[Int: Double], Never>] = [:]
+    static let seasonCacheLimit = 200
 
     init(defaults: UserDefaults = .standard, fetch: @escaping @Sendable (URL) async -> OmdbResponse = OmdbService.network) {
         self.defaults = defaults; self.fetch = fetch
@@ -191,6 +205,56 @@ actor OmdbService {
         let result = await task.value
         inflight[imdbID] = nil
         return result
+    }
+
+    static func seasonURL(key: String, imdbID: String, season: Int) -> URL? {
+        var parts = URLComponents(string: "https://www.omdbapi.com/")
+        parts?.queryItems = [URLQueryItem(name: "i", value: imdbID), URLQueryItem(name: "Season", value: String(season)), URLQueryItem(name: "apikey", value: key)]
+        return parts?.url
+    }
+
+    /// Desktop's `omdbSeasonRatings`: the IMDb ratings of one season's episodes by episode number. Answers are kept for
+    /// the session, a refused key or a spent allowance returns nothing, and every request counts against the day's budget.
+    func seasonRatings(key: String, imdbID: String, season: Int, now: Date = Date()) async -> [Int: Double] {
+        let apiKey = key.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !apiKey.isEmpty, imdbID.hasPrefix("tt"), season >= 1 else { return [:] }
+        load(now: now)
+        let id = "\(imdbID):\(season)"
+        if let hit = seasonCache[id] { return hit }
+        if let pending = seasonInflight[id] { return await pending.value }
+        budgetValue = budget(now: now)
+        guard !budgetValue.blocked, let url = Self.seasonURL(key: apiKey, imdbID: imdbID, season: season) else { return [:] }
+        let task = Task<[Int: Double], Never> {
+            let response = await fetch(url)
+            return await finishSeason(response, id: id)
+        }
+        seasonInflight[id] = task
+        let result = await task.value
+        seasonInflight[id] = nil
+        return result
+    }
+
+    private func finishSeason(_ response: OmdbResponse, id: String) -> [Int: Double] {
+        switch response {
+        case .unauthorized:
+            budgetValue.keyInvalid = true; persist(); return [:]
+        case .failure:
+            return [:]
+        case .json(let json):
+            switch OmdbParser.parse(json) {
+            case .keyInvalid:
+                budgetValue.keyInvalid = true; persist(); return [:]
+            case .exhausted:
+                budgetValue.exhausted = true; budgetValue.used = budgetValue.limit; budgetValue.keyInvalid = false; persist(); return [:]
+            case .miss:
+                budgetValue.used += 1; persist(); return [:]
+            case .scores:
+                budgetValue.used += 1; budgetValue.keyInvalid = false; budgetValue.exhausted = false
+                let ratings = OmdbParser.seasonRatings(json)
+                if seasonCache.count >= Self.seasonCacheLimit { seasonCache.removeAll() }
+                seasonCache[id] = ratings; persist(); return ratings
+            }
+        }
     }
 
     private func finish(_ response: OmdbResponse, imdbID: String, now: Date) -> OmdbScores? {

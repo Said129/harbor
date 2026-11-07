@@ -211,7 +211,7 @@ BEHAVIORS = expand("""
 317-318 D Kitsu (AnimeService), AniZip mappings
 319 P Jikan in AnimeService
 320 P earlier review Partial
-321 P source switcher with library, all upcoming, My Trakt, Trakt anticipated, Simkl premieres and anime with its Sub/Dub switch (7 Nov, uncompiled); no My Simkl, Custom or games
+321 P source switcher with library, all upcoming, My Trakt, Trakt anticipated, Simkl premieres and anime with its Sub/Dub switch (7 Nov, uncompiled); no My Simkl or games; Custom source with its filter sheet (7 Nov, uncompiled)
 322 P earlier review Partial
 323 D CustomListStore
 324-327 D household profiles, switching, per-profile settings, identity sync
@@ -284,7 +284,7 @@ SETTINGS = expand("""
 119 D
 120-122 M
 123 D episode sort menu: oldest or newest first (5 Nov, uncompiled)
-124 M
+124 D show episode ratings: community IMDb ratings plus OMDb season ratings on the episode picture (7 Nov, uncompiled)
 125 D
 126 D hide and skip episodes: menu, list filter and Up Next (5 Nov, uncompiled)
 127-128 M
@@ -361,7 +361,7 @@ SETTINGS = expand("""
 313 M
 314 P buffer size without boost
 315-316 D
-317 M
+317 D maximum volume boost: 100 to 600 percent ceiling sent to mpv (7 Nov, uncompiled)
 318 P earlier review Partial
 319-322 X SVP is Windows software
 323-324 D seek steps
@@ -436,7 +436,8 @@ SETTINGS = expand("""
 474 D
 475 M
 476-477 D calendar settings
-478-479 M
+478 P customCalendar: people, genres, providers, countries, media types and Trakt sources with a filter sheet (7 Nov, uncompiled)
+479 M
 480-483 X desktop download folders
 484-485 M
 486 P addon deep-link install

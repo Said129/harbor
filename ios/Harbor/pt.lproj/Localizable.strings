@@ -28,6 +28,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Um cliente para o protocolo Stremio. Dois minutos para configurar; a maior parte é opcional. Você mantém o controle total de cada chave.";
 "A continuación" = "A seguir";
 "A short note about this list" = "A short note about this list";
+"A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Um salto menor com Shift mais as teclas de seta, para pular alguns segundos por vez.";
 "A to Z" = "De A a Z";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
@@ -75,6 +76,7 @@
 "Add Source" = "Adicionar Fonte";
 "Add a TMDB API key in Metadata settings to search for titles." = "Adicione uma chave API do TMDB nas definições de metadados para pesquisar títulos.";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Adicione uma chave do TMDB em Configurações para desbloquear o feed completo de descoberta.";
+"Add a TMDB key in settings first" = "Primeiro, adicione uma chave do TMDB nas configurações";
 "Add a movie or show to this list..." = "Adicione um filme ou série a esta lista...";
 "Add a repository" = "Adicionar um repositório";
 "Add bookmark" = "Add bookmark";
@@ -200,6 +202,7 @@
 "Arrows" = "Setas";
 "Artistas" = "Artistas";
 "Artists" = "Artistas";
+"Ask before leaving" = "Perguntar antes de sair";
 "Ask if you're still watching" = "Perguntar se você ainda está assistindo";
 "Ask to resume or start over" = "Perguntar se deseja continuar ou começar de novo";
 "Aspect ratio" = "Proporção de tela";
@@ -213,6 +216,7 @@
 "Audio not labeled" = "Áudio sem identificação";
 "Audio sin etiqueta" = "Áudio sem identificação";
 "Audio track" = "Faixa de áudio";
+"Australia" = "Austrália";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on AniList" = "Autorizar o Harbor no AniList";
 "Authorize Harbor on MyAnimeList" = "Autorizar o Harbor no MyAnimeList";
@@ -326,6 +330,7 @@
 "Box color" = "Cor da caixa";
 "Brasileirao Serie A" = "Brasileirão Série A";
 "Brasileirao Serie B" = "Brasileirão Série B";
+"Brazil" = "Brasil";
 "Brighten dark movies" = "Clarear filmes escuros";
 "Brightness" = "Brilho";
 "Brillo" = "Brilho";
@@ -344,6 +349,7 @@
 "Browsing" = "Navegação";
 "Buffer" = "Buffer";
 "Build" = "Build";
+"Build your own feed from actors, directors, and Trakt lists" = "Crie seu próprio feed a partir de atores, diretores e listas do Trakt";
 "Build your own palette" = "Crie sua própria paleta";
 "Built for Adventure!" = "Feito para a aventura!";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
@@ -374,6 +380,7 @@
 "Campeonato Mineiro" = "Campeonato Mineiro";
 "Campeonato Paulista" = "Campeonato Paulista";
 "Can't decide?" = "Não consegue decidir?";
+"Canada" = "Canadá";
 "Canales OTA + IPTV" = "Canais OTA + IPTV";
 "Cancel" = "Cancelar";
 "Cancel analysis" = "Cancel analysis";
@@ -417,6 +424,7 @@
 "Checking with MyAnimeList..." = "Verificando com MyAnimeList...";
 "Checking…" = "Verificando…";
 "Checksum did not match the manifest." = "A soma de verificação não bate com o manifesto.";
+"China" = "China";
 "Chinese" = "Chinês";
 "Chinese (Simplified)" = "Chinês (simplificado)";
 "Choose an avatar" = "Escolha um avatar";
@@ -501,6 +509,7 @@
 "Connect Simkl" = "Conectar Simkl";
 "Connect TMDB" = "Conectar TMDB";
 "Connect Trakt" = "Conectar Trakt";
+"Connect Trakt in settings first" = "Conecte o Trakt nas configurações primeiro";
 "Connected" = "Conectado";
 "Connected as {username}" = "Conectado como {username}";
 "Connected to AniList" = "Conectado ao AniList";
@@ -670,6 +679,7 @@
 "Documentary" = "Documentário";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
+"Don't ask me again" = "Não perguntar novamente";
 "Done" = "Concluído";
 "Done editing" = "Edição concluída";
 "Download" = "Baixar";
@@ -813,6 +823,8 @@
 "File is larger than 2 MB." = "O arquivo tem mais de 2 MB.";
 "Fill" = "Preencher";
 "Film" = "Filme";
+"Filter countries" = "Filtrar países";
+"Filter genres" = "Filtrar gêneros";
 "Filters" = "Filtros";
 "Finding lyrics" = "Procurando a letra";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
@@ -839,6 +851,7 @@
 "Found {count} streams in {seconds}s." = "{count} streams encontrados em {seconds}s.";
 "Foundation Years (90s)" = "Anos de Fundação (anos 90)";
 "Frame rate" = "Taxa de quadros";
+"France" = "França";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Cadastro gratuito de dois minutos. Libera Em Alta, Nos Cinemas Agora, Mais Bem Avaliados e catálogos por serviço de streaming (Netflix, Disney+, Hulu, …). Sua chave fica somente nesta máquina.";
 "French" = "Francês";
 "From" = "De";
@@ -857,8 +870,10 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "Gama";
 "Genre" = "Gênero";
+"Genres" = "Gêneros";
 "Gently magnify nearby posters as you move across a poster row." = "Amplia suavemente os pôsteres próximos conforme você percorre uma linha de pôsteres.";
 "German" = "Alemão";
+"Germany" = "Alemanha";
 "Get Started" = "Começar";
 "Get a free key at themoviedb.org" = "Obtenha uma chave gratuita em themoviedb.org";
 "Get an API key" = "Obter uma chave API";
@@ -950,6 +965,7 @@
 "Horizontal" = "Horizontal";
 "Horror" = "Terror";
 "Horror & Supernatural" = "Terror e Sobrenatural";
+"How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "Até onde você pode passar de 100 por cento na barra de volume. Valores mais altos podem deixar o som muito alto.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Quanto tempo o Harbor espera pelos resultados de cada complemento.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
@@ -997,6 +1013,7 @@
 "In Theaters Now" = "Nos Cinemas Agora";
 "In Watchlist" = "Na Watchlist";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"India" = "Índia";
 "Indonesian" = "Indonésio";
 "Información" = "Informação";
 "Information" = "Informação";
@@ -1025,10 +1042,12 @@
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Não é afiliado ao criador de {product} nem a qualquer empresa, autor de complemento ou titular de marca comercial mencionado no aplicativo.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "Não é afiliado, endossado, patrocinado nem associado de qualquer forma à {company}.";
 "Italian" = "Italiano";
+"Italy" = "Itália";
 "Izquierda" = "Esquerda";
 "Izquierda a derecha" = "Da esquerda para a direita";
 "JSON URL" = "URL do JSON";
 "JSON cannot be empty" = "O JSON não pode estar vazio";
+"Japan" = "Japão";
 "Japan's top science-fiction comic honor" = "A maior honraria japonesa dos quadrinhos de ficção científica";
 "Japanese" = "Japonês";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Pule aberturas automaticamente assim que começarem. Voltar para uma abertura a reproduz sem pular novamente. O botão Pular segue a configuração acima.";
@@ -1054,6 +1073,8 @@
 "Large" = "Grande";
 "Larger" = "Maior";
 "Laterales" = "Laterais";
+"Leave" = "Sair";
+"Leave the show?" = "Sair da série?";
 "Lectura" = "Lendo";
 "Left" = "Esquerda";
 "Left to right" = "Da esquerda para a direita";
@@ -1148,6 +1169,7 @@
 "Mark watched button" = "Botão marcar como assistido";
 "Max" = "Máximo";
 "Maximum" = "Máxima";
+"Maximum volume boost" = "Reforço máximo de volume";
 "Mecha" = "Mecha";
 "Media" = "Mídia";
 "Mejor valorado" = "Mais bem avaliados";
@@ -1158,6 +1180,7 @@
 "Metadata" = "Metadados";
 "Metadata language" = "Idioma dos metadados";
 "Metadata providers" = "Provedores de metadados";
+"Mexico" = "México";
 "Mezclar sonido envolvente a estéreo" = "Converter som surround para estéreo";
 "Mi biblioteca" = "Minha Biblioteca";
 "Mis canales" = "My channels";
@@ -1174,6 +1197,7 @@
 "More info" = "Mais informações";
 "Most Popular" = "Mais populares";
 "Most Popular on MAL" = "Mais Populares no MAL";
+"Most-anticipated upcoming releases on Trakt" = "Lançamentos mais aguardados no Trakt";
 "Mostrar" = "Mostrar";
 "Mostrar botón Más información" = "Mostrar o botão Mais informações";
 "Mostrar como Top 10 con números grandes" = "Mostrar como um Top 10 com números grandes";
@@ -1218,6 +1242,7 @@
 "Muted text" = "Texto atenuado";
 "My Library" = "Minha Biblioteca";
 "My Trakt" = "Meu Trakt";
+"My Trakt watchlist" = "Minha lista de interesse do Trakt";
 "My channels" = "My channels";
 "My library" = "Minha biblioteca";
 "My lists" = "Minhas listas";
@@ -1279,6 +1304,7 @@
 "No episodes found for this season." = "Nenhum episódio encontrado para esta temporada.";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "Nenhum favorito ainda";
+"No filters" = "Sem filtros";
 "No hay coincidencias." = "Nenhum resultado.";
 "No hay descripción disponible." = "Nenhuma descrição disponível.";
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
@@ -1296,6 +1322,7 @@
 "No matches for these filters." = "Nenhum resultado para estes filtros.";
 "No matches." = "Nenhum resultado.";
 "No matches. Try another title." = "Nenhum resultado. Tente outro título.";
+"No people found" = "Nenhuma pessoa encontrada";
 "No picks loaded. TMDB might be unreachable." = "Nenhuma seleção carregada. O TMDB pode estar inacessível.";
 "No playable streams turned up, and no debrid is configured. Real-Debrid, TorBox, AllDebrid, Premiumize, or Debrid-Link will unlock raw torrent results. Some addons bake debrid in (Sootio, Comet/ElfHosted, MediaFusion/ElfHosted) and play without your own keys." = "Nenhum stream reproduzível apareceu, e nenhum debrid está configurado. Real-Debrid, TorBox, AllDebrid, Premiumize ou Debrid-Link desbloqueiam os resultados brutos de torrent. Alguns addons já vêm com debrid embutido (Sootio, Comet/ElfHosted, MediaFusion/ElfHosted) e funcionam sem suas próprias chaves.";
 "No preferred languages selected." = "Nenhum idioma preferido selecionado.";
@@ -1348,6 +1375,7 @@
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Nada para enviar. Todos os {n} itens da watchlist são animes, que o Trakt não consegue rastrear.";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "Nada assistido ainda";
+"Nothing yet" = "Nada ainda";
 "Notify me" = "Notify me";
 "Now" = "Agora";
 "Now Playing" = "Tocando Agora";
@@ -1414,6 +1442,7 @@
 "Orden inverso" = "Reverse order";
 "Ordenar" = "Ordenar";
 "Ordenar por" = "Ordenar por";
+"Origin country" = "País de origem";
 "Original" = "Original";
 "Original language" = "Idioma original";
 "Oscuro" = "Escuro";
@@ -1648,6 +1677,7 @@
 "Remove preset" = "Remover preset";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "Remover {language}";
+"Remove {name}" = "Remover {name}";
 "Removed" = "Removido";
 "Removed from \"{name}\"" = "Removido de \"{name}\"";
 "Rename" = "Renomear";
@@ -1773,6 +1803,7 @@
 "Se muestra al mismo tiempo que el subtítulo principal." = "Exibida junto com a legenda principal.";
 "Se usa con 55 % / 25 % de opacidad." = "Usado com alfa de 55% / 25%.";
 "Search" = "Pesquisar";
+"Search actors, directors…" = "Pesquisar atores, diretores…";
 "Search addons" = "Pesquisar addons";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
 "Search is too long." = "Search is too long.";
@@ -1841,6 +1872,7 @@
 "Sharpen" = "Realçar nitidez";
 "Sharper lines and a little more pop." = "Linhas mais nítidas e um pouco mais de destaque.";
 "Short of the Year" = "Curta do ano";
+"Short seek (Shift + arrows)" = "Salto curto (Shift + setas)";
 "Show" = "Mostrar";
 "Show More info button" = "Mostrar o botão Mais informações";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Mostra um botão Pular Abertura / Pular Créditos quando o Harbor detecta um. Desative para nunca mostrar. Você também pode tocar no X do botão para dispensar um errado pelo resto do episódio.";
@@ -1858,6 +1890,7 @@
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Mostra os resultados de cada addon na ordem em que foram retornados, agrupados pela sua lista de addons. Igual aos apps Stremio e Vidi.";
 "Show episode" = "Mostrar episódio";
 "Show episode description" = "Mostrar descrição do episódio";
+"Show episode ratings" = "Mostrar notas dos episódios";
 "Show everything anyway" = "Mostrar tudo mesmo assim";
 "Show full descriptions" = "Mostrar descrições completas";
 "Show hidden episodes" = "Mostrar episódios ocultos";
@@ -1938,7 +1971,9 @@
 "Sources & library" = "Fontes e biblioteca";
 "Sources and quality" = "Sources and quality";
 "Sources in these languages sort to the top of the picker." = "Fontes nesses idiomas vão para o topo do seletor.";
+"South Korea" = "Coreia do Sul";
 "Space" = "Espaço";
+"Spain" = "Espanha";
 "Spanish" = "Espanhol";
 "Spanish (Latin America)" = "Espanhol (América Latina)";
 "Specials" = "Especiais";
@@ -2177,6 +2212,7 @@
 "Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
 "Torrents" = "Torrents";
 "Track" = "Faixa";
+"Track people" = "Acompanhar pessoas";
 "Tracking" = "Tracking";
 "Tracking what you watch" = "Acompanhar o que você assiste";
 "Tracks" = "Faixas";
@@ -2196,6 +2232,7 @@
 "Trakt rejected the request (account locked or permission denied)." = "O Trakt rejeitou a requisição (conta bloqueada ou permissão negada).";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "O Trakt informou que a autorização foi negada. Tente novamente se isso não foi intencional.";
 "Trakt sign-in expired. Reconnect Trakt in settings and try again." = "O login do Trakt expirou. Reconecte o Trakt nas configurações e tente novamente.";
+"Trakt sources" = "Fontes do Trakt";
 "Trakt watchlist" = "Watchlist do Trakt";
 "Transfer primary" = "Transferir principal";
 "Translate titles" = "Traduzir títulos";
@@ -2235,6 +2272,8 @@
 "Un poco más claro que el fondo." = "Um pouco mais claro que o fundo.";
 "Unavailable" = "Indisponível";
 "Undo" = "Desfazer";
+"United Kingdom" = "Reino Unido";
+"United States" = "Estados Unidos";
 "Unknown" = "Desconhecido";
 "Unlock controls" = "Desbloquear controles";
 "Unmute" = "Ativar som";
@@ -2246,6 +2285,7 @@
 "Upcoming Season" = "Próxima Temporada";
 "Upcoming episodes and movies from your Trakt watchlist" = "Episódios e filmes futuros da sua watchlist do Trakt";
 "Upcoming episodes and movies from your saved shows" = "Episódios e filmes futuros das suas séries salvas";
+"Upcoming items from your watchlist" = "Próximos itens da sua watchlist";
 "Update" = "Atualizar";
 "Update all" = "Atualizar tudo";
 "Updated {when}" = "Atualizado {when}";
@@ -2302,10 +2342,12 @@
 "Watching" = "Assistindo";
 "Watchlist" = "Lista para assistir";
 "Watchlist only" = "Somente lista de interesse";
+"We'll save your spot so you can pick up right where you left off." = "Vamos salvar seu progresso para você continuar de onde parou.";
 "Weekend watchlist" = "Lista do fim de semana";
 "Welcome to Harbor" = "Bem-vindo ao Harbor";
 "Western" = "Faroeste";
 "What everyone is reading" = "O que todos estão lendo";
+"When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Quando o Esc for fechar o player, mostra primeiro uma confirmação rápida. Você pode marcar \"Não perguntar novamente\" nesse aviso para sempre sair com o Esc.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Quando um release traz várias faixas de áudio, o Harbor seleciona a primeira correspondência desta lista.";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "Quando um episódio termina, iniciar automaticamente o próximo. Desativado deixa o episódio terminar e parar.";
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "Ao reproduzir automaticamente o próximo episódio, manter o mesmo release/fonte que você estava assistindo em vez do stream mais bem classificado pelo Harbor. Recorre ao melhor stream se essa fonte não estiver disponível.";
@@ -2359,6 +2401,8 @@
 "Your watchlist is empty, nothing to send." = "Sua watchlist está vazia, nada para enviar.";
 "Yours" = "Sua";
 "Zoom" = "Zoom";
+"active" = "ativo";
+"added" = "adicionado";
 "anime" = "anime";
 "auto" = "auto";
 "cam rips" = "gravações de câmera";
@@ -3530,6 +3574,7 @@
 "{ms} ms" = "{ms} ms";
 "{m}m left" = "faltam {m}m";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} e todos os demais nomes, logotipos e referências a marcas pertencem a seus respectivos proprietários e são usados aqui apenas para compatibilidade e identificação.";
+"{name} (TV)" = "{name} (TV)";
 "{name} + {n} more" = "{name} + mais {n}";
 "{name} + {n} más" = "{name} + mais {n}";
 "{n} / {max} items" = "{n} / {max} itens";

@@ -16,25 +16,25 @@
     },
     "settings": {
       "total": 511,
-      "ported": 138,
-      "partial": 23,
-      "missing": 264,
+      "ported": 140,
+      "partial": 24,
+      "missing": 261,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 35.2,
-      "ported_only_percent": 32.5,
-      "ported_or_partial_percent": 37.9
+      "weighted_percent": 35.8,
+      "ported_only_percent": 32.9,
+      "ported_or_partial_percent": 38.6
     },
     "all": {
       "total": 949,
-      "ported": 260,
-      "partial": 229,
-      "missing": 352,
+      "ported": 262,
+      "partial": 230,
+      "missing": 349,
       "excluded": 108,
       "counted": 841,
-      "weighted_percent": 44.5,
-      "ported_only_percent": 30.9,
-      "ported_or_partial_percent": 58.1
+      "weighted_percent": 44.8,
+      "ported_only_percent": 31.2,
+      "ported_or_partial_percent": 58.5
     }
   },
   "behavior_areas": [
@@ -2474,7 +2474,7 @@
       "id": "Calendar source filters",
       "desktop_source": "src/lib/calendar.ts",
       "verdict": "P",
-      "note": "source switcher with library, all upcoming, My Trakt, Trakt anticipated, Simkl premieres and anime with its Sub/Dub switch (7 Nov, uncompiled); no My Simkl, Custom or games"
+      "note": "source switcher with library, all upcoming, My Trakt, Trakt anticipated, Simkl premieres and anime with its Sub/Dub switch (7 Nov, uncompiled); no My Simkl or games; Custom source with its filter sheet (7 Nov, uncompiled)"
     },
     {
       "index": 322,
@@ -4162,8 +4162,8 @@
       "index": 124,
       "id": "showEpisodeRating",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "show episode ratings: community IMDb ratings plus OMDb season ratings on the episode picture (7 Nov, uncompiled)"
     },
     {
       "index": 125,
@@ -5513,8 +5513,8 @@
       "index": 317,
       "id": "volumeBoostMax",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "maximum volume boost: 100 to 600 percent ceiling sent to mpv (7 Nov, uncompiled)"
     },
     {
       "index": 318,
@@ -6640,8 +6640,8 @@
       "index": 478,
       "id": "customCalendar",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "customCalendar: people, genres, providers, countries, media types and Trakt sources with a filter sheet (7 Nov, uncompiled)"
     },
     {
       "index": 479,

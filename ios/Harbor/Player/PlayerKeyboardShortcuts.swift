@@ -35,12 +35,12 @@ enum PlayerShortcut: String, CaseIterable, Identifiable, Sendable {
     }
 
     /// Seconds a seek shortcut moves; the player's own jump setting is Desktop's "seek step".
-    func seekSeconds(back: Double, forward: Double, short: Double = 5) -> Double? {
+    func seekSeconds(back: Double, forward: Double, shortBack: Double = 3, shortForward: Double = 3) -> Double? {
         switch self {
         case .seekBack: -back
         case .seekForward: forward
-        case .seekBackShort: -short
-        case .seekForwardShort: short
+        case .seekBackShort: -shortBack
+        case .seekForwardShort: shortForward
         case .seekBack30: -30
         case .seekForward30: 30
         default: nil
@@ -54,6 +54,8 @@ struct PlayerKeyboardShortcuts: View {
     let enabled: Bool
     let seekBack: Double
     let seekForward: Double
+    var seekBackShort = 3.0
+    var seekForwardShort = 3.0
     let jump: (Double) -> Void
     let togglePause: () -> Void
     let close: () -> Void
@@ -69,7 +71,7 @@ struct PlayerKeyboardShortcuts: View {
     }
 
     private func perform(_ shortcut: PlayerShortcut) {
-        if let seconds = shortcut.seekSeconds(back: seekBack, forward: seekForward) { jump(seconds); return }
+        if let seconds = shortcut.seekSeconds(back: seekBack, forward: seekForward, shortBack: seekBackShort, shortForward: seekForwardShort) { jump(seconds); return }
         switch shortcut {
         case .playPause: togglePause()
         case .start: state.controller?.run(["seek", "0", "absolute+exact"])

@@ -26,6 +26,7 @@ struct EpisodeList: View {
     @State private var revealed = Set<String>()
     @State private var hiddenKeys = HiddenEpisodes.all()
     @State private var showHidden = false
+    @State private var episodeRatings: [String: Double] = [:]
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private var videos: [Episode] { ordering?.videos ?? WatchedCodec.ordered(media.videos ?? []) }
     private var seasons: [Int] { Array(Set(videos.compactMap(\.listedSeason))).sorted() }
@@ -60,6 +61,35 @@ struct EpisodeList: View {
                 .background(showHidden ? HarborTheme.ink : Color.white.opacity(0.06), in: .capsule)
         }
         .accessibilityLabel(DesktopInterfaceText.value(showHidden ? "Hide hidden episodes" : "Show hidden episodes")).accessibilityIdentifier("episode-show-hidden")
+    }
+    private var seriesIMDb: String? { [media.imdbID ?? "", media.id].first { $0.range(of: "^tt[0-9]+$", options: .regularExpression) != nil } }
+    private var ratingsTaskID: String {
+        let shown = visibleEpisodes
+        return [media.identity, String(InterfacePreferences.shared.showEpisodeRating), String(shown.count), shown.first?.id ?? "", shown.last?.id ?? ""].joined(separator: "|")
+    }
+    private var visibleEpisodes: [Episode] {
+        orderedRows.compactMap { row -> Episode? in
+            if case .episode(let episode) = row { return episode }
+            return nil
+        }
+    }
+    /// Desktop's episode ratings: the community's IMDb ratings, completed with OMDb's season ratings when a key is set.
+    private func loadRatings() async {
+        guard InterfacePreferences.shared.showEpisodeRating, pool == nil, let imdb = seriesIMDb else { episodeRatings = [:]; return }
+        let community = await HarborEpisodeRatings.shared.ratings(imdb)
+        guard !Task.isCancelled else { return }
+        episodeRatings = community
+        let keys = ProviderKeyStore.forOwner(MetadataPreferences.shared.settingsOwner ?? "guest")
+        if !keys.ready { try? keys.load() }
+        let omdbKey = keys.key(.omdb)
+        guard !omdbKey.isEmpty else { return }
+        var seasons: [Int: [Int: Double]] = [:]
+        for number in EpisodeRatings.seasons(of: visibleEpisodes) {
+            let found = await OmdbService.shared.seasonRatings(key: omdbKey, imdbID: imdb, season: number)
+            if !found.isEmpty { seasons[number] = found }
+        }
+        guard !Task.isCancelled else { return }
+        episodeRatings = EpisodeRatings.merged(community: community, seasons: seasons)
     }
     /// Desktop's episode sort menu (`episode-grid-controls.tsx`).
     private var sortMenu: some View {
@@ -124,6 +154,7 @@ struct EpisodeList: View {
             .task(id: media.identity) {
                 preferredApplied = false; chooseInitialSeason()
             }
+            .task(id: ratingsTaskID) { await loadRatings() }
             .onChange(of: seasons) { _, _ in chooseInitialSeason() }
             .onChange(of: sections.map(\.id)) { _, ids in
                 if !ids.contains(orderSection) {
@@ -153,7 +184,10 @@ struct EpisodeList: View {
                             Artwork(url: episode.thumbnail, fallback: source.background, maxPixels: 400)
                                 .blur(radius: hidden && InterfacePreferences.shared.blurEpisodes ? 14 : 0)
                                 .scaleEffect(hidden && InterfacePreferences.shared.blurEpisodes ? 1.04 : 1)
-                                .frame(width: 125, height: 74).overlay { Image("ui-play-filled").resizable().scaledToFit().frame(width: 24, height: 24).foregroundStyle(.white).shadow(radius: 5) }.clipShape(.rect(cornerRadius: 8))
+                                .frame(width: 125, height: 74).overlay { Image("ui-play-filled").resizable().scaledToFit().frame(width: 24, height: 24).foregroundStyle(.white).shadow(radius: 5) }
+                                .overlay(alignment: .bottomLeading) {
+                                    if InterfacePreferences.shared.showEpisodeRating, let rating = EpisodeRatings.rating(for: episode, in: episodeRatings) { EpisodeRatingBadge(value: rating).padding(5) }
+                                }.clipShape(.rect(cornerRadius: 8))
                             VStack(alignment: .leading, spacing: 6) {
                                 Text(episode.name ?? episode.title ?? episodeLabel).font(.subheadline.weight(.semibold)).lineLimit(2)
                                     .blur(radius: hidden && InterfacePreferences.shared.spoilerHideTitles ? 5 : 0)
@@ -191,4 +225,16 @@ struct EpisodeList: View {
         }
     }
 
+}
+
+/// Desktop's `EpisodeRatingBadge`: the IMDb mark and the rating on the episode's picture.
+struct EpisodeRatingBadge: View {
+    let value: Double
+    var body: some View {
+        HStack(spacing: 4) {
+            Text("IMDb").font(.system(size: 8, weight: .black)).foregroundStyle(.black).padding(.horizontal, 3).padding(.vertical, 1).background(Color.yellow, in: .rect(cornerRadius: 2))
+            Text(EpisodeRatings.label(value)).font(HarborTheme.font(12, weight: .bold)).foregroundStyle(.white)
+        }.padding(.horizontal, 6).padding(.vertical, 3).background(Color.black.opacity(0.55), in: .rect(cornerRadius: 6))
+            .accessibilityElement(children: .ignore).accessibilityLabel("IMDb " + EpisodeRatings.label(value)).accessibilityIdentifier("episode-rating")
+    }
 }

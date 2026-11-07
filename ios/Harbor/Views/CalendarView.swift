@@ -8,6 +8,8 @@ struct CalendarView: View {
     @State private var kind = "all"
     @State private var watchlistOnly = false
     @State private var animeDub = false
+    @State private var showFilters = false
+    private let customCalendar = CustomCalendarStore.shared
     @AppStorage("calendar.source") private var sourceRaw = CalendarSource.library.rawValue
     @AppStorage("calendar.monday") private var monday = false
     @AppStorage("calendar.large") private var large = false
@@ -27,7 +29,7 @@ struct CalendarView: View {
                 !event.isAnime && (kind == "all" || event.kind == kind)
                     && (!watchlistOnly || names.contains(CalendarSources.libraryKey(name: event.media.name, isSeries: event.media.type != "movie")))
             }
-        case .trakt, .anticipated, .anime:
+        case .trakt, .anticipated, .anime, .custom:
             return model.events
         }
     }
@@ -39,6 +41,7 @@ struct CalendarView: View {
         case .trakt: return "\(app.personalOwner)|\(period)|trakt|\(traktConnected)"
         case .anticipated, .simklAnticipated: return "\(period)|\(source.rawValue)"
         case .anime: return "\(period)|anime|\(animeDub)"
+        case .custom: return "\(app.personalOwner)|\(period)|custom|\(customCalendar.value.hashValue)|\(MetadataPreferences.shared.tmdbKey.hashValue)|\(MetadataPreferences.shared.region)|\(traktConnected)"
         }
     }
     private var daily: [ReleaseEvent] { shown.filter { calendar.isDate($0.date, inSameDayAs: selected) } }
@@ -68,6 +71,10 @@ struct CalendarView: View {
                         }
                     }
                 }.scrollIndicators(.hidden)
+                if source == .custom {
+                    HarborPill(title: DesktopInterfaceText.value("Filters") + (customCalendar.value.activeCount > 0 ? " \(customCalendar.value.activeCount)" : ""), selected: showFilters) { showFilters = true }
+                        .accessibilityIdentifier("calendar-filters")
+                }
                 if source == .anime {
                     HStack(spacing: 6) {
                         HarborPill(title: DesktopInterfaceText.value("Sub"), selected: !animeDub) { animeDub = false }.accessibilityIdentifier("calendar-anime-sub")
@@ -118,7 +125,11 @@ struct CalendarView: View {
             }.padding()
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink).environment(\.locale, interfaceLocale).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .task(id: loadID) { await model.load(month: month, app: app, source: source, animeDub: animeDub) }
+            .sheet(isPresented: $showFilters) {
+                CalendarFilterSheet(store: customCalendar, resultCount: shown.count, tmdbKey: MetadataPreferences.shared.tmdbKey, traktConnected: traktConnected)
+            }
             .task(id: app.personalOwner) {
+                customCalendar.reload()
                 let trakt = TraktAccountStore.forOwner(app.personalOwner); if !trakt.ready { try? trakt.load() }
                 let simkl = SimklAccountStore.forOwner(app.personalOwner); if !simkl.ready { try? simkl.load() }
             }

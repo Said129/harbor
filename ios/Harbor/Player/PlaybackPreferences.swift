@@ -117,6 +117,13 @@ struct PlaybackOptions: Codable, Equatable {
     var resumeOnForeground = false
     var seekBackSeconds = 10.0
     var seekForwardSeconds = 10.0
+    /// Desktop's `seekBackStepShortSec` and `seekForwardStepShortSec`: the jump on Shift plus the arrow keys.
+    var seekBackShortSeconds = 3.0
+    var seekForwardShortSeconds = 3.0
+    /// Desktop's `playerConfirmLeave`: ask before Esc closes the player.
+    var confirmLeave = true
+    /// Desktop's `volumeBoostMax`: how far past 100 percent the volume may go, as a multiple.
+    var volumeBoostMax = 2.0
     var speed = 1.0
     var volume = 100.0
     var fit = VideoFit.original
@@ -176,9 +183,16 @@ struct PlaybackOptions: Codable, Equatable {
         return parts.joined(separator: ",")
     }
 
+    /// The boost Desktop offers, 100 to 600 percent; anything else falls back to its default of 200.
+    static let volumeBoostChoices: [Double] = [1, 1.5, 2, 3, 4, 6]
+    var volumeBoostLimit: Double { Self.volumeBoostChoices.contains(volumeBoostMax) ? volumeBoostMax : 2 }
+    /// The loudest setting in mpv's scale, where 100 is the file's own level.
+    var volumeCeiling: Double { volumeBoostLimit * 100 }
+
     var mpvOptions: [(String, String)] {
         var options: [(String, String)] = [
-            ("speed", String(speed)), ("volume", String(volume)), ("panscan", fit == .fill ? "1" : "0"),
+            ("volume-max", String(Int(volumeCeiling))),
+            ("speed", String(speed)), ("volume", String(min(volume, volumeCeiling))), ("panscan", fit == .fill ? "1" : "0"),
             ("video-aspect-override", fit.aspect), ("keepaspect", fit == .stretch ? "no" : "yes"),
             ("video-zoom", fit == .zoom ? String(zoom) : "0"), ("sharpen", String(sharpen)),
             ("brightness", String(brightness)), ("contrast", String(contrast)),

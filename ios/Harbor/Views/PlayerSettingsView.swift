@@ -92,8 +92,15 @@ struct PlayerSettingsView: View {
             HarborSettingsToggle("Mantener la pantalla encendida", isOn: $preferences.options.keepScreenAwake)
             HarborSettingsToggle("Reanudar tras una interrupción de audio", isOn: $preferences.options.resumeAfterInterruption)
             HarborSettingsToggle("Reanudar al volver a la app", isOn: $preferences.options.resumeOnForeground)
-            HarborSettingsChoice("Salto al retroceder", selection: $preferences.options.seekBackSeconds, choices: [5.0, 10, 15, 30, 60].map { ("\(Int($0)) segundos", $0) })
-            HarborSettingsChoice("Salto al avanzar", selection: $preferences.options.seekForwardSeconds, choices: [5.0, 10, 15, 30, 60].map { ("\(Int($0)) segundos", $0) })
+            HarborSettingsChoice("Salto al retroceder", selection: $preferences.options.seekBackSeconds, choices: SeekSteps.choices(including: preferences.options.seekBackSeconds).map { ("\(Int($0)) segundos", $0) })
+            HarborSettingsChoice("Salto al avanzar", selection: $preferences.options.seekForwardSeconds, choices: SeekSteps.choices(including: preferences.options.seekForwardSeconds).map { ("\(Int($0)) segundos", $0) })
+            HarborSettingsChoice(DesktopInterfaceText.value("Short seek (Shift + arrows)") + " ←", selection: $preferences.options.seekBackShortSeconds, choices: SeekSteps.choices(including: preferences.options.seekBackShortSeconds).map { ("\(Int($0)) segundos", $0) },
+                                 identifier: "settings-seek-back-short")
+            HarborSettingsChoice(DesktopInterfaceText.value("Short seek (Shift + arrows)") + " →", selection: $preferences.options.seekForwardShortSeconds, choices: SeekSteps.choices(including: preferences.options.seekForwardShortSeconds).map { ("\(Int($0)) segundos", $0) },
+                                 identifier: "settings-seek-forward-short")
+            Text(DesktopInterfaceText.value("A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time.")).font(HarborTheme.font(12)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+            HarborSettingsToggle(DesktopInterfaceText.value("Ask before leaving"), note: DesktopInterfaceText.value("When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc."), isOn: $preferences.options.confirmLeave)
+                .accessibilityIdentifier("settings-confirm-leave")
             HarborSettingsChoice("Velocidad inicial", selection: $preferences.options.speed, choices: PlaybackSpeeds.choices(current: preferences.options.speed).map { ("\($0.formatted())×", $0) })
             CustomSpeedRow(current: preferences.options.speed)
         }
@@ -152,7 +159,7 @@ struct PlayerSettingsView: View {
             HarborSettingsSection(DesktopInterfaceText.value("Audio")) {
                 tracks(state, type: "audio", property: "aid")
                 HarborSettingsToggle(DesktopInterfaceText.value("Mute"), isOn: Binding(get: { state.muted }, set: { state.controller?.set("mute", $0 ? "yes" : "no") }))
-                dial(DesktopInterfaceText.value("Volume"), value: Binding(get: { state.volume }, set: { preferences.options.volume = $0 }), range: 0...100, suffix: "%")
+                dial(DesktopInterfaceText.value("Volume"), value: Binding(get: { state.volume }, set: { preferences.options.volume = $0 }), range: 0...preferences.options.volumeCeiling, suffix: "%")
             }
         }
         HarborSettingsSection(DesktopInterfaceText.value("Audio languages"), note: DesktopInterfaceText.value("When a release ships multiple audio tracks, Harbor selects the first match from this list.")) {
@@ -162,6 +169,9 @@ struct PlayerSettingsView: View {
             HarborSettingsToggle(DesktopInterfaceText.value("Normalize loudness"), note: DesktopInterfaceText.value("Evens out quiet dialogue and loud action scenes with a dynamic normalizer."), isOn: $preferences.options.audioNormalize)
                 .accessibilityIdentifier("settings-audio-normalize")
             HarborSettingsToggle(DesktopInterfaceText.value("Mix surround sound down to stereo"), isOn: $preferences.options.stereo)
+            HarborSettingsChoice(DesktopInterfaceText.value("Maximum volume boost"), selection: $preferences.options.volumeBoostMax,
+                                 choices: PlaybackOptions.volumeBoostChoices.map { ("\(Int($0 * 100))%", $0) }, localizeChoices: false, identifier: "settings-volume-boost")
+            Text(DesktopInterfaceText.value("How far you can boost past 100 percent on the volume bar. Higher settings can get very loud.")).font(HarborTheme.font(12)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
             HarborSettingsChoice(DesktopInterfaceText.value("Sound profile"), selection: $preferences.options.audioProfile,
                                  choices: AudioProfile.allCases.map { ($0.label, $0.rawValue) }, identifier: "settings-audio-profile")
             Text(DesktopInterfaceText.value("Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer."))

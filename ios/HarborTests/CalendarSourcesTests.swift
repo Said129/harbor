@@ -410,11 +410,149 @@ final class CalendarSourcesTests: XCTestCase {
         XCTAssertEqual(CalendarSources.emptyMonth(source: .anime, filter: "all", watchlistOnly: false, animeDub: true).message, "The dub schedule has no episodes releasing this month. Try a different month.")
     }
 
+    func testTheCustomCalendarKeepsDesktopsChoicesAndSurvivesAMissingField() throws {
+        var custom = CustomCalendar()
+        XCTAssertEqual(custom.activeCount, 0); XCTAssertTrue(custom.mediaTypes.movie && custom.mediaTypes.tv && custom.mediaTypes.anime)
+        let action = CustomCalendar.Genre(id: 28, name: "Action", mediaType: "movie")
+        custom.toggleGenre(action); custom.toggleGenre(CustomCalendar.Genre(id: 28, name: "Action & Adventure", mediaType: "tv"))
+        XCTAssertEqual(custom.genres.count, 2, "The same id as a movie and as a show are two choices")
+        custom.toggleGenre(action); XCTAssertEqual(custom.genres.map(\.mediaType), ["tv"])
+        custom.toggleProvider(CustomCalendar.providers[0]); custom.toggleCountry("JP"); custom.addPerson(id: 7, name: "Ann", profile: "/a.jpg"); custom.addPerson(id: 7, name: "Ann again", profile: nil)
+        custom.includeTraktAnticipated = true; custom.includeTraktWatchlist = true
+        XCTAssertEqual(custom.trackedPeople.map(\.name), ["Ann"], "A person already followed is not added twice")
+        XCTAssertEqual(custom.activeCount, 1 + 1 + 1 + 1 + 2, "Genres, providers, countries, people and the two Trakt sources each count")
+        custom.mediaTypes.anime = false
+        custom.toggleProvider(CustomCalendar.providers[0]); custom.toggleCountry("JP"); custom.removePerson(7)
+        XCTAssertTrue(custom.watchProviders.isEmpty && custom.originCountries.isEmpty && custom.trackedPeople.isEmpty)
+        custom.clearAll()
+        XCTAssertEqual(custom.activeCount, 0); XCTAssertFalse(custom.mediaTypes.anime, "Clear all leaves the media types as they are")
+
+        XCTAssertEqual(CustomCalendar.providers.count, 10); XCTAssertEqual(CustomCalendar.providers.first?.name, "Netflix"); XCTAssertEqual(CustomCalendar.providers.last?.id, 283)
+        XCTAssertEqual(CustomCalendar.countries.count, 14); XCTAssertEqual(CustomCalendar.countries.first?.code, "US")
+        let options = CustomCalendar.genreOptions
+        XCTAssertEqual(options.count, 20, "18 movie genres and the 2 TV genres no movie genre shares a name with")
+        XCTAssertEqual(options.filter(\.tvOnly).map(\.key), ["tv:10759", "tv:10765"])
+        XCTAssertEqual(options.first?.key, "movie:28"); XCTAssertEqual(options.first { $0.name == "Sci-Fi" }?.genre.id, 878)
+
+        var filled = CustomCalendar()
+        filled.addPerson(id: 9, name: "Bo", profile: nil); filled.watchProviders = [CustomCalendar.providers[1]]; filled.includeTraktWatchlist = true
+        let decoded = try JSONDecoder().decode(CustomCalendar.self, from: JSONEncoder().encode(filled))
+        XCTAssertEqual(decoded, filled)
+        let partial = try JSONDecoder().decode(CustomCalendar.self, from: Data(#"{"genres":[{"id":18,"name":"Drama","mediaType":"tv"}]}"#.utf8))
+        XCTAssertEqual(partial.genres.map(\.id), [18]); XCTAssertTrue(partial.mediaTypes.movie); XCTAssertTrue(partial.trackedPeople.isEmpty); XCTAssertFalse(partial.includeTraktAnticipated)
+    }
+
+    @MainActor func testTheCustomCalendarIsKeptAsOneJSONTextInTheProfileSettings() throws {
+        let name = "custom-calendar-tests-" + UUID().uuidString
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: name))
+        defer { defaults.removePersistentDomain(forName: name) }
+        XCTAssertEqual(CustomCalendarStore.stored(defaults), CustomCalendar(), "Nothing saved is an empty calendar")
+        var saved = CustomCalendar(); saved.originCountries = ["JP"]; saved.mediaTypes.tv = false
+        defaults.set(String(decoding: try JSONEncoder().encode(saved), as: UTF8.self), forKey: "calendar.custom")
+        XCTAssertEqual(CustomCalendarStore.stored(defaults), saved)
+        defaults.set("not json", forKey: "calendar.custom")
+        XCTAssertEqual(CustomCalendarStore.stored(defaults), CustomCalendar(), "Text that is not a calendar is ignored")
+        XCTAssertTrue(ProfileSettingsStore.keys.contains("calendar.custom")); XCTAssertTrue(ProfileSettingsStore.keys.contains("calendar.source"))
+    }
+
+    func testCustomRequestsAreBuiltFromTheFiltersAndSkippedWithoutAny() {
+        XCTAssertNil(CalendarSources.discoverFiltered(key: "k", start: "2026-11-01", end: "2026-11-30", region: "ES", kind: "movie", genreIDs: [], providerIDs: [], countries: []), "No filter, no request")
+        XCTAssertNil(CalendarSources.discoverFiltered(key: "k", start: "a", end: "b", region: "", kind: "music", genreIDs: [1], providerIDs: [], countries: []))
+        let movies = query(CalendarSources.discoverFiltered(key: "k", start: "2026-11-01", end: "2026-11-30", region: "ES", kind: "movie", genreIDs: [28, 12], providerIDs: [8, 9], countries: ["JP", "KR"]))
+        XCTAssertEqual(movies, ["api_key": "k", "primary_release_date.gte": "2026-11-01", "primary_release_date.lte": "2026-11-30", "region": "ES", "with_runtime.gte": "30", "sort_by": "popularity.desc",
+                                "include_adult": "false", "with_genres": "28,12", "with_watch_providers": "8|9", "watch_region": "ES", "with_origin_country": "JP|KR"])
+        let shows = query(CalendarSources.discoverFiltered(key: "k", start: "2026-11-01", end: "2026-11-30", region: "", kind: "tv", genreIDs: [], providerIDs: [8], countries: []))
+        XCTAssertEqual(shows, ["api_key": "k", "first_air_date.gte": "2026-11-01", "first_air_date.lte": "2026-11-30", "sort_by": "popularity.desc", "include_adult": "false", "with_watch_providers": "8", "watch_region": "US"],
+                       "Without a region the watch region is US and a show query carries none")
+        XCTAssertEqual(CalendarSources.personCreditsURL(key: "k", personID: 7, kind: "tv")?.path, "/3/person/7/tv_credits")
+        XCTAssertNil(CalendarSources.personCreditsURL(key: "k", personID: 0, kind: "tv")); XCTAssertNil(CalendarSources.personCreditsURL(key: "k", personID: 7, kind: "../x"))
+        XCTAssertEqual(query(CalendarSources.searchPeopleURL(key: "k", query: "Ann Lee")), ["api_key": "k", "query": "Ann Lee", "include_adult": "false"])
+    }
+
+    func testCreditsDiscoverRowsAndPeopleReadLikeDesktop() {
+        let named = CalendarSources.tmdbRowItem(.object(["id": .integer(5), "title": .string(""), "original_title": .string("Original"), "release_date": .string("2026-11-09T00:00:00Z")]), movie: true)
+        XCTAssertEqual(named?.name, "Original", "An empty title falls back to the original one"); XCTAssertEqual(named?.releaseDate, "2026-11-09")
+        let bare = CalendarSources.tmdbRowItem(.object(["id": .integer(6)]), movie: false)
+        XCTAssertEqual(bare?.name, "Untitled"); XCTAssertEqual(bare?.releaseDate, ""); XCTAssertEqual(bare?.id, "tmdb:tv:6")
+        XCTAssertNil(CalendarSources.tmdbRowItem(.object(["title": .string("No id")]), movie: true))
+
+        let credits = CalendarSources.personItems(movies: [movieRow(1, "In", "2026-11-10"), movieRow(2, "Early", "2026-10-31"), movieRow(1, "In again", "2026-11-10"), movieRow(3, "Undated", "")],
+                                                  shows: [showRow(10, "Show", "2026-11-30"), showRow(11, "Late", "2026-12-01")], start: "2026-11-01", end: "2026-11-30")
+        XCTAssertEqual(credits.map(\.id), ["tmdb:movie:1", "tmdb:tv:10"], "Only titles dated inside the month, once each")
+
+        let anime = CalendarItem(id: "tmdb:tv:1", imdbID: nil, isMovie: false, name: "A", releaseDate: "2026-11-02", isAnime: true, overview: "", voteAverage: 0)
+        let show = CalendarItem(id: "tmdb:tv:2", imdbID: nil, isMovie: false, name: "S", releaseDate: "2026-11-01", isAnime: false, overview: "", voteAverage: 0)
+        let film = CalendarItem(id: "tmdb:movie:3", imdbID: nil, isMovie: true, name: "F", releaseDate: "2026-11-03", isAnime: false, overview: "", voteAverage: 0)
+        var types = CustomCalendar.MediaTypes()
+        XCTAssertEqual(CalendarSources.customItems(batches: [[anime, show], [film, show]], extra: [], mediaTypes: types).map(\.id), ["tmdb:tv:2", "tmdb:tv:1", "tmdb:movie:3"], "One item per title, by day")
+        types.anime = false
+        XCTAssertEqual(CalendarSources.customItems(batches: [[anime, show, film]], extra: [], mediaTypes: types).map(\.id), ["tmdb:tv:2", "tmdb:movie:3"], "Anime has its own switch")
+        types.movie = false
+        XCTAssertEqual(CalendarSources.customItems(batches: [[anime, show, film]], extra: [], mediaTypes: types).map(\.id), ["tmdb:tv:2"])
+        types.tv = false
+        XCTAssertTrue(CalendarSources.customItems(batches: [[anime, show, film]], extra: [], mediaTypes: types).isEmpty)
+        let extraFilm = CalendarItem(id: "tmdb:movie:3", imdbID: "tt3", isMovie: true, name: "Extra F", releaseDate: "2026-11-03", isAnime: false, overview: "", voteAverage: 0)
+        XCTAssertEqual(CalendarSources.customItems(batches: [[film]], extra: [extraFilm], mediaTypes: CustomCalendar.MediaTypes()).first?.name, "Extra F", "The extra sources come first and win a repeat")
+
+        let people = CalendarSources.people(from: .object(["results": .array([
+            .object(["id": .integer(1), "name": .string("Ann"), "profile_path": .string("/a.jpg"), "known_for": .array([.object(["title": .string("Film A")]), .object(["name": .string("Show B")]), .object(["title": .string("Film C")])])]),
+            .object(["id": .integer(2), "name": .string("Bo"), "known_for": .array([]), "known_for_department": .string("Directing")]),
+            .object(["id": .integer(3), "name": .string("Cy")]), .object(["name": .string("No id")]), .object(["id": .integer(4), "name": .string("")])])]))
+        XCTAssertEqual(people.map(\.name), ["Ann", "Bo", "Cy"])
+        XCTAssertEqual(people[0].knownFor, "Film A, Show B"); XCTAssertEqual(people[0].profile, "/a.jpg"); XCTAssertEqual(people[1].knownFor, "Directing"); XCTAssertEqual(people[2].knownFor, "Cast")
+        let many = CalendarSources.people(from: .object(["results": .array((1...12).map { JSONValue.object(["id": .integer(Int64($0)), "name": .string("P\($0)")]) })]))
+        XCTAssertEqual(many.count, 8, "The first eight are listed"); XCTAssertTrue(CalendarSources.people(from: nil).isEmpty)
+    }
+
+    func testTheCustomCalendarAsksForPeopleAndDiscoveryAndMergesTheExtraSources() async {
+        let log = StringLog()
+        func results(_ rows: [JSONValue]) -> JSONValue { .object(["results": .array(rows)]) }
+        let movieCredits = JSONValue.object(["cast": .array([movieRow(1, "In window", "2026-11-10"), movieRow(2, "Out", "2026-12-02")]), "crew": .array([movieRow(1, "In window", "2026-11-10")])])
+        let tvCredits = JSONValue.object(["cast": .array([showRow(10, "Person show", "2026-11-12", genres: [16], country: ["JP"])])])
+        let discoverMovies = results([movieRow(3, "Discovered movie", "2026-11-15"), movieRow(1, "In window", "2026-11-10")])
+        let discoverShows = results([showRow(11, "Discovered show", "2026-11-03")])
+        let fetcher = CalendarFetcher(json: { url in
+            let items = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? []
+            func value(_ name: String) -> String { items.first { $0.name == name }?.value ?? "-" }
+            log.add("\(url.path)#\(value("with_genres"))#\(value("with_watch_providers"))#\(value("watch_region"))#\(value("with_origin_country"))#\(value("region"))")
+            switch url.path {
+            case "/3/person/7/movie_credits": return movieCredits
+            case "/3/person/7/tv_credits": return tvCredits
+            case "/3/discover/movie": return discoverMovies
+            case "/3/discover/tv": return discoverShows
+            default: return nil
+            }
+        }, calendar: utc)
+        var filters = CustomCalendar()
+        filters.addPerson(id: 7, name: "Ann", profile: nil)
+        filters.toggleGenre(CustomCalendar.Genre(id: 28, name: "Action", mediaType: "movie")); filters.toggleGenre(CustomCalendar.Genre(id: 10759, name: "Action & Adventure", mediaType: "tv"))
+        filters.toggleProvider(CustomCalendar.providers[0]); filters.toggleCountry("JP"); filters.toggleCountry("KR"); filters.mediaTypes.anime = false
+        let extra = CalendarItem(id: "tmdb:movie:99", imdbID: nil, isMovie: true, name: "Trakt extra", releaseDate: "2026-11-01", isAnime: false, overview: "", voteAverage: 0)
+        let items = await fetcher.customCalendar(key: "k", region: "ES", filters: filters, year: 2026, month: 11, extra: [extra])
+        XCTAssertEqual(items.map(\.id), ["tmdb:movie:99", "tmdb:tv:11", "tmdb:movie:1", "tmdb:movie:3"], "The person's anime show is left out because anime is off")
+        XCTAssertEqual(Set(log.entries), ["/3/person/7/movie_credits#-#-#-#-#-", "/3/person/7/tv_credits#-#-#-#-#-", "/3/discover/movie#28#8#ES#JP|KR#ES", "/3/discover/tv#10759#8#ES#JP|KR#-"])
+        XCTAssertEqual(log.entries.count, 4)
+
+        let silent = StringLog()
+        let empty = CalendarFetcher(json: { url in silent.add(url.path); return nil }, calendar: utc)
+        let noKey = await empty.customCalendar(key: "", region: "ES", filters: filters, year: 2026, month: 11)
+        XCTAssertTrue(noKey.isEmpty); XCTAssertTrue(silent.entries.isEmpty, "Without a TMDB key nothing is asked")
+        let noFilters = await empty.customCalendar(key: "k", region: "ES", filters: CustomCalendar(), year: 2026, month: 11)
+        XCTAssertTrue(noFilters.isEmpty); XCTAssertTrue(silent.entries.isEmpty, "No people and no filters ask for nothing")
+
+        var animeOnly = filters; animeOnly.mediaTypes = CustomCalendar.MediaTypes(movie: false, tv: false, anime: true)
+        _ = await fetcher.customCalendar(key: "k", region: "ES", filters: animeOnly, year: 2026, month: 11)
+        XCTAssertEqual(log.entries.count, 8, "Anime alone still asks both discovery queries and the person's credits")
+
+        let found = await fetcher.searchPeople(key: "k", query: "  ")
+        XCTAssertTrue(found.isEmpty); XCTAssertEqual(log.entries.count, 8, "An empty search sends nothing")
+    }
+
     func testSourcesFollowDesktopsSettingAndEmptyMonthTexts() {
-        XCTAssertEqual(CalendarSource.allCases.map(\.rawValue), ["library", "all", "trakt", "anticipated", "simkl-anticipated", "anime"])
-        XCTAssertEqual(CalendarSource.offered(traktConnected: true).map(\.rawValue), ["library", "all", "trakt", "anticipated", "anime"])
-        XCTAssertEqual(CalendarSource.offered(traktConnected: false).map(\.rawValue), ["library", "all", "anticipated", "anime"], "My Trakt waits for a Trakt account")
-        XCTAssertEqual(CalendarSource.offered(traktConnected: true, simklConnected: true).map(\.rawValue), ["library", "all", "trakt", "anticipated", "simkl-anticipated", "anime"], "Simkl premieres wait for a Simkl account")
+        XCTAssertEqual(CalendarSource.allCases.map(\.rawValue), ["library", "all", "trakt", "anticipated", "simkl-anticipated", "anime", "custom"])
+        XCTAssertEqual(CalendarSource.offered(traktConnected: true).map(\.rawValue), ["library", "all", "trakt", "anticipated", "anime", "custom"])
+        XCTAssertEqual(CalendarSource.offered(traktConnected: false).map(\.rawValue), ["library", "all", "anticipated", "anime", "custom"], "My Trakt waits for a Trakt account")
+        XCTAssertEqual(CalendarSource.offered(traktConnected: true, simklConnected: true).map(\.rawValue), ["library", "all", "trakt", "anticipated", "simkl-anticipated", "anime", "custom"], "Simkl premieres wait for a Simkl account")
         XCTAssertEqual(CalendarSource.simklAnticipated.label, "Simkl premieres")
         XCTAssertEqual(CalendarSources.emptyMonth(source: .simklAnticipated, filter: "all", watchlistOnly: false).heading, "No Simkl premieres this month")
         XCTAssertEqual(CalendarSource.all.label, "All upcoming"); XCTAssertEqual(CalendarSource.anticipated.hint, "The most anticipated upcoming releases on Trakt")

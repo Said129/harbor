@@ -1421,3 +1421,17 @@ has its own text ("No dubbed episodes this month"). Spanish texts for the switch
 native translations because Desktop's Spanish catalog lacks them.
 
 `CalendarSourcesTests` has 16 cases.
+
+## Large uncompiled block (7 November, usage limit reached)
+
+Ported without compiling (Actions disabled for the repository, owner chose to keep porting):
+episode IMDb ratings on the episode picture (community server `/api/imdb/episodes/{tt}` plus OMDb
+season ratings, setting `showEpisodeRating`); player short seek steps (3 s by default, Desktop's
+eight choices), "Ask before leaving" (Esc confirm with "Don't ask me again") and maximum volume
+boost (mpv `volume-max`); the Custom calendar source (people, genres, providers, origin countries,
+media types, Trakt sources, filter sheet, person search). The earlier short-seek default of 5 s was
+wrong and is now 3 s as on Desktop. New cases: EpisodeRatingsTests (5), PlayerControlSettingsTests (4)
+and 5 Custom cases in CalendarSourcesTests (21 in all). Not started: hide watched/unreleased titles in
+home catalogs (`hideWatchedInCatalogs`, `hideUnreleased`), watchlist saved-only, Letterboxd,
+seasonSourceLock, autoNextStreamOnStall, My Simkl. Run 15 must cover every case of CalendarSourcesTests,
+ProviderRatingsTests, EpisodeRatingsTests and PlayerControlSettingsTests, and the existing PlayerShortcutTests.
