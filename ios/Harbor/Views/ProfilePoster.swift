@@ -196,6 +196,7 @@ struct ProfilePoster: View {
                 .opacity(configuration.effect == .off || reduceMotion || loaded ? 1 : 0)
                 .animation(reduceMotion || configuration.effect == .off ? nil : .easeOut(duration: 0.35), value: loaded)
                 .overlay { if showsRating && configuration.style == .poster { CardRatingChips(media: media, owner: MetadataPreferences.shared.settingsOwner ?? "guest") } }
+                .overlay { if configuration.style == .poster { CardTagBadges(media: media) } }
                 .overlay { if selected { RoundedRectangle(cornerRadius: configuration.radius).stroke(HarborTheme.accent, lineWidth: 2) } }
                 .shadow(color: .black.opacity(selected ? 0.65 : 0), radius: selected ? 24 : 0, x: 0, y: selected ? 12 : 0)
                 .scaleEffect(dock.scale, anchor: dockAnchor).offset(x: dock.x, y: dock.y)

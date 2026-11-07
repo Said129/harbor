@@ -22,6 +22,12 @@ final class InterfacePreferences {
     /// Desktop's `cardBadgeLimit` (default 3) and `badgePlacement` ("top" or "bottom", default "bottom").
     var cardBadgeLimit = UserDefaults.standard.object(forKey: "cardBadgeLimit") as? Int ?? 3 { didSet { persist(cardBadgeLimit, forKey: "cardBadgeLimit") } }
     var badgePlacement = UserDefaults.standard.string(forKey: "badgePlacement") == "top" ? "top" : "bottom" { didSet { persist(badgePlacement, forKey: "badgePlacement") } }
+    /// Desktop's `watchlistBadge` ("off", "topStart", "topEnd", "bottomStart" or "bottomEnd"; default "topEnd"): the bookmark on saved posters.
+    var watchlistBadge = CardWatchlistPosition.restored(UserDefaults.standard.string(forKey: "watchlistBadge")).rawValue { didSet { persist(watchlistBadge, forKey: "watchlistBadge") } }
+    /// Desktop's `showDubBadge` (default on): the DUB tag on anime cards with an English dub.
+    var showDubBadge = UserDefaults.standard.object(forKey: "showDubBadge") as? Bool ?? true { didSet { persist(showDubBadge, forKey: "showDubBadge") } }
+    /// Desktop's `showCardBadges` (default on, "Show tags on cards"): the New tag on cards.
+    var showCardBadges = UserDefaults.standard.object(forKey: "showCardBadges") as? Bool ?? true { didSet { persist(showCardBadges, forKey: "showCardBadges") } }
     var showWatchedButton = UserDefaults.standard.object(forKey: "showWatchedButton") as? Bool ?? true { didSet { persist(showWatchedButton, forKey: "showWatchedButton") } }
     /// Desktop's `wrappedButton` (default true): the Stats entry in the library header.
     var wrappedButton = UserDefaults.standard.object(forKey: "wrappedButton") as? Bool ?? true { didSet { persist(wrappedButton, forKey: "wrappedButton") } }
@@ -110,6 +116,9 @@ final class InterfacePreferences {
         showTraktBadge = UserDefaults.standard.object(forKey: "showTraktBadge") as? Bool ?? false
         cardBadgeLimit = UserDefaults.standard.object(forKey: "cardBadgeLimit") as? Int ?? 3
         badgePlacement = UserDefaults.standard.string(forKey: "badgePlacement") == "top" ? "top" : "bottom"
+        watchlistBadge = CardWatchlistPosition.restored(UserDefaults.standard.string(forKey: "watchlistBadge")).rawValue
+        showDubBadge = UserDefaults.standard.object(forKey: "showDubBadge") as? Bool ?? true
+        showCardBadges = UserDefaults.standard.object(forKey: "showCardBadges") as? Bool ?? true
         showWatchedButton = UserDefaults.standard.object(forKey: "showWatchedButton") as? Bool ?? true
         wrappedButton = UserDefaults.standard.object(forKey: "wrappedButton") as? Bool ?? true
         showEpisodeDescription = UserDefaults.standard.object(forKey: "showEpisodeDescription") as? Bool ?? true

@@ -9,6 +9,15 @@ struct CardBadgesSettingsView: View {
     init(owner: String) { _store = State(initialValue: ProviderKeyStore.forOwner(owner)) }
 
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
+    /// Turning the bookmark on returns it to Desktop's default corner; Desktop keeps the last corner only for the session.
+    private var watchlistOnBinding: Binding<Bool> {
+        Binding(get: { interface.watchlistBadge != "off" }, set: { on in interface.watchlistBadge = on ? "topEnd" : "off" })
+    }
+    /// Desktop's `showMalDetail` is the MAL row of the ratings matrix's Details column, which iOS keeps in `detailRatingsHidden`.
+    private var malDetailBinding: Binding<Bool> {
+        Binding(get: { !interface.detailRatingsHidden.contains("mal") },
+                set: { shown in if shown { interface.detailRatingsHidden.remove("mal") } else { interface.detailRatingsHidden.insert("mal") } })
+    }
     private var keys: Set<CardRatingKey> { CardRatingPolicy.keySources(omdb: store.key(.omdb), mdblist: store.key(.mdblist)) }
     private var selected: Set<CardRatingProvider> { Set(CardRatingProvider.allCases.filter { interface.cardRatingOn($0) }) }
     private var enabledCount: Int { CardRatingPolicy.chipCount(CardRatingPolicy.enabled(selected: selected, keys: keys)) }
@@ -33,10 +42,28 @@ struct CardBadgesSettingsView: View {
                                                     variables: ["n": String(enabledCount)]))
                         .font(HarborTheme.font(13)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
                 }
+                HarborSettingsSection("On the poster") {
+                    HarborSettingsToggle("Show tags on cards",
+                                         note: "The New, In Cinema, Rerun, and Awards chips. Turn off for a cleaner grid. Score chips are separate, below.",
+                                         isOn: $interface.showCardBadges)
+                    HarborSettingsToggle("Watchlist bookmark", note: "Puts a small bookmark on posters you have already saved.", isOn: watchlistOnBinding)
+                    if interface.watchlistBadge != "off" {
+                        HarborSettingsChoice("Bookmark corner", selection: $interface.watchlistBadge,
+                                             choices: [("Top left", "topStart"), ("Top right", "topEnd"), ("Bottom left", "bottomStart"), ("Bottom right", "bottomEnd")],
+                                             identifier: "card-badges-bookmark-corner")
+                        Text(text("Pick which corner of the poster the bookmark sits in.")).font(HarborTheme.font(13)).foregroundStyle(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    HarborSettingsToggle("Show DUB badge on anime cards",
+                                         note: "Flags anime with an English dub. Also tags dub / sub / dual on stream sources.",
+                                         isOn: $interface.showDubBadge)
+                }
                 HarborSettingsSection("Scores") {
                     ratingToggle(.imdb, "IMDb")
                     ratingToggle(.tmdb, "TMDB", note: "The TMDB community score.")
                     ratingToggle(.mal, "MAL", note: "Anime")
+                    HarborSettingsToggle("Details", note: "The ratings row on a title's detail page, next to runtime and genre.", isOn: malDetailBinding)
+                        .accessibilityIdentifier("card-rating-mal-details")
                     ratingToggle(.simkl, "SIMKL")
                     ratingToggle(.rt, "Rotten Tomatoes")
                     ratingToggle(.audience, "Audience", note: "Rotten Tomatoes Popcornmeter, the audience score (%).")
