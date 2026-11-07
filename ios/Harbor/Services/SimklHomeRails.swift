@@ -133,7 +133,7 @@ enum SimklHomeRails {
         }
         if settings.upNext {
             let items = upNext(airings: airings, library: ordered(library), now: now, calendar: calendar)
-            out.append(source(.upNext, "series", items))
+            out.append(Source(key: .upNext, kind: "series", items: items))
         }
         if settings.trending, let first = trending.first {
             let items = trending.map { hydratable($0.ids, type: $0.isMovie ? .movie : .show, title: $0.title, year: $0.year) }
