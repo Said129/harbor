@@ -14,12 +14,12 @@ final class SimklHomeRailsTests: XCTestCase {
 
     private var utc: Calendar {
         var calendar = Calendar(identifier: .gregorian)
-        calendar.timeZone = TimeZone(identifier: "UTC")!
+        calendar.timeZone = TimeZone(secondsFromGMT: 0) ?? .current
         return calendar
     }
 
     /// 2026-11-07 12:00 UTC: today is 2026-11-07, and Up Next runs until 2026-12-07.
-    private var now: Date { SimklHomeRails.parseDate("2026-11-07T12:00:00Z")! }
+    private var now: Date { SimklHomeRails.parseDate("2026-11-07T12:00:00Z") ?? Date(timeIntervalSince1970: 0) }
 
     private var library: [SimklListItem] {
         get throws {
@@ -43,9 +43,9 @@ final class SimklHomeRailsTests: XCTestCase {
 
     // MARK: Settings
 
-    func testSettingsDefaultsMatchDesktopWhenNothingIsStored() {
+    func testSettingsDefaultsMatchDesktopWhenNothingIsStored() throws {
         let suite = "SimklHomeRailsTests.defaults." + UUID().uuidString
-        let defaults = UserDefaults(suiteName: suite)!
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
         defer { defaults.removePersistentDomain(forName: suite) }
         let value = SimklHomeRails.Settings(defaults: defaults)
         XCTAssertFalse(value.homeRails)
@@ -57,9 +57,9 @@ final class SimklHomeRailsTests: XCTestCase {
         XCTAssertEqual(value.animeTitleLanguage, .english)
     }
 
-    func testStoredSettingsAreReadAndInvalidLanguageFallsBack() {
+    func testStoredSettingsAreReadAndInvalidLanguageFallsBack() throws {
         let suite = "SimklHomeRailsTests.stored." + UUID().uuidString
-        let defaults = UserDefaults(suiteName: suite)!
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
         defer { defaults.removePersistentDomain(forName: suite) }
         defaults.set(true, forKey: SimklHomeRails.Keys.homeRails)
         defaults.set(false, forKey: SimklHomeRails.Keys.showsWatching)

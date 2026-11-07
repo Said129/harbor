@@ -22,13 +22,32 @@ extension SimklHomeRails.Settings {
 /// `ProfileSettingsStore` saves per profile. Nothing is cached here, so a profile switch is visible on the next read.
 @MainActor @Observable final class SimklHomeRailPreferences {
     static let shared = SimklHomeRailPreferences()
+    /// Advances only when a Simkl home-rail value changes, so Observation-tracked readers (Home) refresh on a
+    /// toggle or a profile switch and not on every unrelated defaults write.
+    private(set) var revision = 0
     @ObservationIgnored private let defaults: UserDefaults
+    @ObservationIgnored private var last: SimklHomeRails.Settings
+    @ObservationIgnored private var observer: NSObjectProtocol?
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
+        last = SimklHomeRails.Settings(defaults: defaults)
+        observer = NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: nil) { [weak self] _ in
+            Task { @MainActor in self?.noticeChange() }
+        }
     }
 
-    var settings: SimklHomeRails.Settings { SimklHomeRails.Settings(defaults: defaults) }
+    var settings: SimklHomeRails.Settings {
+        _ = revision
+        return SimklHomeRails.Settings(defaults: defaults)
+    }
+
+    private func noticeChange() {
+        let current = SimklHomeRails.Settings(defaults: defaults)
+        guard current != last else { return }
+        last = current
+        revision &+= 1
+    }
 
     /// Desktop's disconnect resets these to their defaults (`simkl-panel.tsx`), which removing the keys also does.
     func reset() {

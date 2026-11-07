@@ -114,6 +114,7 @@ import Observation
     /// The public Simkl CDN. Failure yields no rows, as Desktop's empty fallback does.
     private func fetchJSON(_ path: String) async -> JSONValue {
         let query = "client_id=" + HTTPClient.simklPublicClientID + "&app-name=harbor&app-version=0.9.132"
-        return (try? await HTTPClient().json("https://data.simkl.in/" + path + "?" + query)) ?? .null
+        // The calendar feed is large, so it gets a longer timeout than the default metadata request.
+        return (try? await HTTPClient().json("https://data.simkl.in/" + path + "?" + query, timeout: 30)) ?? .null
     }
 }
