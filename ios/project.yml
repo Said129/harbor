@@ -234,6 +234,7 @@ targets:
       - path: HarborTests/TheIntroDBTests.swift
       - path: HarborTests/DetailSettingsRulesTests.swift
       - path: HarborTests/QualityBadgePolicyTests.swift
+      - path: HarborTests/ContentAdvisoryTests.swift
       - path: HarborTests/TogetherPlayerSyncTests.swift
       - path: HarborTests/CastChromecastTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
