@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Desktop's AniList panel (`settings/anilist-panel.tsx`): connect with a pasted code, sync watch progress.
-/// The lists, comments and avatar options of that panel are not ported.
+/// The lists open from here (`AniListListsView`, read-only); comments and avatar options of that panel are not ported.
 struct AniListSettingsView: View {
     @State private var account: AniListAccount
     @State private var connectModel: AniListConnectModel
@@ -9,7 +9,9 @@ struct AniListSettingsView: View {
     @State private var disconnecting = false
     @State private var loadFailed = false
     @AppStorage("anilistAutoSync") private var autoSync = true
+    private let app: AppModel
     @MainActor init(app: AppModel) {
+        self.app = app
         let account = AniListAccount.forOwner(app.personalOwner)
         _account = State(initialValue: account); _connectModel = State(initialValue: AniListConnectModel(account: account))
     }
@@ -40,6 +42,11 @@ struct AniListSettingsView: View {
                         Link(destination: profile) { Label("anilist.co", systemImage: "arrow.up.right.square").frame(minHeight: 44) }
                             .accessibilityIdentifier("anilist-profile")
                     }
+                    NavigationLink { AniListListsView(app: app) } label: {
+                        Text(text("Harbor shows your AniList lists on the Anime page and keeps your progress in sync."))
+                            .multilineTextAlignment(.leading).frame(maxWidth: .infinity, alignment: .leading).frame(minHeight: 44)
+                    }
+                    .accessibilityIdentifier("anilist-lists")
                     VStack(alignment: .leading, spacing: 10) {
                         Text(text("Tracking what you watch")).font(HarborTheme.font(13, weight: .semibold)).foregroundStyle(.secondary)
                         HarborSettingsToggle(text("Sync watch progress"),
