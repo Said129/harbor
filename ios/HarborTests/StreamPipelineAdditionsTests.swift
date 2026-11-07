@@ -264,4 +264,12 @@ import XCTest
         let none = await DebridLibraryMerge.lister(nil)(.rd)
         XCTAssertNil(none)
     }
+
+    func testLibraryEntryDecodesFileNamesAndToleratesNumericFileIds() throws {
+        let withFiles = #"{"slug":"dl","id":"12","hash":"abcdef","name":"Show Pack","files":[{"id":7,"name":"Show.S01E01.mkv","size":1},{"id":"x","name":"Show.S01E02.mkv"}]}"#
+        let entry = try JSONDecoder().decode(DebridLibraryEntry.self, from: Data(withFiles.utf8))
+        XCTAssertEqual(entry.files?.compactMap { $0.name }, ["Show.S01E01.mkv", "Show.S01E02.mkv"])
+        let bare = try JSONDecoder().decode(DebridLibraryEntry.self, from: Data(#"{"slug":"rd","id":"1","hash":"abc","name":"X"}"#.utf8))
+        XCTAssertNil(bare.files, "Real-Debrid and Premiumize listings carry no files")
+    }
 }

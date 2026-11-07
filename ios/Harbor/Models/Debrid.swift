@@ -86,6 +86,13 @@ struct DebridLibraryEntry: Decodable, Equatable, Sendable {
     let hash: String
     let name: String
     var size: Double?
+    /// Desktop's LibraryEntry.files. Only the names are read: AllDebrid, Debrid-Link and TorBox send them,
+    /// Real-Debrid and Premiumize do not, and their file ids may be numbers.
+    var files: [DebridLibraryFile]?
+}
+
+struct DebridLibraryFile: Decodable, Equatable, Sendable {
+    var name: String?
 }
 
 /// Desktop's DebridResult. The provider's raw error body is deliberately not decoded.

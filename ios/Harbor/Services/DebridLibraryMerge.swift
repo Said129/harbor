@@ -133,13 +133,13 @@ enum DebridLibraryMerge {
             .replacingOccurrences(of: #"[\s.\-_()\[\]:;,!?'"‘’“”–—]+"#, with: "", options: .regularExpression)
     }
 
-    /// Desktop's buildLibraryStream. The title and addon name keep Desktop's "[RD+] Real-Debrid Library" form.
+    /// Desktop's buildLibraryStream. Desktop builds this label as a plain template literal, not through its
+    /// translation table, so the English "Library" is kept as written there.
     static func stream(_ item: Item, _ found: Match) -> JSONValue {
         let index = found.fileIndex ?? 0
         let filename = index < item.files.count ? item.files[index] : item.name
         let providerName = item.provider.name
-        let library = DesktopInterfaceText.value("Library")
-        let addonName = providerName + " " + library
+        let addonName = providerName + " Library"
         let cacheTag = "[" + item.provider.rawValue.uppercased() + "+]"
         var fields: [String: JSONValue] = [
             "name": .string(filename),
@@ -224,7 +224,7 @@ enum DebridLibraryMerge {
     static func lister(_ client: DebridClient?) -> Lister {
         { provider in
             guard let client, let outcome = try? await client.listLibrary(provider), let entries = outcome.value else { return nil }
-            return entries.map { Item(provider: provider, hash: $0.hash, name: $0.name) }
+            return entries.map { Item(provider: provider, hash: $0.hash, name: $0.name, files: ($0.files ?? []).compactMap { $0.name }) }
         }
     }
 
