@@ -52,6 +52,10 @@ enum MPVConfiguration {
 #endif
             let selected = decoding ?? HardwareDecoding(rawValue: UserDefaults.standard.string(forKey: "mpvHwdec") ?? "auto") ?? .auto
             try check(mpv_set_option_string(handle, "hwdec", selected.mpvValue))
+            // Desktop's mpvQuality lines (`mpv-tuning.ts`). An option this mpv build refuses is ignored, so it cannot stop playback.
+            for (name, value) in UISettingsPolicy.mpvQualityOptions(UserDefaults.standard.string(forKey: UISettingsPolicy.mpvQualityKey)) {
+                _ = mpv_set_option_string(handle, name, value)
+            }
             let settings = playback ?? PlaybackPreferences.shared.options
             // Xcode copies registered fonts into the bundle resource root.
             if let fonts = Bundle.main.url(forResource: "Inter", withExtension: "ttf") {
