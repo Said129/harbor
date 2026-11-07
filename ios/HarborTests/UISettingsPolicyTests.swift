@@ -1,7 +1,7 @@
 import XCTest
 @testable import Harbor
 
-/// Desktop's small settings: `mpvQuality`, `spoilerSkipNext`, `playerTitleSeriesFirst`, `syncIndicatorPosition` and `deleteWatchedDownloads`.
+/// Desktop's small settings: `mpvQuality`, `spoilerSkipNext`, `playerTitleSeriesFirst` and `deleteWatchedDownloads` (pure rules only).
 final class UISettingsPolicyTests: XCTestCase {
     func testMpvQualityFallsBackToBalancedForUnknownValues() {
         XCTAssertEqual(UISettingsPolicy.mpvQuality(nil), "balanced")
@@ -80,20 +80,6 @@ final class UISettingsPolicyTests: XCTestCase {
         let empty = UISettingsPolicy.titleLines(title: "Movie", subtitle: "", seriesFirst: true)
         XCTAssertEqual(empty.primary, "Movie")
         XCTAssertEqual(empty.secondary, "")
-    }
-
-    func testSyncIndicatorSlotReadsDesktopPositions() {
-        XCTAssertEqual(UISettingsPolicy.syncIndicatorSlot("top-left"), .topLeft)
-        XCTAssertEqual(UISettingsPolicy.syncIndicatorSlot("bottom-left"), .bottomLeft)
-        XCTAssertEqual(UISettingsPolicy.syncIndicatorSlot("bottom-right"), .bottomRight)
-        XCTAssertEqual(UISettingsPolicy.syncIndicatorSlot("bottom-center"), .bottomCenter)
-        XCTAssertEqual(UISettingsPolicy.syncIndicatorSlot("top-right"), .topRight)
-    }
-
-    func testSyncIndicatorSlotFallsBackToTopRight() {
-        XCTAssertEqual(UISettingsPolicy.syncIndicatorSlot(nil), .topRight)
-        XCTAssertEqual(UISettingsPolicy.syncIndicatorSlot("middle"), .topRight)
-        XCTAssertEqual(UISettingsPolicy.syncIndicatorPositionDefault, "top-right")
     }
 
     func testWatchedDownloadIsRemovedOnlyWhenEnabledAndNearlyFinished() {

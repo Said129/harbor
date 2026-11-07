@@ -1,12 +1,11 @@
 import Foundation
 
 /// Pure rules behind a few small Desktop settings: `mpvQuality` (`src/lib/player/mpv-tuning.ts`),
-/// `spoilerSkipNext` (`src/lib/spoilers.ts`), `playerTitleSeriesFirst` (`src/components/player/transport/control-renderer.tsx`),
-/// `syncIndicatorPosition` (`src/lib/sync-toast-position.ts`) and `deleteWatchedDownloads` (`src/views/player/hooks/use-player-media.ts`).
+/// `spoilerSkipNext` (`src/lib/spoilers.ts`), `playerTitleSeriesFirst` (`src/components/player/transport/control-renderer.tsx`)
+/// and `deleteWatchedDownloads` (`src/views/player/hooks/use-player-media.ts`).
 enum UISettingsPolicy {
     static let mpvQualityKey = "mpvQuality"
     static let mpvQualityDefault = "balanced"
-    static let syncIndicatorPositionDefault = "top-right"
 
     /// Desktop's `mpvQuality` profile. Anything other than "performance" or "quality" means "balanced".
     static func mpvQuality(_ raw: String?) -> String {
@@ -63,19 +62,6 @@ enum UISettingsPolicy {
     static func titleLines(title: String, subtitle: String?, seriesFirst: Bool) -> (primary: String, secondary: String?) {
         guard seriesFirst, let subtitle, !subtitle.isEmpty else { return (title, subtitle) }
         return (subtitle, title)
-    }
-
-    /// The corners Desktop offers for the sync badge. Unknown values fall back to top right, as on Desktop.
-    enum SyncIndicatorSlot: String, CaseIterable {
-        case topLeft = "top-left"
-        case topRight = "top-right"
-        case bottomLeft = "bottom-left"
-        case bottomRight = "bottom-right"
-        case bottomCenter = "bottom-center"
-    }
-
-    static func syncIndicatorSlot(_ raw: String?) -> SyncIndicatorSlot {
-        SyncIndicatorSlot(rawValue: raw ?? "") ?? .topRight
     }
 
     /// Desktop's `deleteWatchedDownloads` rule: a download is removed once playback reaches 90 percent.

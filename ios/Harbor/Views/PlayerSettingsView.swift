@@ -34,7 +34,6 @@ struct PlayerSettingsView: View {
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     /// Desktop's `mpvQuality` profile, read by `MPVConfiguration` when a video opens.
     @AppStorage(UISettingsPolicy.mpvQualityKey) private var mpvQuality = UISettingsPolicy.mpvQualityDefault
-    @Bindable private var interfacePreferences = InterfacePreferences.shared
     /// Desktop's `mpvQuality` choices, in Desktop's order (`mpv-panel/profile.tsx`).
     private var mpvQualityChoices: [(String, String)] {
         [(DesktopInterfaceText.value("Smooth on weak PCs"), "performance"), (DesktopInterfaceText.value("Balanced"), "balanced"),
@@ -127,11 +126,9 @@ struct PlayerSettingsView: View {
         HarborSettingsSection("Reproductor") {
             HarborSettingsChoice("Decodificación de vídeo", selection: $hardwareDecoding, choices: HardwareDecoding.allCases.map { ($0.title, $0) })
                 .accessibilityIdentifier("settings-hwdec")
-            HarborSettingsChoice(DesktopInterfaceText.value("Picture quality"), selection: $mpvQuality, choices: mpvQualityChoices, identifier: "settings-mpv-quality")
+            HarborSettingsChoice(DesktopInterfaceText.value("Picture quality"), selection: $mpvQuality, choices: mpvQualityChoices, localizeChoices: false, identifier: "settings-mpv-quality")
             Text(DesktopInterfaceText.value("Balance picture quality and performance. Changes apply to the next video you play."))
                 .font(HarborTheme.font(12)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
-            HarborSettingsToggle(DesktopInterfaceText.value("Show series name first in the player"), note: DesktopInterfaceText.value("Lead with the show name instead of the episode title at the top of the player."), isOn: $interfacePreferences.playerTitleSeriesFirst)
-                .accessibilityIdentifier("settings-title-series-first")
         }
         HarborSettingsSection(DesktopInterfaceText.value("Picture")) {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
