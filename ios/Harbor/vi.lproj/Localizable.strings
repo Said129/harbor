@@ -429,6 +429,7 @@
 "Clave de API v3" = "Khóa API v3";
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Vẫn có rất ít bản phát hành phù hợp cho tựa phim này. Hãy kiểm tra tên tệp và dung lượng trước khi phát.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Chưa tìm thấy bản phát hành phù hợp cho tựa phim này. Kết quả bên dưới có thể không khớp với tựa phim bạn đang tìm, vì vậy hãy kiểm tra tên tệp và dung lượng trước khi phát.";
+"Cleaner grid when your poster service already prints the title on the artwork." = "Lưới gọn hơn khi dịch vụ áp phích đã in sẵn tiêu đề trên hình ảnh.";
 "Clear" = "Xóa";
 "Clear A-B loop" = "Xóa vòng lặp A-B";
 "Clear all" = "Xóa tất cả";
@@ -926,9 +927,11 @@
 "Hide row" = "Ẩn hàng";
 "Hide sound effects and speaker names" = "Ẩn hiệu ứng âm thanh và tên người nói";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Ẩn tệp đáng ngờ, bản phát hành không khớp, bản có thể quay bằng camera và đoạn giới thiệu. Đồng thời kiểm tra kích thước tệp và gói mùa.";
+"Hide titles under posters" = "Ẩn tiêu đề dưới áp phích";
 "Hide unreleased titles" = "Ẩn các tựa phim chưa phát hành";
 "Hide watched titles in catalogs" = "Ẩn các phim đã xem trong danh mục";
 "Hide {name} from navigation" = "Ẩn {name} khỏi thanh điều hướng";
+"Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "Ẩn anime khỏi hàng Xem tiếp trên Trang chủ. Nội dung này vẫn xuất hiện trong hàng Xem tiếp riêng của thẻ Anime.";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Ẩn các chi tiết dễ tiết lộ nội dung trong danh sách tập cho đến khi bạn xem xong.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Ẩn các luồng không phát hiện được ngôn ngữ ưu tiên. Bản phát hành đa âm thanh vẫn được tính là khớp.";
 "Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "Tự ẩn nút sau vài giây để nút không chính xác không hiện suốt cả tập.";
@@ -942,6 +945,7 @@
 "History" = "Lịch sử";
 "Hockey" = "Khúc côn cầu";
 "Home" = "Trang chủ";
+"Home catalogs" = "Danh mục trang chủ";
 "Home layout" = "Bố cục trang chủ";
 "Home style" = "Kiểu trang chủ";
 "Hoopla" = "Hoopla";
@@ -1037,6 +1041,7 @@
 "Just added" = "Mới thêm";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep anime in the Anime room only" = "Chỉ giữ anime trong khu vực Anime";
 "Keep original" = "Giữ nguyên bản";
 "Keep same source on next episode" = "Giữ nguyên nguồn cho tập tiếp theo";
 "Keep screen awake" = "Keep screen awake";
@@ -1400,6 +1405,7 @@
 "Only 2 sources after filtering" = "Chỉ còn 2 nguồn sau khi lọc";
 "Only https links are accepted." = "Chỉ chấp nhận liên kết https.";
 "Only show streams in my languages" = "Chỉ hiện luồng bằng ngôn ngữ của tôi";
+"Only show titles in these original languages on the Home rows. Leave all off to show everything." = "Chỉ hiển thị trên các hàng Trang chủ những tựa phim có ngôn ngữ gốc này. Tắt tất cả để hiển thị mọi nội dung.";
 "Opacidad" = "Độ mờ";
 "Opacidad del fondo" = "Độ mờ nền";
 "Opacity" = "Độ mờ";

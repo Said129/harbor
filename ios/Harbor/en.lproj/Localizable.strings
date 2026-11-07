@@ -355,6 +355,7 @@
 "Clave de API v3" = "v3 API key";
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Clean releases for this title are still scarce. Confirm the filename and size before playing.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing.";
+"Cleaner grid when your poster service already prints the title on the artwork." = "Cleaner grid when your poster service already prints the title on the artwork.";
 "Clear" = "Clear";
 "Clear A-B loop" = "Clear A-B loop";
 "Clear all" = "Clear all";
@@ -784,9 +785,11 @@
 "Hide row" = "Hide row";
 "Hide sound effects and speaker names" = "Hide sound effects and speaker names";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs.";
+"Hide titles under posters" = "Hide titles under posters";
 "Hide unreleased titles" = "Hide unreleased titles";
 "Hide watched titles in catalogs" = "Hide watched titles in catalogs";
 "Hide {name} from navigation" = "Hide {name} from navigation";
+"Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching.";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Hides spoiler-prone episode details in episode lists until you have watched them.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Hides streams with no detected preferred language. Multi-audio releases count as a match.";
 "Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode.";
@@ -798,6 +801,7 @@
 "Highlighted blocks." = "Highlighted blocks.";
 "History" = "History";
 "Home" = "Home";
+"Home catalogs" = "Home catalogs";
 "Home layout" = "Home layout";
 "Home style" = "Home style";
 "Horror" = "Horror";
@@ -879,6 +883,7 @@
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above.";
 "Just added" = "Just added";
 "Kawaii" = "Kawaii";
+"Keep anime in the Anime room only" = "Keep anime in the Anime room only";
 "Keep original" = "Keep original";
 "Keep same source on next episode" = "Keep same source on next episode";
 "Keep screen awake" = "Keep screen awake";
@@ -1193,6 +1198,7 @@
 "Only 1 source after filtering" = "Only 1 source after filtering";
 "Only 2 sources after filtering" = "Only 2 sources after filtering";
 "Only show streams in my languages" = "Only show streams in my languages";
+"Only show titles in these original languages on the Home rows. Leave all off to show everything." = "Only show titles in these original languages on the Home rows. Leave all off to show everything.";
 "Opacidad" = "Opacity";
 "Opacidad del fondo" = "Background opacity";
 "Opacity" = "Opacity";

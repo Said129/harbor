@@ -16,25 +16,25 @@
     },
     "settings": {
       "total": 511,
-      "ported": 144,
+      "ported": 147,
       "partial": 24,
-      "missing": 175,
-      "excluded": 168,
-      "counted": 343,
-      "weighted_percent": 45.5,
-      "ported_only_percent": 42.0,
-      "ported_or_partial_percent": 49.0
+      "missing": 171,
+      "excluded": 169,
+      "counted": 342,
+      "weighted_percent": 46.5,
+      "ported_only_percent": 43.0,
+      "ported_or_partial_percent": 50.0
     },
     "all": {
       "total": 949,
-      "ported": 266,
+      "ported": 269,
       "partial": 230,
-      "missing": 244,
-      "excluded": 209,
-      "counted": 740,
-      "weighted_percent": 51.5,
-      "ported_only_percent": 35.9,
-      "ported_or_partial_percent": 67.0
+      "missing": 240,
+      "excluded": 210,
+      "counted": 739,
+      "weighted_percent": 52.0,
+      "ported_only_percent": 36.4,
+      "ported_or_partial_percent": 67.5
     }
   },
   "behavior_areas": [
@@ -3651,8 +3651,8 @@
       "index": 51,
       "id": "homeLanguages",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card badges and home languages not ported"
+      "verdict": "D",
+      "note": "Home catalogs language filter on the Home rows by original language (7 Nov, uncompiled; written by Haiku in a trial)"
     },
     {
       "index": 52,
@@ -5268,8 +5268,8 @@
       "index": 282,
       "id": "hidePosterTitles",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "local playback, media servers, catalog pins, poster URL"
+      "verdict": "D",
+      "note": "hide titles under posters on poster cards (7 Nov, uncompiled; written by Haiku in a trial)"
     },
     {
       "index": 283,
@@ -5933,8 +5933,8 @@
       "index": 377,
       "id": "streamBackdropBlur",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "stream backdrop blur: the iOS stream picker draws no backdrop artwork, so there is nothing to blur"
     },
     {
       "index": 378,
@@ -6080,8 +6080,8 @@
       "index": 398,
       "id": "animeOnlyInAnimeRoom",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "keep anime in the Anime room only: Home Continue Watching leaves anime out (7 Nov, uncompiled; written by Haiku in a trial)"
     },
     {
       "index": 399,

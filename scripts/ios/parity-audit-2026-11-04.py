@@ -505,6 +505,10 @@ SETTINGS = expand("""
 356-357 D hide watched and unreleased titles in the home catalog rows, in Home layout (7 Nov, uncompiled; written by Haiku in a trial)
 394 D Watchlist shows only saved titles: off also lists unstarted entries Stremio auto-added (7 Nov, uncompiled; written by Haiku in a trial)
 400 D Continue Watching advances to the next episode, optional (7 Nov, uncompiled; written by Haiku in a trial)
+51 D Home catalogs language filter on the Home rows by original language (7 Nov, uncompiled; written by Haiku in a trial)
+282 D hide titles under posters on poster cards (7 Nov, uncompiled; written by Haiku in a trial)
+377 X stream backdrop blur: the iOS stream picker draws no backdrop artwork, so there is nothing to blur
+398 D keep anime in the Anime room only: Home Continue Watching leaves anime out (7 Nov, uncompiled; written by Haiku in a trial)
 """)
 
 def audit(items, verdicts, label):

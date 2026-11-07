@@ -429,6 +429,7 @@
 "Clave de API v3" = "kunci API v3";
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Rilis yang cocok untuk judul ini masih langka. Periksa nama file dan ukurannya sebelum memutar.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Rilis yang cocok untuk judul ini belum tersedia. Hasil di bawah mungkin tidak cocok dengan judul yang Anda cari, jadi periksa nama file dan ukurannya sebelum memutar.";
+"Cleaner grid when your poster service already prints the title on the artwork." = "Tampilan kisi yang lebih bersih jika layanan poster Anda sudah mencantumkan judul pada gambar.";
 "Clear" = "Bersihkan";
 "Clear A-B loop" = "Hapus loop A-B";
 "Clear all" = "Hapus semua";
@@ -926,9 +927,11 @@
 "Hide row" = "Sembunyikan baris";
 "Hide sound effects and speaker names" = "Sembunyikan efek suara dan nama pembicara";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Sembunyikan berkas mencurigakan, rilis yang tidak cocok, kemungkinan rekaman kamera, dan trailer. Periksa juga ukuran berkas dan paket musim.";
+"Hide titles under posters" = "Sembunyikan judul di bawah poster";
 "Hide unreleased titles" = "Sembunyikan judul yang belum dirilis";
 "Hide watched titles in catalogs" = "Sembunyikan judul yang sudah ditonton di katalog";
 "Hide {name} from navigation" = "Sembunyikan {name} dari navigasi";
+"Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "Menyembunyikan anime dari baris Lanjutkan Menonton di Beranda. Anime tersebut tetap muncul di Lanjutkan Menonton pada tab Anime.";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Menyembunyikan detail episode yang berpotensi mengandung spoiler dalam daftar episode hingga Anda menontonnya.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Menyembunyikan stream tanpa bahasa pilihan yang terdeteksi. Rilis multi-audio dianggap cocok.";
 "Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "Menyembunyikan tombol secara otomatis setelah beberapa detik agar tombol yang salah tidak terus muncul sepanjang episode.";
@@ -942,6 +945,7 @@
 "History" = "Sejarah";
 "Hockey" = "Hoki";
 "Home" = "Beranda";
+"Home catalogs" = "Katalog Beranda";
 "Home layout" = "Tata letak Beranda";
 "Home style" = "Gaya Beranda";
 "Hoopla" = "Hoopla";
@@ -1037,6 +1041,7 @@
 "Just added" = "Baru ditambahkan";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep anime in the Anime room only" = "Batasi anime hanya di ruang Anime";
 "Keep original" = "Pertahankan yang asli";
 "Keep same source on next episode" = "Gunakan sumber yang sama pada episode berikutnya";
 "Keep screen awake" = "Keep screen awake";
@@ -1400,6 +1405,7 @@
 "Only 2 sources after filtering" = "Hanya 2 sumber setelah difilter";
 "Only https links are accepted." = "Hanya tautan https yang diterima.";
 "Only show streams in my languages" = "Hanya tampilkan stream dalam bahasa saya";
+"Only show titles in these original languages on the Home rows. Leave all off to show everything." = "Hanya tampilkan judul dengan bahasa asli ini di deretan Beranda. Biarkan semuanya nonaktif untuk menampilkan semua judul.";
 "Opacidad" = "Opasitas";
 "Opacidad del fondo" = "Opasitas latar belakang";
 "Opacity" = "Opasitas";

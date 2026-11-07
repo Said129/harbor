@@ -429,6 +429,7 @@
 "Clave de API v3" = "v3 API 키";
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "아직 이 작품의 정확한 릴리스가 많지 않습니다. 재생 전에 파일 이름과 크기를 확인하세요.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "아직 이 작품의 정확한 릴리스를 찾지 못했습니다. 아래 결과는 찾는 작품과 다를 수 있으니 재생 전에 파일 이름과 크기를 확인하세요.";
+"Cleaner grid when your poster service already prints the title on the artwork." = "포스터 서비스에서 아트워크에 제목을 이미 표시하는 경우 그리드를 더 깔끔하게 만듭니다.";
 "Clear" = "지우기";
 "Clear A-B loop" = "A-B 구간 반복 해제";
 "Clear all" = "모두 삭제";
@@ -926,9 +927,11 @@
 "Hide row" = "행 숨기기";
 "Hide sound effects and speaker names" = "효과음과 화자 이름 숨기기";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "의심스러운 파일, 일치하지 않는 릴리스, 캠 촬영 추정 영상, 예고편을 숨깁니다. 파일 크기와 시즌 묶음도 확인합니다.";
+"Hide titles under posters" = "포스터 아래 제목 숨기기";
 "Hide unreleased titles" = "미공개 작품 숨기기";
 "Hide watched titles in catalogs" = "카탈로그에서 시청한 작품 숨기기";
 "Hide {name} from navigation" = "탐색에서 {name} 숨기기";
+"Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "홈의 이어보기 행에서 애니메이션을 숨깁니다. 애니메이션 탭의 이어보기에는 계속 표시됩니다.";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "시청하기 전까지 에피소드 목록에서 스포일러가 될 수 있는 세부 정보를 숨깁니다.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "선호 언어가 감지되지 않은 스트림을 숨깁니다. 다중 오디오 릴리스도 일치 항목으로 간주됩니다.";
 "Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "잘못된 버튼이 에피소드 내내 표시되지 않도록 몇 초 후 자동으로 숨깁니다.";
@@ -942,6 +945,7 @@
 "History" = "역사";
 "Hockey" = "하키";
 "Home" = "홈";
+"Home catalogs" = "홈 카탈로그";
 "Home layout" = "홈 레이아웃";
 "Home style" = "홈 스타일";
 "Hoopla" = "Hoopla";
@@ -1037,6 +1041,7 @@
 "Just added" = "최근 추가순";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep anime in the Anime room only" = "애니메이션은 애니메이션 공간에만 표시";
 "Keep original" = "원본 유지";
 "Keep same source on next episode" = "다음 에피소드에서 같은 소스 유지";
 "Keep screen awake" = "Keep screen awake";
@@ -1400,6 +1405,7 @@
 "Only 2 sources after filtering" = "필터링 후 소스가 2개뿐입니다";
 "Only https links are accepted." = "https 링크만 사용할 수 있습니다.";
 "Only show streams in my languages" = "내 언어의 스트림만 표시";
+"Only show titles in these original languages on the Home rows. Leave all off to show everything." = "홈 행에는 원어가 다음 언어인 제목만 표시합니다. 모두 끄면 모든 제목이 표시됩니다.";
 "Opacidad" = "불투명도";
 "Opacidad del fondo" = "배경 불투명도";
 "Opacity" = "불투명도";

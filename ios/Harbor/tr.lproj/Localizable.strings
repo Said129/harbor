@@ -429,6 +429,7 @@
 "Clave de API v3" = "v3 API anahtarı";
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Bu içerik için sorunsuz sürümler hâlâ az sayıda. Oynatmadan önce dosya adını ve boyutunu kontrol edin.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Bu içerik için düzgün sürümler henüz bulunamadı. Aşağıdaki sonuç aradığınız içerikle eşleşmeyebilir; oynatmadan önce dosya adını ve boyutunu doğrulayın.";
+"Cleaner grid when your poster service already prints the title on the artwork." = "Poster hizmetiniz başlığı zaten görsele ekliyorsa daha sade bir ızgara sunar.";
 "Clear" = "Temizle";
 "Clear A-B loop" = "A-B döngüsünü kaldır";
 "Clear all" = "Tümünü temizle";
@@ -926,9 +927,11 @@
 "Hide row" = "Satırı gizle";
 "Hide sound effects and speaker names" = "Ses efektlerini ve konuşan adlarını gizle";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Şüpheli dosyaları, eşleşmeyen sürümleri, olası kamera çekimlerini ve fragmanları gizleyin. Dosya boyutlarını ve sezon paketlerini de denetleyin.";
+"Hide titles under posters" = "Posterlerin altındaki başlıkları gizle";
 "Hide unreleased titles" = "Henüz yayımlanmamış içerikleri gizle";
 "Hide watched titles in catalogs" = "İzlenen yapımları kataloglarda gizle";
 "Hide {name} from navigation" = "{name} öğesini gezinmeden gizle";
+"Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "Animeyi Ana Sayfa'daki İzlemeye Devam Et satırından gizler. Anime sekmesinin kendi İzlemeye Devam Et bölümünde görünmeye devam eder.";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Bölüm listelerinde spoiler içerebilecek bölüm ayrıntılarını, ilgili bölümleri izleyene kadar gizler.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Tercih edilen dillerden hiçbirinin algılanmadığı yayınları gizler. Çoklu ses içeren sürümler eşleşme sayılır.";
 "Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "Hatalı bir düğmenin bölüm boyunca ekranda kalmaması için birkaç saniye sonra düğmeyi otomatik olarak gizler.";
@@ -942,6 +945,7 @@
 "History" = "Tarih";
 "Hockey" = "Hokey";
 "Home" = "Ana Sayfa";
+"Home catalogs" = "Ana Sayfa katalogları";
 "Home layout" = "Ana sayfa düzeni";
 "Home style" = "Ana Sayfa stili";
 "Hoopla" = "Hoopla";
@@ -1037,6 +1041,7 @@
 "Just added" = "Yeni eklenenler";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep anime in the Anime room only" = "Animeyi yalnızca Anime bölümünde tut";
 "Keep original" = "Özgün biçimi koru";
 "Keep same source on next episode" = "Sonraki bölümde aynı kaynağı kullan";
 "Keep screen awake" = "Keep screen awake";
@@ -1400,6 +1405,7 @@
 "Only 2 sources after filtering" = "Filtrelemeden sonra yalnızca 2 kaynak kaldı";
 "Only https links are accepted." = "Yalnızca https bağlantıları kabul edilir.";
 "Only show streams in my languages" = "Yalnızca dillerimdeki yayınları göster";
+"Only show titles in these original languages on the Home rows. Leave all off to show everything." = "Ana Sayfa satırlarında yalnızca özgün dili bunlardan biri olan yapımları gösterin. Her şeyi göstermek için tümünü kapalı bırakın.";
 "Opacidad" = "Opaklık";
 "Opacidad del fondo" = "Arka plan opaklığı";
 "Opacity" = "Opaklık";

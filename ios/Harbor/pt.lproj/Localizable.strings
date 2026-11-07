@@ -445,6 +445,7 @@
 "Clave de API v3" = "chave de API v3";
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Versões limpas para este título ainda são escassas. Confirme o nome do arquivo e o tamanho antes de reproduzir.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Ainda não surgiram versões limpas para este título. O resultado abaixo pode não corresponder ao título que você procura, então confirme o nome do arquivo e o tamanho antes de reproduzir.";
+"Cleaner grid when your poster service already prints the title on the artwork." = "Grade mais limpa quando o seu serviço de pôsteres já imprime o título na arte.";
 "Clear" = "Limpar";
 "Clear A-B loop" = "Limpar repetição A-B";
 "Clear all" = "Limpar tudo";
@@ -946,9 +947,11 @@
 "Hide row" = "Ocultar linha";
 "Hide sound effects and speaker names" = "Ocultar efeitos sonoros e nomes de personagens";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Oculte arquivos suspeitos, versões incompatíveis, prováveis gravações de cinema e trailers. Verifique também tamanhos de arquivos e pacotes de temporadas.";
+"Hide titles under posters" = "Ocultar títulos sob os pôsteres";
 "Hide unreleased titles" = "Ocultar títulos não lançados";
 "Hide watched titles in catalogs" = "Ocultar títulos assistidos nos catálogos";
 "Hide {name} from navigation" = "Ocultar {name} da navegação";
+"Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "Oculta animes da fileira Continuar assistindo do Início. Eles continuam aparecendo no Continuar assistindo da aba Anime.";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Oculta detalhes de episódios propensos a spoilers nas listas de episódios até que você os assista.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Oculta streams sem idioma preferido detectado. Lançamentos com múltiplos áudios contam como correspondência.";
 "Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "Oculta o botão automaticamente após alguns segundos para que um botão errado não fique ali o episódio inteiro.";
@@ -962,6 +965,7 @@
 "History" = "Histórico";
 "Hockey" = "Hóquei";
 "Home" = "Início";
+"Home catalogs" = "Catálogos do Início";
 "Home layout" = "Layout do Início";
 "Home style" = "Estilo do Início";
 "Hoopla" = "Hoopla";
@@ -1057,6 +1061,7 @@
 "Just added" = "Recém-adicionado";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep anime in the Anime room only" = "Manter anime apenas na sala de Anime";
 "Keep original" = "Manter original";
 "Keep same source on next episode" = "Manter a mesma fonte no próximo episódio";
 "Keep screen awake" = "Keep screen awake";
@@ -1420,6 +1425,7 @@
 "Only 2 sources after filtering" = "Apenas 2 fontes após a filtragem";
 "Only https links are accepted." = "Só links https são aceitos.";
 "Only show streams in my languages" = "Mostrar apenas streams nos meus idiomas";
+"Only show titles in these original languages on the Home rows. Leave all off to show everything." = "Mostrar nas linhas do Início apenas títulos nestes idiomas originais. Deixe tudo desligado para mostrar tudo.";
 "Opacidad" = "Opacidade";
 "Opacidad del fondo" = "Opacidade do plano de fundo";
 "Opacity" = "Opacidade";

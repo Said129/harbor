@@ -1470,3 +1470,19 @@ change; that setting stays Missing. Known gap it reported: with `cwAdvanceNext` 
 plays the next episode because `DetailView.playTitle` calls `EpisodeSequence.startingEpisode` directly.
 Both reports named the compile-sensitive spots; nothing is compiled. New cases: LibraryWatchlistFilterTests
 (3), ContinueWatchingSettingsTests (4), plus HomeCatalogFilterTests (11) from the first round.
+
+## CI runs 15 to 21 and the third Haiku round (7 November)
+
+Runs 15 to 19 stopped at the compiler: one escaping-closure error in the filter sheet, then "unable to type-check
+this expression in reasonable time" on the player's long modifier chain, which was already at the limit. Fixed by
+moving the filter sheet's content out of the closure, the leave confirm into its own modifier, and splitting the
+chain into `withTrackers` and `withStateObservers`. Run 20 compiled the app: 64 of 65 cases passed, all 18 cases
+written by Haiku included; the one failure was the calendar source order (Anime before Simkl premieres), fixed
+to Desktop's order and rechecked by run 21.
+
+Third round, merged here: `ios/haiku-trial-display-settings` (`2f5baf57`): `hidePosterTitles` on poster cards
+(TV cards keep their title); it stopped on `streamBackdropBlur` because the iOS picker draws no backdrop, so that
+setting is now Excluded. `ios/haiku-trial-home-languages` (`8ca3944d`): `homeLanguages` filtering Home catalog
+and discovery rows by original language (exact match, titles without a language stay) and `animeOnlyInAnimeRoom`
+(default on as on Desktop: Home Continue Watching leaves anime out; the Anime tab keeps its own row). The language
+filter runs once in `HomeView` because `DiscoveryRails` is shared with other pages. Not compiled yet.

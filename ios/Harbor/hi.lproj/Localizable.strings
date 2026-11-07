@@ -429,6 +429,7 @@
 "Clave de API v3" = "v3 API कुंजी";
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "इस शीर्षक की सही रिलीज़ अभी भी कम हैं। चलाने से पहले फ़ाइल नाम और साइज़ की पुष्टि करें।";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "इस शीर्षक की सही रिलीज़ अभी तक नहीं मिली हैं। नीचे दिया गया नतीजा शायद आपके खोजे गए शीर्षक से मेल न खाए, इसलिए चलाने से पहले फ़ाइल नाम और साइज़ की पुष्टि करें।";
+"Cleaner grid when your poster service already prints the title on the artwork." = "जब आपकी पोस्टर सेवा आर्टवर्क पर शीर्षक पहले से दिखाती हो, तब अधिक साफ़-सुथरी ग्रिड।";
 "Clear" = "साफ़ करें";
 "Clear A-B loop" = "A-B लूप हटाएँ";
 "Clear all" = "सभी साफ़ करें";
@@ -926,9 +927,11 @@
 "Hide row" = "पंक्ति छिपाएँ";
 "Hide sound effects and speaker names" = "ध्वनि प्रभाव और वक्ताओं के नाम छिपाएँ";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "संदिग्ध फ़ाइलें, मेल न खाने वाली रिलीज़, संभावित कैमरा रिकॉर्डिंग और ट्रेलर छिपाएँ। फ़ाइल आकार और सीज़न पैक की भी जाँच करें।";
+"Hide titles under posters" = "पोस्टर के नीचे के शीर्षक छिपाएँ";
 "Hide unreleased titles" = "रिलीज़ न हुए शीर्षक छिपाएँ";
 "Hide watched titles in catalogs" = "कैटलॉग में देखे हुए शीर्षक छिपाएँ";
 "Hide {name} from navigation" = "नेविगेशन में {name} छिपाएँ";
+"Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "एनीमे को होम की 'देखना जारी रखें' पंक्ति से छिपाता है। यह अब भी एनीमे टैब की अपनी 'देखना जारी रखें' पंक्ति में दिखाई देता है।";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "एपिसोड सूचियों में स्पॉइलर वाले एपिसोड विवरण तब तक छिपाता है, जब तक आप उन्हें देख न लें।";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "ऐसी स्ट्रीम छिपाता है जिनमें कोई पसंदीदा भाषा नहीं मिली। मल्टी-ऑडियो रिलीज़ को मेल माना जाता है।";
 "Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "कुछ सेकंड बाद बटन अपने आप छिपा देता है, ताकि गलत बटन पूरे एपिसोड के दौरान दिखाई न देता रहे।";
@@ -942,6 +945,7 @@
 "History" = "इतिहास";
 "Hockey" = "हॉकी";
 "Home" = "होम";
+"Home catalogs" = "होम कैटलॉग";
 "Home layout" = "होम लेआउट";
 "Home style" = "होम स्टाइल";
 "Hoopla" = "Hoopla";
@@ -1037,6 +1041,7 @@
 "Just added" = "हाल ही में जोड़ा गया";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep anime in the Anime room only" = "ऐनिमे को केवल ऐनिमे रूम में रखें";
 "Keep original" = "मूल रखें";
 "Keep same source on next episode" = "अगले एपिसोड में भी वही स्रोत रखें";
 "Keep screen awake" = "Keep screen awake";
@@ -1400,6 +1405,7 @@
 "Only 2 sources after filtering" = "फ़िल्टर करने के बाद केवल 2 सोर्स";
 "Only https links are accepted." = "सिर्फ़ https लिंक स्वीकार किए जाते हैं।";
 "Only show streams in my languages" = "केवल मेरी भाषाओं वाली स्ट्रीम दिखाएँ";
+"Only show titles in these original languages on the Home rows. Leave all off to show everything." = "होम की पंक्तियों में केवल इन्हीं मूल भाषाओं के शीर्षक दिखाएँ। सब कुछ दिखाने के लिए सभी विकल्प बंद रखें।";
 "Opacidad" = "अपारदर्शिता";
 "Opacidad del fondo" = "बैकग्राउंड की अपारदर्शिता";
 "Opacity" = "अपारदर्शिता";

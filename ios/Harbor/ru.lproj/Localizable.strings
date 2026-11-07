@@ -433,6 +433,7 @@
 "Clave de API v3" = "Ключ API v3";
 "Clean releases for this title are still scarce. Confirm the filename and size before playing." = "Чистых релизов для этого названия пока мало. Проверьте имя файла и размер перед воспроизведением.";
 "Clean releases for this title haven't surfaced yet. The result below may not match the title you're looking for, so confirm the filename and size before playing." = "Чистых релизов для этого названия пока нет. Результат ниже может не соответствовать нужному названию, поэтому проверьте имя файла и размер перед воспроизведением.";
+"Cleaner grid when your poster service already prints the title on the artwork." = "Сетка чище, если сервис постеров уже печатает название на обложке.";
 "Clear" = "Очистить";
 "Clear A-B loop" = "Сбросить повтор A-B";
 "Clear all" = "Очистить всё";
@@ -931,9 +932,11 @@
 "Hide row" = "Скрыть ряд";
 "Hide sound effects and speaker names" = "Скрывать звуковые эффекты и имена говорящих";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Скрывает подозрительные файлы, неподходящие версии, вероятные записи из кинотеатра и трейлеры. Также проверяет размеры файлов и полные сезоны.";
+"Hide titles under posters" = "Скрывать названия под постерами";
 "Hide unreleased titles" = "Скрывать невышедшие названия";
 "Hide watched titles in catalogs" = "Скрывать просмотренные названия в каталогах";
 "Hide {name} from navigation" = "Скрыть {name} из навигации";
+"Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching." = "Скрывает аниме из ряда «Продолжить просмотр» на Главной. Оно остаётся в разделе «Продолжить просмотр» на вкладке «Аниме».";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Скрывает в списках серий детали со спойлерами, пока вы не посмотрите серию.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Скрывает потоки, в которых не найден предпочитаемый язык. Релизы с несколькими дорожками считаются подходящими.";
 "Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode." = "Кнопка сама скрывается через несколько секунд, чтобы ошибочная не висела всю серию.";
@@ -947,6 +950,7 @@
 "History" = "История";
 "Hockey" = "Хоккей";
 "Home" = "Главная";
+"Home catalogs" = "Каталоги на главной";
 "Home layout" = "Макет главной";
 "Home style" = "Стиль главной";
 "Hoopla" = "Hoopla";
@@ -1042,6 +1046,7 @@
 "Just added" = "Только что добавлены";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
+"Keep anime in the Anime room only" = "Оставлять аниме только в разделе «Аниме»";
 "Keep original" = "Оставить оригинал";
 "Keep same source on next episode" = "Сохранять источник для следующей серии";
 "Keep screen awake" = "Keep screen awake";
@@ -1409,6 +1414,7 @@
 "Only 2 sources after filtering" = "После фильтрации осталось 2 источника";
 "Only https links are accepted." = "Принимаются только ссылки https.";
 "Only show streams in my languages" = "Показывать только потоки на моих языках";
+"Only show titles in these original languages on the Home rows. Leave all off to show everything." = "Показывать в рядах на главной только названия на этих языках оригинала. Оставьте всё выключенным, чтобы показывать всё.";
 "Opacidad" = "Непрозрачность";
 "Opacidad del fondo" = "Непрозрачность фона";
 "Opacity" = "Непрозрачность";
