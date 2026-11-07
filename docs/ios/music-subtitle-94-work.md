@@ -1524,13 +1524,15 @@ Run 24 (66 cases, round 5) and run 25 (85 cases, round 6) passed in full. Run 26
 (real mpv seeks on a simulator GL surface): `testDownloadedCommunityWebVTTCuesFollowSeeksAfterResumingMidVideo` and
 `testEmbeddedAndExternalCuesFollowForwardBackwardAndPausedSeeks` never reached the paused start (position 0.0, "Native
 seek did not settle"), and `testHTTPRangeSeeksRetainEmbeddedAndExternalCuesAndRenderedSubtitles` missed its playing-seek
-window (position 29.7 instead of 21 to 23). Run 27 (side branch `ios/wip-simkl-batch`, 37 cases: the three SIMKL batching
-tests, CardRatingsTests, ProviderRatingsTests and SubtitleSeekTests alone) passed everything except two of the three
-seek cases, so the failures are not caused by the order of the large run. Run 28 (`ios/wip-seek-bisect`, branch cut at
-`02278d3e`, the commit before the player control settings) runs the same three cases to tell a regression from tonight's
-player changes (`volume-max` and the short seek steps in `PlaybackOptions.mpvOptions`) from an older or environmental
-failure; its result was not read before the shutdown (run 42343468637). Nothing in these cases exercises the new
-subtitle provider hook, which only appends candidates after the addon search.
+window (position 29.7 instead of 21 to 23). Run 27 (side branch `ios/wip-simkl-batch`, 37 cases) ran the three SIMKL batching tests, CardRatingsTests,
+ProviderRatingsTests and then SubtitleSeekTests: everything passed except two of the three seek cases. That shows the
+failure is not specific to the 375-case run, but it was not a solo run of the seek tests: three other classes ran before
+them. Run 28 (`ios/wip-seek-bisect`, branch cut at `02278d3e`, the commit before the player control settings; run 42343468637) runs the three seek cases alone on that older commit; its result was not read before the shutdown.
+To read it fairly, run SubtitleSeekTests alone on `d01dfff8` as well, so the commit is the only difference: both fail
+means the cause is older or environmental; the old commit passes and the head fails means a regression from tonight's
+player changes (`volume-max` and the short seek steps in `PlaybackOptions.mpvOptions`, the player helper splits); the
+head passes alone means the earlier tests in the same run interfere with the real-time seek tests. Nothing in these
+cases exercises the new subtitle provider hook, which only appends candidates after the addon search.
 
 SIMKL poster chips now share one request across cards (`SimklCommunityRatings.coalescedRating`, 60 ms window, batches of
 120), as Desktop's card lookups do; three tests passed in run 27.
