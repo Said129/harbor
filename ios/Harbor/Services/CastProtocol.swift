@@ -32,6 +32,13 @@ enum CastProtocolError: Error, Equatable, Sendable {
     case soap(action: String, status: Int, upnpCode: String?)
     case noAVTransport
     case unsupported
+    /// Chromecast (CASTv2): the device dropped the connection, Desktop's "Device dropped the connection" case.
+    case chromecastDropped
+    case chromecastUnreachable
+    case chromecastRefused
+    case chromecastTLS
+    /// The receiver answered with an error (LOAD_FAILED, INVALID_REQUEST, no app launched), or a request had no session.
+    case chromecastRejected(String)
 }
 
 /// A renderer Harbor can cast to. `endpoint` is the Roku ECP base (`http://host:8060/`) or the DLNA AVTransport control URL.
@@ -45,12 +52,15 @@ struct CastTarget: Equatable, Identifiable, Sendable {
     /// DLNA only: the RenderingControl URL used for SetVolume.
     var volumeEndpoint: String? = nil
     var vendor: DLNAVendor = .other
+    /// Chromecast only: the CASTv2 port that the Bonjour resolve reported.
+    var port: UInt16 = CastChromecast.port
 }
 
-/// Desktop's `CastDeviceInfo` kinds that iOS can reach without multicast SSDP.
+/// Desktop's `CastDeviceInfo` kinds that iOS can reach. Chromecast is found by Bonjour, Roku by ECP probes, DLNA by a description URL.
 enum CastProtocolKind: String, Equatable, Sendable {
     case roku
     case dlna
+    case chromecast
 }
 
 /// Request builders and string helpers shared by the Roku and DLNA protocols.
