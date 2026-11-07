@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MetadataSettingsView: View {
     @Bindable var preferences = MetadataPreferences.shared
+    @Bindable var interface = InterfacePreferences.shared
     @State private var editingKey = false
     private let countries = ["US", "ES", "GB", "FR", "DE", "IT", "PT", "MX", "AR", "BR", "JP"]
     private let languages = ["es-ES", "en-US", "fr-FR", "ja-JP", "pt-BR"]
@@ -44,6 +45,8 @@ struct MetadataSettingsView: View {
                 HarborSettingsSection(DesktopInterfaceText.value("Titles and descriptions")) {
                     HarborSettingsChoice(DesktopInterfaceText.value("Metadata language"), selection: $preferences.language, choices: languages.map { (Locale.current.localizedString(forIdentifier: $0) ?? $0, $0) })
                     HarborSettingsToggle(DesktopInterfaceText.value("Translate titles"), note: DesktopInterfaceText.value("Show translated names in the language selected above. Turn off to keep original titles."), isOn: $preferences.translateTitles)
+                    HarborSettingsToggle(DesktopInterfaceText.value("Prefer my installed metadata addon"), note: DesktopInterfaceText.value("Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result."), isOn: $interface.preferCustomMetaAddon)
+                        .accessibilityIdentifier("metadata-prefer-custom-addon")
                 }
                 HarborSettingsSection(DesktopInterfaceText.value("Image languages")) {
                     HarborLanguagesPicker(value: Binding(get: { preferences.imageLanguages.joined(separator: ",") }, set: { value in

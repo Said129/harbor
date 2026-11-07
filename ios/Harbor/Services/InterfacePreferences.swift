@@ -74,6 +74,10 @@ final class InterfacePreferences {
     var blurComments = UserDefaults.standard.object(forKey: "blurComments") as? Bool ?? false { didSet { persist(blurComments, forKey: "blurComments") } }
     /// Ratings turned off in the detail column of Desktop's ratings matrix (`DetailRatings.sources` ids); empty shows them all.
     var detailRatingsHidden = Set(UserDefaults.standard.stringArray(forKey: "ratings.detailHidden") ?? []) { didSet { persist(detailRatingsHidden.sorted(), forKey: "ratings.detailHidden") } }
+    /// Desktop's `resumeDetailScroll` (default on): a title's detail page reopens where it was left. Hooks: `DetailView`, see the report.
+    var resumeDetailScroll = UserDefaults.standard.object(forKey: "resumeDetailScroll") as? Bool ?? true { didSet { persist(resumeDetailScroll, forKey: "resumeDetailScroll") } }
+    /// Desktop's `preferCustomMetaAddon` (default off): an installed metadata addon is asked before Cinemeta. Hook: `HarborService.addonMetadata`.
+    var preferCustomMetaAddon = UserDefaults.standard.object(forKey: "preferCustomMetaAddon") as? Bool ?? false { didSet { persist(preferCustomMetaAddon, forKey: "preferCustomMetaAddon") } }
     var hideSpoilers = UserDefaults.standard.object(forKey: "hideSpoilers") as? Bool ?? false { didSet { persist(hideSpoilers, forKey: "hideSpoilers") } }
     var blurEpisodes = UserDefaults.standard.object(forKey: "blurEpisodes") as? Bool ?? false { didSet { persist(blurEpisodes, forKey: "blurEpisodes") } }
     var spoilerHideTitles = UserDefaults.standard.object(forKey: "spoilerHideTitles") as? Bool ?? true { didSet { persist(spoilerHideTitles, forKey: "spoilerHideTitles") } }
@@ -150,6 +154,8 @@ final class InterfacePreferences {
         showTraktComments = UserDefaults.standard.object(forKey: "showTraktComments") as? Bool ?? false
         blurComments = UserDefaults.standard.object(forKey: "blurComments") as? Bool ?? false
         detailRatingsHidden = Set(UserDefaults.standard.stringArray(forKey: "ratings.detailHidden") ?? [])
+        resumeDetailScroll = UserDefaults.standard.object(forKey: "resumeDetailScroll") as? Bool ?? true
+        preferCustomMetaAddon = UserDefaults.standard.object(forKey: "preferCustomMetaAddon") as? Bool ?? false
         hideSpoilers = UserDefaults.standard.object(forKey: "hideSpoilers") as? Bool ?? false
         blurEpisodes = UserDefaults.standard.object(forKey: "blurEpisodes") as? Bool ?? false
         spoilerHideTitles = UserDefaults.standard.object(forKey: "spoilerHideTitles") as? Bool ?? true
