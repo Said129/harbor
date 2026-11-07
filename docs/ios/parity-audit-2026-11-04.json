@@ -5,36 +5,36 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 122,
-      "partial": 206,
-      "missing": 69,
+      "ported": 125,
+      "partial": 210,
+      "missing": 62,
       "excluded": 41,
       "counted": 397,
-      "weighted_percent": 56.7,
-      "ported_only_percent": 30.7,
-      "ported_or_partial_percent": 82.6
+      "weighted_percent": 57.9,
+      "ported_only_percent": 31.5,
+      "ported_or_partial_percent": 84.4
     },
     "settings": {
       "total": 511,
-      "ported": 147,
+      "ported": 151,
       "partial": 24,
-      "missing": 171,
-      "excluded": 169,
-      "counted": 342,
-      "weighted_percent": 46.5,
-      "ported_only_percent": 43.0,
-      "ported_or_partial_percent": 50.0
+      "missing": 166,
+      "excluded": 170,
+      "counted": 341,
+      "weighted_percent": 47.8,
+      "ported_only_percent": 44.3,
+      "ported_or_partial_percent": 51.3
     },
     "all": {
       "total": 949,
-      "ported": 269,
-      "partial": 230,
-      "missing": 240,
-      "excluded": 210,
-      "counted": 739,
-      "weighted_percent": 52.0,
-      "ported_only_percent": 36.4,
-      "ported_or_partial_percent": 67.5
+      "ported": 276,
+      "partial": 234,
+      "missing": 228,
+      "excluded": 211,
+      "counted": 738,
+      "weighted_percent": 53.3,
+      "ported_only_percent": 37.4,
+      "ported_or_partial_percent": 69.1
     }
   },
   "behavior_areas": [
@@ -140,11 +140,11 @@
     {
       "area": "Trackers",
       "range": "B274-B304",
-      "ported": 13,
-      "partial": 11,
-      "missing": 7,
+      "ported": 14,
+      "partial": 12,
+      "missing": 5,
       "excluded": 0,
-      "weighted_percent": 59.7
+      "weighted_percent": 64.5
     },
     {
       "area": "Metadata providers, calendar and lists",
@@ -158,11 +158,11 @@
     {
       "area": "Profiles, appearance, integrations and system",
       "range": "B324-B365",
-      "ported": 10,
-      "partial": 12,
-      "missing": 9,
+      "ported": 12,
+      "partial": 15,
+      "missing": 4,
       "excluded": 11,
-      "weighted_percent": 51.6
+      "weighted_percent": 62.9
     },
     {
       "area": "Manga",
@@ -2235,15 +2235,15 @@
       "index": 287,
       "id": "AniList lists",
       "desktop_source": "src/lib/anilist",
-      "verdict": "M",
-      "note": "AniList lists and recommendations not ported"
+      "verdict": "P",
+      "note": "AniList lists: read-only browse by status with search and type filter, no edits (8 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 288,
       "id": "AniList recommendations",
       "desktop_source": "src/lib/anilist",
-      "verdict": "M",
-      "note": "AniList lists and recommendations not ported"
+      "verdict": "D",
+      "note": "AniList recommendations rail from the lists, Desktop ranking and franchise dedupe (8 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 289,
@@ -2585,8 +2585,8 @@
       "index": 337,
       "id": "Theme Studio",
       "desktop_source": "src/views/settings/theme-panel",
-      "verdict": "M",
-      "note": "no Theme Studio, code editor, import/export, library, custom background"
+      "verdict": "P",
+      "note": "Theme Studio without the code editor: library, import/export and background (8 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 338,
@@ -2599,22 +2599,22 @@
       "index": 339,
       "id": "Theme import / export",
       "desktop_source": "src/views/settings/theme-panel",
-      "verdict": "M",
-      "note": "no Theme Studio, code editor, import/export, library, custom background"
+      "verdict": "D",
+      "note": "theme import / export as Desktop's JSON (8 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 340,
       "id": "Theme library",
       "desktop_source": "src/views/settings/theme-panel",
-      "verdict": "M",
-      "note": "no Theme Studio, code editor, import/export, library, custom background"
+      "verdict": "D",
+      "note": "theme library: save, apply, rename, export, remove (8 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 341,
       "id": "Custom background / logo",
       "desktop_source": "src/views/settings/theme-panel",
-      "verdict": "M",
-      "note": "no Theme Studio, code editor, import/export, library, custom background"
+      "verdict": "P",
+      "note": "custom background image with dim; no logo (iOS cannot change the app icon this way) (8 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 342,
@@ -2669,8 +2669,8 @@
       "index": 349,
       "id": "Watching statistics / Wrapped",
       "desktop_source": "src/lib/wrapped",
-      "verdict": "M",
-      "note": "no AI, song identification or Wrapped"
+      "verdict": "P",
+      "note": "watching statistics: hours, titles, split, top titles, highlights, year heatmap from local history; genres and people need Desktop's network enrichment (8 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 350,
@@ -3756,8 +3756,8 @@
       "index": 66,
       "id": "top10RibbonSide",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "ribbon side, award tabs, title scales, UI scale"
+      "verdict": "X",
+      "note": "Top 10 ribbon side: iOS poster cards have no ribbon, so there is no side to choose"
     },
     {
       "index": 67,
@@ -5247,15 +5247,15 @@
       "index": 279,
       "id": "catalogsPinned",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "local playback, media servers, catalog pins, poster URL"
+      "verdict": "D",
+      "note": "pinned catalogs on the Catalogs screen (8 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 280,
       "id": "catalogsHidden",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "local playback, media servers, catalog pins, poster URL"
+      "verdict": "D",
+      "note": "hidden catalogs on the Catalogs screen (8 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 281,
@@ -6038,8 +6038,8 @@
       "index": 392,
       "id": "homeShowAllAddonRows",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "Home show every addon row (8 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 393,
@@ -6752,8 +6752,8 @@
       "index": 494,
       "id": "wrappedButton",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "Stats entry in the library header (8 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 495,

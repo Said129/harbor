@@ -1486,3 +1486,16 @@ setting is now Excluded. `ios/haiku-trial-home-languages` (`8ca3944d`): `homeLan
 and discovery rows by original language (exact match, titles without a language stay) and `animeOnlyInAnimeRoom`
 (default on as on Desktop: Home Continue Watching leaves anime out; the Anime tab keeps its own row). The language
 filter runs once in `HomeView` because `DiscoveryRails` is shared with other pages. Not compiled yet.
+
+## Fourth Haiku round (8 November)
+
+Run 22 (20 cases: the Haiku display and home-language pieces plus the calendar source order) passed in full.
+Four more pieces were written by Haiku in separate worktrees and merged here after review: watching statistics
+(`WatchStatistics`, `WatchStatisticsView`, entry in the library header, `wrappedButton`), AniList lists and the
+recommended rail (read-only screen opened from the AniList settings), Theme Studio import/export with a per-profile
+theme library and a custom background image (`ThemeLibrary`, `ThemeBackgroundStore`, `ThemeBackdrop` at the app root),
+and catalog pins/hides with the Customize list plus Home `homeShowAllAddonRows`. Excluded with reasons: `top10RibbonSide`
+(no ribbon on iOS cards), `homeNewEpisodes` (no per-series new-episode pipeline yet), `preferCustomMetaAddon` (iOS already
+asks addons before Cinemeta), `resumeDetailScroll` (needs DetailView), top genres/people in statistics (Desktop fetches them
+over the network). Status: CI run 23 green. The background image screens are transparent over `ThemeBackdrop`; that layering has
+not been looked at on a device.

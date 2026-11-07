@@ -257,6 +257,13 @@ BEHAVIORS = expand("""
 354 X remote text entry: types into a TV or desktop interface, not into a phone
 357 X web receiver and remote interface: a server a desktop hosts, iOS cannot serve in the background
 362 X startup crash detection: iOS reports crashes itself and relaunches cleanly
+287 P AniList lists: read-only browse by status with search and type filter, no edits (8 Nov, written by Haiku, CI run 23 green)
+288 D AniList recommendations rail from the lists, Desktop ranking and franchise dedupe (8 Nov, written by Haiku, CI run 23 green)
+337 P Theme Studio without the code editor: library, import/export and background (8 Nov, written by Haiku, CI run 23 green)
+339 D theme import / export as Desktop's JSON (8 Nov, written by Haiku, CI run 23 green)
+340 D theme library: save, apply, rename, export, remove (8 Nov, written by Haiku, CI run 23 green)
+341 P custom background image with dim; no logo (iOS cannot change the app icon this way) (8 Nov, written by Haiku, CI run 23 green)
+349 P watching statistics: hours, titles, split, top titles, highlights, year heatmap from local history; genres and people need Desktop's network enrichment (8 Nov, written by Haiku, CI run 23 green)
 """)
 
 SETTINGS = expand("""
@@ -509,6 +516,11 @@ SETTINGS = expand("""
 282 D hide titles under posters on poster cards (7 Nov, uncompiled; written by Haiku in a trial)
 377 X stream backdrop blur: the iOS stream picker draws no backdrop artwork, so there is nothing to blur
 398 D keep anime in the Anime room only: Home Continue Watching leaves anime out (7 Nov, uncompiled; written by Haiku in a trial)
+66 X Top 10 ribbon side: iOS poster cards have no ribbon, so there is no side to choose
+279 D pinned catalogs on the Catalogs screen (8 Nov, written by Haiku, CI run 23 green)
+280 D hidden catalogs on the Catalogs screen (8 Nov, written by Haiku, CI run 23 green)
+392 D Home show every addon row (8 Nov, written by Haiku, CI run 23 green)
+494 D Stats entry in the library header (8 Nov, written by Haiku, CI run 23 green)
 """)
 
 def audit(items, verdicts, label):
