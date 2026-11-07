@@ -289,7 +289,8 @@ enum StremboxdURL {
     }
 
     private static func isCatalogID(_ value: String) -> Bool {
-        value.range(of: "^[a-z0-9-]{1,128}$", options: .regularExpression) != nil
+        // List ids may carry capitals and underscores, so the catalog id keeps them.
+        value.range(of: "^[A-Za-z0-9_-]{1,160}$", options: .regularExpression) != nil
     }
 }
 

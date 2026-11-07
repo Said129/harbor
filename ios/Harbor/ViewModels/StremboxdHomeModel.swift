@@ -23,12 +23,33 @@ extension StremboxdRails.RowName {
 /// Desktop's `buildLetterboxdHomeRows` (`lib/stremboxd/home-rails.ts`) as Discovery rails for Home.
 /// Home adds `rows` as it does the Trakt rails (see the port report for the one-line hook).
 @MainActor @Observable final class StremboxdHomeModel {
+    private static var models: [String: StremboxdHomeModel] = [:]
+    /// One model per profile, so Home reads the rails of the profile on screen.
+    static func forOwner(_ owner: String) -> StremboxdHomeModel {
+        if let saved = models[owner] { return saved }
+        let model = StremboxdHomeModel(account: StremboxdAccount.forOwner(owner))
+        models[owner] = model
+        return model
+    }
+
     private(set) var rows: [DiscoveryRail] = []
     private(set) var loading = false
     @ObservationIgnored private let account: StremboxdAccount
+    @ObservationIgnored private var loadedSignature: String?
+    @ObservationIgnored private var generation = 0
 
-    init(account: StremboxdAccount = .shared) {
+    init(account: StremboxdAccount) {
         self.account = account
+    }
+
+    /// The rails for Home. When a setting that changes them has changed since the last load, a reload starts in the background.
+    var rails: [DiscoveryRail] {
+        let current = signature
+        if current != loadedSignature {
+            loadedSignature = current
+            Task { await load() }
+        }
+        return rows
     }
 
     /// Changes whenever a setting that alters the rails changes, so Home can reload them with `.task(id:)`.
@@ -49,20 +70,22 @@ extension StremboxdRails.RowName {
 
     /// Rebuilds the rails from the current settings. Catalogs load one after another, as on Desktop.
     func load() async {
-        guard let source = account.source else {
-            rows = []
-            return
-        }
+        generation += 1
+        let current = generation
+        loading = true
+        defer { if current == generation { loading = false } }
+        let built = await buildRows()
+        // A newer load started meanwhile; its rows win.
+        if current == generation { rows = built }
+    }
+
+    private func buildRows() async -> [DiscoveryRail] {
+        guard let source = account.source else { return [] }
         let settings = account.settings
         let full = account.session != nil
         let displayName = account.session?.rowName ?? ""
         let ids = StremboxdRails.orderedVisible(selected: settings.selectedCatalogs, hidden: settings.hiddenCatalogs, order: settings.catalogOrder)
-        guard !ids.isEmpty else {
-            rows = []
-            return
-        }
-        loading = true
-        defer { loading = false }
+        guard !ids.isEmpty else { return [] }
 
         let client = StremboxdClient(transport: account.transport)
         let names = await manifestNames(client, source)
@@ -76,7 +99,7 @@ extension StremboxdRails.RowName {
             let name = StremboxdRails.rowName(catalogID: catalogID, realID: realID, full: full, displayName: displayName, manifestName: names[realID], list: list)
             built.append(makeRail(catalogID: catalogID, realID: realID, title: name.title, metas: firstPage, source: source, client: client))
         }
-        rows = built
+        return built
     }
 
     private func manifestNames(_ client: StremboxdClient, _ source: StremboxdSource) async -> [String: String] {

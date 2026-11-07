@@ -125,17 +125,22 @@ protocol StremboxdSessionPersistence: Sendable {
 }
 
 struct KeychainStremboxdSession: StremboxdSessionPersistence {
-    static let key = "native-letterboxd-session-v1"
+    let key: String
+
+    /// One Keychain entry per profile, keyed by a hash of the owner as AniList does.
+    init(owner: String) {
+        key = "native-letterboxd-session-v1-" + EBookShelf.hash(owner)
+    }
 
     func readSession() throws -> StremboxdSession? {
-        try KeychainStore().read(Self.key, as: StremboxdSession.self)
+        try KeychainStore().read(key, as: StremboxdSession.self)
     }
 
     func writeSession(_ session: StremboxdSession?) throws {
         if let session {
-            try KeychainStore().write(session, key: Self.key)
+            try KeychainStore().write(session, key: key)
         } else {
-            try KeychainStore().remove(Self.key)
+            try KeychainStore().remove(key)
         }
     }
 }

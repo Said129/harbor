@@ -130,6 +130,11 @@ final class StremboxdTests: XCTestCase {
         XCTAssertEqual(StremboxdURL.manifest(.full(userID))?.absoluteString, "https://api.stremboxd.com/stremio/\(userID)/manifest.json")
     }
 
+    func testMixedCaseListIdStillBuildsItsCatalogURL() {
+        let url = StremboxdURL.catalog(.config("abc"), catalogID: StremboxdCatalogID.list("AbC_9-x"), skip: 0)
+        XCTAssertEqual(url?.absoluteString, "https://api.stremboxd.com/abc/catalog/movie/letterboxd-list-AbC_9-x.json")
+    }
+
     func testURLsRejectValuesThatChangeTheRoute() {
         XCTAssertNil(StremboxdURL.catalog(.config("../x"), catalogID: StremboxdCatalogID.popular, skip: 0))
         XCTAssertNil(StremboxdURL.catalog(.config("abc"), catalogID: "letterboxd-popular/../x", skip: 0))

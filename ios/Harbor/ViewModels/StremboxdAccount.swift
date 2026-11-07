@@ -27,10 +27,21 @@ enum StremboxdSignIn: Equatable, Sendable {
 
 /// Desktop's Letterboxd provider (`lib/stremboxd/provider.tsx`): the settings, the Stremboxd session, and the actions that change them.
 @MainActor @Observable final class StremboxdAccount {
-    static let shared = StremboxdAccount()
-    /// The settings live in UserDefaults as JSON, without any secret.
-    static let settingsKey = "letterboxdSettings-v1"
+    private static var accounts: [String: StremboxdAccount] = [:]
+    /// One account per profile, as AniList keeps one per owner.
+    static func forOwner(_ owner: String) -> StremboxdAccount {
+        if let saved = accounts[owner] { return saved }
+        let account = StremboxdAccount(owner: owner)
+        accounts[owner] = account
+        return account
+    }
 
+    /// The settings live in UserDefaults as JSON, per profile, without any secret.
+    static func settingsKey(_ owner: String) -> String {
+        "letterboxdSettings-v1-" + EBookShelf.hash(owner)
+    }
+
+    let owner: String
     private(set) var settings: StremboxdSettings
     private(set) var session: StremboxdSession?
 
@@ -38,16 +49,17 @@ enum StremboxdSignIn: Equatable, Sendable {
     @ObservationIgnored private let persistence: any StremboxdSessionPersistence
     @ObservationIgnored let transport: any StremboxdTransport
 
-    init(defaults: UserDefaults = .standard, persistence: any StremboxdSessionPersistence = KeychainStremboxdSession(), transport: any StremboxdTransport = StremboxdHTTPTransport()) {
+    init(owner: String, defaults: UserDefaults = .standard, persistence: (any StremboxdSessionPersistence)? = nil, transport: (any StremboxdTransport)? = nil) {
+        self.owner = owner
         self.defaults = defaults
-        self.persistence = persistence
-        self.transport = transport
-        settings = Self.loadSettings(defaults)
-        session = try? persistence.readSession()
+        self.persistence = persistence ?? KeychainStremboxdSession(owner: owner)
+        self.transport = transport ?? StremboxdHTTPTransport()
+        settings = Self.loadSettings(defaults, owner: owner)
+        session = try? self.persistence.readSession()
     }
 
-    static func loadSettings(_ defaults: UserDefaults) -> StremboxdSettings {
-        guard let data = defaults.data(forKey: settingsKey),
+    static func loadSettings(_ defaults: UserDefaults, owner: String) -> StremboxdSettings {
+        guard let data = defaults.data(forKey: settingsKey(owner)),
               let value = try? JSONDecoder().decode(StremboxdSettings.self, from: data) else { return StremboxdSettings() }
         return value
     }
@@ -79,7 +91,7 @@ enum StremboxdSignIn: Equatable, Sendable {
         var next = settings
         change(&next)
         settings = next
-        if let data = try? JSONEncoder().encode(next) { defaults.set(data, forKey: Self.settingsKey) }
+        if let data = try? JSONEncoder().encode(next) { defaults.set(data, forKey: Self.settingsKey(owner)) }
     }
 
     func setSession(_ value: StremboxdSession?) throws {
@@ -180,10 +192,6 @@ enum StremboxdSignIn: Equatable, Sendable {
                 value.selectedCatalogs.removeAll { $0 == id }
             }
         }
-    }
-
-    func unhide(_ id: String) {
-        update { (value: inout StremboxdSettings) in value.hiddenCatalogs.removeAll { $0 == id } }
     }
 
     func setShowRatingsOnPosters(_ on: Bool) {

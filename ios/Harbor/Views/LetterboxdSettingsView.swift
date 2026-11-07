@@ -20,7 +20,7 @@ struct LetterboxdSettingsView: View {
         CatalogOption(id: StremboxdCatalogID.top250, label: "Top 250", sub: "Shows the highest rated narrative features of all time.", fullOnly: false),
     ]
 
-    @State private var account = StremboxdAccount.shared
+    @State private var account: StremboxdAccount
     @State private var username = ""
     @State private var password = ""
     @State private var code = ""
@@ -31,6 +31,10 @@ struct LetterboxdSettingsView: View {
     @State private var listAddress = ""
     @State private var listBusy = false
     @State private var listError: String?
+
+    @MainActor init(app: AppModel) {
+        _account = State(initialValue: StremboxdAccount.forOwner(app.personalOwner))
+    }
 
     private func text(_ key: String, _ variables: [String: String] = [:]) -> String {
         DesktopInterfaceText.value(key, variables: variables)
@@ -77,7 +81,6 @@ struct LetterboxdSettingsView: View {
                     catalogsSection
                     listsSection
                     screenSection
-                    hiddenSection
                 }
             }.padding(20).frame(maxWidth: 680, alignment: .leading).frame(maxWidth: .infinity, alignment: .leading)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
@@ -300,7 +303,7 @@ struct LetterboxdSettingsView: View {
         Task { await account.syncPreferences() }
     }
 
-    // MARK: On screen and hidden rows
+    // MARK: On screen
 
     private var screenSection: some View {
         HarborSettingsSection("On screen") {
@@ -309,33 +312,5 @@ struct LetterboxdSettingsView: View {
                                  isOn: ratingsBinding)
                 .accessibilityIdentifier("letterboxd-ratings")
         }
-    }
-
-    @ViewBuilder
-    private var hiddenSection: some View {
-        if !account.settings.hiddenCatalogs.isEmpty {
-            HarborSettingsSection("Hidden catalogs", note: "These rows are switched on but hidden from your home page. Choose Show to bring one back.") {
-                ForEach(account.settings.hiddenCatalogs, id: \.self) { id in
-                    HStack(alignment: .center, spacing: 12) {
-                        Text(hiddenLabel(id)).font(HarborTheme.font(16, weight: .medium))
-                        Spacer(minLength: 8)
-                        Button { account.unhide(id) } label: {
-                            Text(text("Show")).frame(minHeight: 44)
-                        }
-                        .buttonStyle(HarborAccountButtonStyle())
-                    }
-                }
-            }
-        }
-    }
-
-    private func hiddenLabel(_ id: String) -> String {
-        if let option = Self.catalogOptions.first(where: { (option: CatalogOption) -> Bool in option.id == id }) {
-            return text(option.label)
-        }
-        if let ref = account.settings.listRefs.first(where: { (ref: StremboxdListRef) -> Bool in StremboxdCatalogID.list(ref.id) == id }) {
-            return ref.name
-        }
-        return id
     }
 }

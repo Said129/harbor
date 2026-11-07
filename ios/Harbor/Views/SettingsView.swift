@@ -54,7 +54,7 @@ struct SettingsView: View {
                             }.accessibilityIdentifier("settings-anilist")
                         }
                         if matches("Letterboxd", group: "Tracking") {
-                            NavigationLink { LetterboxdSettingsView().toolbar(.visible, for: .navigationBar) } label: {
+                            NavigationLink { LetterboxdSettingsView(app: app).id(app.accountOperationScope).toolbar(.visible, for: .navigationBar) } label: {
                                 SettingsRow(title: "Letterboxd", icon: "desktop-bookmark")
                             }.accessibilityIdentifier("settings-letterboxd")
                         }
