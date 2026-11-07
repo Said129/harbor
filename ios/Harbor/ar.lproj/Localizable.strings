@@ -152,6 +152,8 @@
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "كل الرياضات";
 "All tags" = "كل الوسوم";
+"All upcoming" = "كل القادم";
+"All upcoming needs a TMDB key" = "يتطلب \"كل القادم\" مفتاح TMDB";
 "All-Time Great Series" = "أعظم المسلسلات على الإطلاق";
 "All-Time Greats" = "روائع كل العصور";
 "AllDebrid API key" = "مفتاح API لـ AllDebrid";
@@ -164,6 +166,7 @@
 "Analyzing audio… Keep watching." = "جارٍ تحليل الصوت… يمكنك متابعة المشاهدة.";
 "AniList" = "أني ليست (AniList)";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "مزامنة AniList";
 "Animals" = "Animals";
 "Animated Movies" = "أفلام الرسوم المتحركة";
@@ -173,6 +176,7 @@
 "Anime" = "أنمي";
 "Anime Expo" = "معرض Anime Expo";
 "Anime en tendencia" = "أنمي رائج";
+"Anime episodes airing this month, sub or dub" = "حلقات أنمي تُعرض هذا الشهر، مترجمة أو مدبلجة";
 "Anime of the Year" = "أنمي العام";
 "Anime popular" = "أنمي شائع";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
@@ -765,6 +769,7 @@
 "Every 15 min" = "كل 15 دقيقة";
 "Every 30 min" = "كل 30 دقيقة";
 "Every launch" = "عند كل تشغيل";
+"Everything releasing this month from TMDB" = "كل ما يصدر هذا الشهر من TMDB";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "كل ما تقدّمه إضافاتك، معروضًا على شكل ملصقات. مرّر أو ابحث أو صفِّ للوصول إلى ما تريد.";
 "Excellence Prize" = "جائزة التميّز";
 "Exit Picture in Picture" = "الخروج من صورة داخل صورة";
@@ -1216,6 +1221,7 @@
 "Mute" = "كتم الصوت";
 "Muted text" = "نص باهت";
 "My Library" = "مكتبتي";
+"My Trakt" = "Trakt الخاص بي";
 "My channels" = "My channels";
 "My library" = "مكتبتي";
 "My lists" = "قوائمي";
@@ -1315,12 +1321,14 @@
 "No telemetry, no servers, no bundled keys." = "لا قياس عن بُعد، ولا خوادم، ولا مفاتيح مُضمَّنة.";
 "No titles match these filters." = "لا توجد عناوين تطابق هذه المرشّحات.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "لا توجد مسارات مطابقة لهذه المرشّحات. جرّب تبديل ترجمة الصمّ أو الإجبارية.";
+"No {kind} releases this month. Try a different filter." = "لا توجد إصدارات {kind} هذا الشهر. جرّب مرشّحًا مختلفًا.";
 "Noir" = "نوار";
 "Nombre" = "الاسم";
 "Nombre cambiado" = "تمت إعادة التسمية";
 "Nombre de usuario" = "اسم المستخدم";
 "Nombre para mostrar" = "الاسم";
 "Non-fiction" = "غير خيالي";
+"None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "لا تقع أيٌّ من أكثر إصدارات Trakt القادمة انتظارًا في هذا الشهر. جرّب شهرًا مختلفًا.";
 "Nord" = "Nord";
 "Normal" = "عادية";
 "Normalize loudness" = "تطبيع مستوى الصوت";
@@ -1331,10 +1339,16 @@
 "Not interested" = "غير مهتم";
 "Not now" = "ليس الآن";
 "Not set" = "غير محدد";
+"Nothing airing this month" = "Nothing airing this month";
+"Nothing anticipated this month" = "لا شيء منتظَر هذا الشهر";
+"Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "لا شيء من مكتبتك يقع هذا الشهر. عطّل قائمة المشاهدة لرؤية كل الإصدارات.";
+"Nothing from your library this month" = "لا شيء من مكتبتك هذا الشهر";
 "Nothing here yet" = "لا يوجد شيء هنا بعد";
 "Nothing installed yet" = "لم يُثبَّت شيء بعد";
 "Nothing matched this filter. Try another category or change your region in Settings." = "لا شيء يطابق هذا الفلتر. جرّب فئة أخرى أو غيّر منطقتك من الإعدادات.";
+"Nothing on Trakt this month" = "لا شيء على Trakt هذا الشهر";
 "Nothing saved on Trakt yet." = "لا شيء محفوظ على Trakt بعد.";
+"Nothing this month" = "لا شيء هذا الشهر";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "لا شيء لإرساله. جميع عناصر قائمة المشاهدة الـ {n} هي أنمي، وهو ما لا يستطيع Trakt تتبّعه.";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "لم تتم مشاهدة أي شيء بعد";
@@ -1394,6 +1408,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "فتح على Trakt";
+"Open settings" = "فتح الإعدادات";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "افتح هذا الملف الشخصي عند بدء التشغيل. قد تظهر المطالبات الموقّتة لاحقًا. لا يمكن تعيين ملف شخصي محمي برمز PIN كملف افتراضي.";
 "Opening AniList..." = "جارٍ فتح AniList...";
 "Opening MyAnimeList..." = "جارٍ فتح MyAnimeList...";
@@ -2039,6 +2054,8 @@
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "مفتاح API لـ TMDB (v3)";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "تم ربط TMDB. {n} {services} بث مفعّلة. مرحبًا بك.";
+"TMDB has no notable releases for this month and region." = "لا توجد لدى TMDB إصدارات بارزة لهذا الشهر والمنطقة.";
+"TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "تغذّي TMDB سيل كل إصدارات هذا الشهر. الباقة المجانية تكفي. الإعداد يستغرق نحو 60 ثانية. بدّل إلى \"مكتبتي\" إن كنت تفضّل رؤية ما حفظته فقط.";
 "TMDB · catalogs and rails" = "TMDB · البيانات الوصفية الأساسية";
 "TMDB · catálogos y filas" = "TMDB · البيانات الوصفية الأساسية";
 "TV" = "المسلسلات";
@@ -2086,6 +2103,7 @@
 "The authorization code timed out before you finished. Try again." = "انتهت مهلة رمز التفويض قبل أن تُكمل. حاول مرة أخرى.";
 "The comics industry's highest honor" = "أرفع تكريم في صناعة القصص المصوّرة";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most anticipated upcoming releases on Trakt" = "أكثر الإصدارات القادمة ترقبًا على Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "أكثر الأفلام والمسلسلات مشاهدةً على {name} الآن في {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "تم الاحتفاظ بالأصل. صدّر الترجمة بترميز UTF-8 أو UTF-16 لمزامنتها.";
 "The quick brown fox jumps over the lazy dog" = "أبجد هوز حطي كلمن سعفص قرشت ثخذ ضظغ";
@@ -2175,7 +2193,9 @@
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "تم بلوغ حد حساب Trakt. قم بالترقية إلى Trakt VIP أو قلّص قائمة المشاهدة.";
+"Trakt anticipated" = "المنتظر على Trakt";
 "Trakt comments are not available for anime titles." = "تعليقات Trakt غير متوفرة لعناوين الأنمي.";
+"Trakt has no upcoming releases for your watchlist this month. Past months and dates more than six months out aren't covered by Trakt's calendar feed." = "لا توجد لدى Trakt إصدارات قادمة لقائمة مشاهدتك هذا الشهر. الأشهر الماضية والتواريخ التي تتجاوز ستة أشهر غير مشمولة في موجز تقويم Trakt.";
 "Trakt history" = "سجلّ Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "يواجه Trakt مشكلة في الخادم (HTTP {n}). حاول مجددًا بعد قليل.";
 "Trakt is rate-limiting. Wait a minute and try again." = "يفرض Trakt حدًا على الطلبات. انتظر دقيقة ثم حاول مجددًا.";
@@ -2231,6 +2251,8 @@
 "Upcoming" = "قادم";
 "Upcoming Anime" = "أنمي قادم";
 "Upcoming Season" = "الموسم القادم";
+"Upcoming episodes and movies from your Trakt watchlist" = "الحلقات والأفلام القادمة من قائمة مشاهدة Trakt لديك";
+"Upcoming episodes and movies from your saved shows" = "الحلقات والأفلام القادمة من مسلسلاتك المحفوظة";
 "Update" = "تحديث";
 "Update all" = "تحديث الكل";
 "Updated {when}" = "تم التحديث {when}";
@@ -2286,6 +2308,7 @@
 "Watched" = "تمت المشاهدة";
 "Watching" = "قيد المشاهدة";
 "Watchlist" = "قائمة المشاهدة";
+"Watchlist only" = "قائمة المشاهدة فقط";
 "Weekend watchlist" = "قائمة مشاهدة نهاية الأسبوع";
 "Welcome to Harbor" = "مرحبًا بك في Harbor";
 "Western" = "غربي";
@@ -2337,6 +2360,7 @@
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "ملفك الشخصي";
 "Your rating" = "تقييمك";
+"Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "ليس لمسلسلاتك المحفوظة حلقات مجدولة هذا الشهر. بدّل إلى \"كل القادم\" لتصفّح تقويم الإصدارات الكامل.";
 "Your services are saved locally. Cloud sync will retry." = "تم حفظ خدماتك على هذا الجهاز. ستتم إعادة محاولة المزامنة.";
 "Your watchlist is empty" = "قائمة مشاهدتك فارغة";
 "Your watchlist is empty, nothing to send." = "قائمة المشاهدة فارغة، لا شيء لإرساله.";

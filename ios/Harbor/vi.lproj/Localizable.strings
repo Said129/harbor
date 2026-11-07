@@ -143,6 +143,8 @@
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "Tất cả môn thể thao";
 "All tags" = "Tất cả thẻ";
+"All upcoming" = "Tất cả nội dung sắp ra mắt";
+"All upcoming needs a TMDB key" = "Tất cả nội dung sắp phát cần khóa TMDB";
 "All-Time Great Series" = "Phim bộ vĩ đại nhất mọi thời đại";
 "All-Time Greats" = "Những tác phẩm vĩ đại nhất mọi thời đại";
 "AllDebrid API key" = "Khóa API AllDebrid";
@@ -155,6 +157,7 @@
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "Đồng bộ AniList";
 "Animals" = "Animals";
 "Animated Movies" = "Phim hoạt hình";
@@ -163,6 +166,7 @@
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "Anime thịnh hành";
+"Anime episodes airing this month, sub or dub" = "Các tập anime phát sóng trong tháng này, phụ đề hoặc lồng tiếng";
 "Anime of the Year" = "Anime của năm";
 "Anime popular" = "Anime phổ biến";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
@@ -741,6 +745,7 @@
 "Every 15 min" = "Mỗi 15 phút";
 "Every 30 min" = "Mỗi 30 phút";
 "Every launch" = "Mỗi lần khởi chạy";
+"Everything releasing this month from TMDB" = "Tất cả nội dung phát hành trong tháng này từ TMDB";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Mọi nội dung từ các tiện ích bổ sung của bạn đều được hiển thị dưới dạng áp phích. Cuộn, tìm kiếm hoặc lọc để tìm nội dung bạn muốn.";
 "Excellence Prize" = "Giải Xuất sắc";
 "Exit Picture in Picture" = "Thoát chế độ Hình trong hình";
@@ -1191,6 +1196,7 @@
 "Mute" = "Tắt tiếng";
 "Muted text" = "Văn bản giảm nổi bật";
 "My Library" = "Thư viện của tôi";
+"My Trakt" = "Trakt của tôi";
 "My channels" = "My channels";
 "My library" = "Thư viện của tôi";
 "My lists" = "Danh sách của tôi";
@@ -1287,12 +1293,14 @@
 "No telemetry, no servers, no bundled keys." = "Không thu thập dữ liệu từ xa, không máy chủ, không khóa đi kèm.";
 "No titles match these filters." = "Không có tựa phim nào khớp với các bộ lọc này.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Không có bản phụ đề nào khớp với các bộ lọc này. Hãy thử bật hoặc tắt HI/SDH hay Bắt buộc.";
+"No {kind} releases this month. Try a different filter." = "Tháng này không có nội dung {kind} phát hành. Hãy thử bộ lọc khác.";
 "Noir" = "Phim đen";
 "Nombre" = "Tên";
 "Nombre cambiado" = "Đã đổi tên";
 "Nombre de usuario" = "Tên người dùng";
 "Nombre para mostrar" = "Tên hiển thị";
 "Non-fiction" = "Phi hư cấu";
+"None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "Không có nội dung sắp ra mắt được mong đợi nhất nào trên Trakt phát hành trong tháng này. Hãy thử một tháng khác.";
 "Nord" = "Nord";
 "Normal" = "Bình thường";
 "Normalize loudness" = "Cân bằng âm lượng";
@@ -1303,10 +1311,16 @@
 "Not interested" = "Không quan tâm";
 "Not now" = "Để sau";
 "Not set" = "Chưa đặt";
+"Nothing airing this month" = "Nothing airing this month";
+"Nothing anticipated this month" = "Tháng này không có nội dung đáng mong đợi";
+"Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "Tháng này thư viện không có nội dung mới. Tắt Danh sách xem để xem tất cả nội dung phát hành.";
+"Nothing from your library this month" = "Tháng này thư viện không có nội dung";
 "Nothing here yet" = "Chưa có nội dung";
 "Nothing installed yet" = "Chưa cài gì";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Không có nội dung nào khớp với bộ lọc này. Hãy thử danh mục khác hoặc đổi khu vực trong Cài đặt.";
+"Nothing on Trakt this month" = "Tháng này không có nội dung nào trên Trakt";
 "Nothing saved on Trakt yet." = "Chưa lưu nội dung nào trên Trakt.";
+"Nothing this month" = "Tháng này không có nội dung";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Không có gì để gửi. Cả {n} mục trong danh sách xem đều là anime mà Trakt không thể theo dõi.";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "Chưa xem nội dung nào";
@@ -1365,6 +1379,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Mở trên Trakt";
+"Open settings" = "Mở Cài đặt";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Mở hồ sơ này khi khởi động. Lời nhắc theo thời gian vẫn có thể xuất hiện sau đó. Không thể đặt hồ sơ có mã PIN làm mặc định.";
 "Opening AniList..." = "Đang mở AniList...";
 "Opening MyAnimeList..." = "Đang mở MyAnimeList...";
@@ -2002,6 +2017,8 @@
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "Khóa API TMDB (v3)";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "Đã kết nối TMDB. Đã bật {n} {services} phát trực tuyến. Chào mừng bạn.";
+"TMDB has no notable releases for this month and region." = "TMDB không có nội dung phát hành đáng chú ý nào trong tháng này và khu vực này.";
+"TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB cung cấp toàn bộ nội dung phát hành trong tháng này. Gói miễn phí là đủ dùng. Chỉ mất khoảng 60 giây để thiết lập. Chuyển sang Thư viện của tôi nếu bạn chỉ muốn xem nội dung đã lưu.";
 "TMDB · catalogs and rails" = "TMDB · danh mục và hàng nội dung";
 "TMDB · catálogos y filas" = "TMDB · danh mục và hàng nội dung";
 "TV" = "Truyền hình";
@@ -2049,6 +2066,7 @@
 "The authorization code timed out before you finished. Try again." = "Mã ủy quyền đã hết hạn trước khi bạn hoàn tất. Hãy thử lại.";
 "The comics industry's highest honor" = "Giải thưởng danh giá nhất của ngành truyện tranh";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most anticipated upcoming releases on Trakt" = "Các nội dung sắp ra mắt được mong đợi nhất trên Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Các phim điện ảnh và phim bộ được xem nhiều nhất trên {name} hiện nay tại {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "Con cáo nâu nhanh nhẹn nhảy qua chú chó lười biếng";
@@ -2137,7 +2155,9 @@
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Đã đạt giới hạn tài khoản Trakt. Nâng cấp lên Trakt VIP hoặc rút gọn danh sách xem.";
+"Trakt anticipated" = "Được mong đợi trên Trakt";
 "Trakt comments are not available for anime titles." = "Bình luận Trakt không hỗ trợ các tựa anime.";
+"Trakt has no upcoming releases for your watchlist this month. Past months and dates more than six months out aren't covered by Trakt's calendar feed." = "Trakt không có nội dung nào trong danh sách xem của bạn sắp ra mắt trong tháng này. Nguồn lịch của Trakt không bao gồm các tháng trước và những ngày cách hiện tại hơn sáu tháng.";
 "Trakt history" = "Lịch sử Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Máy chủ Trakt đang gặp sự cố (HTTP {n}). Hãy thử lại sau ít phút.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt đang giới hạn tần suất yêu cầu. Hãy đợi một phút rồi thử lại.";
@@ -2193,6 +2213,8 @@
 "Upcoming" = "Sắp tới";
 "Upcoming Anime" = "Anime sắp ra mắt";
 "Upcoming Season" = "Mùa sắp tới";
+"Upcoming episodes and movies from your Trakt watchlist" = "Các tập và phim điện ảnh sắp phát trong danh sách xem Trakt";
+"Upcoming episodes and movies from your saved shows" = "Các tập và phim điện ảnh sắp phát từ những phim bộ đã lưu";
 "Update" = "Cập nhật";
 "Update all" = "Cập nhật tất cả";
 "Updated {when}" = "Đã cập nhật {when}";
@@ -2248,6 +2270,7 @@
 "Watched" = "Đã xem";
 "Watching" = "Đang xem";
 "Watchlist" = "Danh sách xem";
+"Watchlist only" = "Chỉ danh sách xem";
 "Weekend watchlist" = "Danh sách xem cuối tuần";
 "Welcome to Harbor" = "Chào mừng đến với Harbor";
 "Western" = "Viễn Tây";
@@ -2295,6 +2318,7 @@
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Hồ sơ của bạn";
 "Your rating" = "Đánh giá của bạn";
+"Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "Các phim bộ đã lưu không có tập nào dự kiến phát trong tháng này. Chuyển sang Tất cả nội dung sắp phát để xem toàn bộ lịch phát hành.";
 "Your services are saved locally. Cloud sync will retry." = "Các dịch vụ đã được lưu trên thiết bị này. Đồng bộ đám mây sẽ được thử lại.";
 "Your watchlist is empty" = "Danh sách xem đang trống";
 "Your watchlist is empty, nothing to send." = "Danh sách xem của bạn đang trống, không có gì để gửi.";

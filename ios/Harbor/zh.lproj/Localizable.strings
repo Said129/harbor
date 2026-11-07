@@ -143,6 +143,8 @@
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "所有运动";
 "All tags" = "所有标签";
+"All upcoming" = "所有即将上线的内容";
+"All upcoming needs a TMDB key" = "“全部即将上线”需要 TMDB 密钥";
 "All-Time Great Series" = "史上经典剧集";
 "All-Time Greats" = "影史经典";
 "AllDebrid API key" = "AllDebrid API 密钥";
@@ -155,6 +157,7 @@
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "AniList 同步";
 "Animals" = "Animals";
 "Animated Movies" = "动画电影";
@@ -163,6 +166,7 @@
 "Anime" = "动漫";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "热门动漫";
+"Anime episodes airing this month, sub or dub" = "本月播出的动漫剧集，字幕版或配音版";
 "Anime of the Year" = "年度动漫";
 "Anime popular" = "热门动漫";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
@@ -741,6 +745,7 @@
 "Every 15 min" = "每 15 分钟";
 "Every 30 min" = "每 30 分钟";
 "Every launch" = "每次启动";
+"Everything releasing this month from TMDB" = "TMDB 中本月上线的所有内容";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "插件提供的所有内容都会以海报形式显示。滚动、搜索或筛选即可找到所需内容。";
 "Excellence Prize" = "优秀奖";
 "Exit Picture in Picture" = "退出画中画";
@@ -1191,6 +1196,7 @@
 "Mute" = "静音";
 "Muted text" = "弱化文本";
 "My Library" = "我的媒体库";
+"My Trakt" = "我的 Trakt";
 "My channels" = "My channels";
 "My library" = "我的媒体库";
 "My lists" = "我的列表";
@@ -1287,12 +1293,14 @@
 "No telemetry, no servers, no bundled keys." = "无遥测、无服务器、不内置密钥。";
 "No titles match these filters." = "没有符合这些筛选条件的内容。";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "没有符合这些筛选条件的字幕轨道。请尝试切换 HI/SDH 或强制字幕。";
+"No {kind} releases this month. Try a different filter." = "本月没有{kind}上线。请尝试其他筛选条件。";
 "Noir" = "黑色电影";
 "Nombre" = "名称";
 "Nombre cambiado" = "已重命名";
 "Nombre de usuario" = "用户名";
 "Nombre para mostrar" = "显示名称";
 "Non-fiction" = "非虚构类";
+"None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "本月没有 Trakt 最受期待榜中的即将上线作品。请尝试其他月份。";
 "Nord" = "Nord";
 "Normal" = "正常";
 "Normalize loudness" = "响度标准化";
@@ -1303,10 +1311,16 @@
 "Not interested" = "不感兴趣";
 "Not now" = "暂不";
 "Not set" = "未设置";
+"Nothing airing this month" = "Nothing airing this month";
+"Nothing anticipated this month" = "本月无备受期待的内容";
+"Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "你的媒体库本月没有内容上线。关闭“待看清单”即可查看所有上线内容。";
+"Nothing from your library this month" = "你的媒体库本月无内容";
 "Nothing here yet" = "暂无内容";
 "Nothing installed yet" = "尚未安装任何内容";
 "Nothing matched this filter. Try another category or change your region in Settings." = "没有符合此筛选器的内容。请尝试其他类别，或在“设置”中更改你的地区。";
+"Nothing on Trakt this month" = "Trakt 本月无内容";
 "Nothing saved on Trakt yet." = "Trakt 上尚未保存任何内容。";
+"Nothing this month" = "本月无内容";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "没有可发送的内容。片单中的全部 {n} 个项目都是动漫，而 Trakt 无法跟踪动漫。";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "尚未观看任何内容";
@@ -1365,6 +1379,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "在 Trakt 上打开";
+"Open settings" = "打开设置";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "启动时打开此个人资料。之后仍可能显示定时提示。设置了 PIN 的资料不能设为默认。";
 "Opening AniList..." = "正在打开 AniList...";
 "Opening MyAnimeList..." = "正在打开 MyAnimeList...";
@@ -2002,6 +2017,8 @@
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "TMDB API 密钥（v3）";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB 已连接。已开启 {n} 个流媒体{services}。欢迎登船。";
+"TMDB has no notable releases for this month and region." = "TMDB 中本月及该地区没有值得关注的新内容。";
+"TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB 提供本月全部新内容的海量数据，免费套餐即可满足需求，设置约需 60 秒。如果你只想查看已保存的内容，请切换到“我的媒体库”。";
 "TMDB · catalogs and rails" = "TMDB · 目录和内容栏";
 "TMDB · catálogos y filas" = "TMDB · 目录和内容栏";
 "TV" = "电视剧";
@@ -2049,6 +2066,7 @@
 "The authorization code timed out before you finished. Try again." = "你未能及时完成操作，授权码已过期。请重试。";
 "The comics industry's highest honor" = "漫画行业的最高荣誉";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most anticipated upcoming releases on Trakt" = "Trakt 上最受期待的即将上线内容";
 "The most-watched movies and series on {name} right now in {region}." = "{region} 当前在 {name} 上观看人数最多的电影和剧集。";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "敏捷的棕狐跃过懒狗";
@@ -2137,7 +2155,9 @@
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "已达到 Trakt 账户上限。请升级到 Trakt VIP 或精简片单。";
+"Trakt anticipated" = "Trakt 热门期待";
 "Trakt comments are not available for anime titles." = "动漫作品不支持 Trakt 评论。";
+"Trakt has no upcoming releases for your watchlist this month. Past months and dates more than six months out aren't covered by Trakt's calendar feed." = "本月您的 Trakt 待看列表中没有即将上线的作品。Trakt 日历源不涵盖过去月份以及六个月后的日期。";
 "Trakt history" = "Trakt 观看历史";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt 服务器出现问题（HTTP {n}）。请稍后重试。";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt 正在限制请求频率。请等待一分钟后重试。";
@@ -2193,6 +2213,8 @@
 "Upcoming" = "即将开始";
 "Upcoming Anime" = "即将上线的动漫";
 "Upcoming Season" = "下一季新番";
+"Upcoming episodes and movies from your Trakt watchlist" = "Trakt 待看清单中即将上线的剧集和电影";
+"Upcoming episodes and movies from your saved shows" = "你保存的节目中即将上线的剧集和电影";
 "Update" = "更新";
 "Update all" = "全部更新";
 "Updated {when}" = "更新于 {when}";
@@ -2248,6 +2270,7 @@
 "Watched" = "已观看";
 "Watching" = "正在观看";
 "Watchlist" = "想看清单";
+"Watchlist only" = "仅待看清单";
 "Weekend watchlist" = "周末片单";
 "Welcome to Harbor" = "欢迎使用 Harbor";
 "Western" = "西部";
@@ -2295,6 +2318,7 @@
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "你的个人资料";
 "Your rating" = "你的评分";
+"Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "你保存的节目本月没有计划播出的剧集。切换到“全部即将上线”即可浏览完整的上线日历。";
 "Your services are saved locally. Cloud sync will retry." = "你的服务已保存在本机。稍后将重试云端同步。";
 "Your watchlist is empty" = "你的待看清单为空";
 "Your watchlist is empty, nothing to send." = "你的片单为空，没有可发送的内容。";

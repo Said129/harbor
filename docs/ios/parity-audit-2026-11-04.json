@@ -5,36 +5,36 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 121,
+      "ported": 122,
       "partial": 206,
-      "missing": 89,
+      "missing": 88,
       "excluded": 22,
       "counted": 416,
-      "weighted_percent": 53.8,
-      "ported_only_percent": 29.1,
-      "ported_or_partial_percent": 78.6
+      "weighted_percent": 54.1,
+      "ported_only_percent": 29.3,
+      "ported_or_partial_percent": 78.8
     },
     "settings": {
       "total": 511,
       "ported": 137,
-      "partial": 23,
-      "missing": 265,
+      "partial": 24,
+      "missing": 264,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 34.9,
+      "weighted_percent": 35.1,
       "ported_only_percent": 32.2,
-      "ported_or_partial_percent": 37.6
+      "ported_or_partial_percent": 37.9
     },
     "all": {
       "total": 949,
-      "ported": 258,
-      "partial": 229,
-      "missing": 354,
+      "ported": 259,
+      "partial": 230,
+      "missing": 352,
       "excluded": 108,
       "counted": 841,
-      "weighted_percent": 44.3,
-      "ported_only_percent": 30.7,
-      "ported_or_partial_percent": 57.9
+      "weighted_percent": 44.5,
+      "ported_only_percent": 30.8,
+      "ported_or_partial_percent": 58.1
     }
   },
   "behavior_areas": [
@@ -140,20 +140,20 @@
     {
       "area": "Trackers",
       "range": "B274-B304",
-      "ported": 12,
-      "partial": 12,
+      "ported": 13,
+      "partial": 11,
       "missing": 7,
       "excluded": 0,
-      "weighted_percent": 58.1
+      "weighted_percent": 59.7
     },
     {
       "area": "Metadata providers, calendar and lists",
       "range": "B305-B323",
       "ported": 7,
-      "partial": 7,
-      "missing": 5,
+      "partial": 8,
+      "missing": 4,
       "excluded": 0,
-      "weighted_percent": 55.3
+      "weighted_percent": 57.9
     },
     {
       "area": "Profiles, appearance, integrations and system",
@@ -2207,8 +2207,8 @@
       "index": 283,
       "id": "Trakt calendar",
       "desktop_source": "src/lib/trakt",
-      "verdict": "P",
-      "note": "Trakt calendar in TraktHome"
+      "verdict": "D",
+      "note": "My Trakt and Trakt anticipated calendar sources (7 Nov, uncompiled)"
     },
     {
       "index": 284,
@@ -2473,8 +2473,8 @@
       "index": 321,
       "id": "Calendar source filters",
       "desktop_source": "src/lib/calendar.ts",
-      "verdict": "M",
-      "note": "no calendar source filters"
+      "verdict": "P",
+      "note": "source switcher with library, all upcoming, My Trakt, Trakt anticipated and anime (7 Nov, uncompiled); no Simkl, Custom, dub schedule or games"
     },
     {
       "index": 322,
@@ -6584,8 +6584,8 @@
       "index": 470,
       "id": "calendarSource",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "calendarSource kept per profile; five of Desktop's nine sources (7 Nov, uncompiled)"
     },
     {
       "index": 471,

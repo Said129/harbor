@@ -150,6 +150,8 @@
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "Todos os esportes";
 "All tags" = "Todas as tags";
+"All upcoming" = "Todos os próximos";
+"All upcoming needs a TMDB key" = "Todos os próximos lançamentos requer uma chave do TMDB";
 "All-Time Great Series" = "Melhores Séries de Todos os Tempos";
 "All-Time Greats" = "Os Melhores de Todos os Tempos";
 "AllDebrid API key" = "Chave de API do AllDebrid";
@@ -162,6 +164,7 @@
 "Analyzing audio… Keep watching." = "Analisando áudio… Continue assistindo.";
 "AniList" = "AniList";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "Sincronização com o AniList";
 "Animals" = "Animals";
 "Animated Movies" = "Filmes de Animação";
@@ -170,6 +173,7 @@
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "Animes em Alta";
+"Anime episodes airing this month, sub or dub" = "Episódios de anime deste mês, legendados ou dublados";
 "Anime of the Year" = "Anime do Ano";
 "Anime popular" = "Animes Populares";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
@@ -761,6 +765,7 @@
 "Every 15 min" = "A cada 15 min";
 "Every 30 min" = "A cada 30 min";
 "Every launch" = "A cada inicialização";
+"Everything releasing this month from TMDB" = "Tudo que estreia este mês, segundo o TMDB";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Tudo o que seus complementos oferecem, exibido como pôsteres. Role, pesquise ou filtre para encontrar o que você quer.";
 "Excellence Prize" = "Prêmio de Excelência";
 "Exit Picture in Picture" = "Sair do Picture in Picture";
@@ -1211,6 +1216,7 @@
 "Mute" = "Silenciar";
 "Muted text" = "Texto atenuado";
 "My Library" = "Minha Biblioteca";
+"My Trakt" = "Meu Trakt";
 "My channels" = "My channels";
 "My library" = "Minha biblioteca";
 "My lists" = "Minhas listas";
@@ -1307,12 +1313,14 @@
 "No telemetry, no servers, no bundled keys." = "Sem telemetria, sem servidores, sem chaves embutidas.";
 "No titles match these filters." = "Nenhum título corresponde a estes filtros.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Nenhuma faixa corresponde a esses filtros. Tente alternar HI/SDH ou Forçada.";
+"No {kind} releases this month. Try a different filter." = "Nenhum lançamento de {kind} este mês. Tente outro filtro.";
 "Noir" = "Noir";
 "Nombre" = "Nome";
 "Nombre cambiado" = "Renomeado";
 "Nombre de usuario" = "Nome de usuário";
 "Nombre para mostrar" = "Nome de exibição";
 "Non-fiction" = "Não ficção";
+"None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "Nenhum dos lançamentos mais aguardados do Trakt cai neste mês. Tente outro mês.";
 "Nord" = "Nord";
 "Normal" = "Normal";
 "Normalize loudness" = "Normalizar volume";
@@ -1323,10 +1331,16 @@
 "Not interested" = "Não tenho interesse";
 "Not now" = "Agora não";
 "Not set" = "Não definido";
+"Nothing airing this month" = "Nothing airing this month";
+"Nothing anticipated this month" = "Nada aguardado este mês";
+"Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "Nada da sua biblioteca cai neste mês. Desative a Watchlist para ver todos os lançamentos.";
+"Nothing from your library this month" = "Nada da sua biblioteca este mês";
 "Nothing here yet" = "Ainda nada por aqui";
 "Nothing installed yet" = "Nada instalado ainda";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Nada corresponde a este filtro. Tente outra categoria ou mude sua região nas Configurações.";
+"Nothing on Trakt this month" = "Nada no Trakt este mês";
 "Nothing saved on Trakt yet." = "Ainda nada salvo no Trakt.";
+"Nothing this month" = "Nada este mês";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Nada para enviar. Todos os {n} itens da watchlist são animes, que o Trakt não consegue rastrear.";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "Nada assistido ainda";
@@ -1385,6 +1399,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Abrir no Trakt";
+"Open settings" = "Abrir configurações";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Abra este perfil ao iniciar. Os pedidos programados ainda podem aparecer depois. Perfis com PIN não podem ser definidos como padrão.";
 "Opening AniList..." = "Abrindo AniList...";
 "Opening MyAnimeList..." = "Abrindo MyAnimeList...";
@@ -2025,6 +2040,8 @@
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "Chave da API TMDB (v3)";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB conectado. {n} {services} de streaming ativados. Bem-vindo a bordo.";
+"TMDB has no notable releases for this month and region." = "O TMDB não tem lançamentos notáveis para este mês e região.";
+"TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "O TMDB alimenta o fluxo intenso de todos os lançamentos deste mês. O plano gratuito já é suficiente. Cerca de 60 segundos para configurar. Mude para Minha Biblioteca se preferir ver apenas o que você salvou.";
 "TMDB · catalogs and rails" = "TMDB · catálogos e faixas";
 "TMDB · catálogos y filas" = "TMDB · catálogos e faixas";
 "TV" = "TV";
@@ -2072,6 +2089,7 @@
 "The authorization code timed out before you finished. Try again." = "O código de autorização expirou antes de você terminar. Tente novamente.";
 "The comics industry's highest honor" = "A maior honraria da indústria de quadrinhos";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most anticipated upcoming releases on Trakt" = "Os lançamentos mais aguardados no Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Os filmes e séries mais assistidos no {name} agora em {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "O original foi mantido. Exporte a legenda em UTF-8 ou UTF-16 para sincronizá-la.";
 "The quick brown fox jumps over the lazy dog" = "Um pequeno jabuti xereta viu dez cegonhas felizes";
@@ -2160,7 +2178,9 @@
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Limite da conta Trakt atingido. Faça upgrade para Trakt VIP ou reduza sua watchlist.";
+"Trakt anticipated" = "Mais aguardados no Trakt";
 "Trakt comments are not available for anime titles." = "Comentários do Trakt não estão disponíveis para títulos de anime.";
+"Trakt has no upcoming releases for your watchlist this month. Past months and dates more than six months out aren't covered by Trakt's calendar feed." = "O Trakt não tem lançamentos futuros para sua watchlist neste mês. Meses passados e datas com mais de seis meses de antecedência não são cobertos pelo feed de calendário do Trakt.";
 "Trakt history" = "Histórico do Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "O Trakt está com problemas no servidor (HTTP {n}). Tente novamente em breve.";
 "Trakt is rate-limiting. Wait a minute and try again." = "O Trakt está limitando as requisições. Aguarde um minuto e tente novamente.";
@@ -2216,6 +2236,8 @@
 "Upcoming" = "Próximos";
 "Upcoming Anime" = "Animes Futuros";
 "Upcoming Season" = "Próxima Temporada";
+"Upcoming episodes and movies from your Trakt watchlist" = "Episódios e filmes futuros da sua watchlist do Trakt";
+"Upcoming episodes and movies from your saved shows" = "Episódios e filmes futuros das suas séries salvas";
 "Update" = "Atualizar";
 "Update all" = "Atualizar tudo";
 "Updated {when}" = "Atualizado {when}";
@@ -2271,6 +2293,7 @@
 "Watched" = "Assistido";
 "Watching" = "Assistindo";
 "Watchlist" = "Lista para assistir";
+"Watchlist only" = "Somente lista de interesse";
 "Weekend watchlist" = "Lista do fim de semana";
 "Welcome to Harbor" = "Bem-vindo ao Harbor";
 "Western" = "Faroeste";
@@ -2322,6 +2345,7 @@
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Seu perfil";
 "Your rating" = "Sua avaliação";
+"Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "Suas séries salvas não têm episódios programados para este mês. Mude para Todos os próximos para navegar pelo calendário completo de lançamentos.";
 "Your services are saved locally. Cloud sync will retry." = "Os seus serviços estão guardados neste dispositivo. A sincronização será tentada novamente.";
 "Your watchlist is empty" = "Sua watchlist está vazia";
 "Your watchlist is empty, nothing to send." = "Sua watchlist está vazia, nada para enviar.";

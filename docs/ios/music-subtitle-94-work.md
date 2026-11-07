@@ -1361,3 +1361,31 @@ across restarts, refused key until reset, misses and the daily limit, prefetch r
 MDBList parsing and aliases, legacy endpoint, day and minute caches, the ratings row
 with order, links and rounding, the matrix list and Metacritic colours). The chips row
 itself is a view-state feature to be checked on a device.
+
+## Calendar sources (7 November)
+
+The calendar had only "My library". It now has Desktop's source switcher for the five
+sources that need no Simkl account or filter builder: My library, All upcoming (TMDB
+discover pages 1 and 2 for movies and TV plus upcoming movies of the month, one item per
+title, anime left to its own source), My Trakt (`/calendars/my/shows` and `/movies` from
+today for 31 days, or up to 7 x 31 six months ahead; nothing for past months or beyond six
+months), Trakt anticipated (`/shows/anticipated` and `/movies/anticipated`, premieres
+listed before movies) and Anime (AniList airing schedule, three pages at a time up to ten,
+adult titles and movies left out). Posters, ratings and genres for Trakt titles come from
+Cinemeta; "Animation" or "Anime" in the genres marks a title as anime. Desktop's id rules
+are kept (`id:season:episode`, `:premiere`, `mal:`/`anilist:`); a Trakt title without an
+IMDb id opens through its TMDB id instead of Desktop's `trakt:` id, which Harbor cannot
+open. Events open the title through `calendarToMeta`'s rules (`CalendarItem.media`).
+
+Also ported: the type filter row (All, Movies, TV) and "Watchlist only" for All upcoming,
+Desktop's empty-month cards with their per-source texts, the "needs a TMDB key" card with
+an Open settings button, and the source kept in the profile (`calendar.source`). The
+type filter stays on My library too (an iOS addition: Desktop has none there).
+
+Not ported, recorded as partial: Simkl and Simkl premieres, the Custom source and its
+filters, the Sub/Dub switch (the dub schedule feed), the games source (excluded), the day
+modal, release chips and airing countdown, opening an episode from an event (Desktop's
+`calendarEpisodeHint`), and hiding anime through `hideContent.anime`.
+
+`CalendarSourcesTests` has 14 cases. Run 15 compiles it together with the review edits of
+the ratings work.

@@ -144,7 +144,9 @@
     "Looping": "En bucle",
     "Set A": "Marcar A",
     "Set B": "Marcar B",
-    "Torrent links play through a debrid service. Add one in Settings › Streaming sources.": "Los enlaces torrent se reproducen con un servicio debrid. Añade uno en Ajustes › Fuentes de streaming."
+    "Torrent links play through a debrid service. Add one in Settings › Streaming sources.": "Los enlaces torrent se reproducen con un servicio debrid. Añade uno en Ajustes › Fuentes de streaming.",
+    "AniList has no anime episodes scheduled to air this month. Try a different month.": "AniList no tiene episodios de anime programados para este mes. Prueba con otro mes.",
+    "Nothing airing this month": "No hay nada en emisión este mes"
   },
   "pt": {
     "Auto-sync": "Sincronização automática",

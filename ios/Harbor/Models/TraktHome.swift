@@ -2,18 +2,24 @@ import Foundation
 
 enum TraktHomeEndpoint: Sendable {
     case recommendations(TraktLibraryTarget.Kind), upcoming(String)
+    /// Desktop's calendar sources: the account's episodes and movies from a day, for a number of days.
+    case calendarShows(String, Int), calendarMovies(String, Int)
     var path: String {
         switch self {
         case .recommendations(let kind): "/recommendations/\(kind == .movie ? "movies" : "shows")?limit=40&ignore_collected=true"
         case .upcoming(let day): "/calendars/my/shows/\(day)/14"
+        case .calendarShows(let day, let days): "/calendars/my/shows/\(day)/\(days)"
+        case .calendarMovies(let day, let days): "/calendars/my/movies/\(day)/\(days)"
         }
     }
     var valid: Bool {
         switch self {
         case .recommendations: true
-        case .upcoming(let day): day.range(of: #"^[0-9]{4}-[0-9]{2}-[0-9]{2}$"#, options: .regularExpression) != nil
+        case .upcoming(let day): Self.validDay(day)
+        case .calendarShows(let day, let days), .calendarMovies(let day, let days): Self.validDay(day) && (1...400).contains(days)
         }
     }
+    private static func validDay(_ day: String) -> Bool { day.range(of: #"^[0-9]{4}-[0-9]{2}-[0-9]{2}$"#, options: .regularExpression) != nil }
     static func utcDay(_ date: Date) -> String { String(ISO8601DateFormatter().string(from: date).prefix(10)) }
 }
 

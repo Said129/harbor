@@ -7,13 +7,13 @@
   "coverage_note": "This report inventories generated Desktop-derived labels and known mobile-only English fallbacks. It is not a certification of complete translation of every native message or of overall functional parity.",
   "languages": {
     "en": {
-      "entries": 3110,
-      "sha256": "1d1fbff53099ca539f74dae6b822c161ac8af04b09c6d95da361c6447ef53fb6",
+      "entries": 3135,
+      "sha256": "42360746ea8aa0d7955e3d911778d35620d54aba9bf59b0e851cfb56c3295534",
       "mobile_only_english_fallback": []
     },
     "ar": {
-      "entries": 3553,
-      "sha256": "8600f2a5635748057494acac0d8e792df40ae25fbdf1fc9cd9c89c2e5645e43f",
+      "entries": 3577,
+      "sha256": "7e49a696d3e290720d6377e2d30d29de1a9be2c0d7afb03a7095029de76fbcba",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -24,6 +24,7 @@
         "All extensions",
         "All sources are shown in the picker. These filters and quality limits apply to automatic playback.",
         "Allow cellular data",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Authorization expired. Connect again.",
@@ -109,6 +110,7 @@
         "Next song",
         "No extensions are available on this server.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",
@@ -201,8 +203,8 @@
       ]
     },
     "zh": {
-      "entries": 3511,
-      "sha256": "3010030c9eb7d3ef987325bad3f6e23537267b65b31ea8d395c9405719f24163",
+      "entries": 3535,
+      "sha256": "d8dd9a3830ea2f3ad987a212850ad44bfac1122f30c2d934f81948a73c7473f8",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -215,6 +217,7 @@
         "Allow cellular data",
         "Analysis stopped to prioritize playback. Retry after buffering finishes.",
         "Analyzing audio… Keep watching.",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Applying subtitle timing…",
@@ -319,6 +322,7 @@
         "No extensions are available on this server.",
         "No reliable match was found. The original subtitle is kept.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",
@@ -425,8 +429,8 @@
       ]
     },
     "fr": {
-      "entries": 3511,
-      "sha256": "5973a64a4bdfa2a492d9b1fde67f90c96a5ebdb9a3db1717c1f889ebefb0715b",
+      "entries": 3535,
+      "sha256": "9da3980aca741f7b01c5cc8e99d167c6cf66ebd386597298c82c5ce4fe286457",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -439,6 +443,7 @@
         "Allow cellular data",
         "Analysis stopped to prioritize playback. Retry after buffering finishes.",
         "Analyzing audio… Keep watching.",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Applying subtitle timing…",
@@ -543,6 +548,7 @@
         "No extensions are available on this server.",
         "No reliable match was found. The original subtitle is kept.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",
@@ -649,8 +655,8 @@
       ]
     },
     "de": {
-      "entries": 3511,
-      "sha256": "4d90fa9562408b79bd49dd1412e0bee6f31fb27dfb4fd36af7994f7f68a5aa32",
+      "entries": 3535,
+      "sha256": "93ee367d2a835f64221cd89674e8fb44a09896fbf4ddfb709feddfcfa928b777",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -663,6 +669,7 @@
         "Allow cellular data",
         "Analysis stopped to prioritize playback. Retry after buffering finishes.",
         "Analyzing audio… Keep watching.",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Applying subtitle timing…",
@@ -767,6 +774,7 @@
         "No extensions are available on this server.",
         "No reliable match was found. The original subtitle is kept.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",
@@ -873,8 +881,8 @@
       ]
     },
     "hi": {
-      "entries": 3511,
-      "sha256": "0953369e9b37b05e3f5a56153bd1fd6e891ae2692353db4ed0582df2774b18f7",
+      "entries": 3535,
+      "sha256": "547faf487943e8ed3a4d599130ad4bdcd6a739f5f7cb684773a08ce2d9e34ec7",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -887,6 +895,7 @@
         "Allow cellular data",
         "Analysis stopped to prioritize playback. Retry after buffering finishes.",
         "Analyzing audio… Keep watching.",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Applying subtitle timing…",
@@ -991,6 +1000,7 @@
         "No extensions are available on this server.",
         "No reliable match was found. The original subtitle is kept.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",
@@ -1097,8 +1107,8 @@
       ]
     },
     "id": {
-      "entries": 3511,
-      "sha256": "b8574986317e584cd16873441922b37eba58eb6023a360eb310450062e679af4",
+      "entries": 3535,
+      "sha256": "7161f336316f26d95a8b3281df9bfc2d008f260451c3158cac374f4197db37e6",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -1111,6 +1121,7 @@
         "Allow cellular data",
         "Analysis stopped to prioritize playback. Retry after buffering finishes.",
         "Analyzing audio… Keep watching.",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Applying subtitle timing…",
@@ -1215,6 +1226,7 @@
         "No extensions are available on this server.",
         "No reliable match was found. The original subtitle is kept.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",
@@ -1321,8 +1333,8 @@
       ]
     },
     "it": {
-      "entries": 3511,
-      "sha256": "d4c152e3af10ef22a9c29b9981e303bbce60d45d5e3a97aafe85f70b9d70e60b",
+      "entries": 3535,
+      "sha256": "79a4e6a68ff5705677e35569b5b81de9926983cb0f346e5f0920ae2031f98f3d",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -1335,6 +1347,7 @@
         "Allow cellular data",
         "Analysis stopped to prioritize playback. Retry after buffering finishes.",
         "Analyzing audio… Keep watching.",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Applying subtitle timing…",
@@ -1439,6 +1452,7 @@
         "No extensions are available on this server.",
         "No reliable match was found. The original subtitle is kept.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",
@@ -1545,8 +1559,8 @@
       ]
     },
     "ja": {
-      "entries": 3511,
-      "sha256": "d4bd6692e9fbcd9cd62f538d20a17124241875e0a010a5e100ca7cf1d03a15a7",
+      "entries": 3535,
+      "sha256": "756cc9befb16f56ff84fde30279b973918961a810939d946ed74950fc706f4ae",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -1559,6 +1573,7 @@
         "Allow cellular data",
         "Analysis stopped to prioritize playback. Retry after buffering finishes.",
         "Analyzing audio… Keep watching.",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Applying subtitle timing…",
@@ -1663,6 +1678,7 @@
         "No extensions are available on this server.",
         "No reliable match was found. The original subtitle is kept.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",
@@ -1769,8 +1785,8 @@
       ]
     },
     "ko": {
-      "entries": 3511,
-      "sha256": "48231585940e8828910c7ca71527ada4c831b99b4b20278b9a693d098a476946",
+      "entries": 3535,
+      "sha256": "ec7ba52d94963d1ee05116a3d7e202d4777f1021f24f4626025101466c5572f1",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -1783,6 +1799,7 @@
         "Allow cellular data",
         "Analysis stopped to prioritize playback. Retry after buffering finishes.",
         "Analyzing audio… Keep watching.",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Applying subtitle timing…",
@@ -1887,6 +1904,7 @@
         "No extensions are available on this server.",
         "No reliable match was found. The original subtitle is kept.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",
@@ -1993,8 +2011,8 @@
       ]
     },
     "pl": {
-      "entries": 3511,
-      "sha256": "4028105b6ace7ddf60990731d58bc6e1c3cba2b44cd144bfd54b25cacba2463b",
+      "entries": 3535,
+      "sha256": "0724ee9fe77f4dbde495381c2bced6770452e0c48e3d21c0efc1d654cde1835b",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -2007,6 +2025,7 @@
         "Allow cellular data",
         "Analysis stopped to prioritize playback. Retry after buffering finishes.",
         "Analyzing audio… Keep watching.",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Applying subtitle timing…",
@@ -2111,6 +2130,7 @@
         "No extensions are available on this server.",
         "No reliable match was found. The original subtitle is kept.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",
@@ -2217,8 +2237,8 @@
       ]
     },
     "pt": {
-      "entries": 3538,
-      "sha256": "963f895425eb97249aa3f7fe6106d0ef8f40af491cb7e1901744f7390170ee3d",
+      "entries": 3562,
+      "sha256": "9342931962b03a7c48dee28e577221f25990aa07abf68723ba2bdba0149248be",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -2229,6 +2249,7 @@
         "All extensions",
         "All sources are shown in the picker. These filters and quality limits apply to automatic playback.",
         "Allow cellular data",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Authorization expired. Connect again.",
@@ -2320,6 +2341,7 @@
         "Next song",
         "No extensions are available on this server.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",
@@ -2415,8 +2437,8 @@
       ]
     },
     "ru": {
-      "entries": 3526,
-      "sha256": "f402965ba71b86ea43c5f39e902d79669c08ff1c49f0c627cf1d44007aee5c9b",
+      "entries": 3550,
+      "sha256": "3e3c2bff3aa41126c46ba7299326192d4ddab6258ac8e450e7b6fb9ff1fc7ad3",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -2427,6 +2449,7 @@
         "All extensions",
         "All sources are shown in the picker. These filters and quality limits apply to automatic playback.",
         "Allow cellular data",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Authorization expired. Connect again.",
@@ -2512,6 +2535,7 @@
         "Next song",
         "No extensions are available on this server.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",
@@ -2604,13 +2628,13 @@
       ]
     },
     "es": {
-      "entries": 3511,
-      "sha256": "24518362c628a2059df809e7d50bf67a8a201e647a395ba20a881e73e352548b",
+      "entries": 3535,
+      "sha256": "d6655f9684d19dcc3d59a04e3b27b1814fee08240e1c8acefb5db9c38c704ddc",
       "mobile_only_english_fallback": []
     },
     "tr": {
-      "entries": 3511,
-      "sha256": "fab8c776d677547bfc62e9b41e141c8cf7bdf7ef0ff4ef87d55ccbb7fc394d4b",
+      "entries": 3535,
+      "sha256": "e599df18ef42d4ac9b1edfce035fbdaeda61a5c7633ee2b9a07f197b1bf62a7e",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -2623,6 +2647,7 @@
         "Allow cellular data",
         "Analysis stopped to prioritize playback. Retry after buffering finishes.",
         "Analyzing audio… Keep watching.",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Applying subtitle timing…",
@@ -2727,6 +2752,7 @@
         "No extensions are available on this server.",
         "No reliable match was found. The original subtitle is kept.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",
@@ -2833,8 +2859,8 @@
       ]
     },
     "vi": {
-      "entries": 3511,
-      "sha256": "083b5d40711dbb45c8c1331298180bfcdaca56c41ea822f00b060f6d374499ad",
+      "entries": 3535,
+      "sha256": "8797029f66810827c3334d9be0518f04f3b08fbfd8f9aea1a1f43b302bde3f61",
       "mobile_only_english_fallback": [
         "A-B loop",
         "Accents",
@@ -2847,6 +2873,7 @@
         "Allow cellular data",
         "Analysis stopped to prioritize playback. Retry after buffering finishes.",
         "Analyzing audio… Keep watching.",
+        "AniList has no anime episodes scheduled to air this month. Try a different month.",
         "Animals",
         "Another device changed navigation. Your previous version is saved on this device.",
         "Applying subtitle timing…",
@@ -2951,6 +2978,7 @@
         "No extensions are available on this server.",
         "No reliable match was found. The original subtitle is kept.",
         "No subtitles match your search.",
+        "Nothing airing this month",
         "Nothing to show yet.",
         "Notify me",
         "On start",

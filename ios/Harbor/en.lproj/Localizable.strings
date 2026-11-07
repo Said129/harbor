@@ -124,6 +124,8 @@
 "All sources" = "All sources";
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "All sports";
+"All upcoming" = "All upcoming";
+"All upcoming needs a TMDB key" = "All upcoming needs a TMDB key";
 "AllDebrid API key" = "AllDebrid API key";
 "AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play.";
 "Allow cellular data" = "Allow cellular data";
@@ -131,6 +133,7 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "AniList sync";
 "Animals" = "Animals";
 "Animated Movies" = "Animated Movies";
@@ -138,6 +141,7 @@
 "Animation speed" = "Animation speed";
 "Anime" = "Anime";
 "Anime en tendencia" = "Trending Anime";
+"Anime episodes airing this month, sub or dub" = "Anime episodes airing this month, sub or dub";
 "Anime popular" = "Popular Anime";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Another device changed services. Your previous version is saved on this device." = "Another device changed services. Your previous version is saved on this device.";
@@ -624,6 +628,7 @@
 "Evens out quiet dialogue and loud action scenes with a dynamic normalizer." = "Evens out quiet dialogue and loud action scenes with a dynamic normalizer.";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "Tonight's main event";
+"Everything releasing this month from TMDB" = "Everything releasing this month from TMDB";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want.";
 "Exit Picture in Picture" = "Exit Picture in Picture";
 "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork.";
@@ -1008,6 +1013,7 @@
 "Mute" = "Mute";
 "Muted text" = "Muted text";
 "My Library" = "My Library";
+"My Trakt" = "My Trakt";
 "My channels" = "My channels";
 "My library" = "My library";
 "My lists" = "My lists";
@@ -1089,18 +1095,26 @@
 "No subtitles match your search." = "No subtitles match your search.";
 "No titles match these filters." = "No titles match these filters.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "No tracks match these filters. Try toggling HI/SDH or Forced.";
+"No {kind} releases this month. Try a different filter." = "No {kind} releases this month. Try a different filter.";
 "Nombre" = "Name";
 "Nombre cambiado" = "Renamed";
 "Nombre de usuario" = "Username";
 "Nombre para mostrar" = "Display name";
+"None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "None of Trakt's most-anticipated upcoming releases land in this month. Try a different month.";
 "Normal" = "Normal";
 "Normalize loudness" = "Normalize loudness";
 "Not connected" = "Not connected";
 "Not installed" = "Not installed";
 "Not now" = "Not now";
 "Not set" = "Not set";
+"Nothing airing this month" = "Nothing airing this month";
+"Nothing anticipated this month" = "Nothing anticipated this month";
+"Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "Nothing from your library lands this month. Toggle Watchlist off to see all releases.";
+"Nothing from your library this month" = "Nothing from your library this month";
 "Nothing here yet" = "Nothing here yet";
+"Nothing on Trakt this month" = "Nothing on Trakt this month";
 "Nothing saved on Trakt yet." = "Nothing saved on Trakt yet.";
+"Nothing this month" = "Nothing this month";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Nothing to send. All {n} watchlist items are anime, which Trakt can't track.";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "Nothing watched yet";
@@ -1153,6 +1167,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Open on Trakt";
+"Open settings" = "Open settings";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default.";
 "Opening AniList..." = "Opening AniList...";
 "Opening MyAnimeList..." = "Opening MyAnimeList...";
@@ -1701,6 +1716,8 @@
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "TMDB API key (v3)";
+"TMDB has no notable releases for this month and region." = "TMDB has no notable releases for this month and region.";
+"TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved.";
 "TMDB · catalogs and rails" = "TMDB · catalogs and rails";
 "TMDB · catálogos y filas" = "TMDB · catalogs and rails";
 "TV" = "TV";
@@ -1738,6 +1755,7 @@
 "The addons did not return metadata for this title." = "The addons did not return metadata for this title.";
 "The authorization code timed out before you finished. Try again." = "The authorization code timed out before you finished. Try again.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most anticipated upcoming releases on Trakt" = "The most anticipated upcoming releases on Trakt";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "The quick brown fox jumps over the lazy dog";
 "The ratings row on a title's detail page, next to runtime and genre." = "The ratings row on a title's detail page, next to runtime and genre.";
@@ -1811,7 +1829,9 @@
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist.";
+"Trakt anticipated" = "Trakt anticipated";
 "Trakt comments are not available for anime titles." = "Trakt comments are not available for anime titles.";
+"Trakt has no upcoming releases for your watchlist this month. Past months and dates more than six months out aren't covered by Trakt's calendar feed." = "Trakt has no upcoming releases for your watchlist this month. Past months and dates more than six months out aren't covered by Trakt's calendar feed.";
 "Trakt history" = "Trakt history";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt is having server trouble (HTTP {n}). Try again shortly.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt is rate-limiting. Wait a minute and try again.";
@@ -1857,6 +1877,8 @@
 "Upcoming" = "Upcoming";
 "Upcoming Anime" = "Upcoming Anime";
 "Upcoming Season" = "Upcoming Season";
+"Upcoming episodes and movies from your Trakt watchlist" = "Upcoming episodes and movies from your Trakt watchlist";
+"Upcoming episodes and movies from your saved shows" = "Upcoming episodes and movies from your saved shows";
 "Update" = "Update";
 "Updated {when}" = "Updated {when}";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "Upload a picture of your own, or pick one from the Harbor catalog.";
@@ -1907,6 +1929,7 @@
 "Watched" = "Watched";
 "Watching" = "Watching";
 "Watchlist" = "Watchlist";
+"Watchlist only" = "Watchlist only";
 "Weekend watchlist" = "Weekend watchlist";
 "Welcome to Harbor" = "Welcome to Harbor";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "When a release ships multiple audio tracks, Harbor selects the first match from this list.";
@@ -1941,6 +1964,7 @@
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Your profile";
 "Your rating" = "Your rating";
+"Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar.";
 "Your services are saved locally. Cloud sync will retry." = "Your services are saved locally. Cloud sync will retry.";
 "Your watchlist is empty" = "Your watchlist is empty";
 "Your watchlist is empty, nothing to send." = "Your watchlist is empty, nothing to send.";
@@ -1968,6 +1992,7 @@
 "language" = "language";
 "mdblist api key" = "mdblist api key";
 "min" = "min";
+"movies" = "movies";
 "music.action.error" = "Couldn’t complete that action. Please try again.";
 "music.artist.about" = "About the artist";
 "music.artist.aliases" = "Also known as";

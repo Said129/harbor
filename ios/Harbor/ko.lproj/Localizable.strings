@@ -143,6 +143,8 @@
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "모든 스포츠";
 "All tags" = "모든 태그";
+"All upcoming" = "전체 공개 예정작";
+"All upcoming needs a TMDB key" = "모든 공개 예정 콘텐츠를 보려면 TMDB 키가 필요합니다";
 "All-Time Great Series" = "역대 명작 시리즈";
 "All-Time Greats" = "시대를 초월한 명작";
 "AllDebrid API key" = "AllDebrid API 키";
@@ -155,6 +157,7 @@
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "AniList 동기화";
 "Animals" = "Animals";
 "Animated Movies" = "애니메이션 영화";
@@ -163,6 +166,7 @@
 "Anime" = "애니메이션";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "인기 급상승 애니메이션";
+"Anime episodes airing this month, sub or dub" = "이번 달 방영 애니메이션 에피소드, 자막판 또는 더빙판";
 "Anime of the Year" = "올해의 애니메이션";
 "Anime popular" = "인기 애니메이션";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
@@ -741,6 +745,7 @@
 "Every 15 min" = "15분마다";
 "Every 30 min" = "30분마다";
 "Every launch" = "실행할 때마다";
+"Everything releasing this month from TMDB" = "TMDB의 이번 달 모든 공개작";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "애드온에서 제공하는 모든 콘텐츠를 포스터로 표시합니다. 스크롤하거나 검색 또는 필터링해 원하는 콘텐츠를 찾으세요.";
 "Excellence Prize" = "우수상";
 "Exit Picture in Picture" = "화면 속 화면 종료";
@@ -1191,6 +1196,7 @@
 "Mute" = "음소거";
 "Muted text" = "흐린 텍스트";
 "My Library" = "내 라이브러리";
+"My Trakt" = "내 Trakt";
 "My channels" = "My channels";
 "My library" = "내 라이브러리";
 "My lists" = "내 목록";
@@ -1287,12 +1293,14 @@
 "No telemetry, no servers, no bundled keys." = "원격 측정도, 서버도, 기본 제공 키도 없습니다.";
 "No titles match these filters." = "이 필터와 일치하는 작품이 없습니다.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "이 필터와 일치하는 트랙이 없습니다. HI/SDH 또는 강제 자막을 전환해 보세요.";
+"No {kind} releases this month. Try a different filter." = "이번 달에는 {kind} 공개작이 없습니다. 다른 필터를 사용해 보세요.";
 "Noir" = "누아르";
 "Nombre" = "이름";
 "Nombre cambiado" = "이름 변경됨";
 "Nombre de usuario" = "사용자 이름";
 "Nombre para mostrar" = "표시 이름";
 "Non-fiction" = "비소설";
+"None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "이번 달에는 Trakt에서 가장 기대되는 공개 예정작이 없습니다. 다른 달을 선택해 보세요.";
 "Nord" = "Nord";
 "Normal" = "보통";
 "Normalize loudness" = "음량 평준화";
@@ -1303,10 +1311,16 @@
 "Not interested" = "관심 없음";
 "Not now" = "나중에";
 "Not set" = "설정되지 않음";
+"Nothing airing this month" = "Nothing airing this month";
+"Nothing anticipated this month" = "이번 달에는 기대작이 없습니다";
+"Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "이번 달에 공개되는 라이브러리 항목이 없습니다. 모든 공개작을 보려면 관심 목록을 끄세요.";
+"Nothing from your library this month" = "이번 달에는 라이브러리 항목이 없습니다";
 "Nothing here yet" = "아직 아무것도 없습니다";
 "Nothing installed yet" = "아직 설치된 것이 없습니다";
 "Nothing matched this filter. Try another category or change your region in Settings." = "이 필터와 일치하는 항목이 없습니다. 다른 카테고리를 선택하거나 설정에서 지역을 변경해 보세요.";
+"Nothing on Trakt this month" = "이번 달 Trakt 항목 없음";
 "Nothing saved on Trakt yet." = "Trakt에 아직 저장된 항목이 없습니다.";
+"Nothing this month" = "이번 달에는 항목이 없습니다";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "보낼 항목이 없습니다. 관심 목록의 {n}개 항목이 모두 애니메이션이라 Trakt에서 추적할 수 없습니다.";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "아직 시청한 콘텐츠가 없습니다";
@@ -1365,6 +1379,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Trakt에서 열기";
+"Open settings" = "설정 열기";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "시작할 때 이 프로필을 엽니다. 이후에도 시간에 따른 확인 메시지가 표시될 수 있습니다. PIN이 있는 프로필은 기본으로 설정할 수 없습니다.";
 "Opening AniList..." = "AniList 여는 중...";
 "Opening MyAnimeList..." = "MyAnimeList 여는 중...";
@@ -2002,6 +2017,8 @@
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "TMDB API 키(v3)";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB가 연결되었습니다. 스트리밍 {services} {n}개가 켜져 있습니다. Harbor에 오신 것을 환영합니다.";
+"TMDB has no notable releases for this month and region." = "TMDB에 이번 달 해당 지역의 주요 공개작이 없습니다.";
+"TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB에서 이번 달의 모든 공개작을 제공합니다. 무료 요금제로 이용할 수 있으며 설정에는 약 60초가 걸립니다. 저장한 콘텐츠만 보려면 내 라이브러리로 전환하세요.";
 "TMDB · catalogs and rails" = "TMDB · 카탈로그 및 콘텐츠 행";
 "TMDB · catálogos y filas" = "TMDB · 카탈로그 및 콘텐츠 행";
 "TV" = "TV";
@@ -2049,6 +2066,7 @@
 "The authorization code timed out before you finished. Try again." = "완료하기 전에 인증 코드가 만료되었습니다. 다시 시도하세요.";
 "The comics industry's highest honor" = "만화계 최고 권위의 상";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most anticipated upcoming releases on Trakt" = "Trakt에서 가장 기대되는 공개 예정작";
 "The most-watched movies and series on {name} right now in {region}." = "현재 {region}의 {name}에서 가장 많이 시청한 영화와 시리즈입니다.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "다람쥐 헌 쳇바퀴에 타고파";
@@ -2137,7 +2155,9 @@
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Trakt 계정 한도에 도달했습니다. Trakt VIP로 업그레이드하거나 관심 목록을 줄이세요.";
+"Trakt anticipated" = "Trakt 기대작";
 "Trakt comments are not available for anime titles." = "애니메이션 작품에는 Trakt 댓글을 사용할 수 없습니다.";
+"Trakt has no upcoming releases for your watchlist this month. Past months and dates more than six months out aren't covered by Trakt's calendar feed." = "이번 달에는 Trakt 관심 목록에 공개 예정작이 없습니다. 지난달과 6개월 이후의 날짜는 Trakt 캘린더 피드에서 제공되지 않습니다.";
 "Trakt history" = "Trakt 시청 기록";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt 서버에 문제가 있습니다(HTTP {n}). 잠시 후 다시 시도하세요.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt 요청 한도에 도달했습니다. 1분 후 다시 시도하세요.";
@@ -2193,6 +2213,8 @@
 "Upcoming" = "예정";
 "Upcoming Anime" = "공개 예정 애니메이션";
 "Upcoming Season" = "다음 시즌 공개 예정작";
+"Upcoming episodes and movies from your Trakt watchlist" = "Trakt 관심 목록의 공개 예정 에피소드와 영화";
+"Upcoming episodes and movies from your saved shows" = "저장한 시리즈의 공개 예정 에피소드와 영화";
 "Update" = "업데이트";
 "Update all" = "모두 업데이트";
 "Updated {when}" = "{when} 업데이트";
@@ -2248,6 +2270,7 @@
 "Watched" = "시청함";
 "Watching" = "시청 중";
 "Watchlist" = "관심 목록";
+"Watchlist only" = "관심 목록만";
 "Weekend watchlist" = "주말 시청 리스트";
 "Welcome to Harbor" = "Harbor에 오신 것을 환영합니다";
 "Western" = "서부극";
@@ -2295,6 +2318,7 @@
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "내 프로필";
 "Your rating" = "내 평점";
+"Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "저장한 시리즈 중 이번 달에 공개 예정인 에피소드가 없습니다. 전체 공개 캘린더를 보려면 모든 공개 예정으로 전환하세요.";
 "Your services are saved locally. Cloud sync will retry." = "서비스가 이 기기에 저장되었습니다. 클라우드 동기화를 다시 시도합니다.";
 "Your watchlist is empty" = "관심 목록이 비어 있습니다";
 "Your watchlist is empty, nothing to send." = "관심 목록이 비어 있어 보낼 항목이 없습니다.";

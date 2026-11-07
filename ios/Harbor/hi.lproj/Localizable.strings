@@ -143,6 +143,8 @@
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "सभी खेल";
 "All tags" = "सभी टैग";
+"All upcoming" = "सभी आगामी";
+"All upcoming needs a TMDB key" = "सभी आगामी सामग्री के लिए TMDB कुंजी चाहिए";
 "All-Time Great Series" = "सर्वकालिक महान सीरीज़";
 "All-Time Greats" = "सर्वकालिक महान कृतियाँ";
 "AllDebrid API key" = "AllDebrid API कुंजी";
@@ -155,6 +157,7 @@
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "AniList सिंक";
 "Animals" = "Animals";
 "Animated Movies" = "एनिमेटेड फ़िल्में";
@@ -163,6 +166,7 @@
 "Anime" = "एनीमे";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "ट्रेंडिंग एनीमे";
+"Anime episodes airing this month, sub or dub" = "इस महीने प्रसारित हो रहे ऐनिमे एपिसोड, सबटाइटल या डब के साथ";
 "Anime of the Year" = "वर्ष का ऐनिमे";
 "Anime popular" = "लोकप्रिय ऐनिमे";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
@@ -741,6 +745,7 @@
 "Every 15 min" = "हर 15 मिनट";
 "Every 30 min" = "हर 30 मिनट";
 "Every launch" = "हर बार शुरू होने पर";
+"Everything releasing this month from TMDB" = "TMDB के अनुसार इस महीने रिलीज़ होने वाली हर चीज़";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "आपके ऐडऑन जो कुछ भी पेश करते हैं, वह पोस्टर के रूप में दिखाया जाता है। जो चाहिए, उस तक पहुँचने के लिए स्क्रॉल करें, खोजें या फ़िल्टर करें।";
 "Excellence Prize" = "उत्कृष्टता पुरस्कार";
 "Exit Picture in Picture" = "पिक्चर इन पिक्चर से बाहर निकलें";
@@ -1191,6 +1196,7 @@
 "Mute" = "म्यूट करें";
 "Muted text" = "मद्धम टेक्स्ट";
 "My Library" = "मेरी लाइब्रेरी";
+"My Trakt" = "मेरा Trakt";
 "My channels" = "My channels";
 "My library" = "मेरी लाइब्रेरी";
 "My lists" = "मेरी सूचियाँ";
@@ -1287,12 +1293,14 @@
 "No telemetry, no servers, no bundled keys." = "न टेलीमेट्री, न सर्वर, न ही साथ में दी गई कुंजियाँ।";
 "No titles match these filters." = "इन फ़िल्टर से मेल खाने वाला कोई शीर्षक नहीं।";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "इन फ़िल्टर से मेल खाने वाला कोई ट्रैक नहीं। HI/SDH या फ़ोर्स्ड को टॉगल करके देखें।";
+"No {kind} releases this month. Try a different filter." = "इस महीने कोई {kind} रिलीज़ नहीं है। कोई दूसरा फ़िल्टर आज़माएँ।";
 "Noir" = "नॉयर";
 "Nombre" = "नाम";
 "Nombre cambiado" = "नाम बदला गया";
 "Nombre de usuario" = "यूज़रनेम";
 "Nombre para mostrar" = "दिखाया जाने वाला नाम";
 "Non-fiction" = "गैर-कथा साहित्य";
+"None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "Trakt की सबसे बहुप्रतीक्षित आगामी रिलीज़ में से कोई भी इस महीने नहीं आ रही है। कोई दूसरा महीना आज़माएँ।";
 "Nord" = "Nord";
 "Normal" = "सामान्य";
 "Normalize loudness" = "आवाज़ की तीव्रता सामान्य करें";
@@ -1303,10 +1311,16 @@
 "Not interested" = "दिलचस्पी नहीं है";
 "Not now" = "अभी नहीं";
 "Not set" = "सेट नहीं है";
+"Nothing airing this month" = "Nothing airing this month";
+"Nothing anticipated this month" = "इस महीने कोई प्रतीक्षित रिलीज़ नहीं है";
+"Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "इस महीने आपकी लाइब्रेरी से कुछ भी रिलीज़ नहीं हो रहा है। सभी रिलीज़ देखने के लिए वॉचलिस्ट बंद करें।";
+"Nothing from your library this month" = "इस महीने आपकी लाइब्रेरी से कुछ भी रिलीज़ नहीं हो रहा है";
 "Nothing here yet" = "अभी तक यहाँ कुछ नहीं है";
 "Nothing installed yet" = "अभी तक कुछ इंस्टॉल नहीं है";
 "Nothing matched this filter. Try another category or change your region in Settings." = "इस फ़िल्टर से कुछ भी मेल नहीं खाया। कोई दूसरी कैटेगरी आज़माएँ या सेटिंग्स में अपना क्षेत्र बदलें।";
+"Nothing on Trakt this month" = "इस महीने Trakt पर कुछ नहीं है";
 "Nothing saved on Trakt yet." = "Trakt पर अभी तक कुछ सेव नहीं है।";
+"Nothing this month" = "इस महीने कुछ नहीं है";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "भेजने के लिए कुछ नहीं है। वॉचलिस्ट के सभी {n} आइटम ऐनिमे हैं, जिन्हें Trakt ट्रैक नहीं कर सकता।";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "अभी तक कुछ नहीं देखा";
@@ -1365,6 +1379,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Trakt पर खोलें";
+"Open settings" = "सेटिंग्स खोलें";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "शुरू होने पर यह प्रोफ़ाइल खोलें। समय पर आने वाले संकेत बाद में भी दिख सकते हैं। PIN वाली प्रोफ़ाइल डिफ़ॉल्ट नहीं बन सकती।";
 "Opening AniList..." = "AniList खोला जा रहा है...";
 "Opening MyAnimeList..." = "MyAnimeList खोला जा रहा है...";
@@ -2002,6 +2017,8 @@
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "TMDB API कुंजी (v3)";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB कनेक्ट हो गया। {n} स्ट्रीमिंग {services} चालू हैं। स्वागत है।";
+"TMDB has no notable releases for this month and region." = "TMDB पर इस महीने और क्षेत्र के लिए कोई उल्लेखनीय रिलीज़ नहीं है।";
+"TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB इस महीने की हर रिलीज़ की जानकारी उपलब्ध कराता है। इसके लिए मुफ़्त टियर काफ़ी है। सेटअप में लगभग 60 सेकंड लगते हैं। अगर आप केवल सेव किए हुए शीर्षक देखना चाहते हैं, तो मेरी लाइब्रेरी पर जाएँ।";
 "TMDB · catalogs and rails" = "TMDB · कैटलॉग और पंक्तियाँ";
 "TMDB · catálogos y filas" = "TMDB · कैटलॉग और पंक्तियाँ";
 "TV" = "TV";
@@ -2049,6 +2066,7 @@
 "The authorization code timed out before you finished. Try again." = "आपके पूरा करने से पहले ही ऑथराइज़ेशन कोड की समय-सीमा समाप्त हो गई। फिर से कोशिश करें।";
 "The comics industry's highest honor" = "कॉमिक्स उद्योग का सर्वोच्च सम्मान";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most anticipated upcoming releases on Trakt" = "Trakt पर आने वाली सबसे बहुप्रतीक्षित रिलीज़";
 "The most-watched movies and series on {name} right now in {region}." = "{region} में इस समय {name} पर सबसे ज़्यादा देखी जा रही फ़िल्में और सीरीज़।";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "तेज़ भूरी लोमड़ी आलसी कुत्ते के ऊपर से कूदती है";
@@ -2137,7 +2155,9 @@
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Trakt अकाउंट की सीमा पूरी हो गई है। Trakt VIP में अपग्रेड करें या अपनी वॉचलिस्ट छोटी करें।";
+"Trakt anticipated" = "Trakt पर बहुप्रतीक्षित";
 "Trakt comments are not available for anime titles." = "एनीमे टाइटल के लिए Trakt टिप्पणियाँ उपलब्ध नहीं हैं।";
+"Trakt has no upcoming releases for your watchlist this month. Past months and dates more than six months out aren't covered by Trakt's calendar feed." = "इस महीने आपकी वॉचलिस्ट के लिए Trakt पर कोई आगामी रिलीज़ नहीं है। पिछले महीनों और छह महीने से अधिक दूर की तारीखों को Trakt की कैलेंडर फ़ीड में शामिल नहीं किया जाता।";
 "Trakt history" = "Trakt इतिहास";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt के सर्वर में समस्या है (HTTP {n})। थोड़ी देर बाद फिर कोशिश करें।";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt अनुरोधों की दर सीमित कर रहा है। एक मिनट रुककर फिर कोशिश करें।";
@@ -2193,6 +2213,8 @@
 "Upcoming" = "आगामी";
 "Upcoming Anime" = "आगामी ऐनिमे";
 "Upcoming Season" = "आगामी सीज़न";
+"Upcoming episodes and movies from your Trakt watchlist" = "आपकी Trakt वॉचलिस्ट के आगामी एपिसोड और फ़िल्में";
+"Upcoming episodes and movies from your saved shows" = "आपके सेव किए गए शो के आगामी एपिसोड और फ़िल्में";
 "Update" = "अपडेट करें";
 "Update all" = "सभी अपडेट करें";
 "Updated {when}" = "{when} अपडेट किया गया";
@@ -2248,6 +2270,7 @@
 "Watched" = "देख लिया";
 "Watching" = "देख रहे हैं";
 "Watchlist" = "वॉचलिस्ट";
+"Watchlist only" = "सिर्फ़ वॉचलिस्ट";
 "Weekend watchlist" = "वीकेंड वॉचलिस्ट";
 "Welcome to Harbor" = "Harbor में आपका स्वागत है";
 "Western" = "वेस्टर्न";
@@ -2295,6 +2318,7 @@
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "आपकी प्रोफ़ाइल";
 "Your rating" = "आपकी रेटिंग";
+"Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "आपके सेव किए गए किसी भी शो का कोई एपिसोड इस महीने के लिए शेड्यूल नहीं है। पूरा रिलीज़ कैलेंडर देखने के लिए सभी आगामी पर जाएँ।";
 "Your services are saved locally. Cloud sync will retry." = "आपकी सेवाएँ इस डिवाइस पर सहेजी गई हैं। क्लाउड सिंक फिर से किया जाएगा।";
 "Your watchlist is empty" = "आपकी वॉचलिस्ट खाली है";
 "Your watchlist is empty, nothing to send." = "आपकी वॉचलिस्ट खाली है, भेजने के लिए कुछ नहीं है।";

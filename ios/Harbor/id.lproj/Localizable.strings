@@ -143,6 +143,8 @@
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "Semua olahraga";
 "All tags" = "Semua tag";
+"All upcoming" = "Semua yang akan datang";
+"All upcoming needs a TMDB key" = "Semua yang akan datang memerlukan kunci TMDB";
 "All-Time Great Series" = "Serial Terbaik Sepanjang Masa";
 "All-Time Greats" = "Karya Terbaik Sepanjang Masa";
 "AllDebrid API key" = "Kunci API AllDebrid";
@@ -155,6 +157,7 @@
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "Sinkronisasi AniList";
 "Animals" = "Animals";
 "Animated Movies" = "Film Animasi";
@@ -163,6 +166,7 @@
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "Anime yang sedang tren";
+"Anime episodes airing this month, sub or dub" = "Episode anime yang tayang bulan ini, dengan subtitle atau sulih suara";
 "Anime of the Year" = "Anime Terbaik Tahun Ini";
 "Anime popular" = "Anime Populer";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
@@ -741,6 +745,7 @@
 "Every 15 min" = "Setiap 15 menit";
 "Every 30 min" = "Setiap 30 menit";
 "Every launch" = "Setiap peluncuran";
+"Everything releasing this month from TMDB" = "Semua yang dirilis bulan ini dari TMDB";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Semua yang ditawarkan addon Anda, ditampilkan sebagai poster. Gulir, cari, atau filter untuk menemukan yang Anda inginkan.";
 "Excellence Prize" = "Penghargaan Keunggulan";
 "Exit Picture in Picture" = "Keluar dari Picture in Picture";
@@ -1191,6 +1196,7 @@
 "Mute" = "Bisukan";
 "Muted text" = "Teks redup";
 "My Library" = "Perpustakaan Saya";
+"My Trakt" = "Trakt Saya";
 "My channels" = "My channels";
 "My library" = "Perpustakaan saya";
 "My lists" = "Daftar saya";
@@ -1287,12 +1293,14 @@
 "No telemetry, no servers, no bundled keys." = "Tanpa telemetri, tanpa server, tanpa kunci bawaan.";
 "No titles match these filters." = "Tidak ada judul yang cocok dengan filter ini.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Tidak ada trek yang cocok dengan filter ini. Coba aktifkan atau nonaktifkan HI/SDH atau Forced.";
+"No {kind} releases this month. Try a different filter." = "Tidak ada rilisan {kind} bulan ini. Coba filter lain.";
 "Noir" = "Noir";
 "Nombre" = "Nama";
 "Nombre cambiado" = "Nama diubah";
 "Nombre de usuario" = "Nama pengguna";
 "Nombre para mostrar" = "Nama tampilan";
 "Non-fiction" = "Nonfiksi";
+"None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "Tidak ada rilisan mendatang Trakt yang paling dinantikan pada bulan ini. Coba bulan lain.";
 "Nord" = "Nord";
 "Normal" = "Normal";
 "Normalize loudness" = "Normalkan kelantangan";
@@ -1303,10 +1311,16 @@
 "Not interested" = "Tidak tertarik";
 "Not now" = "Jangan sekarang";
 "Not set" = "Belum diatur";
+"Nothing airing this month" = "Nothing airing this month";
+"Nothing anticipated this month" = "Tidak ada yang dinantikan bulan ini";
+"Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "Tidak ada dari perpustakaan Anda yang dirilis bulan ini. Nonaktifkan Daftar tontonan untuk melihat semua rilisan.";
+"Nothing from your library this month" = "Tidak ada apa pun dari perpustakaan Anda bulan ini";
 "Nothing here yet" = "Belum ada apa pun di sini";
 "Nothing installed yet" = "Belum ada yang terpasang";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Tidak ada yang cocok dengan filter ini. Coba kategori lain atau ubah wilayah Anda di Pengaturan.";
+"Nothing on Trakt this month" = "Tidak ada apa pun di Trakt bulan ini";
 "Nothing saved on Trakt yet." = "Belum ada yang disimpan di Trakt.";
+"Nothing this month" = "Tidak ada apa pun bulan ini";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Tidak ada yang bisa dikirim. Semua {n} item daftar tontonan adalah anime, yang tidak dapat dilacak oleh Trakt.";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "Belum ada yang ditonton";
@@ -1365,6 +1379,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Buka di Trakt";
+"Open settings" = "Buka pengaturan";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Buka profil ini saat aplikasi dimulai. Permintaan terjadwal tetap dapat muncul nanti. Profil dengan PIN tidak dapat dijadikan default.";
 "Opening AniList..." = "Membuka AniList...";
 "Opening MyAnimeList..." = "Membuka MyAnimeList...";
@@ -2002,6 +2017,8 @@
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "Kunci API TMDB (v3)";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB terhubung. {n} {services} streaming aktif. Selamat bergabung.";
+"TMDB has no notable releases for this month and region." = "TMDB tidak memiliki rilisan penting untuk bulan dan wilayah ini.";
+"TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB menyajikan seluruh rilisan bulan ini. Paket gratis sudah mencukupi. Penyiapan memerlukan waktu sekitar 60 detik. Beralihlah ke Perpustakaan Saya jika Anda hanya ingin melihat yang telah disimpan.";
 "TMDB · catalogs and rails" = "TMDB · katalog dan deretan";
 "TMDB · catálogos y filas" = "TMDB · katalog dan deretan";
 "TV" = "TV";
@@ -2049,6 +2066,7 @@
 "The authorization code timed out before you finished. Try again." = "Kode otorisasi kedaluwarsa sebelum Anda selesai. Coba lagi.";
 "The comics industry's highest honor" = "Penghargaan tertinggi industri komik";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most anticipated upcoming releases on Trakt" = "Rilisan mendatang yang paling dinantikan di Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Film dan serial yang paling banyak ditonton di {name} saat ini di {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "Rubah cokelat yang gesit melompati anjing malas";
@@ -2137,7 +2155,9 @@
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Batas akun Trakt tercapai. Tingkatkan ke Trakt VIP atau kurangi daftar tontonan Anda.";
+"Trakt anticipated" = "Paling dinantikan di Trakt";
 "Trakt comments are not available for anime titles." = "Komentar Trakt tidak tersedia untuk judul anime.";
+"Trakt has no upcoming releases for your watchlist this month. Past months and dates more than six months out aren't covered by Trakt's calendar feed." = "Trakt tidak memiliki rilis mendatang untuk daftar tontonan Anda bulan ini. Bulan-bulan sebelumnya dan tanggal lebih dari enam bulan ke depan tidak tercakup dalam umpan kalender Trakt.";
 "Trakt history" = "Riwayat Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Server Trakt sedang bermasalah (HTTP {n}). Coba lagi sebentar lagi.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt sedang membatasi jumlah permintaan. Tunggu sebentar, lalu coba lagi.";
@@ -2193,6 +2213,8 @@
 "Upcoming" = "Mendatang";
 "Upcoming Anime" = "Anime Mendatang";
 "Upcoming Season" = "Musim Mendatang";
+"Upcoming episodes and movies from your Trakt watchlist" = "Episode dan film mendatang dari daftar tontonan Trakt Anda";
+"Upcoming episodes and movies from your saved shows" = "Episode dan film mendatang dari acara yang Anda simpan";
 "Update" = "Perbarui";
 "Update all" = "Perbarui semua";
 "Updated {when}" = "Diperbarui {when}";
@@ -2248,6 +2270,7 @@
 "Watched" = "Sudah ditonton";
 "Watching" = "Sedang menonton";
 "Watchlist" = "Daftar tontonan";
+"Watchlist only" = "Hanya daftar tontonan";
 "Weekend watchlist" = "Daftar tontonan akhir pekan";
 "Welcome to Harbor" = "Selamat datang di Harbor";
 "Western" = "Western";
@@ -2295,6 +2318,7 @@
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Profil Anda";
 "Your rating" = "Rating Anda";
+"Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "Acara yang Anda simpan tidak memiliki episode yang dijadwalkan bulan ini. Beralihlah ke Semua yang akan datang untuk melihat kalender rilis lengkap.";
 "Your services are saved locally. Cloud sync will retry." = "Layanan Anda tersimpan di perangkat ini. Sinkronisasi cloud akan dicoba lagi.";
 "Your watchlist is empty" = "Daftar tontonan Anda kosong";
 "Your watchlist is empty, nothing to send." = "Daftar tontonan Anda kosong, tidak ada yang dapat dikirim.";

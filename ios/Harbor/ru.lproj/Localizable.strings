@@ -145,6 +145,8 @@
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "Все виды спорта";
 "All tags" = "Все теги";
+"All upcoming" = "Все ожидаемые";
+"All upcoming needs a TMDB key" = "Для «Все ожидаемые» нужен ключ TMDB";
 "All-Time Great Series" = "Великие сериалы всех времён";
 "All-Time Greats" = "Лучшее за всё время";
 "AllDebrid API key" = "API-ключ AllDebrid";
@@ -157,6 +159,7 @@
 "Analyzing audio… Keep watching." = "Анализ звука… Продолжайте просмотр.";
 "AniList" = "AniList";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "Синхронизация с AniList";
 "Animals" = "Animals";
 "Animated Movies" = "Мультфильмы";
@@ -166,6 +169,7 @@
 "Anime" = "Аниме";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "Аниме в тренде";
+"Anime episodes airing this month, sub or dub" = "Эпизоды аниме этого месяца, с субтитрами или озвучкой";
 "Anime of the Year" = "Аниме года";
 "Anime popular" = "Популярное аниме";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
@@ -745,6 +749,7 @@
 "Every 15 min" = "Каждые 15 мин";
 "Every 30 min" = "Каждые 30 мин";
 "Every launch" = "При каждом запуске";
+"Everything releasing this month from TMDB" = "Все релизы этого месяца по данным TMDB";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Всё, что предлагают ваши дополнения, в виде постеров. Прокручивайте, ищите или фильтруйте.";
 "Excellence Prize" = "Приз за выдающиеся достижения";
 "Exit Picture in Picture" = "Выйти из картинки в картинке";
@@ -1196,6 +1201,7 @@
 "Mute" = "Выключить звук";
 "Muted text" = "Приглушённый текст";
 "My Library" = "Моя библиотека";
+"My Trakt" = "Мой Trakt";
 "My channels" = "My channels";
 "My library" = "Моя библиотека";
 "My lists" = "Мои списки";
@@ -1295,12 +1301,14 @@
 "No telemetry, no servers, no bundled keys." = "Без телеметрии, без серверов, без вшитых ключей.";
 "No titles match these filters." = "Нет названий по этим фильтрам.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Нет дорожек по этим фильтрам. Попробуйте переключить HI/SDH или «Форсированные».";
+"No {kind} releases this month. Try a different filter." = "В этом месяце нет релизов ({kind}). Попробуйте другой фильтр.";
 "Noir" = "Нуар";
 "Nombre" = "Название";
 "Nombre cambiado" = "Переименовано";
 "Nombre de usuario" = "Имя пользователя";
 "Nombre para mostrar" = "Отображаемое имя";
 "Non-fiction" = "Нон-фикшн";
+"None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "Ни один из самых ожидаемых релизов Trakt не приходится на этот месяц. Попробуйте другой месяц.";
 "Nord" = "Nord";
 "Normal" = "Обычный";
 "Normalize loudness" = "Нормализация громкости";
@@ -1311,10 +1319,16 @@
 "Not interested" = "Не интересует";
 "Not now" = "Не сейчас";
 "Not set" = "Не задано";
+"Nothing airing this month" = "Nothing airing this month";
+"Nothing anticipated this month" = "В этом месяце ничего ожидаемого";
+"Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "В этом месяце из вашей библиотеки ничего не выходит. Отключите «Список просмотра», чтобы увидеть все релизы.";
+"Nothing from your library this month" = "В этом месяце ничего из вашей библиотеки";
 "Nothing here yet" = "Здесь пока пусто";
 "Nothing installed yet" = "Пока ничего не установлено";
 "Nothing matched this filter. Try another category or change your region in Settings." = "По этому фильтру ничего не найдено. Попробуйте другую категорию или измените регион в настройках.";
+"Nothing on Trakt this month" = "В этом месяце на Trakt ничего нет";
 "Nothing saved on Trakt yet." = "В Trakt пока ничего не сохранено.";
+"Nothing this month" = "В этом месяце ничего нет";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Отправлять нечего. Все {n} позиций в списке к просмотру относятся к аниме, которое Trakt не отслеживает.";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "Пока ничего не просмотрено";
@@ -1374,6 +1388,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Открыть на Trakt";
+"Open settings" = "Открыть настройки";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Открывать этот профиль при запуске. Запросы по таймеру могут появляться и позже. Профиль с PIN-кодом нельзя сделать профилем по умолчанию.";
 "Opening AniList..." = "Открытие AniList...";
 "Opening MyAnimeList..." = "Открытие MyAnimeList...";
@@ -2016,6 +2031,8 @@
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "Ключ API TMDB (v3)";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB подключён. Включено {n} {services}. Добро пожаловать на борт.";
+"TMDB has no notable releases for this month and region." = "В TMDB нет заметных релизов для этого месяца и региона.";
+"TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB даёт полный поток всех релизов месяца. Бесплатного тарифа хватает. Настройка – около 60 секунд. Переключитесь на «Мою библиотеку», если хотите видеть только сохранённое.";
 "TMDB · catalogs and rails" = "TMDB · каталоги и ряды";
 "TMDB · catálogos y filas" = "TMDB · каталоги и ряды";
 "TV" = "ТВ";
@@ -2063,6 +2080,7 @@
 "The authorization code timed out before you finished. Try again." = "Срок действия кода авторизации истёк. Попробуйте снова.";
 "The comics industry's highest honor" = "Высшая награда индустрии комиксов";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most anticipated upcoming releases on Trakt" = "Самые ожидаемые релизы на Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Самые просматриваемые фильмы и сериалы на {name} сейчас в регионе {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "Оригинал сохранён. Для синхронизации экспортируйте субтитры в UTF-8 или UTF-16.";
 "The quick brown fox jumps over the lazy dog" = "Съешь же ещё этих мягких французских булок да выпей чаю";
@@ -2152,7 +2170,9 @@
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Достигнут лимит аккаунта Trakt. Оформите Trakt VIP или сократите список к просмотру.";
+"Trakt anticipated" = "Ожидаемое на Trakt";
 "Trakt comments are not available for anime titles." = "Комментарии Trakt недоступны для аниме.";
+"Trakt has no upcoming releases for your watchlist this month. Past months and dates more than six months out aren't covered by Trakt's calendar feed." = "В этом месяце у Trakt нет предстоящих релизов из вашего списка к просмотру. Прошедшие месяцы и даты дальше чем через полгода в календарь Trakt не попадают.";
 "Trakt history" = "История Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "У Trakt проблемы с сервером (HTTP {n}). Попробуйте позже.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt ограничивает частоту запросов. Подождите минуту и повторите.";
@@ -2208,6 +2228,8 @@
 "Upcoming" = "Скоро";
 "Upcoming Anime" = "Ожидаемое аниме";
 "Upcoming Season" = "Следующий сезон";
+"Upcoming episodes and movies from your Trakt watchlist" = "Ближайшие серии и фильмы из списка просмотра Trakt";
+"Upcoming episodes and movies from your saved shows" = "Ближайшие серии и фильмы из сохранённых сериалов";
 "Update" = "Обновить";
 "Update all" = "Обновить все";
 "Updated {when}" = "Обновлено {when}";
@@ -2263,6 +2285,7 @@
 "Watched" = "Просмотрено";
 "Watching" = "Смотрю";
 "Watchlist" = "Список для просмотра";
+"Watchlist only" = "Только список просмотра";
 "Weekend watchlist" = "Список к просмотру на выходные";
 "Welcome to Harbor" = "Добро пожаловать в Harbor";
 "Western" = "Вестерн";
@@ -2310,6 +2333,7 @@
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Ваш профиль";
 "Your rating" = "Ваша оценка";
+"Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "У сохранённых сериалов нет серий в этом месяце. Переключитесь на «Все ожидаемые», чтобы увидеть полный календарь релизов.";
 "Your services are saved locally. Cloud sync will retry." = "Сервисы сохранены на этом устройстве. Синхронизация будет повторена.";
 "Your watchlist is empty" = "Список просмотра пуст";
 "Your watchlist is empty, nothing to send." = "Ваш список к просмотру пуст, отправлять нечего.";

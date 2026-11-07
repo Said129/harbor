@@ -5,7 +5,13 @@ struct ReleaseEvent: Identifiable, Sendable {
     let media: Media
     let episode: Episode?
     let date: Date
-    var id: String { media.identity + ":" + (episode?.id ?? "release") }
+    /// The line a calendar source prints for the release ("Show S01E02: Title"); the library prints the show and its episode instead.
+    var label: String? = nil
+    var hasTime = false
+    var isAnime = false
+    var id: String { media.identity + ":" + (episode?.id ?? label ?? "release") }
+    /// The type filter's value: movie, series or anime.
+    var kind: String { isAnime || media.type == "anime" ? "anime" : (media.type == "movie" ? "movie" : "series") }
 }
 
 @MainActor @Observable
@@ -16,7 +22,8 @@ final class CalendarModel {
     private var generation = 0
     private var metadata: [String: Media] = [:]
     private var signature = ""
-    func load(month: Date, app: AppModel) async {
+    func load(month: Date, app: AppModel, source: CalendarSource = .library) async {
+        if source != .library { await loadSource(source, month: month, app: app); return }
         generation += 1
         let current = generation
         let accountSignature = app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined()
@@ -56,6 +63,45 @@ final class CalendarModel {
         }
         guard current == generation, !Task.isCancelled else { return }
         if failures > 0 && events.isEmpty { error = "No se pudieron recuperar algunas fechas de tu biblioteca. Puedes volver a intentarlo." }
+    }
+    /// One of Desktop's other sources: All upcoming (TMDB), My Trakt, Trakt anticipated or Anime (AniList).
+    private func loadSource(_ source: CalendarSource, month: Date, app: AppModel) async {
+        generation += 1
+        let current = generation
+        loading = true; error = nil; events = []
+        defer { if current == generation { loading = false } }
+        let calendar = Calendar.current
+        let parts = calendar.dateComponents([.year, .month], from: month)
+        guard let year = parts.year, let number = parts.month else { return }
+        var fetcher = CalendarFetcher(); fetcher.calendar = calendar
+        let items: [CalendarItem]
+        switch source {
+        case .library:
+            return
+        case .all:
+            let configuration = MetadataPreferences.shared.configuration()
+            items = await fetcher.allUpcoming(key: configuration.tmdbKey, region: configuration.region, year: year, month: number)
+        case .trakt:
+            let owner = app.personalOwner, scope = app.accountOperationScope
+            let account = TraktAccountStore.forOwner(owner)
+            do { if !account.ready { try account.load() } } catch { return }
+            guard account.session != nil else { return }
+            let lease: TraktClient.Active = { [weak app] in app?.personalOwner == owner && app?.accountOperationScope == scope && app?.storageReady == true }
+            fetcher.mine = { endpoint in
+                guard let value = try? await account.response(.home(endpoint), active: lease), case .array = value else { return nil }
+                return value
+            }
+            items = await fetcher.myTrakt(year: year, month: number)
+        case .anticipated:
+            items = await fetcher.anticipated(year: year, month: number)
+        case .anime:
+            items = await fetcher.animeAiring(year: year, month: number)
+        }
+        guard current == generation, !Task.isCancelled else { return }
+        events = items.compactMap { item -> ReleaseEvent? in
+            guard let date = item.instant ?? CalendarTime.startOfDay(item.releaseDate, calendar: calendar) else { return nil }
+            return ReleaseEvent(media: item.media, episode: nil, date: date, label: item.name, hasTime: item.instant != nil, isAnime: item.isAnime)
+        }
     }
     private func parseDate(_ raw: String) -> Date? {
         ISO8601DateFormatter().date(from: raw) ?? ISO8601DateFormatter().date(from: String(raw.prefix(10)) + "T00:00:00Z")

@@ -20,17 +20,19 @@ in `parity-audit-2026-11-04.json`, produced by
 
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
-| Behaviors |   438 |    121 |     206 |      89 |       22 |           53.8 % |      29.1 % |            78.6 % |
-| Settings  |   511 |    137 |      23 |     265 |       86 |           34.9 % |      32.2 % |            37.6 % |
-| All       |   949 |    258 |     229 |     354 |      108 |           44.3 % |      30.7 % |            57.9 % |
+| Behaviors |   438 |    122 |     206 |      88 |       22 |           54.1 % |      29.3 % |            78.8 % |
+| Settings  |   511 |    137 |      24 |     264 |       86 |           35.1 % |      32.2 % |            37.9 % |
+| All       |   949 |    259 |     230 |     352 |      108 |           44.5 % |      30.8 % |            58.1 % |
 
 The 6 November refresh adds the OMDb and MDBList ratings on the detail page (the two
 provider keys, the Details column of the ratings matrix and the scores row), on top
 of the AniList/MyAnimeList trackers, Trakt comments, the audio filter chain, the
 playback stats card, screen lock, hide-episodes and the subtitle sync indicator.
 Everything above was compiled and tested by focused runs 1 to 14; run 14 passed the 12
-ProviderRatingsTests cases. A review pass after that run (OMDb without a type, one key
-owner on both screens) is not compiled yet.
+ProviderRatingsTests cases. Not compiled yet: a review pass after that run (OMDb without a
+type, one key owner on both screens) and the calendar sources of 7 November (source
+switcher with All upcoming, My Trakt, Trakt anticipated and Anime, empty-month texts,
+Watchlist only).
 
 Figures above are the 5 November refresh (first audit, 4 November: 38.3 % weighted,
 25.0 % ported only, 51.6 % ported or partial): the Rust trust/parser/types core
@@ -54,8 +56,8 @@ Behaviors by area (weighted, P = ½; refreshed 5 November where it changed):
 | Manga, Sports, Music, VOD details, Home customization, Spooktober |      0 |      72 |       0 |        0 |   50.0 % |
 | Subtitle source FPS correction                                    |      0 |       1 |       0 |        0 |   50.0 % |
 | Stremio account, library and local files                          |      4 |       6 |       4 |        0 |   50.0 % |
-| Metadata providers, calendar and lists                            |      7 |       7 |       5 |        0 |   55.3 % |
-| Trackers                                                          |     12 |      12 |       7 |        0 |   58.1 % |
+| Metadata providers, calendar and lists                            |      7 |       8 |       4 |        0 |   57.9 % |
+| Trackers                                                          |     13 |      11 |       7 |        0 |   59.7 % |
 | Profiles, appearance, integrations and system                     |     10 |      12 |      15 |        5 |   43.2 % |
 | Live TV, VOD, DVR and multiview                                   |      0 |      12 |      10 |        0 |   27.3 % |
 | Search                                                            |      1 |       6 |       4 |        0 |   36.4 % |

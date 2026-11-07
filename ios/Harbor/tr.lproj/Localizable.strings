@@ -143,6 +143,8 @@
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "Tüm sporlar";
 "All tags" = "Tüm etiketler";
+"All upcoming" = "Tüm yaklaşanlar";
+"All upcoming needs a TMDB key" = "Yakında yayınlanacakların tümü için TMDB anahtarı gerekir";
 "All-Time Great Series" = "Tüm Zamanların En İyi Dizileri";
 "All-Time Greats" = "Tüm Zamanların En İyileri";
 "AllDebrid API key" = "AllDebrid API anahtarı";
@@ -155,6 +157,7 @@
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
+"AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "AniList eşitlemesi";
 "Animals" = "Animals";
 "Animated Movies" = "Animasyon Filmleri";
@@ -163,6 +166,7 @@
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "Gündemdeki Animeler";
+"Anime episodes airing this month, sub or dub" = "Bu ay yayınlanan altyazılı veya dublajlı anime bölümleri";
 "Anime of the Year" = "Yılın animesi";
 "Anime popular" = "Popüler Animeler";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
@@ -741,6 +745,7 @@
 "Every 15 min" = "15 dakikada bir";
 "Every 30 min" = "30 dakikada bir";
 "Every launch" = "Her açılışta";
+"Everything releasing this month from TMDB" = "TMDB'den bu ay yayınlanacak her şey";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Eklentilerinizin sunduğu her şey posterlerle gösterilir. Kaydırın, arayın veya istediğinizi bulmak için filtreleyin.";
 "Excellence Prize" = "Mükemmellik Ödülü";
 "Exit Picture in Picture" = "Resim İçinde Resim modundan çık";
@@ -1191,6 +1196,7 @@
 "Mute" = "Sesi kapat";
 "Muted text" = "Soluk metin";
 "My Library" = "Kütüphanem";
+"My Trakt" = "Trakt'ım";
 "My channels" = "My channels";
 "My library" = "Kitaplığım";
 "My lists" = "Listelerim";
@@ -1287,12 +1293,14 @@
 "No telemetry, no servers, no bundled keys." = "Telemetri yok, sunucu yok, paketlenmiş anahtar yok.";
 "No titles match these filters." = "Bu filtrelerle eşleşen içerik yok.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Bu filtrelerle eşleşen parça yok. HI/SDH veya Zorunlu seçeneğini açıp kapatmayı deneyin.";
+"No {kind} releases this month. Try a different filter." = "Bu ay yayınlanacak {kind} yok. Farklı bir filtre deneyin.";
 "Noir" = "Noir";
 "Nombre" = "Ad";
 "Nombre cambiado" = "Yeniden adlandırıldı";
 "Nombre de usuario" = "Kullanıcı adı";
 "Nombre para mostrar" = "Görünen ad";
 "Non-fiction" = "Kurgu dışı";
+"None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "Trakt'ta en çok beklenen yakında çıkacak yapımların hiçbiri bu ay yayımlanmıyor. Başka bir ay deneyin.";
 "Nord" = "Nord";
 "Normal" = "Normal";
 "Normalize loudness" = "Ses yüksekliğini normalleştir";
@@ -1303,10 +1311,16 @@
 "Not interested" = "İlgilenmiyorum";
 "Not now" = "Şimdi değil";
 "Not set" = "Ayarlanmadı";
+"Nothing airing this month" = "Nothing airing this month";
+"Nothing anticipated this month" = "Bu ay beklenen bir içerik yok";
+"Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "Kütüphanenizdeki hiçbir içerik bu ay yayınlanmıyor. Tüm yayınları görmek için İzleme Listesi'ni kapatın.";
+"Nothing from your library this month" = "Bu ay kütüphanenizden hiçbir şey yok";
 "Nothing here yet" = "Burada henüz bir şey yok";
 "Nothing installed yet" = "Henüz bir şey yüklenmedi";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Bu filtreyle eşleşen bir şey yok. Başka bir kategori deneyin veya Ayarlar'dan bölgenizi değiştirin.";
+"Nothing on Trakt this month" = "Bu ay Trakt'ta bir şey yok";
 "Nothing saved on Trakt yet." = "Trakt'a henüz bir şey kaydedilmedi.";
+"Nothing this month" = "Bu ay hiçbir şey yok";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Gönderilecek bir şey yok. İzleme listesindeki {n} öğenin tümü anime ve Trakt bunları takip edemiyor.";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "Henüz hiçbir şey izlenmedi";
@@ -1365,6 +1379,7 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Trakt'ta aç";
+"Open settings" = "Ayarları aç";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Başlangıçta bu profili açın. Süreli profil istemleri daha sonra yine görünebilir. PIN korumalı profiller varsayılan yapılamaz.";
 "Opening AniList..." = "AniList açılıyor...";
 "Opening MyAnimeList..." = "MyAnimeList açılıyor...";
@@ -2002,6 +2017,8 @@
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "TMDB API anahtarı (v3)";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB bağlandı. {n} yayın {services} etkin. Aramıza hoş geldiniz.";
+"TMDB has no notable releases for this month and region." = "TMDB'de bu ay ve bölge için kayda değer bir yayın yok.";
+"TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB, bu ay yayınlanacak tüm içeriklerin eksiksiz akışını sağlar. Ücretsiz plan yeterlidir ve kurulumu yaklaşık 60 saniye sürer. Yalnızca kaydettiklerinizi görmek isterseniz Kütüphanem'e geçin.";
 "TMDB · catalogs and rails" = "TMDB · kataloglar ve raflar";
 "TMDB · catálogos y filas" = "TMDB · kataloglar ve raflar";
 "TV" = "TV";
@@ -2049,6 +2066,7 @@
 "The authorization code timed out before you finished. Try again." = "Siz işlemi tamamlamadan yetkilendirme kodunun süresi doldu. Tekrar deneyin.";
 "The comics industry's highest honor" = "Çizgi roman sektörünün en büyük onuru";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most anticipated upcoming releases on Trakt" = "Trakt'ta yakında yayınlanacak en çok beklenen içerikler";
 "The most-watched movies and series on {name} right now in {region}." = "Şu anda {region} bölgesinde {name} platformunda en çok izlenen filmler ve diziler.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "Pijamalı hasta yağız şoföre çabucak güvendi";
@@ -2137,7 +2155,9 @@
 "Trakt Recommends: Movies" = "Trakt Recommends: Movies";
 "Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Trakt hesap sınırına ulaşıldı. Trakt VIP'ye yükseltin veya izleme listenizi kısaltın.";
+"Trakt anticipated" = "Trakt'ta merakla beklenenler";
 "Trakt comments are not available for anime titles." = "Trakt yorumları anime yapımlarında kullanılamaz.";
+"Trakt has no upcoming releases for your watchlist this month. Past months and dates more than six months out aren't covered by Trakt's calendar feed." = "Trakt'ta izleme listeniz için bu ay çıkacak bir yapım yok. Trakt'ın takvim akışı geçmiş ayları ve altı aydan daha uzak tarihleri kapsamaz.";
 "Trakt history" = "Trakt geçmişi";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt sunucu sorunu yaşıyor (HTTP {n}). Kısa süre sonra tekrar deneyin.";
 "Trakt is rate-limiting. Wait a minute and try again." = "Trakt istek hızını sınırlıyor. Bir dakika bekleyip tekrar deneyin.";
@@ -2193,6 +2213,8 @@
 "Upcoming" = "Yaklaşan";
 "Upcoming Anime" = "Yakında Çıkacak Animeler";
 "Upcoming Season" = "Gelecek Sezon";
+"Upcoming episodes and movies from your Trakt watchlist" = "Trakt izleme listenizdeki gelecek bölümler ve filmler";
+"Upcoming episodes and movies from your saved shows" = "Kaydettiğiniz dizilerin gelecek bölümleri ve filmleri";
 "Update" = "Güncelle";
 "Update all" = "Tümünü güncelle";
 "Updated {when}" = "Güncellendi: {when}";
@@ -2248,6 +2270,7 @@
 "Watched" = "İzlendi";
 "Watching" = "İzleniyor";
 "Watchlist" = "İzleme Listesi";
+"Watchlist only" = "Yalnızca İzleme Listesi";
 "Weekend watchlist" = "Hafta sonu izleme listesi";
 "Welcome to Harbor" = "Harbor'a hoş geldiniz";
 "Western" = "Vahşi Batı";
@@ -2295,6 +2318,7 @@
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Profiliniz";
 "Your rating" = "Puanınız";
+"Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "Kaydettiğiniz dizilerin bu ay yayınlanması planlanan bölümü yok. Tüm yayın takvimine göz atmak için Yakında Yayınlanacakların Tümü'ne geçin.";
 "Your services are saved locally. Cloud sync will retry." = "Hizmetleriniz bu cihazda kaydedildi. Bulut eşitlemesi yeniden denenecek.";
 "Your watchlist is empty" = "İzleme listeniz boş";
 "Your watchlist is empty, nothing to send." = "İzleme listeniz boş, gönderilecek bir şey yok.";

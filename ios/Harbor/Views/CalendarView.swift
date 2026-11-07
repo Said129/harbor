@@ -6,11 +6,38 @@ struct CalendarView: View {
     @State private var month = Date()
     @State private var selected = Date()
     @State private var kind = "all"
+    @State private var watchlistOnly = false
+    @AppStorage("calendar.source") private var sourceRaw = CalendarSource.library.rawValue
     @AppStorage("calendar.monday") private var monday = false
     @AppStorage("calendar.large") private var large = false
     private let interfaceLocale = Locale(identifier: "es")
     private var calendar: Calendar { var calendar = Calendar.current; calendar.locale = interfaceLocale; calendar.firstWeekday = monday ? 2 : 1; return calendar }
-    private var shown: [ReleaseEvent] { model.events.filter { kind == "all" || $0.media.type == kind } }
+    private var source: CalendarSource { CalendarSource(rawValue: sourceRaw) ?? .library }
+    private var traktConnected: Bool { TraktAccountStore.forOwner(app.personalOwner).session != nil }
+    /// Desktop's `filtered`: All upcoming holds movies and TV only and can be narrowed to the library; the other sources show everything they found.
+    private var shown: [ReleaseEvent] {
+        switch source {
+        case .library:
+            return model.events.filter { kind == "all" || $0.kind == kind }
+        case .all:
+            let names = watchlistOnly ? Set(app.library.items.compactMap(\.media).map { CalendarSources.libraryKey(name: $0.name, isSeries: $0.type != "movie") }) : []
+            return model.events.filter { event in
+                !event.isAnime && (kind == "all" || event.kind == kind)
+                    && (!watchlistOnly || names.contains(CalendarSources.libraryKey(name: event.media.name, isSeries: event.media.type != "movie")))
+            }
+        case .trakt, .anticipated, .anime:
+            return model.events
+        }
+    }
+    private var loadID: String {
+        let period = "\(calendar.component(.year, from: month))-\(calendar.component(.month, from: month))"
+        switch source {
+        case .library: return "\(app.library.owner)|\(period)|\(app.library.items.map { $0.id + $0.modified }.joined())|library"
+        case .all: return "\(app.personalOwner)|\(period)|all|\(MetadataPreferences.shared.tmdbKey.hashValue)|\(MetadataPreferences.shared.region)"
+        case .trakt: return "\(app.personalOwner)|\(period)|trakt|\(traktConnected)"
+        case .anticipated, .anime: return "\(period)|\(source.rawValue)"
+        }
+    }
     private var daily: [ReleaseEvent] { shown.filter { calendar.isDate($0.date, inSameDayAs: selected) } }
     private var cells: [Date] {
         guard let interval = calendar.dateInterval(of: .month, for: month), let days = calendar.range(of: .day, in: .month, for: month) else { return [] }
@@ -32,33 +59,58 @@ struct CalendarView: View {
                 ScrollView(.horizontal) {
                     HStack(spacing: 6) {
                         HarborPill(title: "Hoy") { month = Date(); selected = Date() }
-                        HarborPill(title: "Mi biblioteca", selected: kind == "all", icon: "nav-library") { kind = "all" }
-                        HarborPill(title: "Películas", selected: kind == "movie", icon: "nav-movies") { kind = "movie" }
-                        HarborPill(title: "Series", selected: kind == "series", icon: "nav-shows") { kind = "series" }
-                        HarborPill(title: "Anime", selected: kind == "anime", icon: "nav-anime") { kind = "anime" }
+                        ForEach(CalendarSource.offered(traktConnected: traktConnected), id: \.self) { option in
+                            HarborPill(title: DesktopInterfaceText.value(option.label), selected: source == option, icon: option.icon) { sourceRaw = option.rawValue }
+                                .accessibilityHint(DesktopInterfaceText.value(option.hint)).accessibilityIdentifier("calendar-source-" + option.rawValue)
+                        }
                     }
                 }.scrollIndicators(.hidden)
+                if source == .library || source == .all {
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 6) {
+                            HarborPill(title: DesktopInterfaceText.value("All"), selected: kind == "all") { kind = "all" }
+                            HarborPill(title: DesktopInterfaceText.value("Movies"), selected: kind == "movie", icon: "nav-movies") { kind = "movie" }
+                            HarborPill(title: DesktopInterfaceText.value("TV"), selected: kind == "series", icon: "nav-shows") { kind = "series" }
+                            if source == .library { HarborPill(title: DesktopInterfaceText.value("Anime"), selected: kind == "anime", icon: "nav-anime") { kind = "anime" } }
+                            if source == .all { HarborPill(title: DesktopInterfaceText.value("Watchlist only"), selected: watchlistOnly, icon: "nav-library") { watchlistOnly.toggle() }.accessibilityIdentifier("calendar-watchlist-only") }
+                        }
+                    }.scrollIndicators(.hidden)
+                }
                 ScrollView(.horizontal) { HStack(spacing: 6) { HarborPill(title: "Empezar en lunes", selected: monday) { monday.toggle() }; HarborPill(title: "Normal", selected: !large) { large = false }; HarborPill(title: "Grande", selected: large) { large = true } } }.scrollIndicators(.hidden)
                 monthGrid
                 if model.loading { ProgressView("Recuperando fechas…").frame(maxWidth: .infinity) }
-                if let error = model.error { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await model.load(month: month, app: app) } } }
+                if let error = model.error { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await model.load(month: month, app: app, source: source) } } }
                 Text(selected.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(interfaceLocale))).font(HarborTheme.font(17, weight: .medium))
                 ForEach(daily) { event in
                     NavigationLink { DetailView(media: event.media, app: app) } label: {
                         HStack(alignment: .top, spacing: 14) {
                             Artwork(url: event.media.poster, maxPixels: 240).frame(width: 64, height: 96).clipShape(.rect(cornerRadius: 8))
                             VStack(alignment: .leading, spacing: 8) {
-                                Text(event.media.name).font(HarborTheme.font(14, weight: .medium))
+                                Text(event.label ?? event.media.name).font(HarborTheme.font(14, weight: .medium))
                                 if let episode = event.episode { Text("\(EpisodePresentation.coordinates(episode: episode)?.caption ?? "") · \(episode.name ?? episode.title ?? "")").font(HarborTheme.font(12)).foregroundStyle(.secondary) }
-                                Text(event.date, style: .time).font(HarborTheme.font(12)).foregroundStyle(.secondary)
+                                if event.label == nil || event.hasTime { Text(event.date, style: .time).font(HarborTheme.font(12)).foregroundStyle(.secondary) }
                             }.frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }.buttonStyle(.plain)
                 }
-                if daily.isEmpty && !model.loading { Text("No hay estrenos de tu biblioteca para este día.").font(HarborTheme.font(14)).foregroundStyle(.secondary) }
+                if source == .all && MetadataPreferences.shared.tmdbKey.isEmpty {
+                    CalendarEmptyCard(heading: DesktopInterfaceText.value("All upcoming needs a TMDB key"),
+                                      message: DesktopInterfaceText.value("TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved.")) {
+                        NavigationLink { MetadataSettingsView().toolbar(.visible, for: .navigationBar) } label: {
+                            Text(DesktopInterfaceText.value("Open settings")).font(HarborTheme.font(13, weight: .semibold))
+                        }.buttonStyle(HarborAccountButtonStyle(primary: true)).accessibilityIdentifier("calendar-open-settings")
+                    }
+                } else if shown.isEmpty && !model.loading && model.error == nil {
+                    let empty = CalendarSources.emptyMonth(source: source, filter: kind, watchlistOnly: watchlistOnly)
+                    CalendarEmptyCard(heading: DesktopInterfaceText.value(empty.heading), message: DesktopInterfaceText.value(empty.message, variables: empty.variables)) { EmptyView() }
+                } else if daily.isEmpty && !model.loading {
+                    Text(source == .library ? "No hay estrenos de tu biblioteca para este día." : "No hay estrenos para este día.").font(HarborTheme.font(14)).foregroundStyle(.secondary)
+                }
             }.padding()
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink).environment(\.locale, interfaceLocale).navigationTitle("").toolbar(.hidden, for: .navigationBar)
-            .task(id: "\(app.library.owner)|\(calendar.component(.year, from: month))-\(calendar.component(.month, from: month))|\(app.library.items.map { $0.id + $0.modified }.joined())") { await model.load(month: month, app: app) }
+            .task(id: loadID) { await model.load(month: month, app: app, source: source) }
+            .task(id: app.personalOwner) { let account = TraktAccountStore.forOwner(app.personalOwner); if !account.ready { try? account.load() } }
+            .onChange(of: sourceRaw) { if source == .all && kind == "anime" { kind = "all" } }
     }
     private var monthGrid: some View {
         LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: 7), spacing: 7) {
@@ -88,5 +140,25 @@ struct CalendarView: View {
     }
     private func changeMonth(_ delta: Int) {
         if let next = calendar.date(byAdding: .month, value: delta, to: month), let start = calendar.dateInterval(of: .month, for: next)?.start { month = next; selected = start }
+    }
+}
+
+/// Desktop's empty month card (`views/calendar/empty-states.tsx`).
+private struct CalendarEmptyCard<Action: View>: View {
+    let heading: String
+    let message: String
+    let action: Action
+    init(heading: String, message: String, @ViewBuilder action: () -> Action) {
+        self.heading = heading; self.message = message; self.action = action()
+    }
+    var body: some View {
+        VStack(spacing: 12) {
+            Image("nav-calendar").resizable().scaledToFit().frame(width: 28, height: 28).foregroundStyle(HarborTheme.ink.opacity(0.4)).accessibilityHidden(true)
+            Text(heading).font(HarborTheme.font(16, weight: .semibold)).multilineTextAlignment(.center)
+            Text(message).font(HarborTheme.font(13.5)).foregroundStyle(.secondary).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true)
+            action
+        }.padding(.horizontal, 24).padding(.vertical, 36).frame(maxWidth: .infinity)
+            .overlay { RoundedRectangle(cornerRadius: 16).strokeBorder(HarborTheme.ink.opacity(0.12), style: StrokeStyle(lineWidth: 1, dash: [5, 4])) }
+            .accessibilityElement(children: .contain).accessibilityIdentifier("calendar-empty-month")
     }
 }

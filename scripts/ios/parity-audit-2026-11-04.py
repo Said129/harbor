@@ -184,7 +184,7 @@ BEHAVIORS = expand("""
 274-278 D Trakt login, refresh, profile, history, watchlist
 279-281 P Trakt import/export, lists, recommendations partial
 282 D TraktPlaybackTracking
-283 P Trakt calendar in TraktHome
+283 D My Trakt and Trakt anticipated calendar sources (7 Nov, uncompiled)
 284 P Trakt comments of movies and shows: sort, spoilers, replies, paging (5 Nov, uncompiled); posting, likes and ratings not ported
 285 D AniList PIN-code login and session (5 Nov, compiled; 14 cases passed)
 286 P AniList progress is pushed while watching; the watched map from the lists is not read
@@ -210,7 +210,7 @@ BEHAVIORS = expand("""
 317-318 D Kitsu (AnimeService), AniZip mappings
 319 P Jikan in AnimeService
 320 P earlier review Partial
-321 M no calendar source filters
+321 P source switcher with library, all upcoming, My Trakt, Trakt anticipated and anime (7 Nov, uncompiled); no Simkl, Custom, dub schedule or games
 322 P earlier review Partial
 323 D CustomListStore
 324-327 D household profiles, switching, per-profile settings, identity sync
@@ -429,7 +429,8 @@ SETTINGS = expand("""
 463 X pointer hover
 464-465 M
 466-468 X custom CSS/JS/HTML for Desktop's web interface
-469-470 M
+469 M
+470 P calendarSource kept per profile; five of Desktop's nine sources (7 Nov, uncompiled)
 471-473 M Simkl rails
 474 D
 475 M
