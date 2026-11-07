@@ -1,7 +1,7 @@
 import SwiftUI
 
-/// Desktop's cast menu (`cast-menu.tsx`) and cast session bar (`cast-session-bar.tsx`) for Roku and DLNA renderers.
-/// Chromecast and AirPlay are not here; AirPlay already has its own route picker in the player.
+/// Desktop's cast menu (`cast-menu.tsx`) and cast session bar (`cast-session-bar.tsx`) for Chromecast, Roku and DLNA renderers.
+/// AirPlay is not here; it already has its own route picker in the player.
 struct CastSheet: View {
     let controller: CastController
     /// The source the renderer will fetch. The player only shows this sheet when `CastController.canCast` is true.
@@ -81,7 +81,7 @@ private struct CastTargetRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: target.kind == .roku ? "tv" : "speaker.wave.2")
+            Image(systemName: target.kind == .dlna ? "speaker.wave.2" : "tv")
                 .frame(width: 28)
             VStack(alignment: .leading, spacing: 2) {
                 Text(target.name)
@@ -131,7 +131,7 @@ private struct CastSessionSection: View {
             if let target = controller.selected {
                 Text(sessionLabel(target)).font(.headline)
                 transportRow
-                if target.kind == .dlna {
+                if target.kind != .roku {
                     seekRow
                     volumeRow
                 }

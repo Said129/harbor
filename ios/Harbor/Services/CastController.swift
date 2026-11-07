@@ -15,7 +15,7 @@ enum CastPlayerState {
     }
 }
 
-/// Desktop's cast session (`use-cast-session.ts`) for Roku and DLNA renderers: the chosen target, polled state,
+/// Desktop's cast session (`use-cast-session.ts`) for Chromecast, Roku and DLNA renderers: the chosen target, polled state,
 /// and the position to hand back to the local player when the cast stops.
 @MainActor @Observable
 final class CastController {
@@ -53,6 +53,7 @@ final class CastController {
     @ObservationIgnored private var seekConfirmed = true
     @ObservationIgnored private var lastPositionSec: Double = 0
     @ObservationIgnored private var generation = 0
+    @ObservationIgnored private var chromecast: CastChromecastSession?
 
     init(transport: CastTransport = CastURLTransport(), pollInterval: Duration = .seconds(1)) {
         self.transport = transport
@@ -76,7 +77,9 @@ final class CastController {
     func scan() async {
         guard !scanning else { return }
         scanning = true
-        let found = await CastDiscovery.discoverRokus(transport: transport)
+        async let rokus = CastDiscovery.discoverRokus(transport: transport)
+        async let chromecasts = CastChromecastDiscovery.discover()
+        let found = await rokus + chromecasts
         targets = Self.merged(found, manualTargets)
         scanning = false
     }
@@ -152,6 +155,8 @@ final class CastController {
                 try await launchRoku(target, mediaURL: source.url, title: title, startSeconds: startSeconds)
             case .dlna:
                 try await loadDLNA(target, mediaURL: source.url, title: title, startSeconds: startSeconds)
+            case .chromecast:
+                try await launchChromecast(target, mediaURL: source.url, title: title, startSeconds: startSeconds)
             }
         } catch {
             guard current == generation else { return }
@@ -177,6 +182,8 @@ final class CastController {
                 _ = try await sendChecked(CastRoku.keypressRequest(base: target.endpoint, key: CastRoku.Key.play))
             case .dlna:
                 try await perform(CastDLNA.playCall(controlURL: target.endpoint))
+            case .chromecast:
+                try await chromecastSession().play()
             }
         } catch {
             failure = Self.describe(error, deviceName: target.name)
@@ -194,6 +201,8 @@ final class CastController {
                 _ = try await sendChecked(CastRoku.keypressRequest(base: target.endpoint, key: CastRoku.Key.play))
             case .dlna:
                 try await perform(CastDLNA.pauseCall(controlURL: target.endpoint))
+            case .chromecast:
+                try await chromecastSession().pause()
             }
         } catch {
             failure = Self.describe(error, deviceName: target.name)
@@ -212,9 +221,13 @@ final class CastController {
 
     /// DLNA only. Roku has no absolute seek on Media Assistant, so Desktop's no-op is not ported as a control.
     func seek(to seconds: Double) async {
-        guard let target = selected, target.kind == .dlna else { return }
+        guard let target = selected, target.kind != .roku else { return }
         do {
-            try await perform(CastDLNA.seekCall(controlURL: target.endpoint, seconds: seconds))
+            if target.kind == .chromecast {
+                try await chromecastSession().seek(to: seconds)
+            } else {
+                try await perform(CastDLNA.seekCall(controlURL: target.endpoint, seconds: seconds))
+            }
         } catch {
             failure = Self.describe(error, deviceName: target.name)
             return
@@ -225,12 +238,16 @@ final class CastController {
         seekConfirmed = true
     }
 
-    /// DLNA only, on the speaker. Desktop 0.9.132 has no volume control, so this is an iOS addition.
+    /// DLNA and Chromecast, on the speaker or TV. Desktop 0.9.132 has no volume control, so this is an iOS addition.
     func setVolume(_ percent: Double) async {
-        guard let target = selected, target.kind == .dlna, let url = target.volumeEndpoint else { return }
+        guard let target = selected, target.kind == .chromecast || (target.kind == .dlna && target.volumeEndpoint != nil) else { return }
         volume = min(max(percent, 0), 100)
         do {
-            try await perform(CastDLNA.volumeCall(volumeControlURL: url, percent: Int(volume.rounded())))
+            if target.kind == .chromecast {
+                try await chromecastSession().setVolume(volume / 100)
+            } else if let url = target.volumeEndpoint {
+                try await perform(CastDLNA.volumeCall(volumeControlURL: url, percent: Int(volume.rounded())))
+            }
         } catch {
             failure = Self.describe(error, deviceName: target.name)
         }
@@ -247,6 +264,10 @@ final class CastController {
                 _ = try await sendChecked(CastRoku.keypressRequest(base: target.endpoint, key: CastRoku.Key.home))
             case .dlna:
                 try await perform(CastDLNA.stopCall(controlURL: target.endpoint))
+            case .chromecast:
+                try await chromecast?.stopReceiver()
+                await chromecast?.close()
+                chromecast = nil
             }
         } catch {
             failure = Self.describe(error, deviceName: target.name)
@@ -285,6 +306,11 @@ final class CastController {
                 state = CastPlayerState.normalize(parsed.playerState)
                 position = parsed.positionSec
                 duration = parsed.durationSec
+            case .chromecast:
+                guard let entry = try await chromecastSession().mediaStatus() else { return }
+                state = CastPlayerState.normalize(entry.playerState)
+                position = entry.currentTime
+                duration = entry.durationSec
             case .dlna:
                 let positionBody = (try? await perform(CastDLNA.positionInfoCall(controlURL: target.endpoint))) ?? ""
                 position = CastDLNA.parsePositionInfo(positionBody)
@@ -387,6 +413,61 @@ final class CastController {
         try? await Task.sleep(for: .milliseconds(milliseconds))
     }
 
+    // MARK: Chromecast
+
+    /// Desktop's `cast_load` for `chromecast` (`cast.rs`), minus the HLS remux: connect, launch the Harbor receiver,
+    /// then LOAD the source at the resume point. The previous session, if any, is closed first.
+    private func launchChromecast(_ target: CastTarget, mediaURL: String, title: String?, startSeconds: Double) async throws {
+        guard !CastChromecast.isUnsupportedContainer(url: mediaURL) else { throw CastProtocolError.unsupported }
+        await chromecast?.close()
+        chromecast = nil
+        let session = try await openChromecast(host: target.host, port: target.port)
+        do {
+            try await session.launch(appID: CastChromecast.harborReceiverAppID)
+            _ = try await session.load(
+                url: mediaURL,
+                contentType: CastChromecast.contentType(url: mediaURL),
+                title: title,
+                poster: nil,
+                startSeconds: startSeconds
+            )
+        } catch {
+            await session.close()
+            throw error
+        }
+        chromecast = session
+        if let level = await session.currentVolume {
+            volume = min(max(level * 100, 0), 100)
+        }
+    }
+
+    /// Desktop retries a failed connect once after half a second.
+    private func openChromecast(host: String, port: UInt16) async throws -> CastChromecastSession {
+        do {
+            return try await connectChromecast(host: host, port: port)
+        } catch {
+            await pause(milliseconds: 500)
+            return try await connectChromecast(host: host, port: port)
+        }
+    }
+
+    private func connectChromecast(host: String, port: UInt16) async throws -> CastChromecastSession {
+        let stream = try await CastChromecastTLSStream.open(host: host, port: port)
+        let session = CastChromecastSession(stream: stream)
+        do {
+            try await session.connect()
+        } catch {
+            await session.close()
+            throw error
+        }
+        return session
+    }
+
+    private func chromecastSession() throws -> CastChromecastSession {
+        guard let chromecast else { throw CastProtocolError.chromecastRejected("No Chromecast session") }
+        return chromecast
+    }
+
     // MARK: HTTP helpers
 
     private func send(_ request: URLRequest?) async throws -> CastReply {
@@ -469,6 +550,9 @@ final class CastController {
                 ]
             )
         default:
+            if let message = CastChromecast.failureMessage(for: error) {
+                return Failure(title: "", message: message, steps: [])
+            }
             return Failure(
                 title: "",
                 message: DesktopInterfaceText.value("Could not cast to {deviceName}.", variables: ["deviceName": deviceName]),
