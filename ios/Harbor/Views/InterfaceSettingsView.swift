@@ -8,6 +8,10 @@ struct InterfaceSettingsView: View {
     private var homeLanguagesValue: Binding<String> {
         Binding(get: { preferences.homeLanguages.joined(separator: ",") }, set: { (value: String) in preferences.homeLanguages = SubtitleLanguages.preferredCodes(value) })
     }
+    /// Desktop's `episodeCardScale` as the choice tags "1.0", "1.2" and "1.45".
+    private var cardScaleValue: Binding<String> {
+        Binding(get: { String(EpisodeLayoutPolicy.cardScale(preferences.episodeCardScale)) }, set: { (value: String) in preferences.episodeCardScale = Double(value) ?? 1 })
+    }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 30) {
@@ -60,6 +64,13 @@ struct InterfaceSettingsView: View {
                 HarborSettingsSection(DesktopInterfaceText.value("Episode cards")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Show episode description"), note: DesktopInterfaceText.value("Shows the episode synopsis on the cards. Turn it off to hide it."), isOn: $preferences.showEpisodeDescription)
                     HarborSettingsToggle(DesktopInterfaceText.value("Show episode ratings"), isOn: $preferences.showEpisodeRating).accessibilityIdentifier("settings-show-episode-rating")
+                    HarborSettingsChoice(DesktopInterfaceText.value("Card size"), selection: cardScaleValue,
+                        choices: [(DesktopInterfaceText.value("Default"), "1.0"), (DesktopInterfaceText.value("Large"), "1.2"), (DesktopInterfaceText.value("Extra large"), "1.45")],
+                        localizeChoices: false, identifier: "settings-episode-card-scale")
+                    Text(DesktopInterfaceText.value("How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork."))
+                        .font(HarborTheme.font(13)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                    HarborSettingsToggle(DesktopInterfaceText.value("High-quality episode images"), note: DesktopInterfaceText.value("Use sharper artwork for large cards. Uses more data and may load more slowly."), isOn: $preferences.hdEpisodeImages)
+                        .accessibilityIdentifier("settings-hd-episode-images")
                 }
                 HarborSettingsSection(DesktopInterfaceText.value("Browsing")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Hide and skip episodes"), note: DesktopInterfaceText.value("Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back."), isOn: $preferences.episodeHiding)

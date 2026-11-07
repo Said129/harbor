@@ -35,6 +35,12 @@ final class InterfacePreferences {
     var episodeSort = UserDefaults.standard.string(forKey: "episodeSort") == "newest" ? "newest" : "oldest" { didSet { persist(episodeSort, forKey: "episodeSort") } }
     /// Desktop's `episodeHiding`: adds Hide episode to the episode menu and skips hidden episodes in Up Next.
     var episodeHiding = UserDefaults.standard.object(forKey: "episodeHiding") as? Bool ?? false { didSet { persist(episodeHiding, forKey: "episodeHiding") } }
+    /// Desktop's `episodeLayout` ("list", "strip" or "grid"): how the episode list shows its episodes. Read through `EpisodeLayoutPolicy.layout`.
+    var episodeLayout = UserDefaults.standard.string(forKey: "episodeLayout") ?? "list" { didSet { persist(episodeLayout, forKey: "episodeLayout") } }
+    /// Desktop's `episodeCardScale` (default 1): the size of strip and grid episode cards.
+    var episodeCardScale = UserDefaults.standard.object(forKey: "episodeCardScale") as? Double ?? 1 { didSet { persist(episodeCardScale, forKey: "episodeCardScale") } }
+    /// Desktop's `hdEpisodeImages` (default true): TMDB episode stills at original size instead of w300.
+    var hdEpisodeImages = UserDefaults.standard.object(forKey: "hdEpisodeImages") as? Bool ?? true { didSet { persist(hdEpisodeImages, forKey: "hdEpisodeImages") } }
     /// Desktop's `showTraktComments`: a comments section on movie and show pages.
     var showTraktComments = UserDefaults.standard.object(forKey: "showTraktComments") as? Bool ?? false { didSet { persist(showTraktComments, forKey: "showTraktComments") } }
     /// Desktop's `blurComments`: comments stay blurred until revealed, spoiler or not.
@@ -88,6 +94,9 @@ final class InterfacePreferences {
         cwAdvanceNext = UserDefaults.standard.object(forKey: "cwAdvanceNext") as? Bool ?? true
         episodeSort = UserDefaults.standard.string(forKey: "episodeSort") == "newest" ? "newest" : "oldest"
         episodeHiding = UserDefaults.standard.object(forKey: "episodeHiding") as? Bool ?? false
+        episodeLayout = UserDefaults.standard.string(forKey: "episodeLayout") ?? "list"
+        episodeCardScale = UserDefaults.standard.object(forKey: "episodeCardScale") as? Double ?? 1
+        hdEpisodeImages = UserDefaults.standard.object(forKey: "hdEpisodeImages") as? Bool ?? true
         showTraktComments = UserDefaults.standard.object(forKey: "showTraktComments") as? Bool ?? false
         blurComments = UserDefaults.standard.object(forKey: "blurComments") as? Bool ?? false
         detailRatingsHidden = Set(UserDefaults.standard.stringArray(forKey: "ratings.detailHidden") ?? [])

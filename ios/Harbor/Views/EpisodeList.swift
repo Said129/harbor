@@ -73,6 +73,19 @@ struct EpisodeList: View {
             return nil
         }
     }
+    /// Desktop's `episodeLayout`: the list (default), the horizontal strip, or the grid of cards.
+    private var layout: EpisodeLayoutPolicy.Layout { EpisodeLayoutPolicy.layout(InterfacePreferences.shared.episodeLayout) }
+    /// The episodes the strip and grid show: hidden episodes stay out, as they do in the list.
+    private var shownEpisodes: [Episode] {
+        visibleRows.compactMap { row -> Episode? in
+            if case .episode(let episode) = row { return episode }
+            return nil
+        }
+    }
+    private func isFranchiseRow(_ row: EpisodeOrderRow) -> Bool {
+        if case .franchise = row { return true }
+        return false
+    }
     /// Desktop's episode ratings: the community's IMDb ratings, completed with OMDb's season ratings when a key is set.
     private func loadRatings() async {
         guard InterfacePreferences.shared.showEpisodeRating, pool == nil, let imdb = seriesIMDb else { episodeRatings = [:]; return }
@@ -106,6 +119,35 @@ struct EpisodeList: View {
         }
         .accessibilityLabel(DesktopInterfaceText.value(current == "newest" ? "Newest" : "Oldest")).accessibilityIdentifier("episode-sort")
     }
+    /// Desktop's `EpisodeLayoutToggle` (`episode-layout-toggle.tsx`), as a menu beside the sort menu.
+    private var layoutMenu: some View {
+        let current = layout
+        return Menu {
+            ForEach(EpisodeLayoutPolicy.Layout.allCases, id: \.self) { value in
+                Button { InterfacePreferences.shared.episodeLayout = value.rawValue } label: {
+                    if current == value { Label(layoutTitle(value), systemImage: "checkmark") }
+                    else { Text(layoutTitle(value)) }
+                }
+            }
+        } label: {
+            Image(systemName: layoutIcon(current)).frame(width: 40, height: 40).background(.white.opacity(0.06), in: .circle)
+        }
+        .accessibilityLabel(layoutTitle(current)).accessibilityIdentifier("episode-layout")
+    }
+    private func layoutTitle(_ value: EpisodeLayoutPolicy.Layout) -> String {
+        switch value {
+        case .list: return DesktopInterfaceText.value("List view")
+        case .strip: return DesktopInterfaceText.value("Horizontal view")
+        case .grid: return DesktopInterfaceText.value("Grid view")
+        }
+    }
+    private func layoutIcon(_ value: EpisodeLayoutPolicy.Layout) -> String {
+        switch value {
+        case .list: return "list.bullet"
+        case .strip: return "rectangle.split.3x1"
+        case .grid: return "square.grid.2x2"
+        }
+    }
     private var episodeSummary: String {
         let count = ordering == nil ? seasons.filter { $0 > 0 }.count : sections.filter { !$0.extra }.count
         return "\(videos.filter { ($0.listedSeason ?? 1) > 0 }.count) episodios · \(count) \(count == 1 ? "temporada" : "temporadas")"
@@ -124,6 +166,7 @@ struct EpisodeList: View {
                     .accessibilityValue(episodeSummary)
                 Spacer()
                 if InterfacePreferences.shared.episodeHiding && orderedRows.contains(where: isHidden) { hiddenToggle }
+                layoutMenu
                 sortMenu
                 if let ordering, richOrderPanel {
                     TVDBOrderPanel(sections: sections, options: orderOptions, activeKind: ordering.kind,
@@ -139,13 +182,11 @@ struct EpisodeList: View {
                     AnimeSeasonPicker(entries: franchise, activeID: activeFranchiseID, select: selectFranchise, loading: franchiseLoading)
                 }
             }
-            ForEach(visibleRows) { row in
-                switch row {
-                case .episode(let episode): sourceRow(episode, watched: watched)
-                case .franchise(let extra):
-                    AnimeFranchiseExtraRow(extra: extra, watched: library.items.first(where: { $0.id == extra.entry.id })?.watched == true,
-                        loading: loadingExtras.contains(extra.entry.id), play: { playExtra(extra) }, toggleWatched: { toggleExtraWatched(extra) })
-                }
+            if layout == .list {
+                ForEach(visibleRows) { row in rowView(row, watched: watched) }
+            } else {
+                episodeGallery(watched: watched)
+                ForEach(visibleRows.filter { isFranchiseRow($0) }) { row in rowView(row, watched: watched) }
             }
         }.animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: revealed)
             .task(id: [media.identity, ordering?.kind.rawValue ?? "", currentSection?.id ?? "", currentSection?.from ?? "", currentSection?.to ?? ""].joined(separator: "|")) {
@@ -170,6 +211,86 @@ struct EpisodeList: View {
     private func chooseInitialSeason() {
         if !preferredApplied, let preferred = preferredEpisode?.season, seasons.contains(preferred) { season = preferred; preferredApplied = true }
         else if !seasons.contains(season) { season = seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1 }
+    }
+    @ViewBuilder private func rowView(_ row: EpisodeOrderRow, watched: [String: Set<String>]) -> some View {
+        switch row {
+        case .episode(let episode): sourceRow(episode, watched: watched)
+        case .franchise(let extra):
+            AnimeFranchiseExtraRow(extra: extra, watched: library.items.first(where: { $0.id == extra.entry.id })?.watched == true,
+                loading: loadingExtras.contains(extra.entry.id), play: { playExtra(extra) }, toggleWatched: { toggleExtraWatched(extra) })
+        }
+    }
+    /// Desktop's `EpisodeStrip` and `EpisodeGrid`: cards in one horizontal row, or a grid with as many columns as the width allows.
+    @ViewBuilder private func episodeGallery(watched: [String: Set<String>]) -> some View {
+        let scale = InterfacePreferences.shared.episodeCardScale
+        if layout == .grid {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: CGFloat(EpisodeLayoutPolicy.gridMinimumWidth(scale))), spacing: 16, alignment: .top)], alignment: .leading, spacing: 18) {
+                ForEach(shownEpisodes) { episode in episodeCard(episode, watched: watched, width: nil) }
+            }
+        } else {
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(alignment: .top, spacing: 12) {
+                    ForEach(shownEpisodes) { episode in episodeCard(episode, watched: watched, width: CGFloat(EpisodeLayoutPolicy.stripWidth(scale))) }
+                }
+            }
+        }
+    }
+    /// One strip or grid card: play, mark watched, and the same spoiler rules as the list row.
+    @ViewBuilder private func episodeCard(_ episode: Episode, watched: [String: Set<String>], width: CGFloat?) -> some View {
+        let source = pool?.source(for: episode) ?? media
+        let seen = watched[source.id]?.contains(episode.watchedKey) == true
+        let hidden = InterfacePreferences.shared.hideSpoilers && !seen && !revealed.contains(episode.routingKey)
+        let episodeLabel = DesktopInterfaceText.value("Episode {n}").replacingOccurrences(of: "{n}", with: String(episode.listedEpisode ?? 0))
+        let title = episode.name ?? episode.title ?? episodeLabel
+        let blurTitle = hidden && InterfacePreferences.shared.spoilerHideTitles
+        let blurOverview = hidden && InterfacePreferences.shared.spoilerHideDescriptions
+        let fill: CGFloat? = width == nil ? CGFloat.infinity : nil
+        VStack(alignment: .leading, spacing: 8) {
+            Button { play(episode) } label: {
+                VStack(alignment: .leading, spacing: 8) {
+                    cardStill(episode, source: source, hidden: hidden)
+                    Text(title).font(.subheadline.weight(.semibold)).lineLimit(2)
+                        .blur(radius: blurTitle ? 5 : 0)
+                        .accessibilityLabel(blurTitle ? episodeLabel : title)
+                    Text("T\(episode.listedSeason ?? 0) · E\(episode.listedEpisode ?? 0)").font(.caption).foregroundStyle(.secondary)
+                    if InterfacePreferences.shared.showEpisodeDescription, let overview = episode.overview, !overview.isEmpty {
+                        Text(overview).font(.caption).foregroundStyle(.secondary).lineLimit(3)
+                            .blur(radius: blurOverview ? 5 : 0)
+                    }
+                }.frame(width: width, alignment: .leading).frame(maxWidth: fill, alignment: .leading).contentShape(Rectangle())
+            }.buttonStyle(.plain).disabled(!episode.available)
+                .accessibilityIdentifier("detail-episode-\(episode.id)")
+            HStack(spacing: 8) {
+                Button { Task { await library.toggleEpisode(source, episode: episode) } } label: {
+                    Image(seen ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 23, height: 23).frame(width: 44, height: 44).contentShape(Rectangle())
+                }.buttonStyle(.plain).disabled(library.busy || !episode.available)
+                    .accessibilityLabel(DesktopInterfaceText.value(seen ? "Marked watched" : "Mark watched"))
+                if hidden && (InterfacePreferences.shared.blurEpisodes || blurTitle || blurOverview) {
+                    Button(DesktopInterfaceText.value("Reveal")) { revealed.insert(episode.routingKey) }.font(.caption).frame(minHeight: 44)
+                }
+            }
+        }.frame(width: width, alignment: .leading).frame(maxWidth: fill, alignment: .leading)
+            .contextMenu {
+                if InterfacePreferences.shared.episodeHiding {
+                    if hiddenKeys.contains(hiddenKey(episode)) {
+                        Button(DesktopInterfaceText.value("Show episode"), systemImage: "eye") { setHidden(false, episode) }
+                    } else {
+                        Button(DesktopInterfaceText.value("Hide episode"), systemImage: "eye.slash") { setHidden(true, episode) }
+                    }
+                }
+            }
+    }
+    /// The still of a strip or grid card, with the IMDb badge; HD follows `hdEpisodeImages`.
+    @ViewBuilder private func cardStill(_ episode: Episode, source: Media, hidden: Bool) -> some View {
+        let hd = InterfacePreferences.shared.hdEpisodeImages
+        Artwork(url: EpisodeLayoutPolicy.still(episode.thumbnail, hd: hd), fallback: source.background, maxPixels: EpisodeLayoutPolicy.artworkPixels(hd: hd))
+            .aspectRatio(16.0 / 9.0, contentMode: .fit)
+            .frame(maxWidth: .infinity)
+            .blur(radius: hidden && InterfacePreferences.shared.blurEpisodes ? 14 : 0)
+            .overlay(alignment: .bottomLeading) {
+                if InterfacePreferences.shared.showEpisodeRating, let rating = EpisodeRatings.rating(for: episode, in: episodeRatings) { EpisodeRatingBadge(value: rating).padding(5) }
+            }
+            .clipShape(.rect(cornerRadius: 8))
     }
     @ViewBuilder private func sourceRow(_ episode: Episode, watched: [String: Set<String>]) -> some View {
         let source = pool?.source(for: episode) ?? media
