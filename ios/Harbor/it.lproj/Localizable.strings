@@ -925,6 +925,8 @@
 "Hide row" = "Nascondi riga";
 "Hide sound effects and speaker names" = "Nascondi effetti sonori e nomi dei personaggi";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Nascondi file sospetti, versioni non corrispondenti, probabili riprese in sala e trailer. Controlla anche dimensioni e pacchetti di stagioni.";
+"Hide unreleased titles" = "Nascondi i titoli non ancora usciti";
+"Hide watched titles in catalogs" = "Nascondi i titoli visti nei cataloghi";
 "Hide {name} from navigation" = "Nascondi {name} dalla navigazione";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Nasconde nelle liste degli episodi i dettagli che potrebbero contenere spoiler finché non li hai guardati.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Nasconde gli stream in cui non viene rilevata una lingua preferita. Le versioni multiaudio sono considerate corrispondenti.";
@@ -1211,7 +1213,9 @@
 "Movie" = "Film";
 "Movies" = "Film";
 "Movies & Specials" = "Film e speciali";
+"Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "I film e le serie con una data di uscita futura non compaiono più nelle righe integrate del catalogo Home, così Home mostra solo ciò che puoi guardare subito.";
 "Movies on {name}" = "Film su {name}";
+"Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "I film che hai guardato e le serie di cui hai iniziato la visione non compaiono più nelle righe integrate del catalogo, in base alla cronologia di visione locale e a Trakt, se collegato. Continua a guardare non viene mai modificato.";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Mostra un pulsante Salta intro / Salta titoli di coda quando Harbor ne rileva uno. Disattiva questa opzione per non mostrarlo mai. Puoi anche toccare la X sul pulsante per ignorare un rilevamento errato per il resto dell'episodio.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Mostra la trama dell'Episodio sulle schede. Disattiva per nasconderla.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Mostra i nomi tradotti nella lingua selezionata sopra. Disattiva per mantenere i titoli originali.";

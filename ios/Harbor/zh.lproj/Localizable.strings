@@ -925,6 +925,8 @@
 "Hide row" = "隐藏此行";
 "Hide sound effects and speaker names" = "隐藏音效和说话人姓名";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "隐藏可疑文件、不匹配的版本、可能的偷拍版和预告片，同时检查文件大小与整季合集。";
+"Hide unreleased titles" = "隐藏未上映作品";
+"Hide watched titles in catalogs" = "在目录中隐藏已观看的影片";
 "Hide {name} from navigation" = "在导航中隐藏{name}";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "在你看完之前，隐藏分集列表中容易剧透的剧集详情。";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "隐藏未检测到首选语言的视频流。多音轨版本也视为匹配。";
@@ -1211,7 +1213,9 @@
 "Movie" = "电影";
 "Movies" = "电影";
 "Movies & Specials" = "电影与特别篇";
+"Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "未来上映的电影和剧集将不再出现在首页的内置目录栏中，因此首页只显示当前可观看的内容。";
 "Movies on {name}" = "{name} 上的电影";
+"Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "你看过的电影和已有观看进度的剧集将不再出现在内置目录栏中。此功能使用本地观看历史记录（如已连接 Trakt，也会使用其记录）。“继续观看”不受影响。";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor 检测到片头或片尾时，显示“跳过片头”或“跳过片尾”按钮。关闭后将不再显示。也可点按按钮上的 X，在本集剩余时间内忽略错误识别。";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "在卡片上显示单集简介。关闭后隐藏。";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "以上方所选语言显示译名。关闭则保留原始标题。";

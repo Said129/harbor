@@ -925,6 +925,8 @@
 "Hide row" = "행 숨기기";
 "Hide sound effects and speaker names" = "효과음과 화자 이름 숨기기";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "의심스러운 파일, 일치하지 않는 릴리스, 캠 촬영 추정 영상, 예고편을 숨깁니다. 파일 크기와 시즌 묶음도 확인합니다.";
+"Hide unreleased titles" = "미공개 작품 숨기기";
+"Hide watched titles in catalogs" = "카탈로그에서 시청한 작품 숨기기";
 "Hide {name} from navigation" = "탐색에서 {name} 숨기기";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "시청하기 전까지 에피소드 목록에서 스포일러가 될 수 있는 세부 정보를 숨깁니다.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "선호 언어가 감지되지 않은 스트림을 숨깁니다. 다중 오디오 릴리스도 일치 항목으로 간주됩니다.";
@@ -1211,7 +1213,9 @@
 "Movie" = "영화";
 "Movies" = "영화";
 "Movies & Specials" = "영화 및 스페셜";
+"Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "향후 공개 예정인 영화와 프로그램을 기본 홈 카탈로그 행에서 숨겨 지금 시청할 수 있는 콘텐츠만 홈에 표시합니다.";
 "Movies on {name}" = "{name}의 영화";
+"Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "시청한 영화와 시청을 시작한 프로그램을 로컬 시청 기록(연결된 경우 Trakt 포함)에 따라 기본 카탈로그 행에서 숨깁니다. 이어서 시청에는 영향을 주지 않습니다.";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor가 오프닝 또는 엔딩을 감지하면 오프닝 건너뛰기 / 엔딩 건너뛰기 버튼을 표시합니다. 표시하지 않으려면 이 옵션을 끄세요. 잘못 감지된 경우 버튼의 X를 눌러 해당 에피소드가 끝날 때까지 숨길 수도 있습니다.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "카드에 에피소드 줄거리를 표시합니다. 숨기려면 이 옵션을 끄세요.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "위에서 선택한 언어로 번역된 제목을 표시합니다. 원제를 유지하려면 끄세요.";

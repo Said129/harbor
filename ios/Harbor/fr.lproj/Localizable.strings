@@ -925,6 +925,8 @@
 "Hide row" = "Masquer la rangée";
 "Hide sound effects and speaker names" = "Masquer les bruitages et les noms de personnages";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Masquez les fichiers suspects, les versions non correspondantes, les probables captations en salle et les bandes-annonces. Vérifiez aussi les tailles et les packs de saisons.";
+"Hide unreleased titles" = "Masquer les titres qui ne sont pas encore sortis";
+"Hide watched titles in catalogs" = "Masquer les titres déjà vus dans les catalogues";
 "Hide {name} from navigation" = "Masquer {name} dans la navigation";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Masque les détails d’épisode susceptibles de dévoiler l’intrigue dans les listes d’épisodes tant que vous ne les avez pas regardés.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Masque les flux dans lesquels aucune langue préférée n’est détectée. Les versions multiaudio sont considérées comme correspondantes.";
@@ -1211,7 +1213,9 @@
 "Movie" = "Film";
 "Movies" = "Films";
 "Movies & Specials" = "Films et épisodes spéciaux";
+"Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "Les films et séries dont la date de sortie est à venir n’apparaissent plus dans les rangées intégrées du catalogue d’accueil. Ainsi, l’accueil n’affiche que ce que vous pouvez regarder dès maintenant.";
 "Movies on {name}" = "Films sur {name}";
+"Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "Les films que vous avez regardés et les séries que vous avez commencées n’apparaissent plus dans les rangées intégrées du catalogue, d’après votre historique de visionnage local (et Trakt, si connecté). La section Continuer à regarder n’est jamais modifiée.";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Afficher un bouton Passer l’intro / Passer le générique lorsque Harbor en détecte un. Désactivez cette option pour ne jamais l’afficher. Vous pouvez aussi toucher le X du bouton pour masquer une détection erronée jusqu’à la fin de l’épisode.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Affiche le synopsis de l’épisode sur les fiches. Désactivez cette option pour le masquer.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Affichez les noms traduits dans la langue sélectionnée ci-dessus. Désactivez pour conserver les titres originaux.";

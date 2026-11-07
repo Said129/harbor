@@ -16,25 +16,25 @@
     },
     "settings": {
       "total": 511,
-      "ported": 140,
+      "ported": 142,
       "partial": 24,
-      "missing": 179,
+      "missing": 177,
       "excluded": 168,
       "counted": 343,
-      "weighted_percent": 44.3,
-      "ported_only_percent": 40.8,
-      "ported_or_partial_percent": 47.8
+      "weighted_percent": 44.9,
+      "ported_only_percent": 41.4,
+      "ported_or_partial_percent": 48.4
     },
     "all": {
       "total": 949,
-      "ported": 262,
+      "ported": 264,
       "partial": 230,
-      "missing": 248,
+      "missing": 246,
       "excluded": 209,
       "counted": 740,
-      "weighted_percent": 50.9,
-      "ported_only_percent": 35.4,
-      "ported_or_partial_percent": 66.5
+      "weighted_percent": 51.2,
+      "ported_only_percent": 35.7,
+      "ported_or_partial_percent": 66.8
     }
   },
   "behavior_areas": [
@@ -5786,15 +5786,15 @@
       "index": 356,
       "id": "hideWatchedInCatalogs",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "hide watched and unreleased titles in the home catalog rows, in Home layout (7 Nov, uncompiled; written by Haiku in a trial)"
     },
     {
       "index": 357,
       "id": "hideUnreleased",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "hide watched and unreleased titles in the home catalog rows, in Home layout (7 Nov, uncompiled; written by Haiku in a trial)"
     },
     {
       "index": 358,

@@ -925,6 +925,8 @@
 "Hide row" = "Satırı gizle";
 "Hide sound effects and speaker names" = "Ses efektlerini ve konuşan adlarını gizle";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Şüpheli dosyaları, eşleşmeyen sürümleri, olası kamera çekimlerini ve fragmanları gizleyin. Dosya boyutlarını ve sezon paketlerini de denetleyin.";
+"Hide unreleased titles" = "Henüz yayımlanmamış içerikleri gizle";
+"Hide watched titles in catalogs" = "İzlenen yapımları kataloglarda gizle";
 "Hide {name} from navigation" = "{name} öğesini gezinmeden gizle";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Bölüm listelerinde spoiler içerebilecek bölüm ayrıntılarını, ilgili bölümleri izleyene kadar gizler.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Tercih edilen dillerden hiçbirinin algılanmadığı yayınları gizler. Çoklu ses içeren sürümler eşleşme sayılır.";
@@ -1211,7 +1213,9 @@
 "Movie" = "Film";
 "Movies" = "Filmler";
 "Movies & Specials" = "Filmler ve Özel Bölümler";
+"Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "Gelecekte yayınlanacak filmler ve diziler yerleşik Ana Sayfa katalog satırlarında gösterilmez. Böylece Ana Sayfa yalnızca şu anda izleyebileceğiniz içerikleri gösterir.";
 "Movies on {name}" = "{name} filmleri";
+"Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "İzlediğiniz filmler ve ilerleme kaydettiğiniz diziler, yerel izleme geçmişiniz (ve bağlıysa Trakt) kullanılarak yerleşik katalog satırlarında gösterilmez. İzlemeye Devam Et bölümü bundan etkilenmez.";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor algıladığında Jeneriği Atla / Kapanış Jeneriğini Atla düğmesini gösterir. Hiç gösterilmemesi için bunu kapatın. Hatalı bir düğmeyi bölümün geri kalanında gizlemek için düğmedeki X'e de dokunabilirsiniz.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Bölüm özetini kartlarda gösterir. Gizlemek için kapatın.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Çevrilmiş adları yukarıda seçilen dilde gösterin. Özgün adları korumak için kapatın.";

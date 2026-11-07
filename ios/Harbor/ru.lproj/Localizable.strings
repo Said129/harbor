@@ -930,6 +930,8 @@
 "Hide row" = "Скрыть ряд";
 "Hide sound effects and speaker names" = "Скрывать звуковые эффекты и имена говорящих";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Скрывает подозрительные файлы, неподходящие версии, вероятные записи из кинотеатра и трейлеры. Также проверяет размеры файлов и полные сезоны.";
+"Hide unreleased titles" = "Скрывать невышедшие названия";
+"Hide watched titles in catalogs" = "Скрывать просмотренные названия в каталогах";
 "Hide {name} from navigation" = "Скрыть {name} из навигации";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Скрывает в списках серий детали со спойлерами, пока вы не посмотрите серию.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Скрывает потоки, в которых не найден предпочитаемый язык. Релизы с несколькими дорожками считаются подходящими.";
@@ -1216,7 +1218,9 @@
 "Movie" = "Фильм";
 "Movies" = "Фильмы";
 "Movies & Specials" = "Фильмы и спецвыпуски";
+"Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "Фильмы и сериалы с будущей датой выхода перестают появляться во встроенных рядах каталогов на Главной, поэтому там остаётся только то, что можно смотреть сейчас.";
 "Movies on {name}" = "Фильмы на {name}";
+"Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "Просмотренные фильмы и начатые сериалы перестают появляться во встроенных рядах каталогов; используется локальная история просмотров (и Trakt, если подключён). «Продолжить просмотр» это не затрагивает.";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Показывать кнопку «Пропустить заставку» / «Пропустить титры», когда Harbor их находит. Отключите, чтобы никогда её не показывать. Нажмите X на кнопке, чтобы скрыть ошибочную до конца серии.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Показывает краткое содержание серии на карточках. Отключите, чтобы скрыть.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Показывать переведённые названия на выбранном выше языке. Выключите, чтобы сохранить оригинальные названия.";

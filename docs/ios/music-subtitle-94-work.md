@@ -1444,3 +1444,15 @@ with a recorded reason (see the audit script and report). Kept as useful, to be 
 (Chromecast, DLNA, Roku), Watch Together, a remote streaming server (the way to get torrents on iOS),
 Letterboxd, AniList and MAL lists, local file import, seek previews, content notifications, Theme Studio
 (without the code editor), card rating chips, AI search with the person's own keys.
+
+## Haiku trial: hide watched and unreleased titles (7 November)
+
+Written by a Haiku subagent from a precise brief, in its own worktree and branch
+`ios/haiku-trial-home-filters` (commit `7d061d2a`), then fast-forwarded into this branch. It added
+`HomeCatalogFilter` (Desktop's `isUnreleased`, `metaTitleKey`, `watchTitleKey` and the watched test), the
+two settings (`hideWatchedInCatalogs`, `hideUnreleased`), the filter in `DiscoveryRails`, and 11 cases in
+`HomeCatalogFilterTests`. By reading, the Swift matches the brief and Desktop's rules. Two things were not
+the model's doing: the translation script failed in the fresh worktree (it lacks the Node dependencies),
+so the four labels were generated here; and the toggles were moved from "Episode cards" to "Home layout",
+where Desktop has them. Not compiled yet; the CI result for these 11 cases and the build is the measure of
+the trial.

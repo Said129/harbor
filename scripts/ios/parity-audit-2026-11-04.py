@@ -502,6 +502,7 @@ SETTINGS = expand("""
 479 X webhook rules: fired by a desktop app that stays running, iOS cannot
 491 X collapsible desktop sidebar: iOS has its own tab bar and sidebar
 511 X Audd API key: song identification is not possible on iOS
+356-357 D hide watched and unreleased titles in the home catalog rows, in Home layout (7 Nov, uncompiled; written by Haiku in a trial)
 """)
 
 def audit(items, verdicts, label):

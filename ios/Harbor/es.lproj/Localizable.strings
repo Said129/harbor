@@ -925,6 +925,8 @@
 "Hide row" = "Ocultar fila";
 "Hide sound effects and speaker names" = "Ocultar efectos de sonido y nombres de personajes";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Oculta archivos sospechosos, versiones que no coinciden, posibles grabaciones de cámara y tráileres. Comprueba también tamaños y paquetes de temporadas.";
+"Hide unreleased titles" = "Ocultar títulos aún no estrenados";
+"Hide watched titles in catalogs" = "Ocultar los títulos vistos en los catálogos";
 "Hide {name} from navigation" = "Ocultar {name} de la navegación";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Oculta en las listas de episodios los detalles que podrían revelar la trama hasta que los hayas visto.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Oculta las fuentes en las que no se detecte ningún idioma preferido. Las versiones con audio múltiple cuentan como coincidencia.";
@@ -1211,7 +1213,9 @@
 "Movie" = "Película";
 "Movies" = "Películas";
 "Movies & Specials" = "Películas y especiales";
+"Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "Las películas y series con una fecha de estreno futura dejan de aparecer en las filas del catálogo integrado de Inicio, para que Inicio solo muestre lo que puedes ver ahora mismo.";
 "Movies on {name}" = "Películas en {name}";
+"Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "Las películas que viste y las series en las que avanzaste dejan de aparecer en las filas integradas del catálogo, según tu historial de reproducción local (y Trakt, si está conectado). Seguir viendo no se modifica.";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales.";

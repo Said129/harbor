@@ -925,6 +925,8 @@
 "Hide row" = "Sembunyikan baris";
 "Hide sound effects and speaker names" = "Sembunyikan efek suara dan nama pembicara";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Sembunyikan berkas mencurigakan, rilis yang tidak cocok, kemungkinan rekaman kamera, dan trailer. Periksa juga ukuran berkas dan paket musim.";
+"Hide unreleased titles" = "Sembunyikan judul yang belum dirilis";
+"Hide watched titles in catalogs" = "Sembunyikan judul yang sudah ditonton di katalog";
 "Hide {name} from navigation" = "Sembunyikan {name} dari navigasi";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Menyembunyikan detail episode yang berpotensi mengandung spoiler dalam daftar episode hingga Anda menontonnya.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Menyembunyikan stream tanpa bahasa pilihan yang terdeteksi. Rilis multi-audio dianggap cocok.";
@@ -1211,7 +1213,9 @@
 "Movie" = "Film";
 "Movies" = "Film";
 "Movies & Specials" = "Film & Acara Spesial";
+"Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "Film dan acara dengan tanggal rilis mendatang tidak lagi muncul di baris katalog bawaan Beranda, sehingga Beranda hanya menampilkan yang dapat Anda tonton sekarang.";
 "Movies on {name}" = "Film di {name}";
+"Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "Film yang sudah Anda tonton dan acara yang sudah mulai Anda tonton tidak lagi muncul di baris katalog bawaan berdasarkan riwayat tontonan lokal Anda (dan Trakt jika terhubung). Lanjutkan Menonton tidak pernah terpengaruh.";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Tampilkan tombol Lewati Intro / Lewati Kredit saat Harbor mendeteksinya. Nonaktifkan ini agar tombol tidak pernah ditampilkan. Anda juga dapat mengetuk X pada tombol untuk menutup tombol yang keliru selama sisa episode.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Menampilkan sinopsis episode pada kartu. Nonaktifkan untuk menyembunyikannya.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Tampilkan nama terjemahan dalam bahasa yang dipilih di atas. Nonaktifkan untuk mempertahankan judul asli.";

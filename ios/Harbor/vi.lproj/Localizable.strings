@@ -925,6 +925,8 @@
 "Hide row" = "Ẩn hàng";
 "Hide sound effects and speaker names" = "Ẩn hiệu ứng âm thanh và tên người nói";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Ẩn tệp đáng ngờ, bản phát hành không khớp, bản có thể quay bằng camera và đoạn giới thiệu. Đồng thời kiểm tra kích thước tệp và gói mùa.";
+"Hide unreleased titles" = "Ẩn các tựa phim chưa phát hành";
+"Hide watched titles in catalogs" = "Ẩn các phim đã xem trong danh mục";
 "Hide {name} from navigation" = "Ẩn {name} khỏi thanh điều hướng";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Ẩn các chi tiết dễ tiết lộ nội dung trong danh sách tập cho đến khi bạn xem xong.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Ẩn các luồng không phát hiện được ngôn ngữ ưu tiên. Bản phát hành đa âm thanh vẫn được tính là khớp.";
@@ -1211,7 +1213,9 @@
 "Movie" = "Phim điện ảnh";
 "Movies" = "Phim điện ảnh";
 "Movies & Specials" = "Phim điện ảnh & tập đặc biệt";
+"Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "Phim điện ảnh và phim bộ có ngày phát hành trong tương lai sẽ không còn xuất hiện trong các hàng danh mục tích hợp trên Trang chủ, để Trang chủ chỉ hiển thị nội dung có thể xem ngay.";
 "Movies on {name}" = "Phim điện ảnh trên {name}";
+"Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "Phim điện ảnh đã xem và phim bộ đang xem dở sẽ không còn xuất hiện trong các hàng danh mục tích hợp, dựa trên lịch sử xem cục bộ (và Trakt nếu đã kết nối). Mục Xem tiếp sẽ không bị ảnh hưởng.";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Hiển thị nút Bỏ qua phần mở đầu / Bỏ qua phần giới thiệu cuối phim khi Harbor phát hiện. Tắt tùy chọn này để không bao giờ hiển thị. Bạn cũng có thể nhấn X trên nút để ẩn mục bị nhận diện sai trong phần còn lại của tập.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Hiển thị tóm tắt nội dung tập trên thẻ. Tắt để ẩn.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Hiện tên đã dịch bằng ngôn ngữ chọn ở trên. Tắt để giữ tên gốc.";

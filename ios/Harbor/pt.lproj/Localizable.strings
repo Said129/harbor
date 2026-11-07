@@ -945,6 +945,8 @@
 "Hide row" = "Ocultar linha";
 "Hide sound effects and speaker names" = "Ocultar efeitos sonoros e nomes de personagens";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Oculte arquivos suspeitos, versões incompatíveis, prováveis gravações de cinema e trailers. Verifique também tamanhos de arquivos e pacotes de temporadas.";
+"Hide unreleased titles" = "Ocultar títulos não lançados";
+"Hide watched titles in catalogs" = "Ocultar títulos assistidos nos catálogos";
 "Hide {name} from navigation" = "Ocultar {name} da navegação";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Oculta detalhes de episódios propensos a spoilers nas listas de episódios até que você os assista.";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "Oculta streams sem idioma preferido detectado. Lançamentos com múltiplos áudios contam como correspondência.";
@@ -1231,7 +1233,9 @@
 "Movie" = "Filme";
 "Movies" = "Filmes";
 "Movies & Specials" = "Filmes e especiais";
+"Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "Filmes e séries com data de lançamento futura deixam de aparecer nas fileiras de catálogo integradas, para que o Início mostre apenas o que já pode ser assistido.";
 "Movies on {name}" = "Filmes em {name}";
+"Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "Filmes que você já assistiu e séries com progresso deixam de aparecer nas linhas de catálogo padrão, usando seu histórico local (e o Trakt, se conectado). Continuar Assistindo nunca é alterado.";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Mostra um botão Pular Abertura / Pular Créditos quando o Harbor detecta um. Desative para nunca mostrar. Você também pode tocar no X do botão para dispensar um errado pelo resto do episódio.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Mostra a sinopse do episódio nos cartões. Desative para ocultá-la.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Mostre nomes traduzidos no idioma selecionado acima. Desative para manter os títulos originais.";

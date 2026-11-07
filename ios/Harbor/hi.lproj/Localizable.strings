@@ -925,6 +925,8 @@
 "Hide row" = "पंक्ति छिपाएँ";
 "Hide sound effects and speaker names" = "ध्वनि प्रभाव और वक्ताओं के नाम छिपाएँ";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "संदिग्ध फ़ाइलें, मेल न खाने वाली रिलीज़, संभावित कैमरा रिकॉर्डिंग और ट्रेलर छिपाएँ। फ़ाइल आकार और सीज़न पैक की भी जाँच करें।";
+"Hide unreleased titles" = "रिलीज़ न हुए शीर्षक छिपाएँ";
+"Hide watched titles in catalogs" = "कैटलॉग में देखे हुए शीर्षक छिपाएँ";
 "Hide {name} from navigation" = "नेविगेशन में {name} छिपाएँ";
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "एपिसोड सूचियों में स्पॉइलर वाले एपिसोड विवरण तब तक छिपाता है, जब तक आप उन्हें देख न लें।";
 "Hides streams with no detected preferred language. Multi-audio releases count as a match." = "ऐसी स्ट्रीम छिपाता है जिनमें कोई पसंदीदा भाषा नहीं मिली। मल्टी-ऑडियो रिलीज़ को मेल माना जाता है।";
@@ -1211,7 +1213,9 @@
 "Movie" = "फ़िल्म";
 "Movies" = "फ़िल्में";
 "Movies & Specials" = "फ़िल्में और स्पेशल";
+"Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "भविष्य की रिलीज़ तारीख वाली फ़िल्में और शो बिल्ट-इन होम कैटलॉग पंक्तियों में दिखना बंद हो जाते हैं, इसलिए होम पर केवल वही दिखता है जिसे आप अभी देख सकते हैं।";
 "Movies on {name}" = "{name} पर फ़िल्में";
+"Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "आपकी देखी हुई फ़िल्में और जिन शो में आपने कुछ प्रगति की है, वे आपके स्थानीय देखने के इतिहास (और कनेक्ट होने पर Trakt) के आधार पर बिल्ट-इन कैटलॉग पंक्तियों में दिखना बंद हो जाते हैं। 'देखना जारी रखें' में कभी कोई बदलाव नहीं होता।";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor को इंट्रो या क्रेडिट मिलने पर इंट्रो छोड़ें / क्रेडिट छोड़ें बटन दिखाएँ। इसे कभी न दिखाने के लिए यह विकल्प बंद करें। अगर पहचान गलत हो, तो बाकी एपिसोड के लिए इसे हटाने हेतु बटन पर मौजूद X टैप करें।";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "कार्ड पर एपिसोड का सारांश दिखाता है। इसे छिपाने के लिए बंद कर दें।";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "ऊपर चुनी भाषा में अनूदित नाम दिखाएँ। मूल शीर्षक रखने के लिए बंद करें।";
