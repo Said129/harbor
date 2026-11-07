@@ -43,6 +43,15 @@ final class InterfacePreferences {
     var libraryBookmarkedOnly = UserDefaults.standard.object(forKey: "libraryBookmarkedOnly") as? Bool ?? true { didSet { persist(libraryBookmarkedOnly, forKey: "libraryBookmarkedOnly") } }
     /// Desktop's `cwAdvanceNext`: a finished episode moves its Continue Watching card to the next episode.
     var cwAdvanceNext = UserDefaults.standard.object(forKey: "cwAdvanceNext") as? Bool ?? true { didSet { persist(cwAdvanceNext, forKey: "cwAdvanceNext") } }
+    /// Desktop's `cwHideCaughtUp` (default on): a series whose aired episodes are all watched leaves Continue Watching until a new one airs.
+    var cwHideCaughtUp = UserDefaults.standard.object(forKey: "cwHideCaughtUp") as? Bool ?? true { didSet { persist(cwHideCaughtUp, forKey: "cwHideCaughtUp") } }
+    /// Desktop's `cwPreferEpisodeStill` (default off): the episode still leads a Continue Watching card instead of the series artwork.
+    var cwPreferEpisodeStill = UserDefaults.standard.object(forKey: "cwPreferEpisodeStill") as? Bool ?? false { didSet { persist(cwPreferEpisodeStill, forKey: "cwPreferEpisodeStill") } }
+    /// Desktop's `animeCwEnd` (default "hide"): what a finished series shows while its next episode has not aired. "timer" shows a countdown.
+    var animeCwEnd = UserDefaults.standard.string(forKey: "animeCwEnd") == "timer" ? "timer" : "hide" { didSet { persist(animeCwEnd, forKey: "animeCwEnd") } }
+    var caughtUpEnd: ContinueWatchingEnd { ContinueWatchingEnd(rawValue: animeCwEnd) ?? .hide }
+    /// Desktop's `homeNewEpisodes` (default off): a "New Episodes" row under Continue Watching for recently aired episodes.
+    var homeNewEpisodes = UserDefaults.standard.object(forKey: "homeNewEpisodes") as? Bool ?? false { didSet { persist(homeNewEpisodes, forKey: "homeNewEpisodes") } }
     /// Desktop's `episodeSort`: "oldest" lists a season from its first episode, "newest" from its last.
     var episodeSort = UserDefaults.standard.string(forKey: "episodeSort") == "newest" ? "newest" : "oldest" { didSet { persist(episodeSort, forKey: "episodeSort") } }
     /// Desktop's `episodeHiding`: adds Hide episode to the episode menu and skips hidden episodes in Up Next.
@@ -114,6 +123,10 @@ final class InterfacePreferences {
         animeOnlyInAnimeRoom = UserDefaults.standard.object(forKey: "animeOnlyInAnimeRoom") as? Bool ?? true
         libraryBookmarkedOnly = UserDefaults.standard.object(forKey: "libraryBookmarkedOnly") as? Bool ?? true
         cwAdvanceNext = UserDefaults.standard.object(forKey: "cwAdvanceNext") as? Bool ?? true
+        cwHideCaughtUp = UserDefaults.standard.object(forKey: "cwHideCaughtUp") as? Bool ?? true
+        cwPreferEpisodeStill = UserDefaults.standard.object(forKey: "cwPreferEpisodeStill") as? Bool ?? false
+        animeCwEnd = UserDefaults.standard.string(forKey: "animeCwEnd") == "timer" ? "timer" : "hide"
+        homeNewEpisodes = UserDefaults.standard.object(forKey: "homeNewEpisodes") as? Bool ?? false
         episodeSort = UserDefaults.standard.string(forKey: "episodeSort") == "newest" ? "newest" : "oldest"
         episodeHiding = UserDefaults.standard.object(forKey: "episodeHiding") as? Bool ?? false
         episodeLayout = UserDefaults.standard.string(forKey: "episodeLayout") ?? "list"

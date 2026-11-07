@@ -198,6 +198,12 @@ struct ContinueWatching: View {
     var titleIsLiteral = false
     /// Desktop's `animeOnlyInAnimeRoom`, used by Home's own row.
     var excludesAnime = false
+    /// Records whose card the caught-up rules hid. The cards stay mounted, so they can report when they show again.
+    @State private var hiddenIDs: Set<String> = []
+    private var anyVisible: Bool { items.contains { !hiddenIDs.contains($0.id) } }
+    private func setVisible(_ id: String, _ visible: Bool) {
+        if visible { hiddenIDs.remove(id) } else { hiddenIDs.insert(id) }
+    }
     private var items: [LibraryRecord] {
         let selected = app.library.continuing.filter { ContinueWatchingSelection.includes($0, kind: kind, detectedAnime: app.animeDetection.identifiers) }
         return HomeCatalogFilter.continueWatching(selected, animeOnlyInAnimeRoom: excludesAnime, detectedAnime: app.animeDetection.identifiers)
@@ -205,15 +211,17 @@ struct ContinueWatching: View {
     var body: some View {
         if !items.isEmpty || app.library.presentationError != nil {
             VStack(alignment: .leading, spacing: 12) {
-                Text(titleIsLiteral ? title : DesktopInterfaceText.value(title)).font(HarborTheme.font(17, weight: .medium)).padding(.horizontal)
-                    .accessibilityAddTraits(.isHeader)
-                    .accessibilityIdentifier(kind == "anime" ? "anime-continue-watching-title" : "continue-watching-title")
-                LibraryPresentationFeedback(library: app.library).padding(.horizontal)
+                if anyVisible || app.library.presentationError != nil {
+                    Text(titleIsLiteral ? title : DesktopInterfaceText.value(title)).font(HarborTheme.font(17, weight: .medium)).padding(.horizontal)
+                        .accessibilityAddTraits(.isHeader)
+                        .accessibilityIdentifier(kind == "anime" ? "anime-continue-watching-title" : "continue-watching-title")
+                    LibraryPresentationFeedback(library: app.library).padding(.horizontal)
+                }
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .top, spacing: 12) {
                         ForEach(items) { item in
                             if let media = item.media {
-                                ContinueWatchingCard(app: app, record: item, media: media).id(app.library.owner + "|" + item.id)
+                                ContinueWatchingCard(app: app, record: item, media: media, onVisibility: { id, visible in setVisible(id, visible) }).id(app.library.owner + "|" + item.id)
                             }
                         }
                     }.padding(.horizontal)
@@ -227,15 +235,25 @@ private struct ContinueWatchingCard: View {
     let app: AppModel
     let record: LibraryRecord
     let media: Media
+    /// Reports whether this card is shown, so the row can drop its title when every card is hidden by the caught-up rules.
+    var onVisibility: (String, Bool) -> Void = { _, _ in }
     @AppStorage(AnimeEpisodeGrouping.preferenceKey) private var episodeGrouping = AnimeEpisodeGrouping.seasons.rawValue
     @State private var hydrated: Media?
     @State private var cardPresentation: ContinueWatchingPresentation?
     private var detailed: Media { TitleArtworkPreferences.shared.applying(to: hydrated ?? media) }
     private var presentation: ContinueWatchingPresentation {
-        cardPresentation ?? ContinueWatchingPresentation(record: record, media: media, watched: [], advanceNext: InterfacePreferences.shared.cwAdvanceNext)
+        cardPresentation ?? ContinueWatchingCard.makePresentation(record: record, media: media, watched: [])
+    }
+    /// Builds the card from the Continue Watching settings. A hidden card renders nothing, as Desktop drops it from the row.
+    static func makePresentation(record: LibraryRecord, media: Media, watched: Set<String>) -> ContinueWatchingPresentation {
+        let preferences = InterfacePreferences.shared
+        return ContinueWatchingPresentation(record: record, media: media, watched: watched, advanceNext: preferences.cwAdvanceNext,
+            hideCaughtUp: preferences.cwHideCaughtUp, endMode: preferences.caughtUpEnd)
     }
     var body: some View {
         let presentation = self.presentation
+        ZStack(alignment: .topLeading) {
+        if !presentation.hidden {
         VStack(alignment: .leading, spacing: 2) {
             NavigationLink { DetailView(media: detailed, app: app, playImmediately: true, metadataLoaded: hydrated != nil) } label: {
                 ContinueWatchingArtwork(record: record, media: detailed, presentation: presentation)
@@ -264,8 +282,20 @@ private struct ContinueWatchingCard: View {
             }.accessibilityIdentifier("continue-watching-details").accessibilityLabel("Abrir ficha de \(detailed.name)")
         }.frame(width: 260, alignment: .leading).foregroundStyle(HarborTheme.ink).buttonStyle(.plain)
             .contextMenu { LibraryActions(app: app, record: record, media: detailed, owner: app.library.owner) }
+        }
+        }
             .onChange(of: record.raw, initial: true) { _, _ in updatePresentation() }
             .onChange(of: InterfacePreferences.shared.cwAdvanceNext) { _, _ in updatePresentation() }
+            .onChange(of: InterfacePreferences.shared.cwHideCaughtUp) { _, _ in updatePresentation() }
+            .onChange(of: InterfacePreferences.shared.animeCwEnd) { _, _ in updatePresentation() }
+            .task(id: presentation.airsAt) {
+                guard let airsAt = presentation.airsAt else { return }
+                // Desktop re-checks 30 seconds after the next air date, with the wait kept between 30 seconds and 6 hours.
+                let wait = min(max(airsAt.timeIntervalSinceNow + 30, 30), 21_600)
+                try? await Task.sleep(for: .seconds(wait))
+                guard !Task.isCancelled else { return }
+                updatePresentation()
+            }
             .task(id: [record.raw, .string(episodeGrouping)]) {
                 let owner = app.library.owner
                 let grouping = AnimeEpisodeGrouping(rawValue: episodeGrouping) ?? .seasons
@@ -284,7 +314,8 @@ private struct ContinueWatchingCard: View {
     }
     private func updatePresentation() {
         let watched = (try? WatchedCodec.decode(record.raw["state"]["watched"].string, videos: detailed.videos ?? [])) ?? []
-        cardPresentation = ContinueWatchingPresentation(record: record, media: detailed, watched: watched, advanceNext: InterfacePreferences.shared.cwAdvanceNext)
+        cardPresentation = ContinueWatchingCard.makePresentation(record: record, media: detailed, watched: watched)
+        onVisibility(record.id, !(cardPresentation?.hidden ?? false))
     }
 }
 
@@ -321,10 +352,27 @@ struct ContinueWatchingArtwork: View {
         let original = minutes < 60 ? "{m}m left" : minutes % 60 == 0 ? "{h}h left" : "{h}h {m}m left"
         return DesktopInterfaceText.value(original).replacingOccurrences(of: "{h}", with: String(hours)).replacingOccurrences(of: "{m}", with: String(minutes < 60 ? minutes : minutes % 60))
     }
+    /// Desktop's `cwPreferEpisodeStill`: the current episode's still leads the artwork when the setting is on.
+    private var stillURL: String? {
+        ContinueWatchingAdvance.stillURL(episode: presentation.episode, upNext: presentation.upNext, prefer: InterfacePreferences.shared.cwPreferEpisodeStill)
+    }
+    /// Desktop's countdown caption for a finished series that waits for its next episode (`continue-card.tsx`).
+    private func countdownCaption(_ airsAt: Date, now: Date) -> String {
+        switch ContinueWatchingAdvance.countdown(until: airsAt, now: now) {
+        case .airingNow:
+            return DesktopInterfaceText.value("Airing now")
+        case .days(let days, let hours):
+            return DesktopInterfaceText.value("Next in {days}d {hours}h").replacingOccurrences(of: "{days}", with: String(days)).replacingOccurrences(of: "{hours}", with: String(hours))
+        case .hours(let hours, let minutes):
+            return DesktopInterfaceText.value("Next in {hours}h {minutes}m").replacingOccurrences(of: "{hours}", with: String(hours)).replacingOccurrences(of: "{minutes}", with: String(minutes))
+        case .minutes(let minutes):
+            return DesktopInterfaceText.value("Next in {minutes}m").replacingOccurrences(of: "{minutes}", with: String(minutes))
+        }
+    }
     var body: some View {
         ZStack {
             Color.clear
-        Artwork(url: media.background, fallback: media.poster, fallbacks: [media.fallbackBackground, media.fallbackPoster].compactMap { $0 }, maxPixels: 650)
+        Artwork(url: stillURL ?? media.background, fallback: stillURL == nil ? media.poster : media.background, fallbacks: [media.fallbackBackground, media.fallbackPoster].compactMap { $0 }, maxPixels: 650)
             .frame(width: 260, height: 260 * 9 / 16)
             .overlay {
                 if let logo = media.logo {
@@ -348,6 +396,11 @@ struct ContinueWatchingArtwork: View {
                     if presentation.upNext {
                         if episodeCaption != nil { Text("·").foregroundStyle(.white.opacity(0.5)) }
                         Text(DesktopInterfaceText.value("Up Next")).font(HarborTheme.font(11, weight: .medium)).foregroundStyle(HarborTheme.accent).lineLimit(1)
+                    } else if let airsAt = presentation.airsAt {
+                        if episodeCaption != nil { Text("·").foregroundStyle(.white.opacity(0.5)) }
+                        TimelineView(.everyMinute) { context in
+                            Text(countdownCaption(airsAt, now: context.date)).font(HarborTheme.font(11, weight: .medium)).foregroundStyle(HarborTheme.accent).lineLimit(1)
+                        }
                     } else if let title = presentation.episode?.name ?? presentation.episode?.title, !title.isEmpty {
                         if episodeCaption != nil { Text("·").foregroundStyle(.white.opacity(0.5)) }
                         Text(title).font(HarborTheme.font(11)).foregroundStyle(.white.opacity(0.7)).lineLimit(1)
