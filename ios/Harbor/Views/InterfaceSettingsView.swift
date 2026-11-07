@@ -8,6 +8,12 @@ struct InterfaceSettingsView: View {
     private var homeLanguagesValue: Binding<String> {
         Binding(get: { preferences.homeLanguages.joined(separator: ",") }, set: { (value: String) in preferences.homeLanguages = SubtitleLanguages.preferredCodes(value) })
     }
+    /// Desktop's `syncIndicatorPosition` choices, in Desktop's order (`sync-indicator-setting.tsx`).
+    private var syncIndicatorChoices: [(String, String)] {
+        [(DesktopInterfaceText.value("Top left"), "top-left"), (DesktopInterfaceText.value("Top right"), "top-right"),
+         (DesktopInterfaceText.value("Bottom left"), "bottom-left"), (DesktopInterfaceText.value("Bottom right"), "bottom-right"),
+         (DesktopInterfaceText.value("Bottom center"), "bottom-center")]
+    }
     /// Desktop's `episodeCardScale` as the choice tags "1.0", "1.2" and "1.45".
     private var cardScaleValue: Binding<String> {
         Binding(get: { String(EpisodeLayoutPolicy.cardScale(preferences.episodeCardScale)) }, set: { (value: String) in preferences.episodeCardScale = Double(value) ?? 1 })
@@ -84,6 +90,21 @@ struct InterfaceSettingsView: View {
                     HarborSettingsToggle(DesktopInterfaceText.value("Group episodes by story arc"), note: DesktopInterfaceText.value("Browse by story arc on supported shows, such as One Piece. Requires a TMDB key."), isOn: $preferences.episodeArcGroups)
                         .accessibilityIdentifier("settings-episode-arc-groups")
                 }
+                HarborSettingsSection(DesktopInterfaceText.value("Sync indicator")) {
+                    Text(DesktopInterfaceText.value("The badge that appears over the player when an episode syncs to your tracker."))
+                        .font(HarborTheme.font(13)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                    HarborSettingsToggle(DesktopInterfaceText.value("Show sync indicator"), note: DesktopInterfaceText.value("Turn off to hide the sync badge during playback."), isOn: $preferences.syncIndicator)
+                        .accessibilityIdentifier("settings-sync-indicator")
+                    if preferences.syncIndicator {
+                        HarborSettingsChoice(DesktopInterfaceText.value("Position"), selection: $preferences.syncIndicatorPosition, choices: syncIndicatorChoices, identifier: "settings-sync-indicator-position")
+                        Text(DesktopInterfaceText.value("Corners keep it clear of subtitles along the bottom."))
+                            .font(HarborTheme.font(13)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+                HarborSettingsSection(DesktopInterfaceText.value("Downloads")) {
+                    HarborSettingsToggle(DesktopInterfaceText.value("Delete after I finish watching"), note: DesktopInterfaceText.value("When you finish an episode or movie, remove its downloaded file right away. Something you stop partway through is kept so you can resume."), isOn: $preferences.deleteWatchedDownloads)
+                        .accessibilityIdentifier("settings-delete-watched-downloads")
+                }
                 HarborSettingsSection(DesktopInterfaceText.value("Spoilers")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Blur spoilers"), note: DesktopInterfaceText.value("Hides spoiler-prone episode details in episode lists until you have watched them."), isOn: $preferences.hideSpoilers)
                     if preferences.hideSpoilers {
@@ -91,6 +112,8 @@ struct InterfaceSettingsView: View {
                             HarborSettingsToggle(DesktopInterfaceText.value("Blur thumbnails"), note: DesktopInterfaceText.value("Frosts the still image on each unwatched episode in the list."), isOn: $preferences.blurEpisodes)
                             HarborSettingsToggle(DesktopInterfaceText.value("Blur titles"), note: DesktopInterfaceText.value("Hides the episode name, which often gives the twist away on its own."), isOn: $preferences.spoilerHideTitles)
                             HarborSettingsToggle(DesktopInterfaceText.value("Blur descriptions"), note: DesktopInterfaceText.value("Hides the synopsis text under each unwatched episode."), isOn: $preferences.spoilerHideDescriptions)
+                            HarborSettingsToggle(DesktopInterfaceText.value("Keep the next episode visible"), note: DesktopInterfaceText.value("Leave the episode you are up to clear and only blur the ones after it."), isOn: $preferences.spoilerSkipNext)
+                                .accessibilityIdentifier("settings-spoiler-skip-next")
                         }.padding(.leading, 14)
                             .overlay(alignment: .leading) { Rectangle().fill(ThemePreferences.shared.color("edge-soft")).frame(width: 1) }
                     }

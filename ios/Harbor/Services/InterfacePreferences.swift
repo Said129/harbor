@@ -72,6 +72,15 @@ final class InterfacePreferences {
     var blurEpisodes = UserDefaults.standard.object(forKey: "blurEpisodes") as? Bool ?? false { didSet { persist(blurEpisodes, forKey: "blurEpisodes") } }
     var spoilerHideTitles = UserDefaults.standard.object(forKey: "spoilerHideTitles") as? Bool ?? true { didSet { persist(spoilerHideTitles, forKey: "spoilerHideTitles") } }
     var spoilerHideDescriptions = UserDefaults.standard.object(forKey: "spoilerHideDescriptions") as? Bool ?? true { didSet { persist(spoilerHideDescriptions, forKey: "spoilerHideDescriptions") } }
+    /// Desktop's `spoilerSkipNext` (default on): the next episode to watch stays clear while the rest stay blurred. Read through `UISettingsPolicy.spoilerMask`.
+    var spoilerSkipNext = UserDefaults.standard.object(forKey: "spoilerSkipNext") as? Bool ?? true { didSet { persist(spoilerSkipNext, forKey: "spoilerSkipNext") } }
+    /// Desktop's `playerTitleSeriesFirst` (default off): the series name leads the player's title. Read through `UISettingsPolicy.titleLines`.
+    var playerTitleSeriesFirst = UserDefaults.standard.object(forKey: "playerTitleSeriesFirst") as? Bool ?? false { didSet { persist(playerTitleSeriesFirst, forKey: "playerTitleSeriesFirst") } }
+    /// Desktop's `syncIndicator` (default on) and `syncIndicatorPosition` (default "top-right"): the tracker sync badge. Read through `UISettingsPolicy.syncIndicatorSlot`.
+    var syncIndicator = UserDefaults.standard.object(forKey: "syncIndicator") as? Bool ?? true { didSet { persist(syncIndicator, forKey: "syncIndicator") } }
+    var syncIndicatorPosition = UserDefaults.standard.string(forKey: "syncIndicatorPosition") ?? "top-right" { didSet { persist(syncIndicatorPosition, forKey: "syncIndicatorPosition") } }
+    /// Desktop's `deleteWatchedDownloads` (default off): a download is removed once playback reaches 90 percent. Read through `UISettingsPolicy.removesWatchedDownload`.
+    var deleteWatchedDownloads = UserDefaults.standard.object(forKey: "deleteWatchedDownloads") as? Bool ?? false { didSet { persist(deleteWatchedDownloads, forKey: "deleteWatchedDownloads") } }
     var navigationOrder: [String] { get { navigation.value.order } set { navigation.change { $0.order = newValue } } }
     var navigationHidden: Set<String> { get { navigation.value.hidden } set { navigation.change { $0.hidden = newValue } } }
     var navigationNames: [String: String] { get { navigation.value.renamed } set { navigation.change { $0.renamed = newValue } } }
@@ -139,5 +148,10 @@ final class InterfacePreferences {
         blurEpisodes = UserDefaults.standard.object(forKey: "blurEpisodes") as? Bool ?? false
         spoilerHideTitles = UserDefaults.standard.object(forKey: "spoilerHideTitles") as? Bool ?? true
         spoilerHideDescriptions = UserDefaults.standard.object(forKey: "spoilerHideDescriptions") as? Bool ?? true
+        spoilerSkipNext = UserDefaults.standard.object(forKey: "spoilerSkipNext") as? Bool ?? true
+        playerTitleSeriesFirst = UserDefaults.standard.object(forKey: "playerTitleSeriesFirst") as? Bool ?? false
+        syncIndicator = UserDefaults.standard.object(forKey: "syncIndicator") as? Bool ?? true
+        syncIndicatorPosition = UserDefaults.standard.string(forKey: "syncIndicatorPosition") ?? "top-right"
+        deleteWatchedDownloads = UserDefaults.standard.object(forKey: "deleteWatchedDownloads") as? Bool ?? false
     }
 }
