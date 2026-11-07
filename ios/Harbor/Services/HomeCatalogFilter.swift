@@ -67,6 +67,42 @@ enum HomeCatalogFilter {
         }
     }
 
+    /// Desktop's `homeLanguages`: an empty list shows everything, and a title without an original language always stays.
+    static func keepsLanguage(_ media: Media, languages: [String]) -> Bool {
+        guard !languages.isEmpty, let language = media.originalLanguage, !language.isEmpty else { return true }
+        return languages.contains(language)
+    }
+
+    /// Desktop's `homeLanguages` on Home rows (`customizable-rows.tsx`). Catalog and discovery rows lose titles outside the list,
+    /// and rows left empty are dropped. Discovery rows with a personal source stay, as in `apply`. Lists, sources and Continue Watching are untouched.
+    static func homeLanguageRails(_ rails: [PageRail], languages: [String]) -> [PageRail] {
+        guard !languages.isEmpty else { return rails }
+        var result: [PageRail] = []
+        for rail in rails {
+            switch rail {
+            case .catalog(var row):
+                row.metas = row.metas.filter { (media: Media) -> Bool in keepsLanguage(media, languages: languages) }
+                if row.metas.isEmpty { continue }
+                result.append(.catalog(row))
+            case .discovery(var row):
+                row.metas = row.metas.filter { (media: Media) -> Bool in keepsLanguage(media, languages: languages) }
+                if row.metas.isEmpty && row.personal == nil { continue }
+                result.append(.discovery(row))
+            default:
+                result.append(rail)
+            }
+        }
+        return result
+    }
+
+    /// Desktop's `animeOnlyInAnimeRoom`: Home's Continue Watching leaves out anime. The Anime page keeps its own row.
+    static func continueWatching(_ records: [LibraryRecord], animeOnlyInAnimeRoom: Bool, detectedAnime: Set<String>) -> [LibraryRecord] {
+        guard animeOnlyInAnimeRoom else { return records }
+        return records.filter { (record: LibraryRecord) -> Bool in
+            !ContinueWatchingSelection.includes(record, kind: "anime", detectedAnime: detectedAnime)
+        }
+    }
+
     static func apply(_ rails: [DiscoveryRail], hideWatched: Bool, hideUnreleased: Bool, watched: Watched, now: Date = Date()) -> [DiscoveryRail] {
         guard hideWatched || hideUnreleased else { return rails }
         var result: [DiscoveryRail] = []

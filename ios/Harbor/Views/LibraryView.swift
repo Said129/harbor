@@ -187,8 +187,11 @@ struct ContinueWatching: View {
     var kind: String? = nil
     var title = "Continuar viendo"
     var titleIsLiteral = false
+    /// Desktop's `animeOnlyInAnimeRoom`, used by Home's own row.
+    var excludesAnime = false
     private var items: [LibraryRecord] {
-        app.library.continuing.filter { ContinueWatchingSelection.includes($0, kind: kind, detectedAnime: app.animeDetection.identifiers) }
+        let selected = app.library.continuing.filter { ContinueWatchingSelection.includes($0, kind: kind, detectedAnime: app.animeDetection.identifiers) }
+        return HomeCatalogFilter.continueWatching(selected, animeOnlyInAnimeRoom: excludesAnime, detectedAnime: app.animeDetection.identifiers)
     }
     var body: some View {
         if !items.isEmpty || app.library.presentationError != nil {

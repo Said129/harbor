@@ -17,6 +17,9 @@ struct HomeView: View {
         _trakt = State(initialValue: TraktHomeModel(app: model))
     }
     private var rails: [PageRail] {
+        HomeCatalogFilter.homeLanguageRails(allRails, languages: InterfacePreferences.shared.homeLanguages)
+    }
+    private var allRails: [PageRail] {
         let catalogs = model.rows.filter { !$0.metas.isEmpty }.map(PageRail.catalog)
         let sources = customization.sourceRows.map(PageRail.sources)
         let lists = CustomListHomeRows.selected(model.customLists.lists, ids: customization.listRowIDs).map(PageRail.list)
@@ -43,7 +46,7 @@ struct HomeView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 26) {
                 if let error = model.accountError { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
-                if classic || customization.layout.cwTop { ContinueWatching(app: model) }
+                if classic || customization.layout.cwTop { ContinueWatching(app: model, excludesAnime: InterfacePreferences.shared.animeOnlyInAnimeRoom) }
                 if InterfacePreferences.shared.homeMode == "harbor" {
                     CustomizedHero(rails: rails, defaults: heroes, app: model, customization: customization)
                 }
@@ -66,7 +69,7 @@ struct HomeView: View {
                 }
                 PageCustomizeButton(rails: rails, customization: customization, cloud: model.harborIdentity.signedIn ? model.harborIdentity.page("home") : nil, listStore: model.customLists)
                 if let error = customization.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
-                if !classic && !customization.layout.cwTop { ContinueWatching(app: model) }
+                if !classic && !customization.layout.cwTop { ContinueWatching(app: model, excludesAnime: InterfacePreferences.shared.animeOnlyInAnimeRoom) }
                 CustomizedRails(rails: rails, app: model, customization: customization)
                 if model.storageReady && model.customLists.ready && rails.isEmpty && !loading && homeError == nil {
                     HarborCatalogEmptyView(app: model).padding(.horizontal)

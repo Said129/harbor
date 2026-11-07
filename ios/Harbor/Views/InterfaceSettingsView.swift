@@ -5,6 +5,9 @@ struct InterfaceSettingsView: View {
     @Bindable var preferences = InterfacePreferences.shared
     @AppStorage("tvdbOrderPanel") private var richEpisodeOrderPanel = true
     @AppStorage("tvdbSeasonType") private var episodeOrder = "aired"
+    private var homeLanguagesValue: Binding<String> {
+        Binding(get: { preferences.homeLanguages.joined(separator: ",") }, set: { (value: String) in preferences.homeLanguages = SubtitleLanguages.preferredCodes(value) })
+    }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 30) {
@@ -25,8 +28,15 @@ struct InterfaceSettingsView: View {
                     }.buttonStyle(.plain).accessibilityIdentifier("settings-navigation")
                     HarborSettingsToggle(DesktopInterfaceText.value("Hide watched titles in catalogs"), note: DesktopInterfaceText.value("Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched."), isOn: $preferences.hideWatchedInCatalogs).accessibilityIdentifier("settings-hide-watched")
                     HarborSettingsToggle(DesktopInterfaceText.value("Hide unreleased titles"), note: DesktopInterfaceText.value("Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now."), isOn: $preferences.hideUnreleased).accessibilityIdentifier("settings-hide-unreleased")
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(DesktopInterfaceText.value("Home catalogs")).font(HarborTheme.font(14, weight: .semibold))
+                        Text(DesktopInterfaceText.value("Only show titles in these original languages on the Home rows. Leave all off to show everything."))
+                            .font(HarborTheme.font(13)).foregroundStyle(.secondary)
+                        HarborLanguagesPicker(value: homeLanguagesValue, identifier: "settings-home-languages")
+                    }
                     HarborSettingsToggle(DesktopInterfaceText.value("Watchlist shows only saved titles"), note: DesktopInterfaceText.value("Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play."), isOn: $preferences.libraryBookmarkedOnly).accessibilityIdentifier("settings-library-bookmarked-only")
                     HarborSettingsToggle(DesktopInterfaceText.value("Advance Continue Watching to the next episode"), note: DesktopInterfaceText.value("When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left."), isOn: $preferences.cwAdvanceNext).accessibilityIdentifier("settings-cw-advance-next")
+                    HarborSettingsToggle(DesktopInterfaceText.value("Keep anime in the Anime room only"), note: DesktopInterfaceText.value("Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching."), isOn: $preferences.animeOnlyInAnimeRoom).accessibilityIdentifier("settings-anime-only-room")
                 }
                 HarborSettingsSection(DesktopInterfaceText.value("Poster cards")) {
                     Text(DesktopInterfaceText.value("Scores")).font(HarborTheme.font(14, weight: .semibold))
