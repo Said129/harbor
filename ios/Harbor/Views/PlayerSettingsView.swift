@@ -205,6 +205,10 @@ struct PlayerSettingsView: View {
                 SettingsRow(title: DesktopInterfaceText.value("Subtitle sources"), icon: "ui-customize-subtitles")
             }.background(HarborTheme.surface.opacity(0.65), in: .rect(cornerRadius: 12)).accessibilityIdentifier("settings-subtitle-sources")
         }
+        HarborSettingsSection(DesktopInterfaceText.value("Choosing a track")) {
+            NavigationLink { SubtitleSelectionSettingsView() } label: { SettingsRow(title: DesktopInterfaceText.value("Choosing a track"), icon: "ui-customize-subtitles") }
+                .background(HarborTheme.surface.opacity(0.65), in: .rect(cornerRadius: 12)).accessibilityIdentifier("settings-subtitle-selection")
+        }
         HarborSettingsSection(DesktopInterfaceText.value("Subtitle languages"), note: DesktopInterfaceText.value("Harbor looks for subtitles in this order. Put your preferred language first.")) {
             HarborLanguagesPicker(value: $preferences.options.subtitleLanguage, identifier: "settings-subtitle-languages")
             HarborSettingsToggle(DesktopInterfaceText.value("Start with subtitles off"), isOn: $preferences.options.subtitlesOff)

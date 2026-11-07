@@ -301,7 +301,7 @@ final class AppModel {
             try ProfileSettingsStore.shared.activate(owner: binding.settingsOwner, sharedOwner: binding.sharedSettingsOwner, migrateLegacy: migrateLegacy,
                 legacyTMDB: { try KeychainStore().read("metadata.tmdb.v1", as: String.self) })
             InterfacePreferences.shared.reloadPreferences(); ThemePreferences.shared.reloadPreferences()
-            PlaybackPreferences.shared.reloadPreferences(); StreamPreferences.shared.reloadPreferences(); StreamAutoSwitchPreferences.shared.reloadPreferences()
+            PlaybackPreferences.shared.reloadPreferences(); StreamPreferences.shared.reloadPreferences(); StreamAutoSwitchPreferences.shared.reloadPreferences(); SubtitleSelectionPreferences.shared.reloadPreferences()
             MetadataPreferences.shared.reloadPreferences(); MusicPlayback.shared.reloadPreferences()
             TitleArtworkPreferences.shared.reloadPreferences(); StremioServerPreferences.shared.reloadPreferences()
         }
