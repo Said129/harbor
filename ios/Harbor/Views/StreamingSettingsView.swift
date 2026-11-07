@@ -14,6 +14,9 @@ struct StreamingSettingsView: View {
                 NavigationLink { StreamingServerSettingsView().toolbar(.visible, for: .navigationBar) } label: {
                     Label(DesktopInterfaceText.value("Remote streaming server"), systemImage: "server.rack").frame(minHeight: 44)
                 }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("streaming-remote-server")
+                NavigationLink { StreamAutoSwitchSettingsView().toolbar(.visible, for: .navigationBar) } label: {
+                    Label(DesktopInterfaceText.value("Auto-skip stalled streams"), systemImage: "timer").frame(minHeight: 44)
+                }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("streaming-auto-switch")
                 let cloud = app.harborIdentity
                 if cloud.signedIn {
                     HarborSettingsSection(DesktopInterfaceText.value("Sync")) {
