@@ -72,7 +72,7 @@ struct SettingsView: View {
                         }.accessibilityIdentifier("settings-subtitles")
                     }
                 }
-                if matches("Metadata providers", group: "Sources & library") || matches("Library", group: "Sources & library") || matches("Streaming services", group: "Sources & library") || matches("Streaming sources", group: "Sources & library") || matches("Debrid services", group: "Sources & library") || matches("Plugins", group: "Sources & library") {
+                if matches("Metadata providers", group: "Sources & library") || matches("Library", group: "Sources & library") || matches("Streaming services", group: "Sources & library") || matches("Streaming sources", group: "Sources & library") || matches("Debrid services", group: "Sources & library") || matches("Plugins", group: "Sources & library") || matches("AI search", group: "Sources & library") {
                     group("Sources & library") {
                         if matches("Plugins", group: "Sources & library") {
                             NavigationLink { HarborPluginManagementView(app: app).toolbar(.visible, for: .navigationBar) } label: {
@@ -98,6 +98,11 @@ struct SettingsView: View {
                             NavigationLink { MetadataSettingsView().toolbar(.visible, for: .navigationBar) } label: {
                                 SettingsRow(title: DesktopInterfaceText.value("Metadata providers"), icon: "nav-catalogs")
                             }.accessibilityIdentifier("settings-metadata")
+                        }
+                        if matches("AI search", group: "Sources & library") {
+                            NavigationLink { AISearchSettingsView(app: app).toolbar(.visible, for: .navigationBar) } label: {
+                                SettingsRow(title: DesktopInterfaceText.value("AI search"), icon: "nav-search")
+                            }.accessibilityIdentifier("settings-ai-search")
                         }
                         if matches("Library", group: "Sources & library") {
                             NavigationLink { InterfaceSettingsView(identity: app.harborIdentity).toolbar(.visible, for: .navigationBar) } label: {
