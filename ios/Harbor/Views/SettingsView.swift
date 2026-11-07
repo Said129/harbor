@@ -36,7 +36,7 @@ struct SettingsView: View {
                         }
                     }
                 }
-                if matches("Simkl", group: "Tracking") || matches("Trakt", group: "Tracking") || matches("AniList", group: "Tracking") || matches("MyAnimeList", group: "Tracking") {
+                if matches("Simkl", group: "Tracking") || matches("Trakt", group: "Tracking") || matches("AniList", group: "Tracking") || matches("MyAnimeList", group: "Tracking") || matches("Desktop notifications", group: "Tracking") {
                     group("Tracking") {
                         if matches("Simkl", group: "Tracking") {
                         NavigationLink { SimklSettingsView(app: app).id(app.accountOperationScope).toolbar(.visible, for: .navigationBar) } label: {
@@ -62,6 +62,11 @@ struct SettingsView: View {
                             NavigationLink { MyAnimeListSettingsView(app: app).id(app.accountOperationScope).toolbar(.visible, for: .navigationBar) } label: {
                                 SettingsRow(title: "MyAnimeList", icon: "tracker-mal")
                             }.accessibilityIdentifier("settings-mal")
+                        }
+                        if matches("Desktop notifications", group: "Tracking") {
+                            NavigationLink { EpisodeAlertsSettingsView(app: app).toolbar(.visible, for: .navigationBar) } label: {
+                                SettingsRow(title: DesktopInterfaceText.value("Desktop notifications"), icon: "ui-notification")
+                            }.accessibilityIdentifier("settings-episode-alerts")
                         }
                     }
                 }
