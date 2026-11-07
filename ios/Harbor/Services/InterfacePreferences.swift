@@ -10,6 +10,18 @@ final class InterfacePreferences {
     var homeMode = UserDefaults.standard.string(forKey: "homeMode") ?? "harbor" { didSet { persist(homeMode, forKey: "homeMode") } }
     var showImdbBadge = UserDefaults.standard.object(forKey: "showImdbBadge") as? Bool ?? true { didSet { persist(showImdbBadge, forKey: "showImdbBadge") } }
     var showTmdbBadge = UserDefaults.standard.object(forKey: "showTmdbBadge") as? Bool ?? false { didSet { persist(showTmdbBadge, forKey: "showTmdbBadge") } }
+    /// Desktop's card score chips (`defaults.ts`): RT, MAL and SIMKL on by default; the MDBList and audience chips off.
+    var showRtBadge = UserDefaults.standard.object(forKey: "showRtBadge") as? Bool ?? true { didSet { persist(showRtBadge, forKey: "showRtBadge") } }
+    var showMalBadge = UserDefaults.standard.object(forKey: "showMalBadge") as? Bool ?? true { didSet { persist(showMalBadge, forKey: "showMalBadge") } }
+    var showSimklBadge = UserDefaults.standard.object(forKey: "showSimklBadge") as? Bool ?? true { didSet { persist(showSimklBadge, forKey: "showSimklBadge") } }
+    var showPopcornBadge = UserDefaults.standard.object(forKey: "showPopcornBadge") as? Bool ?? false { didSet { persist(showPopcornBadge, forKey: "showPopcornBadge") } }
+    var showMetacriticBadge = UserDefaults.standard.object(forKey: "showMetacriticBadge") as? Bool ?? false { didSet { persist(showMetacriticBadge, forKey: "showMetacriticBadge") } }
+    var showLetterboxdBadge = UserDefaults.standard.object(forKey: "showLetterboxdBadge") as? Bool ?? false { didSet { persist(showLetterboxdBadge, forKey: "showLetterboxdBadge") } }
+    var showMdblistBadge = UserDefaults.standard.object(forKey: "showMdblistBadge") as? Bool ?? false { didSet { persist(showMdblistBadge, forKey: "showMdblistBadge") } }
+    var showTraktBadge = UserDefaults.standard.object(forKey: "showTraktBadge") as? Bool ?? false { didSet { persist(showTraktBadge, forKey: "showTraktBadge") } }
+    /// Desktop's `cardBadgeLimit` (default 3) and `badgePlacement` ("top" or "bottom", default "bottom").
+    var cardBadgeLimit = UserDefaults.standard.object(forKey: "cardBadgeLimit") as? Int ?? 3 { didSet { persist(cardBadgeLimit, forKey: "cardBadgeLimit") } }
+    var badgePlacement = UserDefaults.standard.string(forKey: "badgePlacement") == "top" ? "top" : "bottom" { didSet { persist(badgePlacement, forKey: "badgePlacement") } }
     var showWatchedButton = UserDefaults.standard.object(forKey: "showWatchedButton") as? Bool ?? true { didSet { persist(showWatchedButton, forKey: "showWatchedButton") } }
     /// Desktop's `wrappedButton` (default true): the Stats entry in the library header.
     var wrappedButton = UserDefaults.standard.object(forKey: "wrappedButton") as? Bool ?? true { didSet { persist(wrappedButton, forKey: "wrappedButton") } }
@@ -79,6 +91,16 @@ final class InterfacePreferences {
         homeMode = UserDefaults.standard.string(forKey: "homeMode") ?? "harbor"
         showImdbBadge = UserDefaults.standard.object(forKey: "showImdbBadge") as? Bool ?? true
         showTmdbBadge = UserDefaults.standard.object(forKey: "showTmdbBadge") as? Bool ?? false
+        showRtBadge = UserDefaults.standard.object(forKey: "showRtBadge") as? Bool ?? true
+        showMalBadge = UserDefaults.standard.object(forKey: "showMalBadge") as? Bool ?? true
+        showSimklBadge = UserDefaults.standard.object(forKey: "showSimklBadge") as? Bool ?? true
+        showPopcornBadge = UserDefaults.standard.object(forKey: "showPopcornBadge") as? Bool ?? false
+        showMetacriticBadge = UserDefaults.standard.object(forKey: "showMetacriticBadge") as? Bool ?? false
+        showLetterboxdBadge = UserDefaults.standard.object(forKey: "showLetterboxdBadge") as? Bool ?? false
+        showMdblistBadge = UserDefaults.standard.object(forKey: "showMdblistBadge") as? Bool ?? false
+        showTraktBadge = UserDefaults.standard.object(forKey: "showTraktBadge") as? Bool ?? false
+        cardBadgeLimit = UserDefaults.standard.object(forKey: "cardBadgeLimit") as? Int ?? 3
+        badgePlacement = UserDefaults.standard.string(forKey: "badgePlacement") == "top" ? "top" : "bottom"
         showWatchedButton = UserDefaults.standard.object(forKey: "showWatchedButton") as? Bool ?? true
         wrappedButton = UserDefaults.standard.object(forKey: "wrappedButton") as? Bool ?? true
         showEpisodeDescription = UserDefaults.standard.object(forKey: "showEpisodeDescription") as? Bool ?? true

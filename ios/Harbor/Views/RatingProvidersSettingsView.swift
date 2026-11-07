@@ -1,14 +1,15 @@
 import SwiftUI
 
 /// Desktop's provider keys for ratings (OMDb, MDBList) and the Details column of its ratings matrix
-/// (`library-panel/provider-keys.tsx`, `ratings-matrix.tsx`). The Cards column is not ported.
+/// (`library-panel/provider-keys.tsx`, `ratings-matrix.tsx`). The Cards column lives in `CardBadgesSettingsView`.
 struct RatingProvidersSettingsView: View {
     @State private var store: ProviderKeyStore
     @Bindable private var interface = InterfacePreferences.shared
     @State private var loadFailed = false
+    private let owner: String
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
 
-    init(owner: String) { _store = State(initialValue: ProviderKeyStore.forOwner(owner)) }
+    init(owner: String) { self.owner = owner; _store = State(initialValue: ProviderKeyStore.forOwner(owner)) }
 
     var body: some View {
         ScrollView {
@@ -19,6 +20,11 @@ struct RatingProvidersSettingsView: View {
                         RatingProviderKeyField(store: store, provider: provider)
                     }
                     if loadFailed { Button(text("Retry")) { load() }.frame(minHeight: 44).accessibilityIdentifier("rating-keys-reload") }
+                }
+                HarborSettingsSection(text("Cards"), note: text("The little score chip printed on poster cards across your rows and grids.")) {
+                    NavigationLink { CardBadgesSettingsView(owner: owner).toolbar(.visible, for: .navigationBar) } label: {
+                        SettingsRow(title: text("Cards"), icon: "nav-catalogs")
+                    }.background(HarborTheme.surface.opacity(0.65), in: .rect(cornerRadius: 12)).accessibilityIdentifier("rating-cards-settings")
                 }
                 HarborSettingsSection(text("Details"), note: text("The ratings row on a title's detail page, next to runtime and genre.")) {
                     ForEach(DetailRatings.sources) { source in

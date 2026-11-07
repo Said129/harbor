@@ -195,7 +195,7 @@ struct ProfilePoster: View {
                 .blur(radius: !reduceMotion && configuration.effect == .blur && !loaded ? 8 : 0)
                 .opacity(configuration.effect == .off || reduceMotion || loaded ? 1 : 0)
                 .animation(reduceMotion || configuration.effect == .off ? nil : .easeOut(duration: 0.35), value: loaded)
-                .overlay(alignment: .bottomTrailing) { if showsRating && configuration.style == .poster { rating } }
+                .overlay { if showsRating && configuration.style == .poster { CardRatingChips(media: media, owner: MetadataPreferences.shared.settingsOwner ?? "guest") } }
                 .overlay { if selected { RoundedRectangle(cornerRadius: configuration.radius).stroke(HarborTheme.accent, lineWidth: 2) } }
                 .shadow(color: .black.opacity(selected ? 0.65 : 0), radius: selected ? 24 : 0, x: 0, y: selected ? 12 : 0)
                 .scaleEffect(dock.scale, anchor: dockAnchor).offset(x: dock.x, y: dock.y)
@@ -220,15 +220,6 @@ struct ProfilePoster: View {
             await ExpandingCardArtwork.shared.invalidate(key: ExpandingCardArtwork.key(media, configuration), url: url)
             guard key == wideTaskKey, wideURL == url else { return }
             wideURL = nil; if wideRevision < 8 { wideRevision += 1 }
-        }
-    }
-    @ViewBuilder private var rating: some View {
-        if (media.ratingSource == "TMDB" ? InterfacePreferences.shared.showTmdbBadge : InterfacePreferences.shared.showImdbBadge), let value = media.imdbRating {
-            HStack(spacing: 3) {
-                Text(media.ratingSource ?? "IMDb").font(.system(size: 7, weight: .black)).foregroundStyle(.black).padding(2)
-                    .background(media.ratingSource == "TMDB" ? Color.mint : .yellow, in: .rect(cornerRadius: 2))
-                Text(value).font(.system(size: 9, weight: .semibold)).foregroundStyle(.white)
-            }.padding(4).background(.black.opacity(0.8), in: .capsule).padding(5)
         }
     }
     private var televisionArtwork: some View {
