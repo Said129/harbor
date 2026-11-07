@@ -53,6 +53,11 @@ struct SettingsView: View {
                                 SettingsRow(title: "AniList", icon: "tracker-anilist")
                             }.accessibilityIdentifier("settings-anilist")
                         }
+                        if matches("Letterboxd", group: "Tracking") {
+                            NavigationLink { LetterboxdSettingsView().toolbar(.visible, for: .navigationBar) } label: {
+                                SettingsRow(title: "Letterboxd", icon: "desktop-bookmark")
+                            }.accessibilityIdentifier("settings-letterboxd")
+                        }
                         if matches("MyAnimeList", group: "Tracking") {
                             NavigationLink { MyAnimeListSettingsView(app: app).id(app.accountOperationScope).toolbar(.visible, for: .navigationBar) } label: {
                                 SettingsRow(title: "MyAnimeList", icon: "tracker-mal")
