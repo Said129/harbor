@@ -38,7 +38,8 @@ actor CastChromecastSession {
         self.stream = stream
         self.requestTimeout = requestTimeout
         self.heartbeatInterval = heartbeatInterval
-        let channel = AsyncStream<Update>.makeStream()
+        // Status updates are only observed, so the newest few are kept rather than one per poll without limit.
+        let channel = AsyncStream<Update>.makeStream(bufferingPolicy: .bufferingNewest(8))
         updates = channel.stream
         updateSink = channel.continuation
     }

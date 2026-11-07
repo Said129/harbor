@@ -6,11 +6,12 @@ import XCTest
 final class CastChromecastTests: XCTestCase {
     /// The device side of a conversation. Each client frame gets the replies `respond` returns, and `deliver` pushes a
     /// device-initiated message such as PING.
-    private actor ScriptedCastStream: CastByteStream {
+    private final class ScriptedCastStream: CastByteStream, @unchecked Sendable {
         let incoming: AsyncThrowingStream<Data, Error>
         private let sink: AsyncThrowingStream<Data, Error>.Continuation
         private let respond: @Sendable (CastChromecast.Message) -> [CastChromecast.Message]
-        private(set) var sentMessages: [CastChromecast.Message] = []
+        private let lock = NSLock()
+        private var received: [CastChromecast.Message] = []
 
         init(respond: @escaping @Sendable (CastChromecast.Message) -> [CastChromecast.Message]) {
             let channel = AsyncThrowingStream<Data, Error>.makeStream()
@@ -19,33 +20,47 @@ final class CastChromecastTests: XCTestCase {
             self.respond = respond
         }
 
+        /// Every message the client wrote, in order.
+        var sentMessages: [CastChromecast.Message] {
+            lock.lock()
+            defer { lock.unlock() }
+            return received
+        }
+
         func send(_ data: Data) async throws {
             var reader = CastChromecast.FrameReader()
-            let received = try reader.append(data)
-            sentMessages += received
-            for message in received {
+            let messages = try reader.append(data)
+            record(messages)
+            for message in messages {
                 for reply in respond(message) {
                     sink.yield(Data(CastChromecast.frame(reply)))
                 }
             }
         }
 
-        nonisolated func close() {
+        func close() {
             sink.finish()
         }
 
-        nonisolated func deliver(_ message: CastChromecast.Message) {
+        /// Pushes a device-initiated message, such as PING.
+        func deliver(_ message: CastChromecast.Message) {
             sink.yield(Data(CastChromecast.frame(message)))
+        }
+
+        private func record(_ messages: [CastChromecast.Message]) {
+            lock.lock()
+            defer { lock.unlock() }
+            received += messages
         }
     }
 
-    /// A receiver that launches the Harbor app with transport `web-5` and session `sess-1`, loads media 7, and answers
-    /// the media controls with a paused status at 42.5 seconds.
+    /// A receiver that launches the default media receiver with transport `web-5` and session `sess-1`, loads media 7, and
+    /// answers the media controls with a paused status at 42.5 seconds.
     private static func deviceReply(to message: CastChromecast.Message) -> [CastChromecast.Message] {
         guard let inbound = CastChromecast.parseInbound(message.payload), let id = inbound.requestID else { return [] }
         switch inbound.type {
         case "LAUNCH":
-            let app = "{\"appId\":\"120F754D\",\"sessionId\":\"sess-1\",\"transportId\":\"web-5\"}"
+            let app = "{\"appId\":\"CC1AD845\",\"sessionId\":\"sess-1\",\"transportId\":\"web-5\"}"
             return [reply(namespace: CastChromecast.receiverNamespace, "{\"type\":\"RECEIVER_STATUS\",\"requestId\":\(id),\"status\":{\"applications\":[\(app)]}}")]
         case "LOAD", "SEEK":
             return [reply(namespace: CastChromecast.mediaNamespace, "{\"type\":\"MEDIA_STATUS\",\"requestId\":\(id),\"status\":[{\"mediaSessionId\":7,\"playerState\":\"PLAYING\",\"currentTime\":0.0}]}")]
@@ -155,8 +170,8 @@ final class CastChromecastTests: XCTestCase {
             [CastChromecast.MediaEntry(mediaSessionID: 7, playerState: "PAUSED", currentTime: 42.5, durationSec: 5400)]
         )
 
-        let receiver = "{\"type\":\"RECEIVER_STATUS\",\"requestId\":1,\"status\":{\"applications\":[{\"appId\":\"120F754D\",\"displayName\":\"Harbor\",\"sessionId\":\"sess-1\",\"transportId\":\"web-5\"}],\"volume\":{\"level\":0.5,\"muted\":false}}}"
-        let expectedApp = CastChromecast.ReceiverApp(appID: "120F754D", transportID: "web-5", sessionID: "sess-1")
+        let receiver = "{\"type\":\"RECEIVER_STATUS\",\"requestId\":1,\"status\":{\"applications\":[{\"appId\":\"CC1AD845\",\"displayName\":\"Default Media Receiver\",\"sessionId\":\"sess-1\",\"transportId\":\"web-5\"}],\"volume\":{\"level\":0.5,\"muted\":false}}}"
+        let expectedApp = CastChromecast.ReceiverApp(appID: "CC1AD845", transportID: "web-5", sessionID: "sess-1")
         XCTAssertEqual(
             CastChromecast.parseReceiverStatus(receiver),
             CastChromecast.ReceiverStatus(apps: [expectedApp], volumeLevel: 0.5)
@@ -189,7 +204,7 @@ final class CastChromecastTests: XCTestCase {
         let stream = ScriptedCastStream(respond: CastChromecastTests.deviceReply)
         let session = CastChromecastSession(stream: stream, requestTimeout: .seconds(5), heartbeatInterval: .seconds(3600))
         try await session.connect()
-        try await session.launch(appID: CastChromecast.harborReceiverAppID)
+        try await session.launch(appID: CastChromecast.defaultMediaReceiverAppID)
         let mediaID = try await session.load(url: "https://cdn.example.com/movie.mp4", contentType: "video/mp4", title: "Night Movie", poster: nil, startSeconds: 0)
         XCTAssertEqual(mediaID, 7)
         try await session.seek(to: 30)
@@ -199,7 +214,7 @@ final class CastChromecastTests: XCTestCase {
         try await session.stopReceiver()
         await session.close()
 
-        let sent = await stream.sentMessages
+        let sent = stream.sentMessages
         XCTAssertEqual(
             sent.map { CastChromecast.parseInbound($0.payload)?.type ?? "" },
             ["CONNECT", "PING", "LAUNCH", "CONNECT", "LOAD", "SEEK", "GET_STATUS", "STOP"]
@@ -224,11 +239,10 @@ final class CastChromecastTests: XCTestCase {
             payload: CastChromecast.pingPayload()
         ))
         for _ in 0..<50 {
-            let sent = await stream.sentMessages
-            if sent.contains(where: { $0.payload == CastChromecast.pongPayload() }) { break }
+            if stream.sentMessages.contains(where: { $0.payload == CastChromecast.pongPayload() }) { break }
             try await Task.sleep(for: .milliseconds(20))
         }
-        let types = await stream.sentMessages.map { CastChromecast.parseInbound($0.payload)?.type ?? "" }
+        let types = stream.sentMessages.map { CastChromecast.parseInbound($0.payload)?.type ?? "" }
         XCTAssertEqual(types, ["CONNECT", "PING", "PONG"])
         await session.close()
     }

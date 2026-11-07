@@ -143,6 +143,8 @@ final class CastController {
             failure = Self.describe(CastProtocolError.unsupported, deviceName: target.name)
             return
         }
+        // A new cast replaces the previous one, as Desktop's `replace_active_session` does.
+        await releaseChromecast()
         stopPolling()
         generation += 1
         let current = generation
@@ -265,9 +267,7 @@ final class CastController {
             case .dlna:
                 try await perform(CastDLNA.stopCall(controlURL: target.endpoint))
             case .chromecast:
-                try await chromecast?.stopReceiver()
-                await chromecast?.close()
-                chromecast = nil
+                await releaseChromecast()
             }
         } catch {
             failure = Self.describe(error, deviceName: target.name)
@@ -415,15 +415,22 @@ final class CastController {
 
     // MARK: Chromecast
 
-    /// Desktop's `cast_load` for `chromecast` (`cast.rs`), minus the HLS remux: connect, launch the Harbor receiver,
-    /// then LOAD the source at the resume point. The previous session, if any, is closed first.
+    /// Ends the Chromecast session, if any. Desktop opens a new connection for each command, so a dead socket cannot carry
+    /// STOP. The local hand-back must not depend on it, so the STOP error is ignored here and the session is closed anyway.
+    private func releaseChromecast() async {
+        let session = chromecast
+        chromecast = nil
+        try? await session?.stopReceiver()
+        await session?.close()
+    }
+
+    /// Desktop's `cast_load` for `chromecast` (`cast.rs`), minus the HLS remux: connect, launch the default media receiver,
+    /// then LOAD the source at the resume point.
     private func launchChromecast(_ target: CastTarget, mediaURL: String, title: String?, startSeconds: Double) async throws {
         guard !CastChromecast.isUnsupportedContainer(url: mediaURL) else { throw CastProtocolError.unsupported }
-        await chromecast?.close()
-        chromecast = nil
         let session = try await openChromecast(host: target.host, port: target.port)
         do {
-            try await session.launch(appID: CastChromecast.harborReceiverAppID)
+            try await session.launch(appID: CastChromecast.defaultMediaReceiverAppID)
             _ = try await session.load(
                 url: mediaURL,
                 contentType: CastChromecast.contentType(url: mediaURL),

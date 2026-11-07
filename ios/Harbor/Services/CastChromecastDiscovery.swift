@@ -18,11 +18,12 @@ enum CastChromecastDiscovery {
         }
     }
 
-    static func target(host: String, port: UInt16, txt: [String: String]) -> CastTarget {
+    /// `fallbackName` is the Bonjour instance name, which Desktop uses when the TXT record has no friendly name.
+    static func target(host: String, port: UInt16, txt: [String: String], fallbackName: String) -> CastTarget {
         CastTarget(
             id: "cc-\(host)-\(port)",
             kind: .chromecast,
-            name: txt["fn"] ?? txt["n"] ?? "Chromecast",
+            name: txt["fn"] ?? txt["n"] ?? fallbackName,
             model: txt["md"],
             host: host,
             endpoint: "",
@@ -69,12 +70,18 @@ private final class CastChromecastBrowse: @unchecked Sendable {
             guard !seen.contains(key) else { continue }
             seen.insert(key)
             let txt = CastChromecastBrowse.txt(result.metadata)
-            let connection = NWConnection(to: result.endpoint, using: .tcp)
+            let instanceName = CastChromecastBrowse.instanceName(result.endpoint)
+            // IPv4 only: a Chromecast's Happy Eyeballs result may be an IPv6 address, which the target does not use.
+            let parameters = NWParameters.tcp
+            if let ipOptions = parameters.defaultProtocolStack.internetProtocol as? NWProtocolIP.Options {
+                ipOptions.version = .v4
+            }
+            let connection = NWConnection(to: result.endpoint, using: parameters)
             connection.stateUpdateHandler = { [weak self] state in
                 switch state {
                 case .ready:
                     if let remote = connection.currentPath?.remoteEndpoint, case let .hostPort(host, port) = remote, let ip = CastChromecastBrowse.ipv4(host) {
-                        self?.record(CastChromecastDiscovery.target(host: ip, port: port.rawValue, txt: txt))
+                        self?.record(CastChromecastDiscovery.target(host: ip, port: port.rawValue, txt: txt, fallbackName: instanceName))
                     }
                     connection.cancel()
                 case .failed, .cancelled:
@@ -111,5 +118,11 @@ private final class CastChromecastBrowse: @unchecked Sendable {
     private static func ipv4(_ host: NWEndpoint.Host) -> String? {
         if case let .ipv4(address) = host { return "\(address)" }
         return nil
+    }
+
+    /// The Bonjour instance name. Desktop falls back to the full service name (`cast.rs`), so the name is the fallback here.
+    private static func instanceName(_ endpoint: NWEndpoint) -> String {
+        if case let .service(name, _, _, _) = endpoint { return name }
+        return "\(endpoint)"
     }
 }

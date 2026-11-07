@@ -7,9 +7,10 @@ enum CastChromecast {
     static let port: UInt16 = 8009
     static let senderID = "sender-0"
     static let receiverID = "receiver-0"
-    /// Desktop's `HARBOR_RECEIVER_APP_ID` (`cast.rs`), launched for video. Desktop uses the default media receiver
-    /// (`CC1AD845`) for audio only, and iOS casts video only.
-    static let harborReceiverAppID = "120F754D"
+    /// The Google default media receiver, launched for video. It plays the direct URL that iOS sends. Desktop launches its own
+    /// receiver (`HARBOR_RECEIVER_APP_ID` = `120F754D`, `cast.rs:25`) because Desktop sends HLS from its proxy (`cast.rs:821-825`),
+    /// and iOS has no proxy.
+    static let defaultMediaReceiverAppID = "CC1AD845"
     static let connectionNamespace = "urn:x-cast:com.google.cast.tp.connection"
     static let heartbeatNamespace = "urn:x-cast:com.google.cast.tp.heartbeat"
     static let receiverNamespace = "urn:x-cast:com.google.cast.receiver"
