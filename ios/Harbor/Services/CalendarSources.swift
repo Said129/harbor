@@ -1,8 +1,9 @@
 import Foundation
 
-/// The calendar's sources (Desktop's `calendarSource` setting, same values). Simkl, Custom and Games are not offered yet.
+/// The calendar's sources (Desktop's `calendarSource` setting, same values). My Simkl, Custom and Games are not offered yet.
 enum CalendarSource: String, CaseIterable, Sendable {
     case library, all, trakt, anticipated, anime
+    case simklAnticipated = "simkl-anticipated"
 
     /// Desktop's label, a translation key.
     var label: String {
@@ -11,6 +12,7 @@ enum CalendarSource: String, CaseIterable, Sendable {
         case .all: "All upcoming"
         case .trakt: "My Trakt"
         case .anticipated: "Trakt anticipated"
+        case .simklAnticipated: "Simkl premieres"
         case .anime: "Anime"
         }
     }
@@ -20,6 +22,7 @@ enum CalendarSource: String, CaseIterable, Sendable {
         case .all: "Everything releasing this month from TMDB"
         case .trakt: "Upcoming episodes and movies from your Trakt watchlist"
         case .anticipated: "The most anticipated upcoming releases on Trakt"
+        case .simklAnticipated: "New shows and anime premiering this month, from Simkl"
         case .anime: "Anime episodes airing this month, sub or dub"
         }
     }
@@ -28,11 +31,14 @@ enum CalendarSource: String, CaseIterable, Sendable {
         case .library: "nav-library"
         case .all: "nav-explore"
         case .trakt, .anticipated: "tracker-trakt"
+        case .simklAnticipated: "tracker-simkl"
         case .anime: "nav-anime"
         }
     }
-    /// Desktop hides "My Trakt" until Trakt is connected.
-    static func offered(traktConnected: Bool) -> [CalendarSource] { allCases.filter { $0 != .trakt || traktConnected } }
+    /// Desktop hides "My Trakt" until Trakt is connected, and the Simkl source until Simkl is.
+    static func offered(traktConnected: Bool, simklConnected: Bool = false) -> [CalendarSource] {
+        allCases.filter { ($0 != .trakt || traktConnected) && ($0 != .simklAnticipated || simklConnected) }
+    }
 }
 
 /// One day's entry from Trakt's calendar before it is joined with its poster.
@@ -197,6 +203,77 @@ enum CalendarSources {
         return byDate(items.filter { !$0.isMovie } + items.filter(\.isMovie))
     }
 
+    // MARK: Simkl premieres (data.simkl.in)
+
+    /// The public application identity Desktop ships, not a personal token.
+    static let simklClientID = "9609ef0a6051b6fdcf3290fd962fd65e0f8e969c942555410cffd37afca91997"
+
+    /// One airing of Simkl's calendar joined with its title's shared metadata.
+    struct SimklCdnItem: Equatable, Sendable {
+        var title: String
+        var poster: String?
+        var date: String
+        var rating: Double?
+        var imdb: String?
+        var tmdb: String?
+        var mal: String?
+        var simklID: Int
+        var season: Int?
+        var episode: Int?
+    }
+
+    /// The catalogs of Desktop's `fetchSimklCdnArchive`: tv, anime and movie.
+    static func simklURL(year: Int, month: Int, catalog: String) -> URL? {
+        guard ["tv", "anime", "movie"].contains(catalog) else { return nil }
+        var parts = URLComponents(string: "https://data.simkl.in/calendar/v2/\(year)/\(month)/\(catalog == "movie" ? "movie_release" : catalog).json")
+        parts?.queryItems = [URLQueryItem(name: "client_id", value: simklClientID), URLQueryItem(name: "app-name", value: "harbor"), URLQueryItem(name: "app-version", value: "0.9.132")]
+        return parts?.url
+    }
+
+    /// An id Simkl sent as a number or a string; zero and empty mean none.
+    private static func simklID(_ value: JSONValue) -> String? {
+        switch value {
+        case .string(let text): return text.isEmpty ? nil : text
+        case .integer(let number): return number == 0 ? nil : String(number)
+        case .number(let number): return number == 0 || !number.isFinite ? nil : String(Int(number))
+        default: return nil
+        }
+    }
+
+    /// Desktop's `parseSimklCalendar`: the v2 file stores each title once and joins every airing by its Simkl id.
+    static func simklCalendar(_ json: JSONValue?) -> [SimklCdnItem] {
+        guard let json, case .array(let calendar) = json["calendar"], case .object(let metadata) = json["metadata"] else { return [] }
+        var items: [SimklCdnItem] = []
+        for entry in calendar {
+            guard let id = entry["simkl_id"].integer, id > 0, case .object(let show) = metadata[String(id)] ?? .null,
+                  let title = show["title"]?.string, !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                  let date = entry["date"].string, CalendarTime.instant(date) != nil || date.range(of: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", options: .regularExpression) != nil else { continue }
+            let ids = show["ids"] ?? .null
+            var imdb: String?
+            if let text = ids["imdb"].string, !text.isEmpty { imdb = text }
+            items.append(SimklCdnItem(title: title, poster: show["poster"]?.string, date: date, rating: show["ratings"]?["simkl"]["rating"].numericValue, imdb: imdb,
+                                      tmdb: simklID(ids["tmdb"]), mal: simklID(ids["mal"]), simklID: id,
+                                      season: entry["episode"]["season"].integer, episode: entry["episode"]["episode"].integer))
+        }
+        return items
+    }
+
+    /// Desktop's `mapCdnItem`. A title Simkl knows only by its MAL id opens through that id.
+    static func simklItems(_ rows: [SimklCdnItem], movie: Bool, anime: Bool) -> [CalendarItem] {
+        rows.map { row -> CalendarItem in
+            let id: String
+            if let imdb = row.imdb { id = imdb }
+            else if let tmdb = row.tmdb { id = "tmdb:\(movie ? "movie" : "tv"):\(tmdb)" }
+            else if anime, let mal = row.mal { id = "mal:\(mal)" }
+            else { id = "simkl:\(row.simklID)" }
+            var name = row.title
+            if !movie, let season = row.season, let episode = row.episode { name = "\(row.title) S\(pad(season))E\(pad(episode))" }
+            let poster = row.poster.flatMap { $0.isEmpty ? nil : "https://wsrv.nl/?url=https://simkl.in/posters/\($0)_m.webp&q=90" }
+            return CalendarItem(id: id, imdbID: row.imdb, isMovie: movie, name: name, poster: poster, background: nil, releaseDate: String(row.date.prefix(10)),
+                                isAnime: anime, overview: "", voteAverage: row.rating ?? 0)
+        }
+    }
+
     // MARK: AniList (Anime)
 
     static let airingQuery = """
@@ -281,6 +358,8 @@ enum CalendarSources {
             return EmptyMonth(heading: "Nothing on Trakt this month", message: "Trakt has no upcoming releases for your watchlist this month. Past months and dates more than six months out aren't covered by Trakt's calendar feed.")
         case .anticipated:
             return EmptyMonth(heading: "Nothing anticipated this month", message: "None of Trakt's most-anticipated upcoming releases land in this month. Try a different month.")
+        case .simklAnticipated:
+            return EmptyMonth(heading: "No Simkl premieres this month", message: "Simkl lists no new shows or anime premiering this month. Try a different month.")
         case .anime:
             return EmptyMonth(heading: "Nothing airing this month", message: "AniList has no anime episodes scheduled to air this month. Try a different month.")
         case .all:
@@ -379,6 +458,20 @@ struct CalendarFetcher: Sendable {
         let entries = (CalendarSources.anticipatedEntries(showRows, movies: false) + CalendarSources.anticipatedEntries(movieRows, movies: true))
             .filter { CalendarTime.inMonth($0.date, year: year, month: month) }
         return CalendarSources.anticipatedItems(entries, year: year, month: month, metas: await metas(entries))
+    }
+
+    private func simklCatalog(_ catalog: String, year: Int, month: Int) async -> [CalendarItem] {
+        guard let url = CalendarSources.simklURL(year: year, month: month, catalog: catalog), let data = await json(url) else { return [] }
+        return CalendarSources.simklItems(CalendarSources.simklCalendar(data), movie: catalog == "movie", anime: catalog == "anime")
+    }
+
+    /// Simkl premieres: the new shows, anime and movies of the month from Simkl's public calendar files.
+    func simklPremieres(year: Int, month: Int) async -> [CalendarItem] {
+        async let shows = simklCatalog("tv", year: year, month: month)
+        async let anime = simklCatalog("anime", year: year, month: month)
+        async let movies = simklCatalog("movie", year: year, month: month)
+        let (a, b, c) = await (shows, anime, movies)
+        return CalendarSources.byDate(a + b + c)
     }
 
     /// Anime: what AniList schedules to air in the month, a few pages at a time.

@@ -1224,6 +1224,7 @@
 "New Face Award" = "Nagroda dla nowej twarzy";
 "New list" = "Nowa lista";
 "New profile" = "Nowy profil";
+"New shows and anime premiering this month, from Simkl" = "Nowe seriale i anime mające premierę w tym miesiącu, według Simkl";
 "New voyage" = "Nowy rejs";
 "Newest" = "Najnowsze";
 "Next" = "Dalej";
@@ -1244,6 +1245,7 @@
 "Ningún título coincide con estos filtros." = "Żaden tytuł nie pasuje do tych filtrów.";
 "No" = "Nie";
 "No Label" = "Bez etykiety";
+"No Simkl premieres this month" = "Brak premier w Simkl w tym miesiącu";
 "No catalogs match your search." = "Żadne katalogi nie pasują do wyszukiwania.";
 "No catalogs yet" = "Nie ma jeszcze żadnych katalogów";
 "No comments yet" = "Brak komentarzy";
@@ -1865,6 +1867,8 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "Wycisz";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl nie zawiera żadnych nowych seriali ani anime z premierą w tym miesiącu. Wybierz inny miesiąc.";
+"Simkl premieres" = "Premiery Simkl";
 "Simkl sign-in expired, reconnect it" = "Sesja logowania w Simkl wygasła, połącz ponownie";
 "Sin configurar" = "Nie ustawiono";
 "Sin corrección" = "Bez korekty";

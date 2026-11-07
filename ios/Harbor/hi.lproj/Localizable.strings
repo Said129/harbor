@@ -1224,6 +1224,7 @@
 "New Face Award" = "नया चेहरा पुरस्कार";
 "New list" = "नई सूची";
 "New profile" = "नई प्रोफ़ाइल";
+"New shows and anime premiering this month, from Simkl" = "Simkl से मिले, इस महीने प्रीमियर होने वाले नए शो और एनीमे";
 "New voyage" = "नई यात्रा";
 "Newest" = "सबसे नया";
 "Next" = "अगला";
@@ -1244,6 +1245,7 @@
 "Ningún título coincide con estos filtros." = "इन फ़िल्टर से मेल खाने वाला कोई शीर्षक नहीं।";
 "No" = "नहीं";
 "No Label" = "कोई लेबल नहीं";
+"No Simkl premieres this month" = "इस महीने कोई Simkl प्रीमियर नहीं है";
 "No catalogs match your search." = "आपकी खोज से कोई कैटलॉग मेल नहीं खाता।";
 "No catalogs yet" = "अभी तक कोई कैटलॉग नहीं है";
 "No comments yet" = "अभी तक कोई टिप्पणी नहीं";
@@ -1865,6 +1867,8 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "म्यूट करें";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl में इस महीने प्रीमियर होने वाले कोई नए शो या ऐनिमे सूचीबद्ध नहीं हैं। कोई दूसरा महीना आज़माएँ।";
+"Simkl premieres" = "Simkl प्रीमियर";
 "Simkl sign-in expired, reconnect it" = "Simkl साइन-इन की समय-सीमा खत्म हो गई है, इसे फिर से कनेक्ट करें";
 "Sin configurar" = "सेट नहीं है";
 "Sin corrección" = "कोई सुधार नहीं";

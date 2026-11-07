@@ -1224,6 +1224,7 @@
 "New Face Award" = "Yeni Yüz Ödülü";
 "New list" = "Yeni liste";
 "New profile" = "Yeni profil";
+"New shows and anime premiering this month, from Simkl" = "Simkl'den bu ay prömiyer yapacak yeni diziler ve animeler";
 "New voyage" = "Yeni yolculuk";
 "Newest" = "En yeni";
 "Next" = "Sonraki";
@@ -1244,6 +1245,7 @@
 "Ningún título coincide con estos filtros." = "Bu filtrelerle eşleşen içerik yok.";
 "No" = "Hayır";
 "No Label" = "Etiket Yok";
+"No Simkl premieres this month" = "Bu ay Simkl'da prömiyer yok";
 "No catalogs match your search." = "Aramanızla eşleşen katalog yok.";
 "No catalogs yet" = "Henüz katalog yok";
 "No comments yet" = "Henüz yorum yok";
@@ -1865,6 +1867,8 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "Sesi kapat";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl'da bu ay prömiyer yapacak yeni dizi veya anime yok. Başka bir ay deneyin.";
+"Simkl premieres" = "Simkl prömiyerleri";
 "Simkl sign-in expired, reconnect it" = "Simkl oturumunun süresi doldu, yeniden bağlayın";
 "Sin configurar" = "Ayarlanmadı";
 "Sin corrección" = "Düzeltme yok";

@@ -1224,6 +1224,7 @@
 "New Face Award" = "신인상";
 "New list" = "새 목록";
 "New profile" = "새 프로필";
+"New shows and anime premiering this month, from Simkl" = "Simkl에서 이번 달 첫 공개되는 새 시리즈와 애니메이션";
 "New voyage" = "새 여정";
 "Newest" = "최신순";
 "Next" = "다음";
@@ -1244,6 +1245,7 @@
 "Ningún título coincide con estos filtros." = "이 필터와 일치하는 작품이 없습니다.";
 "No" = "아니요";
 "No Label" = "레이블 없음";
+"No Simkl premieres this month" = "이번 달 Simkl 공개 예정작 없음";
 "No catalogs match your search." = "검색과 일치하는 카탈로그가 없습니다.";
 "No catalogs yet" = "아직 카탈로그가 없습니다";
 "No comments yet" = "아직 댓글이 없습니다";
@@ -1865,6 +1867,8 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "음소거";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl lists no new shows or anime premiering this month. Try a different month." = "이번 달에는 Simkl에서 첫 공개되는 새 시리즈나 애니메이션이 없습니다. 다른 달을 선택해 보세요.";
+"Simkl premieres" = "Simkl 첫 공개작";
 "Simkl sign-in expired, reconnect it" = "Simkl 로그인이 만료되었습니다. 다시 연결하세요.";
 "Sin configurar" = "설정되지 않음";
 "Sin corrección" = "보정 안 함";

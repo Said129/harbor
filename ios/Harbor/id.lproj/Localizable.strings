@@ -1224,6 +1224,7 @@
 "New Face Award" = "Penghargaan Wajah Baru";
 "New list" = "Daftar baru";
 "New profile" = "Profil baru";
+"New shows and anime premiering this month, from Simkl" = "Acara dan anime baru yang tayang perdana bulan ini, dari Simkl";
 "New voyage" = "Pelayaran baru";
 "Newest" = "Terbaru";
 "Next" = "Berikutnya";
@@ -1244,6 +1245,7 @@
 "Ningún título coincide con estos filtros." = "Tidak ada judul yang cocok dengan filter ini.";
 "No" = "Tidak";
 "No Label" = "Tanpa Label";
+"No Simkl premieres this month" = "Tidak ada tayangan perdana Simkl bulan ini";
 "No catalogs match your search." = "Tidak ada katalog yang cocok dengan pencarian Anda.";
 "No catalogs yet" = "Belum ada katalog";
 "No comments yet" = "Belum ada komentar";
@@ -1865,6 +1867,8 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "Bisukan";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl tidak mencantumkan acara atau anime baru yang tayang perdana bulan ini. Coba bulan lain.";
+"Simkl premieres" = "Tayang perdana Simkl";
 "Simkl sign-in expired, reconnect it" = "Sesi masuk Simkl kedaluwarsa, hubungkan kembali";
 "Sin configurar" = "Belum diatur";
 "Sin corrección" = "Tanpa koreksi";

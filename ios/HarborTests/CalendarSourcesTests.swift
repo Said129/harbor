@@ -36,6 +36,23 @@ private func airing(_ id: Int, mal: Int?, episode: Int?, at: Double, type: Strin
     return .object(node)
 }
 
+private func simklEntry(_ id: Int, _ date: String, season: Int? = nil, episode: Int? = nil) -> JSONValue {
+    var entry: [String: JSONValue] = ["simkl_id": .integer(Int64(id)), "date": .string(date)]
+    if let season, let episode { entry["episode"] = .object(["season": .integer(Int64(season)), "episode": .integer(Int64(episode))]) }
+    return .object(entry)
+}
+
+private func simklShow(_ title: String, poster: String? = nil, rating: Double? = nil, ids: [String: JSONValue] = [:]) -> JSONValue {
+    var show: [String: JSONValue] = ["title": .string(title), "ids": .object(ids)]
+    if let poster { show["poster"] = .string(poster) }
+    if let rating { show["ratings"] = .object(["simkl": .object(["rating": .number(rating)])]) }
+    return .object(show)
+}
+
+private func simklPayload(_ entries: [JSONValue], _ metadata: [String: JSONValue]) -> JSONValue {
+    .object(["calendar": .array(entries), "metadata": .object(metadata)])
+}
+
 /// Desktop's calendar sources (`lib/calendar.ts`, `calendar-sources.ts`, `trakt/calendar.ts`, `anilist/airing.ts`).
 final class CalendarSourcesTests: XCTestCase {
     private let utc: Calendar = { var calendar = Calendar(identifier: .gregorian); calendar.timeZone = TimeZone(identifier: "UTC")!; return calendar }()
@@ -292,10 +309,70 @@ final class CalendarSourcesTests: XCTestCase {
         XCTAssertTrue(nothing.isEmpty)
     }
 
+    func testSimklCalendarJoinsEachAiringWithItsTitleAndSkipsRowsDesktopSkips() {
+        let metadata: [String: JSONValue] = [
+            "10": simklShow("Show X", poster: "ab/cd", rating: 7.9, ids: ["imdb": .string("tt1"), "tmdb": .string("55"), "mal": .integer(7)]),
+            "11": simklShow("Film", ids: ["tmdb": .integer(99)]),
+            "12": simklShow("Anime Y", ids: ["mal": .integer(321)]),
+            "13": simklShow("   "),
+            "14": simklShow("No date"),
+            "15": simklShow("Zero ids", ids: ["tmdb": .integer(0), "imdb": .string("")])]
+        let entries = [simklEntry(10, "2026-11-12T14:00:00Z", season: 1, episode: 3), simklEntry(11, "2026-11-20"), simklEntry(12, "2026-11-05T00:00:00Z", season: 2, episode: 11),
+                       simklEntry(13, "2026-11-06"), simklEntry(14, "not a date"), simklEntry(99, "2026-11-07"), simklEntry(0, "2026-11-07"),
+                       simklEntry(10, "2026-11-30T00:00:00Z", season: 1, episode: 4), simklEntry(15, "2026-11-08")]
+        let rows = CalendarSources.simklCalendar(simklPayload(entries, metadata))
+        XCTAssertEqual(rows.map(\.title), ["Show X", "Film", "Anime Y", "Show X", "Zero ids"], "A blank title, a bad date, a missing title and a zero id are skipped; one title may air twice")
+        XCTAssertEqual(rows[0].tmdb, "55"); XCTAssertEqual(rows[1].tmdb, "99", "A numeric TMDB id is read like a text one"); XCTAssertEqual(rows[0].mal, "7"); XCTAssertEqual(rows[0].rating, 7.9)
+        XCTAssertNil(rows[4].tmdb, "A zero id is none"); XCTAssertNil(rows[4].imdb, "An empty IMDb id is none")
+        XCTAssertTrue(CalendarSources.simklCalendar(.object(["calendar": .array(entries)])).isEmpty, "A file without metadata is empty")
+        XCTAssertTrue(CalendarSources.simklCalendar(nil).isEmpty); XCTAssertTrue(CalendarSources.simklCalendar(.array([])).isEmpty)
+
+        let shows = CalendarSources.simklItems([rows[0], rows[4]], movie: false, anime: false)
+        XCTAssertEqual(shows[0].id, "tt1"); XCTAssertEqual(shows[0].name, "Show X S01E03"); XCTAssertEqual(shows[0].poster, "https://wsrv.nl/?url=https://simkl.in/posters/ab/cd_m.webp&q=90")
+        XCTAssertEqual(shows[0].voteAverage, 7.9); XCTAssertEqual(shows[0].releaseDate, "2026-11-12"); XCTAssertEqual(shows[0].imdbID, "tt1"); XCTAssertFalse(shows[0].isAnime); XCTAssertFalse(shows[0].isMovie)
+        XCTAssertEqual(shows[1].id, "simkl:15", "Without any known id the title keeps Simkl's own"); XCTAssertEqual(shows[1].name, "Zero ids"); XCTAssertNil(shows[1].poster)
+        let film = CalendarSources.simklItems([rows[1]], movie: true, anime: false)[0]
+        XCTAssertEqual(film.id, "tmdb:movie:99"); XCTAssertTrue(film.isMovie); XCTAssertEqual(film.name, "Film")
+        let anime = CalendarSources.simklItems([rows[2]], movie: false, anime: true)[0]
+        XCTAssertEqual(anime.id, "mal:321", "An anime Simkl knows only by MAL opens through it"); XCTAssertEqual(anime.name, "Anime Y S02E11"); XCTAssertTrue(anime.isAnime)
+        XCTAssertEqual(CalendarSources.simklItems([rows[2]], movie: false, anime: false)[0].id, "simkl:12", "Only anime use the MAL id")
+    }
+
+    func testSimklPremieresAskThreeCatalogsForTheMonthAndCombineThemByDate() async throws {
+        let log = StringLog()
+        let tvPayload = simklPayload([simklEntry(1, "2026-11-12T10:00:00Z", season: 1, episode: 1)], ["1": simklShow("Show", ids: ["imdb": .string("tt1")])])
+        let animePayload = simklPayload([simklEntry(2, "2026-11-03T10:00:00Z", season: 1, episode: 2)], ["2": simklShow("Anime", ids: ["mal": .integer(9)])])
+        let moviePayload = simklPayload([simklEntry(3, "2026-11-20")], ["3": simklShow("Film", ids: ["tmdb": .string("77")])])
+        let fetcher = CalendarFetcher(json: { url in
+            log.add(url.path)
+            switch url.lastPathComponent {
+            case "tv.json": return tvPayload
+            case "anime.json": return animePayload
+            case "movie_release.json": return moviePayload
+            default: return nil
+            }
+        }, calendar: utc)
+        let items = await fetcher.simklPremieres(year: 2026, month: 11)
+        XCTAssertEqual(Set(log.entries), ["/calendar/v2/2026/11/tv.json", "/calendar/v2/2026/11/anime.json", "/calendar/v2/2026/11/movie_release.json"])
+        XCTAssertEqual(items.map(\.id), ["mal:9", "tt1", "tmdb:movie:77"], "Sorted by day across the three catalogs")
+        XCTAssertEqual(items.map(\.isAnime), [true, false, false]); XCTAssertEqual(items.map(\.isMovie), [false, false, true])
+        let url = try XCTUnwrap(CalendarSources.simklURL(year: 2026, month: 11, catalog: "tv"))
+        XCTAssertEqual(Dictionary(uniqueKeysWithValues: (URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? []).map { ($0.name, $0.value ?? "") }),
+                       ["client_id": CalendarSources.simklClientID, "app-name": "harbor", "app-version": "0.9.132"])
+        XCTAssertEqual(url.host, "data.simkl.in"); XCTAssertNil(CalendarSources.simklURL(year: 2026, month: 11, catalog: "../x"))
+
+        let down = CalendarFetcher(json: { _ in nil }, calendar: utc)
+        let none = await down.simklPremieres(year: 2026, month: 11)
+        XCTAssertTrue(none.isEmpty, "A catalog that cannot be read leaves its part empty")
+    }
+
     func testSourcesFollowDesktopsSettingAndEmptyMonthTexts() {
-        XCTAssertEqual(CalendarSource.allCases.map(\.rawValue), ["library", "all", "trakt", "anticipated", "anime"])
+        XCTAssertEqual(CalendarSource.allCases.map(\.rawValue), ["library", "all", "trakt", "anticipated", "simkl-anticipated", "anime"])
         XCTAssertEqual(CalendarSource.offered(traktConnected: true).map(\.rawValue), ["library", "all", "trakt", "anticipated", "anime"])
         XCTAssertEqual(CalendarSource.offered(traktConnected: false).map(\.rawValue), ["library", "all", "anticipated", "anime"], "My Trakt waits for a Trakt account")
+        XCTAssertEqual(CalendarSource.offered(traktConnected: true, simklConnected: true).map(\.rawValue), ["library", "all", "trakt", "anticipated", "simkl-anticipated", "anime"], "Simkl premieres wait for a Simkl account")
+        XCTAssertEqual(CalendarSource.simklAnticipated.label, "Simkl premieres")
+        XCTAssertEqual(CalendarSources.emptyMonth(source: .simklAnticipated, filter: "all", watchlistOnly: false).heading, "No Simkl premieres this month")
         XCTAssertEqual(CalendarSource.all.label, "All upcoming"); XCTAssertEqual(CalendarSource.anticipated.hint, "The most anticipated upcoming releases on Trakt")
 
         XCTAssertEqual(CalendarSources.emptyMonth(source: .trakt, filter: "all", watchlistOnly: false).heading, "Nothing on Trakt this month")

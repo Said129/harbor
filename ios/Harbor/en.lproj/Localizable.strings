@@ -1033,6 +1033,7 @@
 "New Anime Releases" = "New Anime Releases";
 "New list" = "New list";
 "New profile" = "New profile";
+"New shows and anime premiering this month, from Simkl" = "New shows and anime premiering this month, from Simkl";
 "Newest" = "Newest";
 "Next" = "Next";
 "Next chapter" = "Next chapter";
@@ -1051,6 +1052,7 @@
 "Ningún proveedor devolvió una fuente" = "No source returned a stream";
 "Ningún título coincide con estos filtros." = "No titles match these filters.";
 "No Label" = "No Label";
+"No Simkl premieres this month" = "No Simkl premieres this month";
 "No catalogs match your search." = "No catalogs match your search.";
 "No catalogs yet" = "No catalogs yet";
 "No comments yet" = "No comments yet";
@@ -1586,6 +1588,8 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "Mute";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl lists no new shows or anime premiering this month. Try a different month.";
+"Simkl premieres" = "Simkl premieres";
 "Simkl sign-in expired, reconnect it" = "Simkl sign-in expired, reconnect it";
 "Sin configurar" = "Not set";
 "Sin corrección" = "No correction";

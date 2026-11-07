@@ -1224,6 +1224,7 @@
 "New Face Award" = "Giải Gương mặt mới";
 "New list" = "Danh sách mới";
 "New profile" = "Hồ sơ mới";
+"New shows and anime premiering this month, from Simkl" = "Phim bộ và anime mới ra mắt trong tháng này, từ Simkl";
 "New voyage" = "Hải trình mới";
 "Newest" = "Mới nhất";
 "Next" = "Tiếp theo";
@@ -1244,6 +1245,7 @@
 "Ningún título coincide con estos filtros." = "Không có tựa phim nào khớp với các bộ lọc này.";
 "No" = "Không";
 "No Label" = "Không nhãn";
+"No Simkl premieres this month" = "Không có phim công chiếu trên Simkl trong tháng này";
 "No catalogs match your search." = "Không có danh mục nào khớp với nội dung tìm kiếm.";
 "No catalogs yet" = "Chưa có danh mục";
 "No comments yet" = "Chưa có bình luận";
@@ -1865,6 +1867,8 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "Tắt tiếng";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl không liệt kê phim bộ hoặc anime mới nào công chiếu trong tháng này. Hãy thử một tháng khác.";
+"Simkl premieres" = "Nội dung ra mắt trên Simkl";
 "Simkl sign-in expired, reconnect it" = "Phiên đăng nhập Simkl đã hết hạn, hãy kết nối lại";
 "Sin configurar" = "Chưa đặt";
 "Sin corrección" = "Không hiệu chỉnh";

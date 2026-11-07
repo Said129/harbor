@@ -1224,6 +1224,7 @@
 "New Face Award" = "新人奖";
 "New list" = "新建片单";
 "New profile" = "新建个人资料";
+"New shows and anime premiering this month, from Simkl" = "Simkl 中本月首播的新节目和动漫";
 "New voyage" = "新航程";
 "Newest" = "最新";
 "Next" = "下一个";
@@ -1244,6 +1245,7 @@
 "Ningún título coincide con estos filtros." = "没有符合这些筛选条件的内容。";
 "No" = "否";
 "No Label" = "无标签";
+"No Simkl premieres this month" = "本月 Simkl 没有首播作品";
 "No catalogs match your search." = "没有与搜索匹配的目录。";
 "No catalogs yet" = "暂无目录";
 "No comments yet" = "暂无评论";
@@ -1865,6 +1867,8 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "静音";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl 本月没有新剧或动漫首播。请尝试其他月份。";
+"Simkl premieres" = "Simkl 首播";
 "Simkl sign-in expired, reconnect it" = "Simkl 登录已过期，请重新连接";
 "Sin configurar" = "未设置";
 "Sin corrección" = "不校正";

@@ -2320,21 +2320,21 @@
       "id": "Simkl calendar",
       "desktop_source": "src/lib/simkl",
       "verdict": "P",
-      "note": "Simkl calendar, ratings, anime grouping partial"
+      "note": "Simkl premieres calendar source (7 Nov, uncompiled); no My Simkl source"
     },
     {
       "index": 300,
       "id": "Simkl user ratings",
       "desktop_source": "src/lib/simkl",
       "verdict": "P",
-      "note": "Simkl calendar, ratings, anime grouping partial"
+      "note": "Simkl ratings, anime grouping partial"
     },
     {
       "index": 301,
       "id": "Simkl anime grouping",
       "desktop_source": "src/lib/simkl",
       "verdict": "P",
-      "note": "Simkl calendar, ratings, anime grouping partial"
+      "note": "Simkl ratings, anime grouping partial"
     },
     {
       "index": 302,
@@ -2474,7 +2474,7 @@
       "id": "Calendar source filters",
       "desktop_source": "src/lib/calendar.ts",
       "verdict": "P",
-      "note": "source switcher with library, all upcoming, My Trakt, Trakt anticipated and anime (7 Nov, uncompiled); no Simkl, Custom, dub schedule or games"
+      "note": "source switcher with library, all upcoming, My Trakt, Trakt anticipated, Simkl premieres and anime (7 Nov, uncompiled); no My Simkl, Custom, dub schedule or games"
     },
     {
       "index": 322,
@@ -6585,7 +6585,7 @@
       "id": "calendarSource",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "calendarSource kept per profile; five of Desktop's nine sources (7 Nov, uncompiled)"
+      "note": "calendarSource kept per profile; six of Desktop's nine sources (7 Nov, uncompiled)"
     },
     {
       "index": 471,

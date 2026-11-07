@@ -14,10 +14,11 @@ struct CalendarView: View {
     private var calendar: Calendar { var calendar = Calendar.current; calendar.locale = interfaceLocale; calendar.firstWeekday = monday ? 2 : 1; return calendar }
     private var source: CalendarSource { CalendarSource(rawValue: sourceRaw) ?? .library }
     private var traktConnected: Bool { TraktAccountStore.forOwner(app.personalOwner).session != nil }
+    private var simklConnected: Bool { SimklAccountStore.forOwner(app.personalOwner).session != nil }
     /// Desktop's `filtered`: All upcoming holds movies and TV only and can be narrowed to the library; the other sources show everything they found.
     private var shown: [ReleaseEvent] {
         switch source {
-        case .library:
+        case .library, .simklAnticipated:
             return model.events.filter { kind == "all" || $0.kind == kind }
         case .all:
             let names = watchlistOnly ? Set(app.library.items.compactMap(\.media).map { CalendarSources.libraryKey(name: $0.name, isSeries: $0.type != "movie") }) : []
@@ -35,7 +36,7 @@ struct CalendarView: View {
         case .library: return "\(app.library.owner)|\(period)|\(app.library.items.map { $0.id + $0.modified }.joined())|library"
         case .all: return "\(app.personalOwner)|\(period)|all|\(MetadataPreferences.shared.tmdbKey.hashValue)|\(MetadataPreferences.shared.region)"
         case .trakt: return "\(app.personalOwner)|\(period)|trakt|\(traktConnected)"
-        case .anticipated, .anime: return "\(period)|\(source.rawValue)"
+        case .anticipated, .anime, .simklAnticipated: return "\(period)|\(source.rawValue)"
         }
     }
     private var daily: [ReleaseEvent] { shown.filter { calendar.isDate($0.date, inSameDayAs: selected) } }
@@ -59,19 +60,19 @@ struct CalendarView: View {
                 ScrollView(.horizontal) {
                     HStack(spacing: 6) {
                         HarborPill(title: "Hoy") { month = Date(); selected = Date() }
-                        ForEach(CalendarSource.offered(traktConnected: traktConnected), id: \.self) { option in
+                        ForEach(CalendarSource.offered(traktConnected: traktConnected, simklConnected: simklConnected), id: \.self) { option in
                             HarborPill(title: DesktopInterfaceText.value(option.label), selected: source == option, icon: option.icon) { sourceRaw = option.rawValue }
                                 .accessibilityHint(DesktopInterfaceText.value(option.hint)).accessibilityIdentifier("calendar-source-" + option.rawValue)
                         }
                     }
                 }.scrollIndicators(.hidden)
-                if source == .library || source == .all {
+                if source == .library || source == .all || source == .simklAnticipated {
                     ScrollView(.horizontal) {
                         HStack(spacing: 6) {
                             HarborPill(title: DesktopInterfaceText.value("All"), selected: kind == "all") { kind = "all" }
                             HarborPill(title: DesktopInterfaceText.value("Movies"), selected: kind == "movie", icon: "nav-movies") { kind = "movie" }
                             HarborPill(title: DesktopInterfaceText.value("TV"), selected: kind == "series", icon: "nav-shows") { kind = "series" }
-                            if source == .library { HarborPill(title: DesktopInterfaceText.value("Anime"), selected: kind == "anime", icon: "nav-anime") { kind = "anime" } }
+                            if source != .all { HarborPill(title: DesktopInterfaceText.value("Anime"), selected: kind == "anime", icon: "nav-anime") { kind = "anime" } }
                             if source == .all { HarborPill(title: DesktopInterfaceText.value("Watchlist only"), selected: watchlistOnly, icon: "nav-library") { watchlistOnly.toggle() }.accessibilityIdentifier("calendar-watchlist-only") }
                         }
                     }.scrollIndicators(.hidden)
@@ -109,7 +110,10 @@ struct CalendarView: View {
             }.padding()
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink).environment(\.locale, interfaceLocale).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .task(id: loadID) { await model.load(month: month, app: app, source: source) }
-            .task(id: app.personalOwner) { let account = TraktAccountStore.forOwner(app.personalOwner); if !account.ready { try? account.load() } }
+            .task(id: app.personalOwner) {
+                let trakt = TraktAccountStore.forOwner(app.personalOwner); if !trakt.ready { try? trakt.load() }
+                let simkl = SimklAccountStore.forOwner(app.personalOwner); if !simkl.ready { try? simkl.load() }
+            }
             .onChange(of: sourceRaw) { if source == .all && kind == "anime" { kind = "all" } }
     }
     private var monthGrid: some View {

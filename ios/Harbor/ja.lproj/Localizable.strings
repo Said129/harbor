@@ -1224,6 +1224,7 @@
 "New Face Award" = "新人賞";
 "New list" = "新しいリスト";
 "New profile" = "新しいプロフィール";
+"New shows and anime premiering this month, from Simkl" = "Simkl掲載の今月初公開の新作番組とアニメ";
 "New voyage" = "新しい航海";
 "Newest" = "新しい順";
 "Next" = "次へ";
@@ -1244,6 +1245,7 @@
 "Ningún título coincide con estos filtros." = "この条件に一致する作品はありません。";
 "No" = "いいえ";
 "No Label" = "ラベルなし";
+"No Simkl premieres this month" = "今月Simklで配信開始する作品はありません";
 "No catalogs match your search." = "検索に一致するカタログはありません。";
 "No catalogs yet" = "カタログはまだありません";
 "No comments yet" = "まだコメントはありません";
@@ -1865,6 +1867,8 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "ミュート";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl lists no new shows or anime premiering this month. Try a different month." = "今月Simklで配信開始する新作ドラマやアニメはありません。別の月をお試しください。";
+"Simkl premieres" = "Simklプレミア";
 "Simkl sign-in expired, reconnect it" = "Simklへのサインインの有効期限が切れました。再接続してください";
 "Sin configurar" = "未設定";
 "Sin corrección" = "補正なし";

@@ -94,6 +94,8 @@ final class CalendarModel {
             items = await fetcher.myTrakt(year: year, month: number)
         case .anticipated:
             items = await fetcher.anticipated(year: year, month: number)
+        case .simklAnticipated:
+            items = await fetcher.simklPremieres(year: year, month: number)
         case .anime:
             items = await fetcher.animeAiring(year: year, month: number)
         }

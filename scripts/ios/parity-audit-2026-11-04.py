@@ -196,7 +196,8 @@ BEHAVIORS = expand("""
 293 M MyAnimeList lists not ported
 294 P MyAnimeList progress is pushed while watching; the watched map is not read
 295-298 D Simkl login, history, watchlist, scrobble
-299-301 P Simkl calendar, ratings, anime grouping partial
+299 P Simkl premieres calendar source (7 Nov, uncompiled); no My Simkl source
+300-301 P Simkl ratings, anime grouping partial
 302-304 M Letterboxd not ported
 305 P earlier review Partial
 306-308 D TMDBService, MovieCollection, IMDb resolution
@@ -210,7 +211,7 @@ BEHAVIORS = expand("""
 317-318 D Kitsu (AnimeService), AniZip mappings
 319 P Jikan in AnimeService
 320 P earlier review Partial
-321 P source switcher with library, all upcoming, My Trakt, Trakt anticipated and anime (7 Nov, uncompiled); no Simkl, Custom, dub schedule or games
+321 P source switcher with library, all upcoming, My Trakt, Trakt anticipated, Simkl premieres and anime (7 Nov, uncompiled); no My Simkl, Custom, dub schedule or games
 322 P earlier review Partial
 323 D CustomListStore
 324-327 D household profiles, switching, per-profile settings, identity sync
@@ -430,7 +431,7 @@ SETTINGS = expand("""
 464-465 M
 466-468 X custom CSS/JS/HTML for Desktop's web interface
 469 M
-470 P calendarSource kept per profile; five of Desktop's nine sources (7 Nov, uncompiled)
+470 P calendarSource kept per profile; six of Desktop's nine sources (7 Nov, uncompiled)
 471-473 M Simkl rails
 474 D
 475 M
