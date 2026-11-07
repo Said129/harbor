@@ -1,4 +1,5 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 /// What the single file importer is picking. One importer per view: SwiftUI can drop all but the last one attached.
 private enum LocalImportMode {
