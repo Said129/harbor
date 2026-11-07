@@ -27,6 +27,7 @@
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "MyAnimeList पर एक ब्राउज़र टैब खुला है। वहाँ Harbor को अनुमति दें, फिर कोड या पेज URL कॉपी करके नीचे पेस्ट करें।";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio प्रोटोकॉल के लिए एक क्लाइंट। सेटअप में दो मिनट लगते हैं; ज़्यादातर चीज़ें वैकल्पिक हैं। हर कुंजी का नियंत्रण आपके पास रहता है।";
 "A continuación" = "इसके बाद";
+"A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift और ऐरो कुंजियों से छोटा जंप, ताकि हर बार कुछ सेकंड आगे-पीछे किया जा सके।";
 "A to Z" = "A से Z";
@@ -74,6 +75,7 @@
 "Add a TMDB key in settings first" = "पहले सेटिंग्स में TMDB कुंजी जोड़ें";
 "Add a movie or show to this list..." = "इस सूची में कोई फ़िल्म या शो जोड़ें...";
 "Add a repository" = "रिपॉज़िटरी जोड़ें";
+"Add anime to your AniList and they show up here, grouped by status and ready to edit." = "अपने AniList में ऐनिमे जोड़ें और वे यहाँ स्थिति के अनुसार समूहित और संपादन के लिए तैयार दिखाई देंगे।";
 "Add bookmark" = "Add bookmark";
 "Add from lists" = "सूचियों से जोड़ें";
 "Add key" = "कुंजी जोड़ें";
@@ -253,6 +255,7 @@
 "Back to top" = "सबसे ऊपर जाएँ";
 "Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "बैकग्राउंड";
+"Background image" = "बैकग्राउंड इमेज";
 "Background opacity" = "बैकग्राउंड की अपारदर्शिता";
 "Bajar {name}" = "{name} नीचे ले जाएँ";
 "Balanced" = "संतुलित";
@@ -349,6 +352,7 @@
 "Buscar en la configuración" = "सेटिंग्स खोजें";
 "Buscar idiomas" = "भाषाएँ खोजें";
 "Buscar subtítulos de nuevo" = "Search subtitles again";
+"By default, addon rails that duplicate the built-in ones (Trending, Popular, Top Rated, etc.) are merged so you don't see the same row twice. Turn this on to show every one, duplicates and all." = "डिफ़ॉल्ट रूप से, बिल्ट-इन पंक्तियों (ट्रेंडिंग, लोकप्रिय, टॉप रेटेड आदि) जैसी ऐडऑन पंक्तियाँ मर्ज कर दी जाती हैं, ताकि एक ही पंक्ति दो बार न दिखे। डुप्लिकेट समेत हर पंक्ति दिखाने के लिए इसे चालू करें।";
 "By year" = "वर्ष के अनुसार";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "हाल की खोजें";
@@ -413,6 +417,7 @@
 "Chinese" = "चीनी";
 "Chinese (Simplified)" = "चीनी (सरलीकृत)";
 "Choose an avatar" = "कोई अवतार चुनें";
+"Choose image" = "इमेज चुनें";
 "Choose the frame rate the subtitle was authored for." = "वह फ़्रेम रेट चुनें जिसके लिए सबटाइटल बनाया गया था।";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "अपनी पसंद की अधिकतम 5 फ़िल्में या शो चुनें। Harbor इनके आधार पर आपके फ़ीचर्ड पिक्स और सुझाव बेहतर बनाता है। यह पूरी तरह वैकल्पिक है।";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "चुनें कि Harbor कब प्रोफ़ाइल चुनने को कहे। समय के आधार पर आने वाले संकेत Harbor पर लौटने पर दिखते हैं।";
@@ -496,6 +501,7 @@
 "Connect TMDB" = "TMDB कनेक्ट करें";
 "Connect Trakt" = "Trakt कनेक्ट करें";
 "Connect Trakt in settings first" = "पहले सेटिंग्स में Trakt कनेक्ट करें";
+"Connect Trakt or Simkl, or start watching, and your stats will build themselves." = "Trakt या Simkl कनेक्ट करें, या देखना शुरू करें, और आपके आँकड़े अपने-आप बनने लगेंगे।";
 "Connected" = "कनेक्टेड";
 "Connected as {username}" = "{username} के रूप में कनेक्टेड";
 "Connected to AniList" = "AniList से कनेक्टेड";
@@ -539,6 +545,7 @@
 "Could not load this page. Try again." = "यह पेज लोड नहीं हो सका। फिर से कोशिश करें।";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read file" = "फ़ाइल पढ़ी नहीं जा सकी";
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "आपकी सूचियाँ पढ़ी नहीं जा सकीं। सहेजा गया डेटा सुरक्षित है।";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
@@ -550,13 +557,16 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "अपने-आप सिंक नहीं हो सका";
+"Couldn't compress this image small enough. Try a different photo or crop it down." = "इस इमेज को पर्याप्त छोटा कंप्रेस नहीं किया जा सका। कोई दूसरी फ़ोटो आज़माएँ या इसे और क्रॉप करें।";
 "Couldn't connect to AniList" = "AniList से कनेक्ट नहीं हो सका";
 "Couldn't connect to MyAnimeList" = "MyAnimeList से कनेक्ट नहीं हो सका";
 "Couldn't install. Double-check the URL and try again." = "इंस्टॉल नहीं हो सका। URL दोबारा जाँचें और फिर कोशिश करें।";
 "Couldn't reach AniList." = "AniList से संपर्क नहीं हो सका।";
+"Couldn't reach AniList. Try refreshing." = "AniList से संपर्क नहीं हो सका। रीफ़्रेश करके देखें।";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Simkl से संपर्क नहीं हो सका";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt से संपर्क नहीं हो सका। अपना कनेक्शन जाँचें और फिर कोशिश करें।";
+"Couldn't read that image. Try a different file." = "वह इमेज पढ़ी नहीं जा सकी। कोई दूसरी फ़ाइल आज़माएँ।";
 "Cover Image URL" = "कवर इमेज URL";
 "Crash" = "क्रैश";
 "Crea tu propia paleta" = "अपना पैलेट बनाएँ";
@@ -635,6 +645,7 @@
 "Detalles" = "विवरण";
 "Detener reproducción" = "Stop playback";
 "Dim" = "मंद";
+"Dim overlay" = "मंद ओवरले";
 "Dirección" = "दिशा";
 "Direct link" = "सीधा लिंक";
 "Direct stream" = "सीधी स्ट्रीम";
@@ -672,6 +683,7 @@
 "Dracula" = "ड्रैकुला";
 "Drama" = "ड्रामा";
 "Drama Series" = "ड्रामा सीरीज़";
+"Drop a wallpaper behind the app. The dim slider keeps text readable." = "ऐप के पीछे वॉलपेपर डालें। डिम स्लाइडर टेक्स्ट को पढ़ने योग्य बनाए रखता है।";
 "Drop shadow" = "ड्रॉप शैडो";
 "Dropped" = "ड्रॉप हुए";
 "Dropped (decode / vo)" = "ड्रॉप हुए (डिकोड / vo)";
@@ -751,6 +763,7 @@
 "Este archivo tiene una pista de audio." = "इस फ़ाइल में एक ऑडियो ट्रैक है।";
 "Estilo de Inicio" = "होम स्टाइल";
 "Estilo de los subtítulos" = "सबटाइटल स्टाइल";
+"Estimated from your local history. Connect Trakt or Simkl for the full picture." = "आपके स्थानीय इतिहास से अनुमानित। पूरी जानकारी के लिए Trakt या Simkl कनेक्ट करें।";
 "Estirar" = "फैलाएँ";
 "Evens out quiet dialogue and loud action scenes with a dynamic normalizer." = "डायनेमिक नॉर्मलाइज़र से कम आवाज़ वाले संवादों और तेज़ एक्शन दृश्यों की आवाज़ को संतुलित करता है।";
 "Event timeline" = "Event timeline";
@@ -770,6 +783,7 @@
 "Explorar complementos" = "ऐडऑन ब्राउज़ करें";
 "Explorar por categoría" = "कैटेगरी के अनुसार ब्राउज़ करें";
 "Explore" = "एक्सप्लोर करें";
+"Export" = "एक्सपोर्ट करें";
 "Export log" = "Export log";
 "Export to Trakt" = "Trakt में एक्सपोर्ट करें";
 "Extension" = "Extension";
@@ -902,6 +916,7 @@
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor हर सेवा पर इस समय मौजूद सबसे लोकप्रिय टाइटल लाता है। जिनकी आपने सदस्यता नहीं ली है, उन्हें बंद कर दें।";
 "Harbor ranking" = "Harbor रैंकिंग";
 "Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Harbor रैंकिंग सबसे अच्छे स्कोर वाले स्रोतों को पहले रखती है। ऐडऑन का क्रम हर ऐडऑन के नतीजों को उसी क्रम में रखता है जिसमें उसने उन्हें लौटाया था, ठीक Stremio और Vidi ऐप्स की तरह। नीचे दी गई स्ट्रीम प्राथमिकता तय करती है कि दोनों मोड में कौन-सा ऐडऑन पहले रहेगा।";
+"Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harbor एनीमे पेज पर आपकी AniList सूचियाँ दिखाता है और आपकी प्रगति सिंक रखता है।";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Harbor के अपने मेन्यू और लेबल। सबटाइटल की भाषाएँ बाद में सेट की जाती हैं और आप दोनों को सेटिंग्स में बदल सकते हैं।";
 "Hard stroke around each letter. High contrast." = "हर अक्षर के चारों ओर मोटी रेखा। अधिक कंट्रास्ट।";
 "Harvey Award Winners" = "हार्वे पुरस्कार विजेता";
@@ -927,6 +942,7 @@
 "Hide row" = "पंक्ति छिपाएँ";
 "Hide sound effects and speaker names" = "ध्वनि प्रभाव और वक्ताओं के नाम छिपाएँ";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "संदिग्ध फ़ाइलें, मेल न खाने वाली रिलीज़, संभावित कैमरा रिकॉर्डिंग और ट्रेलर छिपाएँ। फ़ाइल आकार और सीज़न पैक की भी जाँच करें।";
+"Hide this catalog" = "यह कैटलॉग छिपाएँ";
 "Hide titles under posters" = "पोस्टर के नीचे के शीर्षक छिपाएँ";
 "Hide unreleased titles" = "रिलीज़ न हुए शीर्षक छिपाएँ";
 "Hide watched titles in catalogs" = "कैटलॉग में देखे हुए शीर्षक छिपाएँ";
@@ -941,6 +957,7 @@
 "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "उच्च विकल्प आपके स्क्रीन के आकार के अनुसार सेट होता है और बहुत कम मेमोरी में पूर्ण रिज़ॉल्यूशन जैसा ही दिखता है। संतुलित विकल्प सबसे अधिक मेमोरी बचाता है। अधिकतम विकल्प मूल रिज़ॉल्यूशन बनाए रखता है।";
 "Highlight, progress." = "हाइलाइट, प्रगति।";
 "Highlighted blocks." = "हाइलाइट किए गए ब्लॉक।";
+"Highlights" = "हाइलाइट्स";
 "Hindi" = "हिंदी";
 "History" = "इतिहास";
 "Hockey" = "हॉकी";
@@ -979,6 +996,7 @@
 "Import CBZ/ZIP or folder" = "Import CBZ/ZIP or folder";
 "Import M3U file" = "Import M3U file";
 "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
+"Import a theme" = "थीम इंपोर्ट करें";
 "Import files" = "फ़ाइलें आयात करें";
 "Import folder" = "फ़ोल्डर आयात करें";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
@@ -1032,6 +1050,7 @@
 "Italy" = "इटली";
 "Izquierda" = "बायाँ";
 "Izquierda a derecha" = "बाएँ से दाएँ";
+"JPEG / PNG / WebP. Big files auto-compress to fit." = "JPEG / PNG / WebP. बड़ी फ़ाइलें जगह के हिसाब से अपने-आप कंप्रेस हो जाती हैं।";
 "JSON URL" = "JSON URL";
 "JSON cannot be empty" = "JSON खाली नहीं हो सकता";
 "Japan" = "जापान";
@@ -1106,6 +1125,7 @@
 "Loading more sources" = "और स्रोत लोड हो रहे हैं";
 "Loading music" = "संगीत लोड हो रहा है";
 "Loading plugins..." = "प्लगइन लोड हो रहे हैं...";
+"Loading your AniList…" = "आपका AniList लोड हो रहा है…";
 "Loading your history…" = "आपकी हिस्ट्री लोड हो रही है…";
 "Loading..." = "लोड हो रहा है...";
 "Loading…" = "लोड हो रहा है…";
@@ -1115,6 +1135,7 @@
 "Logo position" = "लोगो की स्थिति";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "लोगो";
+"Longest binge" = "सबसे लंबा बिंज";
 "Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "इस libmpv रनटाइम में सबटाइटल FPS उपलब्ध नहीं है।";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "दूसरा सबटाइटल सक्रिय होने पर सबटाइटल FPS उपलब्ध नहीं है।";
@@ -1221,6 +1242,7 @@
 "Movies" = "फ़िल्में";
 "Movies & Specials" = "फ़िल्में और स्पेशल";
 "Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "भविष्य की रिलीज़ तारीख वाली फ़िल्में और शो बिल्ट-इन होम कैटलॉग पंक्तियों में दिखना बंद हो जाते हैं, इसलिए होम पर केवल वही दिखता है जिसे आप अभी देख सकते हैं।";
+"Movies are your natural habitat." = "Movies are your natural habitat.";
 "Movies on {name}" = "{name} पर फ़िल्में";
 "Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "आपकी देखी हुई फ़िल्में और जिन शो में आपने कुछ प्रगति की है, वे आपके स्थानीय देखने के इतिहास (और कनेक्ट होने पर Trakt) के आधार पर बिल्ट-इन कैटलॉग पंक्तियों में दिखना बंद हो जाते हैं। 'देखना जारी रखें' में कभी कोई बदलाव नहीं होता।";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor को इंट्रो या क्रेडिट मिलने पर इंट्रो छोड़ें / क्रेडिट छोड़ें बटन दिखाएँ। इसे कभी न दिखाने के लिए यह विकल्प बंद करें। अगर पहचान गलत हो, तो बाकी एपिसोड के लिए इसे हटाने हेतु बटन पर मौजूद X टैप करें।";
@@ -1248,6 +1270,7 @@
 "NFL" = "NFL";
 "NHL" = "NHL";
 "Name" = "नाम";
+"Name your theme" = "अपनी थीम को नाम दें";
 "Navegación" = "नेविगेशन";
 "Navigation" = "नेविगेशन";
 "Navigation changes waiting to sync" = "Navigation changes waiting to sync";
@@ -1283,6 +1306,7 @@
 "No" = "नहीं";
 "No Label" = "कोई लेबल नहीं";
 "No Simkl premieres this month" = "इस महीने कोई Simkl प्रीमियर नहीं है";
+"No background image" = "कोई बैकग्राउंड इमेज नहीं";
 "No catalogs match your search." = "आपकी खोज से कोई कैटलॉग मेल नहीं खाता।";
 "No catalogs yet" = "अभी तक कोई कैटलॉग नहीं है";
 "No comments yet" = "अभी तक कोई टिप्पणी नहीं";
@@ -1364,6 +1388,7 @@
 "Nothing saved on Trakt yet." = "Trakt पर अभी तक कुछ सेव नहीं है।";
 "Nothing this month" = "इस महीने कुछ नहीं है";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "भेजने के लिए कुछ नहीं है। वॉचलिस्ट के सभी {n} आइटम ऐनिमे हैं, जिन्हें Trakt ट्रैक नहीं कर सकता।";
+"Nothing to show yet" = "अभी तक दिखाने को कुछ नहीं है";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "अभी तक कुछ नहीं देखा";
 "Nothing yet" = "अभी तक कुछ नहीं";
@@ -1442,6 +1467,7 @@
 "Outline" = "आउटलाइन";
 "Outline color" = "आउटलाइन का रंग";
 "Outline thickness" = "आउटलाइन की मोटाई";
+"Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "एम्बेडेड स्टाइल ओवरराइड करें";
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2P स्रोत, debrid के लिए तैयार";
@@ -1498,6 +1524,10 @@
 "Picture adjustments" = "चित्र समायोजन";
 "Picture in Picture" = "पिक्चर इन पिक्चर";
 "Pill" = "Pill";
+"Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "जिन कैटलॉग को ऊपर रखना चाहते हैं उन्हें पिन करें, जिन्हें कभी नहीं खोलते उन्हें छिपाएँ, और अपनी पिन की गई रेल्स का क्रम बदलें। आपका ब्राउज़ व्यू तुरंत अपडेट हो जाएगा।";
+"Pin to top" = "सबसे ऊपर पिन करें";
+"Pinned" = "पिन किया गया";
+"Pinned to top" = "सबसे ऊपर पिन किया गया";
 "Plan to Watch" = "देखने की योजना";
 "Play" = "चलाएँ";
 "Play movie" = "फ़िल्म चलाएँ";
@@ -1629,6 +1659,7 @@
 "Recién agregado" = "हाल ही में जोड़ा गया";
 "Recomendado" = "सुझाए गए";
 "Recommended" = "सुझाए गए";
+"Recommended for you" = "आपके लिए सुझाए गए";
 "Recordatorio" = "Reminder";
 "Redondeado" = "गोलाकार";
 "Refresh" = "रिफ़्रेश करें";
@@ -1680,6 +1711,7 @@
 "Renombrar" = "नाम बदलें";
 "Repeat" = "दोहराएँ";
 "Repetición" = "दोहराएँ";
+"Replace image" = "इमेज बदलें";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "वॉकथ्रू फिर चलाएँ या ऐप में हटाए गए सभी सुझाव फिर दिखाएँ।";
 "Replay walkthrough" = "वॉकथ्रू फिर चलाएँ";
 "Repositories" = "रिपॉज़िटरी";
@@ -1778,6 +1810,7 @@
 "Save page" = "Save page";
 "Save reminder" = "रिमाइंडर सहेजें";
 "Save settings" = "Save settings";
+"Save theme" = "थीम सेव करें";
 "Save to this library" = "Save to this library";
 "Save track" = "ट्रैक सहेजें";
 "Saved" = "सेव किया गया";
@@ -1881,6 +1914,7 @@
 "Show episode" = "एपिसोड दिखाएँ";
 "Show episode description" = "एपिसोड का विवरण दिखाएँ";
 "Show episode ratings" = "एपिसोड की रेटिंग दिखाएँ";
+"Show every addon row" = "हर ऐडऑन पंक्ति दिखाएँ";
 "Show everything anyway" = "फिर भी सब कुछ दिखाएँ";
 "Show full descriptions" = "पूरे विवरण दिखाएँ";
 "Show hidden episodes" = "छिपे हुए एपिसोड दिखाएँ";
@@ -1896,6 +1930,7 @@
 "Show row" = "पंक्ति दिखाएँ";
 "Show subtitle sync indicator" = "सबटाइटल सिंक संकेतक दिखाएँ";
 "Show the Skip button" = "स्किप बटन दिखाएँ";
+"Show this catalog" = "यह कैटलॉग दिखाएँ";
 "Show translated names in the language selected above. Turn off to keep original titles." = "ऊपर चुनी भाषा में अनूदित नाम दिखाएँ। मूल शीर्षक रखने के लिए बंद करें।";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "दो भाषाओं के उपशीर्षक एक साथ दिखाएँ। भाषा सीखने या साथ देखने के लिए उपयोगी।";
 "Show {name} in navigation" = "नेविगेशन में {name} दिखाएँ";
@@ -1987,6 +2022,7 @@
 "Start with subtitles off" = "सबटाइटल बंद रखकर शुरू करें";
 "Starting" = "शुरू हो रहा है";
 "Startup & default" = "स्टार्टअप और डिफ़ॉल्ट";
+"Stats" = "आँकड़े";
 "Status" = "स्थिति";
 "Step 1 · Metadata" = "चरण 1 · मेटाडेटा";
 "Step 1 · Open Simkl" = "चरण 1 · Simkl खोलें";
@@ -2114,8 +2150,14 @@
 "That does not look like a valid magnet link or infohash." = "यह मान्य मैग्नेट लिंक या इन्फोहैश नहीं लगता।";
 "That link did not answer." = "उस लिंक ने जवाब नहीं दिया।";
 "That route wouldn't chart. Try a different direction." = "उस रूट का चार्ट नहीं बन सका। कोई दूसरी दिशा आज़माएँ।";
+"The Anime Devotee" = "The Anime Devotee";
+"The Binger" = "The Binger";
 "The CW" = "The CW";
+"The Explorer" = "The Explorer";
+"The Film Buff" = "The Film Buff";
 "The Roku Channel" = "The Roku Channel";
+"The Series Slayer" = "The Series Slayer";
+"The Well-Rounded" = "The Well-Rounded";
 "The addons did not return metadata for this title." = "ऐडऑन ने इस शीर्षक के लिए कोई मेटाडेटा नहीं दिया।";
 "The authorization code timed out before you finished. Try again." = "आपके पूरा करने से पहले ही ऑथराइज़ेशन कोड की समय-सीमा समाप्त हो गई। फिर से कोशिश करें।";
 "The comics industry's highest honor" = "कॉमिक्स उद्योग का सर्वोच्च सम्मान";
@@ -2130,15 +2172,22 @@
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
+"Theme is missing a name." = "थीम का नाम नहीं है।";
+"Theme name" = "थीम का नाम";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "TMDB कुंजी सेट होते ही ये पंक्तियाँ सक्रिय हो जाती हैं। आप सेटिंग्स में कभी भी इस पर वापस आ सकते हैं।";
 "They email an activation link the first time. Click it, then come back and save." = "पहली बार वे ईमेल से एक्टिवेशन लिंक भेजते हैं। उस पर क्लिक करें, फिर वापस आकर सेव करें।";
 "This file has one audio track." = "इस फ़ाइल में एक ऑडियो ट्रैक है।";
+"This file isn't a Harbor theme." = "यह फ़ाइल Harbor की थीम नहीं है।";
+"This file isn't a readable theme." = "यह थीम फ़ाइल पढ़ी नहीं जा सकती।";
 "This is a manga repository. Add it from the Manga page." = "यह मांगा रिपॉज़िटरी है। इसे मांगा पेज से जोड़ें।";
 "This is how your subtitles will look." = "आपके सबटाइटल ऐसे दिखेंगे।";
 "This list is full ({max} items)" = "यह सूची भर गई है ({max} आइटम)";
 "This month" = "इस महीने";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This theme is missing a color ({color})." = "इस थीम में रंग ({color}) नहीं है।";
+"This theme is missing its colors." = "इस थीम में रंग नहीं हैं।";
+"This theme's preview colors look invalid." = "इस थीम के प्रीव्यू के रंग अमान्य लगते हैं।";
 "This title would not open" = "यह टाइटल नहीं खुला";
 "This week" = "इस हफ़्ते";
 "Thriller" = "थ्रिलर";
@@ -2195,6 +2244,7 @@
 "Top result" = "सर्वश्रेष्ठ परिणाम";
 "Top right" = "ऊपर दाईं ओर";
 "Top rising" = "सबसे तेज़ उभरते";
+"Top titles" = "शीर्ष टाइटल";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "TorBox API कुंजी";
 "Torrent link" = "टोरेंट लिंक";
@@ -2266,6 +2316,7 @@
 "Unknown" = "अज्ञात";
 "Unlock controls" = "कंट्रोल अनलॉक करें";
 "Unmute" = "आवाज़ चालू करें";
+"Unpin" = "पिन हटाएँ";
 "Unverified" = "असत्यापित";
 "Up Next" = "इसके बाद";
 "Up Next on Trakt" = "Up Next on Trakt";
@@ -2337,6 +2388,7 @@
 "Welcome to Harbor" = "Harbor में आपका स्वागत है";
 "Western" = "वेस्टर्न";
 "What everyone is reading" = "हर कोई क्या पढ़ रहा है";
+"What you watched" = "आपने क्या देखा";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "जब Esc दबाने से प्लेयर बंद होने वाला हो, तो पहले तुरंत पुष्टि करने का विकल्प दिखाएँ। Esc दबाने पर हमेशा बाहर निकलने के लिए उस प्रॉम्प्ट में \"फिर न पूछें\" पर टिक कर सकते हैं।";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "जब किसी रिलीज़ में कई ऑडियो ट्रैक हों, तो Harbor इस सूची से पहला मेल चुनता है।";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "एपिसोड खत्म होने पर अगला एपिसोड अपने-आप शुरू करें। बंद होने पर एपिसोड पूरा होकर रुक जाता है।";
@@ -2347,6 +2399,7 @@
 "When you press Play" = "जब आप चलाएँ दबाएँ";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "जिसे आप देख रहे थे उसे जारी रखने पर पिकर फिर से खोलने के बजाय पिछली बार इस्तेमाल की गई ठीक वही स्ट्रीम (वही ऐडऑन और सोर्स) चलाएँ। हर बार फिर से चुनने के लिए इसे बंद करें।";
 "Where it shows" = "यह कहाँ दिखता है";
+"Where it started" = "यह कहाँ शुरू हुआ";
 "Where to today?" = "आज कहाँ चलें?";
 "Where to watch" = "कहाँ देखें";
 "Where your video comes from" = "आपका वीडियो कहाँ से आता है";
@@ -2360,11 +2413,17 @@
 "Xtream server" = "Xtream server";
 "Year" = "वर्ष";
 "You can switch later in Settings under Library & metadata." = "आप बाद में सेटिंग्स में लाइब्रेरी और मेटाडेटा के अंतर्गत इसे बदल सकते हैं।";
+"You cast a wide net across everything." = "You cast a wide net across everything.";
 "You have reached {max} lists. Remove one to make room." = "आप {max} सूचियों की सीमा तक पहुँच गए हैं। जगह बनाने के लिए एक हटाएँ।";
+"You live one episode at a time." = "You live one episode at a time.";
 "You must install this addon in your Stremio account first so Harbor can fetch its works." = "आपको पहले यह ऐडऑन अपने Stremio अकाउंट में इंस्टॉल करना होगा, ताकि Harbor इससे कंटेंट ला सके।";
+"You once tore through {n} in a single day." = "You once tore through {n} in a single day.";
 "You're set." = "सब तैयार है।";
+"You've hidden every catalog that matched." = "आपने मेल खाने वाला हर कैटलॉग छिपा दिया है।";
+"You've hidden the one catalog that matched." = "आपने मेल खाने वाला एकमात्र कैटलॉग छिपा दिया है।";
 "You've reached the end · {n} addons" = "आप अंत तक पहुँच गए हैं · {n} ऐडऑन";
 "YouTube" = "YouTube";
+"Your AniList is empty" = "आपका AniList खाली है";
 "Your Discovery Queue" = "आपकी डिस्कवरी क्यू";
 "Your Stremio library + addons sync in untouched." = "आपकी Stremio लाइब्रेरी + ऐडऑन बिना किसी बदलाव के सिंक हो जाते हैं।";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
@@ -2384,6 +2443,8 @@
 "Your rating" = "आपकी रेटिंग";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "आपके सेव किए गए किसी भी शो का कोई एपिसोड इस महीने के लिए शेड्यूल नहीं है। पूरा रिलीज़ कैलेंडर देखने के लिए सभी आगामी पर जाएँ।";
 "Your services are saved locally. Cloud sync will retry." = "आपकी सेवाएँ इस डिवाइस पर सहेजी गई हैं। क्लाउड सिंक फिर से किया जाएगा।";
+"Your themes" = "आपकी थीम";
+"Your watch year" = "आपका देखने का वर्ष";
 "Your watchlist is empty" = "आपकी वॉचलिस्ट खाली है";
 "Your watchlist is empty, nothing to send." = "आपकी वॉचलिस्ट खाली है, भेजने के लिए कुछ नहीं है।";
 "Yours" = "आपका";
@@ -2419,6 +2480,7 @@
 "guest" = "अतिथि";
 "h" = "घंटे";
 "hidden" = "छिपा हुआ";
+"hours watched" = "देखने में बिताए घंटे";
 "hr" = "घं";
 "item" = "आइटम";
 "just now" = "अभी-अभी";
@@ -3575,6 +3637,7 @@
 "{n} ep" = "{n} एपिसोड";
 "{n} eps" = "{n} एपिसोड";
 "{n} hr" = "{n} घंटे";
+"{n} in a day" = "एक दिन में {n}";
 "{n} item" = "{n} आइटम";
 "{n} items" = "{n} आइटम";
 "{n} min" = "{n} मिनट";

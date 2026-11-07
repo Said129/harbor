@@ -27,6 +27,7 @@
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "MyAnimeList'te bir tarayıcı sekmesi açıldı. Harbor'a orada izin verin, ardından kodu veya sayfa URL'sini kopyalayıp aşağıya yapıştırın.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio protokolü için bir istemci. Kurulumu iki dakika sürer ve çoğu adım isteğe bağlıdır. Her anahtarın kontrolü sizde kalır.";
 "A continuación" = "Sıradaki";
+"A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift ile ok tuşlarına basıldığında her seferinde birkaç saniyelik daha kısa bir atlama yapar.";
 "A to Z" = "A'dan Z'ye";
@@ -74,6 +75,7 @@
 "Add a TMDB key in settings first" = "Önce ayarlardan bir TMDB anahtarı ekleyin";
 "Add a movie or show to this list..." = "Bu listeye film veya dizi ekleyin...";
 "Add a repository" = "Depo ekle";
+"Add anime to your AniList and they show up here, grouped by status and ready to edit." = "AniList'inize anime eklediğinizde burada duruma göre gruplandırılmış ve düzenlenmeye hazır olarak görünürler.";
 "Add bookmark" = "Add bookmark";
 "Add from lists" = "Listelerden ekle";
 "Add key" = "Anahtar ekle";
@@ -253,6 +255,7 @@
 "Back to top" = "Başa dön";
 "Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "Arka plan";
+"Background image" = "Arka plan görüntüsü";
 "Background opacity" = "Arka plan opaklığı";
 "Bajar {name}" = "{name} öğesini aşağı taşı";
 "Balanced" = "Dengeli";
@@ -349,6 +352,7 @@
 "Buscar en la configuración" = "Ayarlarda ara";
 "Buscar idiomas" = "Dil ara";
 "Buscar subtítulos de nuevo" = "Search subtitles again";
+"By default, addon rails that duplicate the built-in ones (Trending, Popular, Top Rated, etc.) are merged so you don't see the same row twice. Turn this on to show every one, duplicates and all." = "Varsayılan olarak yerleşik raflarla aynı olan eklenti rafları (Trendler, Popüler, En Yüksek Puanlı vb.) birleştirilir, böylece aynı satırı iki kez görmezsiniz. Yinelenenler dahil tümünü göstermek için bunu açın.";
 "By year" = "Yıla göre";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Son aramalar";
@@ -413,6 +417,7 @@
 "Chinese" = "Çince";
 "Chinese (Simplified)" = "Basitleştirilmiş Çince";
 "Choose an avatar" = "Bir avatar seçin";
+"Choose image" = "Görsel seç";
 "Choose the frame rate the subtitle was authored for." = "Altyazının hazırlandığı kare hızını seçin.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Sevdiğiniz en fazla 5 film veya diziyi seçin. Harbor bunları öne çıkan içerikleri ve önerileri size göre kişiselleştirmek için kullanır. Tamamen isteğe bağlıdır.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harbor'ın ne zaman profil seçmenizi isteyeceğini belirleyin. Zamanlanmış istemler Harbor'a döndüğünüzde görünür.";
@@ -496,6 +501,7 @@
 "Connect TMDB" = "TMDB'yi bağla";
 "Connect Trakt" = "Trakt'ı bağla";
 "Connect Trakt in settings first" = "Önce Ayarlar'dan Trakt'ı bağlayın";
+"Connect Trakt or Simkl, or start watching, and your stats will build themselves." = "Trakt veya Simkl'yi bağlayın ya da izlemeye başlayın; istatistikleriniz kendiliğinden oluşsun.";
 "Connected" = "Bağlı";
 "Connected as {username}" = "{username} olarak bağlandı";
 "Connected to AniList" = "AniList'e bağlandı";
@@ -539,6 +545,7 @@
 "Could not load this page. Try again." = "Bu sayfa yüklenemedi. Tekrar deneyin.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read file" = "Dosya okunamadı";
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "Listeleriniz okunamadı. Kayıtlı verileriniz korunuyor.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
@@ -550,13 +557,16 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Otomatik eşitlenemedi";
+"Couldn't compress this image small enough. Try a different photo or crop it down." = "Bu görüntü yeterince küçültülemedi. Farklı bir fotoğraf deneyin veya daha fazla kırpın.";
 "Couldn't connect to AniList" = "AniList'e bağlanılamadı";
 "Couldn't connect to MyAnimeList" = "MyAnimeList'e bağlanılamadı";
 "Couldn't install. Double-check the URL and try again." = "Yüklenemedi. URL'yi tekrar kontrol edip yeniden deneyin.";
 "Couldn't reach AniList." = "AniList'e ulaşılamadı.";
+"Couldn't reach AniList. Try refreshing." = "AniList'e ulaşılamadı. Yenilemeyi deneyin.";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Simkl'a ulaşılamadı";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt'a erişilemedi. Bağlantınızı kontrol edip tekrar deneyin.";
+"Couldn't read that image. Try a different file." = "Bu görüntü okunamadı. Başka bir dosya deneyin.";
 "Cover Image URL" = "Kapak Görseli URL'si";
 "Crash" = "Çökme";
 "Crea tu propia paleta" = "Kendi paletinizi oluşturun";
@@ -635,6 +645,7 @@
 "Detalles" = "Ayrıntılar";
 "Detener reproducción" = "Stop playback";
 "Dim" = "Karartma";
+"Dim overlay" = "Karartma katmanı";
 "Dirección" = "Yön";
 "Direct link" = "Doğrudan bağlantı";
 "Direct stream" = "Doğrudan yayın";
@@ -672,6 +683,7 @@
 "Dracula" = "Dracula";
 "Drama" = "Dram";
 "Drama Series" = "Dram Dizileri";
+"Drop a wallpaper behind the app. The dim slider keeps text readable." = "Uygulamanın arkasına bir duvar kâğıdı ekleyin. Karartma kaydırıcısı metnin okunaklı kalmasını sağlar.";
 "Drop shadow" = "Gölge";
 "Dropped" = "Yarım bırakıldı";
 "Dropped (decode / vo)" = "Atlanan (decode / vo)";
@@ -751,6 +763,7 @@
 "Este archivo tiene una pista de audio." = "Bu dosyada tek bir ses parçası var.";
 "Estilo de Inicio" = "Ana Sayfa stili";
 "Estilo de los subtítulos" = "Altyazı stili";
+"Estimated from your local history. Connect Trakt or Simkl for the full picture." = "Yerel geçmişinizden tahmin edilmiştir. Tam tablo için Trakt veya Simkl'yi bağlayın.";
 "Estirar" = "Esnet";
 "Evens out quiet dialogue and loud action scenes with a dynamic normalizer." = "Dinamik normalleştiriciyle sessiz diyaloglar ile yüksek sesli aksiyon sahneleri arasındaki farkı dengeler.";
 "Event timeline" = "Event timeline";
@@ -770,6 +783,7 @@
 "Explorar complementos" = "Eklentilere göz at";
 "Explorar por categoría" = "Kategoriye göre göz at";
 "Explore" = "Keşfet";
+"Export" = "Dışa aktar";
 "Export log" = "Export log";
 "Export to Trakt" = "Trakt'a aktar";
 "Extension" = "Extension";
@@ -902,6 +916,7 @@
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor, her hizmette şu anda bulunan en popüler yapımları getirir. Abone olmadığınız hizmetleri kapatın.";
 "Harbor ranking" = "Harbor sıralaması";
 "Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Harbor sıralaması, en yüksek puanlı kaynakları öne alır. Eklenti sırası ise Stremio ve Vidi uygulamalarında olduğu gibi her eklentinin sonuçlarını döndürdüğü sırada tutar. Aşağıdaki yayın önceliği, her iki modda da hangi eklentinin önce geleceğini belirler.";
+"Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harbor, AniList listelerinizi Anime sayfasında gösterir ve ilerlemenizi eşit tutar.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Harbor'ın kendi menüleri ve etiketleri. Altyazı dillerini daha sonra seçebilirsiniz; ikisini de Ayarlar'dan değiştirebilirsiniz.";
 "Hard stroke around each letter. High contrast." = "Her harfin çevresinde keskin bir kontur. Yüksek kontrast.";
 "Harvey Award Winners" = "Harvey Ödülü Kazananlar";
@@ -927,6 +942,7 @@
 "Hide row" = "Satırı gizle";
 "Hide sound effects and speaker names" = "Ses efektlerini ve konuşan adlarını gizle";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Şüpheli dosyaları, eşleşmeyen sürümleri, olası kamera çekimlerini ve fragmanları gizleyin. Dosya boyutlarını ve sezon paketlerini de denetleyin.";
+"Hide this catalog" = "Bu kataloğu gizle";
 "Hide titles under posters" = "Posterlerin altındaki başlıkları gizle";
 "Hide unreleased titles" = "Henüz yayımlanmamış içerikleri gizle";
 "Hide watched titles in catalogs" = "İzlenen yapımları kataloglarda gizle";
@@ -941,6 +957,7 @@
 "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "Yüksek, ekranınıza göre boyutlandırılır ve çok daha az bellek kullanarak tam çözünürlükle aynı görünür. Dengeli en fazla tasarrufu sağlar. Maksimum, özgün çözünürlüğü korur.";
 "Highlight, progress." = "Vurgu, ilerleme.";
 "Highlighted blocks." = "Vurgulanan bloklar.";
+"Highlights" = "Öne çıkanlar";
 "Hindi" = "Hintçe";
 "History" = "Tarih";
 "Hockey" = "Hokey";
@@ -979,6 +996,7 @@
 "Import CBZ/ZIP or folder" = "Import CBZ/ZIP or folder";
 "Import M3U file" = "Import M3U file";
 "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
+"Import a theme" = "Temayı içe aktar";
 "Import files" = "Dosyaları içe aktar";
 "Import folder" = "Klasörü içe aktar";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
@@ -1032,6 +1050,7 @@
 "Italy" = "İtalya";
 "Izquierda" = "Sol";
 "Izquierda a derecha" = "Soldan sağa";
+"JPEG / PNG / WebP. Big files auto-compress to fit." = "JPEG / PNG / WebP. Büyük dosyalar sığacak şekilde otomatik olarak sıkıştırılır.";
 "JSON URL" = "JSON URL'si";
 "JSON cannot be empty" = "JSON boş olamaz";
 "Japan" = "Japonya";
@@ -1106,6 +1125,7 @@
 "Loading more sources" = "Daha fazla kaynak yükleniyor";
 "Loading music" = "Müzik yükleniyor";
 "Loading plugins..." = "Eklentiler yükleniyor...";
+"Loading your AniList…" = "AniList'iniz yükleniyor…";
 "Loading your history…" = "Geçmişiniz yükleniyor…";
 "Loading..." = "Yükleniyor...";
 "Loading…" = "Yükleniyor…";
@@ -1115,6 +1135,7 @@
 "Logo position" = "Logo konumu";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "Logolar";
+"Longest binge" = "En uzun izleme maratonu";
 "Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Altyazı FPS'si bu libmpv çalışma ortamında kullanılamıyor.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "İkincil altyazı etkinken altyazı FPS'si kullanılamaz.";
@@ -1221,6 +1242,7 @@
 "Movies" = "Filmler";
 "Movies & Specials" = "Filmler ve Özel Bölümler";
 "Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "Gelecekte yayınlanacak filmler ve diziler yerleşik Ana Sayfa katalog satırlarında gösterilmez. Böylece Ana Sayfa yalnızca şu anda izleyebileceğiniz içerikleri gösterir.";
+"Movies are your natural habitat." = "Movies are your natural habitat.";
 "Movies on {name}" = "{name} filmleri";
 "Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "İzlediğiniz filmler ve ilerleme kaydettiğiniz diziler, yerel izleme geçmişiniz (ve bağlıysa Trakt) kullanılarak yerleşik katalog satırlarında gösterilmez. İzlemeye Devam Et bölümü bundan etkilenmez.";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor algıladığında Jeneriği Atla / Kapanış Jeneriğini Atla düğmesini gösterir. Hiç gösterilmemesi için bunu kapatın. Hatalı bir düğmeyi bölümün geri kalanında gizlemek için düğmedeki X'e de dokunabilirsiniz.";
@@ -1248,6 +1270,7 @@
 "NFL" = "NFL";
 "NHL" = "NHL";
 "Name" = "Ad";
+"Name your theme" = "Temanızı adlandırın";
 "Navegación" = "Gezinme";
 "Navigation" = "Gezinme";
 "Navigation changes waiting to sync" = "Navigation changes waiting to sync";
@@ -1283,6 +1306,7 @@
 "No" = "Hayır";
 "No Label" = "Etiket Yok";
 "No Simkl premieres this month" = "Bu ay Simkl'da prömiyer yok";
+"No background image" = "Arka plan görseli yok";
 "No catalogs match your search." = "Aramanızla eşleşen katalog yok.";
 "No catalogs yet" = "Henüz katalog yok";
 "No comments yet" = "Henüz yorum yok";
@@ -1364,6 +1388,7 @@
 "Nothing saved on Trakt yet." = "Trakt'a henüz bir şey kaydedilmedi.";
 "Nothing this month" = "Bu ay hiçbir şey yok";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Gönderilecek bir şey yok. İzleme listesindeki {n} öğenin tümü anime ve Trakt bunları takip edemiyor.";
+"Nothing to show yet" = "Henüz gösterilecek bir şey yok";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "Henüz hiçbir şey izlenmedi";
 "Nothing yet" = "Henüz bir şey yok";
@@ -1442,6 +1467,7 @@
 "Outline" = "Dış çizgi";
 "Outline color" = "Kontur rengi";
 "Outline thickness" = "Kontur kalınlığı";
+"Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "Gömülü stilleri geçersiz kıl";
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2P kaynakları, debrid uyumlu";
@@ -1498,6 +1524,10 @@
 "Picture adjustments" = "Görüntü ayarları";
 "Picture in Picture" = "Resim İçinde Resim";
 "Pill" = "Pill";
+"Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "İstediğiniz katalogları en üste sabitleyin, hiç açmadıklarınızı gizleyin ve sabitlenmiş raflarınızı yeniden sıralayın. Keşfet görünümünüz anında güncellenir.";
+"Pin to top" = "En üste sabitle";
+"Pinned" = "Sabitlendi";
+"Pinned to top" = "En üste sabitlendi";
 "Plan to Watch" = "İzlenecekler";
 "Play" = "Oynat";
 "Play movie" = "Filmi oynat";
@@ -1629,6 +1659,7 @@
 "Recién agregado" = "Yeni eklenenler";
 "Recomendado" = "Önerilen";
 "Recommended" = "Önerilen";
+"Recommended for you" = "Sizin için önerilenler";
 "Recordatorio" = "Reminder";
 "Redondeado" = "Yuvarlak";
 "Refresh" = "Yenile";
@@ -1680,6 +1711,7 @@
 "Renombrar" = "Yeniden adlandır";
 "Repeat" = "Tekrarla";
 "Repetición" = "Tekrarla";
+"Replace image" = "Görüntüyü değiştir";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Tanıtım turunu yeniden oynatın veya uygulamada kapattığınız tüm ipuçlarını tekrar gösterin.";
 "Replay walkthrough" = "Tanıtımı yeniden oynat";
 "Repositories" = "Depolar";
@@ -1778,6 +1810,7 @@
 "Save page" = "Save page";
 "Save reminder" = "Hatırlatıcıyı kaydet";
 "Save settings" = "Save settings";
+"Save theme" = "Temayı kaydet";
 "Save to this library" = "Save to this library";
 "Save track" = "Parçayı kaydet";
 "Saved" = "Kaydedildi";
@@ -1881,6 +1914,7 @@
 "Show episode" = "Bölümü göster";
 "Show episode description" = "Bölüm açıklamasını göster";
 "Show episode ratings" = "Bölüm puanlarını göster";
+"Show every addon row" = "Her eklenti satırını göster";
 "Show everything anyway" = "Yine de tümünü göster";
 "Show full descriptions" = "Açıklamaların tamamını göster";
 "Show hidden episodes" = "Gizli bölümleri göster";
@@ -1896,6 +1930,7 @@
 "Show row" = "Satırı göster";
 "Show subtitle sync indicator" = "Altyazı eşitleme göstergesini göster";
 "Show the Skip button" = "Atla düğmesini göster";
+"Show this catalog" = "Bu kataloğu göster";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Çevrilmiş adları yukarıda seçilen dilde gösterin. Özgün adları korumak için kapatın.";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "Aynı anda iki altyazı dili gösterin. Dil öğrenirken veya birlikte izlerken kullanışlıdır.";
 "Show {name} in navigation" = "{name} öğesini gezinmede göster";
@@ -1987,6 +2022,7 @@
 "Start with subtitles off" = "Altyazıları kapalı başlat";
 "Starting" = "Başlatılıyor";
 "Startup & default" = "Başlangıç ve varsayılan";
+"Stats" = "İstatistikler";
 "Status" = "Durum";
 "Step 1 · Metadata" = "1. Adım · Meta veriler";
 "Step 1 · Open Simkl" = "1. Adım · Simkl'ı açın";
@@ -2114,8 +2150,14 @@
 "That does not look like a valid magnet link or infohash." = "Bu, geçerli bir magnet bağlantısı veya infohash gibi görünmüyor.";
 "That link did not answer." = "Bu bağlantı yanıt vermedi.";
 "That route wouldn't chart. Try a different direction." = "Bu rota çizilemedi. Farklı bir yön deneyin.";
+"The Anime Devotee" = "The Anime Devotee";
+"The Binger" = "The Binger";
 "The CW" = "The CW";
+"The Explorer" = "The Explorer";
+"The Film Buff" = "The Film Buff";
 "The Roku Channel" = "The Roku Channel";
+"The Series Slayer" = "The Series Slayer";
+"The Well-Rounded" = "The Well-Rounded";
 "The addons did not return metadata for this title." = "Eklentiler bu başlık için meta veri döndürmedi.";
 "The authorization code timed out before you finished. Try again." = "Siz işlemi tamamlamadan yetkilendirme kodunun süresi doldu. Tekrar deneyin.";
 "The comics industry's highest honor" = "Çizgi roman sektörünün en büyük onuru";
@@ -2130,15 +2172,22 @@
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
+"Theme is missing a name." = "Temanın adı eksik.";
+"Theme name" = "Tema adı";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Bu satırlar, bir TMDB anahtarı ayarlandığında etkinleşir. Bu bölüme dilediğiniz zaman Ayarlar'dan dönebilirsiniz.";
 "They email an activation link the first time. Click it, then come back and save." = "İlk seferde e-postayla bir etkinleştirme bağlantısı gönderirler. Bağlantıya tıklayın, ardından buraya dönüp kaydedin.";
 "This file has one audio track." = "Bu dosyada tek bir ses parçası var.";
+"This file isn't a Harbor theme." = "Bu dosya bir Harbor teması değil.";
+"This file isn't a readable theme." = "Bu dosya okunabilir bir tema değil.";
 "This is a manga repository. Add it from the Manga page." = "Bu bir manga deposu. Manga sayfasından ekleyin.";
 "This is how your subtitles will look." = "Altyazılarınız böyle görünecek.";
 "This list is full ({max} items)" = "Bu liste dolu ({max} öğe)";
 "This month" = "Bu ay";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This theme is missing a color ({color})." = "Bu temada bir renk eksik ({color}).";
+"This theme is missing its colors." = "Bu temanın renkleri eksik.";
+"This theme's preview colors look invalid." = "Bu temanın önizleme renkleri geçersiz görünüyor.";
 "This title would not open" = "Bu içerik açılamadı";
 "This week" = "Bu hafta";
 "Thriller" = "Gerilim";
@@ -2195,6 +2244,7 @@
 "Top result" = "En iyi sonuç";
 "Top right" = "Sağ üst";
 "Top rising" = "En hızlı yükselenler";
+"Top titles" = "En çok izlenen yapımlar";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "TorBox API anahtarı";
 "Torrent link" = "Torrent bağlantısı";
@@ -2266,6 +2316,7 @@
 "Unknown" = "Bilinmiyor";
 "Unlock controls" = "Kontrollerin kilidini aç";
 "Unmute" = "Sesi aç";
+"Unpin" = "Sabitlemeyi kaldır";
 "Unverified" = "Doğrulanmamış";
 "Up Next" = "Sıradaki";
 "Up Next on Trakt" = "Up Next on Trakt";
@@ -2337,6 +2388,7 @@
 "Welcome to Harbor" = "Harbor'a hoş geldiniz";
 "Western" = "Vahşi Batı";
 "What everyone is reading" = "Herkesin okudukları";
+"What you watched" = "İzledikleriniz";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Esc oynatıcıyı kapatacaksa önce hızlı bir onay gösterir. Esc ile her zaman çıkmak için bu istemde \"Bir daha sorma\" seçeneğini işaretleyebilirsiniz.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Bir sürüm birden fazla ses parçasıyla geldiğinde Harbor bu listedeki ilk eşleşmeyi seçer.";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "Bir bölüm bittiğinde sonrakini otomatik olarak başlatır. Kapalı olduğunda bölüm biter ve oynatma durur.";
@@ -2347,6 +2399,7 @@
 "When you press Play" = "Oynat'a bastığınızda";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "İzlemeye devam ettiğinizde seçim ekranını yeniden açmak yerine son kullandığınız yayını (aynı eklenti ve kaynak) oynatır. Her zaman yeniden seçim yapmak için kapatın.";
 "Where it shows" = "Gösterileceği yer";
+"Where it started" = "Başlangıç noktası";
 "Where to today?" = "Bugün nereye?";
 "Where to watch" = "Nerede izlenir";
 "Where your video comes from" = "Video kaynakları";
@@ -2360,11 +2413,17 @@
 "Xtream server" = "Xtream server";
 "Year" = "Yıl";
 "You can switch later in Settings under Library & metadata." = "Bunu daha sonra Ayarlar'daki Kütüphane ve meta veriler bölümünden değiştirebilirsiniz.";
+"You cast a wide net across everything." = "You cast a wide net across everything.";
 "You have reached {max} lists. Remove one to make room." = "{max} liste sınırına ulaştınız. Yer açmak için birini kaldırın.";
+"You live one episode at a time." = "You live one episode at a time.";
 "You must install this addon in your Stremio account first so Harbor can fetch its works." = "Harbor'ın içeriklerini alabilmesi için önce bu eklentiyi Stremio hesabınıza yüklemelisiniz.";
+"You once tore through {n} in a single day." = "You once tore through {n} in a single day.";
 "You're set." = "Her şey hazır.";
+"You've hidden every catalog that matched." = "Eşleşen tüm katalogları gizlediniz.";
+"You've hidden the one catalog that matched." = "Eşleşen tek kataloğu gizlediniz.";
 "You've reached the end · {n} addons" = "Sona ulaştınız · {n} eklenti";
 "YouTube" = "YouTube";
+"Your AniList is empty" = "AniList'iniz boş";
 "Your Discovery Queue" = "Keşif Kuyruğunuz";
 "Your Stremio library + addons sync in untouched." = "Stremio kütüphaneniz ve eklentileriniz değişmeden eşitlenir.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
@@ -2384,6 +2443,8 @@
 "Your rating" = "Puanınız";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "Kaydettiğiniz dizilerin bu ay yayınlanması planlanan bölümü yok. Tüm yayın takvimine göz atmak için Yakında Yayınlanacakların Tümü'ne geçin.";
 "Your services are saved locally. Cloud sync will retry." = "Hizmetleriniz bu cihazda kaydedildi. Bulut eşitlemesi yeniden denenecek.";
+"Your themes" = "Temalarınız";
+"Your watch year" = "İzleme yılınız";
 "Your watchlist is empty" = "İzleme listeniz boş";
 "Your watchlist is empty, nothing to send." = "İzleme listeniz boş, gönderilecek bir şey yok.";
 "Yours" = "Size ait";
@@ -2419,6 +2480,7 @@
 "guest" = "misafir";
 "h" = "sa.";
 "hidden" = "gizli";
+"hours watched" = "saat izlendi";
 "hr" = "sa.";
 "item" = "öğe";
 "just now" = "az önce";
@@ -3575,6 +3637,7 @@
 "{n} ep" = "{n} blm";
 "{n} eps" = "{n} blm";
 "{n} hr" = "{n} sa.";
+"{n} in a day" = "Bir günde {n}";
 "{n} item" = "{n} öğe";
 "{n} items" = "{n} öğe";
 "{n} min" = "{n} dk";

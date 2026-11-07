@@ -29,6 +29,7 @@
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Открылась вкладка браузера с MyAnimeList. Подтвердите доступ для Harbor, затем скопируйте код или URL страницы и вставьте его ниже.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Клиент для протокола Stremio. Две минуты на настройку, и почти всё – по желанию. Все ключи остаются под вашим контролем.";
 "A continuación" = "Далее";
+"A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Более короткий скачок по Shift со стрелками, чтобы сдвигать всего на несколько секунд.";
 "A to Z" = "По алфавиту";
@@ -76,6 +77,7 @@
 "Add a TMDB key in settings first" = "Сначала добавьте ключ TMDB в настройках";
 "Add a movie or show to this list..." = "Добавить фильм или сериал в список...";
 "Add a repository" = "Добавить репозиторий";
+"Add anime to your AniList and they show up here, grouped by status and ready to edit." = "Добавляйте аниме в свой AniList, и они появятся здесь, сгруппированные по статусу и готовые к правке.";
 "Add bookmark" = "Add bookmark";
 "Add from lists" = "Добавить из списков";
 "Add key" = "Добавить ключ";
@@ -257,6 +259,7 @@
 "Back to top" = "Наверх";
 "Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "Фон";
+"Background image" = "Фоновое изображение";
 "Background opacity" = "Непрозрачность фона";
 "Bajar {name}" = "Переместить «{name}» вниз";
 "Balanced" = "Сбалансированный";
@@ -353,6 +356,7 @@
 "Buscar en la configuración" = "Поиск по настройкам";
 "Buscar idiomas" = "Поиск языков";
 "Buscar subtítulos de nuevo" = "Search subtitles again";
+"By default, addon rails that duplicate the built-in ones (Trending, Popular, Top Rated, etc.) are merged so you don't see the same row twice. Turn this on to show every one, duplicates and all." = "По умолчанию ряды дополнений, дублирующие встроенные («В тренде», «Популярное», «Лучшие» и т. д.), объединяются, чтобы один и тот же ряд не показывался дважды. Включите, чтобы показывать все ряды, включая дубликаты.";
 "By year" = "По годам";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Недавние запросы";
@@ -417,6 +421,7 @@
 "Chinese" = "Китайский";
 "Chinese (Simplified)" = "Китайский (упрощённый)";
 "Choose an avatar" = "Выберите аватар";
+"Choose image" = "Выбрать изображение";
 "Choose the frame rate the subtitle was authored for." = "Выберите частоту кадров, для которой были созданы субтитры.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Выберите до 5 фильмов или сериалов, которые вам нравятся. Harbor учтёт их в подборках и рекомендациях. Это необязательно.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Выберите, когда Harbor предлагает выбрать профиль. Запросы по таймеру появляются при возвращении в Harbor.";
@@ -500,6 +505,7 @@
 "Connect TMDB" = "Подключить TMDB";
 "Connect Trakt" = "Подключить Trakt";
 "Connect Trakt in settings first" = "Сначала подключите Trakt в настройках";
+"Connect Trakt or Simkl, or start watching, and your stats will build themselves." = "Подключите Trakt или Simkl либо просто начните смотреть – статистика соберётся сама.";
 "Connected" = "Подключено";
 "Connected as {username}" = "Подключено как {username}";
 "Connected to AniList" = "Подключено к AniList";
@@ -543,6 +549,7 @@
 "Could not load this page. Try again." = "Не удалось загрузить эту страницу. Повторите попытку.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Не удалось открыть книгу";
+"Could not read file" = "Не удалось прочитать файл";
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "Не удалось прочитать ваши списки. Сохранённые данные не потеряны.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
@@ -554,13 +561,16 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Не удалось синхронизировать";
+"Couldn't compress this image small enough. Try a different photo or crop it down." = "Не удалось достаточно сжать изображение. Выберите другое фото или уменьшите область кадрирования.";
 "Couldn't connect to AniList" = "Не удалось подключиться к AniList";
 "Couldn't connect to MyAnimeList" = "Не удалось подключиться к MyAnimeList";
 "Couldn't install. Double-check the URL and try again." = "Не удалось установить. Проверьте URL и попробуйте снова.";
 "Couldn't reach AniList." = "Не удалось связаться с AniList.";
+"Couldn't reach AniList. Try refreshing." = "Не удалось связаться с AniList. Попробуйте обновить.";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Не удалось связаться с Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Не удалось связаться с Trakt. Проверьте подключение и повторите попытку.";
+"Couldn't read that image. Try a different file." = "Не удалось прочитать изображение. Попробуйте другой файл.";
 "Cover Image URL" = "URL обложки";
 "Crash" = "Сбой";
 "Crea tu propia paleta" = "Создать свою палитру";
@@ -639,6 +649,7 @@
 "Detalles" = "Подробности";
 "Detener reproducción" = "Stop playback";
 "Dim" = "Затемнение";
+"Dim overlay" = "Затемнение";
 "Dirección" = "Направление";
 "Direct link" = "Прямая ссылка";
 "Direct stream" = "Прямой поток";
@@ -676,6 +687,7 @@
 "Dracula" = "Dracula";
 "Drama" = "Драма";
 "Drama Series" = "Драматические сериалы";
+"Drop a wallpaper behind the app. The dim slider keeps text readable." = "Поставьте обои под интерфейс приложения. Ползунок затемнения сохранит читаемость текста.";
 "Drop shadow" = "Тень";
 "Dropped" = "Брошено";
 "Dropped (decode / vo)" = "Пропущено (декод / vo)";
@@ -755,6 +767,7 @@
 "Este archivo tiene una pista de audio." = "В этом файле одна аудиодорожка.";
 "Estilo de Inicio" = "Стиль главной";
 "Estilo de los subtítulos" = "Стиль субтитров";
+"Estimated from your local history. Connect Trakt or Simkl for the full picture." = "Оценка по локальной истории. Подключите Trakt или Simkl для полной картины.";
 "Estirar" = "Растянуть";
 "Evens out quiet dialogue and loud action scenes with a dynamic normalizer." = "Выравнивает тихие диалоги и громкие экшн-сцены динамическим нормализатором.";
 "Event timeline" = "Event timeline";
@@ -774,6 +787,7 @@
 "Explorar complementos" = "Обзор дополнений";
 "Explorar por categoría" = "По категориям";
 "Explore" = "Исследовать";
+"Export" = "Экспорт";
 "Export log" = "Export log";
 "Export to Trakt" = "Экспорт в Trakt";
 "Extension" = "Extension";
@@ -907,6 +921,7 @@
 "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to." = "Harbor подтягивает самые популярные названия каждого сервиса прямо сейчас. Отключите те, на которые нет подписки.";
 "Harbor ranking" = "Ранжирование Harbor";
 "Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Ранжирование Harbor ставит первыми источники с лучшей оценкой. Порядок дополнений сохраняет результаты каждого дополнения в том порядке, в каком оно их вернуло, как в приложениях Stremio и Vidi. Приоритет потоков ниже определяет, какое дополнение идёт первым, в обоих режимах.";
+"Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harbor показывает ваши списки AniList на странице «Аниме» и синхронизирует прогресс.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Меню и подписи самого Harbor. Языки субтитров вы выберете позже, и оба параметра можно изменить в Настройках.";
 "Hard stroke around each letter. High contrast." = "Жёсткая обводка каждой буквы. Высокий контраст.";
 "Harvey Award Winners" = "Лауреаты премии Харви";
@@ -932,6 +947,7 @@
 "Hide row" = "Скрыть ряд";
 "Hide sound effects and speaker names" = "Скрывать звуковые эффекты и имена говорящих";
 "Hide suspicious files, mismatched releases, likely camera recordings and trailers. Also check file sizes and season packs." = "Скрывает подозрительные файлы, неподходящие версии, вероятные записи из кинотеатра и трейлеры. Также проверяет размеры файлов и полные сезоны.";
+"Hide this catalog" = "Скрыть этот каталог";
 "Hide titles under posters" = "Скрывать названия под постерами";
 "Hide unreleased titles" = "Скрывать невышедшие названия";
 "Hide watched titles in catalogs" = "Скрывать просмотренные названия в каталогах";
@@ -946,6 +962,7 @@
 "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "«Высокий» подгоняется под ваш экран и выглядит так же, как полное разрешение, но занимает намного меньше памяти. «Сбалансированный» экономит больше всего. «Максимум» сохраняет исходное разрешение.";
 "Highlight, progress." = "Выделение, прогресс.";
 "Highlighted blocks." = "Выделенные блоки.";
+"Highlights" = "Главное";
 "Hindi" = "Хинди";
 "History" = "История";
 "Hockey" = "Хоккей";
@@ -984,6 +1001,7 @@
 "Import CBZ/ZIP or folder" = "Import CBZ/ZIP or folder";
 "Import M3U file" = "Import M3U file";
 "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
+"Import a theme" = "Импортировать тему";
 "Import files" = "Импортировать файлы";
 "Import folder" = "Импортировать папку";
 "Import from Files · EPUB / PDF" = "Импорт из «Файлов» · EPUB / PDF";
@@ -1037,6 +1055,7 @@
 "Italy" = "Италия";
 "Izquierda" = "Слева";
 "Izquierda a derecha" = "Слева направо";
+"JPEG / PNG / WebP. Big files auto-compress to fit." = "JPEG / PNG / WebP. Большие файлы автоматически сжимаются до нужного размера.";
 "JSON URL" = "URL JSON";
 "JSON cannot be empty" = "JSON не может быть пустым";
 "Japan" = "Япония";
@@ -1111,6 +1130,7 @@
 "Loading more sources" = "Загрузка дополнительных источников";
 "Loading music" = "Загрузка музыки";
 "Loading plugins..." = "Загрузка плагинов...";
+"Loading your AniList…" = "Загрузка вашего AniList…";
 "Loading your history…" = "Загрузка истории…";
 "Loading..." = "Загрузка...";
 "Loading…" = "Загрузка…";
@@ -1120,6 +1140,7 @@
 "Logo position" = "Положение логотипа";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "Логотипы";
+"Longest binge" = "Самый долгий марафон";
 "Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Настройка частоты кадров субтитров недоступна в этой версии libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Настройка частоты кадров недоступна, пока включены вторые субтитры.";
@@ -1226,6 +1247,7 @@
 "Movies" = "Фильмы";
 "Movies & Specials" = "Фильмы и спецвыпуски";
 "Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now." = "Фильмы и сериалы с будущей датой выхода перестают появляться во встроенных рядах каталогов на Главной, поэтому там остаётся только то, что можно смотреть сейчас.";
+"Movies are your natural habitat." = "Movies are your natural habitat.";
 "Movies on {name}" = "Фильмы на {name}";
 "Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched." = "Просмотренные фильмы и начатые сериалы перестают появляться во встроенных рядах каталогов; используется локальная история просмотров (и Trakt, если подключён). «Продолжить просмотр» это не затрагивает.";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Показывать кнопку «Пропустить заставку» / «Пропустить титры», когда Harbor их находит. Отключите, чтобы никогда её не показывать. Нажмите X на кнопке, чтобы скрыть ошибочную до конца серии.";
@@ -1255,6 +1277,7 @@
 "NR" = "NR";
 "NRR" = "NRR";
 "Name" = "Название";
+"Name your theme" = "Назовите тему";
 "Navegación" = "Навигация";
 "Navigation" = "Навигация";
 "Navigation changes waiting to sync" = "Navigation changes waiting to sync";
@@ -1291,6 +1314,7 @@
 "No" = "Нет";
 "No Label" = "Без метки";
 "No Simkl premieres this month" = "В этом месяце премьер на Simkl нет";
+"No background image" = "Без фонового изображения";
 "No catalogs match your search." = "Нет каталогов по вашему запросу.";
 "No catalogs yet" = "Каталогов пока нет";
 "No comments yet" = "Пока нет комментариев";
@@ -1372,6 +1396,7 @@
 "Nothing saved on Trakt yet." = "В Trakt пока ничего не сохранено.";
 "Nothing this month" = "В этом месяце ничего нет";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Отправлять нечего. Все {n} позиций в списке к просмотру относятся к аниме, которое Trakt не отслеживает.";
+"Nothing to show yet" = "Пока нечего показать";
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "Пока ничего не просмотрено";
 "Nothing yet" = "Пока пусто";
@@ -1451,6 +1476,7 @@
 "Outline" = "Обводка";
 "Outline color" = "Цвет обводки";
 "Outline thickness" = "Толщина обводки";
+"Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "Переопределять встроенные стили";
 "P" = "P";
 "P2P" = "P2P";
@@ -1509,6 +1535,10 @@
 "Picture adjustments" = "Настройка изображения";
 "Picture in Picture" = "Картинка в картинке";
 "Pill" = "Pill";
+"Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "Закрепите нужные каталоги вверху, скройте те, что не открываете, и измените порядок закреплённых рядов. Обзор обновится сразу.";
+"Pin to top" = "Закрепить сверху";
+"Pinned" = "Закреплено";
+"Pinned to top" = "Закреплено вверху";
 "Plan to Watch" = "Запланировано";
 "Play" = "Воспроизвести";
 "Play movie" = "Смотреть фильм";
@@ -1640,6 +1670,7 @@
 "Recién agregado" = "Только что добавлены";
 "Recomendado" = "Рекомендуемое";
 "Recommended" = "Рекомендуемое";
+"Recommended for you" = "Рекомендации для вас";
 "Recordatorio" = "Reminder";
 "Red" = "Red";
 "Redondeado" = "Скруглённый";
@@ -1692,6 +1723,7 @@
 "Renombrar" = "Переименовать";
 "Repeat" = "Повтор";
 "Repetición" = "Повтор";
+"Replace image" = "Заменить изображение";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Пройти обучение заново или вернуть все скрытые подсказки.";
 "Replay walkthrough" = "Пройти обучение заново";
 "Repositories" = "Репозитории";
@@ -1790,6 +1822,7 @@
 "Save page" = "Save page";
 "Save reminder" = "Сохранить напоминание";
 "Save settings" = "Save settings";
+"Save theme" = "Сохранить тему";
 "Save to this library" = "Save to this library";
 "Save track" = "Сохранить трек";
 "Saved" = "Сохранено";
@@ -1893,6 +1926,7 @@
 "Show episode" = "Показать серию";
 "Show episode description" = "Показывать описание серии";
 "Show episode ratings" = "Показывать оценки серий";
+"Show every addon row" = "Показывать все ряды дополнений";
 "Show everything anyway" = "Всё равно показать всё";
 "Show full descriptions" = "Показывать описания полностью";
 "Show hidden episodes" = "Показать скрытые серии";
@@ -1908,6 +1942,7 @@
 "Show row" = "Показывать ряд";
 "Show subtitle sync indicator" = "Показывать индикатор синхронизации субтитров";
 "Show the Skip button" = "Показывать кнопку «Пропустить»";
+"Show this catalog" = "Показывать этот каталог";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Показывать переведённые названия на выбранном выше языке. Выключите, чтобы сохранить оригинальные названия.";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "Показывать субтитры на двух языках одновременно. Удобно для изучения языка или совместного просмотра.";
 "Show {name} in navigation" = "Показывать «{name}» в навигации";
@@ -2001,6 +2036,7 @@
 "Start with subtitles off" = "Запускать с выключенными субтитрами";
 "Starting" = "Запуск";
 "Startup & default" = "Запуск и профиль по умолчанию";
+"Stats" = "Статистика";
 "Status" = "Статус";
 "Step 1 · Metadata" = "Шаг 1 · Метаданные";
 "Step 1 · Open Simkl" = "Шаг 1 · Открыть Simkl";
@@ -2128,8 +2164,14 @@
 "That does not look like a valid magnet link or infohash." = "Это не похоже на действительную magnet-ссылку или инфохеш.";
 "That link did not answer." = "Эта ссылка не ответила.";
 "That route wouldn't chart. Try a different direction." = "Не удалось проложить маршрут. Попробуйте другое направление.";
+"The Anime Devotee" = "The Anime Devotee";
+"The Binger" = "The Binger";
 "The CW" = "The CW";
+"The Explorer" = "The Explorer";
+"The Film Buff" = "The Film Buff";
 "The Roku Channel" = "The Roku Channel";
+"The Series Slayer" = "The Series Slayer";
+"The Well-Rounded" = "The Well-Rounded";
 "The addons did not return metadata for this title." = "Дополнения не вернули метаданные для этого произведения.";
 "The authorization code timed out before you finished. Try again." = "Срок действия кода авторизации истёк. Попробуйте снова.";
 "The comics industry's highest honor" = "Высшая награда индустрии комиксов";
@@ -2144,9 +2186,13 @@
 "The subtitle already matches the audio." = "Субтитры уже совпадают со звуком.";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
+"Theme is missing a name." = "У темы отсутствует название.";
+"Theme name" = "Название темы";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Эти ряды заработают после добавления ключа TMDB. Вернуться к этому можно в любой момент в Настройках.";
 "They email an activation link the first time. Click it, then come back and save." = "При первом использовании ссылка для активации придёт по электронной почте. Перейдите по ней, затем вернитесь и сохраните.";
 "This file has one audio track." = "В этом файле одна аудиодорожка.";
+"This file isn't a Harbor theme." = "Этот файл не является темой Harbor.";
+"This file isn't a readable theme." = "Не удалось прочитать тему из этого файла.";
 "This is a Stremio addon manifest. Add it from the Addons page instead." = "This is a Stremio addon manifest. Add it from the Addons page instead.";
 "This is a manga repository. Add it from the Manga page." = "Это репозиторий манги. Добавьте его на странице «Манга».";
 "This is how your subtitles will look." = "Так будут выглядеть ваши субтитры.";
@@ -2154,6 +2200,9 @@
 "This month" = "В этом месяце";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This theme is missing a color ({color})." = "В этой теме отсутствует цвет ({color}).";
+"This theme is missing its colors." = "В этой теме отсутствуют цвета.";
+"This theme's preview colors look invalid." = "Цвета предварительного просмотра этой темы некорректны.";
 "This title would not open" = "Не удалось открыть это название";
 "This week" = "На этой неделе";
 "Thriller" = "Триллер";
@@ -2210,6 +2259,7 @@
 "Top result" = "Лучший результат";
 "Top right" = "Сверху справа";
 "Top rising" = "Набирают популярность";
+"Top titles" = "Топ названий";
 "Top tracks" = "Top tracks";
 "TorBox API key" = "API-ключ TorBox";
 "Torrent link" = "Торрент-ссылка";
@@ -2281,6 +2331,7 @@
 "Unknown" = "Неизвестно";
 "Unlock controls" = "Разблокировать управление";
 "Unmute" = "Включить звук";
+"Unpin" = "Открепить";
 "Unverified" = "Не подтверждён";
 "Up Next" = "Далее";
 "Up Next on Trakt" = "Up Next on Trakt";
@@ -2352,6 +2403,7 @@
 "Welcome to Harbor" = "Добро пожаловать в Harbor";
 "Western" = "Вестерн";
 "What everyone is reading" = "Что читают все";
+"What you watched" = "Что вы смотрели";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Когда Esc закрывает плеер, сначала показывать быстрое подтверждение. В этом окне можно отметить «Больше не спрашивать», чтобы Esc всегда закрывал плеер.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Если в релизе несколько звуковых дорожек, Harbor выбирает первое совпадение из этого списка.";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "Когда серия заканчивается, автоматически запускать следующую. Если выключено, воспроизведение просто остановится.";
@@ -2362,6 +2414,7 @@
 "When you press Play" = "Когда вы нажимаете «Воспроизвести»";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "При продолжении просмотра запускать тот же поток, что и в прошлый раз (то же дополнение и источник), не открывая выбор заново. Отключите, чтобы каждый раз выбирать заново.";
 "Where it shows" = "Где показывать";
+"Where it started" = "С чего всё началось";
 "Where to today?" = "Куда сегодня?";
 "Where to watch" = "Где смотреть";
 "Where your video comes from" = "Источники видео";
@@ -2375,11 +2428,17 @@
 "Xtream server" = "Xtream server";
 "Year" = "Год";
 "You can switch later in Settings under Library & metadata." = "Переключить можно позже в Настройках, раздел «Библиотека и метаданные».";
+"You cast a wide net across everything." = "You cast a wide net across everything.";
 "You have reached {max} lists. Remove one to make room." = "Достигнут предел: {max} списков. Удалите один, чтобы освободить место.";
+"You live one episode at a time." = "You live one episode at a time.";
 "You must install this addon in your Stremio account first so Harbor can fetch its works." = "Сначала установите это дополнение в аккаунте Stremio, чтобы Harbor мог получать его материалы.";
+"You once tore through {n} in a single day." = "You once tore through {n} in a single day.";
 "You're set." = "Всё готово.";
+"You've hidden every catalog that matched." = "Все подходящие каталоги скрыты.";
+"You've hidden the one catalog that matched." = "Единственный подходящий каталог скрыт.";
 "You've reached the end · {n} addons" = "Это всё · {n} дополнений";
 "YouTube" = "YouTube";
+"Your AniList is empty" = "Ваш AniList пуст";
 "Your Discovery Queue" = "Ваша очередь открытий";
 "Your Stremio library + addons sync in untouched." = "Ваша библиотека Stremio и дополнения синхронизируются без изменений.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
@@ -2399,6 +2458,8 @@
 "Your rating" = "Ваша оценка";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "У сохранённых сериалов нет серий в этом месяце. Переключитесь на «Все ожидаемые», чтобы увидеть полный календарь релизов.";
 "Your services are saved locally. Cloud sync will retry." = "Сервисы сохранены на этом устройстве. Синхронизация будет повторена.";
+"Your themes" = "Ваши темы";
+"Your watch year" = "Ваш год просмотров";
 "Your watchlist is empty" = "Список просмотра пуст";
 "Your watchlist is empty, nothing to send." = "Ваш список к просмотру пуст, отправлять нечего.";
 "Yours" = "У вас";
@@ -2434,6 +2495,7 @@
 "guest" = "гость";
 "h" = "ч";
 "hidden" = "скрытых";
+"hours watched" = "часов просмотра";
 "hr" = "ч";
 "item" = "элемент";
 "just now" = "только что";
@@ -3590,6 +3652,7 @@
 "{n} ep" = "{n} эп";
 "{n} eps" = "{n} эп";
 "{n} hr" = "{n} ч";
+"{n} in a day" = "{n} за день";
 "{n} item" = "{n} элементов";
 "{n} items" = "{n} элементов";
 "{n} min" = "{n} мин";
