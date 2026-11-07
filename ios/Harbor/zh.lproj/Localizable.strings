@@ -658,6 +658,7 @@
 "Couldn't reach MyAnimeList. Try refreshing." = "无法连接 MyAnimeList。请尝试刷新。";
 "Couldn't reach Simkl" = "无法连接 Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "无法连接到 Trakt。请检查网络连接后重试。";
+"Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "无法连接到此 Roku";
 "Couldn't read that image. Try a different file." = "无法读取该图片，请尝试其他文件。";
 "Couldn't scan that folder." = "无法扫描该文件夹。";
@@ -747,6 +748,8 @@
 "Details" = "详情";
 "Detalles" = "详情";
 "Detener reproducción" = "Stop playback";
+"Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again." = "Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again.";
+"Device refused the connection. Try restarting it." = "Device refused the connection. Try restarting it.";
 "Died {date}" = "逝世于 {date}";
 "Dim" = "调暗";
 "Dim overlay" = "暗色遮罩";
@@ -2120,6 +2123,7 @@
 "Second line size" = "第二字幕字号";
 "Second subtitle language" = "第二字幕语言";
 "Secondary copy." = "备用副本。";
+"Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "查看详情";
 "Seek bar" = "进度条";
 "Seen so far: {hosts}" = "目前已见：{hosts}";

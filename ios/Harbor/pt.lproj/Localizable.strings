@@ -678,6 +678,7 @@
 "Couldn't reach MyAnimeList. Try refreshing." = "Não foi possível acessar o MyAnimeList. Tente atualizar.";
 "Couldn't reach Simkl" = "Não foi possível conectar ao Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Não foi possível conectar ao Trakt. Verifique sua conexão e tente novamente.";
+"Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "Não foi possível acessar este Roku";
 "Couldn't read that image. Try a different file." = "Não foi possível ler essa imagem. Tente outro arquivo.";
 "Couldn't scan that folder." = "Não foi possível escanear essa pasta.";
@@ -767,6 +768,8 @@
 "Details" = "Detalhes";
 "Detalles" = "Detalhes";
 "Detener reproducción" = "Stop playback";
+"Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again." = "Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again.";
+"Device refused the connection. Try restarting it." = "Device refused the connection. Try restarting it.";
 "Died {date}" = "Faleceu em {date}";
 "Dim" = "Escurecer";
 "Dim overlay" = "Sobreposição escurecida";
@@ -2142,6 +2145,7 @@
 "Second line size" = "Tamanho da segunda linha";
 "Second subtitle language" = "Idioma da segunda legenda";
 "Secondary copy." = "Texto secundário.";
+"Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "Ver detalhes";
 "Seek bar" = "Barra de progresso";
 "Seen so far: {hosts}" = "Vistos até agora: {hosts}";

@@ -658,6 +658,7 @@
 "Couldn't reach MyAnimeList. Try refreshing." = "MyAnimeList에 연결할 수 없습니다. 새로 고침해 보세요.";
 "Couldn't reach Simkl" = "Simkl에 연결할 수 없음";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt에 연결하지 못했습니다. 연결을 확인하고 다시 시도하세요.";
+"Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "이 Roku에 연결할 수 없음";
 "Couldn't read that image. Try a different file." = "이미지를 읽을 수 없습니다. 다른 파일을 사용해 보세요.";
 "Couldn't scan that folder." = "해당 폴더를 스캔할 수 없습니다.";
@@ -747,6 +748,8 @@
 "Details" = "상세 정보";
 "Detalles" = "상세 정보";
 "Detener reproducción" = "Stop playback";
+"Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again." = "Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again.";
+"Device refused the connection. Try restarting it." = "Device refused the connection. Try restarting it.";
 "Died {date}" = "{date} 사망";
 "Dim" = "어둡게";
 "Dim overlay" = "어둡게 오버레이";
@@ -2120,6 +2123,7 @@
 "Second line size" = "보조 자막 크기";
 "Second subtitle language" = "보조 자막 언어";
 "Secondary copy." = "보조 사본입니다.";
+"Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "세부 정보 보기";
 "Seek bar" = "탐색 막대";
 "Seen so far: {hosts}" = "지금까지 확인됨: {hosts}";

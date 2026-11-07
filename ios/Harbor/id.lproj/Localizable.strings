@@ -658,6 +658,7 @@
 "Couldn't reach MyAnimeList. Try refreshing." = "Tidak dapat menghubungi MyAnimeList. Coba muat ulang.";
 "Couldn't reach Simkl" = "Tidak dapat menghubungi Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Tidak dapat menghubungi Trakt. Periksa koneksi Anda lalu coba lagi.";
+"Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "Tidak dapat terhubung ke Roku ini";
 "Couldn't read that image. Try a different file." = "Tidak dapat membaca gambar tersebut. Coba file lain.";
 "Couldn't scan that folder." = "Tidak dapat memindai folder tersebut.";
@@ -747,6 +748,8 @@
 "Details" = "Detail";
 "Detalles" = "Detail";
 "Detener reproducción" = "Stop playback";
+"Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again." = "Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again.";
+"Device refused the connection. Try restarting it." = "Device refused the connection. Try restarting it.";
 "Died {date}" = "Wafat {date}";
 "Dim" = "Redup";
 "Dim overlay" = "Lapisan redup";
@@ -2120,6 +2123,7 @@
 "Second line size" = "Ukuran baris kedua";
 "Second subtitle language" = "Bahasa subtitle kedua";
 "Secondary copy." = "Teks sekunder.";
+"Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "Lihat detail";
 "Seek bar" = "Bilah waktu";
 "Seen so far: {hosts}" = "Terlihat sejauh ini: {hosts}";

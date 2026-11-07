@@ -658,6 +658,7 @@
 "Couldn't reach MyAnimeList. Try refreshing." = "MyAnimeList से संपर्क नहीं हो सका। रीफ़्रेश करके देखें।";
 "Couldn't reach Simkl" = "Simkl से संपर्क नहीं हो सका";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt से संपर्क नहीं हो सका। अपना कनेक्शन जाँचें और फिर कोशिश करें।";
+"Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "इस Roku से संपर्क नहीं हो सका";
 "Couldn't read that image. Try a different file." = "वह इमेज पढ़ी नहीं जा सकी। कोई दूसरी फ़ाइल आज़माएँ।";
 "Couldn't scan that folder." = "वह फ़ोल्डर स्कैन नहीं किया जा सका।";
@@ -747,6 +748,8 @@
 "Details" = "विवरण";
 "Detalles" = "विवरण";
 "Detener reproducción" = "Stop playback";
+"Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again." = "Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again.";
+"Device refused the connection. Try restarting it." = "Device refused the connection. Try restarting it.";
 "Died {date}" = "{date} को निधन";
 "Dim" = "मंद";
 "Dim overlay" = "मंद ओवरले";
@@ -2120,6 +2123,7 @@
 "Second line size" = "दूसरी पंक्ति का आकार";
 "Second subtitle language" = "दूसरी सबटाइटल भाषा";
 "Secondary copy." = "द्वितीयक टेक्स्ट।";
+"Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "विवरण देखें";
 "Seek bar" = "सीक बार";
 "Seen so far: {hosts}" = "अब तक देखे गए: {hosts}";

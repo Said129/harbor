@@ -658,6 +658,7 @@
 "Couldn't reach MyAnimeList. Try refreshing." = "Không thể kết nối với MyAnimeList. Hãy thử làm mới.";
 "Couldn't reach Simkl" = "Không thể kết nối với Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Không thể kết nối với Trakt. Hãy kiểm tra kết nối rồi thử lại.";
+"Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "Không thể kết nối với Roku này";
 "Couldn't read that image. Try a different file." = "Không thể đọc ảnh đó. Hãy thử một tệp khác.";
 "Couldn't scan that folder." = "Không thể quét thư mục đó.";
@@ -747,6 +748,8 @@
 "Details" = "Chi tiết";
 "Detalles" = "Chi tiết";
 "Detener reproducción" = "Stop playback";
+"Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again." = "Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again.";
+"Device refused the connection. Try restarting it." = "Device refused the connection. Try restarting it.";
 "Died {date}" = "Mất ngày {date}";
 "Dim" = "Tối";
 "Dim overlay" = "Lớp phủ tối";
@@ -2120,6 +2123,7 @@
 "Second line size" = "Kích thước dòng thứ hai";
 "Second subtitle language" = "Ngôn ngữ phụ đề thứ hai";
 "Secondary copy." = "Bản sao phụ.";
+"Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "Xem chi tiết";
 "Seek bar" = "Thanh tua";
 "Seen so far: {hosts}" = "Đã thấy đến nay: {hosts}";

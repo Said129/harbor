@@ -681,6 +681,7 @@
 "Couldn't reach MyAnimeList. Try refreshing." = "تعذّر الوصول إلى MyAnimeList. حاول التحديث.";
 "Couldn't reach Simkl" = "تعذّر الوصول إلى Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "تعذّر الوصول إلى Trakt. تحقق من اتصالك وحاول مرة أخرى.";
+"Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "تعذر الوصول إلى جهاز Roku هذا";
 "Couldn't read that image. Try a different file." = "تعذرت قراءة تلك الصورة. جرّب ملفًا آخر.";
 "Couldn't scan that folder." = "تعذّر فحص ذلك المجلد.";
@@ -770,6 +771,8 @@
 "Details" = "التفاصيل";
 "Detalles" = "التفاصيل";
 "Detener reproducción" = "Stop playback";
+"Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again." = "Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again.";
+"Device refused the connection. Try restarting it." = "Device refused the connection. Try restarting it.";
 "Died {date}" = "تُوفي في {date}";
 "Dim" = "تعتيم";
 "Dim overlay" = "تعتيم الخلفية";
@@ -2153,6 +2156,7 @@
 "Second line size" = "حجم السطر الثاني";
 "Second subtitle language" = "لغة الترجمة الثانية";
 "Secondary copy." = "نص ثانوي.";
+"Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "عرض التفاصيل";
 "Seek bar" = "شريط التقدم";
 "Seen so far: {hosts}" = "شوهد حتى الآن: {hosts}";

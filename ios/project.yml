@@ -108,6 +108,7 @@ targets:
         NSLocalNetworkUsageDescription: Harbor se conecta a tus servidores multimedia y a los servicios de tu red local para cargar contenido.
         NSBonjourServices:
           - _roku-rcp._tcp
+          - _googlecast._tcp
         NSAppTransportSecurity:
           NSAllowsArbitraryLoads: YES
     dependencies:
@@ -230,6 +231,7 @@ targets:
       - path: HarborTests/HeroLayoutPolicyTests.swift
       - path: HarborTests/LiveReconnectTests.swift
       - path: HarborTests/TogetherTests.swift
+      - path: HarborTests/CastChromecastTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift

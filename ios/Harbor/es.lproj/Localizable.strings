@@ -658,6 +658,7 @@
 "Couldn't reach MyAnimeList. Try refreshing." = "No se pudo acceder a MyAnimeList. Intenta actualizar.";
 "Couldn't reach Simkl" = "No se pudo acceder a Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "No se pudo acceder a Trakt. Comprueba tu conexión e inténtalo de nuevo.";
+"Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "No se pudo acceder a este Roku";
 "Couldn't read that image. Try a different file." = "No se pudo leer esa imagen. Prueba con otro archivo.";
 "Couldn't scan that folder." = "No se pudo escanear esa carpeta.";
@@ -747,6 +748,8 @@
 "Details" = "Detalles";
 "Detalles" = "Detalles";
 "Detener reproducción" = "Detener reproducción";
+"Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again." = "Device dropped the connection. It may be busy with another app, asleep, or another phone is already casting to it. Wake the screen, stop other casts, and try again.";
+"Device refused the connection. Try restarting it." = "Device refused the connection. Try restarting it.";
 "Died {date}" = "Murió el {date}";
 "Dim" = "Tenue";
 "Dim overlay" = "Superposición tenue";
@@ -1118,7 +1121,7 @@
 "Horizontal view" = "Vista horizontal";
 "Horror" = "Terror";
 "Horror & Supernatural" = "Terror y sobrenatural";
-"Host or address" = "Host or address";
+"Host or address" = "Host o dirección";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "El tamaño de las tarjetas de episodios en las vistas de tira y cuadrícula. Las tarjetas más grandes muestran imágenes más grandes.";
 "How dark the gradient behind the featured title on Home is. 100% is the classic look." = "How dark the gradient behind the featured title on Home is. 100% is the classic look.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "Cuánto puedes amplificar el volumen por encima del 100 por ciento. Los ajustes más altos pueden sonar muy fuerte.";
@@ -2120,6 +2123,7 @@
 "Second line size" = "Tamaño de la segunda línea";
 "Second subtitle language" = "Segundo idioma de subtítulos";
 "Secondary copy." = "Copia secundaria.";
+"Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "Ver detalles";
 "Seek bar" = "Barra de búsqueda";
 "Seen so far: {hosts}" = "Vistos hasta ahora: {hosts}";
