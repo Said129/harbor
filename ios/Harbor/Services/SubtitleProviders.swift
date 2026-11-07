@@ -25,7 +25,7 @@ enum SubtitleProviderID: String, CaseIterable, Sendable {
     /// SUBDL and Subsource return nothing without the person's key (`sub-source-subdl.ts:362-363`, `sub-source-subsource.ts:344`).
     var requiresKey: Bool { self == .subdl || self == .subsource }
 
-    /// The title shown beside a candidate, as Desktop's `provider-label.ts` builds it: provider, then release.
+    /// The title shown beside a candidate: the provider name, then the release, as addon results are titled.
     func listTitle(release: String?) -> String {
         let parts = [displayName, release].compactMap { $0 }.filter { !$0.isEmpty }
         return String(parts.joined(separator: " \u{00B7} ").prefix(240))
@@ -77,8 +77,8 @@ struct SubtitleProviderCandidate: Sendable {
     var ratingScore: Double? = nil
     var ratingTotal: Int? = nil
     var fps: Double? = nil
-    /// Desktop's provider match: "exact", "high", "medium" or "low".
-    var matchConfidence = "low"
+    /// Desktop's provider match: "exact", "high", "medium" or "low". Nil when Desktop reports no evidence.
+    var matchConfidence: String? = nil
     var matchScore: Double? = nil
     var idConfirmed = false
     var episodeConfirmed = false
@@ -542,7 +542,8 @@ enum SubDLProvider {
         } else if idConfirmed {
             candidate.matchConfidence = "medium"
             candidate.matchScore = 0.7
-        } else {
+        } else if confirmedEpisode {
+            candidate.matchConfidence = "low"
             candidate.matchScore = 0.6
         }
         return candidate
@@ -686,6 +687,7 @@ enum SubSourceProvider {
                 candidate.matchConfidence = "medium"
                 candidate.matchScore = 0.8
             } else {
+                candidate.matchConfidence = "low"
                 candidate.matchScore = 0.6
             }
             candidate.season = SubtitleProviderJSON.int(movie["season"]) ?? query.season

@@ -69,6 +69,7 @@ final class SubtitleProvidersTests: XCTestCase {
         XCTAssertEqual(found[0].release, "Movie.2010.1080p.BluRay")
         XCTAssertEqual(found[0].downloads, 42)
         XCTAssertEqual(found[0].author, "alice")
+        XCTAssertNil(found[0].matchConfidence)
         XCTAssertFalse(found[1].hearingImpaired)
         XCTAssertFalse(found[1].archive)
         XCTAssertEqual(found[1].subtitle.lang, "es")
@@ -83,10 +84,10 @@ final class SubtitleProvidersTests: XCTestCase {
     func testOpenSubtitlesV3DedupesAndClassifies() {
         let body = """
         {"subtitles": [
-          {"id": "a1", "url": "https://dl.example.org/a1.srt", "lang": "eng", "m": "Show.S01E02.WEB-DL", "SubFormat": "SRT", "fps": 23.976, "hearing_impaired": "yes"},
-          {"id": "a2", "url": "https://dl.example.org/a2.srt", "lang": "eng", "m": "Show.S01E02.HDTV"},
-          {"id": "a1", "url": "https://dl.example.org/a1.srt", "lang": "eng", "m": "duplicate"},
-          {"id": "a3", "url": "https://dl.example.org/a3.srt", "lang": "spa", "m": "Show.S01E02 forced", "foreign_parts": 1}
+          {"id": "a1", "url": "https://dl.example.org/a1.srt", "lang": "en", "m": "Show.S01E02.WEB-DL", "SubFormat": "SRT", "fps": 23.976, "hearing_impaired": "yes"},
+          {"id": "a2", "url": "https://dl.example.org/a2.srt", "lang": "en", "m": "Show.S01E02.HDTV"},
+          {"id": "a1", "url": "https://dl.example.org/a1.srt", "lang": "en", "m": "duplicate"},
+          {"id": "a3", "url": "https://dl.example.org/a3.srt", "lang": "es", "m": "Show.S01E02 forced", "foreign_parts": 1}
         ]}
         """
         let found = OpenSubtitlesV3Provider.parse(Data(body.utf8))
@@ -126,6 +127,7 @@ final class SubtitleProvidersTests: XCTestCase {
         XCTAssertEqual(found[1].subtitle.url, "https://dl.subdl.com/subtitle/556.zip")
         XCTAssertEqual(found[1].subtitle.lang, "pt")
         XCTAssertTrue(found[1].archive)
+        XCTAssertEqual(found[1].matchConfidence, "medium")
     }
 
     func testSubSourceChoosesTheMovieByImdbAndAcceptsNumericIDs() throws {
@@ -156,8 +158,8 @@ final class SubtitleProvidersTests: XCTestCase {
     func testSubSourceParsesZipRowsThatNeedTheKey() throws {
         let envelope = try parse("""
         {"success": true, "data": [
-          {"subtitleId": 9001, "movieId": 123, "language": "english", "releaseInfo": ["Show.S01E02.1080p.WEB", "x264"], "hearingImpaired": true, "productionType": "retail", "downloads": 500, "rating": {"good": 9, "bad": 1, "total": 10}, "contributors": [{"id": 1, "displayname": "Ann"}]},
-          {"subtitleId": 9002, "language": "english", "productionType": "machine", "releaseInfo": "Show.E02"}
+          {"subtitleId": 9001, "movieId": 123, "language": "en", "releaseInfo": ["Show.S01E02.1080p.WEB", "x264"], "hearingImpaired": true, "productionType": "retail", "downloads": 500, "rating": {"good": 9, "bad": 1, "total": 10}, "contributors": [{"id": 1, "displayname": "Ann"}]},
+          {"subtitleId": 9002, "language": "en", "productionType": "machine", "releaseInfo": "Show.E02"}
         ]}
         """)
         let movie = try parse(#"{"movieId": 123, "season": 1, "imdbId": "tt0944947"}"#)
