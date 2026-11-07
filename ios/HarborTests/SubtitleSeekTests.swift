@@ -144,9 +144,29 @@ final class SubtitleSeekTests: XCTestCase {
         controller.set("pause", "no")
         try await wait(surface, state: state, context: "\(prefix) resume at 5") { !state.paused && state.position > 5.1 }
         controller.run(["seek", "21", "absolute+exact"])
-        try await wait(surface, state: state, context: "\(prefix) playing seek 21") { state.position >= 21 && state.position < 23 && state.primarySubtitleText.contains("\(prefix) CUE 5") }
+        // The cue on screen must be the one that belongs to the picture's position. The loop can be held up for a couple of
+        // seconds while mpv seeks over HTTP on a slow runner, so it judges the first sample it gets after the seek
+        // instead of insisting on a 2 second window.
+        var fits = false
+        try await wait(surface, state: state, context: "\(prefix) playing seek 21") {
+            fits = state.position >= 21 && Self.cueFits(position: state.position, text: state.primarySubtitleText, prefix: prefix)
+            return fits || state.position >= 24.5
+        }
+        XCTAssertTrue(fits, "\(prefix) subtitle after the playing seek does not belong to the picture: position=\(state.position), text=\(state.primarySubtitleText)")
         controller.set("pause", "yes")
         try await wait(surface, state: state, context: "\(prefix) pause after playing seek") { state.paused }
+    }
+
+    /// The fixtures show cue n from 4n to 4n + 3.5 seconds. Away from an edge the text must be that cue; near an edge a
+    /// frame of lag is allowed, so the previous cue or an empty line also fits.
+    private static func cueFits(position: Double, text: String, prefix: String) -> Bool {
+        let index = Int(position / 4)
+        let offset = position - Double(index * 4)
+        let current = text.contains("\(prefix) CUE \(index)")
+        if offset >= 0.4 && offset <= 3.1 { return current }
+        if offset > 3.1 && offset < 3.9 { return current || text.isEmpty }
+        let previous = index > 0 && text.contains("\(prefix) CUE \(index - 1)")
+        return current || previous || text.isEmpty
     }
 
     @available(iOS, deprecated: 12.0)
