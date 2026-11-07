@@ -7,13 +7,13 @@
   "coverage_note": "This report inventories generated Desktop-derived labels and known mobile-only English fallbacks. It is not a certification of complete translation of every native message or of overall functional parity.",
   "languages": {
     "en": {
-      "entries": 3509,
-      "sha256": "2813ab80acdf18e3cba8a1a921f7b43ba6f111ad01552eb6e23dd732506f1439",
+      "entries": 3582,
+      "sha256": "a4925689ac3cb9ddeb6b3660d78c437994c8df86fb477502bad4990ef10de99e",
       "mobile_only_english_fallback": []
     },
     "ar": {
-      "entries": 3929,
-      "sha256": "9c739480a13c9387e5aa423b8addfd03a961660f741ba8cacd6a45b8a23b1af3",
+      "entries": 4001,
+      "sha256": "145e36007855b89b478a156144135be7393b1bdc330206c888f524f13a047370",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -89,6 +89,7 @@
         "Hide Spooktober invitation",
         "Hide camera recordings · CAM / TS / TC",
         "Hide end notice",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ/ZIP or folder",
         "Import M3U file",
@@ -214,8 +215,8 @@
       ]
     },
     "zh": {
-      "entries": 3888,
-      "sha256": "604ed86598b4253a76e7263b2a40943f6f1df79de1af9645b87791124b82ad62",
+      "entries": 3960,
+      "sha256": "d53cad11e5d6fdfa28221eefe9981fb82699c9a22295f45c104446405fdeae82",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -306,6 +307,7 @@
         "Hide end notice",
         "Hides the episode name, which often gives the twist away on its own.",
         "Hides the synopsis text under each unwatched episode.",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.",
         "Import CBZ/ZIP or folder",
@@ -451,8 +453,8 @@
       ]
     },
     "fr": {
-      "entries": 3888,
-      "sha256": "5e7193a06b5e27481a1f9b025903b7bb1052cbb60386217af0701b2e521131fb",
+      "entries": 3960,
+      "sha256": "6e7b31f859e9794fb8d9c7c7bece8fc899198b286361c00256ab93dfa2bddd2d",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -543,6 +545,7 @@
         "Hide end notice",
         "Hides the episode name, which often gives the twist away on its own.",
         "Hides the synopsis text under each unwatched episode.",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.",
         "Import CBZ/ZIP or folder",
@@ -688,8 +691,8 @@
       ]
     },
     "de": {
-      "entries": 3888,
-      "sha256": "2891f2360c122fb83d36d09acc91c049709d7e1a7ce06664fbac8f45c5de8f70",
+      "entries": 3960,
+      "sha256": "1f7935028317c3cfae55b037fe541caba71d4ae4c94fa5ab2b9cb857d6a2a028",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -780,6 +783,7 @@
         "Hide end notice",
         "Hides the episode name, which often gives the twist away on its own.",
         "Hides the synopsis text under each unwatched episode.",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.",
         "Import CBZ/ZIP or folder",
@@ -925,8 +929,8 @@
       ]
     },
     "hi": {
-      "entries": 3888,
-      "sha256": "5c1b448daa4b5110a8239243fc100a74a998ea5b3963d71ec9dc48342600dff0",
+      "entries": 3960,
+      "sha256": "988697111a127288b54b36c66fc2fac05e14cf58631763cecc6939dfa9a93dac",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -1017,6 +1021,7 @@
         "Hide end notice",
         "Hides the episode name, which often gives the twist away on its own.",
         "Hides the synopsis text under each unwatched episode.",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.",
         "Import CBZ/ZIP or folder",
@@ -1162,8 +1167,8 @@
       ]
     },
     "id": {
-      "entries": 3888,
-      "sha256": "4fd381ce4e1d065f3143515c09a824b5f4c07d1bff51d89a2c112d05152e9365",
+      "entries": 3960,
+      "sha256": "cf37697a850a57e2c6613bfdc8eac5dfb0a07eec70ae087f927f7cf858319ec7",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -1254,6 +1259,7 @@
         "Hide end notice",
         "Hides the episode name, which often gives the twist away on its own.",
         "Hides the synopsis text under each unwatched episode.",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.",
         "Import CBZ/ZIP or folder",
@@ -1399,8 +1405,8 @@
       ]
     },
     "it": {
-      "entries": 3888,
-      "sha256": "4476bf39c05fcff117c51caecd9993c796895ac26792043e17363d082f2cf588",
+      "entries": 3960,
+      "sha256": "a28e0a35fdd35be5a35fd5097b2f8a0e37e1f0046f9fddd0d8feabb774700b1b",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -1491,6 +1497,7 @@
         "Hide end notice",
         "Hides the episode name, which often gives the twist away on its own.",
         "Hides the synopsis text under each unwatched episode.",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.",
         "Import CBZ/ZIP or folder",
@@ -1636,8 +1643,8 @@
       ]
     },
     "ja": {
-      "entries": 3888,
-      "sha256": "453d90e853c0e7592d6ac914e23eeaaa3d424dccc5e7e8050416777302fad67f",
+      "entries": 3960,
+      "sha256": "2def0e69d80c4a415f39a4c987c8b69fa7ff6ac4d9f235b39a7e99c2de2178ce",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -1728,6 +1735,7 @@
         "Hide end notice",
         "Hides the episode name, which often gives the twist away on its own.",
         "Hides the synopsis text under each unwatched episode.",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.",
         "Import CBZ/ZIP or folder",
@@ -1873,8 +1881,8 @@
       ]
     },
     "ko": {
-      "entries": 3888,
-      "sha256": "73a95ab646b07303d1eab3e023e4e7aec9f4a02d29bbc3b3f0b28f0f1f8f400e",
+      "entries": 3960,
+      "sha256": "c53b4fd683777efea55c4acfb4f3187b51cc4ba8716c0c74efb7283cd84f0d64",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -1965,6 +1973,7 @@
         "Hide end notice",
         "Hides the episode name, which often gives the twist away on its own.",
         "Hides the synopsis text under each unwatched episode.",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.",
         "Import CBZ/ZIP or folder",
@@ -2110,8 +2119,8 @@
       ]
     },
     "pl": {
-      "entries": 3888,
-      "sha256": "ed29fc47a729c56464af00373680063663bddc7e10da81fbc8c99601a93c48af",
+      "entries": 3960,
+      "sha256": "802997eb5048013fb632885282351d7b29cdccfe4d4d8d1843c0aaf595e08d61",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -2202,6 +2211,7 @@
         "Hide end notice",
         "Hides the episode name, which often gives the twist away on its own.",
         "Hides the synopsis text under each unwatched episode.",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.",
         "Import CBZ/ZIP or folder",
@@ -2347,8 +2357,8 @@
       ]
     },
     "pt": {
-      "entries": 3915,
-      "sha256": "da13c82d952bd05a9092ee0c6b185051003174a2d9f9fa6e82c4ecffaa4f2220",
+      "entries": 3987,
+      "sha256": "fb5f46f11fda5fc181faa2073f3004a33a9cd0e37c7075f19e7ba5d7ac5d6410",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -2429,6 +2439,7 @@
         "Hide end notice",
         "Hides the episode name, which often gives the twist away on its own.",
         "Hides the synopsis text under each unwatched episode.",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ/ZIP or folder",
         "Import M3U file",
@@ -2558,8 +2569,8 @@
       ]
     },
     "ru": {
-      "entries": 3902,
-      "sha256": "61d3f5562a8c8bc81aaf37567b819d8787786d23886d337555c3a9846073023c",
+      "entries": 3974,
+      "sha256": "42d197da28e131eafb3cae3e2fd31a015376f42ed0858d0afb023a63d76cc256",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -2635,6 +2646,7 @@
         "Hide Spooktober invitation",
         "Hide camera recordings · CAM / TS / TC",
         "Hide end notice",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ/ZIP or folder",
         "Import M3U file",
@@ -2760,13 +2772,13 @@
       ]
     },
     "es": {
-      "entries": 3888,
-      "sha256": "096153ee04996cbb982f75a514cd5bcfa5bee8067481aec7d03d71433c90edcb",
+      "entries": 3960,
+      "sha256": "e0701bbe9d2d4bb51e5d3f2abb285df18114ed0989f752a3655b406e0b9f732b",
       "mobile_only_english_fallback": []
     },
     "tr": {
-      "entries": 3888,
-      "sha256": "5ad2e6efe516f502d0668aa7c271897827d3fc9f8c15f6379a264eee78bae638",
+      "entries": 3960,
+      "sha256": "db99eb4736efa8580b0714bede4708aa347cf1eedee1f251ae4b38dc84c3a7db",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -2857,6 +2869,7 @@
         "Hide end notice",
         "Hides the episode name, which often gives the twist away on its own.",
         "Hides the synopsis text under each unwatched episode.",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.",
         "Import CBZ/ZIP or folder",
@@ -3002,8 +3015,8 @@
       ]
     },
     "vi": {
-      "entries": 3888,
-      "sha256": "de198f775e0f79e4ccdd081c5c65d11fa3e2c077d4f045c163c8bb60dd81a9b6",
+      "entries": 3960,
+      "sha256": "2ba07daacc1bda7920e367a0996190c3f9c46fd302bb5c4cb26be04b1056a32f",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -3094,6 +3107,7 @@
         "Hide end notice",
         "Hides the episode name, which often gives the twist away on its own.",
         "Hides the synopsis text under each unwatched episode.",
+        "Host or address",
         "Image cache cleared.",
         "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.",
         "Import CBZ/ZIP or folder",

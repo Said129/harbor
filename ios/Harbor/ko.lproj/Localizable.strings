@@ -30,6 +30,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 프로토콜용 클라이언트입니다. 설정에는 2분이면 충분하며 대부분은 선택 사항입니다. 모든 키는 사용자가 직접 관리합니다.";
 "A continuación" = "다음 콘텐츠";
 "A fast community subtitle index. Off by default; turn it on for extra coverage on newer or niche releases." = "빠른 커뮤니티 자막 색인입니다. 기본적으로 꺼져 있으며, 최신작이나 비주류 작품의 검색 범위를 넓히려면 켜세요.";
+"A filter applies everywhere Harbor picks a stream: the source picker, the instant pick, and Big Picture on TV." = "필터는 소스 선택, 즉시 선택, TV의 Big Picture 등 Harbor가 스트림을 선택하는 모든 곳에 적용됩니다.";
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
@@ -95,6 +96,7 @@
 "Add a repository" = "저장소 추가";
 "Add an API key to use this source." = "이 소스를 사용하려면 API 키를 추가하세요.";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "AniList에 애니메이션을 추가하면 상태별로 묶여 여기에 표시되며 바로 편집할 수 있습니다.";
+"Add anime to your MyAnimeList and they show up here, grouped by status and ready to edit." = "MyAnimeList에 애니메이션을 추가하면 상태별로 분류되어 여기에 표시되며 바로 편집할 수 있습니다.";
 "Add bookmark" = "Add bookmark";
 "Add files from your computer" = "컴퓨터에서 파일 추가";
 "Add from lists" = "목록에서 추가";
@@ -200,6 +202,7 @@
 "Animation speed" = "애니메이션 속도";
 "Anime" = "애니메이션";
 "Anime Expo" = "Anime Expo";
+"Anime Title Language" = "애니메이션 제목 언어";
 "Anime en tendencia" = "인기 급상승 애니메이션";
 "Anime episodes airing this month, sub or dub" = "이번 달 방영 애니메이션 에피소드, 자막판 또는 더빙판";
 "Anime of the Year" = "올해의 애니메이션";
@@ -220,6 +223,7 @@
 "App language" = "앱 언어";
 "Appearance" = "모양";
 "Apple TV+" = "Apple TV+";
+"Applies to both audio and subtitle tracks. You can still pick a skipped track by hand in the player." = "오디오와 자막 트랙 모두에 적용됩니다. 건너뛴 트랙도 플레이어에서 직접 선택할 수 있습니다.";
 "Apply" = "적용";
 "Apply custom subtitle FPS" = "사용자 지정 자막 FPS 적용";
 "Apply custom theme" = "사용자 지정 테마 적용";
@@ -254,6 +258,7 @@
 "Authorized {when}" = "{when} 승인됨";
 "Auto" = "자동";
 "Auto (match video)" = "자동(동영상에 맞춤)";
+"Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "스타일이 지정된 (ASS) 자막의 색상, 글꼴, 표지판 위치는 유지하면서 파일마다 대사 크기가 같도록 자동 조정합니다.";
 "Auto-hide the Skip button after" = "건너뛰기 버튼 자동 숨김 시간";
 "Auto-play next episode" = "다음 에피소드 자동 재생";
 "Auto-skip credit outros" = "엔딩 크레딧 자동 건너뛰기";
@@ -406,6 +411,7 @@
 "Cache buffering" = "캐시 버퍼링";
 "Cache cleared" = "캐시를 지웠습니다";
 "Cached" = "캐시됨";
+"Cached only" = "캐시된 항목만";
 "Caches" = "캐시";
 "Calendar" = "캘린더";
 "Calendario" = "캘린더";
@@ -461,6 +467,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "챕터";
 "Check it works" = "작동 확인";
+"Check the highlighted values before saving." = "저장하기 전에 강조 표시된 값을 확인하세요.";
 "Check whether this device can reach the saved server address." = "이 기기에서 저장된 서버 주소에 연결할 수 있는지 확인합니다.";
 "Checking with AniList..." = "AniList에서 확인 중...";
 "Checking with MyAnimeList..." = "MyAnimeList에서 확인 중...";
@@ -470,16 +477,22 @@
 "China" = "중국";
 "Chinese" = "중국어";
 "Chinese (Simplified)" = "중국어(간체)";
+"Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "이름을 지정한 다음 선호하는 해상도, 소스, 코덱, 오디오를 선택하세요.";
 "Choose an avatar" = "아바타 선택";
 "Choose image" = "이미지 선택";
+"Choose subtitles before playback" = "재생 전 자막 선택";
+"Choose the exact track and language after picking a source, before the video starts." = "소스를 선택한 뒤 동영상이 시작되기 전에 원하는 트랙과 언어를 선택하세요.";
 "Choose the frame rate the subtitle was authored for." = "자막 제작 시 기준으로 사용한 프레임 레이트를 선택하세요.";
+"Choose the streams you prefer." = "선호하는 스트림을 선택하세요.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "이미 좋아하는 영화 또는 프로그램을 최대 5개 선택하세요. Harbor가 이를 활용해 추천 콘텐츠와 맞춤 추천을 조정합니다. 선택 사항입니다.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harbor에서 프로필 선택을 요청할 시점을 정하세요. 시간 설정에 따른 요청은 Harbor로 돌아올 때 표시됩니다.";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "Harbor가 자막을 검색할 소스를 선택하세요. 활성화된 소스의 결과는 중복을 제거한 뒤 함께 표시됩니다.";
+"Choose which Simkl rails appear on your home screen." = "홈 화면에 표시할 Simkl 레일을 선택합니다.";
 "Choose which addon results appear when you pick a stream." = "스트림을 고를 때 표시할 애드온 결과를 선택하세요.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "카드와 상세 페이지에 표시할 평점을 선택하세요. 잠긴 카드 평점은 메타데이터에서 제공업체 키를 설정해야 합니다.";
 "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
+"Choosing a track" = "트랙 선택";
 "Ciencia ficción y fantasía" = "SF & 판타지";
 "Claro" = "라이트";
 "Clasificación" = "순위";
@@ -506,6 +519,7 @@
 "Close the cast menu and reopen it to rescan the network." = "전송 메뉴를 닫았다가 다시 열어 네트워크를 재검색하세요.";
 "Clásica" = "클래식";
 "Code expired. Try again." = "Code expired. Try again.";
+"Codec" = "코덱";
 "Colecciones" = "컬렉션";
 "Collections" = "컬렉션";
 "Color de la barra" = "바 색상";
@@ -628,6 +642,7 @@
 "Couldn't reach AniList." = "AniList에 연결할 수 없습니다.";
 "Couldn't reach AniList. Try refreshing." = "AniList에 연결할 수 없습니다. 새로고침해 보세요.";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
+"Couldn't reach MyAnimeList. Try refreshing." = "MyAnimeList에 연결할 수 없습니다. 새로 고침해 보세요.";
 "Couldn't reach Simkl" = "Simkl에 연결할 수 없음";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt에 연결하지 못했습니다. 연결을 확인하고 다시 시도하세요.";
 "Couldn't reach this Roku" = "이 Roku에 연결할 수 없음";
@@ -640,6 +655,7 @@
 "Create account" = "계정 만들기";
 "Create new list" = "새 목록 만들기";
 "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Harbor를 사용하는 사람마다 프로필을 만드세요. 각자 별도의 모양, 설정, PIN을 사용할 수 있습니다.";
+"Create your first filter with the stream quality you prefer." = "선호하는 스트림 화질로 첫 필터를 만드세요.";
 "Create your first list" = "첫 목록 만들기";
 "Crime" = "범죄";
 "Crime Series" = "범죄 시리즈";
@@ -689,9 +705,11 @@
 "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)" = "히어로 캐러셀에 더 이상 제공하지 않기(자동으로 되돌리기)";
 "Delete" = "삭제";
 "Delete file" = "Delete file";
+"Delete filter" = "필터 삭제";
 "Delete list" = "목록 삭제";
 "Delete profile" = "프로필 삭제";
 "Delete this profile?" = "이 프로필을 삭제할까요?";
+"Delete {name}? Saved filters cannot be brought back." = "{name}을(를) 삭제하시겠습니까? 저장된 필터는 복구할 수 없습니다.";
 "Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "오른쪽";
@@ -775,6 +793,7 @@
 "Edit" = "편집";
 "Edit Folder Images" = "폴더 이미지 편집";
 "Edit custom theme" = "사용자 지정 테마 편집";
+"Edit filter" = "필터 편집";
 "Edit profile" = "프로필 편집";
 "Edit {name}" = "{name} 편집";
 "Editar tema personalizado" = "사용자 지정 테마 편집";
@@ -817,6 +836,8 @@
 "Engine" = "엔진";
 "English" = "영어";
 "Enter Harbor" = "Harbor 입장";
+"Enter a size of 0 or more." = "0 이상의 크기를 입력하세요.";
+"Enter a whole number of 0 or more." = "0 이상의 정수를 입력하세요.";
 "Enter an FPS from 1 to 240." = "1~240 사이의 FPS를 입력하세요.";
 "Enter current PIN" = "현재 PIN 입력";
 "Episode" = "에피소드";
@@ -850,6 +871,7 @@
 "Everything releasing this month from TMDB" = "TMDB의 이번 달 모든 공개작";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "애드온에서 제공하는 모든 콘텐츠를 포스터로 표시합니다. 스크롤하거나 검색 또는 필터링해 원하는 콘텐츠를 찾으세요.";
 "Excellence Prize" = "우수상";
+"Excludes streams with fewer seeders or no seeder count. Leave blank or enter 0 for any." = "시더 수가 적거나 시더 수 정보가 없는 스트림을 제외합니다. 제한하지 않으려면 비워 두거나 0을 입력하세요.";
 "Exit Picture in Picture" = "화면 속 화면 종료";
 "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "키보드나 리모컨으로 포스터 행을 탐색할 때 미리 불러온 와이드 아트워크를 사용해 포스터 카드를 확장합니다.";
 "Expanding Cards" = "확장 카드";
@@ -952,6 +974,7 @@
 "Gamma" = "감마";
 "Genre" = "장르";
 "Genres" = "장르";
+"Genres you want more of" = "더 보고 싶은 장르";
 "Gently magnify nearby posters as you move across a poster row." = "포스터 행을 이동할 때 주변 포스터를 부드럽게 확대합니다.";
 "German" = "독일어";
 "Germany" = "독일";
@@ -988,6 +1011,8 @@
 "Guest" = "게스트";
 "Género" = "장르";
 "HD" = "HD";
+"HDR" = "HDR";
+"HDR only" = "HDR만";
 "HI" = "청각 장애인용";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "하드웨어 디코딩";
@@ -1027,11 +1052,13 @@
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "모든 소스 숨기기";
 "Hide and skip episodes" = "에피소드 숨기기 및 건너뛰기";
+"Hide anime I've already watched" = "이미 본 애니메이션 숨기기";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide comments" = "댓글 숨기기";
 "Hide details" = "세부 정보 숨기기";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "에피소드 숨기기";
+"Hide from your picks" = "추천에서 숨기기";
 "Hide hidden episodes" = "숨긴 에피소드 감추기";
 "Hide row" = "행 숨기기";
 "Hide sound effects and speaker names" = "효과음과 화자 이름 숨기기";
@@ -1057,6 +1084,7 @@
 "History" = "역사";
 "Hockey" = "하키";
 "Home" = "홈";
+"Home Rail Settings" = "홈 콘텐츠 행 설정";
 "Home catalogs" = "홈 카탈로그";
 "Home layout" = "홈 레이아웃";
 "Home style" = "홈 스타일";
@@ -1173,6 +1201,7 @@
 "Keep same source on next episode" = "다음 에피소드에서 같은 소스 유지";
 "Keep screen awake" = "Keep screen awake";
 "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "라이브러리의 관심 목록 탭을 Stremio에서 직접 추가한 작품으로만 제한합니다. 이 옵션을 끄면 재생할 때 Stremio가 자동으로 추가한 항목도 포함됩니다.";
+"Keep the subtitle track included in the video file instead of switching to a downloaded one." = "다운로드한 자막으로 전환하지 않고 동영상 파일에 포함된 자막 트랙을 유지합니다.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "의심스러운 파일 및 릴리스 검사는 유지하면서 대용량 파일과 시즌 묶음을 포함한 더 많은 결과를 허용합니다.";
 "Keep watching" = "이어서 시청";
 "Kids & Family" = "키즈 및 가족";
@@ -1222,6 +1251,7 @@
 "Listas de Live TV" = "실시간 TV 재생목록";
 "Listas y servidores" = "Playlists and servers";
 "Listo" = "완료";
+"Lists" = "목록";
 "Literaria" = "문학";
 "Literary" = "문학";
 "Live" = "라이브";
@@ -1239,6 +1269,7 @@
 "Loading music" = "음악 불러오는 중";
 "Loading plugins..." = "플러그인 불러오는 중...";
 "Loading your AniList…" = "내 AniList 불러오는 중…";
+"Loading your MyAnimeList…" = "MyAnimeList를 불러오는 중…";
 "Loading your history…" = "기록을 불러오는 중…";
 "Loading..." = "로딩 중...";
 "Loading…" = "불러오는 중…";
@@ -1295,8 +1326,12 @@
 "Mark as unwatched" = "시청하지 않음으로 표시";
 "Mark as watched" = "시청함으로 표시";
 "Mark watched button" = "시청함 표시 버튼";
+"Match Dolby Vision, HDR10 and HLG streams." = "Dolby Vision, HDR10, HLG 스트림과 일치합니다.";
+"Match streams marked as cached or already in your debrid library." = "캐시됨으로 표시되거나 debrid 라이브러리에 이미 있는 스트림과 일치합니다.";
 "Max" = "최대";
+"Max {n} GB" = "최대 {n}GB";
 "Maximum" = "최대";
+"Maximum size (GB)" = "최대 크기 (GB)";
 "Maximum volume boost" = "최대 음량 증폭";
 "Mecha" = "메카";
 "Media" = "미디어";
@@ -1312,6 +1347,7 @@
 "Mezclar sonido envolvente a estéreo" = "서라운드 사운드를 스테레오로 다운믹스";
 "Mi biblioteca" = "내 라이브러리";
 "Minimum file size" = "최소 파일 크기";
+"Minimum seeders" = "최소 시더 수";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "누락";
@@ -1377,6 +1413,7 @@
 "My Trakt" = "내 Trakt";
 "My Trakt watchlist" = "내 Trakt 관심 목록";
 "My channels" = "My channels";
+"My filter" = "내 필터";
 "My library" = "내 라이브러리";
 "My lists" = "내 목록";
 "MyAnimeList sync" = "MyAnimeList 동기화";
@@ -1391,6 +1428,7 @@
 "NHL" = "NHL";
 "Name" = "이름";
 "Name your theme" = "테마 이름 지정";
+"Native/Japanese" = "원어/일본어";
 "Navegación" = "탐색";
 "Navigation" = "탐색";
 "Navigation changes waiting to sync" = "Navigation changes waiting to sync";
@@ -1401,10 +1439,12 @@
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflix 오리지널";
 "Never" = "안 함";
+"Never auto-select tracks containing" = "다음 문구가 포함된 트랙 자동 선택 안 함";
 "New Anime Releases" = "최신 애니메이션";
 "New Episodes" = "새 에피소드";
 "New Episodes row" = "새 에피소드 행";
 "New Face Award" = "신인상";
+"New filter" = "새 필터";
 "New list" = "새 목록";
 "New profile" = "새 프로필";
 "New shows and anime premiering this month, from Simkl" = "Simkl에서 이번 달 첫 공개되는 새 시리즈와 애니메이션";
@@ -1448,6 +1488,7 @@
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "아직 즐겨찾기가 없습니다.";
 "No filmography on record." = "등록된 필모그래피가 없습니다.";
+"No filter" = "필터 없음";
 "No filters" = "필터 없음";
 "No hay coincidencias." = "일치하는 항목이 없습니다.";
 "No hay descripción disponible." = "설명이 없습니다.";
@@ -1469,6 +1510,7 @@
 "No people found" = "인물을 찾을 수 없습니다";
 "No picks loaded. TMDB might be unreachable." = "추천 항목을 불러오지 못했습니다. TMDB에 연결할 수 없는 상태일 수 있습니다.";
 "No playable streams turned up, and no debrid is configured. Real-Debrid, TorBox, AllDebrid, Premiumize, or Debrid-Link will unlock raw torrent results. Some addons bake debrid in (Sootio, Comet/ElfHosted, MediaFusion/ElfHosted) and play without your own keys." = "재생 가능한 스트림을 찾지 못했고 debrid도 설정되지 않았습니다. Real-Debrid, TorBox, AllDebrid, Premiumize 또는 Debrid-Link를 사용하면 원본 토렌트 결과를 이용할 수 있습니다. 일부 애드온(Sootio, Comet/ElfHosted, MediaFusion/ElfHosted)은 debrid가 내장되어 있어 별도 키 없이 재생됩니다.";
+"No preferences selected. Edit this filter to choose the streams you prefer." = "선택한 환경설정이 없습니다. 이 필터를 편집해 선호하는 스트림을 선택하세요.";
 "No preferred languages selected." = "선택한 선호 언어가 없습니다.";
 "No reliable match was found. The original subtitle is kept." = "No reliable match was found. The original subtitle is kept.";
 "No se encontraron episodios para esta temporada." = "이 시즌의 에피소드를 찾을 수 없습니다.";
@@ -1497,8 +1539,10 @@
 "Nombre para mostrar" = "표시 이름";
 "Non-fiction" = "비소설";
 "None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "이번 달에는 Trakt에서 가장 기대되는 공개 예정작이 없습니다. 다른 달을 선택해 보세요.";
+"None yet" = "아직 없음";
 "Nord" = "Nord";
 "Normal" = "보통";
+"Normalize embedded subtitle size" = "내장 자막 크기 표준화";
 "Normalize loudness" = "음량 평준화";
 "Norwegian" = "노르웨이어";
 "Not a stream plugin: it exports no getStreams or streams function." = "스트림 플러그인이 아닙니다: getStreams 또는 streams 함수를 내보내지 않습니다.";
@@ -1671,6 +1715,8 @@
 "Pinned" = "고정됨";
 "Pinned to top" = "상단에 고정됨";
 "Plan to Watch" = "시청 예정";
+"Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
+"Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "재생";
 "Play movie" = "영화 재생";
 "Play next" = "다음에 재생";
@@ -1718,8 +1764,10 @@
 "Posters, ratings, lists" = "포스터, 평점, 목록";
 "Predeterminado" = "기본값";
 "Predeterminado (acento dorado)" = "기본값(골드 강조색)";
+"Prefer embedded subtitles" = "내장 자막 우선";
 "Prefer episode still artwork" = "Prefer episode still artwork";
 "Prefer these sources" = "Prefer these sources";
+"Preferred language for anime titles displayed on poster cards." = "포스터 카드에 표시되는 애니메이션 타이틀의 기본 언어입니다.";
 "Preguntar si reanudar o empezar de nuevo" = "이어 보기 또는 처음부터 보기 확인";
 "Premiered This Month" = "이번 달 공개작";
 "Premiumize API key" = "Premiumize API 키";
@@ -1834,6 +1882,7 @@
 "Reintentar lectura del progreso" = "Retry reading progress";
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "화면비";
+"Relative to your main subtitle size." = "기본 자막 크기를 기준으로 합니다.";
 "Release notifications" = "Release notifications";
 "Rellenar" = "채우기";
 "Remember last stream" = "마지막 스트림 기억";
@@ -1858,6 +1907,7 @@
 "Remove preset" = "프리셋 삭제";
 "Remove saved book" = "Remove saved book";
 "Remove shows once you're caught up" = "시청 완료한 시리즈 제거";
+"Remove the saved quality preference. Your other stream settings still apply." = "저장된 화질 환경설정을 제거합니다. 다른 스트림 설정은 계속 적용됩니다.";
 "Remove {language}" = "{language} 제거";
 "Remove {name}" = "{name} 삭제";
 "Removed" = "삭제됨";
@@ -1938,6 +1988,7 @@
 "Right" = "오른쪽";
 "Right to left" = "오른쪽에서 왼쪽";
 "Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "Roku의 OS 변경으로 내장 Media Player가 다른 앱의 동영상을 수신할 수 없게 되었습니다. Media Assistant는 이 역할을 대신하도록 제작된 무료 채널입니다. Roku에 한 번 설치하면 전송할 수 있습니다.";
+"Romaji" = "로마자";
 "Romance" = "로맨스";
 "Romanian" = "루마니아어";
 "Rostro" = "얼굴";
@@ -1973,11 +2024,13 @@
 "Save page" = "Save page";
 "Save reminder" = "알림 저장";
 "Save settings" = "Save settings";
+"Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "선호하는 스트림 화질을 저장하세요. 설정한 모든 항목이 일치해야 합니다. 제한하지 않을 항목은 비워 두세요. 일치하는 스트림이 없으면 Harbor가 다음으로 좋은 소스를 사용합니다.";
 "Save theme" = "테마 저장";
 "Save to this library" = "Save to this library";
 "Save track" = "트랙 저장";
 "Saved" = "저장됨";
 "Saved app data" = "Saved app data";
+"Saved stream filters" = "저장된 스트림 필터";
 "Saving" = "저장 중";
 "Scanning your network…" = "네트워크 검색 중…";
 "Sci-Fi" = "SF";
@@ -2010,6 +2063,7 @@
 "Season {n}" = "시즌 {n}";
 "Seasons" = "시즌";
 "Seasons and episodes" = "Seasons and episodes";
+"Second line size" = "보조 자막 크기";
 "Second subtitle language" = "보조 자막 언어";
 "Secondary copy." = "보조 사본입니다.";
 "See details" = "세부 정보 보기";
@@ -2052,6 +2106,7 @@
 "Set A" = "Set A";
 "Set B" = "Set B";
 "Set a PIN" = "PIN 설정";
+"Set active" = "활성화";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2123,10 +2178,12 @@
 "Siguiente" = "다음";
 "Siguiente canción" = "Next song";
 "Silenciar" = "음소거";
+"Simkl Trending Today" = "Simkl Trending Today";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Simkl lists no new shows or anime premiering this month. Try a different month." = "이번 달에는 Simkl에서 첫 공개되는 새 시리즈나 애니메이션이 없습니다. 다른 달을 선택해 보세요.";
 "Simkl premieres" = "Simkl 첫 공개작";
 "Simkl progress" = "Simkl progress";
+"Simkl rails are turned off, so none of the rows below appear on Home yet." = "Simkl rails are turned off, so none of the rows below appear on Home yet.";
 "Simkl sign-in expired, reconnect it" = "Simkl 로그인이 만료되었습니다. 다시 연결하세요.";
 "Sin configurar" = "설정되지 않음";
 "Sin corrección" = "보정 안 함";
@@ -2148,6 +2205,7 @@
 "Skip Recap" = "이전 내용 건너뛰기";
 "Skip for now" = "나중에 하기";
 "Skip setup" = "설정 건너뛰기";
+"Skip these tracks" = "이 트랙 건너뛰기";
 "Sleep timer" = "취침 타이머";
 "Slice of Life" = "일상물";
 "Slightly lighter than background." = "배경보다 약간 밝습니다.";
@@ -2203,6 +2261,7 @@
 "Stats" = "통계";
 "Status" = "상태";
 "Stay on one source for a season" = "한 시즌 동안 동일한 소스 유지";
+"Steer your Top Picks and hero toward what you love, and hide what you don't." = "인기 추천과 히어로 영역을 좋아하는 콘텐츠 중심으로 구성하고, 원하지 않는 콘텐츠는 숨기세요.";
 "Step 1 · Metadata" = "1단계 · 메타데이터";
 "Step 1 · Open Simkl" = "1단계 · Simkl 열기";
 "Step 1 · Open Trakt" = "1단계 · Trakt 열기";
@@ -2272,6 +2331,7 @@
 "Swedish" = "스웨덴어";
 "Switch quality" = "Switch quality";
 "Switch stream" = "스트림 전환";
+"Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "재생 시작 후 더 선호하는 언어의 자막이 도착하면 전환합니다. 현재 트랙을 유지하려면 끄세요.";
 "Switch to {name}" = "{name}(으)로 전환";
 "Sync" = "동기화";
 "Sync Offset" = "동기화 오프셋";
@@ -2451,6 +2511,7 @@
 "Tracking" = "Tracking";
 "Tracking what you watch" = "시청 기록 추적";
 "Tracks" = "트랙";
+"Tracks whose name contains one of these words are skipped." = "이름에 다음 단어 중 하나가 포함된 트랙은 건너뜁니다.";
 "Traducir títulos" = "제목 번역";
 "Trakt" = "Trakt";
 "Trakt Comments" = "Trakt 댓글";
@@ -2487,6 +2548,7 @@
 "Tu color" = "내 색상";
 "Tu perfil" = "내 프로필";
 "Tubi" = "Tubi";
+"Tune anime" = "애니메이션 맞춤 설정";
 "Tune your recommendations" = "추천 맞춤 설정";
 "Turkish" = "튀르키예어";
 "Turn pages horizontally" = "Turn pages horizontally";
@@ -2515,11 +2577,14 @@
 "United Kingdom" = "영국";
 "United States" = "미국";
 "Unknown" = "알 수 없음";
+"Unknown sizes still match. Leave blank or enter 0 for any." = "크기를 알 수 없는 스트림도 일치합니다. 제한하지 않으려면 비워 두거나 0을 입력하세요.";
 "Unlock controls" = "조작 잠금 해제";
 "Unmute" = "음소거 해제";
 "Unpin" = "고정 해제";
+"Untitled filter" = "이름 없는 필터";
 "Unverified" = "확인되지 않음";
 "Up Next" = "다음 콘텐츠";
+"Up Next on Simkl" = "Up Next on Simkl";
 "Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "예정";
 "Upcoming Anime" = "공개 예정 애니메이션";
@@ -2530,6 +2595,7 @@
 "Update" = "업데이트";
 "Update all" = "모두 업데이트";
 "Updated {when}" = "{when} 업데이트";
+"Upgrade subtitles when better ones load" = "더 나은 자막이 로드되면 교체";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "내 사진을 업로드하거나 Harbor 카탈로그에서 선택하세요.";
 "Upload photo" = "사진 업로드";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -2586,6 +2652,7 @@
 "Watched" = "시청함";
 "Watched by {name}" = "{name} 님이 시청함";
 "Watching" = "시청 중";
+"Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "관심 목록";
 "Watchlist only" = "관심 목록만";
 "Watchlist shows only saved titles" = "관심 목록에 저장된 작품만 표시";
@@ -2611,6 +2678,7 @@
 "Where your video comes from" = "동영상 제공 출처";
 "Which end of the poster the score chip rides on." = "포스터에서 평점 칩을 표시할 쪽입니다.";
 "Which order" = "정렬 순서";
+"Which subtitle Harbor lands on when more than one is available." = "자막이 여러 개일 때 Harbor가 처음 선택할 자막입니다.";
 "Who's watching" = "시청자 선택";
 "Who's watching?" = "누가 시청하나요?";
 "Wide search · still empty" = "넓게 검색함 · 결과 없음";
@@ -2637,6 +2705,7 @@
 "Your AniList is empty" = "내 AniList가 비어 있음";
 "Your Discovery Queue" = "내 탐색 대기열";
 "Your Letterboxd password" = "Letterboxd 비밀번호";
+"Your MyAnimeList is empty" = "MyAnimeList가 비어 있습니다";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Roku가 네트워크 내 앱의 제어 요청을 차단하도록 설정되어 있어 Harbor에서 연결할 수 없습니다. Roku에서 한 번만 설정하면 됩니다.";
 "Your Stremio library + addons sync in untouched." = "Stremio 보관함과 애드온을 그대로 동기화합니다.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
@@ -2673,6 +2742,7 @@
 "category" = "카테고리";
 "center" = "가운데";
 "code" = "코드";
+"commentary, descriptive" = "해설, 화면 해설";
 "common.back" = "뒤로";
 "common.retry" = "다시 시도";
 "dead torrents" = "시드가 없는 토렌트";
@@ -3838,6 +3908,7 @@
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} 자체는 어떠한 미디어도 호스팅, 배포 또는 색인하지 않습니다. 모든 스트림은 서드 파티 애드온, Debrid 서비스 또는 사용자가 직접 구성한 {service} 계정에서 제공됩니다. 재생할 콘텐츠를 선택하고 관할 지역의 법률을 준수할 책임은 사용자에게 있습니다.";
 "{count} picks ready" = "추천 {count}개 준비됨";
 "{count} results" = "결과 {count}개";
+"{count} selected" = "{count}개 선택됨";
 "{count} tracks" = "{count}곡";
 "{h}h left" = "{h}시간 남음";
 "{h}h {m}m left" = "{h}시간 {m}분 남음";
@@ -3870,6 +3941,7 @@
 "{n} seeds" = "시드 {n}개";
 "{n} semillas" = "시드 {n}개";
 "{n} sources · 0 made it through" = "소스 {n}개 · 통과 0개";
+"{n}+ seeds" = "시드 {n}개 이상";
 "{n}d ago" = "{n}일 전";
 "{n}d left" = "{n}일 남음";
 "{n}h ago" = "{n}시간 전";

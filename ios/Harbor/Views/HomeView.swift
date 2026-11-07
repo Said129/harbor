@@ -29,7 +29,8 @@ struct HomeView: View {
         let addonRails = HomeCatalogFilter.uniqueAddonRows(catalogs, takenKeys: takenNames, key: HomeView.rowNameKey, showAll: InterfacePreferences.shared.homeShowAllAddonRows)
         let traktRails: [PageRail] = trakt.rows.map(PageRail.discovery)
         let letterboxdRails: [PageRail] = StremboxdHomeModel.forOwner(model.personalOwner).rails.map(PageRail.discovery)
-        return sources + lists + traktRails + letterboxdRails + built + addonRails
+        let simklRails: [PageRail] = SimklHomeModel.forOwner(model.personalOwner).rails.map(PageRail.discovery)
+        return sources + lists + traktRails + simklRails + letterboxdRails + built + addonRails
     }
     /// Desktop's duplicate test for addon rows: same kind and same trimmed, lowercased title.
     static func rowNameKey(_ rail: PageRail) -> String { rail.kind + "|" + rail.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() }

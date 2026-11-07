@@ -32,6 +32,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "عميل لبروتوكول Stremio. دقيقتان للإعداد، ومعظمه اختياري. تبقى أنت المتحكّم في كل مفتاح.";
 "A continuación" = "التالي";
 "A fast community subtitle index. Off by default; turn it on for extra coverage on newer or niche releases." = "فهرس ترجمة سريع من المجتمع. معطّل افتراضيًا؛ فعّله للحصول على تغطية إضافية للإصدارات الأحدث أو المتخصّصة.";
+"A filter applies everywhere Harbor picks a stream: the source picker, the instant pick, and Big Picture on TV." = "يسري المرشّح أينما اختار Harbor بثًا: منتقي المصادر، والاختيار الفوري، وBig Picture على التلفاز.";
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
@@ -102,6 +103,7 @@
 "Add a repository" = "إضافة مستودع";
 "Add an API key to use this source." = "أضف مفتاح API لاستخدام هذا المصدر.";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "أضف أنمي إلى AniList الخاص بك ليظهر هنا، مجمّعًا حسب الحالة وجاهزًا للتعديل.";
+"Add anime to your MyAnimeList and they show up here, grouped by status and ready to edit." = "أضِف الأنمي إلى MyAnimeList الخاص بك وسيظهر هنا مُجمَّعًا حسب الحالة وجاهزًا للتعديل.";
 "Add bookmark" = "Add bookmark";
 "Add files from your computer" = "إضافة ملفات من جهازك";
 "Add from lists" = "إضافة من القوائم";
@@ -209,6 +211,7 @@
 "Animation speed" = "سرعة الحركة";
 "Anime" = "أنمي";
 "Anime Expo" = "معرض Anime Expo";
+"Anime Title Language" = "لغة عنوان الأنمي";
 "Anime en tendencia" = "أنمي رائج";
 "Anime episodes airing this month, sub or dub" = "حلقات أنمي تُعرض هذا الشهر، مترجمة أو مدبلجة";
 "Anime of the Year" = "أنمي العام";
@@ -229,6 +232,7 @@
 "App language" = "لغة التطبيق";
 "Appearance" = "المظهر";
 "Apple TV+" = "أبل تي في+";
+"Applies to both audio and subtitle tracks. You can still pick a skipped track by hand in the player." = "ينطبق على مسارات الصوت والترجمة معًا. لا يزال بإمكانك اختيار مسار متجاوَز يدويًا في المشغّل.";
 "Apply" = "تطبيق";
 "Apply custom subtitle FPS" = "تطبيق معدل الإطارات المخصص للترجمة";
 "Apply custom theme" = "تطبيق سمة مخصصة";
@@ -264,6 +268,7 @@
 "Authorized {when}" = "تم التفويض {when}";
 "Auto" = "تلقائي";
 "Auto (match video)" = "تلقائي (مطابقة الفيديو)";
+"Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "يضبط الترجمات المنسّقة (ASS) تلقائيًا ليبقى حجم الحوار ثابتًا بين الملفات، مع الحفاظ على ألوانها وخطوطها ومواضع النصوص على الشاشة.";
 "Auto-hide the Skip button after" = "إخفاء زر التخطي تلقائيًا بعد";
 "Auto-play next episode" = "التشغيل التلقائي للحلقة التالية";
 "Auto-skip credit outros" = "تخطّي شارة النهاية تلقائيًا";
@@ -421,6 +426,7 @@
 "Cache buffering" = "تخزين مؤقت للذاكرة";
 "Cache cleared" = "تم مسح ذاكرة التخزين المؤقت";
 "Cached" = "مخزن مؤقتا";
+"Cached only" = "المخزّن مؤقتًا فقط";
 "Caches" = "الذواكر المؤقتة";
 "Calendar" = "التقويم";
 "Calendario" = "التقويم";
@@ -480,6 +486,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "الفصول";
 "Check it works" = "التحقق من عمله";
+"Check the highlighted values before saving." = "تحقّق من القيم المميّزة قبل الحفظ.";
 "Check whether this device can reach the saved server address." = "تحقّق من قدرة هذا الجهاز على الاتصال بعنوان الخادم المحفوظ.";
 "Checking with AniList..." = "جارٍ التحقق مع AniList...";
 "Checking with MyAnimeList..." = "جارٍ التحقق مع MyAnimeList...";
@@ -489,16 +496,22 @@
 "China" = "الصين";
 "Chinese" = "الصينية";
 "Chinese (Simplified)" = "الصينية (المبسّطة)";
+"Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "اختر اسمًا، ثم حدّد دقّات العرض والمصادر وبرامج الترميز والصوت التي تفضّلها.";
 "Choose an avatar" = "اختر صورة رمزية";
 "Choose image" = "اختر صورة";
+"Choose subtitles before playback" = "اختيار الترجمة قبل التشغيل";
+"Choose the exact track and language after picking a source, before the video starts." = "اختر المسار واللغة بدقّة بعد اختيار المصدر وقبل بدء الفيديو.";
 "Choose the frame rate the subtitle was authored for." = "اختر معدل الإطارات الذي أُنشئت الترجمة على أساسه.";
+"Choose the streams you prefer." = "اختر البثوث التي تفضّلها.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "اختر حتى 5 أفلام أو مسلسلات تحبها بالفعل. يستخدمها Harbor لضبط مختاراتك المميزة وتوصياتك. اختياري تمامًا.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "اختر متى يطلب Harbor اختيار ملف شخصي. تظهر المطالبات المؤقّتة عند العودة إلى Harbor.";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "اختر أين يبحث Harbor عن الترجمة. تظهر نتائج المصادر المفعّلة معًا بعد إزالة التكرارات.";
+"Choose which Simkl rails appear on your home screen." = "اختر شرائط Simkl التي تظهر على شاشتك الرئيسية.";
 "Choose which addon results appear when you pick a stream." = "اختر نتائج الإضافات التي تظهر عند اختيار بث.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "اختر التقييمات التي تظهر على البطاقات وصفحات التفاصيل. تتطلّب التقييمات المقفلة مفتاح مزوّد في البيانات الوصفية.";
 "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
+"Choosing a track" = "اختيار المسار";
 "Ciencia ficción y fantasía" = "خيال علمي وفانتازيا";
 "Claro" = "فاتح";
 "Clasificación" = "الترتيب";
@@ -525,6 +538,7 @@
 "Close the cast menu and reopen it to rescan the network." = "أغلق قائمة البث وأعد فتحها لإعادة فحص الشبكة.";
 "Clásica" = "الكلاسيكي";
 "Code expired. Try again." = "Code expired. Try again.";
+"Codec" = "الترميز";
 "Colecciones" = "المجموعات";
 "Collections" = "المجموعات";
 "Color de la barra" = "لون الشريط";
@@ -651,6 +665,7 @@
 "Couldn't reach AniList." = "تعذّر الوصول إلى AniList.";
 "Couldn't reach AniList. Try refreshing." = "تعذّر الوصول إلى AniList. حاول التحديث.";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
+"Couldn't reach MyAnimeList. Try refreshing." = "تعذّر الوصول إلى MyAnimeList. حاول التحديث.";
 "Couldn't reach Simkl" = "تعذّر الوصول إلى Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "تعذّر الوصول إلى Trakt. تحقق من اتصالك وحاول مرة أخرى.";
 "Couldn't reach this Roku" = "تعذر الوصول إلى جهاز Roku هذا";
@@ -663,6 +678,7 @@
 "Create account" = "إنشاء حساب";
 "Create new list" = "إنشاء قائمة جديدة";
 "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "أنشئ ملفات شخصية لمستخدمي Harbor. يمكن أن يكون لكل منها مظهر وإعدادات ورمز PIN خاص.";
+"Create your first filter with the stream quality you prefer." = "أنشئ أول مرشّح بجودة البث التي تفضّلها.";
 "Create your first list" = "أنشئ قائمتك الأولى";
 "Crime" = "جريمة";
 "Crime Series" = "مسلسلات جريمة";
@@ -712,9 +728,11 @@
 "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)" = "إيقاف تغذية شريط العرض الرئيسي (العودة إلى التلقائي)";
 "Delete" = "حذف";
 "Delete file" = "Delete file";
+"Delete filter" = "حذف المرشّح";
 "Delete list" = "حذف القائمة";
 "Delete profile" = "حذف الملف الشخصي";
 "Delete this profile?" = "حذف هذا الملف الشخصي؟";
+"Delete {name}? Saved filters cannot be brought back." = "حذف {name}؟ لا يمكن استعادة عوامل التصفية المحفوظة.";
 "Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "يمين";
@@ -798,6 +816,7 @@
 "Edit" = "تعديل";
 "Edit Folder Images" = "تعديل صور المجموعة";
 "Edit custom theme" = "تعديل السمة المخصصة";
+"Edit filter" = "تعديل المرشّح";
 "Edit profile" = "تعديل الملف الشخصي";
 "Edit {name}" = "تعديل {name}";
 "Editar tema personalizado" = "تعديل السمة المخصصة";
@@ -840,6 +859,8 @@
 "Engine" = "المحرك";
 "English" = "الإنجليزية";
 "Enter Harbor" = "ادخل إلى Harbor";
+"Enter a size of 0 or more." = "أدخل حجمًا يساوي 0 أو أكثر.";
+"Enter a whole number of 0 or more." = "أدخل عددًا صحيحًا يساوي 0 أو أكثر.";
 "Enter an FPS from 1 to 240." = "أدخل معدل إطارات من 1 إلى 240.";
 "Enter current PIN" = "أدخل رمز PIN الحالي";
 "Episode" = "حلقة";
@@ -873,6 +894,7 @@
 "Everything releasing this month from TMDB" = "كل ما يصدر هذا الشهر من TMDB";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "كل ما تقدّمه إضافاتك، معروضًا على شكل ملصقات. مرّر أو ابحث أو صفِّ للوصول إلى ما تريد.";
 "Excellence Prize" = "جائزة التميّز";
+"Excludes streams with fewer seeders or no seeder count. Leave blank or enter 0 for any." = "يستبعد مصادر البث ذات عدد موزّعين أقل أو غير معروف. اتركه فارغًا أو أدخل 0 لقبول أي عدد.";
 "Exit Picture in Picture" = "الخروج من صورة داخل صورة";
 "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "توسيع بطاقات الملصقات أثناء التنقل بلوحة المفاتيح أو جهاز التحكم عبر صفوف الملصقات، باستخدام صور عريضة محمّلة مسبقًا.";
 "Expanding Cards" = "البطاقات المتوسّعة";
@@ -976,6 +998,7 @@
 "Gamma" = "جاما";
 "Genre" = "النوع";
 "Genres" = "التصنيفات";
+"Genres you want more of" = "الأنواع التي تريد المزيد منها";
 "Gently magnify nearby posters as you move across a poster row." = "يكبّر الملصقات المجاورة بلطف أثناء تنقّلك عبر صف الملصقات.";
 "German" = "الألمانية";
 "Germany" = "ألمانيا";
@@ -1012,6 +1035,8 @@
 "Guest" = "ضيف";
 "Género" = "النوع";
 "HD" = "HD";
+"HDR" = "HDR";
+"HDR only" = "HDR فقط";
 "HI" = "صمّ";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "فك ترميز عتادي";
@@ -1051,11 +1076,13 @@
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "إخفاء كل المصادر";
 "Hide and skip episodes" = "إخفاء الحلقات وتخطّيها";
+"Hide anime I've already watched" = "إخفاء الأنمي الذي شاهدته بالفعل";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide comments" = "إخفاء التعليقات";
 "Hide details" = "إخفاء التفاصيل";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "إخفاء الحلقة";
+"Hide from your picks" = "إخفاء من اختياراتك";
 "Hide hidden episodes" = "إخفاء الحلقات المخفية";
 "Hide row" = "إخفاء الصف";
 "Hide sound effects and speaker names" = "إخفاء المؤثرات الصوتية وأسماء المتحدثين";
@@ -1081,6 +1108,7 @@
 "History" = "تاريخ";
 "Hockey" = "الهوكي";
 "Home" = "الرئيسية";
+"Home Rail Settings" = "إعدادات صفوف الرئيسية";
 "Home catalogs" = "كتالوجات الصفحة الرئيسية";
 "Home layout" = "تخطيط الرئيسية";
 "Home style" = "نمط الصفحة الرئيسية";
@@ -1197,6 +1225,7 @@
 "Keep same source on next episode" = "الإبقاء على المصدر نفسه في الحلقة التالية";
 "Keep screen awake" = "Keep screen awake";
 "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "أبقِ علامة تبويب قائمة المشاهدة في المكتبة مقتصرة على العناوين التي أضفتها في Stremio. عطّل هذا لتضمين أي شيء أضافه Stremio تلقائيًا عند الضغط على تشغيل.";
+"Keep the subtitle track included in the video file instead of switching to a downloaded one." = "احتفظ بمسار الترجمة المضمّن في ملف الفيديو بدلًا من التبديل إلى ترجمة منزّلة.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "أبقِ فحوص الملفات المشبوهة والإصدارات، لكن اسمح بنتائج أكثر تشمل الملفات الكبيرة وحزم المواسم.";
 "Keep watching" = "متابعة المشاهدة";
 "Kids & Family" = "الأطفال والعائلة";
@@ -1246,6 +1275,7 @@
 "Listas de Live TV" = "قوائم تشغيل البث التلفزيوني المباشر";
 "Listas y servidores" = "Playlists and servers";
 "Listo" = "تم";
+"Lists" = "القوائم";
 "Literaria" = "أدبي";
 "Literary" = "أدبي";
 "Live" = "مباشر";
@@ -1263,6 +1293,7 @@
 "Loading music" = "جارٍ تحميل الموسيقى";
 "Loading plugins..." = "جارٍ تحميل الإضافات...";
 "Loading your AniList…" = "جارٍ تحميل AniList الخاص بك…";
+"Loading your MyAnimeList…" = "جارٍ تحميل MyAnimeList الخاص بك…";
 "Loading your history…" = "جارٍ تحميل سجلك…";
 "Loading..." = "جاري التحميل...";
 "Loading…" = "جارٍ التحميل…";
@@ -1319,8 +1350,12 @@
 "Mark as unwatched" = "تحديد كغير مُشاهَد";
 "Mark as watched" = "تحديد كمُشاهَد";
 "Mark watched button" = "زر التحديد كمُشاهَد";
+"Match Dolby Vision, HDR10 and HLG streams." = "مطابقة بث Dolby Vision وHDR10 وHLG.";
+"Match streams marked as cached or already in your debrid library." = "مطابقة البث المحدد بأنه مخزّن مؤقتًا أو موجود بالفعل في مكتبة debrid لديك.";
 "Max" = "الأقصى";
+"Max {n} GB" = "بحد أقصى {n} GB";
 "Maximum" = "القصوى";
+"Maximum size (GB)" = "الحجم الأقصى (GB)";
 "Maximum volume boost" = "الحد الأقصى لتعزيز الصوت";
 "Mecha" = "ميكا";
 "Media" = "الوسائط";
@@ -1336,6 +1371,7 @@
 "Mezclar sonido envolvente a estéreo" = "دمج الصوت المحيطي إلى ستيريو (Stereo)";
 "Mi biblioteca" = "مكتبتي";
 "Minimum file size" = "الحد الأدنى لحجم الملف";
+"Minimum seeders" = "الحد الأدنى للموزّعين";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "مفقود";
@@ -1401,6 +1437,7 @@
 "My Trakt" = "Trakt الخاص بي";
 "My Trakt watchlist" = "قائمة مشاهدتي على Trakt";
 "My channels" = "My channels";
+"My filter" = "الفلتر الخاص بي";
 "My library" = "مكتبتي";
 "My lists" = "قوائمي";
 "MyAnimeList sync" = "مزامنة MyAnimeList";
@@ -1417,6 +1454,7 @@
 "NRR" = "NRR";
 "Name" = "الاسم";
 "Name your theme" = "سمِّ سمتك";
+"Native/Japanese" = "الأصلية/اليابانية";
 "Navegación" = "التنقل";
 "Navigation" = "التنقل";
 "Navigation changes waiting to sync" = "Navigation changes waiting to sync";
@@ -1427,11 +1465,13 @@
 "Netflix" = "Netflix";
 "Netflix Originals" = "أعمال نتفليكس الأصلية";
 "Never" = "أبدًا";
+"Never auto-select tracks containing" = "عدم اختيار المسارات تلقائيًا التي تحتوي على";
 "Never shown again" = "لن يظهر مجددًا";
 "New Anime Releases" = "أحدث إصدارات الأنمي";
 "New Episodes" = "حلقات جديدة";
 "New Episodes row" = "صف الحلقات الجديدة";
 "New Face Award" = "جائزة الوجه الجديد";
+"New filter" = "مرشّح جديد";
 "New list" = "قائمة جديدة";
 "New profile" = "ملف شخصي جديد";
 "New shows and anime premiering this month, from Simkl" = "المسلسلات والأنمي الجديدة التي تُعرض لأول مرة هذا الشهر، من Simkl";
@@ -1475,6 +1515,7 @@
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "لا مفضّلة بعد";
 "No filmography on record." = "لا توجد أعمال مسجّلة.";
+"No filter" = "بدون تصفية";
 "No filters" = "لا توجد عوامل تصفية";
 "No hay coincidencias." = "لا توجد نتائج.";
 "No hay descripción disponible." = "لا يوجد وصف متاح.";
@@ -1496,6 +1537,7 @@
 "No people found" = "لم يتم العثور على أشخاص";
 "No picks loaded. TMDB might be unreachable." = "لم تُحمّل أي اختيارات. قد يتعذّر الوصول إلى TMDB.";
 "No playable streams turned up, and no debrid is configured. Real-Debrid, TorBox, AllDebrid, Premiumize, or Debrid-Link will unlock raw torrent results. Some addons bake debrid in (Sootio, Comet/ElfHosted, MediaFusion/ElfHosted) and play without your own keys." = "لم تظهر أي مصادر قابلة للتشغيل، ولم يتم تكوين debrid. سيؤدي استخدام Real-Debrid أو TorBox أو AllDebrid أو Premiumize أو Debrid-Link إلى إظهار نتائج التورنت الخام. بعض الإضافات تدمج debrid داخلها وتعمل بدون مفاتيحك الخاصة.";
+"No preferences selected. Edit this filter to choose the streams you prefer." = "لم تُحدّد تفضيلات. عدّل هذا الفلتر لاختيار البث الذي تفضّله.";
 "No preferred languages selected." = "لم تُحدّد لغات مفضّلة.";
 "No reliable match was found. The original subtitle is kept." = "لم يتم العثور على تطابق موثوق. تم الاحتفاظ بالترجمة الأصلية.";
 "No se encontraron episodios para esta temporada." = "لم يُعثر على حلقات لهذا الموسم.";
@@ -1524,8 +1566,10 @@
 "Nombre para mostrar" = "الاسم";
 "Non-fiction" = "غير خيالي";
 "None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "لا تقع أيٌّ من أكثر إصدارات Trakt القادمة انتظارًا في هذا الشهر. جرّب شهرًا مختلفًا.";
+"None yet" = "لا شيء بعد";
 "Nord" = "Nord";
 "Normal" = "عادية";
+"Normalize embedded subtitle size" = "توحيد حجم الترجمة المضمّنة";
 "Normalize loudness" = "تطبيع مستوى الصوت";
 "Norwegian" = "النرويجية";
 "Not a stream plugin: it exports no getStreams or streams function." = "ليس مكوّنًا إضافيًا للبث: لا يصدّر دالة getStreams أو streams.";
@@ -1701,6 +1745,8 @@
 "Pinned" = "مثبّت";
 "Pinned to top" = "مثبّت في الأعلى";
 "Plan to Watch" = "خطة للمشاهدة";
+"Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
+"Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "تشغيل";
 "Play movie" = "تشغيل الفيلم";
 "Play next" = "تشغيل تاليًا";
@@ -1748,8 +1794,10 @@
 "Posters, ratings, lists" = "الملصقات والتقييمات والقوائم";
 "Predeterminado" = "الافتراضي";
 "Predeterminado (acento dorado)" = "افتراضي (تمييز ذهبي)";
+"Prefer embedded subtitles" = "تفضيل الترجمات المدمجة";
 "Prefer episode still artwork" = "Prefer episode still artwork";
 "Prefer these sources" = "Prefer these sources";
+"Preferred language for anime titles displayed on poster cards." = "اللغة المفضّلة لعناوين الأنمي المعروضة على بطاقات الملصقات.";
 "Preguntar si reanudar o empezar de nuevo" = "السؤال عن الاستئناف أو البدء من جديد";
 "Premiered This Month" = "عرض هذا الشهر";
 "Premiumize API key" = "مفتاح API لـ Premiumize";
@@ -1865,6 +1913,7 @@
 "Reintentar lectura del progreso" = "Retry reading progress";
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "نسبة العرض إلى الارتفاع";
+"Relative to your main subtitle size." = "بالنسبة إلى حجم الترجمة الأساسي.";
 "Release notifications" = "Release notifications";
 "Rellenar" = "تعبئة";
 "Remember last stream" = "تذكّر آخر بثّ";
@@ -1889,6 +1938,7 @@
 "Remove preset" = "أزِل الإعداد المسبق";
 "Remove saved book" = "Remove saved book";
 "Remove shows once you're caught up" = "إزالة المسلسلات بعد اللحاق بجميع الحلقات";
+"Remove the saved quality preference. Your other stream settings still apply." = "أزل تفضيل الجودة المحفوظ. تبقى إعدادات البث الأخرى سارية.";
 "Remove {language}" = "إزالة {language}";
 "Remove {name}" = "إزالة {name}";
 "Removed" = "تمت الإزالة";
@@ -1969,6 +2019,7 @@
 "Right" = "يمين";
 "Right to left" = "من اليمين إلى اليسار";
 "Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "غيّرت Roku نظام التشغيل لديها لمنع Media Player المدمج من استقبال الفيديو من التطبيقات الأخرى. Media Assistant قناة مجانية صُممت لتولي هذه المهمة. ثبّتها مرة واحدة على جهاز Roku وسيعمل الإرسال.";
+"Romaji" = "روماجي";
 "Romance" = "رومانسي";
 "Romanian" = "الرومانية";
 "Rostro" = "التعبئة";
@@ -2006,11 +2057,13 @@
 "Save page" = "Save page";
 "Save reminder" = "حفظ التذكير";
 "Save settings" = "Save settings";
+"Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "احفظ جودة البث التي تفضّلها. يجب أن يطابق البث كل فئة تحدّدها؛ اترك الفئة فارغة لقبول أي قيمة. إذا لم يوجد تطابق، يستخدم Harbor أفضل مصدر متاح يليه.";
 "Save theme" = "حفظ السمة";
 "Save to this library" = "Save to this library";
 "Save track" = "حفظ المقطع";
 "Saved" = "محفوظ";
 "Saved app data" = "Saved app data";
+"Saved stream filters" = "مرشّحات البث المحفوظة";
 "Saving" = "جارٍ الحفظ";
 "Scanning your network…" = "جارٍ فحص شبكتك…";
 "Sci-Fi" = "خيال علمي";
@@ -2043,6 +2096,7 @@
 "Season {n}" = "موسم {n}";
 "Seasons" = "المواسم";
 "Seasons and episodes" = "Seasons and episodes";
+"Second line size" = "حجم السطر الثاني";
 "Second subtitle language" = "لغة الترجمة الثانية";
 "Secondary copy." = "نص ثانوي.";
 "See details" = "عرض التفاصيل";
@@ -2085,6 +2139,7 @@
 "Set A" = "Set A";
 "Set B" = "Set B";
 "Set a PIN" = "تعيين رمز PIN";
+"Set active" = "تعيين كنشط";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2156,10 +2211,12 @@
 "Siguiente" = "التالي";
 "Siguiente canción" = "Next song";
 "Silenciar" = "كتم الصوت";
+"Simkl Trending Today" = "Simkl Trending Today";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Simkl lists no new shows or anime premiering this month. Try a different month." = "لا تُدرج Simkl أي مسلسلات أو أنمي جديدة تُعرض لأول مرة هذا الشهر. جرّب شهرًا مختلفًا.";
 "Simkl premieres" = "العروض الأولى على Simkl";
 "Simkl progress" = "Simkl progress";
+"Simkl rails are turned off, so none of the rows below appear on Home yet." = "Simkl rails are turned off, so none of the rows below appear on Home yet.";
 "Simkl sign-in expired, reconnect it" = "انتهت صلاحية تسجيل الدخول إلى Simkl، أعد ربطه";
 "Sin configurar" = "غير محدد";
 "Sin corrección" = "بلا تصحيح";
@@ -2181,6 +2238,7 @@
 "Skip Recap" = "تخطّي الملخص";
 "Skip for now" = "تخطّي الآن";
 "Skip setup" = "تخطّي الإعداد";
+"Skip these tracks" = "تخطّي هذه المسارات";
 "Skipped: {reason}" = "تم التخطي: {reason}";
 "Sleep timer" = "مؤقت الإيقاف";
 "Slice of Life" = "شريحة من الحياة";
@@ -2238,6 +2296,7 @@
 "Stats" = "الإحصائيات";
 "Status" = "الحالة";
 "Stay on one source for a season" = "البقاء على مصدر واحد طوال الموسم";
+"Steer your Top Picks and hero toward what you love, and hide what you don't." = "وجّه أفضل اختياراتك والقسم البارز نحو ما تحبه، وأخفِ ما لا تحبه.";
 "Step 1 · Metadata" = "الخطوة 1 · البيانات الوصفية";
 "Step 1 · Open Simkl" = "الخطوة 1 · افتح Simkl";
 "Step 1 · Open Trakt" = "الخطوة 1 · افتح Trakt";
@@ -2308,6 +2367,7 @@
 "Swedish" = "السويدية";
 "Switch quality" = "Switch quality";
 "Switch stream" = "تبديل البث";
+"Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "انتقل إلى لغة أكثر مطابقة لتفضيلاتك إذا توفرت بعد بدء التشغيل. اتركه معطلًا للاحتفاظ بالمسار الحالي.";
 "Switch to {name}" = "التبديل إلى {name}";
 "Sync" = "مزامنة";
 "Sync Offset" = "إزاحة المزامنة";
@@ -2488,6 +2548,7 @@
 "Tracking" = "Tracking";
 "Tracking what you watch" = "تتبُّع ما تشاهده";
 "Tracks" = "المسارات";
+"Tracks whose name contains one of these words are skipped." = "يتم تخطي المسارات التي يحتوي اسمها على إحدى هذه الكلمات.";
 "Traducir títulos" = "ترجمة العناوين";
 "Trakt" = "Trakt";
 "Trakt Comments" = "تعليقات Trakt";
@@ -2524,6 +2585,7 @@
 "Tu color" = "لونك";
 "Tu perfil" = "ملفك الشخصي";
 "Tubi" = "Tubi";
+"Tune anime" = "ضبط الأنمي";
 "Tune your recommendations" = "تحسين توصياتك";
 "Turkish" = "التركية";
 "Turn pages horizontally" = "تقليب الصفحات أفقيًا";
@@ -2552,11 +2614,14 @@
 "United Kingdom" = "المملكة المتحدة";
 "United States" = "الولايات المتحدة";
 "Unknown" = "غير معروف";
+"Unknown sizes still match. Leave blank or enter 0 for any." = "تُقبل الأحجام غير المعروفة أيضًا. اتركه فارغًا أو أدخل 0 لقبول أي حجم.";
 "Unlock controls" = "إلغاء قفل عناصر التحكم";
 "Unmute" = "إلغاء الكتم";
 "Unpin" = "إلغاء التثبيت";
+"Untitled filter" = "مرشّح بلا عنوان";
 "Unverified" = "غير موثّق";
 "Up Next" = "التالي";
+"Up Next on Simkl" = "Up Next on Simkl";
 "Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "قادم";
 "Upcoming Anime" = "أنمي قادم";
@@ -2567,6 +2632,7 @@
 "Update" = "تحديث";
 "Update all" = "تحديث الكل";
 "Updated {when}" = "تم التحديث {when}";
+"Upgrade subtitles when better ones load" = "ترقية الترجمة عند تحميل نسخة أفضل";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "ارفع صورتك الخاصة أو اختر صورة من كتالوج Harbor.";
 "Upload photo" = "رفع صورة";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -2623,6 +2689,7 @@
 "Watched" = "تمت المشاهدة";
 "Watched by {name}" = "شاهده {name}";
 "Watching" = "قيد المشاهدة";
+"Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "قائمة المشاهدة";
 "Watchlist only" = "قائمة المشاهدة فقط";
 "Watchlist shows only saved titles" = "تعرض قائمة المشاهدة العناوين المحفوظة فقط";
@@ -2648,6 +2715,7 @@
 "Where your video comes from" = "من أين يأتي الفيديو الخاص بك";
 "Which end of the poster the score chip rides on." = "على أي طرف من الملصق تستقر شارة التقييم.";
 "Which order" = "أي ترتيب";
+"Which subtitle Harbor lands on when more than one is available." = "أي ترجمة يختارها Harbor عند توفر أكثر من واحدة.";
 "Who's watching" = "من يشاهد";
 "Who's watching?" = "من يشاهد؟";
 "Wide search · still empty" = "بحث واسع · لا يزال فارغًا";
@@ -2678,6 +2746,7 @@
 "Your AniList is empty" = "AniList الخاص بك فارغ";
 "Your Discovery Queue" = "طابور الاستكشاف الخاص بك";
 "Your Letterboxd password" = "كلمة مرور ليتربوكسد الخاصة بك";
+"Your MyAnimeList is empty" = "MyAnimeList الخاص بك فارغ";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "جهاز Roku مضبوط على حظر طلبات التحكم من التطبيقات على شبكتك، لذا لا يستطيع Harbor الوصول إليه. ما عليك سوى تغيير هذا الإعداد مرة واحدة على Roku.";
 "Your Stremio library + addons sync in untouched." = "تتزامن مكتبة Stremio وإضافاتك كما هي دون تغيير.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
@@ -2714,6 +2783,7 @@
 "category" = "فئة";
 "center" = "الوسط";
 "code" = "الكود";
+"commentary, descriptive" = "تعليق صوتي، وصفي";
 "common.back" = "رجوع";
 "common.retry" = "إعادة المحاولة";
 "dead torrents" = "تورنتات متوقفة";
@@ -3879,6 +3949,7 @@
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "لا يستضيف {app} نفسه أي وسائط أو يوزعها أو يفهرسها. تأتي جميع عمليات البث من إضافات تابعة لجهات خارجية أو خدمات debrid أو حسابك في {service} الذي تضبطه بنفسك. أنت مسؤول عما تختار تشغيله وعن الامتثال لقوانين نطاقك القضائي.";
 "{count} picks ready" = "{count} اختيارات جاهزة";
 "{count} results" = "{count} نتيجة";
+"{count} selected" = "{count} محدد";
 "{count} tracks" = "{count} مقطعًا";
 "{h}h left" = "بقي {h}س";
 "{h}h {m}m left" = "بقي {h}س {m}د";
@@ -3911,6 +3982,7 @@
 "{n} seeds" = "{n} موزع";
 "{n} semillas" = "{n} موزع";
 "{n} sources · 0 made it through" = "{n} مصادر · لم يجتز أي منها";
+"{n}+ seeds" = "{n}+ موزّع";
 "{n}d ago" = "قبل {n} يوم";
 "{n}d left" = "متبقي {n} يوم";
 "{n}h ago" = "قبل {n} ساعة";

@@ -30,6 +30,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Ứng dụng khách cho giao thức Stremio. Chỉ mất hai phút để thiết lập; hầu hết đều không bắt buộc. Bạn luôn toàn quyền kiểm soát mọi khóa.";
 "A continuación" = "Tiếp theo";
 "A fast community subtitle index. Off by default; turn it on for extra coverage on newer or niche releases." = "Chỉ mục phụ đề cộng đồng tốc độ cao. Tắt theo mặc định; hãy bật để mở rộng phạm vi cho các bản phát hành mới hoặc kén người xem.";
+"A filter applies everywhere Harbor picks a stream: the source picker, the instant pick, and Big Picture on TV." = "Bộ lọc áp dụng ở mọi nơi Harbor chọn luồng: trình chọn nguồn, chọn tức thì và Big Picture trên TV.";
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
@@ -95,6 +96,7 @@
 "Add a repository" = "Thêm kho lưu trữ";
 "Add an API key to use this source." = "Thêm khóa API để sử dụng nguồn này.";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "Thêm anime vào AniList để chúng xuất hiện tại đây, được nhóm theo trạng thái và sẵn sàng chỉnh sửa.";
+"Add anime to your MyAnimeList and they show up here, grouped by status and ready to edit." = "Thêm anime vào MyAnimeList để chúng xuất hiện ở đây, được nhóm theo trạng thái và sẵn sàng chỉnh sửa.";
 "Add bookmark" = "Add bookmark";
 "Add files from your computer" = "Thêm tệp từ máy tính";
 "Add from lists" = "Thêm từ danh sách";
@@ -200,6 +202,7 @@
 "Animation speed" = "Tốc độ hiệu ứng";
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
+"Anime Title Language" = "Ngôn ngữ tiêu đề anime";
 "Anime en tendencia" = "Anime thịnh hành";
 "Anime episodes airing this month, sub or dub" = "Các tập anime phát sóng trong tháng này, phụ đề hoặc lồng tiếng";
 "Anime of the Year" = "Anime của năm";
@@ -220,6 +223,7 @@
 "App language" = "Ngôn ngữ ứng dụng";
 "Appearance" = "Giao diện";
 "Apple TV+" = "Apple TV+";
+"Applies to both audio and subtitle tracks. You can still pick a skipped track by hand in the player." = "Áp dụng cho cả âm thanh và phụ đề. Bạn vẫn có thể tự chọn một bản âm thanh hoặc phụ đề đã bỏ qua trong trình phát.";
 "Apply" = "Áp dụng";
 "Apply custom subtitle FPS" = "Áp dụng FPS phụ đề tùy chỉnh";
 "Apply custom theme" = "Áp dụng giao diện tùy chỉnh";
@@ -254,6 +258,7 @@
 "Authorized {when}" = "Đã ủy quyền {when}";
 "Auto" = "Tự động";
 "Auto (match video)" = "Tự động (khớp video)";
+"Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "Tự động điều chỉnh phụ đề có định dạng (ASS) để lời thoại giữ cùng kích thước giữa các tệp, đồng thời giữ nguyên màu sắc, phông chữ và vị trí biển hiệu.";
 "Auto-hide the Skip button after" = "Tự động ẩn nút Bỏ qua sau";
 "Auto-play next episode" = "Tự động phát tập tiếp theo";
 "Auto-skip credit outros" = "Tự động bỏ qua phần danh đề cuối phim";
@@ -406,6 +411,7 @@
 "Cache buffering" = "Bộ đệm cache";
 "Cache cleared" = "Đã xóa bộ nhớ đệm";
 "Cached" = "Đã lưu vào bộ nhớ đệm";
+"Cached only" = "Chỉ có trong cache";
 "Caches" = "Bộ nhớ đệm";
 "Calendar" = "Lịch";
 "Calendario" = "Lịch";
@@ -461,6 +467,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "Các chương";
 "Check it works" = "Kiểm tra hoạt động";
+"Check the highlighted values before saving." = "Kiểm tra các giá trị được đánh dấu trước khi lưu.";
 "Check whether this device can reach the saved server address." = "Kiểm tra xem thiết bị này có truy cập được địa chỉ máy chủ đã lưu không.";
 "Checking with AniList..." = "Đang kiểm tra với AniList...";
 "Checking with MyAnimeList..." = "Đang kiểm tra với MyAnimeList...";
@@ -470,16 +477,22 @@
 "China" = "Trung Quốc";
 "Chinese" = "Tiếng Trung";
 "Chinese (Simplified)" = "Tiếng Trung (Giản thể)";
+"Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Chọn tên, rồi chọn độ phân giải, nguồn, codec và âm thanh bạn muốn.";
 "Choose an avatar" = "Chọn ảnh đại diện";
 "Choose image" = "Chọn hình ảnh";
+"Choose subtitles before playback" = "Chọn phụ đề trước khi phát";
+"Choose the exact track and language after picking a source, before the video starts." = "Chọn đúng track và ngôn ngữ sau khi chọn nguồn, trước khi video bắt đầu.";
 "Choose the frame rate the subtitle was authored for." = "Chọn tốc độ khung hình dùng khi tạo phụ đề.";
+"Choose the streams you prefer." = "Chọn các luồng bạn ưu tiên.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Chọn tối đa 5 phim lẻ hoặc phim bộ bạn đã thích. Harbor sẽ dùng chúng để điều chỉnh các đề xuất nổi bật và nội dung gợi ý. Hoàn toàn không bắt buộc.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Chọn khi nào Harbor yêu cầu chọn hồ sơ. Lời nhắc theo thời gian xuất hiện khi bạn quay lại Harbor.";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "Chọn nơi Harbor tìm phụ đề. Kết quả từ các nguồn đã bật được gộp lại và loại bỏ trùng lặp.";
+"Choose which Simkl rails appear on your home screen." = "Chọn các hàng Simkl hiển thị trên màn hình chính.";
 "Choose which addon results appear when you pick a stream." = "Chọn kết quả từ tiện ích nào xuất hiện khi chọn luồng.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Chọn điểm đánh giá xuất hiện trên thẻ và trang chi tiết. Điểm bị khóa trên thẻ cần khóa nhà cung cấp trong Siêu dữ liệu.";
 "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
+"Choosing a track" = "Đang chọn bản âm thanh";
 "Ciencia ficción y fantasía" = "Khoa học viễn tưởng & kỳ ảo";
 "Claro" = "Sáng";
 "Clasificación" = "Bảng xếp hạng";
@@ -506,6 +519,7 @@
 "Close the cast menu and reopen it to rescan the network." = "Đóng rồi mở lại menu truyền để quét lại mạng.";
 "Clásica" = "Cổ điển";
 "Code expired. Try again." = "Code expired. Try again.";
+"Codec" = "Codec";
 "Colecciones" = "Bộ sưu tập";
 "Collections" = "Bộ sưu tập";
 "Color de la barra" = "Màu thanh";
@@ -628,6 +642,7 @@
 "Couldn't reach AniList." = "Không thể kết nối với AniList.";
 "Couldn't reach AniList. Try refreshing." = "Không thể kết nối với AniList. Hãy thử làm mới.";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
+"Couldn't reach MyAnimeList. Try refreshing." = "Không thể kết nối với MyAnimeList. Hãy thử làm mới.";
 "Couldn't reach Simkl" = "Không thể kết nối với Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Không thể kết nối với Trakt. Hãy kiểm tra kết nối rồi thử lại.";
 "Couldn't reach this Roku" = "Không thể kết nối với Roku này";
@@ -640,6 +655,7 @@
 "Create account" = "Tạo tài khoản";
 "Create new list" = "Tạo danh sách mới";
 "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Tạo hồ sơ cho những người dùng Harbor. Mỗi hồ sơ có thể có giao diện, cài đặt và mã PIN riêng.";
+"Create your first filter with the stream quality you prefer." = "Tạo bộ lọc đầu tiên với chất lượng luồng bạn muốn.";
 "Create your first list" = "Tạo danh sách đầu tiên";
 "Crime" = "Tội phạm";
 "Crime Series" = "Phim bộ tội phạm";
@@ -689,9 +705,11 @@
 "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)" = "Ngừng đưa nội dung vào băng chuyền nổi bật (trở lại tự động)";
 "Delete" = "Xóa";
 "Delete file" = "Delete file";
+"Delete filter" = "Xóa bộ lọc";
 "Delete list" = "Xóa danh sách";
 "Delete profile" = "Xóa hồ sơ";
 "Delete this profile?" = "Xóa hồ sơ này?";
+"Delete {name}? Saved filters cannot be brought back." = "Xóa {name}? Không thể khôi phục bộ lọc đã lưu.";
 "Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "Phải";
@@ -775,6 +793,7 @@
 "Edit" = "Chỉnh sửa";
 "Edit Folder Images" = "Chỉnh sửa hình ảnh thư mục";
 "Edit custom theme" = "Chỉnh sửa chủ đề tùy chỉnh";
+"Edit filter" = "Chỉnh sửa bộ lọc";
 "Edit profile" = "Chỉnh sửa hồ sơ";
 "Edit {name}" = "Chỉnh sửa {name}";
 "Editar tema personalizado" = "Chỉnh sửa chủ đề tùy chỉnh";
@@ -817,6 +836,8 @@
 "Engine" = "Công cụ";
 "English" = "Tiếng Anh";
 "Enter Harbor" = "Vào Harbor";
+"Enter a size of 0 or more." = "Nhập kích thước từ 0 trở lên.";
+"Enter a whole number of 0 or more." = "Nhập số nguyên từ 0 trở lên.";
 "Enter an FPS from 1 to 240." = "Nhập FPS từ 1 đến 240.";
 "Enter current PIN" = "Nhập mã PIN hiện tại";
 "Episode" = "Tập";
@@ -850,6 +871,7 @@
 "Everything releasing this month from TMDB" = "Tất cả nội dung phát hành trong tháng này từ TMDB";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Mọi nội dung từ các tiện ích bổ sung của bạn đều được hiển thị dưới dạng áp phích. Cuộn, tìm kiếm hoặc lọc để tìm nội dung bạn muốn.";
 "Excellence Prize" = "Giải Xuất sắc";
+"Excludes streams with fewer seeders or no seeder count. Leave blank or enter 0 for any." = "Loại các luồng có ít người chia sẻ hơn hoặc không có số người chia sẻ. Để trống hoặc nhập 0 để chấp nhận tất cả.";
 "Exit Picture in Picture" = "Thoát chế độ Hình trong hình";
 "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Mở rộng thẻ áp phích khi điều hướng bằng bàn phím hoặc điều khiển từ xa qua các hàng áp phích, sử dụng ảnh ngang đã tải trước.";
 "Expanding Cards" = "Thẻ mở rộng";
@@ -952,6 +974,7 @@
 "Gamma" = "Gamma";
 "Genre" = "Thể loại";
 "Genres" = "Thể loại";
+"Genres you want more of" = "Thể loại bạn muốn xem thêm";
 "Gently magnify nearby posters as you move across a poster row." = "Phóng to nhẹ các áp phích lân cận khi bạn di chuyển qua một hàng áp phích.";
 "German" = "Tiếng Đức";
 "Germany" = "Đức";
@@ -988,6 +1011,8 @@
 "Guest" = "Khách";
 "Género" = "Thể loại";
 "HD" = "HD";
+"HDR" = "HDR";
+"HDR only" = "Chỉ HDR";
 "HI" = "HI";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "Giải mã phần cứng";
@@ -1027,11 +1052,13 @@
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "Ẩn tất cả nguồn";
 "Hide and skip episodes" = "Ẩn và bỏ qua tập";
+"Hide anime I've already watched" = "Ẩn anime tôi đã xem";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide comments" = "Ẩn bình luận";
 "Hide details" = "Ẩn chi tiết";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "Ẩn tập";
+"Hide from your picks" = "Ẩn khỏi nội dung đề xuất";
 "Hide hidden episodes" = "Ẩn các tập bị ẩn";
 "Hide row" = "Ẩn hàng";
 "Hide sound effects and speaker names" = "Ẩn hiệu ứng âm thanh và tên người nói";
@@ -1057,6 +1084,7 @@
 "History" = "Lịch sử";
 "Hockey" = "Khúc côn cầu";
 "Home" = "Trang chủ";
+"Home Rail Settings" = "Cài đặt hàng nội dung Trang chủ";
 "Home catalogs" = "Danh mục trang chủ";
 "Home layout" = "Bố cục trang chủ";
 "Home style" = "Kiểu trang chủ";
@@ -1173,6 +1201,7 @@
 "Keep same source on next episode" = "Giữ nguyên nguồn cho tập tiếp theo";
 "Keep screen awake" = "Keep screen awake";
 "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "Giới hạn thẻ Danh sách xem trong Thư viện ở những nội dung bạn đã thêm vào Stremio. Tắt tùy chọn này để bao gồm cả nội dung Stremio tự động thêm khi bạn nhấn phát.";
+"Keep the subtitle track included in the video file instead of switching to a downloaded one." = "Giữ bản phụ đề có sẵn trong tệp video thay vì chuyển sang bản tải xuống.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Vẫn kiểm tra tệp và bản phát hành đáng ngờ, nhưng cho phép thêm kết quả, gồm cả tệp lớn và gói trọn mùa.";
 "Keep watching" = "Xem tiếp";
 "Kids & Family" = "Trẻ em & Gia đình";
@@ -1222,6 +1251,7 @@
 "Listas de Live TV" = "Danh sách phát TV trực tiếp";
 "Listas y servidores" = "Playlists and servers";
 "Listo" = "Xong";
+"Lists" = "Danh sách";
 "Literaria" = "Văn học";
 "Literary" = "Văn học";
 "Live" = "Trực tiếp";
@@ -1239,6 +1269,7 @@
 "Loading music" = "Đang tải nhạc";
 "Loading plugins..." = "Đang tải plugin...";
 "Loading your AniList…" = "Đang tải AniList của bạn…";
+"Loading your MyAnimeList…" = "Đang tải MyAnimeList của bạn…";
 "Loading your history…" = "Đang tải lịch sử…";
 "Loading..." = "Đang tải...";
 "Loading…" = "Đang tải…";
@@ -1295,8 +1326,12 @@
 "Mark as unwatched" = "Đánh dấu là chưa xem";
 "Mark as watched" = "Đánh dấu là đã xem";
 "Mark watched button" = "Nút đánh dấu đã xem";
+"Match Dolby Vision, HDR10 and HLG streams." = "Lọc luồng Dolby Vision, HDR10 và HLG.";
+"Match streams marked as cached or already in your debrid library." = "Lọc luồng được đánh dấu đã lưu đệm hoặc đã có trong thư viện debrid của bạn.";
 "Max" = "Tối đa";
+"Max {n} GB" = "Tối đa {n} GB";
 "Maximum" = "Tối đa";
+"Maximum size (GB)" = "Dung lượng tối đa (GB)";
 "Maximum volume boost" = "Mức tăng âm lượng tối đa";
 "Mecha" = "Mecha";
 "Media" = "Nội dung đa phương tiện";
@@ -1312,6 +1347,7 @@
 "Mezclar sonido envolvente a estéreo" = "Trộn âm thanh vòm xuống stereo";
 "Mi biblioteca" = "Thư viện của tôi";
 "Minimum file size" = "Kích thước tệp tối thiểu";
+"Minimum seeders" = "Số người chia sẻ tối thiểu";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "Còn thiếu";
@@ -1377,6 +1413,7 @@
 "My Trakt" = "Trakt của tôi";
 "My Trakt watchlist" = "Danh sách xem Trakt của tôi";
 "My channels" = "My channels";
+"My filter" = "Bộ lọc của tôi";
 "My library" = "Thư viện của tôi";
 "My lists" = "Danh sách của tôi";
 "MyAnimeList sync" = "Đồng bộ MyAnimeList";
@@ -1391,6 +1428,7 @@
 "NHL" = "NHL";
 "Name" = "Tên";
 "Name your theme" = "Đặt tên chủ đề";
+"Native/Japanese" = "Nguyên bản/Tiếng Nhật";
 "Navegación" = "Điều hướng";
 "Navigation" = "Điều hướng";
 "Navigation changes waiting to sync" = "Navigation changes waiting to sync";
@@ -1401,10 +1439,12 @@
 "Netflix" = "Netflix";
 "Netflix Originals" = "Nội dung gốc Netflix";
 "Never" = "Không bao giờ";
+"Never auto-select tracks containing" = "Không bao giờ tự động chọn rãnh có chứa";
 "New Anime Releases" = "Anime mới phát hành";
 "New Episodes" = "Tập mới";
 "New Episodes row" = "Hàng Tập mới";
 "New Face Award" = "Giải Gương mặt mới";
+"New filter" = "Bộ lọc mới";
 "New list" = "Danh sách mới";
 "New profile" = "Hồ sơ mới";
 "New shows and anime premiering this month, from Simkl" = "Phim bộ và anime mới ra mắt trong tháng này, từ Simkl";
@@ -1448,6 +1488,7 @@
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "Chưa có mục yêu thích";
 "No filmography on record." = "Không có hồ sơ tác phẩm.";
+"No filter" = "Không có bộ lọc";
 "No filters" = "Không có bộ lọc";
 "No hay coincidencias." = "Không có kết quả.";
 "No hay descripción disponible." = "Không có mô tả.";
@@ -1469,6 +1510,7 @@
 "No people found" = "Không tìm thấy người nào";
 "No picks loaded. TMDB might be unreachable." = "Chưa tải được đề xuất. Có thể không kết nối được với TMDB.";
 "No playable streams turned up, and no debrid is configured. Real-Debrid, TorBox, AllDebrid, Premiumize, or Debrid-Link will unlock raw torrent results. Some addons bake debrid in (Sootio, Comet/ElfHosted, MediaFusion/ElfHosted) and play without your own keys." = "Không tìm thấy luồng phát nào và chưa cấu hình dịch vụ debrid. Real-Debrid, TorBox, AllDebrid, Premiumize hoặc Debrid-Link sẽ mở khóa các kết quả torrent thô. Một số tiện ích bổ sung tích hợp sẵn debrid (Sootio, Comet/ElfHosted, MediaFusion/ElfHosted) và có thể phát mà không cần khóa riêng của bạn.";
+"No preferences selected. Edit this filter to choose the streams you prefer." = "Chưa chọn tùy chọn ưu tiên. Chỉnh sửa bộ lọc này để chọn luồng bạn muốn.";
 "No preferred languages selected." = "Chưa chọn ngôn ngữ ưu tiên.";
 "No reliable match was found. The original subtitle is kept." = "No reliable match was found. The original subtitle is kept.";
 "No se encontraron episodios para esta temporada." = "Không tìm thấy tập nào cho mùa này.";
@@ -1497,8 +1539,10 @@
 "Nombre para mostrar" = "Tên hiển thị";
 "Non-fiction" = "Phi hư cấu";
 "None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "Không có nội dung sắp ra mắt được mong đợi nhất nào trên Trakt phát hành trong tháng này. Hãy thử một tháng khác.";
+"None yet" = "Chưa có";
 "Nord" = "Nord";
 "Normal" = "Bình thường";
+"Normalize embedded subtitle size" = "Chuẩn hóa cỡ phụ đề nhúng";
 "Normalize loudness" = "Cân bằng âm lượng";
 "Norwegian" = "Tiếng Na Uy";
 "Not a stream plugin: it exports no getStreams or streams function." = "Không phải plugin luồng phát: không xuất hàm getStreams hay streams.";
@@ -1671,6 +1715,8 @@
 "Pinned" = "Đã ghim";
 "Pinned to top" = "Đã ghim lên đầu";
 "Plan to Watch" = "Dự định xem";
+"Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
+"Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "Phát";
 "Play movie" = "Phát phim";
 "Play next" = "Phát tiếp theo";
@@ -1718,8 +1764,10 @@
 "Posters, ratings, lists" = "Áp phích, điểm đánh giá, danh sách";
 "Predeterminado" = "Mặc định";
 "Predeterminado (acento dorado)" = "Mặc định (điểm nhấn màu vàng kim)";
+"Prefer embedded subtitles" = "Ưu tiên phụ đề nhúng";
 "Prefer episode still artwork" = "Prefer episode still artwork";
 "Prefer these sources" = "Prefer these sources";
+"Preferred language for anime titles displayed on poster cards." = "Ngôn ngữ ưu tiên cho tên anime hiển thị trên thẻ áp phích.";
 "Preguntar si reanudar o empezar de nuevo" = "Hỏi tiếp tục xem hay xem lại từ đầu";
 "Premiered This Month" = "Ra mắt trong tháng này";
 "Premiumize API key" = "Khóa API Premiumize";
@@ -1834,6 +1882,7 @@
 "Reintentar lectura del progreso" = "Retry reading progress";
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "Tỷ lệ khung hình";
+"Relative to your main subtitle size." = "Tương ứng với cỡ phụ đề chính.";
 "Release notifications" = "Release notifications";
 "Rellenar" = "Lấp đầy";
 "Remember last stream" = "Ghi nhớ luồng gần nhất";
@@ -1858,6 +1907,7 @@
 "Remove preset" = "Xóa cài đặt sẵn";
 "Remove saved book" = "Remove saved book";
 "Remove shows once you're caught up" = "Xóa phim bộ khi bạn đã xem hết tập mới nhất";
+"Remove the saved quality preference. Your other stream settings still apply." = "Xóa tùy chọn chất lượng đã lưu. Các cài đặt luồng khác vẫn áp dụng.";
 "Remove {language}" = "Xóa {language}";
 "Remove {name}" = "Xóa {name}";
 "Removed" = "Đã gỡ";
@@ -1938,6 +1988,7 @@
 "Right" = "Phải";
 "Right to left" = "Từ phải sang trái";
 "Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "Roku đã thay đổi hệ điều hành để chặn Media Player tích hợp nhận video từ các ứng dụng khác. Media Assistant là kênh miễn phí được tạo ra để đảm nhiệm việc này. Chỉ cần cài đặt một lần trên Roku là có thể truyền nội dung.";
+"Romaji" = "Romaji";
 "Romance" = "Lãng mạn";
 "Romanian" = "Tiếng Romania";
 "Rostro" = "Khuôn mặt";
@@ -1973,11 +2024,13 @@
 "Save page" = "Save page";
 "Save reminder" = "Lưu nhắc nhở";
 "Save settings" = "Save settings";
+"Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "Lưu chất lượng luồng bạn ưu tiên. Luồng phải khớp mọi danh mục bạn đặt; để trống danh mục để chấp nhận mọi giá trị. Nếu không có kết quả khớp, Harbor dùng nguồn tốt nhất tiếp theo hiện có.";
 "Save theme" = "Lưu giao diện";
 "Save to this library" = "Save to this library";
 "Save track" = "Lưu bài hát";
 "Saved" = "Đã lưu";
 "Saved app data" = "Saved app data";
+"Saved stream filters" = "Đã lưu bộ lọc luồng phát";
 "Saving" = "Đang lưu";
 "Scanning your network…" = "Đang quét mạng…";
 "Sci-Fi" = "Khoa học viễn tưởng";
@@ -2010,6 +2063,7 @@
 "Season {n}" = "Mùa {n}";
 "Seasons" = "Các mùa";
 "Seasons and episodes" = "Seasons and episodes";
+"Second line size" = "Kích thước dòng thứ hai";
 "Second subtitle language" = "Ngôn ngữ phụ đề thứ hai";
 "Secondary copy." = "Bản sao phụ.";
 "See details" = "Xem chi tiết";
@@ -2052,6 +2106,7 @@
 "Set A" = "Set A";
 "Set B" = "Set B";
 "Set a PIN" = "Đặt mã PIN";
+"Set active" = "Đặt làm đang hoạt động";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2123,10 +2178,12 @@
 "Siguiente" = "Tiếp theo";
 "Siguiente canción" = "Next song";
 "Silenciar" = "Tắt tiếng";
+"Simkl Trending Today" = "Simkl Trending Today";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl không liệt kê phim bộ hoặc anime mới nào công chiếu trong tháng này. Hãy thử một tháng khác.";
 "Simkl premieres" = "Nội dung ra mắt trên Simkl";
 "Simkl progress" = "Simkl progress";
+"Simkl rails are turned off, so none of the rows below appear on Home yet." = "Simkl rails are turned off, so none of the rows below appear on Home yet.";
 "Simkl sign-in expired, reconnect it" = "Phiên đăng nhập Simkl đã hết hạn, hãy kết nối lại";
 "Sin configurar" = "Chưa đặt";
 "Sin corrección" = "Không hiệu chỉnh";
@@ -2148,6 +2205,7 @@
 "Skip Recap" = "Bỏ qua phần tóm tắt";
 "Skip for now" = "Tạm bỏ qua";
 "Skip setup" = "Bỏ qua thiết lập";
+"Skip these tracks" = "Bỏ qua các bản nhạc này";
 "Sleep timer" = "Hẹn giờ ngủ";
 "Slice of Life" = "Đời thường";
 "Slightly lighter than background." = "Sáng hơn nền một chút.";
@@ -2203,6 +2261,7 @@
 "Stats" = "Thống kê";
 "Status" = "Trạng thái";
 "Stay on one source for a season" = "Dùng một nguồn xuyên suốt mùa";
+"Steer your Top Picks and hero toward what you love, and hide what you don't." = "Điều chỉnh Lựa chọn hàng đầu và ảnh nổi bật theo sở thích, đồng thời ẩn nội dung bạn không thích.";
 "Step 1 · Metadata" = "Bước 1 · Siêu dữ liệu";
 "Step 1 · Open Simkl" = "Bước 1 · Mở Simkl";
 "Step 1 · Open Trakt" = "Bước 1 · Mở Trakt";
@@ -2272,6 +2331,7 @@
 "Swedish" = "Tiếng Thụy Điển";
 "Switch quality" = "Switch quality";
 "Switch stream" = "Đổi luồng phát";
+"Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "Chuyển sang ngôn ngữ phù hợp hơn nếu có sau khi bắt đầu phát. Để tắt để giữ bản hiện tại.";
 "Switch to {name}" = "Chuyển sang {name}";
 "Sync" = "Đồng bộ";
 "Sync Offset" = "Độ lệch đồng bộ";
@@ -2451,6 +2511,7 @@
 "Tracking" = "Tracking";
 "Tracking what you watch" = "Theo dõi nội dung bạn xem";
 "Tracks" = "Rãnh";
+"Tracks whose name contains one of these words are skipped." = "Các track có tên chứa một trong những từ này sẽ bị bỏ qua.";
 "Traducir títulos" = "Dịch tiêu đề";
 "Trakt" = "Trakt";
 "Trakt Comments" = "Bình luận trên Trakt";
@@ -2487,6 +2548,7 @@
 "Tu color" = "Màu của bạn";
 "Tu perfil" = "Hồ sơ của bạn";
 "Tubi" = "Tubi";
+"Tune anime" = "Tinh chỉnh anime";
 "Tune your recommendations" = "Điều chỉnh đề xuất";
 "Turkish" = "Tiếng Thổ Nhĩ Kỳ";
 "Turn pages horizontally" = "Turn pages horizontally";
@@ -2515,11 +2577,14 @@
 "United Kingdom" = "Vương quốc Anh";
 "United States" = "Hoa Kỳ";
 "Unknown" = "Không xác định";
+"Unknown sizes still match. Leave blank or enter 0 for any." = "Dung lượng không rõ vẫn được chấp nhận. Để trống hoặc nhập 0 để chấp nhận mọi dung lượng.";
 "Unlock controls" = "Mở khóa điều khiển";
 "Unmute" = "Bật tiếng";
 "Unpin" = "Bỏ ghim";
+"Untitled filter" = "Bộ lọc chưa có tên";
 "Unverified" = "Chưa xác minh";
 "Up Next" = "Tiếp theo";
+"Up Next on Simkl" = "Up Next on Simkl";
 "Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "Sắp tới";
 "Upcoming Anime" = "Anime sắp ra mắt";
@@ -2530,6 +2595,7 @@
 "Update" = "Cập nhật";
 "Update all" = "Cập nhật tất cả";
 "Updated {when}" = "Đã cập nhật {when}";
+"Upgrade subtitles when better ones load" = "Nâng cấp phụ đề khi có bản tốt hơn";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "Tải lên ảnh của bạn hoặc chọn một ảnh từ danh mục Harbor.";
 "Upload photo" = "Tải ảnh lên";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -2586,6 +2652,7 @@
 "Watched" = "Đã xem";
 "Watched by {name}" = "Đã được {name} xem";
 "Watching" = "Đang xem";
+"Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "Danh sách xem";
 "Watchlist only" = "Chỉ danh sách xem";
 "Watchlist shows only saved titles" = "Danh sách xem chỉ hiển thị các tựa phim đã lưu";
@@ -2611,6 +2678,7 @@
 "Where your video comes from" = "Nguồn video";
 "Which end of the poster the score chip rides on." = "Huy hiệu điểm nằm ở đầu nào của áp phích.";
 "Which order" = "Thứ tự nào";
+"Which subtitle Harbor lands on when more than one is available." = "Phụ đề Harbor chọn khi có nhiều phụ đề.";
 "Who's watching" = "Ai đang xem";
 "Who's watching?" = "Ai đang xem?";
 "Wide search · still empty" = "Tìm kiếm rộng · vẫn không có kết quả";
@@ -2637,6 +2705,7 @@
 "Your AniList is empty" = "AniList của bạn đang trống";
 "Your Discovery Queue" = "Hàng đợi khám phá của bạn";
 "Your Letterboxd password" = "Mật khẩu Letterboxd của bạn";
+"Your MyAnimeList is empty" = "MyAnimeList của bạn đang trống";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Roku của bạn đang chặn yêu cầu điều khiển từ các ứng dụng trong mạng, nên Harbor không thể kết nối với thiết bị. Đây là cài đặt chỉ cần thực hiện một lần trên Roku.";
 "Your Stremio library + addons sync in untouched." = "Thư viện Stremio và tiện ích bổ sung của bạn được đồng bộ nguyên vẹn.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
@@ -2673,6 +2742,7 @@
 "category" = "danh mục";
 "center" = "giữa";
 "code" = "mã";
+"commentary, descriptive" = "bình luận, mô tả";
 "common.back" = "Quay lại";
 "common.retry" = "Thử lại";
 "dead torrents" = "torrent không còn nguồn";
@@ -3838,6 +3908,7 @@
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "Bản thân {app} không lưu trữ, phân phối hay lập chỉ mục bất kỳ nội dung nghe nhìn nào. Mọi luồng phát đều đến từ tiện ích bổ sung của bên thứ ba, dịch vụ debrid hoặc tài khoản {service} do chính bạn cấu hình. Bạn chịu trách nhiệm về nội dung mình chọn phát và việc tuân thủ luật pháp tại nơi mình sinh sống.";
 "{count} picks ready" = "{count} lựa chọn đã sẵn sàng";
 "{count} results" = "{count} kết quả";
+"{count} selected" = "Đã chọn {count}";
 "{count} tracks" = "{count} bài hát";
 "{h}h left" = "còn {h} giờ";
 "{h}h {m}m left" = "còn {h} giờ {m} phút";
@@ -3870,6 +3941,7 @@
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} nguồn · 0 nguồn vượt qua";
+"{n}+ seeds" = "{n}+ nguồn seed";
 "{n}d ago" = "{n} ngày trước";
 "{n}d left" = "còn {n} ngày";
 "{n}h ago" = "{n} giờ trước";

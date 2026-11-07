@@ -30,6 +30,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 协议客户端。两分钟即可完成设置，其中大部分为可选项。所有密钥均由你掌控。";
 "A continuación" = "接下来播放";
 "A fast community subtitle index. Off by default; turn it on for extra coverage on newer or niche releases." = "快速的社区字幕索引。默认关闭；开启后可更全面地覆盖较新或小众作品。";
+"A filter applies everywhere Harbor picks a stream: the source picker, the instant pick, and Big Picture on TV." = "筛选条件会应用于 Harbor 选择视频流的所有位置：来源选择器、即时选择和电视大屏模式。";
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
@@ -95,6 +96,7 @@
 "Add a repository" = "添加仓库";
 "Add an API key to use this source." = "添加 API 密钥以使用此来源。";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "添加到 AniList 的动漫会按状态分组显示在这里，并可随时编辑。";
+"Add anime to your MyAnimeList and they show up here, grouped by status and ready to edit." = "将动画添加到 MyAnimeList 后，它们会按状态分组显示在这里，并可随时编辑。";
 "Add bookmark" = "Add bookmark";
 "Add files from your computer" = "从电脑添加文件";
 "Add from lists" = "从片单添加";
@@ -200,6 +202,7 @@
 "Animation speed" = "动画速度";
 "Anime" = "动漫";
 "Anime Expo" = "Anime Expo";
+"Anime Title Language" = "动漫标题语言";
 "Anime en tendencia" = "热门动漫";
 "Anime episodes airing this month, sub or dub" = "本月播出的动漫剧集，字幕版或配音版";
 "Anime of the Year" = "年度动漫";
@@ -220,6 +223,7 @@
 "App language" = "应用语言";
 "Appearance" = "外观";
 "Apple TV+" = "Apple TV+";
+"Applies to both audio and subtitle tracks. You can still pick a skipped track by hand in the player." = "同时应用于音轨和字幕轨。你仍可在播放器中手动选择被跳过的轨道。";
 "Apply" = "应用";
 "Apply custom subtitle FPS" = "应用自定义字幕 FPS";
 "Apply custom theme" = "应用自定义主题";
@@ -254,6 +258,7 @@
 "Authorized {when}" = "已于 {when} 授权";
 "Auto" = "自动";
 "Auto (match video)" = "自动（匹配视频）";
+"Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "自动调整带样式的（ASS）字幕，使不同文件中的对白字幕大小保持一致，同时保留其颜色、字体和标识位置。";
 "Auto-hide the Skip button after" = "自动隐藏“跳过”按钮的等待时间";
 "Auto-play next episode" = "自动播放下一集";
 "Auto-skip credit outros" = "自动跳过片尾字幕";
@@ -406,6 +411,7 @@
 "Cache buffering" = "缓存缓冲";
 "Cache cleared" = "缓存已清除";
 "Cached" = "已缓存";
+"Cached only" = "仅已缓存";
 "Caches" = "缓存";
 "Calendar" = "日历";
 "Calendario" = "日历";
@@ -461,6 +467,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "章节";
 "Check it works" = "检查是否可用";
+"Check the highlighted values before saving." = "保存前请检查突出显示的值。";
 "Check whether this device can reach the saved server address." = "检查此设备能否连接已保存的服务器地址。";
 "Checking with AniList..." = "正在通过 AniList 检查…";
 "Checking with MyAnimeList..." = "正在通过 MyAnimeList 检查…";
@@ -470,16 +477,22 @@
 "China" = "中国";
 "Chinese" = "中文";
 "Chinese (Simplified)" = "简体中文";
+"Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "先取一个名字，再选择偏好的分辨率、来源、编解码器和音频。";
 "Choose an avatar" = "选择头像";
 "Choose image" = "选择图片";
+"Choose subtitles before playback" = "播放前选择字幕";
+"Choose the exact track and language after picking a source, before the video starts." = "选择来源后、开始播放前，选择具体音轨和语言。";
 "Choose the frame rate the subtitle was authored for." = "选择制作此字幕时使用的帧率。";
+"Choose the streams you prefer." = "选择偏好的播放源。";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "最多选择 5 部你已经喜欢的电影或剧集。Harbor 会用它们来优化精选内容和推荐。完全可选。";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "选择 Harbor 何时要求选择个人资料。定时提示会在你返回 Harbor 时出现。";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "选择 Harbor 搜索字幕的来源。已启用来源的结果会合并显示，并去除重复项。";
+"Choose which Simkl rails appear on your home screen." = "选择要在主屏幕上显示的 Simkl 内容栏。";
 "Choose which addon results appear when you pick a stream." = "选择挑选播放源时显示哪些扩展结果。";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "选择在卡片和详情页显示哪些评分。已锁定的卡片评分需要在“元数据”中添加提供方密钥。";
 "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
+"Choosing a track" = "选择轨道";
 "Ciencia ficción y fantasía" = "科幻与奇幻";
 "Claro" = "浅色";
 "Clasificación" = "积分榜";
@@ -506,6 +519,7 @@
 "Close the cast menu and reopen it to rescan the network." = "关闭投屏菜单后重新打开，以重新扫描网络。";
 "Clásica" = "经典";
 "Code expired. Try again." = "Code expired. Try again.";
+"Codec" = "编解码器";
 "Colecciones" = "合集";
 "Collections" = "合集";
 "Color de la barra" = "进度条颜色";
@@ -628,6 +642,7 @@
 "Couldn't reach AniList." = "无法连接 AniList。";
 "Couldn't reach AniList. Try refreshing." = "无法连接 AniList。请尝试刷新。";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
+"Couldn't reach MyAnimeList. Try refreshing." = "无法连接 MyAnimeList。请尝试刷新。";
 "Couldn't reach Simkl" = "无法连接 Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "无法连接到 Trakt。请检查网络连接后重试。";
 "Couldn't reach this Roku" = "无法连接到此 Roku";
@@ -640,6 +655,7 @@
 "Create account" = "创建账号";
 "Create new list" = "新建列表";
 "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "为使用 Harbor 的人创建个人资料。每份资料都可拥有独立的外观、设置和 PIN。";
+"Create your first filter with the stream quality you prefer." = "按偏好的播放源画质创建首个筛选器。";
 "Create your first list" = "创建你的第一个列表";
 "Crime" = "犯罪";
 "Crime Series" = "犯罪剧集";
@@ -689,9 +705,11 @@
 "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)" = "停止将此目录用于焦点轮播（恢复自动选择）";
 "Delete" = "删除";
 "Delete file" = "Delete file";
+"Delete filter" = "删除筛选条件";
 "Delete list" = "删除片单";
 "Delete profile" = "删除个人资料";
 "Delete this profile?" = "删除此个人资料？";
+"Delete {name}? Saved filters cannot be brought back." = "删除 {name}？已保存的筛选条件无法恢复。";
 "Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "右对齐";
@@ -775,6 +793,7 @@
 "Edit" = "编辑";
 "Edit Folder Images" = "编辑文件夹图片";
 "Edit custom theme" = "编辑自定义主题";
+"Edit filter" = "编辑筛选条件";
 "Edit profile" = "编辑个人资料";
 "Edit {name}" = "编辑 {name}";
 "Editar tema personalizado" = "编辑自定义主题";
@@ -817,6 +836,8 @@
 "Engine" = "引擎";
 "English" = "英语";
 "Enter Harbor" = "进入 Harbor";
+"Enter a size of 0 or more." = "请输入不小于 0 的大小。";
+"Enter a whole number of 0 or more." = "请输入不小于 0 的整数。";
 "Enter an FPS from 1 to 240." = "请输入 1 到 240 之间的 FPS。";
 "Enter current PIN" = "输入当前 PIN";
 "Episode" = "剧集";
@@ -850,6 +871,7 @@
 "Everything releasing this month from TMDB" = "TMDB 中本月上线的所有内容";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "插件提供的所有内容都会以海报形式显示。滚动、搜索或筛选即可找到所需内容。";
 "Excellence Prize" = "优秀奖";
+"Excludes streams with fewer seeders or no seeder count. Leave blank or enter 0 for any." = "排除做种人数不足或没有做种人数信息的播放源。留空或输入 0 表示不限。";
 "Exit Picture in Picture" = "退出画中画";
 "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "使用键盘或遥控器浏览海报行时，使用预加载的宽幅图片展开海报卡片。";
 "Expanding Cards" = "展开卡片";
@@ -952,6 +974,7 @@
 "Gamma" = "伽马";
 "Genre" = "类型";
 "Genres" = "类型";
+"Genres you want more of" = "希望多推荐的类型";
 "Gently magnify nearby posters as you move across a poster row." = "在海报行中移动时，轻微放大附近的海报。";
 "German" = "德语";
 "Germany" = "德国";
@@ -988,6 +1011,8 @@
 "Guest" = "访客";
 "Género" = "类型";
 "HD" = "HD";
+"HDR" = "HDR";
+"HDR only" = "仅 HDR";
 "HI" = "HI";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "硬件解码";
@@ -1027,11 +1052,13 @@
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "隐藏所有片源";
 "Hide and skip episodes" = "隐藏并跳过单集";
+"Hide anime I've already watched" = "隐藏我已看过的动漫";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide comments" = "隐藏评论";
 "Hide details" = "隐藏详情";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "隐藏剧集";
+"Hide from your picks" = "从推荐中隐藏";
 "Hide hidden episodes" = "不显示隐藏剧集";
 "Hide row" = "隐藏此行";
 "Hide sound effects and speaker names" = "隐藏音效和说话人姓名";
@@ -1057,6 +1084,7 @@
 "History" = "历史";
 "Hockey" = "曲棍球";
 "Home" = "首页";
+"Home Rail Settings" = "首页内容栏设置";
 "Home catalogs" = "首页目录";
 "Home layout" = "首页布局";
 "Home style" = "首页样式";
@@ -1173,6 +1201,7 @@
 "Keep same source on next episode" = "下一集沿用相同来源";
 "Keep screen awake" = "Keep screen awake";
 "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "让媒体库的“稍后观看”标签页仅显示你在 Stremio 中添加的作品。关闭此项后，还会显示你按下播放时由 Stremio 自动添加的所有内容。";
+"Keep the subtitle track included in the video file instead of switching to a downloaded one." = "保留视频文件内的字幕轨道，不切换到下载的字幕。";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "保留可疑文件和版本检查，但允许更多结果，包括较大文件和整季合集。";
 "Keep watching" = "继续观看";
 "Kids & Family" = "儿童与家庭";
@@ -1222,6 +1251,7 @@
 "Listas de Live TV" = "直播电视播放列表";
 "Listas y servidores" = "Playlists and servers";
 "Listo" = "完成";
+"Lists" = "列表";
 "Literaria" = "文学";
 "Literary" = "文学";
 "Live" = "直播";
@@ -1239,6 +1269,7 @@
 "Loading music" = "正在加载音乐";
 "Loading plugins..." = "正在加载插件…";
 "Loading your AniList…" = "正在加载您的 AniList…";
+"Loading your MyAnimeList…" = "正在加载你的 MyAnimeList…";
 "Loading your history…" = "正在加载历史记录…";
 "Loading..." = "正在加载…";
 "Loading…" = "正在加载…";
@@ -1295,8 +1326,12 @@
 "Mark as unwatched" = "标记为未观看";
 "Mark as watched" = "标记为已观看";
 "Mark watched button" = "“标为已看”按钮";
+"Match Dolby Vision, HDR10 and HLG streams." = "匹配 Dolby Vision、HDR10 和 HLG 播放源。";
+"Match streams marked as cached or already in your debrid library." = "匹配标记为已缓存或已在 debrid 媒体库中的播放源。";
 "Max" = "最大";
+"Max {n} GB" = "最多 {n} GB";
 "Maximum" = "最高";
+"Maximum size (GB)" = "最大大小 (GB)";
 "Maximum volume boost" = "最大音量增益";
 "Mecha" = "机甲";
 "Media" = "媒体";
@@ -1312,6 +1347,7 @@
 "Mezclar sonido envolvente a estéreo" = "将环绕声下混为立体声";
 "Mi biblioteca" = "我的媒体库";
 "Minimum file size" = "最小文件大小";
+"Minimum seeders" = "最少做种人数";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "缺失";
@@ -1377,6 +1413,7 @@
 "My Trakt" = "我的 Trakt";
 "My Trakt watchlist" = "我的 Trakt 待看列表";
 "My channels" = "My channels";
+"My filter" = "我的筛选条件";
 "My library" = "我的媒体库";
 "My lists" = "我的列表";
 "MyAnimeList sync" = "MyAnimeList 同步";
@@ -1391,6 +1428,7 @@
 "NHL" = "NHL";
 "Name" = "名称";
 "Name your theme" = "为主题命名";
+"Native/Japanese" = "原语言/日语";
 "Navegación" = "导航";
 "Navigation" = "导航";
 "Navigation changes waiting to sync" = "Navigation changes waiting to sync";
@@ -1401,10 +1439,12 @@
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflix 原创";
 "Never" = "从不";
+"Never auto-select tracks containing" = "从不自动选择名称中包含以下内容的轨道";
 "New Anime Releases" = "动漫新作";
 "New Episodes" = "新剧集";
 "New Episodes row" = "“新剧集”行";
 "New Face Award" = "新人奖";
+"New filter" = "新建筛选器";
 "New list" = "新建片单";
 "New profile" = "新建个人资料";
 "New shows and anime premiering this month, from Simkl" = "Simkl 中本月首播的新节目和动漫";
@@ -1448,6 +1488,7 @@
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "暂无收藏";
 "No filmography on record." = "暂无影视作品记录。";
+"No filter" = "无筛选";
 "No filters" = "无筛选条件";
 "No hay coincidencias." = "无匹配结果。";
 "No hay descripción disponible." = "暂无简介。";
@@ -1469,6 +1510,7 @@
 "No people found" = "未找到人物";
 "No picks loaded. TMDB might be unreachable." = "未加载任何推荐。可能无法连接 TMDB。";
 "No playable streams turned up, and no debrid is configured. Real-Debrid, TorBox, AllDebrid, Premiumize, or Debrid-Link will unlock raw torrent results. Some addons bake debrid in (Sootio, Comet/ElfHosted, MediaFusion/ElfHosted) and play without your own keys." = "未找到可播放的视频流，且尚未配置 Debrid。Real-Debrid、TorBox、AllDebrid、Premiumize 或 Debrid-Link 可解锁原始种子结果。部分插件已内置 Debrid（Sootio、Comet/ElfHosted、MediaFusion/ElfHosted），无需你自己的密钥即可播放。";
+"No preferences selected. Edit this filter to choose the streams you prefer." = "未选择偏好。编辑此筛选器以选择偏好的播放源。";
 "No preferred languages selected." = "未选择首选语言。";
 "No reliable match was found. The original subtitle is kept." = "No reliable match was found. The original subtitle is kept.";
 "No se encontraron episodios para esta temporada." = "未找到本季剧集。";
@@ -1497,8 +1539,10 @@
 "Nombre para mostrar" = "显示名称";
 "Non-fiction" = "非虚构类";
 "None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "本月没有 Trakt 最受期待榜中的即将上线作品。请尝试其他月份。";
+"None yet" = "暂无";
 "Nord" = "Nord";
 "Normal" = "正常";
+"Normalize embedded subtitle size" = "统一内嵌字幕大小";
 "Normalize loudness" = "响度标准化";
 "Norwegian" = "挪威语";
 "Not a stream plugin: it exports no getStreams or streams function." = "不是播放源脚本插件：它没有导出 getStreams 或 streams 函数。";
@@ -1671,6 +1715,8 @@
 "Pinned" = "已固定";
 "Pinned to top" = "已置顶";
 "Plan to Watch" = "计划观看";
+"Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
+"Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "播放";
 "Play movie" = "播放电影";
 "Play next" = "下一首播放";
@@ -1718,8 +1764,10 @@
 "Posters, ratings, lists" = "海报、评分、列表";
 "Predeterminado" = "默认";
 "Predeterminado (acento dorado)" = "默认（金色强调色）";
+"Prefer embedded subtitles" = "优先使用内嵌字幕";
 "Prefer episode still artwork" = "Prefer episode still artwork";
 "Prefer these sources" = "Prefer these sources";
+"Preferred language for anime titles displayed on poster cards." = "海报卡片上显示的动漫标题所使用的首选语言。";
 "Preguntar si reanudar o empezar de nuevo" = "询问继续播放还是从头开始";
 "Premiered This Month" = "本月首播";
 "Premiumize API key" = "Premiumize API 密钥";
@@ -1834,6 +1882,7 @@
 "Reintentar lectura del progreso" = "Retry reading progress";
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "画面比例";
+"Relative to your main subtitle size." = "相对于主要字幕字号。";
 "Release notifications" = "Release notifications";
 "Rellenar" = "填充";
 "Remember last stream" = "记住上次使用的片源";
@@ -1858,6 +1907,7 @@
 "Remove preset" = "删除预设";
 "Remove saved book" = "Remove saved book";
 "Remove shows once you're caught up" = "追完后移除剧集";
+"Remove the saved quality preference. Your other stream settings still apply." = "移除已保存的画质偏好。其他播放源设置仍然生效。";
 "Remove {language}" = "移除{language}";
 "Remove {name}" = "移除 {name}";
 "Removed" = "已移除";
@@ -1938,6 +1988,7 @@
 "Right" = "右对齐";
 "Right to left" = "从右到左";
 "Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "Roku 更改了操作系统，导致内置 Media Player 无法接收其他应用发送的视频。Media Assistant 是一个免费频道，可接替这一功能。只需在 Roku 上安装一次，即可正常投屏。";
+"Romaji" = "罗马字";
 "Romance" = "爱情";
 "Romanian" = "罗马尼亚语";
 "Rostro" = "字体";
@@ -1973,11 +2024,13 @@
 "Save page" = "Save page";
 "Save reminder" = "保存提醒";
 "Save settings" = "Save settings";
+"Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "保存偏好的播放源画质。播放源必须匹配你设置的每个类别；类别留空表示不限。如果没有匹配项，Harbor 会使用次优的可用播放源。";
 "Save theme" = "保存主题";
 "Save to this library" = "Save to this library";
 "Save track" = "收藏歌曲";
 "Saved" = "已保存";
 "Saved app data" = "Saved app data";
+"Saved stream filters" = "已保存视频流筛选条件";
 "Saving" = "正在保存";
 "Scanning your network…" = "正在扫描你的网络…";
 "Sci-Fi" = "科幻";
@@ -2010,6 +2063,7 @@
 "Season {n}" = "第 {n} 季";
 "Seasons" = "季";
 "Seasons and episodes" = "Seasons and episodes";
+"Second line size" = "第二字幕字号";
 "Second subtitle language" = "第二字幕语言";
 "Secondary copy." = "备用副本。";
 "See details" = "查看详情";
@@ -2052,6 +2106,7 @@
 "Set A" = "Set A";
 "Set B" = "Set B";
 "Set a PIN" = "设置 PIN";
+"Set active" = "设为当前使用";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2123,10 +2178,12 @@
 "Siguiente" = "下一个";
 "Siguiente canción" = "Next song";
 "Silenciar" = "静音";
+"Simkl Trending Today" = "Simkl Trending Today";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Simkl lists no new shows or anime premiering this month. Try a different month." = "Simkl 本月没有新剧或动漫首播。请尝试其他月份。";
 "Simkl premieres" = "Simkl 首播";
 "Simkl progress" = "Simkl progress";
+"Simkl rails are turned off, so none of the rows below appear on Home yet." = "Simkl rails are turned off, so none of the rows below appear on Home yet.";
 "Simkl sign-in expired, reconnect it" = "Simkl 登录已过期，请重新连接";
 "Sin configurar" = "未设置";
 "Sin corrección" = "不校正";
@@ -2148,6 +2205,7 @@
 "Skip Recap" = "跳过前情回顾";
 "Skip for now" = "暂时跳过";
 "Skip setup" = "跳过设置";
+"Skip these tracks" = "跳过这些轨道";
 "Sleep timer" = "睡眠定时器";
 "Slice of Life" = "日常";
 "Slightly lighter than background." = "比背景稍亮。";
@@ -2203,6 +2261,7 @@
 "Stats" = "统计";
 "Status" = "状态";
 "Stay on one source for a season" = "整季使用同一来源";
+"Steer your Top Picks and hero toward what you love, and hide what you don't." = "根据你的喜好调整“精选推荐”和焦点内容，并隐藏你不喜欢的内容。";
 "Step 1 · Metadata" = "第 1 步 · 元数据";
 "Step 1 · Open Simkl" = "第 1 步 · 打开 Simkl";
 "Step 1 · Open Trakt" = "第 1 步 · 打开 Trakt";
@@ -2272,6 +2331,7 @@
 "Swedish" = "瑞典语";
 "Switch quality" = "Switch quality";
 "Switch stream" = "切换视频流";
+"Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "播放开始后，如有更符合语言偏好的字幕到达，则切换到该字幕。关闭可保留当前轨道。";
 "Switch to {name}" = "切换到 {name}";
 "Sync" = "同步";
 "Sync Offset" = "同步偏移量";
@@ -2451,6 +2511,7 @@
 "Tracking" = "Tracking";
 "Tracking what you watch" = "记录你的观看内容";
 "Tracks" = "轨道";
+"Tracks whose name contains one of these words are skipped." = "名称中含有以下任一词语的轨道将被跳过。";
 "Traducir títulos" = "翻译标题";
 "Trakt" = "Trakt";
 "Trakt Comments" = "Trakt 评论";
@@ -2487,6 +2548,7 @@
 "Tu color" = "你的颜色";
 "Tu perfil" = "你的个人资料";
 "Tubi" = "Tubi";
+"Tune anime" = "调整动漫偏好";
 "Tune your recommendations" = "调整你的推荐";
 "Turkish" = "土耳其语";
 "Turn pages horizontally" = "Turn pages horizontally";
@@ -2515,11 +2577,14 @@
 "United Kingdom" = "英国";
 "United States" = "美国";
 "Unknown" = "未知";
+"Unknown sizes still match. Leave blank or enter 0 for any." = "大小未知的播放源仍可匹配。留空或输入 0 表示不限。";
 "Unlock controls" = "解锁控件";
 "Unmute" = "取消静音";
 "Unpin" = "取消置顶";
+"Untitled filter" = "未命名筛选器";
 "Unverified" = "未经验证";
 "Up Next" = "接下来播放";
+"Up Next on Simkl" = "Up Next on Simkl";
 "Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "即将开始";
 "Upcoming Anime" = "即将上线的动漫";
@@ -2530,6 +2595,7 @@
 "Update" = "更新";
 "Update all" = "全部更新";
 "Updated {when}" = "更新于 {when}";
+"Upgrade subtitles when better ones load" = "加载到更优字幕时自动替换";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "上传自己的图片，或从 Harbor 图库中选择。";
 "Upload photo" = "上传照片";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -2586,6 +2652,7 @@
 "Watched" = "已观看";
 "Watched by {name}" = "{name} 已观看";
 "Watching" = "正在观看";
+"Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "想看清单";
 "Watchlist only" = "仅待看清单";
 "Watchlist shows only saved titles" = "片单仅显示已保存的内容";
@@ -2611,6 +2678,7 @@
 "Where your video comes from" = "视频来源";
 "Which end of the poster the score chip rides on." = "评分标签位于海报的哪一侧。";
 "Which order" = "排序方式";
+"Which subtitle Harbor lands on when more than one is available." = "有多个字幕可用时 Harbor 默认选中的字幕。";
 "Who's watching" = "谁在观看";
 "Who's watching?" = "谁在看？";
 "Wide search · still empty" = "扩大搜索范围 · 仍无结果";
@@ -2637,6 +2705,7 @@
 "Your AniList is empty" = "您的 AniList 为空";
 "Your Discovery Queue" = "你的发现队列";
 "Your Letterboxd password" = "你的 Letterboxd 密码";
+"Your MyAnimeList is empty" = "你的 MyAnimeList 为空";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "你的 Roku 已设置为阻止网络中应用发出的控制请求，因此 Harbor 无法访问它。此设置只需在 Roku 上更改一次。";
 "Your Stremio library + addons sync in untouched." = "你的 Stremio 媒体库和插件将原样同步。";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
@@ -2673,6 +2742,7 @@
 "category" = "类别";
 "center" = "居中";
 "code" = "代码";
+"commentary, descriptive" = "评论音轨，描述音轨";
 "common.back" = "返回";
 "common.retry" = "重试";
 "dead torrents" = "失效种子";
@@ -3838,6 +3908,7 @@
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} 本身不托管、分发或索引任何媒体。所有流均来自第三方插件、Debrid 服务或您自行配置的 {service} 账户。您须对自己选择播放的内容以及遵守所在司法管辖区的法律负责。";
 "{count} picks ready" = "有 {count} 个推荐待探索";
 "{count} results" = "{count} 个结果";
+"{count} selected" = "已选择 {count} 个";
 "{count} tracks" = "{count} 首歌曲";
 "{h}h left" = "剩余 {h} 小时";
 "{h}h {m}m left" = "剩余 {h} 小时 {m} 分钟";
@@ -3870,6 +3941,7 @@
 "{n} seeds" = "{n} 个做种者";
 "{n} semillas" = "{n} 个做种者";
 "{n} sources · 0 made it through" = "{n} 个片源 · 0 个通过筛选";
+"{n}+ seeds" = "{n}+ 个做种源";
 "{n}d ago" = "{n} 天前";
 "{n}d left" = "剩余 {n} 天";
 "{n}h ago" = "{n} 小时前";

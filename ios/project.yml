@@ -214,6 +214,11 @@ targets:
       - path: HarborTests/LiveTVSearchTests.swift
       - path: HarborTests/CriticsPickTests.swift
       - path: HarborTests/CastProtocolTests.swift
+      - path: HarborTests/CustomStreamFiltersTests.swift
+      - path: HarborTests/SimklHomeRailsTests.swift
+      - path: HarborTests/MyAnimeListListsTests.swift
+      - path: HarborTests/AnimePicksPolicyTests.swift
+      - path: HarborTests/SubtitleSelectionPolicyTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift

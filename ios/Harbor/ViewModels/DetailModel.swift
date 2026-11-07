@@ -341,8 +341,8 @@ final class DetailModel {
     /// picker switch it live; when the favoured kind has nothing, everything stays visible.
     func applyStreamMode() {
         let mode = StreamPreferences.shared.sourceMode
-        offers = StreamSourcePolicy.filter(rankedOffers, mode: mode)
-        automaticOffers = StreamPreferences.shared.filter(StreamSourcePolicy.filter(rankedAutomatic, mode: mode))
+        offers = CustomStreamFilterStore.applyActive(StreamSourcePolicy.filter(rankedOffers, mode: mode)).offers
+        automaticOffers = StreamPreferences.shared.filter(CustomStreamFilterStore.applyActive(StreamSourcePolicy.filter(rankedAutomatic, mode: mode)).offers)
     }
 
     /// Automatic play for one stream request. `wanted` is asked right before starting, so a

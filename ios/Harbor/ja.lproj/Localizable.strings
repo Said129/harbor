@@ -30,6 +30,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremioプロトコル対応クライアント。設定は2分ほどで、ほとんどの項目は任意です。すべてのキーをご自身で管理できます。";
 "A continuación" = "次のエピソード";
 "A fast community subtitle index. Off by default; turn it on for extra coverage on newer or niche releases." = "高速なコミュニティ字幕インデックスです。デフォルトではオフです。新作やニッチな作品の検索範囲を広げるにはオンにしてください。";
+"A filter applies everywhere Harbor picks a stream: the source picker, the instant pick, and Big Picture on TV." = "フィルターは、Harborがストリームを選ぶすべての場面に適用されます。ソース選択、即時選択、テレビのBig Pictureが対象です。";
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
@@ -95,6 +96,7 @@
 "Add a repository" = "リポジトリを追加";
 "Add an API key to use this source." = "このソースを使うにはAPIキーを追加してください。";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "AniListにアニメを追加すると、ステータス別にまとめられてここに表示され、そのまま編集できます。";
+"Add anime to your MyAnimeList and they show up here, grouped by status and ready to edit." = "MyAnimeListにアニメを追加すると、ステータス別にまとめられ、ここから編集できます。";
 "Add bookmark" = "Add bookmark";
 "Add files from your computer" = "コンピューターからファイルを追加";
 "Add from lists" = "リストから追加";
@@ -200,6 +202,7 @@
 "Animation speed" = "アニメーション速度";
 "Anime" = "アニメ";
 "Anime Expo" = "Anime Expo";
+"Anime Title Language" = "アニメタイトルの言語";
 "Anime en tendencia" = "トレンドアニメ";
 "Anime episodes airing this month, sub or dub" = "今月放送のアニメエピソード、字幕版・吹替版";
 "Anime of the Year" = "アニメ・オブ・ザ・イヤー";
@@ -220,6 +223,7 @@
 "App language" = "アプリの言語";
 "Appearance" = "外観";
 "Apple TV+" = "Apple TV+";
+"Applies to both audio and subtitle tracks. You can still pick a skipped track by hand in the player." = "音声と字幕の両方のトラックに適用されます。スキップされたトラックも、プレーヤーで手動選択できます。";
 "Apply" = "適用";
 "Apply custom subtitle FPS" = "カスタム字幕FPSを適用";
 "Apply custom theme" = "カスタムテーマを適用";
@@ -254,6 +258,7 @@
 "Authorized {when}" = "{when}に認証済み";
 "Auto" = "自動";
 "Auto (match video)" = "自動（動画に合わせる）";
+"Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "スタイル付き (ASS) 字幕の色、フォント、画面内テキストの配置を保ちながら、ファイルが変わってもセリフが同じ大きさになるよう自動調整します。";
 "Auto-hide the Skip button after" = "スキップボタンを自動で隠すまでの時間";
 "Auto-play next episode" = "次のエピソードを自動再生";
 "Auto-skip credit outros" = "エンディングクレジットを自動スキップ";
@@ -406,6 +411,7 @@
 "Cache buffering" = "キャッシュバッファリング";
 "Cache cleared" = "キャッシュを消去しました";
 "Cached" = "キャッシュ済み";
+"Cached only" = "キャッシュ済みのみ";
 "Caches" = "キャッシュ";
 "Calendar" = "カレンダー";
 "Calendario" = "カレンダー";
@@ -461,6 +467,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "話";
 "Check it works" = "動作を確認";
+"Check the highlighted values before saving." = "保存する前に、強調表示された値を確認してください。";
 "Check whether this device can reach the saved server address." = "このデバイスから保存済みのサーバーアドレスに接続できるか確認します。";
 "Checking with AniList..." = "AniListで確認中...";
 "Checking with MyAnimeList..." = "MyAnimeListで確認中...";
@@ -470,16 +477,22 @@
 "China" = "中国";
 "Chinese" = "中国語";
 "Chinese (Simplified)" = "中国語（簡体字）";
+"Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "名前を付けてから、希望する解像度、ソース、コーデック、音声を選んでください。";
 "Choose an avatar" = "アバターを選択";
 "Choose image" = "画像を選択";
+"Choose subtitles before playback" = "再生前に字幕を選択";
+"Choose the exact track and language after picking a source, before the video starts." = "ソース選択後、動画の再生が始まる前にトラックと言語を指定します。";
 "Choose the frame rate the subtitle was authored for." = "字幕の作成時に使用されたフレームレートを選択してください。";
+"Choose the streams you prefer." = "希望するストリームを選んでください。";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "好きな映画や番組を最大5作品選んでください。Harborが注目作品やおすすめを好みに合わせて調整します。選択は任意です。";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harborでプロフィールの選択を求めるタイミングを選びます。時間に基づく確認は、Harborに戻ったときに表示されます。";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "Harborが字幕を検索する場所を選びます。有効なソースの結果をまとめ、重複を除いて表示します。";
+"Choose which Simkl rails appear on your home screen." = "ホーム画面に表示するSimklレールを選択します。";
 "Choose which addon results appear when you pick a stream." = "ストリーム選択時に表示するアドオンの結果を選びます。";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "カードと詳細ページに表示する評価を選びます。ロックされたカード評価には、「メタデータ」でプロバイダーのキーを設定する必要があります。";
 "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
+"Choosing a track" = "トラックを選択中";
 "Ciencia ficción y fantasía" = "SF＆ファンタジー";
 "Claro" = "ライト";
 "Clasificación" = "順位表";
@@ -506,6 +519,7 @@
 "Close the cast menu and reopen it to rescan the network." = "ネットワークを再スキャンするには、キャストメニューを閉じてから開き直してください。";
 "Clásica" = "クラシック";
 "Code expired. Try again." = "Code expired. Try again.";
+"Codec" = "コーデック";
 "Colecciones" = "コレクション";
 "Collections" = "コレクション";
 "Color de la barra" = "バーの色";
@@ -628,6 +642,7 @@
 "Couldn't reach AniList." = "AniListに接続できませんでした。";
 "Couldn't reach AniList. Try refreshing." = "AniListに接続できませんでした。更新してみてください。";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
+"Couldn't reach MyAnimeList. Try refreshing." = "MyAnimeListに接続できませんでした。更新してもう一度お試しください。";
 "Couldn't reach Simkl" = "Simklに接続できませんでした";
 "Couldn't reach Trakt. Check your connection and try again." = "Traktに接続できませんでした。接続を確認して、もう一度お試しください。";
 "Couldn't reach this Roku" = "このRokuに接続できませんでした";
@@ -640,6 +655,7 @@
 "Create account" = "アカウントを作成";
 "Create new list" = "新しいリストを作成";
 "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Harbor を使う人ごとにプロフィールを作成します。外観、設定、PIN を個別に設定できます。";
+"Create your first filter with the stream quality you prefer." = "好みのストリーム画質で最初のフィルターを作成します。";
 "Create your first list" = "最初のリストを作成";
 "Crime" = "犯罪";
 "Crime Series" = "犯罪シリーズ";
@@ -689,9 +705,11 @@
 "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)" = "ヒーローカルーセルへの表示をやめる（自動選択に戻す）";
 "Delete" = "削除";
 "Delete file" = "Delete file";
+"Delete filter" = "フィルターを削除";
 "Delete list" = "リストを削除";
 "Delete profile" = "プロフィールを削除";
 "Delete this profile?" = "このプロフィールを削除しますか？";
+"Delete {name}? Saved filters cannot be brought back." = "{name}を削除しますか？保存済みフィルターは復元できません。";
 "Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "右揃え";
@@ -775,6 +793,7 @@
 "Edit" = "編集";
 "Edit Folder Images" = "フォルダー画像を編集";
 "Edit custom theme" = "カスタムテーマを編集";
+"Edit filter" = "フィルターを編集";
 "Edit profile" = "プロフィールを編集";
 "Edit {name}" = "{name}を編集";
 "Editar tema personalizado" = "カスタムテーマを編集";
@@ -817,6 +836,8 @@
 "Engine" = "エンジン";
 "English" = "英語";
 "Enter Harbor" = "Harborをはじめる";
+"Enter a size of 0 or more." = "0以上のサイズを入力してください。";
+"Enter a whole number of 0 or more." = "0以上の整数を入力してください。";
 "Enter an FPS from 1 to 240." = "1から240までのFPSを入力してください。";
 "Enter current PIN" = "現在のPINを入力";
 "Episode" = "エピソード";
@@ -850,6 +871,7 @@
 "Everything releasing this month from TMDB" = "TMDB掲載の今月の全配信作品";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "アドオンが提供するすべてのコンテンツをポスター形式で表示します。スクロール、検索、フィルターで見たいものを探せます。";
 "Excellence Prize" = "優秀賞";
+"Excludes streams with fewer seeders or no seeder count. Leave blank or enter 0 for any." = "シーダー数が少ない、または不明なストリームを除外します。制限しない場合は空欄または0にしてください。";
 "Exit Picture in Picture" = "ピクチャ・イン・ピクチャを終了";
 "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "キーボードやリモコンでポスター列を移動する際、事前読み込みした横長画像を使ってポスターカードを拡大します。";
 "Expanding Cards" = "拡大カード";
@@ -952,6 +974,7 @@
 "Gamma" = "ガンマ";
 "Genre" = "ジャンル";
 "Genres" = "ジャンル";
+"Genres you want more of" = "もっと見たいジャンル";
 "Gently magnify nearby posters as you move across a poster row." = "ポスターの列を移動すると、近くのポスターが滑らかに拡大します。";
 "German" = "ドイツ語";
 "Germany" = "ドイツ";
@@ -988,6 +1011,8 @@
 "Guest" = "ゲスト";
 "Género" = "ジャンル";
 "HD" = "HD";
+"HDR" = "HDR";
+"HDR only" = "HDRのみ";
 "HI" = "HI";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "ハードウェアデコード";
@@ -1027,11 +1052,13 @@
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
 "Hide all sources" = "すべてのソースを非表示";
 "Hide and skip episodes" = "エピソードを非表示にしてスキップ";
+"Hide anime I've already watched" = "視聴済みのアニメを非表示";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
 "Hide comments" = "コメントを非表示";
 "Hide details" = "詳細を隠す";
 "Hide end notice" = "Hide end notice";
 "Hide episode" = "エピソードを非表示";
+"Hide from your picks" = "おすすめに表示しない";
 "Hide hidden episodes" = "非表示のエピソードを隠す";
 "Hide row" = "行を非表示";
 "Hide sound effects and speaker names" = "効果音と話者名を隠す";
@@ -1057,6 +1084,7 @@
 "History" = "歴史";
 "Hockey" = "ホッケー";
 "Home" = "ホーム";
+"Home Rail Settings" = "ホームの行設定";
 "Home catalogs" = "ホームのカタログ";
 "Home layout" = "ホームのレイアウト";
 "Home style" = "ホームのスタイル";
@@ -1173,6 +1201,7 @@
 "Keep same source on next episode" = "次のエピソードでも同じソースを使用";
 "Keep screen awake" = "Keep screen awake";
 "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "ライブラリの「ウォッチリスト」タブを、Stremioで自分が追加した作品のみに限定します。オフにすると、再生時にStremioが自動追加した作品も含まれます。";
+"Keep the subtitle track included in the video file instead of switching to a downloaded one." = "ダウンロードした字幕に切り替えず、動画ファイル内の字幕トラックを使い続けます。";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "疑わしいファイルやリリースの確認は維持し、大きなファイルやシーズンパックを含む、より多くの結果を許可します。";
 "Keep watching" = "続きを見る";
 "Kids & Family" = "キッズ＆ファミリー";
@@ -1222,6 +1251,7 @@
 "Listas de Live TV" = "ライブTVプレイリスト";
 "Listas y servidores" = "Playlists and servers";
 "Listo" = "完了";
+"Lists" = "リスト";
 "Literaria" = "文芸";
 "Literary" = "文芸";
 "Live" = "ライブ";
@@ -1239,6 +1269,7 @@
 "Loading music" = "音楽を読み込み中";
 "Loading plugins..." = "プラグインを読み込み中...";
 "Loading your AniList…" = "AniListを読み込み中…";
+"Loading your MyAnimeList…" = "MyAnimeListを読み込んでいます…";
 "Loading your history…" = "履歴を読み込み中…";
 "Loading..." = "読み込み中...";
 "Loading…" = "読み込み中…";
@@ -1295,8 +1326,12 @@
 "Mark as unwatched" = "未視聴にする";
 "Mark as watched" = "視聴済みにする";
 "Mark watched button" = "「視聴済みにする」ボタン";
+"Match Dolby Vision, HDR10 and HLG streams." = "Dolby Vision、HDR10、HLG のストリームに一致します。";
+"Match streams marked as cached or already in your debrid library." = "キャッシュ済み、または debrid ライブラリ内にあると示されたストリームに一致します。";
 "Max" = "最大";
+"Max {n} GB" = "最大 {n} GB";
 "Maximum" = "最大";
+"Maximum size (GB)" = "最大サイズ (GB)";
 "Maximum volume boost" = "最大音量ブースト";
 "Mecha" = "メカ";
 "Media" = "メディア";
@@ -1312,6 +1347,7 @@
 "Mezclar sonido envolvente a estéreo" = "サラウンド音声をステレオにダウンミックス";
 "Mi biblioteca" = "マイライブラリ";
 "Minimum file size" = "最小ファイルサイズ";
+"Minimum seeders" = "最小シーダー数";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "不足";
@@ -1377,6 +1413,7 @@
 "My Trakt" = "マイTrakt";
 "My Trakt watchlist" = "Traktのマイウォッチリスト";
 "My channels" = "My channels";
+"My filter" = "マイフィルター";
 "My library" = "マイライブラリ";
 "My lists" = "マイリスト";
 "MyAnimeList sync" = "MyAnimeListと同期";
@@ -1391,6 +1428,7 @@
 "NHL" = "NHL";
 "Name" = "名前";
 "Name your theme" = "テーマ名";
+"Native/Japanese" = "オリジナル／日本語";
 "Navegación" = "ナビゲーション";
 "Navigation" = "ナビゲーション";
 "Navigation changes waiting to sync" = "Navigation changes waiting to sync";
@@ -1401,10 +1439,12 @@
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflixオリジナル";
 "Never" = "しない";
+"Never auto-select tracks containing" = "次を含むトラックを自動選択しない";
 "New Anime Releases" = "新作アニメ";
 "New Episodes" = "新着エピソード";
 "New Episodes row" = "「新着エピソード」行";
 "New Face Award" = "新人賞";
+"New filter" = "新しいフィルター";
 "New list" = "新しいリスト";
 "New profile" = "新しいプロフィール";
 "New shows and anime premiering this month, from Simkl" = "Simkl掲載の今月初公開の新作番組とアニメ";
@@ -1448,6 +1488,7 @@
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "お気に入りはまだありません";
 "No filmography on record." = "フィルモグラフィー情報はありません。";
+"No filter" = "フィルターなし";
 "No filters" = "フィルターなし";
 "No hay coincidencias." = "一致する項目はありません。";
 "No hay descripción disponible." = "説明はありません。";
@@ -1469,6 +1510,7 @@
 "No people found" = "人物が見つかりません";
 "No picks loaded. TMDB might be unreachable." = "おすすめを読み込めませんでした。TMDBに接続できない可能性があります。";
 "No playable streams turned up, and no debrid is configured. Real-Debrid, TorBox, AllDebrid, Premiumize, or Debrid-Link will unlock raw torrent results. Some addons bake debrid in (Sootio, Comet/ElfHosted, MediaFusion/ElfHosted) and play without your own keys." = "再生可能なストリームが見つからず、デブリッドも設定されていません。Real-Debrid、TorBox、AllDebrid、Premiumize、Debrid-Link を設定すると、未処理のTorrent検索結果を利用できます。一部のアドオン（Sootio、Comet/ElfHosted、MediaFusion/ElfHosted）にはデブリッドが組み込まれているため、自分のキーがなくても再生できます。";
+"No preferences selected. Edit this filter to choose the streams you prefer." = "設定が選ばれていません。このフィルターを編集して好みのストリームを選んでください。";
 "No preferred languages selected." = "優先言語が選ばれていません。";
 "No reliable match was found. The original subtitle is kept." = "No reliable match was found. The original subtitle is kept.";
 "No se encontraron episodios para esta temporada." = "このシーズンのエピソードが見つかりません。";
@@ -1497,8 +1539,10 @@
 "Nombre para mostrar" = "表示名";
 "Non-fiction" = "ノンフィクション";
 "None of Trakt's most-anticipated upcoming releases land in this month. Try a different month." = "Traktで最も期待されている近日公開作品のうち、今月公開されるものはありません。別の月をお試しください。";
+"None yet" = "まだありません";
 "Nord" = "Nord";
 "Normal" = "標準";
+"Normalize embedded subtitle size" = "埋め込み字幕のサイズを統一";
 "Normalize loudness" = "音量を均一化";
 "Norwegian" = "ノルウェー語";
 "Not a stream plugin: it exports no getStreams or streams function." = "ストリームプラグインではありません: getStreamsまたはstreams関数をエクスポートしていません。";
@@ -1671,6 +1715,8 @@
 "Pinned" = "ピン留め済み";
 "Pinned to top" = "上部に固定済み";
 "Plan to Watch" = "視聴予定";
+"Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
+"Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "再生";
 "Play movie" = "映画を再生";
 "Play next" = "次に再生";
@@ -1718,8 +1764,10 @@
 "Posters, ratings, lists" = "ポスター、評価、リスト";
 "Predeterminado" = "デフォルト";
 "Predeterminado (acento dorado)" = "デフォルト（ゴールドのアクセント）";
+"Prefer embedded subtitles" = "埋め込み字幕を優先";
 "Prefer episode still artwork" = "Prefer episode still artwork";
 "Prefer these sources" = "Prefer these sources";
+"Preferred language for anime titles displayed on poster cards." = "ポスターカードに表示するアニメタイトルの優先言語です。";
 "Preguntar si reanudar o empezar de nuevo" = "続きから再生するか最初から再生するか確認";
 "Premiered This Month" = "今月の新作";
 "Premiumize API key" = "Premiumize APIキー";
@@ -1834,6 +1882,7 @@
 "Reintentar lectura del progreso" = "Retry reading progress";
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "アスペクト比";
+"Relative to your main subtitle size." = "メイン字幕のサイズに対する比率です。";
 "Release notifications" = "Release notifications";
 "Rellenar" = "画面いっぱいに表示";
 "Remember last stream" = "最後のストリームを記憶";
@@ -1858,6 +1907,7 @@
 "Remove preset" = "プリセットを削除";
 "Remove saved book" = "Remove saved book";
 "Remove shows once you're caught up" = "最新話まで視聴した作品を削除";
+"Remove the saved quality preference. Your other stream settings still apply." = "保存した画質の設定を削除します。他のストリーム設定は引き続き適用されます。";
 "Remove {language}" = "{language}を削除";
 "Remove {name}" = "{name}を削除";
 "Removed" = "削除済み";
@@ -1938,6 +1988,7 @@
 "Right" = "右揃え";
 "Right to left" = "右から左";
 "Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "RokuのOS変更により、内蔵Media Playerは他のアプリから動画を受け取れなくなりました。Media Assistantは、その役割を代わりに担う無料チャンネルです。Rokuに一度インストールすれば、キャストできるようになります。";
+"Romaji" = "ローマ字";
 "Romance" = "恋愛";
 "Romanian" = "ルーマニア語";
 "Rostro" = "塗り";
@@ -1973,11 +2024,13 @@
 "Save page" = "Save page";
 "Save reminder" = "リマインダーを保存";
 "Save settings" = "Save settings";
+"Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "好みのストリーム画質を保存します。設定したすべての項目に一致する必要があります。制限しない項目は空欄にしてください。一致しない場合は、利用可能な次善のソースを使用します。";
 "Save theme" = "テーマを保存";
 "Save to this library" = "Save to this library";
 "Save track" = "曲を保存";
 "Saved" = "保存済み";
 "Saved app data" = "Saved app data";
+"Saved stream filters" = "保存済みのストリームフィルター";
 "Saving" = "保存中";
 "Scanning your network…" = "ネットワークをスキャン中…";
 "Sci-Fi" = "SF";
@@ -2010,6 +2063,7 @@
 "Season {n}" = "シーズン{n}";
 "Seasons" = "シーズン";
 "Seasons and episodes" = "Seasons and episodes";
+"Second line size" = "第2字幕のサイズ";
 "Second subtitle language" = "第2字幕の言語";
 "Secondary copy." = "補足テキスト。";
 "See details" = "詳細を見る";
@@ -2052,6 +2106,7 @@
 "Set A" = "Set A";
 "Set B" = "Set B";
 "Set a PIN" = "PINを設定";
+"Set active" = "有効にする";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2123,10 +2178,12 @@
 "Siguiente" = "次へ";
 "Siguiente canción" = "Next song";
 "Silenciar" = "ミュート";
+"Simkl Trending Today" = "Simkl Trending Today";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Simkl lists no new shows or anime premiering this month. Try a different month." = "今月Simklで配信開始する新作ドラマやアニメはありません。別の月をお試しください。";
 "Simkl premieres" = "Simklプレミア";
 "Simkl progress" = "Simkl progress";
+"Simkl rails are turned off, so none of the rows below appear on Home yet." = "Simkl rails are turned off, so none of the rows below appear on Home yet.";
 "Simkl sign-in expired, reconnect it" = "Simklへのサインインの有効期限が切れました。再接続してください";
 "Sin configurar" = "未設定";
 "Sin corrección" = "補正なし";
@@ -2148,6 +2205,7 @@
 "Skip Recap" = "前回までのあらすじをスキップ";
 "Skip for now" = "今はスキップ";
 "Skip setup" = "設定をスキップ";
+"Skip these tracks" = "これらのトラックをスキップ";
 "Sleep timer" = "スリープタイマー";
 "Slice of Life" = "日常系";
 "Slightly lighter than background." = "背景よりわずかに明るい色。";
@@ -2203,6 +2261,7 @@
 "Stats" = "統計";
 "Status" = "ステータス";
 "Stay on one source for a season" = "1シーズン中は同じソースを使用";
+"Steer your Top Picks and hero toward what you love, and hide what you don't." = "「イチオシ」とメインバナーを好みに合わせ、興味のない作品を非表示にできます。";
 "Step 1 · Metadata" = "ステップ1 · メタデータ";
 "Step 1 · Open Simkl" = "ステップ1 · Simklを開く";
 "Step 1 · Open Trakt" = "ステップ1 · Traktを開く";
@@ -2272,6 +2331,7 @@
 "Swedish" = "スウェーデン語";
 "Switch quality" = "Switch quality";
 "Switch stream" = "ストリームを切り替え";
+"Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "再生開始後に言語の優先順位が高い字幕が見つかった場合は切り替えます。現在のトラックを維持する場合はオフにしてください。";
 "Switch to {name}" = "{name}に切り替え";
 "Sync" = "同期";
 "Sync Offset" = "同期オフセット";
@@ -2451,6 +2511,7 @@
 "Tracking" = "Tracking";
 "Tracking what you watch" = "視聴履歴の記録";
 "Tracks" = "トラック";
+"Tracks whose name contains one of these words are skipped." = "名前に次のいずれかの単語を含むトラックはスキップされます。";
 "Traducir títulos" = "タイトルを翻訳";
 "Trakt" = "Trakt";
 "Trakt Comments" = "Traktのコメント";
@@ -2487,6 +2548,7 @@
 "Tu color" = "あなたのカラー";
 "Tu perfil" = "あなたのプロフィール";
 "Tubi" = "Tubi";
+"Tune anime" = "アニメをカスタマイズ";
 "Tune your recommendations" = "おすすめを調整";
 "Turkish" = "トルコ語";
 "Turn pages horizontally" = "Turn pages horizontally";
@@ -2515,11 +2577,14 @@
 "United Kingdom" = "イギリス";
 "United States" = "アメリカ";
 "Unknown" = "不明";
+"Unknown sizes still match. Leave blank or enter 0 for any." = "サイズ不明のストリームも対象になります。制限しない場合は空欄または0にしてください。";
 "Unlock controls" = "操作のロックを解除";
 "Unmute" = "ミュート解除";
 "Unpin" = "固定を解除";
+"Untitled filter" = "無題のフィルター";
 "Unverified" = "未確認";
 "Up Next" = "次のエピソード";
+"Up Next on Simkl" = "Up Next on Simkl";
 "Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "開催予定";
 "Upcoming Anime" = "近日公開アニメ";
@@ -2530,6 +2595,7 @@
 "Update" = "更新";
 "Update all" = "すべて更新";
 "Updated {when}" = "{when}に更新";
+"Upgrade subtitles when better ones load" = "より適した字幕が読み込まれたら切り替える";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "自分の画像をアップロードするか、Harbor のカタログから選んでください。";
 "Upload photo" = "写真をアップロード";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -2586,6 +2652,7 @@
 "Watched" = "視聴済み";
 "Watched by {name}" = "{name}が視聴済み";
 "Watching" = "視聴中";
+"Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "ウォッチリスト";
 "Watchlist only" = "ウォッチリストのみ";
 "Watchlist shows only saved titles" = "保存した作品のみ表示";
@@ -2611,6 +2678,7 @@
 "Where your video comes from" = "動画の配信元";
 "Which end of the poster the score chip rides on." = "ポスターのどちら側に評価バッジを表示するか。";
 "Which order" = "並び順";
+"Which subtitle Harbor lands on when more than one is available." = "複数ある場合にHarborが選択する字幕。";
 "Who's watching" = "視聴する人";
 "Who's watching?" = "どなたが視聴しますか？";
 "Wide search · still empty" = "広範囲検索・結果なし";
@@ -2637,6 +2705,7 @@
 "Your AniList is empty" = "AniListは空です";
 "Your Discovery Queue" = "あなたの発見キュー";
 "Your Letterboxd password" = "Letterboxdのパスワード";
+"Your MyAnimeList is empty" = "MyAnimeListは空です";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Rokuがネットワーク上のアプリからの操作リクエストをブロックする設定になっているため、Harborから接続できません。Rokuで一度だけ設定を変更してください。";
 "Your Stremio library + addons sync in untouched." = "Stremioのライブラリとアドオンをそのまま同期。";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
@@ -2673,6 +2742,7 @@
 "category" = "カテゴリ";
 "center" = "中央";
 "code" = "コード";
+"commentary, descriptive" = "コメンタリー、音声解説";
 "common.back" = "戻る";
 "common.retry" = "再試行";
 "dead torrents" = "シードのないTorrent";
@@ -3838,6 +3908,7 @@
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app}自体がメディアをホスト、配信、インデックス化することはありません。すべてのストリームは、サードパーティー製アドオン、デブリッドサービス、またはご自身で設定した{service}アカウントから提供されます。何を再生するかを判断し、お住まいの地域の法律を順守する責任はお客様にあります。";
 "{count} picks ready" = "おすすめ{count}件を用意しました";
 "{count} results" = "{count}件の結果";
+"{count} selected" = "{count}件選択中";
 "{count} tracks" = "{count}曲";
 "{h}h left" = "残り{h}時間";
 "{h}h {m}m left" = "残り{h}時間{m}分";
@@ -3870,6 +3941,7 @@
 "{n} seeds" = "シード数: {n}";
 "{n} semillas" = "シード数: {n}";
 "{n} sources · 0 made it through" = "{n}件のソース · 利用可能 0件";
+"{n}+ seeds" = "シード{n}+";
 "{n}d ago" = "{n}日前";
 "{n}d left" = "残り{n}日";
 "{n}h ago" = "{n}時間前";
