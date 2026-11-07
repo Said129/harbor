@@ -4,9 +4,13 @@ import SwiftUI
 /// Chromecast and AirPlay are not here; AirPlay already has its own route picker in the player.
 struct CastSheet: View {
     let controller: CastController
-    let mediaURL: String
+    /// The source the renderer will fetch. The player only shows this sheet when `CastController.canCast` is true.
+    let source: PlaybackSource
     let title: String
+    /// The local player's position in seconds, where the cast starts.
     let startSeconds: Double
+    /// The local player's duration in seconds, used for the seek range until the renderer reports its own.
+    let duration: Double
     @Environment(\.dismiss) private var dismiss
     @State private var address = ""
 
@@ -14,9 +18,9 @@ struct CastSheet: View {
         NavigationStack {
             List {
                 if controller.selected != nil {
-                    CastSessionSection(controller: controller)
+                    CastSessionSection(controller: controller, duration: duration)
                 }
-                CastTargetsSection(controller: controller, mediaURL: mediaURL, title: title, startSeconds: startSeconds)
+                CastTargetsSection(controller: controller, source: source, title: title, startSeconds: startSeconds)
                 CastAddressSection(controller: controller, address: $address)
                 if let failure = controller.failure {
                     CastFailureSection(failure: failure)
@@ -41,7 +45,7 @@ struct CastSheet: View {
 
 private struct CastTargetsSection: View {
     let controller: CastController
-    let mediaURL: String
+    let source: PlaybackSource
     let title: String
     let startSeconds: Double
 
@@ -58,7 +62,7 @@ private struct CastTargetsSection: View {
             }
             ForEach(controller.targets) { target in
                 Button {
-                    Task { await controller.cast(to: target, mediaURL: mediaURL, contentType: nil, title: title, startSeconds: startSeconds) }
+                    Task { await controller.cast(to: target, source: source, title: title, startSeconds: startSeconds) }
                 } label: {
                     CastTargetRow(target: target)
                 }
@@ -118,6 +122,7 @@ private struct CastAddressSection: View {
 
 private struct CastSessionSection: View {
     let controller: CastController
+    let duration: Double
     @State private var seekDraft: Double = 0
     @State private var editingSeek = false
 
@@ -167,9 +172,10 @@ private struct CastSessionSection: View {
     }
 
     private var seekRow: some View {
-        Slider(
+        let known = controller.durationSec ?? duration
+        return Slider(
             value: $seekDraft,
-            in: 0...max(controller.durationSec ?? controller.positionSec, 1),
+            in: 0...max(known, controller.positionSec, 1),
             onEditingChanged: { editing in
                 editingSeek = editing
                 if !editing {

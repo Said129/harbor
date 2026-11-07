@@ -34,13 +34,15 @@ enum CastRoku {
         "http://\(host):\(ecpPort)/"
     }
 
-    /// A typed address (`192.168.1.20` or `http://192.168.1.20:8060`) as an ECP base. nil when the port is not 8060, the same rule as Desktop's `ecp_url_uses_roku_port`.
+    /// A typed address as an ECP base. Only a bare host (`192.168.1.20`), a host with port 8060, or a root URL on 8060
+    /// counts. A URL with a real path (`/description.xml`) or another port is a DLNA description, so nil here.
     static func normalizedEcpBase(_ input: String) -> String? {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return nil }
         let withScheme = trimmed.contains("://") ? trimmed : "http://" + trimmed
         guard let url = URL(string: withScheme), let host = url.host, !host.isEmpty else { return nil }
-        guard (url.port ?? ecpPort) == ecpPort else { return nil }
+        guard url.path.isEmpty || url.path == "/" else { return nil }
+        if let port = url.port, port != ecpPort { return nil }
         return ecpBase(forHost: host)
     }
 

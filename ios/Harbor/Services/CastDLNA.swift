@@ -86,6 +86,54 @@ enum CastDLNA {
         return nil
     }
 
+    /// Desktop's `samsung_dlna_fallback_urls` (`dlna.rs`): where Samsung TVs keep their description when SSDP is unavailable.
+    static func samsungFallbackURLs(host: String) -> [String] {
+        guard !host.isEmpty else { return [] }
+        let smp = stride(from: 2, through: 20, by: 2).map { "http://\(host):7676/smp_\($0)_" }
+        let others = ["9197", "9999", "9080", "7677"].map { "http://\(host):\($0)/dmr" }
+        return smp + others
+    }
+
+    /// Downloads one description and turns it into a target. nil when the document is missing or has no AVTransport.
+    static func probeDescription(url: String, transport: CastTransport) async -> CastTarget? {
+        guard let request = CastNet.request(url, method: "GET", timeout: 3) else { return nil }
+        guard let reply = try? await transport.send(request), (200..<300).contains(reply.status) else { return nil }
+        guard let description = try? parseDescription(reply.body, location: url) else { return nil }
+        return CastTarget(
+            id: "dlna-" + url,
+            kind: .dlna,
+            name: description.name,
+            model: description.model,
+            host: CastNet.hostPort(of: url) ?? url,
+            endpoint: description.avTransportURL,
+            volumeEndpoint: description.renderingControlURL,
+            vendor: description.vendor
+        )
+    }
+
+    /// The first candidate that answers with a usable description. The rest are cancelled.
+    static func firstDescription(in urls: [String], transport: CastTransport) async -> CastTarget? {
+        await withTaskGroup(of: CastTarget?.self, returning: CastTarget?.self) { group in
+            for url in urls {
+                group.addTask { await probeDescription(url: url, transport: transport) }
+            }
+            for await result in group {
+                if let result {
+                    group.cancelAll()
+                    return result
+                }
+            }
+            return nil
+        }
+    }
+
+    /// `TrackDuration` from GetPositionInfo, nil when the renderer does not report it.
+    static func parseTrackDuration(_ xml: String) -> Double? {
+        guard let text = CastXML.tag(xml, "TrackDuration"), text != "NOT_IMPLEMENTED" else { return nil }
+        let value = CastNet.parseHMS(text)
+        return value > 0 ? value : nil
+    }
+
     static func envelope(service: String, action: String, body: String) -> String {
         "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
             + "<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">"

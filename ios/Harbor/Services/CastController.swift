@@ -40,7 +40,7 @@ final class CastController {
     private(set) var positionSec: Double = 0
     private(set) var durationSec: Double?
     private(set) var failure: Failure?
-    /// Where the local player should resume after a stop; read it once with `takeResumePosition()`.
+    /// Where the local player should resume after a stop, in seconds; read it once with `takeResumePosition()`.
     private(set) var resumePositionSec: Double?
     /// The DLNA master volume shown in the sheet, 0 to 100. Roku has no volume call.
     var volume: Double = 50
@@ -59,6 +59,18 @@ final class CastController {
         self.pollInterval = pollInterval
     }
 
+    /// Whether a renderer can fetch this source itself. The TV reads the URL, so a local file, a loopback host
+    /// (for example a server on this device) or a source that needs request headers cannot be cast. Desktop handles
+    /// those through its stream proxy, which iOS does not have. The cast button must be hidden when this is false.
+    nonisolated static func canCast(url: String, headers: [String: String]?) -> Bool {
+        guard headers?.isEmpty ?? true else { return false }
+        guard let parsed = URL(string: url), let scheme = parsed.scheme?.lowercased(), scheme == "http" || scheme == "https" else { return false }
+        guard let host = parsed.host?.lowercased(), !host.isEmpty else { return false }
+        let loopback = host == "localhost" || host.hasSuffix(".localhost") || host == "::1"
+            || host == "0.0.0.0" || host == "127.0.0.1" || host.hasPrefix("127.")
+        return !loopback
+    }
+
     // MARK: Discovery and manual entry
 
     func scan() async {
@@ -69,46 +81,41 @@ final class CastController {
         scanning = false
     }
 
-    /// A typed Roku address (port 8060), or a DLNA device-description URL. Desktop has no manual entry; iOS needs it because multicast is unavailable.
+    /// A typed address: a Roku (bare host or port 8060), or a DLNA device-description URL. Desktop has no manual entry;
+    /// iOS needs it because multicast discovery is unavailable.
     func addManual(_ text: String) async {
         failure = nil
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         if let base = CastRoku.normalizedEcpBase(trimmed) {
             await addRoku(base: base)
-        } else if trimmed.contains("://") {
-            await addDLNA(descriptionURL: trimmed)
+        } else if !trimmed.isEmpty {
+            await addDLNA(descriptionURL: trimmed.contains("://") ? trimmed : "http://" + trimmed)
         } else {
             failure = Self.noDeviceFailure
         }
     }
 
+    /// A Roku answers ECP on 8060. If it does not, the host may still be a Samsung TV with a DLNA description on one of Desktop's fallback ports.
     private func addRoku(base: String) async {
         guard let host = URL(string: base)?.host else {
             failure = Self.noDeviceFailure
             return
         }
-        guard let target = await CastDiscovery.probeRoku(host: host, transport: transport) else {
-            failure = Self.describe(CastProtocolError.rokuNotFound, deviceName: host)
+        if let target = await CastDiscovery.probeRoku(host: host, transport: transport) {
+            remember(target)
             return
         }
-        remember(target)
+        if let target = await CastDLNA.firstDescription(in: CastDLNA.samsungFallbackURLs(host: host), transport: transport) {
+            remember(target)
+            return
+        }
+        failure = Self.describe(CastProtocolError.rokuNotFound, deviceName: host)
     }
 
     private func addDLNA(descriptionURL: String) async {
-        do {
-            let body = try await sendChecked(CastNet.request(descriptionURL, method: "GET", timeout: 3)).body
-            let description = try CastDLNA.parseDescription(body, location: descriptionURL)
-            remember(CastTarget(
-                id: "dlna-" + descriptionURL,
-                kind: .dlna,
-                name: description.name,
-                model: description.model,
-                host: CastNet.hostPort(of: descriptionURL) ?? descriptionURL,
-                endpoint: description.avTransportURL,
-                volumeEndpoint: description.renderingControlURL,
-                vendor: description.vendor
-            ))
-        } catch {
+        if let target = await CastDLNA.probeDescription(url: descriptionURL, transport: transport) {
+            remember(target)
+        } else {
             failure = Self.noDeviceFailure
         }
     }
@@ -126,8 +133,13 @@ final class CastController {
 
     // MARK: Session
 
-    /// Desktop's `pickCastDevice`: launch or load the media, then poll the renderer. `startSeconds` is the resume point.
-    func cast(to target: CastTarget, mediaURL: String, contentType: String?, title: String?, startSeconds: Double) async {
+    /// Desktop's `pickCastDevice`: launch or load the source, then poll the renderer. `startSeconds` is the resume point.
+    /// A source that the renderer cannot fetch is refused before anything is sent.
+    func cast(to target: CastTarget, source: PlaybackSource, title: String?, startSeconds: Double) async {
+        guard Self.canCast(url: source.url, headers: source.headers) else {
+            failure = Self.describe(CastProtocolError.unsupported, deviceName: target.name)
+            return
+        }
         stopPolling()
         generation += 1
         let current = generation
@@ -137,9 +149,9 @@ final class CastController {
         do {
             switch target.kind {
             case .roku:
-                try await launchRoku(target, mediaURL: mediaURL, contentType: contentType, title: title, startSeconds: startSeconds)
+                try await launchRoku(target, mediaURL: source.url, title: title, startSeconds: startSeconds)
             case .dlna:
-                try await loadDLNA(target, mediaURL: mediaURL, contentType: contentType, title: title, startSeconds: startSeconds)
+                try await loadDLNA(target, mediaURL: source.url, title: title, startSeconds: startSeconds)
             }
         } catch {
             guard current == generation else { return }
@@ -225,6 +237,7 @@ final class CastController {
     }
 
     /// Desktop's `stopCast`: the renderer stops, then the local player resumes from the last position.
+    /// The view must also call this when the player closes while casting, as Desktop does on unmount.
     func stop() async {
         guard let target = selected else { return }
         stopPolling()
@@ -250,7 +263,7 @@ final class CastController {
         seekConfirmed = true
     }
 
-    /// The position to resume at, cleared on read.
+    /// The position to resume at, in seconds, cleared on read.
     func takeResumePosition() -> Double? {
         let value = resumePositionSec
         resumePositionSec = nil
@@ -275,6 +288,7 @@ final class CastController {
             case .dlna:
                 let positionBody = (try? await perform(CastDLNA.positionInfoCall(controlURL: target.endpoint))) ?? ""
                 position = CastDLNA.parsePositionInfo(positionBody)
+                duration = CastDLNA.parseTrackDuration(positionBody)
                 let transportBody = try await perform(CastDLNA.transportInfoCall(controlURL: target.endpoint))
                 state = CastPlayerState.normalize(CastDLNA.parseTransportState(transportBody))
             }
@@ -284,7 +298,9 @@ final class CastController {
             case "PAUSED": phase = .paused
             default: break
             }
-            durationSec = duration
+            if let duration {
+                durationSec = duration
+            }
             if !seekConfirmed {
                 guard position >= startTargetSec - 5 else { return }
                 seekConfirmed = true
@@ -301,26 +317,26 @@ final class CastController {
 
     // MARK: Roku
 
-    /// Desktop's `load` for Roku: find Media Assistant (by name, id, or an icon probe), then launch the media.
-    private func launchRoku(_ target: CastTarget, mediaURL: String, contentType: String?, title: String?, startSeconds: Double) async throws {
+    /// Desktop's `load` for Roku: find Media Assistant (by name, id, or an icon probe), then launch the source.
+    private func launchRoku(_ target: CastTarget, mediaURL: String, title: String?, startSeconds: Double) async throws {
         let apps = CastRoku.parseApps(try await sendChecked(CastRoku.queryAppsRequest(base: target.endpoint)).body)
         var channel = CastRoku.mediaAssistantChannel(in: apps)
         if channel == nil, let probe = try? await send(CastRoku.iconProbeRequest(base: target.endpoint, channel: CastRoku.channelID)), (200..<300).contains(probe.status) {
             channel = CastRoku.channelID
         }
         guard let channel else { throw CastProtocolError.mediaAssistantMissing }
-        let request = CastRoku.launchRequest(base: target.endpoint, channel: channel, url: mediaURL, title: title, contentType: contentType, startSeconds: startSeconds)
+        let request = CastRoku.launchRequest(base: target.endpoint, channel: channel, url: mediaURL, title: title, contentType: nil, startSeconds: startSeconds)
         _ = try await sendChecked(request)
     }
 
     // MARK: DLNA
 
-    private func loadDLNA(_ target: CastTarget, mediaURL: String, contentType: String?, title: String?, startSeconds: Double) async throws {
+    private func loadDLNA(_ target: CastTarget, mediaURL: String, title: String?, startSeconds: Double) async throws {
         let plan = CastDLNA.loadPlan(
             controlURL: target.endpoint,
             mediaURL: mediaURL,
             title: title,
-            contentType: contentType,
+            contentType: nil,
             startSeconds: startSeconds,
             vendor: target.vendor
         )
@@ -389,13 +405,14 @@ final class CastController {
         return reply
     }
 
+    /// The poll holds the controller weakly and does not keep it alive across the sleep, so a closed player stops polling.
     private func startPolling() {
         stopPolling()
         let interval = pollInterval
         pollTask = Task { [weak self] in
             while !Task.isCancelled {
-                guard let self else { return }
-                await self.refresh()
+                await self?.refresh()
+                if self == nil { return }
                 try? await Task.sleep(for: interval)
             }
         }

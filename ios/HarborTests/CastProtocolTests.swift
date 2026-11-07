@@ -325,7 +325,7 @@ final class CastProtocolTests: XCTestCase {
         }
         let controller = CastController(transport: transport, pollInterval: .seconds(3600))
         let target = CastTarget(id: "dlna-a", kind: .dlna, name: "TV", model: nil, host: "192.168.1.50", endpoint: "http://192.168.1.50/ctl", vendor: .other)
-        await controller.cast(to: target, mediaURL: "http://h/m.mp4", contentType: nil, title: "A", startSeconds: 0)
+        await controller.cast(to: target, source: PlaybackSource(url: "http://h/m.mp4", headers: nil, subtitles: nil, via: "test"), title: "A", startSeconds: 0)
         XCTAssertEqual(controller.phase, .playing)
         await controller.refresh()
         XCTAssertEqual(controller.positionSec, 90)
@@ -344,7 +344,7 @@ final class CastProtocolTests: XCTestCase {
         }
         let controller = CastController(transport: transport, pollInterval: .seconds(3600))
         let target = CastTarget(id: "dlna-b", kind: .dlna, name: "Speaker", model: nil, host: "192.168.1.51", endpoint: "http://192.168.1.51/ctl", vendor: .other)
-        await controller.cast(to: target, mediaURL: "http://h/m.mp4", contentType: nil, title: nil, startSeconds: 0)
+        await controller.cast(to: target, source: PlaybackSource(url: "http://h/m.mp4", headers: nil, subtitles: nil, via: "test"), title: nil, startSeconds: 0)
         XCTAssertNil(controller.selected)
         XCTAssertEqual(controller.phase, .idle)
         XCTAssertNotNil(controller.failure)
@@ -361,8 +361,84 @@ final class CastProtocolTests: XCTestCase {
         }
         let controller = CastController(transport: transport, pollInterval: .seconds(3600))
         let target = CastTarget(id: "roku-192.168.1.20", kind: .roku, name: "Roku", model: nil, host: "192.168.1.20", endpoint: "http://192.168.1.20:8060/")
-        await controller.cast(to: target, mediaURL: "http://h/m.mkv", contentType: nil, title: nil, startSeconds: 0)
+        await controller.cast(to: target, source: PlaybackSource(url: "http://h/m.mkv", headers: nil, subtitles: nil, via: "test"), title: nil, startSeconds: 0)
         XCTAssertNil(controller.selected)
         XCTAssertEqual(controller.failure?.steps.count, 4)
+    }
+
+    func testOnlyReachableHTTPSourcesWithoutHeadersCanBeCast() {
+        XCTAssertTrue(CastController.canCast(url: "https://cdn.example.com/movie.mkv", headers: nil))
+        XCTAssertTrue(CastController.canCast(url: "http://192.168.1.20:8080/a.mp4", headers: [:]))
+        XCTAssertFalse(CastController.canCast(url: "file:///var/mobile/Downloads/a.mp4", headers: nil))
+        XCTAssertFalse(CastController.canCast(url: "/var/mobile/Downloads/a.mp4", headers: nil))
+        XCTAssertFalse(CastController.canCast(url: "http://localhost:11470/a.mp4", headers: nil))
+        XCTAssertFalse(CastController.canCast(url: "http://127.0.0.1:9000/a.mp4", headers: nil))
+        XCTAssertFalse(CastController.canCast(url: "https://cdn.example.com/a.mp4", headers: ["Referer": "https://site.example"]))
+    }
+
+    func testRokuAddressNeedsARootPathAndPort8060() {
+        XCTAssertEqual(CastRoku.normalizedEcpBase("http://192.168.1.50"), "http://192.168.1.50:8060/")
+        XCTAssertEqual(CastRoku.normalizedEcpBase("192.168.1.50/"), "http://192.168.1.50:8060/")
+        XCTAssertNil(CastRoku.normalizedEcpBase("http://192.168.1.50/description.xml"))
+        XCTAssertNil(CastRoku.normalizedEcpBase("http://192.168.1.50:49152/"))
+    }
+
+    func testSamsungFallbacksFollowDesktopPortsAndPaths() {
+        let urls = CastDLNA.samsungFallbackURLs(host: "192.168.1.60")
+        XCTAssertEqual(urls.count, 14)
+        XCTAssertEqual(urls.first, "http://192.168.1.60:7676/smp_2_")
+        XCTAssertEqual(urls[9], "http://192.168.1.60:7676/smp_20_")
+        XCTAssertEqual(urls[10], "http://192.168.1.60:9197/dmr")
+        XCTAssertEqual(urls.last, "http://192.168.1.60:7677/dmr")
+    }
+
+    func testTrackDurationIsReadOnlyWhenReported() {
+        XCTAssertEqual(CastDLNA.parseTrackDuration("<TrackDuration>0:03:20</TrackDuration>"), 200)
+        XCTAssertNil(CastDLNA.parseTrackDuration("<TrackDuration>NOT_IMPLEMENTED</TrackDuration>"))
+        XCTAssertNil(CastDLNA.parseTrackDuration("<RelTime>0:00:01</RelTime>"))
+    }
+
+    @MainActor
+    func testManualDLNADescriptionURLWithPathIsNotTreatedAsRoku() async {
+        let xml = deviceXML
+        let transport = FakeCastTransport { request in
+            if request.url?.absoluteString == "http://192.168.1.50/description.xml" {
+                return CastReply(status: 200, body: xml)
+            }
+            return CastReply(status: 404, body: "")
+        }
+        let controller = CastController(transport: transport, pollInterval: .seconds(3600))
+        await controller.addManual("http://192.168.1.50/description.xml")
+        XCTAssertEqual(controller.targets.map(\.kind), [.dlna])
+        XCTAssertEqual(controller.targets.first?.endpoint, "http://192.168.1.50/upnp/control/AVTransport1")
+        XCTAssertNil(controller.failure)
+    }
+
+    @MainActor
+    func testBareHostThatIsNotARokuFallsBackToSamsungDescription() async {
+        let xml = deviceXML
+        let transport = FakeCastTransport { request in
+            if request.url?.absoluteString == "http://192.168.1.60:7676/smp_2_" {
+                return CastReply(status: 200, body: xml)
+            }
+            return CastReply(status: 404, body: "")
+        }
+        let controller = CastController(transport: transport, pollInterval: .seconds(3600))
+        await controller.addManual("192.168.1.60")
+        XCTAssertEqual(controller.targets.count, 1)
+        XCTAssertEqual(controller.targets.first?.kind, CastProtocolKind.dlna)
+        XCTAssertEqual(controller.targets.first?.host, "192.168.1.60:7676")
+        XCTAssertNil(controller.failure)
+    }
+
+    @MainActor
+    func testCastRefusesASourceTheRendererCannotFetch() async {
+        let transport = FakeCastTransport { _ in CastReply(status: 200, body: "") }
+        let controller = CastController(transport: transport, pollInterval: .seconds(3600))
+        let target = CastTarget(id: "dlna-c", kind: .dlna, name: "TV", model: nil, host: "192.168.1.50", endpoint: "http://192.168.1.50/ctl", vendor: .other)
+        let source = PlaybackSource(url: "file:///var/mobile/a.mp4", headers: nil, subtitles: nil, via: "download")
+        await controller.cast(to: target, source: source, title: nil, startSeconds: 0)
+        XCTAssertNil(controller.selected)
+        XCTAssertNotNil(controller.failure)
     }
 }
