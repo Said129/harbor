@@ -76,7 +76,8 @@ struct ContinueWatchingPreferences: Sendable {
         "remoteStreamServerUrl", "remoteStreamServerStrict", "castAlwaysTranscode", "stremioServerTranscode",
         "episodeAlerts.enabled", "episodeAlerts.leadMinutes", "episodeAlerts.movies", "episodeAlerts.series", "episodeAlerts.anime", "episodeAlerts.library",
         "localMinFileSizeMb", "localEpisodeSortDesc", "localLibrary.sort", "localLibrary.sortDescending",
-        "heroTrailers", "heroTrailerAudio", "detailTrailerAutoplay", "detailTrailerAudio"
+        "heroTrailers", "heroTrailerAudio", "detailTrailerAutoplay", "detailTrailerAudio",
+        "heroShadow", "heroFull", "heroFullQuality", "heroFeed"
     ]
     private let defaults: UserDefaults
     private let persistence: any ProfileSettingsPersistence
