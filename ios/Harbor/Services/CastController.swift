@@ -143,9 +143,9 @@ final class CastController {
             failure = Self.describe(CastProtocolError.unsupported, deviceName: target.name)
             return
         }
+        stopPolling()
         // A new cast replaces the previous one, as Desktop's `replace_active_session` does.
         await releaseChromecast()
-        stopPolling()
         generation += 1
         let current = generation
         selected = target

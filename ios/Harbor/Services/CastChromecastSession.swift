@@ -125,10 +125,11 @@ actor CastChromecastSession {
         }
     }
 
-    /// Desktop's `stop_app`: STOP the receiver session.
+    /// Desktop's `stop_app`: STOP the receiver session. A half-open socket must not hold up the local hand-back, so it gets a
+    /// 2-second wait instead of the full request timeout.
     func stopReceiver() async throws {
         guard let sessionID else { throw CastProtocolError.chromecastRejected("no session") }
-        _ = try await request(namespace: CastChromecast.receiverNamespace, destination: CastChromecast.receiverID) { id in
+        _ = try await request(namespace: CastChromecast.receiverNamespace, destination: CastChromecast.receiverID, within: .seconds(2)) { id in
             CastChromecast.stopPayload(requestID: id, sessionID: sessionID)
         }
     }
@@ -150,13 +151,13 @@ actor CastChromecastSession {
 
     /// Sends one request and waits for the reply with the same `requestId`. The waiter is registered before the frame is
     /// written, so a fast reply cannot arrive first. A reply that never comes fails as unreachable after `requestTimeout`.
-    private func request(namespace: String, destination: String, build: (Int) -> String) async throws -> CastChromecast.Inbound {
+    private func request(namespace: String, destination: String, within: Duration? = nil, build: (Int) -> String) async throws -> CastChromecast.Inbound {
         try ensureOpen()
         let id = nextRequestID
         nextRequestID += 1
         let message = CastChromecast.Message(sourceID: CastChromecast.senderID, destinationID: destination, namespace: namespace, payload: build(id))
         let frame = CastChromecast.frame(message)
-        let timeout = requestTimeout
+        let timeout = within ?? requestTimeout
         return try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<CastChromecast.Inbound, Error>) in
             waiters[id] = continuation
             Task { await self.transmit(frame, requestID: id) }
