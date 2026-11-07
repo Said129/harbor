@@ -1248,6 +1248,7 @@
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "Сохраняет дорожку субтитров из видеофайла вместо переключения на скачанную.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Сохраняет проверки подозрительных файлов и версий, но допускает больше результатов, включая крупные файлы и полные сезоны.";
 "Keep watching" = "Продолжить просмотр";
+"Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
 "Kids & Family" = "Детям и семье";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, учёт сезонов";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, учёт сезонов";
@@ -2248,6 +2249,7 @@
 "Show row" = "Показывать ряд";
 "Show stream quality under the title" = "Показывать качество потока под названием";
 "Show subtitle sync indicator" = "Показывать индикатор синхронизации субтитров";
+"Show subtitles in Picture-in-Picture" = "Показывать субтитры в режиме «Картинка в картинке»";
 "Show the Skip button" = "Показывать кнопку «Пропустить»";
 "Show this catalog" = "Показывать этот каталог";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Показывать переведённые названия на выбранном выше языке. Выключите, чтобы сохранить оригинальные названия.";

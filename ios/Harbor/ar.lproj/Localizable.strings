@@ -1268,6 +1268,7 @@
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "احتفظ بمسار الترجمة المضمّن في ملف الفيديو بدلًا من التبديل إلى ترجمة منزّلة.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "أبقِ فحوص الملفات المشبوهة والإصدارات، لكن اسمح بنتائج أكثر تشمل الملفات الكبيرة وحزم المواسم.";
 "Keep watching" = "متابعة المشاهدة";
+"Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
 "Kids & Family" = "الأطفال والعائلة";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu وMAL، مدركة للمواسم";
 "Kitsu, MAL, season-aware" = "Kitsu وMAL، مدركة للمواسم";
@@ -2270,6 +2271,7 @@
 "Show row" = "إظهار الصف";
 "Show stream quality under the title" = "إظهار جودة البث أسفل العنوان";
 "Show subtitle sync indicator" = "عرض مؤشر مزامنة الترجمة";
+"Show subtitles in Picture-in-Picture" = "عرض الترجمات في صورة داخل صورة";
 "Show the Skip button" = "إظهار زر التخطّي";
 "Show this catalog" = "إظهار هذا الكتالوج";
 "Show translated names in the language selected above. Turn off to keep original titles." = "اعرض الأسماء المترجمة باللغة المحدّدة أعلاه. عطّل هذا الخيار للاحتفاظ بالعناوين الأصلية.";

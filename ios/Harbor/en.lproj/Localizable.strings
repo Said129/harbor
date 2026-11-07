@@ -1088,6 +1088,7 @@
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "Keep the subtitle track included in the video file instead of switching to a downloaded one.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs.";
 "Keep watching" = "Keep watching";
+"Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, season-aware";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, season-aware";
 "Known For" = "Known For";
@@ -1970,6 +1971,7 @@
 "Show row" = "Show row";
 "Show stream quality under the title" = "Show stream quality under the title";
 "Show subtitle sync indicator" = "Show subtitle sync indicator";
+"Show subtitles in Picture-in-Picture" = "Show subtitles in Picture-in-Picture";
 "Show the Skip button" = "Show the Skip button";
 "Show this catalog" = "Show this catalog";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Show translated names in the language selected above. Turn off to keep original titles.";

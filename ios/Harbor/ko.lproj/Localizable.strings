@@ -1244,6 +1244,7 @@
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "다운로드한 자막으로 전환하지 않고 동영상 파일에 포함된 자막 트랙을 유지합니다.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "의심스러운 파일 및 릴리스 검사는 유지하면서 대용량 파일과 시즌 묶음을 포함한 더 많은 결과를 허용합니다.";
 "Keep watching" = "이어서 시청";
+"Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
 "Kids & Family" = "키즈 및 가족";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, 시즌 인식";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, 시즌 인식";
@@ -2237,6 +2238,7 @@
 "Show row" = "행 표시";
 "Show stream quality under the title" = "제목 아래에 스트림 화질 표시";
 "Show subtitle sync indicator" = "자막 동기화 표시기 표시";
+"Show subtitles in Picture-in-Picture" = "화면 속 화면에 자막 표시";
 "Show the Skip button" = "건너뛰기 버튼 표시";
 "Show this catalog" = "이 카탈로그 표시";
 "Show translated names in the language selected above. Turn off to keep original titles." = "위에서 선택한 언어로 번역된 제목을 표시합니다. 원제를 유지하려면 끄세요.";

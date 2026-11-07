@@ -1244,6 +1244,7 @@
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "Mantieni la traccia di sottotitoli inclusa nel video anziché passare a una scaricata.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Mantieni i controlli su file sospetti e versioni, ma consenti più risultati, inclusi file grandi e pacchetti di stagioni.";
 "Keep watching" = "Continua a guardare";
+"Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
 "Kids & Family" = "Bambini e famiglia";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, compatibile con le Stagioni";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, compatibile con le Stagioni";
@@ -2237,6 +2238,7 @@
 "Show row" = "Mostra riga";
 "Show stream quality under the title" = "Mostra la qualità dello stream sotto il titolo";
 "Show subtitle sync indicator" = "Mostra l'indicatore di sincronizzazione dei sottotitoli";
+"Show subtitles in Picture-in-Picture" = "Mostra i sottotitoli in Picture-in-Picture";
 "Show the Skip button" = "Mostra il pulsante Salta";
 "Show this catalog" = "Mostra questo catalogo";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Mostra i nomi tradotti nella lingua selezionata sopra. Disattiva per mantenere i titoli originali.";

@@ -1244,6 +1244,7 @@
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "डाउनलोड किए उपशीर्षक पर बदलने के बजाय वीडियो फ़ाइल का उपशीर्षक ट्रैक बनाए रखें।";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "संदिग्ध फ़ाइल और रिलीज़ की जाँच जारी रखें, लेकिन बड़ी फ़ाइलों और सीज़न पैक समेत अधिक नतीजे आने दें।";
 "Keep watching" = "देखते रहें";
+"Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
 "Kids & Family" = "बच्चे और परिवार";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, सीज़न के हिसाब से";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, सीज़न के हिसाब से";
@@ -2237,6 +2238,7 @@
 "Show row" = "पंक्ति दिखाएँ";
 "Show stream quality under the title" = "शीर्षक के नीचे स्ट्रीम क्वालिटी दिखाएँ";
 "Show subtitle sync indicator" = "सबटाइटल सिंक संकेतक दिखाएँ";
+"Show subtitles in Picture-in-Picture" = "Picture-in-Picture में सबटाइटल दिखाएँ";
 "Show the Skip button" = "स्किप बटन दिखाएँ";
 "Show this catalog" = "यह कैटलॉग दिखाएँ";
 "Show translated names in the language selected above. Turn off to keep original titles." = "ऊपर चुनी भाषा में अनूदित नाम दिखाएँ। मूल शीर्षक रखने के लिए बंद करें।";

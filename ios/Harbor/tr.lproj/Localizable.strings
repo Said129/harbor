@@ -1244,6 +1244,7 @@
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "İndirilen altyazıya geçmek yerine video dosyasındaki altyazı izini kullanın.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Şüpheli dosya ve sürüm denetimlerini koruyun; ancak büyük dosyalar ve sezon paketleri dahil daha fazla sonuca izin verin.";
 "Keep watching" = "İzlemeye devam et";
+"Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
 "Kids & Family" = "Çocuk ve Aile";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, sezon uyumlu";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, sezon uyumlu";
@@ -2237,6 +2238,7 @@
 "Show row" = "Satırı göster";
 "Show stream quality under the title" = "Yayın kalitesini başlığın altında göster";
 "Show subtitle sync indicator" = "Altyazı eşitleme göstergesini göster";
+"Show subtitles in Picture-in-Picture" = "Resim İçinde Resim'de altyazıları göster";
 "Show the Skip button" = "Atla düğmesini göster";
 "Show this catalog" = "Bu kataloğu göster";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Çevrilmiş adları yukarıda seçilen dilde gösterin. Özgün adları korumak için kapatın.";

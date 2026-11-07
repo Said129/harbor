@@ -320,6 +320,8 @@ BEHAVIORS = expand("""
 256 P host summon and invite: the session stores them, no screen shows them yet (7 Nov, written by Haiku, CI runs 43 and 44 green)
 257 P source matching: scoring exists and is tested, no player flow uses it yet (7 Nov, written by Haiku, CI runs 43 and 44 green)
 258 P self-hosted relay: the relay address setting works; Desktop's Cloudflare deploy is excluded (7 Nov, written by Haiku, CI runs 43 and 44 green)
+31 X search guide: Desktop's guide is the Live TV programme guide opened from the empty search, and iOS loads no programme data (XMLTV), so it would only repeat the channel list in Live TV
+190 X local episode chooser: the iOS local library list already shows every season and episode file and plays one on a tap
 """)
 
 SETTINGS = expand("""
@@ -714,6 +716,12 @@ SETTINGS = expand("""
 396 P prefer my installed metadata addon: the meta plans are reordered with Cinemeta last; Desktop's poster preference is not ported (7 Nov, written by Haiku, uncompiled)
 415 X remember the detail page scroll: the navigation stack already keeps it on iOS
 361 X SIMKL card setting: Desktop shows an owner-only card in its profile sidebar and iOS has no profile cards
+240 D subtitles can be hidden in the Picture in Picture window while they stay on inline (7 Nov, written by Haiku, uncompiled)
+167 X PiP behavior Resize or Detached: Resize shrinks Harbor's own window, which an iOS app cannot do, and Detached is what Picture in Picture already is
+271 X on-disk badge on cards: iOS local records are not linked to catalog ids, so no card can tell a title is on disk
+273 X local playback mode: iOS has no choice between a local copy and a stream by catalog id
+274 X playback source preference: iOS has no video media servers (Plex and Jellyfin are music only) and no local match by id
+275 X preferred media server: iOS has no video media servers
 """)
 
 def audit(items, verdicts, label):

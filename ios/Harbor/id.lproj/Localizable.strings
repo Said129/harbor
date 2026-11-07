@@ -1244,6 +1244,7 @@
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "Gunakan trek subtitle yang disertakan dalam file video alih-alih beralih ke subtitle yang diunduh.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Tetap periksa file dan rilis yang mencurigakan, tetapi izinkan lebih banyak hasil, termasuk file berukuran besar dan paket satu musim.";
 "Keep watching" = "Lanjutkan menonton";
+"Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
 "Kids & Family" = "Anak & Keluarga";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, mengenali musim";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, mengenali musim";
@@ -2237,6 +2238,7 @@
 "Show row" = "Tampilkan baris";
 "Show stream quality under the title" = "Tampilkan kualitas stream di bawah judul";
 "Show subtitle sync indicator" = "Tampilkan indikator sinkronisasi subtitle";
+"Show subtitles in Picture-in-Picture" = "Tampilkan subtitle dalam Picture-in-Picture";
 "Show the Skip button" = "Tampilkan tombol Lewati";
 "Show this catalog" = "Tampilkan katalog ini";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Tampilkan nama terjemahan dalam bahasa yang dipilih di atas. Nonaktifkan untuk mempertahankan judul asli.";

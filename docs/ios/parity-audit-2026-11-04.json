@@ -7,34 +7,34 @@
       "total": 438,
       "ported": 152,
       "partial": 229,
-      "missing": 7,
-      "excluded": 50,
-      "counted": 388,
-      "weighted_percent": 68.7,
-      "ported_only_percent": 39.2,
-      "ported_or_partial_percent": 98.2
+      "missing": 5,
+      "excluded": 52,
+      "counted": 386,
+      "weighted_percent": 69.0,
+      "ported_only_percent": 39.4,
+      "ported_or_partial_percent": 98.7
     },
     "settings": {
       "total": 511,
-      "ported": 214,
+      "ported": 215,
       "partial": 49,
-      "missing": 30,
-      "excluded": 218,
-      "counted": 293,
-      "weighted_percent": 81.4,
-      "ported_only_percent": 73.0,
-      "ported_or_partial_percent": 89.8
+      "missing": 24,
+      "excluded": 223,
+      "counted": 288,
+      "weighted_percent": 83.2,
+      "ported_only_percent": 74.7,
+      "ported_or_partial_percent": 91.7
     },
     "all": {
       "total": 949,
-      "ported": 366,
+      "ported": 367,
       "partial": 278,
-      "missing": 37,
-      "excluded": 268,
-      "counted": 681,
-      "weighted_percent": 74.2,
-      "ported_only_percent": 53.7,
-      "ported_or_partial_percent": 94.6
+      "missing": 29,
+      "excluded": 275,
+      "counted": 674,
+      "weighted_percent": 75.1,
+      "ported_only_percent": 54.5,
+      "ported_or_partial_percent": 95.7
     }
   },
   "behavior_areas": [
@@ -52,9 +52,9 @@
       "range": "B22-B32",
       "ported": 4,
       "partial": 6,
-      "missing": 1,
-      "excluded": 0,
-      "weighted_percent": 63.6
+      "missing": 0,
+      "excluded": 1,
+      "weighted_percent": 70.0
     },
     {
       "area": "Details and episodes",
@@ -106,9 +106,9 @@
       "range": "B154-B216",
       "ported": 29,
       "partial": 20,
-      "missing": 4,
-      "excluded": 10,
-      "weighted_percent": 73.6
+      "missing": 3,
+      "excluded": 11,
+      "weighted_percent": 75.0
     },
     {
       "area": "Live TV, VOD, DVR and multiview",
@@ -443,8 +443,8 @@
       "index": 31,
       "id": "Search guide",
       "desktop_source": "src/components/search",
-      "verdict": "M",
-      "note": "no search guide or AI search"
+      "verdict": "X",
+      "note": "search guide: Desktop's guide is the Live TV programme guide opened from the empty search, and iOS loads no programme data (XMLTV), so it would only repeat the channel list in Live TV"
     },
     {
       "index": 32,
@@ -1556,8 +1556,8 @@
       "index": 190,
       "id": "Local episode chooser",
       "desktop_source": "src/components/player",
-      "verdict": "M",
-      "note": "no GIF recording or local episode chooser"
+      "verdict": "X",
+      "note": "local episode chooser: the iOS local library list already shows every season and episode file and plays one on a tap"
     },
     {
       "index": 191,
@@ -4463,8 +4463,8 @@
       "index": 167,
       "id": "pipBehavior",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "PiP behavior, player shells and chrome"
+      "verdict": "X",
+      "note": "PiP behavior Resize or Detached: Resize shrinks Harbor's own window, which an iOS app cannot do, and Detached is what Picture in Picture already is"
     },
     {
       "index": 168,
@@ -4974,8 +4974,8 @@
       "index": 240,
       "id": "subShowInPip",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "PiP subtitles"
+      "verdict": "D",
+      "note": "subtitles can be hidden in the Picture in Picture window while they stay on inline (7 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 241,
@@ -5191,8 +5191,8 @@
       "index": 271,
       "id": "showLocalLibraryBadge",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "NFO and local library"
+      "verdict": "X",
+      "note": "on-disk badge on cards: iOS local records are not linked to catalog ids, so no card can tell a title is on disk"
     },
     {
       "index": 272,
@@ -5205,22 +5205,22 @@
       "index": 273,
       "id": "localPlaybackMode",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "local playback, media servers, catalog pins, poster URL"
+      "verdict": "X",
+      "note": "local playback mode: iOS has no choice between a local copy and a stream by catalog id"
     },
     {
       "index": 274,
       "id": "playbackSourcePreference",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "local playback, media servers, catalog pins, poster URL"
+      "verdict": "X",
+      "note": "playback source preference: iOS has no video media servers (Plex and Jellyfin are music only) and no local match by id"
     },
     {
       "index": 275,
       "id": "preferredMediaServerId",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "local playback, media servers, catalog pins, poster URL"
+      "verdict": "X",
+      "note": "preferred media server: iOS has no video media servers"
     },
     {
       "index": 276,

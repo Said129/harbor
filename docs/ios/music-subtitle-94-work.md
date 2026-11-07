@@ -1674,3 +1674,13 @@ or off, and the resolution and HDR line under the player title as a bar or chips
 Not ported, with reasons in the audit: `resumeDetailScroll` (the navigation stack already keeps the scroll position) and `showSimklCard`
 (Desktop's profile sidebar card; iOS has no profile cards). `translateDescriptions` stays missing: iOS asks TMDB for the overview in the
 chosen language only, so an original-language toggle needs a second request in the metadata path.
+
+## Fourteenth Haiku round (7 November)
+
+Four Haiku in worktrees; one merged. Picture in Picture subtitles (`subShowInPip`): mpv draws subtitles into the frames the floating window
+shows, so the setting turns `sub-visibility` off only while the window is active and restores it on every inline return (default on, as
+Desktop). Not merged, with reasons in the audit: the "Search guide" (Desktop's is the Live TV programme guide, and iOS loads no XMLTV
+data), the local episode chooser (the local library list already shows every season and episode file and plays one on a tap), the
+on-disk badge and the three local-playback settings (iOS local records carry no catalog ids and there are no video media servers), and
+`pipBehavior` (Resize shrinks the app's own window, which iOS cannot do; Detached is what Picture in Picture already is). The code for
+the unmerged ones stays on their `ios/haiku-trial-*` branches.

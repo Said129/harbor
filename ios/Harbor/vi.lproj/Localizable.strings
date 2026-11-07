@@ -1244,6 +1244,7 @@
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "Giữ bản phụ đề có sẵn trong tệp video thay vì chuyển sang bản tải xuống.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Vẫn kiểm tra tệp và bản phát hành đáng ngờ, nhưng cho phép thêm kết quả, gồm cả tệp lớn và gói trọn mùa.";
 "Keep watching" = "Xem tiếp";
+"Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
 "Kids & Family" = "Trẻ em & Gia đình";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, nhận biết mùa";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, nhận biết mùa";
@@ -2237,6 +2238,7 @@
 "Show row" = "Hiển thị hàng";
 "Show stream quality under the title" = "Hiển thị chất lượng luồng dưới tiêu đề";
 "Show subtitle sync indicator" = "Hiện chỉ báo đồng bộ phụ đề";
+"Show subtitles in Picture-in-Picture" = "Hiện phụ đề trong chế độ Hình trong hình";
 "Show the Skip button" = "Hiển thị nút Bỏ qua";
 "Show this catalog" = "Hiện danh mục này";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Hiện tên đã dịch bằng ngôn ngữ chọn ở trên. Tắt để giữ tên gốc.";

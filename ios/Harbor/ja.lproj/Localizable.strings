@@ -1244,6 +1244,7 @@
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "ダウンロードした字幕に切り替えず、動画ファイル内の字幕トラックを使い続けます。";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "疑わしいファイルやリリースの確認は維持し、大きなファイルやシーズンパックを含む、より多くの結果を許可します。";
 "Keep watching" = "続きを見る";
+"Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
 "Kids & Family" = "キッズ＆ファミリー";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu、MAL、シーズン対応";
 "Kitsu, MAL, season-aware" = "Kitsu、MAL、シーズン対応";
@@ -2237,6 +2238,7 @@
 "Show row" = "行を表示";
 "Show stream quality under the title" = "タイトルの下にストリーム画質を表示";
 "Show subtitle sync indicator" = "字幕同期インジケーターを表示";
+"Show subtitles in Picture-in-Picture" = "ピクチャーインピクチャーで字幕を表示";
 "Show the Skip button" = "「スキップ」ボタンを表示";
 "Show this catalog" = "このカタログを表示";
 "Show translated names in the language selected above. Turn off to keep original titles." = "上で選んだ言語の翻訳タイトルを表示します。原題を使う場合はオフにしてください。";
