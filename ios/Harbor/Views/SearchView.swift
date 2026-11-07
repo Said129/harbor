@@ -30,6 +30,7 @@ struct SearchView: View {
                     .accessibilityIdentifier("search-results-query")
             }
             if isTitleQuery { SearchPeopleSection(app: app, query: query) }
+            aiSearchLink
             CatalogRails(rows: SearchPresentation.rows(rows), app: app, titleOverrides: searchTitles, browseCatalogs: false, onSelect: { history.record(query) })
         }
         .background(HarborTheme.background).navigationTitle("Buscar")
@@ -42,6 +43,14 @@ struct SearchView: View {
     /// A pasted magnet, info hash or direct video link gets a Play card instead of a catalog search.
     private var linkInput: SearchInput { SearchInput.classify(query) }
     private var isTitleQuery: Bool { if case .query = linkInput { true } else { false } }
+    /// Desktop's "Ask AI" entry: a screen that finds titles from a plain-language request with the person's own key.
+    @ViewBuilder private var aiSearchLink: some View {
+        if isTitleQuery && !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            NavigationLink { AISearchView(app: app, initialQuery: query) } label: {
+                Label(DesktopInterfaceText.value("AI search"), systemImage: "sparkles").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+            }.padding(.horizontal).accessibilityIdentifier("search-ai")
+        }
+    }
     private var searchTitles: [String: String] {
         Dictionary(rows.map { ($0.id, $0.isAnimeCatalog ? "Anime" : ["movie": "Películas", "series": "Series", "tv": "TV", "channel": "TV"][$0.plan.kind] ?? "Resultados") }, uniquingKeysWith: { first, _ in first })
     }

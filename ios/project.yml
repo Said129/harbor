@@ -199,6 +199,10 @@ targets:
       - path: HarborTests/CardRatingsTests.swift
       - path: HarborTests/StremboxdTests.swift
       - path: HarborTests/NewEpisodesTests.swift
+      - path: HarborTests/StremioServerTests.swift
+      - path: HarborTests/TMDBPeopleTests.swift
+      - path: HarborTests/AISearchTests.swift
+      - path: HarborTests/SubtitleProvidersTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift

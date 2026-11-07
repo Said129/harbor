@@ -29,6 +29,7 @@
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Uma aba do navegador foi aberta no MyAnimeList. Aprove o Harbor lá, depois copie o código ou a URL da página e cole abaixo.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Um cliente para o protocolo Stremio. Dois minutos para configurar; a maior parte é opcional. Você mantém o controle total de cada chave.";
 "A continuación" = "A seguir";
+"A fast community subtitle index. Off by default; turn it on for extra coverage on newer or niche releases." = "Um índice rápido de legendas da comunidade. Desativado por padrão; ative-o para ter cobertura extra em lançamentos mais recentes ou de nicho.";
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
@@ -42,6 +43,15 @@
 "AFC Champions League Qualifying" = "Eliminatórias da Liga dos Campeões da AFC";
 "AFC Champions League Two" = "Liga dos Campeões da AFC 2";
 "AFC Women's Asian Cup" = "Copa da Ásia Feminina";
+"AI Search · Groq LPU inference" = "Busca por IA · inferência Groq LPU";
+"AI Search · natural-language search" = "Busca por IA · busca em linguagem natural";
+"AI didn't find anything for that. Try rephrasing." = "A IA não encontrou nada para isso. Tente reformular.";
+"AI model" = "Modelo de IA";
+"AI picks" = "Escolhas da IA";
+"AI search" = "Busca por IA";
+"AI search failed ({status})." = "AI search failed ({status}).";
+"AI search failed." = "Falha na busca por IA.";
+"AI search failed. Tap to retry." = "A busca por IA falhou. Toque para tentar novamente.";
 "AMC+" = "AMC+";
 "API key" = "Chave de API";
 "API token" = "Token de API";
@@ -86,6 +96,7 @@
 "Add a list" = "Adicionar uma lista";
 "Add a movie or show to this list..." = "Adicione um filme ou série a esta lista...";
 "Add a repository" = "Adicionar um repositório";
+"Add an API key to use this source." = "Adicione uma chave de API para usar esta fonte.";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "Adicione animes à sua AniList e eles aparecem aqui, agrupados por status e prontos para editar.";
 "Add bookmark" = "Add bookmark";
 "Add from lists" = "Adicionar de listas";
@@ -100,6 +111,8 @@
 "Add to Watchlist" = "Adicionar à Watchlist";
 "Add to favorites" = "Adicionar aos favoritos";
 "Add to list" = "Adicionar à lista";
+"Add your Groq API key in Settings, AI search to use this model." = "Adicione sua chave de API do Groq em Configurações, Busca por IA para usar este modelo.";
+"Add your OpenRouter API key in Settings, AI search to use this model." = "Adicione sua chave de API do OpenRouter em Configurações, Busca por IA para usar este modelo.";
 "Add your TMDB key in Settings to load these catalogs." = "Adicione sua chave do TMDB nas Configurações para carregar estes catálogos.";
 "Add {language}" = "Adicionar {language}";
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Adicionar {n} títulos da sua watchlist do Harbor ao Trakt? O Trakt ignora os que já tiver.";
@@ -116,6 +129,7 @@
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "Adiciona uma opção Ocultar quando você clica com o botão direito em um episódio. Episódios ocultos desaparecem da lista e são ignorados pelo A Seguir. Uma opção Mostrar ocultos em cada série permite trazê-los de volta.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "Adiciona uma linha abaixo de Continuar assistindo com episódios exibidos recentemente de séries que você já assistia. Dispense um por vez ou limpe a linha inteira. Desativado por padrão.";
+"Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "Adiciona um botão \"Perguntar à IA\" à busca, para você digitar pedidos em linguagem simples.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Ajuste o texto e o fundo. A prévia mostra as alterações em tempo real.";
 "Administrar" = "Gerenciar";
 "Adult sources" = "Adult sources";
@@ -215,6 +229,7 @@
 "Arrows" = "Setas";
 "Artistas" = "Artistas";
 "Artists" = "Artistas";
+"Ask AI to find titles for \"{query}\"" = "Pedir à IA para encontrar títulos para \"{query}\"";
 "Ask before leaving" = "Perguntar antes de sair";
 "Ask if you're still watching" = "Perguntar se você ainda está assistindo";
 "Ask to resume or start over" = "Perguntar se deseja continuar ou começar de novo";
@@ -229,6 +244,7 @@
 "Audio not labeled" = "Áudio sem identificação";
 "Audio sin etiqueta" = "Áudio sem identificação";
 "Audio track" = "Faixa de áudio";
+"Augments AI picks with current web results before asking the model. Powered by" = "Complementa as escolhas da IA com resultados atuais da web antes de consultar o modelo. Com tecnologia de";
 "Australia" = "Austrália";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on AniList" = "Autorizar o Harbor no AniList";
@@ -331,6 +347,7 @@
 "Bookshelf" = "Estante";
 "Borde" = "Borda";
 "Border" = "Borda";
+"Born {date}" = "Nascimento em {date}";
 "Borrar búsqueda" = "Limpar busca";
 "Borrar todo" = "Limpar tudo";
 "Both" = "Ambos";
@@ -368,6 +385,7 @@
 "Build your own feed from actors, directors, and Trakt lists" = "Crie seu próprio feed a partir de atores, diretores e listas do Trakt";
 "Build your own palette" = "Crie sua própria paleta";
 "Built for Adventure!" = "Feito para a aventura!";
+"Built into Harbor" = "Integrado ao Harbor";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
 "Buscar" = "Pesquisar";
 "Buscar complementos" = "Pesquisar addons";
@@ -440,6 +458,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "Capítulos";
 "Check it works" = "Verificar se funciona";
+"Check whether this device can reach the saved server address." = "Verifique se este dispositivo consegue acessar o endereço salvo do servidor.";
 "Checking with AniList..." = "Verificando com AniList...";
 "Checking with MyAnimeList..." = "Verificando com MyAnimeList...";
 "Checking…" = "Verificando…";
@@ -453,6 +472,7 @@
 "Choose the frame rate the subtitle was authored for." = "Escolha a taxa de fotogramas para a qual a legenda foi criada.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Escolha até 5 filmes ou séries que você já gosta. O Harbor os usa para ajustar seus destaques e recomendações. Totalmente opcional.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Escolha quando o Harbor deve pedir que você selecione um perfil. Os pedidos programados aparecem quando você volta ao Harbor.";
+"Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "Escolha onde o Harbor busca legendas. Os resultados das fontes ativas aparecem juntos, sem duplicatas.";
 "Choose which addon results appear when you pick a stream." = "Escolha quais resultados de complementos aparecem ao selecionar um stream.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Escolha as avaliações exibidas nos cartões e nas páginas de detalhes. As avaliações bloqueadas precisam de uma chave de provedor em Metadados.";
 "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
@@ -584,6 +604,7 @@
 "Could not load this page. Try again." = "Não foi possível carregar esta página. Tente novamente.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Não foi possível abrir o livro";
+"Could not reach the server within 1.5 seconds. Check the address and that the server machine is online." = "Não foi possível alcançar o servidor em 1,5 segundo. Verifique o endereço e se a máquina do servidor está online.";
 "Could not read file" = "Não foi possível ler o arquivo";
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "Não foi possível ler as suas listas. Os dados guardados foram preservados.";
@@ -632,6 +653,7 @@
 "CuriosityStream" = "CuriosityStream";
 "Current" = "Atual";
 "Custom" = "Personalizado";
+"Custom model id" = "ID de modelo personalizado";
 "Custom subtitle FPS" = "FPS personalizado da legenda";
 "Custom..." = "Personalizado...";
 "Customize" = "Personalizar";
@@ -684,6 +706,7 @@
 "Details" = "Detalhes";
 "Detalles" = "Detalhes";
 "Detener reproducción" = "Stop playback";
+"Died {date}" = "Faleceu em {date}";
 "Dim" = "Escurecer";
 "Dim overlay" = "Sobreposição escurecida";
 "Dirección" = "Direção";
@@ -825,6 +848,7 @@
 "Explorar complementos" = "Navegar pelos addons";
 "Explorar por categoría" = "Navegar por categoria";
 "Explore" = "Explorar";
+"Explore {name}" = "Explorar {name}";
 "Export" = "Exportar";
 "Export log" = "Export log";
 "Export to Trakt" = "Exportar para o Trakt";
@@ -858,6 +882,7 @@
 "Featured at Anime Expo" = "Destaques da Anime Expo";
 "Featured tonight" = "Destaque de hoje";
 "Fecha" = "Data";
+"Fetches DuckDuckGo results and feeds top hits into the model prompt." = "Busca resultados do DuckDuckGo e alimenta os principais no prompt do modelo.";
 "Fiction" = "Ficção";
 "File is larger than 2 MB." = "O arquivo tem mais de 2 MB.";
 "Fill" = "Preencher";
@@ -884,6 +909,8 @@
 "For you" = "Para você";
 "Forced" = "Forçado";
 "Forest" = "Floresta";
+"Forget" = "Esquecer";
+"Forget remote streaming server" = "Esquecer servidor remoto de streaming";
 "Formato de canales" = "Channel format";
 "Forzado" = "Forçado";
 "Found {count} streams for {title} in {seconds}s" = "{count} streams encontrados para {title} em {seconds}s";
@@ -918,6 +945,7 @@
 "Germany" = "Alemanha";
 "Get Started" = "Começar";
 "Get a free key at themoviedb.org" = "Obtenha uma chave gratuita em themoviedb.org";
+"Get a key at" = "Obtenha uma chave em";
 "Get an API key" = "Obter uma chave API";
 "Get yours at" = "Obtenha o seu em";
 "Golf" = "Golfe";
@@ -926,6 +954,7 @@
 "Green" = "Verde";
 "Grid view" = "Visualização em grade";
 "Gris" = "Gray";
+"Groq API key (gsk-...)" = "Chave de API do Groq (gsk-...)";
 "Grosor del contorno" = "Espessura do contorno";
 "Group by repository" = "Agrupar por repositório";
 "Group episodes by story arc" = "Agrupar episódios por arco narrativo";
@@ -966,6 +995,7 @@
 "Harbor ranking" = "Classificação do Harbor";
 "Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "A classificação do Harbor coloca as fontes com melhor pontuação primeiro. A ordem dos addons mantém os resultados de cada addon na ordem em que foram retornados, como nos apps Stremio e Vidi. A prioridade de streams abaixo decide qual addon lidera, nos dois modos.";
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "O Harbor exibe suas listas do AniList na página de Anime e mantém seu progresso sincronizado.";
+"Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "A busca de OpenSubtitles integrada ao Harbor, ativada por padrão. Se você instalar um addon do OpenSubtitles, ela se desativa automaticamente para que seus resultados nunca sejam duplicados.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Menus e rótulos do próprio Harbor. Os idiomas das legendas vêm depois, e você pode mudar os dois em Configurações.";
 "Hard stroke around each letter. High contrast." = "Contorno forte ao redor de cada letra. Alto contraste.";
 "Harvey Award Winners" = "Vencedores do Prêmio Harvey";
@@ -1108,6 +1138,8 @@
 "Japan" = "Japão";
 "Japan's top science-fiction comic honor" = "A maior honraria japonesa dos quadrinhos de ficção científica";
 "Japanese" = "Japonês";
+"Jina API key (optional)" = "Chave de API do Jina (opcional)";
+"Jina Reader" = "Jina Reader";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Pule aberturas automaticamente assim que começarem. Voltar para uma abertura a reproduz sem pular novamente. O botão Pular segue a configuração acima.";
 "Just added" = "Recém-adicionado";
 "Kanopy" = "Kanopy";
@@ -1123,6 +1155,7 @@
 "Kids & Family" = "Infantil e família";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, reconhece temporadas";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, reconhece temporadas";
+"Known For" = "Conhecido por";
 "Korean" = "Coreano";
 "La conversión de FPS solo está disponible para subtítulos de texto." = "A conversão de FPS só está disponível para legendas de texto.";
 "La estructura de toda la página de Inicio. Las opciones siguientes ajustan las filas que contiene." = "O formato de toda a página Início. Tudo abaixo ajusta as fileiras dentro dela.";
@@ -1333,6 +1366,7 @@
 "Navigation" = "Navegação";
 "Navigation changes waiting to sync" = "Navigation changes waiting to sync";
 "Navigation items" = "Itens de navegação";
+"Needs an API key" = "Precisa de uma chave de API";
 "Needs artwork-rich titles to feed the hero" = "Precisa de títulos com bastante arte para alimentar o destaque";
 "Needs at least 10 titles for the Top 10 look" = "Precisa de pelo menos 10 títulos para o visual Top 10";
 "Netflix" = "Netflix";
@@ -1382,6 +1416,7 @@
 "No episodes found for this season." = "Nenhum episódio encontrado para esta temporada.";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "Nenhum favorito ainda";
+"No filmography on record." = "Nenhuma filmografia registrada.";
 "No filters" = "Sem filtros";
 "No hay coincidencias." = "Nenhum resultado.";
 "No hay descripción disponible." = "Nenhuma descrição disponível.";
@@ -1514,6 +1549,8 @@
 "Open on Trakt" = "Abrir no Trakt";
 "Open settings" = "Abrir configurações";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Abra este perfil ao iniciar. Os pedidos programados ainda podem aparecer depois. Perfis com PIN não podem ser definidos como padrão.";
+"OpenRouter API key (sk-or-...)" = "Chave de API do OpenRouter (sk-or-...)";
+"OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "Abrindo AniList...";
 "Opening MyAnimeList..." = "Abrindo MyAnimeList...";
 "Opening book…" = "Abrindo livro…";
@@ -1619,6 +1656,7 @@
 "Plugins" = "Plugins";
 "Plugins are paused. Turn on Use plugins above to run them." = "Os plugins estão pausados. Ative Usar plugins acima para executá-los.";
 "Pluto TV" = "Pluto TV";
+"Point Harbor at a streaming server on another machine, like the Stremio service on a home server. P2P streams download and play from that machine instead of this one." = "Aponte o Harbor para um servidor de streaming em outra máquina, como o serviço Stremio em um servidor doméstico. Os streams P2P baixam e tocam daquela máquina em vez desta.";
 "Polish" = "Polonês";
 "Popular Anime" = "Animes Populares";
 "Popular Movies" = "Filmes Populares";
@@ -1669,6 +1707,7 @@
 "Progress" = "Progress";
 "Proveedores de metadatos" = "Provedores de metadados";
 "Provide a JSON link or paste it directly." = "Forneça um link JSON ou cole-o diretamente.";
+"Provider" = "Provedor";
 "Próximamente" = "Coming soon";
 "Próximos" = "Próximos";
 "Próximos animes" = "Animes Futuros";
@@ -1715,6 +1754,7 @@
 "Reading help" = "Como usar Manga e eBook";
 "Reading mode" = "Modo de leitura";
 "Reading options" = "Reading options";
+"Reading your search" = "Lendo sua busca";
 "Real IMDb and Rotten Tomatoes scores." = "Notas reais do IMDb e do Rotten Tomatoes.";
 "Real-Debrid API token" = "Token de API do Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Streams em cache tocam direto. As chaves ficam locais.";
@@ -1754,6 +1794,7 @@
 "Rellenar" = "Preencher";
 "Remember last stream" = "Lembrar do último stream";
 "Reminder" = "Reminder";
+"Remote streaming server" = "Servidor de streaming remoto";
 "Remove" = "Remover";
 "Remove addon" = "Remove addon";
 "Remove all" = "Remover tudo";
@@ -1869,6 +1910,7 @@
 "Russian" = "Russo";
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
+"SUBDL" = "SUBDL";
 "Salir de imagen en imagen" = "Sair do Picture in Picture";
 "Saltar créditos" = "Pular Créditos";
 "Saltar intro" = "Pular Abertura";
@@ -1902,6 +1944,7 @@
 "Se muestra al mismo tiempo que el subtítulo principal." = "Exibida junto com a legenda principal.";
 "Se usa con 55 % / 25 % de opacidad." = "Usado com alfa de 55% / 25%.";
 "Search" = "Pesquisar";
+"Search SUBDL for subtitles in multiple languages. Requires an API key." = "Busque legendas em vários idiomas no SUBDL. Requer uma chave de API.";
 "Search actors, directors…" = "Pesquisar atores, diretores…";
 "Search addons" = "Pesquisar addons";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
@@ -1910,6 +1953,7 @@
 "Search music" = "Buscar músicas";
 "Search settings" = "Pesquisar configurações";
 "Search subtitles again" = "Search subtitles again";
+"Search the Subsource community database. Requires an API key." = "Busque na base da comunidade Subsource. Requer uma chave de API.";
 "Search title…" = "Pesquisar título…";
 "Search wider" = "Ampliar busca";
 "Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "Pesquisa e transmite diretamente do Easynews. Não precisa de debrid. Só o seu login do Easynews.";
@@ -1951,6 +1995,7 @@
 "Series populares" = "Séries Populares";
 "Serif" = "Serifada";
 "Server URL" = "URL do servidor";
+"Server address" = "Endereço do servidor";
 "Services" = "Serviços";
 "Services changes waiting to sync" = "Alterações nos serviços à espera de sincronização";
 "Servidor Xtream" = "Xtream server";
@@ -2140,6 +2185,7 @@
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Envie uma foto sua ou escolha uma no catálogo do Harbor.";
 "Subir foto" = "Enviar foto";
 "Subir {name}" = "Mover {name} para cima";
+"Subsource" = "Subsource";
 "Subtitle FPS" = "FPS da legenda";
 "Subtitle FPS conversion is only available for text-based subtitles." = "A conversão de FPS só está disponível para legendas de texto.";
 "Subtitle FPS is unavailable in this libmpv runtime." = "O FPS da legenda não está disponível nesta versão do libmpv.";
@@ -2147,6 +2193,7 @@
 "Subtitle appearance" = "Aparência da legenda";
 "Subtitle languages" = "Idiomas de legenda";
 "Subtitle source FPS" = "FPS de origem da legenda";
+"Subtitle sources" = "Fontes de legendas";
 "Subtitle style" = "Estilo da legenda";
 "Subtitle sync" = "Sincronização de legenda";
 "Subtitle track" = "Faixa de legenda";
@@ -2187,6 +2234,7 @@
 "System" = "Sistema";
 "System UI" = "System UI";
 "S{season} E{episode}" = "T{season} E{episode}";
+"S{s} · E{e}" = "T{s} · E{e}";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "Chave da API TMDB (v3)";
@@ -2222,6 +2270,7 @@
 "Tenue" = "Escurecer";
 "Terms" = "Terms";
 "Terror" = "Terror";
+"Test connection" = "Testar conexão";
 "Text" = "Texto";
 "Text color" = "Cor do texto";
 "Texto" = "Texto";
@@ -2233,6 +2282,7 @@
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Essa configuração não é válida. Verifique baseUrl, popularPath, list, chapters e pages.";
 "That does not look like a valid magnet link or infohash." = "Isso não parece ser um link magnet ou infohash válido.";
 "That link did not answer." = "Esse link não respondeu.";
+"That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
 "That route wouldn't chart. Try a different direction." = "Não foi possível traçar essa rota. Tente outra direção.";
 "The Anime Devotee" = "The Anime Devotee";
 "The Binger" = "The Binger";
@@ -2243,17 +2293,22 @@
 "The Series Slayer" = "The Series Slayer";
 "The Well-Rounded" = "The Well-Rounded";
 "The addons did not return metadata for this title." = "Os addons não devolveram metadados para este título.";
+"The address of the streaming server, including its port." = "The address of the streaming server, including its port.";
 "The authorization code timed out before you finished. Try again." = "O código de autorização expirou antes de você terminar. Tente novamente.";
 "The comics industry's highest honor" = "A maior honraria da indústria de quadrinhos";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
 "The little score chip printed on poster cards across your rows and grids." = "O pequeno chip de nota impresso nos cards de pôster nas suas fileiras e grades.";
+"The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
+"The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
 "The most anticipated upcoming releases on Trakt" = "Os lançamentos mais aguardados no Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Os filmes e séries mais assistidos no {name} agora em {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "O original foi mantido. Exporte a legenda em UTF-8 ou UTF-16 para sincronizá-la.";
 "The quick brown fox jumps over the lazy dog" = "Um pequeno jabuti xereta viu dez cegonhas felizes";
 "The ratings row on a title's detail page, next to runtime and genre." = "A linha de avaliações na página de detalhes de um título, ao lado da duração e do gênero.";
+"The server answered with status {status}. Is that a streaming server?" = "O servidor respondeu com o status {status}. Isso é mesmo um servidor de streaming?";
+"The server responded in {ms} ms." = "O servidor respondeu em {ms} ms.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "O formato de toda a página Início. Tudo abaixo ajusta as fileiras dentro dela.";
 "The subtitle already matches the audio." = "A legenda já corresponde ao áudio.";
 "TheTVDB" = "TheTVDB";
@@ -2268,6 +2323,7 @@
 "This is a manga repository. Add it from the Manga page." = "Este é um repositório de mangá. Adicione-o pela página de Mangá.";
 "This is how your subtitles will look." = "É assim que suas legendas vão ficar.";
 "This list is full ({max} items)" = "Esta lista está cheia ({max} itens)";
+"This model no longer exists at the provider. Pick another model (hold the AI button)." = "This model no longer exists at the provider. Pick another model (hold the AI button).";
 "This month" = "Este mês";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
@@ -2325,6 +2381,7 @@
 "Top Series" = "Top Séries";
 "Top Series on MAL" = "Top Séries no MAL";
 "Top left" = "Superior esquerdo";
+"Top match" = "Melhor resultado";
 "Top of the screen" = "No topo da tela";
 "Top rated" = "Mais bem avaliados";
 "Top rated on {site}" = "Mais bem avaliados em {site}";
@@ -2389,6 +2446,7 @@
 "Type" = "Tipo";
 "Type on your keyboard or tap the digits above." = "Digite no teclado ou toque nos números acima.";
 "Type the same 4-digit PIN again." = "Digite o mesmo PIN de 4 dígitos novamente.";
+"Type what you want in plain language and let a model find it. Bring your own API key from either service." = "Descreva o que deseja em linguagem natural e deixe um modelo encontrar. Use sua própria chave de API de qualquer um dos serviços.";
 "Typography" = "Tipografia";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "Títulos e descrições";
@@ -2426,6 +2484,8 @@
 "Usa la clave v3, no el token de acceso de lectura." = "Use a chave da v3, não o token de acesso de leitura.";
 "Usar mi estilo" = "Usar meu estilo";
 "Use addon order" = "Usar a ordem dos addons";
+"Use live web context" = "Usar contexto da web em tempo real";
+"Use model" = "Usar modelo";
 "Use my style" = "Usar meu estilo";
 "Use plugins" = "Usar plugins";
 "Use shared settings" = "Usar configurações compartilhadas";
@@ -2502,11 +2562,13 @@
 "Who's watching?" = "Quem está assistindo?";
 "Wide search · still empty" = "Busca ampla · ainda vazia";
 "Women's Africa Cup of Nations" = "Copa Africana de Nações Feminina";
+"Works without a key at low volume; add a key for higher quotas." = "Funciona sem chave em volume baixo; adicione uma chave para cotas maiores.";
 "World Cup Qualifying: AFC" = "Eliminatórias da Copa do Mundo: Ásia";
 "World Cup Qualifying: CAF" = "Eliminatórias da Copa do Mundo: África";
 "World Cup Qualifying: CONMEBOL" = "Eliminatórias da Copa do Mundo: CONMEBOL";
 "Writer" = "Roteirista";
 "Wrong PIN" = "PIN incorreto";
+"Wyzie" = "Wyzie";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "Year" = "Ano";
@@ -2521,6 +2583,7 @@
 "You've hidden the one catalog that matched." = "Você ocultou o único catálogo que correspondia.";
 "You've reached the end · {n} addons" = "Você chegou ao fim · {n} addons";
 "YouTube" = "YouTube";
+"Your API key was rejected. Check it in Settings, AI search." = "Your API key was rejected. Check it in Settings, AI search.";
 "Your AniList" = "Seu AniList";
 "Your AniList is empty" = "Seu AniList está vazio";
 "Your Discovery Queue" = "Sua Fila de Descoberta";
@@ -2528,6 +2591,7 @@
 "Your Stremio library + addons sync in untouched." = "Sua biblioteca do Stremio + addons sincronizam sem alterações.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Sua watchlist do Trakt está vazia, nada para importar.";
+"Your account is out of credits for this model. Pick a free model or top up." = "Your account is out of credits for this model. Pick a free model or top up.";
 "Your addons" = "Seus addons";
 "Your avatar, name, and handle across Harbor." = "Seu avatar, nome e identificador em todo o Harbor.";
 "Your collection." = "Sua coleção.";
@@ -2578,12 +2642,15 @@
 "eBook" = "Livro digital";
 "episodes" = "episódios";
 "estrellas" = "estrelas";
+"for higher rate limits; leave blank for the free anonymous tier." = "para limites de taxa mais altos; deixe em branco para o plano anônimo gratuito.";
 "guest" = "convidado";
 "h" = "h";
 "hidden" = "oculto";
 "hours watched" = "horas assistidas";
 "hr" = "h";
+"http://192.168.1.50:11470" = "http://192.168.1.50:11470";
 "item" = "item";
+"jina_..." = "jina_...";
 "just now" = "agora mesmo";
 "language" = "idioma";
 "left" = "esquerda";

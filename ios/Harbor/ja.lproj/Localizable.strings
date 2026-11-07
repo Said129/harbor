@@ -29,6 +29,7 @@
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "ブラウザでMyAnimeListのタブが開きました。そこでHarborを承認し、コードまたはページのURLをコピーして下に貼り付けてください。";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremioプロトコル対応クライアント。設定は2分ほどで、ほとんどの項目は任意です。すべてのキーをご自身で管理できます。";
 "A continuación" = "次のエピソード";
+"A fast community subtitle index. Off by default; turn it on for extra coverage on newer or niche releases." = "高速なコミュニティ字幕インデックスです。デフォルトではオフです。新作やニッチな作品の検索範囲を広げるにはオンにしてください。";
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
@@ -37,6 +38,15 @@
 "A to Z" = "名前順";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
+"AI Search · Groq LPU inference" = "AI検索 · Groq LPU推論";
+"AI Search · natural-language search" = "AI検索 · 自然言語検索";
+"AI didn't find anything for that. Try rephrasing." = "AIで見つかりませんでした。別の表現をお試しください。";
+"AI model" = "AIモデル";
+"AI picks" = "AIのおすすめ";
+"AI search" = "AI検索";
+"AI search failed ({status})." = "AI search failed ({status}).";
+"AI search failed." = "AI検索に失敗しました。";
+"AI search failed. Tap to retry." = "AI検索に失敗しました。タップして再試行してください。";
 "AMC+" = "AMC+";
 "API key" = "APIキー";
 "API token" = "APIトークン";
@@ -81,6 +91,7 @@
 "Add a list" = "リストを追加";
 "Add a movie or show to this list..." = "映画や番組をこのリストに追加...";
 "Add a repository" = "リポジトリを追加";
+"Add an API key to use this source." = "このソースを使うにはAPIキーを追加してください。";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "AniListにアニメを追加すると、ステータス別にまとめられてここに表示され、そのまま編集できます。";
 "Add bookmark" = "Add bookmark";
 "Add from lists" = "リストから追加";
@@ -95,6 +106,8 @@
 "Add to Watchlist" = "ウォッチリストに追加";
 "Add to favorites" = "お気に入りに追加";
 "Add to list" = "リストに追加";
+"Add your Groq API key in Settings, AI search to use this model." = "このモデルを使うには、「設定」の「AI検索」でGroq APIキーを追加してください。";
+"Add your OpenRouter API key in Settings, AI search to use this model." = "このモデルを使うには、「設定」の「AI検索」でOpenRouter APIキーを追加してください。";
 "Add your TMDB key in Settings to load these catalogs." = "設定に TMDB キーを追加すると、これらのカタログを読み込めます。";
 "Add {language}" = "{language}を追加";
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Harborのウォッチリストから{n}件の作品をTraktに追加しますか？Traktにすでにある作品はスキップされます。";
@@ -111,6 +124,7 @@
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "エピソードの右クリックメニューに「非表示」を追加します。非表示のエピソードは一覧から消え、「次のエピソード」でもスキップされます。各番組の「非表示を表示」切り替えで再表示できます。";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "「視聴を続ける」の下に、視聴中の作品で最近放送されたエピソードを表示する列を追加します。1件ずつ非表示にすることも、列全体を消去することもできます。デフォルトではオフです。";
+"Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "検索に「AIに聞く」ボタンを追加し、自然な言葉でリクエストを入力できるようにします。";
 "Adjust the text and background. The preview shows your changes as you make them." = "文字と背景を調整します。変更がその場でプレビューに反映されます。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
@@ -207,6 +221,7 @@
 "Arrows" = "矢印キー";
 "Artistas" = "アーティスト";
 "Artists" = "アーティスト";
+"Ask AI to find titles for \"{query}\"" = "AIに「{query}」の作品を探してもらう";
 "Ask before leaving" = "終了前に確認";
 "Ask if you're still watching" = "まだ視聴中か確認";
 "Ask to resume or start over" = "続きから再生するか最初から再生するか確認";
@@ -221,6 +236,7 @@
 "Audio not labeled" = "音声ラベルなし";
 "Audio sin etiqueta" = "音声ラベルなし";
 "Audio track" = "音声トラック";
+"Augments AI picks with current web results before asking the model. Powered by" = "モデルに問い合わせる前に、現在のWeb検索結果をAIのおすすめに追加します。提供元:";
 "Australia" = "オーストラリア";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on AniList" = "AniListでHarborを認証";
@@ -323,6 +339,7 @@
 "Bookshelf" = "Bookshelf";
 "Borde" = "枠線";
 "Border" = "枠線";
+"Born {date}" = "生年月日: {date}";
 "Borrar búsqueda" = "検索をクリア";
 "Borrar todo" = "すべて消去";
 "Both" = "両方";
@@ -358,6 +375,7 @@
 "Build your own feed from actors, directors, and Trakt lists" = "俳優、監督、Traktリストから自分だけのフィードを作成";
 "Build your own palette" = "独自のパレットを作成";
 "Built for Adventure!" = "冒険のために！";
+"Built into Harbor" = "Harborに内蔵";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
 "Buscar" = "検索";
 "Buscar complementos" = "アドオンを検索";
@@ -424,6 +442,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "話";
 "Check it works" = "動作を確認";
+"Check whether this device can reach the saved server address." = "このデバイスから保存済みのサーバーアドレスに接続できるか確認します。";
 "Checking with AniList..." = "AniListで確認中...";
 "Checking with MyAnimeList..." = "MyAnimeListで確認中...";
 "Checking…" = "確認中…";
@@ -437,6 +456,7 @@
 "Choose the frame rate the subtitle was authored for." = "字幕の作成時に使用されたフレームレートを選択してください。";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "好きな映画や番組を最大5作品選んでください。Harborが注目作品やおすすめを好みに合わせて調整します。選択は任意です。";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harborでプロフィールの選択を求めるタイミングを選びます。時間に基づく確認は、Harborに戻ったときに表示されます。";
+"Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "Harborが字幕を検索する場所を選びます。有効なソースの結果をまとめ、重複を除いて表示します。";
 "Choose which addon results appear when you pick a stream." = "ストリーム選択時に表示するアドオンの結果を選びます。";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "カードと詳細ページに表示する評価を選びます。ロックされたカード評価には、「メタデータ」でプロバイダーのキーを設定する必要があります。";
 "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
@@ -564,6 +584,7 @@
 "Could not load this page. Try again." = "このページを読み込めませんでした。もう一度お試しください。";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not reach the server within 1.5 seconds. Check the address and that the server machine is online." = "1.5秒以内にサーバーへ接続できませんでした。アドレスと、サーバーマシンがオンラインかどうかを確認してください。";
 "Could not read file" = "ファイルを読み込めませんでした";
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "リストを読み込めませんでした。保存済みデータは保持されています。";
@@ -612,6 +633,7 @@
 "CuriosityStream" = "CuriosityStream";
 "Current" = "現在";
 "Custom" = "カスタム";
+"Custom model id" = "カスタムモデルID";
 "Custom subtitle FPS" = "カスタム字幕FPS";
 "Custom..." = "カスタム...";
 "Customize" = "カスタマイズ";
@@ -664,6 +686,7 @@
 "Details" = "詳細";
 "Detalles" = "詳細";
 "Detener reproducción" = "Stop playback";
+"Died {date}" = "没年月日: {date}";
 "Dim" = "暗くする";
 "Dim overlay" = "暗めのオーバーレイ";
 "Dirección" = "方向";
@@ -805,6 +828,7 @@
 "Explorar complementos" = "アドオンを見る";
 "Explorar por categoría" = "カテゴリーから探す";
 "Explore" = "見つける";
+"Explore {name}" = "{name}を見る";
 "Export" = "エクスポート";
 "Export log" = "Export log";
 "Export to Trakt" = "Traktにエクスポート";
@@ -838,6 +862,7 @@
 "Featured at Anime Expo" = "Anime Expo注目作";
 "Featured tonight" = "今夜のおすすめ";
 "Fecha" = "日付";
+"Fetches DuckDuckGo results and feeds top hits into the model prompt." = "DuckDuckGoの検索結果を取得し、上位の結果をモデルへのプロンプトに追加します。";
 "Fiction" = "フィクション";
 "File is larger than 2 MB." = "ファイルが2 MBを超えています。";
 "Fill" = "画面いっぱいに表示";
@@ -864,6 +889,8 @@
 "For you" = "あなた向け";
 "Forced" = "強制字幕";
 "Forest" = "森";
+"Forget" = "登録解除";
+"Forget remote streaming server" = "保存したリモート配信サーバーを削除";
 "Formato de canales" = "Channel format";
 "Forzado" = "強制字幕";
 "Found {count} streams for {title} in {seconds}s" = "{title}のストリームを{seconds}秒で{count}件見つけました";
@@ -898,6 +925,7 @@
 "Germany" = "ドイツ";
 "Get Started" = "はじめる";
 "Get a free key at themoviedb.org" = "themoviedb.orgで無料キーを取得";
+"Get a key at" = "キーの取得先";
 "Get an API key" = "APIキーを取得";
 "Get yours at" = "次で入手:";
 "Golf" = "ゴルフ";
@@ -906,6 +934,7 @@
 "Green" = "緑";
 "Grid view" = "グリッド表示";
 "Gris" = "Gray";
+"Groq API key (gsk-...)" = "Groq APIキー（gsk-...）";
 "Grosor del contorno" = "縁取りの太さ";
 "Group by repository" = "リポジトリごとにまとめる";
 "Group episodes by story arc" = "エピソードをストーリーアーク別にまとめる";
@@ -946,6 +975,7 @@
 "Harbor ranking" = "Harborの順位付け";
 "Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Harborランキングでは、評価の高いソースが先に表示されます。アドオン順では、StremioやVidiと同様に、各アドオンの結果が返された順に保たれます。どちらのモードでも、先頭にするアドオンは下のストリーム優先順位で決まります。";
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harborでは、「アニメ」ページにAniListのリストを表示し、進捗を同期します。";
+"Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "Harbor内蔵のOpenSubtitles検索です。デフォルトでオンになっています。OpenSubtitlesアドオンをインストールすると、結果が重複しないよう内蔵検索は自動的に無効になります。";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Harbor本体のメニューとラベルの言語です。字幕言語は後で選択でき、どちらも設定で変更できます。";
 "Hard stroke around each letter. High contrast." = "各文字をくっきり縁取ります。高コントラストです。";
 "Harvey Award Winners" = "ハーベイ賞受賞作";
@@ -1088,6 +1118,8 @@
 "Japan" = "日本";
 "Japan's top science-fiction comic honor" = "日本最高峰のSFコミック賞";
 "Japanese" = "日本語";
+"Jina API key (optional)" = "Jina APIキー（任意）";
+"Jina Reader" = "Jina Reader";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "オープニングが始まると自動でスキップします。イントロに巻き戻した場合は再度スキップせず再生します。スキップボタンは上の設定に従います。";
 "Just added" = "新着";
 "Kanopy" = "Kanopy";
@@ -1103,6 +1135,7 @@
 "Kids & Family" = "キッズ＆ファミリー";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu、MAL、シーズン対応";
 "Kitsu, MAL, season-aware" = "Kitsu、MAL、シーズン対応";
+"Known For" = "代表作";
 "Korean" = "韓国語";
 "La conversión de FPS solo está disponible para subtítulos de texto." = "字幕FPSの変換はテキスト形式の字幕でのみ使用できます。";
 "La estructura de toda la página de Inicio. Las opciones siguientes ajustan las filas que contiene." = "ホームページ全体のレイアウトです。以下の項目では、その中の各行を調整します。";
@@ -1313,6 +1346,7 @@
 "Navigation" = "ナビゲーション";
 "Navigation changes waiting to sync" = "Navigation changes waiting to sync";
 "Navigation items" = "ナビゲーション項目";
+"Needs an API key" = "APIキーが必要です";
 "Needs artwork-rich titles to feed the hero" = "ヒーロー表示には画像が豊富な作品が必要です";
 "Needs at least 10 titles for the Top 10 look" = "トップ10表示には10作品以上が必要です";
 "Netflix" = "Netflix";
@@ -1362,6 +1396,7 @@
 "No episodes found for this season." = "このシーズンのエピソードが見つかりません。";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "お気に入りはまだありません";
+"No filmography on record." = "フィルモグラフィー情報はありません。";
 "No filters" = "フィルターなし";
 "No hay coincidencias." = "一致する項目はありません。";
 "No hay descripción disponible." = "説明はありません。";
@@ -1494,6 +1529,8 @@
 "Open on Trakt" = "Traktで開く";
 "Open settings" = "設定を開く";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "起動時にこのプロフィールを開きます。その後も時間による確認は表示される場合があります。PIN 付きのプロフィールは既定にできません。";
+"OpenRouter API key (sk-or-...)" = "OpenRouter APIキー（sk-or-...）";
+"OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "AniListを開いています...";
 "Opening MyAnimeList..." = "MyAnimeListを開いています...";
 "Opening book…" = "Opening book…";
@@ -1599,6 +1636,7 @@
 "Plugins" = "プラグイン";
 "Plugins are paused. Turn on Use plugins above to run them." = "プラグインは一時停止中です。実行するには上の「プラグインを使う」をオンにしてください。";
 "Pluto TV" = "Pluto TV";
+"Point Harbor at a streaming server on another machine, like the Stremio service on a home server. P2P streams download and play from that machine instead of this one." = "Harbor を、ホームサーバー上の Stremio サービスなど、別のマシンにあるストリーミングサーバーへ接続します。P2Pストリームはこのマシンではなく、そのマシンでダウンロード、再生されます。";
 "Polish" = "ポーランド語";
 "Popular Anime" = "人気アニメ";
 "Popular Movies" = "人気の映画";
@@ -1649,6 +1687,7 @@
 "Progress" = "Progress";
 "Proveedores de metadatos" = "メタデータプロバイダー";
 "Provide a JSON link or paste it directly." = "JSONリンクを入力するか、JSONを直接貼り付けてください。";
+"Provider" = "プロバイダー";
 "Próximamente" = "Coming soon";
 "Próximos" = "開催予定";
 "Próximos animes" = "近日公開アニメ";
@@ -1695,6 +1734,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "閲覧モード";
 "Reading options" = "Reading options";
+"Reading your search" = "検索内容を解析中";
 "Real IMDb and Rotten Tomatoes scores." = "IMDbとRotten Tomatoesの実際の評価スコア。";
 "Real-Debrid API token" = "Real-Debrid APIトークン";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid、TorBox、AllDebrid、Premiumize、Debrid-Link。キャッシュ済みストリームは直接再生されます。キーはローカルに保存されます。";
@@ -1734,6 +1774,7 @@
 "Rellenar" = "画面いっぱいに表示";
 "Remember last stream" = "最後のストリームを記憶";
 "Reminder" = "Reminder";
+"Remote streaming server" = "リモートストリーミングサーバー";
 "Remove" = "削除";
 "Remove addon" = "Remove addon";
 "Remove all" = "すべて削除";
@@ -1849,6 +1890,7 @@
 "Russian" = "ロシア語";
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
+"SUBDL" = "SUBDL";
 "Salir de imagen en imagen" = "ピクチャ・イン・ピクチャを終了";
 "Saltar créditos" = "クレジットをスキップ";
 "Saltar intro" = "イントロをスキップ";
@@ -1880,6 +1922,7 @@
 "Se muestra al mismo tiempo que el subtítulo principal." = "メイン字幕と同時に表示されます。";
 "Se usa con 55 % / 25 % de opacidad." = "55% / 25%のアルファ値で使用。";
 "Search" = "検索";
+"Search SUBDL for subtitles in multiple languages. Requires an API key." = "SUBDL で多言語の字幕を検索します。API キーが必要です。";
 "Search actors, directors…" = "俳優、監督を検索…";
 "Search addons" = "アドオンを検索";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
@@ -1888,6 +1931,7 @@
 "Search music" = "音楽を検索";
 "Search settings" = "設定を検索";
 "Search subtitles again" = "Search subtitles again";
+"Search the Subsource community database. Requires an API key." = "Subsource のコミュニティデータベースを検索します。API キーが必要です。";
 "Search title…" = "タイトルを検索…";
 "Search wider" = "検索範囲を広げる";
 "Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "Easynewsから直接検索してストリーミングします。Debridは不要です。Easynewsのログイン情報だけで利用できます。";
@@ -1929,6 +1973,7 @@
 "Series populares" = "人気のシリーズ";
 "Serif" = "セリフ体";
 "Server URL" = "サーバーURL";
+"Server address" = "サーバーアドレス";
 "Services" = "サービス";
 "Services changes waiting to sync" = "サービスの変更は同期待ちです";
 "Servidor Xtream" = "Xtream server";
@@ -2118,6 +2163,7 @@
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "自分の画像をアップロードするか、Harbor のカタログから選んでください。";
 "Subir foto" = "写真をアップロード";
 "Subir {name}" = "{name}を上に移動";
+"Subsource" = "Subsource";
 "Subtitle FPS" = "字幕FPS";
 "Subtitle FPS conversion is only available for text-based subtitles." = "字幕FPSの変換はテキスト形式の字幕でのみ使用できます。";
 "Subtitle FPS is unavailable in this libmpv runtime." = "このlibmpvランタイムでは字幕FPSを使用できません。";
@@ -2125,6 +2171,7 @@
 "Subtitle appearance" = "字幕の表示";
 "Subtitle languages" = "字幕言語";
 "Subtitle source FPS" = "字幕のソースFPS";
+"Subtitle sources" = "字幕ソース";
 "Subtitle style" = "字幕スタイル";
 "Subtitle sync" = "字幕の同期";
 "Subtitle track" = "字幕トラック";
@@ -2164,6 +2211,7 @@
 "System" = "システム";
 "System UI" = "システムUI";
 "S{season} E{episode}" = "S{season} E{episode}";
+"S{s} · E{e}" = "S{s} · E{e}";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "TMDB APIキー（v3）";
@@ -2199,6 +2247,7 @@
 "Tenue" = "暗くする";
 "Terms" = "Terms";
 "Terror" = "ホラー";
+"Test connection" = "接続をテスト";
 "Text" = "テキスト";
 "Text color" = "文字色";
 "Texto" = "テキスト";
@@ -2210,6 +2259,7 @@
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "この設定は無効です。baseUrl、popularPath、list、chapters、pagesを確認してください。";
 "That does not look like a valid magnet link or infohash." = "有効なマグネットリンクまたはinfohashではないようです。";
 "That link did not answer." = "そのリンクは応答しませんでした。";
+"That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
 "That route wouldn't chart. Try a different direction." = "そのルートは作成できませんでした。別の方向をお試しください。";
 "The Anime Devotee" = "The Anime Devotee";
 "The Binger" = "The Binger";
@@ -2220,17 +2270,22 @@
 "The Series Slayer" = "The Series Slayer";
 "The Well-Rounded" = "The Well-Rounded";
 "The addons did not return metadata for this title." = "アドオンからこの作品のメタデータが返されませんでした。";
+"The address of the streaming server, including its port." = "The address of the streaming server, including its port.";
 "The authorization code timed out before you finished. Try again." = "完了前に認証コードの有効期限が切れました。もう一度お試しください。";
 "The comics industry's highest honor" = "コミック業界最高の栄誉";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
 "The little score chip printed on poster cards across your rows and grids." = "各行やグリッドのポスターカードに表示される小さなスコアバッジです。";
+"The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
+"The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
 "The most anticipated upcoming releases on Trakt" = "Traktで最も期待されている新作";
 "The most-watched movies and series on {name} right now in {region}." = "現在{region}の{name}で最も視聴されている映画とシリーズです。";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "素早い茶色のキツネが、のろまな犬を飛び越える";
 "The ratings row on a title's detail page, next to runtime and genre." = "作品の詳細ページで、再生時間やジャンルの横に表示される評価欄です。";
+"The server answered with status {status}. Is that a streaming server?" = "サーバーからステータス {status} が返されました。ストリーミングサーバーのアドレスで間違いありませんか？";
+"The server responded in {ms} ms." = "サーバーは {ms} ミリ秒で応答しました。";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "ホームページ全体のレイアウトです。以下の項目では、その中の各行を調整します。";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
 "TheTVDB" = "TheTVDB";
@@ -2245,6 +2300,7 @@
 "This is a manga repository. Add it from the Manga page." = "これはマンガのリポジトリです。マンガページから追加してください。";
 "This is how your subtitles will look." = "字幕はこのように表示されます。";
 "This list is full ({max} items)" = "このリストは上限に達しています（{max}件）";
+"This model no longer exists at the provider. Pick another model (hold the AI button)." = "This model no longer exists at the provider. Pick another model (hold the AI button).";
 "This month" = "今月";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
@@ -2302,6 +2358,7 @@
 "Top Series" = "人気シリーズ";
 "Top Series on MAL" = "MALの人気シリーズ";
 "Top left" = "左上";
+"Top match" = "最も一致";
 "Top of the screen" = "画面上部";
 "Top rated" = "評価が高い順";
 "Top rated on {site}" = "{site}で高評価";
@@ -2366,6 +2423,7 @@
 "Type" = "タイプ";
 "Type on your keyboard or tap the digits above." = "キーボードで入力するか、上の数字をタップしてください。";
 "Type the same 4-digit PIN again." = "同じ4桁のPINをもう一度入力してください。";
+"Type what you want in plain language and let a model find it. Bring your own API key from either service." = "探したいものを普段の言葉で入力すると、モデルが検索します。いずれかのサービスで取得したご自身のAPIキーを使用してください。";
 "Typography" = "タイポグラフィ";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "タイトルと説明";
@@ -2403,6 +2461,8 @@
 "Usa la clave v3, no el token de acceso de lectura." = "読み取りアクセストークンではなく、v3キーを使用してください。";
 "Usar mi estilo" = "自分のスタイルを使用";
 "Use addon order" = "アドオン順を使用";
+"Use live web context" = "最新のWeb情報を使用";
+"Use model" = "このモデルを使用";
 "Use my style" = "自分のスタイルを使用";
 "Use plugins" = "プラグインを使う";
 "Use shared settings" = "共有設定を使う";
@@ -2478,8 +2538,10 @@
 "Who's watching" = "視聴する人";
 "Who's watching?" = "どなたが視聴しますか？";
 "Wide search · still empty" = "広範囲検索・結果なし";
+"Works without a key at low volume; add a key for higher quotas." = "少量ならキーなしで利用できます。上限を増やすにはキーを追加してください。";
 "Writer" = "脚本家";
 "Wrong PIN" = "PINが違います";
+"Wyzie" = "Wyzie";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "Year" = "年";
@@ -2494,6 +2556,7 @@
 "You've hidden the one catalog that matched." = "一致した唯一のカタログが非表示になっています。";
 "You've reached the end · {n} addons" = "以上です・アドオン{n}件";
 "YouTube" = "YouTube";
+"Your API key was rejected. Check it in Settings, AI search." = "Your API key was rejected. Check it in Settings, AI search.";
 "Your AniList" = "あなたのAniList";
 "Your AniList is empty" = "AniListは空です";
 "Your Discovery Queue" = "あなたの発見キュー";
@@ -2501,6 +2564,7 @@
 "Your Stremio library + addons sync in untouched." = "Stremioのライブラリとアドオンをそのまま同期。";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Traktのウォッチリストは空です。インポートする項目はありません。";
+"Your account is out of credits for this model. Pick a free model or top up." = "Your account is out of credits for this model. Pick a free model or top up.";
 "Your addons" = "あなたのアドオン";
 "Your avatar, name, and handle across Harbor." = "Harbor全体で使用するアバター、名前、ハンドルネームです。";
 "Your collection." = "あなたのコレクションです。";
@@ -2551,12 +2615,15 @@
 "eBook" = "電子書籍";
 "episodes" = "話";
 "estrellas" = "スター";
+"for higher rate limits; leave blank for the free anonymous tier." = "レート上限を引き上げるために使用します。無料の匿名枠では空欄にしてください。";
 "guest" = "ゲスト";
 "h" = "時間";
 "hidden" = "非表示";
 "hours watched" = "視聴時間";
 "hr" = "時間";
+"http://192.168.1.50:11470" = "http://192.168.1.50:11470";
 "item" = "項目";
+"jina_..." = "jina_...";
 "just now" = "たった今";
 "language" = "言語";
 "left" = "左";

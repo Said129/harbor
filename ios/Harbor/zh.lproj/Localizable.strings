@@ -29,6 +29,7 @@
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "已在浏览器标签页中打开 MyAnimeList。请在那里授权 Harbor，然后复制代码或页面 URL 并粘贴到下方。";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 协议客户端。两分钟即可完成设置，其中大部分为可选项。所有密钥均由你掌控。";
 "A continuación" = "接下来播放";
+"A fast community subtitle index. Off by default; turn it on for extra coverage on newer or niche releases." = "快速的社区字幕索引。默认关闭；开启后可更全面地覆盖较新或小众作品。";
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
@@ -37,6 +38,15 @@
 "A to Z" = "按名称";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
+"AI Search · Groq LPU inference" = "AI 搜索 · Groq LPU 推理";
+"AI Search · natural-language search" = "AI 搜索 · 自然语言搜索";
+"AI didn't find anything for that. Try rephrasing." = "AI 未找到相关内容。请换种说法。";
+"AI model" = "AI 模型";
+"AI picks" = "AI 精选";
+"AI search" = "AI 搜索";
+"AI search failed ({status})." = "AI search failed ({status}).";
+"AI search failed." = "AI 搜索失败。";
+"AI search failed. Tap to retry." = "AI 搜索失败。点按重试。";
 "AMC+" = "AMC+";
 "API key" = "API 密钥";
 "API token" = "API 令牌";
@@ -81,6 +91,7 @@
 "Add a list" = "添加列表";
 "Add a movie or show to this list..." = "将电影或剧集添加到此片单…";
 "Add a repository" = "添加仓库";
+"Add an API key to use this source." = "添加 API 密钥以使用此来源。";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "添加到 AniList 的动漫会按状态分组显示在这里，并可随时编辑。";
 "Add bookmark" = "Add bookmark";
 "Add from lists" = "从片单添加";
@@ -95,6 +106,8 @@
 "Add to Watchlist" = "添加到待看清单";
 "Add to favorites" = "添加到收藏";
 "Add to list" = "添加到片单";
+"Add your Groq API key in Settings, AI search to use this model." = "在“设置”中添加 Groq API 密钥，以便 AI 搜索使用此模型。";
+"Add your OpenRouter API key in Settings, AI search to use this model." = "在“设置”中添加 OpenRouter API 密钥，以便 AI 搜索使用此模型。";
 "Add your TMDB key in Settings to load these catalogs." = "请在设置中添加 TMDB 密钥以加载这些目录。";
 "Add {language}" = "添加{language}";
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "要将 Harbor 片单中的 {n} 部作品添加到 Trakt 吗？Trakt 会跳过已有的作品。";
@@ -111,6 +124,7 @@
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "右键单击某一集时增加“隐藏”选项。隐藏的单集会从列表中消失，“接下来播放”也会跳过它们。每部作品中的“显示隐藏内容”开关可让它们重新显示。";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "在“继续观看”下方添加一行，列出你已在观看的剧集最近播出的单集。可逐个忽略，也可清空整行。默认关闭。";
+"Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "在搜索中添加“询问 AI”按钮，以便用自然语言描述你的需求。";
 "Adjust the text and background. The preview shows your changes as you make them." = "调整文字和背景。预览会实时显示更改。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
@@ -207,6 +221,7 @@
 "Arrows" = "箭头";
 "Artistas" = "艺人";
 "Artists" = "艺人";
+"Ask AI to find titles for \"{query}\"" = "让 AI 查找与“{query}”相关的影视作品";
 "Ask before leaving" = "离开前询问";
 "Ask if you're still watching" = "询问你是否仍在观看";
 "Ask to resume or start over" = "询问继续播放还是从头开始";
@@ -221,6 +236,7 @@
 "Audio not labeled" = "音频未标注";
 "Audio sin etiqueta" = "音频未标注";
 "Audio track" = "音轨";
+"Augments AI picks with current web results before asking the model. Powered by" = "先使用当前网页结果增强 AI 推荐，再交给模型处理。技术支持：";
 "Australia" = "澳大利亚";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on AniList" = "在 AniList 上授权 Harbor";
@@ -323,6 +339,7 @@
 "Bookshelf" = "Bookshelf";
 "Borde" = "边框";
 "Border" = "边框";
+"Born {date}" = "出生于 {date}";
 "Borrar búsqueda" = "清除搜索";
 "Borrar todo" = "全部清除";
 "Both" = "两者";
@@ -358,6 +375,7 @@
 "Build your own feed from actors, directors, and Trakt lists" = "使用演员、导演和 Trakt 清单创建专属信息流";
 "Build your own palette" = "创建自己的配色方案";
 "Built for Adventure!" = "为冒险而生！";
+"Built into Harbor" = "Harbor 内置";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
 "Buscar" = "搜索";
 "Buscar complementos" = "搜索插件";
@@ -424,6 +442,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "章节";
 "Check it works" = "检查是否可用";
+"Check whether this device can reach the saved server address." = "检查此设备能否连接已保存的服务器地址。";
 "Checking with AniList..." = "正在通过 AniList 检查…";
 "Checking with MyAnimeList..." = "正在通过 MyAnimeList 检查…";
 "Checking…" = "正在检查…";
@@ -437,6 +456,7 @@
 "Choose the frame rate the subtitle was authored for." = "选择制作此字幕时使用的帧率。";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "最多选择 5 部你已经喜欢的电影或剧集。Harbor 会用它们来优化精选内容和推荐。完全可选。";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "选择 Harbor 何时要求选择个人资料。定时提示会在你返回 Harbor 时出现。";
+"Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "选择 Harbor 搜索字幕的来源。已启用来源的结果会合并显示，并去除重复项。";
 "Choose which addon results appear when you pick a stream." = "选择挑选播放源时显示哪些扩展结果。";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "选择在卡片和详情页显示哪些评分。已锁定的卡片评分需要在“元数据”中添加提供方密钥。";
 "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
@@ -564,6 +584,7 @@
 "Could not load this page. Try again." = "无法加载此页面。请重试。";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not reach the server within 1.5 seconds. Check the address and that the server machine is online." = "无法在 1.5 秒内连接到服务器。请检查地址，并确认服务器所在设备已开机。";
 "Could not read file" = "无法读取文件";
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "无法读取你的列表。已保存的数据仍然保留。";
@@ -612,6 +633,7 @@
 "CuriosityStream" = "CuriosityStream";
 "Current" = "当前";
 "Custom" = "自定义";
+"Custom model id" = "自定义模型 ID";
 "Custom subtitle FPS" = "自定义字幕 FPS";
 "Custom..." = "自定义…";
 "Customize" = "自定义";
@@ -664,6 +686,7 @@
 "Details" = "详情";
 "Detalles" = "详情";
 "Detener reproducción" = "Stop playback";
+"Died {date}" = "逝世于 {date}";
 "Dim" = "调暗";
 "Dim overlay" = "暗色遮罩";
 "Dirección" = "阅读方向";
@@ -805,6 +828,7 @@
 "Explorar complementos" = "浏览插件";
 "Explorar por categoría" = "按类别浏览";
 "Explore" = "探索";
+"Explore {name}" = "探索 {name}";
 "Export" = "导出";
 "Export log" = "Export log";
 "Export to Trakt" = "导出到 Trakt";
@@ -838,6 +862,7 @@
 "Featured at Anime Expo" = "Anime Expo 精选作品";
 "Featured tonight" = "今晚精选";
 "Fecha" = "日期";
+"Fetches DuckDuckGo results and feeds top hits into the model prompt." = "获取 DuckDuckGo 结果，并将排名靠前的结果加入模型提示词。";
 "Fiction" = "虚构类";
 "File is larger than 2 MB." = "文件大于 2 MB。";
 "Fill" = "填充";
@@ -864,6 +889,8 @@
 "For you" = "为你推荐";
 "Forced" = "强制";
 "Forest" = "森林";
+"Forget" = "忘记";
+"Forget remote streaming server" = "移除已保存的远程播放服务器";
 "Formato de canales" = "Channel format";
 "Forzado" = "强制";
 "Found {count} streams for {title} in {seconds}s" = "在 {seconds} 秒内为 {title} 找到 {count} 个播放源";
@@ -898,6 +925,7 @@
 "Germany" = "德国";
 "Get Started" = "开始使用";
 "Get a free key at themoviedb.org" = "前往 themoviedb.org 获取免费密钥";
+"Get a key at" = "获取密钥：";
 "Get an API key" = "获取 API 密钥";
 "Get yours at" = "获取地址：";
 "Golf" = "高尔夫";
@@ -906,6 +934,7 @@
 "Green" = "绿色";
 "Grid view" = "网格视图";
 "Gris" = "Gray";
+"Groq API key (gsk-...)" = "Groq API 密钥（gsk-...）";
 "Grosor del contorno" = "描边粗细";
 "Group by repository" = "按仓库分组";
 "Group episodes by story arc" = "按剧情篇章对剧集分组";
@@ -946,6 +975,7 @@
 "Harbor ranking" = "Harbor 排序";
 "Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Harbor 排序会将评分最高的播放源排在前面。插件顺序会保留每个插件返回结果的原始顺序，与 Stremio 和 Vidi 应用一致。在两种模式下，下方的播放源优先级都会决定哪个插件排在最前。";
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harbor 会在动漫页面显示你的 AniList 列表，并持续同步观看进度。";
+"Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "Harbor 内置的 OpenSubtitles 搜索，默认开启。如果你安装了 OpenSubtitles 插件，此功能会自动停用，避免结果重复。";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "用于 Harbor 自身的菜单和标签。字幕语言可稍后设置，这两项都能在设置中更改。";
 "Hard stroke around each letter. High contrast." = "为每个字符添加硬边描边，对比度高。";
 "Harvey Award Winners" = "哈维奖获奖作品";
@@ -1088,6 +1118,8 @@
 "Japan" = "日本";
 "Japan's top science-fiction comic honor" = "日本顶级科幻漫画奖项";
 "Japanese" = "日语";
+"Jina API key (optional)" = "Jina API 密钥（可选）";
+"Jina Reader" = "Jina Reader";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "片头一开始就自动跳过。回退到片头会重新播放，不会再次跳过。跳过按钮遵循上方设置。";
 "Just added" = "最新添加";
 "Kanopy" = "Kanopy";
@@ -1103,6 +1135,7 @@
 "Kids & Family" = "儿童与家庭";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu、MAL、支持按季匹配";
 "Kitsu, MAL, season-aware" = "Kitsu、MAL、支持按季匹配";
+"Known For" = "代表作";
 "Korean" = "韩语";
 "La conversión de FPS solo está disponible para subtítulos de texto." = "字幕 FPS 转换仅适用于文本字幕。";
 "La estructura de toda la página de Inicio. Las opciones siguientes ajustan las filas que contiene." = "整个首页的布局。下方各项用于调整其中的内容行。";
@@ -1313,6 +1346,7 @@
 "Navigation" = "导航";
 "Navigation changes waiting to sync" = "Navigation changes waiting to sync";
 "Navigation items" = "导航项";
+"Needs an API key" = "需要 API 密钥";
 "Needs artwork-rich titles to feed the hero" = "需要包含丰富图片素材的作品才能用于焦点推荐";
 "Needs at least 10 titles for the Top 10 look" = "至少需要 10 部作品才能使用前 10 名样式";
 "Netflix" = "Netflix";
@@ -1362,6 +1396,7 @@
 "No episodes found for this season." = "未找到本季剧集。";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "暂无收藏";
+"No filmography on record." = "暂无影视作品记录。";
 "No filters" = "无筛选条件";
 "No hay coincidencias." = "无匹配结果。";
 "No hay descripción disponible." = "暂无简介。";
@@ -1494,6 +1529,8 @@
 "Open on Trakt" = "在 Trakt 上打开";
 "Open settings" = "打开设置";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "启动时打开此个人资料。之后仍可能显示定时提示。设置了 PIN 的资料不能设为默认。";
+"OpenRouter API key (sk-or-...)" = "OpenRouter API 密钥（sk-or-...）";
+"OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "正在打开 AniList...";
 "Opening MyAnimeList..." = "正在打开 MyAnimeList...";
 "Opening book…" = "Opening book…";
@@ -1599,6 +1636,7 @@
 "Plugins" = "脚本插件";
 "Plugins are paused. Turn on Use plugins above to run them." = "脚本插件已暂停。打开上方的“使用脚本插件”以运行它们。";
 "Pluto TV" = "Pluto TV";
+"Point Harbor at a streaming server on another machine, like the Stremio service on a home server. P2P streams download and play from that machine instead of this one." = "让 Harbor 连接另一台设备上的流媒体服务器，例如家庭服务器上的 Stremio 服务。P2P 流将由该设备下载并播放，而非本机。";
 "Polish" = "波兰语";
 "Popular Anime" = "热门动漫";
 "Popular Movies" = "热门电影";
@@ -1649,6 +1687,7 @@
 "Progress" = "Progress";
 "Proveedores de metadatos" = "元数据提供商";
 "Provide a JSON link or paste it directly." = "提供 JSON 链接或直接粘贴内容。";
+"Provider" = "提供商";
 "Próximamente" = "Coming soon";
 "Próximos" = "即将开始";
 "Próximos animes" = "即将上线的动漫";
@@ -1695,6 +1734,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "阅读模式";
 "Reading options" = "Reading options";
+"Reading your search" = "正在理解你的搜索内容";
 "Real IMDb and Rotten Tomatoes scores." = "真实的 IMDb 和 Rotten Tomatoes 评分。";
 "Real-Debrid API token" = "Real-Debrid API 令牌";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "支持 Real-Debrid、TorBox、AllDebrid、Premiumize 和 Debrid-Link。已缓存的播放源可直接播放。密钥仅保存在本地。";
@@ -1734,6 +1774,7 @@
 "Rellenar" = "填充";
 "Remember last stream" = "记住上次使用的片源";
 "Reminder" = "Reminder";
+"Remote streaming server" = "远程流媒体服务器";
 "Remove" = "移除";
 "Remove addon" = "Remove addon";
 "Remove all" = "全部移除";
@@ -1849,6 +1890,7 @@
 "Russian" = "俄语";
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
+"SUBDL" = "SUBDL";
 "Salir de imagen en imagen" = "退出画中画";
 "Saltar créditos" = "跳过片尾";
 "Saltar intro" = "跳过片头";
@@ -1880,6 +1922,7 @@
 "Se muestra al mismo tiempo que el subtítulo principal." = "与主字幕同时显示。";
 "Se usa con 55 % / 25 % de opacidad." = "使用 55% / 25% 不透明度。";
 "Search" = "搜索";
+"Search SUBDL for subtitles in multiple languages. Requires an API key." = "在 SUBDL 搜索多种语言的字幕。需要 API 密钥。";
 "Search actors, directors…" = "搜索演员、导演…";
 "Search addons" = "搜索插件";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
@@ -1888,6 +1931,7 @@
 "Search music" = "搜索音乐";
 "Search settings" = "搜索设置";
 "Search subtitles again" = "Search subtitles again";
+"Search the Subsource community database. Requires an API key." = "搜索 Subsource 社区数据库。需要 API 密钥。";
 "Search title…" = "搜索片名…";
 "Search wider" = "扩大搜索范围";
 "Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "直接从 Easynews 搜索并播放。无需 Debrid，只需 Easynews 登录信息。";
@@ -1929,6 +1973,7 @@
 "Series populares" = "热门剧集";
 "Serif" = "衬线体";
 "Server URL" = "服务器 URL";
+"Server address" = "服务器地址";
 "Services" = "服务";
 "Services changes waiting to sync" = "服务更改等待同步";
 "Servidor Xtream" = "Xtream server";
@@ -2118,6 +2163,7 @@
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "上传自己的图片，或从 Harbor 图库中选择。";
 "Subir foto" = "上传照片";
 "Subir {name}" = "上移{name}";
+"Subsource" = "Subsource";
 "Subtitle FPS" = "字幕 FPS";
 "Subtitle FPS conversion is only available for text-based subtitles." = "字幕 FPS 转换仅适用于文本字幕。";
 "Subtitle FPS is unavailable in this libmpv runtime." = "此 libmpv 运行时不支持字幕 FPS。";
@@ -2125,6 +2171,7 @@
 "Subtitle appearance" = "字幕外观";
 "Subtitle languages" = "字幕语言";
 "Subtitle source FPS" = "字幕源 FPS";
+"Subtitle sources" = "字幕来源";
 "Subtitle style" = "字幕样式";
 "Subtitle sync" = "字幕同步";
 "Subtitle track" = "字幕轨道";
@@ -2164,6 +2211,7 @@
 "System" = "跟随系统";
 "System UI" = "系统界面";
 "S{season} E{episode}" = "第{season}季 第{episode}集";
+"S{s} · E{e}" = "S{s} · E{e}";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "TMDB API 密钥（v3）";
@@ -2199,6 +2247,7 @@
 "Tenue" = "调暗";
 "Terms" = "Terms";
 "Terror" = "恐怖";
+"Test connection" = "测试连接";
 "Text" = "文本";
 "Text color" = "文字颜色";
 "Texto" = "文本";
@@ -2210,6 +2259,7 @@
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "该配置无效。请检查 baseUrl、popularPath、list、chapters 和 pages。";
 "That does not look like a valid magnet link or infohash." = "这似乎不是有效的 magnet 链接或 infohash。";
 "That link did not answer." = "该链接没有响应。";
+"That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
 "That route wouldn't chart. Try a different direction." = "这条航线走不通。换个方向试试。";
 "The Anime Devotee" = "The Anime Devotee";
 "The Binger" = "The Binger";
@@ -2220,17 +2270,22 @@
 "The Series Slayer" = "The Series Slayer";
 "The Well-Rounded" = "The Well-Rounded";
 "The addons did not return metadata for this title." = "插件未返回此作品的元数据。";
+"The address of the streaming server, including its port." = "The address of the streaming server, including its port.";
 "The authorization code timed out before you finished. Try again." = "你未能及时完成操作，授权码已过期。请重试。";
 "The comics industry's highest honor" = "漫画行业的最高荣誉";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
 "The little score chip printed on poster cards across your rows and grids." = "各内容行和网格中的海报卡片上显示的小型评分标签。";
+"The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
+"The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
 "The most anticipated upcoming releases on Trakt" = "Trakt 上最受期待的即将上线内容";
 "The most-watched movies and series on {name} right now in {region}." = "{region} 当前在 {name} 上观看人数最多的电影和剧集。";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "敏捷的棕狐跃过懒狗";
 "The ratings row on a title's detail page, next to runtime and genre." = "影片详情页中位于时长和类型旁边的评分栏。";
+"The server answered with status {status}. Is that a streaming server?" = "服务器返回状态 {status}。这是流媒体服务器吗？";
+"The server responded in {ms} ms." = "服务器在 {ms} 毫秒内响应。";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "整个首页的布局。下方各项用于调整其中的内容行。";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
 "TheTVDB" = "TheTVDB";
@@ -2245,6 +2300,7 @@
 "This is a manga repository. Add it from the Manga page." = "这是漫画仓库。请在漫画页面添加。";
 "This is how your subtitles will look." = "字幕将显示为这样。";
 "This list is full ({max} items)" = "此片单已满（{max} 项）";
+"This model no longer exists at the provider. Pick another model (hold the AI button)." = "This model no longer exists at the provider. Pick another model (hold the AI button).";
 "This month" = "本月";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
@@ -2302,6 +2358,7 @@
 "Top Series" = "剧集榜单";
 "Top Series on MAL" = "MAL 剧集榜";
 "Top left" = "左上角";
+"Top match" = "最佳匹配";
 "Top of the screen" = "屏幕顶部";
 "Top rated" = "评分最高";
 "Top rated on {site}" = "{site} 评分最高";
@@ -2366,6 +2423,7 @@
 "Type" = "类型";
 "Type on your keyboard or tap the digits above." = "使用键盘输入，或点击上方数字。";
 "Type the same 4-digit PIN again." = "再次输入相同的 4 位 PIN。";
+"Type what you want in plain language and let a model find it. Bring your own API key from either service." = "用自然语言输入想找的内容，让模型帮你查找。使用你自己在任一服务中的 API 密钥。";
 "Typography" = "字体排版";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "标题和简介";
@@ -2403,6 +2461,8 @@
 "Usa la clave v3, no el token de acceso de lectura." = "请使用 v3 密钥，而不是读取访问令牌。";
 "Usar mi estilo" = "使用我的样式";
 "Use addon order" = "使用插件顺序";
+"Use live web context" = "使用实时 Web 上下文";
+"Use model" = "使用模型";
 "Use my style" = "使用我的样式";
 "Use plugins" = "使用脚本插件";
 "Use shared settings" = "使用共享设置";
@@ -2478,8 +2538,10 @@
 "Who's watching" = "谁在观看";
 "Who's watching?" = "谁在看？";
 "Wide search · still empty" = "扩大搜索范围 · 仍无结果";
+"Works without a key at low volume; add a key for higher quotas." = "低用量时无需密钥即可使用；添加密钥可获得更高配额。";
 "Writer" = "编剧";
 "Wrong PIN" = "PIN 错误";
+"Wyzie" = "Wyzie";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "Year" = "年份";
@@ -2494,6 +2556,7 @@
 "You've hidden the one catalog that matched." = "你隐藏了唯一匹配的目录。";
 "You've reached the end · {n} addons" = "已到底 · 共 {n} 个插件";
 "YouTube" = "YouTube";
+"Your API key was rejected. Check it in Settings, AI search." = "Your API key was rejected. Check it in Settings, AI search.";
 "Your AniList" = "您的 AniList";
 "Your AniList is empty" = "您的 AniList 为空";
 "Your Discovery Queue" = "你的发现队列";
@@ -2501,6 +2564,7 @@
 "Your Stremio library + addons sync in untouched." = "你的 Stremio 媒体库和插件将原样同步。";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "你的 Trakt 片单为空，没有可导入的内容。";
+"Your account is out of credits for this model. Pick a free model or top up." = "Your account is out of credits for this model. Pick a free model or top up.";
 "Your addons" = "你的插件";
 "Your avatar, name, and handle across Harbor." = "你在 Harbor 中使用的头像、名称和账号名。";
 "Your collection." = "你的收藏。";
@@ -2551,12 +2615,15 @@
 "eBook" = "电子书";
 "episodes" = "集";
 "estrellas" = "颗星";
+"for higher rate limits; leave blank for the free anonymous tier." = "可获得更高的速率限制；留空则使用免费的匿名方案。";
 "guest" = "访客";
 "h" = "小时";
 "hidden" = "隐藏";
 "hours watched" = "观看小时数";
 "hr" = "小时";
+"http://192.168.1.50:11470" = "http://192.168.1.50:11470";
 "item" = "项目";
+"jina_..." = "jina_...";
 "just now" = "刚刚";
 "language" = "语言";
 "left" = "左";

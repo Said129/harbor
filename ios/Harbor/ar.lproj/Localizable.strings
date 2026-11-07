@@ -31,6 +31,7 @@
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "فُتحت علامة تبويب في المتصفح على MyAnimeList. وافق على Harbor هناك، ثم انسخ الرمز أو رابط URL الصفحة والصقه أدناه.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "عميل لبروتوكول Stremio. دقيقتان للإعداد، ومعظمه اختياري. تبقى أنت المتحكّم في كل مفتاح.";
 "A continuación" = "التالي";
+"A fast community subtitle index. Off by default; turn it on for extra coverage on newer or niche releases." = "فهرس ترجمة سريع من المجتمع. معطّل افتراضيًا؛ فعّله للحصول على تغطية إضافية للإصدارات الأحدث أو المتخصّصة.";
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
@@ -44,6 +45,15 @@
 "AFC Champions League Qualifying" = "تصفيات دوري أبطال آسيا";
 "AFC Champions League Two" = "دوري أبطال آسيا 2";
 "AFC Women's Asian Cup" = "كأس آسيا للسيدات";
+"AI Search · Groq LPU inference" = "بحث AI · استدلال Groq LPU";
+"AI Search · natural-language search" = "بحث AI · بحث باللغة الطبيعية";
+"AI didn't find anything for that. Try rephrasing." = "لم يعثر الذكاء الاصطناعي على أي شيء لذلك. جرّب إعادة الصياغة.";
+"AI model" = "نموذج الذكاء الاصطناعي";
+"AI picks" = "اختيارات الذكاء الاصطناعي";
+"AI search" = "البحث بالذكاء الاصطناعي";
+"AI search failed ({status})." = "AI search failed ({status}).";
+"AI search failed." = "فشل البحث بالذكاء الاصطناعي.";
+"AI search failed. Tap to retry." = "فشل بحث الذكاء الاصطناعي. انقر لإعادة المحاولة.";
 "AMC+" = "AMC+";
 "API key" = "مفتاح API";
 "API token" = "رمز API";
@@ -88,6 +98,7 @@
 "Add a list" = "إضافة قائمة";
 "Add a movie or show to this list..." = "أضف فيلمًا أو مسلسلًا إلى هذه القائمة...";
 "Add a repository" = "إضافة مستودع";
+"Add an API key to use this source." = "أضف مفتاح API لاستخدام هذا المصدر.";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "أضف أنمي إلى AniList الخاص بك ليظهر هنا، مجمّعًا حسب الحالة وجاهزًا للتعديل.";
 "Add bookmark" = "Add bookmark";
 "Add from lists" = "إضافة من القوائم";
@@ -102,6 +113,8 @@
 "Add to Watchlist" = "إضافة إلى قائمة المشاهدة";
 "Add to favorites" = "إضافة إلى المفضّلة";
 "Add to list" = "إضافة إلى القائمة";
+"Add your Groq API key in Settings, AI search to use this model." = "أضف مفتاح API الخاص بـ Groq في الإعدادات، بحث الذكاء الاصطناعي لاستخدام هذا النموذج.";
+"Add your OpenRouter API key in Settings, AI search to use this model." = "أضف مفتاح API الخاص بـ OpenRouter في الإعدادات، بحث الذكاء الاصطناعي لاستخدام هذا النموذج.";
 "Add your TMDB key in Settings to load these catalogs." = "أضف مفتاح TMDB في الإعدادات لتحميل هذه الكتالوجات.";
 "Add {language}" = "إضافة {language}";
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "إضافة {n} عنوان من قائمة مشاهدة Harbor إلى Trakt؟ يتخطّى Trakt أي عنوان موجود لديه بالفعل.";
@@ -118,6 +131,7 @@
 "Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back." = "يضيف خيار \"إخفاء\" عند النقر بزر الفأرة الأيمن على حلقة. تختفي الحلقات المخفية من القائمة ويتخطّاها \"التالي\". يتيح لك مفتاح \"إظهار المخفية\" في كل مسلسل استعادتها.";
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "يضيف صفًا أسفل «متابعة المشاهدة» يعرض الحلقات التي عُرضت مؤخرًا من المسلسلات التي كنت تشاهدها. تجاهلها واحدة تلو الأخرى أو امسح الصف بالكامل. معطّل افتراضيًا.";
+"Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "يضيف زر \"اسأل الذكاء الاصطناعي\" إلى البحث، لتكتب طلبك بلغة بسيطة ومباشرة.";
 "Adjust the text and background. The preview shows your changes as you make them." = "اضبط النص والخلفية. تُظهر المعاينة تغييراتك فور إجرائها.";
 "Administrar" = "إدارة";
 "Adult sources" = "Adult sources";
@@ -217,6 +231,7 @@
 "Arrows" = "الأسهم";
 "Artistas" = "الفنانون";
 "Artists" = "الفنانون";
+"Ask AI to find titles for \"{query}\"" = "اطلب من الذكاء الاصطناعي البحث عن عناوين لـ \"{query}\"";
 "Ask before leaving" = "السؤال قبل المغادرة";
 "Ask if you're still watching" = "السؤال إن كنت لا تزال تشاهد";
 "Ask to resume or start over" = "السؤال عن الاستئناف أو البدء من جديد";
@@ -231,6 +246,7 @@
 "Audio not labeled" = "الصوت بلا تسمية";
 "Audio sin etiqueta" = "الصوت بلا تسمية";
 "Audio track" = "المسار الصوتي";
+"Augments AI picks with current web results before asking the model. Powered by" = "يُعزّز اختيارات AI بنتائج الويب الحالية قبل سؤال النموذج. مدعوم من";
 "Australia" = "أستراليا";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on AniList" = "تفويض Harbor على AniList";
@@ -334,6 +350,7 @@
 "Bookshelf" = "رف الكتب";
 "Borde" = "إطار";
 "Border" = "إطار";
+"Born {date}" = "وُلد في {date}";
 "Borrar búsqueda" = "مسح البحث";
 "Borrar todo" = "مسح الكل";
 "Both" = "كلاهما";
@@ -371,6 +388,7 @@
 "Build your own feed from actors, directors, and Trakt lists" = "ابنِ موجزك الخاص من الممثلين والمخرجين وقوائم Trakt";
 "Build your own palette" = "أنشئ لوحة ألوانك الخاصة";
 "Built for Adventure!" = "صُنع للمغامرة!";
+"Built into Harbor" = "مدمج في Harbor";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
 "Buscar" = "بحث";
 "Buscar complementos" = "ابحث عن الإضافات";
@@ -443,6 +461,7 @@
 "Channel format" = "Channel format";
 "Chapters" = "الفصول";
 "Check it works" = "التحقق من عمله";
+"Check whether this device can reach the saved server address." = "تحقّق من قدرة هذا الجهاز على الاتصال بعنوان الخادم المحفوظ.";
 "Checking with AniList..." = "جارٍ التحقق مع AniList...";
 "Checking with MyAnimeList..." = "جارٍ التحقق مع MyAnimeList...";
 "Checking…" = "جارٍ التحقق…";
@@ -456,6 +475,7 @@
 "Choose the frame rate the subtitle was authored for." = "اختر معدل الإطارات الذي أُنشئت الترجمة على أساسه.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "اختر حتى 5 أفلام أو مسلسلات تحبها بالفعل. يستخدمها Harbor لضبط مختاراتك المميزة وتوصياتك. اختياري تمامًا.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "اختر متى يطلب Harbor اختيار ملف شخصي. تظهر المطالبات المؤقّتة عند العودة إلى Harbor.";
+"Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "اختر أين يبحث Harbor عن الترجمة. تظهر نتائج المصادر المفعّلة معًا بعد إزالة التكرارات.";
 "Choose which addon results appear when you pick a stream." = "اختر نتائج الإضافات التي تظهر عند اختيار بث.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "اختر التقييمات التي تظهر على البطاقات وصفحات التفاصيل. تتطلّب التقييمات المقفلة مفتاح مزوّد في البيانات الوصفية.";
 "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here." = "Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here.";
@@ -587,6 +607,7 @@
 "Could not load this page. Try again." = "تعذر تحميل هذه الصفحة. حاول مرة أخرى.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "تعذر فتح الكتاب";
+"Could not reach the server within 1.5 seconds. Check the address and that the server machine is online." = "تعذّر الوصول إلى الخادم خلال 1.5 ثانية. تحقّق من العنوان ومن أن جهاز الخادم متصل.";
 "Could not read file" = "تعذّرت قراءة الملف";
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "تعذرت قراءة قوائمك. بياناتك المحفوظة محفوظة.";
@@ -635,6 +656,7 @@
 "CuriosityStream" = "CuriosityStream";
 "Current" = "الحالي";
 "Custom" = "مخصص";
+"Custom model id" = "معرّف نموذج مخصّص";
 "Custom subtitle FPS" = "معدل إطارات مخصص للترجمة";
 "Custom..." = "مخصص...";
 "Customize" = "تخصيص";
@@ -687,6 +709,7 @@
 "Details" = "التفاصيل";
 "Detalles" = "التفاصيل";
 "Detener reproducción" = "Stop playback";
+"Died {date}" = "تُوفي في {date}";
 "Dim" = "تعتيم";
 "Dim overlay" = "تعتيم الخلفية";
 "Dirección" = "الاتجاه";
@@ -828,6 +851,7 @@
 "Explorar complementos" = "تصفح الإضافات";
 "Explorar por categoría" = "تصفّح حسب الفئة";
 "Explore" = "استكشاف";
+"Explore {name}" = "استكشف {name}";
 "Export" = "تصدير";
 "Export log" = "Export log";
 "Export to Trakt" = "التصدير إلى Trakt";
@@ -861,6 +885,7 @@
 "Featured at Anime Expo" = "مختارات Anime Expo";
 "Featured tonight" = "مميّز الليلة";
 "Fecha" = "التاريخ";
+"Fetches DuckDuckGo results and feeds top hits into the model prompt." = "يجلب نتائج DuckDuckGo ويغذّي أفضل النتائج في مُوجّه النموذج.";
 "Fiction" = "أدب روائي";
 "File is larger than 2 MB." = "حجم الملف أكبر من 2 م.ب.";
 "Fill" = "تعبئة";
@@ -887,6 +912,8 @@
 "For you" = "لك";
 "Forced" = "إجباري";
 "Forest" = "غابة";
+"Forget" = "نسيان";
+"Forget remote streaming server" = "نسيان خادم البث البعيد";
 "Formato de canales" = "Channel format";
 "Forzado" = "إجباري";
 "Found {count} streams for {title} in {seconds}s" = "عُثر على {count} بثًا لـ {title} خلال {seconds} ث";
@@ -922,6 +949,7 @@
 "Germany" = "ألمانيا";
 "Get Started" = "ابدأ الآن";
 "Get a free key at themoviedb.org" = "احصل على مفتاح مجاني من themoviedb.org";
+"Get a key at" = "احصل على مفتاح من";
 "Get an API key" = "الحصول على مفتاح API";
 "Get yours at" = "احصل على مفتاحك من";
 "Golf" = "الغولف";
@@ -930,6 +958,7 @@
 "Green" = "أخضر";
 "Grid view" = "عرض شبكي";
 "Gris" = "Gray";
+"Groq API key (gsk-...)" = "مفتاح Groq API (gsk-...)";
 "Grosor del contorno" = "سُمك الإطار";
 "Group by repository" = "التجميع حسب المستودع";
 "Group episodes by story arc" = "تجميع الحلقات حسب القوس القصصي";
@@ -970,6 +999,7 @@
 "Harbor ranking" = "ترتيب Harbor";
 "Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "يضع ترتيب Harbor المصادر الأعلى تقييمًا أولًا. ويحافظ ترتيب الإضافات على نتائج كل إضافة بالترتيب الذي أعادتها به، مثل تطبيقَي Stremio وVidi. وتحدّد أولوية البث أدناه أي إضافة تتصدّر، في كلا الوضعين.";
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "يعرض Harbor قوائم AniList الخاصة بك في صفحة الأنمي ويُبقي تقدمك متزامنًا.";
+"Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "بحث OpenSubtitles المدمج في Harbor، مفعّل افتراضيًا. إذا ثبّتَ إضافة OpenSubtitles، يتنحّى هذا البحث تلقائيًا حتى لا تتكرّر نتائجك أبدًا.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "قوائم Harbor وتسمياته. لغات الترجمة تأتي لاحقًا، ويمكنك تغيير كليهما من الإعدادات.";
 "Hard stroke around each letter. High contrast." = "حد صلب حول كل حرف. تباين عالٍ.";
 "Harvey Award Winners" = "الفائزون بجائزة Harvey";
@@ -1112,6 +1142,8 @@
 "Japan" = "اليابان";
 "Japan's top science-fiction comic honor" = "أرفع جائزة يابانية لقصص الخيال العلمي المصوّرة";
 "Japanese" = "اليابانية";
+"Jina API key (optional)" = "مفتاح Jina API (اختياري)";
+"Jina Reader" = "Jina Reader";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "تجاوز المقدّمات تلقائيًا فور بدئها. الرجوع إلى مقدّمة يعيد تشغيلها دون تجاوزها مجددًا. يتبع زر التجاوز الإعداد أعلاه.";
 "Just added" = "أُضيف حديثًا";
 "Kanopy" = "Kanopy";
@@ -1127,6 +1159,7 @@
 "Kids & Family" = "الأطفال والعائلة";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu وMAL، مدركة للمواسم";
 "Kitsu, MAL, season-aware" = "Kitsu وMAL، مدركة للمواسم";
+"Known For" = "اشتهر بـ";
 "Korean" = "الكورية";
 "La conversión de FPS solo está disponible para subtítulos de texto." = "لا يتوفر تحويل معدل الإطارات إلا للترجمات النصية.";
 "La estructura de toda la página de Inicio. Las opciones siguientes ajustan las filas que contiene." = "شكل صفحة الرئيسية بأكملها. كل ما بالأسفل يضبط الصفوف داخلها.";
@@ -1339,6 +1372,7 @@
 "Navigation" = "التنقل";
 "Navigation changes waiting to sync" = "Navigation changes waiting to sync";
 "Navigation items" = "عناصر التنقل";
+"Needs an API key" = "يتطلب مفتاح API";
 "Needs artwork-rich titles to feed the hero" = "يحتاج إلى عناوين غنية بالصور لتغذية العرض الرئيسي";
 "Needs at least 10 titles for the Top 10 look" = "يحتاج إلى 10 عناوين على الأقل لمظهر أفضل 10";
 "Netflix" = "Netflix";
@@ -1389,6 +1423,7 @@
 "No episodes found for this season." = "لم يُعثر على حلقات لهذا الموسم.";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "لا مفضّلة بعد";
+"No filmography on record." = "لا توجد أعمال مسجّلة.";
 "No filters" = "لا توجد عوامل تصفية";
 "No hay coincidencias." = "لا توجد نتائج.";
 "No hay descripción disponible." = "لا يوجد وصف متاح.";
@@ -1522,6 +1557,8 @@
 "Open on Trakt" = "فتح على Trakt";
 "Open settings" = "فتح الإعدادات";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "افتح هذا الملف الشخصي عند بدء التشغيل. قد تظهر المطالبات الموقّتة لاحقًا. لا يمكن تعيين ملف شخصي محمي برمز PIN كملف افتراضي.";
+"OpenRouter API key (sk-or-...)" = "مفتاح OpenRouter API (sk-or-...)";
+"OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "جارٍ فتح AniList...";
 "Opening MyAnimeList..." = "جارٍ فتح MyAnimeList...";
 "Opening book…" = "جارٍ فتح الكتاب…";
@@ -1629,6 +1666,7 @@
 "Plugins" = "المكوّنات الإضافية";
 "Plugins are paused. Turn on Use plugins above to run them." = "المكوّنات الإضافية متوقفة مؤقتًا. فعّل «استخدام المكوّنات الإضافية» أعلاه لتشغيلها.";
 "Pluto TV" = "Pluto TV";
+"Point Harbor at a streaming server on another machine, like the Stremio service on a home server. P2P streams download and play from that machine instead of this one." = "وجّه Harbor إلى خادم بثّ على جهاز آخر، مثل خدمة Stremio على خادم منزلي. تُنزّل بثوث P2P وتُشغَّل من ذلك الجهاز بدلًا من هذا.";
 "Polish" = "البولندية";
 "Popular Anime" = "أنمي شائع";
 "Popular Movies" = "أفلام شائعة";
@@ -1679,6 +1717,7 @@
 "Progress" = "Progress";
 "Proveedores de metadatos" = "مزوّدو البيانات الوصفية";
 "Provide a JSON link or paste it directly." = "أضف رابط JSON أو الصق الكود مباشرة.";
+"Provider" = "المزوّد";
 "Próximamente" = "Coming soon";
 "Próximos" = "قادم";
 "Próximos animes" = "أنمي قادم";
@@ -1725,6 +1764,7 @@
 "Reading help" = "كيفية استخدام المانغا والكتب الإلكترونية";
 "Reading mode" = "وضع القراءة";
 "Reading options" = "Reading options";
+"Reading your search" = "جارٍ قراءة بحثك";
 "Real IMDb and Rotten Tomatoes scores." = "تقييمات IMDb وRotten Tomatoes الحقيقية.";
 "Real-Debrid API token" = "رمز API لـ Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid و TorBox و AllDebrid و Premiumize و Debrid-Link. البث المؤقت يعمل مباشرة. المفاتيح تبقى محلية.";
@@ -1765,6 +1805,7 @@
 "Rellenar" = "تعبئة";
 "Remember last stream" = "تذكّر آخر بثّ";
 "Reminder" = "Reminder";
+"Remote streaming server" = "خادم بثّ بعيد";
 "Remove" = "إزالة";
 "Remove addon" = "Remove addon";
 "Remove all" = "إزالة الكل";
@@ -1880,6 +1921,7 @@
 "Russian" = "الروسية";
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
+"SUBDL" = "SUBDL";
 "Salir de imagen en imagen" = "الخروج من صورة داخل صورة";
 "Saltar créditos" = "تخطّي الشارة";
 "Saltar intro" = "تخطّي المقدمة";
@@ -1913,6 +1955,7 @@
 "Se muestra al mismo tiempo que el subtítulo principal." = "تُعرض في الوقت نفسه مع الترجمة الرئيسية.";
 "Se usa con 55 % / 25 % de opacidad." = "يُستخدم بقيمة ألفا 55% / 25%.";
 "Search" = "بحث";
+"Search SUBDL for subtitles in multiple languages. Requires an API key." = "ابحث في SUBDL عن ترجمات بلغات متعددة. يتطلب مفتاح API.";
 "Search actors, directors…" = "ابحث عن ممثلين ومخرجين…";
 "Search addons" = "ابحث عن الإضافات";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
@@ -1921,6 +1964,7 @@
 "Search music" = "البحث في الموسيقى";
 "Search settings" = "ابحث في الإعدادات";
 "Search subtitles again" = "Search subtitles again";
+"Search the Subsource community database. Requires an API key." = "ابحث في قاعدة بيانات مجتمع Subsource. يتطلب مفتاح API.";
 "Search title…" = "ابحث عن عنوان…";
 "Search wider" = "بحث أوسع";
 "Searches and streams directly off Easynews. No debrid needed. Just your Easynews login." = "يبحث ويبث مباشرة من Easynews. لا حاجة لـ debrid. فقط تسجيل دخولك إلى Easynews.";
@@ -1962,6 +2006,7 @@
 "Series populares" = "مسلسلات شائعة";
 "Serif" = "مذيل";
 "Server URL" = "رابط الخادم";
+"Server address" = "عنوان الخادم";
 "Services" = "الخدمات";
 "Services changes waiting to sync" = "تغييرات الخدمات بانتظار المزامنة";
 "Servidor Xtream" = "Xtream server";
@@ -2153,6 +2198,7 @@
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "ارفع صورتك الخاصة أو اختر صورة من كتالوج Harbor.";
 "Subir foto" = "رفع صورة";
 "Subir {name}" = "نقل {name} لأعلى";
+"Subsource" = "Subsource";
 "Subtitle FPS" = "معدل إطارات الترجمة";
 "Subtitle FPS conversion is only available for text-based subtitles." = "لا يتوفر تحويل معدل الإطارات إلا للترجمات النصية.";
 "Subtitle FPS is unavailable in this libmpv runtime." = "معدل إطارات الترجمة غير متوفر في إصدار libmpv الحالي.";
@@ -2160,6 +2206,7 @@
 "Subtitle appearance" = "مظهر الترجمة";
 "Subtitle languages" = "لغات الترجمة";
 "Subtitle source FPS" = "معدل إطارات مصدر الترجمة";
+"Subtitle sources" = "مصادر الترجمة";
 "Subtitle style" = "نمط الترجمة";
 "Subtitle sync" = "مزامنة الترجمة";
 "Subtitle track" = "مسار الترجمة";
@@ -2200,6 +2247,7 @@
 "System" = "النظام";
 "System UI" = "واجهة النظام";
 "S{season} E{episode}" = "م{season} ح{episode}";
+"S{s} · E{e}" = "م{s} · ح{e}";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "مفتاح API لـ TMDB (v3)";
@@ -2235,6 +2283,7 @@
 "Tenue" = "تعتيم";
 "Terms" = "Terms";
 "Terror" = "رعب";
+"Test connection" = "اختبار الاتصال";
 "Text" = "نص";
 "Text color" = "لون النص";
 "Texto" = "نص";
@@ -2246,6 +2295,7 @@
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "هذا الإعداد غير صالح. تحقّق من baseUrl وpopularPath وlist وchapters وpages.";
 "That does not look like a valid magnet link or infohash." = "لا يبدو هذا رابط magnet أو infohash صالحًا.";
 "That link did not answer." = "لم يستجب هذا الرابط.";
+"That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
 "That route wouldn't chart. Try a different direction." = "تعذّر رسم هذا المسار. جرّب اتجاهًا آخر.";
 "The Anime Devotee" = "The Anime Devotee";
 "The Binger" = "The Binger";
@@ -2256,17 +2306,22 @@
 "The Series Slayer" = "The Series Slayer";
 "The Well-Rounded" = "The Well-Rounded";
 "The addons did not return metadata for this title." = "لم تُرجع الإضافات بيانات وصفية لهذا العنوان.";
+"The address of the streaming server, including its port." = "The address of the streaming server, including its port.";
 "The authorization code timed out before you finished. Try again." = "انتهت مهلة رمز التفويض قبل أن تُكمل. حاول مرة أخرى.";
 "The comics industry's highest honor" = "أرفع تكريم في صناعة القصص المصوّرة";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
 "The little score chip printed on poster cards across your rows and grids." = "شارة الدرجة الصغيرة المطبوعة على بطاقات الملصقات في صفوفك وشبكاتك.";
+"The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
+"The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
 "The most anticipated upcoming releases on Trakt" = "أكثر الإصدارات القادمة ترقبًا على Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "أكثر الأفلام والمسلسلات مشاهدةً على {name} الآن في {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "تم الاحتفاظ بالأصل. صدّر الترجمة بترميز UTF-8 أو UTF-16 لمزامنتها.";
 "The quick brown fox jumps over the lazy dog" = "أبجد هوز حطي كلمن سعفص قرشت ثخذ ضظغ";
 "The ratings row on a title's detail page, next to runtime and genre." = "صف التقييمات في صفحة تفاصيل العنوان، بجوار مدة العرض والنوع.";
+"The server answered with status {status}. Is that a streaming server?" = "أجاب الخادم بالحالة {status}. هل هذا خادم بثّ؟";
+"The server responded in {ms} ms." = "استجاب الخادم خلال {ms} مللي ثانية.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "شكل صفحة الرئيسية بأكملها. كل ما بالأسفل يضبط الصفوف داخلها.";
 "The subtitle already matches the audio." = "تتطابق الترجمة مع الصوت بالفعل.";
 "TheTVDB" = "TheTVDB";
@@ -2282,6 +2337,7 @@
 "This is a manga repository. Add it from the Manga page." = "هذا مستودع مانغا. أضفه من صفحة المانغا.";
 "This is how your subtitles will look." = "هكذا ستبدو الترجمة.";
 "This list is full ({max} items)" = "هذه القائمة ممتلئة ({max} عنصر)";
+"This model no longer exists at the provider. Pick another model (hold the AI button)." = "This model no longer exists at the provider. Pick another model (hold the AI button).";
 "This month" = "هذا الشهر";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
@@ -2339,6 +2395,7 @@
 "Top Series" = "أفضل المسلسلات";
 "Top Series on MAL" = "أفضل المسلسلات على MAL";
 "Top left" = "أعلى اليسار";
+"Top match" = "أفضل نتيجة";
 "Top of the screen" = "أعلى الشاشة";
 "Top rated" = "الأعلى تقييمًا";
 "Top rated on {site}" = "الأعلى تقييمًا على {site}";
@@ -2403,6 +2460,7 @@
 "Type" = "النوع";
 "Type on your keyboard or tap the digits above." = "اكتب باستخدام لوحة المفاتيح أو انقر الأرقام أعلاه.";
 "Type the same 4-digit PIN again." = "اكتب رمز PIN نفسه المكوّن من 4 أرقام مرة أخرى.";
+"Type what you want in plain language and let a model find it. Bring your own API key from either service." = "اكتب ما تريده بلغة طبيعية ودع النموذج يعثر عليه. استخدم مفتاح API الخاص بك من أي من الخدمتين.";
 "Typography" = "الخطوط";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "العناوين والأوصاف";
@@ -2440,6 +2498,8 @@
 "Usa la clave v3, no el token de acceso de lectura." = "استخدم مفتاح v3، وليس رمز وصول القراءة.";
 "Usar mi estilo" = "استخدام التنسيق الخاص بي";
 "Use addon order" = "استخدام ترتيب الإضافات";
+"Use live web context" = "استخدام سياق الويب المباشر";
+"Use model" = "استخدام النموذج";
 "Use my style" = "استخدام التنسيق الخاص بي";
 "Use plugins" = "استخدام المكوّنات الإضافية";
 "Use shared settings" = "استخدام الإعدادات المشتركة";
@@ -2516,11 +2576,13 @@
 "Who's watching?" = "من يشاهد؟";
 "Wide search · still empty" = "بحث واسع · لا يزال فارغًا";
 "Women's Africa Cup of Nations" = "كأس الأمم الأفريقية للسيدات";
+"Works without a key at low volume; add a key for higher quotas." = "يعمل دون مفتاح عند الاستخدام المحدود؛ أضف مفتاحًا للحصول على حصص أكبر.";
 "World Cup Qualifying: AFC" = "تصفيات كأس العالم: آسيا";
 "World Cup Qualifying: CAF" = "تصفيات كأس العالم: أفريقيا";
 "World Cup Qualifying: CONMEBOL" = "تصفيات كأس العالم: أمريكا الجنوبية";
 "Writer" = "الكاتب";
 "Wrong PIN" = "رمز PIN خاطئ";
+"Wyzie" = "Wyzie";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "Year" = "السنة";
@@ -2535,6 +2597,7 @@
 "You've hidden the one catalog that matched." = "لقد أخفيت الكتالوج الوحيد المطابق.";
 "You've reached the end · {n} addons" = "لقد وصلت إلى النهاية · {n} إضافة";
 "YouTube" = "YouTube";
+"Your API key was rejected. Check it in Settings, AI search." = "Your API key was rejected. Check it in Settings, AI search.";
 "Your AniList" = "AniList الخاص بك";
 "Your AniList is empty" = "AniList الخاص بك فارغ";
 "Your Discovery Queue" = "طابور الاستكشاف الخاص بك";
@@ -2542,6 +2605,7 @@
 "Your Stremio library + addons sync in untouched." = "تتزامن مكتبة Stremio وإضافاتك كما هي دون تغيير.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "قائمة المشاهدة في Trakt فارغة، لا شيء لاستيراده.";
+"Your account is out of credits for this model. Pick a free model or top up." = "Your account is out of credits for this model. Pick a free model or top up.";
 "Your addons" = "إضافاتك";
 "Your avatar, name, and handle across Harbor." = "صورتك الرمزية واسمك ومُعرِّفك في جميع أنحاء Harbor.";
 "Your collection." = "مجموعتك.";
@@ -2592,12 +2656,15 @@
 "eBook" = "كتاب إلكتروني";
 "episodes" = "حلقات";
 "estrellas" = "نجوم";
+"for higher rate limits; leave blank for the free anonymous tier." = "للحصول على حدود طلبات أعلى؛ اتركه فارغًا للفئة المجانية المجهولة.";
 "guest" = "ضيف";
 "h" = "س";
 "hidden" = "مخفي";
 "hours watched" = "ساعات المشاهدة";
 "hr" = "ساعة";
+"http://192.168.1.50:11470" = "http://192.168.1.50:11470";
 "item" = "عنصر";
+"jina_..." = "jina_...";
 "just now" = "الآن";
 "language" = "اللغة";
 "left" = "اليسار";

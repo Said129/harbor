@@ -366,7 +366,40 @@ struct HarborService: Sendable {
     func resolve(_ offer: StreamOffer, debrid: DebridClient? = nil, season: Int? = nil, episode: Int? = nil) async throws -> PlaybackSource {
         let hasURL = offer.raw["url"].string?.isEmpty == false, hasHash = offer.raw["infoHash"].string?.isEmpty == false
         if hasURL || !hasHash { return try await core.call("resolveDirect", ["stream": offer.raw]) }
-        return try await DebridStreamResolver.resolve(offer.raw, client: debrid, season: season, episode: episode)
+        return try await resolveTorrent(offer.raw, debrid: debrid, season: season, episode: episode)
+    }
+
+    /// Desktop's order for a torrent hash (`resolve.ts`): the debrid services first when the profile has any, and the remote
+    /// streaming server (Settings > Streaming) after them, or first when there is no debrid service at all.
+    private func resolveTorrent(_ raw: JSONValue, debrid: DebridClient?, season: Int?, episode: Int?) async throws -> PlaybackSource {
+        let remote = await Self.remoteResolver()
+        let hasDebrid: Bool
+        if let debrid { hasDebrid = !(await debrid.providers).isEmpty } else { hasDebrid = false }
+        guard let remote else { return try await DebridStreamResolver.resolve(raw, client: debrid, season: season, episode: episode) }
+        guard hasDebrid else { return try await Self.resolveRemote(remote, raw, season: season, episode: episode) }
+        do {
+            return try await DebridStreamResolver.resolve(raw, client: debrid, season: season, episode: episode)
+        } catch is CancellationError {
+            throw CancellationError()
+        } catch {
+            try Task.checkCancellation()
+            return try await Self.resolveRemote(remote, raw, season: season, episode: episode)
+        }
+    }
+
+    private static func remoteResolver() async -> StremioServerResolver? {
+        await MainActor.run {
+            StremioServerResolver.live(address: StremioServerPreferences.shared.address, strict: StremioServerPreferences.shared.strict)
+        }
+    }
+
+    private static func resolveRemote(_ remote: StremioServerResolver, _ raw: JSONValue, season: Int?, episode: Int?) async throws -> PlaybackSource {
+        switch await remote.resolve(raw, season: season, episode: episode) {
+        case .stream(let url, _):
+            return PlaybackSource(url: url, headers: nil, subtitles: nil, via: "remote-server")
+        case .failure(let code):
+            throw HarborError(code: code)
+        }
     }
 
     func automaticStreams(_ offers: [StreamOffer], media: Media, season: Int?, episode: Int?, debrid: DebridClient? = nil, addons: [Addon] = []) async throws -> [StreamOffer] {

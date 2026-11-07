@@ -386,9 +386,12 @@ struct PlayerView: View {
                     var urls = Set(state.addonSubtitles.map(\.url))
                     state.addonSubtitles += batch.filter { urls.insert($0.url).inserted }
                 }
+                let extra = await OptionalSubtitleProviders.search(request, owner: session.owner)
                 try Task.checkCancellation()
                 guard generation == state.mediaGeneration, library.map({ $0.owner == session.owner }) ?? true else { return }
-                if result.providers == 0 { state.addonSubtitlesMessage = "No hay addons de subtítulos activados compatibles con este título." }
+                var known = Set(state.addonSubtitles.map(\.url))
+                state.addonSubtitles += extra.filter { known.insert($0.url).inserted }
+                if result.providers == 0 && state.addonSubtitles.isEmpty { state.addonSubtitlesMessage = "No hay addons de subtítulos activados compatibles con este título." }
                 else if result.failures > 0 { state.addonSubtitlesMessage = "Algunos addons no respondieron. Puedes reintentar la búsqueda." }
                 else if state.addonSubtitles.isEmpty { state.addonSubtitlesMessage = "Tus addons no devolvieron subtítulos para este título." }
             } catch is CancellationError { return }

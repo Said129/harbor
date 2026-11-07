@@ -62,6 +62,7 @@ struct DetailMetadataView: View {
                     ScrollView(.horizontal) {
                         LazyHStack(alignment: .top, spacing: 12) {
                             ForEach(credits) { credit in
+                                NavigationLink { PersonView(personID: credit.id, app: app).toolbar(.visible, for: .navigationBar) } label: {
                                 VStack(alignment: .leading, spacing: 10) {
                                     Artwork(url: credit.photo, maxPixels: 350).frame(width: 102, height: 153).clipShape(.rect(cornerRadius: 12))
                                     VStack(alignment: .leading, spacing: 2) {
@@ -69,6 +70,7 @@ struct DetailMetadataView: View {
                                         if !credit.role.isEmpty { Text(credit.role).font(HarborTheme.font(12)).foregroundStyle(HarborTheme.ink.opacity(0.5)).lineLimit(2) }
                                     }
                                 }.frame(width: 102, alignment: .leading)
+                                }.buttonStyle(.plain)
                             }
                         }
                     }.scrollIndicators(.hidden)
