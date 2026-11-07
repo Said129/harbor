@@ -95,6 +95,7 @@
 "Add an API key to use this source." = "इस स्रोत का उपयोग करने के लिए API कुंजी जोड़ें।";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "अपने AniList में ऐनिमे जोड़ें और वे यहाँ स्थिति के अनुसार समूहित और संपादन के लिए तैयार दिखाई देंगे।";
 "Add bookmark" = "Add bookmark";
+"Add files from your computer" = "अपने कंप्यूटर से फ़ाइलें जोड़ें";
 "Add from lists" = "सूचियों से जोड़ें";
 "Add key" = "कुंजी जोड़ें";
 "Add language" = "भाषा जोड़ें";
@@ -114,7 +115,9 @@
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "अपनी Harbor वॉचलिस्ट से {n} टाइटल Trakt में जोड़ें? जो टाइटल Trakt में पहले से हैं, उन्हें छोड़ दिया जाएगा।";
 "Add {n} titles from your Trakt watchlist to Harbor?" = "अपनी Trakt वॉचलिस्ट से {n} टाइटल Harbor में जोड़ें?";
 "Added" = "जोड़ दिया गया";
+"Added 1 new title from your folders" = "Added 1 new title from your folders";
 "Added to \"{name}\"" = "\"{name}\" में जोड़ दिया गया";
+"Added {n} new titles from your folders" = "Added {n} new titles from your folders";
 "Added {n} to your Harbor watchlist" = "आपकी Harbor वॉचलिस्ट में {n} जोड़ दिए गए";
 "Addon" = "ऐडऑन";
 "Addon not installed" = "Addon not installed";
@@ -614,12 +617,14 @@
 "Couldn't connect to AniList" = "AniList से कनेक्ट नहीं हो सका";
 "Couldn't connect to MyAnimeList" = "MyAnimeList से कनेक्ट नहीं हो सका";
 "Couldn't install. Double-check the URL and try again." = "इंस्टॉल नहीं हो सका। URL दोबारा जाँचें और फिर कोशिश करें।";
+"Couldn't open this file" = "यह फ़ाइल नहीं खुल सकी";
 "Couldn't reach AniList." = "AniList से संपर्क नहीं हो सका।";
 "Couldn't reach AniList. Try refreshing." = "AniList से संपर्क नहीं हो सका। रीफ़्रेश करके देखें।";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Simkl से संपर्क नहीं हो सका";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt से संपर्क नहीं हो सका। अपना कनेक्शन जाँचें और फिर कोशिश करें।";
 "Couldn't read that image. Try a different file." = "वह इमेज पढ़ी नहीं जा सकी। कोई दूसरी फ़ाइल आज़माएँ।";
+"Couldn't scan that folder." = "वह फ़ोल्डर स्कैन नहीं किया जा सका।";
 "Cover Image URL" = "कवर इमेज URL";
 "Crash" = "क्रैश";
 "Crea tu propia paleta" = "अपना पैलेट बनाएँ";
@@ -1222,6 +1227,7 @@
 "Loading…" = "लोड हो रहा है…";
 "Local" = "लोकल";
 "Local app files" = "Local app files";
+"Local files" = "Local files";
 "Logo URL (optional, auto-detected if blank)" = "लोगो URL (वैकल्पिक, खाली होने पर अपने-आप पता लगाया जाएगा)";
 "Logo position" = "लोगो की स्थिति";
 "Logo reset to default" = "Logo reset to default";
@@ -1241,6 +1247,7 @@
 "M3U playlist" = "M3U प्लेलिस्ट";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MB" = "MB";
 "MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
@@ -1284,6 +1291,7 @@
 "Mexico" = "मेक्सिको";
 "Mezclar sonido envolvente a estéreo" = "सराउंड साउंड को स्टीरियो में मिक्स करें";
 "Mi biblioteca" = "मेरी लाइब्रेरी";
+"Minimum file size" = "न्यूनतम फ़ाइल आकार";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "गायब";
@@ -1458,6 +1466,7 @@
 "No telemetry, no servers, no bundled keys." = "न टेलीमेट्री, न सर्वर, न ही साथ में दी गई कुंजियाँ।";
 "No titles match these filters." = "इन फ़िल्टर से मेल खाने वाला कोई शीर्षक नहीं।";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "इन फ़िल्टर से मेल खाने वाला कोई ट्रैक नहीं। HI/SDH या फ़ोर्स्ड को टॉगल करके देखें।";
+"No video files found in that folder." = "उस फ़ोल्डर में कोई वीडियो फ़ाइल नहीं मिली।";
 "No {kind} releases this month. Try a different filter." = "इस महीने कोई {kind} रिलीज़ नहीं है। कोई दूसरा फ़िल्टर आज़माएँ।";
 "Noir" = "नॉयर";
 "Nombre" = "नाम";
@@ -1810,6 +1819,7 @@
 "Remove from favorites" = "पसंदीदा से हटाएँ";
 "Remove from history" = "इतिहास से हटाएँ";
 "Remove from home" = "Remove from home";
+"Remove from library" = "लाइब्रेरी से हटाएँ";
 "Remove from list" = "सूची से हटाएँ";
 "Remove from queue" = "क्यू से हटाएँ";
 "Remove from saved" = "सेव किए गए आइटमों से हटाएँ";
@@ -2121,6 +2131,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "क्रमबद्ध करें";
 "Sort by" = "इसके अनुसार क्रमबद्ध करें";
+"Sort episodes" = "एपिसोड क्रमबद्ध करें";
 "Sorting" = "क्रमबद्ध किया जा रहा है";
 "Sound profile" = "साउंड प्रोफ़ाइल";
 "Source" = "स्रोत";

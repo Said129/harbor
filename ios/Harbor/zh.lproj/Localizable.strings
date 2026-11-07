@@ -95,6 +95,7 @@
 "Add an API key to use this source." = "添加 API 密钥以使用此来源。";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "添加到 AniList 的动漫会按状态分组显示在这里，并可随时编辑。";
 "Add bookmark" = "Add bookmark";
+"Add files from your computer" = "从电脑添加文件";
 "Add from lists" = "从片单添加";
 "Add key" = "添加密钥";
 "Add language" = "添加语言";
@@ -114,7 +115,9 @@
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "要将 Harbor 片单中的 {n} 部作品添加到 Trakt 吗？Trakt 会跳过已有的作品。";
 "Add {n} titles from your Trakt watchlist to Harbor?" = "要将 Trakt 片单中的 {n} 部作品添加到 Harbor 吗？";
 "Added" = "已添加";
+"Added 1 new title from your folders" = "Added 1 new title from your folders";
 "Added to \"{name}\"" = "已添加到“{name}”";
+"Added {n} new titles from your folders" = "Added {n} new titles from your folders";
 "Added {n} to your Harbor watchlist" = "已将 {n} 部作品添加到你的 Harbor 片单";
 "Addon" = "插件";
 "Addon not installed" = "Addon not installed";
@@ -614,12 +617,14 @@
 "Couldn't connect to AniList" = "无法连接到 AniList";
 "Couldn't connect to MyAnimeList" = "无法连接到 MyAnimeList";
 "Couldn't install. Double-check the URL and try again." = "无法安装。请仔细检查 URL 后重试。";
+"Couldn't open this file" = "无法打开此文件";
 "Couldn't reach AniList." = "无法连接 AniList。";
 "Couldn't reach AniList. Try refreshing." = "无法连接 AniList。请尝试刷新。";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "无法连接 Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "无法连接到 Trakt。请检查网络连接后重试。";
 "Couldn't read that image. Try a different file." = "无法读取该图片，请尝试其他文件。";
+"Couldn't scan that folder." = "无法扫描该文件夹。";
 "Cover Image URL" = "封面图片 URL";
 "Crash" = "崩溃";
 "Crea tu propia paleta" = "创建自己的配色方案";
@@ -1222,6 +1227,7 @@
 "Loading…" = "正在加载…";
 "Local" = "本地";
 "Local app files" = "Local app files";
+"Local files" = "Local files";
 "Logo URL (optional, auto-detected if blank)" = "Logo URL（可选，留空则自动检测）";
 "Logo position" = "徽标位置";
 "Logo reset to default" = "Logo reset to default";
@@ -1241,6 +1247,7 @@
 "M3U playlist" = "M3U 播放列表";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MB" = "MB";
 "MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
@@ -1284,6 +1291,7 @@
 "Mexico" = "墨西哥";
 "Mezclar sonido envolvente a estéreo" = "将环绕声下混为立体声";
 "Mi biblioteca" = "我的媒体库";
+"Minimum file size" = "最小文件大小";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "缺失";
@@ -1458,6 +1466,7 @@
 "No telemetry, no servers, no bundled keys." = "无遥测、无服务器、不内置密钥。";
 "No titles match these filters." = "没有符合这些筛选条件的内容。";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "没有符合这些筛选条件的字幕轨道。请尝试切换 HI/SDH 或强制字幕。";
+"No video files found in that folder." = "该文件夹中未找到视频文件。";
 "No {kind} releases this month. Try a different filter." = "本月没有{kind}上线。请尝试其他筛选条件。";
 "Noir" = "黑色电影";
 "Nombre" = "名称";
@@ -1810,6 +1819,7 @@
 "Remove from favorites" = "从收藏中移除";
 "Remove from history" = "从历史记录中移除";
 "Remove from home" = "Remove from home";
+"Remove from library" = "从媒体库中移除";
 "Remove from list" = "从列表中移除";
 "Remove from queue" = "从播放队列中移除";
 "Remove from saved" = "从已保存内容中移除";
@@ -2121,6 +2131,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "排序";
 "Sort by" = "排序方式";
+"Sort episodes" = "剧集排序";
 "Sorting" = "排序";
 "Sound profile" = "声音配置";
 "Source" = "来源";

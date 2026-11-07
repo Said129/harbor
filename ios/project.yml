@@ -207,6 +207,7 @@ targets:
       - path: HarborTests/StreamStallPolicyTests.swift
       - path: HarborTests/TitleAwardsTests.swift
       - path: HarborTests/EpisodeAlertsTests.swift
+      - path: HarborTests/LocalLibraryTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift

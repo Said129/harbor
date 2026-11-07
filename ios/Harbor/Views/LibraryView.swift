@@ -115,7 +115,7 @@ struct LibraryView: View {
             ScrollView(.horizontal) {
                 HStack(spacing: 18) {
                     ForEach(LibraryFilter.allCases) { filter in
-                        if filter == .favorites { localTab; customListsTab }
+                        if filter == .favorites { localTab; localFilesTab; customListsTab }
                         Button { tracker = nil; showingLists = false; app.library.changeDisplay { $0.filter = filter } } label: {
                             HStack(spacing: 7) {
                                 Image(filter == .favorites ? "desktop-star" : filter == .watched ? "desktop-clock" : filter == .continuing ? "ui-play-filled" : filter == .all ? "desktop-library" : "desktop-bookmark").resizable().scaledToFit().frame(width: 16, height: 16)
@@ -156,6 +156,15 @@ struct LibraryView: View {
                 Text(text("Local")).font(HarborTheme.font(13, weight: .semibold))
             }.foregroundStyle(HarborTheme.ink.opacity(0.5)).frame(minHeight: 44).contentShape(Rectangle())
         }.buttonStyle(.plain).accessibilityLabel(text("Local")).accessibilityIdentifier("library-tab-local")
+    }
+    /// The person's own video files from the Files app, kept as bookmarks (Desktop's local library).
+    private var localFilesTab: some View {
+        NavigationLink { LocalLibraryView(app: app).toolbar(.visible, for: .navigationBar) } label: {
+            HStack(spacing: 7) {
+                Image(systemName: "folder").font(.system(size: 14, weight: .semibold))
+                Text(text("Local files")).font(HarborTheme.font(13, weight: .semibold))
+            }.foregroundStyle(HarborTheme.ink.opacity(0.5)).frame(minHeight: 44).contentShape(Rectangle())
+        }.buttonStyle(.plain).accessibilityLabel(text("Local files")).accessibilityIdentifier("library-tab-local-files")
     }
     private var customListsTab: some View {
         Button { tracker = nil; showingLists = true } label: {

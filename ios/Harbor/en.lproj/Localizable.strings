@@ -79,6 +79,7 @@
 "Add an API key to use this source." = "Add an API key to use this source.";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "Add anime to your AniList and they show up here, grouped by status and ready to edit.";
 "Add bookmark" = "Add bookmark";
+"Add files from your computer" = "Add files from your computer";
 "Add from lists" = "Add from lists";
 "Add key" = "Add key";
 "Add language" = "Add language";
@@ -98,7 +99,9 @@
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has.";
 "Add {n} titles from your Trakt watchlist to Harbor?" = "Add {n} titles from your Trakt watchlist to Harbor?";
 "Added" = "Added";
+"Added 1 new title from your folders" = "Added 1 new title from your folders";
 "Added to \"{name}\"" = "Added to \"{name}\"";
+"Added {n} new titles from your folders" = "Added {n} new titles from your folders";
 "Added {n} to your Harbor watchlist" = "Added {n} to your Harbor watchlist";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "Addon order";
@@ -532,12 +535,14 @@
 "Couldn't connect to AniList" = "Couldn't connect to AniList";
 "Couldn't connect to MyAnimeList" = "Couldn't connect to MyAnimeList";
 "Couldn't install. Double-check the URL and try again." = "Couldn't install. Double-check the URL and try again.";
+"Couldn't open this file" = "Couldn't open this file";
 "Couldn't reach AniList." = "Couldn't reach AniList.";
 "Couldn't reach AniList. Try refreshing." = "Couldn't reach AniList. Try refreshing.";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Couldn't reach Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Couldn't reach Trakt. Check your connection and try again.";
 "Couldn't read that image. Try a different file." = "Couldn't read that image. Try a different file.";
+"Couldn't scan that folder." = "Couldn't scan that folder.";
 "Cover Image URL" = "Cover Image URL";
 "Crea tu propia paleta" = "Build your own palette";
 "Create" = "Create";
@@ -1060,6 +1065,7 @@
 "Loading..." = "Loading...";
 "Local" = "Local";
 "Local app files" = "Local app files";
+"Local files" = "Local files";
 "Logo position" = "Logo position";
 "Logo reset to default" = "Logo reset to default";
 "Longest binge" = "Longest binge";
@@ -1076,6 +1082,7 @@
 "Líneas más definidas y un poco más de impacto visual." = "Sharper lines and a little more pop.";
 "M3U playlist" = "M3U playlist";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MB" = "MB";
 "MDBList" = "MDBList";
 "Magnet stream" = "Magnet stream";
 "Make it yours" = "Make it yours";
@@ -1113,6 +1120,7 @@
 "Mexico" = "Mexico";
 "Mezclar sonido envolvente a estéreo" = "Mix surround sound down to stereo";
 "Mi biblioteca" = "My Library";
+"Minimum file size" = "Minimum file size";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "Missing";
@@ -1267,6 +1275,7 @@
 "No subtitles match your search." = "No subtitles match your search.";
 "No titles match these filters." = "No titles match these filters.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "No tracks match these filters. Try toggling HI/SDH or Forced.";
+"No video files found in that folder." = "No video files found in that folder.";
 "No {kind} releases this month. Try a different filter." = "No {kind} releases this month. Try a different filter.";
 "Nombre" = "Name";
 "Nombre cambiado" = "Renamed";
@@ -1565,6 +1574,7 @@
 "Remove from favorites" = "Remove from favorites";
 "Remove from history" = "Remove from history";
 "Remove from home" = "Remove from home";
+"Remove from library" = "Remove from library";
 "Remove from list" = "Remove from list";
 "Remove from queue" = "Remove from queue";
 "Remove from saved" = "Remove from saved";
@@ -1849,6 +1859,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Sort";
 "Sort by" = "Sort by";
+"Sort episodes" = "Sort episodes";
 "Sorting" = "Sorting";
 "Sound profile" = "Sound profile";
 "Source" = "Source";

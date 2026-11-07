@@ -69,11 +69,8 @@ struct ContinueWatchingPreferences: Sendable {
         "manga.reader.hideChapterEndHint", "manga.reader.enablePageDownload", "manga.reader.flipSound", "manga.adultSources", "manga.shelfSort",
         "harbor.music.playlistView", "harbor.music.tab", "harbor.music.genres.explore.v1", "harbor.music.preferredSource", "music.shuffle", "music.repeat", "music.volume",
         "remoteStreamServerUrl", "remoteStreamServerStrict", "castAlwaysTranscode", "stremioServerTranscode",
-<<<<<<< HEAD
-        "episodeAlerts.enabled", "episodeAlerts.leadMinutes", "episodeAlerts.movies", "episodeAlerts.series", "episodeAlerts.anime", "episodeAlerts.library"
-=======
+        "episodeAlerts.enabled", "episodeAlerts.leadMinutes", "episodeAlerts.movies", "episodeAlerts.series", "episodeAlerts.anime", "episodeAlerts.library",
         "localMinFileSizeMb", "localEpisodeSortDesc", "localLibrary.sort", "localLibrary.sortDescending"
->>>>>>> ios/haiku-trial-local-import
     ]
     private let defaults: UserDefaults
     private let persistence: any ProfileSettingsPersistence

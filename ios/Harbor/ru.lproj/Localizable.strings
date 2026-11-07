@@ -97,6 +97,7 @@
 "Add an API key to use this source." = "Добавьте ключ API, чтобы использовать этот источник.";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "Добавляйте аниме в свой AniList, и они появятся здесь, сгруппированные по статусу и готовые к правке.";
 "Add bookmark" = "Add bookmark";
+"Add files from your computer" = "Добавить файлы с компьютера";
 "Add from lists" = "Добавить из списков";
 "Add key" = "Добавить ключ";
 "Add language" = "Добавить язык";
@@ -116,7 +117,9 @@
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Добавить {n} названий из списка к просмотру Harbor в Trakt? Trakt пропустит те, что уже есть.";
 "Add {n} titles from your Trakt watchlist to Harbor?" = "Добавить {n} названий из списка к просмотру Trakt в Harbor?";
 "Added" = "Добавлен";
+"Added 1 new title from your folders" = "Added 1 new title from your folders";
 "Added to \"{name}\"" = "Добавлено в «{name}»";
+"Added {n} new titles from your folders" = "Added {n} new titles from your folders";
 "Added {n} to your Harbor watchlist" = "Добавлено {n} в список к просмотру Harbor";
 "Addon" = "Дополнение";
 "Addon not installed" = "Addon not installed";
@@ -617,12 +620,14 @@
 "Couldn't connect to AniList" = "Не удалось подключиться к AniList";
 "Couldn't connect to MyAnimeList" = "Не удалось подключиться к MyAnimeList";
 "Couldn't install. Double-check the URL and try again." = "Не удалось установить. Проверьте URL и попробуйте снова.";
+"Couldn't open this file" = "Не удалось открыть файл";
 "Couldn't reach AniList." = "Не удалось связаться с AniList.";
 "Couldn't reach AniList. Try refreshing." = "Не удалось связаться с AniList. Попробуйте обновить.";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Не удалось связаться с Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Не удалось связаться с Trakt. Проверьте подключение и повторите попытку.";
 "Couldn't read that image. Try a different file." = "Не удалось прочитать изображение. Попробуйте другой файл.";
+"Couldn't scan that folder." = "Не удалось просканировать папку.";
 "Cover Image URL" = "URL обложки";
 "Crash" = "Сбой";
 "Crea tu propia paleta" = "Создать свою палитру";
@@ -1226,6 +1231,7 @@
 "Loading…" = "Загрузка…";
 "Local" = "Локальные";
 "Local app files" = "Local app files";
+"Local files" = "Local files";
 "Logo URL (optional, auto-detected if blank)" = "URL логотипа (необязательно, определится автоматически)";
 "Logo position" = "Положение логотипа";
 "Logo reset to default" = "Logo reset to default";
@@ -1245,6 +1251,7 @@
 "M3U playlist" = "Плейлист M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MB" = "МБ";
 "MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
@@ -1288,6 +1295,7 @@
 "Mexico" = "Мексика";
 "Mezclar sonido envolvente a estéreo" = "Сводить объёмный звук в стерео";
 "Mi biblioteca" = "Моя библиотека";
+"Minimum file size" = "Минимальный размер файла";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "Отсутствует";
@@ -1465,6 +1473,7 @@
 "No telemetry, no servers, no bundled keys." = "Без телеметрии, без серверов, без вшитых ключей.";
 "No titles match these filters." = "Нет названий по этим фильтрам.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Нет дорожек по этим фильтрам. Попробуйте переключить HI/SDH или «Форсированные».";
+"No video files found in that folder." = "В этой папке нет видеофайлов.";
 "No {kind} releases this month. Try a different filter." = "В этом месяце нет релизов ({kind}). Попробуйте другой фильтр.";
 "Noir" = "Нуар";
 "Nombre" = "Название";
@@ -1821,6 +1830,7 @@
 "Remove from favorites" = "Убрать из избранного";
 "Remove from history" = "Удалить из истории";
 "Remove from home" = "Remove from home";
+"Remove from library" = "Убрать из библиотеки";
 "Remove from list" = "Удалить из списка";
 "Remove from queue" = "Убрать из очереди";
 "Remove from saved" = "Убрать из сохранённого";
@@ -2134,6 +2144,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Сортировка";
 "Sort by" = "Сортировать по";
+"Sort episodes" = "Сортировка серий";
 "Sorting" = "Сортировка";
 "Sound profile" = "Профиль звука";
 "Source" = "Источник";

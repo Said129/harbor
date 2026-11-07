@@ -95,6 +95,7 @@
 "Add an API key to use this source." = "Bu kaynağı kullanmak için bir API anahtarı ekleyin.";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "AniList'inize anime eklediğinizde burada duruma göre gruplandırılmış ve düzenlenmeye hazır olarak görünürler.";
 "Add bookmark" = "Add bookmark";
+"Add files from your computer" = "Bilgisayarınızdan dosya ekleyin";
 "Add from lists" = "Listelerden ekle";
 "Add key" = "Anahtar ekle";
 "Add language" = "Dil ekle";
@@ -114,7 +115,9 @@
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Harbor izleme listenizdeki {n} başlık Trakt'a eklensin mi? Trakt, zaten bulunanları atlar.";
 "Add {n} titles from your Trakt watchlist to Harbor?" = "Trakt izleme listenizdeki {n} başlık Harbor'a eklensin mi?";
 "Added" = "Eklendi";
+"Added 1 new title from your folders" = "Added 1 new title from your folders";
 "Added to \"{name}\"" = "\"{name}\" listesine eklendi";
+"Added {n} new titles from your folders" = "Added {n} new titles from your folders";
 "Added {n} to your Harbor watchlist" = "Harbor izleme listenize {n} başlık eklendi";
 "Addon" = "Eklenti";
 "Addon not installed" = "Addon not installed";
@@ -614,12 +617,14 @@
 "Couldn't connect to AniList" = "AniList'e bağlanılamadı";
 "Couldn't connect to MyAnimeList" = "MyAnimeList'e bağlanılamadı";
 "Couldn't install. Double-check the URL and try again." = "Yüklenemedi. URL'yi tekrar kontrol edip yeniden deneyin.";
+"Couldn't open this file" = "Bu dosya açılamadı";
 "Couldn't reach AniList." = "AniList'e ulaşılamadı.";
 "Couldn't reach AniList. Try refreshing." = "AniList'e ulaşılamadı. Yenilemeyi deneyin.";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Simkl'a ulaşılamadı";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt'a erişilemedi. Bağlantınızı kontrol edip tekrar deneyin.";
 "Couldn't read that image. Try a different file." = "Bu görüntü okunamadı. Başka bir dosya deneyin.";
+"Couldn't scan that folder." = "Bu klasör taranamadı.";
 "Cover Image URL" = "Kapak Görseli URL'si";
 "Crash" = "Çökme";
 "Crea tu propia paleta" = "Kendi paletinizi oluşturun";
@@ -1222,6 +1227,7 @@
 "Loading…" = "Yükleniyor…";
 "Local" = "Yerel";
 "Local app files" = "Local app files";
+"Local files" = "Local files";
 "Logo URL (optional, auto-detected if blank)" = "Logo URL'si (isteğe bağlı, boş bırakılırsa otomatik algılanır)";
 "Logo position" = "Logo konumu";
 "Logo reset to default" = "Logo reset to default";
@@ -1241,6 +1247,7 @@
 "M3U playlist" = "M3U oynatma listesi";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MB" = "MB";
 "MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
@@ -1284,6 +1291,7 @@
 "Mexico" = "Meksika";
 "Mezclar sonido envolvente a estéreo" = "Çevresel sesi stereoya indirge";
 "Mi biblioteca" = "Kütüphanem";
+"Minimum file size" = "Minimum dosya boyutu";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "Eksik";
@@ -1458,6 +1466,7 @@
 "No telemetry, no servers, no bundled keys." = "Telemetri yok, sunucu yok, paketlenmiş anahtar yok.";
 "No titles match these filters." = "Bu filtrelerle eşleşen içerik yok.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Bu filtrelerle eşleşen parça yok. HI/SDH veya Zorunlu seçeneğini açıp kapatmayı deneyin.";
+"No video files found in that folder." = "Bu klasörde video dosyası bulunamadı.";
 "No {kind} releases this month. Try a different filter." = "Bu ay yayınlanacak {kind} yok. Farklı bir filtre deneyin.";
 "Noir" = "Noir";
 "Nombre" = "Ad";
@@ -1810,6 +1819,7 @@
 "Remove from favorites" = "Favorilerden kaldır";
 "Remove from history" = "Geçmişten kaldır";
 "Remove from home" = "Remove from home";
+"Remove from library" = "Kütüphaneden kaldır";
 "Remove from list" = "Listeden kaldır";
 "Remove from queue" = "Kuyruktan kaldır";
 "Remove from saved" = "Kaydedilenlerden kaldır";
@@ -2121,6 +2131,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Sırala";
 "Sort by" = "Sıralama ölçütü";
+"Sort episodes" = "Bölümleri sırala";
 "Sorting" = "Sıralama";
 "Sound profile" = "Ses profili";
 "Source" = "Kaynak";

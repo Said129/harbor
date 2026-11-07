@@ -95,6 +95,7 @@
 "Add an API key to use this source." = "Thêm khóa API để sử dụng nguồn này.";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "Thêm anime vào AniList để chúng xuất hiện tại đây, được nhóm theo trạng thái và sẵn sàng chỉnh sửa.";
 "Add bookmark" = "Add bookmark";
+"Add files from your computer" = "Thêm tệp từ máy tính";
 "Add from lists" = "Thêm từ danh sách";
 "Add key" = "Thêm khóa";
 "Add language" = "Thêm ngôn ngữ";
@@ -114,7 +115,9 @@
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Thêm {n} tựa phim từ danh sách xem Harbor vào Trakt? Trakt sẽ bỏ qua những tựa đã có.";
 "Add {n} titles from your Trakt watchlist to Harbor?" = "Thêm {n} tựa phim từ danh sách xem Trakt vào Harbor?";
 "Added" = "Đã thêm";
+"Added 1 new title from your folders" = "Added 1 new title from your folders";
 "Added to \"{name}\"" = "Đã thêm vào \"{name}\"";
+"Added {n} new titles from your folders" = "Added {n} new titles from your folders";
 "Added {n} to your Harbor watchlist" = "Đã thêm {n} vào danh sách xem Harbor";
 "Addon" = "Tiện ích bổ sung";
 "Addon not installed" = "Addon not installed";
@@ -614,12 +617,14 @@
 "Couldn't connect to AniList" = "Không thể kết nối với AniList";
 "Couldn't connect to MyAnimeList" = "Không thể kết nối với MyAnimeList";
 "Couldn't install. Double-check the URL and try again." = "Không thể cài đặt. Hãy kiểm tra lại URL rồi thử lại.";
+"Couldn't open this file" = "Không thể mở tệp này";
 "Couldn't reach AniList." = "Không thể kết nối với AniList.";
 "Couldn't reach AniList. Try refreshing." = "Không thể kết nối với AniList. Hãy thử làm mới.";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Không thể kết nối với Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Không thể kết nối với Trakt. Hãy kiểm tra kết nối rồi thử lại.";
 "Couldn't read that image. Try a different file." = "Không thể đọc ảnh đó. Hãy thử một tệp khác.";
+"Couldn't scan that folder." = "Không thể quét thư mục đó.";
 "Cover Image URL" = "URL ảnh bìa";
 "Crash" = "Sự cố";
 "Crea tu propia paleta" = "Tạo bảng màu riêng";
@@ -1222,6 +1227,7 @@
 "Loading…" = "Đang tải…";
 "Local" = "Cục bộ";
 "Local app files" = "Local app files";
+"Local files" = "Local files";
 "Logo URL (optional, auto-detected if blank)" = "URL logo (không bắt buộc, tự động phát hiện nếu để trống)";
 "Logo position" = "Vị trí logo";
 "Logo reset to default" = "Logo reset to default";
@@ -1241,6 +1247,7 @@
 "M3U playlist" = "Danh sách phát M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MB" = "MB";
 "MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
@@ -1284,6 +1291,7 @@
 "Mexico" = "Mexico";
 "Mezclar sonido envolvente a estéreo" = "Trộn âm thanh vòm xuống stereo";
 "Mi biblioteca" = "Thư viện của tôi";
+"Minimum file size" = "Kích thước tệp tối thiểu";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "Còn thiếu";
@@ -1458,6 +1466,7 @@
 "No telemetry, no servers, no bundled keys." = "Không thu thập dữ liệu từ xa, không máy chủ, không khóa đi kèm.";
 "No titles match these filters." = "Không có tựa phim nào khớp với các bộ lọc này.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Không có bản phụ đề nào khớp với các bộ lọc này. Hãy thử bật hoặc tắt HI/SDH hay Bắt buộc.";
+"No video files found in that folder." = "Không tìm thấy tệp video nào trong thư mục đó.";
 "No {kind} releases this month. Try a different filter." = "Tháng này không có nội dung {kind} phát hành. Hãy thử bộ lọc khác.";
 "Noir" = "Phim đen";
 "Nombre" = "Tên";
@@ -1810,6 +1819,7 @@
 "Remove from favorites" = "Xóa khỏi mục yêu thích";
 "Remove from history" = "Xóa khỏi lịch sử";
 "Remove from home" = "Remove from home";
+"Remove from library" = "Xóa khỏi thư viện";
 "Remove from list" = "Xóa khỏi danh sách";
 "Remove from queue" = "Xóa khỏi hàng chờ";
 "Remove from saved" = "Xóa khỏi mục đã lưu";
@@ -2121,6 +2131,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Sắp xếp";
 "Sort by" = "Sắp xếp theo";
+"Sort episodes" = "Sắp xếp tập";
 "Sorting" = "Sắp xếp";
 "Sound profile" = "Cấu hình âm thanh";
 "Source" = "Nguồn";

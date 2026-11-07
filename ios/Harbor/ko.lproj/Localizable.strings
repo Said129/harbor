@@ -95,6 +95,7 @@
 "Add an API key to use this source." = "이 소스를 사용하려면 API 키를 추가하세요.";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "AniList에 애니메이션을 추가하면 상태별로 묶여 여기에 표시되며 바로 편집할 수 있습니다.";
 "Add bookmark" = "Add bookmark";
+"Add files from your computer" = "컴퓨터에서 파일 추가";
 "Add from lists" = "목록에서 추가";
 "Add key" = "키 추가";
 "Add language" = "언어 추가";
@@ -114,7 +115,9 @@
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Harbor 관심 목록의 제목 {n}개를 Trakt에 추가할까요? Trakt에 이미 있는 제목은 건너뜁니다.";
 "Add {n} titles from your Trakt watchlist to Harbor?" = "Trakt 관심 목록의 제목 {n}개를 Harbor에 추가할까요?";
 "Added" = "추가됨";
+"Added 1 new title from your folders" = "Added 1 new title from your folders";
 "Added to \"{name}\"" = "\"{name}\"에 추가됨";
+"Added {n} new titles from your folders" = "Added {n} new titles from your folders";
 "Added {n} to your Harbor watchlist" = "Harbor 관심 목록에 {n}개 추가됨";
 "Addon" = "애드온";
 "Addon not installed" = "Addon not installed";
@@ -614,12 +617,14 @@
 "Couldn't connect to AniList" = "AniList에 연결하지 못했습니다.";
 "Couldn't connect to MyAnimeList" = "MyAnimeList에 연결하지 못했습니다.";
 "Couldn't install. Double-check the URL and try again." = "설치할 수 없습니다. URL을 다시 확인한 후 재시도하세요.";
+"Couldn't open this file" = "이 파일을 열지 못했습니다";
 "Couldn't reach AniList." = "AniList에 연결할 수 없습니다.";
 "Couldn't reach AniList. Try refreshing." = "AniList에 연결할 수 없습니다. 새로고침해 보세요.";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Simkl에 연결할 수 없음";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt에 연결하지 못했습니다. 연결을 확인하고 다시 시도하세요.";
 "Couldn't read that image. Try a different file." = "이미지를 읽을 수 없습니다. 다른 파일을 사용해 보세요.";
+"Couldn't scan that folder." = "해당 폴더를 스캔할 수 없습니다.";
 "Cover Image URL" = "표지 이미지 URL";
 "Crash" = "충돌";
 "Crea tu propia paleta" = "나만의 팔레트 만들기";
@@ -1222,6 +1227,7 @@
 "Loading…" = "불러오는 중…";
 "Local" = "로컬";
 "Local app files" = "Local app files";
+"Local files" = "Local files";
 "Logo URL (optional, auto-detected if blank)" = "로고 URL(선택 사항, 비워 두면 자동 감지)";
 "Logo position" = "로고 위치";
 "Logo reset to default" = "Logo reset to default";
@@ -1241,6 +1247,7 @@
 "M3U playlist" = "M3U 재생목록";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MB" = "MB";
 "MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
@@ -1284,6 +1291,7 @@
 "Mexico" = "멕시코";
 "Mezclar sonido envolvente a estéreo" = "서라운드 사운드를 스테레오로 다운믹스";
 "Mi biblioteca" = "내 라이브러리";
+"Minimum file size" = "최소 파일 크기";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "누락";
@@ -1458,6 +1466,7 @@
 "No telemetry, no servers, no bundled keys." = "원격 측정도, 서버도, 기본 제공 키도 없습니다.";
 "No titles match these filters." = "이 필터와 일치하는 작품이 없습니다.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "이 필터와 일치하는 트랙이 없습니다. HI/SDH 또는 강제 자막을 전환해 보세요.";
+"No video files found in that folder." = "해당 폴더에서 동영상 파일을 찾지 못했습니다.";
 "No {kind} releases this month. Try a different filter." = "이번 달에는 {kind} 공개작이 없습니다. 다른 필터를 사용해 보세요.";
 "Noir" = "누아르";
 "Nombre" = "이름";
@@ -1810,6 +1819,7 @@
 "Remove from favorites" = "즐겨찾기에서 삭제";
 "Remove from history" = "기록에서 삭제";
 "Remove from home" = "Remove from home";
+"Remove from library" = "라이브러리에서 삭제";
 "Remove from list" = "목록에서 제거";
 "Remove from queue" = "대기열에서 삭제";
 "Remove from saved" = "저장 목록에서 제거";
@@ -2121,6 +2131,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "정렬";
 "Sort by" = "정렬 기준";
+"Sort episodes" = "에피소드 정렬";
 "Sorting" = "정렬";
 "Sound profile" = "사운드 프로필";
 "Source" = "소스";

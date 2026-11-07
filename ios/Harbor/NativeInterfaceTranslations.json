@@ -150,7 +150,15 @@
     "Sub": "Subtitulado",
     "Dub": "Doblado",
     "No dubbed episodes this month": "No hay episodios doblados este mes",
-    "The dub schedule has no episodes releasing this month. Try a different month.": "El calendario de doblajes no tiene episodios este mes. Prueba con otro mes."
+    "The dub schedule has no episodes releasing this month. Try a different month.": "El calendario de doblajes no tiene episodios este mes. Prueba con otro mes.",
+    "Release notifications": "Notificaciones de estrenos",
+    "Lead time": "Antelación",
+    "At release": "Al estrenarse",
+    "15 minutes before": "15 minutos antes",
+    "30 minutes before": "30 minutos antes",
+    "1 hour before": "1 hora antes",
+    "Date-only releases have no hour, so they alert at 9:00 AM on their day.": "Los estrenos sin hora avisan a las 9:00 del día.",
+    "Local files": "Archivos locales"
   },
   "pt": {
     "Auto-sync": "Sincronização automática",

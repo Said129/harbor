@@ -95,6 +95,7 @@
 "Add an API key to use this source." = "Tambahkan kunci API untuk menggunakan sumber ini.";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "Tambahkan anime ke AniList agar muncul di sini, dikelompokkan berdasarkan status dan siap diedit.";
 "Add bookmark" = "Add bookmark";
+"Add files from your computer" = "Tambahkan file dari komputer Anda";
 "Add from lists" = "Tambah dari daftar";
 "Add key" = "Tambah kunci";
 "Add language" = "Tambahkan bahasa";
@@ -114,7 +115,9 @@
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Tambahkan {n} judul dari daftar tontonan Harbor Anda ke Trakt? Trakt akan melewati judul yang sudah ada.";
 "Add {n} titles from your Trakt watchlist to Harbor?" = "Tambahkan {n} judul dari daftar tontonan Trakt Anda ke Harbor?";
 "Added" = "Ditambahkan";
+"Added 1 new title from your folders" = "Added 1 new title from your folders";
 "Added to \"{name}\"" = "Ditambahkan ke \"{name}\"";
+"Added {n} new titles from your folders" = "Added {n} new titles from your folders";
 "Added {n} to your Harbor watchlist" = "{n} ditambahkan ke daftar tontonan Harbor Anda";
 "Addon" = "Addon";
 "Addon not installed" = "Addon not installed";
@@ -614,12 +617,14 @@
 "Couldn't connect to AniList" = "Tidak dapat terhubung ke AniList";
 "Couldn't connect to MyAnimeList" = "Tidak dapat terhubung ke MyAnimeList";
 "Couldn't install. Double-check the URL and try again." = "Tidak dapat menginstal. Periksa kembali URL lalu coba lagi.";
+"Couldn't open this file" = "Tidak dapat membuka file ini";
 "Couldn't reach AniList." = "Tidak dapat menghubungi AniList.";
 "Couldn't reach AniList. Try refreshing." = "Tidak dapat menghubungi AniList. Coba muat ulang.";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Tidak dapat menghubungi Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Tidak dapat menghubungi Trakt. Periksa koneksi Anda lalu coba lagi.";
 "Couldn't read that image. Try a different file." = "Tidak dapat membaca gambar tersebut. Coba file lain.";
+"Couldn't scan that folder." = "Tidak dapat memindai folder tersebut.";
 "Cover Image URL" = "URL Gambar Sampul";
 "Crash" = "Crash";
 "Crea tu propia paleta" = "Buat palet Anda sendiri";
@@ -1222,6 +1227,7 @@
 "Loading…" = "Memuat…";
 "Local" = "Lokal";
 "Local app files" = "Local app files";
+"Local files" = "Local files";
 "Logo URL (optional, auto-detected if blank)" = "URL logo (opsional, terdeteksi otomatis jika kosong)";
 "Logo position" = "Posisi logo";
 "Logo reset to default" = "Logo reset to default";
@@ -1241,6 +1247,7 @@
 "M3U playlist" = "Playlist M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MB" = "MB";
 "MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
@@ -1284,6 +1291,7 @@
 "Mexico" = "Meksiko";
 "Mezclar sonido envolvente a estéreo" = "Gabungkan suara surround menjadi stereo";
 "Mi biblioteca" = "Perpustakaan Saya";
+"Minimum file size" = "Ukuran file minimum";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "Tidak ditemukan";
@@ -1458,6 +1466,7 @@
 "No telemetry, no servers, no bundled keys." = "Tanpa telemetri, tanpa server, tanpa kunci bawaan.";
 "No titles match these filters." = "Tidak ada judul yang cocok dengan filter ini.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Tidak ada trek yang cocok dengan filter ini. Coba aktifkan atau nonaktifkan HI/SDH atau Forced.";
+"No video files found in that folder." = "Tidak ada file video di folder tersebut.";
 "No {kind} releases this month. Try a different filter." = "Tidak ada rilisan {kind} bulan ini. Coba filter lain.";
 "Noir" = "Noir";
 "Nombre" = "Nama";
@@ -1810,6 +1819,7 @@
 "Remove from favorites" = "Hapus dari favorit";
 "Remove from history" = "Hapus dari riwayat";
 "Remove from home" = "Remove from home";
+"Remove from library" = "Hapus dari perpustakaan";
 "Remove from list" = "Hapus dari daftar";
 "Remove from queue" = "Hapus dari antrean";
 "Remove from saved" = "Hapus dari item tersimpan";
@@ -2121,6 +2131,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Urutkan";
 "Sort by" = "Urutkan berdasarkan";
+"Sort episodes" = "Urutkan episode";
 "Sorting" = "Pengurutan";
 "Sound profile" = "Profil suara";
 "Source" = "Sumber";

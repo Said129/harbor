@@ -95,6 +95,7 @@
 "Add an API key to use this source." = "Añade una clave de API para usar esta fuente.";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "Agrega anime a AniList y aparecerá aquí, agrupado por estado y listo para editar.";
 "Add bookmark" = "Añadir marcador";
+"Add files from your computer" = "Agregar archivos desde tu computadora";
 "Add from lists" = "Agregar desde listas";
 "Add key" = "Agregar clave";
 "Add language" = "Añadir idioma";
@@ -114,7 +115,9 @@
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "¿Agregar {n} títulos de tu lista de seguimiento de Harbor a Trakt? Trakt omitirá los que ya tenga.";
 "Add {n} titles from your Trakt watchlist to Harbor?" = "¿Agregar {n} títulos de tu lista de seguimiento de Trakt a Harbor?";
 "Added" = "Agregado";
+"Added 1 new title from your folders" = "Added 1 new title from your folders";
 "Added to \"{name}\"" = "Agregado a \"{name}\"";
+"Added {n} new titles from your folders" = "Added {n} new titles from your folders";
 "Added {n} to your Harbor watchlist" = "Se agregaron {n} a tu lista de seguimiento de Harbor";
 "Addon" = "Complemento";
 "Addon not installed" = "Addon not installed";
@@ -614,12 +617,14 @@
 "Couldn't connect to AniList" = "No se pudo conectar con AniList";
 "Couldn't connect to MyAnimeList" = "No se pudo conectar con MyAnimeList";
 "Couldn't install. Double-check the URL and try again." = "No se pudo instalar. Verifica la URL e inténtalo de nuevo.";
+"Couldn't open this file" = "No se pudo abrir este archivo";
 "Couldn't reach AniList." = "No se pudo acceder a AniList.";
 "Couldn't reach AniList. Try refreshing." = "No se pudo acceder a AniList. Intenta actualizar.";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "No se pudo acceder a Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "No se pudo acceder a Trakt. Comprueba tu conexión e inténtalo de nuevo.";
 "Couldn't read that image. Try a different file." = "No se pudo leer esa imagen. Prueba con otro archivo.";
+"Couldn't scan that folder." = "No se pudo escanear esa carpeta.";
 "Cover Image URL" = "URL de la imagen de portada";
 "Crash" = "Cierre inesperado";
 "Crea tu propia paleta" = "Crea tu propia paleta";
@@ -1222,6 +1227,7 @@
 "Loading…" = "Cargando…";
 "Local" = "Local";
 "Local app files" = "Archivos de la app";
+"Local files" = "Archivos locales";
 "Logo URL (optional, auto-detected if blank)" = "URL del logo (opcional; se detecta automáticamente si se deja en blanco)";
 "Logo position" = "Posición del logo";
 "Logo reset to default" = "Logo reset to default";
@@ -1241,6 +1247,7 @@
 "M3U playlist" = "Lista M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MB" = "MB";
 "MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
@@ -1284,6 +1291,7 @@
 "Mexico" = "México";
 "Mezclar sonido envolvente a estéreo" = "Mezclar sonido envolvente a estéreo";
 "Mi biblioteca" = "Mi biblioteca";
+"Minimum file size" = "Tamaño mínimo de archivo";
 "Mis canales" = "Mis canales";
 "Misc" = "Misc";
 "Missing" = "Falta";
@@ -1458,6 +1466,7 @@
 "No telemetry, no servers, no bundled keys." = "Sin telemetría, servidores ni claves incluidas.";
 "No titles match these filters." = "Ningún título coincide con estos filtros.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Ninguna pista coincide con estos filtros. Prueba activar o desactivar HI/SDH o Forzados.";
+"No video files found in that folder." = "No se encontraron archivos de video en esa carpeta.";
 "No {kind} releases this month. Try a different filter." = "No hay estrenos de {kind} este mes. Prueba con otro filtro.";
 "Noir" = "Noir";
 "Nombre" = "Nombre";
@@ -1810,6 +1819,7 @@
 "Remove from favorites" = "Quitar de favoritos";
 "Remove from history" = "Quitar del historial";
 "Remove from home" = "Remove from home";
+"Remove from library" = "Quitar de la biblioteca";
 "Remove from list" = "Quitar de la lista";
 "Remove from queue" = "Quitar de la cola";
 "Remove from saved" = "Quitar de guardados";
@@ -2121,6 +2131,7 @@
 "Sonido al pasar página" = "Sonido al pasar página";
 "Sort" = "Ordenar";
 "Sort by" = "Ordenar por";
+"Sort episodes" = "Ordenar episodios";
 "Sorting" = "Orden";
 "Sound profile" = "Perfil de sonido";
 "Source" = "Fuente";

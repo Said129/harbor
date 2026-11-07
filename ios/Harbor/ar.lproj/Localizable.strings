@@ -102,6 +102,7 @@
 "Add an API key to use this source." = "أضف مفتاح API لاستخدام هذا المصدر.";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "أضف أنمي إلى AniList الخاص بك ليظهر هنا، مجمّعًا حسب الحالة وجاهزًا للتعديل.";
 "Add bookmark" = "Add bookmark";
+"Add files from your computer" = "إضافة ملفات من جهازك";
 "Add from lists" = "إضافة من القوائم";
 "Add key" = "إضافة مفتاح";
 "Add language" = "إضافة لغة";
@@ -121,7 +122,9 @@
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "إضافة {n} عنوان من قائمة مشاهدة Harbor إلى Trakt؟ يتخطّى Trakt أي عنوان موجود لديه بالفعل.";
 "Add {n} titles from your Trakt watchlist to Harbor?" = "إضافة {n} عنوان من قائمة مشاهدة Trakt إلى Harbor؟";
 "Added" = "أُضيفت";
+"Added 1 new title from your folders" = "Added 1 new title from your folders";
 "Added to \"{name}\"" = "تمت الإضافة إلى \"{name}\"";
+"Added {n} new titles from your folders" = "Added {n} new titles from your folders";
 "Added {n} to your Harbor watchlist" = "تمت إضافة {n} إلى قائمة مشاهدة Harbor";
 "Addon" = "إضافة";
 "Addon not installed" = "Addon not installed";
@@ -637,12 +640,14 @@
 "Couldn't connect to AniList" = "تعذّر الاتصال بـ AniList";
 "Couldn't connect to MyAnimeList" = "تعذّر الاتصال بـ MyAnimeList";
 "Couldn't install. Double-check the URL and try again." = "تعذّر التثبيت. تحقّق من الرابط وحاول مجددًا.";
+"Couldn't open this file" = "تعذّر فتح هذا الملف";
 "Couldn't reach AniList." = "تعذّر الوصول إلى AniList.";
 "Couldn't reach AniList. Try refreshing." = "تعذّر الوصول إلى AniList. حاول التحديث.";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "تعذّر الوصول إلى Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "تعذّر الوصول إلى Trakt. تحقق من اتصالك وحاول مرة أخرى.";
 "Couldn't read that image. Try a different file." = "تعذرت قراءة تلك الصورة. جرّب ملفًا آخر.";
+"Couldn't scan that folder." = "تعذّر فحص ذلك المجلد.";
 "Cover Image URL" = "رابط الصورة (Cover Image URL)";
 "Crash" = "تعطّل";
 "Crea tu propia paleta" = "أنشئ لوحة ألوانك الخاصة";
@@ -1246,6 +1251,7 @@
 "Loading…" = "جارٍ التحميل…";
 "Local" = "المحلّي";
 "Local app files" = "Local app files";
+"Local files" = "Local files";
 "Logo URL (optional, auto-detected if blank)" = "عنوان URL للشعار (اختياري، يُكتشف تلقائيًا إن تُرك فارغًا)";
 "Logo position" = "موضع الشعار";
 "Logo reset to default" = "Logo reset to default";
@@ -1265,6 +1271,7 @@
 "M3U playlist" = "قائمة M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MB" = "MB";
 "MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
@@ -1308,6 +1315,7 @@
 "Mexico" = "المكسيك";
 "Mezclar sonido envolvente a estéreo" = "دمج الصوت المحيطي إلى ستيريو (Stereo)";
 "Mi biblioteca" = "مكتبتي";
+"Minimum file size" = "الحد الأدنى لحجم الملف";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "مفقود";
@@ -1485,6 +1493,7 @@
 "No telemetry, no servers, no bundled keys." = "لا قياس عن بُعد، ولا خوادم، ولا مفاتيح مُضمَّنة.";
 "No titles match these filters." = "لا توجد عناوين تطابق هذه المرشّحات.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "لا توجد مسارات مطابقة لهذه المرشّحات. جرّب تبديل ترجمة الصمّ أو الإجبارية.";
+"No video files found in that folder." = "لم يُعثر على ملفات فيديو في ذلك المجلد.";
 "No {kind} releases this month. Try a different filter." = "لا توجد إصدارات {kind} هذا الشهر. جرّب مرشّحًا مختلفًا.";
 "Noir" = "نوار";
 "Nombre" = "الاسم";
@@ -1841,6 +1850,7 @@
 "Remove from favorites" = "إزالة من المفضّلة";
 "Remove from history" = "إزالة من السجل";
 "Remove from home" = "Remove from home";
+"Remove from library" = "إزالة من المكتبة";
 "Remove from list" = "إزالة من القائمة";
 "Remove from queue" = "إزالة من قائمة الانتظار";
 "Remove from saved" = "إزالة من المحفوظات";
@@ -2156,6 +2166,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "ترتيب";
 "Sort by" = "الترتيب حسب";
+"Sort episodes" = "ترتيب الحلقات";
 "Sorting" = "الفرز";
 "Sound profile" = "ملف تعريف الصوت";
 "Source" = "المصدر";

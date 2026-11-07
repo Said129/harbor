@@ -95,6 +95,7 @@
 "Add an API key to use this source." = "このソースを使うにはAPIキーを追加してください。";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "AniListにアニメを追加すると、ステータス別にまとめられてここに表示され、そのまま編集できます。";
 "Add bookmark" = "Add bookmark";
+"Add files from your computer" = "コンピューターからファイルを追加";
 "Add from lists" = "リストから追加";
 "Add key" = "キーを追加";
 "Add language" = "言語を追加";
@@ -114,7 +115,9 @@
 "Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Harborのウォッチリストから{n}件の作品をTraktに追加しますか？Traktにすでにある作品はスキップされます。";
 "Add {n} titles from your Trakt watchlist to Harbor?" = "Traktのウォッチリストから{n}件の作品をHarborに追加しますか？";
 "Added" = "追加済み";
+"Added 1 new title from your folders" = "Added 1 new title from your folders";
 "Added to \"{name}\"" = "「{name}」に追加しました";
+"Added {n} new titles from your folders" = "Added {n} new titles from your folders";
 "Added {n} to your Harbor watchlist" = "Harborのウォッチリストに{n}件追加しました";
 "Addon" = "アドオン";
 "Addon not installed" = "Addon not installed";
@@ -614,12 +617,14 @@
 "Couldn't connect to AniList" = "AniListに接続できませんでした";
 "Couldn't connect to MyAnimeList" = "MyAnimeListに接続できませんでした";
 "Couldn't install. Double-check the URL and try again." = "インストールできませんでした。URLを確認して、もう一度お試しください。";
+"Couldn't open this file" = "このファイルを開けませんでした";
 "Couldn't reach AniList." = "AniListに接続できませんでした。";
 "Couldn't reach AniList. Try refreshing." = "AniListに接続できませんでした。更新してみてください。";
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Simklに接続できませんでした";
 "Couldn't reach Trakt. Check your connection and try again." = "Traktに接続できませんでした。接続を確認して、もう一度お試しください。";
 "Couldn't read that image. Try a different file." = "画像を読み込めませんでした。別のファイルをお試しください。";
+"Couldn't scan that folder." = "そのフォルダーをスキャンできませんでした。";
 "Cover Image URL" = "カバー画像URL";
 "Crash" = "クラッシュ";
 "Crea tu propia paleta" = "独自のパレットを作成";
@@ -1222,6 +1227,7 @@
 "Loading…" = "読み込み中…";
 "Local" = "ローカル";
 "Local app files" = "Local app files";
+"Local files" = "Local files";
 "Logo URL (optional, auto-detected if blank)" = "ロゴのURL（任意、空欄の場合は自動検出）";
 "Logo position" = "ロゴの位置";
 "Logo reset to default" = "Logo reset to default";
@@ -1241,6 +1247,7 @@
 "M3U playlist" = "M3Uプレイリスト";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
+"MB" = "MB";
 "MDBList" = "MDBList";
 "MGM+" = "MGM+";
 "MLB" = "MLB";
@@ -1284,6 +1291,7 @@
 "Mexico" = "メキシコ";
 "Mezclar sonido envolvente a estéreo" = "サラウンド音声をステレオにダウンミックス";
 "Mi biblioteca" = "マイライブラリ";
+"Minimum file size" = "最小ファイルサイズ";
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "不足";
@@ -1458,6 +1466,7 @@
 "No telemetry, no servers, no bundled keys." = "テレメトリなし、サーバーなし、組み込みキーなし。";
 "No titles match these filters." = "この条件に一致する作品はありません。";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "このフィルターに一致するトラックはありません。HI/SDHまたは強制字幕の切り替えをお試しください。";
+"No video files found in that folder." = "そのフォルダーに動画ファイルはありません。";
 "No {kind} releases this month. Try a different filter." = "今月は{kind}の配信がありません。別のフィルターをお試しください。";
 "Noir" = "ノワール";
 "Nombre" = "名前";
@@ -1810,6 +1819,7 @@
 "Remove from favorites" = "お気に入りから削除";
 "Remove from history" = "履歴から削除";
 "Remove from home" = "Remove from home";
+"Remove from library" = "ライブラリから削除";
 "Remove from list" = "リストから削除";
 "Remove from queue" = "キューから削除";
 "Remove from saved" = "保存済みから削除";
@@ -2121,6 +2131,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "並べ替え";
 "Sort by" = "並べ替え";
+"Sort episodes" = "エピソードを並べ替え";
 "Sorting" = "並べ替え";
 "Sound profile" = "サウンドプロファイル";
 "Source" = "ソース";
