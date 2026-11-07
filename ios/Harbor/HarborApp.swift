@@ -46,6 +46,7 @@ struct HarborApp: App {
     }
     private var content: some View {
             ZStack {
+                ThemeBackdrop()
                 if model.storageReady && model.profileContext.ready {
                     HarborShell(app: model).id(model.interfaceProfileScope)
                 } else if model.profileContext.requiresSelection || model.switchingProfile {

@@ -19,6 +19,8 @@ struct ThemeSettingsView: View {
                         ThemeCustomCard(preferences: preferences) { editingColors = true }
                     }.animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: preferences.preset)
                 }
+                ThemeBackgroundSection(preferences: preferences)
+                ThemeLibrarySection(preferences: preferences)
                 HarborSettingsSection(DesktopInterfaceText.value("Typography")) {
                     ForEach([("switzer", "Switzer"), ("inter", "Inter"), ("system", "System UI")], id: \.0) { value, name in
                         ThemeFontCard(value: value, name: DesktopInterfaceText.value(name), selected: preferences.font == value) { preferences.font = value }
