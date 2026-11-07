@@ -191,7 +191,6 @@ struct PlaybackOptions: Codable, Equatable {
 
     var mpvOptions: [(String, String)] {
         var options: [(String, String)] = [
-            ("volume-max", String(Int(volumeCeiling))),
             ("speed", String(speed)), ("volume", String(min(volume, volumeCeiling))), ("panscan", fit == .fill ? "1" : "0"),
             ("video-aspect-override", fit.aspect), ("keepaspect", fit == .stretch ? "no" : "yes"),
             ("video-zoom", fit == .zoom ? String(zoom) : "0"), ("sharpen", String(sharpen)),
