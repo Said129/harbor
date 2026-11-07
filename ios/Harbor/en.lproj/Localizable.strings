@@ -25,6 +25,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time.";
+"A standout this week." = "A standout this week.";
 "A to Z" = "A to Z";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
@@ -369,6 +370,7 @@
 "Card behaviour" = "Card behaviour";
 "Card size" = "Card size";
 "Cards" = "Cards";
+"Cards need an OMDb key." = "Cards need an OMDb key.";
 "Cards, panels." = "Cards, panels.";
 "Cargar archivo" = "Load file";
 "Cargar más" = "Load more";
@@ -553,6 +555,7 @@
 "Crime Series" = "Crime Series";
 "Crisp (anime & cartoons)" = "Crisp (anime & cartoons)";
 "Critics' Choice Awards" = "Critics' Choice Awards";
+"Critics' Pick" = "Critics' Pick";
 "Cuando presionas Reproducir" = "When you press Play";
 "Cuando termina un episodio, inicia automáticamente el siguiente. Si se desactiva, el episodio termina y la reproducción se detiene." = "When an episode ends, automatically start the next one. Off lets the episode finish and stop.";
 "Cuando una versión incluye varias pistas de audio, Harbor selecciona la primera que coincida con esta lista." = "When a release ships multiple audio tracks, Harbor selects the first match from this list.";
@@ -971,6 +974,7 @@
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse.";
 "Install addon" = "Install addon";
 "Installed" = "Installed";
+"Installing" = "Installing";
 "Instant" = "Instant";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself.";
 "Instantáneo" = "Instant";
@@ -1075,11 +1079,13 @@
 "Los FPS del video no están disponibles." = "Video FPS is unavailable.";
 "Los filtros estrictos descartaron todo" = "Strict filters dropped everything";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
+"Loved by reviewers today" = "Loved by reviewers today";
 "Lyric sync" = "Lyric sync";
 "Lyrics" = "Lyrics";
 "Lyrics earlier" = "Lyrics earlier";
 "Lyrics later" = "Lyrics later";
 "Líneas más definidas y un poco más de impacto visual." = "Sharper lines and a little more pop.";
+"M" = "M";
 "M3U playlist" = "M3U playlist";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
 "MB" = "MB";
@@ -1214,6 +1220,7 @@
 "Next in {minutes}m" = "Next in {minutes}m";
 "Next month" = "Next month";
 "Next page" = "Next page";
+"Next review" = "Next review";
 "Next song" = "Next song";
 "Night mode" = "Night mode";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer.";
@@ -1353,8 +1360,10 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Open on Trakt";
+"Open review source" = "Open review source";
 "Open settings" = "Open settings";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default.";
+"Open {name}" = "Open {name}";
 "OpenRouter API key (sk-or-...)" = "OpenRouter API key (sk-or-...)";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "Opening AniList...";
@@ -1470,6 +1479,7 @@
 "Previous day" = "Previous day";
 "Previous month" = "Previous month";
 "Previous page" = "Previous page";
+"Previous review" = "Previous review";
 "Previous song" = "Previous song";
 "Primary copy." = "Primary copy.";
 "Primero selecciona una pista de subtítulos." = "Select a subtitle track first.";
@@ -1518,6 +1528,7 @@
 "Ranked by the {site} community from their public index." = "Ranked by the {site} community from their public index.";
 "Rate on SIMKL" = "Rate on SIMKL";
 "Read" = "Read";
+"Read full" = "Read full";
 "Read more" = "Read more";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -3415,6 +3426,7 @@
 "spooktober.dismiss" = "Dismiss Spooktober";
 "spooktober.enter" = "Step inside";
 "stars" = "stars";
+"stremio:// link" = "stremio:// link";
 "stub files" = "stub files";
 "tiny stubs" = "tiny stubs";
 "titles" = "titles";

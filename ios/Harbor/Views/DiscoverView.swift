@@ -124,6 +124,7 @@ struct DiscoverView: View {
                 if !model.trending.isEmpty { shelf(DesktopVoyage.copy("Trending This Week"), items: model.trending) }
                 genreTiles
                 if !model.topRated.isEmpty { shelf(DesktopVoyage.copy("Top Rated"), items: model.topRated) }
+                CriticsPickView(app: app, featuredIDs: Set(model.recommended.prefix(10).map(\.id)))
                 if !queueItems.isEmpty { queue }
                 if !model.awards.isEmpty { shelf("Award Winning", items: model.awards) }
                 if model.loading { ProgressView().frame(maxWidth: .infinity) }

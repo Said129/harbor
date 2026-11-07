@@ -35,6 +35,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Lompatan yang lebih pendek dengan Shift dan tombol panah untuk bergeser beberapa detik setiap kali.";
+"A standout this week." = "Pilihan unggulan minggu ini.";
 "A to Z" = "A sampai Z";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
@@ -436,6 +437,7 @@
 "Card behaviour" = "Perilaku kartu";
 "Card size" = "Ukuran kartu";
 "Cards" = "Kartu";
+"Cards need an OMDb key." = "Kartu memerlukan kunci OMDb.";
 "Cards, panels." = "Kartu, panel.";
 "Cargar archivo" = "Muat file";
 "Cargar más" = "Muat lebih banyak";
@@ -638,6 +640,7 @@
 "Crisp (anime & cartoons)" = "Tajam (anime & kartun)";
 "Critically Acclaimed" = "Dipuji Kritikus";
 "Critics' Choice Awards" = "Critics' Choice Awards";
+"Critics' Pick" = "Pilihan Kritikus";
 "Critics' Picks" = "Rekomendasi Kritikus";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
@@ -1120,6 +1123,7 @@
 "Install addon" = "Instal addon";
 "Install all" = "Pasang semua";
 "Installed" = "Terinstal";
+"Installing" = "Menginstal";
 "Installing {done} of {total}" = "Memasang {done} dari {total}";
 "Instant" = "Instan";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Instan langsung memutar stream dengan peringkat terbaik. Pilih sumber membuka daftar stream setiap kali, sehingga Anda dapat memilih sendiri rilis, kualitas, dan penyedianya.";
@@ -1239,11 +1243,13 @@
 "Los FPS del video no están disponibles." = "FPS video tidak tersedia.";
 "Los filtros estrictos descartaron todo" = "Filter ketat menyaring habis semua hasil";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
+"Loved by reviewers today" = "Disukai pengulas hari ini";
 "Lyric sync" = "Sinkron lirik";
 "Lyrics" = "Lirik";
 "Lyrics earlier" = "Lirik lebih awal";
 "Lyrics later" = "Lirik lebih lambat";
 "Líneas más definidas y un poco más de impacto visual." = "Garis lebih tajam dan tampilan sedikit lebih menonjol.";
+"M" = "M";
 "M3U playlist" = "Playlist M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
@@ -1399,6 +1405,7 @@
 "Next in {minutes}m" = "Berikutnya dalam {minutes} menit";
 "Next month" = "Bulan depan";
 "Next page" = "Halaman berikutnya";
+"Next review" = "Ulasan berikutnya";
 "Next song" = "Next song";
 "Night mode" = "Mode malam";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "Mode malam mengompresi bagian bersuara keras secara halus agar nyaman ditonton larut malam. Profil mulai berlaku saat trek berikutnya dimuat dan digunakan bersama normalizer.";
@@ -1558,8 +1565,10 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Buka di Trakt";
+"Open review source" = "Buka sumber ulasan";
 "Open settings" = "Buka pengaturan";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Buka profil ini saat aplikasi dimulai. Permintaan terjadwal tetap dapat muncul nanti. Profil dengan PIN tidak dapat dijadikan default.";
+"Open {name}" = "Buka {name}";
 "OpenRouter API key (sk-or-...)" = "Kunci API OpenRouter (sk-or-...)";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "Membuka AniList...";
@@ -1703,6 +1712,7 @@
 "Previous day" = "Previous day";
 "Previous month" = "Bulan sebelumnya";
 "Previous page" = "Halaman sebelumnya";
+"Previous review" = "Ulasan sebelumnya";
 "Previous song" = "Previous song";
 "Primary copy." = "Salinan utama.";
 "Prime Video" = "Prime Video";
@@ -1760,6 +1770,7 @@
 "Re-runs the welcome flow and clears every dismissed tip." = "Menjalankan ulang alur sambutan dan menghapus semua tip yang sebelumnya ditutup.";
 "Reaches" = "Mengakses";
 "Read" = "Baca";
+"Read full" = "Baca lengkap";
 "Read more" = "Baca selengkapnya";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -3781,6 +3792,7 @@
 "star" = "bintang";
 "stars" = "bintang";
 "stats" = "statistik";
+"stremio:// link" = "tautan stremio://";
 "stub files" = "file stub";
 "summary" = "ringkasan";
 "themes" = "tema";

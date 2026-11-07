@@ -37,6 +37,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "قفزة أقصر باستخدام Shift مع مفاتيح الأسهم، للتنقّل بضع ثوانٍ في كل مرة.";
+"A standout this week." = "عمل بارز هذا الأسبوع.";
 "A to Z" = "أبجديًا";
 "A-B loop" = "A-B loop";
 "A-Z" = "أ-ي";
@@ -455,6 +456,7 @@
 "Card behaviour" = "سلوك البطاقات";
 "Card size" = "حجم البطاقة";
 "Cards" = "البطاقات";
+"Cards need an OMDb key." = "تتطلّب البطاقات مفتاح OMDb.";
 "Cards, panels." = "بطاقات، لوحات.";
 "Cargar archivo" = "تحميل ملف";
 "Cargar más" = "تحميل المزيد";
@@ -661,6 +663,7 @@
 "Crisp (anime & cartoons)" = "واضح (أنمي وكرتون)";
 "Critically Acclaimed" = "أعمال حازت إشادة النقاد";
 "Critics' Choice Awards" = "جوائز اختيار النقاد";
+"Critics' Pick" = "اختيار النقاد";
 "Critics' Picks" = "اختيارات النقّاد";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
@@ -1144,6 +1147,7 @@
 "Install addon" = "تثبيت إضافة";
 "Install all" = "تثبيت الكل";
 "Installed" = "مثبّتة";
+"Installing" = "جارٍ التثبيت";
 "Installing {done} of {total}" = "جارٍ تثبيت {done} من {total}";
 "Instant" = "فوري";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "يبدأ الخيار الفوري أفضل بث ترتيبًا مباشرة. يفتح خيار اختيار مصدر قائمة البث كل مرة لتختار الإصدار والجودة والمزوّد بنفسك.";
@@ -1263,11 +1267,13 @@
 "Los FPS del video no están disponibles." = "معدل إطارات الفيديو غير متوفر.";
 "Los filtros estrictos descartaron todo" = "الفلاتر الصارمة تجاهلت كل شيء";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
+"Loved by reviewers today" = "نال إعجاب النقاد اليوم";
 "Lyric sync" = "مزامنة الكلمات";
 "Lyrics" = "كلمات الأغنية";
 "Lyrics earlier" = "تقديم الكلمات";
 "Lyrics later" = "تأخير الكلمات";
 "Líneas más definidas y un poco más de impacto visual." = "خطوط أكثر حدة وقليل من البروز.";
+"M" = "M";
 "M3U playlist" = "قائمة M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
@@ -1426,6 +1432,7 @@
 "Next in {minutes}m" = "التالية بعد {minutes}د";
 "Next month" = "الشهر التالي";
 "Next page" = "الصفحة التالية";
+"Next review" = "المراجعة التالية";
 "Next song" = "Next song";
 "Night mode" = "الوضع الليلي";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "الوضع الليلي يضغط بلطف اللحظات الصاخبة للمشاهدة في وقت متأخر من الليل. يتم تطبيق الإعدادات عند تحميل المقطع التالي، وتُدمج مع تطبيع مستوى الصوت.";
@@ -1586,8 +1593,10 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "فتح على Trakt";
+"Open review source" = "فتح مصدر المراجعة";
 "Open settings" = "فتح الإعدادات";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "افتح هذا الملف الشخصي عند بدء التشغيل. قد تظهر المطالبات الموقّتة لاحقًا. لا يمكن تعيين ملف شخصي محمي برمز PIN كملف افتراضي.";
+"Open {name}" = "فتح {name}";
 "OpenRouter API key (sk-or-...)" = "مفتاح OpenRouter API (sk-or-...)";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "جارٍ فتح AniList...";
@@ -1733,6 +1742,7 @@
 "Previous day" = "Previous day";
 "Previous month" = "الشهر السابق";
 "Previous page" = "الصفحة السابقة";
+"Previous review" = "المراجعة السابقة";
 "Previous song" = "Previous song";
 "Primary copy." = "النص الأساسي.";
 "Prime Video" = "برايم فيديو";
@@ -1790,6 +1800,7 @@
 "Re-runs the welcome flow and clears every dismissed tip." = "يعيد تشغيل تدفّق الترحيب ويمسح كل تلميح مرفوض.";
 "Reaches" = "يتصل بـ";
 "Read" = "قراءة";
+"Read full" = "قراءة كاملة";
 "Read more" = "قراءة المزيد";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -3822,6 +3833,7 @@
 "star" = "نجمة";
 "stars" = "نجوم";
 "stats" = "الإحصائيات";
+"stremio:// link" = "رابط //:stremio";
 "stub files" = "ملفات مؤقتة";
 "summary" = "الخلاصة";
 "themes" = "السمات";

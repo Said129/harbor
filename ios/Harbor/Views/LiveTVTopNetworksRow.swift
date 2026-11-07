@@ -17,9 +17,15 @@ struct LiveTVTopNetworksRow: View {
             }
         }
         .padding(.vertical, sections.isEmpty ? 0 : 8)
-        .task(id: taskKey) {
-            sections = active ? LiveTVRegionNetworks.sections(region: region, channels: channels) : []
-        }
+        .task(id: taskKey) { await refreshSections() }
+    }
+
+    /// About 200 patterns run over every channel, so the work leaves the main actor for large playlists.
+    private func refreshSections() async {
+        guard active else { sections = []; return }
+        let region = self.region, channels = self.channels
+        let built = await Task.detached(priority: .utility) { LiveTVRegionNetworks.sections(region: region, channels: channels) }.value
+        if !Task.isCancelled { sections = built }
     }
 
     private var taskKey: String {

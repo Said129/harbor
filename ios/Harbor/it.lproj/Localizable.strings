@@ -35,6 +35,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Un salto più breve con Shift e i tasti freccia, per spostarti di pochi secondi alla volta.";
+"A standout this week." = "Un titolo imperdibile questa settimana.";
 "A to Z" = "Dalla A alla Z";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
@@ -436,6 +437,7 @@
 "Card behaviour" = "Comportamento delle schede";
 "Card size" = "Dimensioni delle schede";
 "Cards" = "Schede";
+"Cards need an OMDb key." = "Le schede richiedono una chiave OMDb.";
 "Cards, panels." = "Schede, pannelli.";
 "Cargar archivo" = "Carica file";
 "Cargar más" = "Carica altro";
@@ -638,6 +640,7 @@
 "Crisp (anime & cartoons)" = "Nitido (anime e cartoni animati)";
 "Critically Acclaimed" = "Acclamati dalla critica";
 "Critics' Choice Awards" = "Critics' Choice Awards";
+"Critics' Pick" = "Scelto dalla critica";
 "Critics' Picks" = "Consigliati dalla critica";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
@@ -1120,6 +1123,7 @@
 "Install addon" = "Installa Add-on";
 "Install all" = "Installa tutto";
 "Installed" = "Installato";
+"Installing" = "Installazione in corso";
 "Installing {done} of {total}" = "Installazione {done} di {total}";
 "Instant" = "Immediato";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Istantaneo avvia subito il flusso meglio classificato. Scegli una fonte apre ogni volta la lista per scegliere versione, qualità e fornitore.";
@@ -1239,11 +1243,13 @@
 "Los FPS del video no están disponibles." = "Gli FPS del video non sono disponibili.";
 "Los filtros estrictos descartaron todo" = "I filtri rigorosi hanno escluso tutto";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
+"Loved by reviewers today" = "Apprezzati oggi dalla critica";
 "Lyric sync" = "Sincronizzazione testo";
 "Lyrics" = "Testo";
 "Lyrics earlier" = "Testo prima";
 "Lyrics later" = "Testo dopo";
 "Líneas más definidas y un poco más de impacto visual." = "Linee più nitide e immagini un po' più vivaci.";
+"M" = "M";
 "M3U playlist" = "Playlist M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
@@ -1399,6 +1405,7 @@
 "Next in {minutes}m" = "Tra {minutes}min";
 "Next month" = "Il mese prossimo";
 "Next page" = "Pagina successiva";
+"Next review" = "Recensione successiva";
 "Next song" = "Next song";
 "Night mode" = "Modalità notte";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "La modalità notte attenua delicatamente i momenti più rumorosi per la visione notturna. I profili si attivano al caricamento della traccia successiva e si combinano con il normalizzatore.";
@@ -1558,8 +1565,10 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Apri su Trakt";
+"Open review source" = "Apri la fonte della recensione";
 "Open settings" = "Apri Impostazioni";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Apri questo profilo all’avvio. Le richieste programmate possono comunque apparire in seguito. I profili con PIN non possono essere predefiniti.";
+"Open {name}" = "Apri {name}";
 "OpenRouter API key (sk-or-...)" = "Chiave API OpenRouter (sk-or-...)";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "Apertura di AniList...";
@@ -1703,6 +1712,7 @@
 "Previous day" = "Previous day";
 "Previous month" = "Mese precedente";
 "Previous page" = "Pagina precedente";
+"Previous review" = "Recensione precedente";
 "Previous song" = "Previous song";
 "Primary copy." = "Testo principale.";
 "Prime Video" = "Prime Video";
@@ -1760,6 +1770,7 @@
 "Re-runs the welcome flow and clears every dismissed tip." = "Ripete la procedura di benvenuto e ripristina tutti i suggerimenti ignorati.";
 "Reaches" = "Raggiunge";
 "Read" = "Leggi";
+"Read full" = "Leggi per intero";
 "Read more" = "Leggi altro";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -3781,6 +3792,7 @@
 "star" = "stella";
 "stars" = "stelle";
 "stats" = "statistiche";
+"stremio:// link" = "link stremio://";
 "stub files" = "file segnaposto";
 "summary" = "riepilogo";
 "themes" = "temi";

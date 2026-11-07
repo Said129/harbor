@@ -47,6 +47,7 @@ struct LiveTVView: View {
                 Picker("Categoría", selection: $category) { Text("Todas las categorías").tag("all"); ForEach(groups, id: \.self) { Text($0).tag($0) } }
                 Toggle("Sólo favoritos", isOn: $favorites)
             }
+            LiveTVTopNetworksRow(region: MetadataPreferences.shared.region, channels: selectedChannels, active: category == "all" && query.isEmpty, onPlay: { channel in Task { await play(channel) } })
             if loading { ProgressView("Cargando canales…") }
             if let error = error ?? preferences.error { Text(error).font(.caption).foregroundStyle(.orange) }
             ForEach(Array(filtered.prefix(visibleCount))) { channel in

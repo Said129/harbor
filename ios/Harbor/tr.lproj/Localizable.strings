@@ -35,6 +35,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift ile ok tuşlarına basıldığında her seferinde birkaç saniyelik daha kısa bir atlama yapar.";
+"A standout this week." = "Bu haftanın öne çıkanlarından.";
 "A to Z" = "A'dan Z'ye";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
@@ -436,6 +437,7 @@
 "Card behaviour" = "Kart davranışı";
 "Card size" = "Kart boyutu";
 "Cards" = "Kartlar";
+"Cards need an OMDb key." = "Kartlar için OMDb anahtarı gerekir.";
 "Cards, panels." = "Kartlar, paneller.";
 "Cargar archivo" = "Dosya yükle";
 "Cargar más" = "Daha fazla yükle";
@@ -638,6 +640,7 @@
 "Crisp (anime & cartoons)" = "Net (anime ve çizgi film)";
 "Critically Acclaimed" = "Eleştirmenlerin Beğenisini Kazananlar";
 "Critics' Choice Awards" = "Eleştirmenlerin Seçimi Ödülleri";
+"Critics' Pick" = "Eleştirmenlerin Seçimi";
 "Critics' Picks" = "Eleştirmenlerin Seçtikleri";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
@@ -1120,6 +1123,7 @@
 "Install addon" = "Eklentiyi yükle";
 "Install all" = "Tümünü yükle";
 "Installed" = "Yüklü";
+"Installing" = "Yükleniyor";
 "Installing {done} of {total}" = "{total} içinden {done} yükleniyor";
 "Instant" = "Anında";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Anında, en üst sıradaki yayını hemen başlatır. Kaynak seç, her seferinde yayın listesini açarak sürümü, kaliteyi ve sağlayıcıyı kendiniz seçmenizi sağlar.";
@@ -1239,11 +1243,13 @@
 "Los FPS del video no están disponibles." = "Video FPS'si kullanılamıyor.";
 "Los filtros estrictos descartaron todo" = "Katı filtreler tüm sonuçları eledi";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
+"Loved by reviewers today" = "Bugün eleştirmenlerden tam not aldı";
 "Lyric sync" = "Şarkı sözü eşitleme";
 "Lyrics" = "Şarkı sözleri";
 "Lyrics earlier" = "Sözler daha erken";
 "Lyrics later" = "Sözler daha geç";
 "Líneas más definidas y un poco más de impacto visual." = "Daha keskin çizgiler ve biraz daha canlı bir görünüm sunar.";
+"M" = "Dk";
 "M3U playlist" = "M3U oynatma listesi";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
@@ -1399,6 +1405,7 @@
 "Next in {minutes}m" = "Sonraki bölüm {minutes} dk. içinde";
 "Next month" = "Sonraki ay";
 "Next page" = "Sonraki sayfa";
+"Next review" = "Sonraki yorum";
 "Next song" = "Next song";
 "Night mode" = "Gece modu";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "Gece modu, geç saatlerde izlemek için yüksek sesli anları hafifçe sıkıştırır. Profiller bir sonraki parça yüklendiğinde devreye girer ve normalleştiriciyle birlikte uygulanır.";
@@ -1558,8 +1565,10 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Trakt'ta aç";
+"Open review source" = "İncelemenin kaynağını aç";
 "Open settings" = "Ayarları aç";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Başlangıçta bu profili açın. Süreli profil istemleri daha sonra yine görünebilir. PIN korumalı profiller varsayılan yapılamaz.";
+"Open {name}" = "{name} öğesini aç";
 "OpenRouter API key (sk-or-...)" = "OpenRouter API anahtarı (sk-or-...)";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "AniList açılıyor...";
@@ -1703,6 +1712,7 @@
 "Previous day" = "Previous day";
 "Previous month" = "Önceki ay";
 "Previous page" = "Önceki sayfa";
+"Previous review" = "Önceki inceleme";
 "Previous song" = "Previous song";
 "Primary copy." = "Birincil metin.";
 "Prime Video" = "Prime Video";
@@ -1760,6 +1770,7 @@
 "Re-runs the welcome flow and clears every dismissed tip." = "Karşılama akışını yeniden çalıştırır ve kapattığınız tüm ipuçlarını sıfırlar.";
 "Reaches" = "Eriştiği alan adları";
 "Read" = "Oku";
+"Read full" = "Tamamını oku";
 "Read more" = "Devamını oku";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -3781,6 +3792,7 @@
 "star" = "yıldız";
 "stars" = "yıldız";
 "stats" = "istatistikler";
+"stremio:// link" = "stremio:// bağlantısı";
 "stub files" = "eksik dosyalar";
 "summary" = "özet";
 "themes" = "tema";

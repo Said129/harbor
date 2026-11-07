@@ -35,6 +35,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shiftと矢印キーで短く移動し、数秒ずつ微調整できます。";
+"A standout this week." = "今週の注目作。";
 "A to Z" = "名前順";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
@@ -436,6 +437,7 @@
 "Card behaviour" = "カードの動作";
 "Card size" = "カードサイズ";
 "Cards" = "カード";
+"Cards need an OMDb key." = "カードにはOMDbキーが必要です。";
 "Cards, panels." = "カード、パネル。";
 "Cargar archivo" = "ファイルを読み込む";
 "Cargar más" = "さらに読み込む";
@@ -638,6 +640,7 @@
 "Crisp (anime & cartoons)" = "くっきり（アニメ・カートゥーン）";
 "Critically Acclaimed" = "批評家絶賛";
 "Critics' Choice Awards" = "クリティクス・チョイス・アワード";
+"Critics' Pick" = "批評家のおすすめ";
 "Critics' Picks" = "批評家のおすすめ";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
@@ -1120,6 +1123,7 @@
 "Install addon" = "アドオンをインストール";
 "Install all" = "すべてインストール";
 "Installed" = "インストール済み";
+"Installing" = "インストール中";
 "Installing {done} of {total}" = "{total}件中{done}件をインストール中";
 "Instant" = "即時";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "即時再生では最上位のストリームをすぐ再生します。ソース選択では毎回一覧を開き、リリース、画質、プロバイダーを自分で選べます。";
@@ -1239,11 +1243,13 @@
 "Los FPS del video no están disponibles." = "動画FPSを取得できません。";
 "Los filtros estrictos descartaron todo" = "厳格なフィルターですべて除外されました";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
+"Loved by reviewers today" = "本日、批評家に高評価";
 "Lyric sync" = "歌詞の同期";
 "Lyrics" = "歌詞";
 "Lyrics earlier" = "歌詞を早める";
 "Lyrics later" = "歌詞を遅らせる";
 "Líneas más definidas y un poco más de impacto visual." = "線をよりくっきりさせ、少しメリハリを加えます。";
+"M" = "M";
 "M3U playlist" = "M3Uプレイリスト";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
@@ -1399,6 +1405,7 @@
 "Next in {minutes}m" = "次回まで{minutes}分";
 "Next month" = "次の月";
 "Next page" = "次のページ";
+"Next review" = "次のレビュー";
 "Next song" = "Next song";
 "Night mode" = "ナイトモード";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "ナイトモードでは、深夜でも視聴しやすいよう大きな音を穏やかに圧縮します。プロファイルは次のトラックの読み込み時に適用され、ノーマライザーと併用されます。";
@@ -1558,8 +1565,10 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Traktで開く";
+"Open review source" = "レビュー元を開く";
 "Open settings" = "設定を開く";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "起動時にこのプロフィールを開きます。その後も時間による確認は表示される場合があります。PIN 付きのプロフィールは既定にできません。";
+"Open {name}" = "{name}を開く";
 "OpenRouter API key (sk-or-...)" = "OpenRouter APIキー（sk-or-...）";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "AniListを開いています...";
@@ -1703,6 +1712,7 @@
 "Previous day" = "Previous day";
 "Previous month" = "前の月";
 "Previous page" = "前のページ";
+"Previous review" = "前のレビュー";
 "Previous song" = "Previous song";
 "Primary copy." = "メインテキスト。";
 "Prime Video" = "Prime Video";
@@ -1760,6 +1770,7 @@
 "Re-runs the welcome flow and clears every dismissed tip." = "ウェルカムガイドをもう一度開始し、非表示にしたヒントをすべて元に戻します。";
 "Reaches" = "接続先";
 "Read" = "読む";
+"Read full" = "全文を読む";
 "Read more" = "もっと読む";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -3781,6 +3792,7 @@
 "star" = "スター";
 "stars" = "スター";
 "stats" = "スタッツ";
+"stremio:// link" = "stremio://リンク";
 "stub files" = "中身のないファイル";
 "summary" = "概要";
 "themes" = "テーマ";

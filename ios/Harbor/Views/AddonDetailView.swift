@@ -50,6 +50,7 @@ struct AddonDetailView: View {
                     }
                 }
                 if addon.configurable { configuration }
+                AddonRecommendationsSection(app: app, target: addon)
             }.padding(22)
         }.background(HarborTheme.background).navigationTitle("").navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Cerrar") { dismiss() }.disabled(saving) } }
@@ -83,6 +84,9 @@ struct AddonDetailView: View {
                 if addon.configurationURL != nil {
                     Button { showConfiguration = true } label: { HStack { Image("nav-settings").resizable().scaledToFit().frame(width: 18, height: 18); Text("Configurar addon") } }
                         .buttonStyle(HarborAccountButtonStyle(primary: !installed)).disabled(blocked).accessibilityIdentifier("addon-configure")
+                }
+                if let link = AddonSharing.shareURL(for: addon) {
+                    ShareLink(item: link) { Text(DesktopInterfaceText.value("stremio:// link")) }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("addon-share")
                 }
                 if installed { Button("Eliminar") { confirmingRemoval = true }.buttonStyle(HarborAccountButtonStyle()).foregroundStyle(.red).disabled(blocked).accessibilityIdentifier("addon-remove") }
             }

@@ -35,6 +35,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Tua một quãng ngắn hơn bằng Shift kết hợp với các phím mũi tên để dịch chuyển vài giây mỗi lần.";
+"A standout this week." = "Nổi bật tuần này.";
 "A to Z" = "A đến Z";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
@@ -436,6 +437,7 @@
 "Card behaviour" = "Cách thẻ hoạt động";
 "Card size" = "Kích thước thẻ";
 "Cards" = "Thẻ";
+"Cards need an OMDb key." = "Thẻ cần khóa OMDb.";
 "Cards, panels." = "Thẻ, bảng.";
 "Cargar archivo" = "Tải tệp";
 "Cargar más" = "Tải thêm";
@@ -638,6 +640,7 @@
 "Crisp (anime & cartoons)" = "Sắc nét (anime & hoạt hình)";
 "Critically Acclaimed" = "Được giới phê bình đánh giá cao";
 "Critics' Choice Awards" = "Giải Critics' Choice";
+"Critics' Pick" = "Lựa chọn của giới phê bình";
 "Critics' Picks" = "Lựa chọn của giới phê bình";
 "Crunchy" = "Giòn";
 "Crunchyroll" = "Crunchyroll";
@@ -1120,6 +1123,7 @@
 "Install addon" = "Cài đặt tiện ích bổ sung";
 "Install all" = "Cài tất cả";
 "Installed" = "Đã cài đặt";
+"Installing" = "Đang cài đặt";
 "Installing {done} of {total}" = "Đang cài {done}/{total}";
 "Instant" = "Tức thì";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Phát ngay bắt đầu luồng được xếp hạng cao nhất. Chọn nguồn mở danh sách luồng mỗi lần để bạn tự chọn bản phát hành, chất lượng và nhà cung cấp.";
@@ -1239,11 +1243,13 @@
 "Los FPS del video no están disponibles." = "FPS video không khả dụng.";
 "Los filtros estrictos descartaron todo" = "Bộ lọc nghiêm ngặt đã loại bỏ tất cả";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
+"Loved by reviewers today" = "Được giới phê bình yêu thích hôm nay";
 "Lyric sync" = "Đồng bộ lời bài hát";
 "Lyrics" = "Lời bài hát";
 "Lyrics earlier" = "Lời sớm hơn";
 "Lyrics later" = "Lời muộn hơn";
 "Líneas más definidas y un poco más de impacto visual." = "Đường nét rõ hơn và hình ảnh nổi bật hơn một chút.";
+"M" = "th";
 "M3U playlist" = "Danh sách phát M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
@@ -1399,6 +1405,7 @@
 "Next in {minutes}m" = "Tiếp theo sau {minutes} phút";
 "Next month" = "Tháng sau";
 "Next page" = "Trang tiếp theo";
+"Next review" = "Bài đánh giá tiếp theo";
 "Next song" = "Next song";
 "Night mode" = "Chế độ ban đêm";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "Chế độ ban đêm nén nhẹ những đoạn âm thanh lớn để xem khuya. Cấu hình có hiệu lực khi tải bản âm thanh tiếp theo và được kết hợp với bộ chuẩn hóa.";
@@ -1558,8 +1565,10 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Mở trên Trakt";
+"Open review source" = "Mở nguồn bài đánh giá";
 "Open settings" = "Mở Cài đặt";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Mở hồ sơ này khi khởi động. Lời nhắc theo thời gian vẫn có thể xuất hiện sau đó. Không thể đặt hồ sơ có mã PIN làm mặc định.";
+"Open {name}" = "Mở {name}";
 "OpenRouter API key (sk-or-...)" = "Khóa API OpenRouter (sk-or-...)";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "Đang mở AniList...";
@@ -1703,6 +1712,7 @@
 "Previous day" = "Previous day";
 "Previous month" = "Tháng trước";
 "Previous page" = "Trang trước";
+"Previous review" = "Bài đánh giá trước";
 "Previous song" = "Previous song";
 "Primary copy." = "Bản chính.";
 "Prime Video" = "Prime Video";
@@ -1760,6 +1770,7 @@
 "Re-runs the welcome flow and clears every dismissed tip." = "Chạy lại quy trình chào mừng và đặt lại mọi mẹo đã ẩn.";
 "Reaches" = "Truy cập";
 "Read" = "Đọc";
+"Read full" = "Đọc đầy đủ";
 "Read more" = "Đọc thêm";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -3781,6 +3792,7 @@
 "star" = "sao";
 "stars" = "sao";
 "stats" = "thống kê";
+"stremio:// link" = "Liên kết stremio://";
 "stub files" = "tệp mồi";
 "summary" = "tóm tắt";
 "themes" = "giao diện";

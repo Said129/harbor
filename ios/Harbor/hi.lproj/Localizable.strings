@@ -35,6 +35,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift और ऐरो कुंजियों से छोटा जंप, ताकि हर बार कुछ सेकंड आगे-पीछे किया जा सके।";
+"A standout this week." = "इस हफ़्ते की खास पेशकश।";
 "A to Z" = "A से Z";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
@@ -436,6 +437,7 @@
 "Card behaviour" = "कार्ड का व्यवहार";
 "Card size" = "कार्ड का आकार";
 "Cards" = "कार्ड";
+"Cards need an OMDb key." = "कार्ड के लिए OMDb कुंजी आवश्यक है।";
 "Cards, panels." = "कार्ड, पैनल।";
 "Cargar archivo" = "फ़ाइल लोड करें";
 "Cargar más" = "और लोड करें";
@@ -638,6 +640,7 @@
 "Crisp (anime & cartoons)" = "शार्प (एनीमे और कार्टून)";
 "Critically Acclaimed" = "समीक्षकों द्वारा प्रशंसित";
 "Critics' Choice Awards" = "क्रिटिक्स चॉइस पुरस्कार";
+"Critics' Pick" = "समीक्षकों की पसंद";
 "Critics' Picks" = "समीक्षकों की चुनी हुई पेशकश";
 "Crunchy" = "करारा";
 "Crunchyroll" = "Crunchyroll";
@@ -1120,6 +1123,7 @@
 "Install addon" = "ऐडऑन इंस्टॉल करें";
 "Install all" = "सभी इंस्टॉल करें";
 "Installed" = "इंस्टॉल हो गया";
+"Installing" = "इंस्टॉल हो रहा है";
 "Installing {done} of {total}" = "{total} में से {done} इंस्टॉल हो रहे हैं";
 "Instant" = "तुरंत";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "तुरंत प्ले सबसे ऊपर वाली स्ट्रीम सीधे शुरू करता है। स्रोत चुनें हर बार स्ट्रीम सूची खोलता है, ताकि आप रिलीज़, गुणवत्ता और प्रदाता खुद चुन सकें।";
@@ -1239,11 +1243,13 @@
 "Los FPS del video no están disponibles." = "वीडियो FPS उपलब्ध नहीं है।";
 "Los filtros estrictos descartaron todo" = "सख्त फ़िल्टरों के कारण सब कुछ हट गया";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
+"Loved by reviewers today" = "आज समीक्षकों की पसंद";
 "Lyric sync" = "लिरिक सिंक";
 "Lyrics" = "बोल";
 "Lyrics earlier" = "लिरिक पहले";
 "Lyrics later" = "लिरिक बाद में";
 "Líneas más definidas y un poco más de impacto visual." = "ज़्यादा शार्प लाइनें और थोड़ी ज़्यादा स्पष्टता।";
+"M" = "M";
 "M3U playlist" = "M3U प्लेलिस्ट";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
@@ -1399,6 +1405,7 @@
 "Next in {minutes}m" = "अगला: {minutes} मिनट में";
 "Next month" = "अगला महीना";
 "Next page" = "अगला पेज";
+"Next review" = "अगली समीक्षा";
 "Next song" = "Next song";
 "Night mode" = "नाइट मोड";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "नाइट मोड देर रात देखने के लिए तेज़ आवाज़ वाले हिस्सों की तीव्रता हल्की कर देता है। अगला ट्रैक लोड होने पर प्रोफ़ाइल लागू होती हैं और नॉर्मलाइज़र के साथ मिलकर काम करती हैं।";
@@ -1558,8 +1565,10 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Trakt पर खोलें";
+"Open review source" = "समीक्षा का स्रोत खोलें";
 "Open settings" = "सेटिंग्स खोलें";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "शुरू होने पर यह प्रोफ़ाइल खोलें। समय पर आने वाले संकेत बाद में भी दिख सकते हैं। PIN वाली प्रोफ़ाइल डिफ़ॉल्ट नहीं बन सकती।";
+"Open {name}" = "{name} खोलें";
 "OpenRouter API key (sk-or-...)" = "OpenRouter API कुंजी (sk-or-...)";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "AniList खोला जा रहा है...";
@@ -1703,6 +1712,7 @@
 "Previous day" = "Previous day";
 "Previous month" = "पिछला महीना";
 "Previous page" = "पिछला पेज";
+"Previous review" = "पिछली समीक्षा";
 "Previous song" = "Previous song";
 "Primary copy." = "मुख्य टेक्स्ट।";
 "Prime Video" = "Prime Video";
@@ -1760,6 +1770,7 @@
 "Re-runs the welcome flow and clears every dismissed tip." = "स्वागत प्रक्रिया फिर से चलाता है और खारिज की गई हर टिप मिटा देता है।";
 "Reaches" = "संपर्क करता है";
 "Read" = "पढ़ें";
+"Read full" = "पूरा पढ़ें";
 "Read more" = "और पढ़ें";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -3781,6 +3792,7 @@
 "star" = "स्टार";
 "stars" = "स्टार्स";
 "stats" = "आँकड़े";
+"stremio:// link" = "stremio:// लिंक";
 "stub files" = "स्टब फ़ाइलें";
 "summary" = "सारांश";
 "themes" = "थीम";

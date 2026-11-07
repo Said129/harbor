@@ -35,6 +35,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Krótszy skok po naciśnięciu Shift i klawisza strzałki, umożliwiający przesuwanie o kilka sekund.";
+"A standout this week." = "Wyróżnia się w tym tygodniu.";
 "A to Z" = "Od A do Z";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
@@ -436,6 +437,7 @@
 "Card behaviour" = "Zachowanie kart";
 "Card size" = "Rozmiar kart";
 "Cards" = "Karty";
+"Cards need an OMDb key." = "Karty wymagają klucza OMDb.";
 "Cards, panels." = "Karty, panele.";
 "Cargar archivo" = "Wczytaj plik";
 "Cargar más" = "Wczytaj więcej";
@@ -638,6 +640,7 @@
 "Crisp (anime & cartoons)" = "Wyrazisty (anime i kreskówki)";
 "Critically Acclaimed" = "Docenione przez krytyków";
 "Critics' Choice Awards" = "Nagrody Critics' Choice";
+"Critics' Pick" = "Wybór krytyków";
 "Critics' Picks" = "Wybór krytyków";
 "Crunchy" = "Wyrazisty";
 "Crunchyroll" = "Crunchyroll";
@@ -1120,6 +1123,7 @@
 "Install addon" = "Zainstaluj dodatek";
 "Install all" = "Zainstaluj wszystkie";
 "Installed" = "Zainstalowane";
+"Installing" = "Instalowanie";
 "Installing {done} of {total}" = "Instalowanie {done} z {total}";
 "Instant" = "Natychmiast";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Natychmiast uruchamia od razu najwyżej oceniony strumień. Wybierz źródło otwiera listę za każdym razem, aby samodzielnie wybrać wydanie, jakość i dostawcę.";
@@ -1239,11 +1243,13 @@
 "Los FPS del video no están disponibles." = "FPS filmu jest niedostępne.";
 "Los filtros estrictos descartaron todo" = "Ścisłe filtry odrzuciły wszystkie wyniki";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
+"Loved by reviewers today" = "Dziś doceniane przez recenzentów";
 "Lyric sync" = "Synchronizacja tekstu";
 "Lyrics" = "Tekst";
 "Lyrics earlier" = "Tekst wcześniej";
 "Lyrics later" = "Tekst później";
 "Líneas más definidas y un poco más de impacto visual." = "Ostrzejsze linie i nieco bardziej wyrazisty obraz.";
+"M" = "mies.";
 "M3U playlist" = "Playlista M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
@@ -1399,6 +1405,7 @@
 "Next in {minutes}m" = "Następne za {minutes} min";
 "Next month" = "Następny miesiąc";
 "Next page" = "Następna strona";
+"Next review" = "Następna recenzja";
 "Next song" = "Next song";
 "Night mode" = "Tryb nocny";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "Tryb nocny łagodnie kompresuje głośne momenty podczas oglądania późną porą. Profile zaczynają działać po wczytaniu następnej ścieżki i łączą się z normalizatorem.";
@@ -1558,8 +1565,10 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Otwórz w Trakt";
+"Open review source" = "Otwórz źródło recenzji";
 "Open settings" = "Otwórz ustawienia";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Otwieraj ten profil przy uruchamianiu. Pytania po upływie czasu nadal mogą się pojawiać. Profil z kodem PIN nie może być domyślny.";
+"Open {name}" = "Otwórz {name}";
 "OpenRouter API key (sk-or-...)" = "Klucz API OpenRouter (sk-or-...)";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "Otwieranie AniList...";
@@ -1703,6 +1712,7 @@
 "Previous day" = "Previous day";
 "Previous month" = "Poprzedni miesiąc";
 "Previous page" = "Poprzednia strona";
+"Previous review" = "Poprzednia recenzja";
 "Previous song" = "Previous song";
 "Primary copy." = "Tekst główny.";
 "Prime Video" = "Prime Video";
@@ -1760,6 +1770,7 @@
 "Re-runs the welcome flow and clears every dismissed tip." = "Ponownie uruchamia ekran powitalny i przywraca wszystkie odrzucone wskazówki.";
 "Reaches" = "Łączy się z";
 "Read" = "Odczytaj";
+"Read full" = "Czytaj całość";
 "Read more" = "Czytaj więcej";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -3781,6 +3792,7 @@
 "star" = "gwiazdka";
 "stars" = "gwiazdki";
 "stats" = "statystyki";
+"stremio:// link" = "Link stremio://";
 "stub files" = "pliki szczątkowe";
 "summary" = "podsumowanie";
 "themes" = "motywy";

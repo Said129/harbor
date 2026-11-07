@@ -35,6 +35,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "按住 Shift 并按方向键时进行更短距离的跳转，便于每次微调几秒。";
+"A standout this week." = "本周佳作。";
 "A to Z" = "按名称";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
@@ -436,6 +437,7 @@
 "Card behaviour" = "卡片行为";
 "Card size" = "卡片大小";
 "Cards" = "卡片";
+"Cards need an OMDb key." = "卡片需要 OMDb 密钥。";
 "Cards, panels." = "卡片、面板。";
 "Cargar archivo" = "加载文件";
 "Cargar más" = "加载更多";
@@ -638,6 +640,7 @@
 "Crisp (anime & cartoons)" = "清晰（动漫和卡通）";
 "Critically Acclaimed" = "广受好评";
 "Critics' Choice Awards" = "评论家选择奖";
+"Critics' Pick" = "影评人之选";
 "Critics' Picks" = "影评人之选";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
@@ -1120,6 +1123,7 @@
 "Install addon" = "安装插件";
 "Install all" = "全部安装";
 "Installed" = "已安装";
+"Installing" = "正在安装";
 "Installing {done} of {total}" = "正在安装 {done}/{total}";
 "Instant" = "立即显示";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "即时播放会立即启动排名最高的播放源。选择播放源则每次都打开列表，让你自行选择版本、画质和服务商。";
@@ -1239,11 +1243,13 @@
 "Los FPS del video no están disponibles." = "视频 FPS 不可用。";
 "Los filtros estrictos descartaron todo" = "严格筛选已排除所有结果";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
+"Loved by reviewers today" = "今日获影评人好评";
 "Lyric sync" = "歌词同步";
 "Lyrics" = "歌词";
 "Lyrics earlier" = "歌词提前";
 "Lyrics later" = "歌词延后";
 "Líneas más definidas y un poco más de impacto visual." = "线条更锐利，画面更有活力。";
+"M" = "月";
 "M3U playlist" = "M3U 播放列表";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
@@ -1399,6 +1405,7 @@
 "Next in {minutes}m" = "还有 {minutes}分钟";
 "Next month" = "下个月";
 "Next page" = "下一页";
+"Next review" = "下一条评论";
 "Next song" = "Next song";
 "Night mode" = "夜间模式";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "夜间模式会适度压缩高音量片段，方便深夜观看。音效配置会在下一条音轨加载时生效，并与标准化器叠加使用。";
@@ -1558,8 +1565,10 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "在 Trakt 上打开";
+"Open review source" = "打开评论来源";
 "Open settings" = "打开设置";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "启动时打开此个人资料。之后仍可能显示定时提示。设置了 PIN 的资料不能设为默认。";
+"Open {name}" = "打开 {name}";
 "OpenRouter API key (sk-or-...)" = "OpenRouter API 密钥（sk-or-...）";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "正在打开 AniList...";
@@ -1703,6 +1712,7 @@
 "Previous day" = "Previous day";
 "Previous month" = "上个月";
 "Previous page" = "上一页";
+"Previous review" = "上一条评论";
 "Previous song" = "Previous song";
 "Primary copy." = "主要文字。";
 "Prime Video" = "Prime Video";
@@ -1760,6 +1770,7 @@
 "Re-runs the welcome flow and clears every dismissed tip." = "重新运行欢迎流程，并恢复所有已忽略的提示。";
 "Reaches" = "访问范围";
 "Read" = "读取";
+"Read full" = "阅读全文";
 "Read more" = "展开阅读";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -3781,6 +3792,7 @@
 "star" = "颗星";
 "stars" = "颗星";
 "stats" = "数据";
+"stremio:// link" = "stremio:// 链接";
 "stub files" = "占位文件";
 "summary" = "摘要";
 "themes" = "主题";

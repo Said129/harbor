@@ -35,6 +35,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Un salto más corto con Shift y las teclas de flecha, para avanzar o retroceder unos segundos a la vez.";
+"A standout this week." = "Una obra destacada esta semana.";
 "A to Z" = "De la A a la Z";
 "A-B loop" = "Bucle A-B";
 "A-Z" = "A-Z";
@@ -436,6 +437,7 @@
 "Card behaviour" = "Comportamiento de las tarjetas";
 "Card size" = "Tamaño de las tarjetas";
 "Cards" = "Tarjetas";
+"Cards need an OMDb key." = "Las tarjetas necesitan una clave de OMDb.";
 "Cards, panels." = "Tarjetas, paneles.";
 "Cargar archivo" = "Cargar archivo";
 "Cargar más" = "Cargar más";
@@ -638,6 +640,7 @@
 "Crisp (anime & cartoons)" = "Nítido (anime y caricaturas)";
 "Critically Acclaimed" = "Aclamados por la crítica";
 "Critics' Choice Awards" = "Premios Critics' Choice";
+"Critics' Pick" = "Elección de la crítica";
 "Critics' Picks" = "Recomendaciones de la crítica";
 "Crunchy" = "Crujiente";
 "Crunchyroll" = "Crunchyroll";
@@ -1120,6 +1123,7 @@
 "Install addon" = "Instalar addon";
 "Install all" = "Instalar todo";
 "Installed" = "Instalado";
+"Installing" = "Instalando";
 "Installing {done} of {total}" = "Instalando {done} de {total}";
 "Instant" = "Instantáneo";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Instantáneo inicia de inmediato el stream mejor valorado. Elegir fuente abre siempre la lista para que elijas la versión, calidad y proveedor.";
@@ -1239,11 +1243,13 @@
 "Los FPS del video no están disponibles." = "Los FPS del video no están disponibles.";
 "Los filtros estrictos descartaron todo" = "Los filtros estrictos descartaron todo";
 "Los libros que abras e importes aparecerán aquí." = "Los libros que abras e importes aparecerán aquí.";
+"Loved by reviewers today" = "Favoritos de la crítica hoy";
 "Lyric sync" = "Sincronización de la letra";
 "Lyrics" = "Letra";
 "Lyrics earlier" = "Letra antes";
 "Lyrics later" = "Letra después";
 "Líneas más definidas y un poco más de impacto visual." = "Líneas más definidas y un poco más de impacto visual.";
+"M" = "M";
 "M3U playlist" = "Lista M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
@@ -1399,6 +1405,7 @@
 "Next in {minutes}m" = "Siguiente en {minutes} min";
 "Next month" = "Mes siguiente";
 "Next page" = "Página siguiente";
+"Next review" = "Siguiente reseña";
 "Next song" = "Siguiente canción";
 "Night mode" = "Modo nocturno";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "El modo nocturno reduce suavemente los momentos de mayor volumen para ver contenido a altas horas de la noche. Los perfiles se aplican cuando se carga la siguiente pista y se combinan con el normalizador.";
@@ -1558,8 +1565,10 @@
 "Open music player" = "Abrir reproductor de Música";
 "Open navigation" = "Abrir navegación";
 "Open on Trakt" = "Abrir en Trakt";
+"Open review source" = "Abrir fuente de la reseña";
 "Open settings" = "Abrir ajustes";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Abre este perfil al iniciar. Los avisos programados pueden seguir apareciendo más tarde. Los perfiles con PIN no pueden ser predeterminados.";
+"Open {name}" = "Abrir {name}";
 "OpenRouter API key (sk-or-...)" = "Clave de API de OpenRouter (sk-or-...)";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "Abriendo AniList...";
@@ -1703,6 +1712,7 @@
 "Previous day" = "Día anterior";
 "Previous month" = "Mes anterior";
 "Previous page" = "Página anterior";
+"Previous review" = "Reseña anterior";
 "Previous song" = "Canción anterior";
 "Primary copy." = "Copia principal.";
 "Prime Video" = "Prime Video";
@@ -1760,6 +1770,7 @@
 "Re-runs the welcome flow and clears every dismissed tip." = "Vuelve a ejecutar el proceso de bienvenida y borra todos los consejos descartados.";
 "Reaches" = "Accede a";
 "Read" = "Leer";
+"Read full" = "Leer completo";
 "Read more" = "Leer más";
 "Read on iPhone and iPad" = "Lee en iPhone y iPad";
 "Reader options" = "Opciones del lector";
@@ -3781,6 +3792,7 @@
 "star" = "estrella";
 "stars" = "estrellas";
 "stats" = "estadísticas";
+"stremio:// link" = "Enlace stremio://";
 "stub files" = "archivos incompletos";
 "summary" = "resumen";
 "themes" = "temas";

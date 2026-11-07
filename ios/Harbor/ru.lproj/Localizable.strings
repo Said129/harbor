@@ -37,6 +37,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Более короткий скачок по Shift со стрелками, чтобы сдвигать всего на несколько секунд.";
+"A standout this week." = "Выбор недели.";
 "A to Z" = "По алфавиту";
 "A-B loop" = "A-B loop";
 "A-Z" = "А-Я";
@@ -439,6 +440,7 @@
 "Card behaviour" = "Поведение карточек";
 "Card size" = "Размер карточек";
 "Cards" = "Карточки";
+"Cards need an OMDb key." = "Для карточек нужен ключ OMDb.";
 "Cards, panels." = "Карточки, панели.";
 "Cargar archivo" = "Загрузить файл";
 "Cargar más" = "Показать ещё";
@@ -641,6 +643,7 @@
 "Crisp (anime & cartoons)" = "Чётко (аниме и мультфильмы)";
 "Critically Acclaimed" = "Признано критиками";
 "Critics' Choice Awards" = "Премия «Выбор критиков»";
+"Critics' Pick" = "Выбор критиков";
 "Critics' Picks" = "Выбор критиков";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
@@ -1124,6 +1127,7 @@
 "Install addon" = "Установить дополнение";
 "Install all" = "Установить все";
 "Installed" = "Установлено";
+"Installing" = "Установка";
 "Installing {done} of {total}" = "Установка {done} из {total}";
 "Instant" = "Мгновенно";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Мгновенный запуск сразу включает поток с наивысшим рейтингом. Выбор источника каждый раз открывает список, где вы сами выбираете версию, качество и провайдера.";
@@ -1243,11 +1247,13 @@
 "Los FPS del video no están disponibles." = "Частота кадров видео недоступна.";
 "Los filtros estrictos descartaron todo" = "Строгие фильтры отсеяли всё";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
+"Loved by reviewers today" = "Сегодня в восторге у критиков";
 "Lyric sync" = "Синхронизация текста";
 "Lyrics" = "Текст песни";
 "Lyrics earlier" = "Текст раньше";
 "Lyrics later" = "Текст позже";
 "Líneas más definidas y un poco más de impacto visual." = "Более чёткие линии и чуть больше выразительности.";
+"M" = "м";
 "M3U playlist" = "Плейлист M3U";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
@@ -1406,6 +1412,7 @@
 "Next in {minutes}m" = "Следующая через {minutes} мин";
 "Next month" = "Следующий месяц";
 "Next page" = "Следующая страница";
+"Next review" = "Следующая рецензия";
 "Next song" = "Next song";
 "Night mode" = "Ночной режим";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "Ночной режим мягко сглаживает громкие моменты для просмотра поздно вечером. Профили применяются при загрузке следующей дорожки и работают вместе с нормализатором.";
@@ -1566,8 +1573,10 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Открыть на Trakt";
+"Open review source" = "Открыть источник рецензии";
 "Open settings" = "Открыть настройки";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Открывать этот профиль при запуске. Запросы по таймеру могут появляться и позже. Профиль с PIN-кодом нельзя сделать профилем по умолчанию.";
+"Open {name}" = "Открыть {name}";
 "OpenRouter API key (sk-or-...)" = "Ключ API OpenRouter (sk-or-...)";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "Открытие AniList...";
@@ -1713,6 +1722,7 @@
 "Previous day" = "Previous day";
 "Previous month" = "Предыдущий месяц";
 "Previous page" = "Предыдущая страница";
+"Previous review" = "Предыдущий отзыв";
 "Previous song" = "Previous song";
 "Primary copy." = "Основной текст.";
 "Prime Video" = "Prime Video";
@@ -1770,6 +1780,7 @@
 "Re-runs the welcome flow and clears every dismissed tip." = "Запускает приветственный тур заново и сбрасывает все скрытые подсказки.";
 "Reaches" = "Обращается к";
 "Read" = "Прочитать";
+"Read full" = "Читать полностью";
 "Read more" = "Читать далее";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -3795,6 +3806,7 @@
 "star" = "звезда";
 "stars" = "звёзд";
 "stats" = "статистика";
+"stremio:// link" = "Ссылка stremio://";
 "stub files" = "файлы-заглушки";
 "summary" = "сводка";
 "themes" = "темы";

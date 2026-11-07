@@ -29,6 +29,7 @@ struct SearchView: View {
                 Text("Resultados para «\(completedQuery)»").font(.headline).padding()
                     .accessibilityIdentifier("search-results-query")
             }
+            if isTitleQuery { SearchLiveTVSection(app: app, query: query) }
             if isTitleQuery { SearchPeopleSection(app: app, query: query) }
             aiSearchLink
             CatalogRails(rows: SearchPresentation.rows(rows), app: app, titleOverrides: searchTitles, browseCatalogs: false, onSelect: { history.record(query) })

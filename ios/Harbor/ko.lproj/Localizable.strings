@@ -35,6 +35,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift와 방향키를 함께 눌러 몇 초씩 미세하게 이동합니다.";
+"A standout this week." = "이번 주의 주목작입니다.";
 "A to Z" = "이름순";
 "A-B loop" = "A-B loop";
 "A-Z" = "가나다순";
@@ -436,6 +437,7 @@
 "Card behaviour" = "카드 동작";
 "Card size" = "카드 크기";
 "Cards" = "카드";
+"Cards need an OMDb key." = "카드에는 OMDb 키가 필요합니다.";
 "Cards, panels." = "카드, 패널.";
 "Cargar archivo" = "파일 불러오기";
 "Cargar más" = "더 불러오기";
@@ -638,6 +640,7 @@
 "Crisp (anime & cartoons)" = "또렷하게(애니메이션 및 만화)";
 "Critically Acclaimed" = "평단의 찬사를 받은 작품";
 "Critics' Choice Awards" = "크리틱스 초이스상";
+"Critics' Pick" = "평론가 추천작";
 "Critics' Picks" = "평론가 추천작";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
@@ -1120,6 +1123,7 @@
 "Install addon" = "애드온 설치";
 "Install all" = "모두 설치";
 "Installed" = "설치됨";
+"Installing" = "설치 중";
 "Installing {done} of {total}" = "{total}개 중 {done}개 설치 중";
 "Instant" = "즉시";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "즉시 재생은 순위가 가장 높은 스트림을 바로 시작합니다. 소스 선택은 매번 스트림 목록을 열어 릴리스, 화질, 제공업체를 직접 고르게 합니다.";
@@ -1239,11 +1243,13 @@
 "Los FPS del video no están disponibles." = "동영상 FPS를 사용할 수 없습니다.";
 "Los filtros estrictos descartaron todo" = "엄격한 필터로 모든 결과가 제외됨";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
+"Loved by reviewers today" = "오늘 평론가들의 호평을 받은 작품";
 "Lyric sync" = "가사 동기화";
 "Lyrics" = "가사";
 "Lyrics earlier" = "가사 앞당기기";
 "Lyrics later" = "가사 늦추기";
 "Líneas más definidas y un poco más de impacto visual." = "선을 더 선명하게 하고 생동감을 약간 높입니다.";
+"M" = "M";
 "M3U playlist" = "M3U 재생목록";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
@@ -1399,6 +1405,7 @@
 "Next in {minutes}m" = "다음 공개까지 {minutes}분";
 "Next month" = "다음 달";
 "Next page" = "다음 페이지";
+"Next review" = "다음 리뷰";
 "Next song" = "Next song";
 "Night mode" = "야간 모드";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "야간 모드는 심야 시청을 위해 큰 소리를 부드럽게 압축합니다. 프로필은 다음 트랙이 로드될 때 적용되며 음량 평준화와 함께 사용할 수 있습니다.";
@@ -1558,8 +1565,10 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Trakt에서 열기";
+"Open review source" = "리뷰 출처 열기";
 "Open settings" = "설정 열기";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "시작할 때 이 프로필을 엽니다. 이후에도 시간에 따른 확인 메시지가 표시될 수 있습니다. PIN이 있는 프로필은 기본으로 설정할 수 없습니다.";
+"Open {name}" = "{name} 열기";
 "OpenRouter API key (sk-or-...)" = "OpenRouter API 키(sk-or-...)";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "AniList 여는 중...";
@@ -1703,6 +1712,7 @@
 "Previous day" = "Previous day";
 "Previous month" = "이전 달";
 "Previous page" = "이전 페이지";
+"Previous review" = "이전 리뷰";
 "Previous song" = "Previous song";
 "Primary copy." = "기본 문구.";
 "Prime Video" = "Prime Video";
@@ -1760,6 +1770,7 @@
 "Re-runs the welcome flow and clears every dismissed tip." = "환영 절차를 다시 실행하고 닫은 모든 팁을 초기화합니다.";
 "Reaches" = "접속 대상";
 "Read" = "읽기";
+"Read full" = "전문 읽기";
 "Read more" = "더 보기";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -3781,6 +3792,7 @@
 "star" = "별";
 "stars" = "별";
 "stats" = "통계";
+"stremio:// link" = "stremio:// 링크";
 "stub files" = "불완전한 파일";
 "summary" = "요약";
 "themes" = "테마";

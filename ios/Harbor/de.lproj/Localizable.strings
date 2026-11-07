@@ -35,6 +35,7 @@
 "A little of everything, all year long." = "A little of everything, all year long.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Ein kürzerer Sprung mit Umschalttaste plus Pfeiltasten, um jeweils einige Sekunden vor- oder zurückzuspringen.";
+"A standout this week." = "Ein Highlight diese Woche.";
 "A to Z" = "A bis Z";
 "A-B loop" = "A-B loop";
 "A-Z" = "A-Z";
@@ -436,6 +437,7 @@
 "Card behaviour" = "Kartenverhalten";
 "Card size" = "Kartengröße";
 "Cards" = "Karten";
+"Cards need an OMDb key." = "Karten benötigen einen OMDb-Schlüssel.";
 "Cards, panels." = "Karten, Bereiche.";
 "Cargar archivo" = "Datei laden";
 "Cargar más" = "Mehr laden";
@@ -638,6 +640,7 @@
 "Crisp (anime & cartoons)" = "Gestochen scharf (Anime & Cartoons)";
 "Critically Acclaimed" = "Von der Kritik gefeiert";
 "Critics' Choice Awards" = "Critics' Choice Awards";
+"Critics' Pick" = "Kritikerempfehlung";
 "Critics' Picks" = "Empfehlungen der Kritiker";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
@@ -1120,6 +1123,7 @@
 "Install addon" = "Add-on installieren";
 "Install all" = "Alle installieren";
 "Installed" = "Installiert";
+"Installing" = "Wird installiert";
 "Installing {done} of {total}" = "{done} von {total} wird installiert";
 "Instant" = "Sofort";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Sofort startet direkt den bestbewerteten Stream. Quelle wählen öffnet jedes Mal die Streamliste, damit du Veröffentlichung, Qualität und Anbieter selbst auswählst.";
@@ -1239,11 +1243,13 @@
 "Los FPS del video no están disponibles." = "Video-FPS sind nicht verfügbar.";
 "Los filtros estrictos descartaron todo" = "Strenge Filter haben alles ausgeschlossen";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
+"Loved by reviewers today" = "Heute von Kritikern geliebt";
 "Lyric sync" = "Textsynchronisation";
 "Lyrics" = "Songtext";
 "Lyrics earlier" = "Text früher";
 "Lyrics later" = "Text später";
 "Líneas más definidas y un poco más de impacto visual." = "Schärfere Linien und etwas mehr Ausdruck.";
+"M" = "M";
 "M3U playlist" = "M3U-Wiedergabeliste";
 "MAL" = "MAL";
 "MAL did not confirm the update." = "MAL did not confirm the update.";
@@ -1399,6 +1405,7 @@
 "Next in {minutes}m" = "Als Nächstes in {minutes}m";
 "Next month" = "Nächster Monat";
 "Next page" = "Nächste Seite";
+"Next review" = "Nächste Rezension";
 "Next song" = "Next song";
 "Night mode" = "Nachtmodus";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "Der Nachtmodus dämpft laute Stellen sanft, damit du spätabends angenehm schauen kannst. Profile werden beim Laden der nächsten Tonspur wirksam und mit der Normalisierung kombiniert.";
@@ -1558,8 +1565,10 @@
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on Trakt" = "Auf Trakt öffnen";
+"Open review source" = "Rezensionsquelle öffnen";
 "Open settings" = "Einstellungen öffnen";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Öffne dieses Profil beim Start. Zeitgesteuerte Abfragen können später weiterhin erscheinen. Profile mit PIN können nicht als Standard verwendet werden.";
+"Open {name}" = "{name} öffnen";
 "OpenRouter API key (sk-or-...)" = "OpenRouter-API-Schlüssel (sk-or-...)";
 "OpenSubtitles" = "OpenSubtitles";
 "Opening AniList..." = "AniList wird geöffnet...";
@@ -1703,6 +1712,7 @@
 "Previous day" = "Previous day";
 "Previous month" = "Vorheriger Monat";
 "Previous page" = "Vorherige Seite";
+"Previous review" = "Vorherige Rezension";
 "Previous song" = "Previous song";
 "Primary copy." = "Primäre Kopie.";
 "Prime Video" = "Prime Video";
@@ -1760,6 +1770,7 @@
 "Re-runs the welcome flow and clears every dismissed tip." = "Führt den Willkommensdialog erneut aus und setzt alle ausgeblendeten Tipps zurück.";
 "Reaches" = "Erreicht";
 "Read" = "Lesen";
+"Read full" = "Vollständig lesen";
 "Read more" = "Weiterlesen";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -3781,6 +3792,7 @@
 "star" = "Stern";
 "stars" = "Sterne";
 "stats" = "Statistiken";
+"stremio:// link" = "stremio://-Link";
 "stub files" = "Stub-Dateien";
 "summary" = "Zusammenfassung";
 "themes" = "Designs";
