@@ -34,6 +34,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A relay we run. Nothing to set up, and it stays current on its own." = "Một relay do chúng tôi vận hành. Không cần thiết lập và luôn tự động cập nhật.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Tua một quãng ngắn hơn bằng Shift kết hợp với các phím mũi tên để dịch chuyển vài giây mỗi lần.";
 "A standout this week." = "Nổi bật tuần này.";
@@ -472,6 +473,7 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "Các chương";
+"Chat" = "Trò chuyện";
 "Check it works" = "Kiểm tra hoạt động";
 "Check the highlighted values before saving." = "Kiểm tra các giá trị được đánh dấu trước khi lưu.";
 "Check whether this device can reach the saved server address." = "Kiểm tra xem thiết bị này có truy cập được địa chỉ máy chủ đã lưu không.";
@@ -519,6 +521,7 @@
 "Clear filters" = "Xóa bộ lọc";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Xóa tìm kiếm";
+"Clears the saved URL so you can point Harbor at another relay." = "Xóa URL đã lưu để Harbor có thể trỏ đến một relay khác.";
 "Close" = "Đóng";
 "Close navigation" = "Close navigation";
 "Close player" = "Đóng trình phát";
@@ -613,6 +616,8 @@
 "Copia secundaria." = "Bản sao phụ.";
 "Copied" = "Đã sao chép";
 "Copy" = "Sao chép";
+"Copy invite link" = "Sao chép liên kết mời";
+"Copy room code" = "Sao chép mã phòng";
 "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "Độ bo góc";
 "Correo y contraseña" = "Email and password";
@@ -847,6 +852,7 @@
 "Enter a size of 0 or more." = "Nhập kích thước từ 0 trở lên.";
 "Enter a whole number of 0 or more." = "Nhập số nguyên từ 0 trở lên.";
 "Enter an FPS from 1 to 240." = "Nhập FPS từ 1 đến 240.";
+"Enter an existing relay URL:" = "Nhập URL relay hiện có:";
 "Enter current PIN" = "Nhập mã PIN hiện tại";
 "Episode" = "Tập";
 "Episode cards" = "Thẻ tập";
@@ -1021,6 +1027,7 @@
 "Guardar recordatorio" = "Lưu nhắc nhở";
 "Guardar y compartir páginas" = "Save and share pages";
 "Guest" = "Khách";
+"Guests pick their own source" = "Khách tự chọn nguồn";
 "Género" = "Thể loại";
 "HD" = "HD";
 "HDR" = "HDR";
@@ -1030,6 +1037,7 @@
 "HW decode" = "Giải mã phần cứng";
 "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido." = "Quầng sáng nhẹ quanh chữ. Rõ nét nhất với hầu hết nội dung.";
 "Harbor" = "Harbor";
+"Harbor Relay" = "Harbor Relay";
 "Harbor account" = "Tài khoản Harbor";
 "Harbor blocks suspicious files and mismatched releases by default. For older shows and unusual titles this is sometimes too tight." = "Theo mặc định, Harbor chặn các tệp đáng ngờ và bản phát hành không khớp. Với phim bộ cũ và tựa phim khác thường, bộ lọc đôi khi quá chặt.";
 "Harbor busca subtítulos en este orden. Pon primero tu idioma preferido." = "Harbor tìm phụ đề theo thứ tự này. Đặt ngôn ngữ bạn muốn ở đầu.";
@@ -1049,6 +1057,7 @@
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harbor hiển thị các danh sách AniList của bạn trên trang Anime và đồng bộ tiến độ xem.";
 "Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "Tính năng tìm kiếm OpenSubtitles tích hợp của Harbor, được bật theo mặc định. Nếu bạn cài đặt tiện ích bổ sung OpenSubtitles, tính năng này sẽ tự động nhường chỗ để kết quả không bao giờ bị trùng lặp.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Các menu và nhãn riêng của Harbor. Ngôn ngữ phụ đề sẽ được chọn sau và bạn có thể thay đổi cả hai trong Cài đặt.";
+"Harbor's public relay" = "Relay công khai của Harbor";
 "Hard stroke around each letter. High contrast." = "Viền đậm quanh từng chữ. Độ tương phản cao.";
 "Harvey Award Winners" = "Tác phẩm đoạt giải Harvey";
 "Harvey Winner" = "Đoạt giải Harvey";
@@ -1195,6 +1204,7 @@
 "Interfaz del sistema" = "Giao diện hệ thống";
 "Interlineado" = "Chiều cao dòng";
 "Invalid SourceRow JSON format" = "Định dạng JSON SourceRow không hợp lệ";
+"Invite link" = "Liên kết mời";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Ứng dụng này không liên kết với nhà sản xuất {product}, hay bất kỳ công ty, tác giả tiện ích bổ sung hoặc chủ sở hữu nhãn hiệu nào được đề cập trong ứng dụng.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "Ứng dụng này không liên kết, được chứng thực, tài trợ hay có bất kỳ quan hệ nào với {company}.";
 "Italian" = "Tiếng Ý";
@@ -1209,6 +1219,7 @@
 "Japanese" = "Tiếng Nhật";
 "Jina API key (optional)" = "Khóa API Jina (không bắt buộc)";
 "Jina Reader" = "Jina Reader";
+"Join" = "Tham gia";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Tự động bỏ qua phần mở đầu ngay khi bắt đầu. Tua lại vào phần mở đầu sẽ phát phần đó mà không bỏ qua lần nữa. Nút Bỏ qua tuân theo cài đặt ở trên.";
 "Just added" = "Mới thêm";
 "Kanopy" = "Kanopy";
@@ -1238,6 +1249,7 @@
 "Larger" = "Lớn hơn";
 "Laterales" = "Hai bên";
 "Leave" = "Rời khỏi";
+"Leave room" = "Rời phòng";
 "Leave the show?" = "Rời khỏi phim bộ?";
 "Lectura" = "Đang đọc";
 "Left" = "Trái";
@@ -1362,6 +1374,7 @@
 "Mejor valorado en {site}" = "Được đánh giá cao nhất trên {site}";
 "Mes anterior" = "Tháng trước";
 "Mes siguiente" = "Tháng sau";
+"Message" = "Tin nhắn";
 "Metacritic" = "Metacritic";
 "Metadata" = "Siêu dữ liệu";
 "Metadata language" = "Ngôn ngữ siêu dữ liệu";
@@ -1631,6 +1644,7 @@
 "Ongoing" = "Đang phát hành";
 "Only 1 source after filtering" = "Chỉ còn 1 nguồn sau khi lọc";
 "Only 2 sources after filtering" = "Chỉ còn 2 nguồn sau khi lọc";
+"Only enter URLs for relays you operate or trust. A relay only carries Watch Together sync messages (play, pause, seek). Nothing else passes through it." = "Chỉ nhập URL của relay do bạn vận hành hoặc tin cậy. Relay chỉ truyền các thông báo đồng bộ Xem cùng nhau (phát, tạm dừng, tua). Không có dữ liệu nào khác đi qua relay.";
 "Only https links are accepted." = "Chỉ chấp nhận liên kết https.";
 "Only show streams in my languages" = "Chỉ hiện luồng bằng ngôn ngữ của tôi";
 "Only show titles in these original languages on the Home rows. Leave all off to show everything." = "Chỉ hiển thị trên các hàng Trang chủ những tựa phim có ngôn ngữ gốc này. Tắt tất cả để hiển thị mọi nội dung.";
@@ -1644,6 +1658,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "Mở lại AniList";
 "Open MyAnimeList again" = "Mở lại MyAnimeList";
+"Open Settings" = "Mở Cài đặt";
 "Open Settings, then System, then Advanced system settings." = "Mở Cài đặt, rồi chọn Hệ thống, sau đó chọn Cài đặt hệ thống nâng cao.";
 "Open a title and tap Add to Watchlist to save it here." = "Mở một tựa phim và chạm vào «Thêm vào danh sách xem» để lưu tại đây.";
 "Open image" = "Mở ảnh";
@@ -1699,6 +1714,8 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Mật khẩu";
 "Paste JSON" = "Dán JSON";
+"Paste a wss:// URL that a friend or your community shared with you." = "Dán URL wss:// do bạn bè hoặc cộng đồng chia sẻ.";
+"Paste invite link" = "Dán liên kết mời";
 "Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "Dán mã hoặc URL trang";
 "Paste the manifest URL the configure page gave you" = "Dán URL manifest do trang cấu hình cung cấp";
@@ -1825,6 +1842,7 @@
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
+"Prompts guests to choose instead of auto-matching" = "Yêu cầu khách chọn thay vì tự động ghép nguồn";
 "Proveedores de metadatos" = "Nhà cung cấp siêu dữ liệu";
 "Provide a JSON link or paste it directly." = "Cung cấp liên kết JSON hoặc dán trực tiếp.";
 "Provider" = "Nhà cung cấp";
@@ -2025,6 +2043,7 @@
 "Romaji" = "Romaji";
 "Romance" = "Lãng mạn";
 "Romanian" = "Tiếng Romania";
+"Room code" = "Mã phòng";
 "Rostro" = "Khuôn mặt";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rotten Tomatoes" = "Rotten Tomatoes";
@@ -2066,6 +2085,7 @@
 "Saved app data" = "Saved app data";
 "Saved stream filters" = "Đã lưu bộ lọc luồng phát";
 "Saving" = "Đang lưu";
+"Say hi." = "Gửi lời chào.";
 "Scanning your network…" = "Đang quét mạng…";
 "Sci-Fi" = "Khoa học viễn tưởng";
 "Sci-Fi & Fantasy" = "Khoa học viễn tưởng & kỳ ảo";
@@ -2116,6 +2136,7 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "Đã chọn";
+"Send" = "Gửi";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Đang gửi đến Trakt…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
@@ -2171,6 +2192,7 @@
 "Show comments on detail pages" = "Hiển thị bình luận trên trang chi tiết";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Hiển thị mô tả đầy đủ của tiện ích trong trình chọn Stremio, mục tải xuống và Big Picture.";
 "Show controls" = "Hiện điều khiển";
+"Show cursors" = "Hiện con trỏ";
 "Show details" = "Hiện chi tiết";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Hiển thị kết quả của từng tiện ích bổ sung theo đúng thứ tự trả về, nhóm theo danh sách tiện ích bổ sung của bạn. Giống các ứng dụng Stremio và Vidi.";
 "Show episode" = "Hiện tập";
@@ -2293,6 +2315,7 @@
 "Start" = "Bắt đầu";
 "Start Over" = "Phát lại từ đầu";
 "Start Watching" = "Bắt đầu xem";
+"Start a new room" = "Tạo phòng mới";
 "Start as" = "Bắt đầu với";
 "Start trailers with audio" = "Phát trailer có âm thanh";
 "Start with subtitles off" = "Tắt phụ đề khi bắt đầu";
@@ -2644,7 +2667,9 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "Dùng khóa v3, không dùng mã truy cập đọc.";
 "Usar mi estilo" = "Dùng kiểu của tôi";
+"Use Harbor's public relay" = "Dùng relay công khai của Harbor";
 "Use addon order" = "Dùng thứ tự tiện ích bổ sung";
+"Use an existing relay" = "Dùng relay hiện có";
 "Use live web context" = "Dùng ngữ cảnh web trực tiếp";
 "Use model" = "Dùng mô hình";
 "Use my style" = "Dùng kiểu của tôi";
@@ -2653,6 +2678,7 @@
 "Use the \"personal\" key, not the project one." = "Dùng khóa \"personal\", không dùng khóa dự án.";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Dùng khóa v3, không dùng mã truy cập đọc.";
+"Use the wss:// scheme, not https://." = "Dùng giao thức wss://, không dùng https://.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "Dùng ở độ trong suốt 55% / 25%.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Dùng để kiểm tra bộ nhớ đệm và bỏ hạn chế liên kết. Harbor không bao giờ tự thêm hoặc xóa bất cứ thứ gì trong tài khoản của bạn.";
@@ -2692,7 +2718,10 @@
 "Waiting for you to authorize on simkl.com…" = "Đang chờ bạn cấp quyền trên simkl.com…";
 "Waiting for you to authorize on trakt.tv…" = "Đang chờ bạn cấp quyền trên trakt.tv…";
 "War" = "Chiến tranh";
+"Watch Together" = "Xem cùng nhau";
+"Watch Together needs a relay." = "Xem cùng nhau cần một relay.";
 "Watch on" = "Xem trên";
+"Watch together" = "Xem cùng nhau";
 "Watched" = "Đã xem";
 "Watched by {name}" = "Đã được {name} xem";
 "Watching" = "Đang xem";
@@ -2766,6 +2795,7 @@
 "Your listening history will build itself here." = "Lịch sử nghe của bạn sẽ được lưu tại đây.";
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "Danh sách của bạn đang được giữ trong bộ nhớ. Hãy lưu trước khi đóng ứng dụng.";
+"Your name" = "Tên của bạn";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "Hồ sơ của bạn";
@@ -3907,6 +3937,8 @@
 "o usa uno de nuestros avatares" = "hoặc dùng một trong các ảnh đại diện của chúng tôi";
 "obsolete" = "lỗi thời";
 "or" = "hoặc";
+"or join" = "hoặc tham gia";
+"or paste an invite link" = "hoặc dán liên kết mời";
 "or use one of our avatars" = "hoặc dùng một trong các ảnh đại diện của chúng tôi";
 "oversized" = "quá lớn";
 "plays" = "lượt phát";
@@ -3947,6 +3979,7 @@
 "watched" = "đã xem";
 "wrong episode" = "sai tập";
 "wrong movie" = "sai phim";
+"wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "sai năm";
 "yes" = "có";
 "your-name" = "your-name";
@@ -3987,6 +4020,7 @@
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} nguồn · 0 nguồn vượt qua";
+"{n} watching" = "{n} người đang xem";
 "{n}+ seeds" = "{n}+ nguồn seed";
 "{n}d ago" = "{n} ngày trước";
 "{n}d left" = "còn {n} ngày";

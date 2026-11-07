@@ -34,6 +34,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A relay we run. Nothing to set up, and it stays current on its own." = "Bizim işlettiğimiz bir aktarıcı. Kurulum gerektirmez ve kendini otomatik olarak güncel tutar.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift ile ok tuşlarına basıldığında her seferinde birkaç saniyelik daha kısa bir atlama yapar.";
 "A standout this week." = "Bu haftanın öne çıkanlarından.";
@@ -472,6 +473,7 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "Bölümler";
+"Chat" = "Sohbet";
 "Check it works" = "Çalıştığını denetle";
 "Check the highlighted values before saving." = "Kaydetmeden önce işaretlenen değerleri kontrol edin.";
 "Check whether this device can reach the saved server address." = "Bu cihazın kayıtlı sunucu adresine ulaşıp ulaşamadığını denetleyin.";
@@ -519,6 +521,7 @@
 "Clear filters" = "Filtreleri temizle";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Aramayı temizle";
+"Clears the saved URL so you can point Harbor at another relay." = "Kayıtlı URL'yi kaldırarak Harbor'ı başka bir aktarıcıya yönlendirmenizi sağlar.";
 "Close" = "Kapat";
 "Close navigation" = "Close navigation";
 "Close player" = "Oynatıcıyı kapat";
@@ -613,6 +616,8 @@
 "Copia secundaria." = "İkincil metin.";
 "Copied" = "Kopyalandı";
 "Copy" = "Kopyala";
+"Copy invite link" = "Davet bağlantısını kopyala";
+"Copy room code" = "Oda kodunu kopyala";
 "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "Köşe yarıçapı";
 "Correo y contraseña" = "Email and password";
@@ -847,6 +852,7 @@
 "Enter a size of 0 or more." = "0 veya daha büyük bir boyut girin.";
 "Enter a whole number of 0 or more." = "0 veya daha büyük bir tam sayı girin.";
 "Enter an FPS from 1 to 240." = "1 ile 240 arasında bir FPS girin.";
+"Enter an existing relay URL:" = "Mevcut bir aktarıcı URL'si girin:";
 "Enter current PIN" = "Geçerli PIN'i girin";
 "Episode" = "Bölüm";
 "Episode cards" = "Bölüm kartları";
@@ -1021,6 +1027,7 @@
 "Guardar recordatorio" = "Hatırlatıcıyı kaydet";
 "Guardar y compartir páginas" = "Save and share pages";
 "Guest" = "Misafir";
+"Guests pick their own source" = "Konuklar kendi kaynaklarını seçsin";
 "Género" = "Tür";
 "HD" = "HD";
 "HDR" = "HDR";
@@ -1030,6 +1037,7 @@
 "HW decode" = "Donanım kod çözme";
 "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido." = "Metnin çevresinde yumuşak bir hale. Çoğu içerikte en temiz görünüm.";
 "Harbor" = "Harbor";
+"Harbor Relay" = "Harbor Relay";
 "Harbor account" = "Harbor hesabı";
 "Harbor blocks suspicious files and mismatched releases by default. For older shows and unusual titles this is sometimes too tight." = "Harbor, şüpheli dosyaları ve eşleşmeyen sürümleri varsayılan olarak engeller. Eski diziler ve sıra dışı yapımlar için bu bazen fazla katı olabilir.";
 "Harbor busca subtítulos en este orden. Pon primero tu idioma preferido." = "Harbor altyazıları bu sırayla arar. Tercih ettiğiniz dili ilk sıraya koyun.";
@@ -1049,6 +1057,7 @@
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harbor, AniList listelerinizi Anime sayfasında gösterir ve ilerlemenizi eşit tutar.";
 "Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "Harbor'ın yerleşik OpenSubtitles araması varsayılan olarak açıktır. Bir OpenSubtitles eklentisi yüklerseniz sonuçların yinelenmemesi için bu özellik otomatik olarak devreden çıkar.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Harbor'ın kendi menüleri ve etiketleri. Altyazı dillerini daha sonra seçebilirsiniz; ikisini de Ayarlar'dan değiştirebilirsiniz.";
+"Harbor's public relay" = "Harbor'ın herkese açık aktarıcısı";
 "Hard stroke around each letter. High contrast." = "Her harfin çevresinde keskin bir kontur. Yüksek kontrast.";
 "Harvey Award Winners" = "Harvey Ödülü Kazananlar";
 "Harvey Winner" = "Harvey Ödülü Sahibi";
@@ -1195,6 +1204,7 @@
 "Interfaz del sistema" = "Sistem arayüzü";
 "Interlineado" = "Satır yüksekliği";
 "Invalid SourceRow JSON format" = "Geçersiz SourceRow JSON biçimi";
+"Invite link" = "Davet bağlantısı";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "{product} geliştiricisiyle veya uygulamada adı geçen herhangi bir şirket, eklenti geliştiricisi ya da ticari marka sahibiyle bağlantılı değildir.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "{company} ile bağlantılı değildir; bu şirket tarafından onaylanmaz, desteklenmez veya hiçbir şekilde bu şirketle ilişkili değildir.";
 "Italian" = "İtalyanca";
@@ -1209,6 +1219,7 @@
 "Japanese" = "Japonca";
 "Jina API key (optional)" = "Jina API anahtarı (isteğe bağlı)";
 "Jina Reader" = "Jina Reader";
+"Join" = "Katıl";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Açılış başlar başlamaz otomatik olarak atlayın. Açılışa geri sararsanız yeniden atlanmadan oynatılır. Atla düğmesi yukarıdaki ayara uyar.";
 "Just added" = "Yeni eklenenler";
 "Kanopy" = "Kanopy";
@@ -1238,6 +1249,7 @@
 "Larger" = "Daha büyük";
 "Laterales" = "Kenarlar";
 "Leave" = "Ayrıl";
+"Leave room" = "Odadan ayrıl";
 "Leave the show?" = "Yayından ayrılmak istiyor musunuz?";
 "Lectura" = "Okunuyor";
 "Left" = "Sol";
@@ -1362,6 +1374,7 @@
 "Mejor valorado en {site}" = "{site} üzerinde en yüksek puan alanlar";
 "Mes anterior" = "Önceki ay";
 "Mes siguiente" = "Sonraki ay";
+"Message" = "Mesaj";
 "Metacritic" = "Metacritic";
 "Metadata" = "Meta veriler";
 "Metadata language" = "Meta veri dili";
@@ -1631,6 +1644,7 @@
 "Ongoing" = "Devam ediyor";
 "Only 1 source after filtering" = "Filtrelemeden sonra yalnızca 1 kaynak kaldı";
 "Only 2 sources after filtering" = "Filtrelemeden sonra yalnızca 2 kaynak kaldı";
+"Only enter URLs for relays you operate or trust. A relay only carries Watch Together sync messages (play, pause, seek). Nothing else passes through it." = "Yalnızca işlettiğiniz veya güvendiğiniz aktarıcıların URL'lerini girin. Aktarıcı sadece Birlikte İzle eşitleme mesajlarını (oynat, duraklat, ileri-geri sar) taşır. Başka hiçbir şey aktarıcıdan geçmez.";
 "Only https links are accepted." = "Yalnızca https bağlantıları kabul edilir.";
 "Only show streams in my languages" = "Yalnızca dillerimdeki yayınları göster";
 "Only show titles in these original languages on the Home rows. Leave all off to show everything." = "Ana Sayfa satırlarında yalnızca özgün dili bunlardan biri olan yapımları gösterin. Her şeyi göstermek için tümünü kapalı bırakın.";
@@ -1644,6 +1658,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "AniList'i yeniden aç";
 "Open MyAnimeList again" = "MyAnimeList'i yeniden aç";
+"Open Settings" = "Ayarları Aç";
 "Open Settings, then System, then Advanced system settings." = "Ayarlar'ı, ardından Sistem'i ve Gelişmiş sistem ayarları'nı açın.";
 "Open a title and tap Add to Watchlist to save it here." = "Bir başlığı açıp buraya kaydetmek için «İzleme listesine ekle» seçeneğine dokun.";
 "Open image" = "Görseli aç";
@@ -1699,6 +1714,8 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Parola";
 "Paste JSON" = "JSON Yapıştır";
+"Paste a wss:// URL that a friend or your community shared with you." = "Bir arkadaşınızın veya topluluğunuzun sizinle paylaştığı wss:// URL'sini yapıştırın.";
+"Paste invite link" = "Davet bağlantısını yapıştır";
 "Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "Kodu veya sayfa URL'sini yapıştırın";
 "Paste the manifest URL the configure page gave you" = "Yapılandırma sayfasının verdiği manifest URL'sini yapıştırın";
@@ -1825,6 +1842,7 @@
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
+"Prompts guests to choose instead of auto-matching" = "Otomatik eşleştirme yerine konuklardan seçim yapmalarını ister";
 "Proveedores de metadatos" = "Meta veri sağlayıcıları";
 "Provide a JSON link or paste it directly." = "Bir JSON bağlantısı girin veya JSON'u doğrudan yapıştırın.";
 "Provider" = "Sağlayıcı";
@@ -2025,6 +2043,7 @@
 "Romaji" = "Romaji";
 "Romance" = "Romantik";
 "Romanian" = "Rumence";
+"Room code" = "Oda kodu";
 "Rostro" = "Yüz";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rotten Tomatoes" = "Rotten Tomatoes";
@@ -2066,6 +2085,7 @@
 "Saved app data" = "Saved app data";
 "Saved stream filters" = "Kaydedilen yayın filtreleri";
 "Saving" = "Kaydediliyor";
+"Say hi." = "Merhaba deyin.";
 "Scanning your network…" = "Ağınız taranıyor…";
 "Sci-Fi" = "Bilim Kurgu";
 "Sci-Fi & Fantasy" = "Bilim Kurgu ve Fantastik";
@@ -2116,6 +2136,7 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "Seçildi";
+"Send" = "Gönder";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Trakt'a gönderiliyor…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
@@ -2171,6 +2192,7 @@
 "Show comments on detail pages" = "Ayrıntı sayfalarında yorumları göster";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio seçicide, indirmelerde ve Big Picture'da eklenti açıklamalarının tamamını göster.";
 "Show controls" = "Kontrolleri göster";
+"Show cursors" = "İmleçleri göster";
 "Show details" = "Ayrıntıları göster";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Her eklentinin sonuçlarını döndürdüğü sırayla, eklenti listenize göre gruplandırarak gösterir. Stremio ve Vidi uygulamalarıyla aynıdır.";
 "Show episode" = "Bölümü göster";
@@ -2293,6 +2315,7 @@
 "Start" = "Başlangıç";
 "Start Over" = "Baştan Başlat";
 "Start Watching" = "İzlemeye Başla";
+"Start a new room" = "Yeni bir oda başlat";
 "Start as" = "Başlangıç profili";
 "Start trailers with audio" = "Fragmanları sesli başlat";
 "Start with subtitles off" = "Altyazıları kapalı başlat";
@@ -2644,7 +2667,9 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "Okuma erişimi tokenını değil, v3 anahtarını kullanın.";
 "Usar mi estilo" = "Benim stilimi kullan";
+"Use Harbor's public relay" = "Harbor'ın herkese açık aktarıcısını kullan";
 "Use addon order" = "Eklenti sırasını kullan";
+"Use an existing relay" = "Mevcut bir aktarıcı kullan";
 "Use live web context" = "Canlı web bağlamını kullan";
 "Use model" = "Modeli kullan";
 "Use my style" = "Benim stilimi kullan";
@@ -2653,6 +2678,7 @@
 "Use the \"personal\" key, not the project one." = "Proje anahtarını değil, \"personal\" anahtarını kullanın.";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Okuma erişimi tokenını değil, v3 anahtarını kullanın.";
+"Use the wss:// scheme, not https://." = "https:// değil, wss:// şemasını kullanın.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "%55 / %25 alfa ile kullanılır.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Önbelleği kontrol etmek ve bağlantı kısıtlamalarını kaldırmak için kullanılır. Harbor hesabınıza kendi kendine asla bir şey eklemez veya kaldırmaz.";
@@ -2692,7 +2718,10 @@
 "Waiting for you to authorize on simkl.com…" = "simkl.com'da yetkilendirmeniz bekleniyor…";
 "Waiting for you to authorize on trakt.tv…" = "trakt.tv'de yetkilendirmeniz bekleniyor…";
 "War" = "Savaş";
+"Watch Together" = "Birlikte İzle";
+"Watch Together needs a relay." = "Birlikte İzle için bir aktarıcı gerekir.";
 "Watch on" = "Şurada izle";
+"Watch together" = "Birlikte İzle";
 "Watched" = "İzlendi";
 "Watched by {name}" = "{name} tarafından izlendi";
 "Watching" = "İzleniyor";
@@ -2766,6 +2795,7 @@
 "Your listening history will build itself here." = "Dinleme geçmişiniz burada oluşacak.";
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "Listeleriniz bellekte tutuluyor. Uygulamayı kapatmadan önce kaydedin.";
+"Your name" = "Adınız";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "Profiliniz";
@@ -3907,6 +3937,8 @@
 "o usa uno de nuestros avatares" = "veya avatarlarımızdan birini kullanın";
 "obsolete" = "kullanımdan kaldırıldı";
 "or" = "veya";
+"or join" = "veya katıl";
+"or paste an invite link" = "veya bir davet bağlantısı yapıştır";
 "or use one of our avatars" = "veya avatarlarımızdan birini kullanın";
 "oversized" = "aşırı büyük";
 "plays" = "oynatma";
@@ -3947,6 +3979,7 @@
 "watched" = "izlendi";
 "wrong episode" = "yanlış bölüm";
 "wrong movie" = "yanlış film";
+"wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "yıl uyuşmazlığı";
 "yes" = "evet";
 "your-name" = "your-name";
@@ -3987,6 +4020,7 @@
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} kaynak · 0 tanesi filtreleri geçti";
+"{n} watching" = "{n} kişi izliyor";
 "{n}+ seeds" = "{n}+ kaynak";
 "{n}d ago" = "{n} gün önce";
 "{n}d left" = "{n} gün kaldı";

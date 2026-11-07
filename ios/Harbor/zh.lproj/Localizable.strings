@@ -34,6 +34,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A relay we run. Nothing to set up, and it stays current on its own." = "由我们运营的中继服务器。无需设置，并会自动保持最新。";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "按住 Shift 并按方向键时进行更短距离的跳转，便于每次微调几秒。";
 "A standout this week." = "本周佳作。";
@@ -472,6 +473,7 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "章节";
+"Chat" = "聊天";
 "Check it works" = "检查是否可用";
 "Check the highlighted values before saving." = "保存前请检查突出显示的值。";
 "Check whether this device can reach the saved server address." = "检查此设备能否连接已保存的服务器地址。";
@@ -519,6 +521,7 @@
 "Clear filters" = "清除筛选条件";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "清除搜索";
+"Clears the saved URL so you can point Harbor at another relay." = "清除已保存的 URL，以便将 Harbor 指向其他中继。";
 "Close" = "关闭";
 "Close navigation" = "Close navigation";
 "Close player" = "关闭播放器";
@@ -613,6 +616,8 @@
 "Copia secundaria." = "备用副本。";
 "Copied" = "已复制";
 "Copy" = "复制";
+"Copy invite link" = "复制邀请链接";
+"Copy room code" = "复制房间码";
 "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "圆角半径";
 "Correo y contraseña" = "Email and password";
@@ -847,6 +852,7 @@
 "Enter a size of 0 or more." = "请输入不小于 0 的大小。";
 "Enter a whole number of 0 or more." = "请输入不小于 0 的整数。";
 "Enter an FPS from 1 to 240." = "请输入 1 到 240 之间的 FPS。";
+"Enter an existing relay URL:" = "输入现有中继 URL：";
 "Enter current PIN" = "输入当前 PIN";
 "Episode" = "剧集";
 "Episode cards" = "单集卡片";
@@ -1021,6 +1027,7 @@
 "Guardar recordatorio" = "保存提醒";
 "Guardar y compartir páginas" = "Save and share pages";
 "Guest" = "访客";
+"Guests pick their own source" = "访客自行选择片源";
 "Género" = "类型";
 "HD" = "HD";
 "HDR" = "HDR";
@@ -1030,6 +1037,7 @@
 "HW decode" = "硬件解码";
 "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido." = "在文字周围添加柔和光晕，适合大多数内容，效果最简洁。";
 "Harbor" = "Harbor";
+"Harbor Relay" = "Harbor Relay";
 "Harbor account" = "Harbor 账号";
 "Harbor blocks suspicious files and mismatched releases by default. For older shows and unusual titles this is sometimes too tight." = "Harbor 默认会屏蔽可疑文件和版本不符的资源。对于较老的剧集和冷门作品，此筛选有时过于严格。";
 "Harbor busca subtítulos en este orden. Pon primero tu idioma preferido." = "Harbor 按此顺序查找字幕。请将首选语言放在最前面。";
@@ -1049,6 +1057,7 @@
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harbor 会在动漫页面显示你的 AniList 列表，并持续同步观看进度。";
 "Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "Harbor 内置的 OpenSubtitles 搜索，默认开启。如果你安装了 OpenSubtitles 插件，此功能会自动停用，避免结果重复。";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "用于 Harbor 自身的菜单和标签。字幕语言可稍后设置，这两项都能在设置中更改。";
+"Harbor's public relay" = "Harbor 公共中继";
 "Hard stroke around each letter. High contrast." = "为每个字符添加硬边描边，对比度高。";
 "Harvey Award Winners" = "哈维奖获奖作品";
 "Harvey Winner" = "哈维奖获奖作品";
@@ -1195,6 +1204,7 @@
 "Interfaz del sistema" = "系统界面";
 "Interlineado" = "行高";
 "Invalid SourceRow JSON format" = "SourceRow JSON 格式无效";
+"Invite link" = "邀请链接";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "它与 {product} 的制作者，以及应用内提及的任何公司、插件作者或商标持有人均无关联。";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "它不隶属于 {company}，也未获得其认可或赞助，与其不存在任何形式的关联。";
 "Italian" = "意大利语";
@@ -1209,6 +1219,7 @@
 "Japanese" = "日语";
 "Jina API key (optional)" = "Jina API 密钥（可选）";
 "Jina Reader" = "Jina Reader";
+"Join" = "加入";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "片头一开始就自动跳过。回退到片头会重新播放，不会再次跳过。跳过按钮遵循上方设置。";
 "Just added" = "最新添加";
 "Kanopy" = "Kanopy";
@@ -1238,6 +1249,7 @@
 "Larger" = "较大";
 "Laterales" = "双页";
 "Leave" = "离开";
+"Leave room" = "离开房间";
 "Leave the show?" = "要离开此节目吗？";
 "Lectura" = "正在读取";
 "Left" = "左对齐";
@@ -1362,6 +1374,7 @@
 "Mejor valorado en {site}" = "{site} 评分最高";
 "Mes anterior" = "上个月";
 "Mes siguiente" = "下个月";
+"Message" = "消息";
 "Metacritic" = "Metacritic";
 "Metadata" = "元数据";
 "Metadata language" = "元数据语言";
@@ -1631,6 +1644,7 @@
 "Ongoing" = "连载中";
 "Only 1 source after filtering" = "筛选后仅剩 1 个来源";
 "Only 2 sources after filtering" = "筛选后仅剩 2 个来源";
+"Only enter URLs for relays you operate or trust. A relay only carries Watch Together sync messages (play, pause, seek). Nothing else passes through it." = "请仅输入由你运营或信任的中继 URL。中继只传输“一起看”同步消息（播放、暂停、跳转），不会传输任何其他内容。";
 "Only https links are accepted." = "只接受 https 链接。";
 "Only show streams in my languages" = "仅显示符合我的语言设置的视频流";
 "Only show titles in these original languages on the Home rows. Leave all off to show everything." = "首页内容行中仅显示原始语言为这些语言的作品。全部关闭则显示所有作品。";
@@ -1644,6 +1658,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "再次打开 AniList";
 "Open MyAnimeList again" = "再次打开 MyAnimeList";
+"Open Settings" = "打开设置";
 "Open Settings, then System, then Advanced system settings." = "依次打开“设置”、“系统”和“高级系统设置”。";
 "Open a title and tap Add to Watchlist to save it here." = "打开一个条目，轻点“添加到待看列表”即可将其保存到这里。";
 "Open image" = "打开图片";
@@ -1699,6 +1714,8 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "密码";
 "Paste JSON" = "粘贴 JSON";
+"Paste a wss:// URL that a friend or your community shared with you." = "粘贴朋友或社区与你分享的 wss:// URL。";
+"Paste invite link" = "粘贴邀请链接";
 "Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "粘贴代码或页面 URL";
 "Paste the manifest URL the configure page gave you" = "粘贴配置页面提供的 manifest URL";
@@ -1825,6 +1842,7 @@
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
+"Prompts guests to choose instead of auto-matching" = "提示访客自行选择，而非自动匹配";
 "Proveedores de metadatos" = "元数据提供商";
 "Provide a JSON link or paste it directly." = "提供 JSON 链接或直接粘贴内容。";
 "Provider" = "提供商";
@@ -2025,6 +2043,7 @@
 "Romaji" = "罗马字";
 "Romance" = "爱情";
 "Romanian" = "罗马尼亚语";
+"Room code" = "房间码";
 "Rostro" = "字体";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rotten Tomatoes" = "Rotten Tomatoes";
@@ -2066,6 +2085,7 @@
 "Saved app data" = "Saved app data";
 "Saved stream filters" = "已保存视频流筛选条件";
 "Saving" = "正在保存";
+"Say hi." = "打个招呼吧。";
 "Scanning your network…" = "正在扫描你的网络…";
 "Sci-Fi" = "科幻";
 "Sci-Fi & Fantasy" = "科幻与奇幻";
@@ -2116,6 +2136,7 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "已选择";
+"Send" = "发送";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "正在发送到 Trakt…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
@@ -2171,6 +2192,7 @@
 "Show comments on detail pages" = "在详情页显示评论";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "在 Stremio 选择器、下载页面和大屏模式中显示插件的完整描述。";
 "Show controls" = "显示控件";
+"Show cursors" = "显示光标";
 "Show details" = "显示详情";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "按各插件返回的原始顺序显示结果，并依照你的插件列表分组。与 Stremio 和 Vidi 应用一致。";
 "Show episode" = "显示剧集";
@@ -2293,6 +2315,7 @@
 "Start" = "开始";
 "Start Over" = "从头播放";
 "Start Watching" = "开始观看";
+"Start a new room" = "创建新房间";
 "Start as" = "启动时为";
 "Start trailers with audio" = "播放预告片时开启声音";
 "Start with subtitles off" = "开始播放时关闭字幕";
@@ -2644,7 +2667,9 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "请使用 v3 密钥，而不是读取访问令牌。";
 "Usar mi estilo" = "使用我的样式";
+"Use Harbor's public relay" = "使用 Harbor 的公共中继";
 "Use addon order" = "使用插件顺序";
+"Use an existing relay" = "使用现有中继";
 "Use live web context" = "使用实时 Web 上下文";
 "Use model" = "使用模型";
 "Use my style" = "使用我的样式";
@@ -2653,6 +2678,7 @@
 "Use the \"personal\" key, not the project one." = "请使用“personal”密钥，而不是项目密钥。";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "请使用 v3 密钥，而不是读取访问令牌。";
+"Use the wss:// scheme, not https://." = "请使用 wss:// 协议，而非 https://。";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "使用 55% / 25% 不透明度。";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "用于检查缓存和解除链接限制。Harbor 绝不会自行在你的账户中添加或移除任何内容。";
@@ -2692,7 +2718,10 @@
 "Waiting for you to authorize on simkl.com…" = "正在等待你在 simkl.com 上授权…";
 "Waiting for you to authorize on trakt.tv…" = "正在等待你在 trakt.tv 上授权…";
 "War" = "战争";
+"Watch Together" = "一起看";
+"Watch Together needs a relay." = "“一起观看”需要中继服务。";
 "Watch on" = "在以下平台观看";
+"Watch together" = "一起观看";
 "Watched" = "已观看";
 "Watched by {name}" = "{name} 已观看";
 "Watching" = "正在观看";
@@ -2766,6 +2795,7 @@
 "Your listening history will build itself here." = "你的收听历史会在这里逐步生成。";
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "你的列表暂存在内存中。请在关闭应用前保存。";
+"Your name" = "你的名字";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "你的个人资料";
@@ -3907,6 +3937,8 @@
 "o usa uno de nuestros avatares" = "或使用我们提供的头像";
 "obsolete" = "已过时";
 "or" = "或";
+"or join" = "或加入";
+"or paste an invite link" = "或粘贴邀请链接";
 "or use one of our avatars" = "或使用我们提供的头像";
 "oversized" = "文件过大";
 "plays" = "播放次数";
@@ -3947,6 +3979,7 @@
 "watched" = "看过了";
 "wrong episode" = "集数错误";
 "wrong movie" = "电影不符";
+"wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "年份不符";
 "yes" = "是";
 "your-name" = "your-name";
@@ -3987,6 +4020,7 @@
 "{n} seeds" = "{n} 个做种者";
 "{n} semillas" = "{n} 个做种者";
 "{n} sources · 0 made it through" = "{n} 个片源 · 0 个通过筛选";
+"{n} watching" = "{n} 人正在观看";
 "{n}+ seeds" = "{n}+ 个做种源";
 "{n}d ago" = "{n} 天前";
 "{n}d left" = "剩余 {n} 天";

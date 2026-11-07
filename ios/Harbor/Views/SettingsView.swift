@@ -75,6 +75,7 @@ struct SettingsView: View {
                         NavigationLink { TogetherSettingsView().toolbar(.visible, for: .navigationBar) } label: {
                             SettingsRow(title: DesktopInterfaceText.value("Watch Together"), icon: "nav-catalogs")
                         }.accessibilityIdentifier("settings-watch-together")
+                        TogetherRoomRow()
                     }
                 }
                 if matches("Subtitles", group: "Languages & subtitles") {

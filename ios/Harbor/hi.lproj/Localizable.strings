@@ -34,6 +34,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A relay we run. Nothing to set up, and it stays current on its own." = "हमारे द्वारा चलाया जाने वाला रिले। कुछ भी सेटअप नहीं करना पड़ता और यह अपने-आप अप-टू-डेट रहता है।";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift और ऐरो कुंजियों से छोटा जंप, ताकि हर बार कुछ सेकंड आगे-पीछे किया जा सके।";
 "A standout this week." = "इस हफ़्ते की खास पेशकश।";
@@ -472,6 +473,7 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "अध्याय";
+"Chat" = "चैट";
 "Check it works" = "जाँचें कि यह काम करता है";
 "Check the highlighted values before saving." = "सहेजने से पहले हाइलाइट किए गए मान जाँचें।";
 "Check whether this device can reach the saved server address." = "जाँचें कि यह डिवाइस सहेजे गए सर्वर पते तक पहुँच सकता है या नहीं।";
@@ -519,6 +521,7 @@
 "Clear filters" = "फ़िल्टर हटाएँ";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "खोज मिटाएँ";
+"Clears the saved URL so you can point Harbor at another relay." = "सहेजा गया URL हटाता है, ताकि आप Harbor को किसी दूसरे रिले से जोड़ सकें।";
 "Close" = "बंद करें";
 "Close navigation" = "Close navigation";
 "Close player" = "प्लेयर बंद करें";
@@ -613,6 +616,8 @@
 "Copia secundaria." = "द्वितीयक टेक्स्ट।";
 "Copied" = "कॉपी किया गया";
 "Copy" = "कॉपी करें";
+"Copy invite link" = "आमंत्रण लिंक कॉपी करें";
+"Copy room code" = "रूम कोड कॉपी करें";
 "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "कोने की गोलाई";
 "Correo y contraseña" = "Email and password";
@@ -847,6 +852,7 @@
 "Enter a size of 0 or more." = "0 या उससे अधिक आकार दर्ज करें।";
 "Enter a whole number of 0 or more." = "0 या उससे बड़ा पूर्णांक दर्ज करें।";
 "Enter an FPS from 1 to 240." = "1 से 240 तक का FPS दर्ज करें।";
+"Enter an existing relay URL:" = "मौजूदा रिले URL दर्ज करें:";
 "Enter current PIN" = "मौजूदा PIN दर्ज करें";
 "Episode" = "एपिसोड";
 "Episode cards" = "एपिसोड कार्ड";
@@ -1021,6 +1027,7 @@
 "Guardar recordatorio" = "रिमाइंडर सहेजें";
 "Guardar y compartir páginas" = "Save and share pages";
 "Guest" = "मेहमान";
+"Guests pick their own source" = "अतिथि अपना स्रोत खुद चुनते हैं";
 "Género" = "शैली";
 "HD" = "HD";
 "HDR" = "HDR";
@@ -1030,6 +1037,7 @@
 "HW decode" = "HW डिकोड";
 "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido." = "टेक्स्ट के चारों ओर हल्की चमक। ज़्यादातर कॉन्टेंट पर सबसे साफ़ दिखता है।";
 "Harbor" = "Harbor";
+"Harbor Relay" = "Harbor Relay";
 "Harbor account" = "Harbor अकाउंट";
 "Harbor blocks suspicious files and mismatched releases by default. For older shows and unusual titles this is sometimes too tight." = "Harbor डिफ़ॉल्ट रूप से संदिग्ध फ़ाइलों और बेमेल रिलीज़ को ब्लॉक करता है। पुराने शो और असामान्य शीर्षकों के लिए यह कभी-कभी बहुत सख्त होता है।";
 "Harbor busca subtítulos en este orden. Pon primero tu idioma preferido." = "Harbor इस क्रम में उपशीर्षक खोजता है। पसंदीदा भाषा सबसे पहले रखें।";
@@ -1049,6 +1057,7 @@
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harbor एनीमे पेज पर आपकी AniList सूचियाँ दिखाता है और आपकी प्रगति सिंक रखता है।";
 "Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "Harbor की बिल्ट-इन OpenSubtitles खोज डिफ़ॉल्ट रूप से चालू रहती है। अगर आप कोई OpenSubtitles ऐडऑन इंस्टॉल करते हैं, तो यह अपने आप बंद हो जाती है, ताकि नतीजे डुप्लिकेट न हों।";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Harbor के अपने मेन्यू और लेबल। सबटाइटल की भाषाएँ बाद में सेट की जाती हैं और आप दोनों को सेटिंग्स में बदल सकते हैं।";
+"Harbor's public relay" = "Harbor का सार्वजनिक रिले";
 "Hard stroke around each letter. High contrast." = "हर अक्षर के चारों ओर मोटी रेखा। अधिक कंट्रास्ट।";
 "Harvey Award Winners" = "हार्वे पुरस्कार विजेता";
 "Harvey Winner" = "हार्वे विजेता";
@@ -1195,6 +1204,7 @@
 "Interfaz del sistema" = "सिस्टम UI";
 "Interlineado" = "लाइन की ऊँचाई";
 "Invalid SourceRow JSON format" = "अमान्य SourceRow JSON फ़ॉर्मैट";
+"Invite link" = "आमंत्रण लिंक";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "यह {product} के निर्माता या ऐप में संदर्भित किसी भी कंपनी, ऐडऑन लेखक या ट्रेडमार्क धारक से संबद्ध नहीं है।";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "यह {company} से संबद्ध नहीं है, न ही उसके द्वारा अनुमोदित या प्रायोजित है और न ही किसी भी तरह उससे जुड़ा है।";
 "Italian" = "इतालवी";
@@ -1209,6 +1219,7 @@
 "Japanese" = "जापानी";
 "Jina API key (optional)" = "Jina API कुंजी (वैकल्पिक)";
 "Jina Reader" = "Jina रीडर";
+"Join" = "जुड़ें";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "ओपनिंग शुरू होते ही अपने-आप आगे बढ़ें। इंट्रो पर वापस जाने पर वह दोबारा चलेगा और फिर स्किप नहीं होगा। स्किप बटन ऊपर की सेटिंग का पालन करता है।";
 "Just added" = "हाल ही में जोड़ा गया";
 "Kanopy" = "Kanopy";
@@ -1238,6 +1249,7 @@
 "Larger" = "और बड़ा";
 "Laterales" = "किनारे";
 "Leave" = "छोड़ें";
+"Leave room" = "रूम छोड़ें";
 "Leave the show?" = "शो छोड़ना है?";
 "Lectura" = "पढ़ा जा रहा है";
 "Left" = "बायाँ";
@@ -1362,6 +1374,7 @@
 "Mejor valorado en {site}" = "{site} पर सर्वाधिक रेटिंग वाले";
 "Mes anterior" = "पिछला महीना";
 "Mes siguiente" = "अगला महीना";
+"Message" = "संदेश";
 "Metacritic" = "Metacritic";
 "Metadata" = "मेटाडेटा";
 "Metadata language" = "मेटाडेटा भाषा";
@@ -1631,6 +1644,7 @@
 "Ongoing" = "जारी";
 "Only 1 source after filtering" = "फ़िल्टर करने के बाद केवल 1 सोर्स";
 "Only 2 sources after filtering" = "फ़िल्टर करने के बाद केवल 2 सोर्स";
+"Only enter URLs for relays you operate or trust. A relay only carries Watch Together sync messages (play, pause, seek). Nothing else passes through it." = "केवल उन्हीं रिले के URL डालें जिन्हें आप चलाते हैं या जिन पर भरोसा करते हैं। रिले केवल 'साथ देखें' के सिंक संदेश (चलाएँ, रोकें, आगे-पीछे जाएँ) भेजता है। इसके ज़रिए और कुछ नहीं जाता।";
 "Only https links are accepted." = "सिर्फ़ https लिंक स्वीकार किए जाते हैं।";
 "Only show streams in my languages" = "केवल मेरी भाषाओं वाली स्ट्रीम दिखाएँ";
 "Only show titles in these original languages on the Home rows. Leave all off to show everything." = "होम की पंक्तियों में केवल इन्हीं मूल भाषाओं के शीर्षक दिखाएँ। सब कुछ दिखाने के लिए सभी विकल्प बंद रखें।";
@@ -1644,6 +1658,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "AniList फिर से खोलें";
 "Open MyAnimeList again" = "MyAnimeList फिर से खोलें";
+"Open Settings" = "सेटिंग्स खोलें";
 "Open Settings, then System, then Advanced system settings." = "Settings खोलें, फिर System और उसके बाद Advanced system settings खोलें।";
 "Open a title and tap Add to Watchlist to save it here." = "कोई शीर्षक खोलें और उसे यहाँ सहेजने के लिए «वॉचलिस्ट में जोड़ें» पर टैप करें।";
 "Open image" = "चित्र खोलें";
@@ -1699,6 +1714,8 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "पासवर्ड";
 "Paste JSON" = "JSON पेस्ट करें";
+"Paste a wss:// URL that a friend or your community shared with you." = "आपके किसी दोस्त या समुदाय द्वारा साझा किया गया wss:// URL पेस्ट करें।";
+"Paste invite link" = "आमंत्रण लिंक पेस्ट करें";
 "Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "कोड या पेज URL पेस्ट करें";
 "Paste the manifest URL the configure page gave you" = "कॉन्फ़िगर पेज से मिला मैनिफ़ेस्ट URL पेस्ट करें";
@@ -1825,6 +1842,7 @@
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
+"Prompts guests to choose instead of auto-matching" = "अपने आप मिलान करने के बजाय मेहमानों से चुनने को कहता है";
 "Proveedores de metadatos" = "मेटाडेटा प्रदाता";
 "Provide a JSON link or paste it directly." = "JSON लिंक दें या उसे सीधे पेस्ट करें।";
 "Provider" = "प्रोवाइडर";
@@ -2025,6 +2043,7 @@
 "Romaji" = "रोमाजी";
 "Romance" = "रोमांस";
 "Romanian" = "रोमानियाई";
+"Room code" = "रूम कोड";
 "Rostro" = "चेहरा";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rotten Tomatoes" = "Rotten Tomatoes";
@@ -2066,6 +2085,7 @@
 "Saved app data" = "Saved app data";
 "Saved stream filters" = "सेव किए गए स्ट्रीम फ़िल्टर";
 "Saving" = "सेव हो रहा है";
+"Say hi." = "नमस्ते कहें।";
 "Scanning your network…" = "आपका नेटवर्क स्कैन हो रहा है…";
 "Sci-Fi" = "साइंस फ़िक्शन";
 "Sci-Fi & Fantasy" = "साइंस फ़िक्शन और फ़ैंटेसी";
@@ -2116,6 +2136,7 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "चुना गया";
+"Send" = "भेजें";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Trakt को भेजा जा रहा है…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
@@ -2171,6 +2192,7 @@
 "Show comments on detail pages" = "विवरण पेजों पर टिप्पणियाँ दिखाएँ";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio स्रोत चयन, डाउनलोड और बिग पिक्चर में ऐडऑन के पूरे विवरण दिखाएँ।";
 "Show controls" = "कंट्रोल दिखाएँ";
+"Show cursors" = "कर्सर दिखाएँ";
 "Show details" = "विवरण दिखाएँ";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "हर ऐडऑन के नतीजे उसी क्रम में दिखाएँ जिसमें उसने उन्हें लौटाया था, और उन्हें आपकी ऐडऑन सूची के अनुसार समूहित करें। यह Stremio और Vidi ऐप्स जैसा है।";
 "Show episode" = "एपिसोड दिखाएँ";
@@ -2293,6 +2315,7 @@
 "Start" = "शुरू करें";
 "Start Over" = "फिर से शुरू करें";
 "Start Watching" = "देखना शुरू करें";
+"Start a new room" = "नया रूम शुरू करें";
 "Start as" = "इस रूप में शुरू करें";
 "Start trailers with audio" = "ट्रेलर की शुरुआत ऑडियो के साथ करें";
 "Start with subtitles off" = "सबटाइटल बंद रखकर शुरू करें";
@@ -2644,7 +2667,9 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "रीड एक्सेस टोकन नहीं, v3 कुंजी इस्तेमाल करें।";
 "Usar mi estilo" = "मेरी शैली इस्तेमाल करें";
+"Use Harbor's public relay" = "Harbor का सार्वजनिक रिले इस्तेमाल करें";
 "Use addon order" = "ऐडऑन का क्रम इस्तेमाल करें";
+"Use an existing relay" = "मौजूदा रिले इस्तेमाल करें";
 "Use live web context" = "लाइव वेब संदर्भ इस्तेमाल करें";
 "Use model" = "मॉडल इस्तेमाल करें";
 "Use my style" = "मेरी शैली इस्तेमाल करें";
@@ -2653,6 +2678,7 @@
 "Use the \"personal\" key, not the project one." = "प्रोजेक्ट वाली नहीं, \"personal\" कुंजी इस्तेमाल करें।";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "रीड एक्सेस टोकन नहीं, v3 कुंजी इस्तेमाल करें।";
+"Use the wss:// scheme, not https://." = "wss:// स्कीम इस्तेमाल करें, https:// नहीं।";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "55% / 25% अल्फ़ा पर इस्तेमाल होता है।";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "कैश जांचने और लिंक पर लगी पाबंदी हटाने के लिए इस्तेमाल होता है। Harbor कभी भी अपने-आप आपके खाते में कुछ जोड़ता या हटाता नहीं है।";
@@ -2692,7 +2718,10 @@
 "Waiting for you to authorize on simkl.com…" = "simkl.com पर आपके अनुमति देने की प्रतीक्षा हो रही है…";
 "Waiting for you to authorize on trakt.tv…" = "trakt.tv पर आपके अनुमति देने की प्रतीक्षा हो रही है…";
 "War" = "युद्ध";
+"Watch Together" = "साथ में देखें";
+"Watch Together needs a relay." = "साथ में देखने के लिए रिले चाहिए।";
 "Watch on" = "इस पर देखें";
+"Watch together" = "साथ में देखें";
 "Watched" = "देख लिया";
 "Watched by {name}" = "{name} ने देखा";
 "Watching" = "देख रहे हैं";
@@ -2766,6 +2795,7 @@
 "Your listening history will build itself here." = "आपके सुनने का इतिहास यहाँ अपने आप बनता जाएगा।";
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "आपकी सूचियाँ मेमोरी में रखी गई हैं। ऐप बंद करने से पहले उन्हें सहेजें।";
+"Your name" = "आपका नाम";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "आपकी प्रोफ़ाइल";
@@ -3907,6 +3937,8 @@
 "o usa uno de nuestros avatares" = "या हमारे अवतारों में से कोई चुनें";
 "obsolete" = "अप्रचलित";
 "or" = "या";
+"or join" = "या जुड़ें";
+"or paste an invite link" = "या आमंत्रण लिंक पेस्ट करें";
 "or use one of our avatars" = "या हमारे अवतारों में से कोई चुनें";
 "oversized" = "बहुत बड़े";
 "plays" = "प्ले";
@@ -3947,6 +3979,7 @@
 "watched" = "देखा गया";
 "wrong episode" = "गलत एपिसोड";
 "wrong movie" = "गलत फ़िल्म";
+"wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "वर्ष मेल नहीं खाता";
 "yes" = "हाँ";
 "your-name" = "your-name";
@@ -3987,6 +4020,7 @@
 "{n} seeds" = "{n} सीड";
 "{n} semillas" = "{n} सीड";
 "{n} sources · 0 made it through" = "{n} स्रोत · 0 सफल रहे";
+"{n} watching" = "{n} देख रहे हैं";
 "{n}+ seeds" = "{n}+ सीड";
 "{n}d ago" = "{n} दिन पहले";
 "{n}d left" = "{n} दिन बाकी";

@@ -34,6 +34,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A relay we run. Nothing to set up, and it stays current on its own." = "当社が運用するリレーです。設定は不要で、自動的に最新の状態に保たれます。";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shiftと矢印キーで短く移動し、数秒ずつ微調整できます。";
 "A standout this week." = "今週の注目作。";
@@ -472,6 +473,7 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "話";
+"Chat" = "チャット";
 "Check it works" = "動作を確認";
 "Check the highlighted values before saving." = "保存する前に、強調表示された値を確認してください。";
 "Check whether this device can reach the saved server address." = "このデバイスから保存済みのサーバーアドレスに接続できるか確認します。";
@@ -519,6 +521,7 @@
 "Clear filters" = "フィルターをクリア";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "検索をクリア";
+"Clears the saved URL so you can point Harbor at another relay." = "保存済みのURLを削除し、Harborを別のリレーに接続できるようにします。";
 "Close" = "閉じる";
 "Close navigation" = "Close navigation";
 "Close player" = "プレイヤーを閉じる";
@@ -613,6 +616,8 @@
 "Copia secundaria." = "補足テキスト。";
 "Copied" = "コピーしました";
 "Copy" = "コピー";
+"Copy invite link" = "招待リンクをコピー";
+"Copy room code" = "ルームコードをコピー";
 "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "角の丸み";
 "Correo y contraseña" = "Email and password";
@@ -847,6 +852,7 @@
 "Enter a size of 0 or more." = "0以上のサイズを入力してください。";
 "Enter a whole number of 0 or more." = "0以上の整数を入力してください。";
 "Enter an FPS from 1 to 240." = "1から240までのFPSを入力してください。";
+"Enter an existing relay URL:" = "既存のリレーURLを入力:";
 "Enter current PIN" = "現在のPINを入力";
 "Episode" = "エピソード";
 "Episode cards" = "エピソードカード";
@@ -1021,6 +1027,7 @@
 "Guardar recordatorio" = "リマインダーを保存";
 "Guardar y compartir páginas" = "Save and share pages";
 "Guest" = "ゲスト";
+"Guests pick their own source" = "ゲストが自分でソースを選ぶ";
 "Género" = "ジャンル";
 "HD" = "HD";
 "HDR" = "HDR";
@@ -1030,6 +1037,7 @@
 "HW decode" = "ハードウェアデコード";
 "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido." = "テキストの周囲に柔らかな光彩を付けます。ほとんどの映像ですっきり表示されます。";
 "Harbor" = "Harbor";
+"Harbor Relay" = "Harbor Relay";
 "Harbor account" = "Harborアカウント";
 "Harbor blocks suspicious files and mismatched releases by default. For older shows and unusual titles this is sometimes too tight." = "Harborは、疑わしいファイルや内容が一致しないリリースをデフォルトでブロックします。古い番組や珍しいタイトルでは、判定が厳しすぎる場合があります。";
 "Harbor busca subtítulos en este orden. Pon primero tu idioma preferido." = "Harbor はこの順序で字幕を探します。優先する言語を先頭にしてください。";
@@ -1049,6 +1057,7 @@
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harborでは、「アニメ」ページにAniListのリストを表示し、進捗を同期します。";
 "Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "Harbor内蔵のOpenSubtitles検索です。デフォルトでオンになっています。OpenSubtitlesアドオンをインストールすると、結果が重複しないよう内蔵検索は自動的に無効になります。";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Harbor本体のメニューとラベルの言語です。字幕言語は後で選択でき、どちらも設定で変更できます。";
+"Harbor's public relay" = "Harborの公開リレー";
 "Hard stroke around each letter. High contrast." = "各文字をくっきり縁取ります。高コントラストです。";
 "Harvey Award Winners" = "ハーベイ賞受賞作";
 "Harvey Winner" = "ハーベイ賞受賞";
@@ -1195,6 +1204,7 @@
 "Interfaz del sistema" = "システムUI";
 "Interlineado" = "行の高さ";
 "Invalid SourceRow JSON format" = "SourceRowのJSON形式が無効です";
+"Invite link" = "招待リンク";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "本アプリは、{product}の開発元、およびアプリ内で言及される企業、アドオン作者、商標権者とは提携していません。";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "本アプリは{company}との提携、承認、スポンサー関係など、一切の関係がありません。";
 "Italian" = "イタリア語";
@@ -1209,6 +1219,7 @@
 "Japanese" = "日本語";
 "Jina API key (optional)" = "Jina APIキー（任意）";
 "Jina Reader" = "Jina Reader";
+"Join" = "参加";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "オープニングが始まると自動でスキップします。イントロに巻き戻した場合は再度スキップせず再生します。スキップボタンは上の設定に従います。";
 "Just added" = "新着";
 "Kanopy" = "Kanopy";
@@ -1238,6 +1249,7 @@
 "Larger" = "大きく";
 "Laterales" = "見開き";
 "Leave" = "退出";
+"Leave room" = "ルームから退出";
 "Leave the show?" = "視聴を終了しますか？";
 "Lectura" = "読書中";
 "Left" = "左揃え";
@@ -1362,6 +1374,7 @@
 "Mejor valorado en {site}" = "{site}で高評価";
 "Mes anterior" = "前の月";
 "Mes siguiente" = "次の月";
+"Message" = "メッセージ";
 "Metacritic" = "Metacritic";
 "Metadata" = "メタデータ";
 "Metadata language" = "メタデータの言語";
@@ -1631,6 +1644,7 @@
 "Ongoing" = "連載中";
 "Only 1 source after filtering" = "絞り込み後のソースは1件のみ";
 "Only 2 sources after filtering" = "絞り込み後のソースは2件のみ";
+"Only enter URLs for relays you operate or trust. A relay only carries Watch Together sync messages (play, pause, seek). Nothing else passes through it." = "自分で運用しているか、信頼できるリレーのURLのみ入力してください。リレーを通るのは、一緒に観る機能の同期メッセージ（再生、一時停止、シーク）だけです。それ以外のデータは一切送信されません。";
 "Only https links are accepted." = "httpsのリンクのみ使用できます。";
 "Only show streams in my languages" = "自分の言語のストリームのみ表示";
 "Only show titles in these original languages on the Home rows. Leave all off to show everything." = "ホームのセクションには、原語がこれらの言語の作品だけを表示します。すべてオフにすると、すべての作品が表示されます。";
@@ -1644,6 +1658,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "AniListをもう一度開く";
 "Open MyAnimeList again" = "MyAnimeListをもう一度開く";
+"Open Settings" = "設定を開く";
 "Open Settings, then System, then Advanced system settings." = "「設定」、「システム」、「システムの詳細設定」の順に開きます。";
 "Open a title and tap Add to Watchlist to save it here." = "作品を開き、「ウォッチリストに追加」をタップするとここに保存されます。";
 "Open image" = "画像を開く";
@@ -1699,6 +1714,8 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "パスワード";
 "Paste JSON" = "JSONを貼り付け";
+"Paste a wss:// URL that a friend or your community shared with you." = "友達やコミュニティから共有された wss:// URL を貼り付けてください。";
+"Paste invite link" = "招待リンクを貼り付け";
 "Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "コードまたはページのURLを貼り付け";
 "Paste the manifest URL the configure page gave you" = "設定ページで発行されたマニフェストURLを貼り付け";
@@ -1825,6 +1842,7 @@
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
+"Prompts guests to choose instead of auto-matching" = "自動で照合せず、ゲストに選択を求めます";
 "Proveedores de metadatos" = "メタデータプロバイダー";
 "Provide a JSON link or paste it directly." = "JSONリンクを入力するか、JSONを直接貼り付けてください。";
 "Provider" = "プロバイダー";
@@ -2025,6 +2043,7 @@
 "Romaji" = "ローマ字";
 "Romance" = "恋愛";
 "Romanian" = "ルーマニア語";
+"Room code" = "ルームコード";
 "Rostro" = "塗り";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rotten Tomatoes" = "Rotten Tomatoes";
@@ -2066,6 +2085,7 @@
 "Saved app data" = "Saved app data";
 "Saved stream filters" = "保存済みのストリームフィルター";
 "Saving" = "保存中";
+"Say hi." = "挨拶してみましょう。";
 "Scanning your network…" = "ネットワークをスキャン中…";
 "Sci-Fi" = "SF";
 "Sci-Fi & Fantasy" = "SF＆ファンタジー";
@@ -2116,6 +2136,7 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "選択済み";
+"Send" = "送信";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Traktに送信中…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
@@ -2171,6 +2192,7 @@
 "Show comments on detail pages" = "詳細ページにコメントを表示";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio のソース選択画面、ダウンロード、ビッグピクチャーでアドオンの説明を全文表示します。";
 "Show controls" = "コントロールを表示";
+"Show cursors" = "カーソルを表示";
 "Show details" = "詳細を表示";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "各アドオンの結果を取得順のまま、アドオンリストの順にまとめて表示します。StremioやVidiアプリと同じ形式です。";
 "Show episode" = "エピソードを表示";
@@ -2293,6 +2315,7 @@
 "Start" = "開始";
 "Start Over" = "最初から再生";
 "Start Watching" = "視聴を開始";
+"Start a new room" = "新しいルームを作成";
 "Start as" = "起動プロフィール";
 "Start trailers with audio" = "予告編を音声付きで再生";
 "Start with subtitles off" = "字幕をオフで再生開始";
@@ -2644,7 +2667,9 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "読み取りアクセストークンではなく、v3キーを使用してください。";
 "Usar mi estilo" = "自分のスタイルを使用";
+"Use Harbor's public relay" = "Harborの公開リレーを使用";
 "Use addon order" = "アドオン順を使用";
+"Use an existing relay" = "既存のリレーを使用";
 "Use live web context" = "最新のWeb情報を使用";
 "Use model" = "このモデルを使用";
 "Use my style" = "自分のスタイルを使用";
@@ -2653,6 +2678,7 @@
 "Use the \"personal\" key, not the project one." = "プロジェクト用ではなく、「personal」キーを使用してください。";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "読み取りアクセストークンではなく、v3キーを使用してください。";
+"Use the wss:// scheme, not https://." = "https://ではなくwss://スキームを使用してください。";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "55% / 25%のアルファ値で使用。";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "キャッシュの確認とリンクの制限解除に使用します。Harborがアカウントに独自に何かを追加または削除することはありません。";
@@ -2692,7 +2718,10 @@
 "Waiting for you to authorize on simkl.com…" = "simkl.comでの認証を待っています…";
 "Waiting for you to authorize on trakt.tv…" = "trakt.tvでの認証を待っています…";
 "War" = "戦争";
+"Watch Together" = "同時視聴";
+"Watch Together needs a relay." = "一緒に観るにはリレーが必要です。";
 "Watch on" = "視聴先";
+"Watch together" = "一緒に観る";
 "Watched" = "視聴済み";
 "Watched by {name}" = "{name}が視聴済み";
 "Watching" = "視聴中";
@@ -2766,6 +2795,7 @@
 "Your listening history will build itself here." = "再生履歴はここに蓄積されます。";
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "リストはメモリ内に保持されています。アプリを閉じる前に保存してください。";
+"Your name" = "あなたの名前";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "あなたのプロフィール";
@@ -3907,6 +3937,8 @@
 "o usa uno de nuestros avatares" = "または用意されたアバターを使用";
 "obsolete" = "廃止済み";
 "or" = "または";
+"or join" = "または参加";
+"or paste an invite link" = "または招待リンクを貼り付け";
 "or use one of our avatars" = "または用意されたアバターを使用";
 "oversized" = "サイズ超過";
 "plays" = "再生回数";
@@ -3947,6 +3979,7 @@
 "watched" = "視聴済み";
 "wrong episode" = "別のエピソード";
 "wrong movie" = "別の映画";
+"wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "公開年の不一致";
 "yes" = "はい";
 "your-name" = "your-name";
@@ -3987,6 +4020,7 @@
 "{n} seeds" = "シード数: {n}";
 "{n} semillas" = "シード数: {n}";
 "{n} sources · 0 made it through" = "{n}件のソース · 利用可能 0件";
+"{n} watching" = "{n}人が視聴中";
 "{n}+ seeds" = "シード{n}+";
 "{n}d ago" = "{n}日前";
 "{n}d left" = "残り{n}日";

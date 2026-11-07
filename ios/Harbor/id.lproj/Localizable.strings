@@ -34,6 +34,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A relay we run. Nothing to set up, and it stays current on its own." = "Relay yang kami kelola. Tidak perlu disiapkan dan selalu diperbarui secara otomatis.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Lompatan yang lebih pendek dengan Shift dan tombol panah untuk bergeser beberapa detik setiap kali.";
 "A standout this week." = "Pilihan unggulan minggu ini.";
@@ -472,6 +473,7 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "Bab";
+"Chat" = "Obrolan";
 "Check it works" = "Periksa apakah berfungsi";
 "Check the highlighted values before saving." = "Periksa nilai yang ditandai sebelum menyimpan.";
 "Check whether this device can reach the saved server address." = "Periksa apakah perangkat ini dapat menjangkau alamat server yang disimpan.";
@@ -519,6 +521,7 @@
 "Clear filters" = "Hapus filter";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Hapus pencarian";
+"Clears the saved URL so you can point Harbor at another relay." = "Menghapus URL yang tersimpan agar Anda dapat mengarahkan Harbor ke relay lain.";
 "Close" = "Tutup";
 "Close navigation" = "Close navigation";
 "Close player" = "Tutup pemutar";
@@ -613,6 +616,8 @@
 "Copia secundaria." = "Teks sekunder.";
 "Copied" = "Disalin";
 "Copy" = "Salin";
+"Copy invite link" = "Salin tautan undangan";
+"Copy room code" = "Salin kode ruang";
 "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "Radius sudut";
 "Correo y contraseña" = "Email and password";
@@ -847,6 +852,7 @@
 "Enter a size of 0 or more." = "Masukkan ukuran 0 atau lebih.";
 "Enter a whole number of 0 or more." = "Masukkan bilangan bulat 0 atau lebih.";
 "Enter an FPS from 1 to 240." = "Masukkan FPS dari 1 hingga 240.";
+"Enter an existing relay URL:" = "Masukkan URL relay yang sudah ada:";
 "Enter current PIN" = "Masukkan PIN saat ini";
 "Episode" = "Episode";
 "Episode cards" = "Kartu episode";
@@ -1021,6 +1027,7 @@
 "Guardar recordatorio" = "Simpan pengingat";
 "Guardar y compartir páginas" = "Save and share pages";
 "Guest" = "Tamu";
+"Guests pick their own source" = "Tamu memilih sumber sendiri";
 "Género" = "Genre";
 "HD" = "HD";
 "HDR" = "HDR";
@@ -1030,6 +1037,7 @@
 "HW decode" = "Dekode HW";
 "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido." = "Pendar lembut di sekitar teks. Paling bersih pada sebagian besar konten.";
 "Harbor" = "Harbor";
+"Harbor Relay" = "Harbor Relay";
 "Harbor account" = "Akun Harbor";
 "Harbor blocks suspicious files and mismatched releases by default. For older shows and unusual titles this is sometimes too tight." = "Secara default, Harbor memblokir file mencurigakan dan rilis yang tidak cocok. Untuk acara lama dan judul yang tidak biasa, filter ini terkadang terlalu ketat.";
 "Harbor busca subtítulos en este orden. Pon primero tu idioma preferido." = "Harbor mencari subtitle dalam urutan ini. Tempatkan bahasa pilihan Anda di urutan pertama.";
@@ -1049,6 +1057,7 @@
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harbor menampilkan daftar AniList Anda di halaman Anime dan menjaga progres Anda tetap tersinkron.";
 "Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "Pencarian OpenSubtitles bawaan Harbor, aktif secara default. Jika Anda menginstal addon OpenSubtitles, fitur ini otomatis dinonaktifkan agar hasil tidak pernah terduplikasi.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Menu dan label Harbor sendiri. Bahasa subtitle ditentukan nanti, dan keduanya dapat Anda ubah di Pengaturan.";
+"Harbor's public relay" = "Relay publik Harbor";
 "Hard stroke around each letter. High contrast." = "Garis tegas di sekeliling setiap huruf. Kontras tinggi.";
 "Harvey Award Winners" = "Pemenang Harvey Award";
 "Harvey Winner" = "Pemenang Harvey Award";
@@ -1195,6 +1204,7 @@
 "Interfaz del sistema" = "UI Sistem";
 "Interlineado" = "Tinggi baris";
 "Invalid SourceRow JSON format" = "Format JSON SourceRow tidak valid";
+"Invite link" = "Tautan undangan";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Aplikasi ini tidak berafiliasi dengan pembuat {product}, maupun dengan perusahaan, pembuat addon, atau pemegang merek dagang apa pun yang disebutkan di dalam aplikasi.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "Aplikasi ini tidak berafiliasi, didukung, disponsori, atau terkait dengan {company} dengan cara apa pun.";
 "Italian" = "Bahasa Italia";
@@ -1209,6 +1219,7 @@
 "Japanese" = "Bahasa Jepang";
 "Jina API key (optional)" = "Kunci API Jina (opsional)";
 "Jina Reader" = "Jina Reader";
+"Join" = "Bergabung";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Lewati pembuka secara otomatis begitu dimulai. Kembali ke bagian pembuka akan memutarnya tanpa melewati lagi. Tombol Lewati mengikuti pengaturan di atas.";
 "Just added" = "Baru ditambahkan";
 "Kanopy" = "Kanopy";
@@ -1238,6 +1249,7 @@
 "Larger" = "Lebih besar";
 "Laterales" = "Sisi";
 "Leave" = "Keluar";
+"Leave room" = "Keluar dari ruang";
 "Leave the show?" = "Tinggalkan tayangan ini?";
 "Lectura" = "Sedang membaca";
 "Left" = "Kiri";
@@ -1362,6 +1374,7 @@
 "Mejor valorado en {site}" = "Peringkat teratas di {site}";
 "Mes anterior" = "Bulan sebelumnya";
 "Mes siguiente" = "Bulan depan";
+"Message" = "Pesan";
 "Metacritic" = "Metacritic";
 "Metadata" = "Metadata";
 "Metadata language" = "Bahasa metadata";
@@ -1631,6 +1644,7 @@
 "Ongoing" = "Berlanjut";
 "Only 1 source after filtering" = "Hanya 1 sumber setelah difilter";
 "Only 2 sources after filtering" = "Hanya 2 sumber setelah difilter";
+"Only enter URLs for relays you operate or trust. A relay only carries Watch Together sync messages (play, pause, seek). Nothing else passes through it." = "Hanya masukkan URL relay yang Anda kelola atau percayai. Relay hanya meneruskan pesan sinkronisasi Watch Together (putar, jeda, seek). Tidak ada hal lain yang melewatinya.";
 "Only https links are accepted." = "Hanya tautan https yang diterima.";
 "Only show streams in my languages" = "Hanya tampilkan stream dalam bahasa saya";
 "Only show titles in these original languages on the Home rows. Leave all off to show everything." = "Hanya tampilkan judul dengan bahasa asli ini di deretan Beranda. Biarkan semuanya nonaktif untuk menampilkan semua judul.";
@@ -1644,6 +1658,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "Buka AniList lagi";
 "Open MyAnimeList again" = "Buka MyAnimeList lagi";
+"Open Settings" = "Buka Pengaturan";
 "Open Settings, then System, then Advanced system settings." = "Buka Pengaturan, lalu Sistem, lalu Pengaturan sistem lanjutan.";
 "Open a title and tap Add to Watchlist to save it here." = "Buka judul dan ketuk «Tambah ke Daftar Tontonan» untuk menyimpannya di sini.";
 "Open image" = "Buka gambar";
@@ -1699,6 +1714,8 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Kata Sandi";
 "Paste JSON" = "Tempel JSON";
+"Paste a wss:// URL that a friend or your community shared with you." = "Tempel URL wss:// yang dibagikan teman atau komunitas Anda.";
+"Paste invite link" = "Tempel tautan undangan";
 "Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "Tempel kode atau URL halaman";
 "Paste the manifest URL the configure page gave you" = "Tempel URL manifes yang diberikan halaman konfigurasi";
@@ -1825,6 +1842,7 @@
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
+"Prompts guests to choose instead of auto-matching" = "Meminta tamu memilih alih-alih mencocokkan secara otomatis";
 "Proveedores de metadatos" = "Penyedia metadata";
 "Provide a JSON link or paste it directly." = "Berikan tautan JSON atau tempel langsung.";
 "Provider" = "Penyedia";
@@ -2025,6 +2043,7 @@
 "Romaji" = "Romaji";
 "Romance" = "Romansa";
 "Romanian" = "Rumania";
+"Room code" = "Kode ruang";
 "Rostro" = "Wajah";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rotten Tomatoes" = "Rotten Tomatoes";
@@ -2066,6 +2085,7 @@
 "Saved app data" = "Saved app data";
 "Saved stream filters" = "Filter stream tersimpan";
 "Saving" = "Menyimpan";
+"Say hi." = "Ucapkan hai.";
 "Scanning your network…" = "Memindai jaringan Anda…";
 "Sci-Fi" = "Fiksi Ilmiah";
 "Sci-Fi & Fantasy" = "Fiksi Ilmiah & Fantasi";
@@ -2116,6 +2136,7 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "Dipilih";
+"Send" = "Kirim";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Mengirim ke Trakt…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
@@ -2171,6 +2192,7 @@
 "Show comments on detail pages" = "Tampilkan komentar di halaman detail";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Tampilkan deskripsi addon lengkap di pemilih Stremio, unduhan, dan Big Picture.";
 "Show controls" = "Tampilkan kontrol";
+"Show cursors" = "Tampilkan kursor";
 "Show details" = "Tampilkan detail";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Tampilkan hasil setiap addon sesuai urutan yang dikembalikan, dikelompokkan berdasarkan daftar addon Anda. Sama seperti aplikasi Stremio dan Vidi.";
 "Show episode" = "Tampilkan episode";
@@ -2293,6 +2315,7 @@
 "Start" = "Mulai";
 "Start Over" = "Mulai dari Awal";
 "Start Watching" = "Mulai Menonton";
+"Start a new room" = "Mulai ruang baru";
 "Start as" = "Mulai sebagai";
 "Start trailers with audio" = "Mulai trailer dengan audio";
 "Start with subtitles off" = "Mulai dengan subtitle nonaktif";
@@ -2644,7 +2667,9 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "Gunakan kunci v3, bukan token akses baca.";
 "Usar mi estilo" = "Gunakan gaya saya";
+"Use Harbor's public relay" = "Gunakan relay publik Harbor";
 "Use addon order" = "Gunakan urutan addon";
+"Use an existing relay" = "Gunakan relay yang sudah ada";
 "Use live web context" = "Gunakan konteks web langsung";
 "Use model" = "Gunakan model";
 "Use my style" = "Gunakan gaya saya";
@@ -2653,6 +2678,7 @@
 "Use the \"personal\" key, not the project one." = "Gunakan kunci \"personal\", bukan kunci proyek.";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Gunakan kunci v3, bukan token akses baca.";
+"Use the wss:// scheme, not https://." = "Gunakan skema wss://, bukan https://.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "Digunakan pada alpha 55% / 25%.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Digunakan untuk memeriksa cache dan membuka batasan tautan. Harbor tidak pernah menambahkan atau menghapus apa pun di akun Anda secara otomatis.";
@@ -2692,7 +2718,10 @@
 "Waiting for you to authorize on simkl.com…" = "Menunggu Anda memberikan otorisasi di simkl.com…";
 "Waiting for you to authorize on trakt.tv…" = "Menunggu Anda memberikan otorisasi di trakt.tv…";
 "War" = "Perang";
+"Watch Together" = "Nonton Bersama";
+"Watch Together needs a relay." = "Nonton Bersama memerlukan relay.";
 "Watch on" = "Tonton di";
+"Watch together" = "Nonton bersama";
 "Watched" = "Sudah ditonton";
 "Watched by {name}" = "Ditonton oleh {name}";
 "Watching" = "Sedang menonton";
@@ -2766,6 +2795,7 @@
 "Your listening history will build itself here." = "Riwayat dengar Anda akan terkumpul di sini.";
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "Daftar Anda disimpan dalam memori. Simpan sebelum menutup aplikasi.";
+"Your name" = "Nama Anda";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "Profil Anda";
@@ -3907,6 +3937,8 @@
 "o usa uno de nuestros avatares" = "atau gunakan salah satu avatar kami";
 "obsolete" = "usang";
 "or" = "atau";
+"or join" = "atau bergabung";
+"or paste an invite link" = "atau tempel tautan undangan";
 "or use one of our avatars" = "atau gunakan salah satu avatar kami";
 "oversized" = "terlalu besar";
 "plays" = "pemutaran";
@@ -3947,6 +3979,7 @@
 "watched" = "sudah ditonton";
 "wrong episode" = "episode yang salah";
 "wrong movie" = "film yang salah";
+"wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "tahun tidak cocok";
 "yes" = "ya";
 "your-name" = "your-name";
@@ -3987,6 +4020,7 @@
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} sumber · 0 lolos";
+"{n} watching" = "{n} sedang menonton";
 "{n}+ seeds" = "{n}+ seed";
 "{n}d ago" = "{n} hari lalu";
 "{n}d left" = "tersisa {n} hari";

@@ -34,6 +34,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A relay we run. Nothing to set up, and it stays current on its own." = "Harbor에서 운영하는 릴레이입니다. 별도 설정이 필요 없으며 자동으로 최신 상태를 유지합니다.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift와 방향키를 함께 눌러 몇 초씩 미세하게 이동합니다.";
 "A standout this week." = "이번 주의 주목작입니다.";
@@ -472,6 +473,7 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "챕터";
+"Chat" = "채팅";
 "Check it works" = "작동 확인";
 "Check the highlighted values before saving." = "저장하기 전에 강조 표시된 값을 확인하세요.";
 "Check whether this device can reach the saved server address." = "이 기기에서 저장된 서버 주소에 연결할 수 있는지 확인합니다.";
@@ -519,6 +521,7 @@
 "Clear filters" = "필터 초기화";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "검색어 지우기";
+"Clears the saved URL so you can point Harbor at another relay." = "저장된 URL을 지워 Harbor가 다른 릴레이를 가리키도록 합니다.";
 "Close" = "닫기";
 "Close navigation" = "Close navigation";
 "Close player" = "플레이어 닫기";
@@ -613,6 +616,8 @@
 "Copia secundaria." = "보조 사본입니다.";
 "Copied" = "복사됨";
 "Copy" = "복사";
+"Copy invite link" = "초대 링크 복사";
+"Copy room code" = "방 코드 복사";
 "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "모서리 둥글기";
 "Correo y contraseña" = "Email and password";
@@ -847,6 +852,7 @@
 "Enter a size of 0 or more." = "0 이상의 크기를 입력하세요.";
 "Enter a whole number of 0 or more." = "0 이상의 정수를 입력하세요.";
 "Enter an FPS from 1 to 240." = "1~240 사이의 FPS를 입력하세요.";
+"Enter an existing relay URL:" = "기존 릴레이 URL 입력:";
 "Enter current PIN" = "현재 PIN 입력";
 "Episode" = "에피소드";
 "Episode cards" = "에피소드 카드";
@@ -1021,6 +1027,7 @@
 "Guardar recordatorio" = "알림 저장";
 "Guardar y compartir páginas" = "Save and share pages";
 "Guest" = "게스트";
+"Guests pick their own source" = "게스트가 각자 소스 선택";
 "Género" = "장르";
 "HD" = "HD";
 "HDR" = "HDR";
@@ -1030,6 +1037,7 @@
 "HW decode" = "하드웨어 디코딩";
 "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido." = "텍스트 주변의 부드러운 후광입니다. 대부분의 콘텐츠에서 가장 깔끔합니다.";
 "Harbor" = "Harbor";
+"Harbor Relay" = "Harbor Relay";
 "Harbor account" = "Harbor 계정";
 "Harbor blocks suspicious files and mismatched releases by default. For older shows and unusual titles this is sometimes too tight." = "Harbor는 기본적으로 의심스러운 파일과 작품이 일치하지 않는 릴리스를 차단합니다. 오래된 프로그램이나 특이한 제목에서는 이 기준이 너무 엄격할 수 있습니다.";
 "Harbor busca subtítulos en este orden. Pon primero tu idioma preferido." = "Harbor는 이 순서로 자막을 찾습니다. 선호하는 언어를 맨 위에 두세요.";
@@ -1049,6 +1057,7 @@
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harbor가 애니메이션 페이지에 AniList 목록을 표시하고 진도를 동기화합니다.";
 "Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "Harbor에 내장된 OpenSubtitles 검색으로, 기본적으로 켜져 있습니다. OpenSubtitles 애드온을 설치하면 결과가 중복되지 않도록 자동으로 비활성화됩니다.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Harbor 자체 메뉴와 레이블에 적용됩니다. 자막 언어는 추후 지원되며, 둘 다 설정에서 변경할 수 있습니다.";
+"Harbor's public relay" = "Harbor 공개 릴레이";
 "Hard stroke around each letter. High contrast." = "각 글자 주변의 선명한 외곽선입니다. 대비가 높습니다.";
 "Harvey Award Winners" = "Harvey Award 수상작";
 "Harvey Winner" = "Harvey 수상작";
@@ -1195,6 +1204,7 @@
 "Interfaz del sistema" = "시스템 UI";
 "Interlineado" = "줄 높이";
 "Invalid SourceRow JSON format" = "SourceRow JSON 형식이 잘못되었습니다.";
+"Invite link" = "초대 링크";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "{product} 제작사 또는 앱 내에서 언급된 회사, 애드온 제작자, 상표권자와 제휴 관계가 없습니다.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "{company}와 제휴하거나, 보증 또는 후원을 받거나, 어떠한 방식으로도 관련되어 있지 않습니다.";
 "Italian" = "이탈리아어";
@@ -1209,6 +1219,7 @@
 "Japanese" = "일본어";
 "Jina API key (optional)" = "Jina API 키(선택 사항)";
 "Jina Reader" = "Jina Reader";
+"Join" = "참여";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "오프닝이 시작되면 즉시 자동으로 건너뜁니다. 오프닝으로 되돌리면 다시 건너뛰지 않고 재생합니다. 건너뛰기 버튼은 위 설정을 따릅니다.";
 "Just added" = "최근 추가순";
 "Kanopy" = "Kanopy";
@@ -1238,6 +1249,7 @@
 "Larger" = "더 크게";
 "Laterales" = "양면";
 "Leave" = "나가기";
+"Leave room" = "방 나가기";
 "Leave the show?" = "프로그램에서 나갈까요?";
 "Lectura" = "읽는 중";
 "Left" = "왼쪽";
@@ -1362,6 +1374,7 @@
 "Mejor valorado en {site}" = "{site} 최고 평점 콘텐츠";
 "Mes anterior" = "이전 달";
 "Mes siguiente" = "다음 달";
+"Message" = "메시지";
 "Metacritic" = "Metacritic";
 "Metadata" = "메타데이터";
 "Metadata language" = "메타데이터 언어";
@@ -1631,6 +1644,7 @@
 "Ongoing" = "연재 중";
 "Only 1 source after filtering" = "필터링 후 소스가 1개뿐입니다";
 "Only 2 sources after filtering" = "필터링 후 소스가 2개뿐입니다";
+"Only enter URLs for relays you operate or trust. A relay only carries Watch Together sync messages (play, pause, seek). Nothing else passes through it." = "직접 운영하거나 신뢰하는 릴레이의 URL만 입력하세요. 릴레이는 같이 보기 동기화 메시지(재생, 일시 정지, 탐색)만 전달합니다. 그 외의 데이터는 통과하지 않습니다.";
 "Only https links are accepted." = "https 링크만 사용할 수 있습니다.";
 "Only show streams in my languages" = "내 언어의 스트림만 표시";
 "Only show titles in these original languages on the Home rows. Leave all off to show everything." = "홈 행에는 원어가 다음 언어인 제목만 표시합니다. 모두 끄면 모든 제목이 표시됩니다.";
@@ -1644,6 +1658,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "AniList 다시 열기";
 "Open MyAnimeList again" = "MyAnimeList 다시 열기";
+"Open Settings" = "설정 열기";
 "Open Settings, then System, then Advanced system settings." = "설정, 시스템, 고급 시스템 설정 순서로 여세요.";
 "Open a title and tap Add to Watchlist to save it here." = "작품을 열고 «관심 목록에 추가»를 탭하면 여기에 저장됩니다.";
 "Open image" = "이미지 열기";
@@ -1699,6 +1714,8 @@
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "비밀번호";
 "Paste JSON" = "JSON 붙여넣기";
+"Paste a wss:// URL that a friend or your community shared with you." = "친구나 커뮤니티가 공유한 wss:// URL을 붙여 넣으세요.";
+"Paste invite link" = "초대 링크 붙여넣기";
 "Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "코드 또는 페이지 URL 붙여넣기";
 "Paste the manifest URL the configure page gave you" = "설정 페이지에서 제공한 매니페스트 URL을 붙여넣으세요";
@@ -1825,6 +1842,7 @@
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
+"Prompts guests to choose instead of auto-matching" = "자동 매칭 대신 게스트가 직접 선택하도록 안내";
 "Proveedores de metadatos" = "메타데이터 제공업체";
 "Provide a JSON link or paste it directly." = "JSON 링크를 입력하거나 직접 붙여 넣으세요.";
 "Provider" = "제공업체";
@@ -2025,6 +2043,7 @@
 "Romaji" = "로마자";
 "Romance" = "로맨스";
 "Romanian" = "루마니아어";
+"Room code" = "방 코드";
 "Rostro" = "얼굴";
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rotten Tomatoes" = "Rotten Tomatoes";
@@ -2066,6 +2085,7 @@
 "Saved app data" = "Saved app data";
 "Saved stream filters" = "저장된 스트림 필터";
 "Saving" = "저장 중";
+"Say hi." = "인사해 보세요.";
 "Scanning your network…" = "네트워크 검색 중…";
 "Sci-Fi" = "SF";
 "Sci-Fi & Fantasy" = "SF & 판타지";
@@ -2116,6 +2136,7 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "선택됨";
+"Send" = "보내기";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Trakt로 전송 중…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
@@ -2171,6 +2192,7 @@
 "Show comments on detail pages" = "상세 페이지에 댓글 표시";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio 선택기, 다운로드 및 빅 픽처에서 애드온 설명 전체를 표시합니다.";
 "Show controls" = "컨트롤 표시";
+"Show cursors" = "커서 표시";
 "Show details" = "세부 정보 표시";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "각 애드온이 반환한 순서대로 결과를 표시하고 애드온 목록에 따라 그룹화합니다. Stremio 및 Vidi 앱과 같은 방식입니다.";
 "Show episode" = "에피소드 표시";
@@ -2293,6 +2315,7 @@
 "Start" = "시작";
 "Start Over" = "처음부터 재생";
 "Start Watching" = "시청 시작";
+"Start a new room" = "새 방 만들기";
 "Start as" = "시작 프로필";
 "Start trailers with audio" = "예고편을 소리와 함께 시작";
 "Start with subtitles off" = "자막을 끈 상태로 시작";
@@ -2644,7 +2667,9 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "읽기 액세스 토큰이 아닌 v3 키를 사용하세요.";
 "Usar mi estilo" = "내 스타일 사용";
+"Use Harbor's public relay" = "Harbor 공개 릴레이 사용";
 "Use addon order" = "애드온 순서 사용";
+"Use an existing relay" = "기존 릴레이 사용";
 "Use live web context" = "실시간 웹 컨텍스트 사용";
 "Use model" = "모델 사용";
 "Use my style" = "내 스타일 사용";
@@ -2653,6 +2678,7 @@
 "Use the \"personal\" key, not the project one." = "프로젝트 키가 아닌 \"personal\" 키를 사용하세요.";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "읽기 액세스 토큰이 아닌 v3 키를 사용하세요.";
+"Use the wss:// scheme, not https://." = "https://가 아닌 wss:// 스킴을 사용하세요.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "55% / 25% 알파로 사용됩니다.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "캐시를 확인하고 링크 제한을 해제하는 데 사용됩니다. Harbor는 자체적으로 계정에 무언가를 추가하거나 제거하지 않습니다.";
@@ -2692,7 +2718,10 @@
 "Waiting for you to authorize on simkl.com…" = "simkl.com에서 인증하기를 기다리는 중…";
 "Waiting for you to authorize on trakt.tv…" = "trakt.tv에서 인증하기를 기다리는 중…";
 "War" = "전쟁";
+"Watch Together" = "같이 보기";
+"Watch Together needs a relay." = "함께 보기를 사용하려면 릴레이가 필요합니다.";
 "Watch on" = "다음에서 시청";
+"Watch together" = "함께 보기";
 "Watched" = "시청함";
 "Watched by {name}" = "{name} 님이 시청함";
 "Watching" = "시청 중";
@@ -2766,6 +2795,7 @@
 "Your listening history will build itself here." = "감상 기록이 여기에 쌓입니다.";
 "Your lists" = "Your lists";
 "Your lists are kept in memory. Save them before closing the app." = "목록이 메모리에 보관되어 있습니다. 앱을 닫기 전에 저장하세요.";
+"Your name" = "내 이름";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "내 프로필";
@@ -3907,6 +3937,8 @@
 "o usa uno de nuestros avatares" = "또는 Harbor 아바타 사용";
 "obsolete" = "더 이상 사용되지 않음";
 "or" = "또는";
+"or join" = "또는 참여";
+"or paste an invite link" = "또는 초대 링크 붙여넣기";
 "or use one of our avatars" = "또는 Harbor 아바타 사용";
 "oversized" = "용량이 지나치게 큼";
 "plays" = "재생";
@@ -3947,6 +3979,7 @@
 "watched" = "시청함";
 "wrong episode" = "다른 에피소드";
 "wrong movie" = "다른 영화";
+"wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "연도 불일치";
 "yes" = "예";
 "your-name" = "your-name";
@@ -3987,6 +4020,7 @@
 "{n} seeds" = "시드 {n}개";
 "{n} semillas" = "시드 {n}개";
 "{n} sources · 0 made it through" = "소스 {n}개 · 통과 0개";
+"{n} watching" = "{n}명 시청 중";
 "{n}+ seeds" = "시드 {n}개 이상";
 "{n}d ago" = "{n}일 전";
 "{n}d left" = "{n}일 남음";

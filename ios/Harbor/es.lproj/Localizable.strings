@@ -34,6 +34,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A relay we run. Nothing to set up, and it stays current on its own." = "Un relay que administramos. No requiere configuración y se mantiene actualizado automáticamente.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Un salto más corto con Shift y las teclas de flecha, para avanzar o retroceder unos segundos a la vez.";
 "A standout this week." = "Una obra destacada esta semana.";
@@ -472,6 +473,7 @@
 "Change chapter order" = "Cambiar orden de capítulos";
 "Channel format" = "Formato de canales";
 "Chapters" = "Capítulos";
+"Chat" = "Chat";
 "Check it works" = "Comprobar que funciona";
 "Check the highlighted values before saving." = "Revisa los valores resaltados antes de guardar.";
 "Check whether this device can reach the saved server address." = "Comprueba si este dispositivo puede acceder a la dirección guardada del servidor.";
@@ -519,6 +521,7 @@
 "Clear filters" = "Limpiar filtros";
 "Clear image cache" = "Vaciar caché de imágenes";
 "Clear search" = "Borrar búsqueda";
+"Clears the saved URL so you can point Harbor at another relay." = "Borra la URL guardada para que puedas conectar Harbor con otro relay.";
 "Close" = "Cerrar";
 "Close navigation" = "Cerrar navegación";
 "Close player" = "Cerrar reproductor";
@@ -613,6 +616,8 @@
 "Copia secundaria." = "Copia secundaria.";
 "Copied" = "Copiado";
 "Copy" = "Copiar";
+"Copy invite link" = "Copiar enlace de invitación";
+"Copy room code" = "Copiar código de la sala";
 "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "Radio de las esquinas";
 "Correo y contraseña" = "Correo y contraseña";
@@ -847,6 +852,7 @@
 "Enter a size of 0 or more." = "Introduce un tamaño de 0 o más.";
 "Enter a whole number of 0 or more." = "Introduce un número entero de 0 o más.";
 "Enter an FPS from 1 to 240." = "Ingresa una cantidad de FPS entre 1 y 240.";
+"Enter an existing relay URL:" = "Ingresa una URL de retransmisión existente:";
 "Enter current PIN" = "Ingresa el PIN actual";
 "Episode" = "Episodio";
 "Episode cards" = "Tarjetas de episodios";
@@ -1021,6 +1027,7 @@
 "Guardar recordatorio" = "Guardar recordatorio";
 "Guardar y compartir páginas" = "Guardar y compartir páginas";
 "Guest" = "Invitado";
+"Guests pick their own source" = "Los invitados eligen su propia fuente";
 "Género" = "Género";
 "HD" = "HD";
 "HDR" = "HDR";
@@ -1030,6 +1037,7 @@
 "HW decode" = "Decodificación por hardware";
 "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido." = "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido.";
 "Harbor" = "Harbor";
+"Harbor Relay" = "Retransmisión de Harbor";
 "Harbor account" = "Cuenta de Harbor";
 "Harbor blocks suspicious files and mismatched releases by default. For older shows and unusual titles this is sometimes too tight." = "Harbor bloquea de forma predeterminada los archivos sospechosos y las versiones que no coinciden. A veces, este filtro es demasiado estricto para series antiguas y títulos inusuales.";
 "Harbor busca subtítulos en este orden. Pon primero tu idioma preferido." = "Harbor busca subtítulos en este orden. Pon primero tu idioma preferido.";
@@ -1049,6 +1057,7 @@
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harbor muestra tus listas de AniList en la página Anime y mantiene sincronizado tu progreso.";
 "Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "Búsqueda integrada de Harbor en OpenSubtitles, activada de forma predeterminada. Si instalas un complemento de OpenSubtitles, esta se desactiva automáticamente para evitar resultados duplicados.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Menús y etiquetas de Harbor. Los idiomas de los subtítulos se configuran después, y puedes cambiar ambos en Configuración.";
+"Harbor's public relay" = "Retransmisor público de Harbor";
 "Hard stroke around each letter. High contrast." = "Trazo grueso alrededor de cada letra. Alto contraste.";
 "Harvey Award Winners" = "Ganadores del Premio Harvey";
 "Harvey Winner" = "Ganador del Harvey";
@@ -1195,6 +1204,7 @@
 "Interfaz del sistema" = "Interfaz del sistema";
 "Interlineado" = "Interlineado";
 "Invalid SourceRow JSON format" = "Formato JSON de SourceRow no válido";
+"Invite link" = "Enlace de invitación";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "No está afiliada con el creador de {product} ni con ninguna empresa, autor de complementos o titular de marcas comerciales mencionado en la app.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "No está afiliada, respaldada ni patrocinada por {company}, ni está asociada de ninguna manera con dicha empresa.";
 "Italian" = "Italiano";
@@ -1209,6 +1219,7 @@
 "Japanese" = "Japonés";
 "Jina API key (optional)" = "Clave de API de Jina (opcional)";
 "Jina Reader" = "Jina Reader";
+"Join" = "Unirse";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Omite las intros en cuanto empiezan. Si retrocedes a una intro, se reproduce sin volver a omitirla. El botón Omitir sigue el ajuste anterior.";
 "Just added" = "Recién agregado";
 "Kanopy" = "Kanopy";
@@ -1238,6 +1249,7 @@
 "Larger" = "Más grande";
 "Laterales" = "Laterales";
 "Leave" = "Salir";
+"Leave room" = "Salir de la sala";
 "Leave the show?" = "¿Salir de la serie?";
 "Lectura" = "Lectura";
 "Left" = "Izquierda";
@@ -1362,6 +1374,7 @@
 "Mejor valorado en {site}" = "Mejor valorado en {site}";
 "Mes anterior" = "Mes anterior";
 "Mes siguiente" = "Mes siguiente";
+"Message" = "Mensaje";
 "Metacritic" = "Metacritic";
 "Metadata" = "Metadatos";
 "Metadata language" = "Idioma de los metadatos";
@@ -1631,6 +1644,7 @@
 "Ongoing" = "En curso";
 "Only 1 source after filtering" = "Solo queda 1 fuente después de filtrar";
 "Only 2 sources after filtering" = "Solo quedan 2 fuentes después de filtrar";
+"Only enter URLs for relays you operate or trust. A relay only carries Watch Together sync messages (play, pause, seek). Nothing else passes through it." = "Ingresa únicamente URLs de relés que administres o en los que confíes. Un relé solo transmite mensajes de sincronización de Ver juntos (reproducir, pausar, buscar). No pasa nada más por él.";
 "Only https links are accepted." = "Solo se aceptan enlaces https.";
 "Only show streams in my languages" = "Mostrar solo fuentes en mis idiomas";
 "Only show titles in these original languages on the Home rows. Leave all off to show everything." = "Mostrar solo títulos en estos idiomas originales en las filas de Inicio. Deja todas las opciones desactivadas para mostrar todo.";
@@ -1644,6 +1658,7 @@
 "Opciones del reproductor" = "Opciones del reproductor";
 "Open AniList again" = "Volver a abrir AniList";
 "Open MyAnimeList again" = "Abrir MyAnimeList de nuevo";
+"Open Settings" = "Abrir Ajustes";
 "Open Settings, then System, then Advanced system settings." = "Abre Ajustes, luego Sistema y después Ajustes avanzados del sistema.";
 "Open a title and tap Add to Watchlist to save it here." = "Abre un título y toca «Añadir a mi lista» para guardarlo aquí.";
 "Open image" = "Abrir imagen";
@@ -1699,6 +1714,8 @@
 "Pasar páginas horizontalmente" = "Pasar páginas horizontalmente";
 "Password" = "Contraseña";
 "Paste JSON" = "Pegar JSON";
+"Paste a wss:// URL that a friend or your community shared with you." = "Pega una URL wss:// que haya compartido contigo un amigo o tu comunidad.";
+"Paste invite link" = "Pega el enlace de invitación";
 "Paste the address of any public Letterboxd list to add it as its own row." = "Paste the address of any public Letterboxd list to add it as its own row.";
 "Paste the code or page URL" = "Pega el código o la URL de la página";
 "Paste the manifest URL the configure page gave you" = "Pega la URL del manifiesto que te proporcionó la página de configuración";
@@ -1825,6 +1842,7 @@
 "Progreso" = "Progreso";
 "Progreso de descarga" = "Progreso de descarga";
 "Progress" = "Progreso";
+"Prompts guests to choose instead of auto-matching" = "Pide a los invitados que elijan en lugar de asignarlos automáticamente";
 "Proveedores de metadatos" = "Proveedores de metadatos";
 "Provide a JSON link or paste it directly." = "Proporciona un enlace JSON o pégalo directamente.";
 "Provider" = "Proveedor";
@@ -2025,6 +2043,7 @@
 "Romaji" = "Romaji";
 "Romance" = "Romance";
 "Romanian" = "Rumano";
+"Room code" = "Código de la sala";
 "Rostro" = "Rostro";
 "Rotate featured banners automatically" = "Cambiar los destacados automáticamente";
 "Rotten Tomatoes" = "Rotten Tomatoes";
@@ -2066,6 +2085,7 @@
 "Saved app data" = "Datos guardados";
 "Saved stream filters" = "Filtros de fuentes guardados";
 "Saving" = "Guardando";
+"Say hi." = "Di hola.";
 "Scanning your network…" = "Escaneando tu red…";
 "Sci-Fi" = "Ciencia ficción";
 "Sci-Fi & Fantasy" = "Ciencia ficción y fantasía";
@@ -2116,6 +2136,7 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto.";
 "Selected" = "Seleccionado";
+"Send" = "Enviar";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Enviando a Trakt…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
@@ -2171,6 +2192,7 @@
 "Show comments on detail pages" = "Mostrar comentarios en las páginas de detalles";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Mostrar las descripciones completas de los complementos en el selector Stremio, las descargas y Pantalla grande.";
 "Show controls" = "Mostrar controles";
+"Show cursors" = "Mostrar cursores";
 "Show details" = "Mostrar detalles";
 "Show each addon's results in the order it returned them, grouped by your addon list. Matches the Stremio and Vidi apps." = "Muestra los resultados de cada complemento en el orden en que los devolvió, agrupados según tu lista de complementos. Coincide con las apps Stremio y Vidi.";
 "Show episode" = "Mostrar episodio";
@@ -2293,6 +2315,7 @@
 "Start" = "Iniciar";
 "Start Over" = "Volver a empezar";
 "Start Watching" = "Comenzar a ver";
+"Start a new room" = "Iniciar una nueva sala";
 "Start as" = "Iniciar como";
 "Start trailers with audio" = "Iniciar los tráilers con audio";
 "Start with subtitles off" = "Comenzar con los subtítulos desactivados";
@@ -2644,7 +2667,9 @@
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite.";
 "Usa la clave v3, no el token de acceso de lectura." = "Usa la clave v3, no el token de acceso de lectura.";
 "Usar mi estilo" = "Usar mi estilo";
+"Use Harbor's public relay" = "Usar el relay público de Harbor";
 "Use addon order" = "Usar el orden de los complementos";
+"Use an existing relay" = "Usar un relay existente";
 "Use live web context" = "Usar contexto web en vivo";
 "Use model" = "Usar modelo";
 "Use my style" = "Usar mi estilo";
@@ -2653,6 +2678,7 @@
 "Use the \"personal\" key, not the project one." = "Usa la clave \"personal\", no la del proyecto.";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Abre cada sección desde el menú de navegación. Personaliza el menú, las filas del inicio, los colores y la reproducción desde Ajustes.";
 "Use the v3 key, not the read access token." = "Usa la clave v3, no el token de acceso de lectura.";
+"Use the wss:// scheme, not https://." = "Usa el esquema wss://, no https://.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite.";
 "Used at 55% / 25% alpha." = "Se usa con 55 % / 25 % de opacidad.";
 "Used to check cache and unrestrict links. Harbor never adds or removes anything on your account on its own." = "Se usa para comprobar la caché y desbloquear enlaces. Harbor nunca agrega ni elimina nada de tu cuenta por sí solo.";
@@ -2692,7 +2718,10 @@
 "Waiting for you to authorize on simkl.com…" = "Esperando que autorices en simkl.com…";
 "Waiting for you to authorize on trakt.tv…" = "Esperando que autorices en trakt.tv…";
 "War" = "Guerra";
+"Watch Together" = "Ver juntos";
+"Watch Together needs a relay." = "Ver juntos necesita un retransmisor.";
 "Watch on" = "Ver en";
+"Watch together" = "Ver juntos";
 "Watched" = "Visto";
 "Watched by {name}" = "Visto por {name}";
 "Watching" = "Viendo";
@@ -2766,6 +2795,7 @@
 "Your listening history will build itself here." = "Tu historial de escucha se irá creando aquí.";
 "Your lists" = "Tus listas";
 "Your lists are kept in memory. Save them before closing the app." = "Tus listas se conservan en memoria. Guárdalas antes de cerrar la app.";
+"Your name" = "Tu nombre";
 "Your navigation is saved locally. Cloud sync will retry." = "Tu navegación está guardada en el dispositivo. Se volverá a intentar sincronizarla.";
 "Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "Tu perfil";
@@ -3907,6 +3937,8 @@
 "o usa uno de nuestros avatares" = "o usa uno de nuestros avatares";
 "obsolete" = "obsoleto";
 "or" = "o";
+"or join" = "o únete";
+"or paste an invite link" = "o pega un enlace de invitación";
 "or use one of our avatars" = "o usa uno de nuestros avatares";
 "oversized" = "demasiado grandes";
 "plays" = "reproducciones";
@@ -3947,6 +3979,7 @@
 "watched" = "visto";
 "wrong episode" = "episodio incorrecto";
 "wrong movie" = "película incorrecta";
+"wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "el año no coincide";
 "yes" = "sí";
 "your-name" = "your-name";
@@ -3987,6 +4020,7 @@
 "{n} seeds" = "{n} semillas";
 "{n} semillas" = "{n} semillas";
 "{n} sources · 0 made it through" = "{n} fuentes · 0 superaron el filtro";
+"{n} watching" = "{n} viendo";
 "{n}+ seeds" = "{n}+ semillas";
 "{n}d ago" = "hace {n} d";
 "{n}d left" = "quedan {n} d";
