@@ -1387,5 +1387,12 @@ filters, the Sub/Dub switch (the dub schedule feed), the games source (excluded)
 modal, release chips and airing countdown, opening an episode from an event (Desktop's
 `calendarEpisodeHint`), and hiding anime through `hideContent.anime`.
 
-`CalendarSourcesTests` has 14 cases. Run 15 compiles it together with the review edits of
+Simkl premieres (Desktop's `simkl-anticipated`) followed: the three public catalogs of
+`data.simkl.in/calendar/v2/{year}/{month}/` (tv, anime, movie_release) joined with each
+title's shared metadata, shown only while a Simkl account is connected (the same rule as
+Desktop's switcher), with the type filters including Anime. A title Simkl knows only by its
+MAL id opens through `mal:` (Desktop's `simkl:` id cannot be opened). My Simkl needs
+Desktop's library-calendar resolver (TMDB, TVMaze and AniZip) and is not ported.
+
+`CalendarSourcesTests` has 15 cases. Run 15 compiles it together with the review edits of
 the ratings work.
