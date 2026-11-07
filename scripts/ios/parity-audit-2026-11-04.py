@@ -603,6 +603,10 @@ SETTINGS = expand("""
 277 X local auto scan: iOS cannot scan folders in the background
 278 X local scan mode: no background scan on iOS
 358 D local episode sort order (7 Nov, written by Haiku, CI run 31 green, 80 cases)
+44 P SIMKL community score is shown as a chip on cards and on the detail page; the switch itself is not ported
+325 D short seek back step on Shift plus the arrow keys (7 Nov, compiled and tested, run 24)
+326 D short seek forward step (7 Nov, compiled and tested, run 24)
+330 D ask before leaving the player (7 Nov, compiled and tested, run 24)
 """)
 
 def audit(items, verdicts, label):

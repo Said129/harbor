@@ -16,25 +16,25 @@
     },
     "settings": {
       "total": 511,
-      "ported": 179,
-      "partial": 33,
-      "missing": 115,
+      "ported": 182,
+      "partial": 34,
+      "missing": 111,
       "excluded": 184,
       "counted": 327,
-      "weighted_percent": 59.8,
-      "ported_only_percent": 54.7,
-      "ported_or_partial_percent": 64.8
+      "weighted_percent": 60.9,
+      "ported_only_percent": 55.7,
+      "ported_or_partial_percent": 66.1
     },
     "all": {
       "total": 949,
-      "ported": 322,
-      "partial": 253,
-      "missing": 146,
+      "ported": 325,
+      "partial": 254,
+      "missing": 142,
       "excluded": 228,
       "counted": 721,
-      "weighted_percent": 62.2,
-      "ported_only_percent": 44.7,
-      "ported_or_partial_percent": 79.8
+      "weighted_percent": 62.7,
+      "ported_only_percent": 45.1,
+      "ported_or_partial_percent": 80.3
     }
   },
   "behavior_areas": [
@@ -3602,8 +3602,8 @@
       "index": 44,
       "id": "simklShowCommunityRatings",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "rating badges not ported"
+      "verdict": "P",
+      "note": "SIMKL community score is shown as a chip on cards and on the detail page; the switch itself is not ported"
     },
     {
       "index": 45,
@@ -5569,15 +5569,15 @@
       "index": 325,
       "id": "seekBackStepShortSec",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "short seek back step on Shift plus the arrow keys (7 Nov, compiled and tested, run 24)"
     },
     {
       "index": 326,
       "id": "seekForwardStepShortSec",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "short seek forward step (7 Nov, compiled and tested, run 24)"
     },
     {
       "index": 327,
@@ -5604,8 +5604,8 @@
       "index": 330,
       "id": "playerConfirmLeave",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "ask before leaving the player (7 Nov, compiled and tested, run 24)"
     },
     {
       "index": 331,
