@@ -93,6 +93,53 @@ struct WatchStatistics: Equatable, Sendable {
     static let episodeMinutes = 42.0
     static let topTitleLimit = 20
 
+    /// A remembered stream, one per episode: Desktop's `playbackEntries` (`src/lib/playback-history.ts`).
+    struct Remembered: Equatable, Sendable {
+        let metaID: String
+        /// Milliseconds since 1970, as on Desktop.
+        let savedAt: Double
+        let parsedTitle: String?
+        let title: String?
+    }
+
+    /// Desktop's local collection (`collect.ts`): the library events, then one event per remembered episode
+    /// that is not already counted with the same id and timestamp. `animeOnly` mirrors Desktop's Trakt branch,
+    /// which only adds anime from the remembered entries.
+    static func localEvents(library: [Event], remembered: [Remembered], animeOnly: Bool) -> [Event] {
+        var events = library
+        var counted = Set(library.map { countKey($0.id, milliseconds: $0.watchedAt.timeIntervalSince1970 * 1_000) })
+        var titles: [String: String] = [:]
+        var kinds: [String: Kind] = [:]
+        var posters: [String: String] = [:]
+        for event in library {
+            if titles[event.id] == nil { titles[event.id] = event.title }
+            if kinds[event.id] == nil { kinds[event.id] = event.kind }
+            if posters[event.id] == nil, let poster = event.poster { posters[event.id] = poster }
+        }
+        for item in remembered {
+            let kind = kinds[item.metaID] ?? (AnimeService.isAnime(item.metaID) ? .anime : .series)
+            if animeOnly && kind != .anime { continue }
+            let key = countKey(item.metaID, milliseconds: item.savedAt)
+            if counted.contains(key) { continue }
+            counted.insert(key)
+            let title = titles[item.metaID] ?? rememberedTitle(item)
+            events.append(Event(id: item.metaID, title: title, kind: kind, watchedAt: Date(timeIntervalSince1970: item.savedAt / 1_000), poster: posters[item.metaID]))
+        }
+        return events
+    }
+
+    /// Desktop's `parsedTitle || title || metaId`, skipping empty values.
+    private static func rememberedTitle(_ item: Remembered) -> String {
+        for candidate in [item.parsedTitle, item.title] {
+            if let candidate, !candidate.isEmpty { return candidate }
+        }
+        return item.metaID
+    }
+
+    private static func countKey(_ id: String, milliseconds: Double) -> String {
+        "\(id):\(Int64(milliseconds.rounded()))"
+    }
+
     /// Desktop's `aggregateWrapped`. `year` limits the events to one calendar year when set.
     static func make(events: [Event], source: Source, year: Int?, calendar: Calendar) -> WatchStatistics {
         let inYear = events.filter { event in

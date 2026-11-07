@@ -152,4 +152,36 @@ final class WatchStatisticsTests: XCTestCase {
         XCTAssertNil(result.firstPlay)
         XCTAssertEqual(result.archetype, .wellRounded)
     }
+
+    func testRememberedEpisodesAreSeparatePlaysOfOneTitle() {
+        let first = date(2026, 2, 1).timeIntervalSince1970 * 1_000
+        let remembered = [
+            WatchStatistics.Remembered(metaID: "tt1", savedAt: first, parsedTitle: "Show", title: nil),
+            WatchStatistics.Remembered(metaID: "tt1", savedAt: first + 3_600_000, parsedTitle: nil, title: "Show Release"),
+        ]
+        let result = stats(WatchStatistics.localEvents(library: [], remembered: remembered, animeOnly: false))
+        XCTAssertEqual(result.totalPlays, 2)
+        XCTAssertEqual(result.totalTitles, 1)
+        XCTAssertEqual(result.topTitles.first?.title, "Show")
+    }
+
+    func testRememberedEntryWithSameIdAndTimestampIsNotCountedTwice() {
+        let when = date(2026, 2, 1)
+        let library = [event("tt2", .series, when, title: "Other")]
+        let remembered = [WatchStatistics.Remembered(metaID: "tt2", savedAt: when.timeIntervalSince1970 * 1_000, parsedTitle: "Other release", title: nil)]
+        let events = WatchStatistics.localEvents(library: library, remembered: remembered, animeOnly: false)
+        XCTAssertEqual(events.count, 1)
+        XCTAssertEqual(events.first?.title, "Other")
+    }
+
+    func testTraktBranchOnlyAddsRememberedAnime() {
+        let when = date(2026, 2, 1).timeIntervalSince1970 * 1_000
+        let remembered = [
+            WatchStatistics.Remembered(metaID: "tt1", savedAt: when, parsedTitle: "Series", title: nil),
+            WatchStatistics.Remembered(metaID: "kitsu:7", savedAt: when + 1_000, parsedTitle: "Anime", title: nil),
+        ]
+        let events = WatchStatistics.localEvents(library: [], remembered: remembered, animeOnly: true)
+        XCTAssertEqual(events.map(\.id), ["kitsu:7"])
+        XCTAssertEqual(events.first?.kind, .anime)
+    }
 }

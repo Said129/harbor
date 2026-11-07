@@ -15,11 +15,36 @@ struct WatchStatisticsView: View {
     /// Nil when there is nothing to count, which shows Desktop's empty state.
     private var current: WatchStatistics? {
         let entries = history.entries
-        let events = Self.events(from: entries)
-        guard !events.isEmpty else { return nil }
         let remote = entries.contains { $0.localID == nil }
+        let library = Self.events(from: entries)
+        let remembered = Self.remembered(owner: app.library.owner)
+        // Desktop adds remembered episodes to local history, and to Trakt history only for anime.
+        let events = WatchStatistics.localEvents(library: library, remembered: remembered, animeOnly: remote)
+        guard !events.isEmpty else { return nil }
         let year = calendar.component(.year, from: Date())
         return WatchStatistics.resolved(events: events, source: remote ? .trakt : .local, year: year, calendar: calendar)
+    }
+
+    /// The last stream played per episode, which Desktop reads as its playback entries.
+    static func remembered(owner: String) -> [WatchStatistics.Remembered] {
+        StreamPlaybackHistory.remembered(owner: owner).map { item -> WatchStatistics.Remembered in
+            WatchStatistics.Remembered(
+                metaID: item.key.components(separatedBy: "|").first ?? item.key,
+                savedAt: item.value.savedAt,
+                parsedTitle: item.value.parsedTitle,
+                title: item.value.title
+            )
+        }
+        .filter { !$0.metaID.isEmpty }
+    }
+
+    /// The library's own media by id, so a title opens with the type it was saved with.
+    private var mediaByID: [String: Media] {
+        let pairs = history.entries.compactMap { entry -> (String, Media)? in
+            guard let media = entry.media else { return nil }
+            return (entry.record.id, media)
+        }
+        return Dictionary(pairs, uniquingKeysWith: { first, _ in first })
     }
 
     var body: some View {
@@ -148,10 +173,11 @@ struct WatchStatisticsView: View {
     }
 
     private func topTitlesCard(_ stats: WatchStatistics) -> some View {
-        card {
+        let known = mediaByID
+        return card {
             label(text("Top titles"))
             ForEach(Array(stats.topTitles.prefix(10).enumerated()), id: \.offset) { index, title in
-                topTitleRow(rank: index + 1, title: title)
+                topTitleRow(rank: index + 1, title: title, media: known[title.id] ?? Self.media(for: title))
             }
         }
     }
@@ -162,9 +188,8 @@ struct WatchStatisticsView: View {
         return value
     }
 
-    private func topTitleRow(rank: Int, title: WatchStatistics.TopTitle) -> some View {
-        let media = Self.media(for: title)
-        return NavigationLink { DetailView(media: media, app: app) } label: {
+    private func topTitleRow(rank: Int, title: WatchStatistics.TopTitle, media: Media) -> some View {
+        NavigationLink { DetailView(media: media, app: app) } label: {
             HStack(spacing: 12) {
                 Text("\(rank)").font(HarborTheme.displayFont(15)).foregroundStyle(.secondary).frame(width: 22, alignment: .trailing)
                 Poster(media: media, width: 36)
