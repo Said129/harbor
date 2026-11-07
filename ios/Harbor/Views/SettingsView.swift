@@ -70,6 +70,13 @@ struct SettingsView: View {
                         }
                     }
                 }
+                if matches("Watch Together") {
+                    group("Watch Together") {
+                        NavigationLink { TogetherSettingsView().toolbar(.visible, for: .navigationBar) } label: {
+                            SettingsRow(title: DesktopInterfaceText.value("Watch Together"), icon: "nav-catalogs")
+                        }.accessibilityIdentifier("settings-watch-together")
+                    }
+                }
                 if matches("Subtitles", group: "Languages & subtitles") {
                     group("Languages & subtitles") {
                         NavigationLink { PlayerSettingsView(page: .subtitles).toolbar(.visible, for: .navigationBar) } label: {
