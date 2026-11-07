@@ -921,12 +921,14 @@
 "Feature this catalog in the hero carousel" = "이 카탈로그를 히어로 캐러셀에 추천";
 "Featured" = "추천";
 "Featured at Anime Expo" = "Anime Expo 소개작";
+"Featured source" = "추천 콘텐츠 소스";
 "Featured tonight" = "오늘 밤의 추천작";
 "Fecha" = "날짜";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "DuckDuckGo 결과를 가져와 상위 검색 결과를 모델 프롬프트에 전달합니다.";
 "Fiction" = "소설";
 "File is larger than 2 MB." = "파일이 2 MB보다 큽니다.";
 "Fill" = "채우기";
+"Fills in where TMDB comes up empty (anime, older catalog). Free at" = "TMDB에 정보가 없는 콘텐츠(애니메이션, 오래된 카탈로그)를 보완합니다. 다음에서 무료로 이용 가능";
 "Film" = "영화";
 "Filter countries" = "국가 필터";
 "Filter genres" = "장르 필터";
@@ -977,8 +979,10 @@
 "Full" = "전체";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full hero banner" = "전체 히어로 배너";
 "Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
 "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
+"Full quality hero image" = "최고 화질 히어로 이미지";
 "Gamma" = "감마";
 "Genre" = "장르";
 "Genres" = "장르";
@@ -1095,7 +1099,9 @@
 "Home" = "홈";
 "Home Rail Settings" = "홈 콘텐츠 행 설정";
 "Home catalogs" = "홈 카탈로그";
+"Home hero" = "홈 히어로";
 "Home hero audio" = "홈 히어로 오디오";
+"Home hero shadow" = "홈 히어로 그림자";
 "Home layout" = "홈 레이아웃";
 "Home style" = "홈 스타일";
 "Hoopla" = "Hoopla";
@@ -1105,6 +1111,7 @@
 "Horror & Supernatural" = "공포 및 초자연";
 "Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "스트립 및 그리드 레이아웃의 에피소드 카드 크기입니다. 카드가 클수록 아트워크도 크게 표시됩니다.";
+"How dark the gradient behind the featured title on Home is. 100% is the classic look." = "How dark the gradient behind the featured title on Home is. 100% is the classic look.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "음량 막대에서 100%를 넘어 얼마나 증폭할 수 있는지 설정합니다. 높게 설정하면 소리가 매우 커질 수 있습니다.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Harbor가 각 애드온의 결과를 기다리는 시간입니다.";
@@ -1244,6 +1251,7 @@
 "Letterboxd username" = "Letterboxd 사용자 이름";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd, Trakt, Metacritic 및 관객 평점입니다.";
 "Library" = "라이브러리";
+"Library is empty. Nothing to repair." = "라이브러리가 비어 있습니다. 복구할 항목이 없습니다.";
 "Libros" = "도서";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "암부를 밝혀 아주 어두운 장면도 제대로 볼 수 있게 합니다.";
 "Light" = "라이트";
@@ -1274,6 +1282,7 @@
 "Load file" = "파일 불러오기";
 "Load more" = "더 불러오기";
 "Load more comments" = "댓글 더 보기";
+"Load the highest-resolution artwork for the featured hero. Uses more bandwidth." = "추천 히어로에 최고 해상도 아트워크를 불러옵니다. 데이터 사용량이 늘어납니다.";
 "Loading" = "로딩 중";
 "Loading more" = "더 불러오는 중";
 "Loading more sources" = "더 많은 소스 로드 중";
@@ -1299,6 +1308,7 @@
 "Los filtros estrictos descartaron todo" = "엄격한 필터로 모든 결과가 제외됨";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
 "Loved by reviewers today" = "오늘 평론가들의 호평을 받은 작품";
+"Lower it to let more of the artwork show through." = "값을 낮추면 아트워크가 더 잘 보입니다.";
 "Lyric sync" = "가사 동기화";
 "Lyrics" = "가사";
 "Lyrics earlier" = "가사 앞당기기";
@@ -1316,6 +1326,7 @@
 "Magnet stream" = "마그넷 스트리밍";
 "Make it yours" = "나만의 공간으로 꾸미기";
 "Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "Roku가 켜져 있고 컴퓨터와 동일한 Wi-Fi에 연결되어 있는지 확인하세요.";
+"Make the featured banner on Home bigger and sharper." = "홈의 추천 배너를 더 크고 선명하게 표시합니다.";
 "Manage" = "관리";
 "Manage profiles" = "프로필 관리";
 "Manga" = "만화";
@@ -1615,6 +1626,7 @@
 "On your Roku remote, press Home." = "Roku 리모컨에서 홈 버튼을 누르세요.";
 "On your Roku, open Streaming Channels from the home screen." = "Roku 홈 화면에서 스트리밍 채널을 여세요.";
 "Onboarding" = "시작 안내";
+"Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "저장하면 모든 포스터가 IMDb, Rotten Tomatoes 및 Metacritic 표시와 함께 다시 렌더링됩니다.";
 "One list" = "목록 하나";
 "Ongoing" = "연재 중";
 "Only 1 source after filtering" = "필터링 후 소스가 1개뿐입니다";
@@ -1651,6 +1663,7 @@
 "Opening MyAnimeList..." = "MyAnimeList 여는 중...";
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
+"Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "TMDB 콘텐츠 행, 포스터 내장 평점, 팬아트, TVDB 에피소드 데이터를 사용할 수 있게 하는 선택적 키입니다.";
 "Options" = "옵션";
 "Orden de addons" = "애드온 순서";
 "Orden de idiomas preferidos" = "언어 우선순위";
@@ -1677,6 +1690,7 @@
 "Page base." = "페이지 기본.";
 "Page turn sound" = "Page turn sound";
 "Pages" = "페이지";
+"Paid plan at" = "다음에서 유료 요금제 이용";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "텍스트 뒤의 둥근 배경 패널입니다. 가독성이 가장 높습니다.";
 "Para personas con discapacidad auditiva" = "청각 장애인용";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1845,6 +1859,7 @@
 "Quitar de guardados" = "저장 목록에서 제거";
 "Quitar de la cola" = "대기열에서 삭제";
 "Quitar {language}" = "{language} 제거";
+"RPDB · scores baked into posters" = "RPDB · 포스터에 삽입된 평점";
 "Raised" = "돌출형";
 "Random avatar" = "무작위 아바타";
 "Ranked by the {site} community from their public index." = "{site} 커뮤니티의 공개 지수를 기준으로 매긴 순위입니다.";
@@ -1935,6 +1950,7 @@
 "Rename {name}" = "{name} 이름 바꾸기";
 "Renamed" = "이름 변경됨";
 "Renombrar" = "이름 변경";
+"Repair library" = "라이브러리 복구";
 "Repeat" = "반복";
 "Repetición" = "반복";
 "Replace image" = "이미지 교체";
@@ -2000,6 +2016,7 @@
 "Reveal comments" = "댓글 표시";
 "Reverse order" = "Reverse order";
 "Revert" = "되돌리기";
+"Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "모든 라이브러리 항목을 Stremio의 정확한 스키마에 맞게 다시 작성합니다. Harbor가 재생 상태를 동기화한 후 Stremio 앱이 충돌하기 시작했다면 한 번 실행하세요.";
 "Rich season and order panel" = "상세 시즌 및 순서 패널";
 "Richer, more vivid picture with a touch more contrast." = "대비를 약간 높여 더 풍부하고 생생한 화면을 만듭니다.";
 "Right" = "오른쪽";
@@ -2132,6 +2149,7 @@
 "Set up rating providers" = "평점 제공업체 설정";
 "Settings" = "설정";
 "Settings changed. Please reopen this page." = "설정이 변경되었습니다. 이 페이지를 다시 여세요.";
+"Shadow strength" = "Shadow strength";
 "Share" = "공유";
 "Share file" = "Share file";
 "Share with {name}" = "{name}과(와) 공유";
@@ -2188,6 +2206,7 @@
 "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "양면";
 "Sign in" = "로그인";
+"Sign in to Stremio first. The repair scans only the active profile's library." = "먼저 Stremio에 로그인하세요. 복구 작업은 현재 프로필의 라이브러리만 검사합니다.";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "로그인하면 이어보기, 관심 목록, 기존에 구성한 애드온을 그대로 동기화할 수 있습니다. 선택 사항이며, 로그아웃 상태에서도 Harbor의 모든 기능을 사용할 수 있습니다.";
 "Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "Stremio로 로그인";
@@ -2311,6 +2330,7 @@
 "Stremio" = "Stremio";
 "Stremio clásico" = "클래식 Stremio";
 "Stretch" = "늘이기";
+"Stretch the featured hero edge to edge and taller, across every layout." = "모든 레이아웃에서 추천 히어로를 화면 양쪽 끝까지 넓히고 더 높게 표시합니다.";
 "Strict" = "엄격";
 "Strict filters dropped everything" = "엄격한 필터로 모든 결과가 제외됨";
 "Styled (ASS) subtitles" = "스타일 자막(ASS)";
@@ -2630,6 +2650,7 @@
 "Use my style" = "내 스타일 사용";
 "Use plugins" = "플러그인 사용";
 "Use shared settings" = "공유 설정 사용";
+"Use the \"personal\" key, not the project one." = "프로젝트 키가 아닌 \"personal\" 키를 사용하세요.";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "읽기 액세스 토큰이 아닌 v3 키를 사용하세요.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -2684,6 +2705,7 @@
 "Welcome to Harbor" = "Harbor에 오신 것을 환영합니다";
 "Western" = "서부극";
 "What everyone is reading" = "지금 모두가 읽는 작품";
+"What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "히어로 영역에 표시할 콘텐츠를 설정합니다. 인기 콘텐츠는 Harbor에서 제공하는 최신 인기 목록으로 하루 중 수시로 갱신됩니다. 클래식은 사용자의 홈 행을 사용합니다.";
 "What you watched" = "시청한 콘텐츠";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Esc를 누르면 플레이어가 닫히는 경우 먼저 간단한 확인 창을 표시합니다. 확인 창에서 \"다시 묻지 않기\"를 선택하면 Esc를 누를 때 항상 바로 나갑니다.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "릴리스에 오디오 트랙이 여러 개 있으면 Harbor가 이 목록에서 처음 일치하는 트랙을 선택합니다.";
@@ -3956,6 +3978,7 @@
 "{n} in a day" = "하루에 {n}개";
 "{n} item" = "항목 {n}개";
 "{n} items" = "항목 {n}개";
+"{n} items need repair." = "항목 {n}개를 복구해야 합니다.";
 "{n} min" = "{n}분";
 "{n} month ago" = "{n}개월 전";
 "{n} months ago" = "{n}개월 전";

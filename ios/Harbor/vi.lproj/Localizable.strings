@@ -921,12 +921,14 @@
 "Feature this catalog in the hero carousel" = "Đưa danh mục này lên băng chuyền nổi bật";
 "Featured" = "Nổi bật";
 "Featured at Anime Expo" = "Nổi bật tại Anime Expo";
+"Featured source" = "Nguồn nổi bật";
 "Featured tonight" = "Nổi bật tối nay";
 "Fecha" = "Ngày";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "Lấy kết quả từ DuckDuckGo và đưa các kết quả hàng đầu vào lời nhắc của mô hình.";
 "Fiction" = "Hư cấu";
 "File is larger than 2 MB." = "Tệp lớn hơn 2 MB.";
 "Fill" = "Lấp đầy";
+"Fills in where TMDB comes up empty (anime, older catalog). Free at" = "Bổ sung khi TMDB không có dữ liệu (anime, danh mục cũ). Miễn phí tại";
 "Film" = "Phim điện ảnh";
 "Filter countries" = "Lọc quốc gia";
 "Filter genres" = "Lọc thể loại";
@@ -977,8 +979,10 @@
 "Full" = "Đầy đủ";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full hero banner" = "Banner nổi bật toàn chiều rộng";
 "Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
 "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
+"Full quality hero image" = "Ảnh nổi bật chất lượng đầy đủ";
 "Gamma" = "Gamma";
 "Genre" = "Thể loại";
 "Genres" = "Thể loại";
@@ -1095,7 +1099,9 @@
 "Home" = "Trang chủ";
 "Home Rail Settings" = "Cài đặt hàng nội dung Trang chủ";
 "Home catalogs" = "Danh mục trang chủ";
+"Home hero" = "Banner nổi bật Trang chủ";
 "Home hero audio" = "Âm thanh tiêu điểm trang chủ";
+"Home hero shadow" = "Bóng nền nội dung nổi bật trên Trang chủ";
 "Home layout" = "Bố cục trang chủ";
 "Home style" = "Kiểu trang chủ";
 "Hoopla" = "Hoopla";
@@ -1105,6 +1111,7 @@
 "Horror & Supernatural" = "Kinh dị và siêu nhiên";
 "Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "Kích thước thẻ tập trong bố cục dải và lưới. Thẻ lớn hơn sẽ hiển thị hình ảnh lớn hơn.";
+"How dark the gradient behind the featured title on Home is. 100% is the classic look." = "How dark the gradient behind the featured title on Home is. 100% is the classic look.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "Mức có thể tăng vượt quá 100 phần trăm trên thanh âm lượng. Cài đặt cao hơn có thể tạo âm lượng rất lớn.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Thời gian Harbor chờ từng tiện ích trả kết quả.";
@@ -1244,6 +1251,7 @@
 "Letterboxd username" = "Tên người dùng Letterboxd";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Điểm Letterboxd, Trakt, Metacritic và khán giả.";
 "Library" = "Thư viện";
+"Library is empty. Nothing to repair." = "Thư viện trống. Không có gì cần sửa chữa.";
 "Libros" = "Sách";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Làm sáng vùng tối để những cảnh đen kịt vẫn có thể xem rõ.";
 "Light" = "Sáng";
@@ -1274,6 +1282,7 @@
 "Load file" = "Tải tệp";
 "Load more" = "Tải thêm";
 "Load more comments" = "Tải thêm bình luận";
+"Load the highest-resolution artwork for the featured hero. Uses more bandwidth." = "Tải hình ảnh có độ phân giải cao nhất cho banner nổi bật. Tốn nhiều băng thông hơn.";
 "Loading" = "Đang tải";
 "Loading more" = "Đang tải thêm";
 "Loading more sources" = "Đang tải thêm nguồn";
@@ -1299,6 +1308,7 @@
 "Los filtros estrictos descartaron todo" = "Bộ lọc nghiêm ngặt đã loại bỏ tất cả";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
 "Loved by reviewers today" = "Được giới phê bình yêu thích hôm nay";
+"Lower it to let more of the artwork show through." = "Giảm xuống để hiển thị rõ hơn ảnh minh họa.";
 "Lyric sync" = "Đồng bộ lời bài hát";
 "Lyrics" = "Lời bài hát";
 "Lyrics earlier" = "Lời sớm hơn";
@@ -1316,6 +1326,7 @@
 "Magnet stream" = "Luồng magnet";
 "Make it yours" = "Tùy biến theo ý bạn";
 "Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "Đảm bảo Roku đã bật và kết nối cùng mạng Wi-Fi với máy tính của bạn.";
+"Make the featured banner on Home bigger and sharper." = "Làm banner nổi bật trên Trang chủ lớn và sắc nét hơn.";
 "Manage" = "Quản lý";
 "Manage profiles" = "Quản lý hồ sơ";
 "Manga" = "Manga";
@@ -1615,6 +1626,7 @@
 "On your Roku remote, press Home." = "Trên điều khiển Roku, nhấn Home.";
 "On your Roku, open Streaming Channels from the home screen." = "Trên Roku, mở Kênh truyền phát từ màn hình chính.";
 "Onboarding" = "Hướng dẫn ban đầu";
+"Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "Sau khi lưu, mọi áp phích sẽ được kết xuất lại với điểm IMDb, Rotten Tomatoes và Metacritic in trên đó.";
 "One list" = "Một danh sách";
 "Ongoing" = "Đang phát hành";
 "Only 1 source after filtering" = "Chỉ còn 1 nguồn sau khi lọc";
@@ -1651,6 +1663,7 @@
 "Opening MyAnimeList..." = "Đang mở MyAnimeList...";
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
+"Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "Các khóa tùy chọn giúp mở khóa hàng TMDB, điểm đánh giá tích hợp trên áp phích, fanart và dữ liệu tập TVDB.";
 "Options" = "Tùy chọn";
 "Orden de addons" = "Thứ tự tiện ích bổ sung";
 "Orden de idiomas preferidos" = "Thứ tự ưu tiên ngôn ngữ";
@@ -1677,6 +1690,7 @@
 "Page base." = "Nền trang.";
 "Page turn sound" = "Page turn sound";
 "Pages" = "Trang";
+"Paid plan at" = "Gói trả phí tại";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "Nền bo góc phía sau chữ. Dễ đọc nhất.";
 "Para personas con discapacidad auditiva" = "Dành cho người khiếm thính";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1845,6 +1859,7 @@
 "Quitar de guardados" = "Xóa khỏi mục đã lưu";
 "Quitar de la cola" = "Xóa khỏi hàng chờ";
 "Quitar {language}" = "Xóa {language}";
+"RPDB · scores baked into posters" = "RPDB · điểm được tích hợp vào áp phích";
 "Raised" = "Nổi";
 "Random avatar" = "Ảnh đại diện ngẫu nhiên";
 "Ranked by the {site} community from their public index." = "Do cộng đồng {site} xếp hạng dựa trên bảng xếp hạng công khai của họ.";
@@ -1935,6 +1950,7 @@
 "Rename {name}" = "Đổi tên {name}";
 "Renamed" = "Đã đổi tên";
 "Renombrar" = "Đổi tên";
+"Repair library" = "Sửa chữa thư viện";
 "Repeat" = "Lặp lại";
 "Repetición" = "Lặp lại";
 "Replace image" = "Thay ảnh";
@@ -2000,6 +2016,7 @@
 "Reveal comments" = "Hiện bình luận";
 "Reverse order" = "Reverse order";
 "Revert" = "Hoàn nguyên";
+"Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "Viết lại mọi mục trong thư viện để khớp chính xác với cấu trúc dữ liệu của Stremio. Chạy một lần nếu ứng dụng Stremio bắt đầu bị lỗi sau khi Harbor đồng bộ trạng thái phát.";
 "Rich season and order panel" = "Bảng mùa và thứ tự chi tiết";
 "Richer, more vivid picture with a touch more contrast." = "Hình ảnh đậm đà, sống động hơn với độ tương phản cao hơn một chút.";
 "Right" = "Phải";
@@ -2132,6 +2149,7 @@
 "Set up rating providers" = "Thiết lập nguồn điểm đánh giá";
 "Settings" = "Cài đặt";
 "Settings changed. Please reopen this page." = "Cài đặt đã thay đổi. Vui lòng mở lại trang này.";
+"Shadow strength" = "Shadow strength";
 "Share" = "Chia sẻ";
 "Share file" = "Share file";
 "Share with {name}" = "Chia sẻ với {name}";
@@ -2188,6 +2206,7 @@
 "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "Hai bên";
 "Sign in" = "Đăng nhập";
+"Sign in to Stremio first. The repair scans only the active profile's library." = "Trước tiên, hãy đăng nhập Stremio. Tính năng sửa chữa chỉ quét thư viện của hồ sơ đang hoạt động.";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "Đăng nhập để đồng bộ mục Xem tiếp, danh sách xem và mọi tiện ích bổ sung bạn đã tuyển chọn. Không bắt buộc; Harbor vẫn hoạt động đầy đủ khi chưa đăng nhập.";
 "Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "Đăng nhập bằng Stremio";
@@ -2311,6 +2330,7 @@
 "Stremio" = "Stremio";
 "Stremio clásico" = "Stremio cổ điển";
 "Stretch" = "Kéo giãn";
+"Stretch the featured hero edge to edge and taller, across every layout." = "Kéo giãn banner nổi bật sát hai cạnh và tăng chiều cao trong mọi bố cục.";
 "Strict" = "Nghiêm ngặt";
 "Strict filters dropped everything" = "Bộ lọc nghiêm ngặt đã loại bỏ tất cả";
 "Styled (ASS) subtitles" = "Phụ đề có định dạng (ASS)";
@@ -2630,6 +2650,7 @@
 "Use my style" = "Dùng kiểu của tôi";
 "Use plugins" = "Dùng plugin";
 "Use shared settings" = "Dùng cài đặt chung";
+"Use the \"personal\" key, not the project one." = "Dùng khóa \"personal\", không dùng khóa dự án.";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Dùng khóa v3, không dùng mã truy cập đọc.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -2684,6 +2705,7 @@
 "Welcome to Harbor" = "Chào mừng đến với Harbor";
 "Western" = "Viễn Tây";
 "What everyone is reading" = "Mọi người đang đọc gì";
+"What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "Nội dung hiển thị trong vùng nổi bật. Thịnh hành là danh sách hàng đầu mới nhất từ Harbor, được cập nhật trong ngày. Cổ điển dùng các hàng Trang chủ của riêng bạn.";
 "What you watched" = "Nội dung đã xem";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Khi Esc sắp đóng trình phát, trước tiên hãy hiện xác nhận nhanh. Bạn có thể chọn \"Đừng hỏi lại\" trong lời nhắc đó để Esc luôn thoát ngay.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Khi một bản phát hành có nhiều rãnh âm thanh, Harbor sẽ chọn kết quả khớp đầu tiên trong danh sách này.";
@@ -3956,6 +3978,7 @@
 "{n} in a day" = "{n} trong một ngày";
 "{n} item" = "{n} mục";
 "{n} items" = "{n} mục";
+"{n} items need repair." = "Có {n} mục cần sửa.";
 "{n} min" = "{n} phút";
 "{n} month ago" = "{n} tháng trước";
 "{n} months ago" = "{n} tháng trước";

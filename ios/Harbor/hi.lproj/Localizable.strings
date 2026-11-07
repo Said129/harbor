@@ -921,12 +921,14 @@
 "Feature this catalog in the hero carousel" = "इस कैटलॉग को हीरो कैरोसेल में प्रमुखता दें";
 "Featured" = "चुनिंदा";
 "Featured at Anime Expo" = "एनीमे एक्सपो में प्रदर्शित";
+"Featured source" = "चुनिंदा स्रोत";
 "Featured tonight" = "आज रात के लिए चुनिंदा";
 "Fecha" = "तारीख";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "DuckDuckGo के नतीजे लाता है और सबसे अच्छे नतीजों को मॉडल प्रॉम्प्ट में भेजता है।";
 "Fiction" = "कथा-साहित्य";
 "File is larger than 2 MB." = "फ़ाइल 2 MB से बड़ी है।";
 "Fill" = "भरें";
+"Fills in where TMDB comes up empty (anime, older catalog). Free at" = "जहाँ TMDB में जानकारी नहीं मिलती, वहाँ जानकारी देता है (एनीमे, पुराना कैटलॉग)। यहाँ मुफ़्त है";
 "Film" = "फ़िल्म";
 "Filter countries" = "देश फ़िल्टर करें";
 "Filter genres" = "शैलियाँ फ़िल्टर करें";
@@ -977,8 +979,10 @@
 "Full" = "पूर्ण";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full hero banner" = "पूरा हीरो बैनर";
 "Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
 "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
+"Full quality hero image" = "पूरी क्वालिटी वाली हीरो इमेज";
 "Gamma" = "गामा";
 "Genre" = "शैली";
 "Genres" = "शैलियाँ";
@@ -1095,7 +1099,9 @@
 "Home" = "होम";
 "Home Rail Settings" = "होम रेल सेटिंग्स";
 "Home catalogs" = "होम कैटलॉग";
+"Home hero" = "होम हीरो";
 "Home hero audio" = "होम हीरो ऑडियो";
+"Home hero shadow" = "होम हीरो की छाया";
 "Home layout" = "होम लेआउट";
 "Home style" = "होम स्टाइल";
 "Hoopla" = "Hoopla";
@@ -1105,6 +1111,7 @@
 "Horror & Supernatural" = "हॉरर और अलौकिक";
 "Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "स्ट्रिप और ग्रिड लेआउट में एपिसोड कार्ड कितने बड़े हों। बड़े कार्ड में बड़ा आर्टवर्क दिखाई देता है।";
+"How dark the gradient behind the featured title on Home is. 100% is the classic look." = "How dark the gradient behind the featured title on Home is. 100% is the classic look.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "वॉल्यूम बार पर आवाज़ को 100 प्रतिशत से कितना ज़्यादा बढ़ा सकते हैं। मान बढ़ाने पर आवाज़ बहुत तेज़ हो सकती है।";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "हर ऐडऑन के नतीजों के लिए Harbor कितनी देर इंतज़ार करता है।";
@@ -1244,6 +1251,7 @@
 "Letterboxd username" = "Letterboxd यूज़रनेम";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd, Trakt, Metacritic और दर्शकों के स्कोर।";
 "Library" = "लाइब्रेरी";
+"Library is empty. Nothing to repair." = "लाइब्रेरी खाली है। ठीक करने के लिए कुछ नहीं है।";
 "Libros" = "किताबें";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "छायाएँ उजली करता है, ताकि घुप अँधेरे दृश्य भी ठीक से देखे जा सकें।";
 "Light" = "हल्का";
@@ -1274,6 +1282,7 @@
 "Load file" = "फ़ाइल लोड करें";
 "Load more" = "और लोड करें";
 "Load more comments" = "और टिप्पणियाँ लोड करें";
+"Load the highest-resolution artwork for the featured hero. Uses more bandwidth." = "फ़ीचर्ड हीरो के लिए सबसे हाई-रिज़ॉल्यूशन आर्टवर्क लोड करें। इससे ज़्यादा बैंडविड्थ इस्तेमाल होती है।";
 "Loading" = "लोड हो रहा है";
 "Loading more" = "और सामग्री लोड हो रही है";
 "Loading more sources" = "और स्रोत लोड हो रहे हैं";
@@ -1299,6 +1308,7 @@
 "Los filtros estrictos descartaron todo" = "सख्त फ़िल्टरों के कारण सब कुछ हट गया";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
 "Loved by reviewers today" = "आज समीक्षकों की पसंद";
+"Lower it to let more of the artwork show through." = "इसे कम करें, ताकि आर्टवर्क ज़्यादा दिखाई दे।";
 "Lyric sync" = "लिरिक सिंक";
 "Lyrics" = "बोल";
 "Lyrics earlier" = "लिरिक पहले";
@@ -1316,6 +1326,7 @@
 "Magnet stream" = "मैग्नेट स्ट्रीम";
 "Make it yours" = "इसे अपना बनाएँ";
 "Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "पक्का करें कि Roku चालू है और उसी Wi-Fi से जुड़ा है जिससे आपका कंप्यूटर जुड़ा है।";
+"Make the featured banner on Home bigger and sharper." = "होम पर फ़ीचर्ड बैनर को बड़ा और ज़्यादा शार्प बनाएँ।";
 "Manage" = "मैनेज करें";
 "Manage profiles" = "प्रोफ़ाइल मैनेज करें";
 "Manga" = "मंगा";
@@ -1615,6 +1626,7 @@
 "On your Roku remote, press Home." = "अपने Roku रिमोट पर Home दबाएँ।";
 "On your Roku, open Streaming Channels from the home screen." = "अपने Roku की होम स्क्रीन से Streaming Channels खोलें।";
 "Onboarding" = "शुरुआती सेटअप";
+"Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "सेव करने के बाद, हर पोस्टर पर IMDb, Rotten Tomatoes और Metacritic की रेटिंग लगाकर उसे फिर से रेंडर किया जाएगा।";
 "One list" = "एक सूची";
 "Ongoing" = "जारी";
 "Only 1 source after filtering" = "फ़िल्टर करने के बाद केवल 1 सोर्स";
@@ -1651,6 +1663,7 @@
 "Opening MyAnimeList..." = "MyAnimeList खोला जा रहा है...";
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
+"Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "वैकल्पिक कुंजियाँ, जो TMDB पंक्तियाँ, पोस्टर पर पहले से शामिल रेटिंग, फ़ैन आर्ट और TVDB एपिसोड डेटा अनलॉक करती हैं।";
 "Options" = "विकल्प";
 "Orden de addons" = "ऐडऑन क्रम";
 "Orden de idiomas preferidos" = "भाषाओं की प्राथमिकता";
@@ -1677,6 +1690,7 @@
 "Page base." = "पेज का आधार।";
 "Page turn sound" = "Page turn sound";
 "Pages" = "पेज";
+"Paid plan at" = "पेड प्लान यहाँ";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "टेक्स्ट के पीछे गोल कोनों वाला बैकग्राउंड पैनल। पढ़ने में सबसे आसान।";
 "Para personas con discapacidad auditiva" = "श्रवण-बाधित";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1845,6 +1859,7 @@
 "Quitar de guardados" = "सेव किए गए आइटमों से हटाएँ";
 "Quitar de la cola" = "क्यू से हटाएँ";
 "Quitar {language}" = "{language} हटाएँ";
+"RPDB · scores baked into posters" = "RPDB · पोस्टर में शामिल स्कोर";
 "Raised" = "ऊँचा";
 "Random avatar" = "रैंडम अवतार";
 "Ranked by the {site} community from their public index." = "{site} समुदाय के सार्वजनिक इंडेक्स के आधार पर रैंक किया गया।";
@@ -1935,6 +1950,7 @@
 "Rename {name}" = "{name} का नाम बदलें";
 "Renamed" = "नाम बदला गया";
 "Renombrar" = "नाम बदलें";
+"Repair library" = "लाइब्रेरी रिपेयर करें";
 "Repeat" = "दोहराएँ";
 "Repetición" = "दोहराएँ";
 "Replace image" = "इमेज बदलें";
@@ -2000,6 +2016,7 @@
 "Reveal comments" = "टिप्पणियाँ दिखाएँ";
 "Reverse order" = "Reverse order";
 "Revert" = "पहले जैसा करें";
+"Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "हर लाइब्रेरी आइटम को Stremio के सटीक स्कीमा के अनुसार फिर से लिखता है। अगर Harbor से प्लेबैक सिंक होने के बाद आपका Stremio ऐप क्रैश होने लगा है, तो इसे एक बार चलाएँ।";
 "Rich season and order panel" = "विस्तृत सीज़न और क्रम पैनल";
 "Richer, more vivid picture with a touch more contrast." = "थोड़े अधिक कंट्रास्ट के साथ अधिक समृद्ध और चटख तस्वीर।";
 "Right" = "दायाँ";
@@ -2132,6 +2149,7 @@
 "Set up rating providers" = "रेटिंग प्रदाता सेट करें";
 "Settings" = "सेटिंग्स";
 "Settings changed. Please reopen this page." = "सेटिंग बदल गई हैं। कृपया यह पेज फिर से खोलें।";
+"Shadow strength" = "Shadow strength";
 "Share" = "साझा करें";
 "Share file" = "Share file";
 "Share with {name}" = "{name} के साथ साझा करें";
@@ -2188,6 +2206,7 @@
 "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "किनारे";
 "Sign in" = "साइन इन करें";
+"Sign in to Stremio first. The repair scans only the active profile's library." = "पहले Stremio में साइन इन करें। रिपेयर केवल सक्रिय प्रोफ़ाइल की लाइब्रेरी स्कैन करता है।";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "अपने 'देखना जारी रखें' सेक्शन, वॉचलिस्ट और पहले से चुने गए ऐडऑन को मिरर करने के लिए साइन इन करें। यह वैकल्पिक है; साइन आउट रहने पर भी Harbor पूरी तरह काम करता है।";
 "Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "Stremio से साइन इन करें";
@@ -2311,6 +2330,7 @@
 "Stremio" = "Stremio";
 "Stremio clásico" = "क्लासिक Stremio";
 "Stretch" = "फैलाएँ";
+"Stretch the featured hero edge to edge and taller, across every layout." = "फ़ीचर्ड हीरो को हर लेआउट में किनारे से किनारे तक फैलाएँ और ऊँचा करें।";
 "Strict" = "सख्त";
 "Strict filters dropped everything" = "सख्त फ़िल्टरों के कारण सब कुछ हट गया";
 "Styled (ASS) subtitles" = "स्टाइल वाले (ASS) सबटाइटल";
@@ -2630,6 +2650,7 @@
 "Use my style" = "मेरी शैली इस्तेमाल करें";
 "Use plugins" = "प्लगइन इस्तेमाल करें";
 "Use shared settings" = "साझा सेटिंग इस्तेमाल करें";
+"Use the \"personal\" key, not the project one." = "प्रोजेक्ट वाली नहीं, \"personal\" कुंजी इस्तेमाल करें।";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "रीड एक्सेस टोकन नहीं, v3 कुंजी इस्तेमाल करें।";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -2684,6 +2705,7 @@
 "Welcome to Harbor" = "Harbor में आपका स्वागत है";
 "Western" = "वेस्टर्न";
 "What everyone is reading" = "हर कोई क्या पढ़ रहा है";
+"What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "हीरो सेक्शन में क्या दिखेगा। ट्रेंडिंग Harbor की नई टॉप लिस्ट है, जो दिन भर रीफ़्रेश होती रहती है। क्लासिक आपकी अपनी होम पंक्तियों का उपयोग करता है।";
 "What you watched" = "आपने क्या देखा";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "जब Esc दबाने से प्लेयर बंद होने वाला हो, तो पहले तुरंत पुष्टि करने का विकल्प दिखाएँ। Esc दबाने पर हमेशा बाहर निकलने के लिए उस प्रॉम्प्ट में \"फिर न पूछें\" पर टिक कर सकते हैं।";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "जब किसी रिलीज़ में कई ऑडियो ट्रैक हों, तो Harbor इस सूची से पहला मेल चुनता है।";
@@ -3956,6 +3978,7 @@
 "{n} in a day" = "एक दिन में {n}";
 "{n} item" = "{n} आइटम";
 "{n} items" = "{n} आइटम";
+"{n} items need repair." = "{n} आइटम ठीक करने की ज़रूरत है।";
 "{n} min" = "{n} मिनट";
 "{n} month ago" = "{n} महीने पहले";
 "{n} months ago" = "{n} महीने पहले";

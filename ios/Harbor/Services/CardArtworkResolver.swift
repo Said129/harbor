@@ -95,10 +95,16 @@ actor CardArtworkResolver {
     init(transport: any CardArtworkTransport = CardArtworkHTTPTransport(), anime: AnimeArtwork = .shared) { self.transport = transport; self.anime = anime }
 
     nonisolated static func canLocalizePoster(_ media: Media, configuration: MetadataConfiguration) -> Bool {
-        !configuration.tmdbKey.isEmpty && (tmdb(media.artworkID) != nil || media.artworkID.range(of: "^tt[0-9]{7,12}$", options: .regularExpression) != nil)
+        if ratedPoster(media, configuration) != nil { return true }
+        return !configuration.tmdbKey.isEmpty && (tmdb(media.artworkID) != nil || media.artworkID.range(of: "^tt[0-9]{7,12}$", options: .regularExpression) != nil)
             && CardArtworkPolicy(languages: configuration.imageLanguages, metadataLanguage: configuration.language, originalLanguage: nil).localizes
     }
+    /// Desktop's RPDB poster, with its scores baked in, when the person saved an RPDB key.
+    nonisolated static func ratedPoster(_ media: Media, _ configuration: MetadataConfiguration) -> String? {
+        RatingPosterDB.posterURL(key: configuration.rpdbKey, metaID: media.artworkID)
+    }
     func poster(_ media: Media, configuration: MetadataConfiguration) async -> String? {
+        if let rated = Self.ratedPoster(media, configuration) { return rated }
         guard !Task.isCancelled, Self.canLocalizePoster(media, configuration: configuration) else { return nil }
         let key = Self.cacheKey(media, configuration)
         if let saved = posters[key], Date().timeIntervalSince(saved.at) < (saved.url == nil ? 300 : 3_600) { return saved.url }
@@ -140,7 +146,7 @@ actor CardArtworkResolver {
     }
     nonisolated static func cacheKey(_ media: Media, _ configuration: MetadataConfiguration, pinnedLogo: String? = nil) -> String {
         // Only a digest of configuration enters the cache key; no key is logged or persisted.
-        let parts = [media.identity, media.artworkID, media.logo ?? "", media.poster ?? "", media.background ?? "", media.originalLanguage ?? "", media.animeFormat ?? "", media.name, media.releaseInfo ?? "", configuration.tmdbKey, configuration.language, configuration.imageLanguages.joined(separator: ","), pinnedLogo ?? ""]
+        let parts = [media.identity, media.artworkID, media.logo ?? "", media.poster ?? "", media.background ?? "", media.originalLanguage ?? "", media.animeFormat ?? "", media.name, media.releaseInfo ?? "", configuration.tmdbKey, configuration.rpdbKey, configuration.language, configuration.imageLanguages.joined(separator: ","), pinnedLogo ?? ""]
         return SHA256.hash(data: Data(parts.joined(separator: "\u{0}").utf8)).map { String(format: "%02x", $0) }.joined()
     }
     private func request(_ request: CardArtworkRequest, _ configuration: MetadataConfiguration) async -> JSONValue? {

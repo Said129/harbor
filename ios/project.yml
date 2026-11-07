@@ -223,6 +223,11 @@ targets:
       - path: HarborTests/HeroTrailerPolicyTests.swift
       - path: HarborTests/AniListThreadsTests.swift
       - path: HarborTests/UISettingsPolicyTests.swift
+      - path: HarborTests/ArtworkProvidersTests.swift
+      - path: HarborTests/StreamPipelineAdditionsTests.swift
+      - path: HarborTests/TVMazeTests.swift
+      - path: HarborTests/LibraryRepairTests.swift
+      - path: HarborTests/HeroLayoutPolicyTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift

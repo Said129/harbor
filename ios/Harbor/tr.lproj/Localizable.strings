@@ -921,12 +921,14 @@
 "Feature this catalog in the hero carousel" = "Bu kataloğu vitrin karuselinde öne çıkar";
 "Featured" = "Öne Çıkan";
 "Featured at Anime Expo" = "Anime Expo'da Öne Çıkanlar";
+"Featured source" = "Öne çıkan içerik kaynağı";
 "Featured tonight" = "Bu gece öne çıkanlar";
 "Fecha" = "Tarih";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "DuckDuckGo sonuçlarını getirir ve en iyi sonuçları model istemine ekler.";
 "Fiction" = "Kurgu";
 "File is larger than 2 MB." = "Dosya 2 MB'tan büyük.";
 "Fill" = "Doldur";
+"Fills in where TMDB comes up empty (anime, older catalog). Free at" = "TMDB'nin boş bıraktığı alanları tamamlar (anime, eski katalog). Ücretsiz:";
 "Film" = "Film";
 "Filter countries" = "Ülkeleri filtrele";
 "Filter genres" = "Türleri filtrele";
@@ -977,8 +979,10 @@
 "Full" = "Tam";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full hero banner" = "Tam genişlikte öne çıkan afiş";
 "Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
 "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
+"Full quality hero image" = "Öne çıkan görselde tam kalite";
 "Gamma" = "Gama";
 "Genre" = "Tür";
 "Genres" = "Türler";
@@ -1095,7 +1099,9 @@
 "Home" = "Ana Sayfa";
 "Home Rail Settings" = "Ana Sayfa Satır Ayarları";
 "Home catalogs" = "Ana Sayfa katalogları";
+"Home hero" = "Ana Sayfa öne çıkan alanı";
 "Home hero audio" = "Ana sayfa öne çıkan içeriğinin sesi";
+"Home hero shadow" = "Ana Sayfa'daki öne çıkan alanın gölgesi";
 "Home layout" = "Ana sayfa düzeni";
 "Home style" = "Ana Sayfa stili";
 "Hoopla" = "Hoopla";
@@ -1105,6 +1111,7 @@
 "Horror & Supernatural" = "Korku ve Doğaüstü";
 "Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "Şerit ve ızgara düzenlerindeki bölüm kartlarının boyutu. Daha büyük kartlar, görselleri daha büyük gösterir.";
+"How dark the gradient behind the featured title on Home is. 100% is the classic look." = "How dark the gradient behind the featured title on Home is. 100% is the classic look.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "Ses çubuğunda yüzde 100'ün ne kadar üzerine çıkabileceğinizi belirleyin. Yüksek ayarlar sesi çok fazla yükseltebilir.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Harbor'ın her eklentinin sonuçlarını ne kadar bekleyeceği.";
@@ -1244,6 +1251,7 @@
 "Letterboxd username" = "Letterboxd kullanıcı adı";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd, Trakt, Metacritic ve izleyici puanları.";
 "Library" = "Kütüphane";
+"Library is empty. Nothing to repair." = "Kitaplık boş. Onarılacak bir şey yok.";
 "Libros" = "Kitaplar";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Gölgeleri açarak zifiri karanlık sahneleri izlenebilir hâle getirir.";
 "Light" = "Açık";
@@ -1274,6 +1282,7 @@
 "Load file" = "Dosya yükle";
 "Load more" = "Daha fazla yükle";
 "Load more comments" = "Daha fazla yorum yükle";
+"Load the highest-resolution artwork for the featured hero. Uses more bandwidth." = "Öne çıkan alan için en yüksek çözünürlüklü görseli yükleyin. Daha fazla bant genişliği kullanır.";
 "Loading" = "Yükleniyor";
 "Loading more" = "Daha fazlası yükleniyor";
 "Loading more sources" = "Daha fazla kaynak yükleniyor";
@@ -1299,6 +1308,7 @@
 "Los filtros estrictos descartaron todo" = "Katı filtreler tüm sonuçları eledi";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
 "Loved by reviewers today" = "Bugün eleştirmenlerden tam not aldı";
+"Lower it to let more of the artwork show through." = "Görselin daha fazla görünmesi için bunu azaltın.";
 "Lyric sync" = "Şarkı sözü eşitleme";
 "Lyrics" = "Şarkı sözleri";
 "Lyrics earlier" = "Sözler daha erken";
@@ -1316,6 +1326,7 @@
 "Magnet stream" = "Magnet yayını";
 "Make it yours" = "Kendinize göre düzenleyin";
 "Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "Roku'nun açık ve bilgisayarınızla aynı Wi-Fi ağına bağlı olduğundan emin olun.";
+"Make the featured banner on Home bigger and sharper." = "Ana Sayfa'daki öne çıkan afişi daha büyük ve net yapın.";
 "Manage" = "Yönet";
 "Manage profiles" = "Profilleri yönet";
 "Manga" = "Manga";
@@ -1615,6 +1626,7 @@
 "On your Roku remote, press Home." = "Roku kumandanızda Ana Sayfa düğmesine basın.";
 "On your Roku, open Streaming Channels from the home screen." = "Roku'nuzun ana ekranından Yayın Kanalları'nı açın.";
 "Onboarding" = "Başlangıç rehberi";
+"Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "Kaydettikten sonra tüm posterler IMDb, Rotten Tomatoes ve Metacritic puanları eklenerek yeniden oluşturulur.";
 "One list" = "Tek liste";
 "Ongoing" = "Devam ediyor";
 "Only 1 source after filtering" = "Filtrelemeden sonra yalnızca 1 kaynak kaldı";
@@ -1651,6 +1663,7 @@
 "Opening MyAnimeList..." = "MyAnimeList açılıyor...";
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
+"Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "TMDB raflarını, posterlere işlenmiş puanları, fanart görsellerini ve TVDB bölüm verilerini kullanıma açan isteğe bağlı anahtarlar.";
 "Options" = "Seçenekler";
 "Orden de addons" = "Eklenti sırası";
 "Orden de idiomas preferidos" = "Dil tercih sırası";
@@ -1677,6 +1690,7 @@
 "Page base." = "Sayfa tabanı.";
 "Page turn sound" = "Page turn sound";
 "Pages" = "Sayfalar";
+"Paid plan at" = "Ücretli plan:";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "Metnin arkasında yuvarlatılmış arka plan paneli. Okunması en kolay seçenek.";
 "Para personas con discapacidad auditiva" = "İşitme engelliler için";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1845,6 +1859,7 @@
 "Quitar de guardados" = "Kaydedilenlerden kaldır";
 "Quitar de la cola" = "Kuyruktan kaldır";
 "Quitar {language}" = "{language} dilini kaldır";
+"RPDB · scores baked into posters" = "RPDB · posterlere işlenmiş puanlar";
 "Raised" = "Yükseltilmiş";
 "Random avatar" = "Rastgele avatar";
 "Ranked by the {site} community from their public index." = "{site} topluluğu tarafından herkese açık endeksine göre sıralanmıştır.";
@@ -1935,6 +1950,7 @@
 "Rename {name}" = "{name} öğesini yeniden adlandır";
 "Renamed" = "Yeniden adlandırıldı";
 "Renombrar" = "Yeniden adlandır";
+"Repair library" = "Kitaplığı onar";
 "Repeat" = "Tekrarla";
 "Repetición" = "Tekrarla";
 "Replace image" = "Görüntüyü değiştir";
@@ -2000,6 +2016,7 @@
 "Reveal comments" = "Yorumları göster";
 "Reverse order" = "Reverse order";
 "Revert" = "Geri al";
+"Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "Tüm kitaplık öğelerini Stremio'nun tam şemasıyla eşleşecek şekilde yeniden yazar. Harbor oynatma verilerini eşitledikten sonra Stremio uygulamanız çökmeye başladıysa bir kez çalıştırın.";
 "Rich season and order panel" = "Ayrıntılı sezon ve sıralama paneli";
 "Richer, more vivid picture with a touch more contrast." = "Biraz daha fazla kontrastla daha zengin ve canlı bir görüntü sunar.";
 "Right" = "Sağ";
@@ -2132,6 +2149,7 @@
 "Set up rating providers" = "Puan sağlayıcılarını ayarla";
 "Settings" = "Ayarlar";
 "Settings changed. Please reopen this page." = "Ayarlar değişti. Lütfen bu sayfayı yeniden açın.";
+"Shadow strength" = "Shadow strength";
 "Share" = "Paylaş";
 "Share file" = "Share file";
 "Share with {name}" = "{name} ile paylaş";
@@ -2188,6 +2206,7 @@
 "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "Kenarlar";
 "Sign in" = "Oturum aç";
+"Sign in to Stremio first. The repair scans only the active profile's library." = "Önce Stremio'da oturum açın. Onarım yalnızca etkin profilin kitaplığını tarar.";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "İzlemeye Devam Et listenizi, İzleme Listenizi ve daha önce düzenlediğiniz eklentileri eşitlemek için giriş yapın. Bu adım isteğe bağlıdır; Harbor, giriş yapmadan da tüm özellikleriyle çalışır.";
 "Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "Stremio ile oturum aç";
@@ -2311,6 +2330,7 @@
 "Stremio" = "Stremio";
 "Stremio clásico" = "Klasik Stremio";
 "Stretch" = "Esnet";
+"Stretch the featured hero edge to edge and taller, across every layout." = "Öne çıkan alanı tüm düzenlerde kenardan kenara uzatıp yükseltin.";
 "Strict" = "Katı";
 "Strict filters dropped everything" = "Katı filtreler tüm sonuçları eledi";
 "Styled (ASS) subtitles" = "Biçimlendirilmiş (ASS) altyazılar";
@@ -2630,6 +2650,7 @@
 "Use my style" = "Benim stilimi kullan";
 "Use plugins" = "Uzantıları kullan";
 "Use shared settings" = "Paylaşılan ayarları kullan";
+"Use the \"personal\" key, not the project one." = "Proje anahtarını değil, \"personal\" anahtarını kullanın.";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Okuma erişimi tokenını değil, v3 anahtarını kullanın.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -2684,6 +2705,7 @@
 "Welcome to Harbor" = "Harbor'a hoş geldiniz";
 "Western" = "Vahşi Batı";
 "What everyone is reading" = "Herkesin okudukları";
+"What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "Öne çıkan alanı neyin dolduracağını belirler. Gündem, Harbor'ın gün boyunca yenilenen güncel popüler içerikler listesini kullanır. Klasik ise kendi Ana Sayfa satırlarınızı kullanır.";
 "What you watched" = "İzledikleriniz";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Esc oynatıcıyı kapatacaksa önce hızlı bir onay gösterir. Esc ile her zaman çıkmak için bu istemde \"Bir daha sorma\" seçeneğini işaretleyebilirsiniz.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Bir sürüm birden fazla ses parçasıyla geldiğinde Harbor bu listedeki ilk eşleşmeyi seçer.";
@@ -3956,6 +3978,7 @@
 "{n} in a day" = "Bir günde {n}";
 "{n} item" = "{n} öğe";
 "{n} items" = "{n} öğe";
+"{n} items need repair." = "{n} öğenin onarılması gerekiyor.";
 "{n} min" = "{n} dk";
 "{n} month ago" = "{n} ay önce";
 "{n} months ago" = "{n} ay önce";

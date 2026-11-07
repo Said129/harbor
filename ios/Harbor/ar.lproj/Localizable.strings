@@ -944,12 +944,14 @@
 "Feature this catalog in the hero carousel" = "إبراز هذا الكتالوج في شريط العرض الرئيسي";
 "Featured" = "مختارة";
 "Featured at Anime Expo" = "مختارات Anime Expo";
+"Featured source" = "مصدر المحتوى المميّز";
 "Featured tonight" = "مميّز الليلة";
 "Fecha" = "التاريخ";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "يجلب نتائج DuckDuckGo ويغذّي أفضل النتائج في مُوجّه النموذج.";
 "Fiction" = "أدب روائي";
 "File is larger than 2 MB." = "حجم الملف أكبر من 2 م.ب.";
 "Fill" = "تعبئة";
+"Fills in where TMDB comes up empty (anime, older catalog). Free at" = "يملأ النقص في بيانات TMDB (الأنمي والفهرس القديم). مجاني على";
 "Film" = "فيلم";
 "Filter countries" = "تصفية البلدان";
 "Filter genres" = "تصفية الأنواع";
@@ -1000,8 +1002,10 @@
 "Full" = "كامل";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full hero banner" = "لافتة بطل كاملة";
 "Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
 "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
+"Full quality hero image" = "صورة البطل بأعلى جودة";
 "GB" = "GB";
 "Gamma" = "جاما";
 "Genre" = "النوع";
@@ -1119,7 +1123,9 @@
 "Home" = "الرئيسية";
 "Home Rail Settings" = "إعدادات صفوف الرئيسية";
 "Home catalogs" = "كتالوجات الصفحة الرئيسية";
+"Home hero" = "واجهة العنوان المميّز";
 "Home hero audio" = "صوت واجهة العنوان المميّز";
+"Home hero shadow" = "ظل واجهة العنوان المميّز";
 "Home layout" = "تخطيط الرئيسية";
 "Home style" = "نمط الصفحة الرئيسية";
 "Hoopla" = "Hoopla";
@@ -1129,6 +1135,7 @@
 "Horror & Supernatural" = "رعب وخوارق";
 "Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "حجم بطاقات الحلقات في تخطيطَي الشريط والشبكة. البطاقات الأكبر تعرض صورًا أكبر.";
+"How dark the gradient behind the featured title on Home is. 100% is the classic look." = "How dark the gradient behind the featured title on Home is. 100% is the classic look.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "إلى أي مدى يمكنك تجاوز 100 بالمئة على شريط الصوت. القيم الأعلى قد تجعل الصوت مرتفعًا جدًا.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "مدة انتظار Harbor لنتائج كل إضافة.";
@@ -1268,6 +1275,7 @@
 "Letterboxd username" = "اسم مستخدم ليتربوكسد";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "تقييمات Letterboxd وTrakt وMetacritic والجمهور.";
 "Library" = "المكتبة";
+"Library is empty. Nothing to repair." = "المكتبة فارغة. لا شيء لإصلاحه.";
 "Libros" = "الكتب";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "يرفع الظلال حتى تصبح المشاهد شديدة السواد قابلة للمشاهدة.";
 "Light" = "فاتح";
@@ -1298,6 +1306,7 @@
 "Load file" = "تحميل ملف";
 "Load more" = "تحميل المزيد";
 "Load more comments" = "تحميل المزيد من التعليقات";
+"Load the highest-resolution artwork for the featured hero. Uses more bandwidth." = "تحميل صورة البطل المميّز بأعلى دقة. يستهلك بيانات أكثر.";
 "Loading" = "جارٍ التحميل";
 "Loading more" = "جاري تحميل المزيد";
 "Loading more sources" = "جارٍ تحميل مزيد من المصادر";
@@ -1323,6 +1332,7 @@
 "Los filtros estrictos descartaron todo" = "الفلاتر الصارمة تجاهلت كل شيء";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
 "Loved by reviewers today" = "نال إعجاب النقاد اليوم";
+"Lower it to let more of the artwork show through." = "قلّلها لإظهار المزيد من الصورة الفنية.";
 "Lyric sync" = "مزامنة الكلمات";
 "Lyrics" = "كلمات الأغنية";
 "Lyrics earlier" = "تقديم الكلمات";
@@ -1340,6 +1350,7 @@
 "Magnet stream" = "بث Magnet";
 "Make it yours" = "اجعلها تخصّك";
 "Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "تأكد من تشغيل Roku واتصاله بشبكة Wi-Fi نفسها المتصل بها حاسوبك.";
+"Make the featured banner on Home bigger and sharper." = "اجعل لافتة العنوان المميّز في الصفحة الرئيسية أكبر وأوضح.";
 "Manage" = "إدارة";
 "Manage profiles" = "إدارة الملفات الشخصية";
 "Manga" = "المانغا";
@@ -1643,6 +1654,7 @@
 "On your Roku remote, press Home." = "على جهاز تحكم Roku، اضغط على Home.";
 "On your Roku, open Streaming Channels from the home screen." = "على Roku، افتح Streaming Channels من الشاشة الرئيسية.";
 "Onboarding" = "الإعداد الأولي";
+"Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "بعد الحفظ، سيُعاد إنشاء كل ملصق مع إضافة تقييمات IMDb وRotten Tomatoes وMetacritic إليه.";
 "One list" = "قائمة واحدة";
 "Ongoing" = "مستمر";
 "Only 1 source after filtering" = "مصدر واحد فقط بعد التصفية";
@@ -1679,6 +1691,7 @@
 "Opening MyAnimeList..." = "جارٍ فتح MyAnimeList...";
 "Opening book…" = "جارٍ فتح الكتاب…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
+"Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "مفاتيح اختيارية تفتح محتوى TMDB وتقييمات الملصقات وبيانات Fanart وـ TVDB.";
 "Options" = "خيارات";
 "Orden de addons" = "ترتيب الإضافة";
 "Orden de idiomas preferidos" = "ترتيب اللغات المفضّلة";
@@ -1707,6 +1720,7 @@
 "Page base." = "أساس الصفحة.";
 "Page turn sound" = "Page turn sound";
 "Pages" = "الصفحات";
+"Paid plan at" = "الخطة المدفوعة لدى";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "لوحة خلفية دائرية خلف النص. الأكثر قابلية للقراءة.";
 "Para personas con discapacidad auditiva" = "للصمّ وضعاف السمع";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1875,6 +1889,7 @@
 "Quitar de guardados" = "إزالة من المحفوظات";
 "Quitar de la cola" = "إزالة من قائمة الانتظار";
 "Quitar {language}" = "إزالة {language}";
+"RPDB · scores baked into posters" = "RPDB · تقييمات مدمجة في الملصقات";
 "Raised" = "بارز";
 "Random avatar" = "صورة رمزية عشوائية";
 "Ranked by the {site} community from their public index." = "مرتّب حسب مجتمع {site} استنادًا إلى فهرسه العام.";
@@ -1966,6 +1981,7 @@
 "Rename {name}" = "أعِد تسمية {name}";
 "Renamed" = "تمت إعادة التسمية";
 "Renombrar" = "إعادة تسمية";
+"Repair library" = "إصلاح المكتبة";
 "Repeat" = "تكرار";
 "Repetición" = "تكرار";
 "Replace image" = "استبدل الصورة";
@@ -2031,6 +2047,7 @@
 "Reveal comments" = "إظهار التعليقات";
 "Reverse order" = "Reverse order";
 "Revert" = "تراجع";
+"Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "يعيد كتابة كل عنصر مكتبة ليطابق مخطط Stremio الدقيق. شغّله مرة إن بدأ تطبيق Stremio بالتعطّل بعد مزامنة Harbor للتشغيل.";
 "Rich season and order panel" = "لوحة المواسم والترتيب التفصيلية";
 "Richer, more vivid picture with a touch more contrast." = "صورة أغنى وأكثر حيوية مع القليل من التباين الإضافي.";
 "Right" = "يمين";
@@ -2165,6 +2182,7 @@
 "Set up rating providers" = "إعداد مزوّدي التقييمات";
 "Settings" = "الإعدادات";
 "Settings changed. Please reopen this page." = "تغيّرت الإعدادات. أعد فتح هذه الصفحة.";
+"Shadow strength" = "Shadow strength";
 "Share" = "مشاركة";
 "Share file" = "Share file";
 "Share with {name}" = "مشاركة مع {name}";
@@ -2221,6 +2239,7 @@
 "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "الجوانب";
 "Sign in" = "تسجيل الدخول";
+"Sign in to Stremio first. The repair scans only the active profile's library." = "سجّل الدخول إلى Stremio أولًا. يفحص الإصلاح مكتبة الملف الشخصي النشط فقط.";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "سجّل الدخول لتعكس متابعة المشاهدة وقائمة مشاهدتك وأي إضافات نظّمتها مسبقًا. اختياري؛ يعمل Harbor بالكامل دون تسجيل الدخول.";
 "Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "تسجيل الدخول باستخدام Stremio";
@@ -2346,6 +2365,7 @@
 "Stremio" = "Stremio";
 "Stremio clásico" = "Stremio الكلاسيكي";
 "Stretch" = "تمديد";
+"Stretch the featured hero edge to edge and taller, across every layout." = "تمدّد لافتة البطل من الحافة إلى الحافة وبارتفاع أكبر، في جميع التخطيطات.";
 "Strict" = "صارم";
 "Strict filters dropped everything" = "الفلاتر الصارمة تجاهلت كل شيء";
 "Styled (ASS) subtitles" = "ترجمات مخصصة (ASS)";
@@ -2667,6 +2687,7 @@
 "Use my style" = "استخدام التنسيق الخاص بي";
 "Use plugins" = "استخدام المكوّنات الإضافية";
 "Use shared settings" = "استخدام الإعدادات المشتركة";
+"Use the \"personal\" key, not the project one." = "استخدم مفتاح \"personal\"، وليس مفتاح المشروع.";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "استخدم مفتاح v3، وليس رمز وصول القراءة.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -2721,6 +2742,7 @@
 "Welcome to Harbor" = "مرحبًا بك في Harbor";
 "Western" = "غربي";
 "What everyone is reading" = "ما يقرؤه الجميع";
+"What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "ما يملأ الواجهة المميّزة. «الرائج» قائمة جديدة بأبرز العناوين من Harbor، تتجدّد على مدار اليوم. «الكلاسيكي» يستخدم صفوفك الخاصّة في الصفحة الرئيسية.";
 "What you watched" = "ما شاهدته";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "عندما يؤدي الضغط على Esc إلى إغلاق المشغّل، يظهر تأكيد سريع أولًا. يمكنك تحديد \"عدم السؤال مجددًا\" في تلك الرسالة للخروج دائمًا عند الضغط على Esc.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "عندما يأتي إصدار بمسارات صوت متعددة، يختار Harbor أول مطابقة من هذه القائمة.";
@@ -3997,6 +4019,7 @@
 "{n} in a day" = "{n} في يوم واحد";
 "{n} item" = "{n} عنصر";
 "{n} items" = "{n} عناصر";
+"{n} items need repair." = "{n} عنصر يحتاج إصلاحًا.";
 "{n} min" = "{n} دقيقة";
 "{n} month ago" = "منذ {n} شهر";
 "{n} months ago" = "منذ {n} أشهر";

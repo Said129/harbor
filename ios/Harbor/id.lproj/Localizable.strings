@@ -921,12 +921,14 @@
 "Feature this catalog in the hero carousel" = "Tampilkan katalog ini di carousel hero";
 "Featured" = "Unggulan";
 "Featured at Anime Expo" = "Ditampilkan di Anime Expo";
+"Featured source" = "Sumber unggulan";
 "Featured tonight" = "Unggulan malam ini";
 "Fecha" = "Tanggal";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "Mengambil hasil DuckDuckGo dan memasukkan hasil teratas ke prompt model.";
 "Fiction" = "Fiksi";
 "File is larger than 2 MB." = "File lebih besar dari 2 MB.";
 "Fill" = "Penuhi";
+"Fills in where TMDB comes up empty (anime, older catalog). Free at" = "Melengkapi data yang tidak tersedia di TMDB (anime, katalog lama). Gratis di";
 "Film" = "Film";
 "Filter countries" = "Filter negara";
 "Filter genres" = "Filter genre";
@@ -977,8 +979,10 @@
 "Full" = "Penuh";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full hero banner" = "Hero banner penuh";
 "Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
 "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
+"Full quality hero image" = "Gambar hero dengan kualitas penuh";
 "Gamma" = "Gamma";
 "Genre" = "Genre";
 "Genres" = "Genre";
@@ -1095,7 +1099,9 @@
 "Home" = "Beranda";
 "Home Rail Settings" = "Pengaturan Deretan Beranda";
 "Home catalogs" = "Katalog Beranda";
+"Home hero" = "Hero Beranda";
 "Home hero audio" = "Audio hero Beranda";
+"Home hero shadow" = "Bayangan hero Beranda";
 "Home layout" = "Tata letak Beranda";
 "Home style" = "Gaya Beranda";
 "Hoopla" = "Hoopla";
@@ -1105,6 +1111,7 @@
 "Horror & Supernatural" = "Horor & Supranatural";
 "Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "Ukuran kartu episode dalam tata letak strip dan kisi. Kartu yang lebih besar menampilkan gambar yang lebih besar.";
+"How dark the gradient behind the featured title on Home is. 100% is the classic look." = "How dark the gradient behind the featured title on Home is. 100% is the classic look.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "Seberapa jauh volume dapat dinaikkan melampaui 100 persen pada bilah volume. Pengaturan yang lebih tinggi dapat membuat volumenya sangat keras.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Lama waktu Harbor menunggu hasil dari setiap addon.";
@@ -1244,6 +1251,7 @@
 "Letterboxd username" = "Nama pengguna Letterboxd";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Skor Letterboxd, Trakt, Metacritic, dan penonton.";
 "Library" = "Perpustakaan";
+"Library is empty. Nothing to repair." = "Perpustakaan kosong. Tidak ada yang perlu diperbaiki.";
 "Libros" = "Buku";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Mencerahkan bayangan agar adegan yang sangat gelap tetap dapat ditonton.";
 "Light" = "Terang";
@@ -1274,6 +1282,7 @@
 "Load file" = "Muat file";
 "Load more" = "Muat lebih banyak";
 "Load more comments" = "Muat lebih banyak komentar";
+"Load the highest-resolution artwork for the featured hero. Uses more bandwidth." = "Muat gambar beresolusi tertinggi untuk banner unggulan. Menggunakan lebih banyak bandwidth.";
 "Loading" = "Memuat";
 "Loading more" = "Memuat lebih banyak";
 "Loading more sources" = "Memuat lebih banyak sumber";
@@ -1299,6 +1308,7 @@
 "Los filtros estrictos descartaron todo" = "Filter ketat menyaring habis semua hasil";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
 "Loved by reviewers today" = "Disukai pengulas hari ini";
+"Lower it to let more of the artwork show through." = "Turunkan agar lebih banyak gambar latar terlihat.";
 "Lyric sync" = "Sinkron lirik";
 "Lyrics" = "Lirik";
 "Lyrics earlier" = "Lirik lebih awal";
@@ -1316,6 +1326,7 @@
 "Magnet stream" = "Stream magnet";
 "Make it yours" = "Jadikan milik Anda";
 "Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "Pastikan Roku menyala dan terhubung ke Wi-Fi yang sama dengan komputer Anda.";
+"Make the featured banner on Home bigger and sharper." = "Buat banner unggulan di Beranda lebih besar dan lebih tajam.";
 "Manage" = "Kelola";
 "Manage profiles" = "Kelola profil";
 "Manga" = "Manga";
@@ -1615,6 +1626,7 @@
 "On your Roku remote, press Home." = "Di remote Roku Anda, tekan Home.";
 "On your Roku, open Streaming Channels from the home screen." = "Di Roku Anda, buka Streaming Channels dari layar utama.";
 "Onboarding" = "Pengenalan awal";
+"Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "Setelah disimpan, setiap poster dirender ulang dengan cap IMDb, Rotten Tomatoes, dan Metacritic.";
 "One list" = "Satu daftar";
 "Ongoing" = "Berlanjut";
 "Only 1 source after filtering" = "Hanya 1 sumber setelah difilter";
@@ -1651,6 +1663,7 @@
 "Opening MyAnimeList..." = "Membuka MyAnimeList...";
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
+"Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "Kunci opsional yang mengaktifkan deretan TMDB, rating yang tersemat pada poster, fanart, dan data episode TVDB.";
 "Options" = "Opsi";
 "Orden de addons" = "Urutan addon";
 "Orden de idiomas preferidos" = "Urutan bahasa pilihan";
@@ -1677,6 +1690,7 @@
 "Page base." = "Dasar halaman.";
 "Page turn sound" = "Page turn sound";
 "Pages" = "Halaman";
+"Paid plan at" = "Paket berbayar di";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "Panel latar bersudut membulat di belakang teks. Paling mudah dibaca.";
 "Para personas con discapacidad auditiva" = "Untuk gangguan pendengaran";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1845,6 +1859,7 @@
 "Quitar de guardados" = "Hapus dari item tersimpan";
 "Quitar de la cola" = "Hapus dari antrean";
 "Quitar {language}" = "Hapus {language}";
+"RPDB · scores baked into posters" = "RPDB · skor menyatu dalam poster";
 "Raised" = "Dinaikkan";
 "Random avatar" = "Avatar acak";
 "Ranked by the {site} community from their public index." = "Diurutkan oleh komunitas {site} berdasarkan indeks publik mereka.";
@@ -1935,6 +1950,7 @@
 "Rename {name}" = "Ubah nama {name}";
 "Renamed" = "Nama diubah";
 "Renombrar" = "Ubah nama";
+"Repair library" = "Perbaiki perpustakaan";
 "Repeat" = "Ulangi";
 "Repetición" = "Ulangi";
 "Replace image" = "Ganti gambar";
@@ -2000,6 +2016,7 @@
 "Reveal comments" = "Tampilkan komentar";
 "Reverse order" = "Reverse order";
 "Revert" = "Kembalikan";
+"Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "Menulis ulang setiap item perpustakaan agar sama persis dengan skema Stremio. Jalankan sekali jika aplikasi Stremio Anda mulai mogok setelah Harbor menyinkronkan pemutaran.";
 "Rich season and order panel" = "Panel musim dan urutan yang lengkap";
 "Richer, more vivid picture with a touch more contrast." = "Gambar lebih kaya dan hidup dengan sedikit tambahan kontras.";
 "Right" = "Kanan";
@@ -2132,6 +2149,7 @@
 "Set up rating providers" = "Siapkan penyedia rating";
 "Settings" = "Pengaturan";
 "Settings changed. Please reopen this page." = "Pengaturan telah berubah. Buka kembali halaman ini.";
+"Shadow strength" = "Shadow strength";
 "Share" = "Bagikan";
 "Share file" = "Share file";
 "Share with {name}" = "Bagikan dengan {name}";
@@ -2188,6 +2206,7 @@
 "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "Sisi";
 "Sign in" = "Masuk";
+"Sign in to Stremio first. The repair scans only the active profile's library." = "Masuk ke Stremio terlebih dahulu. Perbaikan hanya memindai perpustakaan profil yang aktif.";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "Masuk untuk menyinkronkan Lanjutkan Menonton, daftar tontonan, dan addon yang telah Anda kurasi. Opsional; Harbor tetap berfungsi penuh tanpa masuk.";
 "Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "Masuk dengan Stremio";
@@ -2311,6 +2330,7 @@
 "Stremio" = "Stremio";
 "Stremio clásico" = "Stremio Klasik";
 "Stretch" = "Bentangkan";
+"Stretch the featured hero edge to edge and taller, across every layout." = "Bentangkan banner unggulan dari tepi ke tepi dan buat lebih tinggi di setiap tata letak.";
 "Strict" = "Ketat";
 "Strict filters dropped everything" = "Filter ketat menyaring habis semua hasil";
 "Styled (ASS) subtitles" = "Subtitle bergaya (ASS)";
@@ -2630,6 +2650,7 @@
 "Use my style" = "Gunakan gaya saya";
 "Use plugins" = "Gunakan plugin";
 "Use shared settings" = "Gunakan pengaturan bersama";
+"Use the \"personal\" key, not the project one." = "Gunakan kunci \"personal\", bukan kunci proyek.";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Gunakan kunci v3, bukan token akses baca.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -2684,6 +2705,7 @@
 "Welcome to Harbor" = "Selamat datang di Harbor";
 "Western" = "Western";
 "What everyone is reading" = "Yang sedang dibaca semua orang";
+"What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "Yang mengisi bagian hero. Trending adalah daftar teratas terbaru dari Harbor, diperbarui sepanjang hari. Klasik menggunakan baris Beranda Anda sendiri.";
 "What you watched" = "Yang Anda tonton";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Saat Esc akan menutup pemutar, tampilkan konfirmasi singkat terlebih dahulu. Anda dapat mencentang \"Jangan tanya lagi\" pada dialog tersebut agar Esc selalu langsung keluar.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Jika suatu rilis memiliki beberapa trek audio, Harbor memilih kecocokan pertama dari daftar ini.";
@@ -3956,6 +3978,7 @@
 "{n} in a day" = "{n} dalam sehari";
 "{n} item" = "{n} item";
 "{n} items" = "{n} item";
+"{n} items need repair." = "{n} item perlu diperbaiki.";
 "{n} min" = "{n} mnt";
 "{n} month ago" = "{n} bulan lalu";
 "{n} months ago" = "{n} bulan lalu";

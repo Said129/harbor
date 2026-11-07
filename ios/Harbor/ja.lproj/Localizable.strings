@@ -921,12 +921,14 @@
 "Feature this catalog in the hero carousel" = "このカタログをヒーローカルーセルに表示";
 "Featured" = "注目";
 "Featured at Anime Expo" = "Anime Expo注目作";
+"Featured source" = "注目コンテンツのソース";
 "Featured tonight" = "今夜のおすすめ";
 "Fecha" = "日付";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "DuckDuckGoの検索結果を取得し、上位の結果をモデルへのプロンプトに追加します。";
 "Fiction" = "フィクション";
 "File is larger than 2 MB." = "ファイルが2 MBを超えています。";
 "Fill" = "画面いっぱいに表示";
+"Fills in where TMDB comes up empty (anime, older catalog). Free at" = "TMDBに情報がない場合（アニメ、旧作カタログ）に補完します。次で無料です:";
 "Film" = "映画";
 "Filter countries" = "国で絞り込む";
 "Filter genres" = "ジャンルで絞り込む";
@@ -977,8 +979,10 @@
 "Full" = "全体";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full hero banner" = "全幅ヒーローバナー";
 "Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
 "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
+"Full quality hero image" = "最高画質のヒーロー画像";
 "Gamma" = "ガンマ";
 "Genre" = "ジャンル";
 "Genres" = "ジャンル";
@@ -1095,7 +1099,9 @@
 "Home" = "ホーム";
 "Home Rail Settings" = "ホームの行設定";
 "Home catalogs" = "ホームのカタログ";
+"Home hero" = "ホームのヒーロー";
 "Home hero audio" = "ホームのヒーロー音声";
+"Home hero shadow" = "ホームのメインビジュアルの影";
 "Home layout" = "ホームのレイアウト";
 "Home style" = "ホームのスタイル";
 "Hoopla" = "Hoopla";
@@ -1105,6 +1111,7 @@
 "Horror & Supernatural" = "ホラー＆超常現象";
 "Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "ストリップ表示とグリッド表示のエピソードカードの大きさです。大きくするとアートワークも大きく表示されます。";
+"How dark the gradient behind the featured title on Home is. 100% is the classic look." = "How dark the gradient behind the featured title on Home is. 100% is the classic look.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "音量バーで100%を超えて増幅できる上限です。高く設定すると非常に大きな音になる場合があります。";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "各アドオンの結果を Harbor が待つ時間です。";
@@ -1244,6 +1251,7 @@
 "Letterboxd username" = "Letterboxdユーザー名";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd、Trakt、Metacritic、視聴者のスコア。";
 "Library" = "ライブラリ";
+"Library is empty. Nothing to repair." = "ライブラリは空です。修復する項目はありません。";
 "Libros" = "書籍";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "シャドウを持ち上げ、真っ暗なシーンも見やすくします。";
 "Light" = "ライト";
@@ -1274,6 +1282,7 @@
 "Load file" = "ファイルを読み込む";
 "Load more" = "さらに読み込む";
 "Load more comments" = "コメントをさらに読み込む";
+"Load the highest-resolution artwork for the featured hero. Uses more bandwidth." = "注目ヒーローの画像を最高解像度で読み込みます。通信量が増加します。";
 "Loading" = "読み込み中";
 "Loading more" = "さらに読み込み中";
 "Loading more sources" = "他のソースを読み込み中";
@@ -1299,6 +1308,7 @@
 "Los filtros estrictos descartaron todo" = "厳格なフィルターですべて除外されました";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
 "Loved by reviewers today" = "本日、批評家に高評価";
+"Lower it to let more of the artwork show through." = "値を下げると、アートワークがより透けて見えます。";
 "Lyric sync" = "歌詞の同期";
 "Lyrics" = "歌詞";
 "Lyrics earlier" = "歌詞を早める";
@@ -1316,6 +1326,7 @@
 "Magnet stream" = "マグネットストリーム";
 "Make it yours" = "自分好みにカスタマイズ";
 "Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "Rokuの電源が入っていて、パソコンと同じWi-Fiに接続されていることを確認してください。";
+"Make the featured banner on Home bigger and sharper." = "ホームの注目バナーを大きく鮮明にします。";
 "Manage" = "管理";
 "Manage profiles" = "プロフィールを管理";
 "Manga" = "マンガ";
@@ -1615,6 +1626,7 @@
 "On your Roku remote, press Home." = "Rokuリモコンのホームボタンを押します。";
 "On your Roku, open Streaming Channels from the home screen." = "Rokuのホーム画面から「ストリーミングチャンネル」を開きます。";
 "Onboarding" = "初期ガイド";
+"Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "保存すると、すべてのポスターが再描画され、IMDb、Rotten Tomatoes、Metacriticの評価が表示されます。";
 "One list" = "1件のリスト";
 "Ongoing" = "連載中";
 "Only 1 source after filtering" = "絞り込み後のソースは1件のみ";
@@ -1651,6 +1663,7 @@
 "Opening MyAnimeList..." = "MyAnimeListを開いています...";
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
+"Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "TMDBのコンテンツ行、ポスターに埋め込まれた評価、ファンアート、TVDBのエピソードデータを利用できるようにする任意のキーです。";
 "Options" = "オプション";
 "Orden de addons" = "アドオン順";
 "Orden de idiomas preferidos" = "言語の優先順位";
@@ -1677,6 +1690,7 @@
 "Page base." = "ページのベース。";
 "Page turn sound" = "Page turn sound";
 "Pages" = "ページ";
+"Paid plan at" = "有料プランの申込先:";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "テキストの背後に角丸の背景を表示します。最も読みやすい設定です。";
 "Para personas con discapacidad auditiva" = "聴覚障害者向け";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1845,6 +1859,7 @@
 "Quitar de guardados" = "保存済みから削除";
 "Quitar de la cola" = "キューから削除";
 "Quitar {language}" = "{language}を削除";
+"RPDB · scores baked into posters" = "RPDB・ポスターに埋め込まれた評価";
 "Raised" = "浮き出し";
 "Random avatar" = "ランダムなアバター";
 "Ranked by the {site} community from their public index." = "{site}コミュニティの公開インデックスに基づくランキングです。";
@@ -1935,6 +1950,7 @@
 "Rename {name}" = "{name}の名前を変更";
 "Renamed" = "名前を変更しました";
 "Renombrar" = "名前を変更";
+"Repair library" = "ライブラリを修復";
 "Repeat" = "リピート";
 "Repetición" = "リピート";
 "Replace image" = "画像を置き換え";
@@ -2000,6 +2016,7 @@
 "Reveal comments" = "コメントを表示";
 "Reverse order" = "Reverse order";
 "Revert" = "元に戻す";
+"Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "すべてのライブラリ項目をStremioの正確なスキーマに合わせて書き換えます。Harborが再生状況を同期した後にStremioアプリがクラッシュするようになった場合は、一度実行してください。";
 "Rich season and order panel" = "詳細なシーズン／視聴順パネル";
 "Richer, more vivid picture with a touch more contrast." = "コントラストを少し上げ、より深みのある鮮やかな映像にします。";
 "Right" = "右揃え";
@@ -2132,6 +2149,7 @@
 "Set up rating providers" = "評価プロバイダーを設定";
 "Settings" = "設定";
 "Settings changed. Please reopen this page." = "設定が変更されました。このページを開き直してください。";
+"Shadow strength" = "Shadow strength";
 "Share" = "共有";
 "Share file" = "Share file";
 "Share with {name}" = "{name}と共有";
@@ -2188,6 +2206,7 @@
 "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "見開き";
 "Sign in" = "サインイン";
+"Sign in to Stremio first. The repair scans only the active profile's library." = "先にStremioへログインしてください。修復では、現在のプロフィールのライブラリのみをスキャンします。";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "ログインすると、「視聴を続ける」、ウォッチリスト、追加済みのアドオンを同期できます。任意のため、ログインしなくてもHarborのすべての機能を利用できます。";
 "Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "Stremioでサインイン";
@@ -2311,6 +2330,7 @@
 "Stremio" = "Stremio";
 "Stremio clásico" = "クラシックStremio";
 "Stretch" = "引き伸ばす";
+"Stretch the featured hero edge to edge and taller, across every layout." = "すべてのレイアウトで、注目ヒーローを画面の端から端まで広げて高く表示します。";
 "Strict" = "厳格";
 "Strict filters dropped everything" = "厳格なフィルターですべて除外されました";
 "Styled (ASS) subtitles" = "装飾付き（ASS）字幕";
@@ -2630,6 +2650,7 @@
 "Use my style" = "自分のスタイルを使用";
 "Use plugins" = "プラグインを使う";
 "Use shared settings" = "共有設定を使う";
+"Use the \"personal\" key, not the project one." = "プロジェクト用ではなく、「personal」キーを使用してください。";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "読み取りアクセストークンではなく、v3キーを使用してください。";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -2684,6 +2705,7 @@
 "Welcome to Harbor" = "Harborへようこそ";
 "Western" = "西部劇";
 "What everyone is reading" = "みんなが読んでいる作品";
+"What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "ヒーローエリアに表示する内容です。「トレンド」はHarborが提供する最新の人気ランキングで、1日に何度も更新されます。「クラシック」は自分のホームの列を使用します。";
 "What you watched" = "視聴した作品";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Escでプレーヤーを閉じる前に、簡単な確認を表示します。確認画面で「今後は確認しない」にチェックすると、以後はEscですぐに終了できます。";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "リリースに複数の音声トラックがある場合、Harborはこのリストで最初に一致するものを選びます。";
@@ -3956,6 +3978,7 @@
 "{n} in a day" = "1日で{n}本";
 "{n} item" = "{n}件";
 "{n} items" = "{n}件";
+"{n} items need repair." = "{n}件の項目を修復する必要があります。";
 "{n} min" = "{n}分";
 "{n} month ago" = "{n}か月前";
 "{n} months ago" = "{n}か月前";

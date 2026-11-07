@@ -7,6 +7,8 @@ struct MetadataConfiguration: Sendable {
     var language: String
     var translateTitles: Bool
     var imageLanguages: [String] = ["English", "Original"]
+    /// Desktop's `rpdbKey`: rated posters. Read from the Keychain store of the profile, empty when none is saved.
+    var rpdbKey: String = ""
 }
 
 @MainActor @Observable
@@ -39,7 +41,17 @@ final class MetadataPreferences {
         try scopedSettings.setTMDBKey(key, expectedOwner: expectedOwner)
         tmdbKey = key; error = nil
     }
-    func configuration() -> MetadataConfiguration { MetadataConfiguration(tmdbKey: tmdbKey, region: region, language: language, translateTitles: translateTitles, imageLanguages: imageLanguages) }
+    func configuration() -> MetadataConfiguration {
+        var result = MetadataConfiguration(tmdbKey: tmdbKey, region: region, language: language, translateTitles: translateTitles, imageLanguages: imageLanguages)
+        result.rpdbKey = savedRPDBKey()
+        return result
+    }
+    private func savedRPDBKey() -> String {
+        guard let owner = settingsOwner else { return "" }
+        let store = ArtworkKeyStore.forOwner(owner)
+        if !store.ready { try? store.load() }
+        return store.key(.rpdb)
+    }
 
     private var reloading = false
     private func persist(_ value: Any?, forKey key: String) {

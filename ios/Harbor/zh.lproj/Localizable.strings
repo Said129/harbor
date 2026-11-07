@@ -921,12 +921,14 @@
 "Feature this catalog in the hero carousel" = "在焦点轮播中推荐此目录";
 "Featured" = "精选";
 "Featured at Anime Expo" = "Anime Expo 精选作品";
+"Featured source" = "精选内容来源";
 "Featured tonight" = "今晚精选";
 "Fecha" = "日期";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "获取 DuckDuckGo 结果，并将排名靠前的结果加入模型提示词。";
 "Fiction" = "虚构类";
 "File is larger than 2 MB." = "文件大于 2 MB。";
 "Fill" = "填充";
+"Fills in where TMDB comes up empty (anime, older catalog). Free at" = "在 TMDB 数据缺失时进行补充（动漫、旧片库）。可在此免费获取";
 "Film" = "电影";
 "Filter countries" = "筛选国家/地区";
 "Filter genres" = "筛选类型";
@@ -977,8 +979,10 @@
 "Full" = "完整";
 "Full HD" = "Full HD";
 "Full HD · HDR" = "Full HD · HDR";
+"Full hero banner" = "全幅焦点横幅";
 "Full mode is active, so diary, friends activity and your ratings all work." = "Full mode is active, so diary, friends activity and your ratings all work.";
 "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it." = "Full mode signs in with your Letterboxd password so your diary, friends activity and personal ratings work too. The password goes only to Stremboxd to fetch a token, and Harbor never stores it.";
+"Full quality hero image" = "全画质焦点横幅图片";
 "Gamma" = "伽马";
 "Genre" = "类型";
 "Genres" = "类型";
@@ -1095,7 +1099,9 @@
 "Home" = "首页";
 "Home Rail Settings" = "首页内容栏设置";
 "Home catalogs" = "首页目录";
+"Home hero" = "首页焦点横幅";
 "Home hero audio" = "首页焦点推荐音频";
+"Home hero shadow" = "首页主视觉阴影";
 "Home layout" = "首页布局";
 "Home style" = "首页样式";
 "Hoopla" = "Hoopla";
@@ -1105,6 +1111,7 @@
 "Horror & Supernatural" = "恐怖与超自然";
 "Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "剧集卡片在条带和网格布局中的大小。卡片越大，图稿越大。";
+"How dark the gradient behind the featured title on Home is. 100% is the classic look." = "How dark the gradient behind the featured title on Home is. 100% is the classic look.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "设置音量条可超过 100% 的最大增益。较高的设置可能会非常响。";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Harbor 等待各插件返回结果的时间。";
@@ -1244,6 +1251,7 @@
 "Letterboxd username" = "Letterboxd 用户名";
 "Letterboxd, Trakt, Metacritic, and audience scores." = "Letterboxd、Trakt、Metacritic 和观众评分。";
 "Library" = "媒体库";
+"Library is empty. Nothing to repair." = "媒体库为空，无需修复。";
 "Libros" = "书籍";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "提亮阴影，让漆黑场景也能看清。";
 "Light" = "浅色";
@@ -1274,6 +1282,7 @@
 "Load file" = "加载文件";
 "Load more" = "加载更多";
 "Load more comments" = "加载更多评论";
+"Load the highest-resolution artwork for the featured hero. Uses more bandwidth." = "为推荐焦点横幅加载最高分辨率的图片。会使用更多带宽。";
 "Loading" = "正在加载";
 "Loading more" = "正在加载更多";
 "Loading more sources" = "正在加载更多来源";
@@ -1299,6 +1308,7 @@
 "Los filtros estrictos descartaron todo" = "严格筛选已排除所有结果";
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
 "Loved by reviewers today" = "今日获影评人好评";
+"Lower it to let more of the artwork show through." = "调低此项，让更多背景图显示出来。";
 "Lyric sync" = "歌词同步";
 "Lyrics" = "歌词";
 "Lyrics earlier" = "歌词提前";
@@ -1316,6 +1326,7 @@
 "Magnet stream" = "Magnet 流式播放";
 "Make it yours" = "打造专属风格";
 "Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "请确保 Roku 已开机，并与电脑连接到同一 Wi-Fi。";
+"Make the featured banner on Home bigger and sharper." = "让首页推荐横幅更大、更清晰。";
 "Manage" = "管理";
 "Manage profiles" = "管理个人资料";
 "Manga" = "漫画";
@@ -1615,6 +1626,7 @@
 "On your Roku remote, press Home." = "按 Roku 遥控器上的 Home 键。";
 "On your Roku, open Streaming Channels from the home screen." = "在 Roku 主屏幕上打开“流媒体频道”。";
 "Onboarding" = "新手引导";
+"Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "保存后，每张海报都会重新渲染，并印上 IMDb、Rotten Tomatoes 和 Metacritic 评分。";
 "One list" = "单个列表";
 "Ongoing" = "连载中";
 "Only 1 source after filtering" = "筛选后仅剩 1 个来源";
@@ -1651,6 +1663,7 @@
 "Opening MyAnimeList..." = "正在打开 MyAnimeList...";
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
+"Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "用于解锁 TMDB 内容栏、海报内嵌评分、艺术图和 TVDB 剧集数据的可选密钥。";
 "Options" = "选项";
 "Orden de addons" = "插件顺序";
 "Orden de idiomas preferidos" = "语言优先顺序";
@@ -1677,6 +1690,7 @@
 "Page base." = "页面底色。";
 "Page turn sound" = "Page turn sound";
 "Pages" = "页面";
+"Paid plan at" = "付费方案地址：";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "文字后方的圆角背景面板，可读性最佳。";
 "Para personas con discapacidad auditiva" = "听障字幕";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1845,6 +1859,7 @@
 "Quitar de guardados" = "从已保存内容中移除";
 "Quitar de la cola" = "从播放队列中移除";
 "Quitar {language}" = "移除{language}";
+"RPDB · scores baked into posters" = "RPDB · 海报内嵌评分";
 "Raised" = "凸起";
 "Random avatar" = "随机头像";
 "Ranked by the {site} community from their public index." = "根据{site}社区的公开指数排名。";
@@ -1935,6 +1950,7 @@
 "Rename {name}" = "重命名 {name}";
 "Renamed" = "已重命名";
 "Renombrar" = "重命名";
+"Repair library" = "修复媒体库";
 "Repeat" = "循环";
 "Repetición" = "循环";
 "Replace image" = "替换图片";
@@ -2000,6 +2016,7 @@
 "Reveal comments" = "显示评论";
 "Reverse order" = "Reverse order";
 "Revert" = "还原";
+"Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "重写媒体库中的每个项目，使其完全符合 Stremio 的数据结构。如果 Stremio 应用在 Harbor 同步播放状态后开始崩溃，请运行一次。";
 "Rich season and order panel" = "功能丰富的季与播放顺序面板";
 "Richer, more vivid picture with a touch more contrast." = "画面色彩更饱满、更鲜艳，并略微提高对比度。";
 "Right" = "右对齐";
@@ -2132,6 +2149,7 @@
 "Set up rating providers" = "设置评分提供商";
 "Settings" = "设置";
 "Settings changed. Please reopen this page." = "设置已更改。请重新打开此页面。";
+"Shadow strength" = "Shadow strength";
 "Share" = "分享";
 "Share file" = "Share file";
 "Share with {name}" = "与 {name} 共享";
@@ -2188,6 +2206,7 @@
 "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "双页";
 "Sign in" = "登录";
+"Sign in to Stremio first. The repair scans only the active profile's library." = "请先登录 Stremio。修复仅扫描当前个人资料的媒体库。";
 "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out." = "登录后可同步“继续观看”、片单和已配置的插件。此操作可选；不登录也能完整使用 Harbor。";
 "Sign in with Full mode to use this catalog." = "Sign in with Full mode to use this catalog.";
 "Sign in with Stremio" = "使用 Stremio 登录";
@@ -2311,6 +2330,7 @@
 "Stremio" = "Stremio";
 "Stremio clásico" = "经典 Stremio";
 "Stretch" = "拉伸";
+"Stretch the featured hero edge to edge and taller, across every layout." = "在所有布局中，让推荐焦点横幅横向铺满并增加高度。";
 "Strict" = "严格";
 "Strict filters dropped everything" = "严格筛选已排除所有结果";
 "Styled (ASS) subtitles" = "样式化（ASS）字幕";
@@ -2630,6 +2650,7 @@
 "Use my style" = "使用我的样式";
 "Use plugins" = "使用脚本插件";
 "Use shared settings" = "使用共享设置";
+"Use the \"personal\" key, not the project one." = "请使用“personal”密钥，而不是项目密钥。";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "请使用 v3 密钥，而不是读取访问令牌。";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -2684,6 +2705,7 @@
 "Welcome to Harbor" = "欢迎使用 Harbor";
 "Western" = "西部";
 "What everyone is reading" = "大家都在读";
+"What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "决定主视觉区显示的内容。“热门趋势”显示 Harbor 提供的最新热门榜单，并在一天中持续刷新。“经典”则使用你自己的首页横栏。";
 "What you watched" = "你看过的内容";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "当按 Esc 将关闭播放器时，先显示快速确认提示。你可以在提示中勾选“不再询问”，以后按 Esc 将直接退出。";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "当一个版本包含多个音轨时，Harbor 会选择此列表中第一个匹配的音轨。";
@@ -3956,6 +3978,7 @@
 "{n} in a day" = "一天内 {n} 部";
 "{n} item" = "{n} 个项目";
 "{n} items" = "{n} 个项目";
+"{n} items need repair." = "有 {n} 个项目需要修复。";
 "{n} min" = "{n} 分钟";
 "{n} month ago" = "{n} 个月前";
 "{n} months ago" = "{n} 个月前";
