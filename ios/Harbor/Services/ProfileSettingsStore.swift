@@ -51,7 +51,7 @@ struct ContinueWatchingPreferences: Sendable {
     nonisolated static let keys: Set<String> = [
         "uiLanguage", "navIconAnimations", "interface.autoRotateBanners", "homeMode", "showImdbBadge", "showTmdbBadge",
         "rowCardStyle", "tvCardLogoPos", "posterScale", "posterRadius", "posterEffect", "posterQuality",
-        "posterFocusedCard", "posterBackdropExpansion", "posterDockMagnification", "posterDockTransitionMs",
+        "posterFocusedCard", "posterBackdropExpansion", "posterDockMagnification", "posterDockTransitionMs", "hidePosterTitles",
         "simklEnableUserRatings", "simklScrobbleEnabled", "cwSources",
         "tmdbImageLangs", "harbor:title-logos", "harbor:title-posters", "harbor:title-backdrops",
         "showWatchedButton", "showEpisodeDescription", "showEpisodeRating", "hideWatchedInCatalogs", "hideUnreleased", "libraryBookmarkedOnly", "cwAdvanceNext", "episodeSort", "episodeHiding", "showTraktComments", "blurComments", "ratings.detailHidden", "hideSpoilers", "blurEpisodes", "spoilerHideTitles", "spoilerHideDescriptions",

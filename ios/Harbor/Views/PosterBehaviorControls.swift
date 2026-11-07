@@ -6,6 +6,7 @@ struct PosterBehaviorControls: View {
     @AppStorage("posterBackdropExpansion") private var expansion = false
     @AppStorage("posterDockMagnification") private var dock = false
     @AppStorage("posterDockTransitionMs") private var milliseconds = 760.0
+    @AppStorage("hidePosterTitles") private var hidesTitles = false
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
     var body: some View {
         HarborSettingsSection(text("Card behaviour")) {
@@ -15,6 +16,8 @@ struct PosterBehaviorControls: View {
                 .accessibilityIdentifier("poster-backdrop-expansion")
             HarborSettingsToggle(text("Poster dock magnification"), note: text("Gently magnify nearby posters as you move across a poster row."), isOn: $dock)
                 .accessibilityIdentifier("poster-dock-magnification")
+            HarborSettingsToggle(text("Hide titles under posters"), note: text("Cleaner grid when your poster service already prints the title on the artwork."), isOn: $hidesTitles)
+                .accessibilityIdentifier("poster-hide-titles")
             if dock {
                 VStack(alignment: .leading, spacing: 12) {
                     HStack {

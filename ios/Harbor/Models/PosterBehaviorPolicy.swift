@@ -11,6 +11,10 @@ struct PosterDockTransform: Equatable, Sendable {
 
 enum PosterBehaviorPolicy {
     static func transitionMilliseconds(_ value: Double) -> Double { value.isFinite ? min(1_500, max(250, value.rounded())) : 760 }
+    /// Desktop's `hidePosterTitles` removes the caption under poster-shaped cards only; TV cards keep their logo and title.
+    static func showsCaption(_ showsTitle: Bool, style: PosterCardConfiguration.Style, hidesTitles: Bool) -> Bool {
+        showsTitle && style == .poster && !hidesTitles
+    }
     static func dock(pointerX: Double?, frame: CGRect, viewport: CGRect, first: Bool, last: Bool, rtl: Bool) -> PosterDockTransform {
         guard let pointerX, pointerX.isFinite, frame.width > 0, viewport.width > 0 else { return .init() }
         let distance = pointerX - frame.midX

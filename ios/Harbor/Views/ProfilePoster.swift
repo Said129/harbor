@@ -18,6 +18,7 @@ struct ProfilePoster: View {
     @AppStorage("posterBackdropExpansion") private var expansionEnabled = false
     @AppStorage("posterDockMagnification") private var dockEnabled = false
     @AppStorage("posterDockTransitionMs") private var dockMilliseconds = 760.0
+    @AppStorage("hidePosterTitles") private var hidesTitles = false
     @Environment(\.displayScale) private var displayScale
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.isFocused) private var keyboardFocused
@@ -40,6 +41,7 @@ struct ProfilePoster: View {
     @State private var posterResolvedKey = ""
     private var overrides: TitleArtworkPreferences { .shared }
     private var participates: Bool { showsTitle || showsRating }
+    private var showsCaption: Bool { PosterBehaviorPolicy.showsCaption(showsTitle, style: configuration.style, hidesTitles: hidesTitles) }
     private var attention: PosterAttentionState { .shared }
     private var selected: Bool { participates && focusEnabled && attention.input == .keyboard && attention.active == instanceID }
     private var dimmed: Bool { participates && focusEnabled && attention.input == .keyboard && attention.active != nil && attention.active != instanceID }
@@ -198,7 +200,7 @@ struct ProfilePoster: View {
                 .shadow(color: .black.opacity(selected ? 0.65 : 0), radius: selected ? 24 : 0, x: 0, y: selected ? 12 : 0)
                 .scaleEffect(dock.scale, anchor: dockAnchor).offset(x: dock.x, y: dock.y)
                 .animation(reduceMotion ? nil : .timingCurve(0.22, 0.61, 0.36, 1, duration: PosterBehaviorPolicy.transitionMilliseconds(dockMilliseconds) / 1_000), value: dock)
-            if showsTitle && configuration.style == .poster { Text(media.name).font(.caption.weight(.medium)).lineLimit(2).frame(maxWidth: .infinity, alignment: .leading) }
+            if showsCaption { Text(media.name).font(.caption.weight(.medium)).lineLimit(2).frame(maxWidth: .infinity, alignment: .leading) }
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
     private func syncFocus() { attention.focus(instanceID, enabled: participates && focusEnabled, focused: keyboardFocused) }
