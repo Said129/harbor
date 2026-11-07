@@ -27,6 +27,9 @@ struct EpisodeList: View {
     @State private var hiddenKeys = HiddenEpisodes.all()
     @State private var showHidden = false
     @State private var episodeRatings: [String: Double] = [:]
+    @State private var arcMode = false
+    @State private var arcID = ""
+    @State private var arcs: [EpisodeArc] = []
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private var videos: [Episode] { ordering?.videos ?? WatchedCodec.ordered(media.videos ?? []) }
     private var seasons: [Int] { Array(Set(videos.compactMap(\.listedSeason))).sorted() }
@@ -34,7 +37,7 @@ struct EpisodeList: View {
     private var currentSection: EpisodeOrderSection? { sections.first { $0.id == orderSection } ?? sections.first }
     private var visible: [Episode] { currentSection?.episodes ?? videos.filter { ($0.listedSeason ?? season) == season } }
     private var orderedRows: [EpisodeOrderRow] {
-        let rows = currentSection?.rows ?? visible.map(EpisodeOrderRow.episode)
+        let rows = arcActive ? arcRows : (currentSection?.rows ?? visible.map(EpisodeOrderRow.episode))
         return InterfacePreferences.shared.episodeSort == "newest" ? rows.reversed() : rows
     }
     private func hiddenKey(_ episode: Episode) -> String {
@@ -86,6 +89,34 @@ struct EpisodeList: View {
         if case .franchise = row { return true }
         return false
     }
+    /// Desktop's story arcs (`use-arc-groups.ts`): available on a plain series when the setting is on and TMDB lists arcs.
+    private var arcsAvailable: Bool { InterfacePreferences.shared.episodeArcGroups && !arcs.isEmpty && ordering == nil && pool == nil }
+    private var arcActive: Bool { arcMode && arcsAvailable }
+    /// The active arc's episodes in arc order, as list rows.
+    private var arcRows: [EpisodeOrderRow] {
+        guard let arc = arcs.first(where: { $0.id == arcID }) ?? arcs.first else { return [] }
+        return EpisodeArcPolicy.episodes(of: arc, in: videos).map(EpisodeOrderRow.episode)
+    }
+    private var arcTaskID: String {
+        [media.identity, String(InterfacePreferences.shared.episodeArcGroups), String(MetadataPreferences.shared.tmdbKey.hashValue), seriesIMDb ?? "", ordering == nil ? "plain" : "ordered"].joined(separator: "|")
+    }
+    /// Desktop's `useArcGroups`: the show's story-arc group from TMDB, found by its TMDB id or else its IMDb id.
+    private func loadArcs() async {
+        arcs = []
+        let key = MetadataPreferences.shared.tmdbKey
+        guard InterfacePreferences.shared.episodeArcGroups, ordering == nil, pool == nil, !key.isEmpty else { return }
+        let configuration = MetadataConfiguration(tmdbKey: key, region: MetadataPreferences.shared.region, language: MetadataPreferences.shared.language, translateTitles: MetadataPreferences.shared.translateTitles)
+        let service = TMDBService()
+        var resolved = EpisodeArcPolicy.tvID(forMediaID: media.id)
+        if resolved == nil, let imdb = seriesIMDb, let reference = try? await service.pluginReference(imdb: imdb, type: "series", key: key), reference.kind == "tv" {
+            resolved = reference.id
+        }
+        guard let tvID = resolved, let groups = try? await service.episodeGroups(tvID: tvID, configuration: configuration), let group = EpisodeArcPolicy.storyGroup(groups) else { return }
+        guard let detail = try? await service.episodeGroup(group.id, configuration: configuration), !Task.isCancelled else { return }
+        let found = EpisodeArcPolicy.arcs(detail)
+        arcs = found
+        if !found.contains(where: { $0.id == arcID }) { arcID = found.first?.id ?? "" }
+    }
     /// Desktop's episode ratings: the community's IMDb ratings, completed with OMDb's season ratings when a key is set.
     private func loadRatings() async {
         guard InterfacePreferences.shared.showEpisodeRating, pool == nil, let imdb = seriesIMDb else { episodeRatings = [:]; return }
@@ -134,6 +165,20 @@ struct EpisodeList: View {
         }
         .accessibilityLabel(layoutTitle(current)).accessibilityIdentifier("episode-layout")
     }
+    /// Desktop's Seasons and Arcs switch (`season-arc-picker.tsx`), with the arc menu while Arcs is on.
+    @ViewBuilder private var arcControls: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Picker(DesktopInterfaceText.value("Arcs"), selection: $arcMode) {
+                Text(DesktopInterfaceText.value("Seasons")).tag(false)
+                Text(DesktopInterfaceText.value("Arcs")).tag(true)
+            }.pickerStyle(.segmented).accessibilityIdentifier("episode-arc-mode")
+            if arcMode {
+                Picker(DesktopInterfaceText.value("Arcs"), selection: $arcID) {
+                    ForEach(arcs) { arc in Text(arc.name).tag(arc.id) }
+                }.pickerStyle(.menu).accessibilityIdentifier("episode-arc")
+            }
+        }
+    }
     private func layoutTitle(_ value: EpisodeLayoutPolicy.Layout) -> String {
         switch value {
         case .list: return DesktopInterfaceText.value("List view")
@@ -175,13 +220,14 @@ struct EpisodeList: View {
                     Picker(DesktopInterfaceText.value("Seasons"), selection: Binding(get: { currentSection?.id ?? "" }, set: { orderSection = $0 })) {
                         ForEach(sections) { Text($0.label).tag($0.id) }
                     }.pickerStyle(.menu).accessibilityIdentifier("episode-season")
-                } else if seasons.count > 1 { Picker("Temporada", selection: $season) {
+                } else if seasons.count > 1, !arcActive { Picker("Temporada", selection: $season) {
                     ForEach(seasons, id: \.self) { Text($0 == 0 ? "Especiales" : "Temporada \($0)").tag($0) }
                 }.pickerStyle(.menu).accessibilityIdentifier("episode-season") }
                 else if franchise.count > 1 {
                     AnimeSeasonPicker(entries: franchise, activeID: activeFranchiseID, select: selectFranchise, loading: franchiseLoading)
                 }
             }
+            if arcsAvailable { arcControls }
             if layout == .list {
                 ForEach(visibleRows) { row in rowView(row, watched: watched) }
             } else {
@@ -196,6 +242,7 @@ struct EpisodeList: View {
                 preferredApplied = false; chooseInitialSeason()
             }
             .task(id: ratingsTaskID) { await loadRatings() }
+            .task(id: arcTaskID) { await loadArcs() }
             .onChange(of: seasons) { _, _ in chooseInitialSeason() }
             .onChange(of: sections.map(\.id)) { _, ids in
                 if !ids.contains(orderSection) {
@@ -264,7 +311,7 @@ struct EpisodeList: View {
                 Button { Task { await library.toggleEpisode(source, episode: episode) } } label: {
                     Image(seen ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 23, height: 23).frame(width: 44, height: 44).contentShape(Rectangle())
                 }.buttonStyle(.plain).disabled(library.busy || !episode.available)
-                    .accessibilityLabel(DesktopInterfaceText.value(seen ? "Marked watched" : "Mark watched"))
+                    .accessibilityLabel(DesktopInterfaceText.value(seen ? "Mark as unwatched" : "Mark as watched"))
                 if hidden && (InterfacePreferences.shared.blurEpisodes || blurTitle || blurOverview) {
                     Button(DesktopInterfaceText.value("Reveal")) { revealed.insert(episode.routingKey) }.font(.caption).frame(minHeight: 44)
                 }
@@ -280,10 +327,9 @@ struct EpisodeList: View {
                 }
             }
     }
-    /// The still of a strip or grid card, with the IMDb badge; HD follows `hdEpisodeImages`.
+    /// The still of a strip or grid card, with the IMDb badge.
     @ViewBuilder private func cardStill(_ episode: Episode, source: Media, hidden: Bool) -> some View {
-        let hd = InterfacePreferences.shared.hdEpisodeImages
-        Artwork(url: EpisodeLayoutPolicy.still(episode.thumbnail, hd: hd), fallback: source.background, maxPixels: EpisodeLayoutPolicy.artworkPixels(hd: hd))
+        Artwork(url: episode.thumbnail, fallback: source.background, maxPixels: 600)
             .aspectRatio(16.0 / 9.0, contentMode: .fit)
             .frame(maxWidth: .infinity)
             .blur(radius: hidden && InterfacePreferences.shared.blurEpisodes ? 14 : 0)

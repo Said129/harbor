@@ -1,6 +1,22 @@
 import XCTest
 @testable import Harbor
 
+private func episodeGroup(_ id: String, type: Int64, count: Int64) -> JSONValue {
+    .object(["id": .string(id), "name": .string("Group " + id), "type": .integer(type), "group_count": .integer(count)])
+}
+
+private func episodeGroupRef(_ season: Int64, _ episode: Int64) -> JSONValue {
+    .object(["season_number": .integer(season), "episode_number": .integer(episode)])
+}
+
+private func storyArc(_ id: String, order: Int64, episodes: [JSONValue]) -> JSONValue {
+    .object(["id": .string(id), "name": .string("Arc " + id), "order": .integer(order), "episodes": .array(episodes)])
+}
+
+private func video(_ season: Int, _ episode: Int) -> Episode {
+    Episode(id: "e\(season)x\(episode)", season: season, episode: episode, name: nil, title: nil, thumbnail: nil, overview: nil, released: nil, imdbID: nil, imdbSeason: nil, imdbEpisode: nil)
+}
+
 final class EpisodeLayoutTests: XCTestCase {
     func testLayoutFallsBackToListForMissingOrUnknownValues() {
         XCTAssertEqual(EpisodeLayoutPolicy.layout(nil), .list)
@@ -35,21 +51,50 @@ final class EpisodeLayoutTests: XCTestCase {
         XCTAssertEqual(EpisodeLayoutPolicy.gridMinimumWidth(0), 232)
     }
 
-    func testStillFollowsHDSettingForTMDBOnly() {
-        let w300 = "https://image.tmdb.org/t/p/w300/abc.jpg"
-        let original = "https://image.tmdb.org/t/p/original/abc.jpg"
-        XCTAssertEqual(EpisodeLayoutPolicy.still(w300, hd: true), original)
-        XCTAssertEqual(EpisodeLayoutPolicy.still(original, hd: false), w300)
-        XCTAssertEqual(EpisodeLayoutPolicy.still("https://episodes.example.com/1.jpg", hd: true), "https://episodes.example.com/1.jpg")
-        XCTAssertNil(EpisodeLayoutPolicy.still(nil, hd: true))
+    func testTVIDComesFromTMDBMediaIDsOnly() {
+        XCTAssertEqual(EpisodeArcPolicy.tvID(forMediaID: "tmdb:tv:1429"), 1429)
+        XCTAssertNil(EpisodeArcPolicy.tvID(forMediaID: "tmdb:movie:1429"))
+        XCTAssertNil(EpisodeArcPolicy.tvID(forMediaID: "tt0388629"))
+        XCTAssertNil(EpisodeArcPolicy.tvID(forMediaID: "tmdb:tv:0"))
     }
 
-    func testArtworkPixelsGrowWithHD() {
-        XCTAssertEqual(EpisodeLayoutPolicy.artworkPixels(hd: true), 1000)
-        XCTAssertEqual(EpisodeLayoutPolicy.artworkPixels(hd: false), 600)
+    func testStoryGroupPicksTheLargestTypeFiveGroup() {
+        let results: JSONValue = .object(["results": .array([
+            episodeGroup("a", type: 5, count: 3), episodeGroup("b", type: 6, count: 9), episodeGroup("c", type: 5, count: 7)
+        ])])
+        XCTAssertEqual(EpisodeArcPolicy.storyGroup(results)?.id, "c")
+        XCTAssertEqual(EpisodeArcPolicy.storyGroup(results)?.name, "Group c")
+    }
+
+    func testStoryGroupTieKeepsTMDBOrderAndNoStoryGroupIsNil() {
+        let tied: JSONValue = .object(["results": .array([episodeGroup("x", type: 5, count: 4), episodeGroup("y", type: 5, count: 4)])])
+        XCTAssertEqual(EpisodeArcPolicy.storyGroup(tied)?.id, "x")
+        let none: JSONValue = .object(["results": .array([episodeGroup("z", type: 2, count: 4)])])
+        XCTAssertNil(EpisodeArcPolicy.storyGroup(none))
+        XCTAssertNil(EpisodeArcPolicy.storyGroup(.object([:])))
+    }
+
+    func testArcsKeepTMDBOrderAndDropInvalidEntries() {
+        let detail: JSONValue = .object(["groups": .array([
+            storyArc("second", order: 2, episodes: [episodeGroupRef(1, 3)]),
+            storyArc("first", order: 1, episodes: [episodeGroupRef(1, 1), .object(["season_number": .integer(1)]), episodeGroupRef(1, 2)]),
+            storyArc("empty", order: 0, episodes: [.object([:])])
+        ])])
+        let arcs = EpisodeArcPolicy.arcs(detail)
+        XCTAssertEqual(arcs.map(\.id), ["first", "second"])
+        XCTAssertEqual(arcs[0].episodes, [EpisodeArc.Ref(season: 1, episode: 1), EpisodeArc.Ref(season: 1, episode: 2)])
+        XCTAssertEqual(arcs[1].episodes, [EpisodeArc.Ref(season: 1, episode: 3)])
+    }
+
+    func testArcEpisodesFollowArcOrderAndSkipMissingOnes() {
+        let arc = EpisodeArc(id: "a", name: "Arc", order: 0, episodes: [
+            EpisodeArc.Ref(season: 2, episode: 1), EpisodeArc.Ref(season: 9, episode: 9), EpisodeArc.Ref(season: 1, episode: 4)
+        ])
+        let videos = [video(1, 4), video(2, 1), video(2, 2)]
+        XCTAssertEqual(EpisodeArcPolicy.episodes(of: arc, in: videos).map(\.id), ["e2x1", "e1x4"])
     }
 
     func testEpisodeDisplaySettingsAreKeptPerProfile() {
-        XCTAssertTrue(ProfileSettingsStore.keys.isSuperset(of: ["episodeLayout", "episodeCardScale", "hdEpisodeImages"]))
+        XCTAssertTrue(ProfileSettingsStore.keys.isSuperset(of: ["episodeLayout", "episodeCardScale", "episodeArcGroups"]))
     }
 }

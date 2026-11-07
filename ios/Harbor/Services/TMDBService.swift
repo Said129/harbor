@@ -231,6 +231,14 @@ struct TMDBService: Sendable {
         if let movie { return .init(id: movie, kind: "movie") }
         return tv.map { .init(id: $0, kind: "tv") }
     }
+    /// Desktop's `tmdbEpisodeGroups`: the episode groups of a series, which include its story arcs (type 5).
+    func episodeGroups(tvID: Int, configuration: MetadataConfiguration) async throws -> JSONValue {
+        try await get("tv/\(tvID)/episode_groups", configuration: configuration)
+    }
+    /// Desktop's `tmdbEpisodeGroup`: one episode group with its groups (arcs) and their episodes.
+    func episodeGroup(_ id: String, configuration: MetadataConfiguration) async throws -> JSONValue {
+        try await get("tv/episode_group/\(id)", configuration: configuration)
+    }
     private func get(_ path: String, parameters: [String: String] = [:], configuration: MetadataConfiguration) async throws -> JSONValue {
         guard !configuration.tmdbKey.isEmpty, var url = URLComponents(string: "https://api.themoviedb.org/3/\(path)") else { throw HarborError(code: "metadata-not-configured") }
         url.queryItems = [URLQueryItem(name: "api_key", value: configuration.tmdbKey), URLQueryItem(name: "language", value: configuration.language)] + parameters.sorted { $0.key < $1.key }.map { URLQueryItem(name: $0.key, value: $0.value) }

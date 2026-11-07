@@ -69,12 +69,12 @@ struct InterfaceSettingsView: View {
                         localizeChoices: false, identifier: "settings-episode-card-scale")
                     Text(DesktopInterfaceText.value("How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork."))
                         .font(HarborTheme.font(13)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
-                    HarborSettingsToggle(DesktopInterfaceText.value("High-quality episode images"), note: DesktopInterfaceText.value("Use sharper artwork for large cards. Uses more data and may load more slowly."), isOn: $preferences.hdEpisodeImages)
-                        .accessibilityIdentifier("settings-hd-episode-images")
                 }
                 HarborSettingsSection(DesktopInterfaceText.value("Browsing")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Hide and skip episodes"), note: DesktopInterfaceText.value("Adds a Hide option when you right-click an episode. Hidden episodes disappear from the list and are skipped by Up Next. A Show hidden toggle on each show lets you bring them back."), isOn: $preferences.episodeHiding)
                         .accessibilityIdentifier("settings-episode-hiding")
+                    HarborSettingsToggle(DesktopInterfaceText.value("Group episodes by story arc"), note: DesktopInterfaceText.value("Browse by story arc on supported shows, such as One Piece. Requires a TMDB key."), isOn: $preferences.episodeArcGroups)
+                        .accessibilityIdentifier("settings-episode-arc-groups")
                 }
                 HarborSettingsSection(DesktopInterfaceText.value("Spoilers")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Blur spoilers"), note: DesktopInterfaceText.value("Hides spoiler-prone episode details in episode lists until you have watched them."), isOn: $preferences.hideSpoilers)

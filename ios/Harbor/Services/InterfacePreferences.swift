@@ -39,8 +39,8 @@ final class InterfacePreferences {
     var episodeLayout = UserDefaults.standard.string(forKey: "episodeLayout") ?? "list" { didSet { persist(episodeLayout, forKey: "episodeLayout") } }
     /// Desktop's `episodeCardScale` (default 1): the size of strip and grid episode cards.
     var episodeCardScale = UserDefaults.standard.object(forKey: "episodeCardScale") as? Double ?? 1 { didSet { persist(episodeCardScale, forKey: "episodeCardScale") } }
-    /// Desktop's `hdEpisodeImages` (default true): TMDB episode stills at original size instead of w300.
-    var hdEpisodeImages = UserDefaults.standard.object(forKey: "hdEpisodeImages") as? Bool ?? true { didSet { persist(hdEpisodeImages, forKey: "hdEpisodeImages") } }
+    /// Desktop's `episodeArcGroups` (default false): browse a show's TMDB story arcs in the episode list. Needs a TMDB key.
+    var episodeArcGroups = UserDefaults.standard.object(forKey: "episodeArcGroups") as? Bool ?? false { didSet { persist(episodeArcGroups, forKey: "episodeArcGroups") } }
     /// Desktop's `showTraktComments`: a comments section on movie and show pages.
     var showTraktComments = UserDefaults.standard.object(forKey: "showTraktComments") as? Bool ?? false { didSet { persist(showTraktComments, forKey: "showTraktComments") } }
     /// Desktop's `blurComments`: comments stay blurred until revealed, spoiler or not.
@@ -96,7 +96,7 @@ final class InterfacePreferences {
         episodeHiding = UserDefaults.standard.object(forKey: "episodeHiding") as? Bool ?? false
         episodeLayout = UserDefaults.standard.string(forKey: "episodeLayout") ?? "list"
         episodeCardScale = UserDefaults.standard.object(forKey: "episodeCardScale") as? Double ?? 1
-        hdEpisodeImages = UserDefaults.standard.object(forKey: "hdEpisodeImages") as? Bool ?? true
+        episodeArcGroups = UserDefaults.standard.object(forKey: "episodeArcGroups") as? Bool ?? false
         showTraktComments = UserDefaults.standard.object(forKey: "showTraktComments") as? Bool ?? false
         blurComments = UserDefaults.standard.object(forKey: "blurComments") as? Bool ?? false
         detailRatingsHidden = Set(UserDefaults.standard.stringArray(forKey: "ratings.detailHidden") ?? [])

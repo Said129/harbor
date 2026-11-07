@@ -1,7 +1,7 @@
 import Foundation
 
-/// Desktop's episode list display settings (`episodeLayout`, `episodeCardScale`, `hdEpisodeImages`) as pure rules,
-/// so the views and the tests share one definition of card sizes and artwork.
+/// Desktop's episode list display settings (`episodeLayout`, `episodeCardScale`, `episodeArcGroups`) as pure rules,
+/// so the views and the tests share one definition of card sizes and story arcs.
 enum EpisodeLayoutPolicy {
     /// Desktop's `episodeLayout`: the vertical list, the horizontal strip, or the grid of cards.
     enum Layout: String, CaseIterable, Sendable {
@@ -39,17 +39,67 @@ enum EpisodeLayoutPolicy {
     static func gridMinimumWidth(_ scale: Double?) -> Double {
         (gridBaseMinimumWidth * cardScale(scale)).rounded()
     }
+}
 
-    /// Desktop's still URLs: TMDB stills use `original` when HD is on and `w300` when it is off.
-    /// Other hosts (and a missing thumbnail) are returned unchanged.
-    static func still(_ url: String?, hd: Bool) -> String? {
-        guard let url else { return nil }
-        let (from, to) = hd ? ("/t/p/w300/", "/t/p/original/") : ("/t/p/original/", "/t/p/w300/")
-        return url.replacingOccurrences(of: from, with: to)
+/// One story arc of a show: a TMDB episode group entry, with its episodes as season and episode numbers.
+struct EpisodeArc: Identifiable, Equatable, Sendable {
+    struct Ref: Equatable, Sendable {
+        let season: Int
+        let episode: Int
+    }
+    let id: String
+    let name: String
+    let order: Int
+    let episodes: [Ref]
+}
+
+/// Desktop's story-arc rules (`tmdb-episode-groups.ts`, `use-arc-groups.ts`). The TMDB calls live in `TMDBService`.
+enum EpisodeArcPolicy {
+    /// TMDB's id for a series, from a media id such as `tmdb:tv:1234`; other ids give nil.
+    static func tvID(forMediaID id: String) -> Int? {
+        let parts = id.split(separator: ":", omittingEmptySubsequences: false)
+        guard parts.count == 3, parts[0] == "tmdb", parts[1] == "tv", let number = Int(parts[2]), number > 0 else { return nil }
+        return number
     }
 
-    /// The largest decoded still: cards in the strip and grid decode bigger pictures when HD is on.
-    static func artworkPixels(hd: Bool) -> Int {
-        hd ? 1000 : 600
+    /// The show's story-arc group: type 5 with the most entries. A tie keeps the group TMDB listed first.
+    static func storyGroup(_ groups: JSONValue) -> (id: String, name: String)? {
+        let candidates = groups["results"].array.enumerated().filter { $0.element["type"].integer == 5 }
+        let best = candidates.max { lhs, rhs in
+            let left = lhs.element["group_count"].integer ?? 0
+            let right = rhs.element["group_count"].integer ?? 0
+            return left != right ? left < right : lhs.offset > rhs.offset
+        }
+        guard let pick = best?.element, let id = pick["id"].string, !id.isEmpty else { return nil }
+        return (id, pick["name"].string ?? "")
+    }
+
+    /// The arcs of a story-arc group in TMDB's order. Entries without a valid episode pair are dropped, and so are arcs left empty.
+    static func arcs(_ detail: JSONValue) -> [EpisodeArc] {
+        let indexed = detail["groups"].array.enumerated().map { (offset: $0.offset, group: $0.element) }
+        let ordered = indexed.sorted { lhs, rhs in
+            let left = lhs.group["order"].integer ?? 0
+            let right = rhs.group["order"].integer ?? 0
+            return left != right ? left < right : lhs.offset < rhs.offset
+        }
+        return ordered.compactMap { entry -> EpisodeArc? in
+            let group = entry.group
+            guard let id = group["id"].string else { return nil }
+            let refs = group["episodes"].array.compactMap { item -> EpisodeArc.Ref? in
+                guard let season = item["season_number"].integer, let episode = item["episode_number"].integer else { return nil }
+                return EpisodeArc.Ref(season: season, episode: episode)
+            }
+            guard !refs.isEmpty else { return nil }
+            return EpisodeArc(id: id, name: group["name"].string ?? "", order: group["order"].integer ?? 0, episodes: refs)
+        }
+    }
+
+    /// The arc's episodes in arc order, matched by season and episode number. An episode the show does not list is skipped.
+    static func episodes(of arc: EpisodeArc, in videos: [Episode]) -> [Episode] {
+        var seen = Set<String>()
+        let matched = arc.episodes.compactMap { ref in
+            videos.first { $0.season == ref.season && $0.episode == ref.episode }
+        }
+        return matched.filter { seen.insert($0.routingKey).inserted }
     }
 }
