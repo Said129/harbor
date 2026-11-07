@@ -16,6 +16,11 @@ final class InterfacePreferences {
     var showEpisodeRating = UserDefaults.standard.object(forKey: "showEpisodeRating") as? Bool ?? true { didSet { persist(showEpisodeRating, forKey: "showEpisodeRating") } }
     var hideWatchedInCatalogs = UserDefaults.standard.object(forKey: "hideWatchedInCatalogs") as? Bool ?? false { didSet { persist(hideWatchedInCatalogs, forKey: "hideWatchedInCatalogs") } }
     var hideUnreleased = UserDefaults.standard.object(forKey: "hideUnreleased") as? Bool ?? false { didSet { persist(hideUnreleased, forKey: "hideUnreleased") } }
+    /// Desktop's `homeShowAllAddonRows`: Home keeps addon rows that repeat a built-in row instead of merging them.
+    var homeShowAllAddonRows = UserDefaults.standard.object(forKey: "homeShowAllAddonRows") as? Bool ?? false { didSet { persist(homeShowAllAddonRows, forKey: "homeShowAllAddonRows") } }
+    /// Desktop's `catalogsPinned` and `catalogsHidden`: catalog keys pinned to the top of the Catalogs screen (in order) and catalogs hidden from it.
+    var catalogsPinned = UserDefaults.standard.stringArray(forKey: "catalogsPinned") ?? [] { didSet { persist(catalogsPinned, forKey: "catalogsPinned") } }
+    var catalogsHidden = UserDefaults.standard.stringArray(forKey: "catalogsHidden") ?? [] { didSet { persist(catalogsHidden, forKey: "catalogsHidden") } }
     /// Desktop's `homeLanguages`: Home rows keep titles whose original language is in this list. Empty shows every language.
     var homeLanguages = UserDefaults.standard.stringArray(forKey: "homeLanguages") ?? [] { didSet { persist(homeLanguages, forKey: "homeLanguages") } }
     /// Desktop's `animeOnlyInAnimeRoom`: Home's Continue Watching leaves out anime, which the Anime page still shows.
@@ -71,6 +76,9 @@ final class InterfacePreferences {
         showEpisodeRating = UserDefaults.standard.object(forKey: "showEpisodeRating") as? Bool ?? true
         hideWatchedInCatalogs = UserDefaults.standard.object(forKey: "hideWatchedInCatalogs") as? Bool ?? false
         hideUnreleased = UserDefaults.standard.object(forKey: "hideUnreleased") as? Bool ?? false
+        homeShowAllAddonRows = UserDefaults.standard.object(forKey: "homeShowAllAddonRows") as? Bool ?? false
+        catalogsPinned = UserDefaults.standard.stringArray(forKey: "catalogsPinned") ?? []
+        catalogsHidden = UserDefaults.standard.stringArray(forKey: "catalogsHidden") ?? []
         homeLanguages = UserDefaults.standard.stringArray(forKey: "homeLanguages") ?? []
         animeOnlyInAnimeRoom = UserDefaults.standard.object(forKey: "animeOnlyInAnimeRoom") as? Bool ?? true
         libraryBookmarkedOnly = UserDefaults.standard.object(forKey: "libraryBookmarkedOnly") as? Bool ?? true

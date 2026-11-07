@@ -5,6 +5,7 @@ struct CatalogsView: View {
     @State private var kind = "all"
     @State private var query = ""
     @State private var addon = ""
+    @State private var managing = false
     @State private var customization: PageCustomization
     @MainActor init(app: AppModel) {
         self.app = app
@@ -15,6 +16,37 @@ struct CatalogsView: View {
             (kind == "all" || row.plan.kind == kind) && (addon.isEmpty || row.plan.addon.id == addon) &&
                 (query.isEmpty || (row.plan.title + " " + row.plan.addon.name).localizedCaseInsensitiveContains(query))
         }
+    }
+    /// Desktop's pinned and hidden catalogs, applied to the rows the filters left (`use-catalog-list.ts`).
+    private var sections: HomeCatalogFilter.CatalogSections {
+        HomeCatalogFilter.catalogSections(rows, pinned: InterfacePreferences.shared.catalogsPinned, hidden: InterfacePreferences.shared.catalogsHidden)
+    }
+    private var customizeBar: some View {
+        HStack {
+            Spacer(minLength: 0)
+            Button { managing.toggle() } label: {
+                Text(DesktopInterfaceText.value(managing ? "Done" : "Customize")).font(.caption.weight(.semibold)).padding(.horizontal, 14).frame(height: 38)
+                    .foregroundStyle(managing ? HarborTheme.accent : HarborTheme.ink)
+                    .background(HarborTheme.surface, in: .capsule)
+            }.buttonStyle(.plain).accessibilityIdentifier("catalogs-customize")
+        }.padding(.horizontal)
+    }
+    @ViewBuilder private var pinnedSection: some View {
+        if !sections.pinned.isEmpty {
+            VStack(alignment: .leading, spacing: 18) {
+                HStack(spacing: 9) {
+                    Image(systemName: "pin.fill").foregroundStyle(HarborTheme.accent)
+                    Text(DesktopInterfaceText.value("Pinned")).font(.subheadline.weight(.semibold))
+                    Text("\(sections.pinned.count)").font(.caption2).foregroundStyle(.secondary)
+                }.padding(.horizontal)
+                CustomizedRails(rails: sections.pinned.map(PageRail.catalog), app: app, customization: customization)
+            }
+        }
+    }
+    @ViewBuilder private var emptyContent: some View {
+        if app.rows.isEmpty { HarborCatalogEmptyView(app: app).padding(.horizontal) }
+        else if rows.isEmpty { HarborNoMatchesView().padding(.horizontal) }
+        else { CatalogAllHiddenView(count: rows.count) { managing = true }.padding(.horizontal) }
     }
     private var providers: [Addon] {
         var seen = Set<String>()
@@ -37,26 +69,114 @@ struct CatalogsView: View {
                         } label: { Label(providers.first { $0.id == addon }?.name ?? "Todos los addons", image: "nav-addons").font(.caption).padding(.horizontal, 14).frame(height: 38).background(HarborTheme.surface, in: .capsule) }
                     }.padding(.horizontal)
                 }.scrollIndicators(.hidden)
+                customizeBar
                 PageCustomizeButton(rails: app.rows.map(PageRail.catalog), customization: customization)
-                ForEach(providers.filter { provider in rows.contains { $0.plan.addon.id == provider.id } }) { provider in
-                    VStack(alignment: .leading, spacing: 18) {
-                        HStack(spacing: 9) {
-                            Artwork(url: provider.manifest["logo"].string, maxPixels: 96, failureIcon: "nav-addons").frame(width: 24, height: 24).clipShape(.rect(cornerRadius: 6))
-                            Text(provider.name).font(.subheadline.weight(.semibold))
-                            Text("\(rows.filter { $0.plan.addon.id == provider.id }.count)").font(.caption2).foregroundStyle(.secondary)
-                        }.padding(.horizontal)
-                        CustomizedRails(rails: rows.filter { $0.plan.addon.id == provider.id }.map(PageRail.catalog), app: app, customization: customization)
+                if managing {
+                    CatalogManageList(rows: rows)
+                } else {
+                    pinnedSection
+                    ForEach(providers.filter { provider in sections.rest.contains { $0.plan.addon.id == provider.id } }) { provider in
+                        VStack(alignment: .leading, spacing: 18) {
+                            HStack(spacing: 9) {
+                                Artwork(url: provider.manifest["logo"].string, maxPixels: 96, failureIcon: "nav-addons").frame(width: 24, height: 24).clipShape(.rect(cornerRadius: 6))
+                                Text(provider.name).font(.subheadline.weight(.semibold))
+                                Text("\(sections.rest.filter { $0.plan.addon.id == provider.id }.count)").font(.caption2).foregroundStyle(.secondary)
+                            }.padding(.horizontal)
+                            CustomizedRails(rails: sections.rest.filter { $0.plan.addon.id == provider.id }.map(PageRail.catalog), app: app, customization: customization)
+                        }
                     }
-                }
-                if !app.loading && rows.isEmpty {
-                    if app.rows.isEmpty { HarborCatalogEmptyView(app: app).padding(.horizontal) }
-                    else { HarborNoMatchesView().padding(.horizontal) }
+                    if !app.loading && sections.pinned.isEmpty && sections.rest.isEmpty { emptyContent }
                 }
             }.padding(.vertical, 20)
         }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .safeAreaInset(edge: .bottom) { PageEditingFooter(customization: customization) }
             .overlay { if app.loading && app.rows.isEmpty { ProgressView() } }
             .refreshable { await app.loadHome() }
+    }
+}
+
+/// Desktop's Customize list (`catalogs/catalog-manage-list.tsx`): pin, hide and reorder the catalogs on this screen.
+private struct CatalogManageList: View {
+    let rows: [CatalogRow]
+    private var pinnedKeys: [String] { InterfacePreferences.shared.catalogsPinned }
+    private var pinnedRows: [CatalogRow] { HomeCatalogFilter.catalogSections(rows, pinned: pinnedKeys, hidden: []).pinned }
+    private var unpinned: [CatalogRow] { rows.filter { (row: CatalogRow) -> Bool in !pinnedKeys.contains(HomeCatalogFilter.catalogKey(row)) } }
+    private var addons: [Addon] {
+        var seen = Set<String>()
+        return unpinned.map { $0.plan.addon }.filter { seen.insert($0.id).inserted }
+    }
+    var body: some View {
+        VStack(alignment: .leading, spacing: 22) {
+            Text(DesktopInterfaceText.value("Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly."))
+                .font(.caption).foregroundStyle(.secondary).padding(.horizontal)
+            if !pinnedRows.isEmpty {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(DesktopInterfaceText.value("Pinned to top")).font(.subheadline.weight(.semibold))
+                    ForEach(pinnedRows) { row in CatalogManageRow(row: row, pinnedOrder: pinnedKeys) }
+                }.padding(.horizontal)
+            }
+            ForEach(addons) { addon in
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(addon.name).font(.subheadline.weight(.semibold))
+                    ForEach(unpinned.filter { $0.plan.addon.id == addon.id }) { row in CatalogManageRow(row: row, pinnedOrder: pinnedKeys) }
+                }.padding(.horizontal)
+            }
+        }
+    }
+}
+
+private struct CatalogManageRow: View {
+    let row: CatalogRow
+    let pinnedOrder: [String]
+    var body: some View {
+        let key = HomeCatalogFilter.catalogKey(row)
+        let index = pinnedOrder.firstIndex(of: key)
+        let isHidden = InterfacePreferences.shared.catalogsHidden.contains(key)
+        HStack(spacing: 4) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(row.plan.title).font(.subheadline.weight(.medium)).lineLimit(1)
+                Text(row.plan.addon.name).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+            }.frame(maxWidth: .infinity, alignment: .leading)
+            if let index {
+                iconButton("chevron.up", label: DesktopInterfaceText.value("Move up"), enabled: index > 0) { move(key, by: -1) }
+                iconButton("chevron.down", label: DesktopInterfaceText.value("Move down"), enabled: index < pinnedOrder.count - 1) { move(key, by: 1) }
+            }
+            iconButton(isHidden ? "eye.slash" : "eye", label: isHidden ? DesktopInterfaceText.value("Show this catalog") : DesktopInterfaceText.value("Hide this catalog")) { toggleHidden(key) }
+            iconButton(index == nil ? "pin" : "pin.slash", label: index == nil ? DesktopInterfaceText.value("Pin to top") : DesktopInterfaceText.value("Unpin")) { togglePin(key) }
+        }
+        .padding(.horizontal, 10).padding(.vertical, 4)
+        .background(HarborTheme.surface, in: .rect(cornerRadius: 12))
+        .opacity(isHidden ? 0.45 : 1)
+    }
+    private func iconButton(_ symbol: String, label: String, enabled: Bool = true, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image(systemName: symbol).frame(width: 40, height: 44).contentShape(Rectangle())
+        }.buttonStyle(.plain).disabled(!enabled).opacity(enabled ? 1 : 0.3).accessibilityLabel(label)
+    }
+    private func move(_ key: String, by offset: Int) {
+        InterfacePreferences.shared.catalogsPinned = HomeCatalogFilter.movingPin(InterfacePreferences.shared.catalogsPinned, key, by: offset)
+    }
+    private func togglePin(_ key: String) {
+        InterfacePreferences.shared.catalogsPinned = HomeCatalogFilter.toggled(InterfacePreferences.shared.catalogsPinned, key)
+    }
+    private func toggleHidden(_ key: String) {
+        InterfacePreferences.shared.catalogsHidden = HomeCatalogFilter.toggled(InterfacePreferences.shared.catalogsHidden, key)
+    }
+}
+
+/// Desktop's `AllHidden` notice (`catalogs.tsx`): every catalog that matched is hidden.
+private struct CatalogAllHiddenView: View {
+    let count: Int
+    let onCustomize: () -> Void
+    var body: some View {
+        VStack(spacing: 14) {
+            Text(count == 1 ? DesktopInterfaceText.value("You've hidden the one catalog that matched.") : DesktopInterfaceText.value("You've hidden every catalog that matched."))
+                .font(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)
+            Button(action: onCustomize) {
+                Text(DesktopInterfaceText.value("Customize")).font(.subheadline.weight(.semibold)).padding(.horizontal, 18).frame(height: 40)
+                    .background(HarborTheme.surface, in: .capsule)
+            }.buttonStyle(.plain)
+        }.frame(maxWidth: .infinity).padding(.vertical, 40)
     }
 }
 

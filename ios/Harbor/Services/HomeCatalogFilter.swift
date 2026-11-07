@@ -119,6 +119,60 @@ enum HomeCatalogFilter {
         return result
     }
 
+    /// Desktop's `homeShowAllAddonRows` on Home (`home-rows.ts` `mergeRows`): an addon row whose name repeats a built-in row
+    /// or an earlier addon row is merged away, unless the setting shows every row. `key` is the row's name key.
+    static func uniqueAddonRows<Row>(_ rows: [Row], takenKeys: Set<String>, key: (Row) -> String, showAll: Bool) -> [Row] {
+        if showAll { return rows }
+        var seen = takenKeys
+        return rows.filter { (row: Row) -> Bool in seen.insert(key(row)).inserted }
+    }
+
+    /// Desktop's `catalogsPinned` / `catalogsHidden` key for one catalog: `<manifest id>-<type>-<catalog id>` (`catalog-browse.ts`).
+    static func catalogKey(_ row: CatalogRow) -> String {
+        let addonID = row.plan.addon.manifest["id"].string ?? row.plan.addon.id
+        let type = row.plan.catalog?.type ?? row.plan.kind
+        return addonID + "-" + type + "-" + (row.plan.catalog?.id ?? row.plan.key)
+    }
+
+    struct CatalogSections {
+        /// Pinned catalogs in pinned order. Hidden does not remove a pinned catalog (`use-catalog-list.ts` `pinnedCats`).
+        var pinned: [CatalogRow]
+        /// Catalogs that are neither pinned nor hidden, in their original order.
+        var rest: [CatalogRow]
+    }
+
+    static func catalogSections(_ rows: [CatalogRow], pinned: [String], hidden: [String]) -> CatalogSections {
+        var byKey: [String: CatalogRow] = [:]
+        for row in rows where byKey[catalogKey(row)] == nil { byKey[catalogKey(row)] = row }
+        let pinnedKeys = Set(pinned)
+        let hiddenKeys = Set(hidden)
+        let pinnedRows = pinned.compactMap { (key: String) -> CatalogRow? in byKey[key] }
+        let rest = rows.filter { (row: CatalogRow) -> Bool in
+            let key = catalogKey(row)
+            return !pinnedKeys.contains(key) && !hiddenKeys.contains(key)
+        }
+        return CatalogSections(pinned: pinnedRows, rest: rest)
+    }
+
+    /// Desktop's `hiddenCount` in `catalogs.tsx`: counts hidden catalogs among all of them, not only the search results.
+    static func hiddenCount(_ rows: [CatalogRow], hidden: [String]) -> Int {
+        let hiddenKeys = Set(hidden)
+        return rows.filter { (row: CatalogRow) -> Bool in hiddenKeys.contains(catalogKey(row)) }.count
+    }
+
+    /// Desktop's pin and hide buttons (`catalogs.tsx`): remove the key when present, otherwise append it.
+    static func toggled(_ keys: [String], _ key: String) -> [String] {
+        keys.contains(key) ? keys.filter { (item: String) -> Bool in item != key } : keys + [key]
+    }
+
+    /// Desktop's `movePin`: swap with the neighbour in the given direction, and do nothing past either end.
+    static func movingPin(_ keys: [String], _ key: String, by offset: Int) -> [String] {
+        guard let index = keys.firstIndex(of: key), keys.indices.contains(index + offset) else { return keys }
+        var result = keys
+        result.swapAt(index, index + offset)
+        return result
+    }
+
     private static func releaseDate(_ text: String) -> Date? {
         let withFraction: ISO8601DateFormatter = { () -> ISO8601DateFormatter in
             let formatter = ISO8601DateFormatter()

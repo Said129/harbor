@@ -172,4 +172,18 @@ final class HomeCatalogFilterTests: XCTestCase {
         let unfiltered = HomeCatalogFilter.continueWatching(records, animeOnlyInAnimeRoom: false, detectedAnime: ["tt2"])
         XCTAssertEqual(unfiltered.map(\.id), ["kitsu:1", "tt1", "tt2"])
     }
+
+    func testAddonRowsRepeatingABuiltInRowAreMergedUnlessShowAll() {
+        let addonRows = ["Trending|movie", "Mine|movie", "Trending|movie"]
+        let merged = HomeCatalogFilter.uniqueAddonRows(addonRows, takenKeys: ["Trending|movie"], key: { (row: String) -> String in row }, showAll: false)
+        XCTAssertEqual(merged, ["Mine|movie"])
+        let all = HomeCatalogFilter.uniqueAddonRows(addonRows, takenKeys: ["Trending|movie"], key: { (row: String) -> String in row }, showAll: true)
+        XCTAssertEqual(all, addonRows)
+    }
+
+    func testAddonRowsAreDeduplicatedAgainstEachOther() {
+        let rows = ["Popular|series", "Popular|series", "Other|series"]
+        let result = HomeCatalogFilter.uniqueAddonRows(rows, takenKeys: [], key: { (row: String) -> String in row }, showAll: false)
+        XCTAssertEqual(result, ["Popular|series", "Other|series"])
+    }
 }

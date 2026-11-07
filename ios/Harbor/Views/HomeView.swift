@@ -25,9 +25,12 @@ struct HomeView: View {
         let lists = CustomListHomeRows.selected(model.customLists.lists, ids: customization.listRowIDs).map(PageRail.list)
         guard !classic else { return sources + lists + catalogs }
         let built = (model.home.rows + model.home.animeRows).filter { !$0.metas.isEmpty }.map(PageRail.discovery)
-        var names = Set(built.map { $0.kind + "|" + $0.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() })
-        return sources + lists + trakt.rows.map(PageRail.discovery) + built + catalogs.filter { names.insert($0.kind + "|" + $0.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()).inserted }
+        let takenNames = Set(built.map(HomeView.rowNameKey))
+        let addonRails = HomeCatalogFilter.uniqueAddonRows(catalogs, takenKeys: takenNames, key: HomeView.rowNameKey, showAll: InterfacePreferences.shared.homeShowAllAddonRows)
+        return sources + lists + trakt.rows.map(PageRail.discovery) + built + addonRails
     }
+    /// Desktop's duplicate test for addon rows: same kind and same trimmed, lowercased title.
+    static func rowNameKey(_ rail: PageRail) -> String { rail.kind + "|" + rail.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() }
     private var heroes: [Media] {
         if !classic && !model.home.heroes.isEmpty { return model.home.heroes }
         return model.heroes.isEmpty ? Array(model.rows.first(where: { !$0.metas.isEmpty })?.metas.prefix(5) ?? []) : model.heroes
