@@ -1,7 +1,8 @@
 import SwiftUI
 
-/// Desktop's "Desktop notifications" and the "What to send" and "Media types" options of the webhooks panel
+/// Desktop's desktop-notification toggle and the "What to send" and "Media types" options of the webhooks panel
 /// (`desktop-field.tsx`, `webhooks-panel.tsx`). The alerts are local notifications for releases that are about to land.
+/// The title is new: "Desktop notifications" reads oddly on iPhone, so the row and page use "Release notifications".
 struct EpisodeAlertsSettingsView: View {
     let app: AppModel
     @Bindable private var preferences = EpisodeAlertPreferences.shared
@@ -19,8 +20,8 @@ struct EpisodeAlertsSettingsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 28) {
-                HarborSettingsSection("Desktop notifications") {
-                    HarborSettingsToggle("Desktop notifications", note: "Get a system notification on this device when something you follow drops.",
+                HarborSettingsSection("Release notifications") {
+                    HarborSettingsToggle("Release notifications", note: "Get a system notification on this device when something you follow drops.",
                                          isOn: enabledBinding)
                         .accessibilityIdentifier("episode-alerts-enabled")
                     if blocked {
@@ -45,7 +46,7 @@ struct EpisodeAlertsSettingsView: View {
                 }
             }.padding(20)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
-            .navigationTitle(text("Desktop notifications")).navigationBarTitleDisplayMode(.inline)
+            .navigationTitle(text("Release notifications")).navigationBarTitleDisplayMode(.inline)
             .accessibilityIdentifier("episode-alerts-scroll")
             .task { await updateBlocked() }
             .onChange(of: preferences.settings) { _, _ in reschedule() }

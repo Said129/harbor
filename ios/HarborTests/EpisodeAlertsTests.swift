@@ -1,7 +1,7 @@
 import XCTest
 @testable import Harbor
 
-/// Desktop's library release alerts (`webhook-engine.ts`, `calendar.ts` `fireWebhook`): the dedupe key, the two-day window,
+/// Desktop's library release alerts (`webhook-engine.ts`, `calendar.ts` `fireWebhook`): the dedupe key, the fourteen-day window,
 /// the lead time, the text, and the scheduler that owns only its own pending requests.
 @MainActor
 final class EpisodeAlertsTests: XCTestCase {
@@ -66,10 +66,38 @@ final class EpisodeAlertsTests: XCTestCase {
         XCTAssertTrue(planned.isEmpty)
     }
 
-    func testReleasesOutsideTheTwoDayWindowAreNotScheduled() {
-        let later = now.addingTimeInterval(3 * 86_400)
+    func testReleasesOutsideTheFourteenDayWindowAreNotScheduled() {
+        let later = now.addingTimeInterval(15 * 86_400)
         let planned = EpisodeAlertPlanner.plan([episode(later)], settings: settings(), now: now, calendar: utcCalendar)
         XCTAssertTrue(planned.isEmpty)
+        let inside = EpisodeAlertPlanner.plan([episode(now.addingTimeInterval(10 * 86_400))], settings: settings(), now: now, calendar: utcCalendar)
+        XCTAssertEqual(inside.count, 1)
+    }
+
+    func testAlreadyAlertedIdentifiersAreNotPlannedAgain() {
+        let release = now.addingTimeInterval(3 * 3600)
+        let planned = EpisodeAlertPlanner.plan([episode(release)], settings: settings(lead: 0), now: now, calendar: utcCalendar,
+                                               alreadyAlerted: ["library:desktop:tt0000001:1:2"])
+        XCTAssertTrue(planned.isEmpty)
+    }
+
+    func testLibraryAnimationGenreCountsAsAnime() {
+        var media = Media(id: "tt0000042", type: "series", name: "Cartoon")
+        media.genres = ["Animation", "Comedy"]
+        let release = ReleaseEvent(media: media, episode: Episode(id: "e1", season: 1, episode: 2), date: now.addingTimeInterval(3600))
+        let alert = EpisodeAlertRefresh.alertEvent(release, calendar: utcCalendar)
+        XCTAssertEqual(alert?.kind, .anime)
+        XCTAssertEqual(alert?.id, "tt0000042:1:2")
+    }
+
+    func testDateOnlyLibraryReleaseKeepsItsDay() {
+        var media = Media(id: "tt0000043", type: "series", name: "Show")
+        media.genres = ["Drama"]
+        let release = ReleaseEvent(media: media, episode: Episode(id: "e2", season: 2, episode: 4, released: "2026-11-20"), date: now)
+        let alert = EpisodeAlertRefresh.alertEvent(release, calendar: utcCalendar)
+        XCTAssertEqual(alert?.kind, .series)
+        XCTAssertEqual(alert?.hasTime, false)
+        XCTAssertEqual(alert?.date, CalendarTime.startOfDay("2026-11-20", calendar: utcCalendar))
     }
 
     func testKindSwitchesLeaveOutTheirReleases() {
@@ -140,10 +168,12 @@ private final class FakeEpisodeAlertCenter: EpisodeAlertNotificationCenter {
     var pending: [String] = []
     var added: [PlannedEpisodeAlert] = []
     var removed: [String] = []
+    var delivered: [String] = []
 
     func isAuthorized() async -> Bool { authorized }
     func requestAuthorization() async -> Bool { granted }
     func pendingIdentifiers() async -> [String] { pending }
+    func deliveredIdentifiers() async -> [String] { delivered }
     func add(_ alert: PlannedEpisodeAlert) async throws { added.append(alert) }
     func remove(identifiers: [String]) {
         removed += identifiers

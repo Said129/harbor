@@ -45,8 +45,9 @@ struct PlannedEpisodeAlert: Equatable, Sendable {
 enum EpisodeAlertPlanner {
     /// Desktop's key prefix for the library source, `${source}:${kind}:${item.id}` with kind "desktop".
     static let identifierPrefix = "library:desktop:"
-    /// Desktop's `WINDOW_DAYS_FIRE`: a release alerts while its day is today or one of the next two days.
-    static let windowDays = 2
+    /// Desktop's `WINDOW_DAYS_TRACK` (`webhook-engine.ts`): releases up to 14 days ahead. Desktop's fire window is two days,
+    /// but Desktop polls while open and this app schedules ahead, so the horizon is the tracking window. The 60 cap bounds it.
+    static let windowDays = 14
     /// Desktop's live-TV `leadMinutes` default (`webhook-engine.ts`). Desktop itself has no lead time for episodes.
     static let defaultLeadMinutes = 15
     static let leadOptions = [0, 15, 30, 60]
@@ -56,7 +57,9 @@ enum EpisodeAlertPlanner {
     static let maxPending = 60
 
     /// The alerts for `events` that are due after `now`, earliest first, at most `maxPending`.
-    static func plan(_ events: [EpisodeAlertEvent], settings: EpisodeAlertSettings, now: Date, calendar: Calendar = .current) -> [PlannedEpisodeAlert] {
+    /// `alreadyAlerted` holds identifiers already delivered; Desktop alerts about an item once, so they are not planned again.
+    static func plan(_ events: [EpisodeAlertEvent], settings: EpisodeAlertSettings, now: Date, calendar: Calendar = .current,
+                     alreadyAlerted: Set<String> = []) -> [PlannedEpisodeAlert] {
         guard settings.enabled else { return [] }
         let today = calendar.startOfDay(for: now)
         guard let lastDay = calendar.date(byAdding: .day, value: windowDays, to: today) else { return [] }
@@ -67,7 +70,7 @@ enum EpisodeAlertPlanner {
             guard day >= today, day <= lastDay else { continue }
             guard let fire = fireDate(for: event, leadMinutes: settings.leadMinutes, calendar: calendar), fire > now else { continue }
             let identifier = identifierPrefix + event.id
-            guard seen.insert(identifier).inserted else { continue }
+            guard !alreadyAlerted.contains(identifier), seen.insert(identifier).inserted else { continue }
             planned.append(PlannedEpisodeAlert(identifier: identifier, fireDate: fire, title: headline(event), body: body(event, calendar: calendar)))
         }
         planned.sort(by: isEarlier)
@@ -137,6 +140,7 @@ protocol EpisodeAlertNotificationCenter: AnyObject {
     func isAuthorized() async -> Bool
     func requestAuthorization() async -> Bool
     func pendingIdentifiers() async -> [String]
+    func deliveredIdentifiers() async -> [String]
     func add(_ alert: PlannedEpisodeAlert) async throws
     func remove(identifiers: [String])
 }
@@ -152,6 +156,12 @@ final class EpisodeAlertScheduler {
 
     func authorized() async -> Bool { await center.isAuthorized() }
     func requestAuthorization() async -> Bool { await center.requestAuthorization() }
+
+    /// Identifiers of this feature's alerts already delivered, so a later plan does not repeat them.
+    func alertedIdentifiers() async -> Set<String> {
+        let delivered = await center.deliveredIdentifiers().filter { $0.hasPrefix(EpisodeAlertPlanner.identifierPrefix) }
+        return Set(delivered)
+    }
 
     /// Removes the pending alerts this feature owns, then adds `alerts`.
     func replace(with alerts: [PlannedEpisodeAlert]) async throws {
@@ -200,6 +210,14 @@ final class SystemEpisodeAlertCenter: EpisodeAlertNotificationCenter {
         }
     }
 
+    func deliveredIdentifiers() async -> [String] {
+        await withCheckedContinuation { continuation in
+            center.getDeliveredNotifications { notifications in
+                continuation.resume(returning: notifications.map { $0.request.identifier })
+            }
+        }
+    }
+
     func add(_ alert: PlannedEpisodeAlert) async throws {
         let content = UNMutableNotificationContent()
         content.title = alert.title
@@ -228,22 +246,39 @@ enum EpisodeAlertRefresh {
     /// Desktop's `TICK_INTERVAL_MS` (`webhook-loop-mount.tsx`): a background check runs at most every 30 minutes unless forced.
     static let minimumInterval: TimeInterval = 30 * 60
     private static var lastRun: Date?
+    /// The account, profile and library size of the last run. A change (a profile switch, the library arriving) runs at once.
+    private static var lastSignature: String?
     /// One calendar model for the whole app run, so its title metadata cache survives between refreshes.
     private static let model = CalendarModel()
 
     static func refresh(app: AppModel, force: Bool = false, now: Date = Date()) async {
-        if !force, let lastRun, now.timeIntervalSince(lastRun) < minimumInterval { return }
         guard app.storageReady else { return }
-        lastRun = now
+        let signature = app.accountOperationScope + "|" + String(app.library.items.count)
+        if !force, signature == lastSignature, let lastRun, now.timeIntervalSince(lastRun) < minimumInterval { return }
+        // Another profile may have changed the saved values since the last run.
+        EpisodeAlertPreferences.shared.reloadPreferences()
         let settings = EpisodeAlertPreferences.shared.settings
         let scheduler = EpisodeAlertScheduler()
         let allowed = await scheduler.authorized()
+        lastRun = now
+        lastSignature = signature
         guard settings.enabled, allowed else {
             await scheduler.removeAll()
             return
         }
-        let events = settings.library ? await libraryEvents(app: app, now: now) : []
-        let planned = EpisodeAlertPlanner.plan(events, settings: settings, now: now)
+        // A library still loading, or a load cut short, must not wipe the alerts that are already pending.
+        guard !app.library.loading, !app.library.items.isEmpty else {
+            lastRun = nil
+            return
+        }
+        var found: [EpisodeAlertEvent]? = []
+        if settings.library { found = await libraryEvents(app: app, now: now) }
+        guard let events = found else {
+            lastRun = nil
+            return
+        }
+        let alerted = await scheduler.alertedIdentifiers()
+        let planned = EpisodeAlertPlanner.plan(events, settings: settings, now: now, alreadyAlerted: alerted)
         do {
             try await scheduler.replace(with: planned)
         } catch {
@@ -251,8 +286,9 @@ enum EpisodeAlertRefresh {
         }
     }
 
-    /// This month, and the next one when the two-day window crosses into it. Reuses the calendar's library path.
-    private static func libraryEvents(app: AppModel, now: Date) async -> [EpisodeAlertEvent] {
+    /// This month, and the next one when the window crosses into it. Reuses the calendar's library path.
+    /// The library's releases in the window, or nil when a month did not load or the task was cancelled (a partial list).
+    private static func libraryEvents(app: AppModel, now: Date) async -> [EpisodeAlertEvent]? {
         let calendar = Calendar.current
         let windowEnd = calendar.date(byAdding: .day, value: EpisodeAlertPlanner.windowDays, to: now) ?? now
         var months = [now]
@@ -260,6 +296,7 @@ enum EpisodeAlertRefresh {
         var releases: [ReleaseEvent] = []
         for month in months {
             await model.load(month: month, app: app)
+            guard model.error == nil, !Task.isCancelled else { return nil }
             releases += model.events
         }
         var seen = Set<String>()
@@ -267,11 +304,14 @@ enum EpisodeAlertRefresh {
     }
 
     /// The alert view of a library release. Date-only values keep their day; timed values keep their instant.
+    /// Desktop marks a title as anime from its animation genre (`calendar-library.ts`, `isAnimationGenre`).
     static func alertEvent(_ release: ReleaseEvent, calendar: Calendar) -> EpisodeAlertEvent? {
         let episode = release.episode
         let season = episode?.season
         let number = episode?.episode
-        let kind: EpisodeAlertKind = release.kind == "anime" ? .anime : (release.kind == "movie" ? .movie : .series)
+        let genres = release.media.genres ?? []
+        let animation = genres.contains { ["animation", "anime"].contains($0.lowercased()) }
+        let kind: EpisodeAlertKind = (release.kind == "anime" || animation) ? .anime : (release.kind == "movie" ? .movie : .series)
         var id = release.media.id
         if let season, let number { id += ":\(season):\(number)" }
         let raw = episode?.released ?? release.media.released ?? ""
