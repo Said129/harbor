@@ -228,6 +228,7 @@ targets:
       - path: HarborTests/TVMazeTests.swift
       - path: HarborTests/LibraryRepairTests.swift
       - path: HarborTests/HeroLayoutPolicyTests.swift
+      - path: HarborTests/LiveReconnectTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift
