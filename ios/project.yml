@@ -187,6 +187,7 @@ targets:
       - path: HarborTests/CalendarSourcesTests.swift
       - path: HarborTests/EpisodeRatingsTests.swift
       - path: HarborTests/PlayerControlSettingsTests.swift
+      - path: HarborTests/HomeCatalogFilterTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift

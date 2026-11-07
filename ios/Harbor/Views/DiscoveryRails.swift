@@ -6,8 +6,13 @@ struct DiscoveryRails: View {
     var titleOverrides: [String: String] = [:]
     var disableDefaultRanking = false
     var body: some View {
+        let preferences = InterfacePreferences.shared
+        let hideWatched = preferences.hideWatchedInCatalogs
+        let hideUnreleased = preferences.hideUnreleased
+        let watched = hideWatched ? HomeCatalogFilter.Watched(records: app.library.items) : HomeCatalogFilter.Watched()
+        let visibleRows = HomeCatalogFilter.apply(rows, hideWatched: hideWatched, hideUnreleased: hideUnreleased, watched: watched)
         LazyVStack(alignment: .leading, spacing: 24) {
-            ForEach(rows.filter { $0.personal?.available() != false }) { row in
+            ForEach(visibleRows.filter { $0.personal?.available() != false }) { row in
                 VStack(alignment: .leading, spacing: 12) {
                     HStack { Text(titleOverrides[row.id] ?? row.title).font(HarborTheme.font(18, weight: .semibold)).accessibilityIdentifier("rail-" + row.id); Spacer(); NavigationLink(DesktopInterfaceText.value("View all")) { DiscoveryGrid(rail: row, app: app, titleOverride: titleOverrides[row.id]) }.font(HarborTheme.font(12)).foregroundStyle(.secondary).accessibilityIdentifier("discovery-browse-" + row.id) }.padding(.horizontal)
                     if row.id.hasSuffix("-top10") && !disableDefaultRanking { TopTenRail(metas: row.metas) }
