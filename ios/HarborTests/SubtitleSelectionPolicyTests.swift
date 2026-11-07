@@ -144,7 +144,7 @@ final class SubtitleSelectionPolicyTests: XCTestCase {
         XCTAssertNil(Policy.trackToAutoSelect(among: tracks, context: context(.automatic, autoUpgrade: false)))
         XCTAssertEqual(Policy.trackToAutoSelect(among: tracks, context: context(.automatic, autoUpgrade: true))?.id, 2)
         // With the embedded preference on, the embedded track stays the desired one, so the external track does not replace it.
-        XCTAssertEqual(Policy.trackToAutoSelect(among: tracks, context: context(.automatic, autoUpgrade: true, preferEmbedded: true))?.id, 1)
+        XCTAssertEqual(Policy.trackToAutoSelect(among: tracks, context: context(.automatic, preferEmbedded: true, autoUpgrade: true))?.id, 1)
     }
 
     func testManualChoiceIsNeverReplaced() {
@@ -186,7 +186,7 @@ final class SubtitleSelectionPolicyTests: XCTestCase {
             Policy.preselectApplies(enabled: enabled, isDownload: isDownload, inSession: inSession, autoFired: autoFired, isLive: isLive, metaID: metaID, mediaType: mediaType)
         }
         XCTAssertTrue(applies())
-        XCTAssertTrue(applies(mediaType: "anime", metaID: "kitsu:1"))
+        XCTAssertTrue(applies(metaID: "kitsu:1", mediaType: "anime"))
         XCTAssertTrue(applies(mediaType: "series"))
         XCTAssertFalse(applies(enabled: false))
         XCTAssertFalse(applies(isDownload: true))

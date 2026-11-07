@@ -8,8 +8,8 @@ struct SubtitleSelectionSettingsView: View {
 
     /// Desktop shows the normalise toggle only when the ASS override is "no" or "scale" (`subtitle-section.tsx:388`).
     private var normalizeAvailable: Bool {
-        let override = PlaybackPreferences.shared.options.subtitleASS
-        return override == "no" || override == "scale"
+        let assOverride = PlaybackPreferences.shared.options.subtitleASS
+        return assOverride == "no" || assOverride == "scale"
     }
 
     /// Desktop shows the second line size only when a second subtitle language is set (`dual-subtitle-section.tsx:72`).
