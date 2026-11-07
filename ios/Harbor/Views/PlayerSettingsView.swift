@@ -200,6 +200,11 @@ struct PlayerSettingsView: View {
                 if state.subtitleChanging { ProgressView(DesktopInterfaceText.value("Saving")) }
             }
         }
+        HarborSettingsSection(DesktopInterfaceText.value("Subtitle sources")) {
+            NavigationLink { SubtitleProvidersSettingsView(owner: MetadataPreferences.shared.settingsOwner ?? "guest").toolbar(.visible, for: .navigationBar) } label: {
+                SettingsRow(title: DesktopInterfaceText.value("Subtitle sources"), icon: "ui-customize-subtitles")
+            }.background(HarborTheme.surface.opacity(0.65), in: .rect(cornerRadius: 12)).accessibilityIdentifier("settings-subtitle-sources")
+        }
         HarborSettingsSection(DesktopInterfaceText.value("Subtitle languages"), note: DesktopInterfaceText.value("Harbor looks for subtitles in this order. Put your preferred language first.")) {
             HarborLanguagesPicker(value: $preferences.options.subtitleLanguage, identifier: "settings-subtitle-languages")
             HarborSettingsToggle(DesktopInterfaceText.value("Start with subtitles off"), isOn: $preferences.options.subtitlesOff)
