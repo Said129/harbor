@@ -16,7 +16,7 @@ struct RatingProvidersSettingsView: View {
             VStack(alignment: .leading, spacing: 28) {
                 HarborSettingsSection(text("Set up rating providers"),
                                       note: text("Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata.")) {
-                    ForEach(ProviderKeyStore.Provider.allCases, id: \.self) { provider in
+                    ForEach([ProviderKeyStore.Provider.omdb, .mdblist], id: \.self) { provider in
                         RatingProviderKeyField(store: store, provider: provider)
                     }
                     if loadFailed { Button(text("Retry")) { load() }.frame(minHeight: 44).accessibilityIdentifier("rating-keys-reload") }
