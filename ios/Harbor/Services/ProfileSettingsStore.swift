@@ -53,6 +53,8 @@ struct ContinueWatchingPreferences: Sendable {
         "rowCardStyle", "tvCardLogoPos", "posterScale", "posterRadius", "posterEffect", "posterQuality",
         "posterFocusedCard", "posterBackdropExpansion", "posterDockMagnification", "posterDockTransitionMs", "hidePosterTitles",
         "simklEnableUserRatings", "simklScrobbleEnabled", "cwSources",
+        "simklHomeRailsEnabled", "simklUpNextRailEnabled", "simklTrendingRailEnabled", "simklAnimeTitleLanguage",
+        "simklGranularFilters.movies.plantowatch", "simklGranularFilters.shows.watching", "simklGranularFilters.shows.plantowatch",
         "tmdbImageLangs", "harbor:title-logos", "harbor:title-posters", "harbor:title-backdrops",
         "showWatchedButton", "wrappedButton", "showEpisodeDescription", "showEpisodeRating", "episodeLayout", "episodeCardScale", "episodeArcGroups", "hideWatchedInCatalogs", "hideUnreleased", "homeShowAllAddonRows", "catalogsPinned", "catalogsHidden", "homeLanguages", "animeOnlyInAnimeRoom", "libraryBookmarkedOnly", "cwAdvanceNext", "cwHideCaughtUp", "cwPreferEpisodeStill", "animeCwEnd", "homeNewEpisodes", "episodeSort", "episodeHiding", "showTraktComments", "blurComments", "ratings.detailHidden", "hideSpoilers", "blurEpisodes", "spoilerHideTitles", "spoilerHideDescriptions",
         "iphone.theme.preset", "iphone.theme.custom", "iphone.theme.font", "iphone.theme.colors", "seekBarColor",
