@@ -191,6 +191,10 @@ targets:
       - path: HarborTests/LibraryWatchlistFilterTests.swift
       - path: HarborTests/ContinueWatchingSettingsTests.swift
       - path: HarborTests/DisplaySettingsTests.swift
+      - path: HarborTests/CatalogPinsTests.swift
+      - path: HarborTests/WatchStatisticsTests.swift
+      - path: HarborTests/AniListListsTests.swift
+      - path: HarborTests/ThemeLibraryTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift
