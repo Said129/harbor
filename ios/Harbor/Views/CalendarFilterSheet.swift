@@ -118,9 +118,10 @@ struct CalendarFilterSheet: View {
     }
 
     private func group<Content: View>(_ id: String, title: String, count: Int, clear: @escaping () -> Void, @ViewBuilder content: () -> Content) -> some View {
-        DisclosureGroup(isExpanded: binding(id)) {
+        let built = content()
+        return DisclosureGroup(isExpanded: binding(id)) {
             VStack(alignment: .leading, spacing: 12) {
-                content()
+                built
                 if count > 0 { Button(text("Clear"), action: clear).font(HarborTheme.font(13)).frame(minHeight: 44).accessibilityIdentifier("calendar-filter-clear-" + id) }
             }.padding(.top, 8)
         } label: {
