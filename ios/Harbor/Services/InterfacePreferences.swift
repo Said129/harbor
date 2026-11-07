@@ -38,6 +38,8 @@ final class InterfacePreferences {
     /// Desktop's `animeCwEnd` (default "hide"): what a finished series shows while its next episode has not aired. "timer" shows a countdown.
     var animeCwEnd = UserDefaults.standard.string(forKey: "animeCwEnd") == "timer" ? "timer" : "hide" { didSet { persist(animeCwEnd, forKey: "animeCwEnd") } }
     var caughtUpEnd: ContinueWatchingEnd { ContinueWatchingEnd(rawValue: animeCwEnd) ?? .hide }
+    /// Desktop's `homeNewEpisodes` (default off): a "New Episodes" row under Continue Watching for recently aired episodes.
+    var homeNewEpisodes = UserDefaults.standard.object(forKey: "homeNewEpisodes") as? Bool ?? false { didSet { persist(homeNewEpisodes, forKey: "homeNewEpisodes") } }
     /// Desktop's `episodeSort`: "oldest" lists a season from its first episode, "newest" from its last.
     var episodeSort = UserDefaults.standard.string(forKey: "episodeSort") == "newest" ? "newest" : "oldest" { didSet { persist(episodeSort, forKey: "episodeSort") } }
     /// Desktop's `episodeHiding`: adds Hide episode to the episode menu and skips hidden episodes in Up Next.
@@ -96,6 +98,7 @@ final class InterfacePreferences {
         cwHideCaughtUp = UserDefaults.standard.object(forKey: "cwHideCaughtUp") as? Bool ?? true
         cwPreferEpisodeStill = UserDefaults.standard.object(forKey: "cwPreferEpisodeStill") as? Bool ?? false
         animeCwEnd = UserDefaults.standard.string(forKey: "animeCwEnd") == "timer" ? "timer" : "hide"
+        homeNewEpisodes = UserDefaults.standard.object(forKey: "homeNewEpisodes") as? Bool ?? false
         episodeSort = UserDefaults.standard.string(forKey: "episodeSort") == "newest" ? "newest" : "oldest"
         episodeHiding = UserDefaults.standard.object(forKey: "episodeHiding") as? Bool ?? false
         showTraktComments = UserDefaults.standard.object(forKey: "showTraktComments") as? Bool ?? false

@@ -87,6 +87,14 @@ final class ContinueWatchingSettingsTests: XCTestCase {
         XCTAssertNil(hidden.airsAt)
     }
 
+    func testCaughtUpRulesDoNothingWhenAdvanceIsOff() throws {
+        let media = try caughtUpMedia(lastEpisode: 23)
+        let presentation = ContinueWatchingPresentation(record: record(offset: 1_390_000), media: media, watched: [], advanceNext: false)
+        XCTAssertFalse(presentation.hidden)
+        XCTAssertNil(presentation.airsAt)
+        XCTAssertEqual(presentation.episode?.id, "tt4644488:5:23")
+    }
+
     func testReleasedNextEpisodeIsNeverHiddenByCaughtUpRules() throws {
         let presentation = ContinueWatchingPresentation(record: record(offset: 1_390_000), media: try superMedia(), watched: [], hideCaughtUp: true, endMode: .hide)
         XCTAssertTrue(presentation.upNext)

@@ -120,6 +120,12 @@ struct ContinueSourceControls: View {
 struct ContinueEndingControls: View {
     @Bindable var preferences = InterfacePreferences.shared
     var body: some View {
+        VStack(alignment: .leading, spacing: 30) {
+        HarborSettingsSection(DesktopInterfaceText.value("Rows")) {
+            HarborSettingsToggle(DesktopInterfaceText.value("New Episodes row"),
+                note: DesktopInterfaceText.value("Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default."),
+                isOn: $preferences.homeNewEpisodes).accessibilityIdentifier("settings-home-new-episodes")
+        }
         HarborSettingsSection(DesktopInterfaceText.value("Continue Watching")) {
             HarborSettingsToggle(DesktopInterfaceText.value("Remove shows once you're caught up"),
                 note: DesktopInterfaceText.value("On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row."),
@@ -130,6 +136,7 @@ struct ContinueEndingControls: View {
                 .font(.caption).foregroundStyle(.secondary)
             HarborSettingsToggle(DesktopInterfaceText.value("Prefer episode still artwork"),
                 isOn: $preferences.cwPreferEpisodeStill).accessibilityIdentifier("settings-cw-prefer-still")
+        }
         }
     }
 }

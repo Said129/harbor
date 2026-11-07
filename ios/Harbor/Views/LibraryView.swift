@@ -198,6 +198,12 @@ struct ContinueWatching: View {
     var titleIsLiteral = false
     /// Desktop's `animeOnlyInAnimeRoom`, used by Home's own row.
     var excludesAnime = false
+    /// Records whose card the caught-up rules hid. The cards stay mounted, so they can report when they show again.
+    @State private var hiddenIDs: Set<String> = []
+    private var anyVisible: Bool { items.contains { !hiddenIDs.contains($0.id) } }
+    private func setVisible(_ id: String, _ visible: Bool) {
+        if visible { hiddenIDs.remove(id) } else { hiddenIDs.insert(id) }
+    }
     private var items: [LibraryRecord] {
         let selected = app.library.continuing.filter { ContinueWatchingSelection.includes($0, kind: kind, detectedAnime: app.animeDetection.identifiers) }
         return HomeCatalogFilter.continueWatching(selected, animeOnlyInAnimeRoom: excludesAnime, detectedAnime: app.animeDetection.identifiers)
@@ -205,15 +211,17 @@ struct ContinueWatching: View {
     var body: some View {
         if !items.isEmpty || app.library.presentationError != nil {
             VStack(alignment: .leading, spacing: 12) {
-                Text(titleIsLiteral ? title : DesktopInterfaceText.value(title)).font(HarborTheme.font(17, weight: .medium)).padding(.horizontal)
-                    .accessibilityAddTraits(.isHeader)
-                    .accessibilityIdentifier(kind == "anime" ? "anime-continue-watching-title" : "continue-watching-title")
-                LibraryPresentationFeedback(library: app.library).padding(.horizontal)
+                if anyVisible || app.library.presentationError != nil {
+                    Text(titleIsLiteral ? title : DesktopInterfaceText.value(title)).font(HarborTheme.font(17, weight: .medium)).padding(.horizontal)
+                        .accessibilityAddTraits(.isHeader)
+                        .accessibilityIdentifier(kind == "anime" ? "anime-continue-watching-title" : "continue-watching-title")
+                    LibraryPresentationFeedback(library: app.library).padding(.horizontal)
+                }
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .top, spacing: 12) {
                         ForEach(items) { item in
                             if let media = item.media {
-                                ContinueWatchingCard(app: app, record: item, media: media).id(app.library.owner + "|" + item.id)
+                                ContinueWatchingCard(app: app, record: item, media: media, onVisibility: { id, visible in setVisible(id, visible) }).id(app.library.owner + "|" + item.id)
                             }
                         }
                     }.padding(.horizontal)
@@ -227,6 +235,8 @@ private struct ContinueWatchingCard: View {
     let app: AppModel
     let record: LibraryRecord
     let media: Media
+    /// Reports whether this card is shown, so the row can drop its title when every card is hidden by the caught-up rules.
+    var onVisibility: (String, Bool) -> Void = { _, _ in }
     @AppStorage(AnimeEpisodeGrouping.preferenceKey) private var episodeGrouping = AnimeEpisodeGrouping.seasons.rawValue
     @State private var hydrated: Media?
     @State private var cardPresentation: ContinueWatchingPresentation?
@@ -242,7 +252,7 @@ private struct ContinueWatchingCard: View {
     }
     var body: some View {
         let presentation = self.presentation
-        Group {
+        ZStack(alignment: .topLeading) {
         if !presentation.hidden {
         VStack(alignment: .leading, spacing: 2) {
             NavigationLink { DetailView(media: detailed, app: app, playImmediately: true, metadataLoaded: hydrated != nil) } label: {
@@ -278,6 +288,14 @@ private struct ContinueWatchingCard: View {
             .onChange(of: InterfacePreferences.shared.cwAdvanceNext) { _, _ in updatePresentation() }
             .onChange(of: InterfacePreferences.shared.cwHideCaughtUp) { _, _ in updatePresentation() }
             .onChange(of: InterfacePreferences.shared.animeCwEnd) { _, _ in updatePresentation() }
+            .task(id: presentation.airsAt) {
+                guard let airsAt = presentation.airsAt else { return }
+                // Desktop re-checks 30 seconds after the next air date, with the wait kept between 30 seconds and 6 hours.
+                let wait = min(max(airsAt.timeIntervalSinceNow + 30, 30), 21_600)
+                try? await Task.sleep(for: .seconds(wait))
+                guard !Task.isCancelled else { return }
+                updatePresentation()
+            }
             .task(id: [record.raw, .string(episodeGrouping)]) {
                 let owner = app.library.owner
                 let grouping = AnimeEpisodeGrouping(rawValue: episodeGrouping) ?? .seasons
@@ -297,6 +315,7 @@ private struct ContinueWatchingCard: View {
     private func updatePresentation() {
         let watched = (try? WatchedCodec.decode(record.raw["state"]["watched"].string, videos: detailed.videos ?? [])) ?? []
         cardPresentation = ContinueWatchingCard.makePresentation(record: record, media: detailed, watched: watched)
+        onVisibility(record.id, !(cardPresentation?.hidden ?? false))
     }
 }
 

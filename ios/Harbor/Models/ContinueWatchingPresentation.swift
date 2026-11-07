@@ -24,7 +24,8 @@ struct ContinueWatchingPresentation {
     /// `advanceNext` is Desktop's `cwAdvanceNext`. On (the default) a finished episode moves the card to the next one.
     /// Off, the card keeps the episode it was on, with its remaining time, and shows it as in-progress or finished.
     /// `hideCaughtUp` and `endMode` are Desktop's `cwHideCaughtUp` and `animeCwEnd`. They only act on a finished episode
-    /// whose next episode has not aired, and they ignore `advanceNext`, as Desktop's list does.
+    /// whose next episode has not aired. Desktop's `useCwAdvance` receives `cwAdvanceNext` as its `enabled` flag and returns
+    /// the plain list when it is off, so with `advanceNext` off these rules do nothing either.
     init(record: LibraryRecord, media: Media, watched: Set<String>, now: Date = Date(), advanceNext: Bool = true, hideCaughtUp: Bool = true, endMode: ContinueWatchingEnd = .hide) {
         let videos = media.videos ?? []
         let selected = media.episodic ? EpisodeSequence.startingEpisode(videos, record: record, watched: watched, now: now) : nil
@@ -39,7 +40,7 @@ struct ContinueWatchingPresentation {
             currentEpisode: coordinates.episode
         )
         var outcome = ContinueWatchingOutcome.show
-        if let current, !released, !videos.isEmpty {
+        if advanceNext, let current, !released, !videos.isEmpty {
             let next = ContinueWatchingAdvance.nextUnwatched(after: current, in: videos, watched: watched)
             outcome = ContinueWatchingAdvance.outcome(
                 finished: ContinueWatchingAdvance.finished(record),
