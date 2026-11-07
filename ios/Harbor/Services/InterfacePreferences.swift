@@ -11,6 +11,8 @@ final class InterfacePreferences {
     var showImdbBadge = UserDefaults.standard.object(forKey: "showImdbBadge") as? Bool ?? true { didSet { persist(showImdbBadge, forKey: "showImdbBadge") } }
     var showTmdbBadge = UserDefaults.standard.object(forKey: "showTmdbBadge") as? Bool ?? false { didSet { persist(showTmdbBadge, forKey: "showTmdbBadge") } }
     var showWatchedButton = UserDefaults.standard.object(forKey: "showWatchedButton") as? Bool ?? true { didSet { persist(showWatchedButton, forKey: "showWatchedButton") } }
+    /// Desktop's `wrappedButton` (default true): the Stats entry in the library header.
+    var wrappedButton = UserDefaults.standard.object(forKey: "wrappedButton") as? Bool ?? true { didSet { persist(wrappedButton, forKey: "wrappedButton") } }
     var showEpisodeDescription = UserDefaults.standard.object(forKey: "showEpisodeDescription") as? Bool ?? true { didSet { persist(showEpisodeDescription, forKey: "showEpisodeDescription") } }
     /// Desktop's `showEpisodeRating`: the IMDb rating on each episode's picture.
     var showEpisodeRating = UserDefaults.standard.object(forKey: "showEpisodeRating") as? Bool ?? true { didSet { persist(showEpisodeRating, forKey: "showEpisodeRating") } }
@@ -72,6 +74,7 @@ final class InterfacePreferences {
         showImdbBadge = UserDefaults.standard.object(forKey: "showImdbBadge") as? Bool ?? true
         showTmdbBadge = UserDefaults.standard.object(forKey: "showTmdbBadge") as? Bool ?? false
         showWatchedButton = UserDefaults.standard.object(forKey: "showWatchedButton") as? Bool ?? true
+        wrappedButton = UserDefaults.standard.object(forKey: "wrappedButton") as? Bool ?? true
         showEpisodeDescription = UserDefaults.standard.object(forKey: "showEpisodeDescription") as? Bool ?? true
         showEpisodeRating = UserDefaults.standard.object(forKey: "showEpisodeRating") as? Bool ?? true
         hideWatchedInCatalogs = UserDefaults.standard.object(forKey: "hideWatchedInCatalogs") as? Bool ?? false

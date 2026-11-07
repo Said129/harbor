@@ -76,6 +76,11 @@ enum StreamPlaybackHistory {
         if let data = try? JSONEncoder().encode(kept) { defaults.set(data, forKey: storeKey(owner)) }
     }
 
+    /// Every live entry for an owner, keyed as saved (`metaID|sXeY`). Statistics read it; playback does not.
+    static func remembered(owner: String, defaults: UserDefaults = .standard, now: Date = Date()) -> [String: StreamPlaybackEntry] {
+        readAll(owner: owner, defaults: defaults, now: now)
+    }
+
     static func entry(metaID: String, season: Int?, episode: Int?, owner: String, defaults: UserDefaults = .standard, now: Date = Date()) -> StreamPlaybackEntry? {
         readAll(owner: owner, defaults: defaults, now: now)[key(metaID, season: season, episode: episode)]
     }

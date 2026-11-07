@@ -23,6 +23,7 @@ struct LibraryView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 HarborPageHeading(title: text("Your collection."), eyebrow: text("My library"))
+                if InterfacePreferences.shared.wrappedButton { statsLink }
                 tabs.disabled(!app.library.canChangePresentation)
                 Divider()
                 if !showingLists && tracker == nil && display.filter != .watched { filters }
@@ -139,6 +140,14 @@ struct LibraryView: View {
                     }
                 }
             }.scrollIndicators(.hidden).accessibilityIdentifier("library-filter")
+    }
+    private var statsLink: some View {
+        NavigationLink { WatchStatisticsView(app: app, history: history).toolbar(.visible, for: .navigationBar) } label: {
+            HStack(spacing: 7) {
+                Image(systemName: "chart.bar").font(.system(size: 14, weight: .semibold))
+                Text(text("Stats")).font(HarborTheme.font(13, weight: .semibold))
+            }.frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(HarborTheme.ink.opacity(0.5))
+        }.buttonStyle(.plain).accessibilityIdentifier("library-stats")
     }
     private var localTab: some View {
         NavigationLink { DownloadsView(app: app).toolbar(.visible, for: .navigationBar) } label: {
