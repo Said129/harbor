@@ -29,6 +29,7 @@ struct SearchView: View {
                 Text("Resultados para «\(completedQuery)»").font(.headline).padding()
                     .accessibilityIdentifier("search-results-query")
             }
+            if let anime = topAnime { AniListRelationsSection(media: anime, app: app).padding(.horizontal).padding(.bottom, 8) }
             if isTitleQuery { SearchLiveTVSection(app: app, query: query) }
             if isTitleQuery { SearchPeopleSection(app: app, query: query) }
             aiSearchLink
@@ -44,6 +45,11 @@ struct SearchView: View {
     /// A pasted magnet, info hash or direct video link gets a Play card instead of a catalog search.
     private var linkInput: SearchInput { SearchInput.classify(query) }
     private var isTitleQuery: Bool { if case .query = linkInput { true } else { false } }
+    /// Desktop shows the sequels and prequels of the best match when that match is an anime (`topMatchIsAnime`).
+    private var topAnime: Media? {
+        guard isTitleQuery, completedQuery != nil, let first = SearchPresentation.rows(rows).first, first.isAnimeCatalog else { return nil }
+        return first.metas.first
+    }
     /// Desktop's "Ask AI" entry: a screen that finds titles from a plain-language request with the person's own key.
     @ViewBuilder private var aiSearchLink: some View {
         if isTitleQuery && !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {

@@ -1650,3 +1650,14 @@ notice when the host plays another title (the guest just does not follow), and a
 corrected by the host instead of being replaced by commands. The stream descriptor sent with a state carries only the duration,
 because `PlaybackSource` does not keep the stream's title or info hash. Tests: `TogetherPlayerSyncTests` (13 cases over the fake
 relay socket and a fake player). Compiled and run only once CI has covered them.
+
+## Four small hooks for pieces that were built but not used (7 November, written by Sonnet, uncompiled until the next run)
+
+The sequels and prequels strip (`AniListRelationsSection`) is mounted in Search, after the results header, when the first result
+row is an anime catalog, as Desktop shows it for a best match that looks like an anime. The AniList avatar sync is applied after a
+launch or a profile switch when the setting is on (`setProgressOwner` in `AppModel`; the toggle already applied it at once). An
+anime's detail ratings row now starts with MyAnimeList's catalog score (chip "MAL"), unless the ratings matrix hides it, and the
+hero's IMDb-labelled badge is no longer printed for anime ids because that number is MyAnimeList's. The library calendar asks
+TVMaze, as Desktop's last resort, for a series with no dated episode in the month when no TMDB key is saved
+(`CalendarModel.tvmazeEvents`, four shows at a time, airstamp gives the device's day and hour). Tests added to `TVMazeTests`
+(2 cases) and `CardTagBadgesTests` (the MAL chip name).

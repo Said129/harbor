@@ -127,7 +127,11 @@ struct DetailProviderRatings: View {
 
     private var imdbID: String? { [media.id, media.imdbID ?? ""].first { $0.range(of: "^tt[0-9]+$", options: .regularExpression) != nil } }
     private var items: [DetailRatings.Item] {
-        DetailRatings.items(omdb: omdb, mdblist: mdblist, simkl: simklRating, imdbID: imdbID, isShow: media.type != "movie", hidden: InterfacePreferences.shared.detailRatingsHidden)
+        let hidden = InterfacePreferences.shared.detailRatingsHidden
+        let others = DetailRatings.items(omdb: omdb, mdblist: mdblist, simkl: simklRating, imdbID: imdbID, isShow: media.type != "movie", hidden: hidden)
+        // An anime's primary rating on Desktop is MyAnimeList's catalog score (`hero-ratings.tsx`).
+        guard let mal = CardTagPolicy.malDetailItem(media, detailHidden: hidden) else { return others }
+        return [mal] + others
     }
 
     var body: some View {

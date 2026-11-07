@@ -278,7 +278,8 @@ struct DetailView: View {
                 ScrollView(.horizontal) {
                     HStack(spacing: 8) {
                         if let year = model.media.releaseInfo { badge(year) }
-                        if let rating = model.media.imdbRating, !InterfacePreferences.shared.detailRatingsHidden.contains(model.media.ratingSource == "TMDB" ? "tmdb" : "imdb") { ratingBadge(rating) }
+                        // An anime's catalog score is MyAnimeList's: `DetailProviderRatings` shows it under that name instead.
+                        if let rating = model.media.imdbRating, !CardTagPolicy.isAnimeCardID(model.media.id), !InterfacePreferences.shared.detailRatingsHidden.contains(model.media.ratingSource == "TMDB" ? "tmdb" : "imdb") { ratingBadge(rating) }
                         if let runtime = model.media.runtime { badge(runtime) }
                         ForEach(model.media.genres ?? [], id: \.self) { badge($0) }
                     }

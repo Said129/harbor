@@ -92,6 +92,7 @@ final class CardTagBadgesTests: XCTestCase {
         let item = CardTagPolicy.malDetailItem(anime, detailHidden: [])
         XCTAssertEqual(item?.value, "8.4")
         XCTAssertEqual(item?.label, "MyAnimeList")
+        XCTAssertEqual(DetailRatings.shortName("mal"), "MAL", "the detail chip prints MAL, as the card chip does")
         XCTAssertNil(CardTagPolicy.malDetailItem(anime, detailHidden: ["mal"]))
     }
 

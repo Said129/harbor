@@ -34,6 +34,8 @@ final class CalendarModel {
         let calendar = Calendar.current
         guard let interval = calendar.dateInterval(of: .month, for: month) else { return }
         var failures = 0
+        // Desktop's last resort for a series with no dated episode this month, when no TMDB key is saved: TVMaze's schedule.
+        var tvmazeCandidates: [Media] = []
         let cachedMetadata = metadata; let service = app.service; let addons = app.addons
         await withTaskGroup(of: (String, Media?).self) { group in
             var iterator = records.compactMap(\.media).makeIterator()
@@ -50,9 +52,11 @@ final class CalendarModel {
                 if let media {
                     metadata[id] = media
                     if media.episodic {
+                        let before = events.count
                         for episode in media.videos ?? [] {
                             if let date = episode.releaseDate, interval.contains(date) { events.append(ReleaseEvent(media: media, episode: episode, date: date)) }
                         }
+                        if events.count == before, media.id.hasPrefix("tt") { tvmazeCandidates.append(media) }
                     } else if let raw = media.released, let date = parseDate(raw), interval.contains(date) {
                         events.append(ReleaseEvent(media: media, episode: nil, date: date))
                     }
@@ -62,6 +66,12 @@ final class CalendarModel {
             }
         }
         guard current == generation, !Task.isCancelled else { return }
+        if MetadataPreferences.shared.tmdbKey.isEmpty, !tvmazeCandidates.isEmpty {
+            let found = await Self.tvmazeEvents(for: tvmazeCandidates, in: interval)
+            guard current == generation, !Task.isCancelled else { return }
+            events.append(contentsOf: found)
+            events.sort { $0.date < $1.date }
+        }
         if failures > 0 && events.isEmpty { error = "No se pudieron recuperar algunas fechas de tu biblioteca. Puedes volver a intentarlo." }
     }
     /// One of Desktop's other sources: All upcoming (TMDB), My Trakt, Trakt anticipated or Anime (AniList).
@@ -118,6 +128,33 @@ final class CalendarModel {
             return value
         }
         return true
+    }
+    /// TVMaze's episodes that fall in the month, as library release events. With an airstamp the day and hour are the device's.
+    static func tvmazeEvents(for shows: [Media], in interval: DateInterval, service: TVMazeService = .shared) async -> [ReleaseEvent] {
+        var found: [ReleaseEvent] = []
+        await withTaskGroup(of: [ReleaseEvent].self) { group in
+            var iterator = shows.makeIterator()
+            func enqueue(_ media: Media) {
+                group.addTask {
+                    let imdb = String(media.id.split(separator: ":").first ?? "")
+                    guard let up = await service.upcoming(imdb: imdb, inWindow: { _ in true }) else { return [] }
+                    return up.episodes.compactMap { item -> ReleaseEvent? in
+                        let airtime = TVMazeRules.airtime(item)
+                        let episode = Episode(id: "\(imdb):\(item.season):\(item.number)", season: item.season, episode: item.number, name: item.name,
+                                              thumbnail: item.image, overview: item.summary, released: airtime.date)
+                        let date = airtime.atMs.map { Date(timeIntervalSince1970: $0 / 1_000) } ?? episode.releaseDate
+                        guard let date, interval.contains(date) else { return nil }
+                        return ReleaseEvent(media: media, episode: episode, date: date, hasTime: airtime.atMs != nil)
+                    }
+                }
+            }
+            for _ in 0..<4 { if let media = iterator.next() { enqueue(media) } }
+            for await part in group {
+                found.append(contentsOf: part)
+                if let media = iterator.next() { enqueue(media) }
+            }
+        }
+        return found
     }
     private func parseDate(_ raw: String) -> Date? {
         ISO8601DateFormatter().date(from: raw) ?? ISO8601DateFormatter().date(from: String(raw.prefix(10)) + "T00:00:00Z")

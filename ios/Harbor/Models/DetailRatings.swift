@@ -61,6 +61,7 @@ enum DetailRatings {
         case "trakt": "Trakt"
         case "simkl": "SIMKL"
         case "mdblist": "MDBList"
+        case "mal": "MAL"
         default: id
         }
     }

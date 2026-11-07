@@ -295,7 +295,7 @@ BEHAVIORS = expand("""
 247 X cast HLS transcoding: Desktop re-encodes with a local ffmpeg server that a phone does not have
 248 X receiver compatible re-encode: needs the same local transcoder
 249 X cast subtitle conversion and serving: needs the local cast server
-290 P AniList threads and comments on anime detail pages (read-only); the relations strip is built but not mounted anywhere (7 Nov, written by Haiku, CI runs 37 to 39 green)
+290 D AniList threads and comments on anime detail pages (read-only) and the sequels and prequels strip in Search when the best match is an anime (7 Nov, comments written by Haiku and green; the Search strip is uncompiled)
 293 P MyAnimeList lists: read-only browse by status with search and type filter (7 Nov, written by Haiku, CI runs 37 to 39 green)
 213 X trailer download, quality and cache: needs yt-dlp and ffmpeg, which a phone does not have
 104 P corroborated early-leak rescue: pure rules and tests exist; the Rust ranking does not call them yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)
@@ -304,7 +304,7 @@ BEHAVIORS = expand("""
 265 P library repair preview in Settings; applying the repair needs a write method the library model does not have (7 Nov, written by Haiku, CI run 42 green, 103 cases)
 311 D rated posters: RPDB poster URL for cards when a key is saved (7 Nov, written by Haiku, CI run 42 green, 103 cases)
 312 P Fanart logos and backdrops: provider and ranking exist, no detail screen calls them yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)
-316 P TVMaze schedules: client and parsing exist; the calendar does not ask it for air times yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+316 D TVMaze schedules: the library calendar asks TVMaze for a series with no dated episode in the month when no TMDB key is saved, as Desktop's last resort (7 Nov, client green; the calendar hook is uncompiled)
 235 X multiview: up to four live mpv players at once cost too much CPU, memory and battery on an iPad and make no sense on an iPhone
 236 X per tile audio focus: depends on multiview
 237 X multiview geometry: depends on multiview
@@ -633,7 +633,7 @@ SETTINGS = expand("""
 326 D short seek forward step (7 Nov, compiled and tested, run 24)
 330 D ask before leaving the player (7 Nov, compiled and tested, run 24)
 21 X subtitle indicator: Desktop shows it in the player's subtitle menu only
-33 P MAL score on the detail page: policy and toggle exist, the detail ratings row does not use them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+33 D MAL score on the detail page: an anime's detail ratings row shows MyAnimeList's catalog score unless the matrix hides it (7 Nov, policy green; the row is uncompiled)
 43 D DUB badge on anime cards (7 Nov, written by Haiku, CI runs 37 to 39 green)
 46 D Simkl rail granular toggles (7 Nov, written by Haiku, CI runs 37 to 39 green)
 50 D New tag on poster cards (7 Nov, written by Haiku, CI runs 37 to 39 green)
@@ -646,7 +646,7 @@ SETTINGS = expand("""
 118 D watchlist bookmark and its corner on poster cards (7 Nov, written by Haiku, CI runs 37 to 39 green)
 137 D blur AniList comments (7 Nov, written by Haiku, CI runs 37 to 39 green)
 138 D show AniList comments on anime detail pages (7 Nov, written by Haiku, CI runs 37 to 39 green)
-139 P use the AniList avatar: the sync exists, the app does not call it after a profile change yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+139 D use the AniList avatar: the toggle applies it at once and the app applies it again after a launch or a profile switch (7 Nov, toggle green; the launch hook is uncompiled)
 140 X Trakt avatar: the iOS Trakt account holds no profile picture
 141 X Simkl avatar: the iOS Simkl account holds no profile picture
 142 X MAL avatar: the iOS MAL account holds no profile picture

@@ -312,6 +312,8 @@ final class AppModel {
         StreamingPreferences.forOwner(settingsOwner).bind(.local(owner: settingsOwner))
         pageCustomization("home").bind(.local(owner: settingsOwner)); pageCustomization("anime").bind(.local(owner: settingsOwner))
         harborIdentity.bindCachedLayouts()
+        // Desktop's AnilistAvatarSync: with the setting on, the profile keeps the AniList picture after a launch or a profile switch.
+        if AniListPreferences.shared.useAnilistAvatar { AniListAvatarSync.apply(owner: binding.personalOwner) }
         sharedResume = progressStores.store(owner: owner)
         personalResume = progressStores.store(owner: "continue-private-" + binding.personalOwner)
         resumeOwners = (binding.personalOwner, owner)

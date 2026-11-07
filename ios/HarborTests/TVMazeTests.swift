@@ -176,6 +176,35 @@ final class TVMazeTests: XCTestCase {
         XCTAssertEqual(result?.show.id, 169)
         XCTAssertEqual(result?.episodes.map(\.number), [2])
     }
+
+    /// The library calendar's fallback when no TMDB key is saved: the month's TVMaze episodes become release events.
+    func testLibraryCalendarTakesTheMonthsEpisodesFromTVMaze() async throws {
+        let service = TVMazeService(transport: ScriptedTVMaze(script: try script()))
+        let show = Media(id: "tt0903747", type: "series", name: "Breaking Bad")
+
+        // 2008-01-25 to 2008-02-10 holds the second episode only (airdate, no airstamp: the day, no hour).
+        let late = DateInterval(start: Date(timeIntervalSince1970: 1_201_219_200), end: Date(timeIntervalSince1970: 1_202_601_600))
+        let lateEvents = await CalendarModel.tvmazeEvents(for: [show], in: late, service: service)
+        XCTAssertEqual(lateEvents.map { $0.episode?.episode }, [2])
+        XCTAssertEqual(lateEvents.first?.episode?.name, "Cat's in the Bag...")
+        XCTAssertEqual(lateEvents.first?.hasTime, false)
+        XCTAssertEqual(lateEvents.first?.media.id, "tt0903747")
+
+        // 2008-01-20 to 2008-01-22 holds the pilot, at its airstamp: 2008-01-21 03:00 UTC.
+        let early = DateInterval(start: Date(timeIntervalSince1970: 1_200_787_200), end: Date(timeIntervalSince1970: 1_200_960_000))
+        let earlyEvents = await CalendarModel.tvmazeEvents(for: [show], in: early, service: service)
+        XCTAssertEqual(earlyEvents.map { $0.episode?.episode }, [1])
+        XCTAssertEqual(earlyEvents.first?.hasTime, true)
+        XCTAssertEqual(earlyEvents.first?.date, Date(timeIntervalSince1970: 1_200_884_400))
+    }
+
+    func testLibraryCalendarSkipsAShowTVMazeDoesNotKnow() async throws {
+        let service = TVMazeService(transport: ScriptedTVMaze(script: try script(withShow: false)))
+        let show = Media(id: "tt0903747", type: "series", name: "Breaking Bad")
+        let window = DateInterval(start: Date(timeIntervalSince1970: 1_199_145_600), end: Date(timeIntervalSince1970: 1_230_768_000))
+        let events = await CalendarModel.tvmazeEvents(for: [show], in: window, service: service)
+        XCTAssertTrue(events.isEmpty)
+    }
 }
 
 /// Replies by URL, and the URLs asked for, so tests can count network calls and change the reply between them.

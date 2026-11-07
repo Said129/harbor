@@ -5,35 +5,35 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 150,
-      "partial": 231,
+      "ported": 152,
+      "partial": 229,
       "missing": 7,
       "excluded": 50,
       "counted": 388,
-      "weighted_percent": 68.4,
-      "ported_only_percent": 38.7,
+      "weighted_percent": 68.7,
+      "ported_only_percent": 39.2,
       "ported_or_partial_percent": 98.2
     },
     "settings": {
       "total": 511,
-      "ported": 205,
-      "partial": 50,
+      "ported": 207,
+      "partial": 48,
       "missing": 40,
       "excluded": 216,
       "counted": 295,
-      "weighted_percent": 78.0,
-      "ported_only_percent": 69.5,
+      "weighted_percent": 78.3,
+      "ported_only_percent": 70.2,
       "ported_or_partial_percent": 86.4
     },
     "all": {
       "total": 949,
-      "ported": 355,
-      "partial": 281,
+      "ported": 359,
+      "partial": 277,
       "missing": 47,
       "excluded": 266,
       "counted": 683,
-      "weighted_percent": 72.5,
-      "ported_only_percent": 52.0,
+      "weighted_percent": 72.8,
+      "ported_only_percent": 52.6,
       "ported_or_partial_percent": 93.1
     }
   },
@@ -140,20 +140,20 @@
     {
       "area": "Trackers",
       "range": "B274-B304",
-      "ported": 16,
-      "partial": 15,
+      "ported": 17,
+      "partial": 14,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 75.8
+      "weighted_percent": 77.4
     },
     {
       "area": "Metadata providers, calendar and lists",
       "range": "B305-B323",
-      "ported": 8,
-      "partial": 11,
+      "ported": 9,
+      "partial": 10,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 71.1
+      "weighted_percent": 73.7
     },
     {
       "area": "Profiles, appearance, integrations and system",
@@ -2256,8 +2256,8 @@
       "index": 290,
       "id": "AniList relations / threads",
       "desktop_source": "src/lib/anilist",
-      "verdict": "P",
-      "note": "AniList threads and comments on anime detail pages (read-only); the relations strip is built but not mounted anywhere (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "verdict": "D",
+      "note": "AniList threads and comments on anime detail pages (read-only) and the sequels and prequels strip in Search when the best match is an anime (7 Nov, comments written by Haiku and green; the Search strip is uncompiled)"
     },
     {
       "index": 291,
@@ -2438,8 +2438,8 @@
       "index": 316,
       "id": "TVMaze schedules",
       "desktop_source": "src/lib/providers",
-      "verdict": "P",
-      "note": "TVMaze schedules: client and parsing exist; the calendar does not ask it for air times yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
+      "verdict": "D",
+      "note": "TVMaze schedules: the library calendar asks TVMaze for a series with no dated episode in the month when no TMDB key is saved, as Desktop's last resort (7 Nov, client green; the calendar hook is uncompiled)"
     },
     {
       "index": 317,
@@ -3525,8 +3525,8 @@
       "index": 33,
       "id": "showMalDetail",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "MAL score on the detail page: policy and toggle exist, the detail ratings row does not use them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "verdict": "D",
+      "note": "MAL score on the detail page: an anime's detail ratings row shows MyAnimeList's catalog score unless the matrix hides it (7 Nov, policy green; the row is uncompiled)"
     },
     {
       "index": 34,
@@ -4267,8 +4267,8 @@
       "index": 139,
       "id": "useAnilistAvatar",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "use the AniList avatar: the sync exists, the app does not call it after a profile change yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "verdict": "D",
+      "note": "use the AniList avatar: the toggle applies it at once and the app applies it again after a launch or a profile switch (7 Nov, toggle green; the launch hook is uncompiled)"
     },
     {
       "index": 140,
