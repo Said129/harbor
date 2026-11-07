@@ -6,35 +6,35 @@
     "behaviors": {
       "total": 438,
       "ported": 143,
-      "partial": 220,
-      "missing": 31,
-      "excluded": 44,
-      "counted": 394,
-      "weighted_percent": 64.2,
-      "ported_only_percent": 36.3,
-      "ported_or_partial_percent": 92.1
+      "partial": 222,
+      "missing": 28,
+      "excluded": 45,
+      "counted": 393,
+      "weighted_percent": 64.6,
+      "ported_only_percent": 36.4,
+      "ported_or_partial_percent": 92.9
     },
     "settings": {
       "total": 511,
-      "ported": 182,
-      "partial": 34,
-      "missing": 111,
-      "excluded": 184,
-      "counted": 327,
-      "weighted_percent": 60.9,
-      "ported_only_percent": 55.7,
-      "ported_or_partial_percent": 66.1
+      "ported": 198,
+      "partial": 49,
+      "missing": 52,
+      "excluded": 212,
+      "counted": 299,
+      "weighted_percent": 74.4,
+      "ported_only_percent": 66.2,
+      "ported_or_partial_percent": 82.6
     },
     "all": {
       "total": 949,
-      "ported": 325,
-      "partial": 254,
-      "missing": 142,
-      "excluded": 228,
-      "counted": 721,
-      "weighted_percent": 62.7,
-      "ported_only_percent": 45.1,
-      "ported_or_partial_percent": 80.3
+      "ported": 341,
+      "partial": 271,
+      "missing": 80,
+      "excluded": 257,
+      "counted": 692,
+      "weighted_percent": 68.9,
+      "ported_only_percent": 49.3,
+      "ported_or_partial_percent": 88.4
     }
   },
   "behavior_areas": [
@@ -106,9 +106,9 @@
       "range": "B154-B216",
       "ported": 29,
       "partial": 20,
-      "missing": 5,
-      "excluded": 9,
-      "weighted_percent": 72.2
+      "missing": 4,
+      "excluded": 10,
+      "weighted_percent": 73.6
     },
     {
       "area": "Live TV, VOD, DVR and multiview",
@@ -141,10 +141,10 @@
       "area": "Trackers",
       "range": "B274-B304",
       "ported": 16,
-      "partial": 13,
-      "missing": 2,
+      "partial": 15,
+      "missing": 0,
       "excluded": 0,
-      "weighted_percent": 72.6
+      "weighted_percent": 75.8
     },
     {
       "area": "Metadata providers, calendar and lists",
@@ -1717,8 +1717,8 @@
       "index": 213,
       "id": "Trailer quality and cache",
       "desktop_source": "src-tauri/src/trailer.rs",
-      "verdict": "M",
-      "note": "no trailer download, quality or cache"
+      "verdict": "X",
+      "note": "trailer download, quality and cache: needs yt-dlp and ffmpeg, which a phone does not have"
     },
     {
       "index": 214,
@@ -2256,8 +2256,8 @@
       "index": 290,
       "id": "AniList relations / threads",
       "desktop_source": "src/lib/anilist",
-      "verdict": "M",
-      "note": "AniList relations and threads not ported"
+      "verdict": "P",
+      "note": "AniList threads and comments on anime detail pages (read-only); the relations strip is built but not mounted anywhere (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 291,
@@ -2277,8 +2277,8 @@
       "index": 293,
       "id": "MAL lists",
       "desktop_source": "src/lib/mal",
-      "verdict": "M",
-      "note": "MyAnimeList lists not ported"
+      "verdict": "P",
+      "note": "MyAnimeList lists: read-only browse by status with search and type filter (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 294,
@@ -3441,8 +3441,8 @@
       "index": 21,
       "id": "showSubtitleIndicator",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "subtitle indicator: Desktop shows it in the player's subtitle menu only"
     },
     {
       "index": 22,
@@ -3525,8 +3525,8 @@
       "index": 33,
       "id": "showMalDetail",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no MAL detail rating"
+      "verdict": "P",
+      "note": "MAL score on the detail page: policy and toggle exist, the detail ratings row does not use them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 34,
@@ -3595,8 +3595,8 @@
       "index": 43,
       "id": "showDubBadge",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "rating badges not ported"
+      "verdict": "D",
+      "note": "DUB badge on anime cards (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 44,
@@ -3616,8 +3616,8 @@
       "index": 46,
       "id": "simklGranularFilters",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card badges and home languages not ported"
+      "verdict": "D",
+      "note": "Simkl rail granular toggles (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 47,
@@ -3644,8 +3644,8 @@
       "index": 50,
       "id": "showCardBadges",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card badges and home languages not ported"
+      "verdict": "D",
+      "note": "New tag on poster cards (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 51,
@@ -3791,8 +3791,8 @@
       "index": 71,
       "id": "playerTitleSeriesFirst",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "ribbon side, award tabs, title scales, UI scale"
+      "verdict": "P",
+      "note": "series first title in the player: stored, the player title does not read it yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 72,
@@ -3903,15 +3903,15 @@
       "index": 87,
       "id": "trailerQuality",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "trailer quality: the embedded player picks its own quality"
     },
     {
       "index": 88,
       "id": "detailTrailerAutoplay",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "auto-play trailer on the detail hero (muted, off by default; 7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 89,
@@ -3924,8 +3924,8 @@
       "index": 90,
       "id": "detailTrailerAudio",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hero trailer and hero layout settings"
+      "verdict": "D",
+      "note": "detail trailer audio (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 91,
@@ -3959,15 +3959,15 @@
       "index": 95,
       "id": "heroTrailers",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hero trailer and hero layout settings"
+      "verdict": "D",
+      "note": "hero trailers on the featured hero (muted, off by default; 7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 96,
       "id": "heroTrailerAudio",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hero trailer and hero layout settings"
+      "verdict": "D",
+      "note": "hero trailer audio (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 97,
@@ -4120,8 +4120,8 @@
       "index": 118,
       "id": "watchlistBadge",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "watchlist bookmark and its corner on poster cards (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 119,
@@ -4253,43 +4253,43 @@
       "index": 137,
       "id": "anilistBlurComments",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "tracker comments and avatars"
+      "verdict": "D",
+      "note": "blur AniList comments (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 138,
       "id": "showAnilistComments",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "tracker comments and avatars"
+      "verdict": "D",
+      "note": "show AniList comments on anime detail pages (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 139,
       "id": "useAnilistAvatar",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "tracker comments and avatars"
+      "verdict": "P",
+      "note": "use the AniList avatar: the sync exists, the app does not call it after a profile change yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 140,
       "id": "useTraktAvatar",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "tracker comments and avatars"
+      "verdict": "X",
+      "note": "Trakt avatar: the iOS Trakt account holds no profile picture"
     },
     {
       "index": 141,
       "id": "useSimklAvatar",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "tracker comments and avatars"
+      "verdict": "X",
+      "note": "Simkl avatar: the iOS Simkl account holds no profile picture"
     },
     {
       "index": 142,
       "id": "useMalAvatar",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "tracker comments and avatars"
+      "verdict": "X",
+      "note": "MAL avatar: the iOS MAL account holds no profile picture"
     },
     {
       "index": 143,
@@ -4660,7 +4660,7 @@
       "id": "stremioServerTranscode",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "stremioServerTranscode is stored; Desktop has no control for it either (7 Nov, written by Haiku, CI run 25 pending)"
+      "note": "stremioServerTranscode is stored; Desktop has no control for it either"
     },
     {
       "index": 196,
@@ -4715,8 +4715,8 @@
       "index": 203,
       "id": "queueDrivesNav",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "queue drives navigation: the iOS player has no episode queue"
     },
     {
       "index": 204,
@@ -4736,8 +4736,8 @@
       "index": 206,
       "id": "deleteWatchedDownloads",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "delete watched downloads: stored, not wired to the download manager (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 207,
@@ -4883,8 +4883,8 @@
       "index": 227,
       "id": "subAssNormalizeSize",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "normalise ASS subtitle size: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 228,
@@ -5002,8 +5002,8 @@
       "index": 244,
       "id": "subSecondaryScale",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "secondary subtitle scale: stored, nothing draws a second subtitle line yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 245,
@@ -5072,22 +5072,22 @@
       "index": 254,
       "id": "preferEmbeddedSubs",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "prefer embedded subtitles: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 255,
       "id": "subtitleAutoUpgrade",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "subtitle auto upgrade: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 256,
       "id": "subtitlePreselect",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "preselect subtitles before playback: policy and setting exist, the picker does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 257,
@@ -5142,8 +5142,8 @@
       "index": 264,
       "id": "trackBlockWords",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "block words for audio and subtitle tracks: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 265,
@@ -5457,8 +5457,8 @@
       "index": 309,
       "id": "mpvQuality",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "picture quality preset for mpv (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 310,
@@ -5744,8 +5744,8 @@
       "index": 350,
       "id": "bandwidthMbps",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "bandwidth hint: iOS has no bitrate ranking"
     },
     {
       "index": 351,
@@ -5849,8 +5849,8 @@
       "index": 365,
       "id": "showPlaylistsTab",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "playlists tab switch: iOS shows VOD without it"
     },
     {
       "index": 366,
@@ -5884,15 +5884,15 @@
       "index": 370,
       "id": "sportsShowOdds",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "sports odds: no odds data on iOS"
     },
     {
       "index": 371,
       "id": "sportsWithoutProvider",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "sports without a provider: iOS has no gate to relax"
     },
     {
       "index": 372,
@@ -5926,8 +5926,8 @@
       "index": 376,
       "id": "spoilerSkipNext",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "spoilers skip the next episode: stored, the episode list does not read it yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 377,
@@ -6213,8 +6213,8 @@
       "index": 417,
       "id": "pluginsOutsideTab",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "plugins outside the plugins tab: no catalog merge on iOS"
     },
     {
       "index": 418,
@@ -6227,29 +6227,29 @@
       "index": 419,
       "id": "pluginsAutoCheck",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "plugin auto check: iOS has only the manual update"
     },
     {
       "index": 420,
       "id": "pluginsBackground",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "plugin background prefetch: no scheduler on iOS"
     },
     {
       "index": 421,
       "id": "pluginsPosterLanguages",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "plugin poster languages: no listing extras on iOS"
     },
     {
       "index": 422,
       "id": "pluginsPosterQuality",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "plugin poster quality: no listing extras on iOS"
     },
     {
       "index": 423,
@@ -6360,43 +6360,43 @@
       "index": 438,
       "id": "animeFavoriteGenres",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hotkeys and anime picks settings"
+      "verdict": "P",
+      "note": "favourite anime genres: setting and policy exist, the Anime page does not apply them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 439,
       "id": "animeExcludeOrigins",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hotkeys and anime picks settings"
+      "verdict": "P",
+      "note": "excluded anime origins: setting and policy exist, picks carry no origin on iOS (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 440,
       "id": "animeHideWatchedPicks",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hotkeys and anime picks settings"
+      "verdict": "P",
+      "note": "hide watched anime picks (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 441,
       "id": "animePicksDismissedAt",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hotkeys and anime picks settings"
+      "verdict": "X",
+      "note": "anime picks dismissed at: Desktop writes it and never reads it"
     },
     {
       "index": 442,
       "id": "animeAnilistRowsHidden",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hotkeys and anime picks settings"
+      "verdict": "X",
+      "note": "AniList rows hidden: Desktop only migrates it into the row settings"
     },
     {
       "index": 443,
       "id": "animeMalRowsHidden",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hotkeys and anime picks settings"
+      "verdict": "X",
+      "note": "MAL rows hidden: Desktop only migrates it into the row settings"
     },
     {
       "index": 444,
@@ -6409,22 +6409,22 @@
       "index": 445,
       "id": "profileAudio",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "profile audio: no profile audio on iOS"
     },
     {
       "index": 446,
       "id": "syncIndicator",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "sync indicator: no iOS view shows a syncing mark during playback"
     },
     {
       "index": 447,
       "id": "syncIndicatorPosition",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "sync indicator position: same"
     },
     {
       "index": 448,
@@ -6472,15 +6472,15 @@
       "index": 454,
       "id": "customStreamFilters",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "custom stream filters"
+      "verdict": "D",
+      "note": "custom stream filters (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 455,
       "id": "activeStreamFilterId",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "custom stream filters"
+      "verdict": "D",
+      "note": "active stream filter (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 456,
@@ -6591,22 +6591,22 @@
       "index": 471,
       "id": "simklHomeRailsEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Simkl rails"
+      "verdict": "D",
+      "note": "Simkl home rails switch (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 472,
       "id": "simklUpNextRailEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Simkl rails"
+      "verdict": "D",
+      "note": "Simkl Up Next rail (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 473,
       "id": "simklTrendingRailEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Simkl rails"
+      "verdict": "D",
+      "note": "Simkl trending rail (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 474,
@@ -6619,8 +6619,8 @@
       "index": 475,
       "id": "simklAnimeTitleLanguage",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "Simkl anime title language: stored, applied nowhere yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
     },
     {
       "index": 476,
@@ -6682,15 +6682,15 @@
       "index": 484,
       "id": "nytKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "NYT key: iOS has no NYT lists"
     },
     {
       "index": 485,
       "id": "sportsApiKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "sports API key: iOS has no API-Sports path"
     },
     {
       "index": 486,
@@ -6717,15 +6717,15 @@
       "index": 489,
       "id": "iptvForceProxy",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "IPTV force proxy: Desktop never reads it"
     },
     {
       "index": 490,
       "id": "iptvEpgOffsetHours",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "IPTV EPG offset: iOS has no EPG guide"
     },
     {
       "index": 491,
@@ -6759,8 +6759,8 @@
       "index": 495,
       "id": "libraryHero",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "library hero: the iOS library has no hero"
     },
     {
       "index": 496,
@@ -6773,8 +6773,8 @@
       "index": 497,
       "id": "feedLocaleBias",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "feed locale bias: iOS Discover has no locale ranking"
     },
     {
       "index": 498,
@@ -6808,8 +6808,8 @@
       "index": 502,
       "id": "pauseListStatusOnPause",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "pause list status on pause: Desktop never reads it"
     },
     {
       "index": 503,

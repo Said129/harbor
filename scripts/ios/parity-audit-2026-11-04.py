@@ -295,6 +295,9 @@ BEHAVIORS = expand("""
 247 X cast HLS transcoding: Desktop re-encodes with a local ffmpeg server that a phone does not have
 248 X receiver compatible re-encode: needs the same local transcoder
 249 X cast subtitle conversion and serving: needs the local cast server
+290 P AniList threads and comments on anime detail pages (read-only); the relations strip is built but not mounted anywhere (7 Nov, written by Haiku, CI runs 37 to 39 green)
+293 P MyAnimeList lists: read-only browse by status with search and type filter (7 Nov, written by Haiku, CI runs 37 to 39 green)
+213 X trailer download, quality and cache: needs yt-dlp and ffmpeg, which a phone does not have
 """)
 
 SETTINGS = expand("""
@@ -607,6 +610,66 @@ SETTINGS = expand("""
 325 D short seek back step on Shift plus the arrow keys (7 Nov, compiled and tested, run 24)
 326 D short seek forward step (7 Nov, compiled and tested, run 24)
 330 D ask before leaving the player (7 Nov, compiled and tested, run 24)
+21 X subtitle indicator: Desktop shows it in the player's subtitle menu only
+33 P MAL score on the detail page: policy and toggle exist, the detail ratings row does not use them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+43 D DUB badge on anime cards (7 Nov, written by Haiku, CI runs 37 to 39 green)
+46 D Simkl rail granular toggles (7 Nov, written by Haiku, CI runs 37 to 39 green)
+50 D New tag on poster cards (7 Nov, written by Haiku, CI runs 37 to 39 green)
+71 P series first title in the player: stored, the player title does not read it yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+87 X trailer quality: the embedded player picks its own quality
+88 D auto-play trailer on the detail hero (muted, off by default; 7 Nov, written by Haiku, CI runs 37 to 39 green)
+90 D detail trailer audio (7 Nov, written by Haiku, CI runs 37 to 39 green)
+95 D hero trailers on the featured hero (muted, off by default; 7 Nov, written by Haiku, CI runs 37 to 39 green)
+96 D hero trailer audio (7 Nov, written by Haiku, CI runs 37 to 39 green)
+118 D watchlist bookmark and its corner on poster cards (7 Nov, written by Haiku, CI runs 37 to 39 green)
+137 D blur AniList comments (7 Nov, written by Haiku, CI runs 37 to 39 green)
+138 D show AniList comments on anime detail pages (7 Nov, written by Haiku, CI runs 37 to 39 green)
+139 P use the AniList avatar: the sync exists, the app does not call it after a profile change yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+140 X Trakt avatar: the iOS Trakt account holds no profile picture
+141 X Simkl avatar: the iOS Simkl account holds no profile picture
+142 X MAL avatar: the iOS MAL account holds no profile picture
+195 P stremioServerTranscode is stored; Desktop has no control for it either
+206 P delete watched downloads: stored, not wired to the download manager (7 Nov, written by Haiku, CI runs 37 to 39 green)
+227 P normalise ASS subtitle size: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+244 P secondary subtitle scale: stored, nothing draws a second subtitle line yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+254 P prefer embedded subtitles: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+255 P subtitle auto upgrade: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+256 P preselect subtitles before playback: policy and setting exist, the picker does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+264 P block words for audio and subtitle tracks: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+309 D picture quality preset for mpv (7 Nov, written by Haiku, CI runs 37 to 39 green)
+350 X bandwidth hint: iOS has no bitrate ranking
+365 X playlists tab switch: iOS shows VOD without it
+370 X sports odds: no odds data on iOS
+371 X sports without a provider: iOS has no gate to relax
+376 P spoilers skip the next episode: stored, the episode list does not read it yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+203 X queue drives navigation: the iOS player has no episode queue
+417 X plugins outside the plugins tab: no catalog merge on iOS
+419 X plugin auto check: iOS has only the manual update
+420 X plugin background prefetch: no scheduler on iOS
+421 X plugin poster languages: no listing extras on iOS
+422 X plugin poster quality: no listing extras on iOS
+438 P favourite anime genres: setting and policy exist, the Anime page does not apply them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+439 P excluded anime origins: setting and policy exist, picks carry no origin on iOS (7 Nov, written by Haiku, CI runs 37 to 39 green)
+440 P hide watched anime picks (7 Nov, written by Haiku, CI runs 37 to 39 green)
+441 X anime picks dismissed at: Desktop writes it and never reads it
+442 X AniList rows hidden: Desktop only migrates it into the row settings
+443 X MAL rows hidden: Desktop only migrates it into the row settings
+445 X profile audio: no profile audio on iOS
+446 X sync indicator: no iOS view shows a syncing mark during playback
+447 X sync indicator position: same
+454 D custom stream filters (7 Nov, written by Haiku, CI runs 37 to 39 green)
+455 D active stream filter (7 Nov, written by Haiku, CI runs 37 to 39 green)
+471 D Simkl home rails switch (7 Nov, written by Haiku, CI runs 37 to 39 green)
+472 D Simkl Up Next rail (7 Nov, written by Haiku, CI runs 37 to 39 green)
+473 D Simkl trending rail (7 Nov, written by Haiku, CI runs 37 to 39 green)
+475 P Simkl anime title language: stored, applied nowhere yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+484 X NYT key: iOS has no NYT lists
+485 X sports API key: iOS has no API-Sports path
+489 X IPTV force proxy: Desktop never reads it
+490 X IPTV EPG offset: iOS has no EPG guide
+495 X library hero: the iOS library has no hero
+497 X feed locale bias: iOS Discover has no locale ranking
+502 X pause list status on pause: Desktop never reads it
 """)
 
 def audit(items, verdicts, label):

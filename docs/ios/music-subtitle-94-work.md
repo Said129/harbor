@@ -1593,3 +1593,18 @@ gets after the seek (`cueFits`: the cue on screen must be the one that belongs t
 lag allowed near a cue edge) instead of insisting on the window. The full run then passed 537 of 537 (run 42389022861).
 Open question: what holds the main thread for 2.5 seconds during an HTTP-range seek on the simulator (software GL). It is
 probably the simulator, but a hitch on a real device is not excluded and has not been measured.
+
+## Ninth and tenth Haiku rounds (7 November)
+
+Ninth round (CI runs 37 to 39 green): custom stream filters (wired into `DetailModel.applyStreamMode`), Simkl home rails (wired into Home's
+rail list), MyAnimeList lists (read-only, opened from the MAL settings) with the anime picks settings, and the subtitle
+selection policies with their settings. The anime picks and the subtitle policies are settings plus tested pure logic that
+the Anime page and the player do not call yet: the picks come from fixed Jikan rails without an origin, and the player's
+track choice is still mpv's `slang`; wiring the subtitle policy was left out on purpose after the seek-test investigation.
+
+Tenth round (CI runs 37 to 39 green): the New tag, the DUB badge and the watchlist bookmark on poster cards, muted trailers in the featured
+hero and on the detail hero (off by default; the YouTube embed inside a web view is unverified on a device), AniList forum
+comments on anime detail pages (read-only) and a relations section that is built but not mounted, the AniList avatar sync
+(built, not called after a profile change), and a sweep of small settings of which only the picture quality preset has an
+effect today. Excluded with reasons are in the audit: settings Desktop never reads, features with no iOS surface, tracker
+avatars that the iOS accounts do not hold.
