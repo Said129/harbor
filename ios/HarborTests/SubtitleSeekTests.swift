@@ -152,27 +152,24 @@ final class SubtitleSeekTests: XCTestCase {
     @available(iOS, deprecated: 12.0)
     @MainActor private func wait(_ surface: GLKView, state: PlayerState, context: String = "", until condition: () -> Bool) async throws {
         let deadline = Date().addingTimeInterval(12)
-        var trace: [String] = [], bucket = -1, captured = false, playingFrames = 0
+        var trace: [String] = [], bucket = -1
         while Date() < deadline, state.error == nil {
             let before = Date(), previousPosition = state.position
             surface.display()
             let drawing = Date().timeIntervalSince(before)
-            if condition() { return }
+            if condition() {
+                // One picture once the condition holds. Taking pictures while waiting froze this loop for seconds
+                // (the first snapshot of a failing run took 2.8 s), long enough to miss the 2 s window it checks.
+                if context.contains("playing seek") {
+                    let attachment = XCTAttachment(image: surface.snapshot)
+                    attachment.name = context + "-settled-frame"; attachment.lifetime = .keepAlways; add(attachment)
+                }
+                return
+            }
             let elapsed = max(0, 12 - deadline.timeIntervalSinceNow), current = Int(elapsed * 2)
             if current != bucket {
                 bucket = current
                 trace.append("t=\(elapsed) positionBeforeDraw=\(previousPosition) drawSeconds=\(drawing) position=\(state.position) paused=\(state.paused) buffered=\(state.buffering) text=\(state.primarySubtitleText) delay=\(state.subtitleDelay) fps=\(String(describing: state.subtitleFPS))")
-            }
-            if context.contains("playing seek"), playingFrames < 3 {
-                playingFrames += 1
-                let attachment = XCTAttachment(image: surface.snapshot)
-                attachment.name = context + "-observed-frame-" + String(playingFrames)
-                attachment.lifetime = .keepAlways; add(attachment)
-            }
-            if !captured, context.contains("playing seek"), state.position >= 21.2, state.position < 23 {
-                captured = true
-                let attachment = XCTAttachment(image: surface.snapshot)
-                attachment.name = context + "-pending-cue"; attachment.lifetime = .keepAlways; add(attachment)
             }
             try await Task.sleep(for: .milliseconds(40))
         }
