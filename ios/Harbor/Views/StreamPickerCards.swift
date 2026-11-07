@@ -16,7 +16,9 @@ struct StreamPrimaryCard: View {
             artwork
             StreamOfferText(media: media, episode: episode, offer: offer, addonLogo: addonLogo, primary: true)
             audioLanguages
-            StreamFormatBadges(kinds: offer.pickerBadges, large: false)
+            if QualityBadgePolicy.showsPickerChips(StreamPreferences.shared.showQualityBadge, kinds: offer.pickerBadges) {
+                StreamFormatBadges(kinds: offer.pickerBadges, large: false)
+            }
             actions
         }.padding(20).frame(maxWidth: .infinity, alignment: .leading)
             .background(HarborTheme.background.opacity(0.7), in: .rect(cornerRadius: 24))
@@ -127,7 +129,9 @@ struct StreamStremioRow: View {
                     Text(detail).font(HarborTheme.font(13)).foregroundStyle(ThemePreferences.shared.color("ink-muted"))
                         .fixedSize(horizontal: false, vertical: true).textSelection(.enabled)
                 }
-                if !offer.pickerBadges.isEmpty { StreamFormatBadges(kinds: offer.pickerBadges, large: false) }
+                if QualityBadgePolicy.showsPickerChips(StreamPreferences.shared.showQualityBadge, kinds: offer.pickerBadges) {
+                    StreamFormatBadges(kinds: offer.pickerBadges, large: false)
+                }
             }.frame(maxWidth: .infinity, alignment: .leading)
             if let download, offer.pickerExternalURL == nil {
                 Button(action: download) { Image("stream-download").resizable().scaledToFit().frame(width: 18, height: 18).frame(width: 44, height: 44) }
