@@ -20,9 +20,9 @@ in `parity-audit-2026-11-04.json`, produced by
 
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
-| Behaviors |   438 |    122 |     206 |      88 |       22 |           54.1 % |      29.3 % |            78.8 % |
-| Settings  |   511 |    138 |      23 |     264 |       86 |           35.2 % |      32.5 % |            37.9 % |
-| All       |   949 |    260 |     229 |     352 |      108 |           44.5 % |      30.9 % |            58.1 % |
+| Behaviors |   438 |    122 |     206 |      69 |       41 |           56.7 % |      30.7 % |            82.6 % |
+| Settings  |   511 |    140 |      24 |     179 |      168 |           44.3 % |      40.8 % |            47.8 % |
+| All       |   949 |    262 |     230 |     248 |      209 |           50.9 % |      35.4 % |            66.5 % |
 
 The 6 November refresh adds the OMDb and MDBList ratings on the detail page (the two
 provider keys, the Details column of the ratings matrix and the scores row), on top
@@ -42,6 +42,16 @@ Desktop's default player hotkeys, the Watch on providers and the AniList and
 MyAnimeList trackers (sign-in, token refresh, progress sync) were ported. All of it is read
 from code and uncompiled; the focused CI run that compiles it is described in
 the plan.
+
+Usefulness review (7 November, owner's rule: port only what is useful on iPhone and iPad). 19 behaviors
+and 60 settings that had no real use on a phone or tablet moved from Missing to Excluded, each with its
+reason in the audit script: frame grab, advanced mpv fields, motion interpolation and Anime4K, GIF recording,
+scheduled DVR (iOS cannot record in the background), webhooks, song identification (no system audio capture),
+desktop skinning of the player, seek bar and glass effects, game controller cursor settings, serving the web
+interface, desktop hotkeys, fullscreen clock and top bar styling, Cloudflare relay deployment, UI sounds and
+UI scale. The percentages rise because those items left the denominator (209 excluded in all), not because
+anything new was ported: 50.9 % weighted, 35.4 % ported only, 66.5 % ported or partial. Remaining Missing items
+are the ones judged useful on iPhone or iPad, such as casting, Watch Together, Letterboxd, AniList and MAL lists.
 
 Behaviors by area (weighted, P = ½; refreshed 5 November where it changed):
 

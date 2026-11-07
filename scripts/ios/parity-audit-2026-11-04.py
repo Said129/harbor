@@ -238,6 +238,25 @@ BEHAVIORS = expand("""
 364 P deep links partial
 365 D onboarding and replay
 366-438 P earlier review Partial
+168 X frame grab to a file: iOS has system screenshots, little use on a phone
+169 X advanced mpv properties: a free-text power-user field for desktop tuning
+178 X motion interpolation: heavy GPU work that drains a phone or tablet for little gain
+187 X player chrome and seek bar customization: cosmetic skinning with little use on touch
+189 X GIF recording: needs desktop screen capture and has little use on a phone
+191 X Anime4K shaders: desktop GPU upscaling, too heavy for mobile battery
+212 X trailer download and merge: needs desktop video tooling, trailers stream on iOS
+228 X Live TV playlist export: a desktop file-management action with little use on a phone
+231 X scheduled DVR: iOS cannot record in the background on a schedule
+232 X active recordings: part of the DVR, which iOS cannot run in the background
+233 X recording directory: a desktop folder for the DVR
+234 X DVR stop and delete: part of the DVR, which iOS cannot run in the background
+259 X Cloudflare relay deploy, check and delete: a server administration task, not for a phone
+338 X theme code editor: editing code on a phone is impractical
+344 X Discord and Telegram webhooks: fired by a desktop app that stays running, iOS cannot
+348 X song identification: needs system audio capture that iOS does not allow
+354 X remote text entry: types into a TV or desktop interface, not into a phone
+357 X web receiver and remote interface: a server a desktop hosts, iOS cannot serve in the background
+362 X startup crash detection: iOS reports crashes itself and relaunches cleanly
 """)
 
 SETTINGS = expand("""
@@ -452,6 +471,37 @@ SETTINGS = expand("""
 502 M
 503 D
 504-511 M
+1-3 X UI sound effects: iOS uses haptics and system sounds
+56-60 X Desktop glass effect settings: iOS has the system's own Liquid Glass
+69-70 X title scales: iOS scales text with Dynamic Type
+72 X UI scale: iOS scales with Dynamic Type and display zoom
+73-74 X serve the web interface and be remote controlled: an iPhone does not host or take remote control
+75-86 X game controller cursor and keyboard: pointer navigation for a TV or desktop, iOS is touch
+111-112 X player volume overlay: iOS shows its own volume indicator
+116 X nav bar sleep timer button: there is no desktop nav bar, the player has its own timer
+152-154 X Cloudflare relay credentials and deploy state: a server task, not for a phone
+168-170 X player shell, chrome theme and black menu: cosmetic skinning with little use on touch
+186-189 X motion interpolation and Anime4K: heavy GPU work that drains a phone or tablet
+212-217 X Anime4K shaders and custom shader folders: desktop GPU and folder features
+292-295 X song identification keys and provider: iOS cannot capture system audio
+308 X extra mpv options: a free-text power-user field for desktop tuning
+313 X force yuv420p: a Windows GPU compatibility workaround
+327 X share watch presence: feeds the Discord desktop presence
+339 X tab hotkeys: desktop keyboard shortcuts for switching tabs
+355 X keyboard pause shows controls: a desktop keyboard behavior
+378-380 X song identification toggle and card style: iOS cannot capture system audio
+383-384 X custom logo mark and wordmark: desktop title bar branding
+387 X music artwork as app icon: iOS cannot change the app icon on its own
+403-409 X fullscreen clock: iOS shows the system clock, the settings are desktop window options
+411-413 X top bar scroll blur and appearance: there is no desktop top bar
+437 X custom hotkeys: remapping desktop keyboard shortcuts
+456-457 X seek bar style and height: cosmetic skinning with little use on touch
+459-462 X seek bar image, fill and dot shape: cosmetic skinning with little use on touch
+464-465 X seek dot size and image: cosmetic skinning with little use on touch
+469 X webhooks: fired by a desktop app that stays running, iOS cannot
+479 X webhook rules: fired by a desktop app that stays running, iOS cannot
+491 X collapsible desktop sidebar: iOS has its own tab bar and sidebar
+511 X Audd API key: song identification is not possible on iOS
 """)
 
 def audit(items, verdicts, label):

@@ -7,34 +7,34 @@
       "total": 438,
       "ported": 122,
       "partial": 206,
-      "missing": 88,
-      "excluded": 22,
-      "counted": 416,
-      "weighted_percent": 54.1,
-      "ported_only_percent": 29.3,
-      "ported_or_partial_percent": 78.8
+      "missing": 69,
+      "excluded": 41,
+      "counted": 397,
+      "weighted_percent": 56.7,
+      "ported_only_percent": 30.7,
+      "ported_or_partial_percent": 82.6
     },
     "settings": {
       "total": 511,
       "ported": 140,
       "partial": 24,
-      "missing": 261,
-      "excluded": 86,
-      "counted": 425,
-      "weighted_percent": 35.8,
-      "ported_only_percent": 32.9,
-      "ported_or_partial_percent": 38.6
+      "missing": 179,
+      "excluded": 168,
+      "counted": 343,
+      "weighted_percent": 44.3,
+      "ported_only_percent": 40.8,
+      "ported_or_partial_percent": 47.8
     },
     "all": {
       "total": 949,
       "ported": 262,
       "partial": 230,
-      "missing": 349,
-      "excluded": 108,
-      "counted": 841,
-      "weighted_percent": 44.8,
-      "ported_only_percent": 31.2,
-      "ported_or_partial_percent": 58.5
+      "missing": 248,
+      "excluded": 209,
+      "counted": 740,
+      "weighted_percent": 50.9,
+      "ported_only_percent": 35.4,
+      "ported_or_partial_percent": 66.5
     }
   },
   "behavior_areas": [
@@ -106,27 +106,27 @@
       "range": "B154-B216",
       "ported": 28,
       "partial": 20,
-      "missing": 13,
-      "excluded": 2,
-      "weighted_percent": 62.3
+      "missing": 6,
+      "excluded": 9,
+      "weighted_percent": 70.4
     },
     {
       "area": "Live TV, VOD, DVR and multiview",
       "range": "B217-B238",
       "ported": 0,
       "partial": 12,
-      "missing": 10,
-      "excluded": 0,
-      "weighted_percent": 27.3
+      "missing": 5,
+      "excluded": 5,
+      "weighted_percent": 35.3
     },
     {
       "area": "Casting and Watch Together",
       "range": "B239-B259",
       "ported": 0,
       "partial": 1,
-      "missing": 20,
-      "excluded": 0,
-      "weighted_percent": 2.4
+      "missing": 19,
+      "excluded": 1,
+      "weighted_percent": 2.5
     },
     {
       "area": "Stremio account, library and local files",
@@ -160,9 +160,9 @@
       "range": "B324-B365",
       "ported": 10,
       "partial": 12,
-      "missing": 15,
-      "excluded": 5,
-      "weighted_percent": 43.2
+      "missing": 9,
+      "excluded": 11,
+      "weighted_percent": 51.6
     },
     {
       "area": "Manga",
@@ -1402,15 +1402,15 @@
       "index": 168,
       "id": "Screenshot / frame grab",
       "desktop_source": "src-tauri/src/mpv.rs",
-      "verdict": "M",
-      "note": "no screenshot, no advanced mpv properties"
+      "verdict": "X",
+      "note": "frame grab to a file: iOS has system screenshots, little use on a phone"
     },
     {
       "index": 169,
       "id": "Advanced mpv properties",
       "desktop_source": "src-tauri/src/mpv.rs",
-      "verdict": "M",
-      "note": "no screenshot, no advanced mpv properties"
+      "verdict": "X",
+      "note": "advanced mpv properties: a free-text power-user field for desktop tuning"
     },
     {
       "index": 170,
@@ -1472,8 +1472,8 @@
       "index": 178,
       "id": "Motion interpolation policies",
       "desktop_source": "src/lib/player",
-      "verdict": "M",
-      "note": "no motion interpolation"
+      "verdict": "X",
+      "note": "motion interpolation: heavy GPU work that drains a phone or tablet for little gain"
     },
     {
       "index": 179,
@@ -1535,8 +1535,8 @@
       "index": 187,
       "id": "Player chrome customization",
       "desktop_source": "src/components/player",
-      "verdict": "M",
-      "note": "no player chrome customization"
+      "verdict": "X",
+      "note": "player chrome and seek bar customization: cosmetic skinning with little use on touch"
     },
     {
       "index": 188,
@@ -1549,8 +1549,8 @@
       "index": 189,
       "id": "GIF recording",
       "desktop_source": "src/components/player",
-      "verdict": "M",
-      "note": "no GIF recording or local episode chooser"
+      "verdict": "X",
+      "note": "GIF recording: needs desktop screen capture and has little use on a phone"
     },
     {
       "index": 190,
@@ -1563,8 +1563,8 @@
       "index": 191,
       "id": "Anime4K shaders",
       "desktop_source": "src-tauri/src/anime4k.rs",
-      "verdict": "M",
-      "note": "no Anime4K shaders"
+      "verdict": "X",
+      "note": "Anime4K shaders: desktop GPU upscaling, too heavy for mobile battery"
     },
     {
       "index": 192,
@@ -1710,8 +1710,8 @@
       "index": 212,
       "id": "Trailer download / merge",
       "desktop_source": "src-tauri/src/trailer.rs",
-      "verdict": "M",
-      "note": "no trailer download, quality or cache"
+      "verdict": "X",
+      "note": "trailer download and merge: needs desktop video tooling, trailers stream on iOS"
     },
     {
       "index": 213,
@@ -1822,8 +1822,8 @@
       "index": 228,
       "id": "Playlist export",
       "desktop_source": "src/lib/iptv",
-      "verdict": "M",
-      "note": "no playlist export"
+      "verdict": "X",
+      "note": "Live TV playlist export: a desktop file-management action with little use on a phone"
     },
     {
       "index": 229,
@@ -1843,29 +1843,29 @@
       "index": 231,
       "id": "Scheduled DVR",
       "desktop_source": "src-tauri/src/dvr.rs",
-      "verdict": "M",
-      "note": "DVR and multiview not ported (feasibility undecided)"
+      "verdict": "X",
+      "note": "scheduled DVR: iOS cannot record in the background on a schedule"
     },
     {
       "index": 232,
       "id": "Active recordings",
       "desktop_source": "src-tauri/src/dvr.rs",
-      "verdict": "M",
-      "note": "DVR and multiview not ported (feasibility undecided)"
+      "verdict": "X",
+      "note": "active recordings: part of the DVR, which iOS cannot run in the background"
     },
     {
       "index": 233,
       "id": "Recording directory",
       "desktop_source": "src-tauri/src/dvr.rs",
-      "verdict": "M",
-      "note": "DVR and multiview not ported (feasibility undecided)"
+      "verdict": "X",
+      "note": "recording directory: a desktop folder for the DVR"
     },
     {
       "index": 234,
       "id": "DVR stop / delete",
       "desktop_source": "src-tauri/src/dvr.rs",
-      "verdict": "M",
-      "note": "DVR and multiview not ported (feasibility undecided)"
+      "verdict": "X",
+      "note": "DVR stop and delete: part of the DVR, which iOS cannot run in the background"
     },
     {
       "index": 235,
@@ -2039,8 +2039,8 @@
       "index": 259,
       "id": "Cloudflare relay deploy / check / delete",
       "desktop_source": "src-tauri/src/cf_relay.rs",
-      "verdict": "M",
-      "note": "Watch Together and relay not ported"
+      "verdict": "X",
+      "note": "Cloudflare relay deploy, check and delete: a server administration task, not for a phone"
     },
     {
       "index": 260,
@@ -2592,8 +2592,8 @@
       "index": 338,
       "id": "Theme code editor",
       "desktop_source": "src/views/settings/theme-panel",
-      "verdict": "M",
-      "note": "no Theme Studio, code editor, import/export, library, custom background"
+      "verdict": "X",
+      "note": "theme code editor: editing code on a phone is impractical"
     },
     {
       "index": 339,
@@ -2634,8 +2634,8 @@
       "index": 344,
       "id": "Discord / Telegram webhooks",
       "desktop_source": "src/lib/webhook-engine.ts",
-      "verdict": "M",
-      "note": "no webhooks or content notifications"
+      "verdict": "X",
+      "note": "Discord and Telegram webhooks: fired by a desktop app that stays running, iOS cannot"
     },
     {
       "index": 345,
@@ -2662,8 +2662,8 @@
       "index": 348,
       "id": "Song identification",
       "desktop_source": "src-tauri/src/song_id.rs",
-      "verdict": "M",
-      "note": "no AI, song identification or Wrapped"
+      "verdict": "X",
+      "note": "song identification: needs system audio capture that iOS does not allow"
     },
     {
       "index": 349,
@@ -2704,8 +2704,8 @@
       "index": 354,
       "id": "Remote text entry",
       "desktop_source": "src/lib/remote",
-      "verdict": "M",
-      "note": "no remote control"
+      "verdict": "X",
+      "note": "remote text entry: types into a TV or desktop interface, not into a phone"
     },
     {
       "index": 355,
@@ -2725,8 +2725,8 @@
       "index": 357,
       "id": "Optional web receiver / remote interface",
       "desktop_source": "src-tauri/src/web_server.rs",
-      "verdict": "M",
-      "note": "no web receiver/remote interface"
+      "verdict": "X",
+      "note": "web receiver and remote interface: a server a desktop hosts, iOS cannot serve in the background"
     },
     {
       "index": 358,
@@ -2760,8 +2760,8 @@
       "index": 362,
       "id": "Startup crash detection",
       "desktop_source": "src-tauri/src/crash_report.rs",
-      "verdict": "M",
-      "note": "no startup crash detection"
+      "verdict": "X",
+      "note": "startup crash detection: iOS reports crashes itself and relaunches cleanly"
     },
     {
       "index": 363,
@@ -3301,22 +3301,22 @@
       "index": 1,
       "id": "soundTheme",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no UI sounds"
+      "verdict": "X",
+      "note": "UI sound effects: iOS uses haptics and system sounds"
     },
     {
       "index": 2,
       "id": "sfxVolume",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no UI sounds"
+      "verdict": "X",
+      "note": "UI sound effects: iOS uses haptics and system sounds"
     },
     {
       "index": 3,
       "id": "playerVolumeSfx",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no UI sounds"
+      "verdict": "X",
+      "note": "UI sound effects: iOS uses haptics and system sounds"
     },
     {
       "index": 4,
@@ -3686,36 +3686,36 @@
       "index": 56,
       "id": "liquidGlass",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no liquid glass settings"
+      "verdict": "X",
+      "note": "Desktop glass effect settings: iOS has the system's own Liquid Glass"
     },
     {
       "index": 57,
       "id": "defaultLiquidGlassBlur",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no liquid glass settings"
+      "verdict": "X",
+      "note": "Desktop glass effect settings: iOS has the system's own Liquid Glass"
     },
     {
       "index": 58,
       "id": "defaultLiquidGlassTint",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no liquid glass settings"
+      "verdict": "X",
+      "note": "Desktop glass effect settings: iOS has the system's own Liquid Glass"
     },
     {
       "index": 59,
       "id": "experimentalLiquidGlassEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no liquid glass settings"
+      "verdict": "X",
+      "note": "Desktop glass effect settings: iOS has the system's own Liquid Glass"
     },
     {
       "index": 60,
       "id": "experimentalLiquidGlassOpacity",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no liquid glass settings"
+      "verdict": "X",
+      "note": "Desktop glass effect settings: iOS has the system's own Liquid Glass"
     },
     {
       "index": 61,
@@ -3777,15 +3777,15 @@
       "index": 69,
       "id": "rowTitleScale",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "ribbon side, award tabs, title scales, UI scale"
+      "verdict": "X",
+      "note": "title scales: iOS scales text with Dynamic Type"
     },
     {
       "index": 70,
       "id": "playerTitleScale",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "ribbon side, award tabs, title scales, UI scale"
+      "verdict": "X",
+      "note": "title scales: iOS scales text with Dynamic Type"
     },
     {
       "index": 71,
@@ -3798,106 +3798,106 @@
       "index": 72,
       "id": "uiScale",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "ribbon side, award tabs, title scales, UI scale"
+      "verdict": "X",
+      "note": "UI scale: iOS scales with Dynamic Type and display zoom"
     },
     {
       "index": 73,
       "id": "serveWebUi",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "serve the web interface and be remote controlled: an iPhone does not host or take remote control"
     },
     {
       "index": 74,
       "id": "remoteControlEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "serve the web interface and be remote controlled: an iPhone does not host or take remote control"
     },
     {
       "index": 75,
       "id": "controllerSupportEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "game controller cursor and keyboard: pointer navigation for a TV or desktop, iOS is touch"
     },
     {
       "index": 76,
       "id": "controllerBackgroundInput",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "game controller cursor and keyboard: pointer navigation for a TV or desktop, iOS is touch"
     },
     {
       "index": 77,
       "id": "controllerDeadzone",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "game controller cursor and keyboard: pointer navigation for a TV or desktop, iOS is touch"
     },
     {
       "index": 78,
       "id": "controllerCursorSpeed",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "game controller cursor and keyboard: pointer navigation for a TV or desktop, iOS is touch"
     },
     {
       "index": 79,
       "id": "controllerCursor",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "game controller cursor and keyboard: pointer navigation for a TV or desktop, iOS is touch"
     },
     {
       "index": 80,
       "id": "controllerCursorImage",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "game controller cursor and keyboard: pointer navigation for a TV or desktop, iOS is touch"
     },
     {
       "index": 81,
       "id": "controllerCursorSize",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "game controller cursor and keyboard: pointer navigation for a TV or desktop, iOS is touch"
     },
     {
       "index": 82,
       "id": "controllerCursorEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "game controller cursor and keyboard: pointer navigation for a TV or desktop, iOS is touch"
     },
     {
       "index": 83,
       "id": "controllerCursorHideMs",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "game controller cursor and keyboard: pointer navigation for a TV or desktop, iOS is touch"
     },
     {
       "index": 84,
       "id": "controllerKeyboardSize",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "game controller cursor and keyboard: pointer navigation for a TV or desktop, iOS is touch"
     },
     {
       "index": 85,
       "id": "controllerRepeatMs",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "game controller cursor and keyboard: pointer navigation for a TV or desktop, iOS is touch"
     },
     {
       "index": 86,
       "id": "controllerInitialDelayMs",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no web UI, remote or controller settings"
+      "verdict": "X",
+      "note": "game controller cursor and keyboard: pointer navigation for a TV or desktop, iOS is touch"
     },
     {
       "index": 87,
@@ -4071,15 +4071,15 @@
       "index": 111,
       "id": "playerVolumeHud",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advisory toasts and volume HUD"
+      "verdict": "X",
+      "note": "player volume overlay: iOS shows its own volume indicator"
     },
     {
       "index": 112,
       "id": "playerVolumeHudPosition",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advisory toasts and volume HUD"
+      "verdict": "X",
+      "note": "player volume overlay: iOS shows its own volume indicator"
     },
     {
       "index": 113,
@@ -4106,8 +4106,8 @@
       "index": 116,
       "id": "navbarSleepTimer",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "nav bar sleep timer button: there is no desktop nav bar, the player has its own timer"
     },
     {
       "index": 117,
@@ -4358,22 +4358,22 @@
       "index": 152,
       "id": "togetherCfToken",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Watch Together settings"
+      "verdict": "X",
+      "note": "Cloudflare relay credentials and deploy state: a server task, not for a phone"
     },
     {
       "index": 153,
       "id": "togetherCfAccountId",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Watch Together settings"
+      "verdict": "X",
+      "note": "Cloudflare relay credentials and deploy state: a server task, not for a phone"
     },
     {
       "index": 154,
       "id": "togetherCfDeployed",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Watch Together settings"
+      "verdict": "X",
+      "note": "Cloudflare relay credentials and deploy state: a server task, not for a phone"
     },
     {
       "index": 155,
@@ -4470,22 +4470,22 @@
       "index": 168,
       "id": "playerShellId",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "PiP behavior, player shells and chrome"
+      "verdict": "X",
+      "note": "player shell, chrome theme and black menu: cosmetic skinning with little use on touch"
     },
     {
       "index": 169,
       "id": "playerChromeTheme",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "PiP behavior, player shells and chrome"
+      "verdict": "X",
+      "note": "player shell, chrome theme and black menu: cosmetic skinning with little use on touch"
     },
     {
       "index": 170,
       "id": "playerMenuBlack",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "PiP behavior, player shells and chrome"
+      "verdict": "X",
+      "note": "player shell, chrome theme and black menu: cosmetic skinning with little use on touch"
     },
     {
       "index": 171,
@@ -4596,29 +4596,29 @@
       "index": 186,
       "id": "playerMotionInterp",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "motion interpolation, Anime4K"
+      "verdict": "X",
+      "note": "motion interpolation and Anime4K: heavy GPU work that drains a phone or tablet"
     },
     {
       "index": 187,
       "id": "playerAnime4k",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "motion interpolation, Anime4K"
+      "verdict": "X",
+      "note": "motion interpolation and Anime4K: heavy GPU work that drains a phone or tablet"
     },
     {
       "index": 188,
       "id": "playerAnime4kAnimeOnly",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "motion interpolation, Anime4K"
+      "verdict": "X",
+      "note": "motion interpolation and Anime4K: heavy GPU work that drains a phone or tablet"
     },
     {
       "index": 189,
       "id": "playerAnime4kIndicator",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "motion interpolation, Anime4K"
+      "verdict": "X",
+      "note": "motion interpolation and Anime4K: heavy GPU work that drains a phone or tablet"
     },
     {
       "index": 190,
@@ -4778,43 +4778,43 @@
       "index": 212,
       "id": "playerAnime4kShaders",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Anime4K and shaders"
+      "verdict": "X",
+      "note": "Anime4K shaders and custom shader folders: desktop GPU and folder features"
     },
     {
       "index": 213,
       "id": "playerAnime4kMode",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Anime4K and shaders"
+      "verdict": "X",
+      "note": "Anime4K shaders and custom shader folders: desktop GPU and folder features"
     },
     {
       "index": 214,
       "id": "playerAnime4kTier",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Anime4K and shaders"
+      "verdict": "X",
+      "note": "Anime4K shaders and custom shader folders: desktop GPU and folder features"
     },
     {
       "index": 215,
       "id": "playerAnime4kFolder",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Anime4K and shaders"
+      "verdict": "X",
+      "note": "Anime4K shaders and custom shader folders: desktop GPU and folder features"
     },
     {
       "index": 216,
       "id": "playerAnime4kOverride",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Anime4K and shaders"
+      "verdict": "X",
+      "note": "Anime4K shaders and custom shader folders: desktop GPU and folder features"
     },
     {
       "index": 217,
       "id": "playerShaders",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Anime4K and shaders"
+      "verdict": "X",
+      "note": "Anime4K shaders and custom shader folders: desktop GPU and folder features"
     },
     {
       "index": 218,
@@ -5338,29 +5338,29 @@
       "index": 292,
       "id": "auddKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "song ID, AI keys"
+      "verdict": "X",
+      "note": "song identification keys and provider: iOS cannot capture system audio"
     },
     {
       "index": 293,
       "id": "songIdProvider",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "song ID, AI keys"
+      "verdict": "X",
+      "note": "song identification keys and provider: iOS cannot capture system audio"
     },
     {
       "index": 294,
       "id": "songIdAiKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "song ID, AI keys"
+      "verdict": "X",
+      "note": "song identification keys and provider: iOS cannot capture system audio"
     },
     {
       "index": 295,
       "id": "songIdAiModel",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "song ID, AI keys"
+      "verdict": "X",
+      "note": "song identification keys and provider: iOS cannot capture system audio"
     },
     {
       "index": 296,
@@ -5450,8 +5450,8 @@
       "index": 308,
       "id": "mpvExtraOptions",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "extra mpv options: a free-text power-user field for desktop tuning"
     },
     {
       "index": 309,
@@ -5485,8 +5485,8 @@
       "index": 313,
       "id": "mpvForceYuv420p",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "force yuv420p: a Windows GPU compatibility workaround"
     },
     {
       "index": 314,
@@ -5583,8 +5583,8 @@
       "index": 327,
       "id": "shareWatchPresence",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "share watch presence: feeds the Discord desktop presence"
     },
     {
       "index": 328,
@@ -5667,8 +5667,8 @@
       "index": 339,
       "id": "tabHotkeys",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "tab hotkeys: desktop keyboard shortcuts for switching tabs"
     },
     {
       "index": 340,
@@ -5779,8 +5779,8 @@
       "index": 355,
       "id": "keyboardPauseShowsControls",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "keyboard pause shows controls: a desktop keyboard behavior"
     },
     {
       "index": 356,
@@ -5940,22 +5940,22 @@
       "index": 378,
       "id": "songIdEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "song identification toggle and card style: iOS cannot capture system audio"
     },
     {
       "index": 379,
       "id": "songCardStyle",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "song identification toggle and card style: iOS cannot capture system audio"
     },
     {
       "index": 380,
       "id": "songCardDetails",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "song identification toggle and card style: iOS cannot capture system audio"
     },
     {
       "index": 381,
@@ -5975,15 +5975,15 @@
       "index": 383,
       "id": "customLogoMark",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "custom logos, app icons, music seek thumbs"
+      "verdict": "X",
+      "note": "custom logo mark and wordmark: desktop title bar branding"
     },
     {
       "index": 384,
       "id": "customLogoWordmark",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "custom logos, app icons, music seek thumbs"
+      "verdict": "X",
+      "note": "custom logo mark and wordmark: desktop title bar branding"
     },
     {
       "index": 385,
@@ -6003,8 +6003,8 @@
       "index": 387,
       "id": "musicArtworkAppIcon",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "custom logos, app icons, music seek thumbs"
+      "verdict": "X",
+      "note": "music artwork as app icon: iOS cannot change the app icon on its own"
     },
     {
       "index": 388,
@@ -6115,50 +6115,50 @@
       "index": 403,
       "id": "fullscreenClockEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "fullscreen clock"
+      "verdict": "X",
+      "note": "fullscreen clock: iOS shows the system clock, the settings are desktop window options"
     },
     {
       "index": 404,
       "id": "fullscreenClockFormat",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "fullscreen clock"
+      "verdict": "X",
+      "note": "fullscreen clock: iOS shows the system clock, the settings are desktop window options"
     },
     {
       "index": 405,
       "id": "fullscreenClockStyle",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "fullscreen clock"
+      "verdict": "X",
+      "note": "fullscreen clock: iOS shows the system clock, the settings are desktop window options"
     },
     {
       "index": 406,
       "id": "fullscreenClockShowSeconds",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "fullscreen clock"
+      "verdict": "X",
+      "note": "fullscreen clock: iOS shows the system clock, the settings are desktop window options"
     },
     {
       "index": 407,
       "id": "fullscreenClockShowEndTime",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "fullscreen clock"
+      "verdict": "X",
+      "note": "fullscreen clock: iOS shows the system clock, the settings are desktop window options"
     },
     {
       "index": 408,
       "id": "fullscreenClockWindowed",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "fullscreen clock"
+      "verdict": "X",
+      "note": "fullscreen clock: iOS shows the system clock, the settings are desktop window options"
     },
     {
       "index": 409,
       "id": "fullscreenClockSizePx",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "fullscreen clock"
+      "verdict": "X",
+      "note": "fullscreen clock: iOS shows the system clock, the settings are desktop window options"
     },
     {
       "index": 410,
@@ -6171,22 +6171,22 @@
       "index": 411,
       "id": "topbarScrollBlur",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "top bar appearance"
+      "verdict": "X",
+      "note": "top bar scroll blur and appearance: there is no desktop top bar"
     },
     {
       "index": 412,
       "id": "transparentTopBar",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "top bar appearance"
+      "verdict": "X",
+      "note": "top bar scroll blur and appearance: there is no desktop top bar"
     },
     {
       "index": 413,
       "id": "topbarAppearance",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "top bar appearance"
+      "verdict": "X",
+      "note": "top bar scroll blur and appearance: there is no desktop top bar"
     },
     {
       "index": 414,
@@ -6353,8 +6353,8 @@
       "index": 437,
       "id": "hotkeys",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hotkeys and anime picks settings"
+      "verdict": "X",
+      "note": "custom hotkeys: remapping desktop keyboard shortcuts"
     },
     {
       "index": 438,
@@ -6486,15 +6486,15 @@
       "index": 456,
       "id": "seekBarStyle",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "seek bar style and height"
+      "verdict": "X",
+      "note": "seek bar style and height: cosmetic skinning with little use on touch"
     },
     {
       "index": 457,
       "id": "seekBarHeight",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "seek bar style and height"
+      "verdict": "X",
+      "note": "seek bar style and height: cosmetic skinning with little use on touch"
     },
     {
       "index": 458,
@@ -6507,29 +6507,29 @@
       "index": 459,
       "id": "seekBarImage",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "seek bar image, fill and dot shape: cosmetic skinning with little use on touch"
     },
     {
       "index": 460,
       "id": "seekBarFill",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "seek bar image, fill and dot shape: cosmetic skinning with little use on touch"
     },
     {
       "index": 461,
       "id": "seekBarFillOpacity",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "seek bar image, fill and dot shape: cosmetic skinning with little use on touch"
     },
     {
       "index": 462,
       "id": "seekDotShape",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "seek bar image, fill and dot shape: cosmetic skinning with little use on touch"
     },
     {
       "index": 463,
@@ -6542,15 +6542,15 @@
       "index": 464,
       "id": "seekDotSize",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "seek dot size and image: cosmetic skinning with little use on touch"
     },
     {
       "index": 465,
       "id": "seekDotImage",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "seek dot size and image: cosmetic skinning with little use on touch"
     },
     {
       "index": 466,
@@ -6577,8 +6577,8 @@
       "index": 469,
       "id": "webhooks",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "webhooks: fired by a desktop app that stays running, iOS cannot"
     },
     {
       "index": 470,
@@ -6647,8 +6647,8 @@
       "index": 479,
       "id": "webhookRules",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "webhook rules: fired by a desktop app that stays running, iOS cannot"
     },
     {
       "index": 480,
@@ -6731,8 +6731,8 @@
       "index": 491,
       "id": "sidebarCollapsed",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "collapsible desktop sidebar: iOS has its own tab bar and sidebar"
     },
     {
       "index": 492,
@@ -6871,8 +6871,8 @@
       "index": 511,
       "id": "auddApiKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "Audd API key: song identification is not possible on iOS"
     }
   ]
 }

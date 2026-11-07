@@ -1435,3 +1435,12 @@ and 5 Custom cases in CalendarSourcesTests (21 in all). Not started: hide watche
 home catalogs (`hideWatchedInCatalogs`, `hideUnreleased`), watchlist saved-only, Letterboxd,
 seasonSourceLock, autoNextStreamOnStall, My Simkl. Run 15 must cover every case of CalendarSourcesTests,
 ProviderRatingsTests, EpisodeRatingsTests and PlayerControlSettingsTests, and the existing PlayerShortcutTests.
+
+## Usefulness review (7 November)
+
+The owner asked that nothing be ported unless it is useful on iPhone or iPad. Before porting more, every
+Missing item was reviewed: 19 behaviors and 60 settings with no real use on a phone or tablet are now Excluded
+with a recorded reason (see the audit script and report). Kept as useful, to be ported later: casting
+(Chromecast, DLNA, Roku), Watch Together, a remote streaming server (the way to get torrents on iOS),
+Letterboxd, AniList and MAL lists, local file import, seek previews, content notifications, Theme Studio
+(without the code editor), card rating chips, AI search with the person's own keys.
