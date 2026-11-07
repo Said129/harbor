@@ -31,6 +31,9 @@ struct SimklSettingsView: View {
                     Toggle(text("Enable User Ratings"), isOn: $ratings).accessibilityIdentifier("simkl-enable-ratings")
                     Toggle(text("Scrobble to SIMKL"), isOn: $scrobble).accessibilityIdentifier("simkl-enable-scrobble")
                     Text(text("Automatically track what you are playing and save watch progress in real-time.")).font(.caption).foregroundStyle(.secondary)
+                    NavigationLink { SimklRailsSettingsView().toolbar(.visible, for: .navigationBar) } label: {
+                        Text(text("Home Rail Settings")).frame(maxWidth: .infinity, alignment: .leading).frame(minHeight: 44)
+                    }.accessibilityIdentifier("simkl-home-rails")
                     Button(role: .destructive) { disconnecting = true } label: { Text(text("Disconnect")).frame(minHeight: 44) }
                         .buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("simkl-disconnect")
                 } else {
@@ -55,6 +58,7 @@ struct SimklSettingsView: View {
                     if model.store.session == nil {
                         ratings = true
                         scrobble = true
+                        SimklHomeRailPreferences.shared.reset()
                         try? SimklPendingWatches.forOwner(model.store.owner).bind(nil)
                         let library = SimklLibraryStore.forOwner(model.store.owner); library.bind(nil)
                         Task { try? await library.clear() }

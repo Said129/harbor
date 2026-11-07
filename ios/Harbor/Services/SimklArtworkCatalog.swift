@@ -1,10 +1,11 @@
 import Foundation
 
 extension HTTPClient {
+    /// Public application identity shipped by Desktop, not a personal account token.
+    static let simklPublicClientID = "9609ef0a6051b6fdcf3290fd962fd65e0f8e969c942555410cffd37afca91997"
     static func simklArtworkRequest(_ id: Int) throws -> URLRequest {
         guard id > 0 else { throw HarborError(code: "anime-id") }
-        // Public application identity shipped by Desktop, not a personal account token.
-        let client = "9609ef0a6051b6fdcf3290fd962fd65e0f8e969c942555410cffd37afca91997"
+        let client = simklPublicClientID
         var url = URLComponents(string: "https://api.simkl.com/anime/\(id)")!
         url.queryItems = [URLQueryItem(name: "client_id", value: client), URLQueryItem(name: "app-name", value: "harbor"), URLQueryItem(name: "app-version", value: "0.9.132")]
         var request = URLRequest(url: url.url!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 20)
