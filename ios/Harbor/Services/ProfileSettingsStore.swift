@@ -68,7 +68,8 @@ struct ContinueWatchingPreferences: Sendable {
         "manga.reader.rtl", "manga.reader.zoom", "manga.reader.autoNextChapter", "manga.reader.navPos", "manga.reader.doubleGap", "manga.reader.focusMode",
         "manga.reader.hideChapterEndHint", "manga.reader.enablePageDownload", "manga.reader.flipSound", "manga.adultSources", "manga.shelfSort",
         "harbor.music.playlistView", "harbor.music.tab", "harbor.music.genres.explore.v1", "harbor.music.preferredSource", "music.shuffle", "music.repeat", "music.volume",
-        "remoteStreamServerUrl", "remoteStreamServerStrict", "castAlwaysTranscode", "stremioServerTranscode"
+        "remoteStreamServerUrl", "remoteStreamServerStrict", "castAlwaysTranscode", "stremioServerTranscode",
+        "localMinFileSizeMb", "localEpisodeSortDesc", "localLibrary.sort", "localLibrary.sortDescending"
     ]
     private let defaults: UserDefaults
     private let persistence: any ProfileSettingsPersistence
