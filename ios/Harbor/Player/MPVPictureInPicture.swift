@@ -88,6 +88,8 @@ final class MPVPictureInPicture: NSObject, @preconcurrency AVPictureInPictureCon
 
     func stop() { controller?.stopPictureInPicture() }
     func resetFrames() {
+        // Every inline restore goes through here, so subtitles come back even after a PiP start that never reported.
+        applySubtitleVisibility(inPictureInPicture: false)
         layer.sampleBufferRenderer.flush(removingDisplayedImage: true, completionHandler: nil)
         layer.backgroundColor = UIColor.clear.cgColor
         lastFrame = nil; previousPaused = nil; previousDuration = 0
