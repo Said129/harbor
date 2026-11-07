@@ -110,4 +110,66 @@ final class HomeCatalogFilterTests: XCTestCase {
         XCTAssertEqual(result.map(\.id), ["personal"])
         XCTAssertEqual(result.first?.metas.count, 0)
     }
+
+    private func languageMedia(_ id: String, language: String?) -> Media {
+        var value = media(id)
+        value.originalLanguage = language
+        return value
+    }
+
+    private func discoveryMetaIDs(_ rails: [PageRail]) -> [[String]] {
+        rails.compactMap { (rail: PageRail) -> [String]? in
+            if case .discovery(let row) = rail { return row.metas.map(\.id) }
+            return nil
+        }
+    }
+
+    private func watchRecord(_ id: String) -> LibraryRecord {
+        LibraryRecord(raw: .object([
+            "_id": .string(id), "type": .string("series"), "name": .string("Title " + id),
+            "removed": .bool(false), "temp": .bool(false), "_mtime": .string("2026-10-17T10:00:00Z"),
+            "state": .object(["season": .integer(1), "episode": .integer(2), "video_id": .string(id + ":1:2"), "timeOffset": .integer(1_000), "duration": .integer(100_000)])
+        ]))
+    }
+
+    func testKeepsLanguageOnlyForListedOrUnknownLanguages() {
+        XCTAssertTrue(HomeCatalogFilter.keepsLanguage(languageMedia("tt1", language: "en"), languages: []))
+        XCTAssertTrue(HomeCatalogFilter.keepsLanguage(languageMedia("tt1", language: "ja"), languages: ["ja"]))
+        XCTAssertTrue(HomeCatalogFilter.keepsLanguage(languageMedia("tt1", language: nil), languages: ["ja"]))
+        XCTAssertTrue(HomeCatalogFilter.keepsLanguage(languageMedia("tt1", language: ""), languages: ["ja"]))
+        XCTAssertFalse(HomeCatalogFilter.keepsLanguage(languageMedia("tt1", language: "en"), languages: ["ja"]))
+    }
+
+    func testEmptyLanguageListLeavesPageRailsUnchanged() {
+        let rails: [PageRail] = [.discovery(rail("a", [languageMedia("tt1", language: "en")])), .continuing(kind: "series")]
+        let result = HomeCatalogFilter.homeLanguageRails(rails, languages: [])
+        XCTAssertEqual(result.map(\.id), ["discovery-a", "continueWatching"])
+        XCTAssertEqual(discoveryMetaIDs(result), [["tt1"]])
+    }
+
+    func testLanguageFilterKeepsListedAndUnknownTitlesOnly() {
+        let metas = [languageMedia("tt1", language: "ja"), languageMedia("tt2", language: "fr"), languageMedia("tt3", language: nil)]
+        let result = HomeCatalogFilter.homeLanguageRails([.discovery(rail("a", metas))], languages: ["ja"])
+        XCTAssertEqual(discoveryMetaIDs(result), [["tt1", "tt3"]])
+    }
+
+    func testLanguageFilterDropsRowsLeftEmptyButKeepsPersonalRowsAndLists() {
+        let source = PersonalDiscoverySource(available: { true }, page: { _ in [] })
+        let rails: [PageRail] = [
+            .discovery(rail("plain", [languageMedia("tt1", language: "fr")])),
+            .discovery(rail("personal", [languageMedia("tt2", language: "fr")], personal: source)),
+            .continuing(kind: "series"),
+        ]
+        let result = HomeCatalogFilter.homeLanguageRails(rails, languages: ["ja"])
+        XCTAssertEqual(result.map(\.id), ["discovery-personal", "continueWatching"])
+        XCTAssertEqual(discoveryMetaIDs(result), [[]])
+    }
+
+    func testContinueWatchingLeavesAnimeOutOnlyWhenSettingIsOn() {
+        let records = [watchRecord("kitsu:1"), watchRecord("tt1"), watchRecord("tt2")]
+        let filtered = HomeCatalogFilter.continueWatching(records, animeOnlyInAnimeRoom: true, detectedAnime: ["tt2"])
+        XCTAssertEqual(filtered.map(\.id), ["tt1"])
+        let unfiltered = HomeCatalogFilter.continueWatching(records, animeOnlyInAnimeRoom: false, detectedAnime: ["tt2"])
+        XCTAssertEqual(unfiltered.map(\.id), ["kitsu:1", "tt1", "tt2"])
+    }
 }

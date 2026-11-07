@@ -16,6 +16,10 @@ final class InterfacePreferences {
     var showEpisodeRating = UserDefaults.standard.object(forKey: "showEpisodeRating") as? Bool ?? true { didSet { persist(showEpisodeRating, forKey: "showEpisodeRating") } }
     var hideWatchedInCatalogs = UserDefaults.standard.object(forKey: "hideWatchedInCatalogs") as? Bool ?? false { didSet { persist(hideWatchedInCatalogs, forKey: "hideWatchedInCatalogs") } }
     var hideUnreleased = UserDefaults.standard.object(forKey: "hideUnreleased") as? Bool ?? false { didSet { persist(hideUnreleased, forKey: "hideUnreleased") } }
+    /// Desktop's `homeLanguages`: Home rows keep titles whose original language is in this list. Empty shows every language.
+    var homeLanguages = UserDefaults.standard.stringArray(forKey: "homeLanguages") ?? [] { didSet { persist(homeLanguages, forKey: "homeLanguages") } }
+    /// Desktop's `animeOnlyInAnimeRoom`: Home's Continue Watching leaves out anime, which the Anime page still shows.
+    var animeOnlyInAnimeRoom = UserDefaults.standard.object(forKey: "animeOnlyInAnimeRoom") as? Bool ?? true { didSet { persist(animeOnlyInAnimeRoom, forKey: "animeOnlyInAnimeRoom") } }
     /// Desktop's `libraryBookmarkedOnly`: the Watchlist lists only saved titles, not entries Stremio auto-added on play.
     var libraryBookmarkedOnly = UserDefaults.standard.object(forKey: "libraryBookmarkedOnly") as? Bool ?? true { didSet { persist(libraryBookmarkedOnly, forKey: "libraryBookmarkedOnly") } }
     /// Desktop's `cwAdvanceNext`: a finished episode moves its Continue Watching card to the next episode.
@@ -67,6 +71,8 @@ final class InterfacePreferences {
         showEpisodeRating = UserDefaults.standard.object(forKey: "showEpisodeRating") as? Bool ?? true
         hideWatchedInCatalogs = UserDefaults.standard.object(forKey: "hideWatchedInCatalogs") as? Bool ?? false
         hideUnreleased = UserDefaults.standard.object(forKey: "hideUnreleased") as? Bool ?? false
+        homeLanguages = UserDefaults.standard.stringArray(forKey: "homeLanguages") ?? []
+        animeOnlyInAnimeRoom = UserDefaults.standard.object(forKey: "animeOnlyInAnimeRoom") as? Bool ?? true
         libraryBookmarkedOnly = UserDefaults.standard.object(forKey: "libraryBookmarkedOnly") as? Bool ?? true
         cwAdvanceNext = UserDefaults.standard.object(forKey: "cwAdvanceNext") as? Bool ?? true
         episodeSort = UserDefaults.standard.string(forKey: "episodeSort") == "newest" ? "newest" : "oldest"
