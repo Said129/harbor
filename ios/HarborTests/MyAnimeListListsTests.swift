@@ -91,7 +91,8 @@ final class MyAnimeListListsTests: XCTestCase {
     func testTypeFilterSplitsMoviesFromShowsAndCountsEachPill() throws {
         let entries = try canned()
         XCTAssertEqual(MALLists.groups(entries, kind: .movie, query: "").flatMap(\.entries).map(\.media.id), [2])
-        XCTAssertEqual(MALLists.groups(entries, kind: .series, query: "").flatMap(\.entries).map(\.media.id), [1, 6, 7, 8])
+        // Groups follow the screen order (watching, plan to watch, completed, on hold, dropped), so the completed title 8 comes before the dropped 6 and 7.
+        XCTAssertEqual(MALLists.groups(entries, kind: .series, query: "").flatMap(\.entries).map(\.media.id), [1, 8, 6, 7])
         XCTAssertEqual(MALLists.count(entries, kind: .series, query: ""), 4)
         XCTAssertEqual(MALLists.count(entries, kind: .all, query: ""), 5)
     }
