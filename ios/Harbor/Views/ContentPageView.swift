@@ -52,6 +52,11 @@ struct CinemaHero: View {
     @State private var selected = 0
     @Environment(\.locale) private var locale
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key, language: locale.identifier) }
+    private let layout = HeroLayoutPreferences.shared
+    private var shadeColors: [Color] {
+        [.black.opacity(HeroLayoutPolicy.topStopOpacity), HarborTheme.background.opacity(HeroLayoutPolicy.middleStopOpacity(shadowPercent: layout.shadowPercent)), HarborTheme.background]
+    }
+    private func heroHeight(_ container: CGFloat) -> CGFloat { HeroLayoutPolicy.heroHeight(full: layout.full, container: container) }
     var body: some View {
         VStack(spacing: 14) {
             TabView(selection: $selected) {
@@ -59,11 +64,11 @@ struct CinemaHero: View {
                     GeometryReader { geometry in
                         ZStack(alignment: .bottomLeading) {
                             CustomListArtwork(media: media, url: TitleArtworkPreferences.shared.value(.backdrop, id: media.artworkID) ?? media.background ?? (media.type == "manga" ? media.poster : nil),
-                                fallback: media.fallbackBackground, fallbacks: [TitleArtworkPreferences.shared.value(.poster, id: media.artworkID), media.poster].compactMap { $0 }, maxPixels: 1400)
+                                fallback: media.fallbackBackground, fallbacks: [TitleArtworkPreferences.shared.value(.poster, id: media.artworkID), media.poster].compactMap { $0 }, maxPixels: HeroLayoutPolicy.artworkMaxPixels(fullQuality: layout.fullQuality))
                                 .frame(width: geometry.size.width, height: geometry.size.height).accessibilityHidden(true)
                             HeroTrailerBackdrop(videoID: HeroTrailerPolicy.trailerID(in: media.details?.trailers ?? []), placement: .hero, slideActive: selected == index)
                                 .frame(width: geometry.size.width, height: geometry.size.height)
-                            LinearGradient(colors: [.black.opacity(0.12), HarborTheme.background.opacity(0.55), HarborTheme.background], startPoint: .top, endPoint: .bottom).accessibilityHidden(true)
+                            LinearGradient(colors: shadeColors, startPoint: .top, endPoint: .bottom).accessibilityHidden(true)
                             VStack(alignment: .leading, spacing: 14) {
                                 Text(text("Featured tonight").uppercased(with: locale)).font(HarborTheme.font(9, weight: .semibold)).tracking(4).foregroundStyle(.white.opacity(0.5))
                                     .accessibilityIdentifier("hero-eyebrow")
@@ -92,7 +97,7 @@ struct CinemaHero: View {
                         }.frame(width: geometry.size.width, height: geometry.size.height).clipped()
                     }.tag(index).accessibilityElement(children: .contain).accessibilityIdentifier(index == 0 ? "home-hero" : "hero-page-\(index)")
                 }
-            }.tabViewStyle(.page(indexDisplayMode: .never)).frame(height: 410)
+            }.tabViewStyle(.page(indexDisplayMode: .never)).containerRelativeFrame(.vertical) { length, _ in heroHeight(length) }
             if metas.count > 1 {
                 HStack(spacing: 7) {
                     ForEach(0..<min(5, metas.count), id: \.self) { index in

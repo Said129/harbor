@@ -145,8 +145,15 @@ struct CustomizedHero: View {
         let settings = MetadataPreferences.shared
         return [source?.id ?? "automatic", ids, list, app.accountOperationScope, addons, settings.region, settings.language, String(settings.translateTitles), EBookShelf.hash(settings.tmdbKey)].joined(separator: "|")
     }
+    /// Desktop's Featured source (`home.tsx` 260-263) fills Home when no hero rail is picked. `trending` keeps the automatic list.
+    private var featuredDefaults: [Media] {
+        guard customization.page == "home" else { return defaults }
+        let candidates = rails.map { HeroLayoutPolicy.Candidate(title: $0.title, hasMetas: !$0.metas.isEmpty) }
+        guard let index = HeroLayoutPolicy.featuredRailIndex(feed: HeroLayoutPreferences.shared.feed, candidates: candidates) else { return defaults }
+        return Array(rails[index].metas.prefix(5))
+    }
     private var metas: [Media] {
-        guard let source else { return defaults }
+        guard let source else { return featuredDefaults }
         if enrichedSignature == signature && !selected.isEmpty { return selected }
         return Array(source.metas.prefix(customization.page == "anime" ? 6 : 5))
     }
