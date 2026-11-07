@@ -17,6 +17,9 @@ struct StreamingSettingsView: View {
                 NavigationLink { StreamAutoSwitchSettingsView().toolbar(.visible, for: .navigationBar) } label: {
                     Label(DesktopInterfaceText.value("Auto-skip stalled streams"), systemImage: "timer").frame(minHeight: 44)
                 }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("streaming-auto-switch")
+                NavigationLink { CustomStreamFiltersView().toolbar(.visible, for: .navigationBar) } label: {
+                    Label(DesktopInterfaceText.value("Saved stream filters"), systemImage: "line.3.horizontal.decrease.circle").frame(minHeight: 44)
+                }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("streaming-stream-filters")
                 let cloud = app.harborIdentity
                 if cloud.signedIn {
                     HarborSettingsSection(DesktopInterfaceText.value("Sync")) {
