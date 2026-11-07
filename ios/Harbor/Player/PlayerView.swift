@@ -396,12 +396,17 @@ struct PlayerView: View {
         }
     }
 
+    /// The trackers that report playback, kept in a function of their own so the lifecycle chain below stays quick to type-check.
+    private func withTrackers<V: View>(_ content: V) -> some View {
+        content
+            .modifier(SimklPlaybackTracking(state: state, session: session, media: media, library: library, resumePending: resumePending))
+            .modifier(TraktPlaybackTracking(state: state, session: session, media: media, library: library, resumePending: resumePending))
+            .modifier(AniListPlaybackSync(state: state, session: session, media: media, library: library, resumePending: resumePending))
+            .modifier(MyAnimeListPlaybackSync(state: state, session: session, media: media, library: library, resumePending: resumePending))
+    }
+
     private func withLifecycle<V: View>(_ content: V) -> some View {
-        withAddonSubtitles(withSkipIntro(content.background { PlayerOrientationAnchor().allowsHitTesting(false) }))
-        .modifier(SimklPlaybackTracking(state: state, session: session, media: media, library: library, resumePending: resumePending))
-        .modifier(TraktPlaybackTracking(state: state, session: session, media: media, library: library, resumePending: resumePending))
-        .modifier(AniListPlaybackSync(state: state, session: session, media: media, library: library, resumePending: resumePending))
-        .modifier(MyAnimeListPlaybackSync(state: state, session: session, media: media, library: library, resumePending: resumePending))
+        withTrackers(withAddonSubtitles(withSkipIntro(content.background { PlayerOrientationAnchor().allowsHitTesting(false) })))
         .task(id: autoAdvanceReady) {
             guard autoAdvanceReady, let next = adjacent.next else { return }
             // Desktop's check-in: after several episodes in a row with no input, ask before the next one.
