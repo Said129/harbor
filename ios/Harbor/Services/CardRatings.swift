@@ -160,8 +160,10 @@ actor CardRatings {
     }
     private var entries: [String: Entry] = [:]
 
-    /// Asks only the sources in `needs` that this title has not had yet. OMDb goes through `prefetch`, so the daily budget
-    /// stops at 90 percent and a recent miss is not asked again. A missing key asks nothing.
+    /// OMDb is asked on every request through `prefetch` and then read back from its cache, so the daily budget stops at
+    /// 90 percent, a recent miss is not repeated, and a title another row just fetched is picked up. MDBList and SIMKL
+    /// count as fetched only once they return a value; their services already remember misses and failures.
+    /// A missing key asks nothing.
     func scores(imdbID: String, omdbKey: String, mdblistKey: String, show: Bool, needs: CardRatingNeeds) async -> CardRatingScores {
         let tag = "\(omdbKey.hashValue)|\(mdblistKey.hashValue)"
         if entries[imdbID]?.tag != tag {
@@ -170,26 +172,29 @@ actor CardRatings {
         }
         let already = entries[imdbID]?.fetched ?? CardRatingNeeds()
         let missing = needs.subtracting(already)
-        if missing.contains(.omdb), !omdbKey.isEmpty {
+        if needs.contains(.omdb), !omdbKey.isEmpty {
             await OmdbService.shared.prefetch(key: omdbKey, imdbID: imdbID)
             let value = await OmdbService.shared.cached(imdbID)
             update(imdbID) { entry in
                 entry.scores.omdb = value
-                entry.fetched.insert(.omdb)
             }
         }
         if missing.contains(.mdblist), !mdblistKey.isEmpty {
             let value = await MdblistService.shared.scores(key: mdblistKey, imdbID: imdbID, type: show ? "show" : "movie")
-            update(imdbID) { entry in
-                entry.scores.mdblist = value
-                entry.fetched.insert(.mdblist)
+            if let value {
+                update(imdbID) { entry in
+                    entry.scores.mdblist = value
+                    entry.fetched.insert(.mdblist)
+                }
             }
         }
         if missing.contains(.simkl) {
             let value = await SimklCommunityRatings.shared.rating("imdb:" + imdbID)
-            update(imdbID) { entry in
-                entry.scores.simkl = value
-                entry.fetched.insert(.simkl)
+            if let value {
+                update(imdbID) { entry in
+                    entry.scores.simkl = value
+                    entry.fetched.insert(.simkl)
+                }
             }
         }
         return entries[imdbID]?.scores ?? CardRatingScores()

@@ -5,15 +5,10 @@ import SwiftUI
 struct CardRatingChips: View {
     let media: Media
     let owner: String
-    @State private var store: ProviderKeyStore
     @State private var scores = CardRatingScores()
 
-    init(media: Media, owner: String) {
-        self.media = media
-        self.owner = owner
-        _store = State(initialValue: ProviderKeyStore.forOwner(owner))
-    }
-
+    /// The owner's store follows the owner, so a profile switch reads that profile's keys.
+    private var store: ProviderKeyStore { ProviderKeyStore.forOwner(owner) }
     private var preferences: InterfacePreferences { InterfacePreferences.shared }
     private var anime: Bool { AnimeService.isAnime(media.id) }
     private var keys: Set<CardRatingKey> { CardRatingPolicy.keySources(omdb: store.key(.omdb), mdblist: store.key(.mdblist)) }
@@ -27,13 +22,19 @@ struct CardRatingChips: View {
                                enabled: enabled, limit: preferences.cardBadgeLimit)
     }
     private var taskID: String {
-        media.identity + "|" + String(needs.rawValue) + "|" + keys.map(\.rawValue).sorted().joined(separator: ",")
+        owner + "|" + media.identity + "|" + String(needs.rawValue) + "|" + keys.map(\.rawValue).sorted().joined(separator: ",")
     }
     private var alignment: Alignment { preferences.badgePlacement == "top" ? .topTrailing : .bottomTrailing }
 
+    /// The container is always drawn, so the task starts even while the card has no chip yet.
     var body: some View {
-        chipRow
-            .task(id: taskID) { await refresh() }
+        ZStack(alignment: alignment) {
+            Color.clear
+            chipRow
+        }
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
+        .task(id: taskID) { await refresh() }
     }
 
     @ViewBuilder private var chipRow: some View {
@@ -48,10 +49,7 @@ struct CardRatingChips: View {
             .padding(.horizontal, 6).padding(.vertical, 3)
             .background(Color.black.opacity(0.8), in: .capsule)
             .scaleEffect(scale(chips.count), anchor: .trailing)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
             .padding(5)
-            .allowsHitTesting(false)
-            .accessibilityHidden(true)
         }
     }
 
