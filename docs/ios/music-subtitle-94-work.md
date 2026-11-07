@@ -1396,3 +1396,16 @@ Desktop's library-calendar resolver (TMDB, TVMaze and AniZip) and is not ported.
 
 `CalendarSourcesTests` has 15 cases. Run 15 compiles it together with the review edits of
 the ratings work.
+
+## SIMKL community rating on the detail page (7 November)
+
+Desktop's SIMKL chip shows SIMKL's own community score, read from the Harbor server's
+`/api/simkl/ratings?ids=imdb:tt...` proxy, and falls back to the copy MDBList carries. Harbor's
+community server answers the same endpoint (checked with one read of a public title, which
+returned `{"ratings":{"imdb:tt0111161":{"rating":9.1,"votes":10380}}}`). `SimklCommunityRatings`
+asks up to 120 lower-cased specs per request, remembers scores and "none" after an HTTP error,
+and asks again after a network failure, as Desktop does. The chip needs no provider key and
+follows the SIMKL toggle in the ratings matrix. Settings row 42 moves to ported. The cards'
+SIMKL score and the anime specs (`mal:`, `kitsu:`) are not wired yet.
+
+`ProviderRatingsTests` now has 15 cases; run 15 should include the three new ones.

@@ -24,7 +24,8 @@ enum DetailRatings {
     static func rounded(_ value: Double) -> Int { Int((value + 0.5).rounded(.down)) }
 
     /// Items for the scores at hand, skipping any the person turned off in the ratings matrix.
-    static func items(omdb: OmdbScores?, mdblist: MdblistScores?, imdbID: String?, isShow: Bool, hidden: Set<String>) -> [Item] {
+    /// `simkl` is SIMKL's own community score; it needs no key and is preferred over the copy MDBList carries.
+    static func items(omdb: OmdbScores?, mdblist: MdblistScores?, simkl: Double? = nil, imdbID: String?, isShow: Bool, hidden: Set<String>) -> [Item] {
         var items: [Item] = []
         if !hidden.contains("rt"), let critics = omdb?.rtCritics {
             items.append(Item(id: "rt", label: "Rotten Tomatoes Critics", value: "\(critics)%", link: nil))
@@ -41,7 +42,7 @@ enum DetailRatings {
         if !hidden.contains("trakt"), let trakt = mdblist?.trakt {
             items.append(Item(id: "trakt", label: "Trakt", value: "\(rounded(trakt))%", link: imdbID.flatMap { URL(string: "https://trakt.tv/search/imdb/\($0)") }))
         }
-        if !hidden.contains("simkl"), let simkl = mdblist?.simkl {
+        if !hidden.contains("simkl"), let simkl = simkl ?? mdblist?.simkl {
             items.append(Item(id: "simkl", label: "SIMKL", value: String(format: "%.1f", simkl), link: imdbID.flatMap { URL(string: "https://api.simkl.com/redirect?to=simkl&imdb=\($0)") }))
         }
         if !hidden.contains("mdblist"), let score = mdblist?.score {

@@ -259,7 +259,7 @@ SETTINGS = expand("""
 34-39 D Rotten Tomatoes, audience, Letterboxd, Metacritic, Trakt and MDBList detail toggles (7 Nov, compiled; cases passed)
 40 D show Trakt comments on detail pages (5 Nov, uncompiled)
 41 M card rating chips not ported
-42 P SIMKL detail toggle; the value comes from MDBList only, not SIMKL's community rating (7 Nov, compiled; cases passed)
+42 D SIMKL detail toggle with SIMKL's community rating from the Harbor community server (7 Nov, uncompiled)
 43-44 M rating badges not ported
 45 D
 46-51 M card badges and home languages not ported

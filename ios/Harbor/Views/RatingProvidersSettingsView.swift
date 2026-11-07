@@ -112,6 +112,7 @@ struct DetailProviderRatings: View {
     @State private var store: ProviderKeyStore
     @State private var omdb: OmdbScores?
     @State private var mdblist: MdblistScores?
+    @State private var simklRating: Double?
     @Environment(\.openURL) private var openURL
 
     init(media: Media, owner: String) {
@@ -120,7 +121,7 @@ struct DetailProviderRatings: View {
 
     private var imdbID: String? { [media.id, media.imdbID ?? ""].first { $0.range(of: "^tt[0-9]+$", options: .regularExpression) != nil } }
     private var items: [DetailRatings.Item] {
-        DetailRatings.items(omdb: omdb, mdblist: mdblist, imdbID: imdbID, isShow: media.type != "movie", hidden: InterfacePreferences.shared.detailRatingsHidden)
+        DetailRatings.items(omdb: omdb, mdblist: mdblist, simkl: simklRating, imdbID: imdbID, isShow: media.type != "movie", hidden: InterfacePreferences.shared.detailRatingsHidden)
     }
 
     var body: some View {
@@ -158,14 +159,15 @@ struct DetailProviderRatings: View {
 
     private func load() async {
         do { if !store.ready { try store.load() } } catch { return }
-        omdb = nil; mdblist = nil
+        omdb = nil; mdblist = nil; simklRating = nil
         guard let imdbID else { return }
         let omdbKey = store.key(.omdb), mdblistKey = store.key(.mdblist), show = media.type != "movie"
         async let first = Self.omdbScores(key: omdbKey, imdbID: imdbID)
         async let second = Self.mdblistScores(key: mdblistKey, imdbID: imdbID, show: show)
-        let (found, others) = await (first, second)
+        async let third = SimklCommunityRatings.shared.rating("imdb:" + imdbID)
+        let (found, others, community) = await (first, second, third)
         guard !Task.isCancelled else { return }
-        omdb = found; mdblist = others
+        omdb = found; mdblist = others; simklRating = community
     }
 
     /// Desktop's detail page asks OMDb without a type: an extra one can turn a hit into a miss, and a miss costs a request.

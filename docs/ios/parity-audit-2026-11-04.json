@@ -16,24 +16,24 @@
     },
     "settings": {
       "total": 511,
-      "ported": 137,
-      "partial": 24,
+      "ported": 138,
+      "partial": 23,
       "missing": 264,
       "excluded": 86,
       "counted": 425,
-      "weighted_percent": 35.1,
-      "ported_only_percent": 32.2,
+      "weighted_percent": 35.2,
+      "ported_only_percent": 32.5,
       "ported_or_partial_percent": 37.9
     },
     "all": {
       "total": 949,
-      "ported": 259,
-      "partial": 230,
+      "ported": 260,
+      "partial": 229,
       "missing": 352,
       "excluded": 108,
       "counted": 841,
       "weighted_percent": 44.5,
-      "ported_only_percent": 30.8,
+      "ported_only_percent": 30.9,
       "ported_or_partial_percent": 58.1
     }
   },
@@ -3588,8 +3588,8 @@
       "index": 42,
       "id": "showSimklDetail",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "SIMKL detail toggle; the value comes from MDBList only, not SIMKL's community rating (7 Nov, compiled; cases passed)"
+      "verdict": "D",
+      "note": "SIMKL detail toggle with SIMKL's community rating from the Harbor community server (7 Nov, uncompiled)"
     },
     {
       "index": 43,

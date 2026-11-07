@@ -229,6 +229,63 @@ final class ProviderRatingsTests: XCTestCase {
         XCTAssertTrue(DetailRatings.items(omdb: nil, mdblist: MdblistScores(), imdbID: nil, isShow: false, hidden: []).isEmpty)
     }
 
+    func testSimklCommunityRatingsAreAskedInBatchesAndRemembered() async throws {
+        let log = FetchLog()
+        let service = SimklCommunityRatings { url in
+            log.add(url)
+            let specs = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.first { $0.name == "ids" }?.value?.split(separator: ",").map(String.init) ?? []
+            var ratings: [String: JSONValue] = [:]
+            for spec in specs { ratings[spec] = spec == "imdb:tt1" ? .object(["rating": .number(9.1), "votes": .integer(10)]) : .null }
+            return .object(["ratings": .object(ratings)])
+        }
+        let first = await service.rating("imdb:TT1")
+        XCTAssertEqual(first, 9.1)
+        let query = try XCTUnwrap(URLComponents(url: try XCTUnwrap(log.urls.first), resolvingAgainstBaseURL: false))
+        XCTAssertEqual(query.host, "harborcommunity.site"); XCTAssertEqual(query.path, "/api/simkl/ratings")
+        XCTAssertEqual(query.queryItems?.first { $0.name == "ids" }?.value, "imdb:tt1", "Specs are asked in lower case")
+        let again = await service.rating("imdb:tt1")
+        XCTAssertEqual(again, 9.1); XCTAssertEqual(log.urls.count, 1, "A score is remembered")
+
+        let mixed = await service.ratings(["imdb:tt1", "imdb:tt2", "imdb:tt3", "imdb:TT2"])
+        XCTAssertEqual(mixed, ["imdb:tt1": 9.1], "A title without a score is left out")
+        XCTAssertEqual(log.urls.count, 2, "Only the specs not known yet are asked, together")
+        XCTAssertEqual(URLComponents(url: log.urls[1], resolvingAgainstBaseURL: false)?.queryItems?.first { $0.name == "ids" }?.value, "imdb:tt2,imdb:tt3")
+        _ = await service.ratings(["imdb:tt2", "imdb:tt3"])
+        XCTAssertEqual(log.urls.count, 2, "Having no score is remembered too")
+
+        let many = (0..<130).map { "mal:\($0 + 100)" }
+        _ = await service.ratings(many)
+        XCTAssertEqual(log.urls.count, 4, "130 specs go out as 120 and 10")
+        let sizes = log.urls.suffix(2).map { URLComponents(url: $0, resolvingAgainstBaseURL: false)?.queryItems?.first { $0.name == "ids" }?.value?.split(separator: ",").count ?? 0 }
+        XCTAssertEqual(sizes, [120, 10])
+    }
+
+    func testSimklCommunityRatingsRememberHTTPErrorsButNotNetworkFailures() async {
+        let server = FetchLog(), network = FetchLog()
+        let refused = SimklCommunityRatings { url in server.add(url); throw HarborError(code: "http-500") }
+        let none = await refused.rating("imdb:tt1")
+        XCTAssertNil(none)
+        _ = await refused.rating("imdb:tt1")
+        XCTAssertEqual(server.urls.count, 1, "An answer with an error status counts as no score")
+
+        let offline = SimklCommunityRatings { url in network.add(url); throw HarborError(code: "network") }
+        _ = await offline.rating("imdb:tt1")
+        _ = await offline.rating("imdb:tt1")
+        XCTAssertEqual(network.urls.count, 2, "A request that never arrived is asked again")
+        let empty = await offline.ratings(["", ""])
+        XCTAssertTrue(empty.isEmpty); XCTAssertEqual(network.urls.count, 2, "Empty specs send nothing")
+    }
+
+    func testTheSimklChipPrefersTheCommunityScoreAndNeedsNoKey() {
+        let mdblist = MdblistScores(simkl: 7.2)
+        XCTAssertEqual(DetailRatings.items(omdb: nil, mdblist: mdblist, simkl: 9.14, imdbID: "tt1", isShow: false, hidden: []).map(\.value), ["9.1"])
+        XCTAssertEqual(DetailRatings.items(omdb: nil, mdblist: mdblist, imdbID: "tt1", isShow: false, hidden: []).map(\.value), ["7.2"], "Without SIMKL's own score MDBList's copy is shown")
+        let alone = DetailRatings.items(omdb: nil, mdblist: nil, simkl: 8.0, imdbID: "tt1", isShow: true, hidden: [])
+        XCTAssertEqual(alone.map(\.id), ["simkl"]); XCTAssertEqual(alone.first?.value, "8.0")
+        XCTAssertEqual(alone.first?.link?.absoluteString, "https://api.simkl.com/redirect?to=simkl&imdb=tt1")
+        XCTAssertTrue(DetailRatings.items(omdb: nil, mdblist: mdblist, simkl: 9.1, imdbID: "tt1", isShow: false, hidden: ["simkl"]).isEmpty)
+    }
+
     func testTheRatingsMatrixListsDesktopsProvidersAndMetacriticColours() {
         XCTAssertEqual(DetailRatings.sources.map(\.id), ["imdb", "tmdb", "rt", "audience", "metacritic", "letterboxd", "mdblist", "trakt", "simkl"])
         XCTAssertEqual(DetailRatings.metacriticBand(61), "green"); XCTAssertEqual(DetailRatings.metacriticBand(60), "amber")
