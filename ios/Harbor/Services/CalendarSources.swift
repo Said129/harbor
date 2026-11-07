@@ -2,9 +2,9 @@ import Foundation
 
 /// The calendar's sources (Desktop's `calendarSource` setting, same values). My Simkl and Games are not offered yet.
 enum CalendarSource: String, CaseIterable, Sendable {
-    case library, all, trakt, anticipated, anime
+    case library, all, trakt, anticipated
     case simklAnticipated = "simkl-anticipated"
-    case custom
+    case anime, custom
 
     /// Desktop's label, a translation key.
     var label: String {
