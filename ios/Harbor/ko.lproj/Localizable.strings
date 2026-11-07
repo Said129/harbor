@@ -885,6 +885,7 @@
 "Every 15 min" = "15분마다";
 "Every 30 min" = "30분마다";
 "Every launch" = "실행할 때마다";
+"Everyone is loaded in. Press play to start watching." = "모두 입장했습니다. 재생을 눌러 시청을 시작하세요.";
 "Everything releasing this month from TMDB" = "TMDB의 이번 달 모든 공개작";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "애드온에서 제공하는 모든 콘텐츠를 포스터로 표시합니다. 스크롤하거나 검색 또는 필터링해 원하는 콘텐츠를 찾으세요.";
 "Excellence Prize" = "우수상";
@@ -2719,6 +2720,7 @@
 "Volumes" = "권";
 "Volver a empezar" = "처음부터 재생";
 "Vídeo" = "동영상";
+"Waiting for the host to start" = "호스트가 시작할 때까지 대기 중";
 "Waiting for you to authorize on simkl.com…" = "simkl.com에서 인증하기를 기다리는 중…";
 "Waiting for you to authorize on trakt.tv…" = "trakt.tv에서 인증하기를 기다리는 중…";
 "War" = "전쟁";

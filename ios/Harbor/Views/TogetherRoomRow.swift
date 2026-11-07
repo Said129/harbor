@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// The Settings row that opens the Watch Together room sheet (create or join a room, invite, chat). The sheet lives here so
-/// Settings only needs one line. Playback sync with the player is not connected yet: rooms, invites and chat work.
+/// Settings only needs one line. The player keeps in step with the room through `TogetherPlayerSync`.
 struct TogetherRoomRow: View {
     @State private var presenting = false
 

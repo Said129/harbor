@@ -885,6 +885,7 @@
 "Every 15 min" = "每 15 分钟";
 "Every 30 min" = "每 30 分钟";
 "Every launch" = "每次启动";
+"Everyone is loaded in. Press play to start watching." = "所有人均已加载完成。按播放键开始观看。";
 "Everything releasing this month from TMDB" = "TMDB 中本月上线的所有内容";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "插件提供的所有内容都会以海报形式显示。滚动、搜索或筛选即可找到所需内容。";
 "Excellence Prize" = "优秀奖";
@@ -2719,6 +2720,7 @@
 "Volumes" = "分卷";
 "Volver a empezar" = "从头播放";
 "Vídeo" = "视频";
+"Waiting for the host to start" = "正在等待房主开始播放";
 "Waiting for you to authorize on simkl.com…" = "正在等待你在 simkl.com 上授权…";
 "Waiting for you to authorize on trakt.tv…" = "正在等待你在 trakt.tv 上授权…";
 "War" = "战争";

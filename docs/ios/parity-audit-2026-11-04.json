@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 149,
-      "partial": 232,
+      "ported": 150,
+      "partial": 231,
       "missing": 7,
       "excluded": 50,
       "counted": 388,
-      "weighted_percent": 68.3,
-      "ported_only_percent": 38.4,
+      "weighted_percent": 68.4,
+      "ported_only_percent": 38.7,
       "ported_or_partial_percent": 98.2
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 354,
-      "partial": 282,
+      "ported": 355,
+      "partial": 281,
       "missing": 47,
       "excluded": 266,
       "counted": 683,
       "weighted_percent": 72.5,
-      "ported_only_percent": 51.8,
+      "ported_only_percent": 52.0,
       "ported_or_partial_percent": 93.1
     }
   },
@@ -122,11 +122,11 @@
     {
       "area": "Casting and Watch Together",
       "range": "B239-B259",
-      "ported": 7,
-      "partial": 8,
+      "ported": 8,
+      "partial": 7,
       "missing": 0,
       "excluded": 6,
-      "weighted_percent": 73.3
+      "weighted_percent": 76.7
     },
     {
       "area": "Stremio account, library and local files",
@@ -1977,7 +1977,7 @@
       "id": "Watch party create / join",
       "desktop_source": "src/lib/together",
       "verdict": "P",
-      "note": "Watch Together rooms: create and join through the relay with a sheet; the player does not follow the room yet (7 Nov, written by Haiku, CI runs 43 and 44 green)"
+      "note": "Watch Together rooms: create and join through the relay with a sheet; the player holds the lobby paused, the host starts the room by pressing play, guests follow and send their controls to the host; no lobby screen with a ready list and no other-title notice (7 Nov, player side uncompiled)"
     },
     {
       "index": 251,
@@ -1990,8 +1990,8 @@
       "index": 252,
       "id": "Clock aligned playback sync",
       "desktop_source": "src/lib/together",
-      "verdict": "P",
-      "note": "clock aligned playback sync: the follower logic exists and is tested, the player does not call it yet (7 Nov, written by Haiku, CI runs 43 and 44 green)"
+      "verdict": "D",
+      "note": "clock aligned playback sync: the host publishes about once a second and at once on pause or seek, guests follow rate, position and play state, the host applies guests' play, pause and seek commands (7 Nov, uncompiled; TogetherPlayerSyncTests)"
     },
     {
       "index": 253,

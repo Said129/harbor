@@ -885,6 +885,7 @@
 "Every 15 min" = "Mỗi 15 phút";
 "Every 30 min" = "Mỗi 30 phút";
 "Every launch" = "Mỗi lần khởi chạy";
+"Everyone is loaded in. Press play to start watching." = "Mọi người đã tải xong. Nhấn phát để bắt đầu xem.";
 "Everything releasing this month from TMDB" = "Tất cả nội dung phát hành trong tháng này từ TMDB";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Mọi nội dung từ các tiện ích bổ sung của bạn đều được hiển thị dưới dạng áp phích. Cuộn, tìm kiếm hoặc lọc để tìm nội dung bạn muốn.";
 "Excellence Prize" = "Giải Xuất sắc";
@@ -2719,6 +2720,7 @@
 "Volumes" = "Tập";
 "Volver a empezar" = "Phát lại từ đầu";
 "Vídeo" = "Video";
+"Waiting for the host to start" = "Đang chờ chủ phòng bắt đầu";
 "Waiting for you to authorize on simkl.com…" = "Đang chờ bạn cấp quyền trên simkl.com…";
 "Waiting for you to authorize on trakt.tv…" = "Đang chờ bạn cấp quyền trên trakt.tv…";
 "War" = "Chiến tranh";

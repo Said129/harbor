@@ -143,7 +143,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         try check(mpv_observe_property(mpv, 0, "chapter-list", MPV_FORMAT_NODE))
         // Optional timing properties must not prevent ordinary playback on an
         // older runtime. Availability comes from their actual property events.
-        for name in ["sub-fps", "estimated-vf-fps", "container-fps"] { _ = mpv_observe_property(mpv, 0, name, MPV_FORMAT_DOUBLE) }
+        for name in ["sub-fps", "estimated-vf-fps", "container-fps", "demuxer-cache-time"] { _ = mpv_observe_property(mpv, 0, name, MPV_FORMAT_DOUBLE) }
         for name in ["sub-text", "secondary-sub-text"] { _ = mpv_observe_property(mpv, 0, name, MPV_FORMAT_STRING) }
         if let headers = source.headers {
             // mpv string-list escapes commas by doubling; reject CR/LF in Rust.
@@ -932,6 +932,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                     if key == "sub-fps" { state.subtitleFPS = nil }
                     if key == "estimated-vf-fps" { state.estimatedVideoFPS = nil }
                     if key == "container-fps" { state.containerVideoFPS = nil }
+                    if key == "demuxer-cache-time" { state.cacheEnd = nil }
                     if key == "sub-text" { state.primarySubtitleText = "" }
                     if key == "secondary-sub-text" { state.secondarySubtitleText = "" }
                     continue
@@ -946,6 +947,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                     if key == "sub-fps" { state.subtitleFPS = number >= 0 ? number : nil }
                     if key == "estimated-vf-fps" { state.estimatedVideoFPS = number > 0 ? number : nil }
                     if key == "container-fps" { state.containerVideoFPS = number > 0 ? number : nil }
+                    if key == "demuxer-cache-time" { state.cacheEnd = number >= 0 ? number : nil }
                     if key == "time-pos" && state.loaded && number >= 0 { state.position = number; state.hasPosition = true }
                     if key == "duration" && number >= 0 {
                         state.duration = number

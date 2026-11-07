@@ -905,6 +905,7 @@
 "Every 15 min" = "A cada 15 min";
 "Every 30 min" = "A cada 30 min";
 "Every launch" = "A cada inicialização";
+"Everyone is loaded in. Press play to start watching." = "Todo mundo está carregado. Aperte play para começar a assistir.";
 "Everything releasing this month from TMDB" = "Tudo que estreia este mês, segundo o TMDB";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Tudo o que seus complementos oferecem, exibido como pôsteres. Role, pesquise ou filtre para encontrar o que você quer.";
 "Excellence Prize" = "Prêmio de Excelência";
@@ -2742,6 +2743,7 @@
 "Volumes" = "Volumes";
 "Volver a empezar" = "Começar de Novo";
 "Vídeo" = "Vídeo";
+"Waiting for the host to start" = "Aguardando o host iniciar";
 "Waiting for you to authorize on simkl.com…" = "Aguardando sua autorização em simkl.com…";
 "Waiting for you to authorize on trakt.tv…" = "Aguardando sua autorização em trakt.tv…";
 "War" = "Guerra";

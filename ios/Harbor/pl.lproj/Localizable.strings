@@ -885,6 +885,7 @@
 "Every 15 min" = "Co 15 min";
 "Every 30 min" = "Co 30 min";
 "Every launch" = "Przy każdym uruchomieniu";
+"Everyone is loaded in. Press play to start watching." = "Wszyscy są gotowi. Naciśnij przycisk odtwarzania, aby rozpocząć oglądanie.";
 "Everything releasing this month from TMDB" = "Wszystkie premiery tego miesiąca z TMDB";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Wszystko, co oferują Twoje dodatki, przedstawione w formie plakatów. Przewijaj, wyszukuj lub filtruj, aby znaleźć to, czego szukasz.";
 "Excellence Prize" = "Nagroda za doskonałość";
@@ -2719,6 +2720,7 @@
 "Volumes" = "Tomy";
 "Volver a empezar" = "Zacznij od początku";
 "Vídeo" = "Wideo";
+"Waiting for the host to start" = "Oczekiwanie, aż gospodarz rozpocznie odtwarzanie";
 "Waiting for you to authorize on simkl.com…" = "Oczekiwanie na autoryzację w simkl.com…";
 "Waiting for you to authorize on trakt.tv…" = "Oczekiwanie na autoryzację w trakt.tv…";
 "War" = "Wojenny";

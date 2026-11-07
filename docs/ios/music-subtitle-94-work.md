@@ -1631,3 +1631,22 @@ Not done: the player does not follow or announce Watch Together playback (the ho
 multiview was judged not worth building, and the Chromecast flow was never tried against a real device.
 Validation: run 43 (reconnect and Together, 37 cases) and run 44 (Chromecast and the Roku and DLNA protocol tests,
 46 cases) passed; the last full regression (673 cases, rounds 1 to 10) passed before rounds 11 and 12.
+
+## Watch Together in the player (7 November, written by Sonnet)
+
+`TogetherPlayerSync` (a modifier in the player's tracker helper, like `LiveReconnectDriver`) runs a driver on a 250 ms tick while a
+room is joined and a 1 s tick otherwise. It is `use-room-sync.ts` for the player: before the room starts the video is held paused
+(the host sees "Everyone is loaded in. Press play to start watching.", a guest "Waiting for the host to start", both Desktop strings
+synced to the 16 catalogs) and the host starts the room by pressing play; afterwards the host publishes about once a second and at
+once on a pause or a jump, applies the guests' play, pause and seek commands (120 ms seek debounce, per-sender sequence numbers),
+and a guest aligns once and then follows the host's rate, position and play state through `PlaybackFollower`. A guest's own play,
+pause or seek is detected by comparing the player with the previous tick outside the 1.4 s that follow an applied decision, and it
+is sent to the host as a command instead of being fought; states older than that command are ignored so the video does not flick
+back. The read-ahead cache end (`demuxer-cache-time`) is now observed so the catch-up logic knows how much is buffered.
+`TogetherSession.recentCommands` keeps the last 16 commands so none is lost between ticks.
+
+Differences from Desktop: no lobby screen with a ready list (the video holds paused and a one-line notice is shown), no
+notice when the host plays another title (the guest just does not follow), and a guest's controls act locally and are then
+corrected by the host instead of being replaced by commands. The stream descriptor sent with a state carries only the duration,
+because `PlaybackSource` does not keep the stream's title or info hash. Tests: `TogetherPlayerSyncTests` (13 cases over the fake
+relay socket and a fake player). Compiled and run only once CI has covered them.

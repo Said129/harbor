@@ -888,6 +888,7 @@
 "Every 15 min" = "Каждые 15 мин";
 "Every 30 min" = "Каждые 30 мин";
 "Every launch" = "При каждом запуске";
+"Everyone is loaded in. Press play to start watching." = "Все загрузились. Нажмите воспроизведение, чтобы начать просмотр.";
 "Everything releasing this month from TMDB" = "Все релизы этого месяца по данным TMDB";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Всё, что предлагают ваши дополнения, в виде постеров. Прокручивайте, ищите или фильтруйте.";
 "Excellence Prize" = "Приз за выдающиеся достижения";
@@ -2733,6 +2734,7 @@
 "Volumes" = "Тома";
 "Volver a empezar" = "Начать сначала";
 "Vídeo" = "Видео";
+"Waiting for the host to start" = "Ожидание запуска от хоста";
 "Waiting for you to authorize on simkl.com…" = "Ожидание авторизации на simkl.com…";
 "Waiting for you to authorize on trakt.tv…" = "Ожидание авторизации на trakt.tv…";
 "War" = "Военный";

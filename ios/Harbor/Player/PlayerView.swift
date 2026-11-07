@@ -407,6 +407,7 @@ struct PlayerView: View {
             .modifier(AniListPlaybackSync(state: state, session: session, media: media, library: library, resumePending: resumePending))
             .modifier(MyAnimeListPlaybackSync(state: state, session: session, media: media, library: library, resumePending: resumePending))
             .modifier(LiveReconnectDriver(state: state, session: session))
+            .modifier(TogetherPlayerSync(state: state, session: session, media: media))
     }
 
     /// Reactions to playback state and settings, kept in a function of their own so the lifecycle chain stays quick to type-check.

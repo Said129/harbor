@@ -311,9 +311,9 @@ BEHAVIORS = expand("""
 238 D live channels reconnect after a player error with Desktop's delays and attempt limits (7 Nov, written by Haiku, CI runs 43 and 44 green)
 239 D Chromecast discovery and playback through CASTv2 with Bonjour; tested with scripted streams, not against a real Chromecast (7 Nov, written by Haiku, CI runs 43 and 44 green)
 240 D cast control for Roku, DLNA and Chromecast: play, pause, seek where supported, stop, volume (7 Nov, written by Haiku, CI runs 43 and 44 green)
-250 P Watch Together rooms: create and join through the relay with a sheet; the player does not follow the room yet (7 Nov, written by Haiku, CI runs 43 and 44 green)
+250 P Watch Together rooms: create and join through the relay with a sheet; the player holds the lobby paused, the host starts the room by pressing play, guests follow and send their controls to the host; no lobby screen with a ready list and no other-title notice (7 Nov, player side uncompiled)
 251 D Watch Together invite links, built and parsed (7 Nov, written by Haiku, CI runs 43 and 44 green)
-252 P clock aligned playback sync: the follower logic exists and is tested, the player does not call it yet (7 Nov, written by Haiku, CI runs 43 and 44 green)
+252 D clock aligned playback sync: the host publishes about once a second and at once on pause or seek, guests follow rate, position and play state, the host applies guests' play, pause and seek commands (7 Nov, uncompiled; TogetherPlayerSyncTests)
 253 D Watch Together chat (7 Nov, written by Haiku, CI runs 43 and 44 green)
 254 X on-screen cursors: a touch screen has no pointer
 255 X collaborative drawing: not worth a phone port

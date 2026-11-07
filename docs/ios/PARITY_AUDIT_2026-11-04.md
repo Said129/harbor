@@ -20,9 +20,9 @@ in `parity-audit-2026-11-04.json`, produced by
 
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
-| Behaviors |   438 |    149 |     232 |       7 |       50 |           68.3 % |      38.4 % |            98.2 % |
+| Behaviors |   438 |    150 |     231 |       7 |       50 |           68.4 % |      38.7 % |            98.2 % |
 | Settings  |   511 |    205 |      50 |      40 |      216 |           78.0 % |      69.5 % |            86.4 % |
-| All       |   949 |    354 |     282 |      47 |      266 |           72.5 % |      51.8 % |            93.1 % |
+| All       |   949 |    355 |     281 |      47 |      266 |           72.5 % |      52.0 % |            93.1 % |
 
 The 6 November refresh adds the OMDb and MDBList ratings on the detail page (the two
 provider keys, the Details column of the ratings matrix and the scores row), on top

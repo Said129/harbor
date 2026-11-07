@@ -141,6 +141,8 @@ struct PlaybackFollower: Equatable, Sendable {
     private(set) var incomingHostLeaving: TogetherHostLeaving?
     /// The latest command from another member. Use its `id` to react once per command.
     private(set) var lastCommand: TogetherIncomingCommand?
+    /// The latest commands, oldest first, so a player that polls loses none when two arrive between polls.
+    private(set) var recentCommands: [TogetherIncomingCommand] = []
     private(set) var lastInvite: TogetherLastInvite?
 
     private let preferences: TogetherPreferences
@@ -318,7 +320,10 @@ struct PlaybackFollower: Equatable, Sendable {
             break
         case .incomingCommand(let sender, let command):
             sequence += 1
-            lastCommand = TogetherIncomingCommand(id: sequence, from: sender, command: command)
+            let incoming = TogetherIncomingCommand(id: sequence, from: sender, command: command)
+            lastCommand = incoming
+            recentCommands.append(incoming)
+            if recentCommands.count > 16 { recentCommands.removeFirst(recentCommands.count - 16) }
         case .chat(let sender, let name, let text, let at):
             sequence += 1
             chat.append(TogetherChatMessage(id: sequence, from: sender, name: name, text: text, at: at))

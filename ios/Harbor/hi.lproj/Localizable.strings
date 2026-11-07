@@ -885,6 +885,7 @@
 "Every 15 min" = "हर 15 मिनट";
 "Every 30 min" = "हर 30 मिनट";
 "Every launch" = "हर बार शुरू होने पर";
+"Everyone is loaded in. Press play to start watching." = "सभी लोग जुड़ चुके हैं। देखना शुरू करने के लिए प्ले दबाएँ।";
 "Everything releasing this month from TMDB" = "TMDB के अनुसार इस महीने रिलीज़ होने वाली हर चीज़";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "आपके ऐडऑन जो कुछ भी पेश करते हैं, वह पोस्टर के रूप में दिखाया जाता है। जो चाहिए, उस तक पहुँचने के लिए स्क्रॉल करें, खोजें या फ़िल्टर करें।";
 "Excellence Prize" = "उत्कृष्टता पुरस्कार";
@@ -2719,6 +2720,7 @@
 "Volumes" = "खंड";
 "Volver a empezar" = "फिर से शुरू करें";
 "Vídeo" = "वीडियो";
+"Waiting for the host to start" = "होस्ट के शुरू करने की प्रतीक्षा हो रही है";
 "Waiting for you to authorize on simkl.com…" = "simkl.com पर आपके अनुमति देने की प्रतीक्षा हो रही है…";
 "Waiting for you to authorize on trakt.tv…" = "trakt.tv पर आपके अनुमति देने की प्रतीक्षा हो रही है…";
 "War" = "युद्ध";
