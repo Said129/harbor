@@ -68,12 +68,14 @@ actor SkipIntroService {
         let selected = media?.videos?.first { $0.id == target.videoId }
         let external = media?.imdbID ?? selected?.imdbID ?? target.id
         let season = selected?.imdbSeason ?? target.season, episode = selected?.imdbEpisode ?? target.episode
-        let key = [target.id, external, String(season ?? -1), String(episode ?? -1), String(target.episode ?? -1), String(Int(duration.rounded()))].joined(separator: "|")
+        let apiKey = await Self.theIntroDBKey()
+        // A new TheIntroDB key must not reuse an answer given for the old one, as Desktop clears its cache on a key change.
+        let key = [target.id, external, String(season ?? -1), String(episode ?? -1), String(target.episode ?? -1), String(Int(duration.rounded())), String(apiKey.hashValue)].joined(separator: "|")
         if let hit = cache[key], hit.0 > Date() { return hit.1 }
         if let task = pending[key] { return try checked(await task.value) }
         let task = Task {
             async let anime = Self.anime(id: target.id, episode: target.episode, duration: duration)
-            async let television = Self.television(id: external, season: season, episode: episode, duration: duration)
+            async let television = Self.television(id: external, season: season, episode: episode, duration: duration, apiKey: apiKey)
             return await SkipSegment.merge([anime, television], duration: duration)
         }
         pending[key] = task
@@ -105,13 +107,15 @@ actor SkipIntroService {
             return parseAniSkip(response)
         } catch { return [] }
     }
-    private static func television(id: String, season: Int?, episode: Int?, duration: Double) async -> [SkipSegment] {
-        var url = URLComponents(string: "https://api.theintrodb.org/v2/media")!
-        if id.range(of: "^tt[0-9]+$", options: .regularExpression) != nil { url.queryItems = [URLQueryItem(name: "imdb_id", value: id)] }
-        else if id.hasPrefix("tmdb:tv:") || id.hasPrefix("tmdb:movie:"), let number = Int(id.split(separator: ":").last ?? ""), number > 0 { url.queryItems = [URLQueryItem(name: "tmdb_id", value: String(number))] }
-        else { return [] }
-        if let season, let episode, season >= 0, episode > 0 { url.queryItems! += [URLQueryItem(name: "season", value: String(season)), URLQueryItem(name: "episode", value: String(episode))] }
-        do { return parseIntroDB(try await HTTPClient().json(url.url!.absoluteString), duration: duration) } catch { return [] }
+    private static func television(id: String, season: Int?, episode: Int?, duration: Double, apiKey: String) async -> [SkipSegment] {
+        await TheIntroDBClient.shared.segments(metaID: id, season: season, episode: episode, duration: duration, apiKey: apiKey)
+    }
+    /// The TheIntroDB key of the profile whose settings are bound, kept in its Keychain store. Empty when none is bound.
+    @MainActor private static func theIntroDBKey() -> String {
+        guard let owner = MetadataPreferences.shared.settingsOwner else { return "" }
+        let store = ProviderKeyStore.forOwner(owner)
+        if !store.ready { try? store.load() }
+        return store.key(.theIntroDb)
     }
     nonisolated static func parseAniSkip(_ response: JSONValue) -> [SkipSegment] {
         guard response["found"] == .bool(true) else { return [] }

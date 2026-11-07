@@ -63,6 +63,9 @@ struct PlayerNextEpisodeSettings: View {
                 .accessibilityIdentifier("settings-auto-skip-recap")
             HarborSettingsToggle(DesktopInterfaceText.value("Auto-skip credit outros"), note: DesktopInterfaceText.value("Automatically skip ending credits and trigger the next episode countdown immediately."), isOn: $preferences.options.autoSkipOutro)
                 .accessibilityIdentifier("settings-auto-skip-outro")
+            if let owner = MetadataPreferences.shared.settingsOwner {
+                TheIntroDBKeyField(owner: owner)
+            }
             if preferences.options.showSkipIntro {
                 Text(DesktopInterfaceText.value("Auto-hide the Skip button after")).font(HarborTheme.font(14, weight: .semibold))
                 Text(DesktopInterfaceText.value("Hides the button on its own after a few seconds so a wrong one doesn't sit there the whole episode."))

@@ -1,9 +1,9 @@
 import Foundation
 import Observation
 
-/// The OMDb and MDBList keys of one profile, kept in the Keychain (Desktop's `omdbKey` and `mdblistKey` settings).
+/// The OMDb, MDBList and TheIntroDB keys of one profile, kept in the Keychain (Desktop's `omdbKey`, `mdblistKey` and `theIntroDbKey` settings).
 @MainActor @Observable final class ProviderKeyStore {
-    enum Provider: String, CaseIterable, Sendable { case omdb, mdblist }
+    enum Provider: String, CaseIterable, Sendable { case omdb, mdblist, theIntroDb = "theintrodb" }
 
     private static var stores: [String: ProviderKeyStore] = [:]
     static func forOwner(_ owner: String) -> ProviderKeyStore {
