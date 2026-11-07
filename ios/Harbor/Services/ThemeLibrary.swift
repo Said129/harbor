@@ -84,6 +84,14 @@ struct ThemeLibrary: Codable, Equatable {
         entries.removeAll { $0.id == id }
     }
 
+    /// Trims and clamps the new name like makeEntry. Empty names throw; unknown ids change nothing.
+    mutating func rename(id: String, to name: String) throws {
+        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { throw ThemeFileError.missingName }
+        guard let index = entries.firstIndex(where: { $0.id == id }) else { return }
+        entries[index].name = String(trimmed.prefix(ThemeBackgroundDefaults.maxNameLength))
+    }
+
     func entry(id: String) -> ThemeLibraryEntry? {
         entries.first { $0.id == id }
     }

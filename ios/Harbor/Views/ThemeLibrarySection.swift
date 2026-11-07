@@ -2,10 +2,11 @@ import SwiftUI
 import UIKit
 import UniformTypeIdentifiers
 
-/// Desktop "Your themes": saved themes with apply, export and remove, plus save-current and import.
+/// Desktop "Your themes": saved themes with apply, rename, export and remove, plus save-current and import.
 struct ThemeLibrarySection: View {
     @Bindable var preferences: ThemePreferences
     @State private var naming = false
+    @State private var renaming: ThemeLibraryEntry?
     @State private var importing = false
     @State private var shareFile: ThemeShareFile?
     @State private var error: String?
@@ -23,6 +24,10 @@ struct ThemeLibrarySection: View {
                     remove: {
                         error = nil
                         preferences.removeLibraryTheme(id: entry.id)
+                    },
+                    rename: {
+                        error = nil
+                        renaming = entry
                     }
                 )
             }
@@ -40,7 +45,24 @@ struct ThemeLibrarySection: View {
                 Text(error).font(HarborTheme.font(15.5)).foregroundStyle(ThemePreferences.shared.color("danger"))
             }
         }
-        .sheet(isPresented: $naming) { ThemeSaveSheet(preferences: preferences) }
+        .sheet(isPresented: $naming) {
+            ThemeNameSheet(
+                title: DesktopInterfaceText.value("Save theme"),
+                initialName: "",
+                confirmLabel: DesktopInterfaceText.value("Save theme")
+            ) { name in
+                try preferences.saveCurrentTheme(named: name)
+            }
+        }
+        .sheet(item: $renaming) { entry in
+            ThemeNameSheet(
+                title: DesktopInterfaceText.value("Rename"),
+                initialName: entry.name,
+                confirmLabel: DesktopInterfaceText.value("Rename")
+            ) { name in
+                try preferences.renameLibraryTheme(id: entry.id, to: name)
+            }
+        }
         .sheet(item: $shareFile) { file in ThemeShareSheet(items: [file.url]) }
         .fileImporter(isPresented: $importing, allowedContentTypes: [.json], allowsMultipleSelection: false) { result in
             importFile(result)
@@ -108,6 +130,7 @@ private struct ThemeLibraryRow: View {
     let apply: () -> Void
     let export: () -> Void
     let remove: () -> Void
+    let rename: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -124,6 +147,8 @@ private struct ThemeLibraryRow: View {
             HStack(spacing: 12) {
                 Button(DesktopInterfaceText.value("Apply"), action: apply)
                     .buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("theme-library-apply")
+                Button(DesktopInterfaceText.value("Rename"), action: rename)
+                    .buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("theme-library-rename")
                 Button(DesktopInterfaceText.value("Export"), action: export)
                     .buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("theme-library-export")
                 Button(DesktopInterfaceText.value("Remove"), action: remove)
@@ -140,8 +165,12 @@ private struct ThemeLibraryRow: View {
     }
 }
 
-private struct ThemeSaveSheet: View {
-    @Bindable var preferences: ThemePreferences
+/// Name entry for "Save theme" and "Rename". `onConfirm` throws ThemeFileError.missingName for an empty name.
+private struct ThemeNameSheet: View {
+    let title: String
+    let initialName: String
+    let confirmLabel: String
+    let onConfirm: (String) throws -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var name = ""
     @State private var error: String?
@@ -160,22 +189,23 @@ private struct ThemeSaveSheet: View {
                 }
             }
             .scrollContentBackground(.hidden).background(HarborTheme.background).tint(HarborTheme.accent)
-            .navigationTitle(DesktopInterfaceText.value("Save theme")).navigationBarTitleDisplayMode(.inline)
+            .navigationTitle(title).navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(DesktopInterfaceText.value("Cancel")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(DesktopInterfaceText.value("Save theme"), action: save)
-                        .accessibilityIdentifier("theme-library-save-confirm")
+                    Button(confirmLabel, action: save)
+                        .accessibilityIdentifier("theme-library-name-confirm")
                 }
             }
+            .onAppear { if name.isEmpty { name = initialName } }
         }
     }
 
     private func save() {
         do {
-            try preferences.saveCurrentTheme(named: name)
+            try onConfirm(name)
             dismiss()
         } catch {
             self.error = themeProblemText(error)

@@ -28,7 +28,9 @@ final class ThemePreferences {
     }
     var customColors: [String: [Double]] = [:] { didSet { if let data = try? JSONEncoder().encode(customColors) { persist(data, forKey: "iphone.theme.colors") } } }
     var library = ThemeLibrary.restored(from: UserDefaults.standard.data(forKey: "iphone.theme.library")) { didSet { if let data = try? JSONEncoder().encode(library) { persist(data, forKey: "iphone.theme.library") } } }
-    var hasBackgroundImage = UserDefaults.standard.bool(forKey: "iphone.theme.background") { didSet { persist(hasBackgroundImage, forKey: "iphone.theme.background") } }
+    /// File name of the active background inside ThemeBackgroundStore; empty when there is none. Per profile.
+    var backgroundFile = UserDefaults.standard.string(forKey: "iphone.theme.backgroundFile") ?? "" { didSet { persist(backgroundFile, forKey: "iphone.theme.backgroundFile") } }
+    var hasBackgroundImage: Bool { !backgroundFile.isEmpty }
     var backgroundDim = UserDefaults.standard.object(forKey: "iphone.theme.backgroundDim") as? Double ?? ThemeBackgroundDefaults.dim { didSet { persist(backgroundDim, forKey: "iphone.theme.backgroundDim") } }
     private(set) var backgroundRevision = 0
     init() {
@@ -56,16 +58,33 @@ final class ThemePreferences {
         customColors = entry.tokens
         custom = true
         guard entry.hasBackground, let data = ThemeBackgroundStore.shared.read(ThemeBackgroundStore.name(for: entry.id)) else { return }
-        do { try ThemeBackgroundStore.shared.write(data, name: ThemeBackgroundStore.activeName) } catch { return }
-        backgroundDim = entry.backgroundDim
-        hasBackgroundImage = true
+        do {
+            try activateBackground(data)
+            backgroundDim = entry.backgroundDim
+        } catch {
+            return
+        }
+    }
+    /// Stores JPEG bytes under a new file name, makes them the active background and removes the previous file.
+    private func activateBackground(_ jpeg: Data) throws {
+        let name = ThemeBackgroundStore.newActiveName()
+        try ThemeBackgroundStore.shared.write(jpeg, name: name)
+        let previous = backgroundFile
+        backgroundFile = name
+        if !previous.isEmpty { ThemeBackgroundStore.shared.remove(previous) }
         backgroundRevision += 1
     }
-    /// Saves the palette currently in effect (preset or custom) with the active background.
+    /// The palette Desktop would save: the custom palette when custom is on, otherwise the selected preset's tokens.
+    private func presetTokens() -> [String: [Double]] {
+        let selected = palettes.first { $0.id == preset } ?? palettes.first
+        return selected?.tokens ?? [:]
+    }
+    /// Saves the palette currently on screen (preset or custom) with the active background.
     func saveCurrentTheme(named name: String) throws {
         let id = UUID().uuidString
-        let background = hasBackgroundImage ? ThemeBackgroundStore.shared.read(ThemeBackgroundStore.activeName) : nil
-        let entry = try ThemeLibrary.makeEntry(name: name, tokens: customPaletteSeed(), hasBackground: background != nil, backgroundDim: backgroundDim, id: id)
+        let background = hasBackgroundImage ? ThemeBackgroundStore.shared.read(backgroundFile) : nil
+        let tokens = custom ? customPaletteSeed() : presetTokens()
+        let entry = try ThemeLibrary.makeEntry(name: name, tokens: tokens, hasBackground: background != nil, backgroundDim: backgroundDim, id: id)
         if let background { try ThemeBackgroundStore.shared.write(background, name: ThemeBackgroundStore.name(for: id)) }
         library.save(entry)
     }
@@ -82,17 +101,19 @@ final class ThemePreferences {
         ThemeBackgroundStore.shared.remove(ThemeBackgroundStore.name(for: id))
         library.remove(id: id)
     }
+    func renameLibraryTheme(id: String, to name: String) throws {
+        try library.rename(id: id, to: name)
+    }
     /// Normalizes a picked photo and makes it the active background. Returns false when it cannot be stored.
     func setBackgroundImage(from raw: Data) -> Bool {
         guard let jpeg = ThemeBackgroundStore.normalizedJPEG(raw) else { return false }
-        do { try ThemeBackgroundStore.shared.write(jpeg, name: ThemeBackgroundStore.activeName) } catch { return false }
-        hasBackgroundImage = true
-        backgroundRevision += 1
+        do { try activateBackground(jpeg) } catch { return false }
         return true
     }
     func clearBackgroundImage() {
-        ThemeBackgroundStore.shared.remove(ThemeBackgroundStore.activeName)
-        hasBackgroundImage = false
+        let previous = backgroundFile
+        backgroundFile = ""
+        if !previous.isEmpty { ThemeBackgroundStore.shared.remove(previous) }
         backgroundRevision += 1
     }
     func reset() {
@@ -112,7 +133,8 @@ final class ThemePreferences {
         seekBarColor = UserDefaults.standard.string(forKey: "seekBarColor") ?? ""
         customColors = storage.data(forKey: "iphone.theme.colors").flatMap { try? JSONDecoder().decode([String: [Double]].self, from: $0) } ?? [:]
         library = ThemeLibrary.restored(from: storage.data(forKey: "iphone.theme.library"))
-        hasBackgroundImage = UserDefaults.standard.bool(forKey: "iphone.theme.background")
+        backgroundFile = UserDefaults.standard.string(forKey: "iphone.theme.backgroundFile") ?? ""
         backgroundDim = UserDefaults.standard.object(forKey: "iphone.theme.backgroundDim") as? Double ?? ThemeBackgroundDefaults.dim
+        backgroundRevision += 1
     }
 }

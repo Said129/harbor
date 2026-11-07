@@ -16,6 +16,7 @@ struct ThemeBackdrop: View {
                     Image(uiImage: image).resizable().scaledToFill()
                         .frame(maxWidth: .infinity, maxHeight: .infinity).clipped()
                 }
+                Color.black.opacity(0.45)
                 preferences.color("canvas").opacity(preferences.backgroundDim)
             }
         }
@@ -27,8 +28,9 @@ struct ThemeBackdrop: View {
     }
 
     private func loadImage() {
-        guard ThemePreferences.shared.hasBackgroundImage,
-              let data = ThemeBackgroundStore.shared.read(ThemeBackgroundStore.activeName) else {
+        let preferences = ThemePreferences.shared
+        guard preferences.hasBackgroundImage,
+              let data = ThemeBackgroundStore.shared.read(preferences.backgroundFile) else {
             image = nil
             return
         }
@@ -49,7 +51,11 @@ struct ThemeBackgroundSection: View {
             }
             HStack(spacing: 12) {
                 PhotosPicker(selection: $chosenPhoto, matching: .images) {
-                    Text(DesktopInterfaceText.value(preferences.hasBackgroundImage ? "Replace image" : "Choose image"))
+                    if preferences.hasBackgroundImage {
+                        Text(DesktopInterfaceText.value("Replace image"))
+                    } else {
+                        Text(DesktopInterfaceText.value("Choose image"))
+                    }
                 }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("theme-background-choose")
                 if preferences.hasBackgroundImage {
                     Button(DesktopInterfaceText.value("Remove")) {

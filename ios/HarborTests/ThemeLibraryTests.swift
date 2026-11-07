@@ -168,6 +168,21 @@ final class ThemeLibraryTests: XCTestCase {
         XCTAssertNil(library.entry(id: "a"))
     }
 
+    func testRenameTrimsClampsAndRejectsEmptyNames() throws {
+        var library = ThemeLibrary()
+        library.save(try ThemeLibrary.makeEntry(name: "Old", tokens: sampleTokens(), hasBackground: false, backgroundDim: 0.65, id: "r"))
+        try library.rename(id: "r", to: "  New name  ")
+        XCTAssertEqual(library.entry(id: "r")?.name, "New name")
+        try library.rename(id: "r", to: String(repeating: "x", count: 90))
+        XCTAssertEqual(library.entry(id: "r")?.name.count, 60)
+        XCTAssertThrowsError(try library.rename(id: "r", to: "   ")) { error in
+            XCTAssertEqual(error as? ThemeFileError, ThemeFileError.missingName)
+        }
+        XCTAssertEqual(library.entry(id: "r")?.name.count, 60)
+        try library.rename(id: "missing", to: "Ignored")
+        XCTAssertEqual(library.entries.count, 1)
+    }
+
     func testMakeEntryRequiresNameAndEveryColorAndClampsDim() throws {
         XCTAssertThrowsError(try ThemeLibrary.makeEntry(name: "  ", tokens: sampleTokens(), hasBackground: false, backgroundDim: 0.5)) { error in
             XCTAssertEqual(error as? ThemeFileError, ThemeFileError.missingName)

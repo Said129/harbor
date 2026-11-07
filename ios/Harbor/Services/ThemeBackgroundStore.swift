@@ -2,10 +2,10 @@ import Foundation
 import UIKit
 
 /// Stores theme background images as JPEG files in Application Support.
-/// The active background is `activeName`; saved library themes keep their own copy.
+/// Each profile's active background has a unique file name (ThemePreferences.backgroundFile);
+/// saved library themes keep their own copy named after their id.
 struct ThemeBackgroundStore {
     static let shared = ThemeBackgroundStore()
-    static let activeName = "active.jpg"
     /// Stored images stay under the 1.2 MB share budget Desktop uses for exported backgrounds.
     static let maxStoredBytes = 900_000
     static let maxDimension: CGFloat = 2560
@@ -18,6 +18,10 @@ struct ThemeBackgroundStore {
 
     static func name(for entryID: String) -> String {
         entryID + ".jpg"
+    }
+
+    static func newActiveName() -> String {
+        "active-" + UUID().uuidString + ".jpg"
     }
 
     func read(_ name: String) -> Data? {
