@@ -44,6 +44,7 @@ struct InterfaceSettingsView: View {
                     HarborSettingsToggle("IMDb", isOn: $preferences.showImdbBadge)
                     HarborSettingsToggle("TMDB", isOn: $preferences.showTmdbBadge)
                 }
+                ContinueEndingControls()
                 ContinueSourceControls()
                 HarborSettingsSection(DesktopInterfaceText.value("Show pages")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Mark watched button"), isOn: $preferences.showWatchedButton)
@@ -106,7 +107,6 @@ struct ContinueSourceControls: View {
                 Text(DesktopInterfaceText.value("Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.")).font(.caption).foregroundStyle(.secondary)
             }
             }
-            ContinueEndingControls()
         }
     }
     private func source(_ key: WritableKeyPath<ContinueWatchingSources, Bool>) -> Binding<Bool> {
