@@ -55,7 +55,7 @@ final class AniListThreadsTests: XCTestCase {
     """
 
     func testThreadsPageMapsBodiesAuthorsAndPaging() throws {
-        let page = AniListThreads.threadsPage(try json(threadsJSON))
+        let page = AniListThreads.threadsPage(try json(threadsJSON)["data"])
         XCTAssertEqual(page.threads.map(\.id), [501, 502])
         XCTAssertTrue(page.hasNextPage)
         XCTAssertEqual(page.threads[0].body, "First line\nSecond & last", "tags go, entities decode once, &amp; last")
@@ -70,7 +70,7 @@ final class AniListThreadsTests: XCTestCase {
     }
 
     func testCommentsKeepServerOrderAndFallBackToTheLargeAvatar() throws {
-        let comments = AniListThreads.parseComments(try json(commentsJSON))
+        let comments = AniListThreads.parseComments(try json(commentsJSON)["data"])
         XCTAssertEqual(comments.map(\.id), [9001, 9002])
         XCTAssertEqual(comments[0].text, "Great \"arc\"")
         XCTAssertEqual(comments[0].likes, 3)
