@@ -1487,7 +1487,7 @@ and discovery rows by original language (exact match, titles without a language 
 (default on as on Desktop: Home Continue Watching leaves anime out; the Anime tab keeps its own row). The language
 filter runs once in `HomeView` because `DiscoveryRails` is shared with other pages. Not compiled yet.
 
-## Fourth Haiku round (8 November)
+## Fourth Haiku round (7 November)
 
 Run 22 (20 cases: the Haiku display and home-language pieces plus the calendar source order) passed in full.
 Four more pieces were written by Haiku in separate worktrees and merged here after review: watching statistics
@@ -1500,7 +1500,7 @@ asks addons before Cinemeta), `resumeDetailScroll` (needs DetailView), top genre
 over the network). Status: CI run 23 green. The background image screens are transparent over `ThemeBackdrop`; that layering has
 not been looked at on a device.
 
-## Fifth and sixth Haiku rounds (8 November)
+## Fifth and sixth Haiku rounds (7 November)
 
 Fifth round, merged after review (CI run 24 green): score chips on poster cards (RT, Popcornmeter, MAL, Metacritic, Letterboxd,
 MDBList, Trakt, SIMKL, with the limit and the top/bottom placement), Letterboxd through Stremboxd (settings, session in the
@@ -1517,7 +1517,7 @@ filtered out until the player can load them). These hooks are wired and compiled
 request building are covered by tests: nothing was exercised against a real server, Wyzie or an AI provider. The
 decode-error transcode retry is still not wired.
 
-## Regression runs 25 to 28 (8 November)
+## Regression runs 25 to 28 (7 November)
 
 Run 24 (66 cases, round 5) and run 25 (85 cases, round 6) passed in full. Run 26 re-ran 35 older and new classes
 (375 cases) over the shared code that rounds 4 to 6 touched: 372 passed and 3 failed, all in `SubtitleSeekTests`
@@ -1544,7 +1544,7 @@ Continue Watching leaves anime out, the Anime tab keeps its own Continue Watchin
 "Keep anime in the Anime room only" switch to show anime on Home as well. Reason: the target is a 1:1 port of Desktop
 0.9.132, whose default is on, and nothing is lost because the anime row is one tab away.
 
-## Seventh Haiku round (8 November)
+## Seventh Haiku round (7 November)
 
 Written by Haiku in separate worktrees, merged after review, hooks wired by hand (CI run 31 green, 80 cases): Wikidata awards on the detail
 page (`TitleAwardsSection` after the media gallery), the local video library (files or folders from the Files app kept as
@@ -1555,7 +1555,7 @@ to the automatic start); the stall switch only has its policy and setting, becau
 that needs the player's loaded state fed back to the detail model. Excluded with reasons: award tabs on poster cards,
 instant playback preparation, NFO artwork, background scanning.
 
-## Eighth Haiku round and the seek-test bisect (8 November)
+## Eighth Haiku round and the seek-test bisect (7 November)
 
 Eighth round, written by Haiku and merged after review (CI run 32 green (43 cases), cast run green (36 cases)): Live TV in search plus Desktop's region top-network rows
 on the channel list, Critics Pick on Discover, addon sharing and recommendations on the addon detail, and casting to a

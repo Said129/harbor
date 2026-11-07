@@ -276,7 +276,7 @@
       "id": "Critics Pick",
       "desktop_source": "src/views/discover.tsx",
       "verdict": "D",
-      "note": "Critics Pick: the daily pick with reviews and scores on Discover; cast chips, stills and genre chips are left out (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "note": "Critics Pick: the daily pick with reviews and scores on Discover; cast chips, stills and genre chips are left out (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 8,
@@ -409,7 +409,7 @@
       "id": "Search people",
       "desktop_source": "src/components/search",
       "verdict": "D",
-      "note": "search people: People rail, top match and person page with filmography; cast opens it (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "search people: People rail, top match and person page with filmography; cast opens it (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 27,
@@ -423,7 +423,7 @@
       "id": "Search Live TV",
       "desktop_source": "src/components/search",
       "verdict": "D",
-      "note": "search Live TV channels from the search box (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "note": "search Live TV channels from the search box (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 29,
@@ -451,7 +451,7 @@
       "id": "AI search",
       "desktop_source": "src/components/search",
       "verdict": "D",
-      "note": "AI search: the Ask AI screen from search with OpenRouter or Groq keys (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "AI search: the Ask AI screen from search with OpenRouter or Groq keys (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 33,
@@ -486,7 +486,7 @@
       "id": "Awards drill-down",
       "desktop_source": "src/views/detail.tsx",
       "verdict": "D",
-      "note": "awards drill-down: ceremonies with wins and nominations from Wikidata on the detail page, drill-down per ceremony (8 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "note": "awards drill-down: ceremonies with wins and nominations from Wikidata on the detail page, drill-down per ceremony (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
     },
     {
       "index": 38,
@@ -598,7 +598,7 @@
       "id": "Addon sharing",
       "desktop_source": "src/lib/addon-store.ts",
       "verdict": "P",
-      "note": "addon sharing: the stremio:// link is shared from the addon detail; opening an incoming link is not wired (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "note": "addon sharing: the stremio:// link is shared from the addon detail; opening an incoming link is not wired (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 54,
@@ -626,7 +626,7 @@
       "id": "Addon recommendations",
       "desktop_source": "src/lib/addons-store",
       "verdict": "D",
-      "note": "addon recommendations on the addon detail (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "note": "addon recommendations on the addon detail (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 58,
@@ -1270,28 +1270,28 @@
       "id": "Remote streaming server",
       "desktop_source": "src/lib/stremio-server.ts",
       "verdict": "D",
-      "note": "remote streaming server: torrent streams resolve through the configured server, after debrid or first without one; wired in HarborService.resolve and compiled, parsing and policy tested, not exercised against a real server (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "remote streaming server: torrent streams resolve through the configured server, after debrid or first without one; wired in HarborService.resolve and compiled, parsing and policy tested, not exercised against a real server (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 150,
       "id": "Strict remote server policy",
       "desktop_source": "src/lib/stremio-server.ts",
       "verdict": "D",
-      "note": "strict remote server policy (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "strict remote server policy (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 151,
       "id": "Transcode URL generation",
       "desktop_source": "src/lib/stremio-server.ts",
       "verdict": "P",
-      "note": "transcode URL generation is built and tested; the decode-error retry that uses it is not wired (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "transcode URL generation is built and tested; the decode-error retry that uses it is not wired (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 152,
       "id": "Streaming server health",
       "desktop_source": "src/lib/stremio-server.ts",
       "verdict": "D",
-      "note": "streaming server health check and Test connection (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "streaming server health check and Test connection (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 153,
@@ -1662,7 +1662,7 @@
       "id": "Wyzie subtitles",
       "desktop_source": "src/lib/subtitles",
       "verdict": "D",
-      "note": "Wyzie subtitles through the optional provider search; wired in the player's addon-subtitle task and compiled, request and parsing tested, not exercised against Wyzie (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "Wyzie subtitles through the optional provider search; wired in the player's addon-subtitle task and compiled, request and parsing tested, not exercised against Wyzie (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 206,
@@ -1795,7 +1795,7 @@
       "id": "Region top networks",
       "desktop_source": "src/lib/iptv",
       "verdict": "D",
-      "note": "region top networks rows on the Live TV channel list (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "note": "region top networks rows on the Live TV channel list (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 225,
@@ -1907,35 +1907,35 @@
       "id": "Cast control",
       "desktop_source": "src-tauri/src/cast.rs",
       "verdict": "P",
-      "note": "cast control for Roku and DLNA renderers: play, pause, seek where the device supports it, stop, volume; Chromecast is not ported (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "note": "cast control for Roku and DLNA renderers: play, pause, seek where the device supports it, stop, volume; Chromecast is not ported (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 241,
       "id": "Resume locally after cast",
       "desktop_source": "src-tauri/src/cast.rs",
       "verdict": "D",
-      "note": "resume locally after a Roku or DLNA cast stops (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "note": "resume locally after a Roku or DLNA cast stops (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 242,
       "id": "DLNA discovery",
       "desktop_source": "src-tauri/src/dlna.rs",
       "verdict": "P",
-      "note": "DLNA devices are added by their description address; SSDP multicast needs an entitlement iOS apps do not get freely (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "note": "DLNA devices are added by their description address; SSDP multicast needs an entitlement iOS apps do not get freely (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 243,
       "id": "DLNA vendor capabilities",
       "desktop_source": "src-tauri/src/dlna.rs",
       "verdict": "P",
-      "note": "DLNA vendor handling in the load request (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "note": "DLNA vendor handling in the load request (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 244,
       "id": "DLNA transport controls",
       "desktop_source": "src-tauri/src/dlna.rs",
       "verdict": "D",
-      "note": "DLNA transport controls through AVTransport (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "note": "DLNA transport controls through AVTransport (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 245,
@@ -1949,7 +1949,7 @@
       "id": "Roku discovery / playback",
       "desktop_source": "src-tauri/src/roku.rs",
       "verdict": "D",
-      "note": "Roku discovery by Bonjour, a local network probe or a typed address, and playback through its media channel (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "note": "Roku discovery by Bonjour, a local network probe or a typed address, and playback through its media channel (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 247,
@@ -2124,21 +2124,21 @@
       "id": "Local file library scanning",
       "desktop_source": "src-tauri/src/local_lib.rs",
       "verdict": "P",
-      "note": "local file library: the person picks files or a folder in the Files app and they are kept as bookmarks; no background scan (8 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "note": "local file library: the person picks files or a folder in the Files app and they are kept as bookmarks; no background scan (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
     },
     {
       "index": 272,
       "id": "Local media import",
       "desktop_source": "src-tauri/src/local_lib.rs",
       "verdict": "D",
-      "note": "local media import through the file picker (8 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "note": "local media import through the file picker (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
     },
     {
       "index": 273,
       "id": "Local episode discovery",
       "desktop_source": "src-tauri/src/local_lib.rs",
       "verdict": "D",
-      "note": "local episode discovery from file names (8 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "note": "local episode discovery from file names (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
     },
     {
       "index": 274,
@@ -2236,14 +2236,14 @@
       "id": "AniList lists",
       "desktop_source": "src/lib/anilist",
       "verdict": "P",
-      "note": "AniList lists: read-only browse by status with search and type filter, no edits (8 Nov, written by Haiku, CI run 23 green)"
+      "note": "AniList lists: read-only browse by status with search and type filter, no edits (7 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 288,
       "id": "AniList recommendations",
       "desktop_source": "src/lib/anilist",
       "verdict": "D",
-      "note": "AniList recommendations rail from the lists, Desktop ranking and franchise dedupe (8 Nov, written by Haiku, CI run 23 green)"
+      "note": "AniList recommendations rail from the lists, Desktop ranking and franchise dedupe (7 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 289,
@@ -2341,21 +2341,21 @@
       "id": "Letterboxd / Stremboxd session",
       "desktop_source": "src/lib/stremboxd",
       "verdict": "D",
-      "note": "Letterboxd (Stremboxd) session: public username or full sign-in, token in the Keychain (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "Letterboxd (Stremboxd) session: public username or full sign-in, token in the Keychain (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 303,
       "id": "Letterboxd home rails",
       "desktop_source": "src/lib/stremboxd",
       "verdict": "D",
-      "note": "Letterboxd home rails (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "Letterboxd home rails (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 304,
       "id": "Letterboxd catalog integration",
       "desktop_source": "src/lib/stremboxd",
       "verdict": "P",
-      "note": "Letterboxd catalogs appear as Home rails and in View All; no catalog-browser integration (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "Letterboxd catalogs appear as Home rails and in View All; no catalog-browser integration (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 305,
@@ -2425,7 +2425,7 @@
       "id": "Wikidata awards / people",
       "desktop_source": "src/lib/providers",
       "verdict": "P",
-      "note": "Wikidata awards for titles; people awards are not ported (8 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "note": "Wikidata awards for titles; people awards are not ported (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
     },
     {
       "index": 315,
@@ -2586,7 +2586,7 @@
       "id": "Theme Studio",
       "desktop_source": "src/views/settings/theme-panel",
       "verdict": "P",
-      "note": "Theme Studio without the code editor: library, import/export and background (8 Nov, written by Haiku, CI run 23 green)"
+      "note": "Theme Studio without the code editor: library, import/export and background (7 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 338,
@@ -2600,21 +2600,21 @@
       "id": "Theme import / export",
       "desktop_source": "src/views/settings/theme-panel",
       "verdict": "D",
-      "note": "theme import / export as Desktop's JSON (8 Nov, written by Haiku, CI run 23 green)"
+      "note": "theme import / export as Desktop's JSON (7 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 340,
       "id": "Theme library",
       "desktop_source": "src/views/settings/theme-panel",
       "verdict": "D",
-      "note": "theme library: save, apply, rename, export, remove (8 Nov, written by Haiku, CI run 23 green)"
+      "note": "theme library: save, apply, rename, export, remove (7 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 341,
       "id": "Custom background / logo",
       "desktop_source": "src/views/settings/theme-panel",
       "verdict": "P",
-      "note": "custom background image with dim; no logo (iOS cannot change the app icon this way) (8 Nov, written by Haiku, CI run 23 green)"
+      "note": "custom background image with dim; no logo (iOS cannot change the app icon this way) (7 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 342,
@@ -2642,7 +2642,7 @@
       "id": "Content notifications",
       "desktop_source": "src/lib/webhook-engine.ts",
       "verdict": "P",
-      "note": "content notifications as local notifications for upcoming episodes and releases, scheduled while the app is open; Discord and Telegram webhooks stay excluded (8 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "note": "content notifications as local notifications for upcoming episodes and releases, scheduled while the app is open; Discord and Telegram webhooks stay excluded (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
     },
     {
       "index": 346,
@@ -2656,7 +2656,7 @@
       "id": "AI assisted recommendations / search",
       "desktop_source": "src/lib/ai-search.ts",
       "verdict": "P",
-      "note": "AI assisted search with own keys; recommendations and the episode mode are not ported (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "AI assisted search with own keys; recommendations and the episode mode are not ported (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 348,
@@ -2670,7 +2670,7 @@
       "id": "Watching statistics / Wrapped",
       "desktop_source": "src/lib/wrapped",
       "verdict": "P",
-      "note": "watching statistics: hours, titles, split, top titles, highlights, year heatmap from local history; genres and people need Desktop's network enrichment (8 Nov, written by Haiku, CI run 23 green)"
+      "note": "watching statistics: hours, titles, split, top titles, highlights, year heatmap from local history; genres and people need Desktop's network enrichment (7 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 350,
@@ -3456,14 +3456,14 @@
       "id": "showRtBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Rotten Tomatoes chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "Rotten Tomatoes chip on poster cards (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 24,
       "id": "showMalBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "MAL chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "MAL chip on poster cards (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 25,
@@ -3477,28 +3477,28 @@
       "id": "showMetacriticBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Metacritic chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "Metacritic chip on poster cards (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 27,
       "id": "showLetterboxdBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Letterboxd chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "Letterboxd chip on poster cards (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 28,
       "id": "showMdblistBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "MDBList chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "MDBList chip on poster cards (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 29,
       "id": "showTraktBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Trakt chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "Trakt chip on poster cards (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 30,
@@ -3582,7 +3582,7 @@
       "id": "showSimklBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "SIMKL chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "SIMKL chip on poster cards (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 42,
@@ -3624,7 +3624,7 @@
       "id": "cardBadgeLimit",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "maximum score chips per card (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "maximum score chips per card (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 48,
@@ -4114,7 +4114,7 @@
       "id": "badgePlacement",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "score chip placement top or bottom (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "score chip placement top or bottom (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 118,
@@ -4135,21 +4135,21 @@
       "id": "showPopcornBadge",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Popcornmeter chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "Popcornmeter chip on poster cards (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 121,
       "id": "episodeLayout",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "episode layout list, strip or grid (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "episode layout list, strip or grid (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 122,
       "id": "episodeCardScale",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "episode card scale (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "episode card scale (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 123,
@@ -4191,7 +4191,7 @@
       "id": "episodeArcGroups",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "episode arcs from TMDB story groups on plain series; no TVDB order or anime pool (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "episode arcs from TMDB story groups on plain series; no TVDB order or anime pool (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 129,
@@ -4520,14 +4520,14 @@
       "id": "autoNextStreamOnStall",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "auto-skip stalled streams: setting and decision policy exist; the player does not feed them yet (8 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "note": "auto-skip stalled streams: setting and decision policy exist; the player does not feed them yet (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
     },
     {
       "index": 176,
       "id": "autoNextStreamOnStallSec",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "wait before skipping a stalled stream: stored with the policy (8 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "note": "wait before skipping a stalled stream: stored with the policy (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
     },
     {
       "index": 177,
@@ -4541,7 +4541,7 @@
       "id": "seasonSourceLock",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "stay on one source for a season: saved after a pick and applied to the automatic start in DetailModel (8 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "note": "stay on one source for a season: saved after a pick and applied to the automatic start in DetailModel (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
     },
     {
       "index": 179,
@@ -4660,7 +4660,7 @@
       "id": "stremioServerTranscode",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "stremioServerTranscode is stored; Desktop has no control for it either (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "stremioServerTranscode is stored; Desktop has no control for it either (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 196,
@@ -4758,21 +4758,21 @@
       "id": "remoteStreamServerUrl",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "remote streaming server address (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "remote streaming server address (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 210,
       "id": "remoteStreamServerStrict",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "use the remote server exclusively (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "use the remote server exclusively (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 211,
       "id": "castAlwaysTranscode",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "castAlwaysTranscode is stored; there is no cast pipeline yet (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "castAlwaysTranscode is stored; there is no cast pipeline yet (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 212,
@@ -4947,7 +4947,7 @@
       "id": "subProvidersEnabled",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "subtitle sources: Wyzie is wired but not exercised at runtime; SUBDL and Subsource are searched but their zip or key-protected files are not loadable yet (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "subtitle sources: Wyzie is wired but not exercised at runtime; SUBDL and Subsource are searched but their zip or key-protected files are not loadable yet (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 237,
@@ -5227,7 +5227,7 @@
       "id": "localMinFileSizeMb",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "minimum local file size (8 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "note": "minimum local file size (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
     },
     {
       "index": 277,
@@ -5248,14 +5248,14 @@
       "id": "catalogsPinned",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "pinned catalogs on the Catalogs screen (8 Nov, written by Haiku, CI run 23 green)"
+      "note": "pinned catalogs on the Catalogs screen (7 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 280,
       "id": "catalogsHidden",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "hidden catalogs on the Catalogs screen (8 Nov, written by Haiku, CI run 23 green)"
+      "note": "hidden catalogs on the Catalogs screen (7 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 281,
@@ -5367,7 +5367,7 @@
       "id": "aiSearchKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "AI search key (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "AI search key (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 297,
@@ -5409,35 +5409,35 @@
       "id": "aiSearchModel",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "AI search model (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "AI search model (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 303,
       "id": "aiSearchProvider",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "AI search provider (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "AI search provider (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 304,
       "id": "aiGroqKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Groq key (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "Groq key (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 305,
       "id": "jinaKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Jina key (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "Jina key (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 306,
       "id": "aiWebSearch",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "live web context for AI search (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "live web context for AI search (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 307,
@@ -5689,7 +5689,7 @@
       "id": "opensubtitlesApiKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "OpenSubtitles key is stored; auto-sync does not read it yet (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "OpenSubtitles key is stored; auto-sync does not read it yet (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 343,
@@ -5710,14 +5710,14 @@
       "id": "subdlApiKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "SUBDL key stored and used for search; zip downloads not loadable yet (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "SUBDL key stored and used for search; zip downloads not loadable yet (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 346,
       "id": "subsourceApiKey",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "Subsource key stored and used for search; downloads that need the key are not loadable yet (8 Nov, written by Haiku, CI run 25 pending)"
+      "note": "Subsource key stored and used for search; downloads that need the key are not loadable yet (7 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 347,
@@ -5801,7 +5801,7 @@
       "id": "localEpisodeSortDesc",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "local episode sort order (8 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "note": "local episode sort order (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
     },
     {
       "index": 359,
@@ -6039,14 +6039,14 @@
       "id": "homeShowAllAddonRows",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Home show every addon row (8 Nov, written by Haiku, CI run 23 green)"
+      "note": "Home show every addon row (7 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 393,
       "id": "homeNewEpisodes",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "New Episodes row on Home (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "New Episodes row on Home (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 394,
@@ -6088,7 +6088,7 @@
       "id": "animeCwEnd",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "what happens to a finished anime in Continue Watching (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "what happens to a finished anime in Continue Watching (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 400,
@@ -6102,7 +6102,7 @@
       "id": "cwHideCaughtUp",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "remove shows from Continue Watching once caught up (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "remove shows from Continue Watching once caught up (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 402,
@@ -6305,7 +6305,7 @@
       "id": "cwPreferEpisodeStill",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Continue Watching episode still artwork (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "Continue Watching episode still artwork (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 431,
@@ -6753,7 +6753,7 @@
       "id": "wrappedButton",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Stats entry in the library header (8 Nov, written by Haiku, CI run 23 green)"
+      "note": "Stats entry in the library header (7 Nov, written by Haiku, CI run 23 green)"
     },
     {
       "index": 495,
@@ -6830,7 +6830,7 @@
       "id": "letterboxd",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "D",
-      "note": "Letterboxd settings: enable, mode, username, catalogs, custom lists, ratings on posters (8 Nov, written by Haiku, CI run 24 green)"
+      "note": "Letterboxd settings: enable, mode, username, catalogs, custom lists, ratings on posters (7 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 506,
