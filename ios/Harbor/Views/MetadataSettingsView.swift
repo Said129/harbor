@@ -29,6 +29,9 @@ struct MetadataSettingsView: View {
                     }.padding(16).background(HarborTheme.surface, in: .rect(cornerRadius: 10))
                         .overlay { RoundedRectangle(cornerRadius: 10).stroke(ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
                     if let error = preferences.error { Text(error).font(HarborTheme.font(13)).foregroundStyle(ThemePreferences.shared.color("danger")) }
+                    NavigationLink { ArtworkProvidersSettingsView(owner: preferences.settingsOwner ?? "guest").toolbar(.visible, for: .navigationBar) } label: {
+                        SettingsRow(title: DesktopInterfaceText.value("RPDB · scores baked into posters"), icon: "nav-catalogs")
+                    }.background(HarborTheme.surface.opacity(0.65), in: .rect(cornerRadius: 12)).accessibilityIdentifier("metadata-artwork-providers")
                 }
                 HarborSettingsSection(DesktopInterfaceText.value("Set up rating providers")) {
                     NavigationLink { RatingProvidersSettingsView(owner: preferences.settingsOwner ?? "guest").toolbar(.visible, for: .navigationBar) } label: {
