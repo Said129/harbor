@@ -192,6 +192,74 @@ final class StremioServerTests: XCTestCase {
         XCTAssertNil(created)
     }
 
+    // MARK: File choice
+
+    func testEpisodeFileIndexPrefersAVideoNamingTheEpisode() {
+        XCTAssertEqual(StremioServerPolicy.episodeFileIndex(names: ["notes.txt", "show 1x02.mkv"], season: 1, episode: 2), 1)
+        XCTAssertEqual(StremioServerPolicy.episodeFileIndex(names: ["Show.S01E03.mkv", "Show.S01E02.mp4"], season: 1, episode: 2), 1)
+        XCTAssertNil(StremioServerPolicy.episodeFileIndex(names: ["Show.S01E03.mkv"], season: 1, episode: 2))
+        XCTAssertNil(StremioServerPolicy.episodeFileIndex(names: ["Show.S01E02.mkv"], season: nil, episode: 2))
+    }
+
+    func testChooseFileIndexFallsBackToTheLargestVideo() throws {
+        let json = try JSONDecoder().decode(JSONValue.self, from: Data(#"{"files":[{"name":"Movie.mkv","length":100},{"name":"Extras.mkv","length":500},{"name":"notes.txt","length":900}]}"#.utf8))
+        let files = try XCTUnwrap(StremioServerPolicy.parseCreated(json)).files
+        XCTAssertEqual(StremioServerPolicy.chooseFileIndex(files, season: nil, episode: nil), 1)
+        XCTAssertEqual(StremioServerPolicy.chooseFileIndex([], season: 1, episode: 1), nil)
+    }
+
+    // MARK: Resolver
+
+    private let infoHashText = "ABCDEF0123456789ABCDEF0123456789ABCDEF01"
+    private let episodeFiles = #"{"files":[{"name":"Show.S01E02.mkv","length":100},{"name":"Show.S01E03.mkv","length":300}]}"#
+
+    private func stream(_ json: String) throws -> JSONValue {
+        try JSONDecoder().decode(JSONValue.self, from: Data(json.utf8))
+    }
+
+    func testResolverBuildsTheStreamURLFromTheCreatedFiles() async throws {
+        let raw = try stream(#"{"infoHash":"\#(infoHashText)","sources":["tracker:udp://t.example:1/a","dht:\#(infoHashText)"]}"#)
+        let resolver = StremioServerResolver(client: client(body: episodeFiles), base: "http://h:1", strict: false)
+        let result = await resolver.resolve(raw, season: 1, episode: 2)
+        XCTAssertEqual(result, .stream(url: "http://h:1/abcdef0123456789abcdef0123456789abcdef01/0?tr=udp%3A%2F%2Ft.example%3A1%2Fa", fileIdx: 0))
+    }
+
+    func testResolverUsesTheRequestedFileIndexAndFilename() async throws {
+        let raw = try stream(#"{"infoHash":"aa","fileIdx":4,"behaviorHints":{"filename":"Movie 1.mkv"}}"#)
+        let resolver = StremioServerResolver(client: client(body: episodeFiles), base: "http://h:1", strict: false)
+        let result = await resolver.resolve(raw, season: nil, episode: nil)
+        XCTAssertEqual(result, .stream(url: "http://h:1/aa/4?f=Movie+1.mkv", fileIdx: 4))
+    }
+
+    func testResolverReportsTheStrictFailureCodeWhenUnreachable() async throws {
+        let raw = try stream(#"{"infoHash":"\#(infoHashText)"}"#)
+        let strict = StremioServerResolver(client: client(failure: true), base: "http://h:1", strict: true)
+        let strictResult = await strict.resolve(raw, season: nil, episode: nil)
+        XCTAssertEqual(strictResult, .failure(code: "remote-server-unreachable-strict"))
+        let relaxed = StremioServerResolver(client: client(failure: true), base: "http://h:1", strict: false)
+        let relaxedResult = await relaxed.resolve(raw, season: nil, episode: nil)
+        XCTAssertEqual(relaxedResult, .failure(code: "remote-server-unreachable"))
+    }
+
+    func testResolverReportsNoPeersWhenTheServerListsNoFiles() async throws {
+        let raw = try stream(#"{"infoHash":"\#(infoHashText)"}"#)
+        let resolver = StremioServerResolver(client: client(body: #"{"files":[]}"#), base: "http://h:1", strict: false)
+        let result = await resolver.resolve(raw, season: nil, episode: nil)
+        XCTAssertEqual(result, .failure(code: "engine-no-peers"))
+    }
+
+    func testResolverNeedsAnInfoHash() async throws {
+        let resolver = StremioServerResolver(client: client(body: episodeFiles), base: "http://h:1", strict: false)
+        let raw = try stream("{}")
+        let result = await resolver.resolve(raw, season: nil, episode: nil)
+        XCTAssertEqual(result, .failure(code: "no-source"))
+    }
+
+    func testLiveResolverNeedsASavedAddress() {
+        XCTAssertNil(StremioServerResolver.live(address: "  ", strict: false))
+        XCTAssertEqual(StremioServerResolver.live(address: "http://h:1/", strict: true)?.base, "http://h:1")
+    }
+
     // MARK: Per-profile keys
 
     func testRemoteServerSettingsAreProfileKeys() {

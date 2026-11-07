@@ -206,6 +206,111 @@ enum StremioServerPolicy {
         case reachable(milliseconds: Int)
         case badStatus(Int)
         case unreachable
+
+        var isReachable: Bool {
+            if case .reachable = self { return true }
+            return false
+        }
+    }
+
+    // MARK: File choice
+
+    /// Desktop's `isVideoFile` (stremio-stream.ts): the name ends in a video extension.
+    static func isVideoName(_ name: String) -> Bool {
+        name.range(of: "(?i)\\.(mkv|mp4|m4v|avi|mov|webm|ts|wmv|flv|mpg|mpeg|m2ts)$", options: .regularExpression) != nil
+    }
+
+    /// Desktop's `episodeFileRegex` (episode-file.ts): `S01E02`, `s1e2`, `0102` and `1x02` forms for one season and episode.
+    static func episodeNamePattern(season: Int, episode: Int) -> String {
+        let seasonText = season < 10 ? "0\(season)" : "\(season)"
+        let episodeText = episode < 10 ? "0\(episode)" : "\(episode)"
+        let longForm = "s0*\(season)[^0-9]?e0*\(episode)(?![0-9])"
+        let paddedForm = "(?<![A-Za-z0-9])\(seasonText)\(episodeText)(?![0-9])"
+        let crossForm = "\\b\(season)x0*\(episode)(?![0-9])"
+        return [longForm, paddedForm, crossForm].joined(separator: "|")
+    }
+
+    /// Desktop's `matchEpisodeFileIndex` without its episode-span reader: the first video file that names the
+    /// episode, otherwise the first file that does. Returns a position in `names`.
+    static func episodeFileIndex(names: [String], season: Int?, episode: Int?) -> Int? {
+        guard let season, let episode else { return nil }
+        let pattern = episodeNamePattern(season: season, episode: episode)
+        var anyMatch: Int?
+        for (index, name) in names.enumerated() {
+            guard name.range(of: pattern, options: [.regularExpression, .caseInsensitive]) != nil else { continue }
+            if name.range(of: "(?i)\\.(mkv|mp4|avi|mov|m4v|webm|ts|flv|wmv|m2ts|mpg|mpeg|ogv|3gp)(\\?|#|$)", options: .regularExpression) != nil {
+                return index
+            }
+            if anyMatch == nil { anyMatch = index }
+        }
+        return anyMatch
+    }
+
+    /// Desktop's `selectEngineFileIdx` (resolve.ts): an episode match among the video files, else the largest
+    /// video file, else the largest file. Ties keep the first file, as Desktop's reduce does.
+    static func chooseFileIndex(_ files: [CreatedFile], season: Int?, episode: Int?) -> Int? {
+        let videos = files.filter { isVideoName($0.name) }
+        let pool = videos.isEmpty ? files : videos
+        if let match = episodeFileIndex(names: pool.map(\.name), season: season, episode: episode) {
+            return pool[match].idx
+        }
+        var largest: CreatedFile?
+        for file in pool {
+            if let current = largest, file.length <= current.length { continue }
+            largest = file
+        }
+        return largest?.idx
+    }
+}
+
+/// What the remote torrent path produces for one stream.
+enum StremioServerResolution: Equatable, Sendable {
+    case stream(url: String, fileIdx: Int)
+    /// A Desktop engine failure code, such as "remote-server-unreachable" or "engine-no-peers".
+    case failure(code: String)
+}
+
+/// Desktop's remote torrent path (`tryTorrentEngine` and `tryRemoteEngine` in resolve.ts): probe the saved
+/// server, create the torrent there, choose the file and build the stream URL. Desktop's local engine has no
+/// iOS counterpart, so nothing else runs here.
+struct StremioServerResolver: Sendable {
+    let client: StremioServerClient
+    let base: String
+    let strict: Bool
+
+    /// The resolver for the saved address, or nil when no server is saved.
+    static func live(address: String, strict: Bool) -> StremioServerResolver? {
+        guard let base = StremioServerPolicy.engineBase(address: address) else { return nil }
+        return StremioServerResolver(client: StremioServerClient(transport: StremioServerHTTPTransport()), base: base, strict: strict)
+    }
+
+    /// `raw` is one stream from the addon list: it needs `infoHash`, and may carry `fileIdx`, `sources` and
+    /// `behaviorHints` with a filename. Season and episode guide the file choice.
+    func resolve(_ raw: JSONValue, season: Int?, episode: Int?) async -> StremioServerResolution {
+        let hash = (raw["infoHash"].string ?? "").trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        guard !hash.isEmpty else { return .failure(code: "no-source") }
+        let health = await client.health(base: base)
+        guard health.isReachable else {
+            return .failure(code: StremioServerPolicy.unreachableFailureCode(strict: strict))
+        }
+        let sources = raw["sources"].array.compactMap { $0.string }
+        let trackers = StremioServerPolicy.trackers(fromSources: sources)
+        guard let created = await client.createTorrent(base: base, infoHash: hash, trackers: trackers, season: season, episode: episode),
+              !created.files.isEmpty else {
+            return .failure(code: "engine-no-peers")
+        }
+        let requested = raw["fileIdx"].integer
+        let chosen: Int?
+        if let requested, requested >= 0 {
+            chosen = requested
+        } else {
+            chosen = StremioServerPolicy.chooseFileIndex(created.files, season: season, episode: episode)
+        }
+        guard let index = chosen else { return .failure(code: "engine-no-peers") }
+        let hints = raw["behaviorHints"]
+        let filename = hints["filename"].string ?? hints["fileName"].string
+        let url = StremioServerPolicy.streamURL(base: base, infoHash: hash, fileIdx: index, trackers: trackers, filename: filename)
+        return .stream(url: url, fileIdx: index)
     }
 }
 
