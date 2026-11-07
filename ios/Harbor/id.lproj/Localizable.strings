@@ -62,6 +62,7 @@
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
 "Absolute" = "Absolut";
+"Academy Awards" = "Academy Awards";
 "Accent" = "Aksen";
 "Accents" = "Accents";
 "Accept" = "Terima";
@@ -178,6 +179,7 @@
 "AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "AllDebrid telah menghentikan endpoint pemeriksaan cache-nya, jadi stream mungkin berstatus tidak diketahui hingga Anda benar-benar menekan Putar.";
 "Allow cellular data" = "Allow cellular data";
 "Already added." = "Sudah ditambahkan.";
+"Also Nominated" = "Juga Dinominasikan";
 "Alternate" = "Alternatif";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -197,6 +199,7 @@
 "Anime episodes airing this month, sub or dub" = "Episode anime yang tayang bulan ini, dengan subtitle atau sulih suara";
 "Anime of the Year" = "Anime Terbaik Tahun Ini";
 "Anime popular" = "Anime Populer";
+"Annie Awards" = "Annie Awards";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Another device changed services. Your previous version is saved on this device." = "Perangkat lain mengubah layanan. Versi sebelumnya tersimpan di perangkat ini.";
 "Anterior" = "Sebelumnya";
@@ -251,6 +254,7 @@
 "Auto-skip credit outros" = "Lewati outro kredit secara otomatis";
 "Auto-skip intros" = "Lewati intro secara otomatis";
 "Auto-skip recaps" = "Lewati rekap secara otomatis";
+"Auto-skip stalled streams" = "Lewati stream yang macet secara otomatis";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "Otomatis";
 "Automatic synchronization" = "Automatic synchronization";
@@ -269,6 +273,7 @@
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "Pemberitahuan episode berikutnya";
 "Award Winning Anime" = "Anime Pemenang Penghargaan";
+"Awards & Recognition" = "Penghargaan & Pengakuan";
 "Ayuda e información" = "Bantuan & tentang";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "Tambah sumber";
@@ -276,6 +281,8 @@
 "Añadir marcador" = "Add bookmark";
 "Añadir {language}" = "Tambahkan {language}";
 "Aún no hay catálogos" = "Belum ada katalog";
+"BAFTA Awards" = "Penghargaan BAFTA";
+"BAFTA Television Awards" = "Penghargaan Televisi BAFTA";
 "Back" = "Kembali";
 "Back to lists" = "Kembali ke daftar";
 "Back to top" = "Kembali ke atas";
@@ -283,6 +290,7 @@
 "Background" = "Latar belakang";
 "Background image" = "Gambar latar belakang";
 "Background opacity" = "Opasitas latar belakang";
+"Baeksang Arts Awards" = "Penghargaan Seni Baeksang";
 "Bajar {name}" = "Pindahkan {name} ke bawah";
 "Balanced" = "Seimbang";
 "Bar color" = "Warna bilah";
@@ -292,6 +300,7 @@
 "Base de la página." = "Dasar halaman.";
 "Bass boost" = "Penguat bass";
 "Beloved by readers and critics" = "Disukai pembaca dan kritikus";
+"Berlin Film Festival" = "Festival Film Berlin";
 "Best Action" = "Aksi Terbaik";
 "Best Adventure" = "Petualangan Terbaik";
 "Best Animation" = "Animasi Terbaik";
@@ -323,6 +332,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "Bilah hitam";
 "Bloques resaltados." = "Blok yang disorot.";
+"Blue Dragon Film Awards" = "Penghargaan Film Blue Dragon";
 "Blur comments and reviews by default" = "Buramkan komentar dan ulasan secara default";
 "Blur descriptions" = "Buramkan deskripsi";
 "Blur spoilers" = "Buramkan spoiler";
@@ -360,6 +370,7 @@
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Tampilkan daftar anime Anda di Harbor dan perbarui jumlah episode saat menonton. Progres yang sudah ada tetap tersimpan.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Menampilkan kembali tips singkat dalam aplikasi yang telah Anda tutup tanpa mengulangi alur sambutan.";
 "BritBox" = "BritBox";
+"British Independent Film Awards" = "British Independent Film Awards";
 "Browse" = "Jelajahi";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "Jelajahi addon";
@@ -412,6 +423,7 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Cannes Film Festival" = "Festival Film Cannes";
 "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "Subtitle dalam bahasa Anda";
 "Captions, eyebrows." = "Teks keterangan, teks pengantar.";
@@ -620,6 +632,7 @@
 "Crime Series" = "Serial Kriminal";
 "Crisp (anime & cartoons)" = "Tajam (anime & kartun)";
 "Critically Acclaimed" = "Dipuji Kritikus";
+"Critics' Choice Awards" = "Critics' Choice Awards";
 "Critics' Picks" = "Rekomendasi Kritikus";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
@@ -641,6 +654,7 @@
 "Customize home" = "Sesuaikan beranda";
 "Customize page" = "Sesuaikan halaman";
 "Czech" = "Ceko";
+"César Awards" = "Penghargaan César";
 "Cómo leer tus libros" = "Reading help";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Mewarnai nama, kursor di Nonton Bersama, dan lingkaran di sekeliling avatar Anda.";
@@ -648,6 +662,7 @@
 "Danish" = "Denmark";
 "Dark" = "Gelap";
 "Date" = "Tanggal";
+"Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "Sumber video Anda";
 "Debrid services" = "Layanan debrid";
 "Debrid-Link API key" = "Kunci API Debrid-Link";
@@ -886,6 +901,7 @@
 "Fondo" = "Latar belakang";
 "Font" = "Font";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For series and anime, keep playing the rest of the season from the release you first picked. Applies whether Play is instant or manual." = "Untuk serial dan anime, lanjutkan memutar sisa musim dari rilisan yang pertama kali Anda pilih. Berlaku baik saat Putar berlangsung instan maupun manual.";
 "For you" = "Untuk Anda";
 "Forced" = "Paksa";
 "Forest" = "Hutan";
@@ -928,7 +944,9 @@
 "Get a key at" = "Dapatkan kunci di";
 "Get an API key" = "Dapatkan kunci API";
 "Get yours at" = "Dapatkan milik Anda di";
+"Golden Globes" = "Golden Globes";
 "Golf" = "Golf";
+"Goya Awards" = "Goya Awards";
 "Grand Prize" = "Hadiah Utama";
 "Gray" = "Gray";
 "Green" = "Hijau";
@@ -1035,6 +1053,7 @@
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Lama waktu Harbor menunggu hasil dari setiap addon.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
+"How long to wait first" = "Berapa lama waktu tunggu awal";
 "How many episodes auto-play back to back before Harbor pauses to ask." = "How many episodes auto-play back to back before Harbor pauses to ask.";
 "How many films?" = "Berapa banyak film?";
 "Hoy" = "Hari ini";
@@ -1049,6 +1068,7 @@
 "Idiomas de audio" = "Bahasa audio";
 "Idiomas de subtítulos" = "Bahasa subtitle";
 "Idiomas y subtítulos" = "Bahasa & subtitle";
+"If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "Jika stream belum mulai diputar dalam waktu yang ditentukan (sumber mati atau addon tidak aktif), coba stream berikutnya yang tersedia secara otomatis. Nonaktif secara default.";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "Bahasa gambar";
 "Imagen" = "Gambar";
@@ -1080,6 +1100,7 @@
 "In Theaters Now" = "Sedang Tayang di Bioskop";
 "In Watchlist" = "Di Daftar Tontonan";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"Independent Spirit Awards" = "Independent Spirit Awards";
 "India" = "India";
 "Indonesian" = "Bahasa Indonesia";
 "Información" = "Informasi";
@@ -1470,6 +1491,7 @@
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "Belum ada yang ditonton";
 "Nothing yet" = "Belum ada";
+"Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on." = "Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on.";
 "Notify me" = "Notify me";
 "Now" = "Sekarang";
 "Now Playing" = "Sedang Diputar";
@@ -1546,6 +1568,7 @@
 "Original language" = "Bahasa asli";
 "Oscuro" = "Gelap";
 "Other" = "Lainnya";
+"Other Awards" = "Other Awards";
 "Outline" = "Garis tepi";
 "Outline color" = "Warna garis tepi";
 "Outline thickness" = "Ketebalan garis tepi";
@@ -1675,6 +1698,7 @@
 "Primary copy." = "Salinan utama.";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "Pilih trek subtitle terlebih dahulu.";
+"Primetime Emmys" = "Primetime Emmys";
 "Priority applies once you have two or more stream addons." = "Prioritas berlaku setelah Anda memiliki dua addon stream atau lebih.";
 "Priorizar {language}" = "Prioritaskan {language}";
 "Producer" = "Produser";
@@ -1749,6 +1773,7 @@
 "Recent searches" = "Pencarian terbaru";
 "Recently played" = "Baru dimainkan";
 "Recién agregado" = "Baru ditambahkan";
+"Recognized at the {award}." = "Mendapat pengakuan di {award}.";
 "Recomendado" = "Direkomendasikan";
 "Recommended" = "Direkomendasikan";
 "Recommended for you" = "Direkomendasikan untuk Anda";
@@ -1771,6 +1796,7 @@
 "Reintentar lectura del progreso" = "Retry reading progress";
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "Rasio aspek";
+"Release notifications" = "Release notifications";
 "Rellenar" = "Penuhi";
 "Remember last stream" = "Ingat stream terakhir";
 "Reminder" = "Reminder";
@@ -1898,6 +1924,7 @@
 "Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "Penggunaan hanya baca yang sama seperti Real-Debrid. Anda juga dapat mengantrekan sumber yang belum di-cache dari pemilih pemutaran.";
 "Saturación" = "Saturasi";
 "Saturation" = "Saturasi";
+"Saturn Awards" = "Saturn Awards";
 "Save" = "Simpan";
 "Save a track and it will appear here." = "Simpan lagu dari Temukan dan lagu itu akan muncul di sini.";
 "Save and share pages" = "Save and share pages";
@@ -1915,6 +1942,7 @@
 "Sci-Fi" = "Fiksi Ilmiah";
 "Sci-Fi & Fantasy" = "Fiksi Ilmiah & Fantasi";
 "Scores" = "Skor";
+"Screen Actors Guild Awards" = "Screen Actors Guild Awards";
 "Screener" = "Screener";
 "Scrobble to SIMKL" = "Scrobble ke SIMKL";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
@@ -2080,6 +2108,7 @@
 "Sleep timer" = "Timer tidur";
 "Slice of Life" = "Kehidupan Sehari-hari";
 "Slightly lighter than background." = "Sedikit lebih terang daripada latar belakang.";
+"Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Addon yang lambat dan sumber P2P sering kali memerlukan waktu lebih dari 10 detik untuk mulai. Naikkan nilai ini jika stream dilewati sebelum diberi cukup waktu untuk dimulai.";
 "Smaller" = "Lebih kecil";
 "Sobre la línea principal" = "Di atas baris utama";
 "Soft halo around the text. Cleanest on most content." = "Pendar lembut di sekitar teks. Paling bersih pada sebagian besar konten.";
@@ -2129,6 +2158,7 @@
 "Startup & default" = "Mulai & bawaan";
 "Stats" = "Statistik";
 "Status" = "Status";
+"Stay on one source for a season" = "Tetap gunakan satu sumber untuk satu musim";
 "Step 1 · Metadata" = "Langkah 1 · Metadata";
 "Step 1 · Open Simkl" = "Langkah 1 · Buka Simkl";
 "Step 1 · Open Trakt" = "Langkah 1 · Buka Trakt";
@@ -2477,6 +2507,7 @@
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "Menggunakan AIOStreams atau addon agregator lain? Pengurutan dan pemfilteran internalnya dilakukan di dalam addon sebelum Harbor melihat hasilnya, lalu Harbor menambahkan filter stream dan urutan hasil di atas. Jika hasil lebih sedikit dari yang diharapkan, buat salah satu sisi lebih longgar: longgarkan filter internal addon atau atur filter stream Harbor ke Seimbang atau Nonaktif.";
 "VOD sources" = "VOD sources";
 "Velocidad" = "Kecepatan";
+"Venice Film Festival" = "Venice Film Festival";
 "Ver más" = "Lihat selengkapnya";
 "Ver todo" = "Lihat semua";
 "Verify & connect" = "Verifikasi & hubungkan";
@@ -3788,6 +3819,7 @@
 "{n} month ago" = "{n} bulan lalu";
 "{n} months ago" = "{n} bulan lalu";
 "{n} not matched" = "{n} tidak berhasil dicocokkan";
+"{n} sec" = "{n} dtk";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} sumber · 0 lolos";

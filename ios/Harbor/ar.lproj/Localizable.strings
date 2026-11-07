@@ -69,6 +69,7 @@
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
 "Absolute" = "مطلق";
+"Academy Awards" = "جوائز الأوسكار";
 "Accent" = "لون مميز";
 "Accents" = "Accents";
 "Accept" = "قبول";
@@ -187,6 +188,7 @@
 "AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "أوقفت AllDebrid نقطة نهاية التحقق من ذاكرة التخزين المؤقت، لذا قد تظهر التدفقات بحالة غير معروفة حتى تضغط على تشغيل فعليًا.";
 "Allow cellular data" = "Allow cellular data";
 "Already added." = "مضاف مسبقًا.";
+"Also Nominated" = "مُرشّح أيضًا";
 "Alternate" = "بديل";
 "Analizando el audio… Puedes seguir viendo." = "جارٍ تحليل الصوت… يمكنك متابعة المشاهدة.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "توقف التحليل لإعطاء الأولوية للمشاهدة. أعد المحاولة بعد اكتمال التحميل.";
@@ -206,6 +208,7 @@
 "Anime episodes airing this month, sub or dub" = "حلقات أنمي تُعرض هذا الشهر، مترجمة أو مدبلجة";
 "Anime of the Year" = "أنمي العام";
 "Anime popular" = "أنمي شائع";
+"Annie Awards" = "جوائز Annie";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Another device changed services. Your previous version is saved on this device." = "غيّر جهاز آخر الخدمات. نسختك السابقة محفوظة على هذا الجهاز.";
 "Anterior" = "السابق";
@@ -261,6 +264,7 @@
 "Auto-skip credit outros" = "تخطّي شارة النهاية تلقائيًا";
 "Auto-skip intros" = "تخطي المقدمات تلقائياً";
 "Auto-skip recaps" = "تخطّي الملخصات تلقائيًا";
+"Auto-skip stalled streams" = "تخطّي البثوث المتوقّفة تلقائيًا";
 "Auto-sync" = "مزامنة تلقائية";
 "Automatic" = "تلقائي";
 "Automatic synchronization" = "Automatic synchronization";
@@ -279,6 +283,7 @@
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "تنبيه الحلقة القادمة";
 "Award Winning Anime" = "أنمي حائز على جوائز";
+"Awards & Recognition" = "الجوائز والتقدير";
 "Ayuda e información" = "المساعدة وحول التطبيق";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "إضافة مصدر";
@@ -286,6 +291,8 @@
 "Añadir marcador" = "Add bookmark";
 "Añadir {language}" = "إضافة {language}";
 "Aún no hay catálogos" = "لا توجد كتالوجات بعد";
+"BAFTA Awards" = "جوائز BAFTA";
+"BAFTA Television Awards" = "جوائز BAFTA التلفزيونية";
 "Back" = "رجوع";
 "Back in two weeks" = "يعود بعد أسبوعين";
 "Back to lists" = "العودة إلى القوائم";
@@ -294,6 +301,7 @@
 "Background" = "الخلفية";
 "Background image" = "صورة الخلفية";
 "Background opacity" = "شفافية الخلفية";
+"Baeksang Arts Awards" = "جوائز بايكسانغ للفنون";
 "Bajar {name}" = "نقل {name} لأسفل";
 "Balanced" = "متوازن";
 "Bar color" = "لون الشريط";
@@ -303,6 +311,7 @@
 "Base de la página." = "أساس الصفحة.";
 "Bass boost" = "تضخيم الباس";
 "Beloved by readers and critics" = "محبوب لدى القراء والنقاد";
+"Berlin Film Festival" = "مهرجان برلين السينمائي";
 "Best Action" = "أفضل أكشن";
 "Best Adventure" = "أفضل مغامرة";
 "Best Animation" = "أفضل رسوم متحركة";
@@ -334,6 +343,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "شريط أسود";
 "Bloques resaltados." = "كتل مميّزة.";
+"Blue Dragon Film Awards" = "جوائز التنين الأزرق السينمائية";
 "Blur comments and reviews by default" = "تمويه التعليقات والمراجعات افتراضيًا";
 "Blur descriptions" = "تمويه الأوصاف";
 "Blur spoilers" = "تمويه الحرق";
@@ -373,6 +383,7 @@
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "أحضر قائمة الأنمي إلى Harbor وحدّث عدد الحلقات أثناء المشاهدة. سيُحفَظ تقدّمك الحالي.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "يعيد التلميحات الصغيرة داخل التطبيق التي رفضتها دون إعادة تدفّق الترحيب.";
 "BritBox" = "BritBox";
+"British Independent Film Awards" = "جوائز الأفلام المستقلة البريطانية";
 "Browse" = "تصفّح";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "ابحث في غوتنبرغ بالعنوان أو المؤلف أو اللغة. افتح كتابًا لحفظه على رفك. يتيح القارئ تغيير الخط والتباعد والخلفية وإضافة العلامات والقراءة بصوت عالٍ.";
 "Browse addons" = "تصفح الإضافات";
@@ -431,6 +442,7 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Cannes Film Festival" = "مهرجان كان السينمائي";
 "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "ترجمات بلغتك";
 "Captions, eyebrows." = "التسميات التوضيحية، العناوين العلوية.";
@@ -643,6 +655,7 @@
 "Crime Series" = "مسلسلات جريمة";
 "Crisp (anime & cartoons)" = "واضح (أنمي وكرتون)";
 "Critically Acclaimed" = "أعمال حازت إشادة النقاد";
+"Critics' Choice Awards" = "جوائز اختيار النقاد";
 "Critics' Picks" = "اختيارات النقّاد";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
@@ -664,6 +677,7 @@
 "Customize home" = "تخصيص الرئيسية";
 "Customize page" = "تخصيص الصفحة";
 "Czech" = "التشيكية";
+"César Awards" = "جوائز سيزار";
 "Cómo leer tus libros" = "كيفية استخدام المانغا والكتب الإلكترونية";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "يلوّن اسمك ومؤشرك في المشاهدة معاً والحلقة المحيطة بصورتك الرمزية.";
@@ -671,6 +685,7 @@
 "Danish" = "الدنماركية";
 "Dark" = "داكن";
 "Date" = "التاريخ";
+"Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "من أين يأتي الفيديو الخاص بك";
 "Debrid services" = "خدمات Debrid";
 "Debrid-Link API key" = "مفتاح API لـ Debrid-Link";
@@ -909,6 +924,7 @@
 "Fondo" = "الخلفية";
 "Font" = "الخط";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For series and anime, keep playing the rest of the season from the release you first picked. Applies whether Play is instant or manual." = "في المسلسلات والأنمي، يتابع تشغيل بقية الموسم من الإصدار الذي اخترته أولًا. ينطبق سواء كان التشغيل فوريًا أو يدويًا.";
 "For you" = "لك";
 "Forced" = "إجباري";
 "Forest" = "غابة";
@@ -952,7 +968,9 @@
 "Get a key at" = "احصل على مفتاح من";
 "Get an API key" = "الحصول على مفتاح API";
 "Get yours at" = "احصل على مفتاحك من";
+"Golden Globes" = "جولدن جلوب";
 "Golf" = "الغولف";
+"Goya Awards" = "جوائز غويا";
 "Grand Prize" = "الجائزة الكبرى";
 "Gray" = "Gray";
 "Green" = "أخضر";
@@ -1059,6 +1077,7 @@
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "مدة انتظار Harbor لنتائج كل إضافة.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
+"How long to wait first" = "مدة الانتظار قبل التبديل";
 "How many episodes auto-play back to back before Harbor pauses to ask." = "How many episodes auto-play back to back before Harbor pauses to ask.";
 "How many films?" = "كم عدد الأفلام؟";
 "Hoy" = "اليوم";
@@ -1073,6 +1092,7 @@
 "Idiomas de audio" = "لغات الصوت";
 "Idiomas de subtítulos" = "لغات الترجمة";
 "Idiomas y subtítulos" = "اللغات والترجمات";
+"If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "إذا لم يبدأ البثّ في الوقت المحدّد (مصدر ميّت أو إضافة معطّلة)، جرّب البثّ المتاح التالي تلقائيًا. مُعطّل افتراضيًا.";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "لغات الصور";
 "Imagen" = "الصورة";
@@ -1104,6 +1124,7 @@
 "In Theaters Now" = "في دور العرض الآن";
 "In Watchlist" = "في قائمة المشاهدة";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"Independent Spirit Awards" = "جوائز الروح المستقلة";
 "India" = "الهند";
 "Indonesian" = "الإندونيسية";
 "Información" = "معلومات";
@@ -1497,6 +1518,7 @@
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "لم تتم مشاهدة أي شيء بعد";
 "Nothing yet" = "لا شيء بعد";
+"Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on." = "Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on.";
 "Notify me" = "Notify me";
 "Now" = "الآن";
 "Now Playing" = "قيد التشغيل الآن";
@@ -1574,6 +1596,7 @@
 "Original language" = "اللغة الأصلية";
 "Oscuro" = "داكن";
 "Other" = "أخرى";
+"Other Awards" = "Other Awards";
 "Outline" = "إطار";
 "Outline color" = "لون الإطار";
 "Outline thickness" = "سُمك الإطار";
@@ -1705,6 +1728,7 @@
 "Primary copy." = "النص الأساسي.";
 "Prime Video" = "برايم فيديو";
 "Primero selecciona una pista de subtítulos." = "اختر مسار ترجمة أولًا.";
+"Primetime Emmys" = "جوائز إيمي لأوقات الذروة";
 "Priority applies once you have two or more stream addons." = "تُطبَّق الأولوية عندما تمتلك إضافتَي بث أو أكثر.";
 "Priorizar {language}" = "رفع أولوية {language}";
 "Producer" = "منتج";
@@ -1779,6 +1803,7 @@
 "Recent searches" = "عمليات البحث الأخيرة";
 "Recently played" = "لُعبت مؤخرًا";
 "Recién agregado" = "أُضيف حديثًا";
+"Recognized at the {award}." = "حظي بالتقدير في {award}.";
 "Recomendado" = "موصى به";
 "Recommended" = "موصى به";
 "Recommended for you" = "موصى به لك";
@@ -1802,6 +1827,7 @@
 "Reintentar lectura del progreso" = "Retry reading progress";
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "نسبة العرض إلى الارتفاع";
+"Release notifications" = "Release notifications";
 "Rellenar" = "تعبئة";
 "Remember last stream" = "تذكّر آخر بثّ";
 "Reminder" = "Reminder";
@@ -1929,6 +1955,7 @@
 "Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "نفس استخدام Real-Debrid للقراءة فقط. ويتيح لك أيضًا إضافة المصادر غير المخزنة مؤقتًا إلى قائمة الانتظار من منتقي التشغيل.";
 "Saturación" = "التشبع";
 "Saturation" = "التشبع";
+"Saturn Awards" = "جوائز ساتورن";
 "Saudi King's Cup" = "كأس الملك السعودي";
 "Saudi Pro League" = "الدوري السعودي للمحترفين";
 "Save" = "حفظ";
@@ -1948,6 +1975,7 @@
 "Sci-Fi" = "خيال علمي";
 "Sci-Fi & Fantasy" = "خيال علمي وفانتازيا";
 "Scores" = "التقييمات";
+"Screen Actors Guild Awards" = "جوائز نقابة ممثلي الشاشة";
 "Screener" = "Screener";
 "Scrobble to SIMKL" = "تسجيل المشاهدات في SIMKL";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "تم الاحتفاظ بالأصل. صدّر الترجمة بترميز UTF-8 أو UTF-16 لمزامنتها.";
@@ -2114,6 +2142,7 @@
 "Sleep timer" = "مؤقت الإيقاف";
 "Slice of Life" = "شريحة من الحياة";
 "Slightly lighter than background." = "أفتح قليلًا من الخلفية.";
+"Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "غالبًا ما تحتاج الإضافات البطيئة ومصادر P2P إلى أكثر من 10 ثوانٍ لتبدأ. ارفع هذه القيمة إذا كان يتم تخطّي البثّ قبل أن تُتاح له فرصة كافية.";
 "Smaller" = "أصغر";
 "Sobre la línea principal" = "فوق السطر الأساسي";
 "Soft halo around the text. Cleanest on most content." = "هالة ناعمة حول النص. الأفضل لمعظم المحتوى.";
@@ -2164,6 +2193,7 @@
 "Startup & default" = "بدء التشغيل والافتراضي";
 "Stats" = "الإحصائيات";
 "Status" = "الحالة";
+"Stay on one source for a season" = "البقاء على مصدر واحد طوال الموسم";
 "Step 1 · Metadata" = "الخطوة 1 · البيانات الوصفية";
 "Step 1 · Open Simkl" = "الخطوة 1 · افتح Simkl";
 "Step 1 · Open Trakt" = "الخطوة 1 · افتح Trakt";
@@ -2514,6 +2544,7 @@
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "هل تستخدم AIOStreams أو إضافة تجميع أخرى؟ الفرز والتصفية الخاصة بها تحدث داخل الإضافة قبل أن يرى Harbor النتائج، ثم يُطبق Harbor فلتر أمان البث وترتيب النتائج أعلاه. إذا كانت النتائج أقل من المتوقع، اجعل أحدهما أكثر مرونة: إما أن تخفف الفلاتر الداخلية للإضافة أو تعين فلتر Harbor على متوازن أو إيقاف.";
 "VOD sources" = "VOD sources";
 "Velocidad" = "السرعة";
+"Venice Film Festival" = "مهرجان البندقية السينمائي";
 "Ver más" = "عرض المزيد";
 "Ver todo" = "عرض الكل";
 "Verify & connect" = "تحقق وربط";
@@ -3829,6 +3860,7 @@
 "{n} month ago" = "منذ {n} شهر";
 "{n} months ago" = "منذ {n} أشهر";
 "{n} not matched" = "{n} غير مطابق";
+"{n} sec" = "{n} ثانية";
 "{n} seeds" = "{n} موزع";
 "{n} semillas" = "{n} موزع";
 "{n} sources · 0 made it through" = "{n} مصادر · لم يجتز أي منها";

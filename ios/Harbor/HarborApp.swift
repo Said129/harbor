@@ -122,6 +122,7 @@ struct HarborApp: App {
                     guard scenePhase == .active, model.storageReady else { return }
                     await model.library.sync()
                     await model.refreshAddons()
+                    await EpisodeAlertRefresh.refresh(app: model)
                 }
                 .modifier(LibraryPendingRecovery(app: model))
                 .modifier(TraktPlaybackRecovery(app: model))

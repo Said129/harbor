@@ -80,6 +80,7 @@ struct DetailMetadataView: View {
             if let similar = details?.similar, !similar.isEmpty { rail("Más como esto", items: similar) }
             if let recommendations = details?.recommendations, !recommendations.isEmpty { rail("También te puede gustar", items: recommendations) }
             if let details, !details.trailers.isEmpty || !details.backdrops.isEmpty || !details.posters.isEmpty || !details.logos.isEmpty { mediaGallery(details) }
+            TitleAwardsSection(imdbID: media.imdbID, isSeries: media.type == "series")
             if !information.isEmpty {
                 VStack(alignment: .leading, spacing: 22) {
                     Text("Información").font(HarborTheme.font(22, weight: .medium))

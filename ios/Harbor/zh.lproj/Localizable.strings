@@ -62,6 +62,7 @@
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
 "Absolute" = "绝对";
+"Academy Awards" = "奥斯卡金像奖";
 "Accent" = "强调色";
 "Accents" = "Accents";
 "Accept" = "接受";
@@ -178,6 +179,7 @@
 "AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "AllDebrid 已弃用其缓存检查端点，因此在您实际点击“播放”之前，流可能会显示为未知。";
 "Allow cellular data" = "Allow cellular data";
 "Already added." = "已经添加过了。";
+"Also Nominated" = "同时获得提名";
 "Alternate" = "备选";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -197,6 +199,7 @@
 "Anime episodes airing this month, sub or dub" = "本月播出的动漫剧集，字幕版或配音版";
 "Anime of the Year" = "年度动漫";
 "Anime popular" = "热门动漫";
+"Annie Awards" = "安妮奖";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Another device changed services. Your previous version is saved on this device." = "另一台设备更改了服务。你的旧版本已保存在本机。";
 "Anterior" = "上一个";
@@ -251,6 +254,7 @@
 "Auto-skip credit outros" = "自动跳过片尾字幕";
 "Auto-skip intros" = "自动跳过片头";
 "Auto-skip recaps" = "自动跳过前情回顾";
+"Auto-skip stalled streams" = "自动跳过卡住的片源";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "自动";
 "Automatic synchronization" = "Automatic synchronization";
@@ -269,6 +273,7 @@
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "下一集提示";
 "Award Winning Anime" = "获奖动漫";
+"Awards & Recognition" = "奖项与荣誉";
 "Ayuda e información" = "帮助与关于";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "添加来源";
@@ -276,6 +281,8 @@
 "Añadir marcador" = "Add bookmark";
 "Añadir {language}" = "添加{language}";
 "Aún no hay catálogos" = "暂无目录";
+"BAFTA Awards" = "英国电影学院奖";
+"BAFTA Television Awards" = "英国电影学院电视奖";
 "Back" = "返回";
 "Back to lists" = "返回列表";
 "Back to top" = "返回顶部";
@@ -283,6 +290,7 @@
 "Background" = "背景";
 "Background image" = "背景图片";
 "Background opacity" = "背景不透明度";
+"Baeksang Arts Awards" = "百想艺术大赏";
 "Bajar {name}" = "下移{name}";
 "Balanced" = "均衡";
 "Bar color" = "进度条颜色";
@@ -292,6 +300,7 @@
 "Base de la página." = "页面底色。";
 "Bass boost" = "低音增强";
 "Beloved by readers and critics" = "深受读者和评论家喜爱";
+"Berlin Film Festival" = "柏林电影节";
 "Best Action" = "最佳动作";
 "Best Adventure" = "最佳冒险";
 "Best Animation" = "最佳动画";
@@ -323,6 +332,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "黑色条幅";
 "Bloques resaltados." = "高亮区块。";
+"Blue Dragon Film Awards" = "青龙电影奖";
 "Blur comments and reviews by default" = "默认模糊评论和影评";
 "Blur descriptions" = "模糊简介";
 "Blur spoilers" = "模糊剧透内容";
@@ -360,6 +370,7 @@
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "将动画列表导入 Harbor，并在观看时更新已看集数。现有进度会保留。";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "恢复已忽略的应用内小提示，无需重新进行欢迎流程。";
 "BritBox" = "BritBox";
+"British Independent Film Awards" = "英国独立电影奖";
 "Browse" = "浏览";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "浏览插件";
@@ -412,6 +423,7 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Cannes Film Festival" = "戛纳电影节";
 "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "您所选语言的字幕";
 "Captions, eyebrows." = "说明文字、眉题。";
@@ -620,6 +632,7 @@
 "Crime Series" = "犯罪剧集";
 "Crisp (anime & cartoons)" = "清晰（动漫和卡通）";
 "Critically Acclaimed" = "广受好评";
+"Critics' Choice Awards" = "评论家选择奖";
 "Critics' Picks" = "影评人之选";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
@@ -641,6 +654,7 @@
 "Customize home" = "自定义首页";
 "Customize page" = "自定义页面";
 "Czech" = "捷克语";
+"César Awards" = "凯撒奖";
 "Cómo leer tus libros" = "Reading help";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "为你的名字、一起看中的光标和头像周围的圆环设置颜色。";
@@ -648,6 +662,7 @@
 "Danish" = "丹麦语";
 "Dark" = "深色";
 "Date" = "日期";
+"Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "视频来源";
 "Debrid services" = "Debrid 服务";
 "Debrid-Link API key" = "Debrid-Link API 密钥";
@@ -886,6 +901,7 @@
 "Fondo" = "背景";
 "Font" = "字体";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For series and anime, keep playing the rest of the season from the release you first picked. Applies whether Play is instant or manual." = "对于剧集和动漫，继续播放你首次所选版本的本季其余内容。无论“播放”是即时还是手动均适用。";
 "For you" = "为你推荐";
 "Forced" = "强制";
 "Forest" = "森林";
@@ -928,7 +944,9 @@
 "Get a key at" = "获取密钥：";
 "Get an API key" = "获取 API 密钥";
 "Get yours at" = "获取地址：";
+"Golden Globes" = "金球奖";
 "Golf" = "高尔夫";
+"Goya Awards" = "戈雅奖";
 "Grand Prize" = "大奖";
 "Gray" = "Gray";
 "Green" = "绿色";
@@ -1035,6 +1053,7 @@
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Harbor 等待各插件返回结果的时间。";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
+"How long to wait first" = "首次等待时长";
 "How many episodes auto-play back to back before Harbor pauses to ask." = "How many episodes auto-play back to back before Harbor pauses to ask.";
 "How many films?" = "多少部电影？";
 "Hoy" = "今天";
@@ -1049,6 +1068,7 @@
 "Idiomas de audio" = "音频语言";
 "Idiomas de subtítulos" = "字幕语言";
 "Idiomas y subtítulos" = "语言与字幕";
+"If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "如果播放源未能在规定时间内开始播放（播放源失效或插件宕机），则自动尝试下一个可用播放源。默认关闭。";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "图片语言";
 "Imagen" = "画面";
@@ -1080,6 +1100,7 @@
 "In Theaters Now" = "正在热映";
 "In Watchlist" = "已在待看清单中";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"Independent Spirit Awards" = "独立精神奖";
 "India" = "印度";
 "Indonesian" = "印度尼西亚语";
 "Información" = "信息";
@@ -1470,6 +1491,7 @@
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "尚未观看任何内容";
 "Nothing yet" = "暂无内容";
+"Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on." = "Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on.";
 "Notify me" = "Notify me";
 "Now" = "现在";
 "Now Playing" = "正在播放";
@@ -1546,6 +1568,7 @@
 "Original language" = "原始语言";
 "Oscuro" = "深色";
 "Other" = "其他";
+"Other Awards" = "Other Awards";
 "Outline" = "描边";
 "Outline color" = "描边颜色";
 "Outline thickness" = "描边粗细";
@@ -1675,6 +1698,7 @@
 "Primary copy." = "主要文字。";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "请先选择字幕轨道。";
+"Primetime Emmys" = "黄金时段艾美奖";
 "Priority applies once you have two or more stream addons." = "安装两个或更多播放源插件后，优先级才会生效。";
 "Priorizar {language}" = "提高{language}的优先级";
 "Producer" = "制片人";
@@ -1749,6 +1773,7 @@
 "Recent searches" = "最近搜索";
 "Recently played" = "最近游玩";
 "Recién agregado" = "最新添加";
+"Recognized at the {award}." = "获得 {award} 认可。";
 "Recomendado" = "推荐";
 "Recommended" = "推荐";
 "Recommended for you" = "为你推荐";
@@ -1771,6 +1796,7 @@
 "Reintentar lectura del progreso" = "Retry reading progress";
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "画面比例";
+"Release notifications" = "Release notifications";
 "Rellenar" = "填充";
 "Remember last stream" = "记住上次使用的片源";
 "Reminder" = "Reminder";
@@ -1898,6 +1924,7 @@
 "Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "与 Real-Debrid 相同，仅进行只读操作。还可让您从播放选择器中将未缓存的来源加入队列。";
 "Saturación" = "饱和度";
 "Saturation" = "饱和度";
+"Saturn Awards" = "土星奖";
 "Save" = "保存";
 "Save a track and it will appear here." = "从“发现”中收藏歌曲后，它会显示在这里。";
 "Save and share pages" = "Save and share pages";
@@ -1915,6 +1942,7 @@
 "Sci-Fi" = "科幻";
 "Sci-Fi & Fantasy" = "科幻与奇幻";
 "Scores" = "评分";
+"Screen Actors Guild Awards" = "美国演员工会奖";
 "Screener" = "Screener";
 "Scrobble to SIMKL" = "将观看记录同步到 SIMKL";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
@@ -2080,6 +2108,7 @@
 "Sleep timer" = "睡眠定时器";
 "Slice of Life" = "日常";
 "Slightly lighter than background." = "比背景稍亮。";
+"Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "速度较慢的插件和 P2P 播放源通常需要超过 10 秒才能开始播放。如果播放源还没获得充分的连接机会就被跳过，请延长此时间。";
 "Smaller" = "较小";
 "Sobre la línea principal" = "主字幕上方";
 "Soft halo around the text. Cleanest on most content." = "在文字周围添加柔和光晕，适合大多数内容，效果最简洁。";
@@ -2129,6 +2158,7 @@
 "Startup & default" = "启动与默认设置";
 "Stats" = "统计";
 "Status" = "状态";
+"Stay on one source for a season" = "整季使用同一来源";
 "Step 1 · Metadata" = "第 1 步 · 元数据";
 "Step 1 · Open Simkl" = "第 1 步 · 打开 Simkl";
 "Step 1 · Open Trakt" = "第 1 步 · 打开 Trakt";
@@ -2477,6 +2507,7 @@
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "正在使用 AIOStreams 或其他聚合插件？在 Harbor 获取结果前，插件会先在内部进行排序和筛选，之后 Harbor 再应用上方的片源筛选和结果排序。如果结果少于预期，请放宽其中一方的限制：放宽插件的内部筛选，或将 Harbor 的片源筛选设为“均衡”或“关闭”。";
 "VOD sources" = "VOD sources";
 "Velocidad" = "速度";
+"Venice Film Festival" = "威尼斯电影节";
 "Ver más" = "查看更多";
 "Ver todo" = "查看全部";
 "Verify & connect" = "验证并连接";
@@ -3788,6 +3819,7 @@
 "{n} month ago" = "{n} 个月前";
 "{n} months ago" = "{n} 个月前";
 "{n} not matched" = "{n} 个未匹配";
+"{n} sec" = "{n} 秒";
 "{n} seeds" = "{n} 个做种者";
 "{n} semillas" = "{n} 个做种者";
 "{n} sources · 0 made it through" = "{n} 个片源 · 0 个通过筛选";

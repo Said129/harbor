@@ -62,6 +62,7 @@
 "Abrir navegación" = "Abrir navegación";
 "Abrir reproductor de Música" = "Abrir reproductor de Música";
 "Absolute" = "Absoluto";
+"Academy Awards" = "Premios de la Academia";
 "Accent" = "Acento";
 "Accents" = "Accents";
 "Accept" = "Aceptar";
@@ -178,6 +179,7 @@
 "AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "AllDebrid dejó de admitir su endpoint de verificación de caché, por lo que las fuentes pueden aparecer como desconocidas hasta que selecciones Reproducir.";
 "Allow cellular data" = "Permitir datos móviles";
 "Already added." = "Ya está agregado.";
+"Also Nominated" = "También nominado";
 "Alternate" = "Alternativo";
 "Analizando el audio… Puedes seguir viendo." = "Analizando el audio… Puedes seguir viendo.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar.";
@@ -197,6 +199,7 @@
 "Anime episodes airing this month, sub or dub" = "Episodios de anime que se estrenan este mes, subtitulados o doblados";
 "Anime of the Year" = "Anime del año";
 "Anime popular" = "Anime popular";
+"Annie Awards" = "Premios Annie";
 "Another device changed navigation. Your previous version is saved on this device." = "Otro dispositivo cambió la navegación. Tu versión anterior sigue guardada en este dispositivo.";
 "Another device changed services. Your previous version is saved on this device." = "Otro dispositivo cambió los servicios. Tu versión anterior está guardada en este dispositivo.";
 "Anterior" = "Anterior";
@@ -251,6 +254,7 @@
 "Auto-skip credit outros" = "Omitir automáticamente los créditos finales";
 "Auto-skip intros" = "Omitir automáticamente las introducciones";
 "Auto-skip recaps" = "Omitir automáticamente los resúmenes";
+"Auto-skip stalled streams" = "Omitir automáticamente las fuentes estancadas";
 "Auto-sync" = "Auto Sync";
 "Automatic" = "Automático";
 "Automatic synchronization" = "Sincronización automática";
@@ -269,6 +273,7 @@
 "Avisarme" = "Avisarme";
 "Aviso del siguiente episodio" = "Aviso del siguiente episodio";
 "Award Winning Anime" = "Anime galardonado";
+"Awards & Recognition" = "Premios y reconocimientos";
 "Ayuda e información" = "Ayuda e información";
 "Añadir a biblioteca Suwayomi" = "Añadir a biblioteca Suwayomi";
 "Añadir fuente" = "Añadir fuente";
@@ -276,6 +281,8 @@
 "Añadir marcador" = "Añadir marcador";
 "Añadir {language}" = "Añadir {language}";
 "Aún no hay catálogos" = "Aún no hay catálogos";
+"BAFTA Awards" = "Premios BAFTA";
+"BAFTA Television Awards" = "Premios BAFTA de Televisión";
 "Back" = "Atrás";
 "Back to lists" = "Volver a las listas";
 "Back to top" = "Volver arriba";
@@ -283,6 +290,7 @@
 "Background" = "Fondo";
 "Background image" = "Imagen de fondo";
 "Background opacity" = "Opacidad del fondo";
+"Baeksang Arts Awards" = "Premios Baeksang Arts";
 "Bajar {name}" = "Bajar {name}";
 "Balanced" = "Equilibrado";
 "Bar color" = "Color de la barra";
@@ -292,6 +300,7 @@
 "Base de la página." = "Base de la página.";
 "Bass boost" = "Refuerzo de graves";
 "Beloved by readers and critics" = "Favoritos de lectores y críticos";
+"Berlin Film Festival" = "Festival de Cine de Berlín";
 "Best Action" = "Mejor acción";
 "Best Adventure" = "Mejor aventura";
 "Best Animation" = "Mejor animación";
@@ -323,6 +332,7 @@
 "Biblioteca de Manga" = "Biblioteca de Manga";
 "Black bar" = "Barra negra";
 "Bloques resaltados." = "Bloques resaltados.";
+"Blue Dragon Film Awards" = "Premios Blue Dragon de Cine";
 "Blur comments and reviews by default" = "Desenfocar los comentarios y las reseñas de forma predeterminada";
 "Blur descriptions" = "Desenfocar las descripciones";
 "Blur spoilers" = "Desenfocar spoilers";
@@ -360,6 +370,7 @@
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Trae tu lista de anime a Harbor y actualiza los episodios vistos mientras miras. Se conserva tu progreso actual.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Restaura los pequeños consejos de la app que descartaste sin repetir el proceso de bienvenida.";
 "BritBox" = "BritBox";
+"British Independent Film Awards" = "Premios del Cine Independiente Británico";
 "Browse" = "Explorar";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Busca en Gutenberg por título, autor o idioma. Abre un libro para guardarlo en tu estantería. El lector permite cambiar la fuente, el espaciado y el fondo, añadir marcadores y escuchar el texto.";
 "Browse addons" = "Explorar complementos";
@@ -412,6 +423,7 @@
 "Cancelar siguiente episodio" = "Cancelar siguiente episodio";
 "Canciones" = "Canciones";
 "Canción anterior" = "Canción anterior";
+"Cannes Film Festival" = "Festival de Cine de Cannes";
 "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "Subtítulos en tu idioma";
 "Captions, eyebrows." = "Textos auxiliares y antetítulos.";
@@ -620,6 +632,7 @@
 "Crime Series" = "Series de crimen";
 "Crisp (anime & cartoons)" = "Nítido (anime y caricaturas)";
 "Critically Acclaimed" = "Aclamados por la crítica";
+"Critics' Choice Awards" = "Premios Critics' Choice";
 "Critics' Picks" = "Recomendaciones de la crítica";
 "Crunchy" = "Crujiente";
 "Crunchyroll" = "Crunchyroll";
@@ -641,6 +654,7 @@
 "Customize home" = "Personalizar inicio";
 "Customize page" = "Personalizar página";
 "Czech" = "Checo";
+"César Awards" = "Premios César";
 "Cómo leer tus libros" = "Cómo usar Manga y eBook";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar.";
@@ -648,6 +662,7 @@
 "Danish" = "Danés";
 "Dark" = "Oscuro";
 "Date" = "Fecha";
+"Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "De dónde viene tu video";
 "Debrid services" = "Servicios de debrid";
 "Debrid-Link API key" = "Clave de API de Debrid-Link";
@@ -886,6 +901,7 @@
 "Fondo" = "Fondo";
 "Font" = "Fuente";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable.";
+"For series and anime, keep playing the rest of the season from the release you first picked. Applies whether Play is instant or manual." = "En series y anime, sigue reproduciendo el resto de la temporada desde la versión que elegiste primero. Se aplica tanto si Reproducir es instantáneo como manual.";
 "For you" = "Para ti";
 "Forced" = "Forzado";
 "Forest" = "Bosque";
@@ -928,7 +944,9 @@
 "Get a key at" = "Obtén una clave en";
 "Get an API key" = "Obtener una clave API";
 "Get yours at" = "Obtén el tuyo en";
+"Golden Globes" = "Globos de Oro";
 "Golf" = "Golf";
+"Goya Awards" = "Premios Goya";
 "Grand Prize" = "Gran Premio";
 "Gray" = "Gris";
 "Green" = "Verde";
@@ -1035,6 +1053,7 @@
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Cuánto espera Harbor los resultados de cada complemento.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
+"How long to wait first" = "Cuánto esperar al principio";
 "How many episodes auto-play back to back before Harbor pauses to ask." = "How many episodes auto-play back to back before Harbor pauses to ask.";
 "How many films?" = "¿Cuántas películas?";
 "Hoy" = "Hoy";
@@ -1049,6 +1068,7 @@
 "Idiomas de audio" = "Idiomas de audio";
 "Idiomas de subtítulos" = "Idiomas de subtítulos";
 "Idiomas y subtítulos" = "Idiomas y subtítulos";
+"If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "Si una fuente no empieza a reproducirse a tiempo (porque no funciona o el complemento está caído), se prueba automáticamente la siguiente fuente disponible. Desactivado de forma predeterminada.";
 "Image cache cleared." = "Caché de imágenes vaciada.";
 "Image languages" = "Idiomas de las imágenes";
 "Imagen" = "Imagen";
@@ -1080,6 +1100,7 @@
 "In Theaters Now" = "Ahora en cines";
 "In Watchlist" = "En la lista para ver";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "En eBook, busca en Gutenberg o importa archivos EPUB y PDF. En Manga, importa PDF, CBZ, ZIP o carpetas de imágenes, o conecta tu servidor Suwayomi.";
+"Independent Spirit Awards" = "Premios Independent Spirit";
 "India" = "India";
 "Indonesian" = "Indonesio";
 "Información" = "Información";
@@ -1470,6 +1491,7 @@
 "Nothing to show yet." = "Todavía no hay nada que mostrar.";
 "Nothing watched yet" = "Aún no has visto nada";
 "Nothing yet" = "Aún no hay nada";
+"Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on." = "Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on.";
 "Notify me" = "Avisarme";
 "Now" = "Ahora";
 "Now Playing" = "En reproducción";
@@ -1546,6 +1568,7 @@
 "Original language" = "Idioma original";
 "Oscuro" = "Oscuro";
 "Other" = "Otro";
+"Other Awards" = "Other Awards";
 "Outline" = "Contorno";
 "Outline color" = "Color del contorno";
 "Outline thickness" = "Grosor del contorno";
@@ -1675,6 +1698,7 @@
 "Primary copy." = "Copia principal.";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "Primero selecciona una pista de subtítulos.";
+"Primetime Emmys" = "Premios Primetime Emmy";
 "Priority applies once you have two or more stream addons." = "La prioridad se aplica cuando tienes dos o más complementos de fuentes.";
 "Priorizar {language}" = "Priorizar {language}";
 "Producer" = "Productor";
@@ -1749,6 +1773,7 @@
 "Recent searches" = "Búsquedas recientes";
 "Recently played" = "Jugado recientemente";
 "Recién agregado" = "Recién agregado";
+"Recognized at the {award}." = "Reconocido en los {award}.";
 "Recomendado" = "Recomendado";
 "Recommended" = "Recomendado";
 "Recommended for you" = "Recomendado para ti";
@@ -1771,6 +1796,7 @@
 "Reintentar lectura del progreso" = "Reintentar lectura del progreso";
 "Reintentar preferencias" = "Reintentar preferencias";
 "Relación de aspecto" = "Relación de aspecto";
+"Release notifications" = "Release notifications";
 "Rellenar" = "Rellenar";
 "Remember last stream" = "Recordar la última fuente";
 "Reminder" = "Recordatorio";
@@ -1898,6 +1924,7 @@
 "Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "Ofrece el mismo acceso de solo lectura que Real-Debrid. También permite poner en cola fuentes sin caché desde el selector de reproducción.";
 "Saturación" = "Saturación";
 "Saturation" = "Saturación";
+"Saturn Awards" = "Premios Saturn";
 "Save" = "Guardar";
 "Save a track and it will appear here." = "Guarda una pista de Descubrir y aparecerá aquí.";
 "Save and share pages" = "Guardar y compartir páginas";
@@ -1915,6 +1942,7 @@
 "Sci-Fi" = "Ciencia ficción";
 "Sci-Fi & Fantasy" = "Ciencia ficción y fantasía";
 "Scores" = "Puntuaciones";
+"Screen Actors Guild Awards" = "Premios del Sindicato de Actores";
 "Screener" = "Screener";
 "Scrobble to SIMKL" = "Registrar reproducciones en SIMKL";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16.";
@@ -2080,6 +2108,7 @@
 "Sleep timer" = "Temporizador de suspensión";
 "Slice of Life" = "Vida cotidiana";
 "Slightly lighter than background." = "Un poco más claro que el fondo.";
+"Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Los complementos lentos y las fuentes P2P suelen necesitar más de 10 segundos para iniciar. Aumenta este valor si se omiten fuentes antes de darles tiempo suficiente.";
 "Smaller" = "Más pequeño";
 "Sobre la línea principal" = "Sobre la línea principal";
 "Soft halo around the text. Cleanest on most content." = "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido.";
@@ -2129,6 +2158,7 @@
 "Startup & default" = "Inicio y valores predeterminados";
 "Stats" = "Estadísticas";
 "Status" = "Estado";
+"Stay on one source for a season" = "Mantener una sola fuente durante toda la temporada";
 "Step 1 · Metadata" = "Paso 1 · Metadatos";
 "Step 1 · Open Simkl" = "Paso 1 · Abre Simkl";
 "Step 1 · Open Trakt" = "Paso 1 · Abre Trakt";
@@ -2477,6 +2507,7 @@
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "¿Usas AIOStreams u otro complemento agregador? Su propia clasificación y filtrado se realizan dentro del complemento antes de que Harbor vea los resultados. Luego, Harbor aplica además el filtro de fuentes y el orden de resultados configurados arriba. Si aparecen menos resultados de lo esperado, mantén una de las partes flexible: relaja los filtros internos del complemento o establece el filtro de fuentes de Harbor en Equilibrado o Desactivado.";
 "VOD sources" = "Fuentes de VOD";
 "Velocidad" = "Velocidad";
+"Venice Film Festival" = "Festival de Cine de Venecia";
 "Ver más" = "Ver más";
 "Ver todo" = "Ver todo";
 "Verify & connect" = "Verificar y conectar";
@@ -3788,6 +3819,7 @@
 "{n} month ago" = "hace {n} mes";
 "{n} months ago" = "hace {n} meses";
 "{n} not matched" = "{n} sin coincidencia";
+"{n} sec" = "{n} s";
 "{n} seeds" = "{n} semillas";
 "{n} semillas" = "{n} semillas";
 "{n} sources · 0 made it through" = "{n} fuentes · 0 superaron el filtro";

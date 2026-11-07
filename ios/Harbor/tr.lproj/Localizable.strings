@@ -62,6 +62,7 @@
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
 "Absolute" = "Mutlak";
+"Academy Awards" = "Akademi Ödülleri";
 "Accent" = "Vurgu";
 "Accents" = "Accents";
 "Accept" = "Kabul et";
@@ -178,6 +179,7 @@
 "AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "AllDebrid, önbellek kontrolü uç noktasını kullanımdan kaldırdı. Bu nedenle siz Oynat'a basana kadar yayınların durumu bilinmiyor olarak görünebilir.";
 "Allow cellular data" = "Allow cellular data";
 "Already added." = "Zaten eklendi.";
+"Also Nominated" = "Diğer Adaylar";
 "Alternate" = "Alternatif";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -197,6 +199,7 @@
 "Anime episodes airing this month, sub or dub" = "Bu ay yayınlanan altyazılı veya dublajlı anime bölümleri";
 "Anime of the Year" = "Yılın animesi";
 "Anime popular" = "Popüler Animeler";
+"Annie Awards" = "Annie Ödülleri";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Another device changed services. Your previous version is saved on this device." = "Başka bir cihaz hizmetleri değiştirdi. Önceki sürümünüz bu cihazda kayıtlı.";
 "Anterior" = "Önceki";
@@ -251,6 +254,7 @@
 "Auto-skip credit outros" = "Kapanış jeneriğini otomatik atla";
 "Auto-skip intros" = "İntroları otomatik atla";
 "Auto-skip recaps" = "Özetleri otomatik atla";
+"Auto-skip stalled streams" = "Takılan yayınları otomatik atla";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "Otomatik";
 "Automatic synchronization" = "Automatic synchronization";
@@ -269,6 +273,7 @@
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "Sonraki bölüm bildirimi";
 "Award Winning Anime" = "Ödüllü animeler";
+"Awards & Recognition" = "Ödüller ve Başarılar";
 "Ayuda e información" = "Yardım ve hakkında";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "Kaynak ekle";
@@ -276,6 +281,8 @@
 "Añadir marcador" = "Add bookmark";
 "Añadir {language}" = "{language} ekle";
 "Aún no hay catálogos" = "Henüz katalog yok";
+"BAFTA Awards" = "BAFTA Ödülleri";
+"BAFTA Television Awards" = "BAFTA Televizyon Ödülleri";
 "Back" = "Geri";
 "Back to lists" = "Listelere dön";
 "Back to top" = "Başa dön";
@@ -283,6 +290,7 @@
 "Background" = "Arka plan";
 "Background image" = "Arka plan görüntüsü";
 "Background opacity" = "Arka plan opaklığı";
+"Baeksang Arts Awards" = "Baeksang Sanat Ödülleri";
 "Bajar {name}" = "{name} öğesini aşağı taşı";
 "Balanced" = "Dengeli";
 "Bar color" = "Çubuk rengi";
@@ -292,6 +300,7 @@
 "Base de la página." = "Sayfa tabanı.";
 "Bass boost" = "Bas güçlendirme";
 "Beloved by readers and critics" = "Okurların ve eleştirmenlerin gözdesi";
+"Berlin Film Festival" = "Berlin Film Festivali";
 "Best Action" = "En İyi Aksiyon";
 "Best Adventure" = "En İyi Macera";
 "Best Animation" = "En İyi Animasyon";
@@ -323,6 +332,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "Siyah şerit";
 "Bloques resaltados." = "Vurgulanan bloklar.";
+"Blue Dragon Film Awards" = "Mavi Ejderha Film Ödülleri";
 "Blur comments and reviews by default" = "Yorumları ve incelemeleri varsayılan olarak bulanıklaştır";
 "Blur descriptions" = "Açıklamaları bulanıklaştır";
 "Blur spoilers" = "Spoilerları bulanıklaştır";
@@ -360,6 +370,7 @@
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Anime listenizi Harbor'a getirin ve izlerken bölüm sayınızı güncelleyin. Mevcut ilerlemeniz korunur.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Karşılama akışını yeniden başlatmadan, kapattığınız küçük uygulama içi ipuçlarını geri getirir.";
 "BritBox" = "BritBox";
+"British Independent Film Awards" = "Britanya Bağımsız Film Ödülleri";
 "Browse" = "Göz at";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "Eklentilere göz at";
@@ -412,6 +423,7 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Cannes Film Festival" = "Cannes Film Festivali";
 "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "Dilinizde altyazılar";
 "Captions, eyebrows." = "Açıklamalar, üst başlıklar.";
@@ -620,6 +632,7 @@
 "Crime Series" = "Suç Dizileri";
 "Crisp (anime & cartoons)" = "Net (anime ve çizgi film)";
 "Critically Acclaimed" = "Eleştirmenlerin Beğenisini Kazananlar";
+"Critics' Choice Awards" = "Eleştirmenlerin Seçimi Ödülleri";
 "Critics' Picks" = "Eleştirmenlerin Seçtikleri";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
@@ -641,6 +654,7 @@
 "Customize home" = "Ana sayfayı özelleştir";
 "Customize page" = "Sayfayı özelleştir";
 "Czech" = "Çekçe";
+"César Awards" = "César Ödülleri";
 "Cómo leer tus libros" = "Reading help";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Adını, Birlikte İzle içindeki imlecini ve avatarının çevresindeki halkayı renklendirir.";
@@ -648,6 +662,7 @@
 "Danish" = "Danca";
 "Dark" = "Koyu";
 "Date" = "Tarih";
+"Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "Video kaynakları";
 "Debrid services" = "Debrid hizmetleri";
 "Debrid-Link API key" = "Debrid-Link API anahtarı";
@@ -886,6 +901,7 @@
 "Fondo" = "Arka plan";
 "Font" = "Yazı tipi";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For series and anime, keep playing the rest of the season from the release you first picked. Applies whether Play is instant or manual." = "Dizi ve animelerde sezonun kalanını ilk seçtiğiniz sürümden oynatmaya devam eder. Oynatma ister anında ister elle başlatılsın geçerlidir.";
 "For you" = "Sizin için";
 "Forced" = "Zorunlu";
 "Forest" = "Orman";
@@ -928,7 +944,9 @@
 "Get a key at" = "Anahtar alın:";
 "Get an API key" = "API anahtarı al";
 "Get yours at" = "Siz de şuradan alın:";
+"Golden Globes" = "Altın Küre Ödülleri";
 "Golf" = "Golf";
+"Goya Awards" = "Goya Ödülleri";
 "Grand Prize" = "Büyük Ödül";
 "Gray" = "Gray";
 "Green" = "Yeşil";
@@ -1035,6 +1053,7 @@
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Harbor'ın her eklentinin sonuçlarını ne kadar bekleyeceği.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
+"How long to wait first" = "İlk bekleme süresi";
 "How many episodes auto-play back to back before Harbor pauses to ask." = "How many episodes auto-play back to back before Harbor pauses to ask.";
 "How many films?" = "Kaç film?";
 "Hoy" = "Bugün";
@@ -1049,6 +1068,7 @@
 "Idiomas de audio" = "Ses dilleri";
 "Idiomas de subtítulos" = "Altyazı dilleri";
 "Idiomas y subtítulos" = "Diller ve altyazılar";
+"If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "Bir yayın zamanında oynatılmaya başlamazsa (çalışmayan bir kaynak veya devre dışı bir eklenti nedeniyle), sonraki kullanılabilir yayın otomatik olarak denenir. Varsayılan olarak kapalıdır.";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "Görsel dilleri";
 "Imagen" = "Resim";
@@ -1080,6 +1100,7 @@
 "In Theaters Now" = "Şu Anda Sinemalarda";
 "In Watchlist" = "İzleme Listesinde";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"Independent Spirit Awards" = "Bağımsız Ruh Ödülleri";
 "India" = "Hindistan";
 "Indonesian" = "Endonezce";
 "Información" = "Bilgiler";
@@ -1470,6 +1491,7 @@
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "Henüz hiçbir şey izlenmedi";
 "Nothing yet" = "Henüz bir şey yok";
+"Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on." = "Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on.";
 "Notify me" = "Notify me";
 "Now" = "Şimdi";
 "Now Playing" = "Şimdi oynatılıyor";
@@ -1546,6 +1568,7 @@
 "Original language" = "Orijinal dil";
 "Oscuro" = "Koyu";
 "Other" = "Diğer";
+"Other Awards" = "Other Awards";
 "Outline" = "Dış çizgi";
 "Outline color" = "Kontur rengi";
 "Outline thickness" = "Kontur kalınlığı";
@@ -1675,6 +1698,7 @@
 "Primary copy." = "Birincil metin.";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "Önce bir altyazı parçası seçin.";
+"Primetime Emmys" = "Primetime Emmy Ödülleri";
 "Priority applies once you have two or more stream addons." = "Öncelik, en az iki yayın eklentiniz olduğunda uygulanır.";
 "Priorizar {language}" = "{language} dilini öne taşı";
 "Producer" = "Yapımcı";
@@ -1749,6 +1773,7 @@
 "Recent searches" = "Son aramalar";
 "Recently played" = "Son oynanan";
 "Recién agregado" = "Yeni eklenenler";
+"Recognized at the {award}." = "{award} kapsamında takdir gördü.";
 "Recomendado" = "Önerilen";
 "Recommended" = "Önerilen";
 "Recommended for you" = "Sizin için önerilenler";
@@ -1771,6 +1796,7 @@
 "Reintentar lectura del progreso" = "Retry reading progress";
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "En-boy oranı";
+"Release notifications" = "Release notifications";
 "Rellenar" = "Doldur";
 "Remember last stream" = "Son yayını hatırla";
 "Reminder" = "Reminder";
@@ -1898,6 +1924,7 @@
 "Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "Real-Debrid ile aynı salt okunur kullanım biçimine sahiptir. Ayrıca önbelleğe alınmamış kaynakları oynatma seçicisinden kuyruğa eklemenizi sağlar.";
 "Saturación" = "Doygunluk";
 "Saturation" = "Doygunluk";
+"Saturn Awards" = "Saturn Ödülleri";
 "Save" = "Kaydet";
 "Save a track and it will appear here." = "Keşfet'ten bir parça kaydedin, burada görünsün.";
 "Save and share pages" = "Save and share pages";
@@ -1915,6 +1942,7 @@
 "Sci-Fi" = "Bilim Kurgu";
 "Sci-Fi & Fantasy" = "Bilim Kurgu ve Fantastik";
 "Scores" = "Puanlar";
+"Screen Actors Guild Awards" = "Ekran Oyuncuları Birliği Ödülleri";
 "Screener" = "Screener";
 "Scrobble to SIMKL" = "SIMKL'ye scrobble gönder";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
@@ -2080,6 +2108,7 @@
 "Sleep timer" = "Uyku zamanlayıcısı";
 "Slice of Life" = "Gündelik Yaşam";
 "Slightly lighter than background." = "Arka plandan biraz daha açık.";
+"Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Yavaş eklentilerin ve P2P kaynaklarının başlaması genellikle 10 saniyeden uzun sürer. Yayınlar yeterince beklenmeden atlanıyorsa bu süreyi artırın.";
 "Smaller" = "Daha küçük";
 "Sobre la línea principal" = "Ana satırın üstü";
 "Soft halo around the text. Cleanest on most content." = "Metnin çevresinde yumuşak bir hale. Çoğu içerikte en temiz görünüm.";
@@ -2129,6 +2158,7 @@
 "Startup & default" = "Başlangıç ve varsayılan";
 "Stats" = "İstatistikler";
 "Status" = "Durum";
+"Stay on one source for a season" = "Bir sezon boyunca aynı kaynakta kal";
 "Step 1 · Metadata" = "1. Adım · Meta veriler";
 "Step 1 · Open Simkl" = "1. Adım · Simkl'ı açın";
 "Step 1 · Open Trakt" = "1. Adım · Trakt'ı açın";
@@ -2477,6 +2507,7 @@
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "AIOStreams veya başka bir toplayıcı eklenti mi kullanıyorsunuz? Harbor sonuçları görmeden önce eklentinin kendi sıralama ve filtreleme işlemleri uygulanır; ardından Harbor yukarıdaki yayın filtresini ve sonuç sırasını bunların üzerine uygular. Sonuçlar beklenenden az görünüyorsa taraflardan birini esnek tutun: eklentinin dâhilî filtrelerini gevşetin veya Harbor'ın yayın filtresini Dengeli ya da Kapalı olarak ayarlayın.";
 "VOD sources" = "VOD sources";
 "Velocidad" = "Hız";
+"Venice Film Festival" = "Venedik Film Festivali";
 "Ver más" = "Daha fazlasını görüntüle";
 "Ver todo" = "Tümünü görüntüle";
 "Verify & connect" = "Doğrula ve bağlan";
@@ -3788,6 +3819,7 @@
 "{n} month ago" = "{n} ay önce";
 "{n} months ago" = "{n} ay önce";
 "{n} not matched" = "{n} eşleşmedi";
+"{n} sec" = "{n} sn.";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} kaynak · 0 tanesi filtreleri geçti";

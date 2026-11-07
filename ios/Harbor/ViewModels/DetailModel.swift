@@ -408,7 +408,7 @@ final class DetailModel {
         let protecting = remembered.map { identity in !automaticOffers.contains { identity.matches($0) } } ?? false
         // Desktop puts the stream last played for this episode ahead of the ranking when it can start at once.
         let previous = rememberedStream.flatMap { entry in automaticOffers.first { entry.matches($0) && $0.automaticallyPlayable } }
-        let candidate = autoplay.continuation ? continuationOffer : (previous ?? preferences.preferred(automaticOffers))
+        let candidate = autoplay.continuation ? continuationOffer : (seasonLockedOffer(owner: autoplay.owner) ?? previous ?? preferences.preferred(automaticOffers))
         guard autoSettle.shouldStart(now: .now, top: candidate, candidates: automaticOffers, hasResults: !rankedOffers.isEmpty,
                                      answered: answeredRequests, total: totalRequests, done: done, protecting: protecting),
               let top = candidate else { return }
@@ -426,6 +426,13 @@ final class DetailModel {
                 await start(next)
             }
         }
+    }
+    /// Desktop's season source lock: the release picked first for this season (or the whole anime) leads the automatic start.
+    private func seasonLockedOffer(owner: String) -> StreamOffer? {
+        let media = playbackContextMedia
+        guard SeasonSourceLock.applies(enabled: StreamAutoSwitchPreferences.shared.seasonSourceLock, mediaType: media.type, metaID: media.id),
+              let lock = SeasonSourceLock.read(metaID: media.id, season: selectedEpisode?.season, owner: owner) else { return nil }
+        return automaticOffers.first { offer in lock.matches(offer) && offer.automaticallyPlayable }
     }
     /// How many sources an automatic start tries before it leaves the choice to the picker.
     static let autoAttemptLimit = 8
@@ -574,6 +581,9 @@ final class DetailModel {
             guard owner == library.owner, personalOwner == library.personalOwner, contextRevision() == context, request == streamRequest, resolution == resolutionRequest else { return }
             lastPlayedSource = StreamSourceIdentity(offer)
             StreamPlaybackHistory.save(StreamPlaybackEntry(offer), metaID: selected.id, season: episode?.season, episode: episode?.episode, owner: owner)
+            if SeasonSourceLock.applies(enabled: StreamAutoSwitchPreferences.shared.seasonSourceLock, mediaType: selected.type, metaID: selected.id) {
+                SeasonSourceLock.save(offer, metaID: selected.id, season: episode?.season, owner: owner)
+            }
             sourceContinuation = nil
             playback = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled, owner: owner, resumeStore: resume, preservePosition: preservedPosition != nil, advanceStartedAtMs: preservedPosition == nil ? nil : continuation?.advanceStartedAtMs, promptForResume: start.prompt)
             playback?.media = selected

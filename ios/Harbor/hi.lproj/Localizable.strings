@@ -62,6 +62,7 @@
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
 "Absolute" = "पूर्ण";
+"Academy Awards" = "Academy Awards";
 "Accent" = "एक्सेंट";
 "Accents" = "Accents";
 "Accept" = "स्वीकार करें";
@@ -178,6 +179,7 @@
 "AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "AllDebrid ने अपना कैश-जाँच एंडपॉइंट बंद कर दिया है, इसलिए जब तक आप वाकई प्ले नहीं दबाते, स्ट्रीम की स्थिति अज्ञात दिख सकती है।";
 "Allow cellular data" = "Allow cellular data";
 "Already added." = "पहले से जोड़ा गया है।";
+"Also Nominated" = "अन्य नामांकन";
 "Alternate" = "वैकल्पिक";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -197,6 +199,7 @@
 "Anime episodes airing this month, sub or dub" = "इस महीने प्रसारित हो रहे ऐनिमे एपिसोड, सबटाइटल या डब के साथ";
 "Anime of the Year" = "वर्ष का ऐनिमे";
 "Anime popular" = "लोकप्रिय ऐनिमे";
+"Annie Awards" = "Annie Awards";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Another device changed services. Your previous version is saved on this device." = "किसी दूसरे डिवाइस ने सेवाएँ बदली हैं। आपका पिछला संस्करण इस डिवाइस पर सुरक्षित है।";
 "Anterior" = "पिछला";
@@ -251,6 +254,7 @@
 "Auto-skip credit outros" = "अंतिम क्रेडिट अपने-आप स्किप करें";
 "Auto-skip intros" = "इंट्रो अपने-आप स्किप करें";
 "Auto-skip recaps" = "पुनर्कथन अपने-आप स्किप करें";
+"Auto-skip stalled streams" = "अटकी हुई स्ट्रीम अपने-आप स्किप करें";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "स्वचालित";
 "Automatic synchronization" = "Automatic synchronization";
@@ -269,6 +273,7 @@
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "अगले एपिसोड की सूचना";
 "Award Winning Anime" = "पुरस्कार विजेता एनीमे";
+"Awards & Recognition" = "पुरस्कार और सम्मान";
 "Ayuda e información" = "मदद और परिचय";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "स्रोत जोड़ें";
@@ -276,6 +281,8 @@
 "Añadir marcador" = "Add bookmark";
 "Añadir {language}" = "{language} जोड़ें";
 "Aún no hay catálogos" = "अभी तक कोई कैटलॉग नहीं है";
+"BAFTA Awards" = "BAFTA पुरस्कार";
+"BAFTA Television Awards" = "BAFTA टेलीविज़न पुरस्कार";
 "Back" = "वापस";
 "Back to lists" = "सूचियों पर वापस जाएँ";
 "Back to top" = "सबसे ऊपर जाएँ";
@@ -283,6 +290,7 @@
 "Background" = "बैकग्राउंड";
 "Background image" = "बैकग्राउंड इमेज";
 "Background opacity" = "बैकग्राउंड की अपारदर्शिता";
+"Baeksang Arts Awards" = "बेकसांग कला पुरस्कार";
 "Bajar {name}" = "{name} नीचे ले जाएँ";
 "Balanced" = "संतुलित";
 "Bar color" = "बार का रंग";
@@ -292,6 +300,7 @@
 "Base de la página." = "पेज का आधार।";
 "Bass boost" = "बेस बूस्ट";
 "Beloved by readers and critics" = "पाठकों और समीक्षकों का चहेता";
+"Berlin Film Festival" = "बर्लिन फ़िल्म समारोह";
 "Best Action" = "सर्वश्रेष्ठ एक्शन";
 "Best Adventure" = "सर्वश्रेष्ठ एडवेंचर";
 "Best Animation" = "सर्वश्रेष्ठ एनिमेशन";
@@ -323,6 +332,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "काली पट्टी";
 "Bloques resaltados." = "हाइलाइट किए गए ब्लॉक।";
+"Blue Dragon Film Awards" = "ब्लू ड्रैगन फ़िल्म पुरस्कार";
 "Blur comments and reviews by default" = "टिप्पणियाँ और समीक्षाएँ डिफ़ॉल्ट रूप से ब्लर करें";
 "Blur descriptions" = "विवरण ब्लर करें";
 "Blur spoilers" = "स्पॉइलर ब्लर करें";
@@ -360,6 +370,7 @@
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "अपनी एनीमे सूची Harbor में लाएँ और देखते समय एपिसोड की गिनती अपडेट करें। मौजूदा प्रगति बनी रहती है।";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "वेलकम फ़्लो दोबारा चलाए बिना, आपके पहले बंद किए गए छोटे इन-ऐप सुझाव वापस लाता है।";
 "BritBox" = "BritBox";
+"British Independent Film Awards" = "ब्रिटिश स्वतंत्र फ़िल्म पुरस्कार";
 "Browse" = "ब्राउज़ करें";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "ऐडऑन ब्राउज़ करें";
@@ -412,6 +423,7 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Cannes Film Festival" = "कान फ़िल्म समारोह";
 "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "आपकी भाषा में सबटाइटल";
 "Captions, eyebrows." = "कैप्शन, आइब्रो टेक्स्ट।";
@@ -620,6 +632,7 @@
 "Crime Series" = "अपराध सीरीज़";
 "Crisp (anime & cartoons)" = "शार्प (एनीमे और कार्टून)";
 "Critically Acclaimed" = "समीक्षकों द्वारा प्रशंसित";
+"Critics' Choice Awards" = "क्रिटिक्स चॉइस पुरस्कार";
 "Critics' Picks" = "समीक्षकों की चुनी हुई पेशकश";
 "Crunchy" = "करारा";
 "Crunchyroll" = "Crunchyroll";
@@ -641,6 +654,7 @@
 "Customize home" = "होम को कस्टमाइज़ करें";
 "Customize page" = "पेज को कस्टमाइज़ करें";
 "Czech" = "चेक";
+"César Awards" = "César पुरस्कार";
 "Cómo leer tus libros" = "Reading help";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "आपके नाम, साथ में देखें में आपके कर्सर और आपके अवतार के चारों ओर के घेरे का रंग बदलता है।";
@@ -648,6 +662,7 @@
 "Danish" = "डेनिश";
 "Dark" = "डार्क";
 "Date" = "तारीख";
+"Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "आपका वीडियो कहाँ से आता है";
 "Debrid services" = "Debrid सेवाएँ";
 "Debrid-Link API key" = "Debrid-Link API कुंजी";
@@ -886,6 +901,7 @@
 "Fondo" = "बैकग्राउंड";
 "Font" = "फ़ॉन्ट";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For series and anime, keep playing the rest of the season from the release you first picked. Applies whether Play is instant or manual." = "सीरीज़ और ऐनिमे के लिए, सीज़न के बाकी एपिसोड उसी रिलीज़ से चलाते रहें जिसे आपने पहले चुना था। यह प्ले के तुरंत या मैन्युअल होने, दोनों पर लागू होता है।";
 "For you" = "आपके लिए";
 "Forced" = "फ़ोर्स्ड";
 "Forest" = "वन";
@@ -928,7 +944,9 @@
 "Get a key at" = "यहाँ से कुंजी पाएँ";
 "Get an API key" = "API कुंजी प्राप्त करें";
 "Get yours at" = "अपना यहाँ से पाएँ";
+"Golden Globes" = "गोल्डन ग्लोब्स";
 "Golf" = "गोल्फ़";
+"Goya Awards" = "Goya पुरस्कार";
 "Grand Prize" = "महापुरस्कार";
 "Gray" = "Gray";
 "Green" = "हरा";
@@ -1035,6 +1053,7 @@
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "हर ऐडऑन के नतीजों के लिए Harbor कितनी देर इंतज़ार करता है।";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
+"How long to wait first" = "पहले कितनी देर इंतज़ार करें";
 "How many episodes auto-play back to back before Harbor pauses to ask." = "How many episodes auto-play back to back before Harbor pauses to ask.";
 "How many films?" = "कितनी फ़िल्में?";
 "Hoy" = "आज";
@@ -1049,6 +1068,7 @@
 "Idiomas de audio" = "ऑडियो भाषाएँ";
 "Idiomas de subtítulos" = "सबटाइटल भाषाएँ";
 "Idiomas y subtítulos" = "भाषाएँ और सबटाइटल";
+"If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "अगर कोई स्ट्रीम समय पर चलना शुरू न करे (स्रोत बंद हो या ऐडऑन काम न कर रहा हो), तो अगली उपलब्ध स्ट्रीम अपने आप आज़माएँ। डिफ़ॉल्ट रूप से बंद।";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "इमेज की भाषाएँ";
 "Imagen" = "चित्र";
@@ -1080,6 +1100,7 @@
 "In Theaters Now" = "अभी सिनेमाघरों में";
 "In Watchlist" = "वॉचलिस्ट में";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"Independent Spirit Awards" = "इंडिपेंडेंट स्पिरिट पुरस्कार";
 "India" = "भारत";
 "Indonesian" = "इंडोनेशियाई";
 "Información" = "जानकारी";
@@ -1470,6 +1491,7 @@
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "अभी तक कुछ नहीं देखा";
 "Nothing yet" = "अभी तक कुछ नहीं";
+"Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on." = "Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on.";
 "Notify me" = "Notify me";
 "Now" = "अभी";
 "Now Playing" = "अभी चल रहा है";
@@ -1546,6 +1568,7 @@
 "Original language" = "मूल भाषा";
 "Oscuro" = "डार्क";
 "Other" = "अन्य";
+"Other Awards" = "Other Awards";
 "Outline" = "आउटलाइन";
 "Outline color" = "आउटलाइन का रंग";
 "Outline thickness" = "आउटलाइन की मोटाई";
@@ -1675,6 +1698,7 @@
 "Primary copy." = "मुख्य टेक्स्ट।";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "पहले एक सबटाइटल ट्रैक चुनें।";
+"Primetime Emmys" = "प्राइमटाइम एमी पुरस्कार";
 "Priority applies once you have two or more stream addons." = "प्राथमिकता तब लागू होती है, जब आपके पास दो या अधिक स्ट्रीम ऐडऑन हों।";
 "Priorizar {language}" = "{language} की प्राथमिकता बढ़ाएँ";
 "Producer" = "निर्माता";
@@ -1749,6 +1773,7 @@
 "Recent searches" = "हाल की खोजें";
 "Recently played" = "हाल में खेला";
 "Recién agregado" = "हाल ही में जोड़ा गया";
+"Recognized at the {award}." = "{award} से सम्मानित।";
 "Recomendado" = "सुझाए गए";
 "Recommended" = "सुझाए गए";
 "Recommended for you" = "आपके लिए सुझाए गए";
@@ -1771,6 +1796,7 @@
 "Reintentar lectura del progreso" = "Retry reading progress";
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "आस्पेक्ट रेशियो";
+"Release notifications" = "Release notifications";
 "Rellenar" = "भरें";
 "Remember last stream" = "पिछली स्ट्रीम याद रखें";
 "Reminder" = "Reminder";
@@ -1898,6 +1924,7 @@
 "Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "Real-Debrid की तरह सिर्फ़ पढ़ने की अनुमति वाला इस्तेमाल। साथ ही, प्ले पिकर से कैश न किए गए स्रोतों को कतार में लगाने देता है।";
 "Saturación" = "सैचुरेशन";
 "Saturation" = "सैचुरेशन";
+"Saturn Awards" = "Saturn पुरस्कार";
 "Save" = "सेव करें";
 "Save a track and it will appear here." = "खोजें से कोई ट्रैक सहेजें और वह यहाँ दिखाई देगा।";
 "Save and share pages" = "Save and share pages";
@@ -1915,6 +1942,7 @@
 "Sci-Fi" = "साइंस फ़िक्शन";
 "Sci-Fi & Fantasy" = "साइंस फ़िक्शन और फ़ैंटेसी";
 "Scores" = "स्कोर";
+"Screen Actors Guild Awards" = "स्क्रीन एक्टर्स गिल्ड अवॉर्ड्स";
 "Screener" = "Screener";
 "Scrobble to SIMKL" = "SIMKL पर स्क्रॉबल करें";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
@@ -2080,6 +2108,7 @@
 "Sleep timer" = "स्लीप टाइमर";
 "Slice of Life" = "स्लाइस ऑफ लाइफ़";
 "Slightly lighter than background." = "बैकग्राउंड से थोड़ा हल्का।";
+"Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "धीमे ऐडऑन और P2P स्रोतों को शुरू होने में अक्सर 10 सेकंड से ज़्यादा लगते हैं। अगर स्ट्रीम को पूरा मौका मिलने से पहले ही छोड़ा जा रहा हो, तो इसे बढ़ाएँ।";
 "Smaller" = "और छोटा";
 "Sobre la línea principal" = "मुख्य पंक्ति के ऊपर";
 "Soft halo around the text. Cleanest on most content." = "टेक्स्ट के चारों ओर हल्की चमक। ज़्यादातर कॉन्टेंट पर सबसे साफ़ दिखता है।";
@@ -2129,6 +2158,7 @@
 "Startup & default" = "स्टार्टअप और डिफ़ॉल्ट";
 "Stats" = "आँकड़े";
 "Status" = "स्थिति";
+"Stay on one source for a season" = "पूरे सीज़न के लिए एक ही स्रोत का इस्तेमाल करें";
 "Step 1 · Metadata" = "चरण 1 · मेटाडेटा";
 "Step 1 · Open Simkl" = "चरण 1 · Simkl खोलें";
 "Step 1 · Open Trakt" = "चरण 1 · Trakt खोलें";
@@ -2477,6 +2507,7 @@
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "AIOStreams या कोई दूसरा एग्रीगेटर ऐडऑन इस्तेमाल कर रहे हैं? Harbor को नतीजे मिलने से पहले ही ऐडऑन के अंदर उनकी सॉर्टिंग और फ़िल्टरिंग हो जाती है। इसके बाद Harbor उन पर ऊपर दिया गया स्ट्रीम फ़िल्टर और नतीजों का क्रम लागू करता है। अगर नतीजे उम्मीद से कम दिखें, तो किसी एक तरफ़ फ़िल्टर में ढील रखें: या तो ऐडऑन के अंदरूनी फ़िल्टर हल्के करें या Harbor का स्ट्रीम फ़िल्टर बैलेंस्ड या बंद पर सेट करें।";
 "VOD sources" = "VOD sources";
 "Velocidad" = "गति";
+"Venice Film Festival" = "वेनिस फ़िल्म फ़ेस्टिवल";
 "Ver más" = "और देखें";
 "Ver todo" = "सभी देखें";
 "Verify & connect" = "सत्यापित करें और कनेक्ट करें";
@@ -3788,6 +3819,7 @@
 "{n} month ago" = "{n} महीने पहले";
 "{n} months ago" = "{n} महीने पहले";
 "{n} not matched" = "{n} का मिलान नहीं हुआ";
+"{n} sec" = "{n} सेकंड";
 "{n} seeds" = "{n} सीड";
 "{n} semillas" = "{n} सीड";
 "{n} sources · 0 made it through" = "{n} स्रोत · 0 सफल रहे";

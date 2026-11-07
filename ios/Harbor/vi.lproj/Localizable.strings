@@ -62,6 +62,7 @@
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
 "Absolute" = "Tuyệt đối";
+"Academy Awards" = "Giải Oscar";
 "Accent" = "Màu nhấn";
 "Accents" = "Accents";
 "Accept" = "Chấp nhận";
@@ -178,6 +179,7 @@
 "AllDebrid deprecated their cache-check endpoint, so streams may show as unknown until you actually hit Play." = "AllDebrid đã ngừng dùng endpoint kiểm tra bộ nhớ đệm, nên luồng phát có thể hiển thị là không xác định cho đến khi bạn thực sự nhấn Phát.";
 "Allow cellular data" = "Allow cellular data";
 "Already added." = "Đã thêm rồi.";
+"Also Nominated" = "Cũng được đề cử";
 "Alternate" = "Thay thế";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -197,6 +199,7 @@
 "Anime episodes airing this month, sub or dub" = "Các tập anime phát sóng trong tháng này, phụ đề hoặc lồng tiếng";
 "Anime of the Year" = "Anime của năm";
 "Anime popular" = "Anime phổ biến";
+"Annie Awards" = "Giải Annie";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Another device changed services. Your previous version is saved on this device." = "Một thiết bị khác đã thay đổi các dịch vụ. Phiên bản trước được lưu trên thiết bị này.";
 "Anterior" = "Trước";
@@ -251,6 +254,7 @@
 "Auto-skip credit outros" = "Tự động bỏ qua phần danh đề cuối phim";
 "Auto-skip intros" = "Tự động bỏ qua phần mở đầu";
 "Auto-skip recaps" = "Tự động bỏ qua phần tóm tắt";
+"Auto-skip stalled streams" = "Tự động bỏ qua luồng bị treo";
 "Auto-sync" = "Auto-sync";
 "Automatic" = "Tự động";
 "Automatic synchronization" = "Automatic synchronization";
@@ -269,6 +273,7 @@
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "Nhắc tập tiếp theo";
 "Award Winning Anime" = "Anime đoạt giải";
+"Awards & Recognition" = "Giải thưởng & Vinh danh";
 "Ayuda e información" = "Trợ giúp và giới thiệu";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "Thêm nguồn";
@@ -276,6 +281,8 @@
 "Añadir marcador" = "Add bookmark";
 "Añadir {language}" = "Thêm {language}";
 "Aún no hay catálogos" = "Chưa có danh mục";
+"BAFTA Awards" = "Giải BAFTA";
+"BAFTA Television Awards" = "Giải Truyền hình BAFTA";
 "Back" = "Quay lại";
 "Back to lists" = "Quay lại danh sách";
 "Back to top" = "Về đầu trang";
@@ -283,6 +290,7 @@
 "Background" = "Nền";
 "Background image" = "Ảnh nền";
 "Background opacity" = "Độ mờ nền";
+"Baeksang Arts Awards" = "Giải Nghệ thuật Baeksang";
 "Bajar {name}" = "Chuyển {name} xuống";
 "Balanced" = "Cân bằng";
 "Bar color" = "Màu thanh";
@@ -292,6 +300,7 @@
 "Base de la página." = "Nền trang.";
 "Bass boost" = "Tăng âm trầm";
 "Beloved by readers and critics" = "Được độc giả và giới phê bình yêu thích";
+"Berlin Film Festival" = "Liên hoan phim Berlin";
 "Best Action" = "Hành động xuất sắc nhất";
 "Best Adventure" = "Phiêu lưu xuất sắc nhất";
 "Best Animation" = "Hoạt hình xuất sắc nhất";
@@ -323,6 +332,7 @@
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "Nền đen";
 "Bloques resaltados." = "Các khối được tô sáng.";
+"Blue Dragon Film Awards" = "Giải Điện ảnh Rồng Xanh";
 "Blur comments and reviews by default" = "Mặc định làm mờ bình luận và bài đánh giá";
 "Blur descriptions" = "Làm mờ mô tả";
 "Blur spoilers" = "Làm mờ nội dung tiết lộ";
@@ -360,6 +370,7 @@
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Đưa danh sách anime vào Harbor và cập nhật số tập khi xem. Tiến độ hiện có được giữ nguyên.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Hiển thị lại các mẹo nhỏ trong ứng dụng mà bạn đã ẩn mà không cần thực hiện lại quy trình chào mừng.";
 "BritBox" = "BritBox";
+"British Independent Film Awards" = "Giải Điện ảnh Độc lập Anh";
 "Browse" = "Duyệt";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "Duyệt tiện ích bổ sung";
@@ -412,6 +423,7 @@
 "Cancelar siguiente episodio" = "Cancel next episode";
 "Canciones" = "Songs";
 "Canción anterior" = "Previous song";
+"Cannes Film Festival" = "Liên hoan phim Cannes";
 "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on." = "Caps how many score chips a poster shows. Extras drop off the end of the chip. You have {n} turned on.";
 "Captions in your language" = "Phụ đề bằng ngôn ngữ của bạn";
 "Captions, eyebrows." = "Chú thích, tiêu đề phụ.";
@@ -620,6 +632,7 @@
 "Crime Series" = "Phim bộ tội phạm";
 "Crisp (anime & cartoons)" = "Sắc nét (anime & hoạt hình)";
 "Critically Acclaimed" = "Được giới phê bình đánh giá cao";
+"Critics' Choice Awards" = "Giải Critics' Choice";
 "Critics' Picks" = "Lựa chọn của giới phê bình";
 "Crunchy" = "Giòn";
 "Crunchyroll" = "Crunchyroll";
@@ -641,6 +654,7 @@
 "Customize home" = "Tùy chỉnh trang chủ";
 "Customize page" = "Tùy chỉnh trang";
 "Czech" = "Tiếng Séc";
+"César Awards" = "Giải César";
 "Cómo leer tus libros" = "Reading help";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Tô màu tên, con trỏ trong Xem cùng nhau và vòng quanh ảnh đại diện của bạn.";
@@ -648,6 +662,7 @@
 "Danish" = "Tiếng Đan Mạch";
 "Dark" = "Tối";
 "Date" = "Ngày";
+"Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "Nguồn video";
 "Debrid services" = "Dịch vụ debrid";
 "Debrid-Link API key" = "Khóa API Debrid-Link";
@@ -886,6 +901,7 @@
 "Fondo" = "Nền";
 "Font" = "Phông chữ";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For series and anime, keep playing the rest of the season from the release you first picked. Applies whether Play is instant or manual." = "Với phim bộ và anime, tiếp tục phát các tập còn lại của mùa từ bản phát hành bạn chọn đầu tiên. Áp dụng dù phát ngay hay chọn thủ công.";
 "For you" = "Dành cho bạn";
 "Forced" = "Bắt buộc";
 "Forest" = "Rừng xanh";
@@ -928,7 +944,9 @@
 "Get a key at" = "Lấy khóa tại";
 "Get an API key" = "Lấy khóa API";
 "Get yours at" = "Lấy token của bạn tại";
+"Golden Globes" = "Giải Quả Cầu Vàng";
 "Golf" = "Golf";
+"Goya Awards" = "Giải Goya";
 "Grand Prize" = "Giải thưởng lớn";
 "Gray" = "Gray";
 "Green" = "Xanh lá";
@@ -1035,6 +1053,7 @@
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How long Harbor waits for each addon to return results." = "Thời gian Harbor chờ từng tiện ích trả kết quả.";
 "How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
+"How long to wait first" = "Thời gian chờ ban đầu";
 "How many episodes auto-play back to back before Harbor pauses to ask." = "How many episodes auto-play back to back before Harbor pauses to ask.";
 "How many films?" = "Bao nhiêu phim?";
 "Hoy" = "Hôm nay";
@@ -1049,6 +1068,7 @@
 "Idiomas de audio" = "Ngôn ngữ âm thanh";
 "Idiomas de subtítulos" = "Ngôn ngữ phụ đề";
 "Idiomas y subtítulos" = "Ngôn ngữ & phụ đề";
+"If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "Nếu luồng phát không bắt đầu kịp thời (nguồn không hoạt động hoặc tiện ích bổ sung gặp sự cố), tự động thử luồng phát khả dụng tiếp theo. Mặc định tắt.";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "Ngôn ngữ hình ảnh";
 "Imagen" = "Hình ảnh";
@@ -1080,6 +1100,7 @@
 "In Theaters Now" = "Đang chiếu tại rạp";
 "In Watchlist" = "Trong danh sách xem";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"Independent Spirit Awards" = "Giải Tinh thần Độc lập";
 "India" = "Ấn Độ";
 "Indonesian" = "Tiếng Indonesia";
 "Información" = "Thông tin";
@@ -1470,6 +1491,7 @@
 "Nothing to show yet." = "Nothing to show yet.";
 "Nothing watched yet" = "Chưa xem nội dung nào";
 "Nothing yet" = "Chưa có gì";
+"Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on." = "Notifications are blocked for Harbor. Enable them in your system settings, then turn this back on.";
 "Notify me" = "Notify me";
 "Now" = "Bây giờ";
 "Now Playing" = "Đang phát";
@@ -1546,6 +1568,7 @@
 "Original language" = "Ngôn ngữ gốc";
 "Oscuro" = "Tối";
 "Other" = "Khác";
+"Other Awards" = "Other Awards";
 "Outline" = "Viền chữ";
 "Outline color" = "Màu viền chữ";
 "Outline thickness" = "Độ dày đường viền";
@@ -1675,6 +1698,7 @@
 "Primary copy." = "Bản chính.";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "Trước tiên, hãy chọn một rãnh phụ đề.";
+"Primetime Emmys" = "Giải Primetime Emmy";
 "Priority applies once you have two or more stream addons." = "Tính năng ưu tiên áp dụng khi có ít nhất hai tiện ích bổ sung cung cấp luồng phát.";
 "Priorizar {language}" = "Tăng ưu tiên cho {language}";
 "Producer" = "Nhà sản xuất";
@@ -1749,6 +1773,7 @@
 "Recent searches" = "Tìm kiếm gần đây";
 "Recently played" = "Chơi gần đây";
 "Recién agregado" = "Mới thêm";
+"Recognized at the {award}." = "Được vinh danh tại {award}.";
 "Recomendado" = "Đề xuất";
 "Recommended" = "Đề xuất";
 "Recommended for you" = "Đề xuất cho bạn";
@@ -1771,6 +1796,7 @@
 "Reintentar lectura del progreso" = "Retry reading progress";
 "Reintentar preferencias" = "Retry preferences";
 "Relación de aspecto" = "Tỷ lệ khung hình";
+"Release notifications" = "Release notifications";
 "Rellenar" = "Lấp đầy";
 "Remember last stream" = "Ghi nhớ luồng gần nhất";
 "Reminder" = "Reminder";
@@ -1898,6 +1924,7 @@
 "Same read-only usage as Real-Debrid. Also lets you queue uncached sources from the play picker." = "Quyền sử dụng chỉ đọc giống Real-Debrid. Đồng thời cho phép bạn đưa nguồn chưa được lưu vào bộ nhớ đệm vào hàng đợi từ trình chọn phát.";
 "Saturación" = "Độ bão hòa";
 "Saturation" = "Độ bão hòa";
+"Saturn Awards" = "Các giải Saturn";
 "Save" = "Lưu";
 "Save a track and it will appear here." = "Lưu một bài hát từ Khám phá và bài hát sẽ xuất hiện tại đây.";
 "Save and share pages" = "Save and share pages";
@@ -1915,6 +1942,7 @@
 "Sci-Fi" = "Khoa học viễn tưởng";
 "Sci-Fi & Fantasy" = "Khoa học viễn tưởng & kỳ ảo";
 "Scores" = "Điểm số";
+"Screen Actors Guild Awards" = "Giải của Nghiệp đoàn Diễn viên Màn ảnh";
 "Screener" = "Screener";
 "Scrobble to SIMKL" = "Gửi lịch sử xem đến SIMKL";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
@@ -2080,6 +2108,7 @@
 "Sleep timer" = "Hẹn giờ ngủ";
 "Slice of Life" = "Đời thường";
 "Slightly lighter than background." = "Sáng hơn nền một chút.";
+"Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Các tiện ích bổ sung chậm và nguồn P2P thường cần hơn 10 giây để bắt đầu. Hãy tăng thời gian này nếu luồng phát bị bỏ qua trước khi có đủ thời gian kết nối.";
 "Smaller" = "Nhỏ hơn";
 "Sobre la línea principal" = "Phía trên dòng chính";
 "Soft halo around the text. Cleanest on most content." = "Quầng sáng nhẹ quanh chữ. Rõ nét nhất với hầu hết nội dung.";
@@ -2129,6 +2158,7 @@
 "Startup & default" = "Khởi động và mặc định";
 "Stats" = "Thống kê";
 "Status" = "Trạng thái";
+"Stay on one source for a season" = "Dùng một nguồn xuyên suốt mùa";
 "Step 1 · Metadata" = "Bước 1 · Siêu dữ liệu";
 "Step 1 · Open Simkl" = "Bước 1 · Mở Simkl";
 "Step 1 · Open Trakt" = "Bước 1 · Mở Trakt";
@@ -2477,6 +2507,7 @@
 "Using AIOStreams or another aggregator addon? Its own sorting and filtering happen inside the addon before Harbor ever sees the results, then Harbor applies the stream filter and result order above on top. If results look thinner than expected, keep one side permissive: either relax the addon's internal filters or set Harbor's stream filter to Balanced or Off." = "Bạn đang dùng AIOStreams hoặc tiện ích bổ sung tổng hợp khác? Việc sắp xếp và lọc riêng sẽ diễn ra trong tiện ích bổ sung trước khi Harbor nhận kết quả, sau đó Harbor tiếp tục áp dụng bộ lọc luồng phát và thứ tự kết quả ở trên. Nếu kết quả ít hơn dự kiến, hãy để một bên thoáng hơn: nới lỏng bộ lọc nội bộ của tiện ích bổ sung hoặc đặt bộ lọc luồng phát của Harbor thành Cân bằng hoặc Tắt.";
 "VOD sources" = "VOD sources";
 "Velocidad" = "Tốc độ";
+"Venice Film Festival" = "Liên hoan phim Venice";
 "Ver más" = "Xem thêm";
 "Ver todo" = "Xem tất cả";
 "Verify & connect" = "Xác minh và kết nối";
@@ -3788,6 +3819,7 @@
 "{n} month ago" = "{n} tháng trước";
 "{n} months ago" = "{n} tháng trước";
 "{n} not matched" = "{n} mục chưa khớp";
+"{n} sec" = "{n} giây";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} nguồn · 0 nguồn vượt qua";
