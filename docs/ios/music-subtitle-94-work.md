@@ -1581,3 +1581,12 @@ is a timing sensitivity in the test host that the later builds tipped over, but 
 excluded: the failing condition (no cue text between 21 and 23 seconds after a seek made while playing) resembles the
 owner's physical report. The hunt stopped here. To continue: run the three cases alone five times on one commit before and
 one after, and read the `owned-seek-failure-timeline` attachment in `FocusedTests.xcresult` for the first failing case.
+
+### Seek test resolution
+
+The failure recorded by `owned-seek-failure-timeline` showed the subtitles correct at every sample (cue 6 visible from 24.2 s,
+gone before 28 s) and a 2.8 second gap in the test loop right after its first snapshot: the loop took up to three
+`surface.snapshot` pictures while it waited, and a slow snapshot made it miss the 2 second window it was checking. The test
+now takes one picture after the condition holds. Two runs on separate branches passed 3 of 3 (runs 42383715808 and
+42383717910), so the earlier failures were the test's own timing, not a subtitle defect. Why snapshots became slower from the
+third Haiku round on stays unknown and is not needed for the fix.
