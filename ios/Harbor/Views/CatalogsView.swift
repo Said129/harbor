@@ -43,10 +43,12 @@ struct CatalogsView: View {
             }
         }
     }
+    /// Desktop's `hiddenCount` (`catalogs.tsx`): counted over every catalog, so a search with no matches can still show the hidden notice.
+    private var hiddenTotal: Int { HomeCatalogFilter.hiddenCount(app.rows, hidden: InterfacePreferences.shared.catalogsHidden) }
     @ViewBuilder private var emptyContent: some View {
         if app.rows.isEmpty { HarborCatalogEmptyView(app: app).padding(.horizontal) }
-        else if rows.isEmpty { HarborNoMatchesView().padding(.horizontal) }
-        else { CatalogAllHiddenView(count: rows.count) { managing = true }.padding(.horizontal) }
+        else if hiddenTotal > 0 { CatalogAllHiddenView(count: hiddenTotal) { managing = true }.padding(.horizontal) }
+        else { HarborNoMatchesView().padding(.horizontal) }
     }
     private var providers: [Addon] {
         var seen = Set<String>()
@@ -69,10 +71,10 @@ struct CatalogsView: View {
                         } label: { Label(providers.first { $0.id == addon }?.name ?? "Todos los addons", image: "nav-addons").font(.caption).padding(.horizontal, 14).frame(height: 38).background(HarborTheme.surface, in: .capsule) }
                     }.padding(.horizontal)
                 }.scrollIndicators(.hidden)
-                customizeBar
+                if !app.rows.isEmpty { customizeBar }
                 PageCustomizeButton(rails: app.rows.map(PageRail.catalog), customization: customization)
-                if managing {
-                    CatalogManageList(rows: rows)
+                if managing && !app.rows.isEmpty {
+                    if rows.isEmpty { HarborNoMatchesView().padding(.horizontal) } else { CatalogManageList(rows: rows) }
                 } else {
                     pinnedSection
                     ForEach(providers.filter { provider in sections.rest.contains { $0.plan.addon.id == provider.id } }) { provider in
