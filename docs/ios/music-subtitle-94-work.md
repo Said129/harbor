@@ -1536,3 +1536,10 @@ cases exercises the new subtitle provider hook, which only appends candidates af
 
 SIMKL poster chips now share one request across cards (`SimklCommunityRatings.coalescedRating`, 60 ms window, batches of
 120), as Desktop's card lookups do; three tests passed in run 27.
+
+## animeOnlyInAnimeRoom decision
+
+The owner delegated the default of `animeOnlyInAnimeRoom` to the assistant. It stays ON, as on Desktop: Home's
+Continue Watching leaves anime out, the Anime tab keeps its own Continue Watching row, and Settings, Interface has a
+"Keep anime in the Anime room only" switch to show anime on Home as well. Reason: the target is a 1:1 port of Desktop
+0.9.132, whose default is on, and nothing is lost because the anime row is one tab away.
