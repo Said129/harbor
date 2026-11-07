@@ -203,6 +203,7 @@ targets:
       - path: HarborTests/TMDBPeopleTests.swift
       - path: HarborTests/AISearchTests.swift
       - path: HarborTests/SubtitleProvidersTests.swift
+      - path: HarborTests/SimklBatchingTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift

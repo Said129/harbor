@@ -189,7 +189,7 @@ actor CardRatings {
             }
         }
         if missing.contains(.simkl) {
-            let value = await SimklCommunityRatings.shared.rating("imdb:" + imdbID)
+            let value = await SimklCommunityRatings.shared.coalescedRating("imdb:" + imdbID)
             if let value {
                 update(imdbID) { entry in
                     entry.scores.simkl = value

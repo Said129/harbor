@@ -50,4 +50,35 @@ actor SimklCommunityRatings {
     }
 
     func rating(_ spec: String) async -> Double? { await ratings([spec])[spec.lowercased()] }
+
+    /// Desktop's card lookups share one request (`ratings.ts` `scheduleFlush`, 60 ms): specs asked for within the delay
+    /// go out together, in batches of at most `maxBatch`. A cached score answers at once.
+    static let flushDelay: Duration = .milliseconds(60)
+    private var waiting: [String: [CheckedContinuation<Double?, Never>]] = [:]
+    private var flushScheduled = false
+
+    func coalescedRating(_ spec: String) async -> Double? {
+        let key = spec.lowercased()
+        if let known = cache[key] { return known.value }
+        return await withCheckedContinuation { (continuation: CheckedContinuation<Double?, Never>) in
+            waiting[key, default: []].append(continuation)
+            if !flushScheduled {
+                flushScheduled = true
+                Task { await self.flushWaiting() }
+            }
+        }
+    }
+
+    private func flushWaiting() async {
+        try? await Task.sleep(for: Self.flushDelay)
+        flushScheduled = false
+        let batch = waiting
+        waiting = [:]
+        guard !batch.isEmpty else { return }
+        let found = await ratings(Array(batch.keys))
+        for (key, continuations) in batch {
+            let value = found[key]
+            for continuation in continuations { continuation.resume(returning: value) }
+        }
+    }
 }
