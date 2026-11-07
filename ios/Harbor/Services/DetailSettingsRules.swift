@@ -1,7 +1,7 @@
 import Foundation
 
-/// Pure rules for the detail-page settings ported from Desktop 0.9.132
-/// (`preferCustomMetaAddon` in `lib/meta-resource.ts`, `resumeDetailScroll` in `views/detail.tsx`).
+/// Pure rules for the detail-page settings ported from Desktop 0.9.132 (`preferCustomMetaAddon` in `lib/meta-resource.ts`).
+/// `resumeDetailScroll` is not ported: the navigation stack keeps a detail page's scroll position by itself.
 enum DetailSettingsRules {
     /// Desktop's `isCinemeta` matches any id that contains "cinemeta".
     static func isCinemeta(_ addonID: String?) -> Bool {
@@ -27,27 +27,4 @@ enum DetailSettingsRules {
         return order.map({ plans[$0] })
     }
 
-    /// The sections of a detail page the scroll memory can return to, in page order.
-    /// `DetailView` marks these views with the same ids.
-    static let detailScrollSections = ["detail-hero", "detail-overview", "detail-metadata"]
-
-    /// The section to scroll back to, or nil when the setting is off or the saved section is unknown.
-    static func restoredDetailSection(saved: String?, enabled: Bool) -> String? {
-        guard enabled, let saved = saved, detailScrollSections.contains(saved) else { return nil }
-        return saved
-    }
-}
-
-/// The last visible section of each title, kept for the session like Desktop's scroll memory.
-@MainActor
-enum DetailScrollMemory {
-    private static var sections: [String: String] = [:]
-
-    static func section(for identity: String) -> String? {
-        sections[identity]
-    }
-
-    static func remember(_ section: String, for identity: String) {
-        sections[identity] = section
-    }
 }

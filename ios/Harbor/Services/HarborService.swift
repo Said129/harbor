@@ -116,7 +116,8 @@ struct HarborService: Sendable {
             !attempted.contains(AddonOriginPolicy.resourceURL($0.addon.transportUrl, resource: "meta", kind: media.type, id: media.id) ?? $0.url)
         }
         let result = try await fetch(plans)
-        for plan in plans {
+        // Desktop's `preferCustomMetaAddon`: with it on, an installed meta addon is read before Cinemeta.
+        for plan in DetailSettingsRules.preferringCustomMeta(plans) {
             if let value = result.values.first(where: { $0.0.key == plan.key })?.1,
                var meta = Media.parse(value["meta"], kind: media.type) {
                 meta.addonOrigin = meta.addonOrigin ?? media.addonOrigin ?? MediaAddonOrigin.from(plan.addon)

@@ -59,8 +59,6 @@ struct InterfaceSettingsView: View {
                 ContinueSourceControls()
                 HarborSettingsSection(DesktopInterfaceText.value("Show pages")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Mark watched button"), isOn: $preferences.showWatchedButton)
-                    HarborSettingsToggle(DesktopInterfaceText.value("Remember your place on show pages"), note: DesktopInterfaceText.value("Reopen a show at the position where you left it, including its episode list."), isOn: $preferences.resumeDetailScroll)
-                        .accessibilityIdentifier("settings-resume-detail-scroll")
                 }
                 HarborSettingsSection(DesktopInterfaceText.value("Episode ordering")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Rich season and order panel"), isOn: $richEpisodeOrderPanel)

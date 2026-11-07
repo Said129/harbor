@@ -33,25 +33,4 @@ final class DetailSettingsRulesTests: XCTestCase {
         XCTAssertEqual(DetailSettingsRules.metaPlanOrder(addonIDs: [], preferCustom: true), [])
     }
 
-    func testRestoreReturnsKnownSectionWhenEnabled() {
-        XCTAssertEqual(DetailSettingsRules.restoredDetailSection(saved: "detail-overview", enabled: true), "detail-overview")
-    }
-
-    func testRestoreIsNilWhenDisabled() {
-        XCTAssertNil(DetailSettingsRules.restoredDetailSection(saved: "detail-overview", enabled: false))
-    }
-
-    func testRestoreIsNilForUnknownOrMissingSection() {
-        XCTAssertNil(DetailSettingsRules.restoredDetailSection(saved: "detail-episodes-old", enabled: true))
-        XCTAssertNil(DetailSettingsRules.restoredDetailSection(saved: nil, enabled: true))
-    }
-
-    @MainActor
-    func testScrollMemoryRemembersPerTitle() {
-        DetailScrollMemory.remember("detail-metadata", for: "tt-test-memory-a")
-        DetailScrollMemory.remember("detail-hero", for: "tt-test-memory-b")
-        XCTAssertEqual(DetailScrollMemory.section(for: "tt-test-memory-a"), "detail-metadata")
-        XCTAssertEqual(DetailScrollMemory.section(for: "tt-test-memory-b"), "detail-hero")
-        XCTAssertNil(DetailScrollMemory.section(for: "tt-test-memory-missing"))
-    }
 }
