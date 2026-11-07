@@ -49,7 +49,7 @@ struct ContinueWatchingPreferences: Sendable {
 @MainActor @Observable final class ProfileSettingsStore {
     static let shared = ProfileSettingsStore()
     nonisolated static let keys: Set<String> = [
-        "uiLanguage", "navIconAnimations", "interface.autoRotateBanners", "homeMode", "showImdbBadge", "showTmdbBadge",
+        "uiLanguage", "navIconAnimations", "interface.autoRotateBanners", "homeMode", "showImdbBadge", "showTmdbBadge", "showRtBadge", "showMalBadge", "showSimklBadge", "showPopcornBadge", "showMetacriticBadge", "showLetterboxdBadge", "showMdblistBadge", "showTraktBadge", "cardBadgeLimit", "badgePlacement",
         "rowCardStyle", "tvCardLogoPos", "posterScale", "posterRadius", "posterEffect", "posterQuality",
         "posterFocusedCard", "posterBackdropExpansion", "posterDockMagnification", "posterDockTransitionMs", "hidePosterTitles",
         "simklEnableUserRatings", "simklScrobbleEnabled", "cwSources",
