@@ -33,11 +33,12 @@ import Observation
             guard current == generation else { return }
             var found: [AISearchResult] = []
             if !suggestions.isEmpty {
+                let providers = try await service.catalogProviders(addons)
                 found = await AISearchResolver.resolve(suggestions) { title in
-                    let providers = try await service.catalogProviders(addons)
                     let (rows, _) = try await service.catalogs(providers, search: title)
                     return rows.filter { $0.plan.kind != "addon_catalog" }.flatMap(\.metas)
                 }
+                found = await Self.withEpisodeTitles(found, service: service, addons: addons)
             }
             guard current == generation else { return }
             results = found
@@ -49,5 +50,18 @@ import Observation
             guard current == generation else { return }
             status = .failed(AISearchError(failure: .unknown, detail: AISearchError.clippedDetail(error.localizedDescription)))
         }
+    }
+
+    /// Desktop replaces the model's episode title with the series' own episode name when the metadata has one.
+    private static func withEpisodeTitles(_ results: [AISearchResult], service: HarborService, addons: [Addon]) async -> [AISearchResult] {
+        var out = results
+        for index in out.indices {
+            guard let season = out[index].season, let episode = out[index].episode else { continue }
+            guard let full = try? await service.metadata(out[index].media, addons: addons) else { continue }
+            guard let video = full.videos?.first(where: { $0.season == season && $0.episode == episode }) else { continue }
+            let real = (video.name ?? video.title ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+            if !real.isEmpty { out[index].episodeTitle = real }
+        }
+        return out
     }
 }

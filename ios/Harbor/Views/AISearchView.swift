@@ -31,7 +31,7 @@ struct AISearchView: View {
             }
             .padding()
         }
-        .onSubmit(of: .search) { startSearch() }
+        .onSubmit { startSearch() }
         .background(HarborTheme.background)
         .navigationTitle(DesktopInterfaceText.value("AI search"))
         .task { try? keys.load() }

@@ -67,6 +67,13 @@ protocol AISearchTransport: Sendable {
     func send(_ request: URLRequest) async throws -> AISearchReply
 }
 
+/// Keyed requests must not follow redirects, so the Bearer key never goes to another host.
+private final class AISearchRedirectPolicy: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
+    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
+        completionHandler(nil)
+    }
+}
+
 /// Only the three hosts this feature talks to: the two chat services and Jina Reader.
 struct AISearchHTTPTransport: AISearchTransport {
     private static let allowedHosts: Set<String> = ["openrouter.ai", "api.groq.com", "r.jina.ai"]
@@ -75,7 +82,7 @@ struct AISearchHTTPTransport: AISearchTransport {
         configuration.httpShouldSetCookies = false
         configuration.httpCookieStorage = nil
         configuration.urlCache = nil
-        return URLSession(configuration: configuration)
+        return URLSession(configuration: configuration, delegate: AISearchRedirectPolicy(), delegateQueue: nil)
     }()
 
     func send(_ request: URLRequest) async throws -> AISearchReply {
@@ -124,11 +131,11 @@ enum AISearchRequest {
         let required: [JSONValue] = ["title", "year", "type", "season", "episode", "episodeTitle"].map { JSONValue.string($0) }
         let properties: [String: JSONValue] = [
             "title": .object(["type": .string("string")]),
-            "year": .object(["type": nullable("number")]),
-            "type": .object(["type": nullable("string"), "enum": .array([.string("movie"), .string("series"), .null])]),
-            "season": .object(["type": nullable("number")]),
-            "episode": .object(["type": nullable("number")]),
-            "episodeTitle": .object(["type": nullable("string")]),
+            "year": .object(["type": AISearchRequest.nullable("number")]),
+            "type": .object(["type": AISearchRequest.nullable("string"), "enum": .array([.string("movie"), .string("series"), .null])]),
+            "season": .object(["type": AISearchRequest.nullable("number")]),
+            "episode": .object(["type": AISearchRequest.nullable("number")]),
+            "episodeTitle": .object(["type": AISearchRequest.nullable("string")]),
         ]
         return .object([
             "type": .string("object"),
@@ -416,8 +423,9 @@ struct AISearchWeb: Sendable {
         return sites.contains { lowered.contains($0) } ? 1 : 0
     }
 
+    /// Desktop's `encodeURIComponent`: ASCII letters and digits, and `-_.!~*'()`, stay as they are.
     static func encodeComponent(_ text: String) -> String {
-        let allowed = CharacterSet(charactersIn: "-_.!~*'()").union(.alphanumerics)
+        let allowed = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.!~*'()")
         return text.addingPercentEncoding(withAllowedCharacters: allowed) ?? text
     }
 
