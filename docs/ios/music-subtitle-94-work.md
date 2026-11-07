@@ -1585,8 +1585,11 @@ one after, and read the `owned-seek-failure-timeline` attachment in `FocusedTest
 ### Seek test resolution
 
 The failure recorded by `owned-seek-failure-timeline` showed the subtitles correct at every sample (cue 6 visible from 24.2 s,
-gone before 28 s) and a 2.8 second gap in the test loop right after its first snapshot: the loop took up to three
-`surface.snapshot` pictures while it waited, and a slow snapshot made it miss the 2 second window it was checking. The test
-now takes one picture after the condition holds. Two runs on separate branches passed 3 of 3 (runs 42383715808 and
-42383717910), so the earlier failures were the test's own timing, not a subtitle defect. Why snapshots became slower from the
-third Haiku round on stays unknown and is not needed for the fix.
+gone before 28 s) and a gap of about 2.5 to 2.8 seconds in the test loop right after the seek: the loop was held up while
+mpv seeked over HTTP, so the picture passed the 2 second window (21 to 23 s) the test was checking before the loop looked
+again. Taking the snapshots after the condition instead of while waiting was not enough: a full run (537 cases, 44
+classes) still failed that one step with the same gap and no snapshots in the loop. The step now judges the first sample it
+gets after the seek (`cueFits`: the cue on screen must be the one that belongs to the picture's position, with a frame of
+lag allowed near a cue edge) instead of insisting on the window. The full run then passed 537 of 537 (run 42389022861).
+Open question: what holds the main thread for 2.5 seconds during an HTTP-range seek on the simulator (software GL). It is
+probably the simulator, but a hitch on a real device is not excluded and has not been measured.
