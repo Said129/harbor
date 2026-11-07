@@ -25,6 +25,7 @@ struct InterfaceSettingsView: View {
                     }.buttonStyle(.plain).accessibilityIdentifier("settings-navigation")
                     HarborSettingsToggle(DesktopInterfaceText.value("Hide watched titles in catalogs"), note: DesktopInterfaceText.value("Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched."), isOn: $preferences.hideWatchedInCatalogs).accessibilityIdentifier("settings-hide-watched")
                     HarborSettingsToggle(DesktopInterfaceText.value("Hide unreleased titles"), note: DesktopInterfaceText.value("Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now."), isOn: $preferences.hideUnreleased).accessibilityIdentifier("settings-hide-unreleased")
+                    HarborSettingsToggle(DesktopInterfaceText.value("Advance Continue Watching to the next episode"), note: DesktopInterfaceText.value("When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left."), isOn: $preferences.cwAdvanceNext).accessibilityIdentifier("settings-cw-advance-next")
                 }
                 HarborSettingsSection(DesktopInterfaceText.value("Poster cards")) {
                     Text(DesktopInterfaceText.value("Scores")).font(HarborTheme.font(14, weight: .semibold))
