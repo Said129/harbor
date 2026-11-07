@@ -717,6 +717,8 @@ SETTINGS = expand("""
 415 X remember the detail page scroll: the navigation stack already keeps it on iOS
 361 X SIMKL card setting: Desktop shows an owner-only card in its profile sidebar and iOS has no profile cards
 240 D subtitles can be hidden in the Picture in Picture window while they stay on inline (7 Nov, written by Haiku, uncompiled)
+175 D auto-skip stalled streams: an automatically started source that has not begun playing by the end of the wait is set aside and the next candidate opens after the player closes (7 Nov, policy green; the player and DetailModel hooks are uncompiled)
+176 D wait before skipping a stalled stream: read by the stall driver (7 Nov, uncompiled)
 167 X PiP behavior Resize or Detached: Resize shrinks Harbor's own window, which an iOS app cannot do, and Detached is what Picture in Picture already is
 271 X on-disk badge on cards: iOS local records are not linked to catalog ids, so no card can tell a title is on disk
 273 X local playback mode: iOS has no choice between a local copy and a stream by catalog id

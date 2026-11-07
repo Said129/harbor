@@ -341,6 +341,8 @@ struct DetailView: View {
     }
     private func playerDismissed() {
         showConnecting = false
+        // A source that stalled on its first load was set aside; its replacement opens now that the player has released its surface.
+        if model.continueAfterStall() { showConnecting = true; return }
         if let extra = pendingExtra {
             let owner = pendingEpisodeOwner
             pendingExtra = nil; pendingEpisodeOwner = nil

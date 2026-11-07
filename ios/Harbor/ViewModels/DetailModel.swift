@@ -414,18 +414,71 @@ final class DetailModel {
               let top = candidate else { return }
         self.autoplay = nil
         let start = autoplay.start, wanted = autoplay.wanted
+        stallContext = StallContext(start: start, wanted: wanted, tried: [top.id])
+        stallNext = nil
+        autoOfferID = top.id
         autoTask = Task { [weak self] in
             var tried: Set<Int> = [top.id]
             await start(top)
-            // Desktop's attempt chain (`use-auto-fire.ts`): a source that could not be opened is set aside and the
-            // next candidate tried, so one dead link does not leave the person in the picker.
-            while let self, !Task.isCancelled, self.playback == nil, self.error != nil, tried.count < Self.autoAttemptLimit, wanted() {
-                guard let next = StreamPreferences.shared.preferred(self.automaticOffers.filter { !tried.contains($0.id) }) else { break }
-                tried.insert(next.id)
-                self.error = nil
-                await start(next)
-            }
+            await self?.continueChain(tried: &tried, start: start, wanted: wanted)
         }
+    }
+    /// Desktop's attempt chain (`use-auto-fire.ts`): a source that could not be opened is set aside and the
+    /// next candidate tried, so one dead link does not leave the person in the picker.
+    private func continueChain(tried: inout Set<Int>, start: @MainActor (StreamOffer) async -> Void, wanted: @MainActor () -> Bool) async {
+        while !Task.isCancelled, playback == nil, error != nil, tried.count < Self.autoAttemptLimit, wanted() {
+            guard let next = StreamPreferences.shared.preferred(automaticOffers.filter { !tried.contains($0.id) }) else { break }
+            tried.insert(next.id)
+            autoOfferID = next.id
+            stallContext?.tried = tried
+            error = nil
+            await start(next)
+        }
+    }
+
+    // MARK: Stall switching (Desktop's "Auto-skip stalled streams")
+
+    /// What a stalled automatic source needs to hand over to the next candidate.
+    private struct StallContext {
+        let start: @MainActor (StreamOffer) async -> Void
+        let wanted: @MainActor () -> Bool
+        var tried: Set<Int>
+    }
+    private var stallContext: StallContext?
+    private var stallNext: StreamOffer?
+    /// The offer the automatic start opened last. Only that source is watched for a stall.
+    private var autoOfferID: Int?
+
+    private func stallHandle(for offer: StreamOffer) -> StreamStallHandle? {
+        guard autoOfferID == offer.id, let context = stallContext else { return nil }
+        let id = offer.id
+        return StreamStallHandle(attempts: context.tried.count) { [weak self] in self?.switchAfterStall(from: id) }
+    }
+
+    /// An automatic source has not begun playing within the wait: set it aside and open the next candidate once the player
+    /// has closed (`continueAfterStall`). With nothing left to try, the player stays open.
+    func switchAfterStall(from id: Int) {
+        guard playback != nil, autoOfferID == id, var context = stallContext, context.wanted() else { return }
+        context.tried.insert(id)
+        guard context.tried.count < StreamStallPolicy.maximumAttempts,
+              let next = StreamStallPolicy.nextCandidate(automaticOffers, tried: context.tried) else { return }
+        context.tried.insert(next.id)
+        stallContext = context
+        stallNext = next
+        autoOfferID = next.id
+        playback = nil
+    }
+
+    /// Called when the player has closed. True when the replacement of a stalled source is being opened.
+    func continueAfterStall() -> Bool {
+        guard let next = stallNext, let context = stallContext else { return false }
+        stallNext = nil
+        autoTask = Task { [weak self] in
+            var tried = context.tried
+            await context.start(next)
+            await self?.continueChain(tried: &tried, start: context.start, wanted: context.wanted)
+        }
+        return true
     }
     /// Desktop's season source lock: the release picked first for this season (or the whole anime) leads the automatic start.
     private func seasonLockedOffer(owner: String) -> StreamOffer? {
@@ -457,6 +510,7 @@ final class DetailModel {
         offerIDs = [:]; nextOfferID = 0
         answeredRequests = 0; totalRequests = 0; receivedStreams = 0; rejectedReasons = []
         self.autoplay = autoplay; autoTask = nil
+        stallContext = nil; stallNext = nil; autoOfferID = nil
         streamAddons = addons
         warnings = []
         filteredSources = false
@@ -590,6 +644,7 @@ final class DetailModel {
             playback?.personalOwner = personalOwner
             playback?.progressStores = progressStores
             playback?.subtitleRequest = SubtitleRequest(media: selected, videoID: episode?.id ?? selected.behaviorHints?.defaultVideoId ?? selected.id, season: episode?.season, episode: episode?.episode, addons: streamAddons, stream: offer.raw)
+            playback?.stall = stallHandle(for: offer)
         }
         catch is CancellationError { return }
         catch { if request == streamRequest, resolution == resolutionRequest, contextRevision() == context { self.error = safeMessage(error) } }

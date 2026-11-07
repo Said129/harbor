@@ -16,24 +16,24 @@
     },
     "settings": {
       "total": 511,
-      "ported": 215,
-      "partial": 49,
+      "ported": 217,
+      "partial": 47,
       "missing": 24,
       "excluded": 223,
       "counted": 288,
-      "weighted_percent": 83.2,
-      "ported_only_percent": 74.7,
+      "weighted_percent": 83.5,
+      "ported_only_percent": 75.3,
       "ported_or_partial_percent": 91.7
     },
     "all": {
       "total": 949,
-      "ported": 367,
-      "partial": 278,
+      "ported": 369,
+      "partial": 276,
       "missing": 29,
       "excluded": 275,
       "counted": 674,
-      "weighted_percent": 75.1,
-      "ported_only_percent": 54.5,
+      "weighted_percent": 75.2,
+      "ported_only_percent": 54.7,
       "ported_or_partial_percent": 95.7
     }
   },
@@ -4519,15 +4519,15 @@
       "index": 175,
       "id": "autoNextStreamOnStall",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "auto-skip stalled streams: setting and decision policy exist; the player does not feed them yet (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "verdict": "D",
+      "note": "auto-skip stalled streams: an automatically started source that has not begun playing by the end of the wait is set aside and the next candidate opens after the player closes (7 Nov, policy green; the player and DetailModel hooks are uncompiled)"
     },
     {
       "index": 176,
       "id": "autoNextStreamOnStallSec",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "wait before skipping a stalled stream: stored with the policy (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "verdict": "D",
+      "note": "wait before skipping a stalled stream: read by the stall driver (7 Nov, uncompiled)"
     },
     {
       "index": 177,

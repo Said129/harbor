@@ -1684,3 +1684,13 @@ data), the local episode chooser (the local library list already shows every sea
 on-disk badge and the three local-playback settings (iOS local records carry no catalog ids and there are no video media servers), and
 `pipBehavior` (Resize shrinks the app's own window, which iOS cannot do; Detached is what Picture in Picture already is). The code for
 the unmerged ones stays on their `ios/haiku-trial-*` branches.
+
+## Stall switching wired (7 November, written by Sonnet, uncompiled)
+
+Desktop's "Auto-skip stalled streams" had its setting and decision policy but nothing fed them. `StreamStallDriver` (a modifier in the player's
+tracker helper) watches only a source the automatic start chose, which carries a `StreamStallHandle` on its `PlaybackSession`; when
+`StreamStallPolicy` says the first load has waited long enough, the handle asks `DetailModel.switchAfterStall`, which sets the source aside,
+picks `StreamStallPolicy.nextCandidate` and closes the player. `DetailView.playerDismissed` then calls `continueAfterStall`, so the next
+source opens only after the old player has released its surface. The attempt chain of `considerAutoplay` became `continueChain`, shared by
+both paths with the same limit of eight. Buffering after playback has begun is left alone, as on Desktop. There is no test at the
+`DetailModel` level because its offer lists are private to the model; the decision rules keep their own tests.

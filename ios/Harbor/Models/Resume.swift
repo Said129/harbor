@@ -52,6 +52,8 @@ struct PlaybackSession: Identifiable, Sendable {
     var promptForResume = false
     var subtitleRequest: SubtitleRequest? = nil
     var media: Media? = nil
+    /// Set for a source the automatic start chose, so the player can ask for the next one when it stalls.
+    var stall: StreamStallHandle? = nil
 }
 
 struct ResumeSnapshot: Sendable {
