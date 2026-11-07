@@ -1568,3 +1568,16 @@ so the runner is not the cause. `44ef42fb` passes 3 of 3. `002e1b32` and every l
 is always the `playing seek 21` step, position 29.667, no subtitle text). Removing `volume-max` does not change it. The
 change therefore sits in the four commits between `44ef42fb` and `002e1b32` (the poster-title setting, the home-language
 filter and anime-only Continue Watching, and their merges); runs on `2f5baf57` and `8ca3944d` narrow it further.
+
+### Bisect conclusion for `SubtitleSeekTests`
+
+Last runs: `2f5baf57` (the poster-title setting) failed 1 of 3 (the community WebVTT case at its first wait, position 8.0 and
+no subtitle text) and `8ca3944d` with `HomeView` and `LibraryView` put back to their older versions still failed 1 of 3
+(`playing seek 21`, position 29.667). No single commit explains it: before the third Haiku round the three cases passed in
+every run (12 of 12 case results over four runs), after it 14 of about 24 failed, with the failing case changing from run to
+run. `volume-max`, the runner image, the Home and Library changes and the test registration were each ruled out or not
+needed. The cases are real-time (a 12 second wait for a position window under real mpv playback), so the likeliest reading
+is a timing sensitivity in the test host that the later builds tipped over, but a real subtitle-after-seek defect is not
+excluded: the failing condition (no cue text between 21 and 23 seconds after a seek made while playing) resembles the
+owner's physical report. The hunt stopped here. To continue: run the three cases alone five times on one commit before and
+one after, and read the `owned-seek-failure-timeline` attachment in `FocusedTests.xcresult` for the first failing case.
