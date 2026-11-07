@@ -292,6 +292,11 @@ struct PlayerSettingsView: View {
                                      choices: SubtitleOffsetSize.allCases.map { (DesktopInterfaceText.value($0.label), $0.rawValue) }, identifier: "settings-sub-offset-size")
             }
         }
+        HarborSettingsSection(DesktopInterfaceText.value("Show subtitles in Picture-in-Picture"),
+                              note: DesktopInterfaceText.value("Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.")) {
+            HarborSettingsToggle(DesktopInterfaceText.value("Show subtitles in Picture-in-Picture"), isOn: $preferences.options.subShowInPip)
+                .accessibilityIdentifier("settings-sub-show-in-pip")
+        }
         HarborSettingsSection(DesktopInterfaceText.value("Subtitle style"), note: DesktopInterfaceText.value("Adjust the text and background. The preview shows your changes as you make them.")) {
             SubtitleStylePreview(options: preferences.options)
             Text(DesktopInterfaceText.value("Background")).font(HarborTheme.font(14, weight: .semibold))

@@ -88,6 +88,8 @@ final class MPVPictureInPicture: NSObject, @preconcurrency AVPictureInPictureCon
 
     func stop() { controller?.stopPictureInPicture() }
     func resetFrames() {
+        // Every inline restore goes through here, so subtitles come back even after a PiP start that never reported.
+        applySubtitleVisibility(inPictureInPicture: false)
         layer.sampleBufferRenderer.flush(removingDisplayedImage: true, completionHandler: nil)
         layer.backgroundColor = UIColor.clear.cgColor
         lastFrame = nil; previousPaused = nil; previousDuration = 0
@@ -101,16 +103,27 @@ final class MPVPictureInPicture: NSObject, @preconcurrency AVPictureInPictureCon
         lastFrame = nil; timebase = nil
     }
 
+    /// Desktop's `subShowInPip`: mpv keeps the subtitle track selected and only hides it from the floating frames.
+    private func applySubtitleVisibility(inPictureInPicture: Bool) {
+        let value = PictureInPictureRules.subtitleVisibility(inPictureInPicture: inPictureInPicture, showSubtitlesInPip: PlaybackPreferences.shared.options.subShowInPip)
+        owner?.set("sub-visibility", value)
+        owner?.set("secondary-sub-visibility", value)
+    }
+    func pictureInPictureControllerWillStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
+        applySubtitleVisibility(inPictureInPicture: true)
+    }
     func pictureInPictureControllerDidStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
         owner?.state.pictureInPictureActive = pictureInPictureController.isPictureInPictureActive
     }
     func pictureInPictureControllerDidStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
         guard let owner else { return }
+        applySubtitleVisibility(inPictureInPicture: false)
         owner.state.pictureInPictureActive = false
         owner.restoreAfterPictureInPicture()
     }
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, failedToStartPictureInPictureWithError error: Error) {
         guard let owner else { return }
+        applySubtitleVisibility(inPictureInPicture: false)
         owner.state.pictureInPictureActive = false
         startFailure = HarborError(code: "pip-unavailable")
         Diagnostics.shared.record(.playerFailed, count: (error as NSError).code)
