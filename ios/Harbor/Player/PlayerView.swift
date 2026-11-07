@@ -405,8 +405,33 @@ struct PlayerView: View {
             .modifier(MyAnimeListPlaybackSync(state: state, session: session, media: media, library: library, resumePending: resumePending))
     }
 
+    /// Reactions to playback state and settings, kept in a function of their own so the lifecycle chain stays quick to type-check.
+    private func withStateObservers<V: View>(_ content: V) -> some View {
+        content
+        .onChange(of: state.paused) { _, paused in
+            if paused { controlsVisible = true; saveCheckpoint(exiting: false) }
+            restartHideTimer(); updateIdleTimer()
+        }
+        .onChange(of: state.loaded) { _, _ in restartHideTimer(); updateIdleTimer(); recordWatcher() }
+        .onChange(of: state.buffering) { _, _ in restartHideTimer() }
+        .onChange(of: state.choosingAudioRoute) { _, _ in controlsVisible = true; restartHideTimer() }
+        .onChange(of: state.pictureInPictureChanging) { _, _ in controlsVisible = true; restartHideTimer() }
+        .onChange(of: state.error) { _, error in if error != nil { controlsVisible = true }; restartHideTimer() }
+        .onChange(of: preferences.options) { old, new in
+            let previous = Dictionary(uniqueKeysWithValues: old.mpvOptions)
+            for (name, value) in new.mpvOptions where previous[name] != value && name != "af" { state.controller?.set(name, value) }
+            // An empty chain has to be sent to take the filters off, which a property diff would not do.
+            if old.audioFilters != new.audioFilters { state.controller?.run(["af", "set", new.audioFilters]) }
+            if old.secondarySubtitleLanguage != new.secondarySubtitleLanguage { state.controller?.applyPreferredSecondary(reset: true) }
+            if !new.autoHideControls { controlsVisible = true }
+            restartHideTimer(); updateIdleTimer()
+        }
+        .onChange(of: voiceOver) { _, enabled in if enabled { controlsVisible = true }; restartHideTimer() }
+        .onChange(of: hardwareDecoding) { _, mode in state.controller?.set("hwdec", mode.mpvValue) }
+    }
+
     private func withLifecycle<V: View>(_ content: V) -> some View {
-        withTrackers(withAddonSubtitles(withSkipIntro(content.background { PlayerOrientationAnchor().allowsHitTesting(false) })))
+        withStateObservers(withTrackers(withAddonSubtitles(withSkipIntro(content.background { PlayerOrientationAnchor().allowsHitTesting(false) }))))
         .task(id: autoAdvanceReady) {
             guard autoAdvanceReady, let next = adjacent.next else { return }
             // Desktop's check-in: after several episodes in a row with no input, ask before the next one.
@@ -428,26 +453,6 @@ struct PlayerView: View {
                 if state.loaded && !state.paused { await checkpoint(exiting: false) }
             }
         }
-        .onChange(of: state.paused) { _, paused in
-            if paused { controlsVisible = true; saveCheckpoint(exiting: false) }
-            restartHideTimer(); updateIdleTimer()
-        }
-        .onChange(of: state.loaded) { _, _ in restartHideTimer(); updateIdleTimer(); recordWatcher() }
-        .onChange(of: state.buffering) { _, _ in restartHideTimer() }
-        .onChange(of: state.choosingAudioRoute) { _, _ in controlsVisible = true; restartHideTimer() }
-        .onChange(of: state.pictureInPictureChanging) { _, _ in controlsVisible = true; restartHideTimer() }
-        .onChange(of: state.error) { _, error in if error != nil { controlsVisible = true }; restartHideTimer() }
-        .onChange(of: preferences.options) { old, new in
-            let previous = Dictionary(uniqueKeysWithValues: old.mpvOptions)
-            for (name, value) in new.mpvOptions where previous[name] != value && name != "af" { state.controller?.set(name, value) }
-            // An empty chain has to be sent to take the filters off, which a property diff would not do.
-            if old.audioFilters != new.audioFilters { state.controller?.run(["af", "set", new.audioFilters]) }
-            if old.secondarySubtitleLanguage != new.secondarySubtitleLanguage { state.controller?.applyPreferredSecondary(reset: true) }
-            if !new.autoHideControls { controlsVisible = true }
-            restartHideTimer(); updateIdleTimer()
-        }
-        .onChange(of: voiceOver) { _, enabled in if enabled { controlsVisible = true }; restartHideTimer() }
-        .onChange(of: hardwareDecoding) { _, mode in state.controller?.set("hwdec", mode.mpvValue) }
         .onChange(of: state.ended) { _, ended in
             if ended { controlsVisible = true; saveCheckpoint(exiting: false); if scenePhase != .active { autoNextCancelled = true } }
             // Desktop's sleep timer: an episode that finished by itself ends the night, or counts down.
