@@ -1619,3 +1619,15 @@ repair preview. Built as pure, tested code but not called by the app yet: Fanart
 enrichment and the debrid library merge: they need a change in the Rust ranking, which parses before Swift can act), and
 the library repair apply step (no public write method on the library model). The full hero quality default raises the
 decoded artwork cap from 1400 to 2160 pixels, which costs memory on small iPhones; it follows Desktop's default.
+
+## Twelfth Haiku round (7 November)
+
+Written by Haiku, merged after review (CI runs 43 and 44 green): live channel reconnect (wired through `LiveReconnectDriver`, a modifier
+added to the player's tracker helper; it calls the existing `replay()` after a player error on `iptv:` sessions),
+Watch Together (protocol, WebSocket client, session, follower logic, room sheet and relay settings; opened from Settings,
+Watch Together), and Chromecast through the CASTv2 protocol (framing and protobuf by hand, TLS to port 8009 accepting the
+device's self-signed certificate as Desktop does, Bonjour `_googlecast._tcp` added to the project's Info.plist keys).
+Not done: the player does not follow or announce Watch Together playback (the hooks are listed in the memory file),
+multiview was judged not worth building, and the Chromecast flow was never tried against a real device.
+Validation: run 43 (reconnect and Together, 37 cases) and run 44 (Chromecast and the Roku and DLNA protocol tests,
+46 cases) passed; the last full regression (673 cases, rounds 1 to 10) passed before rounds 11 and 12.

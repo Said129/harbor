@@ -5,36 +5,36 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 144,
-      "partial": 228,
-      "missing": 21,
-      "excluded": 45,
-      "counted": 393,
-      "weighted_percent": 65.6,
-      "ported_only_percent": 36.6,
-      "ported_or_partial_percent": 94.7
+      "ported": 149,
+      "partial": 232,
+      "missing": 7,
+      "excluded": 50,
+      "counted": 388,
+      "weighted_percent": 68.3,
+      "ported_only_percent": 38.4,
+      "ported_or_partial_percent": 98.2
     },
     "settings": {
       "total": 511,
-      "ported": 204,
-      "partial": 49,
-      "missing": 43,
-      "excluded": 215,
-      "counted": 296,
-      "weighted_percent": 77.2,
-      "ported_only_percent": 68.9,
-      "ported_or_partial_percent": 85.5
+      "ported": 205,
+      "partial": 50,
+      "missing": 40,
+      "excluded": 216,
+      "counted": 295,
+      "weighted_percent": 78.0,
+      "ported_only_percent": 69.5,
+      "ported_or_partial_percent": 86.4
     },
     "all": {
       "total": 949,
-      "ported": 348,
-      "partial": 277,
-      "missing": 64,
-      "excluded": 260,
-      "counted": 689,
-      "weighted_percent": 70.6,
-      "ported_only_percent": 50.5,
-      "ported_or_partial_percent": 90.7
+      "ported": 354,
+      "partial": 282,
+      "missing": 47,
+      "excluded": 266,
+      "counted": 683,
+      "weighted_percent": 72.5,
+      "ported_only_percent": 51.8,
+      "ported_or_partial_percent": 93.1
     }
   },
   "behavior_areas": [
@@ -113,20 +113,20 @@
     {
       "area": "Live TV, VOD, DVR and multiview",
       "range": "B217-B238",
-      "ported": 1,
+      "ported": 2,
       "partial": 12,
-      "missing": 4,
-      "excluded": 5,
-      "weighted_percent": 41.2
+      "missing": 0,
+      "excluded": 8,
+      "weighted_percent": 57.1
     },
     {
       "area": "Casting and Watch Together",
       "range": "B239-B259",
-      "ported": 3,
-      "partial": 4,
-      "missing": 10,
-      "excluded": 4,
-      "weighted_percent": 29.4
+      "ported": 7,
+      "partial": 8,
+      "missing": 0,
+      "excluded": 6,
+      "weighted_percent": 73.3
     },
     {
       "area": "Stremio account, library and local files",
@@ -1871,43 +1871,43 @@
       "index": 235,
       "id": "Multiview",
       "desktop_source": "src-tauri/src/multiview.rs",
-      "verdict": "M",
-      "note": "DVR and multiview not ported (feasibility undecided)"
+      "verdict": "X",
+      "note": "multiview: up to four live mpv players at once cost too much CPU, memory and battery on an iPad and make no sense on an iPhone"
     },
     {
       "index": 236,
       "id": "Per tile audio focus",
       "desktop_source": "src-tauri/src/multiview.rs",
-      "verdict": "M",
-      "note": "DVR and multiview not ported (feasibility undecided)"
+      "verdict": "X",
+      "note": "per tile audio focus: depends on multiview"
     },
     {
       "index": 237,
       "id": "Multiview geometry",
       "desktop_source": "src-tauri/src/multiview.rs",
-      "verdict": "M",
-      "note": "DVR and multiview not ported (feasibility undecided)"
+      "verdict": "X",
+      "note": "multiview geometry: depends on multiview"
     },
     {
       "index": 238,
       "id": "Live reconnect",
       "desktop_source": "src-tauri/src/multiview.rs",
-      "verdict": "M",
-      "note": "no live reconnect policy"
+      "verdict": "D",
+      "note": "live channels reconnect after a player error with Desktop's delays and attempt limits (7 Nov, written by Haiku, CI runs 43 and 44 green)"
     },
     {
       "index": 239,
       "id": "Chromecast discovery / playback",
       "desktop_source": "src-tauri/src/cast.rs",
-      "verdict": "M",
-      "note": "no Chromecast or DLNA"
+      "verdict": "D",
+      "note": "Chromecast discovery and playback through CASTv2 with Bonjour; tested with scripted streams, not against a real Chromecast (7 Nov, written by Haiku, CI runs 43 and 44 green)"
     },
     {
       "index": 240,
       "id": "Cast control",
       "desktop_source": "src-tauri/src/cast.rs",
-      "verdict": "P",
-      "note": "cast control for Roku and DLNA renderers: play, pause, seek where the device supports it, stop, volume; Chromecast is not ported (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "verdict": "D",
+      "note": "cast control for Roku, DLNA and Chromecast: play, pause, seek where supported, stop, volume (7 Nov, written by Haiku, CI runs 43 and 44 green)"
     },
     {
       "index": 241,
@@ -1976,64 +1976,64 @@
       "index": 250,
       "id": "Watch party create / join",
       "desktop_source": "src/lib/together",
-      "verdict": "M",
-      "note": "Watch Together and relay not ported"
+      "verdict": "P",
+      "note": "Watch Together rooms: create and join through the relay with a sheet; the player does not follow the room yet (7 Nov, written by Haiku, CI runs 43 and 44 green)"
     },
     {
       "index": 251,
       "id": "Room invite links",
       "desktop_source": "src/lib/together",
-      "verdict": "M",
-      "note": "Watch Together and relay not ported"
+      "verdict": "D",
+      "note": "Watch Together invite links, built and parsed (7 Nov, written by Haiku, CI runs 43 and 44 green)"
     },
     {
       "index": 252,
       "id": "Clock aligned playback sync",
       "desktop_source": "src/lib/together",
-      "verdict": "M",
-      "note": "Watch Together and relay not ported"
+      "verdict": "P",
+      "note": "clock aligned playback sync: the follower logic exists and is tested, the player does not call it yet (7 Nov, written by Haiku, CI runs 43 and 44 green)"
     },
     {
       "index": 253,
       "id": "Together chat",
       "desktop_source": "src/lib/together",
-      "verdict": "M",
-      "note": "Watch Together and relay not ported"
+      "verdict": "D",
+      "note": "Watch Together chat (7 Nov, written by Haiku, CI runs 43 and 44 green)"
     },
     {
       "index": 254,
       "id": "On-screen cursors",
       "desktop_source": "src/lib/together",
-      "verdict": "M",
-      "note": "Watch Together and relay not ported"
+      "verdict": "X",
+      "note": "on-screen cursors: a touch screen has no pointer"
     },
     {
       "index": 255,
       "id": "Collaborative drawing",
       "desktop_source": "src/lib/together",
-      "verdict": "M",
-      "note": "Watch Together and relay not ported"
+      "verdict": "X",
+      "note": "collaborative drawing: not worth a phone port"
     },
     {
       "index": 256,
       "id": "Host summon / invite",
       "desktop_source": "src/lib/together",
-      "verdict": "M",
-      "note": "Watch Together and relay not ported"
+      "verdict": "P",
+      "note": "host summon and invite: the session stores them, no screen shows them yet (7 Nov, written by Haiku, CI runs 43 and 44 green)"
     },
     {
       "index": 257,
       "id": "Source matching",
       "desktop_source": "src/lib/together",
-      "verdict": "M",
-      "note": "Watch Together and relay not ported"
+      "verdict": "P",
+      "note": "source matching: scoring exists and is tested, no player flow uses it yet (7 Nov, written by Haiku, CI runs 43 and 44 green)"
     },
     {
       "index": 258,
       "id": "Self-hosted relay",
       "desktop_source": "src/lib/together",
-      "verdict": "M",
-      "note": "Watch Together and relay not ported"
+      "verdict": "P",
+      "note": "self-hosted relay: the relay address setting works; Desktop's Cloudflare deploy is excluded (7 Nov, written by Haiku, CI runs 43 and 44 green)"
     },
     {
       "index": 259,
@@ -4351,8 +4351,8 @@
       "index": 151,
       "id": "togetherRelayUrl",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Watch Together settings"
+      "verdict": "D",
+      "note": "Watch Together relay address (7 Nov, written by Haiku, CI runs 43 and 44 green)"
     },
     {
       "index": 152,
@@ -4379,15 +4379,15 @@
       "index": 155,
       "id": "togetherShareCursors",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Watch Together settings"
+      "verdict": "X",
+      "note": "share cursors: a touch screen has no pointer, the value is stored only"
     },
     {
       "index": 156,
       "id": "togetherGuestsPick",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "Watch Together settings"
+      "verdict": "P",
+      "note": "guests pick their own source: stored and read by the follower, no screen applies it yet (7 Nov, written by Haiku, CI runs 43 and 44 green)"
     },
     {
       "index": 157,

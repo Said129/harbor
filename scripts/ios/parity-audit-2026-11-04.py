@@ -305,6 +305,21 @@ BEHAVIORS = expand("""
 311 D rated posters: RPDB poster URL for cards when a key is saved (7 Nov, written by Haiku, CI run 42 green, 103 cases)
 312 P Fanart logos and backdrops: provider and ranking exist, no detail screen calls them yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)
 316 P TVMaze schedules: client and parsing exist; the calendar does not ask it for air times yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+235 X multiview: up to four live mpv players at once cost too much CPU, memory and battery on an iPad and make no sense on an iPhone
+236 X per tile audio focus: depends on multiview
+237 X multiview geometry: depends on multiview
+238 D live channels reconnect after a player error with Desktop's delays and attempt limits (7 Nov, written by Haiku, CI runs 43 and 44 green)
+239 D Chromecast discovery and playback through CASTv2 with Bonjour; tested with scripted streams, not against a real Chromecast (7 Nov, written by Haiku, CI runs 43 and 44 green)
+240 D cast control for Roku, DLNA and Chromecast: play, pause, seek where supported, stop, volume (7 Nov, written by Haiku, CI runs 43 and 44 green)
+250 P Watch Together rooms: create and join through the relay with a sheet; the player does not follow the room yet (7 Nov, written by Haiku, CI runs 43 and 44 green)
+251 D Watch Together invite links, built and parsed (7 Nov, written by Haiku, CI runs 43 and 44 green)
+252 P clock aligned playback sync: the follower logic exists and is tested, the player does not call it yet (7 Nov, written by Haiku, CI runs 43 and 44 green)
+253 D Watch Together chat (7 Nov, written by Haiku, CI runs 43 and 44 green)
+254 X on-screen cursors: a touch screen has no pointer
+255 X collaborative drawing: not worth a phone port
+256 P host summon and invite: the session stores them, no screen shows them yet (7 Nov, written by Haiku, CI runs 43 and 44 green)
+257 P source matching: scoring exists and is tested, no player flow uses it yet (7 Nov, written by Haiku, CI runs 43 and 44 green)
+258 P self-hosted relay: the relay address setting works; Desktop's Cloudflare deploy is excluded (7 Nov, written by Haiku, CI runs 43 and 44 green)
 """)
 
 SETTINGS = expand("""
@@ -686,6 +701,9 @@ SETTINGS = expand("""
 94 D hero feed choice on Home (7 Nov, written by Haiku, CI run 42 green, 103 cases)
 281 X poster base URL: a custom host would receive the RPDB key
 288 X scroll up to the trailer: needs Desktop's detail scroll behaviour
+151 D Watch Together relay address (7 Nov, written by Haiku, CI runs 43 and 44 green)
+155 X share cursors: a touch screen has no pointer, the value is stored only
+156 P guests pick their own source: stored and read by the follower, no screen applies it yet (7 Nov, written by Haiku, CI runs 43 and 44 green)
 """)
 
 def audit(items, verdicts, label):
