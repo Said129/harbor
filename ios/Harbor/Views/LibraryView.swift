@@ -220,7 +220,7 @@ private struct ContinueWatchingCard: View {
     @State private var cardPresentation: ContinueWatchingPresentation?
     private var detailed: Media { TitleArtworkPreferences.shared.applying(to: hydrated ?? media) }
     private var presentation: ContinueWatchingPresentation {
-        cardPresentation ?? ContinueWatchingPresentation(record: record, media: media, watched: [])
+        cardPresentation ?? ContinueWatchingPresentation(record: record, media: media, watched: [], advanceNext: InterfacePreferences.shared.cwAdvanceNext)
     }
     var body: some View {
         let presentation = self.presentation
@@ -253,6 +253,7 @@ private struct ContinueWatchingCard: View {
         }.frame(width: 260, alignment: .leading).foregroundStyle(HarborTheme.ink).buttonStyle(.plain)
             .contextMenu { LibraryActions(app: app, record: record, media: detailed, owner: app.library.owner) }
             .onChange(of: record.raw, initial: true) { _, _ in updatePresentation() }
+            .onChange(of: InterfacePreferences.shared.cwAdvanceNext) { _, _ in updatePresentation() }
             .task(id: [record.raw, .string(episodeGrouping)]) {
                 let owner = app.library.owner
                 let grouping = AnimeEpisodeGrouping(rawValue: episodeGrouping) ?? .seasons
@@ -271,7 +272,7 @@ private struct ContinueWatchingCard: View {
     }
     private func updatePresentation() {
         let watched = (try? WatchedCodec.decode(record.raw["state"]["watched"].string, videos: detailed.videos ?? [])) ?? []
-        cardPresentation = ContinueWatchingPresentation(record: record, media: detailed, watched: watched)
+        cardPresentation = ContinueWatchingPresentation(record: record, media: detailed, watched: watched, advanceNext: InterfacePreferences.shared.cwAdvanceNext)
     }
 }
 

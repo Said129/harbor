@@ -503,6 +503,8 @@ SETTINGS = expand("""
 491 X collapsible desktop sidebar: iOS has its own tab bar and sidebar
 511 X Audd API key: song identification is not possible on iOS
 356-357 D hide watched and unreleased titles in the home catalog rows, in Home layout (7 Nov, uncompiled; written by Haiku in a trial)
+394 D Watchlist shows only saved titles: off also lists unstarted entries Stremio auto-added (7 Nov, uncompiled; written by Haiku in a trial)
+400 D Continue Watching advances to the next episode, optional (7 Nov, uncompiled; written by Haiku in a trial)
 """)
 
 def audit(items, verdicts, label):

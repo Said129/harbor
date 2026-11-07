@@ -105,6 +105,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "Metni ve arka planı ayarlayın. Önizleme yaptığınız değişiklikleri anında gösterir.";
 "Administrar" = "Yönet";
 "Adult sources" = "Adult sources";
+"Advance Continue Watching to the next episode" = "İzlemeye Devam Et'i sonraki bölüme ilerlet";
 "Adventure" = "Macera";
 "After 2" = "2 bölüm sonra";
 "After 3" = "3 bölüm sonra";
@@ -1039,6 +1040,7 @@
 "Keep original" = "Özgün biçimi koru";
 "Keep same source on next episode" = "Sonraki bölümde aynı kaynağı kullan";
 "Keep screen awake" = "Keep screen awake";
+"Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "Kütüphanedeki İzleme Listesi sekmesini yalnızca Stremio'ya kendiniz eklediğiniz içeriklerle sınırlı tutun. Oynat düğmesine bastığınızda Stremio'nun otomatik eklediği içerikleri de dahil etmek için bunu kapatın.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Şüpheli dosya ve sürüm denetimlerini koruyun; ancak büyük dosyalar ve sezon paketleri dahil daha fazla sonuca izin verin.";
 "Keep watching" = "İzlemeye devam et";
 "Kids & Family" = "Çocuk ve Aile";
@@ -2323,6 +2325,7 @@
 "Watching" = "İzleniyor";
 "Watchlist" = "İzleme Listesi";
 "Watchlist only" = "Yalnızca İzleme Listesi";
+"Watchlist shows only saved titles" = "İzleme listesinde yalnızca kaydedilen içerikleri göster";
 "We'll save your spot so you can pick up right where you left off." = "Kaldığınız yerden devam edebilmeniz için kaldığınız yeri kaydedeceğiz.";
 "Weekend watchlist" = "Hafta sonu izleme listesi";
 "Welcome to Harbor" = "Harbor'a hoş geldiniz";
@@ -2334,6 +2337,7 @@
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "Sonraki bölüm otomatik oynatılırken Harbor'ın en üst sıradaki yayını yerine az önce izlediğiniz sürümü/kaynağı korur. Bu kaynak kullanılamıyorsa en iyi yayına geçer.";
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "Oynatma başladığında Harbor, bu dillerden birinde altyazıyı otomatik olarak bulup yükler. Bulunan ilk uygun altyazı kullanılır; bu nedenle ana dilinizi ilk sıraya koyun.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Bölüm bitmeden önce Sıradaki rozetinin ne zaman görüneceğini belirler. Otomatik seçeneği bölüm uzunluğuna göre ayarlanır, böylece kısa bölümlerde bildirim çok erken gösterilmez. Kapalı seçeneği bildirimi gizler.";
+"When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "Bir bölümü bitirdiğinizde Ana Sayfa'daki İzlemeye Devam Et kartı, 0 dakika kalmış hâlde beklemek yerine sonraki bölüme geçer.";
 "When you press Play" = "Oynat'a bastığınızda";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "İzlemeye devam ettiğinizde seçim ekranını yeniden açmak yerine son kullandığınız yayını (aynı eklenti ve kaynak) oynatır. Her zaman yeniden seçim yapmak için kapatın.";
 "Where it shows" = "Gösterileceği yer";

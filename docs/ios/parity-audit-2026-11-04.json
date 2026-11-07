@@ -16,25 +16,25 @@
     },
     "settings": {
       "total": 511,
-      "ported": 142,
+      "ported": 144,
       "partial": 24,
-      "missing": 177,
+      "missing": 175,
       "excluded": 168,
       "counted": 343,
-      "weighted_percent": 44.9,
-      "ported_only_percent": 41.4,
-      "ported_or_partial_percent": 48.4
+      "weighted_percent": 45.5,
+      "ported_only_percent": 42.0,
+      "ported_or_partial_percent": 49.0
     },
     "all": {
       "total": 949,
-      "ported": 264,
+      "ported": 266,
       "partial": 230,
-      "missing": 246,
+      "missing": 244,
       "excluded": 209,
       "counted": 740,
-      "weighted_percent": 51.2,
-      "ported_only_percent": 35.7,
-      "ported_or_partial_percent": 66.8
+      "weighted_percent": 51.5,
+      "ported_only_percent": 35.9,
+      "ported_or_partial_percent": 67.0
     }
   },
   "behavior_areas": [
@@ -6052,8 +6052,8 @@
       "index": 394,
       "id": "libraryBookmarkedOnly",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "Watchlist shows only saved titles: off also lists unstarted entries Stremio auto-added (7 Nov, uncompiled; written by Haiku in a trial)"
     },
     {
       "index": 395,
@@ -6094,8 +6094,8 @@
       "index": 400,
       "id": "cwAdvanceNext",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "Continue Watching advances to the next episode, optional (7 Nov, uncompiled; written by Haiku in a trial)"
     },
     {
       "index": 401,

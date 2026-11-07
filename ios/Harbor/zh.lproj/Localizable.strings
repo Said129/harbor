@@ -105,6 +105,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "调整文字和背景。预览会实时显示更改。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
+"Advance Continue Watching to the next episode" = "自动将“继续观看”推进到下一集";
 "Adventure" = "冒险";
 "After 2" = "连续播放 2 集后";
 "After 3" = "连续播放 3 集后";
@@ -1039,6 +1040,7 @@
 "Keep original" = "保留原样";
 "Keep same source on next episode" = "下一集沿用相同来源";
 "Keep screen awake" = "Keep screen awake";
+"Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "让媒体库的“稍后观看”标签页仅显示你在 Stremio 中添加的作品。关闭此项后，还会显示你按下播放时由 Stremio 自动添加的所有内容。";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "保留可疑文件和版本检查，但允许更多结果，包括较大文件和整季合集。";
 "Keep watching" = "继续观看";
 "Kids & Family" = "儿童与家庭";
@@ -2323,6 +2325,7 @@
 "Watching" = "正在观看";
 "Watchlist" = "想看清单";
 "Watchlist only" = "仅待看清单";
+"Watchlist shows only saved titles" = "片单仅显示已保存的内容";
 "We'll save your spot so you can pick up right where you left off." = "我们会保存你的观看位置，方便你下次从上次停下的地方继续。";
 "Weekend watchlist" = "周末片单";
 "Welcome to Harbor" = "欢迎使用 Harbor";
@@ -2334,6 +2337,7 @@
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "自动播放下一集时，继续使用刚才观看的同一版本或播放源，而非 Harbor 排名最高的播放源。如果该播放源不可用，则回退到最佳播放源。";
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "开始播放时，Harbor 会自动查找并加载这些语言之一的字幕。系统会使用首个可用匹配项，因此请将主要语言放在首位。";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "设置本集结束前显示“接下来播放”提示的时间。“自动”会根据剧集时长调整，避免短剧集过早提示。“关闭”会隐藏提示。";
+"When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "看完一集后，首页的“继续观看”卡片会切换到下一集，而不是停留在剩余 0 分钟。";
 "When you press Play" = "按下播放时";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "继续观看时，直接使用上次的片源（相同插件和片源），不再打开选择器。关闭后每次都重新选择。";
 "Where it shows" = "显示位置";

@@ -18,6 +18,8 @@ final class InterfacePreferences {
     var hideUnreleased = UserDefaults.standard.object(forKey: "hideUnreleased") as? Bool ?? false { didSet { persist(hideUnreleased, forKey: "hideUnreleased") } }
     /// Desktop's `libraryBookmarkedOnly`: the Watchlist lists only saved titles, not entries Stremio auto-added on play.
     var libraryBookmarkedOnly = UserDefaults.standard.object(forKey: "libraryBookmarkedOnly") as? Bool ?? true { didSet { persist(libraryBookmarkedOnly, forKey: "libraryBookmarkedOnly") } }
+    /// Desktop's `cwAdvanceNext`: a finished episode moves its Continue Watching card to the next episode.
+    var cwAdvanceNext = UserDefaults.standard.object(forKey: "cwAdvanceNext") as? Bool ?? true { didSet { persist(cwAdvanceNext, forKey: "cwAdvanceNext") } }
     /// Desktop's `episodeSort`: "oldest" lists a season from its first episode, "newest" from its last.
     var episodeSort = UserDefaults.standard.string(forKey: "episodeSort") == "newest" ? "newest" : "oldest" { didSet { persist(episodeSort, forKey: "episodeSort") } }
     /// Desktop's `episodeHiding`: adds Hide episode to the episode menu and skips hidden episodes in Up Next.
@@ -66,6 +68,7 @@ final class InterfacePreferences {
         hideWatchedInCatalogs = UserDefaults.standard.object(forKey: "hideWatchedInCatalogs") as? Bool ?? false
         hideUnreleased = UserDefaults.standard.object(forKey: "hideUnreleased") as? Bool ?? false
         libraryBookmarkedOnly = UserDefaults.standard.object(forKey: "libraryBookmarkedOnly") as? Bool ?? true
+        cwAdvanceNext = UserDefaults.standard.object(forKey: "cwAdvanceNext") as? Bool ?? true
         episodeSort = UserDefaults.standard.string(forKey: "episodeSort") == "newest" ? "newest" : "oldest"
         episodeHiding = UserDefaults.standard.object(forKey: "episodeHiding") as? Bool ?? false
         showTraktComments = UserDefaults.standard.object(forKey: "showTraktComments") as? Bool ?? false

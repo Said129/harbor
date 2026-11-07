@@ -112,6 +112,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "اضبط النص والخلفية. تُظهر المعاينة تغييراتك فور إجرائها.";
 "Administrar" = "إدارة";
 "Adult sources" = "Adult sources";
+"Advance Continue Watching to the next episode" = "تقديم متابعة المشاهدة إلى الحلقة التالية";
 "Adventure" = "مغامرة";
 "Africa Cup of Nations" = "كأس الأمم الأفريقية";
 "Africa Cup of Nations Qualifying" = "تصفيات كأس الأمم الأفريقية";
@@ -1064,6 +1065,7 @@
 "Keep original" = "الاحتفاظ بالأصل";
 "Keep same source on next episode" = "الإبقاء على المصدر نفسه في الحلقة التالية";
 "Keep screen awake" = "Keep screen awake";
+"Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "أبقِ علامة تبويب قائمة المشاهدة في المكتبة مقتصرة على العناوين التي أضفتها في Stremio. عطّل هذا لتضمين أي شيء أضافه Stremio تلقائيًا عند الضغط على تشغيل.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "أبقِ فحوص الملفات المشبوهة والإصدارات، لكن اسمح بنتائج أكثر تشمل الملفات الكبيرة وحزم المواسم.";
 "Keep watching" = "متابعة المشاهدة";
 "Kids & Family" = "الأطفال والعائلة";
@@ -2361,6 +2363,7 @@
 "Watching" = "قيد المشاهدة";
 "Watchlist" = "قائمة المشاهدة";
 "Watchlist only" = "قائمة المشاهدة فقط";
+"Watchlist shows only saved titles" = "تعرض قائمة المشاهدة العناوين المحفوظة فقط";
 "We'll save your spot so you can pick up right where you left off." = "سنحفظ موضعك لتستأنف من حيث توقفت تمامًا.";
 "Weekend watchlist" = "قائمة مشاهدة نهاية الأسبوع";
 "Welcome to Harbor" = "مرحبًا بك في Harbor";
@@ -2372,6 +2375,7 @@
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "عند التشغيل التلقائي للحلقة التالية، أبقِ على نفس النسخة/المصدر الذي كنت تشاهده بدلًا من البث الأعلى تصنيفًا في Harbor. يعود إلى أفضل بث إذا لم يكن ذلك المصدر متاحًا.";
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "عند بدء التشغيل، يبحث Harbor تلقائيًا عن ترجمة بإحدى هذه اللغات ويحمّلها. تُعتمد أول مطابقة متاحة، لذا ضع لغتك الأساسية أولًا.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "متى يظهر تنبيه الحلقة القادمة قبل انتهاء الحلقة. يتم ضبطه تلقائياً بناءً على طول الحلقة. 'إيقاف' يخفيه تماماً.";
+"When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "عند انتهائك من حلقة، تنتقل بطاقة متابعة المشاهدة في الرئيسية إلى الحلقة التالية بدلًا من البقاء عند 0 دقيقة متبقية.";
 "When you press Play" = "عند الضغط على «تشغيل»";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "عند استئنافك لشيء كنت تشاهده، أعد تشغيل البثّ نفسه الذي استخدمته آخر مرة (نفس الإضافة والمصدر) بدلًا من فتح الأداة من جديد. عطّله لتختار جديدًا دائمًا.";
 "Where it shows" = "مكان ظهورها";

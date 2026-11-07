@@ -1456,3 +1456,17 @@ the model's doing: the translation script failed in the fresh worktree (it lacks
 so the four labels were generated here; and the toggles were moved from "Episode cards" to "Home layout",
 where Desktop has them. Not compiled yet; the CI result for these 11 cases and the build is the measure of
 the trial.
+
+## Haiku trial, second round (7 November)
+
+Two more Haiku subagents, each in its own worktree and branch, then merged here (three small conflicts in
+the settings files resolved by hand). `ios/haiku-trial-library-watchlist` (`6ab79d4e`): the setting
+`libraryBookmarkedOnly` (default on, same behavior as before) and `LibraryWatchlistFilter`; off also lists
+unstarted entries Stremio auto-added, and joins them to the Trakt projection without duplicates.
+`ios/haiku-trial-continue-watching` (`28f12eb0`): `cwAdvanceNext` through `ContinueWatchingAdvance` and an
+`advanceNext` parameter of `ContinueWatchingPresentation`. It stopped on its own for `cwHideCaughtUp`: iOS
+keeps finished series in Continue Watching and a filter would need per-title episode lists in a broad
+change; that setting stays Missing. Known gap it reported: with `cwAdvanceNext` off, tapping the card still
+plays the next episode because `DetailView.playTitle` calls `EpisodeSequence.startingEpisode` directly.
+Both reports named the compile-sensitive spots; nothing is compiled. New cases: LibraryWatchlistFilterTests
+(3), ContinueWatchingSettingsTests (4), plus HomeCatalogFilterTests (11) from the first round.

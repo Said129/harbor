@@ -88,6 +88,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "Adjust the text and background. The preview shows your changes as you make them.";
 "Administrar" = "Manage";
 "Adult sources" = "Adult sources";
+"Advance Continue Watching to the next episode" = "Advance Continue Watching to the next episode";
 "Adventure" = "Adventure";
 "After 2" = "After 2";
 "After 3" = "After 3";
@@ -881,6 +882,7 @@
 "Keep original" = "Keep original";
 "Keep same source on next episode" = "Keep same source on next episode";
 "Keep screen awake" = "Keep screen awake";
+"Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs.";
 "Keep watching" = "Keep watching";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, season-aware";
@@ -1989,6 +1991,7 @@
 "Watching" = "Watching";
 "Watchlist" = "Watchlist";
 "Watchlist only" = "Watchlist only";
+"Watchlist shows only saved titles" = "Watchlist shows only saved titles";
 "We'll save your spot so you can pick up right where you left off." = "We'll save your spot so you can pick up right where you left off.";
 "Weekend watchlist" = "Weekend watchlist";
 "Welcome to Harbor" = "Welcome to Harbor";
@@ -1998,6 +2001,7 @@
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "When an episode ends, automatically start the next one. Off lets the episode finish and stop.";
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it.";
+"When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left.";
 "When you press Play" = "When you press Play";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh.";
 "Where it shows" = "Where it shows";

@@ -105,6 +105,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "文字と背景を調整します。変更がその場でプレビューに反映されます。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
+"Advance Continue Watching to the next episode" = "「視聴を続ける」を次のエピソードに進める";
 "Adventure" = "アドベンチャー";
 "After 2" = "2話後";
 "After 3" = "3話後";
@@ -1039,6 +1040,7 @@
 "Keep original" = "オリジナルを維持";
 "Keep same source on next episode" = "次のエピソードでも同じソースを使用";
 "Keep screen awake" = "Keep screen awake";
+"Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "ライブラリの「ウォッチリスト」タブを、Stremioで自分が追加した作品のみに限定します。オフにすると、再生時にStremioが自動追加した作品も含まれます。";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "疑わしいファイルやリリースの確認は維持し、大きなファイルやシーズンパックを含む、より多くの結果を許可します。";
 "Keep watching" = "続きを見る";
 "Kids & Family" = "キッズ＆ファミリー";
@@ -2323,6 +2325,7 @@
 "Watching" = "視聴中";
 "Watchlist" = "ウォッチリスト";
 "Watchlist only" = "ウォッチリストのみ";
+"Watchlist shows only saved titles" = "保存した作品のみ表示";
 "We'll save your spot so you can pick up right where you left off." = "続きから再開できるよう、停止位置を保存します。";
 "Weekend watchlist" = "週末のウォッチリスト";
 "Welcome to Harbor" = "Harborへようこそ";
@@ -2334,6 +2337,7 @@
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "次のエピソードを自動再生するとき、Harborで最上位のストリームではなく、直前まで見ていたものと同じリリースまたはソースを使用します。そのソースが利用できない場合は、最適なストリームを使用します。";
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "再生を開始すると、Harborが選択した言語の字幕を自動で検索して読み込みます。最初に見つかった字幕が使われるため、メインの言語を先頭にしてください。";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "エピソード終了の何秒前に「次のエピソード」を表示するかを設定します。自動ではエピソードの長さに合わせて調整し、短いエピソードで早く表示されすぎないようにします。オフにすると非表示になります。";
+"When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "エピソードを最後まで見ると、ホームの「視聴を続ける」カードは「残り0分」のままにならず、次のエピソードに進みます。";
 "When you press Play" = "「再生」を押したとき";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "視聴を再開するとき、選択画面を再度開かず、前回とまったく同じストリーム（同じアドオンとソース）を再生します。毎回新しく選ぶにはオフにしてください。";
 "Where it shows" = "表示位置";

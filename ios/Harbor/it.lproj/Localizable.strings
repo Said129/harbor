@@ -105,6 +105,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "Regola testo e sfondo. L’anteprima mostra le modifiche mentre le apporti.";
 "Administrar" = "Gestisci";
 "Adult sources" = "Adult sources";
+"Advance Continue Watching to the next episode" = "Porta Continua a guardare all'episodio successivo";
 "Adventure" = "Avventura";
 "After 2" = "Dopo 2";
 "After 3" = "Dopo 3";
@@ -1039,6 +1040,7 @@
 "Keep original" = "Mantieni l'originale";
 "Keep same source on next episode" = "Mantieni la stessa sorgente per l'episodio successivo";
 "Keep screen awake" = "Keep screen awake";
+"Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "Limita la scheda Lista della Libreria ai titoli che hai aggiunto in Stremio. Disattiva questa opzione per includere anche i titoli aggiunti automaticamente da Stremio quando hai premuto Riproduci.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Mantieni i controlli su file sospetti e versioni, ma consenti più risultati, inclusi file grandi e pacchetti di stagioni.";
 "Keep watching" = "Continua a guardare";
 "Kids & Family" = "Bambini e famiglia";
@@ -2323,6 +2325,7 @@
 "Watching" = "In visione";
 "Watchlist" = "Lista";
 "Watchlist only" = "Solo Lista";
+"Watchlist shows only saved titles" = "La Lista mostra solo i titoli salvati";
 "We'll save your spot so you can pick up right where you left off." = "Salveremo il punto in cui sei arrivato, così potrai riprendere esattamente da lì.";
 "Weekend watchlist" = "Lista del weekend";
 "Welcome to Harbor" = "Benvenuto in Harbor";
@@ -2334,6 +2337,7 @@
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "Durante la riproduzione automatica dell'Episodio successivo, mantiene la stessa versione o fonte appena usata invece dello stream con il punteggio più alto di Harbor. Se la fonte non è disponibile, passa allo stream migliore.";
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "All'avvio della riproduzione, Harbor trova e carica automaticamente un sottotitolo in una di queste lingue. Viene usata la prima corrispondenza disponibile, quindi metti per prima la lingua principale.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Quando compare il riquadro Prossimo Episodio prima della fine di un Episodio. Auto adatta i tempi alla durata dell'Episodio, così negli episodi brevi non appare troppo presto. Se l'opzione è disattivata, il riquadro viene nascosto.";
+"When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "Quando finisci un Episodio, la scheda Continua a guardare della Home passa all'Episodio successivo invece di restare su 0 minuti rimanenti.";
 "When you press Play" = "Quando premi Riproduci";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "Quando riprendi qualcosa che stavi guardando, riutilizza esattamente lo stream precedente, con lo stesso Add-on e la stessa fonte, invece di riaprire il selettore. Disattiva l'opzione per scegliere sempre da capo.";
 "Where it shows" = "Dove appare";
