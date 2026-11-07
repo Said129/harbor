@@ -11,6 +11,19 @@ enum SeekSteps {
     static func choices(including current: Double) -> [Double] { options.contains(current) ? options : (options + [current]).sorted() }
 }
 
+/// Puts the leave confirm over the player. A modifier of its own keeps the player's long modifier chain quick to type-check.
+struct PlayerLeaveConfirmOverlay: ViewModifier {
+    let presented: Bool
+    let keep: () -> Void
+    let leave: (Bool) -> Void
+
+    func body(content: Content) -> some View {
+        content.overlay {
+            if presented { PlayerLeaveConfirm(keep: keep, leave: leave) }
+        }
+    }
+}
+
 /// Desktop's leave confirm (`components/player/leave-confirm-modal.tsx`): shown when Esc would close the player.
 struct PlayerLeaveConfirm: View {
     let keep: () -> Void

@@ -450,14 +450,7 @@ struct PlayerView: View {
             updateIdleTimer()
         }
         .onChange(of: scenePhase) { _, phase in if phase != .active { saveCheckpoint(exiting: false) }; restartHideTimer(); updateIdleTimer() }
-        .overlay {
-            if leaveConfirm {
-                PlayerLeaveConfirm(keep: { leaveConfirm = false }, leave: { remember in
-                    if remember { preferences.options.confirmLeave = false }
-                    leaveConfirm = false; dismiss()
-                })
-            }
-        }
+        .modifier(PlayerLeaveConfirmOverlay(presented: leaveConfirm, keep: keepWatching, leave: leavePlayer(remember:)))
         .onChange(of: library?.owner) { _, owner in if let owner, owner != session.owner { dismiss() } }
         .onChange(of: episodeNavigationIdentity) { _, _ in updateAdjacentEpisodes() }
         .onChange(of: AppProfileContext.shared.activationID) { _, _ in dismiss() }
@@ -650,6 +643,14 @@ struct PlayerView: View {
     private func requestClose() {
         if leaveConfirm { leaveConfirm = false; return }
         if preferences.options.confirmLeave { leaveConfirm = true } else { dismiss() }
+    }
+
+    private func keepWatching() { leaveConfirm = false }
+
+    private func leavePlayer(remember: Bool) {
+        if remember { preferences.options.confirmLeave = false }
+        leaveConfirm = false
+        dismiss()
     }
 
     private func jump(_ seconds: Double) {
