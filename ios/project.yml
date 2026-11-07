@@ -231,6 +231,7 @@ targets:
       - path: HarborTests/HeroLayoutPolicyTests.swift
       - path: HarborTests/LiveReconnectTests.swift
       - path: HarborTests/TogetherTests.swift
+      - path: HarborTests/ContentAdvisoryTests.swift
       - path: HarborTests/TogetherPlayerSyncTests.swift
       - path: HarborTests/CastChromecastTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift

@@ -31,6 +31,7 @@ struct PlayerSettingsView: View {
     var changeSource: (() -> Void)? = nil
     @Bindable var preferences = PlaybackPreferences.shared
     @Bindable private var sources = StreamPreferences.shared
+    @Bindable private var advisory = ContentAdvisoryPreferences.shared
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     /// Desktop's `mpvQuality` profile, read by `MPVConfiguration` when a video opens.
     @AppStorage(UISettingsPolicy.mpvQualityKey) private var mpvQuality = UISettingsPolicy.mpvQualityDefault
@@ -115,10 +116,46 @@ struct PlayerSettingsView: View {
             HarborSettingsToggle(DesktopInterfaceText.value("Resume where you left off"), note: DesktopInterfaceText.value("Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows."), isOn: $resumePlayback)
             HarborSettingsToggle(DesktopInterfaceText.value("Ask to resume or start over"), isOn: $resumePrompt).disabled(!resumePlayback)
         }
+        advisorySettings
         PlayerNextEpisodeSettings()
         HarborSettingsSection("Búfer") {
             HarborSettingsChoice("Tamaño del búfer", selection: $preferences.options.bufferSize, choices: BufferSize.allCases.map { ($0.title, $0) })
         }
+    }
+
+    /// Desktop's content advisory rows (`views/settings/player-layout-panel/index.tsx`, under "While you watch").
+    @ViewBuilder private var advisorySettings: some View {
+        HarborSettingsSection("While you watch", note: "Optional overlays that appear over the video.") {
+            HarborSettingsToggle("Content advisory on start", note: "When a movie or episode starts, briefly show its IMDb parental guide (violence, profanity, substances, frightening scenes and more) with severity. Fades on its own.", isOn: $advisory.showToast)
+                .accessibilityIdentifier("settings-content-advisory")
+            if advisory.showToast {
+                HarborSettingsChoice("Content advisory theme", selection: $advisory.theme, choices: [("Colored", ContentAdvisoryTheme.colored), ("Monochrome", .monochrome)], identifier: "settings-content-advisory-theme")
+                Text(DesktopInterfaceText.value("Choose whether the content advisory appears in full color or a restrained monochrome tone.")).font(HarborTheme.font(13)).foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                HarborSettingsToggle("Show ignore title button", note: "Display a button on the content advisory card to permanently ignore the title.", isOn: $advisory.showIgnoreButton)
+                    .accessibilityIdentifier("settings-content-advisory-ignore")
+                if advisory.showIgnoreButton { ignoredTitlesRow }
+            }
+        }
+    }
+
+    /// Desktop's `AdvisoryIgnoreRow`: the titles ignored on this device, and a way to bring them back.
+    private var ignoredTitlesRow: some View {
+        let count = ContentAdvisoryIgnores.shared.count
+        return HStack(alignment: .center, spacing: 12) {
+            VStack(alignment: .leading, spacing: 5) {
+                Text(DesktopInterfaceText.value("Ignored titles")).font(HarborTheme.font(14, weight: .semibold))
+                Text(count == 0
+                     ? DesktopInterfaceText.value("Titles you ignore on the advisory card never show it again.")
+                     : DesktopInterfaceText.value("{count} titles will never show the content advisory again.", variables: ["count": "\(count)"]))
+                    .font(HarborTheme.font(13)).foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            Spacer(minLength: 8)
+            Button(DesktopInterfaceText.value("Restore")) { ContentAdvisoryIgnores.shared.clear() }
+                .disabled(count == 0)
+                .accessibilityIdentifier("settings-content-advisory-restore")
+        }.frame(minHeight: 44)
     }
 
     @ViewBuilder private var videoSettings: some View {
