@@ -1608,3 +1608,14 @@ comments on anime detail pages (read-only) and a relations section that is built
 (built, not called after a profile change), and a sweep of small settings of which only the picture quality preset has an
 effect today. Excluded with reasons are in the audit: settings Desktop never reads, features with no iOS surface, tracker
 avatars that the iOS accounts do not hold.
+
+## Eleventh Haiku round (7 November)
+
+Written by Haiku, merged after review, hooks wired by hand (CI run 42 green, 103 cases): rated posters (RPDB key stored per profile in the
+Keychain, the card poster uses the RPDB image when a key is saved), hero layout settings (shadow strength, full banner,
+full quality, feed) applied in `CinemaHero` and the Home hero, and Settings pages for the artwork keys and the library
+repair preview. Built as pure, tested code but not called by the app yet: Fanart (no detail screen asks for it), TVMaze
+(the calendar does not ask for air times), the three stream pipeline rules (corroborated early-leak rescue, anime
+enrichment and the debrid library merge: they need a change in the Rust ranking, which parses before Swift can act), and
+the library repair apply step (no public write method on the library model). The full hero quality default raises the
+decoded artwork cap from 1400 to 2160 pixels, which costs memory on small iPhones; it follows Desktop's default.

@@ -298,6 +298,13 @@ BEHAVIORS = expand("""
 290 P AniList threads and comments on anime detail pages (read-only); the relations strip is built but not mounted anywhere (7 Nov, written by Haiku, CI runs 37 to 39 green)
 293 P MyAnimeList lists: read-only browse by status with search and type filter (7 Nov, written by Haiku, CI runs 37 to 39 green)
 213 X trailer download, quality and cache: needs yt-dlp and ffmpeg, which a phone does not have
+104 P corroborated early-leak rescue: pure rules and tests exist; the Rust ranking does not call them yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+105 P anime stream enrichment: Desktop's anime parsing as pure functions; the Rust ranking parses before it can use them (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+106 P debrid library merge: matching and merge as pure functions; the pipeline does not list the library yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+265 P library repair preview in Settings; applying the repair needs a write method the library model does not have (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+311 D rated posters: RPDB poster URL for cards when a key is saved (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+312 P Fanart logos and backdrops: provider and ranking exist, no detail screen calls them yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+316 P TVMaze schedules: client and parsing exist; the calendar does not ask it for air times yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)
 """)
 
 SETTINGS = expand("""
@@ -670,6 +677,15 @@ SETTINGS = expand("""
 495 X library hero: the iOS library has no hero
 497 X feed locale bias: iOS Discover has no locale ranking
 502 X pause list status on pause: Desktop never reads it
+8 D RPDB key (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+9 X IMDb API fallback: iOS has no client for it
+10 D Fanart key (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+91 D hero shadow strength on Home (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+92 D full hero banner (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+93 D full quality hero image (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+94 D hero feed choice on Home (7 Nov, written by Haiku, CI run 42 green, 103 cases)
+281 X poster base URL: a custom host would receive the RPDB key
+288 X scroll up to the trailer: needs Desktop's detail scroll behaviour
 """)
 
 def audit(items, verdicts, label):

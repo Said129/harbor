@@ -5,36 +5,36 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 143,
-      "partial": 222,
-      "missing": 28,
+      "ported": 144,
+      "partial": 228,
+      "missing": 21,
       "excluded": 45,
       "counted": 393,
-      "weighted_percent": 64.6,
-      "ported_only_percent": 36.4,
-      "ported_or_partial_percent": 92.9
+      "weighted_percent": 65.6,
+      "ported_only_percent": 36.6,
+      "ported_or_partial_percent": 94.7
     },
     "settings": {
       "total": 511,
-      "ported": 198,
+      "ported": 204,
       "partial": 49,
-      "missing": 52,
-      "excluded": 212,
-      "counted": 299,
-      "weighted_percent": 74.4,
-      "ported_only_percent": 66.2,
-      "ported_or_partial_percent": 82.6
+      "missing": 43,
+      "excluded": 215,
+      "counted": 296,
+      "weighted_percent": 77.2,
+      "ported_only_percent": 68.9,
+      "ported_or_partial_percent": 85.5
     },
     "all": {
       "total": 949,
-      "ported": 341,
-      "partial": 271,
-      "missing": 80,
-      "excluded": 257,
-      "counted": 692,
-      "weighted_percent": 68.9,
-      "ported_only_percent": 49.3,
-      "ported_or_partial_percent": 88.4
+      "ported": 348,
+      "partial": 277,
+      "missing": 64,
+      "excluded": 260,
+      "counted": 689,
+      "weighted_percent": 70.6,
+      "ported_only_percent": 50.5,
+      "ported_or_partial_percent": 90.7
     }
   },
   "behavior_areas": [
@@ -78,10 +78,10 @@
       "area": "Stream pipeline, parser, trust and scoring",
       "range": "B68-B106",
       "ported": 31,
-      "partial": 5,
-      "missing": 3,
+      "partial": 8,
+      "missing": 0,
       "excluded": 0,
-      "weighted_percent": 85.9
+      "weighted_percent": 89.7
     },
     {
       "area": "Resolution and Debrid",
@@ -132,10 +132,10 @@
       "area": "Stremio account, library and local files",
       "range": "B260-B273",
       "ported": 6,
-      "partial": 7,
-      "missing": 1,
+      "partial": 8,
+      "missing": 0,
       "excluded": 0,
-      "weighted_percent": 67.9
+      "weighted_percent": 71.4
     },
     {
       "area": "Trackers",
@@ -149,11 +149,11 @@
     {
       "area": "Metadata providers, calendar and lists",
       "range": "B305-B323",
-      "ported": 7,
-      "partial": 9,
-      "missing": 3,
+      "ported": 8,
+      "partial": 11,
+      "missing": 0,
       "excluded": 0,
-      "weighted_percent": 60.5
+      "weighted_percent": 71.1
     },
     {
       "area": "Profiles, appearance, integrations and system",
@@ -954,22 +954,22 @@
       "index": 104,
       "id": "Corroborated early leak rescue",
       "desktop_source": "src/lib/streams/pipeline.ts",
-      "verdict": "M",
-      "note": "corroborated early-leak rescue (TS side) not ported"
+      "verdict": "P",
+      "note": "corroborated early-leak rescue: pure rules and tests exist; the Rust ranking does not call them yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
     },
     {
       "index": 105,
       "id": "Anime stream enrichment",
       "desktop_source": "src/lib/streams/pipeline.ts",
-      "verdict": "M",
-      "note": "anime stream enrichment not ported"
+      "verdict": "P",
+      "note": "anime stream enrichment: Desktop's anime parsing as pure functions; the Rust ranking parses before it can use them (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
     },
     {
       "index": 106,
       "id": "Debrid library merge",
       "desktop_source": "src/lib/streams/pipeline.ts",
-      "verdict": "M",
-      "note": "streams listed from the debrid library not ported"
+      "verdict": "P",
+      "note": "debrid library merge: matching and merge as pure functions; the pipeline does not list the library yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
     },
     {
       "index": 107,
@@ -2081,8 +2081,8 @@
       "index": 265,
       "id": "Stremio library repair",
       "desktop_source": "src/lib/stremio-library-repair.ts",
-      "verdict": "M",
-      "note": "no library repair"
+      "verdict": "P",
+      "note": "library repair preview in Settings; applying the repair needs a write method the library model does not have (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
     },
     {
       "index": 266,
@@ -2403,15 +2403,15 @@
       "index": 311,
       "id": "RPDB rated posters",
       "desktop_source": "src/lib/providers",
-      "verdict": "M",
-      "note": "no RPDB or Fanart"
+      "verdict": "D",
+      "note": "rated posters: RPDB poster URL for cards when a key is saved (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
     },
     {
       "index": 312,
       "id": "Fanart artwork",
       "desktop_source": "src/lib/providers",
-      "verdict": "M",
-      "note": "no RPDB or Fanart"
+      "verdict": "P",
+      "note": "Fanart logos and backdrops: provider and ranking exist, no detail screen calls them yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
     },
     {
       "index": 313,
@@ -2438,8 +2438,8 @@
       "index": 316,
       "id": "TVMaze schedules",
       "desktop_source": "src/lib/providers",
-      "verdict": "M",
-      "note": "no TVMaze"
+      "verdict": "P",
+      "note": "TVMaze schedules: client and parsing exist; the calendar does not ask it for air times yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
     },
     {
       "index": 317,
@@ -3350,22 +3350,22 @@
       "index": 8,
       "id": "rpdbKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no RPDB/IMDb fallback/Fanart keys"
+      "verdict": "D",
+      "note": "RPDB key (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
     },
     {
       "index": 9,
       "id": "imdbApiFallback",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no RPDB/IMDb fallback/Fanart keys"
+      "verdict": "X",
+      "note": "IMDb API fallback: iOS has no client for it"
     },
     {
       "index": 10,
       "id": "fanartKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no RPDB/IMDb fallback/Fanart keys"
+      "verdict": "D",
+      "note": "Fanart key (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
     },
     {
       "index": 11,
@@ -3931,29 +3931,29 @@
       "index": 91,
       "id": "heroShadow",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hero trailer and hero layout settings"
+      "verdict": "D",
+      "note": "hero shadow strength on Home (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
     },
     {
       "index": 92,
       "id": "heroFull",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hero trailer and hero layout settings"
+      "verdict": "D",
+      "note": "full hero banner (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
     },
     {
       "index": 93,
       "id": "heroFullQuality",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hero trailer and hero layout settings"
+      "verdict": "D",
+      "note": "full quality hero image (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
     },
     {
       "index": 94,
       "id": "heroFeed",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "hero trailer and hero layout settings"
+      "verdict": "D",
+      "note": "hero feed choice on Home (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
     },
     {
       "index": 95,
@@ -5261,8 +5261,8 @@
       "index": 281,
       "id": "posterBaseUrl",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "local playback, media servers, catalog pins, poster URL"
+      "verdict": "X",
+      "note": "poster base URL: a custom host would receive the RPDB key"
     },
     {
       "index": 282,
@@ -5310,8 +5310,8 @@
       "index": 288,
       "id": "scrollUpTrailer",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "scroll up to the trailer: needs Desktop's detail scroll behaviour"
     },
     {
       "index": 289,
