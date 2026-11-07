@@ -1543,3 +1543,14 @@ The owner delegated the default of `animeOnlyInAnimeRoom` to the assistant. It s
 Continue Watching leaves anime out, the Anime tab keeps its own Continue Watching row, and Settings, Interface has a
 "Keep anime in the Anime room only" switch to show anime on Home as well. Reason: the target is a 1:1 port of Desktop
 0.9.132, whose default is on, and nothing is lost because the anime row is one tab away.
+
+## Seventh Haiku round (8 November)
+
+Written by Haiku in separate worktrees, merged after review, hooks wired by hand (CI run 31 green, 80 cases): Wikidata awards on the detail
+page (`TitleAwardsSection` after the media gallery), the local video library (files or folders from the Files app kept as
+bookmarks, grouped like Desktop, an entry next to the library's Local tab), local notifications for upcoming episodes and
+releases (refreshed after the library syncs when the app is active; no background modes), and the stall-switching and
+season-source-lock policies with their settings. The season lock is wired in `DetailModel` (saved after a pick, applied
+to the automatic start); the stall switch only has its policy and setting, because Desktop's rule is a first-load check
+that needs the player's loaded state fed back to the detail model. Excluded with reasons: award tabs on poster cards,
+instant playback preparation, NFO artwork, background scanning.

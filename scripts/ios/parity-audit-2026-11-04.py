@@ -275,6 +275,12 @@ BEHAVIORS = expand("""
 152 D streaming server health check and Test connection (8 Nov, written by Haiku, CI run 25 pending)
 205 D Wyzie subtitles through the optional provider search; wired in the player's addon-subtitle task and compiled, request and parsing tested, not exercised against Wyzie (8 Nov, written by Haiku, CI run 25 pending)
 347 P AI assisted search with own keys; recommendations and the episode mode are not ported (8 Nov, written by Haiku, CI run 25 pending)
+37 D awards drill-down: ceremonies with wins and nominations from Wikidata on the detail page, drill-down per ceremony (8 Nov, written by Haiku, CI run 31 green, 80 cases)
+271 P local file library: the person picks files or a folder in the Files app and they are kept as bookmarks; no background scan (8 Nov, written by Haiku, CI run 31 green, 80 cases)
+272 D local media import through the file picker (8 Nov, written by Haiku, CI run 31 green, 80 cases)
+273 D local episode discovery from file names (8 Nov, written by Haiku, CI run 31 green, 80 cases)
+314 P Wikidata awards for titles; people awards are not ported (8 Nov, written by Haiku, CI run 31 green, 80 cases)
+345 P content notifications as local notifications for upcoming episodes and releases, scheduled while the app is open; Discord and Telegram webhooks stay excluded (8 Nov, written by Haiku, CI run 31 green, 80 cases)
 """)
 
 SETTINGS = expand("""
@@ -570,6 +576,19 @@ SETTINGS = expand("""
 344 X Jimaku token: Desktop has no Jimaku provider, the key is only declared
 345 P SUBDL key stored and used for search; zip downloads not loadable yet (8 Nov, written by Haiku, CI run 25 pending)
 346 P Subsource key stored and used for search; downloads that need the key are not loadable yet (8 Nov, written by Haiku, CI run 25 pending)
+67 X award tabs on poster cards: one Wikidata query per card is too costly on a phone grid
+68 X award tab position: only meaningful with award tabs on poster cards
+174 X instant playback preparation: it pre-creates debrid transfers before Play and iOS has no preparation pipeline
+175 P auto-skip stalled streams: setting and decision policy exist; the player does not feed them yet (8 Nov, written by Haiku, CI run 31 green, 80 cases)
+176 P wait before skipping a stalled stream: stored with the policy (8 Nov, written by Haiku, CI run 31 green, 80 cases)
+178 D stay on one source for a season: saved after a pick and applied to the automatic start in DetailModel (8 Nov, written by Haiku, CI run 31 green, 80 cases)
+268 X NFO poster size: iOS has no NFO artwork
+269 X NFO backdrop size: iOS has no NFO artwork
+270 X NFO logo size: iOS has no NFO artwork
+276 D minimum local file size (8 Nov, written by Haiku, CI run 31 green, 80 cases)
+277 X local auto scan: iOS cannot scan folders in the background
+278 X local scan mode: no background scan on iOS
+358 D local episode sort order (8 Nov, written by Haiku, CI run 31 green, 80 cases)
 """)
 
 def audit(items, verdicts, label):
