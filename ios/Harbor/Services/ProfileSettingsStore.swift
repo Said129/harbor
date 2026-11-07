@@ -60,6 +60,7 @@ struct ContinueWatchingPreferences: Sendable {
         "iphone.theme.preset", "iphone.theme.custom", "iphone.theme.font", "iphone.theme.colors", "seekBarColor",
         "iphone.theme.library", "iphone.theme.backgroundFile", "iphone.theme.backgroundDim",
         "iphone.player-options.v1", "mpvHwdec", "resumePlayback", "resumePrompt", "subtitleAutoSync",
+        "preferEmbeddedSubs", "subtitlePreselect", "subtitleAutoUpgrade", "trackBlockWords", "subAssNormalizeSize", "subSecondaryScale",
         "streamFilterLevel", "streams.addonOrder", "streams.automatic", "keepSourceNextEpisode", "autoNextStreamOnStall", "autoNextStreamOnStallSec", "seasonSourceLock", "streams.excludeCamera", "streams.maximum", "streams.minimum",
         "streams.addonTimeoutSec", "streams.mode", "streams.priority", "streams.pickerLayout", "streams.pickerShowFilename", "streams.fullDescription", "streams.pickerRefreshNextToBack", "streams.languages", "streams.requireLanguage", "streams.rememberLast", "customStreamFilters", "activeStreamFilterId", "customSleepMinutes", "customPlaybackSpeeds", "anilistAutoSync", "malAutoSync", "animeFavoriteGenres", "animeExcludeOrigins", "animeHideWatchedPicks",
         "pluginsEnabled", "pluginsGroupByRepo", "blockTrackers", "hideContent.adult",
