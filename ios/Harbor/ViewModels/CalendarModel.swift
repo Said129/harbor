@@ -22,8 +22,8 @@ final class CalendarModel {
     private var generation = 0
     private var metadata: [String: Media] = [:]
     private var signature = ""
-    func load(month: Date, app: AppModel, source: CalendarSource = .library) async {
-        if source != .library { await loadSource(source, month: month, app: app); return }
+    func load(month: Date, app: AppModel, source: CalendarSource = .library, animeDub: Bool = false) async {
+        if source != .library { await loadSource(source, month: month, app: app, animeDub: animeDub); return }
         generation += 1
         let current = generation
         let accountSignature = app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined()
@@ -65,7 +65,7 @@ final class CalendarModel {
         if failures > 0 && events.isEmpty { error = "No se pudieron recuperar algunas fechas de tu biblioteca. Puedes volver a intentarlo." }
     }
     /// One of Desktop's other sources: All upcoming (TMDB), My Trakt, Trakt anticipated or Anime (AniList).
-    private func loadSource(_ source: CalendarSource, month: Date, app: AppModel) async {
+    private func loadSource(_ source: CalendarSource, month: Date, app: AppModel, animeDub: Bool) async {
         generation += 1
         let current = generation
         loading = true; error = nil; events = []
@@ -97,7 +97,7 @@ final class CalendarModel {
         case .simklAnticipated:
             items = await fetcher.simklPremieres(year: year, month: number)
         case .anime:
-            items = await fetcher.animeAiring(year: year, month: number)
+            items = animeDub ? await fetcher.animeDub(year: year, month: number) : await fetcher.animeAiring(year: year, month: number)
         }
         guard current == generation, !Task.isCancelled else { return }
         events = items.compactMap { item -> ReleaseEvent? in

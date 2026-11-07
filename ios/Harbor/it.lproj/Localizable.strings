@@ -664,6 +664,7 @@
 "Dropped" = "Abbandonato";
 "Dropped (decode / vo)" = "Abbandonato (decodifica / vo)";
 "Dual subtitles" = "Sottotitoli doppi";
+"Dub" = "Dub";
 "Dutch" = "Neerlandese";
 "Día anterior" = "Previous day";
 "Día siguiente" = "Next day";
@@ -1254,6 +1255,7 @@
 "No date" = "Nessuna data";
 "No default profile" = "Nessun profilo predefinito";
 "No description available." = "Nessuna descrizione disponibile.";
+"No dubbed episodes this month" = "No dubbed episodes this month";
 "No episodes found for this season." = "Nessun episodio trovato per questa stagione.";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "Ancora nessun preferito";
@@ -1968,6 +1970,7 @@
 "Strict" = "Rigorosi";
 "Strict filters dropped everything" = "I filtri rigorosi hanno escluso tutto";
 "Styled (ASS) subtitles" = "Sottotitoli con stile (ASS)";
+"Sub" = "Sub";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Carica una tua immagine o scegline una dal catalogo di Harbor.";
 "Subir foto" = "Carica foto";
 "Subir {name}" = "Sposta {name} in alto";
@@ -2069,6 +2072,7 @@
 "The addons did not return metadata for this title." = "Gli addon non hanno restituito metadati per questo titolo.";
 "The authorization code timed out before you finished. Try again." = "Il codice di autorizzazione è scaduto prima che completassi l'operazione. Riprova.";
 "The comics industry's highest honor" = "Il più prestigioso riconoscimento del mondo del fumetto";
+"The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most anticipated upcoming releases on Trakt" = "Le prossime uscite più attese su Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "I film e le serie più visti su {name} in questo momento in {region}.";

@@ -7,6 +7,7 @@ struct CalendarView: View {
     @State private var selected = Date()
     @State private var kind = "all"
     @State private var watchlistOnly = false
+    @State private var animeDub = false
     @AppStorage("calendar.source") private var sourceRaw = CalendarSource.library.rawValue
     @AppStorage("calendar.monday") private var monday = false
     @AppStorage("calendar.large") private var large = false
@@ -36,7 +37,8 @@ struct CalendarView: View {
         case .library: return "\(app.library.owner)|\(period)|\(app.library.items.map { $0.id + $0.modified }.joined())|library"
         case .all: return "\(app.personalOwner)|\(period)|all|\(MetadataPreferences.shared.tmdbKey.hashValue)|\(MetadataPreferences.shared.region)"
         case .trakt: return "\(app.personalOwner)|\(period)|trakt|\(traktConnected)"
-        case .anticipated, .anime, .simklAnticipated: return "\(period)|\(source.rawValue)"
+        case .anticipated, .simklAnticipated: return "\(period)|\(source.rawValue)"
+        case .anime: return "\(period)|anime|\(animeDub)"
         }
     }
     private var daily: [ReleaseEvent] { shown.filter { calendar.isDate($0.date, inSameDayAs: selected) } }
@@ -66,6 +68,12 @@ struct CalendarView: View {
                         }
                     }
                 }.scrollIndicators(.hidden)
+                if source == .anime {
+                    HStack(spacing: 6) {
+                        HarborPill(title: DesktopInterfaceText.value("Sub"), selected: !animeDub) { animeDub = false }.accessibilityIdentifier("calendar-anime-sub")
+                        HarborPill(title: DesktopInterfaceText.value("Dub"), selected: animeDub) { animeDub = true }.accessibilityIdentifier("calendar-anime-dub")
+                    }
+                }
                 if source == .library || source == .all || source == .simklAnticipated {
                     ScrollView(.horizontal) {
                         HStack(spacing: 6) {
@@ -80,7 +88,7 @@ struct CalendarView: View {
                 ScrollView(.horizontal) { HStack(spacing: 6) { HarborPill(title: "Empezar en lunes", selected: monday) { monday.toggle() }; HarborPill(title: "Normal", selected: !large) { large = false }; HarborPill(title: "Grande", selected: large) { large = true } } }.scrollIndicators(.hidden)
                 monthGrid
                 if model.loading { ProgressView("Recuperando fechas…").frame(maxWidth: .infinity) }
-                if let error = model.error { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await model.load(month: month, app: app, source: source) } } }
+                if let error = model.error { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await model.load(month: month, app: app, source: source, animeDub: animeDub) } } }
                 Text(selected.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(interfaceLocale))).font(HarborTheme.font(17, weight: .medium))
                 ForEach(daily) { event in
                     NavigationLink { DetailView(media: event.media, app: app) } label: {
@@ -102,14 +110,14 @@ struct CalendarView: View {
                         }.buttonStyle(HarborAccountButtonStyle(primary: true)).accessibilityIdentifier("calendar-open-settings")
                     }
                 } else if shown.isEmpty && !model.loading && model.error == nil {
-                    let empty = CalendarSources.emptyMonth(source: source, filter: kind, watchlistOnly: watchlistOnly)
+                    let empty = CalendarSources.emptyMonth(source: source, filter: kind, watchlistOnly: watchlistOnly, animeDub: animeDub)
                     CalendarEmptyCard(heading: DesktopInterfaceText.value(empty.heading), message: DesktopInterfaceText.value(empty.message, variables: empty.variables)) { EmptyView() }
                 } else if daily.isEmpty && !model.loading {
                     Text(source == .library ? "No hay estrenos de tu biblioteca para este día." : "No hay estrenos para este día.").font(HarborTheme.font(14)).foregroundStyle(.secondary)
                 }
             }.padding()
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink).environment(\.locale, interfaceLocale).navigationTitle("").toolbar(.hidden, for: .navigationBar)
-            .task(id: loadID) { await model.load(month: month, app: app, source: source) }
+            .task(id: loadID) { await model.load(month: month, app: app, source: source, animeDub: animeDub) }
             .task(id: app.personalOwner) {
                 let trakt = TraktAccountStore.forOwner(app.personalOwner); if !trakt.ready { try? trakt.load() }
                 let simkl = SimklAccountStore.forOwner(app.personalOwner); if !simkl.ready { try? simkl.load() }

@@ -664,6 +664,7 @@
 "Dropped" = "已丢弃";
 "Dropped (decode / vo)" = "丢帧（解码 / vo）";
 "Dual subtitles" = "双字幕";
+"Dub" = "Dub";
 "Dutch" = "荷兰语";
 "Día anterior" = "Previous day";
 "Día siguiente" = "Next day";
@@ -1254,6 +1255,7 @@
 "No date" = "无日期";
 "No default profile" = "无默认个人资料";
 "No description available." = "暂无简介。";
+"No dubbed episodes this month" = "No dubbed episodes this month";
 "No episodes found for this season." = "未找到本季剧集。";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "暂无收藏";
@@ -1968,6 +1970,7 @@
 "Strict" = "严格";
 "Strict filters dropped everything" = "严格筛选已排除所有结果";
 "Styled (ASS) subtitles" = "样式化（ASS）字幕";
+"Sub" = "Sub";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "上传自己的图片，或从 Harbor 图库中选择。";
 "Subir foto" = "上传照片";
 "Subir {name}" = "上移{name}";
@@ -2069,6 +2072,7 @@
 "The addons did not return metadata for this title." = "插件未返回此作品的元数据。";
 "The authorization code timed out before you finished. Try again." = "你未能及时完成操作，授权码已过期。请重试。";
 "The comics industry's highest honor" = "漫画行业的最高荣誉";
+"The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most anticipated upcoming releases on Trakt" = "Trakt 上最受期待的即将上线内容";
 "The most-watched movies and series on {name} right now in {region}." = "{region} 当前在 {name} 上观看人数最多的电影和剧集。";

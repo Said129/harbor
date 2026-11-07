@@ -664,6 +664,7 @@
 "Dropped" = "Terlewat";
 "Dropped (decode / vo)" = "Terlewat (decode / vo)";
 "Dual subtitles" = "Subtitle ganda";
+"Dub" = "Dub";
 "Dutch" = "Belanda";
 "Día anterior" = "Previous day";
 "Día siguiente" = "Next day";
@@ -1254,6 +1255,7 @@
 "No date" = "Tidak ada tanggal";
 "No default profile" = "Tidak ada profil default";
 "No description available." = "Deskripsi tidak tersedia.";
+"No dubbed episodes this month" = "No dubbed episodes this month";
 "No episodes found for this season." = "Tidak ditemukan episode untuk musim ini.";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "Belum ada favorit";
@@ -1968,6 +1970,7 @@
 "Strict" = "Ketat";
 "Strict filters dropped everything" = "Filter ketat menyaring habis semua hasil";
 "Styled (ASS) subtitles" = "Subtitle bergaya (ASS)";
+"Sub" = "Sub";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Unggah gambar Anda sendiri atau pilih dari katalog Harbor.";
 "Subir foto" = "Unggah foto";
 "Subir {name}" = "Pindahkan {name} ke atas";
@@ -2069,6 +2072,7 @@
 "The addons did not return metadata for this title." = "Addon tidak mengembalikan metadata untuk judul ini.";
 "The authorization code timed out before you finished. Try again." = "Kode otorisasi kedaluwarsa sebelum Anda selesai. Coba lagi.";
 "The comics industry's highest honor" = "Penghargaan tertinggi industri komik";
+"The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most anticipated upcoming releases on Trakt" = "Rilisan mendatang yang paling dinantikan di Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Film dan serial yang paling banyak ditonton di {name} saat ini di {region}.";

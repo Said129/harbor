@@ -664,6 +664,7 @@
 "Dropped" = "Descartados";
 "Dropped (decode / vo)" = "Descartados (decodificación / vo)";
 "Dual subtitles" = "Subtítulos duales";
+"Dub" = "Doblado";
 "Dutch" = "Neerlandés";
 "Día anterior" = "Día anterior";
 "Día siguiente" = "Día siguiente";
@@ -1254,6 +1255,7 @@
 "No date" = "Sin fecha";
 "No default profile" = "Sin perfil predeterminado";
 "No description available." = "No hay descripción disponible.";
+"No dubbed episodes this month" = "No hay episodios doblados este mes";
 "No episodes found for this season." = "No se encontraron episodios para esta temporada.";
 "No extensions are available on this server." = "No hay extensiones disponibles en este servidor.";
 "No favorites yet" = "Aún no hay favoritos";
@@ -1968,6 +1970,7 @@
 "Strict" = "Estricto";
 "Strict filters dropped everything" = "Los filtros estrictos descartaron todo";
 "Styled (ASS) subtitles" = "Subtítulos con estilo (ASS)";
+"Sub" = "Subtitulado";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Sube una imagen tuya o elige una del catálogo de Harbor.";
 "Subir foto" = "Subir foto";
 "Subir {name}" = "Subir {name}";
@@ -2069,6 +2072,7 @@
 "The addons did not return metadata for this title." = "Los addons no devolvieron metadata para este título.";
 "The authorization code timed out before you finished. Try again." = "El código de autorización venció antes de que terminaras. Inténtalo de nuevo.";
 "The comics industry's highest honor" = "El máximo honor de la industria del cómic";
+"The dub schedule has no episodes releasing this month. Try a different month." = "El calendario de doblajes no tiene episodios este mes. Prueba con otro mes.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most anticipated upcoming releases on Trakt" = "Los próximos estrenos más esperados en Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Las películas y series más vistas en {name} ahora mismo en {region}.";

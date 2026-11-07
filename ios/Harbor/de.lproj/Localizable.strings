@@ -664,6 +664,7 @@
 "Dropped" = "Verworfen";
 "Dropped (decode / vo)" = "Verworfen (Dekodierung / VO)";
 "Dual subtitles" = "Zwei Untertitelspuren";
+"Dub" = "Dub";
 "Dutch" = "Niederländisch";
 "Día anterior" = "Previous day";
 "Día siguiente" = "Next day";
@@ -1254,6 +1255,7 @@
 "No date" = "Kein Datum";
 "No default profile" = "Kein Standardprofil";
 "No description available." = "Keine Beschreibung verfügbar.";
+"No dubbed episodes this month" = "No dubbed episodes this month";
 "No episodes found for this season." = "Für diese Staffel wurden keine Episoden gefunden.";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "Noch keine Favoriten";
@@ -1968,6 +1970,7 @@
 "Strict" = "Streng";
 "Strict filters dropped everything" = "Strenge Filter haben alles ausgeschlossen";
 "Styled (ASS) subtitles" = "Formatierte Untertitel (ASS)";
+"Sub" = "Sub";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Lade ein eigenes Bild hoch oder wähle eines aus dem Harbor-Katalog.";
 "Subir foto" = "Foto hochladen";
 "Subir {name}" = "{name} nach oben verschieben";
@@ -2069,6 +2072,7 @@
 "The addons did not return metadata for this title." = "Die Addons haben keine Metadaten für diesen Titel geliefert.";
 "The authorization code timed out before you finished. Try again." = "Der Autorisierungscode ist abgelaufen, bevor du fertig warst. Versuche es erneut.";
 "The comics industry's highest honor" = "Die höchste Auszeichnung der Comicbranche";
+"The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most anticipated upcoming releases on Trakt" = "Die am sehnlichsten erwarteten Neuerscheinungen auf Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Die derzeit meistgesehenen Filme und Serien auf {name} in {region}.";

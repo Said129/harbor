@@ -560,6 +560,7 @@
 "Dropped" = "Dropped";
 "Dropped (decode / vo)" = "Dropped (decode / vo)";
 "Dual subtitles" = "Dual subtitles";
+"Dub" = "Dub";
 "Día anterior" = "Previous day";
 "Día siguiente" = "Next day";
 "Dónde aparece" = "Where it shows";
@@ -1061,6 +1062,7 @@
 "No date" = "No date";
 "No default profile" = "No default profile";
 "No description available." = "No description available.";
+"No dubbed episodes this month" = "No dubbed episodes this month";
 "No episodes found for this season." = "No episodes found for this season.";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "No favorites yet";
@@ -1671,6 +1673,7 @@
 "Strict" = "Strict";
 "Strict filters dropped everything" = "Strict filters dropped everything";
 "Styled (ASS) subtitles" = "Styled (ASS) subtitles";
+"Sub" = "Sub";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Upload a picture of your own, or pick one from the Harbor catalog.";
 "Subir foto" = "Upload photo";
 "Subir {name}" = "Move {name} up";
@@ -1758,6 +1761,7 @@
 "That does not look like a valid magnet link or infohash." = "That does not look like a valid magnet link or infohash.";
 "The addons did not return metadata for this title." = "The addons did not return metadata for this title.";
 "The authorization code timed out before you finished. Try again." = "The authorization code timed out before you finished. Try again.";
+"The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most anticipated upcoming releases on Trakt" = "The most anticipated upcoming releases on Trakt";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";

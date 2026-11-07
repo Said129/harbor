@@ -664,6 +664,7 @@
 "Dropped" = "ड्रॉप हुए";
 "Dropped (decode / vo)" = "ड्रॉप हुए (डिकोड / vo)";
 "Dual subtitles" = "दोहरे सबटाइटल";
+"Dub" = "Dub";
 "Dutch" = "डच";
 "Día anterior" = "Previous day";
 "Día siguiente" = "Next day";
@@ -1254,6 +1255,7 @@
 "No date" = "कोई तारीख नहीं";
 "No default profile" = "कोई डिफ़ॉल्ट प्रोफ़ाइल नहीं";
 "No description available." = "कोई विवरण उपलब्ध नहीं है।";
+"No dubbed episodes this month" = "No dubbed episodes this month";
 "No episodes found for this season." = "इस सीज़न के लिए कोई एपिसोड नहीं मिला।";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "अभी कोई पसंदीदा आइटम नहीं";
@@ -1968,6 +1970,7 @@
 "Strict" = "सख्त";
 "Strict filters dropped everything" = "सख्त फ़िल्टरों के कारण सब कुछ हट गया";
 "Styled (ASS) subtitles" = "स्टाइल वाले (ASS) सबटाइटल";
+"Sub" = "Sub";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "अपना चित्र अपलोड करें या Harbor कैटलॉग से चुनें।";
 "Subir foto" = "फ़ोटो अपलोड करें";
 "Subir {name}" = "{name} ऊपर ले जाएँ";
@@ -2069,6 +2072,7 @@
 "The addons did not return metadata for this title." = "ऐडऑन ने इस शीर्षक के लिए कोई मेटाडेटा नहीं दिया।";
 "The authorization code timed out before you finished. Try again." = "आपके पूरा करने से पहले ही ऑथराइज़ेशन कोड की समय-सीमा समाप्त हो गई। फिर से कोशिश करें।";
 "The comics industry's highest honor" = "कॉमिक्स उद्योग का सर्वोच्च सम्मान";
+"The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most anticipated upcoming releases on Trakt" = "Trakt पर आने वाली सबसे बहुप्रतीक्षित रिलीज़";
 "The most-watched movies and series on {name} right now in {region}." = "{region} में इस समय {name} पर सबसे ज़्यादा देखी जा रही फ़िल्में और सीरीज़।";

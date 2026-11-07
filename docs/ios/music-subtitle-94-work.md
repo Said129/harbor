@@ -1409,3 +1409,15 @@ follows the SIMKL toggle in the ratings matrix. Settings row 42 moves to ported.
 SIMKL score and the anime specs (`mal:`, `kitsu:`) are not wired yet.
 
 `ProviderRatingsTests` now has 15 cases; run 15 should include the three new ones.
+
+## Anime Sub/Dub in the calendar (7 November)
+
+The Anime source gets Desktop's Sub/Dub switch. Sub is the AniList schedule as before; Dub reads
+the AniSchedule dub feed (`raw.githubusercontent.com/RockinChaos/AniSchedule/.../dub-schedule.json`),
+kept for 30 minutes and falling back to the last good copy when a read fails (`AnimeDubFeed`),
+and maps it with Desktop's `mapDubFeedToCalendar` rules (episode date in the month, adult titles
+and movies left out, titles from the media then the feed, one item per episode). The empty month
+has its own text ("No dubbed episodes this month"). Spanish texts for the switch were added to the
+native translations because Desktop's Spanish catalog lacks them.
+
+`CalendarSourcesTests` has 16 cases.

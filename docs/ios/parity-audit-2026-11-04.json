@@ -2474,7 +2474,7 @@
       "id": "Calendar source filters",
       "desktop_source": "src/lib/calendar.ts",
       "verdict": "P",
-      "note": "source switcher with library, all upcoming, My Trakt, Trakt anticipated, Simkl premieres and anime (7 Nov, uncompiled); no My Simkl, Custom, dub schedule or games"
+      "note": "source switcher with library, all upcoming, My Trakt, Trakt anticipated, Simkl premieres and anime with its Sub/Dub switch (7 Nov, uncompiled); no My Simkl, Custom or games"
     },
     {
       "index": 322,

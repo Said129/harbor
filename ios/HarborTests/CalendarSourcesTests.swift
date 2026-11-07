@@ -366,6 +366,50 @@ final class CalendarSourcesTests: XCTestCase {
         XCTAssertTrue(none.isEmpty, "A catalog that cannot be read leaves its part empty")
     }
 
+    func testTheDubScheduleListsDubbedEpisodesOfTheMonthAndKeepsTheLastGoodFeed() async {
+        let at = "2026-11-10T15:30:00.000Z"
+        func entry(_ id: Int, mal: Int?, episode: Int?, date: String, english: String = "", romaji: String = "", feedEnglish: String = "", adult: Bool = false, format: String = "TV") -> JSONValue {
+            var title: [String: JSONValue] = [:]
+            title["english"] = .string(english); title["romaji"] = .string(romaji)
+            var cover: [String: JSONValue] = [:]
+            cover["extraLarge"] = .string("x.jpg"); cover["medium"] = .string("m.jpg")
+            var media: [String: JSONValue] = [:]
+            media["id"] = .integer(Int64(id)); media["idMal"] = mal.map { JSONValue.integer(Int64($0)) } ?? JSONValue.null
+            media["isAdult"] = .bool(adult); media["format"] = .string(format); media["title"] = .object(title); media["coverImage"] = .object(cover); media["bannerImage"] = .string("b.jpg")
+            var row: [String: JSONValue] = [:]
+            row["media"] = .object(["media": .object(media)]); row["episodeDate"] = .string(date); row["english"] = .string(feedEnglish)
+            row["episodeNumber"] = episode.map { JSONValue.integer(Int64($0)) } ?? JSONValue.null
+            return .object(row)
+        }
+        let rows = [entry(1, mal: 100, episode: 5, date: at, english: " Show A "), entry(2, mal: nil, episode: 1, date: "2026-11-02T10:00:00Z", romaji: "Romaji B"),
+                    entry(3, mal: 300, episode: 2, date: at, adult: true), entry(4, mal: 400, episode: 2, date: at, format: "MOVIE"), entry(5, mal: 500, episode: nil, date: at),
+                    entry(6, mal: 600, episode: 1, date: "2026-12-01T00:00:00Z"), entry(7, mal: 700, episode: 3, date: at, feedEnglish: "Feed title"),
+                    entry(1, mal: 100, episode: 5, date: at, english: "Show A"), entry(8, mal: 800, episode: 1, date: at)]
+        let items = CalendarSources.dubItems(rows, year: 2026, month: 11, calendar: utc)
+        XCTAssertEqual(items.map(\.id), ["anilist:2:1:1", "mal:100:1:5", "mal:700:1:3", "mal:800:1:1"], "By day, a day keeping the feed order; adult, movies, undated, other months and repeats are left out")
+        XCTAssertEqual(items.map(\.name), ["Romaji B S1E01", "Show A S1E05", "Feed title S1E03", "Untitled S1E01"])
+        XCTAssertEqual(items[1].poster, "x.jpg", "The dub feed prefers the extra large cover"); XCTAssertEqual(items[1].background, "b.jpg"); XCTAssertTrue(items[1].isAnime)
+        XCTAssertEqual(items[1].releaseTime, "3:30 PM"); XCTAssertEqual(items[1].releaseDate, "2026-11-10")
+
+        let log = StringLog()
+        let feed = AnimeDubFeed()
+        let now = Date(timeIntervalSince1970: 1_800_000_000)
+        let first = await feed.entries(now: now) { url in log.add(url.absoluteString); return JSONValue.array(rows) }
+        XCTAssertEqual(first.count, rows.count); XCTAssertEqual(log.entries, [AnimeDubFeed.url.absoluteString])
+        _ = await feed.entries(now: now.addingTimeInterval(29 * 60)) { url in log.add(url.absoluteString); return JSONValue.array([]) }
+        XCTAssertEqual(log.entries.count, 1, "The feed is kept for half an hour")
+        let stale = await feed.entries(now: now.addingTimeInterval(31 * 60)) { url in log.add(url.absoluteString); return nil }
+        XCTAssertEqual(stale.count, rows.count, "A failed read answers the last good feed"); XCTAssertEqual(log.entries.count, 2)
+        let none = await AnimeDubFeed().entries(now: now) { _ in nil }
+        XCTAssertTrue(none.isEmpty)
+
+        let fetcher = CalendarFetcher(json: { _ in JSONValue.array(rows) }, calendar: utc, dubFeed: AnimeDubFeed())
+        let viaFetcher = await fetcher.animeDub(year: 2026, month: 11, now: now)
+        XCTAssertEqual(viaFetcher.count, 4)
+        XCTAssertEqual(CalendarSources.emptyMonth(source: .anime, filter: "all", watchlistOnly: false, animeDub: true).heading, "No dubbed episodes this month")
+        XCTAssertEqual(CalendarSources.emptyMonth(source: .anime, filter: "all", watchlistOnly: false, animeDub: true).message, "The dub schedule has no episodes releasing this month. Try a different month.")
+    }
+
     func testSourcesFollowDesktopsSettingAndEmptyMonthTexts() {
         XCTAssertEqual(CalendarSource.allCases.map(\.rawValue), ["library", "all", "trakt", "anticipated", "simkl-anticipated", "anime"])
         XCTAssertEqual(CalendarSource.offered(traktConnected: true).map(\.rawValue), ["library", "all", "trakt", "anticipated", "anime"])

@@ -688,6 +688,7 @@
 "Dropped" = "مهجور";
 "Dropped (decode / vo)" = "مُسقَطة (فك / إخراج)";
 "Dual subtitles" = "ترجمة مزدوجة";
+"Dub" = "Dub";
 "Dutch" = "الهولندية";
 "Día anterior" = "Previous day";
 "Día siguiente" = "Next day";
@@ -1282,6 +1283,7 @@
 "No date" = "بلا تاريخ";
 "No default profile" = "لا يوجد ملف شخصي افتراضي";
 "No description available." = "لا يوجد وصف متاح.";
+"No dubbed episodes this month" = "No dubbed episodes this month";
 "No episodes found for this season." = "لم يُعثر على حلقات لهذا الموسم.";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "لا مفضّلة بعد";
@@ -2004,6 +2006,7 @@
 "Strict" = "صارم";
 "Strict filters dropped everything" = "الفلاتر الصارمة تجاهلت كل شيء";
 "Styled (ASS) subtitles" = "ترجمات مخصصة (ASS)";
+"Sub" = "Sub";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "ارفع صورتك الخاصة أو اختر صورة من كتالوج Harbor.";
 "Subir foto" = "رفع صورة";
 "Subir {name}" = "نقل {name} لأعلى";
@@ -2106,6 +2109,7 @@
 "The addons did not return metadata for this title." = "لم تُرجع الإضافات بيانات وصفية لهذا العنوان.";
 "The authorization code timed out before you finished. Try again." = "انتهت مهلة رمز التفويض قبل أن تُكمل. حاول مرة أخرى.";
 "The comics industry's highest honor" = "أرفع تكريم في صناعة القصص المصوّرة";
+"The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most anticipated upcoming releases on Trakt" = "أكثر الإصدارات القادمة ترقبًا على Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "أكثر الأفلام والمسلسلات مشاهدةً على {name} الآن في {region}.";

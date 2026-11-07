@@ -333,6 +333,33 @@ enum CalendarSources {
         return byDate(items)
     }
 
+    // MARK: Anime dub schedule (AniSchedule)
+
+    /// Desktop's `mapDubFeedToCalendar`: the dub schedule's episodes of the month, one item per episode.
+    static func dubItems(_ entries: [JSONValue], year: Int, month: Int, calendar: Calendar = .current) -> [CalendarItem] {
+        func clean(_ value: JSONValue) -> String { value.string?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "" }
+        var items: [CalendarItem] = []
+        var seen = Set<String>()
+        for entry in entries {
+            let media = entry["media"]["media"]
+            guard media != .null, media["isAdult"] != .bool(true), media["format"].string != "MOVIE", let episode = entry["episodeNumber"].integer else { continue }
+            let when = CalendarTime.parse(entry["episodeDate"].string, calendar: calendar)
+            guard CalendarTime.inMonth(when.date, year: year, month: month) else { continue }
+            let candidates = [clean(media["title"]["english"]), clean(media["title"]["romaji"]), clean(entry["english"]), clean(entry["romaji"])]
+            let title = candidates.first { !$0.isEmpty } ?? "Untitled"
+            let base: String
+            if let mal = media["idMal"].integer { base = "mal:\(mal)" }
+            else if let id = media["id"].integer { base = "anilist:\(id)" }
+            else { continue }
+            let id = "\(base):1:\(episode)"
+            guard seen.insert(id).inserted else { continue }
+            items.append(CalendarItem(id: id, imdbID: nil, isMovie: false, name: "\(title) S1E\(pad(episode))",
+                                      poster: media["coverImage"]["extraLarge"].string ?? media["coverImage"]["medium"].string, background: media["bannerImage"].string,
+                                      releaseDate: when.date, releaseTime: when.time, releaseAtMs: when.atMs, isAnime: true, overview: "", voteAverage: 0))
+        }
+        return byDate(items)
+    }
+
     // MARK: Library names and empty months
 
     /// Desktop's `normalizeName`.
@@ -350,7 +377,7 @@ enum CalendarSources {
         var variables: [String: String] = [:]
     }
     /// Desktop's `EmptyState` (`views/calendar/empty-states.tsx`): texts are translation keys.
-    static func emptyMonth(source: CalendarSource, filter: String, watchlistOnly: Bool) -> EmptyMonth {
+    static func emptyMonth(source: CalendarSource, filter: String, watchlistOnly: Bool, animeDub: Bool = false) -> EmptyMonth {
         switch source {
         case .library:
             return EmptyMonth(heading: "Nothing from your library this month", message: "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar.")
@@ -361,6 +388,7 @@ enum CalendarSources {
         case .simklAnticipated:
             return EmptyMonth(heading: "No Simkl premieres this month", message: "Simkl lists no new shows or anime premiering this month. Try a different month.")
         case .anime:
+            if animeDub { return EmptyMonth(heading: "No dubbed episodes this month", message: "The dub schedule has no episodes releasing this month. Try a different month.") }
             return EmptyMonth(heading: "Nothing airing this month", message: "AniList has no anime episodes scheduled to air this month. Try a different month.")
         case .all:
             if watchlistOnly { return EmptyMonth(heading: "Nothing this month", message: "Nothing from your library lands this month. Toggle Watchlist off to see all releases.") }
@@ -372,6 +400,21 @@ enum CalendarSources {
     /// A stable sort by day, as Desktop's `localeCompare` of ISO dates.
     static func byDate(_ items: [CalendarItem]) -> [CalendarItem] {
         items.enumerated().sorted { ($0.element.releaseDate, $0.offset) < ($1.element.releaseDate, $1.offset) }.map(\.element)
+    }
+}
+
+/// The AniSchedule dub feed, kept for half an hour (Desktop's `fetchDubSchedule`); a failed read answers the last good one.
+actor AnimeDubFeed {
+    static let shared = AnimeDubFeed()
+    static let url = URL(string: "https://raw.githubusercontent.com/RockinChaos/AniSchedule/master/raw/dub-schedule.json")!
+    static let staleAfter: TimeInterval = 30 * 60
+    private var cache: (entries: [JSONValue], at: Date)?
+
+    func entries(now: Date = Date(), fetch: @Sendable (URL) async -> JSONValue?) async -> [JSONValue] {
+        if let cache, now.timeIntervalSince(cache.at) < Self.staleAfter { return cache.entries }
+        guard let value = await fetch(Self.url), case .array(let rows) = value else { return cache?.entries ?? [] }
+        cache = (rows, now)
+        return rows
     }
 }
 
@@ -397,6 +440,7 @@ struct CalendarFetcher: Sendable {
         return Media.parse(value["meta"], kind: kind)
     }
     var calendar: Calendar = .current
+    var dubFeed: AnimeDubFeed = .shared
 
     private func results(_ url: URL?) async -> [JSONValue] {
         guard let url, let value = await json(url) else { return [] }
@@ -472,6 +516,12 @@ struct CalendarFetcher: Sendable {
         async let movies = simklCatalog("movie", year: year, month: month)
         let (a, b, c) = await (shows, anime, movies)
         return CalendarSources.byDate(a + b + c)
+    }
+
+    /// Anime (Dub): the dub schedule's episodes of the month.
+    func animeDub(year: Int, month: Int, now: Date = Date()) async -> [CalendarItem] {
+        let rows = await dubFeed.entries(now: now, fetch: json)
+        return CalendarSources.dubItems(rows, year: year, month: month, calendar: calendar)
     }
 
     /// Anime: what AniList schedules to air in the month, a few pages at a time.

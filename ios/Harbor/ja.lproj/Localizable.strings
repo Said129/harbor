@@ -664,6 +664,7 @@
 "Dropped" = "中断";
 "Dropped (decode / vo)" = "ドロップ（デコード / vo）";
 "Dual subtitles" = "2言語字幕";
+"Dub" = "Dub";
 "Dutch" = "オランダ語";
 "Día anterior" = "Previous day";
 "Día siguiente" = "Next day";
@@ -1254,6 +1255,7 @@
 "No date" = "日付未定";
 "No default profile" = "既定のプロフィールなし";
 "No description available." = "説明はありません。";
+"No dubbed episodes this month" = "No dubbed episodes this month";
 "No episodes found for this season." = "このシーズンのエピソードが見つかりません。";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "お気に入りはまだありません";
@@ -1968,6 +1970,7 @@
 "Strict" = "厳格";
 "Strict filters dropped everything" = "厳格なフィルターですべて除外されました";
 "Styled (ASS) subtitles" = "装飾付き（ASS）字幕";
+"Sub" = "Sub";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "自分の画像をアップロードするか、Harbor のカタログから選んでください。";
 "Subir foto" = "写真をアップロード";
 "Subir {name}" = "{name}を上に移動";
@@ -2069,6 +2072,7 @@
 "The addons did not return metadata for this title." = "アドオンからこの作品のメタデータが返されませんでした。";
 "The authorization code timed out before you finished. Try again." = "完了前に認証コードの有効期限が切れました。もう一度お試しください。";
 "The comics industry's highest honor" = "コミック業界最高の栄誉";
+"The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most anticipated upcoming releases on Trakt" = "Traktで最も期待されている新作";
 "The most-watched movies and series on {name} right now in {region}." = "現在{region}の{name}で最も視聴されている映画とシリーズです。";

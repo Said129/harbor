@@ -664,6 +664,7 @@
 "Dropped" = "Abandonné";
 "Dropped (decode / vo)" = "Images perdues (décodage / vo)";
 "Dual subtitles" = "Sous-titres doubles";
+"Dub" = "Dub";
 "Dutch" = "Néerlandais";
 "Día anterior" = "Previous day";
 "Día siguiente" = "Next day";
@@ -1254,6 +1255,7 @@
 "No date" = "Aucune date";
 "No default profile" = "Aucun profil par défaut";
 "No description available." = "Aucune description disponible.";
+"No dubbed episodes this month" = "No dubbed episodes this month";
 "No episodes found for this season." = "Aucun épisode trouvé pour cette saison.";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "Aucun favori pour le moment";
@@ -1968,6 +1970,7 @@
 "Strict" = "Strict";
 "Strict filters dropped everything" = "Les filtres stricts ont tout exclu";
 "Styled (ASS) subtitles" = "Sous-titres stylisés (ASS)";
+"Sub" = "Sub";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Importez votre propre image ou choisissez-en une dans le catalogue Harbor.";
 "Subir foto" = "Importer une photo";
 "Subir {name}" = "Monter {name}";
@@ -2069,6 +2072,7 @@
 "The addons did not return metadata for this title." = "Les extensions n’ont renvoyé aucune métadonnée pour ce titre.";
 "The authorization code timed out before you finished. Try again." = "Le code d’autorisation a expiré avant la fin de l’opération. Réessayez.";
 "The comics industry's highest honor" = "La plus haute distinction de l’industrie de la bande dessinée";
+"The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most anticipated upcoming releases on Trakt" = "Les prochaines sorties les plus attendues sur Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Les films et séries les plus regardés sur {name} en ce moment dans la région {region}.";

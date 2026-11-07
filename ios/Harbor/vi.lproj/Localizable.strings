@@ -664,6 +664,7 @@
 "Dropped" = "Đã ngừng";
 "Dropped (decode / vo)" = "Khung hình bị bỏ (giải mã / vo)";
 "Dual subtitles" = "Phụ đề kép";
+"Dub" = "Dub";
 "Dutch" = "Tiếng Hà Lan";
 "Día anterior" = "Previous day";
 "Día siguiente" = "Next day";
@@ -1254,6 +1255,7 @@
 "No date" = "Không có ngày";
 "No default profile" = "Không có hồ sơ mặc định";
 "No description available." = "Không có mô tả.";
+"No dubbed episodes this month" = "No dubbed episodes this month";
 "No episodes found for this season." = "Không tìm thấy tập nào cho mùa này.";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "Chưa có mục yêu thích";
@@ -1968,6 +1970,7 @@
 "Strict" = "Nghiêm ngặt";
 "Strict filters dropped everything" = "Bộ lọc nghiêm ngặt đã loại bỏ tất cả";
 "Styled (ASS) subtitles" = "Phụ đề có định dạng (ASS)";
+"Sub" = "Sub";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Tải lên ảnh của bạn hoặc chọn một ảnh từ danh mục Harbor.";
 "Subir foto" = "Tải ảnh lên";
 "Subir {name}" = "Chuyển {name} lên";
@@ -2069,6 +2072,7 @@
 "The addons did not return metadata for this title." = "Các tiện ích không trả về siêu dữ liệu cho tựa phim này.";
 "The authorization code timed out before you finished. Try again." = "Mã ủy quyền đã hết hạn trước khi bạn hoàn tất. Hãy thử lại.";
 "The comics industry's highest honor" = "Giải thưởng danh giá nhất của ngành truyện tranh";
+"The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most anticipated upcoming releases on Trakt" = "Các nội dung sắp ra mắt được mong đợi nhất trên Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Các phim điện ảnh và phim bộ được xem nhiều nhất trên {name} hiện nay tại {region}.";

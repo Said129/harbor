@@ -664,6 +664,7 @@
 "Dropped" = "Porzucone";
 "Dropped (decode / vo)" = "Pominięte (dekodowanie / vo)";
 "Dual subtitles" = "Podwójne napisy";
+"Dub" = "Dub";
 "Dutch" = "niderlandzki";
 "Día anterior" = "Previous day";
 "Día siguiente" = "Next day";
@@ -1254,6 +1255,7 @@
 "No date" = "Brak daty";
 "No default profile" = "Brak profilu domyślnego";
 "No description available." = "Brak dostępnego opisu.";
+"No dubbed episodes this month" = "No dubbed episodes this month";
 "No episodes found for this season." = "Nie znaleziono odcinków w tym sezonie.";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "Nie masz jeszcze ulubionych";
@@ -1968,6 +1970,7 @@
 "Strict" = "Rygorystyczny";
 "Strict filters dropped everything" = "Ścisłe filtry odrzuciły wszystkie wyniki";
 "Styled (ASS) subtitles" = "Stylizowane napisy (ASS)";
+"Sub" = "Sub";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Prześlij własne zdjęcie lub wybierz obraz z katalogu Harbor.";
 "Subir foto" = "Prześlij zdjęcie";
 "Subir {name}" = "Przenieś {name} w górę";
@@ -2069,6 +2072,7 @@
 "The addons did not return metadata for this title." = "Dodatki nie zwróciły metadanych dla tego tytułu.";
 "The authorization code timed out before you finished. Try again." = "Kod autoryzacyjny wygasł przed ukończeniem procesu. Spróbuj ponownie.";
 "The comics industry's highest honor" = "Najwyższe wyróżnienie w branży komiksowej";
+"The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most anticipated upcoming releases on Trakt" = "Najbardziej oczekiwane nadchodzące premiery w Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Najczęściej oglądane obecnie filmy i seriale w {name} w regionie {region}.";

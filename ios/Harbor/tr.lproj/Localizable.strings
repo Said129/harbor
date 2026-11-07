@@ -664,6 +664,7 @@
 "Dropped" = "Yarım bırakıldı";
 "Dropped (decode / vo)" = "Atlanan (decode / vo)";
 "Dual subtitles" = "Çift altyazı";
+"Dub" = "Dub";
 "Dutch" = "Felemenkçe";
 "Día anterior" = "Previous day";
 "Día siguiente" = "Next day";
@@ -1254,6 +1255,7 @@
 "No date" = "Tarih yok";
 "No default profile" = "Varsayılan profil yok";
 "No description available." = "Açıklama yok.";
+"No dubbed episodes this month" = "No dubbed episodes this month";
 "No episodes found for this season." = "Bu sezon için bölüm bulunamadı.";
 "No extensions are available on this server." = "No extensions are available on this server.";
 "No favorites yet" = "Henüz favori yok";
@@ -1968,6 +1970,7 @@
 "Strict" = "Katı";
 "Strict filters dropped everything" = "Katı filtreler tüm sonuçları eledi";
 "Styled (ASS) subtitles" = "Biçimlendirilmiş (ASS) altyazılar";
+"Sub" = "Sub";
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Kendi resminizi yükleyin veya Harbor kataloğundan bir tane seçin.";
 "Subir foto" = "Fotoğraf yükle";
 "Subir {name}" = "{name} öğesini yukarı taşı";
@@ -2069,6 +2072,7 @@
 "The addons did not return metadata for this title." = "Eklentiler bu başlık için meta veri döndürmedi.";
 "The authorization code timed out before you finished. Try again." = "Siz işlemi tamamlamadan yetkilendirme kodunun süresi doldu. Tekrar deneyin.";
 "The comics industry's highest honor" = "Çizgi roman sektörünün en büyük onuru";
+"The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most anticipated upcoming releases on Trakt" = "Trakt'ta yakında yayınlanacak en çok beklenen içerikler";
 "The most-watched movies and series on {name} right now in {region}." = "Şu anda {region} bölgesinde {name} platformunda en çok izlenen filmler ve diziler.";

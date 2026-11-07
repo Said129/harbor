@@ -211,7 +211,7 @@ BEHAVIORS = expand("""
 317-318 D Kitsu (AnimeService), AniZip mappings
 319 P Jikan in AnimeService
 320 P earlier review Partial
-321 P source switcher with library, all upcoming, My Trakt, Trakt anticipated, Simkl premieres and anime (7 Nov, uncompiled); no My Simkl, Custom, dub schedule or games
+321 P source switcher with library, all upcoming, My Trakt, Trakt anticipated, Simkl premieres and anime with its Sub/Dub switch (7 Nov, uncompiled); no My Simkl, Custom or games
 322 P earlier review Partial
 323 D CustomListStore
 324-327 D household profiles, switching, per-profile settings, identity sync
