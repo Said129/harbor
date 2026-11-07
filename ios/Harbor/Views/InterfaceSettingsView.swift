@@ -25,6 +25,7 @@ struct InterfaceSettingsView: View {
                     }.buttonStyle(.plain).accessibilityIdentifier("settings-navigation")
                     HarborSettingsToggle(DesktopInterfaceText.value("Hide watched titles in catalogs"), note: DesktopInterfaceText.value("Movies you've watched and shows you've made progress on stop appearing in the built-in catalog rows, using your local watch history (and Trakt if connected). Continue Watching is never touched."), isOn: $preferences.hideWatchedInCatalogs).accessibilityIdentifier("settings-hide-watched")
                     HarborSettingsToggle(DesktopInterfaceText.value("Hide unreleased titles"), note: DesktopInterfaceText.value("Movies and shows with a future release date stop appearing in the built-in home catalog rows, so Home only shows what you can watch right now."), isOn: $preferences.hideUnreleased).accessibilityIdentifier("settings-hide-unreleased")
+                    HarborSettingsToggle(DesktopInterfaceText.value("Watchlist shows only saved titles"), note: DesktopInterfaceText.value("Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play."), isOn: $preferences.libraryBookmarkedOnly).accessibilityIdentifier("settings-library-bookmarked-only")
                 }
                 HarborSettingsSection(DesktopInterfaceText.value("Poster cards")) {
                     Text(DesktopInterfaceText.value("Scores")).font(HarborTheme.font(14, weight: .semibold))

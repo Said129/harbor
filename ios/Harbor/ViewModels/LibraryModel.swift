@@ -178,7 +178,7 @@ final class LibraryModel {
                 }
             } else { selected = items.filter { $0.bookmarked || $0.continuing || $0.watched } }
         case .saved: selected = watchlistProjection?.saved ?? items.filter(\.bookmarked)
-        case .watchlist: selected = (watchlistProjection?.saved ?? items.filter(\.bookmarked)).filter { !$0.watched }
+        case .watchlist: selected = watchlistRecords(bookmarkedOnly: InterfacePreferences.shared.libraryBookmarkedOnly).filter { !$0.watched }
         case .watched: selected = items.filter(\.watched)
         case .favorites:
             selected = favorites.entries.map { favorite in
@@ -190,6 +190,17 @@ final class LibraryModel {
         case .continuing: selected = continuing
         }
         return selected
+    }
+    /// Watchlist candidates before the watched cut. With bookmarked-only on this is the saved list unchanged.
+    /// Off, unstarted Stremio auto-added entries join it, skipping any Trakt key the saved list already covers.
+    private func watchlistRecords(bookmarkedOnly: Bool) -> [LibraryRecord] {
+        if bookmarkedOnly { return watchlistProjection?.saved ?? items.filter(\.bookmarked) }
+        guard let projection = watchlistProjection else { return LibraryWatchlistFilter.filter(items, bookmarkedOnly: false) }
+        let autoAdded: [LibraryRecord] = items.filter { (record: LibraryRecord) -> Bool in
+            guard LibraryWatchlistFilter.includes(record, bookmarkedOnly: false), let media = record.media else { return false }
+            return projection.keys.isDisjoint(with: TraktWatchlistProjection.keys(media))
+        }
+        return projection.saved + autoAdded
     }
     func reloadPresentation() {
         presentationReady = false
