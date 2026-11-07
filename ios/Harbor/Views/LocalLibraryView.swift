@@ -1,5 +1,10 @@
 import SwiftUI
 
+/// What the single file importer is picking. One importer per view: SwiftUI can drop all but the last one attached.
+private enum LocalImportMode {
+    case files, folder
+}
+
 /// The person's own video files, opened through security-scoped bookmarks. Nothing is copied or scanned in the background.
 struct LocalLibraryView: View {
     let app: AppModel
@@ -7,9 +12,10 @@ struct LocalLibraryView: View {
     @State private var playback: PlaybackSession?
     @State private var playbackTitle = "Harbor"
     @State private var access: LocalLibraryFileAccess?
-    @State private var importingFiles = false
-    @State private var importingFolder = false
-    @State private var message: String?
+    @State private var importing = false
+    @State private var importMode = LocalImportMode.files
+    @State private var failure: String?
+    @State private var notice: String?
     @AppStorage(LocalLibraryPreferences.minimumSizeKey) private var minimumMB = LocalLibraryPreferences.defaultMinimumSizeMB
     @AppStorage(LocalLibraryPreferences.sortKey) private var sortRaw = LocalLibrarySortKey.added.rawValue
     @AppStorage(LocalLibraryPreferences.sortDescendingKey) private var sortDescending = true
@@ -51,19 +57,19 @@ struct LocalLibraryView: View {
                 minimumSizeRow
                 Toggle(text("Sort episodes"), isOn: $episodesDescending)
             }
-            if let notice = message ?? store.error {
-                Section { Text(notice).font(.caption).foregroundStyle(.orange) }
+            if let notice = notice {
+                Section { Text(notice).font(.caption).foregroundStyle(.secondary) }
+            }
+            if let problem = failure ?? store.error {
+                Section { Text(problem).font(.caption).foregroundStyle(.orange) }
             }
             movieSection
             showSections
             if groups.isEmpty { emptySection }
         }
         .navigationTitle(text("Local")).navigationBarTitleDisplayMode(.inline)
-        .fileImporter(isPresented: $importingFiles, allowedContentTypes: LocalLibraryStore.contentTypes, allowsMultipleSelection: true) { result in
-            addFiles(result)
-        }
-        .fileImporter(isPresented: $importingFolder, allowedContentTypes: [.folder]) { result in
-            addFolder(result)
+        .fileImporter(isPresented: $importing, allowedContentTypes: importTypes, allowsMultipleSelection: importMode == .files) { result in
+            handleImport(result)
         }
         .fullScreenCover(item: $playback, onDismiss: { endAccess() }) { session in
             PlayerView(session: session, resume: app.resume, title: playbackTitle, media: nil, library: app.library)
@@ -75,13 +81,17 @@ struct LocalLibraryView: View {
         }
     }
 
+    private var importTypes: [UTType] {
+        importMode == .folder ? [UTType.folder] : LocalLibraryStore.contentTypes
+    }
+
     // MARK: - Controls
 
     private var addButtons: some View {
         HStack(spacing: 10) {
-            Button(text(store.records.isEmpty ? "Choose folder" : "Add folder")) { importingFolder = true }
+            Button(text(store.records.isEmpty ? "Choose folder" : "Add folder")) { startImport(.folder) }
                 .buttonStyle(.bordered)
-            Button(text("Add files from your computer")) { importingFiles = true }
+            Button(text("Add files from your computer")) { startImport(.files) }
                 .buttonStyle(.bordered)
         }
     }
@@ -199,9 +209,48 @@ struct LocalLibraryView: View {
 
     // MARK: - Actions
 
+    private func startImport(_ mode: LocalImportMode) {
+        importMode = mode
+        failure = nil
+        notice = nil
+        importing = true
+    }
+
+    private func handleImport(_ result: Result<[URL], Error>) {
+        guard case .success(let urls) = result, !urls.isEmpty else { return }
+        if importMode == .folder {
+            addFolder(urls[0])
+        } else {
+            addFiles(urls)
+        }
+    }
+
+    private func addFiles(_ urls: [URL]) {
+        do {
+            try store.addFiles(urls)
+        } catch {
+            failure = text("Couldn't open this file")
+        }
+    }
+
+    private func addFolder(_ folder: URL) {
+        do {
+            let added = try store.addFolder(folder, megabytes: minimumMB)
+            if added == 0 {
+                failure = text("No video files found in that folder.")
+            } else if added == 1 {
+                notice = text("Added 1 new title from your folders")
+            } else {
+                notice = text("Added {n} new titles from your folders", variables: ["n": String(added)])
+            }
+        } catch {
+            failure = text("Couldn't scan that folder.")
+        }
+    }
+
     private func play(_ record: LocalLibraryRecord) {
         guard playback == nil else { return }
-        message = nil
+        failure = nil
         do {
             let opened = try store.openForPlayback(record)
             endAccess()
@@ -209,7 +258,7 @@ struct LocalLibraryView: View {
             playbackTitle = record.parsed.title
             // Local files have no catalog id, so progress is not sent to the library. Playback starts at 0.
             playback = PlaybackSession(
-                source: PlaybackSource(url: opened.url.path, headers: nil, subtitles: nil, via: "local"),
+                source: PlaybackSource(url: opened.file.path, headers: nil, subtitles: nil, via: "local"),
                 target: ResumeTarget(id: "local:" + record.id),
                 startMs: 0,
                 storageWarning: nil,
@@ -218,7 +267,7 @@ struct LocalLibraryView: View {
                 personalOwner: owner
             )
         } catch {
-            message = text("Couldn't open this file")
+            failure = text("Couldn't open this file")
         }
     }
 
@@ -231,27 +280,7 @@ struct LocalLibraryView: View {
         do {
             try store.remove(ids: Set(records.map(\.id)))
         } catch {
-            message = text("Couldn't open this file")
-        }
-    }
-
-    private func addFiles(_ result: Result<[URL], Error>) {
-        guard case .success(let urls) = result else { return }
-        do {
-            try store.addFiles(urls)
-            message = nil
-        } catch {
-            message = text("Couldn't open this file")
-        }
-    }
-
-    private func addFolder(_ result: Result<URL, Error>) {
-        guard case .success(let folder) = result else { return }
-        do {
-            try store.addFolder(folder, megabytes: minimumMB)
-            message = nil
-        } catch {
-            message = text("Couldn't open this file")
+            failure = text("Couldn't open this file")
         }
     }
 }

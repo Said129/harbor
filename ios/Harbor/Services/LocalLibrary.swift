@@ -30,22 +30,32 @@ struct LocalParsedFilename: Equatable, Sendable {
     }
 }
 
-/// One file in the local library. The bookmark is the only way back to the file: Harbor never copies it.
+/// A folder the person picked. Its bookmark opens every file inside it, so Harbor never copies or re-bookmarks them.
+struct LocalLibraryFolder: Codable, Equatable, Identifiable, Sendable {
+    let id: String
+    let name: String
+    let bookmark: Data
+}
+
+/// One video file in the local library. Harbor never copies the file: it opens through `bookmark` (a picked file)
+/// or through its folder's bookmark plus `relativePath` (a file inside a picked folder).
 struct LocalLibraryRecord: Codable, Equatable, Identifiable, Sendable {
     let id: String
     let filename: String
-    let bookmark: Data
+    /// Bookmark of an individually picked file. Nil for files inside a picked folder.
+    let bookmark: Data?
     let size: Int64?
     let addedAt: Date
-    /// Name of the folder the person picked, or nil for an individually picked file.
-    let folder: String?
+    let folderID: String?
+    /// The picked folder's name, for display.
+    let folderName: String?
     /// Path inside the picked folder, or the filename for an individually picked file.
     let relativePath: String
 
     var parsed: LocalParsedFilename { LocalFilenameParser.parse(filename) }
 
     func withBookmark(_ data: Data) -> LocalLibraryRecord {
-        LocalLibraryRecord(id: id, filename: filename, bookmark: data, size: size, addedAt: addedAt, folder: folder, relativePath: relativePath)
+        LocalLibraryRecord(id: id, filename: filename, bookmark: data, size: size, addedAt: addedAt, folderID: folderID, folderName: folderName, relativePath: relativePath)
     }
 }
 
@@ -173,7 +183,7 @@ enum LocalFilenameParser {
 
     /// Desktop's `parseFilename`.
     static func parse(_ filename: String) -> LocalParsedFilename {
-        let stem = stem(filename)
+        let stem = Self.stem(filename)
         let span = episodeSpan(stem)
         let tv = firstMatch(tvPattern, in: stem)
         let extras: RegexMatch? = (span == nil && tv == nil) ? firstMatch(extrasPattern, in: stem) : nil

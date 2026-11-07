@@ -2,7 +2,7 @@ import Foundation
 import Observation
 import UniformTypeIdentifiers
 
-/// Creates and resolves the security-scoped bookmarks that stand in for the picked files.
+/// Creates and resolves the security-scoped bookmarks that stand in for the picked files and folders.
 protocol LocalLibraryBookmarks: Sendable {
     func bookmark(for url: URL) throws -> Data
     func resolve(_ data: Data) throws -> (url: URL, stale: Bool)
@@ -21,24 +21,27 @@ struct SystemLocalLibraryBookmarks: LocalLibraryBookmarks {
     }
 }
 
-/// Holds access to one file while it plays. Call `end()` when the player closes.
+/// Holds access to a bookmarked scope (a file, or a picked folder) while the file plays. Call `end()` when the player closes.
 @MainActor final class LocalLibraryFileAccess {
-    let url: URL
+    /// The video file to play.
+    let file: URL
+    private let scope: URL
     private var started: Bool
 
-    init(url: URL) {
-        self.url = url
-        started = url.startAccessingSecurityScopedResource()
+    init(scope: URL, file: URL) {
+        self.scope = scope
+        self.file = file
+        started = scope.startAccessingSecurityScopedResource()
     }
 
     func end() {
         guard started else { return }
         started = false
-        url.stopAccessingSecurityScopedResource()
+        scope.stopAccessingSecurityScopedResource()
     }
 }
 
-/// A file found inside a picked folder, before its bookmark is made.
+/// A file found inside a picked folder, before it is recorded.
 struct LocalLibraryFolderEntry: Sendable {
     let url: URL
     let relativePath: String
@@ -81,14 +84,16 @@ enum LocalLibraryFolderScan {
 private struct LocalLibraryDocument: Codable, Sendable {
     var version = 1
     var records: [LocalLibraryRecord] = []
+    var folders: [LocalLibraryFolder] = []
 }
 
-/// The local library for one profile: a JSON list of bookmarks in Application Support, never the files themselves.
+/// The local library for one profile: bookmarks in Application Support, never copies of the files.
 /// Bookmarks are device-specific, so the file is excluded from backups.
 @MainActor @Observable final class LocalLibraryStore {
     @ObservationIgnored private let fileURL: URL?
     @ObservationIgnored private let bookmarks: any LocalLibraryBookmarks
     private(set) var records: [LocalLibraryRecord] = []
+    private(set) var folders: [LocalLibraryFolder] = []
     /// False when the saved file could not be read. Writes are refused then, so the damaged file is kept.
     private(set) var ready = false
     private(set) var error: String?
@@ -125,107 +130,147 @@ private struct LocalLibraryDocument: Codable, Sendable {
         do {
             if FileManager.default.fileExists(atPath: fileURL.path) {
                 let data = try Data(contentsOf: fileURL)
-                records = try JSONDecoder().decode(LocalLibraryDocument.self, from: data).records
+                let document = try JSONDecoder().decode(LocalLibraryDocument.self, from: data)
+                records = document.records
+                folders = document.folders
             } else {
                 records = []
+                folders = []
             }
             ready = true
             error = nil
         } catch {
             records = []
+            folders = []
             ready = false
             self.error = DesktopInterfaceText.value("Couldn't open this file")
         }
     }
 
     /// Adds picked video files. Each URL must come straight from the file picker.
+    /// Returns how many picked videos were valid. A file already in the library still counts, so picking it again is not an error.
     @discardableResult
     func addFiles(_ urls: [URL]) throws -> Int {
         guard ready else { throw HarborError(code: "local-library") }
         var next = records
-        var known = Set(next.map { Self.identity(folder: $0.folder, path: $0.relativePath) })
+        var known = Set(next.filter { $0.folderID == nil }.map(\.relativePath))
         var accepted = 0
-        var added = 0
         for url in urls {
-            guard let record = try? makeRecord(url, folder: nil, relativePath: url.lastPathComponent) else { continue }
-            // A file already in the library counts as accepted, so picking it again is not an error.
+            guard let record = try? makeRecord(url) else { continue }
             accepted += 1
-            let id = Self.identity(folder: nil, path: record.relativePath)
-            guard !known.contains(id) else { continue }
-            known.insert(id)
+            guard !known.contains(record.relativePath) else { continue }
+            known.insert(record.relativePath)
             next.append(record)
-            added += 1
         }
         if accepted == 0 && !urls.isEmpty { throw HarborError(code: "local-library-import") }
-        if added > 0 { try commit(next) }
-        return added
+        if next.count != records.count { try commit(records: next, folders: folders) }
+        return accepted
     }
 
-    /// Adds the video files under a picked folder, skipping files below the minimum size, as Desktop's scan does.
+    /// Adds the video files under a picked folder, skipping files below the minimum size as Desktop's scan does.
+    /// Returns the number of new files. The folder is bookmarked once; its files open through that bookmark.
     @discardableResult
     func addFolder(_ folder: URL, megabytes: Int) throws -> Int {
         guard ready else { throw HarborError(code: "local-library") }
         let opened = folder.startAccessingSecurityScopedResource()
         defer { if opened { folder.stopAccessingSecurityScopedResource() } }
-        let name = folder.lastPathComponent
         let minimum = Int64(max(0, megabytes)) * 1_048_576
-        var next = records
-        var known = Set(next.map { Self.identity(folder: $0.folder, path: $0.relativePath) })
+        var nextFolders = folders
+        let folderID: String
+        if let existing = folders.first(where: { isSameFolder($0, folder) }) {
+            folderID = existing.id
+        } else {
+            let data = try bookmarks.bookmark(for: folder)
+            let created = LocalLibraryFolder(id: UUID().uuidString, name: folder.lastPathComponent, bookmark: data)
+            nextFolders.append(created)
+            folderID = created.id
+        }
+        var nextRecords = records
+        var known = Set(nextRecords.filter { $0.folderID == folderID }.map(\.relativePath))
         var added = 0
         for entry in try LocalLibraryFolderScan.videoFiles(in: folder) {
             if let size = entry.size, size < minimum { continue }
-            let id = Self.identity(folder: name, path: entry.relativePath)
-            guard !known.contains(id) else { continue }
-            guard let data = try? bookmarks.bookmark(for: entry.url) else { continue }
-            known.insert(id)
-            let record = LocalLibraryRecord(id: UUID().uuidString, filename: entry.url.lastPathComponent, bookmark: data, size: entry.size, addedAt: Date(), folder: name, relativePath: entry.relativePath)
-            next.append(record)
+            guard !known.contains(entry.relativePath) else { continue }
+            known.insert(entry.relativePath)
+            let record = LocalLibraryRecord(
+                id: UUID().uuidString,
+                filename: entry.url.lastPathComponent,
+                bookmark: nil,
+                size: entry.size,
+                addedAt: Date(),
+                folderID: folderID,
+                folderName: folder.lastPathComponent,
+                relativePath: entry.relativePath
+            )
+            nextRecords.append(record)
             added += 1
         }
-        if added > 0 { try commit(next) }
+        if added > 0 { try commit(records: nextRecords, folders: nextFolders) }
         return added
     }
 
     func remove(ids: Set<String>) throws {
-        try commit(records.filter { !ids.contains($0.id) })
+        try commit(records: records.filter { !ids.contains($0.id) }, folders: folders)
     }
 
     /// Resolves a record for playback. The caller keeps the returned access until the player closes.
     func openForPlayback(_ record: LocalLibraryRecord) throws -> LocalLibraryFileAccess {
         guard ready else { throw HarborError(code: "local-library") }
-        let resolved = try bookmarks.resolve(record.bookmark)
-        let access = LocalLibraryFileAccess(url: resolved.url)
-        guard FileManager.default.fileExists(atPath: resolved.url.path) else {
+        if let data = record.bookmark {
+            let resolved = try bookmarks.resolve(data)
+            let access = LocalLibraryFileAccess(scope: resolved.url, file: resolved.url)
+            guard FileManager.default.fileExists(atPath: resolved.url.path) else {
+                access.end()
+                throw HarborError(code: "local-library-missing")
+            }
+            // A stale bookmark still opens the file now; re-save it while access is held so it keeps working.
+            if resolved.stale, let fresh = try? bookmarks.bookmark(for: resolved.url) {
+                try? commit(records: records.map { $0.id == record.id ? $0.withBookmark(fresh) : $0 }, folders: folders)
+            }
+            return access
+        }
+        guard let folderID = record.folderID, let source = folders.first(where: { $0.id == folderID }) else {
+            throw HarborError(code: "local-library-missing")
+        }
+        let resolved = try bookmarks.resolve(source.bookmark)
+        let file = URL(fileURLWithPath: record.relativePath, relativeTo: resolved.url)
+        let access = LocalLibraryFileAccess(scope: resolved.url, file: file)
+        guard FileManager.default.fileExists(atPath: file.path) else {
             access.end()
             throw HarborError(code: "local-library-missing")
         }
-        // A stale bookmark still opens the file now; re-save it while access is held so it keeps working.
         if resolved.stale, let fresh = try? bookmarks.bookmark(for: resolved.url) {
-            let next = records.map { $0.id == record.id ? $0.withBookmark(fresh) : $0 }
-            try? commit(next)
+            let nextFolders = folders.map { $0.id == folderID ? LocalLibraryFolder(id: $0.id, name: $0.name, bookmark: fresh) : $0 }
+            try? commit(records: records, folders: nextFolders)
         }
         return access
     }
 
-    private static func identity(folder: String?, path: String) -> String {
-        (folder ?? "") + "\n" + path
+    /// Whether a saved folder bookmark points at the folder just picked.
+    private func isSameFolder(_ saved: LocalLibraryFolder, _ folder: URL) -> Bool {
+        guard let resolved = try? bookmarks.resolve(saved.bookmark) else { return false }
+        return resolved.url.standardizedFileURL.path == folder.standardizedFileURL.path
     }
 
-    private func makeRecord(_ url: URL, folder: String?, relativePath: String) throws -> LocalLibraryRecord? {
+    private func makeRecord(_ url: URL) throws -> LocalLibraryRecord? {
         let opened = url.startAccessingSecurityScopedResource()
         defer { if opened { url.stopAccessingSecurityScopedResource() } }
         let values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
         guard values.isRegularFile == true, values.isSymbolicLink != true, LocalFilenameParser.isVideo(url.lastPathComponent) else { return nil }
         let data = try bookmarks.bookmark(for: url)
         let size = values.fileSize.map { Int64($0) }
-        return LocalLibraryRecord(id: UUID().uuidString, filename: url.lastPathComponent, bookmark: data, size: size, addedAt: Date(), folder: folder, relativePath: relativePath)
+        return LocalLibraryRecord(id: UUID().uuidString, filename: url.lastPathComponent, bookmark: data, size: size, addedAt: Date(), folderID: nil, folderName: nil, relativePath: url.lastPathComponent)
     }
 
-    private func commit(_ next: [LocalLibraryRecord]) throws {
+    /// Writes the library and drops any folder that no file refers to any more.
+    private func commit(records nextRecords: [LocalLibraryRecord], folders nextFolders: [LocalLibraryFolder]) throws {
         guard ready, let fileURL = fileURL else { throw HarborError(code: "local-library") }
-        let data = try JSONEncoder().encode(LocalLibraryDocument(records: next))
+        let referenced = Set(nextRecords.compactMap { $0.folderID })
+        let kept = nextFolders.filter { referenced.contains($0.id) }
+        let data = try JSONEncoder().encode(LocalLibraryDocument(records: nextRecords, folders: kept))
         try data.write(to: fileURL, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
-        records = next
+        records = nextRecords
+        folders = kept
         error = nil
     }
 }

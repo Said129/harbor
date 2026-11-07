@@ -4,7 +4,7 @@ import XCTest
 /// Desktop's filename rules (`src-tauri/src/local_lib.rs`, `src/lib/local-library.ts`, `src/lib/episode-span.ts`) and the local library store.
 @MainActor final class LocalLibraryTests: XCTestCase {
     private func record(_ name: String, size: Int64? = nil, added: TimeInterval = 0) -> LocalLibraryRecord {
-        LocalLibraryRecord(id: name, filename: name, bookmark: Data(), size: size, addedAt: Date(timeIntervalSince1970: added), folder: nil, relativePath: name)
+        LocalLibraryRecord(id: name, filename: name, bookmark: Data(), size: size, addedAt: Date(timeIntervalSince1970: added), folderID: nil, folderName: nil, relativePath: name)
     }
 
     private func titles(_ groups: [LocalLibraryGroup]) -> [String] {
@@ -257,7 +257,7 @@ import XCTest
         XCTAssertEqual(store.records.first?.size, 16)
         let reopened = LocalLibraryStore(owner: "tester", fileURL: index, bookmarks: FakeBookmarks())
         XCTAssertEqual(reopened.records.count, 1)
-        XCTAssertEqual(try reopened.addFiles([file]), 0, "A file already in the library is not added twice")
+        XCTAssertEqual(try reopened.addFiles([file]), 1, "A valid pick counts even when it is already in the library")
         XCTAssertEqual(reopened.records.count, 1)
         try reopened.remove(ids: Set(reopened.records.map { $0.id }))
         XCTAssertTrue(LocalLibraryStore(owner: "tester", fileURL: index, bookmarks: FakeBookmarks()).records.isEmpty)
@@ -273,10 +273,11 @@ import XCTest
         let reader = LocalLibraryStore(owner: "tester", fileURL: index, bookmarks: FakeBookmarks(prefix: "new:", stale: true))
         let record = try XCTUnwrap(reader.records.first)
         let access = try reader.openForPlayback(record)
-        XCTAssertEqual(access.url.path, file.path)
+        XCTAssertEqual(access.file.path, file.path)
         access.end()
         let saved = try XCTUnwrap(LocalLibraryStore(owner: "tester", fileURL: index, bookmarks: FakeBookmarks()).records.first)
-        XCTAssertEqual(String(decoding: saved.bookmark, as: UTF8.self), "new:" + file.path)
+        let savedBookmark = try XCTUnwrap(saved.bookmark)
+        XCTAssertEqual(String(decoding: savedBookmark, as: UTF8.self), "new:" + file.path)
     }
 
     func testMissingFileCannotBeOpened() throws {
@@ -317,9 +318,33 @@ import XCTest
         XCTAssertEqual(try store.addFolder(root, megabytes: 1), 1)
         let picked = try XCTUnwrap(store.records.first)
         XCTAssertEqual(store.records.count, 1)
-        XCTAssertEqual(picked.folder, "Show Folder")
+        XCTAssertNil(picked.bookmark, "Folder files open through the folder bookmark, not one each")
+        XCTAssertEqual(store.folders.count, 1)
+        XCTAssertEqual(store.folders.first?.name, "Show Folder")
+        XCTAssertEqual(picked.folderName, "Show Folder")
         XCTAssertEqual(picked.relativePath, "Season1/Show.S01E01.mkv")
         XCTAssertEqual(picked.parsed.episodeLabel, "S01E01")
+        XCTAssertEqual(try store.addFolder(root, megabytes: 1), 0, "Picking the same folder again adds nothing")
+        XCTAssertEqual(store.records.count, 1)
+        XCTAssertEqual(store.folders.count, 1)
+    }
+
+    func testFolderChildOpensThroughTheFolderBookmark() throws {
+        let directory = try makeDirectory()
+        let root = directory.appendingPathComponent("Show Folder", isDirectory: true)
+        let season = root.appendingPathComponent("Season1", isDirectory: true)
+        try FileManager.default.createDirectory(at: season, withIntermediateDirectories: true)
+        try Data(count: 2 * 1_048_576).write(to: season.appendingPathComponent("Show.S01E01.mkv"))
+        let index = directory.appendingPathComponent("library.json")
+        let store = LocalLibraryStore(owner: "tester", fileURL: index, bookmarks: FakeBookmarks(prefix: "old:"))
+        XCTAssertEqual(try store.addFolder(root, megabytes: 1), 1)
+        let reopened = LocalLibraryStore(owner: "tester", fileURL: index, bookmarks: FakeBookmarks(prefix: "new:", stale: true))
+        let record = try XCTUnwrap(reopened.records.first)
+        let access = try reopened.openForPlayback(record)
+        XCTAssertEqual(access.file.path, season.appendingPathComponent("Show.S01E01.mkv").path)
+        access.end()
+        let saved = try XCTUnwrap(LocalLibraryStore(owner: "tester", fileURL: index, bookmarks: FakeBookmarks()).folders.first)
+        XCTAssertEqual(String(decoding: saved.bookmark, as: UTF8.self), "new:" + root.path, "A stale folder bookmark is saved again")
     }
 }
 
