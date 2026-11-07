@@ -30,6 +30,18 @@ final class StreamPreferences {
     var pickerShowFilename = UserDefaults.standard.object(forKey: "streams.pickerShowFilename") as? Bool ?? false {
         didSet { persist(pickerShowFilename, forKey: "streams.pickerShowFilename") }
     }
+    /// Desktop's `showQualityBadge` (default on, "Show format chips on stream rows"): the format chips on picker rows.
+    var showQualityBadge = UserDefaults.standard.object(forKey: "showQualityBadge") as? Bool ?? true {
+        didSet { persist(showQualityBadge, forKey: "showQualityBadge") }
+    }
+    /// Desktop's `showQualityInfo` (default off, "Show stream quality under the title"): the quality line in the player.
+    var showQualityInfo = UserDefaults.standard.object(forKey: "showQualityInfo") as? Bool ?? false {
+        didSet { persist(showQualityInfo, forKey: "showQualityInfo") }
+    }
+    /// Desktop's `qualityBadgeStyle` ("bar" or "chips", default "bar"): how that player quality line is drawn.
+    var qualityBadgeStyle = QualityBadgeStyle.restored(UserDefaults.standard.string(forKey: "qualityBadgeStyle")).rawValue {
+        didSet { persist(qualityBadgeStyle, forKey: "qualityBadgeStyle") }
+    }
     var fullStreamDescription = UserDefaults.standard.object(forKey: "streams.fullDescription") as? Bool ?? true {
         didSet { persist(fullStreamDescription, forKey: "streams.fullDescription") }
     }
@@ -113,6 +125,9 @@ final class StreamPreferences {
         priority = StreamPreferences.storedPriority()
         pickerLayout = UserDefaults.standard.string(forKey: "streams.pickerLayout") ?? "stremio"
         pickerShowFilename = UserDefaults.standard.object(forKey: "streams.pickerShowFilename") as? Bool ?? false
+        showQualityBadge = UserDefaults.standard.object(forKey: "showQualityBadge") as? Bool ?? true
+        showQualityInfo = UserDefaults.standard.object(forKey: "showQualityInfo") as? Bool ?? false
+        qualityBadgeStyle = QualityBadgeStyle.restored(UserDefaults.standard.string(forKey: "qualityBadgeStyle")).rawValue
         fullStreamDescription = UserDefaults.standard.object(forKey: "streams.fullDescription") as? Bool ?? true
         pickerRefreshNextToBack = UserDefaults.standard.object(forKey: "streams.pickerRefreshNextToBack") as? Bool ?? false
         streamLanguages = UserDefaults.standard.string(forKey: "streams.languages") ?? PlaybackPreferences.shared.options.audioLanguage

@@ -130,6 +130,16 @@ struct PlayerSettingsView: View {
             Text(DesktopInterfaceText.value("Balance picture quality and performance. Changes apply to the next video you play."))
                 .font(HarborTheme.font(12)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
         }
+        HarborSettingsSection(DesktopInterfaceText.value("Stream quality in player")) {
+            HarborSettingsToggle(DesktopInterfaceText.value("Show stream quality under the title"),
+                                 note: DesktopInterfaceText.value("See the resolution, HDR format and audio while you watch."),
+                                 isOn: $sources.showQualityInfo).accessibilityIdentifier("settings-quality-info")
+            if sources.showQualityInfo {
+                HarborSettingsChoice(DesktopInterfaceText.value("Quality badge style"), selection: $sources.qualityBadgeStyle,
+                                     choices: [(DesktopInterfaceText.value("Bar"), "bar"), (DesktopInterfaceText.value("Chips"), "chips")],
+                                     localizeChoices: false, identifier: "settings-quality-badge-style")
+            }
+        }
         HarborSettingsSection(DesktopInterfaceText.value("Picture")) {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
                 ForEach(PicturePreset.allCases) { preset in

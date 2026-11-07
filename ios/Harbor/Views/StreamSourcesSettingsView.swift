@@ -286,6 +286,9 @@ struct StreamSourcesSettingsView: View {
                                      isOn: $sources.pickerRefreshNextToBack).accessibilityIdentifier("settings-picker-refresh-position")
                 HarborSettingsToggle("Show release name", note: "Show release filenames in the Condensed picker and Big Picture.",
                                      isOn: $sources.pickerShowFilename).accessibilityIdentifier("settings-picker-filename")
+                HarborSettingsToggle(DesktopInterfaceText.value("Show format chips on stream rows"),
+                                     note: DesktopInterfaceText.value("The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all."),
+                                     isOn: $sources.showQualityBadge).accessibilityIdentifier("settings-picker-quality-chips")
                 HarborSettingsToggle("Show full descriptions", note: "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture.",
                                      isOn: $sources.fullStreamDescription).accessibilityIdentifier("settings-picker-descriptions")
             }
