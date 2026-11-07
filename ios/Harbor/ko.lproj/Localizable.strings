@@ -142,6 +142,7 @@
 "After 3" = "3편 후";
 "After 4" = "4편 후";
 "After 5" = "5편 후";
+"After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "슬라이드에 잠시 머무르면 추천 콘텐츠의 예고편이 배경에서 음소거로 재생됩니다. 더 많은 대역폭을 사용합니다.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "사용자 입력 없이 여러 에피소드가 연속 자동 재생되면 재생을 일시 정지하고 계속 시청 중인지 확인합니다. 기본적으로 꺼져 있습니다.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "눈이 편안하게";
@@ -192,6 +193,7 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
+"AniList Comments" = "AniList 댓글";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
 "AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "AniList 동기화";
@@ -261,6 +263,7 @@
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "스타일이 지정된 (ASS) 자막의 색상, 글꼴, 표지판 위치는 유지하면서 파일마다 대사 크기가 같도록 자동 조정합니다.";
 "Auto-hide the Skip button after" = "건너뛰기 버튼 자동 숨김 시간";
 "Auto-play next episode" = "다음 에피소드 자동 재생";
+"Auto-play trailer on detail pages" = "상세 페이지에서 예고편 자동 재생";
 "Auto-skip credit outros" = "엔딩 크레딧 자동 건너뛰기";
 "Auto-skip intros" = "인트로 자동 건너뛰기";
 "Auto-skip recaps" = "지난 이야기 자동 건너뛰기";
@@ -295,6 +298,7 @@
 "BAFTA Television Awards" = "BAFTA TV상";
 "Back" = "뒤로";
 "Back to lists" = "목록으로 돌아가기";
+"Back to threads" = "스레드로 돌아가기";
 "Back to top" = "맨 위로";
 "Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "배경";
@@ -302,6 +306,7 @@
 "Background opacity" = "배경 불투명도";
 "Baeksang Arts Awards" = "백상예술대상";
 "Bajar {name}" = "{name} 아래로 이동";
+"Balance picture quality and performance. Changes apply to the next video you play." = "화질과 성능의 균형을 조정합니다. 변경 사항은 다음에 재생하는 동영상에 적용됩니다.";
 "Balanced" = "균형";
 "Bar color" = "바 색상";
 "Barra de búsqueda" = "탐색 막대";
@@ -309,6 +314,7 @@
 "Barra negra" = "검은색 바";
 "Base de la página." = "페이지 기본.";
 "Bass boost" = "저음 강화";
+"Be the first to start a discussion." = "첫 토론을 시작해 보세요.";
 "Beloved by readers and critics" = "독자와 평단 모두가 사랑한 작품";
 "Berlin Film Festival" = "베를린 영화제";
 "Best Action" = "최우수 액션";
@@ -574,6 +580,7 @@
 "Connect Trakt" = "Trakt 연결";
 "Connect Trakt in settings first" = "먼저 설정에서 Trakt를 연결하세요.";
 "Connect Trakt or Simkl, or start watching, and your stats will build themselves." = "Trakt 또는 Simkl을 연결하거나 시청을 시작하면 통계가 자동으로 쌓입니다.";
+"Connect your AniList account to see forum threads and comments." = "포럼 스레드와 댓글을 보려면 AniList 계정을 연결하세요.";
 "Connected" = "연결됨";
 "Connected as {username}" = "{username}(으)로 연결됨";
 "Connected to AniList" = "AniList에 연결됨";
@@ -614,6 +621,7 @@
 "Could not cast to {deviceName}." = "{deviceName}(으)로 전송할 수 없습니다.";
 "Could not complete this action. Try again." = "이 작업을 완료하지 못했습니다. 다시 시도하세요.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not find this title on AniList." = "AniList에서 이 작품을 찾을 수 없습니다.";
 "Could not identify this title on Trakt." = "Trakt에서 이 작품을 식별하지 못했습니다.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
@@ -1043,6 +1051,7 @@
 "Hearing impaired" = "청각 장애인용";
 "Hebrew" = "히브리어";
 "Help & about" = "도움말 및 정보";
+"Hero trailers" = "히어로 트레일러";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "히어로, Top 10, 인기 콘텐츠, 극장 상영작과 서비스별 콘텐츠 줄이 표시됩니다. 그 아래에 애드온 콘텐츠가 추가됩니다.";
 "Hidden" = "숨김";
 "Hidden Gems" = "숨은 명작";
@@ -1086,6 +1095,7 @@
 "Home" = "홈";
 "Home Rail Settings" = "홈 콘텐츠 행 설정";
 "Home catalogs" = "홈 카탈로그";
+"Home hero audio" = "홈 히어로 오디오";
 "Home layout" = "홈 레이아웃";
 "Home style" = "홈 스타일";
 "Hoopla" = "Hoopla";
@@ -1147,6 +1157,7 @@
 "In Theaters Now" = "현재 극장 상영작";
 "In Watchlist" = "관심 목록에 있음";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In watchlist" = "시청 목록에 있음";
 "Independent Spirit Awards" = "인디펜던트 스피릿상";
 "India" = "인도";
 "Indonesian" = "인도네시아어";
@@ -1331,6 +1342,7 @@
 "Max" = "최대";
 "Max {n} GB" = "최대 {n}GB";
 "Maximum" = "최대";
+"Maximum quality" = "최고 화질";
 "Maximum size (GB)" = "최대 크기 (GB)";
 "Maximum volume boost" = "최대 음량 증폭";
 "Mecha" = "메카";
@@ -1528,6 +1540,7 @@
 "No subtitles found." = "자막을 찾을 수 없습니다.";
 "No subtitles match your search." = "No subtitles match your search.";
 "No telemetry, no servers, no bundled keys." = "원격 측정도, 서버도, 기본 제공 키도 없습니다.";
+"No threads for this title yet." = "아직 이 작품에 대한 스레드가 없습니다.";
 "No titles match these filters." = "이 필터와 일치하는 작품이 없습니다.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "이 필터와 일치하는 트랙이 없습니다. HI/SDH 또는 강제 자막을 전환해 보세요.";
 "No video files found in that folder." = "해당 폴더에서 동영상 파일을 찾지 못했습니다.";
@@ -1626,6 +1639,7 @@
 "Open in browser" = "브라우저에서 열기";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on AniList" = "AniList에서 열기";
 "Open on Trakt" = "Trakt에서 열기";
 "Open review source" = "리뷰 출처 열기";
 "Open settings" = "설정 열기";
@@ -1700,6 +1714,7 @@
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "보다 만 에피소드와 영화를 저장된 위치부터 이어서 재생합니다. 80% 넘게 본 콘텐츠는 항상 처음부터 다시 시작합니다. 프로그램을 다시 볼 때처럼 항상 처음부터 시작하려면 끄세요.";
 "Pick up where you left off" = "이어서 시청하기";
 "Pick what you actually use" = "실제로 이용하는 서비스 선택";
+"Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "언어 선택";
 "Pick your subtitle languages" = "자막 언어 선택";
 "Picker" = "선택기";
@@ -1709,6 +1724,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "화면 조정";
 "Picture in Picture" = "화면 속 화면";
+"Picture quality" = "화질";
 "Pill" = "Pill";
 "Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "위에 표시할 카탈로그는 고정하고, 사용하지 않는 카탈로그는 숨기고, 고정된 레일의 순서를 변경하세요. 탐색 화면에 즉시 반영됩니다.";
 "Pin to top" = "맨 위에 고정";
@@ -1723,6 +1739,7 @@
 "Play now" = "지금 재생";
 "Play opens the stream list so you pick the release yourself." = "Play opens the stream list so you pick the release yourself.";
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
+"Play trailers in the hero" = "히어로에서 트레일러 재생";
 "Playback" = "재생";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2086,6 +2103,7 @@
 "Sending to Trakt…" = "Trakt로 전송 중…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n}개를 Trakt로 전송함";
+"Sequels & Prequels" = "후속작 및 전작";
 "Serie dramática" = "드라마 시리즈";
 "Series" = "프로그램";
 "Series de comedia" = "코미디 시리즈";
@@ -2142,6 +2160,7 @@
 "Show episode ratings" = "에피소드 평점 표시";
 "Show every addon row" = "모든 애드온 행 표시";
 "Show everything anyway" = "그래도 모두 표시";
+"Show forum threads and comments from AniList on anime detail pages." = "애니메이션 상세 페이지에 AniList의 포럼 스레드와 댓글을 표시합니다.";
 "Show full descriptions" = "전체 설명 표시";
 "Show hidden episodes" = "숨긴 에피소드 표시";
 "Show less" = "간략히 보기";
@@ -2211,6 +2230,7 @@
 "Slightly lighter than background." = "배경보다 약간 밝습니다.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "느린 애드온과 P2P 소스는 시작하는 데 10초 넘게 걸리는 경우가 많습니다. 충분히 기다리기 전에 스트림을 건너뛴다면 이 값을 늘리세요.";
 "Smaller" = "더 작게";
+"Smooth on weak PCs" = "저사양 PC에서 부드럽게";
 "Sobre la línea principal" = "기본 자막 위";
 "Soft halo around the text. Cleanest on most content." = "텍스트 주변의 부드러운 후광입니다. 대부분의 콘텐츠에서 가장 깔끔합니다.";
 "Softer and dimmer, kinder for late-night watching." = "더 부드럽고 어둡게 조정해 심야 시청 시 눈의 부담을 줄입니다.";
@@ -2255,6 +2275,7 @@
 "Start Over" = "처음부터 재생";
 "Start Watching" = "시청 시작";
 "Start as" = "시작 프로필";
+"Start trailers with audio" = "예고편을 소리와 함께 시작";
 "Start with subtitles off" = "자막을 끈 상태로 시작";
 "Starting" = "시작 중";
 "Startup & default" = "시작 및 기본값";
@@ -2442,6 +2463,7 @@
 "This theme is missing a color ({color})." = "이 테마에 색상({color})이 없습니다.";
 "This theme is missing its colors." = "이 테마에 색상 정보가 없습니다.";
 "This theme's preview colors look invalid." = "이 테마의 미리보기 색상이 올바르지 않습니다.";
+"This thread is locked." = "이 스레드는 잠겨 있습니다.";
 "This title would not open" = "이 작품을 열 수 없습니다";
 "This week" = "이번 주";
 "Thriller" = "스릴러";
@@ -2551,6 +2573,7 @@
 "Tune anime" = "애니메이션 맞춤 설정";
 "Tune your recommendations" = "추천 맞춤 설정";
 "Turkish" = "튀르키예어";
+"Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "내 애드온";

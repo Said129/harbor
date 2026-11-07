@@ -70,6 +70,7 @@ struct DetailView: View {
                 }.padding()
                 DetailMetadataView(media: model.media, app: app)
                 if InterfacePreferences.shared.showTraktComments { TraktCommentsSection(media: model.media).padding(.horizontal).padding(.bottom, 24) }
+                if AnimeService.isAnime(model.media.id) && AniListPreferences.shared.showAnilistComments { AniListCommentsSection(media: model.media, app: app).padding(.horizontal).padding(.bottom, 24) }
             }
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
         .background { PlayerOrientationAnchor(enabled: showStreams && (showConnecting || model.resolving || model.playback != nil || pendingEpisode != nil)).allowsHitTesting(false) }
@@ -269,6 +270,7 @@ struct DetailView: View {
         ZStack(alignment: .bottomLeading) {
             Artwork(url: TitleArtworkPreferences.shared.value(.backdrop, id: model.media.artworkID) ?? seasonArtwork?.background ?? model.media.background,
                 fallback: model.media.fallbackBackground, fallbacks: [TitleArtworkPreferences.shared.value(.poster, id: model.media.artworkID), model.media.poster].compactMap { $0 }, maxPixels: 1400).frame(height: 370).clipped()
+            HeroTrailerBackdrop(videoID: HeroTrailerPolicy.trailerID(in: model.media.details?.trailers ?? []), placement: .detail).frame(height: 370).clipped()
             LinearGradient(colors: [.black.opacity(0.12), HarborTheme.background.opacity(0.45), HarborTheme.background], startPoint: .top, endPoint: .bottom).allowsHitTesting(false)
             VStack(alignment: .leading, spacing: 18) {
                 if let tagline = model.media.details?.tagline, !tagline.isEmpty { Text(tagline.uppercased()).font(HarborTheme.font(10, weight: .medium)).tracking(2).foregroundStyle(.secondary).lineLimit(2) }

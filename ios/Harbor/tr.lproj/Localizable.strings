@@ -142,6 +142,7 @@
 "After 3" = "3 bölüm sonra";
 "After 4" = "4 bölüm sonra";
 "After 5" = "5'ten sonra";
+"After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Bir slaytta kısa süre beklendiğinde öne çıkan içeriğin fragmanı arka planda sessiz oynatılır. Daha fazla bant genişliği kullanır.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Herhangi bir giriş olmadan art arda birkaç bölüm otomatik oynatıldıktan sonra duraklatır ve devam etmeden önce hâlâ orada olup olmadığınızı sorar. Varsayılan olarak kapalıdır.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Gözleri yormaz";
@@ -192,6 +193,7 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
+"AniList Comments" = "AniList Yorumları";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
 "AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "AniList eşitlemesi";
@@ -261,6 +263,7 @@
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "Biçimlendirilmiş (ASS) altyazıları, renklerini, yazı tiplerini ve ekran yazılarının konumlarını korurken konuşmaların tüm dosyalarda aynı boyutta kalacağı şekilde otomatik olarak ayarlar.";
 "Auto-hide the Skip button after" = "Atla düğmesini şu süreden sonra otomatik gizle";
 "Auto-play next episode" = "Sonraki bölümü otomatik oynat";
+"Auto-play trailer on detail pages" = "Ayrıntı sayfalarında fragmanı otomatik oynat";
 "Auto-skip credit outros" = "Kapanış jeneriğini otomatik atla";
 "Auto-skip intros" = "İntroları otomatik atla";
 "Auto-skip recaps" = "Özetleri otomatik atla";
@@ -295,6 +298,7 @@
 "BAFTA Television Awards" = "BAFTA Televizyon Ödülleri";
 "Back" = "Geri";
 "Back to lists" = "Listelere dön";
+"Back to threads" = "Konulara dön";
 "Back to top" = "Başa dön";
 "Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "Arka plan";
@@ -302,6 +306,7 @@
 "Background opacity" = "Arka plan opaklığı";
 "Baeksang Arts Awards" = "Baeksang Sanat Ödülleri";
 "Bajar {name}" = "{name} öğesini aşağı taşı";
+"Balance picture quality and performance. Changes apply to the next video you play." = "Görüntü kalitesi ile performansı dengeleyin. Değişiklikler bir sonraki oynattığınız videoda geçerli olur.";
 "Balanced" = "Dengeli";
 "Bar color" = "Çubuk rengi";
 "Barra de búsqueda" = "İlerleme çubuğu";
@@ -309,6 +314,7 @@
 "Barra negra" = "Siyah şerit";
 "Base de la página." = "Sayfa tabanı.";
 "Bass boost" = "Bas güçlendirme";
+"Be the first to start a discussion." = "İlk tartışmayı siz başlatın.";
 "Beloved by readers and critics" = "Okurların ve eleştirmenlerin gözdesi";
 "Berlin Film Festival" = "Berlin Film Festivali";
 "Best Action" = "En İyi Aksiyon";
@@ -574,6 +580,7 @@
 "Connect Trakt" = "Trakt'ı bağla";
 "Connect Trakt in settings first" = "Önce Ayarlar'dan Trakt'ı bağlayın";
 "Connect Trakt or Simkl, or start watching, and your stats will build themselves." = "Trakt veya Simkl'yi bağlayın ya da izlemeye başlayın; istatistikleriniz kendiliğinden oluşsun.";
+"Connect your AniList account to see forum threads and comments." = "Forum konularını ve yorumları görmek için AniList hesabınızı bağlayın.";
 "Connected" = "Bağlı";
 "Connected as {username}" = "{username} olarak bağlandı";
 "Connected to AniList" = "AniList'e bağlandı";
@@ -614,6 +621,7 @@
 "Could not cast to {deviceName}." = "{deviceName} cihazına aktarılamadı.";
 "Could not complete this action. Try again." = "Bu işlem tamamlanamadı. Tekrar deneyin.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not find this title on AniList." = "Bu içerik AniList'te bulunamadı.";
 "Could not identify this title on Trakt." = "Bu içerik Trakt'ta tanımlanamadı.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
@@ -1043,6 +1051,7 @@
 "Hearing impaired" = "İşitme engelliler için";
 "Hebrew" = "İbranice";
 "Help & about" = "Yardım ve hakkında";
+"Hero trailers" = "Öne çıkan fragmanlar";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Öne Çıkanlar, İlk 10, Gündemdekiler, Vizyondakiler ve hizmete özel satırlar. Eklentileriniz bunların altına eklenir.";
 "Hidden" = "Gizli";
 "Hidden Gems" = "Gizli Cevherler";
@@ -1086,6 +1095,7 @@
 "Home" = "Ana Sayfa";
 "Home Rail Settings" = "Ana Sayfa Satır Ayarları";
 "Home catalogs" = "Ana Sayfa katalogları";
+"Home hero audio" = "Ana sayfa öne çıkan içeriğinin sesi";
 "Home layout" = "Ana sayfa düzeni";
 "Home style" = "Ana Sayfa stili";
 "Hoopla" = "Hoopla";
@@ -1147,6 +1157,7 @@
 "In Theaters Now" = "Şu Anda Sinemalarda";
 "In Watchlist" = "İzleme Listesinde";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In watchlist" = "İzleme listesinde";
 "Independent Spirit Awards" = "Bağımsız Ruh Ödülleri";
 "India" = "Hindistan";
 "Indonesian" = "Endonezce";
@@ -1331,6 +1342,7 @@
 "Max" = "Maks.";
 "Max {n} GB" = "Maks. {n} GB";
 "Maximum" = "Maksimum";
+"Maximum quality" = "En yüksek kalite";
 "Maximum size (GB)" = "En büyük boyut (GB)";
 "Maximum volume boost" = "Maksimum ses artışı";
 "Mecha" = "Mecha";
@@ -1528,6 +1540,7 @@
 "No subtitles found." = "Altyazı bulunamadı.";
 "No subtitles match your search." = "No subtitles match your search.";
 "No telemetry, no servers, no bundled keys." = "Telemetri yok, sunucu yok, paketlenmiş anahtar yok.";
+"No threads for this title yet." = "Bu içerik için henüz konu yok.";
 "No titles match these filters." = "Bu filtrelerle eşleşen içerik yok.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Bu filtrelerle eşleşen parça yok. HI/SDH veya Zorunlu seçeneğini açıp kapatmayı deneyin.";
 "No video files found in that folder." = "Bu klasörde video dosyası bulunamadı.";
@@ -1626,6 +1639,7 @@
 "Open in browser" = "Tarayıcıda aç";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on AniList" = "AniList'te aç";
 "Open on Trakt" = "Trakt'ta aç";
 "Open review source" = "İncelemenin kaynağını aç";
 "Open settings" = "Ayarları aç";
@@ -1700,6 +1714,7 @@
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "Kısmen izlenmiş bölümlere ve filmlere kaldığınız yerden devam edin. %80'den fazlası izlenen içerikler her zaman baştan başlar. Dizileri yeniden izliyorsanız her zaman baştan başlatmak için bunu kapatın.";
 "Pick up where you left off" = "Kaldığınız yerden devam edin";
 "Pick what you actually use" = "Kullandığınız hizmetleri seçin";
+"Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "Dilinizi seçin";
 "Pick your subtitle languages" = "Altyazı dillerinizi seçin";
 "Picker" = "Seçici";
@@ -1709,6 +1724,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Görüntü ayarları";
 "Picture in Picture" = "Resim İçinde Resim";
+"Picture quality" = "Görüntü kalitesi";
 "Pill" = "Pill";
 "Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "İstediğiniz katalogları en üste sabitleyin, hiç açmadıklarınızı gizleyin ve sabitlenmiş raflarınızı yeniden sıralayın. Keşfet görünümünüz anında güncellenir.";
 "Pin to top" = "En üste sabitle";
@@ -1723,6 +1739,7 @@
 "Play now" = "Şimdi oynat";
 "Play opens the stream list so you pick the release yourself." = "Play opens the stream list so you pick the release yourself.";
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
+"Play trailers in the hero" = "Fragmanları öne çıkan alanda oynat";
 "Playback" = "Oynatma";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2086,6 +2103,7 @@
 "Sending to Trakt…" = "Trakt'a gönderiliyor…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n} öğe Trakt'a gönderildi";
+"Sequels & Prequels" = "Devam ve Öncesini Anlatan Yapımlar";
 "Serie dramática" = "Dram Dizileri";
 "Series" = "Diziler";
 "Series de comedia" = "Komedi Dizileri";
@@ -2142,6 +2160,7 @@
 "Show episode ratings" = "Bölüm puanlarını göster";
 "Show every addon row" = "Her eklenti satırını göster";
 "Show everything anyway" = "Yine de tümünü göster";
+"Show forum threads and comments from AniList on anime detail pages." = "Anime ayrıntı sayfalarında AniList'teki forum konularını ve yorumları gösterin.";
 "Show full descriptions" = "Açıklamaların tamamını göster";
 "Show hidden episodes" = "Gizli bölümleri göster";
 "Show less" = "Daha az göster";
@@ -2211,6 +2230,7 @@
 "Slightly lighter than background." = "Arka plandan biraz daha açık.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Yavaş eklentilerin ve P2P kaynaklarının başlaması genellikle 10 saniyeden uzun sürer. Yayınlar yeterince beklenmeden atlanıyorsa bu süreyi artırın.";
 "Smaller" = "Daha küçük";
+"Smooth on weak PCs" = "Düşük donanımlı bilgisayarlarda akıcı";
 "Sobre la línea principal" = "Ana satırın üstü";
 "Soft halo around the text. Cleanest on most content." = "Metnin çevresinde yumuşak bir hale. Çoğu içerikte en temiz görünüm.";
 "Softer and dimmer, kinder for late-night watching." = "Daha yumuşak ve loş görüntüsüyle gece izlerken gözlerinizi daha az yorar.";
@@ -2255,6 +2275,7 @@
 "Start Over" = "Baştan Başlat";
 "Start Watching" = "İzlemeye Başla";
 "Start as" = "Başlangıç profili";
+"Start trailers with audio" = "Fragmanları sesli başlat";
 "Start with subtitles off" = "Altyazıları kapalı başlat";
 "Starting" = "Başlatılıyor";
 "Startup & default" = "Başlangıç ve varsayılan";
@@ -2442,6 +2463,7 @@
 "This theme is missing a color ({color})." = "Bu temada bir renk eksik ({color}).";
 "This theme is missing its colors." = "Bu temanın renkleri eksik.";
 "This theme's preview colors look invalid." = "Bu temanın önizleme renkleri geçersiz görünüyor.";
+"This thread is locked." = "Bu konu kilitli.";
 "This title would not open" = "Bu içerik açılamadı";
 "This week" = "Bu hafta";
 "Thriller" = "Gerilim";
@@ -2551,6 +2573,7 @@
 "Tune anime" = "Anime tercihlerini ayarla";
 "Tune your recommendations" = "Önerilerini özelleştir";
 "Turkish" = "Türkçe";
+"Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "Eklentilerin";

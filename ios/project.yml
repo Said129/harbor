@@ -219,6 +219,10 @@ targets:
       - path: HarborTests/MyAnimeListListsTests.swift
       - path: HarborTests/AnimePicksPolicyTests.swift
       - path: HarborTests/SubtitleSelectionPolicyTests.swift
+      - path: HarborTests/CardTagBadgesTests.swift
+      - path: HarborTests/HeroTrailerPolicyTests.swift
+      - path: HarborTests/AniListThreadsTests.swift
+      - path: HarborTests/UISettingsPolicyTests.swift
       - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift

@@ -61,6 +61,8 @@ struct CinemaHero: View {
                             CustomListArtwork(media: media, url: TitleArtworkPreferences.shared.value(.backdrop, id: media.artworkID) ?? media.background ?? (media.type == "manga" ? media.poster : nil),
                                 fallback: media.fallbackBackground, fallbacks: [TitleArtworkPreferences.shared.value(.poster, id: media.artworkID), media.poster].compactMap { $0 }, maxPixels: 1400)
                                 .frame(width: geometry.size.width, height: geometry.size.height).accessibilityHidden(true)
+                            HeroTrailerBackdrop(videoID: HeroTrailerPolicy.trailerID(in: media.details?.trailers ?? []), placement: .hero, slideActive: selected == index)
+                                .frame(width: geometry.size.width, height: geometry.size.height)
                             LinearGradient(colors: [.black.opacity(0.12), HarborTheme.background.opacity(0.55), HarborTheme.background], startPoint: .top, endPoint: .bottom).accessibilityHidden(true)
                             VStack(alignment: .leading, spacing: 14) {
                                 Text(text("Featured tonight").uppercased(with: locale)).font(HarborTheme.font(9, weight: .semibold)).tracking(4).foregroundStyle(.white.opacity(0.5))

@@ -142,6 +142,7 @@
 "After 3" = "Sau 3 tập";
 "After 4" = "Sau 4 tập";
 "After 5" = "Sau 5 tập";
+"After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Sau một lúc ở một trang trình chiếu, trailer của nội dung nổi bật sẽ phát không tiếng trong nền. Tốn nhiều băng thông hơn.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Sau khi tự động phát liên tiếp vài tập mà không có thao tác, tạm dừng và kiểm tra xem bạn có còn đang xem không trước khi tiếp tục. Mặc định tắt.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Dịu mắt";
@@ -192,6 +193,7 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
+"AniList Comments" = "Bình luận trên AniList";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
 "AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "Đồng bộ AniList";
@@ -261,6 +263,7 @@
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "Tự động điều chỉnh phụ đề có định dạng (ASS) để lời thoại giữ cùng kích thước giữa các tệp, đồng thời giữ nguyên màu sắc, phông chữ và vị trí biển hiệu.";
 "Auto-hide the Skip button after" = "Tự động ẩn nút Bỏ qua sau";
 "Auto-play next episode" = "Tự động phát tập tiếp theo";
+"Auto-play trailer on detail pages" = "Tự động phát trailer trên trang chi tiết";
 "Auto-skip credit outros" = "Tự động bỏ qua phần danh đề cuối phim";
 "Auto-skip intros" = "Tự động bỏ qua phần mở đầu";
 "Auto-skip recaps" = "Tự động bỏ qua phần tóm tắt";
@@ -295,6 +298,7 @@
 "BAFTA Television Awards" = "Giải Truyền hình BAFTA";
 "Back" = "Quay lại";
 "Back to lists" = "Quay lại danh sách";
+"Back to threads" = "Quay lại danh sách chủ đề";
 "Back to top" = "Về đầu trang";
 "Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "Nền";
@@ -302,6 +306,7 @@
 "Background opacity" = "Độ mờ nền";
 "Baeksang Arts Awards" = "Giải Nghệ thuật Baeksang";
 "Bajar {name}" = "Chuyển {name} xuống";
+"Balance picture quality and performance. Changes apply to the next video you play." = "Cân bằng chất lượng hình ảnh và hiệu năng. Thay đổi áp dụng cho video tiếp theo bạn phát.";
 "Balanced" = "Cân bằng";
 "Bar color" = "Màu thanh";
 "Barra de búsqueda" = "Thanh tua";
@@ -309,6 +314,7 @@
 "Barra negra" = "Nền đen";
 "Base de la página." = "Nền trang.";
 "Bass boost" = "Tăng âm trầm";
+"Be the first to start a discussion." = "Hãy là người đầu tiên bắt đầu thảo luận.";
 "Beloved by readers and critics" = "Được độc giả và giới phê bình yêu thích";
 "Berlin Film Festival" = "Liên hoan phim Berlin";
 "Best Action" = "Hành động xuất sắc nhất";
@@ -574,6 +580,7 @@
 "Connect Trakt" = "Kết nối Trakt";
 "Connect Trakt in settings first" = "Trước tiên, hãy kết nối Trakt trong Cài đặt";
 "Connect Trakt or Simkl, or start watching, and your stats will build themselves." = "Kết nối Trakt hoặc Simkl, hoặc bắt đầu xem để tự động tạo số liệu thống kê.";
+"Connect your AniList account to see forum threads and comments." = "Kết nối tài khoản AniList để xem các chủ đề và bình luận trên diễn đàn.";
 "Connected" = "Đã kết nối";
 "Connected as {username}" = "Đã kết nối với tên {username}";
 "Connected to AniList" = "Đã kết nối với AniList";
@@ -614,6 +621,7 @@
 "Could not cast to {deviceName}." = "Không thể truyền tới {deviceName}.";
 "Could not complete this action. Try again." = "Không thể hoàn tất thao tác này. Hãy thử lại.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not find this title on AniList." = "Không tìm thấy tựa phim này trên AniList.";
 "Could not identify this title on Trakt." = "Không thể xác định nội dung này trên Trakt.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
@@ -1043,6 +1051,7 @@
 "Hearing impaired" = "Dành cho người khiếm thính";
 "Hebrew" = "Tiếng Do Thái";
 "Help & about" = "Trợ giúp và giới thiệu";
+"Hero trailers" = "Trailer nổi bật";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Nổi bật, Top 10, Thịnh hành, Đang chiếu rạp và các hàng theo từng dịch vụ. Tiện ích bổ sung của bạn sẽ được thêm bên dưới.";
 "Hidden" = "Đã ẩn";
 "Hidden Gems" = "Những viên ngọc ẩn";
@@ -1086,6 +1095,7 @@
 "Home" = "Trang chủ";
 "Home Rail Settings" = "Cài đặt hàng nội dung Trang chủ";
 "Home catalogs" = "Danh mục trang chủ";
+"Home hero audio" = "Âm thanh tiêu điểm trang chủ";
 "Home layout" = "Bố cục trang chủ";
 "Home style" = "Kiểu trang chủ";
 "Hoopla" = "Hoopla";
@@ -1147,6 +1157,7 @@
 "In Theaters Now" = "Đang chiếu tại rạp";
 "In Watchlist" = "Trong danh sách xem";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In watchlist" = "Trong danh sách xem";
 "Independent Spirit Awards" = "Giải Tinh thần Độc lập";
 "India" = "Ấn Độ";
 "Indonesian" = "Tiếng Indonesia";
@@ -1331,6 +1342,7 @@
 "Max" = "Tối đa";
 "Max {n} GB" = "Tối đa {n} GB";
 "Maximum" = "Tối đa";
+"Maximum quality" = "Chất lượng tối đa";
 "Maximum size (GB)" = "Dung lượng tối đa (GB)";
 "Maximum volume boost" = "Mức tăng âm lượng tối đa";
 "Mecha" = "Mecha";
@@ -1528,6 +1540,7 @@
 "No subtitles found." = "Không tìm thấy phụ đề.";
 "No subtitles match your search." = "No subtitles match your search.";
 "No telemetry, no servers, no bundled keys." = "Không thu thập dữ liệu từ xa, không máy chủ, không khóa đi kèm.";
+"No threads for this title yet." = "Chưa có chủ đề nào cho tựa phim này.";
 "No titles match these filters." = "Không có tựa phim nào khớp với các bộ lọc này.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Không có bản phụ đề nào khớp với các bộ lọc này. Hãy thử bật hoặc tắt HI/SDH hay Bắt buộc.";
 "No video files found in that folder." = "Không tìm thấy tệp video nào trong thư mục đó.";
@@ -1626,6 +1639,7 @@
 "Open in browser" = "Mở trong trình duyệt";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on AniList" = "Mở trên AniList";
 "Open on Trakt" = "Mở trên Trakt";
 "Open review source" = "Mở nguồn bài đánh giá";
 "Open settings" = "Mở Cài đặt";
@@ -1700,6 +1714,7 @@
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "Tiếp tục phát các tập và phim đang xem dở từ vị trí đã lưu. Nội dung đã xem quá 80% luôn phát lại từ đầu. Tắt tùy chọn này để luôn phát từ đầu, tiện khi xem lại phim bộ.";
 "Pick up where you left off" = "Xem tiếp từ đoạn đã dừng";
 "Pick what you actually use" = "Chọn các dịch vụ bạn thực sự dùng";
+"Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "Chọn ngôn ngữ";
 "Pick your subtitle languages" = "Chọn ngôn ngữ phụ đề";
 "Picker" = "Trình chọn";
@@ -1709,6 +1724,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Điều chỉnh hình ảnh";
 "Picture in Picture" = "Hình trong hình";
+"Picture quality" = "Chất lượng hình ảnh";
 "Pill" = "Pill";
 "Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "Ghim các danh mục bạn muốn lên đầu, ẩn những danh mục bạn không bao giờ mở và sắp xếp lại các hàng đã ghim. Chế độ duyệt sẽ cập nhật ngay lập tức.";
 "Pin to top" = "Ghim lên đầu";
@@ -1723,6 +1739,7 @@
 "Play now" = "Phát ngay";
 "Play opens the stream list so you pick the release yourself." = "Play opens the stream list so you pick the release yourself.";
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
+"Play trailers in the hero" = "Phát trailer trong khu vực nổi bật";
 "Playback" = "Phát";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2086,6 +2103,7 @@
 "Sending to Trakt…" = "Đang gửi đến Trakt…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "Đã gửi {n} mục đến Trakt";
+"Sequels & Prequels" = "Phần tiếp theo và phần tiền truyện";
 "Serie dramática" = "Phim bộ chính kịch";
 "Series" = "Phim bộ";
 "Series de comedia" = "Phim bộ hài";
@@ -2142,6 +2160,7 @@
 "Show episode ratings" = "Hiển thị điểm đánh giá tập";
 "Show every addon row" = "Hiển thị mọi hàng tiện ích bổ sung";
 "Show everything anyway" = "Vẫn hiển thị tất cả";
+"Show forum threads and comments from AniList on anime detail pages." = "Hiển thị chủ đề diễn đàn và bình luận từ AniList trên trang chi tiết anime.";
 "Show full descriptions" = "Hiển thị mô tả đầy đủ";
 "Show hidden episodes" = "Hiển thị các tập bị ẩn";
 "Show less" = "Hiện ít hơn";
@@ -2211,6 +2230,7 @@
 "Slightly lighter than background." = "Sáng hơn nền một chút.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Các tiện ích bổ sung chậm và nguồn P2P thường cần hơn 10 giây để bắt đầu. Hãy tăng thời gian này nếu luồng phát bị bỏ qua trước khi có đủ thời gian kết nối.";
 "Smaller" = "Nhỏ hơn";
+"Smooth on weak PCs" = "Mượt trên PC yếu";
 "Sobre la línea principal" = "Phía trên dòng chính";
 "Soft halo around the text. Cleanest on most content." = "Quầng sáng nhẹ quanh chữ. Rõ nét nhất với hầu hết nội dung.";
 "Softer and dimmer, kinder for late-night watching." = "Dịu và tối hơn, dễ chịu hơn khi xem khuya.";
@@ -2255,6 +2275,7 @@
 "Start Over" = "Phát lại từ đầu";
 "Start Watching" = "Bắt đầu xem";
 "Start as" = "Bắt đầu với";
+"Start trailers with audio" = "Phát trailer có âm thanh";
 "Start with subtitles off" = "Tắt phụ đề khi bắt đầu";
 "Starting" = "Đang khởi động";
 "Startup & default" = "Khởi động và mặc định";
@@ -2442,6 +2463,7 @@
 "This theme is missing a color ({color})." = "Giao diện này thiếu một màu ({color}).";
 "This theme is missing its colors." = "Giao diện này thiếu bảng màu.";
 "This theme's preview colors look invalid." = "Màu xem trước của giao diện này có vẻ không hợp lệ.";
+"This thread is locked." = "Chủ đề này đã bị khóa.";
 "This title would not open" = "Không thể mở truyện này";
 "This week" = "Tuần này";
 "Thriller" = "Giật gân";
@@ -2551,6 +2573,7 @@
 "Tune anime" = "Tinh chỉnh anime";
 "Tune your recommendations" = "Điều chỉnh đề xuất";
 "Turkish" = "Tiếng Thổ Nhĩ Kỳ";
+"Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "Tiện ích bổ sung của bạn";

@@ -142,6 +142,7 @@
 "After 3" = "3話後";
 "After 4" = "4話後";
 "After 5" = "5話後";
+"After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "スライドをしばらく表示すると、注目作品の予告編がバックグラウンドでミュート再生されます。通信量が増加します。";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "操作なしで複数のエピソードが連続自動再生されたら、一時停止して視聴を続けているか確認します。初期設定ではオフです。";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "目にやさしい";
@@ -192,6 +193,7 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
+"AniList Comments" = "AniListのコメント";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
 "AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "AniList同期";
@@ -261,6 +263,7 @@
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "スタイル付き (ASS) 字幕の色、フォント、画面内テキストの配置を保ちながら、ファイルが変わってもセリフが同じ大きさになるよう自動調整します。";
 "Auto-hide the Skip button after" = "スキップボタンを自動で隠すまでの時間";
 "Auto-play next episode" = "次のエピソードを自動再生";
+"Auto-play trailer on detail pages" = "詳細ページで予告編を自動再生";
 "Auto-skip credit outros" = "エンディングクレジットを自動スキップ";
 "Auto-skip intros" = "イントロを自動スキップ";
 "Auto-skip recaps" = "前回までのあらすじを自動スキップ";
@@ -295,6 +298,7 @@
 "BAFTA Television Awards" = "英国アカデミー・テレビ賞";
 "Back" = "戻る";
 "Back to lists" = "リストに戻る";
+"Back to threads" = "スレッド一覧に戻る";
 "Back to top" = "ページ上部へ";
 "Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "背景";
@@ -302,6 +306,7 @@
 "Background opacity" = "背景の不透明度";
 "Baeksang Arts Awards" = "百想芸術大賞";
 "Bajar {name}" = "{name}を下に移動";
+"Balance picture quality and performance. Changes apply to the next video you play." = "画質とパフォーマンスのバランスを調整します。変更は次に再生する動画に適用されます。";
 "Balanced" = "バランス";
 "Bar color" = "バーの色";
 "Barra de búsqueda" = "シークバー";
@@ -309,6 +314,7 @@
 "Barra negra" = "黒い帯";
 "Base de la página." = "ページのベース。";
 "Bass boost" = "低音ブースト";
+"Be the first to start a discussion." = "最初にディスカッションを始めましょう。";
 "Beloved by readers and critics" = "読者と批評家に愛される作品";
 "Berlin Film Festival" = "ベルリン国際映画祭";
 "Best Action" = "最優秀アクション";
@@ -574,6 +580,7 @@
 "Connect Trakt" = "Traktに接続";
 "Connect Trakt in settings first" = "先に設定でTraktに接続してください";
 "Connect Trakt or Simkl, or start watching, and your stats will build themselves." = "TraktまたはSimklを連携するか、視聴を始めると、統計が自動で蓄積されます。";
+"Connect your AniList account to see forum threads and comments." = "フォーラムのスレッドやコメントを見るには、AniListアカウントを連携してください。";
 "Connected" = "接続済み";
 "Connected as {username}" = "{username}として接続済み";
 "Connected to AniList" = "AniListに接続済み";
@@ -614,6 +621,7 @@
 "Could not cast to {deviceName}." = "{deviceName}にキャストできませんでした。";
 "Could not complete this action. Try again." = "この操作を完了できませんでした。もう一度お試しください。";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not find this title on AniList." = "AniListでこの作品が見つかりませんでした。";
 "Could not identify this title on Trakt." = "Traktでこの作品を特定できませんでした。";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
@@ -1043,6 +1051,7 @@
 "Hearing impaired" = "聴覚障害者向け";
 "Hebrew" = "ヘブライ語";
 "Help & about" = "ヘルプと情報";
+"Hero trailers" = "ヒーローバナーの予告編";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "ヒーロー、トップ10、トレンド、劇場公開中、配信サービス別レールを表示します。その下にアドオンのカタログが追加されます。";
 "Hidden" = "非表示";
 "Hidden Gems" = "隠れた名作";
@@ -1086,6 +1095,7 @@
 "Home" = "ホーム";
 "Home Rail Settings" = "ホームの行設定";
 "Home catalogs" = "ホームのカタログ";
+"Home hero audio" = "ホームのヒーロー音声";
 "Home layout" = "ホームのレイアウト";
 "Home style" = "ホームのスタイル";
 "Hoopla" = "Hoopla";
@@ -1147,6 +1157,7 @@
 "In Theaters Now" = "現在上映中";
 "In Watchlist" = "ウォッチリストに追加済み";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In watchlist" = "ウォッチリスト内";
 "Independent Spirit Awards" = "インディペンデント・スピリット賞";
 "India" = "インド";
 "Indonesian" = "インドネシア語";
@@ -1331,6 +1342,7 @@
 "Max" = "最大";
 "Max {n} GB" = "最大 {n} GB";
 "Maximum" = "最大";
+"Maximum quality" = "最高画質";
 "Maximum size (GB)" = "最大サイズ (GB)";
 "Maximum volume boost" = "最大音量ブースト";
 "Mecha" = "メカ";
@@ -1528,6 +1540,7 @@
 "No subtitles found." = "字幕が見つかりません。";
 "No subtitles match your search." = "No subtitles match your search.";
 "No telemetry, no servers, no bundled keys." = "テレメトリなし、サーバーなし、組み込みキーなし。";
+"No threads for this title yet." = "この作品にはまだスレッドがありません。";
 "No titles match these filters." = "この条件に一致する作品はありません。";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "このフィルターに一致するトラックはありません。HI/SDHまたは強制字幕の切り替えをお試しください。";
 "No video files found in that folder." = "そのフォルダーに動画ファイルはありません。";
@@ -1626,6 +1639,7 @@
 "Open in browser" = "ブラウザで開く";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on AniList" = "AniListで開く";
 "Open on Trakt" = "Traktで開く";
 "Open review source" = "レビュー元を開く";
 "Open settings" = "設定を開く";
@@ -1700,6 +1714,7 @@
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "途中まで視聴したエピソードや映画を、保存した位置から再開します。80%を超えて視聴した作品は常に最初から再生されます。番組を見直す場合など、常に最初から再生したいときはオフにしてください。";
 "Pick up where you left off" = "続きから見る";
 "Pick what you actually use" = "実際に利用するサービスを選択";
+"Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "言語を選択";
 "Pick your subtitle languages" = "字幕の言語を選択";
 "Picker" = "ソース選択";
@@ -1709,6 +1724,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "画質調整";
 "Picture in Picture" = "ピクチャ・イン・ピクチャ";
+"Picture quality" = "画質";
 "Pill" = "Pill";
 "Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "上部に表示したいカタログを固定し、使わないものを非表示にして、固定したレールを並べ替えられます。ブラウズ画面にはすぐに反映されます。";
 "Pin to top" = "一番上に固定";
@@ -1723,6 +1739,7 @@
 "Play now" = "今すぐ再生";
 "Play opens the stream list so you pick the release yourself." = "Play opens the stream list so you pick the release yourself.";
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
+"Play trailers in the hero" = "ヒーローエリアでトレーラーを再生";
 "Playback" = "再生";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2086,6 +2103,7 @@
 "Sending to Trakt…" = "Traktに送信中…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n}件をTraktに送信しました";
+"Sequels & Prequels" = "続編・前日譚";
 "Serie dramática" = "ドラマシリーズ";
 "Series" = "番組";
 "Series de comedia" = "コメディシリーズ";
@@ -2142,6 +2160,7 @@
 "Show episode ratings" = "エピソードの評価を表示";
 "Show every addon row" = "すべてのアドオン列を表示";
 "Show everything anyway" = "それでもすべて表示";
+"Show forum threads and comments from AniList on anime detail pages." = "アニメ詳細ページにAniListのフォーラムスレッドとコメントを表示します。";
 "Show full descriptions" = "説明を全文表示";
 "Show hidden episodes" = "非表示のエピソードを表示";
 "Show less" = "折りたたむ";
@@ -2211,6 +2230,7 @@
 "Slightly lighter than background." = "背景よりわずかに明るい色。";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "低速なアドオンやP2Pソースは、開始まで10秒以上かかることがあります。開始する前にストリームがスキップされる場合は、この時間を長くしてください。";
 "Smaller" = "小さく";
+"Smooth on weak PCs" = "低スペックPCでも滑らか";
 "Sobre la línea principal" = "メイン字幕の上";
 "Soft halo around the text. Cleanest on most content." = "テキストの周囲に柔らかな光彩を付けます。ほとんどの映像ですっきり表示されます。";
 "Softer and dimmer, kinder for late-night watching." = "柔らかく暗めの映像にし、深夜でも目に負担をかけずに視聴できます。";
@@ -2255,6 +2275,7 @@
 "Start Over" = "最初から再生";
 "Start Watching" = "視聴を開始";
 "Start as" = "起動プロフィール";
+"Start trailers with audio" = "予告編を音声付きで再生";
 "Start with subtitles off" = "字幕をオフで再生開始";
 "Starting" = "起動中";
 "Startup & default" = "起動とデフォルト";
@@ -2442,6 +2463,7 @@
 "This theme is missing a color ({color})." = "このテーマにはカラー（{color}）がありません。";
 "This theme is missing its colors." = "このテーマには配色がありません。";
 "This theme's preview colors look invalid." = "このテーマのプレビューカラーは無効なようです。";
+"This thread is locked." = "このスレッドはロックされています。";
 "This title would not open" = "この作品を開けませんでした";
 "This week" = "今週";
 "Thriller" = "スリラー";
@@ -2551,6 +2573,7 @@
 "Tune anime" = "アニメをカスタマイズ";
 "Tune your recommendations" = "おすすめを調整";
 "Turkish" = "トルコ語";
+"Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "あなたのアドオン";

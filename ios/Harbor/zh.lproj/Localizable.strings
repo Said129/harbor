@@ -142,6 +142,7 @@
 "After 3" = "连续播放 3 集后";
 "After 4" = "连续播放 4 集后";
 "After 5" = "连续播放 5 集后";
+"After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "在幻灯片上停留片刻后，焦点推荐内容的预告片会在背景中静音播放。此功能会占用更多带宽。";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "连续自动播放数集且没有任何操作后，暂停并确认你是否仍在观看，再继续播放。默认关闭。";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "护眼";
@@ -192,6 +193,7 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
+"AniList Comments" = "AniList 评论";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
 "AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "AniList 同步";
@@ -261,6 +263,7 @@
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "自动调整带样式的（ASS）字幕，使不同文件中的对白字幕大小保持一致，同时保留其颜色、字体和标识位置。";
 "Auto-hide the Skip button after" = "自动隐藏“跳过”按钮的等待时间";
 "Auto-play next episode" = "自动播放下一集";
+"Auto-play trailer on detail pages" = "在详情页自动播放预告片";
 "Auto-skip credit outros" = "自动跳过片尾字幕";
 "Auto-skip intros" = "自动跳过片头";
 "Auto-skip recaps" = "自动跳过前情回顾";
@@ -295,6 +298,7 @@
 "BAFTA Television Awards" = "英国电影学院电视奖";
 "Back" = "返回";
 "Back to lists" = "返回列表";
+"Back to threads" = "返回主题列表";
 "Back to top" = "返回顶部";
 "Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "背景";
@@ -302,6 +306,7 @@
 "Background opacity" = "背景不透明度";
 "Baeksang Arts Awards" = "百想艺术大赏";
 "Bajar {name}" = "下移{name}";
+"Balance picture quality and performance. Changes apply to the next video you play." = "平衡画质与性能。更改会应用于下一次播放的视频。";
 "Balanced" = "均衡";
 "Bar color" = "进度条颜色";
 "Barra de búsqueda" = "进度条";
@@ -309,6 +314,7 @@
 "Barra negra" = "黑色条幅";
 "Base de la página." = "页面底色。";
 "Bass boost" = "低音增强";
+"Be the first to start a discussion." = "来发起第一个讨论吧。";
 "Beloved by readers and critics" = "深受读者和评论家喜爱";
 "Berlin Film Festival" = "柏林电影节";
 "Best Action" = "最佳动作";
@@ -574,6 +580,7 @@
 "Connect Trakt" = "连接 Trakt";
 "Connect Trakt in settings first" = "请先在“设置”中连接 Trakt";
 "Connect Trakt or Simkl, or start watching, and your stats will build themselves." = "连接 Trakt 或 Simkl，或开始观看，统计数据将自动生成。";
+"Connect your AniList account to see forum threads and comments." = "连接你的 AniList 账号即可查看论坛主题和评论。";
 "Connected" = "已连接";
 "Connected as {username}" = "已以 {username} 的身份连接";
 "Connected to AniList" = "已连接到 AniList";
@@ -614,6 +621,7 @@
 "Could not cast to {deviceName}." = "无法投屏到 {deviceName}。";
 "Could not complete this action. Try again." = "无法完成此操作。请重试。";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not find this title on AniList." = "在 AniList 上找不到此作品。";
 "Could not identify this title on Trakt." = "无法在 Trakt 上识别此条目。";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
@@ -1043,6 +1051,7 @@
 "Hearing impaired" = "听障字幕";
 "Hebrew" = "希伯来语";
 "Help & about" = "帮助与关于";
+"Hero trailers" = "主视觉区预告片";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "焦点推荐、热门前 10、热门趋势、正在上映及各流媒体服务内容栏。你的插件内容栏将依次显示在下方。";
 "Hidden" = "已隐藏";
 "Hidden Gems" = "冷门佳作";
@@ -1086,6 +1095,7 @@
 "Home" = "首页";
 "Home Rail Settings" = "首页内容栏设置";
 "Home catalogs" = "首页目录";
+"Home hero audio" = "首页焦点推荐音频";
 "Home layout" = "首页布局";
 "Home style" = "首页样式";
 "Hoopla" = "Hoopla";
@@ -1147,6 +1157,7 @@
 "In Theaters Now" = "正在热映";
 "In Watchlist" = "已在待看清单中";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In watchlist" = "已在片单中";
 "Independent Spirit Awards" = "独立精神奖";
 "India" = "印度";
 "Indonesian" = "印度尼西亚语";
@@ -1331,6 +1342,7 @@
 "Max" = "最大";
 "Max {n} GB" = "最多 {n} GB";
 "Maximum" = "最高";
+"Maximum quality" = "最高画质";
 "Maximum size (GB)" = "最大大小 (GB)";
 "Maximum volume boost" = "最大音量增益";
 "Mecha" = "机甲";
@@ -1528,6 +1540,7 @@
 "No subtitles found." = "未找到字幕。";
 "No subtitles match your search." = "No subtitles match your search.";
 "No telemetry, no servers, no bundled keys." = "无遥测、无服务器、不内置密钥。";
+"No threads for this title yet." = "此作品暂无主题。";
 "No titles match these filters." = "没有符合这些筛选条件的内容。";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "没有符合这些筛选条件的字幕轨道。请尝试切换 HI/SDH 或强制字幕。";
 "No video files found in that folder." = "该文件夹中未找到视频文件。";
@@ -1626,6 +1639,7 @@
 "Open in browser" = "在浏览器中打开";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on AniList" = "在 AniList 上打开";
 "Open on Trakt" = "在 Trakt 上打开";
 "Open review source" = "打开评论来源";
 "Open settings" = "打开设置";
@@ -1700,6 +1714,7 @@
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "从保存的位置继续播放未看完的剧集和电影。观看进度超过 80% 的内容始终会从头播放。关闭此项后所有内容都会从头播放，适合重看剧集。";
 "Pick up where you left off" = "从上次停下的位置继续";
 "Pick what you actually use" = "选择你实际使用的服务";
+"Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "选择你的语言";
 "Pick your subtitle languages" = "选择字幕语言";
 "Picker" = "选择器";
@@ -1709,6 +1724,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "画面调整";
 "Picture in Picture" = "画中画";
+"Picture quality" = "画质";
 "Pill" = "Pill";
 "Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "将常用目录置顶，隐藏从不打开的目录，并调整已置顶内容栏的顺序。浏览视图会立即更新。";
 "Pin to top" = "置顶";
@@ -1723,6 +1739,7 @@
 "Play now" = "立即播放";
 "Play opens the stream list so you pick the release yourself." = "Play opens the stream list so you pick the release yourself.";
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
+"Play trailers in the hero" = "在焦点推荐区播放预告片";
 "Playback" = "播放";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2086,6 +2103,7 @@
 "Sending to Trakt…" = "正在发送到 Trakt…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "已向 Trakt 发送 {n} 项";
+"Sequels & Prequels" = "续作与前传";
 "Serie dramática" = "剧情剧集";
 "Series" = "剧集";
 "Series de comedia" = "喜剧剧集";
@@ -2142,6 +2160,7 @@
 "Show episode ratings" = "显示剧集评分";
 "Show every addon row" = "显示每个插件的内容栏";
 "Show everything anyway" = "仍要显示全部";
+"Show forum threads and comments from AniList on anime detail pages." = "在动漫详情页显示 AniList 论坛主题和评论。";
 "Show full descriptions" = "显示完整简介";
 "Show hidden episodes" = "显示隐藏剧集";
 "Show less" = "收起";
@@ -2211,6 +2230,7 @@
 "Slightly lighter than background." = "比背景稍亮。";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "速度较慢的插件和 P2P 播放源通常需要超过 10 秒才能开始播放。如果播放源还没获得充分的连接机会就被跳过，请延长此时间。";
 "Smaller" = "较小";
+"Smooth on weak PCs" = "低性能电脑流畅优先";
 "Sobre la línea principal" = "主字幕上方";
 "Soft halo around the text. Cleanest on most content." = "在文字周围添加柔和光晕，适合大多数内容，效果最简洁。";
 "Softer and dimmer, kinder for late-night watching." = "画面更柔和、更暗，适合深夜观看。";
@@ -2255,6 +2275,7 @@
 "Start Over" = "从头播放";
 "Start Watching" = "开始观看";
 "Start as" = "启动时为";
+"Start trailers with audio" = "播放预告片时开启声音";
 "Start with subtitles off" = "开始播放时关闭字幕";
 "Starting" = "正在启动";
 "Startup & default" = "启动与默认设置";
@@ -2442,6 +2463,7 @@
 "This theme is missing a color ({color})." = "此主题缺少颜色（{color}）。";
 "This theme is missing its colors." = "此主题缺少颜色。";
 "This theme's preview colors look invalid." = "此主题的预览颜色似乎有误。";
+"This thread is locked." = "此主题已锁定。";
 "This title would not open" = "无法打开此作品";
 "This week" = "本周";
 "Thriller" = "惊悚";
@@ -2551,6 +2573,7 @@
 "Tune anime" = "调整动漫偏好";
 "Tune your recommendations" = "调整你的推荐";
 "Turkish" = "土耳其语";
+"Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "你的插件";

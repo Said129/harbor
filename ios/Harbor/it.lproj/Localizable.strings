@@ -142,6 +142,7 @@
 "After 3" = "Dopo 3";
 "After 4" = "Dopo 4";
 "After 5" = "Dopo 5";
+"After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Dopo qualche istante su una slide, il trailer del titolo in evidenza viene riprodotto senza audio sullo sfondo. Consuma più dati.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Dopo la riproduzione automatica di vari episodi consecutivi senza interazioni, mette in pausa e verifica che ci sia ancora qualcuno prima di continuare. È disattivato per impostazione predefinita.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Riposante per gli occhi";
@@ -192,6 +193,7 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
+"AniList Comments" = "Commenti AniList";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
 "AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "Sincronizzazione con AniList";
@@ -261,6 +263,7 @@
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "Adatta automaticamente i sottotitoli con stile (ASS) affinché i dialoghi mantengano le stesse dimensioni tra i file, conservando colori, caratteri e posizione dei cartelli.";
 "Auto-hide the Skip button after" = "Nascondi automaticamente il pulsante Salta dopo";
 "Auto-play next episode" = "Riproduci automaticamente l'episodio successivo";
+"Auto-play trailer on detail pages" = "Riproduci automaticamente il trailer nelle pagine dei dettagli";
 "Auto-skip credit outros" = "Salta automaticamente le sequenze finali dei titoli di coda";
 "Auto-skip intros" = "Salta automaticamente le sigle iniziali";
 "Auto-skip recaps" = "Salta automaticamente i riepiloghi";
@@ -295,6 +298,7 @@
 "BAFTA Television Awards" = "BAFTA Television Awards";
 "Back" = "Indietro";
 "Back to lists" = "Torna alle liste";
+"Back to threads" = "Torna alle discussioni";
 "Back to top" = "Torna all'inizio";
 "Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "Sfondo";
@@ -302,6 +306,7 @@
 "Background opacity" = "Opacità dello sfondo";
 "Baeksang Arts Awards" = "Baeksang Arts Awards";
 "Bajar {name}" = "Sposta {name} in basso";
+"Balance picture quality and performance. Changes apply to the next video you play." = "Bilancia qualità d’immagine e prestazioni. Le modifiche si applicano al prossimo video riprodotto.";
 "Balanced" = "Bilanciato";
 "Bar color" = "Colore della barra";
 "Barra de búsqueda" = "Barra di avanzamento";
@@ -309,6 +314,7 @@
 "Barra negra" = "Banda nera";
 "Base de la página." = "Base della pagina.";
 "Bass boost" = "Potenziamento dei bassi";
+"Be the first to start a discussion." = "Avvia per primo una discussione.";
 "Beloved by readers and critics" = "Amati da lettori e critica";
 "Berlin Film Festival" = "Festival internazionale del cinema di Berlino";
 "Best Action" = "Miglior azione";
@@ -574,6 +580,7 @@
 "Connect Trakt" = "Collega Trakt";
 "Connect Trakt in settings first" = "Prima collega Trakt nelle Impostazioni";
 "Connect Trakt or Simkl, or start watching, and your stats will build themselves." = "Collega Trakt o Simkl oppure inizia a guardare qualcosa: le tue statistiche si aggiorneranno automaticamente.";
+"Connect your AniList account to see forum threads and comments." = "Collega il tuo account AniList per vedere discussioni e commenti del forum.";
 "Connected" = "Collegato";
 "Connected as {username}" = "Collegato come {username}";
 "Connected to AniList" = "Collegato ad AniList";
@@ -614,6 +621,7 @@
 "Could not cast to {deviceName}." = "Impossibile trasmettere a {deviceName}.";
 "Could not complete this action. Try again." = "Impossibile completare questa azione. Riprova.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not find this title on AniList." = "Impossibile trovare questo titolo su AniList.";
 "Could not identify this title on Trakt." = "Impossibile identificare questo titolo su Trakt.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
@@ -1043,6 +1051,7 @@
 "Hearing impaired" = "Non udenti";
 "Hebrew" = "Ebraico";
 "Help & about" = "Aiuto e informazioni";
+"Hero trailers" = "Trailer Hero";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Hero, Top 10, Di tendenza, Al cinema e righe per servizio. I tuoi Add-on vengono aggiunti sotto.";
 "Hidden" = "Nascosto";
 "Hidden Gems" = "Gemme nascoste";
@@ -1086,6 +1095,7 @@
 "Home" = "Home";
 "Home Rail Settings" = "Impostazioni delle sezioni Home";
 "Home catalogs" = "Cataloghi Home";
+"Home hero audio" = "Audio del banner principale della Home";
 "Home layout" = "Layout della Home";
 "Home style" = "Stile della Home";
 "Hoopla" = "Hoopla";
@@ -1147,6 +1157,7 @@
 "In Theaters Now" = "Ora al cinema";
 "In Watchlist" = "Nella Lista";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In watchlist" = "Nella Lista";
 "Independent Spirit Awards" = "Independent Spirit Awards";
 "India" = "India";
 "Indonesian" = "Indonesiano";
@@ -1331,6 +1342,7 @@
 "Max" = "Max";
 "Max {n} GB" = "Massimo {n} GB";
 "Maximum" = "Massimo";
+"Maximum quality" = "Qualità massima";
 "Maximum size (GB)" = "Dimensione massima (GB)";
 "Maximum volume boost" = "Aumento massimo del volume";
 "Mecha" = "Mecha";
@@ -1528,6 +1540,7 @@
 "No subtitles found." = "Nessun sottotitolo trovato.";
 "No subtitles match your search." = "No subtitles match your search.";
 "No telemetry, no servers, no bundled keys." = "Nessuna telemetria, nessun server, nessuna chiave integrata.";
+"No threads for this title yet." = "Ancora nessuna discussione per questo titolo.";
 "No titles match these filters." = "Nessun titolo corrisponde a questi filtri.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Nessuna traccia corrisponde a questi filtri. Prova ad attivare o disattivare HI/SDH o Forced.";
 "No video files found in that folder." = "Nessun file video trovato in quella cartella.";
@@ -1626,6 +1639,7 @@
 "Open in browser" = "Apri nel browser";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on AniList" = "Apri su AniList";
 "Open on Trakt" = "Apri su Trakt";
 "Open review source" = "Apri la fonte della recensione";
 "Open settings" = "Apri Impostazioni";
@@ -1700,6 +1714,7 @@
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "Riprendi episodi e film parzialmente visti dal punto salvato. I contenuti visti oltre l'80% ripartono sempre dall'inizio. Disattiva questa opzione per iniziare sempre da capo, utile se riguardi le serie.";
 "Pick up where you left off" = "Riprendi da dove avevi interrotto";
 "Pick what you actually use" = "Scegli ciò che usi davvero";
+"Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "Scegli la lingua";
 "Pick your subtitle languages" = "Scegli le lingue dei sottotitoli";
 "Picker" = "Selettore";
@@ -1709,6 +1724,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Regolazioni immagine";
 "Picture in Picture" = "Picture in Picture";
+"Picture quality" = "Qualità dell'immagine";
 "Pill" = "Pill";
 "Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "Fissa in alto i cataloghi che preferisci, nascondi quelli che non apri mai e riordina le sezioni fissate. La schermata Esplora si aggiorna all'istante.";
 "Pin to top" = "Fissa in alto";
@@ -1723,6 +1739,7 @@
 "Play now" = "Riproduci ora";
 "Play opens the stream list so you pick the release yourself." = "Play opens the stream list so you pick the release yourself.";
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
+"Play trailers in the hero" = "Riproduci i trailer nella sezione hero";
 "Playback" = "Riproduzione";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2086,6 +2103,7 @@
 "Sending to Trakt…" = "Invio a Trakt…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "Invio di {n} a Trakt completato";
+"Sequels & Prequels" = "Sequel e prequel";
 "Serie dramática" = "Serie drammatiche";
 "Series" = "Serie";
 "Series de comedia" = "Serie commedia";
@@ -2142,6 +2160,7 @@
 "Show episode ratings" = "Mostra le valutazioni degli episodi";
 "Show every addon row" = "Mostra ogni riga degli Add-on";
 "Show everything anyway" = "Mostra comunque tutto";
+"Show forum threads and comments from AniList on anime detail pages." = "Mostra nelle pagine dei dettagli degli anime le discussioni del forum e i commenti di AniList.";
 "Show full descriptions" = "Mostra descrizioni complete";
 "Show hidden episodes" = "Mostra episodi nascosti";
 "Show less" = "Mostra meno";
@@ -2211,6 +2230,7 @@
 "Slightly lighter than background." = "Leggermente più chiaro dello sfondo.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Gli Add-on lenti e le fonti P2P spesso impiegano più di 10 secondi ad avviarsi. Aumenta questo valore se gli stream vengono saltati prima di avere il tempo necessario.";
 "Smaller" = "Più piccolo";
+"Smooth on weak PCs" = "Fluido sui PC meno potenti";
 "Sobre la línea principal" = "Sopra la riga principale";
 "Soft halo around the text. Cleanest on most content." = "Alone morbido intorno al testo. La resa più pulita sulla maggior parte dei contenuti.";
 "Softer and dimmer, kinder for late-night watching." = "Più morbido e meno luminoso, ideale per la visione notturna.";
@@ -2255,6 +2275,7 @@
 "Start Over" = "Ricomincia";
 "Start Watching" = "Inizia a guardare";
 "Start as" = "Inizia come";
+"Start trailers with audio" = "Avvia i trailer con l'audio";
 "Start with subtitles off" = "Avvia con i sottotitoli disattivati";
 "Starting" = "Avvio";
 "Startup & default" = "Avvio e impostazioni predefinite";
@@ -2442,6 +2463,7 @@
 "This theme is missing a color ({color})." = "Nel tema manca un colore ({color}).";
 "This theme is missing its colors." = "Nel tema mancano i colori.";
 "This theme's preview colors look invalid." = "I colori di anteprima del tema non sembrano validi.";
+"This thread is locked." = "Questa discussione è bloccata.";
 "This title would not open" = "Impossibile aprire questo titolo";
 "This week" = "Questa settimana";
 "Thriller" = "Thriller";
@@ -2551,6 +2573,7 @@
 "Tune anime" = "Regola gli anime";
 "Tune your recommendations" = "Regola i tuoi consigli";
 "Turkish" = "Turco";
+"Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "I tuoi Add-on";

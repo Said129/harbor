@@ -142,6 +142,7 @@
 "After 3" = "Setelah 3";
 "After 4" = "Setelah 4";
 "After 5" = "Setelah 5";
+"After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Setelah beberapa saat di sebuah slide, trailer judul unggulan akan diputar tanpa suara di latar belakang. Menggunakan lebih banyak bandwidth.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Setelah beberapa episode diputar otomatis berturut-turut tanpa interaksi, pemutaran akan dijeda dan Anda akan diminta memastikan bahwa Anda masih menonton sebelum dilanjutkan. Dinonaktifkan secara default.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Nyaman di mata";
@@ -192,6 +193,7 @@
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
 "AniList" = "AniList";
+"AniList Comments" = "Komentar AniList";
 "AniList did not confirm the update." = "AniList did not confirm the update.";
 "AniList has no anime episodes scheduled to air this month. Try a different month." = "AniList has no anime episodes scheduled to air this month. Try a different month.";
 "AniList sync" = "Sinkronisasi AniList";
@@ -261,6 +263,7 @@
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "Menyesuaikan subtitle bergaya (ASS) secara otomatis agar ukuran dialog tetap sama di semua file, sekaligus mempertahankan warna, font, dan posisi teksnya.";
 "Auto-hide the Skip button after" = "Sembunyikan tombol Lewati secara otomatis setelah";
 "Auto-play next episode" = "Putar episode berikutnya secara otomatis";
+"Auto-play trailer on detail pages" = "Putar trailer secara otomatis di halaman detail";
 "Auto-skip credit outros" = "Lewati outro kredit secara otomatis";
 "Auto-skip intros" = "Lewati intro secara otomatis";
 "Auto-skip recaps" = "Lewati rekap secara otomatis";
@@ -295,6 +298,7 @@
 "BAFTA Television Awards" = "Penghargaan Televisi BAFTA";
 "Back" = "Kembali";
 "Back to lists" = "Kembali ke daftar";
+"Back to threads" = "Kembali ke utas";
 "Back to top" = "Kembali ke atas";
 "Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "Latar belakang";
@@ -302,6 +306,7 @@
 "Background opacity" = "Opasitas latar belakang";
 "Baeksang Arts Awards" = "Penghargaan Seni Baeksang";
 "Bajar {name}" = "Pindahkan {name} ke bawah";
+"Balance picture quality and performance. Changes apply to the next video you play." = "Seimbangkan kualitas gambar dan kinerja. Perubahan berlaku pada video berikutnya yang Anda putar.";
 "Balanced" = "Seimbang";
 "Bar color" = "Warna bilah";
 "Barra de búsqueda" = "Bilah waktu";
@@ -309,6 +314,7 @@
 "Barra negra" = "Bilah hitam";
 "Base de la página." = "Dasar halaman.";
 "Bass boost" = "Penguat bass";
+"Be the first to start a discussion." = "Jadilah yang pertama memulai diskusi.";
 "Beloved by readers and critics" = "Disukai pembaca dan kritikus";
 "Berlin Film Festival" = "Festival Film Berlin";
 "Best Action" = "Aksi Terbaik";
@@ -574,6 +580,7 @@
 "Connect Trakt" = "Hubungkan Trakt";
 "Connect Trakt in settings first" = "Hubungkan Trakt di Pengaturan terlebih dahulu";
 "Connect Trakt or Simkl, or start watching, and your stats will build themselves." = "Hubungkan Trakt atau Simkl, atau mulai menonton, dan statistik Anda akan terisi otomatis.";
+"Connect your AniList account to see forum threads and comments." = "Hubungkan akun AniList Anda untuk melihat utas forum dan komentar.";
 "Connected" = "Terhubung";
 "Connected as {username}" = "Terhubung sebagai {username}";
 "Connected to AniList" = "Terhubung ke AniList";
@@ -614,6 +621,7 @@
 "Could not cast to {deviceName}." = "Tidak dapat melakukan casting ke {deviceName}.";
 "Could not complete this action. Try again." = "Tindakan ini tidak dapat diselesaikan. Coba lagi.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
+"Could not find this title on AniList." = "Tidak dapat menemukan judul ini di AniList.";
 "Could not identify this title on Trakt." = "Tidak dapat mengidentifikasi judul ini di Trakt.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
@@ -1043,6 +1051,7 @@
 "Hearing impaired" = "Untuk gangguan pendengaran";
 "Hebrew" = "Ibrani";
 "Help & about" = "Bantuan & tentang";
+"Hero trailers" = "Trailer sorotan utama";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Sorotan utama, 10 Teratas, Sedang Tren, Sedang Tayang di Bioskop, deretan per layanan. Addon Anda ditambahkan di bawahnya.";
 "Hidden" = "Tersembunyi";
 "Hidden Gems" = "Permata Tersembunyi";
@@ -1086,6 +1095,7 @@
 "Home" = "Beranda";
 "Home Rail Settings" = "Pengaturan Deretan Beranda";
 "Home catalogs" = "Katalog Beranda";
+"Home hero audio" = "Audio hero Beranda";
 "Home layout" = "Tata letak Beranda";
 "Home style" = "Gaya Beranda";
 "Hoopla" = "Hoopla";
@@ -1147,6 +1157,7 @@
 "In Theaters Now" = "Sedang Tayang di Bioskop";
 "In Watchlist" = "Di Daftar Tontonan";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In watchlist" = "Di daftar tontonan";
 "Independent Spirit Awards" = "Independent Spirit Awards";
 "India" = "India";
 "Indonesian" = "Bahasa Indonesia";
@@ -1331,6 +1342,7 @@
 "Max" = "Maks";
 "Max {n} GB" = "Maks {n} GB";
 "Maximum" = "Maksimum";
+"Maximum quality" = "Kualitas maksimum";
 "Maximum size (GB)" = "Ukuran maksimum (GB)";
 "Maximum volume boost" = "Penguatan volume maksimum";
 "Mecha" = "Mecha";
@@ -1528,6 +1540,7 @@
 "No subtitles found." = "Subtitle tidak ditemukan.";
 "No subtitles match your search." = "No subtitles match your search.";
 "No telemetry, no servers, no bundled keys." = "Tanpa telemetri, tanpa server, tanpa kunci bawaan.";
+"No threads for this title yet." = "Belum ada utas untuk judul ini.";
 "No titles match these filters." = "Tidak ada judul yang cocok dengan filter ini.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Tidak ada trek yang cocok dengan filter ini. Coba aktifkan atau nonaktifkan HI/SDH atau Forced.";
 "No video files found in that folder." = "Tidak ada file video di folder tersebut.";
@@ -1626,6 +1639,7 @@
 "Open in browser" = "Buka di browser";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open on AniList" = "Buka di AniList";
 "Open on Trakt" = "Buka di Trakt";
 "Open review source" = "Buka sumber ulasan";
 "Open settings" = "Buka pengaturan";
@@ -1700,6 +1714,7 @@
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "Lanjutkan episode dan film yang belum selesai dari posisi tersimpan. Apa pun yang telah ditonton lebih dari 80% akan selalu dimulai ulang. Nonaktifkan ini agar selalu memulai dari awal, cocok jika Anda menonton ulang acara.";
 "Pick up where you left off" = "Lanjutkan dari bagian terakhir yang Anda tonton";
 "Pick what you actually use" = "Pilih yang benar-benar Anda gunakan";
+"Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "Pilih bahasa Anda";
 "Pick your subtitle languages" = "Pilih bahasa subtitle Anda";
 "Picker" = "Pemilih";
@@ -1709,6 +1724,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Penyesuaian gambar";
 "Picture in Picture" = "Gambar dalam Gambar";
+"Picture quality" = "Kualitas gambar";
 "Pill" = "Pill";
 "Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "Sematkan katalog yang Anda inginkan di bagian atas, sembunyikan yang tidak pernah dibuka, dan atur ulang baris yang disematkan. Tampilan jelajah Anda langsung diperbarui.";
 "Pin to top" = "Sematkan ke atas";
@@ -1723,6 +1739,7 @@
 "Play now" = "Putar sekarang";
 "Play opens the stream list so you pick the release yourself." = "Play opens the stream list so you pick the release yourself.";
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
+"Play trailers in the hero" = "Putar trailer di bagian hero";
 "Playback" = "Pemutaran";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2086,6 +2103,7 @@
 "Sending to Trakt…" = "Mengirim ke Trakt…";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n} dikirim ke Trakt";
+"Sequels & Prequels" = "Sekuel & Prekuel";
 "Serie dramática" = "Serial Drama";
 "Series" = "Acara";
 "Series de comedia" = "Serial Komedi";
@@ -2142,6 +2160,7 @@
 "Show episode ratings" = "Tampilkan rating episode";
 "Show every addon row" = "Tampilkan setiap baris addon";
 "Show everything anyway" = "Tetap tampilkan semuanya";
+"Show forum threads and comments from AniList on anime detail pages." = "Tampilkan utas forum dan komentar dari AniList di halaman detail anime.";
 "Show full descriptions" = "Tampilkan deskripsi lengkap";
 "Show hidden episodes" = "Tampilkan episode tersembunyi";
 "Show less" = "Tampilkan lebih sedikit";
@@ -2211,6 +2230,7 @@
 "Slightly lighter than background." = "Sedikit lebih terang daripada latar belakang.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Addon yang lambat dan sumber P2P sering kali memerlukan waktu lebih dari 10 detik untuk mulai. Naikkan nilai ini jika stream dilewati sebelum diberi cukup waktu untuk dimulai.";
 "Smaller" = "Lebih kecil";
+"Smooth on weak PCs" = "Mulus di PC berspesifikasi rendah";
 "Sobre la línea principal" = "Di atas baris utama";
 "Soft halo around the text. Cleanest on most content." = "Pendar lembut di sekitar teks. Paling bersih pada sebagian besar konten.";
 "Softer and dimmer, kinder for late-night watching." = "Lebih lembut dan redup, lebih nyaman untuk menonton larut malam.";
@@ -2255,6 +2275,7 @@
 "Start Over" = "Mulai dari Awal";
 "Start Watching" = "Mulai Menonton";
 "Start as" = "Mulai sebagai";
+"Start trailers with audio" = "Mulai trailer dengan audio";
 "Start with subtitles off" = "Mulai dengan subtitle nonaktif";
 "Starting" = "Memulai";
 "Startup & default" = "Mulai & bawaan";
@@ -2442,6 +2463,7 @@
 "This theme is missing a color ({color})." = "Tema ini tidak memiliki warna ({color}).";
 "This theme is missing its colors." = "Tema ini tidak memiliki warna.";
 "This theme's preview colors look invalid." = "Warna pratinjau tema ini tampaknya tidak valid.";
+"This thread is locked." = "Utas ini dikunci.";
 "This title would not open" = "Judul ini tidak dapat dibuka";
 "This week" = "Minggu ini";
 "Thriller" = "Thriller";
@@ -2551,6 +2573,7 @@
 "Tune anime" = "Sesuaikan anime";
 "Tune your recommendations" = "Sesuaikan rekomendasi Anda";
 "Turkish" = "Turki";
+"Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
 "Tus addons" = "Addon Anda";
