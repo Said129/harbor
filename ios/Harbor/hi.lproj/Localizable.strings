@@ -145,6 +145,7 @@
 "After 5" = "5 के बाद";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "किसी स्लाइड पर कुछ देर रुकने के बाद, फ़ीचर्ड टाइटल का ट्रेलर बैकग्राउंड में बिना आवाज़ के चलता है। इसमें अधिक बैंडविड्थ लगती है।";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "बिना किसी इनपुट के लगातार कई एपिसोड अपने आप चलने के बाद, आगे बढ़ने से पहले रुककर जाँचें कि आप अभी भी मौजूद हैं। डिफ़ॉल्ट रूप से बंद है।";
+"Age ratings and content notes when playback starts." = "प्लेबैक शुरू होने पर उम्र की रेटिंग और कॉन्टेंट की जानकारी।";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "आँखों के लिए आरामदायक";
 "Agregar a favoritos" = "पसंदीदा में जोड़ें";
@@ -309,6 +310,7 @@
 "Bajar {name}" = "{name} नीचे ले जाएँ";
 "Balance picture quality and performance. Changes apply to the next video you play." = "तस्वीर की गुणवत्ता और प्रदर्शन में संतुलन रखें। बदलाव अगले चलाए जाने वाले वीडियो पर लागू होंगे।";
 "Balanced" = "संतुलित";
+"Bar" = "बार";
 "Bar color" = "बार का रंग";
 "Barra de búsqueda" = "सीक बार";
 "Barra inferior" = "निचला बार";
@@ -485,6 +487,7 @@
 "China" = "चीन";
 "Chinese" = "चीनी";
 "Chinese (Simplified)" = "चीनी (सरलीकृत)";
+"Chips" = "चिप्स";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "नाम चुनें, फिर पसंदीदा रिज़ॉल्यूशन, स्रोत, कोडेक और ऑडियो चुनें।";
 "Choose an avatar" = "कोई अवतार चुनें";
 "Choose image" = "इमेज चुनें";
@@ -495,6 +498,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "अपनी पसंद की अधिकतम 5 फ़िल्में या शो चुनें। Harbor इनके आधार पर आपके फ़ीचर्ड पिक्स और सुझाव बेहतर बनाता है। यह पूरी तरह वैकल्पिक है।";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "चुनें कि Harbor कब प्रोफ़ाइल चुनने को कहे। समय के आधार पर आने वाले संकेत Harbor पर लौटने पर दिखते हैं।";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "चुनें कि Harbor उपशीर्षक कहाँ खोजे। चालू स्रोतों के परिणाम एक साथ दिखते हैं और दोहराव हटा दिए जाते हैं।";
+"Choose whether the content advisory appears in full color or a restrained monochrome tone." = "Choose whether the content advisory appears in full color or a restrained monochrome tone.";
 "Choose which Simkl rails appear on your home screen." = "चुनें कि आपकी होम स्क्रीन पर कौन-सी Simkl पंक्तियाँ दिखें।";
 "Choose which addon results appear when you pick a stream." = "स्ट्रीम चुनते समय दिखने वाले ऐड-ऑन परिणाम चुनें।";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "कार्ड और विवरण पृष्ठों पर दिखने वाली रेटिंग चुनें। लॉक की गई कार्ड रेटिंग के लिए मेटाडेटा में प्रदाता की कुंजी चाहिए।";
@@ -594,6 +598,7 @@
 "Conservar original" = "मूल रखें";
 "Contenido" = "कॉन्टेंट";
 "Content" = "कॉन्टेंट";
+"Content advisory" = "कॉन्टेंट संबंधी चेतावनी";
 "Continuar al siguiente capítulo" = "Continue to next chapter";
 "Continuar viendo" = "देखना जारी रखें";
 "Continue" = "जारी रखें";
@@ -1146,6 +1151,8 @@
 "Idiomas y subtítulos" = "भाषाएँ और सबटाइटल";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "अगर कोई स्ट्रीम समय पर चलना शुरू न करे (स्रोत बंद हो या ऐडऑन काम न कर रहा हो), तो अगली उपलब्ध स्ट्रीम अपने आप आज़माएँ। डिफ़ॉल्ट रूप से बंद।";
 "If multiple Rokus appear, pick the one matching your TV's name." = "अगर कई Roku दिखाई दें, तो वह चुनें जिसका नाम आपके TV के नाम से मेल खाता हो।";
+"Ignore this title" = "इस शीर्षक को अनदेखा करें";
+"Ignored titles" = "अनदेखा किए गए शीर्षक";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "इमेज की भाषाएँ";
 "Imagen" = "चित्र";
@@ -1480,6 +1487,7 @@
 "Netflix Originals" = "Netflix ओरिजिनल्स";
 "Never" = "कभी नहीं";
 "Never auto-select tracks containing" = "इन शब्दों वाले ट्रैक कभी अपने-आप न चुनें";
+"Never show the content advisory for this title again" = "इस शीर्षक के लिए कॉन्टेंट संबंधी चेतावनी दोबारा कभी न दिखाएँ";
 "New Anime Releases" = "नई एनीमे रिलीज़";
 "New Episodes" = "नए एपिसोड";
 "New Episodes row" = "नए एपिसोड की पंक्ति";
@@ -1683,6 +1691,7 @@
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "वैकल्पिक कुंजियाँ, जो TMDB पंक्तियाँ, पोस्टर पर पहले से शामिल रेटिंग, फ़ैन आर्ट और TVDB एपिसोड डेटा अनलॉक करती हैं।";
+"Optional. TheIntroDB answers without a key, but a key raises your rate limit so timing keeps arriving when you binge. Get one at" = "वैकल्पिक। TheIntroDB बिना कुंजी के भी जवाब देता है, लेकिन कुंजी जोड़ने पर आपकी रेट लिमिट बढ़ जाती है, जिससे लगातार कई एपिसोड देखते समय भी टाइमिंग मिलती रहती है। कुंजी यहाँ से लें:";
 "Options" = "विकल्प";
 "Orden de addons" = "ऐडऑन क्रम";
 "Orden de idiomas preferidos" = "भाषाओं की प्राथमिकता";
@@ -1724,6 +1733,7 @@
 "Paste the code or page URL" = "कोड या पेज URL पेस्ट करें";
 "Paste the manifest URL the configure page gave you" = "कॉन्फ़िगर पेज से मिला मैनिफ़ेस्ट URL पेस्ट करें";
 "Paste the text from AniList" = "AniList से टेक्स्ट पेस्ट करें";
+"Paste your TheIntroDB API key" = "अपनी TheIntroDB API की पेस्ट करें";
 "Peacock" = "Peacock";
 "Peligro" = "खतरा";
 "Películas" = "फ़िल्में";
@@ -1818,6 +1828,7 @@
 "Predeterminado (acento dorado)" = "डिफ़ॉल्ट (सुनहरा एक्सेंट)";
 "Prefer embedded subtitles" = "एम्बेडेड सबटाइटल को प्राथमिकता दें";
 "Prefer episode still artwork" = "Prefer episode still artwork";
+"Prefer my installed metadata addon" = "मेरे इंस्टॉल किए गए मेटाडेटा ऐडऑन को प्राथमिकता दें";
 "Prefer these sources" = "Prefer these sources";
 "Preferred language for anime titles displayed on poster cards." = "पोस्टर कार्ड पर दिखने वाले ऐनिमे शीर्षकों की पसंदीदा भाषा।";
 "Preguntar si reanudar o empezar de nuevo" = "वहीं से चलाने या फिर से शुरू करने के लिए पूछें";
@@ -1867,6 +1878,7 @@
 "Página siguiente" = "अगला पेज";
 "Pósteres, calificaciones y listas" = "पोस्टर, रेटिंग, सूचियाँ";
 "Quality" = "क्वालिटी";
+"Quality badge style" = "क्वालिटी बैज शैली";
 "Quedan {h} h" = "{h} घंटे बाकी";
 "Quedan {h} h {m} min" = "{h} घंटे {m} मिनट बाकी";
 "Quedan {m} min" = "{m} मिनट बाकी";
@@ -2012,6 +2024,7 @@
 "Restablecer zoom" = "ज़ूम रीसेट करें";
 "Restart" = "रीस्टार्ट करें";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore" = "बहाल करें";
 "Restore dismissed hints" = "हटाए गए संकेत फिर दिखाएँ";
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
@@ -2126,6 +2139,7 @@
 "Secondary copy." = "द्वितीयक टेक्स्ट।";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "विवरण देखें";
+"See the resolution, HDR format and audio while you watch." = "देखते समय रिज़ॉल्यूशन, HDR फ़ॉर्मैट और ऑडियो देखें।";
 "Seek bar" = "सीक बार";
 "Seen so far: {hosts}" = "अब तक देखे गए: {hosts}";
 "Seguir viendo en la parte superior" = "देखना जारी रखें को सबसे ऊपर रखें";
@@ -2196,6 +2210,7 @@
 "Show comments" = "टिप्पणियाँ दिखाएँ";
 "Show comments on detail pages" = "विवरण पेजों पर टिप्पणियाँ दिखाएँ";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio स्रोत चयन, डाउनलोड और बिग पिक्चर में ऐडऑन के पूरे विवरण दिखाएँ।";
+"Show content ratings?" = "कॉन्टेंट की रेटिंग दिखाएँ?";
 "Show controls" = "कंट्रोल दिखाएँ";
 "Show cursors" = "कर्सर दिखाएँ";
 "Show details" = "विवरण दिखाएँ";
@@ -2205,6 +2220,7 @@
 "Show episode ratings" = "एपिसोड की रेटिंग दिखाएँ";
 "Show every addon row" = "हर ऐडऑन पंक्ति दिखाएँ";
 "Show everything anyway" = "फिर भी सब कुछ दिखाएँ";
+"Show format chips on stream rows" = "स्ट्रीम पंक्तियों पर फ़ॉर्मैट चिप दिखाएँ";
 "Show forum threads and comments from AniList on anime detail pages." = "एनीमे विवरण पेजों पर AniList के फ़ोरम थ्रेड और टिप्पणियाँ दिखाएँ।";
 "Show full descriptions" = "पूरे विवरण दिखाएँ";
 "Show hidden episodes" = "छिपे हुए एपिसोड दिखाएँ";
@@ -2219,6 +2235,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "संक्षिप्त स्रोत चयन और बिग पिक्चर में रिलीज़ की फ़ाइलों के नाम दिखाएँ।";
 "Show release name" = "रिलीज़ का नाम दिखाएँ";
 "Show row" = "पंक्ति दिखाएँ";
+"Show stream quality under the title" = "शीर्षक के नीचे स्ट्रीम क्वालिटी दिखाएँ";
 "Show subtitle sync indicator" = "सबटाइटल सिंक संकेतक दिखाएँ";
 "Show the Skip button" = "स्किप बटन दिखाएँ";
 "Show this catalog" = "यह कैटलॉग दिखाएँ";
@@ -2348,6 +2365,7 @@
 "Storage overview" = "स्टोरेज की जानकारी";
 "Stream" = "स्ट्रीम";
 "Stream priority" = "स्ट्रीम प्राथमिकता";
+"Stream quality in player" = "प्लेयर में स्ट्रीम क्वालिटी";
 "Stream ranking" = "स्ट्रीम रैंकिंग";
 "Stream safety filter" = "स्ट्रीम सुरक्षा फ़िल्टर";
 "Streaming" = "स्ट्रीमिंग";
@@ -2486,12 +2504,14 @@
 "The most anticipated upcoming releases on Trakt" = "Trakt पर आने वाली सबसे बहुप्रतीक्षित रिलीज़";
 "The most-watched movies and series on {name} right now in {region}." = "{region} में इस समय {name} पर सबसे ज़्यादा देखी जा रही फ़िल्में और सीरीज़।";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
+"The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "पिकर हर स्ट्रीम पर रिज़ॉल्यूशन, HDR प्रकार, कोडेक और ऑडियो फ़ॉर्मैट का टैग लगाता है। बंद करने पर ये सभी छिप जाते हैं।";
 "The quick brown fox jumps over the lazy dog" = "तेज़ भूरी लोमड़ी आलसी कुत्ते के ऊपर से कूदती है";
 "The ratings row on a title's detail page, next to runtime and genre." = "किसी टाइटल के विवरण पेज पर अवधि और शैली के पास दिखाई देने वाली रेटिंग पंक्ति।";
 "The server answered with status {status}. Is that a streaming server?" = "सर्वर ने {status} स्टेटस के साथ जवाब दिया। क्या यह स्ट्रीमिंग सर्वर है?";
 "The server responded in {ms} ms." = "सर्वर ने {ms} मिलीसेकंड में जवाब दिया।";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "पूरे होम पेज की बनावट। नीचे की सभी सेटिंग्स इसके अंदर की पंक्तियों को सँवारती हैं।";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheIntroDB · intro and credits timing" = "TheIntroDB · इंट्रो और क्रेडिट की टाइमिंग";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "Theme is missing a name." = "थीम का नाम नहीं है।";
@@ -2524,6 +2544,7 @@
 "Titles" = "शीर्षक";
 "Titles and descriptions" = "शीर्षक और विवरण";
 "Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
+"Titles you ignore on the advisory card never show it again." = "चेतावनी कार्ड पर आप जिन शीर्षकों को अनदेखा करते हैं, उन पर यह दोबारा कभी नहीं दिखती।";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "सभी";
 "Todas las categorías" = "सभी श्रेणियाँ";
@@ -2614,6 +2635,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "ट्रेंडिंग, लोकप्रिय, सिनेमाघरों में और हर सेवा की अलग-अलग पंक्तियाँ।";
 "Trending, in theaters, what's on every streamer." = "ट्रेंडिंग, सिनेमाघरों में चल रही फ़िल्में और हर स्ट्रीमिंग सेवा पर उपलब्ध टाइटल।";
 "Try again" = "फिर कोशिश करें";
+"Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "शीर्षक और विवरण के लिए पहले अपना ऐडऑन आज़माएँ। उसमें नतीजा न हो तो Cinemeta इस्तेमाल करें।";
 "Tu avatar, nombre e identificador en Harbor." = "पूरे Harbor में आपका अवतार, नाम और हैंडल।";
 "Tu color" = "आपका रंग";
 "Tu perfil" = "आपकी प्रोफ़ाइल";
@@ -2621,6 +2643,7 @@
 "Tune anime" = "ऐनिमे को अपने मुताबिक ढालें";
 "Tune your recommendations" = "अपने सुझावों को बेहतर बनाएँ";
 "Turkish" = "तुर्की";
+"Turn on" = "चालू करें";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
@@ -3993,6 +4016,7 @@
 "{count} picks ready" = "{count} चुने हुए विकल्प तैयार हैं";
 "{count} results" = "{count} नतीजे";
 "{count} selected" = "{count} चुने गए";
+"{count} titles will never show the content advisory again." = "{count} शीर्षकों पर कॉन्टेंट संबंधी चेतावनी दोबारा कभी नहीं दिखेगी।";
 "{count} tracks" = "{count} ट्रैक";
 "{h}h left" = "{h} घंटे बाकी";
 "{h}h {m}m left" = "{h} घंटे {m} मिनट बाकी";

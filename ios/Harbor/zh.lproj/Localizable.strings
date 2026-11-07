@@ -145,6 +145,7 @@
 "After 5" = "连续播放 5 集后";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "在幻灯片上停留片刻后，焦点推荐内容的预告片会在背景中静音播放。此功能会占用更多带宽。";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "连续自动播放数集且没有任何操作后，暂停并确认你是否仍在观看，再继续播放。默认关闭。";
+"Age ratings and content notes when playback starts." = "在播放开始时显示年龄分级和内容提示。";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "护眼";
 "Agregar a favoritos" = "添加到收藏";
@@ -309,6 +310,7 @@
 "Bajar {name}" = "下移{name}";
 "Balance picture quality and performance. Changes apply to the next video you play." = "平衡画质与性能。更改会应用于下一次播放的视频。";
 "Balanced" = "均衡";
+"Bar" = "条形栏";
 "Bar color" = "进度条颜色";
 "Barra de búsqueda" = "进度条";
 "Barra inferior" = "底部栏";
@@ -485,6 +487,7 @@
 "China" = "中国";
 "Chinese" = "中文";
 "Chinese (Simplified)" = "简体中文";
+"Chips" = "标签";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "先取一个名字，再选择偏好的分辨率、来源、编解码器和音频。";
 "Choose an avatar" = "选择头像";
 "Choose image" = "选择图片";
@@ -495,6 +498,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "最多选择 5 部你已经喜欢的电影或剧集。Harbor 会用它们来优化精选内容和推荐。完全可选。";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "选择 Harbor 何时要求选择个人资料。定时提示会在你返回 Harbor 时出现。";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "选择 Harbor 搜索字幕的来源。已启用来源的结果会合并显示，并去除重复项。";
+"Choose whether the content advisory appears in full color or a restrained monochrome tone." = "Choose whether the content advisory appears in full color or a restrained monochrome tone.";
 "Choose which Simkl rails appear on your home screen." = "选择要在主屏幕上显示的 Simkl 内容栏。";
 "Choose which addon results appear when you pick a stream." = "选择挑选播放源时显示哪些扩展结果。";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "选择在卡片和详情页显示哪些评分。已锁定的卡片评分需要在“元数据”中添加提供方密钥。";
@@ -594,6 +598,7 @@
 "Conservar original" = "保留原样";
 "Contenido" = "内容";
 "Content" = "内容";
+"Content advisory" = "内容警告";
 "Continuar al siguiente capítulo" = "Continue to next chapter";
 "Continuar viendo" = "继续观看";
 "Continue" = "继续";
@@ -1146,6 +1151,8 @@
 "Idiomas y subtítulos" = "语言与字幕";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "如果播放源未能在规定时间内开始播放（播放源失效或插件宕机），则自动尝试下一个可用播放源。默认关闭。";
 "If multiple Rokus appear, pick the one matching your TV's name." = "如果出现多个 Roku，请选择名称与你的电视相符的设备。";
+"Ignore this title" = "忽略这部作品";
+"Ignored titles" = "已忽略的作品";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "图片语言";
 "Imagen" = "画面";
@@ -1480,6 +1487,7 @@
 "Netflix Originals" = "Netflix 原创";
 "Never" = "从不";
 "Never auto-select tracks containing" = "从不自动选择名称中包含以下内容的轨道";
+"Never show the content advisory for this title again" = "不再为这部作品显示内容警告";
 "New Anime Releases" = "动漫新作";
 "New Episodes" = "新剧集";
 "New Episodes row" = "“新剧集”行";
@@ -1683,6 +1691,7 @@
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "用于解锁 TMDB 内容栏、海报内嵌评分、艺术图和 TVDB 剧集数据的可选密钥。";
+"Optional. TheIntroDB answers without a key, but a key raises your rate limit so timing keeps arriving when you binge. Get one at" = "可选。不填密钥 TheIntroDB 也能响应，但填入密钥可提高速率上限，连续追剧时也能持续获取时间点。可在此获取";
 "Options" = "选项";
 "Orden de addons" = "插件顺序";
 "Orden de idiomas preferidos" = "语言优先顺序";
@@ -1724,6 +1733,7 @@
 "Paste the code or page URL" = "粘贴代码或页面 URL";
 "Paste the manifest URL the configure page gave you" = "粘贴配置页面提供的 manifest URL";
 "Paste the text from AniList" = "粘贴来自 AniList 的文本";
+"Paste your TheIntroDB API key" = "粘贴你的 TheIntroDB API 密钥";
 "Peacock" = "Peacock";
 "Peligro" = "危险";
 "Películas" = "电影";
@@ -1818,6 +1828,7 @@
 "Predeterminado (acento dorado)" = "默认（金色强调色）";
 "Prefer embedded subtitles" = "优先使用内嵌字幕";
 "Prefer episode still artwork" = "Prefer episode still artwork";
+"Prefer my installed metadata addon" = "优先使用我已安装的元数据插件";
 "Prefer these sources" = "Prefer these sources";
 "Preferred language for anime titles displayed on poster cards." = "海报卡片上显示的动漫标题所使用的首选语言。";
 "Preguntar si reanudar o empezar de nuevo" = "询问继续播放还是从头开始";
@@ -1867,6 +1878,7 @@
 "Página siguiente" = "下一页";
 "Pósteres, calificaciones y listas" = "海报、评分、列表";
 "Quality" = "质量";
+"Quality badge style" = "画质徽标样式";
 "Quedan {h} h" = "剩余 {h} 小时";
 "Quedan {h} h {m} min" = "剩余 {h} 小时 {m} 分钟";
 "Quedan {m} min" = "剩余 {m} 分钟";
@@ -2012,6 +2024,7 @@
 "Restablecer zoom" = "重置缩放";
 "Restart" = "重新开始";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore" = "恢复";
 "Restore dismissed hints" = "恢复已忽略的提示";
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
@@ -2126,6 +2139,7 @@
 "Secondary copy." = "备用副本。";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "查看详情";
+"See the resolution, HDR format and audio while you watch." = "观看时查看分辨率、HDR 格式和音频信息。";
 "Seek bar" = "进度条";
 "Seen so far: {hosts}" = "目前已见：{hosts}";
 "Seguir viendo en la parte superior" = "将“继续观看”置顶";
@@ -2196,6 +2210,7 @@
 "Show comments" = "显示评论";
 "Show comments on detail pages" = "在详情页显示评论";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "在 Stremio 选择器、下载页面和大屏模式中显示插件的完整描述。";
+"Show content ratings?" = "显示内容分级？";
 "Show controls" = "显示控件";
 "Show cursors" = "显示光标";
 "Show details" = "显示详情";
@@ -2205,6 +2220,7 @@
 "Show episode ratings" = "显示剧集评分";
 "Show every addon row" = "显示每个插件的内容栏";
 "Show everything anyway" = "仍要显示全部";
+"Show format chips on stream rows" = "在片源行中显示格式标签";
 "Show forum threads and comments from AniList on anime detail pages." = "在动漫详情页显示 AniList 论坛主题和评论。";
 "Show full descriptions" = "显示完整简介";
 "Show hidden episodes" = "显示隐藏剧集";
@@ -2219,6 +2235,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "在精简选择器和大屏模式中显示资源文件名。";
 "Show release name" = "显示发布名称";
 "Show row" = "显示内容栏";
+"Show stream quality under the title" = "在标题下显示播放画质";
 "Show subtitle sync indicator" = "显示字幕同步指示器";
 "Show the Skip button" = "显示“跳过”按钮";
 "Show this catalog" = "显示此目录";
@@ -2348,6 +2365,7 @@
 "Storage overview" = "存储空间概览";
 "Stream" = "播放源";
 "Stream priority" = "播放源优先级";
+"Stream quality in player" = "播放器中的播放画质";
 "Stream ranking" = "视频流排序";
 "Stream safety filter" = "播放源安全筛选";
 "Streaming" = "流媒体";
@@ -2486,12 +2504,14 @@
 "The most anticipated upcoming releases on Trakt" = "Trakt 上最受期待的即将上线内容";
 "The most-watched movies and series on {name} right now in {region}." = "{region} 当前在 {name} 上观看人数最多的电影和剧集。";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
+"The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "选择器会为每个片源标注分辨率、HDR 类型、编解码器和音频格式。关闭后将全部隐藏。";
 "The quick brown fox jumps over the lazy dog" = "敏捷的棕狐跃过懒狗";
 "The ratings row on a title's detail page, next to runtime and genre." = "影片详情页中位于时长和类型旁边的评分栏。";
 "The server answered with status {status}. Is that a streaming server?" = "服务器返回状态 {status}。这是流媒体服务器吗？";
 "The server responded in {ms} ms." = "服务器在 {ms} 毫秒内响应。";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "整个首页的布局。下方各项用于调整其中的内容行。";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheIntroDB · intro and credits timing" = "TheIntroDB · 片头和片尾时间点";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "Theme is missing a name." = "主题缺少名称。";
@@ -2524,6 +2544,7 @@
 "Titles" = "片名";
 "Titles and descriptions" = "标题和简介";
 "Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
+"Titles you ignore on the advisory card never show it again." = "在警告卡片上忽略的作品，将不再显示内容警告。";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "全部";
 "Todas las categorías" = "所有类别";
@@ -2614,6 +2635,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "趋势、热门、院线热映以及各服务的内容栏。";
 "Trending, in theaters, what's on every streamer." = "热门趋势、正在上映，以及各流媒体平台的内容。";
 "Try again" = "重试";
+"Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "优先通过插件获取标题和简介。插件无结果时使用 Cinemeta。";
 "Tu avatar, nombre e identificador en Harbor." = "你在 Harbor 中使用的头像、名称和账号名。";
 "Tu color" = "你的颜色";
 "Tu perfil" = "你的个人资料";
@@ -2621,6 +2643,7 @@
 "Tune anime" = "调整动漫偏好";
 "Tune your recommendations" = "调整你的推荐";
 "Turkish" = "土耳其语";
+"Turn on" = "开启";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
@@ -3993,6 +4016,7 @@
 "{count} picks ready" = "有 {count} 个推荐待探索";
 "{count} results" = "{count} 个结果";
 "{count} selected" = "已选择 {count} 个";
+"{count} titles will never show the content advisory again." = "有 {count} 部作品将不再显示内容警告。";
 "{count} tracks" = "{count} 首歌曲";
 "{h}h left" = "剩余 {h} 小时";
 "{h}h {m}m left" = "剩余 {h} 小时 {m} 分钟";

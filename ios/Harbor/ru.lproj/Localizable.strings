@@ -147,6 +147,7 @@
 "After 5" = "После 5";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Через пару секунд на слайде трейлер выбранного названия начинает беззвучно играть на фоне. Расходует больше трафика.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "После нескольких серий подряд без каких-либо действий ставить на паузу и уточнять, здесь ли вы. По умолчанию выключено.";
+"Age ratings and content notes when playback starts." = "Возрастной рейтинг и предупреждения о содержании в начале просмотра.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Мягче для глаз";
 "Agregar a favoritos" = "Добавить в избранное";
@@ -312,6 +313,7 @@
 "Bajar {name}" = "Переместить «{name}» вниз";
 "Balance picture quality and performance. Changes apply to the next video you play." = "Выберите баланс качества изображения и производительности. Изменения применятся к следующему видео.";
 "Balanced" = "Сбалансированный";
+"Bar" = "Полоса";
 "Bar color" = "Цвет полосы";
 "Barra de búsqueda" = "Полоса перемотки";
 "Barra inferior" = "Нижняя панель";
@@ -488,6 +490,7 @@
 "China" = "Китай";
 "Chinese" = "Китайский";
 "Chinese (Simplified)" = "Китайский (упрощённый)";
+"Chips" = "Чипы";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Задайте имя, затем выберите предпочтительные разрешения, источники, кодеки и звук.";
 "Choose an avatar" = "Выберите аватар";
 "Choose image" = "Выбрать изображение";
@@ -498,6 +501,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Выберите до 5 фильмов или сериалов, которые вам нравятся. Harbor учтёт их в подборках и рекомендациях. Это необязательно.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Выберите, когда Harbor предлагает выбрать профиль. Запросы по таймеру появляются при возвращении в Harbor.";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "Выберите, где Harbor ищет субтитры. Результаты включённых источников объединяются без дубликатов.";
+"Choose whether the content advisory appears in full color or a restrained monochrome tone." = "Choose whether the content advisory appears in full color or a restrained monochrome tone.";
 "Choose which Simkl rails appear on your home screen." = "Выберите, какие подборки Simkl показывать на главной.";
 "Choose which addon results appear when you pick a stream." = "Выберите, какие результаты дополнений показывать при выборе потока.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Выберите оценки для карточек и страниц с подробностями. Для заблокированных оценок на карточках нужен ключ провайдера в разделе метаданных.";
@@ -597,6 +601,7 @@
 "Conservar original" = "Оставить оригинал";
 "Contenido" = "Контент";
 "Content" = "Контент";
+"Content advisory" = "Предупреждение о контенте";
 "Continuar al siguiente capítulo" = "Continue to next chapter";
 "Continuar viendo" = "Продолжить просмотр";
 "Continue" = "Продолжить";
@@ -1150,6 +1155,8 @@
 "Idiomas y subtítulos" = "Языки и субтитры";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "Если поток не начал воспроизводиться вовремя (мёртвый источник или недоступное дополнение), автоматически пробовать следующий доступный поток. По умолчанию выключено.";
 "If multiple Rokus appear, pick the one matching your TV's name." = "Если показано несколько Roku, выберите устройство с именем вашего телевизора.";
+"Ignore this title" = "Игнорировать это название";
+"Ignored titles" = "Игнорируемые названия";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "Языки изображений";
 "Imagen" = "Изображение";
@@ -1486,6 +1493,7 @@
 "Netflix Originals" = "Оригиналы Netflix";
 "Never" = "Никогда";
 "Never auto-select tracks containing" = "Никогда не выбирать автоматически дорожки со словами";
+"Never show the content advisory for this title again" = "Больше не показывать предупреждение о контенте для этого названия";
 "Never shown again" = "Never shown again";
 "New Anime Releases" = "Новинки аниме";
 "New Episodes" = "Новые серии";
@@ -1691,6 +1699,7 @@
 "Opening book…" = "Открытие книги…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "Необязательные ключи, которые открывают ряды TMDB, оценки прямо на постерах, фан-арт и данные о сериях из TVDB.";
+"Optional. TheIntroDB answers without a key, but a key raises your rate limit so timing keeps arriving when you binge. Get one at" = "Необязательно. TheIntroDB отвечает и без ключа, но с ключом лимит запросов выше, поэтому тайминги продолжают приходить при просмотре запоем. Получить его можно на";
 "Options" = "Параметры";
 "Orden de addons" = "Порядок дополнений";
 "Orden de idiomas preferidos" = "Порядок предпочитаемых языков";
@@ -1734,6 +1743,7 @@
 "Paste the code or page URL" = "Вставьте код или URL страницы";
 "Paste the manifest URL the configure page gave you" = "Вставьте URL манифеста со страницы настройки";
 "Paste the text from AniList" = "Вставьте текст из AniList";
+"Paste your TheIntroDB API key" = "Вставьте свой API-ключ TheIntroDB";
 "Peacock" = "Peacock";
 "Peligro" = "Опасно";
 "Películas" = "Фильмы";
@@ -1828,6 +1838,7 @@
 "Predeterminado (acento dorado)" = "По умолчанию (золотой акцент)";
 "Prefer embedded subtitles" = "Предпочитать встроенные субтитры";
 "Prefer episode still artwork" = "Prefer episode still artwork";
+"Prefer my installed metadata addon" = "Предпочитать установленное дополнение метаданных";
 "Prefer these sources" = "Prefer these sources";
 "Preferred language for anime titles displayed on poster cards." = "Предпочитаемый язык названий аниме на карточках постеров.";
 "Preguntar si reanudar o empezar de nuevo" = "Спрашивать: продолжить или начать сначала";
@@ -1877,6 +1888,7 @@
 "Página siguiente" = "Следующая страница";
 "Pósteres, calificaciones y listas" = "Постеры, рейтинги, списки";
 "Quality" = "Качество";
+"Quality badge style" = "Стиль значка качества";
 "Quedan {h} h" = "осталось {h} ч";
 "Quedan {h} h {m} min" = "осталось {h} ч {m} мин";
 "Quedan {m} min" = "осталось {m} мин";
@@ -2023,6 +2035,7 @@
 "Restablecer zoom" = "Сбросить масштаб";
 "Restart" = "Перезапустить";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore" = "Восстановить";
 "Restore dismissed hints" = "Восстановить скрытые подсказки";
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
@@ -2137,6 +2150,7 @@
 "Secondary copy." = "Второстепенный текст.";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "Подробности";
+"See the resolution, HDR format and audio while you watch." = "Смотрите разрешение, формат HDR и сведения о звуке во время просмотра.";
 "Seek bar" = "Полоса перемотки";
 "Seen so far: {hosts}" = "Замечено: {hosts}";
 "Seguir viendo en la parte superior" = "\"Продолжить просмотр\" сверху";
@@ -2207,6 +2221,7 @@
 "Show comments" = "Показать комментарии";
 "Show comments on detail pages" = "Показывать комментарии на страницах деталей";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Показывать полные описания аддонов в списке источников Stremio, загрузках и режиме «Большой экран».";
+"Show content ratings?" = "Показывать возрастные рейтинги?";
 "Show controls" = "Показать элементы управления";
 "Show cursors" = "Показывать курсоры";
 "Show details" = "Показать подробности";
@@ -2216,6 +2231,7 @@
 "Show episode ratings" = "Показывать оценки серий";
 "Show every addon row" = "Показывать все ряды дополнений";
 "Show everything anyway" = "Всё равно показать всё";
+"Show format chips on stream rows" = "Показывать метки формата в строках потоков";
 "Show forum threads and comments from AniList on anime detail pages." = "Показывать темы форума и комментарии из AniList на страницах аниме.";
 "Show full descriptions" = "Показывать описания полностью";
 "Show hidden episodes" = "Показать скрытые серии";
@@ -2230,6 +2246,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "Показывать имена файлов релизов в сжатом списке источников и в режиме «Большой экран».";
 "Show release name" = "Показывать имя релиза";
 "Show row" = "Показывать ряд";
+"Show stream quality under the title" = "Показывать качество потока под названием";
 "Show subtitle sync indicator" = "Показывать индикатор синхронизации субтитров";
 "Show the Skip button" = "Показывать кнопку «Пропустить»";
 "Show this catalog" = "Показывать этот каталог";
@@ -2361,6 +2378,7 @@
 "Storage overview" = "Обзор хранилища";
 "Stream" = "Поток";
 "Stream priority" = "Приоритет потоков";
+"Stream quality in player" = "Качество потока в плеере";
 "Stream ranking" = "Ранжирование потоков";
 "Stream safety filter" = "Фильтр безопасности потоков";
 "Streaming" = "Стриминг";
@@ -2499,12 +2517,14 @@
 "The most anticipated upcoming releases on Trakt" = "Самые ожидаемые релизы на Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Самые просматриваемые фильмы и сериалы на {name} сейчас в регионе {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "Оригинал сохранён. Для синхронизации экспортируйте субтитры в UTF-8 или UTF-16.";
+"The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "Окно выбора помечает каждый поток разрешением, типом HDR, кодеком и аудиоформатом. «Выкл.» скрывает все метки.";
 "The quick brown fox jumps over the lazy dog" = "Съешь же ещё этих мягких французских булок да выпей чаю";
 "The ratings row on a title's detail page, next to runtime and genre." = "Строка рейтингов на странице названия, рядом с длительностью и жанром.";
 "The server answered with status {status}. Is that a streaming server?" = "Сервер ответил со статусом {status}. Это точно стриминг-сервер?";
 "The server responded in {ms} ms." = "Сервер ответил за {ms} мс.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Общий вид всей главной страницы. Всё ниже настраивает ряды внутри неё.";
 "The subtitle already matches the audio." = "Субтитры уже совпадают со звуком.";
+"TheIntroDB · intro and credits timing" = "TheIntroDB · тайминги заставки и титров";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "Theme is missing a name." = "У темы отсутствует название.";
@@ -2538,6 +2558,7 @@
 "Titles" = "Названия";
 "Titles and descriptions" = "Названия и описания";
 "Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
+"Titles you ignore on the advisory card never show it again." = "Названия, скрытые на карточке предупреждения, больше никогда его не покажут.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "Все";
 "Todas las categorías" = "Все категории";
@@ -2628,6 +2649,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "Ряды «В тренде», «Популярное», «В кино» и ряды сервисов.";
 "Trending, in theaters, what's on every streamer." = "В тренде, в кино и что идёт на каждом сервисе.";
 "Try again" = "Повторить";
+"Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Сначала искать названия и описания в вашем дополнении. Использовать Cinemeta, если дополнение ничего не найдёт.";
 "Tu avatar, nombre e identificador en Harbor." = "Ваш аватар, имя и ник во всём Harbor.";
 "Tu color" = "Ваш цвет";
 "Tu perfil" = "Ваш профиль";
@@ -2635,6 +2657,7 @@
 "Tune anime" = "Настроить аниме";
 "Tune your recommendations" = "Настроить рекомендации";
 "Turkish" = "Турецкий";
+"Turn on" = "Включить";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Листать страницы горизонтально";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
@@ -4007,6 +4030,7 @@
 "{count} picks ready" = "Готово вариантов: {count}";
 "{count} results" = "Результатов: {count}";
 "{count} selected" = "Выбрано: {count}";
+"{count} titles will never show the content advisory again." = "Для {count} названий предупреждение о контенте больше не появится.";
 "{count} tracks" = "Треков: {count}";
 "{h}h left" = "осталось {h} ч";
 "{h}h {m}m left" = "осталось {h} ч {m} мин";

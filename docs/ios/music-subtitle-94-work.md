@@ -1661,3 +1661,16 @@ hero's IMDb-labelled badge is no longer printed for anime ids because that numbe
 TVMaze, as Desktop's last resort, for a series with no dated episode in the month when no TMDB key is saved
 (`CalendarModel.tvmazeEvents`, four shows at a time, airstamp gives the device's day and hour). Tests added to `TVMazeTests`
 (2 cases) and `CardTagBadgesTests` (the MAL chip name).
+
+## Thirteenth Haiku round (7 November)
+
+Four Haiku in worktrees, merged after review and wired by hand (uncompiled until the next focused run): content advisory in the player
+(`ContentAdvisoryDriver` modifier, card and invitation overlay, three settings, an ignore list kept on the device; the parental guide
+comes from `harborcommunity.site/api/imdb/parental/{tt}` like the other community endpoints, which could not be confirmed, and Desktop's
+Common Sense Media fallback is not ported), TheIntroDB as a skip source with its key (`TheIntroDBClient` with Desktop's cache and ten-minute
+cooldown, key from the profile's `ProviderKeyStore`, row in the next-episode settings), the quality-badge settings (picker format chips on
+or off, and the resolution and HDR line under the player title as a bar or chips, using the new `PlayerState.hdrGamma` from mpv's
+`video-params/gamma`; the line is drawn by `PlayerQualityInfoLine`), and `preferCustomMetaAddon` (meta plans reordered with Cinemeta last).
+Not ported, with reasons in the audit: `resumeDetailScroll` (the navigation stack already keeps the scroll position) and `showSimklCard`
+(Desktop's profile sidebar card; iOS has no profile cards). `translateDescriptions` stays missing: iOS asks TMDB for the overview in the
+chosen language only, so an original-language toggle needs a second request in the metadata path.

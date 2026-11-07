@@ -145,6 +145,7 @@
 "After 5" = "Setelah 5";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Setelah beberapa saat di sebuah slide, trailer judul unggulan akan diputar tanpa suara di latar belakang. Menggunakan lebih banyak bandwidth.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Setelah beberapa episode diputar otomatis berturut-turut tanpa interaksi, pemutaran akan dijeda dan Anda akan diminta memastikan bahwa Anda masih menonton sebelum dilanjutkan. Dinonaktifkan secara default.";
+"Age ratings and content notes when playback starts." = "Batas usia dan keterangan konten saat pemutaran dimulai.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Nyaman di mata";
 "Agregar a favoritos" = "Tambahkan ke favorit";
@@ -309,6 +310,7 @@
 "Bajar {name}" = "Pindahkan {name} ke bawah";
 "Balance picture quality and performance. Changes apply to the next video you play." = "Seimbangkan kualitas gambar dan kinerja. Perubahan berlaku pada video berikutnya yang Anda putar.";
 "Balanced" = "Seimbang";
+"Bar" = "Bilah";
 "Bar color" = "Warna bilah";
 "Barra de búsqueda" = "Bilah waktu";
 "Barra inferior" = "Bilah bawah";
@@ -485,6 +487,7 @@
 "China" = "Tiongkok";
 "Chinese" = "Bahasa Tionghoa";
 "Chinese (Simplified)" = "Bahasa Tionghoa (Sederhana)";
+"Chips" = "Chip";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Pilih nama, lalu tentukan resolusi, sumber, codec, dan audio yang Anda sukai.";
 "Choose an avatar" = "Pilih avatar";
 "Choose image" = "Pilih gambar";
@@ -495,6 +498,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Pilih hingga 5 film atau acara yang sudah Anda sukai. Harbor menggunakannya untuk menyesuaikan pilihan unggulan dan rekomendasi Anda. Sepenuhnya opsional.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Pilih kapan Harbor meminta Anda memilih profil. Pengingat berkala muncul saat Anda kembali ke Harbor.";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "Pilih tempat Harbor mencari subtitle. Hasil dari sumber aktif ditampilkan bersama tanpa duplikat.";
+"Choose whether the content advisory appears in full color or a restrained monochrome tone." = "Choose whether the content advisory appears in full color or a restrained monochrome tone.";
 "Choose which Simkl rails appear on your home screen." = "Pilih deretan Simkl yang muncul di layar beranda Anda.";
 "Choose which addon results appear when you pick a stream." = "Pilih hasil addon yang muncul saat memilih stream.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Pilih penilaian yang tampil pada kartu dan halaman detail. Penilaian kartu yang terkunci memerlukan kunci penyedia di Metadata.";
@@ -594,6 +598,7 @@
 "Conservar original" = "Pertahankan yang asli";
 "Contenido" = "Konten";
 "Content" = "Konten";
+"Content advisory" = "Peringatan konten";
 "Continuar al siguiente capítulo" = "Continue to next chapter";
 "Continuar viendo" = "Lanjutkan Menonton";
 "Continue" = "Lanjutkan";
@@ -1146,6 +1151,8 @@
 "Idiomas y subtítulos" = "Bahasa & subtitle";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "Jika stream belum mulai diputar dalam waktu yang ditentukan (sumber mati atau addon tidak aktif), coba stream berikutnya yang tersedia secara otomatis. Nonaktif secara default.";
 "If multiple Rokus appear, pick the one matching your TV's name." = "Jika beberapa Roku muncul, pilih yang namanya sesuai dengan nama TV Anda.";
+"Ignore this title" = "Abaikan judul ini";
+"Ignored titles" = "Judul yang diabaikan";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "Bahasa gambar";
 "Imagen" = "Gambar";
@@ -1480,6 +1487,7 @@
 "Netflix Originals" = "Netflix Originals";
 "Never" = "Tidak pernah";
 "Never auto-select tracks containing" = "Jangan pernah memilih secara otomatis trek yang memuat";
+"Never show the content advisory for this title again" = "Jangan pernah tampilkan peringatan konten untuk judul ini lagi";
 "New Anime Releases" = "Rilisan Anime Baru";
 "New Episodes" = "Episode Baru";
 "New Episodes row" = "Baris Episode Baru";
@@ -1683,6 +1691,7 @@
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "Kunci opsional yang mengaktifkan deretan TMDB, rating yang tersemat pada poster, fanart, dan data episode TVDB.";
+"Optional. TheIntroDB answers without a key, but a key raises your rate limit so timing keeps arriving when you binge. Get one at" = "Opsional. TheIntroDB tetap merespons tanpa kunci, tetapi kunci menaikkan batas permintaan Anda sehingga data waktu terus tersedia saat Anda menonton maraton. Dapatkan kunci di";
 "Options" = "Opsi";
 "Orden de addons" = "Urutan addon";
 "Orden de idiomas preferidos" = "Urutan bahasa pilihan";
@@ -1724,6 +1733,7 @@
 "Paste the code or page URL" = "Tempel kode atau URL halaman";
 "Paste the manifest URL the configure page gave you" = "Tempel URL manifes yang diberikan halaman konfigurasi";
 "Paste the text from AniList" = "Tempel teks dari AniList";
+"Paste your TheIntroDB API key" = "Tempel kunci API TheIntroDB Anda";
 "Peacock" = "Peacock";
 "Peligro" = "Bahaya";
 "Películas" = "Film";
@@ -1818,6 +1828,7 @@
 "Predeterminado (acento dorado)" = "Bawaan (aksen emas)";
 "Prefer embedded subtitles" = "Utamakan subtitle tertanam";
 "Prefer episode still artwork" = "Prefer episode still artwork";
+"Prefer my installed metadata addon" = "Utamakan addon metadata yang saya instal";
 "Prefer these sources" = "Prefer these sources";
 "Preferred language for anime titles displayed on poster cards." = "Bahasa pilihan untuk judul anime yang ditampilkan pada kartu poster.";
 "Preguntar si reanudar o empezar de nuevo" = "Tanyakan apakah ingin melanjutkan atau memulai dari awal";
@@ -1867,6 +1878,7 @@
 "Página siguiente" = "Halaman berikutnya";
 "Pósteres, calificaciones y listas" = "Poster, rating, daftar";
 "Quality" = "Kualitas";
+"Quality badge style" = "Gaya lencana kualitas";
 "Quedan {h} h" = "tersisa {h}j";
 "Quedan {h} h {m} min" = "tersisa {h}j {m}m";
 "Quedan {m} min" = "Tersisa {m} mnt";
@@ -2012,6 +2024,7 @@
 "Restablecer zoom" = "Atur ulang zoom";
 "Restart" = "Mulai ulang";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore" = "Pulihkan";
 "Restore dismissed hints" = "Pulihkan petunjuk yang ditutup";
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
@@ -2126,6 +2139,7 @@
 "Secondary copy." = "Teks sekunder.";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "Lihat detail";
+"See the resolution, HDR format and audio while you watch." = "Lihat resolusi, format HDR, dan audio saat menonton.";
 "Seek bar" = "Bilah waktu";
 "Seen so far: {hosts}" = "Terlihat sejauh ini: {hosts}";
 "Seguir viendo en la parte superior" = "Lanjutkan Menonton di bagian atas";
@@ -2196,6 +2210,7 @@
 "Show comments" = "Tampilkan komentar";
 "Show comments on detail pages" = "Tampilkan komentar di halaman detail";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Tampilkan deskripsi addon lengkap di pemilih Stremio, unduhan, dan Big Picture.";
+"Show content ratings?" = "Tampilkan rating konten?";
 "Show controls" = "Tampilkan kontrol";
 "Show cursors" = "Tampilkan kursor";
 "Show details" = "Tampilkan detail";
@@ -2205,6 +2220,7 @@
 "Show episode ratings" = "Tampilkan rating episode";
 "Show every addon row" = "Tampilkan setiap baris addon";
 "Show everything anyway" = "Tetap tampilkan semuanya";
+"Show format chips on stream rows" = "Tampilkan chip format pada baris stream";
 "Show forum threads and comments from AniList on anime detail pages." = "Tampilkan utas forum dan komentar dari AniList di halaman detail anime.";
 "Show full descriptions" = "Tampilkan deskripsi lengkap";
 "Show hidden episodes" = "Tampilkan episode tersembunyi";
@@ -2219,6 +2235,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "Tampilkan nama berkas rilis di pemilih Padat dan Big Picture.";
 "Show release name" = "Tampilkan nama rilis";
 "Show row" = "Tampilkan baris";
+"Show stream quality under the title" = "Tampilkan kualitas stream di bawah judul";
 "Show subtitle sync indicator" = "Tampilkan indikator sinkronisasi subtitle";
 "Show the Skip button" = "Tampilkan tombol Lewati";
 "Show this catalog" = "Tampilkan katalog ini";
@@ -2348,6 +2365,7 @@
 "Storage overview" = "Ringkasan penyimpanan";
 "Stream" = "Stream";
 "Stream priority" = "Prioritas stream";
+"Stream quality in player" = "Kualitas stream di pemutar";
 "Stream ranking" = "Peringkat stream";
 "Stream safety filter" = "Filter keamanan stream";
 "Streaming" = "Streaming";
@@ -2486,12 +2504,14 @@
 "The most anticipated upcoming releases on Trakt" = "Rilisan mendatang yang paling dinantikan di Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Film dan serial yang paling banyak ditonton di {name} saat ini di {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
+"The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "Pemilih menandai setiap stream dengan resolusi, jenis HDR, codec, dan format audio. Nonaktif akan menyembunyikan semuanya.";
 "The quick brown fox jumps over the lazy dog" = "Rubah cokelat yang gesit melompati anjing malas";
 "The ratings row on a title's detail page, next to runtime and genre." = "Baris rating di halaman detail judul, di sebelah durasi dan genre.";
 "The server answered with status {status}. Is that a streaming server?" = "Server merespons dengan status {status}. Apakah itu server streaming?";
 "The server responded in {ms} ms." = "Server merespons dalam {ms} ms.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Bentuk keseluruhan halaman Beranda. Semua pengaturan di bawah menyesuaikan baris di dalamnya.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheIntroDB · intro and credits timing" = "TheIntroDB · waktu intro dan kredit";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "Theme is missing a name." = "Tema belum memiliki nama.";
@@ -2524,6 +2544,7 @@
 "Titles" = "Judul";
 "Titles and descriptions" = "Judul dan deskripsi";
 "Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
+"Titles you ignore on the advisory card never show it again." = "Judul yang Anda abaikan di kartu peringatan tidak akan pernah menampilkannya lagi.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "Semua";
 "Todas las categorías" = "Semua kategori";
@@ -2614,6 +2635,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "Sedang tren, Populer, Sedang Tayang di Bioskop, dan deretan per layanan.";
 "Trending, in theaters, what's on every streamer." = "Yang sedang tren, sedang tayang di bioskop, dan tersedia di setiap layanan streaming.";
 "Try again" = "Coba lagi";
+"Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Cari judul dan deskripsi melalui addon terlebih dahulu. Gunakan Cinemeta jika addon tidak memberikan hasil.";
 "Tu avatar, nombre e identificador en Harbor." = "Avatar, nama, dan nama pengguna Anda di seluruh Harbor.";
 "Tu color" = "Warna Anda";
 "Tu perfil" = "Profil Anda";
@@ -2621,6 +2643,7 @@
 "Tune anime" = "Sesuaikan anime";
 "Tune your recommendations" = "Sesuaikan rekomendasi Anda";
 "Turkish" = "Turki";
+"Turn on" = "Aktifkan";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
@@ -3993,6 +4016,7 @@
 "{count} picks ready" = "{count} pilihan sudah siap";
 "{count} results" = "{count} hasil";
 "{count} selected" = "{count} dipilih";
+"{count} titles will never show the content advisory again." = "{count} judul tidak akan pernah menampilkan peringatan konten lagi.";
 "{count} tracks" = "{count} lagu";
 "{h}h left" = "tersisa {h}j";
 "{h}h {m}m left" = "tersisa {h}j {m}m";

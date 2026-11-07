@@ -145,6 +145,7 @@
 "After 5" = "5'ten sonra";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Bir slaytta kısa süre beklendiğinde öne çıkan içeriğin fragmanı arka planda sessiz oynatılır. Daha fazla bant genişliği kullanır.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Herhangi bir giriş olmadan art arda birkaç bölüm otomatik oynatıldıktan sonra duraklatır ve devam etmeden önce hâlâ orada olup olmadığınızı sorar. Varsayılan olarak kapalıdır.";
+"Age ratings and content notes when playback starts." = "Oynatma başladığında yaş sınırları ve içerik uyarıları.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Gözleri yormaz";
 "Agregar a favoritos" = "Favorilere ekle";
@@ -309,6 +310,7 @@
 "Bajar {name}" = "{name} öğesini aşağı taşı";
 "Balance picture quality and performance. Changes apply to the next video you play." = "Görüntü kalitesi ile performansı dengeleyin. Değişiklikler bir sonraki oynattığınız videoda geçerli olur.";
 "Balanced" = "Dengeli";
+"Bar" = "Çubuk";
 "Bar color" = "Çubuk rengi";
 "Barra de búsqueda" = "İlerleme çubuğu";
 "Barra inferior" = "Alt çubuk";
@@ -485,6 +487,7 @@
 "China" = "Çin";
 "Chinese" = "Çince";
 "Chinese (Simplified)" = "Basitleştirilmiş Çince";
+"Chips" = "Etiketler";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Bir ad seçin, ardından tercih ettiğiniz çözünürlükleri, kaynakları, kodekleri ve sesi seçin.";
 "Choose an avatar" = "Bir avatar seçin";
 "Choose image" = "Görsel seç";
@@ -495,6 +498,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Sevdiğiniz en fazla 5 film veya diziyi seçin. Harbor bunları öne çıkan içerikleri ve önerileri size göre kişiselleştirmek için kullanır. Tamamen isteğe bağlıdır.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harbor'ın ne zaman profil seçmenizi isteyeceğini belirleyin. Zamanlanmış istemler Harbor'a döndüğünüzde görünür.";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "Harbor'ın altyazıları nerede arayacağını seçin. Etkin kaynakların sonuçları, yinelenenler kaldırılarak birlikte gösterilir.";
+"Choose whether the content advisory appears in full color or a restrained monochrome tone." = "Choose whether the content advisory appears in full color or a restrained monochrome tone.";
 "Choose which Simkl rails appear on your home screen." = "Ana Sayfanızda hangi Simkl şeritlerinin görüneceğini seçin.";
 "Choose which addon results appear when you pick a stream." = "Yayın seçerken hangi eklenti sonuçlarının görüneceğini seçin.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Kartlarda ve ayrıntı sayfalarında hangi puanların görüneceğini seçin. Kilitli kart puanları için Meta Veri bölümüne sağlayıcı anahtarı eklenmelidir.";
@@ -594,6 +598,7 @@
 "Conservar original" = "Özgün biçimi koru";
 "Contenido" = "İçerik";
 "Content" = "İçerik";
+"Content advisory" = "İçerik uyarısı";
 "Continuar al siguiente capítulo" = "Continue to next chapter";
 "Continuar viendo" = "İzlemeye Devam Et";
 "Continue" = "Devam et";
@@ -1146,6 +1151,8 @@
 "Idiomas y subtítulos" = "Diller ve altyazılar";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "Bir yayın zamanında oynatılmaya başlamazsa (çalışmayan bir kaynak veya devre dışı bir eklenti nedeniyle), sonraki kullanılabilir yayın otomatik olarak denenir. Varsayılan olarak kapalıdır.";
 "If multiple Rokus appear, pick the one matching your TV's name." = "Birden fazla Roku görünüyorsa TV'nizin adıyla eşleşeni seçin.";
+"Ignore this title" = "Bu içeriği yoksay";
+"Ignored titles" = "Yoksayılan içerikler";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "Görsel dilleri";
 "Imagen" = "Resim";
@@ -1480,6 +1487,7 @@
 "Netflix Originals" = "Netflix Orijinal Yapımları";
 "Never" = "Asla";
 "Never auto-select tracks containing" = "Şunları içeren parçaları asla otomatik seçme";
+"Never show the content advisory for this title again" = "Bu içerik için içerik uyarısını bir daha gösterme";
 "New Anime Releases" = "Yeni Çıkan Animeler";
 "New Episodes" = "Yeni Bölümler";
 "New Episodes row" = "Yeni Bölümler satırı";
@@ -1683,6 +1691,7 @@
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "TMDB raflarını, posterlere işlenmiş puanları, fanart görsellerini ve TVDB bölüm verilerini kullanıma açan isteğe bağlı anahtarlar.";
+"Optional. TheIntroDB answers without a key, but a key raises your rate limit so timing keeps arriving when you binge. Get one at" = "İsteğe bağlı. TheIntroDB anahtarsız da yanıt verir, ancak anahtar istek sınırınızı yükselttiği için art arda izlerken zamanlama bilgisi gelmeye devam eder. Şu adresten alabilirsiniz:";
 "Options" = "Seçenekler";
 "Orden de addons" = "Eklenti sırası";
 "Orden de idiomas preferidos" = "Dil tercih sırası";
@@ -1724,6 +1733,7 @@
 "Paste the code or page URL" = "Kodu veya sayfa URL'sini yapıştırın";
 "Paste the manifest URL the configure page gave you" = "Yapılandırma sayfasının verdiği manifest URL'sini yapıştırın";
 "Paste the text from AniList" = "AniList'teki metni yapıştırın";
+"Paste your TheIntroDB API key" = "TheIntroDB API anahtarınızı yapıştırın";
 "Peacock" = "Peacock";
 "Peligro" = "Tehlike";
 "Películas" = "Filmler";
@@ -1818,6 +1828,7 @@
 "Predeterminado (acento dorado)" = "Varsayılan (altın vurgu)";
 "Prefer embedded subtitles" = "Gömülü altyazıları tercih et";
 "Prefer episode still artwork" = "Prefer episode still artwork";
+"Prefer my installed metadata addon" = "Yüklü meta veri eklentimi tercih et";
 "Prefer these sources" = "Prefer these sources";
 "Preferred language for anime titles displayed on poster cards." = "Poster kartlarında gösterilen anime adları için tercih edilen dil.";
 "Preguntar si reanudar o empezar de nuevo" = "Devam edilsin mi, baştan mı başlansın diye sor";
@@ -1867,6 +1878,7 @@
 "Página siguiente" = "Sonraki sayfa";
 "Pósteres, calificaciones y listas" = "Afişler, puanlar, listeler";
 "Quality" = "Kalite";
+"Quality badge style" = "Kalite rozeti stili";
 "Quedan {h} h" = "{h} sa kaldı";
 "Quedan {h} h {m} min" = "{h} sa {m} dk kaldı";
 "Quedan {m} min" = "{m} dk kaldı";
@@ -2012,6 +2024,7 @@
 "Restablecer zoom" = "Yakınlaştırma düzeyini sıfırla";
 "Restart" = "Yeniden başlat";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore" = "Geri yükle";
 "Restore dismissed hints" = "Kapatılan ipuçlarını geri getir";
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
@@ -2126,6 +2139,7 @@
 "Secondary copy." = "İkincil metin.";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "Ayrıntıları gör";
+"See the resolution, HDR format and audio while you watch." = "İzlerken çözünürlüğü, HDR biçimini ve sesi görün.";
 "Seek bar" = "İlerleme çubuğu";
 "Seen so far: {hosts}" = "Şimdiye kadar görülenler: {hosts}";
 "Seguir viendo en la parte superior" = "İzlemeye Devam Et bölümü en üstte";
@@ -2196,6 +2210,7 @@
 "Show comments" = "Yorumları göster";
 "Show comments on detail pages" = "Ayrıntı sayfalarında yorumları göster";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio seçicide, indirmelerde ve Big Picture'da eklenti açıklamalarının tamamını göster.";
+"Show content ratings?" = "İçerik derecelendirmeleri gösterilsin mi?";
 "Show controls" = "Kontrolleri göster";
 "Show cursors" = "İmleçleri göster";
 "Show details" = "Ayrıntıları göster";
@@ -2205,6 +2220,7 @@
 "Show episode ratings" = "Bölüm puanlarını göster";
 "Show every addon row" = "Her eklenti satırını göster";
 "Show everything anyway" = "Yine de tümünü göster";
+"Show format chips on stream rows" = "Yayın satırlarında biçim etiketlerini göster";
 "Show forum threads and comments from AniList on anime detail pages." = "Anime ayrıntı sayfalarında AniList'teki forum konularını ve yorumları gösterin.";
 "Show full descriptions" = "Açıklamaların tamamını göster";
 "Show hidden episodes" = "Gizli bölümleri göster";
@@ -2219,6 +2235,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "Yoğun seçicide ve Big Picture'da sürüm dosyalarının adlarını göster.";
 "Show release name" = "Sürüm adını göster";
 "Show row" = "Satırı göster";
+"Show stream quality under the title" = "Yayın kalitesini başlığın altında göster";
 "Show subtitle sync indicator" = "Altyazı eşitleme göstergesini göster";
 "Show the Skip button" = "Atla düğmesini göster";
 "Show this catalog" = "Bu kataloğu göster";
@@ -2348,6 +2365,7 @@
 "Storage overview" = "Depolama alanına genel bakış";
 "Stream" = "Yayın";
 "Stream priority" = "Yayın önceliği";
+"Stream quality in player" = "Oynatıcıda yayın kalitesi";
 "Stream ranking" = "Yayın sıralaması";
 "Stream safety filter" = "Yayın güvenlik filtresi";
 "Streaming" = "Yayın";
@@ -2486,12 +2504,14 @@
 "The most anticipated upcoming releases on Trakt" = "Trakt'ta yakında yayınlanacak en çok beklenen içerikler";
 "The most-watched movies and series on {name} right now in {region}." = "Şu anda {region} bölgesinde {name} platformunda en çok izlenen filmler ve diziler.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
+"The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "Seçici her yayını çözünürlük, HDR türü, codec ve ses biçimiyle etiketler. Kapalı seçeneği tümünü gizler.";
 "The quick brown fox jumps over the lazy dog" = "Pijamalı hasta yağız şoföre çabucak güvendi";
 "The ratings row on a title's detail page, next to runtime and genre." = "Bir içeriğin ayrıntı sayfasında süre ve türün yanında yer alan puanlar satırı.";
 "The server answered with status {status}. Is that a streaming server?" = "Sunucu {status} durumuyla yanıt verdi. Bu bir yayın sunucusu mu?";
 "The server responded in {ms} ms." = "Sunucu {ms} ms içinde yanıt verdi.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Ana Sayfanın genel düzeni. Aşağıdaki seçeneklerin tümü içindeki satırları ayarlar.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheIntroDB · intro and credits timing" = "TheIntroDB · intro ve jenerik zamanlamaları";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "Theme is missing a name." = "Temanın adı eksik.";
@@ -2524,6 +2544,7 @@
 "Titles" = "Başlıklar";
 "Titles and descriptions" = "Başlıklar ve açıklamalar";
 "Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
+"Titles you ignore on the advisory card never show it again." = "Uyarı kartında yoksaydığınız içerikler için uyarı bir daha gösterilmez.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "Tümü";
 "Todas las categorías" = "Tüm kategoriler";
@@ -2614,6 +2635,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "Trendler, Popüler, Vizyondakiler ve hizmetlere özel satırlar.";
 "Trending, in theaters, what's on every streamer." = "Gündemdekiler, vizyondakiler ve tüm yayın hizmetlerindeki içerikler.";
 "Try again" = "Tekrar dene";
+"Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Adlar ve açıklamalar için önce eklentinizi deneyin. Eklenti sonuç vermezse Cinemeta'yı kullanın.";
 "Tu avatar, nombre e identificador en Harbor." = "Harbor genelinde avatarınız, adınız ve kullanıcı adınız.";
 "Tu color" = "Renginiz";
 "Tu perfil" = "Profiliniz";
@@ -2621,6 +2643,7 @@
 "Tune anime" = "Anime tercihlerini ayarla";
 "Tune your recommendations" = "Önerilerini özelleştir";
 "Turkish" = "Türkçe";
+"Turn on" = "Aç";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
@@ -3993,6 +4016,7 @@
 "{count} picks ready" = "{count} öneri hazır";
 "{count} results" = "{count} sonuç";
 "{count} selected" = "{count} seçildi";
+"{count} titles will never show the content advisory again." = "{count} içerik için içerik uyarısı bir daha gösterilmeyecek.";
 "{count} tracks" = "{count} parça";
 "{h}h left" = "{h} sa kaldı";
 "{h}h {m}m left" = "{h} sa {m} dk kaldı";

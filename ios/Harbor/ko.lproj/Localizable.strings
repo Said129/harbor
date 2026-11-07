@@ -145,6 +145,7 @@
 "After 5" = "5편 후";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "슬라이드에 잠시 머무르면 추천 콘텐츠의 예고편이 배경에서 음소거로 재생됩니다. 더 많은 대역폭을 사용합니다.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "사용자 입력 없이 여러 에피소드가 연속 자동 재생되면 재생을 일시 정지하고 계속 시청 중인지 확인합니다. 기본적으로 꺼져 있습니다.";
+"Age ratings and content notes when playback starts." = "재생이 시작될 때 연령 등급과 콘텐츠 안내를 표시합니다.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "눈이 편안하게";
 "Agregar a favoritos" = "즐겨찾기에 추가";
@@ -309,6 +310,7 @@
 "Bajar {name}" = "{name} 아래로 이동";
 "Balance picture quality and performance. Changes apply to the next video you play." = "화질과 성능의 균형을 조정합니다. 변경 사항은 다음에 재생하는 동영상에 적용됩니다.";
 "Balanced" = "균형";
+"Bar" = "바";
 "Bar color" = "바 색상";
 "Barra de búsqueda" = "탐색 막대";
 "Barra inferior" = "하단 표시줄";
@@ -485,6 +487,7 @@
 "China" = "중국";
 "Chinese" = "중국어";
 "Chinese (Simplified)" = "중국어(간체)";
+"Chips" = "칩";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "이름을 지정한 다음 선호하는 해상도, 소스, 코덱, 오디오를 선택하세요.";
 "Choose an avatar" = "아바타 선택";
 "Choose image" = "이미지 선택";
@@ -495,6 +498,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "이미 좋아하는 영화 또는 프로그램을 최대 5개 선택하세요. Harbor가 이를 활용해 추천 콘텐츠와 맞춤 추천을 조정합니다. 선택 사항입니다.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harbor에서 프로필 선택을 요청할 시점을 정하세요. 시간 설정에 따른 요청은 Harbor로 돌아올 때 표시됩니다.";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "Harbor가 자막을 검색할 소스를 선택하세요. 활성화된 소스의 결과는 중복을 제거한 뒤 함께 표시됩니다.";
+"Choose whether the content advisory appears in full color or a restrained monochrome tone." = "Choose whether the content advisory appears in full color or a restrained monochrome tone.";
 "Choose which Simkl rails appear on your home screen." = "홈 화면에 표시할 Simkl 레일을 선택합니다.";
 "Choose which addon results appear when you pick a stream." = "스트림을 고를 때 표시할 애드온 결과를 선택하세요.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "카드와 상세 페이지에 표시할 평점을 선택하세요. 잠긴 카드 평점은 메타데이터에서 제공업체 키를 설정해야 합니다.";
@@ -594,6 +598,7 @@
 "Conservar original" = "원본 유지";
 "Contenido" = "콘텐츠";
 "Content" = "콘텐츠";
+"Content advisory" = "콘텐츠 주의 사항";
 "Continuar al siguiente capítulo" = "Continue to next chapter";
 "Continuar viendo" = "이어 보기";
 "Continue" = "계속";
@@ -1146,6 +1151,8 @@
 "Idiomas y subtítulos" = "언어 및 자막";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "스트림이 제한 시간 내에 재생되지 않으면(작동하지 않는 소스이거나 애드온이 중단된 경우) 사용 가능한 다음 스트림을 자동으로 시도합니다. 기본적으로 꺼져 있습니다.";
 "If multiple Rokus appear, pick the one matching your TV's name." = "Roku가 여러 대 표시되면 TV 이름과 일치하는 기기를 선택하세요.";
+"Ignore this title" = "이 작품 무시";
+"Ignored titles" = "무시한 작품";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "이미지 언어";
 "Imagen" = "사진";
@@ -1480,6 +1487,7 @@
 "Netflix Originals" = "Netflix 오리지널";
 "Never" = "안 함";
 "Never auto-select tracks containing" = "다음 문구가 포함된 트랙 자동 선택 안 함";
+"Never show the content advisory for this title again" = "이 작품에는 콘텐츠 주의 사항을 다시 표시하지 않습니다";
 "New Anime Releases" = "최신 애니메이션";
 "New Episodes" = "새 에피소드";
 "New Episodes row" = "새 에피소드 행";
@@ -1683,6 +1691,7 @@
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "TMDB 콘텐츠 행, 포스터 내장 평점, 팬아트, TVDB 에피소드 데이터를 사용할 수 있게 하는 선택적 키입니다.";
+"Optional. TheIntroDB answers without a key, but a key raises your rate limit so timing keeps arriving when you binge. Get one at" = "선택 사항입니다. TheIntroDB는 키가 없어도 응답하지만, 키를 등록하면 요청 한도가 늘어나 몰아 볼 때도 구간 정보가 끊기지 않습니다. 키 발급:";
 "Options" = "옵션";
 "Orden de addons" = "애드온 순서";
 "Orden de idiomas preferidos" = "언어 우선순위";
@@ -1724,6 +1733,7 @@
 "Paste the code or page URL" = "코드 또는 페이지 URL 붙여넣기";
 "Paste the manifest URL the configure page gave you" = "설정 페이지에서 제공한 매니페스트 URL을 붙여넣으세요";
 "Paste the text from AniList" = "AniList의 텍스트 붙여넣기";
+"Paste your TheIntroDB API key" = "TheIntroDB API 키 붙여넣기";
 "Peacock" = "Peacock";
 "Peligro" = "위험";
 "Películas" = "영화";
@@ -1818,6 +1828,7 @@
 "Predeterminado (acento dorado)" = "기본값(골드 강조색)";
 "Prefer embedded subtitles" = "내장 자막 우선";
 "Prefer episode still artwork" = "Prefer episode still artwork";
+"Prefer my installed metadata addon" = "설치된 메타데이터 애드온 우선 사용";
 "Prefer these sources" = "Prefer these sources";
 "Preferred language for anime titles displayed on poster cards." = "포스터 카드에 표시되는 애니메이션 타이틀의 기본 언어입니다.";
 "Preguntar si reanudar o empezar de nuevo" = "이어 보기 또는 처음부터 보기 확인";
@@ -1867,6 +1878,7 @@
 "Página siguiente" = "다음 페이지";
 "Pósteres, calificaciones y listas" = "포스터, 평점, 목록";
 "Quality" = "화질";
+"Quality badge style" = "화질 배지 스타일";
 "Quedan {h} h" = "{h}시간 남음";
 "Quedan {h} h {m} min" = "{h}시간 {m}분 남음";
 "Quedan {m} min" = "{m}분 남음";
@@ -2012,6 +2024,7 @@
 "Restablecer zoom" = "확대/축소 초기화";
 "Restart" = "다시 시작";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore" = "복원";
 "Restore dismissed hints" = "닫은 도움말 복원";
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
@@ -2126,6 +2139,7 @@
 "Secondary copy." = "보조 사본입니다.";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "세부 정보 보기";
+"See the resolution, HDR format and audio while you watch." = "시청 중 해상도, HDR 형식, 오디오를 확인하세요.";
 "Seek bar" = "탐색 막대";
 "Seen so far: {hosts}" = "지금까지 확인됨: {hosts}";
 "Seguir viendo en la parte superior" = "맨 위에 이어 보기 표시";
@@ -2196,6 +2210,7 @@
 "Show comments" = "댓글 보기";
 "Show comments on detail pages" = "상세 페이지에 댓글 표시";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio 선택기, 다운로드 및 빅 픽처에서 애드온 설명 전체를 표시합니다.";
+"Show content ratings?" = "콘텐츠 등급을 표시할까요?";
 "Show controls" = "컨트롤 표시";
 "Show cursors" = "커서 표시";
 "Show details" = "세부 정보 표시";
@@ -2205,6 +2220,7 @@
 "Show episode ratings" = "에피소드 평점 표시";
 "Show every addon row" = "모든 애드온 행 표시";
 "Show everything anyway" = "그래도 모두 표시";
+"Show format chips on stream rows" = "스트림 행에 형식 배지 표시";
 "Show forum threads and comments from AniList on anime detail pages." = "애니메이션 상세 페이지에 AniList의 포럼 스레드와 댓글을 표시합니다.";
 "Show full descriptions" = "전체 설명 표시";
 "Show hidden episodes" = "숨긴 에피소드 표시";
@@ -2219,6 +2235,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "간결 보기 선택기와 빅 픽처에서 릴리스 파일명을 표시합니다.";
 "Show release name" = "릴리스 이름 표시";
 "Show row" = "행 표시";
+"Show stream quality under the title" = "제목 아래에 스트림 화질 표시";
 "Show subtitle sync indicator" = "자막 동기화 표시기 표시";
 "Show the Skip button" = "건너뛰기 버튼 표시";
 "Show this catalog" = "이 카탈로그 표시";
@@ -2348,6 +2365,7 @@
 "Storage overview" = "저장 공간 개요";
 "Stream" = "스트리밍";
 "Stream priority" = "스트림 우선순위";
+"Stream quality in player" = "플레이어에 스트림 화질 표시";
 "Stream ranking" = "스트림 순위";
 "Stream safety filter" = "스트림 안전 필터";
 "Streaming" = "스트리밍";
@@ -2486,12 +2504,14 @@
 "The most anticipated upcoming releases on Trakt" = "Trakt에서 가장 기대되는 공개 예정작";
 "The most-watched movies and series on {name} right now in {region}." = "현재 {region}의 {name}에서 가장 많이 시청한 영화와 시리즈입니다.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
+"The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "선택 창에서 각 스트림에 해상도, HDR 형식, 코덱, 오디오 형식 태그를 표시합니다. 끄면 모두 숨깁니다.";
 "The quick brown fox jumps over the lazy dog" = "다람쥐 헌 쳇바퀴에 타고파";
 "The ratings row on a title's detail page, next to runtime and genre." = "제목 상세 페이지에서 재생 시간 및 장르 옆에 표시되는 평점 행입니다.";
 "The server answered with status {status}. Is that a streaming server?" = "서버가 상태 {status}(으)로 응답했습니다. 스트리밍 서버가 맞나요?";
 "The server responded in {ms} ms." = "서버가 {ms}밀리초 만에 응답했습니다.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "홈 페이지 전체의 구성입니다. 아래의 모든 설정은 그 안의 행을 조정합니다.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheIntroDB · intro and credits timing" = "TheIntroDB · 인트로 및 엔딩 크레딧 구간";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "Theme is missing a name." = "테마 이름이 없습니다.";
@@ -2524,6 +2544,7 @@
 "Titles" = "작품";
 "Titles and descriptions" = "제목 및 설명";
 "Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
+"Titles you ignore on the advisory card never show it again." = "주의 사항 카드에서 무시한 작품에는 콘텐츠 주의 사항이 다시 표시되지 않습니다.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "전체";
 "Todas las categorías" = "모든 카테고리";
@@ -2614,6 +2635,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "트렌딩, 인기, 극장 상영작 및 서비스별 콘텐츠 행입니다.";
 "Trending, in theaters, what's on every streamer." = "인기 콘텐츠, 극장 상영작, 모든 스트리밍 서비스의 콘텐츠를 한곳에서 확인하세요.";
 "Try again" = "다시 시도";
+"Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "제목과 설명을 먼저 애드온에서 찾습니다. 애드온에 결과가 없으면 Cinemeta를 사용합니다.";
 "Tu avatar, nombre e identificador en Harbor." = "Harbor 전반에 표시되는 아바타, 이름 및 핸들입니다.";
 "Tu color" = "내 색상";
 "Tu perfil" = "내 프로필";
@@ -2621,6 +2643,7 @@
 "Tune anime" = "애니메이션 맞춤 설정";
 "Tune your recommendations" = "추천 맞춤 설정";
 "Turkish" = "튀르키예어";
+"Turn on" = "켜기";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
@@ -3993,6 +4016,7 @@
 "{count} picks ready" = "추천 {count}개 준비됨";
 "{count} results" = "결과 {count}개";
 "{count} selected" = "{count}개 선택됨";
+"{count} titles will never show the content advisory again." = "작품 {count}개에 콘텐츠 주의 사항이 다시 표시되지 않습니다.";
 "{count} tracks" = "{count}곡";
 "{h}h left" = "{h}시간 남음";
 "{h}h {m}m left" = "{h}시간 {m}분 남음";

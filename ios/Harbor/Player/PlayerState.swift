@@ -34,6 +34,8 @@ final class PlayerState {
     var pictureInPictureChanging = false
     var videoWidth = 0
     var videoHeight = 0
+    /// mpv's `video-params/gamma` ("pq" and "hlg" are HDR); empty when mpv reports none.
+    var hdrGamma = ""
     var audioDelay = 0.0
     var subtitleDelay = 0.0
     var subtitleFPS: Double?

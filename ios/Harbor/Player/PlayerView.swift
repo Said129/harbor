@@ -565,7 +565,10 @@ struct PlayerView: View {
             HStack(spacing: 0) {
                 Button { dismiss() } label: { PlayerGlyph(name: "back").frame(width: 44, height: 44) }
                     .accessibilityLabel("Cerrar reproductor").accessibilityIdentifier("player-close")
-                Text(title).lineLimit(1).frame(maxWidth: .infinity, alignment: .leading)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(title).lineLimit(1)
+                    PlayerQualityInfoLine(state: state)
+                }.frame(maxWidth: .infinity, alignment: .leading)
                 if canChangeEpisode {
                     Button { showEpisodes = true; restartHideTimer() } label: { Image("nav-shows").resizable().scaledToFit().frame(width: 24, height: 24).frame(width: 44, height: 44) }
                         .accessibilityLabel("Temporadas y episodios").accessibilityIdentifier("player-episodes")

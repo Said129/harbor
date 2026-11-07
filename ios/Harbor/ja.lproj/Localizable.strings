@@ -145,6 +145,7 @@
 "After 5" = "5話後";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "スライドをしばらく表示すると、注目作品の予告編がバックグラウンドでミュート再生されます。通信量が増加します。";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "操作なしで複数のエピソードが連続自動再生されたら、一時停止して視聴を続けているか確認します。初期設定ではオフです。";
+"Age ratings and content notes when playback starts." = "再生開始時に年齢区分と内容に関する注意を表示します。";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "目にやさしい";
 "Agregar a favoritos" = "お気に入りに追加";
@@ -309,6 +310,7 @@
 "Bajar {name}" = "{name}を下に移動";
 "Balance picture quality and performance. Changes apply to the next video you play." = "画質とパフォーマンスのバランスを調整します。変更は次に再生する動画に適用されます。";
 "Balanced" = "バランス";
+"Bar" = "バー";
 "Bar color" = "バーの色";
 "Barra de búsqueda" = "シークバー";
 "Barra inferior" = "下部バー";
@@ -485,6 +487,7 @@
 "China" = "中国";
 "Chinese" = "中国語";
 "Chinese (Simplified)" = "中国語（簡体字）";
+"Chips" = "チップ";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "名前を付けてから、希望する解像度、ソース、コーデック、音声を選んでください。";
 "Choose an avatar" = "アバターを選択";
 "Choose image" = "画像を選択";
@@ -495,6 +498,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "好きな映画や番組を最大5作品選んでください。Harborが注目作品やおすすめを好みに合わせて調整します。選択は任意です。";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harborでプロフィールの選択を求めるタイミングを選びます。時間に基づく確認は、Harborに戻ったときに表示されます。";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "Harborが字幕を検索する場所を選びます。有効なソースの結果をまとめ、重複を除いて表示します。";
+"Choose whether the content advisory appears in full color or a restrained monochrome tone." = "Choose whether the content advisory appears in full color or a restrained monochrome tone.";
 "Choose which Simkl rails appear on your home screen." = "ホーム画面に表示するSimklレールを選択します。";
 "Choose which addon results appear when you pick a stream." = "ストリーム選択時に表示するアドオンの結果を選びます。";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "カードと詳細ページに表示する評価を選びます。ロックされたカード評価には、「メタデータ」でプロバイダーのキーを設定する必要があります。";
@@ -594,6 +598,7 @@
 "Conservar original" = "オリジナルを維持";
 "Contenido" = "コンテンツ";
 "Content" = "コンテンツ";
+"Content advisory" = "コンテンツに関する注意";
 "Continuar al siguiente capítulo" = "Continue to next chapter";
 "Continuar viendo" = "続きを見る";
 "Continue" = "続ける";
@@ -1146,6 +1151,8 @@
 "Idiomas y subtítulos" = "言語と字幕";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "ストリームが時間内に再生を開始しない場合（無効なソースや停止中のアドオンなど）、次に利用できるストリームを自動的に試します。初期設定ではオフです。";
 "If multiple Rokus appear, pick the one matching your TV's name." = "複数のRokuが表示された場合は、テレビの名前と一致するものを選んでください。";
+"Ignore this title" = "この作品では表示しない";
+"Ignored titles" = "非表示にした作品";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "画像の言語";
 "Imagen" = "映像";
@@ -1480,6 +1487,7 @@
 "Netflix Originals" = "Netflixオリジナル";
 "Never" = "しない";
 "Never auto-select tracks containing" = "次を含むトラックを自動選択しない";
+"Never show the content advisory for this title again" = "この作品では今後コンテンツに関する注意を表示しない";
 "New Anime Releases" = "新作アニメ";
 "New Episodes" = "新着エピソード";
 "New Episodes row" = "「新着エピソード」行";
@@ -1683,6 +1691,7 @@
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "TMDBのコンテンツ行、ポスターに埋め込まれた評価、ファンアート、TVDBのエピソードデータを利用できるようにする任意のキーです。";
+"Optional. TheIntroDB answers without a key, but a key raises your rate limit so timing keeps arriving when you binge. Get one at" = "任意です。TheIntroDBはキーなしでも応答しますが、キーを設定するとレート制限が緩和され、一気見してもタイミング情報が届き続けます。キーの取得先";
 "Options" = "オプション";
 "Orden de addons" = "アドオン順";
 "Orden de idiomas preferidos" = "言語の優先順位";
@@ -1724,6 +1733,7 @@
 "Paste the code or page URL" = "コードまたはページのURLを貼り付け";
 "Paste the manifest URL the configure page gave you" = "設定ページで発行されたマニフェストURLを貼り付け";
 "Paste the text from AniList" = "AniListのテキストを貼り付け";
+"Paste your TheIntroDB API key" = "TheIntroDB APIキーを貼り付け";
 "Peacock" = "Peacock";
 "Peligro" = "危険";
 "Películas" = "映画";
@@ -1818,6 +1828,7 @@
 "Predeterminado (acento dorado)" = "デフォルト（ゴールドのアクセント）";
 "Prefer embedded subtitles" = "埋め込み字幕を優先";
 "Prefer episode still artwork" = "Prefer episode still artwork";
+"Prefer my installed metadata addon" = "インストール済みのメタデータアドオンを優先";
 "Prefer these sources" = "Prefer these sources";
 "Preferred language for anime titles displayed on poster cards." = "ポスターカードに表示するアニメタイトルの優先言語です。";
 "Preguntar si reanudar o empezar de nuevo" = "続きから再生するか最初から再生するか確認";
@@ -1867,6 +1878,7 @@
 "Página siguiente" = "次のページ";
 "Pósteres, calificaciones y listas" = "ポスター、評価、リスト";
 "Quality" = "画質";
+"Quality badge style" = "画質バッジのスタイル";
 "Quedan {h} h" = "残り{h}時間";
 "Quedan {h} h {m} min" = "残り{h}時間{m}分";
 "Quedan {m} min" = "残り{m}分";
@@ -2012,6 +2024,7 @@
 "Restablecer zoom" = "ズームをリセット";
 "Restart" = "最初から再生";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore" = "復元";
 "Restore dismissed hints" = "非表示にしたヒントを復元";
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
@@ -2126,6 +2139,7 @@
 "Secondary copy." = "補足テキスト。";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "詳細を見る";
+"See the resolution, HDR format and audio while you watch." = "視聴中に解像度、HDR 形式、音声を確認できます。";
 "Seek bar" = "シークバー";
 "Seen so far: {hosts}" = "これまでの接続先: {hosts}";
 "Seguir viendo en la parte superior" = "「視聴を続ける」を一番上に表示";
@@ -2196,6 +2210,7 @@
 "Show comments" = "コメントを表示";
 "Show comments on detail pages" = "詳細ページにコメントを表示";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Stremio のソース選択画面、ダウンロード、ビッグピクチャーでアドオンの説明を全文表示します。";
+"Show content ratings?" = "コンテンツのレーティングを表示しますか？";
 "Show controls" = "コントロールを表示";
 "Show cursors" = "カーソルを表示";
 "Show details" = "詳細を表示";
@@ -2205,6 +2220,7 @@
 "Show episode ratings" = "エピソードの評価を表示";
 "Show every addon row" = "すべてのアドオン列を表示";
 "Show everything anyway" = "それでもすべて表示";
+"Show format chips on stream rows" = "ストリーム行に形式タグを表示";
 "Show forum threads and comments from AniList on anime detail pages." = "アニメ詳細ページにAniListのフォーラムスレッドとコメントを表示します。";
 "Show full descriptions" = "説明を全文表示";
 "Show hidden episodes" = "非表示のエピソードを表示";
@@ -2219,6 +2235,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "コンパクト表示のソース選択画面とビッグピクチャーでリリースのファイル名を表示します。";
 "Show release name" = "リリース名を表示";
 "Show row" = "行を表示";
+"Show stream quality under the title" = "タイトルの下にストリーム画質を表示";
 "Show subtitle sync indicator" = "字幕同期インジケーターを表示";
 "Show the Skip button" = "「スキップ」ボタンを表示";
 "Show this catalog" = "このカタログを表示";
@@ -2348,6 +2365,7 @@
 "Storage overview" = "ストレージ概要";
 "Stream" = "ストリーム";
 "Stream priority" = "ストリームの優先順位";
+"Stream quality in player" = "プレイヤーにストリーム品質を表示";
 "Stream ranking" = "ストリームの優先順位";
 "Stream safety filter" = "ストリーム安全性フィルター";
 "Streaming" = "ストリーミング";
@@ -2486,12 +2504,14 @@
 "The most anticipated upcoming releases on Trakt" = "Traktで最も期待されている新作";
 "The most-watched movies and series on {name} right now in {region}." = "現在{region}の{name}で最も視聴されている映画とシリーズです。";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
+"The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "選択画面で各ストリームに解像度、HDR形式、コーデック、音声形式のタグを表示します。オフにするとすべて非表示になります。";
 "The quick brown fox jumps over the lazy dog" = "素早い茶色のキツネが、のろまな犬を飛び越える";
 "The ratings row on a title's detail page, next to runtime and genre." = "作品の詳細ページで、再生時間やジャンルの横に表示される評価欄です。";
 "The server answered with status {status}. Is that a streaming server?" = "サーバーからステータス {status} が返されました。ストリーミングサーバーのアドレスで間違いありませんか？";
 "The server responded in {ms} ms." = "サーバーは {ms} ミリ秒で応答しました。";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "ホームページ全体のレイアウトです。以下の項目では、その中の各行を調整します。";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheIntroDB · intro and credits timing" = "TheIntroDB · イントロとクレジットのタイミング";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "Theme is missing a name." = "テーマ名がありません。";
@@ -2524,6 +2544,7 @@
 "Titles" = "作品";
 "Titles and descriptions" = "タイトルと説明";
 "Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
+"Titles you ignore on the advisory card never show it again." = "コンテンツに関する注意カードで非表示にした作品には、以降このカードは表示されません。";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "すべて";
 "Todas las categorías" = "すべてのカテゴリー";
@@ -2614,6 +2635,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "「トレンド」「人気」「上映中」と、サービス別のレール。";
 "Trending, in theaters, what's on every streamer." = "トレンド、劇場公開中、各配信サービスの話題作。";
 "Try again" = "再試行";
+"Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "タイトルと説明はまずアドオンで検索し、結果がない場合は Cinemeta を使用します。";
 "Tu avatar, nombre e identificador en Harbor." = "Harbor全体で使用するアバター、名前、ハンドルネームです。";
 "Tu color" = "あなたのカラー";
 "Tu perfil" = "あなたのプロフィール";
@@ -2621,6 +2643,7 @@
 "Tune anime" = "アニメをカスタマイズ";
 "Tune your recommendations" = "おすすめを調整";
 "Turkish" = "トルコ語";
+"Turn on" = "オンにする";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
@@ -3993,6 +4016,7 @@
 "{count} picks ready" = "おすすめ{count}件を用意しました";
 "{count} results" = "{count}件の結果";
 "{count} selected" = "{count}件選択中";
+"{count} titles will never show the content advisory again." = "{count}件の作品では、今後コンテンツに関する注意が表示されません。";
 "{count} tracks" = "{count}曲";
 "{h}h left" = "残り{h}時間";
 "{h}h {m}m left" = "残り{h}時間{m}分";

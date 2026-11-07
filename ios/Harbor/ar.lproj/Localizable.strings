@@ -154,6 +154,7 @@
 "After 5" = "بعد 5";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "بعد لحظة على الشريحة، يُشغَّل المقطع الدعائي للعنوان المميّز صامتًا في الخلفية. يستهلك بيانات أكثر.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "بعد تشغيل عدة حلقات تلقائياً بالتتابع دون أي تفاعل، يتوقف مؤقتاً للتأكد من وجودك قبل المتابعة. مُعطَّل افتراضياً.";
+"Age ratings and content notes when playback starts." = "التصنيف العمري وملاحظات المحتوى عند بدء التشغيل.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "مريح للعين";
 "Agregar a favoritos" = "إضافة إلى المفضّلة";
@@ -320,6 +321,7 @@
 "Bajar {name}" = "نقل {name} لأسفل";
 "Balance picture quality and performance. Changes apply to the next video you play." = "وازن بين جودة الصورة والأداء. تسري التغييرات على الفيديو التالي الذي تشغّله.";
 "Balanced" = "متوازن";
+"Bar" = "شريط";
 "Bar color" = "لون الشريط";
 "Barra de búsqueda" = "شريط التقدم";
 "Barra inferior" = "الشريط السفلي";
@@ -504,6 +506,7 @@
 "China" = "الصين";
 "Chinese" = "الصينية";
 "Chinese (Simplified)" = "الصينية (المبسّطة)";
+"Chips" = "الشرائح";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "اختر اسمًا، ثم حدّد دقّات العرض والمصادر وبرامج الترميز والصوت التي تفضّلها.";
 "Choose an avatar" = "اختر صورة رمزية";
 "Choose image" = "اختر صورة";
@@ -514,6 +517,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "اختر حتى 5 أفلام أو مسلسلات تحبها بالفعل. يستخدمها Harbor لضبط مختاراتك المميزة وتوصياتك. اختياري تمامًا.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "اختر متى يطلب Harbor اختيار ملف شخصي. تظهر المطالبات المؤقّتة عند العودة إلى Harbor.";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "اختر أين يبحث Harbor عن الترجمة. تظهر نتائج المصادر المفعّلة معًا بعد إزالة التكرارات.";
+"Choose whether the content advisory appears in full color or a restrained monochrome tone." = "اختر ما إذا كان التنبيه بالمحتوى سيظهر بألوان كاملة أو بنمط أحادي اللون هادئ.";
 "Choose which Simkl rails appear on your home screen." = "اختر شرائط Simkl التي تظهر على شاشتك الرئيسية.";
 "Choose which addon results appear when you pick a stream." = "اختر نتائج الإضافات التي تظهر عند اختيار بث.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "اختر التقييمات التي تظهر على البطاقات وصفحات التفاصيل. تتطلّب التقييمات المقفلة مفتاح مزوّد في البيانات الوصفية.";
@@ -613,6 +617,7 @@
 "Conservar original" = "الاحتفاظ بالأصل";
 "Contenido" = "المحتوى";
 "Content" = "المحتوى";
+"Content advisory" = "تنبيه المحتوى";
 "Continuar al siguiente capítulo" = "Continue to next chapter";
 "Continuar viendo" = "متابعة المشاهدة";
 "Continue" = "متابعة";
@@ -1170,6 +1175,8 @@
 "Idiomas y subtítulos" = "اللغات والترجمات";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "إذا لم يبدأ البثّ في الوقت المحدّد (مصدر ميّت أو إضافة معطّلة)، جرّب البثّ المتاح التالي تلقائيًا. مُعطّل افتراضيًا.";
 "If multiple Rokus appear, pick the one matching your TV's name." = "إذا ظهرت عدة أجهزة Roku، فاختر الجهاز المطابق لاسم تلفزيونك.";
+"Ignore this title" = "تجاهل هذا العنوان";
+"Ignored titles" = "العناوين المتجاهَلة";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "لغات الصور";
 "Imagen" = "الصورة";
@@ -1506,6 +1513,7 @@
 "Netflix Originals" = "أعمال نتفليكس الأصلية";
 "Never" = "أبدًا";
 "Never auto-select tracks containing" = "عدم اختيار المسارات تلقائيًا التي تحتوي على";
+"Never show the content advisory for this title again" = "عدم إظهار تنبيه المحتوى لهذا العنوان مرة أخرى";
 "Never shown again" = "لن يظهر مجددًا";
 "New Anime Releases" = "أحدث إصدارات الأنمي";
 "New Episodes" = "حلقات جديدة";
@@ -1711,6 +1719,7 @@
 "Opening book…" = "جارٍ فتح الكتاب…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "مفاتيح اختيارية تفتح محتوى TMDB وتقييمات الملصقات وبيانات Fanart وـ TVDB.";
+"Optional. TheIntroDB answers without a key, but a key raises your rate limit so timing keeps arriving when you binge. Get one at" = "اختياري. يستجيب TheIntroDB بدون مفتاح، لكن المفتاح يرفع حدّ الطلبات ليستمر وصول التوقيتات أثناء المشاهدة المتواصلة. احصل على مفتاح من";
 "Options" = "خيارات";
 "Orden de addons" = "ترتيب الإضافة";
 "Orden de idiomas preferidos" = "ترتيب اللغات المفضّلة";
@@ -1754,6 +1763,7 @@
 "Paste the code or page URL" = "الصق الرمز أو رابط URL الصفحة";
 "Paste the manifest URL the configure page gave you" = "الصق رابط البيان الذي أعطته إياك صفحة الإعداد";
 "Paste the text from AniList" = "الصق النص من AniList";
+"Paste your TheIntroDB API key" = "الصق مفتاح API الخاص بـ TheIntroDB";
 "Peacock" = "Peacock";
 "Peligro" = "خطر";
 "Películas" = "الأفلام";
@@ -1848,6 +1858,7 @@
 "Predeterminado (acento dorado)" = "افتراضي (تمييز ذهبي)";
 "Prefer embedded subtitles" = "تفضيل الترجمات المدمجة";
 "Prefer episode still artwork" = "Prefer episode still artwork";
+"Prefer my installed metadata addon" = "تفضيل إضافة البيانات الوصفية المثبّتة لديّ";
 "Prefer these sources" = "Prefer these sources";
 "Preferred language for anime titles displayed on poster cards." = "اللغة المفضّلة لعناوين الأنمي المعروضة على بطاقات الملصقات.";
 "Preguntar si reanudar o empezar de nuevo" = "السؤال عن الاستئناف أو البدء من جديد";
@@ -1897,6 +1908,7 @@
 "Página siguiente" = "الصفحة التالية";
 "Pósteres, calificaciones y listas" = "الملصقات والتقييمات والقوائم";
 "Quality" = "الجودة";
+"Quality badge style" = "نمط شارة الجودة";
 "Quedan {h} h" = "بقي {h}س";
 "Quedan {h} h {m} min" = "بقي {h}س {m}د";
 "Quedan {m} min" = "بقي {m}د";
@@ -2043,6 +2055,7 @@
 "Restablecer zoom" = "إعادة تعيين التكبير";
 "Restart" = "إعادة التشغيل";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore" = "استعادة";
 "Restore dismissed hints" = "استعادة التلميحات المرفوضة";
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
@@ -2159,6 +2172,7 @@
 "Secondary copy." = "نص ثانوي.";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "عرض التفاصيل";
+"See the resolution, HDR format and audio while you watch." = "اعرض الدقة وتنسيق HDR ومعلومات الصوت أثناء المشاهدة.";
 "Seek bar" = "شريط التقدم";
 "Seen so far: {hosts}" = "شوهد حتى الآن: {hosts}";
 "Seguir viendo en la parte superior" = "متابعة المشاهدة في الأعلى";
@@ -2229,6 +2243,7 @@
 "Show comments" = "إظهار التعليقات";
 "Show comments on detail pages" = "إظهار التعليقات في صفحات التفاصيل";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "عرض أوصاف الإضافات كاملة في محدد مصادر Stremio والتنزيلات ووضع الشاشة الكبيرة.";
+"Show content ratings?" = "عرض تصنيفات المحتوى؟";
 "Show controls" = "إظهار عناصر التحكم";
 "Show cursors" = "إظهار المؤشرات";
 "Show details" = "إظهار التفاصيل";
@@ -2238,6 +2253,7 @@
 "Show episode ratings" = "إظهار تقييمات الحلقات";
 "Show every addon row" = "إظهار كل صفّ إضافة";
 "Show everything anyway" = "إظهار كل شيء على أي حال";
+"Show format chips on stream rows" = "إظهار شارات الصيغ في صفوف البث";
 "Show forum threads and comments from AniList on anime detail pages." = "إظهار مواضيع المنتدى والتعليقات من AniList في صفحات تفاصيل الأنمي.";
 "Show full descriptions" = "إظهار الأوصاف الكاملة";
 "Show hidden episodes" = "إظهار الحلقات المخفية";
@@ -2252,6 +2268,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "عرض أسماء ملفات الإصدارات في محدد المصادر المكثف ووضع الشاشة الكبيرة.";
 "Show release name" = "إظهار اسم الإصدار";
 "Show row" = "إظهار الصف";
+"Show stream quality under the title" = "إظهار جودة البث أسفل العنوان";
 "Show subtitle sync indicator" = "عرض مؤشر مزامنة الترجمة";
 "Show the Skip button" = "إظهار زر التخطّي";
 "Show this catalog" = "إظهار هذا الكتالوج";
@@ -2383,6 +2400,7 @@
 "Storage overview" = "نظرة عامة على التخزين";
 "Stream" = "بث";
 "Stream priority" = "أولوية البث";
+"Stream quality in player" = "جودة البث في المشغّل";
 "Stream ranking" = "ترتيب البث";
 "Stream safety filter" = "فلتر أمان البث";
 "Streaming" = "البث";
@@ -2522,12 +2540,14 @@
 "The most anticipated upcoming releases on Trakt" = "أكثر الإصدارات القادمة ترقبًا على Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "أكثر الأفلام والمسلسلات مشاهدةً على {name} الآن في {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "تم الاحتفاظ بالأصل. صدّر الترجمة بترميز UTF-8 أو UTF-16 لمزامنتها.";
+"The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "يقوم المنتقي بوضع علامات لكل بث توضح الدقة، ونوع HDR، والترميز، وصيغة الصوت. 'إيقاف' يخفيها جميعاً.";
 "The quick brown fox jumps over the lazy dog" = "أبجد هوز حطي كلمن سعفص قرشت ثخذ ضظغ";
 "The ratings row on a title's detail page, next to runtime and genre." = "صف التقييمات في صفحة تفاصيل العنوان، بجوار مدة العرض والنوع.";
 "The server answered with status {status}. Is that a streaming server?" = "أجاب الخادم بالحالة {status}. هل هذا خادم بثّ؟";
 "The server responded in {ms} ms." = "استجاب الخادم خلال {ms} مللي ثانية.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "شكل صفحة الرئيسية بأكملها. كل ما بالأسفل يضبط الصفوف داخلها.";
 "The subtitle already matches the audio." = "تتطابق الترجمة مع الصوت بالفعل.";
+"TheIntroDB · intro and credits timing" = "TheIntroDB · توقيت المقدمة وأسماء الطاقم";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "Theme is missing a name." = "القالب بلا اسم.";
@@ -2561,6 +2581,7 @@
 "Titles" = "العناوين";
 "Titles and descriptions" = "العناوين والأوصاف";
 "Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
+"Titles you ignore on the advisory card never show it again." = "العناوين التي تتجاهلها من بطاقة التنبيه لن يظهر لها التنبيه مرة أخرى.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "الكل";
 "Todas las categorías" = "كل الفئات";
@@ -2651,6 +2672,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "صفوف «الرائج» و«الشائع» و«في دور العرض» وصفوف كل خدمة.";
 "Trending, in theaters, what's on every streamer." = "الرائج، وما يُعرض في السينما، وما هو متاح على كل منصّة بث.";
 "Try again" = "حاول مرة أخرى";
+"Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "جرّب إضافتك أولًا للحصول على العناوين والأوصاف. استخدم Cinemeta عندما لا تُرجع الإضافة نتيجة.";
 "Tu avatar, nombre e identificador en Harbor." = "صورتك الرمزية واسمك ومُعرِّفك في جميع أنحاء Harbor.";
 "Tu color" = "لونك";
 "Tu perfil" = "ملفك الشخصي";
@@ -2658,6 +2680,7 @@
 "Tune anime" = "ضبط الأنمي";
 "Tune your recommendations" = "تحسين توصياتك";
 "Turkish" = "التركية";
+"Turn on" = "تشغيل";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "تقليب الصفحات أفقيًا";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
@@ -4034,6 +4057,7 @@
 "{count} picks ready" = "{count} اختيارات جاهزة";
 "{count} results" = "{count} نتيجة";
 "{count} selected" = "{count} محدد";
+"{count} titles will never show the content advisory again." = "لن يظهر تنبيه المحتوى مرة أخرى لـ {count} عنوانًا.";
 "{count} tracks" = "{count} مقطعًا";
 "{h}h left" = "بقي {h}س";
 "{h}h {m}m left" = "بقي {h}س {m}د";

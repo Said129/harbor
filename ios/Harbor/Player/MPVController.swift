@@ -144,7 +144,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         // Optional timing properties must not prevent ordinary playback on an
         // older runtime. Availability comes from their actual property events.
         for name in ["sub-fps", "estimated-vf-fps", "container-fps", "demuxer-cache-time"] { _ = mpv_observe_property(mpv, 0, name, MPV_FORMAT_DOUBLE) }
-        for name in ["sub-text", "secondary-sub-text"] { _ = mpv_observe_property(mpv, 0, name, MPV_FORMAT_STRING) }
+        for name in ["sub-text", "secondary-sub-text", "video-params/gamma"] { _ = mpv_observe_property(mpv, 0, name, MPV_FORMAT_STRING) }
         if let headers = source.headers {
             // mpv string-list escapes commas by doubling; reject CR/LF in Rust.
             let value = headers.sorted(by: { $0.key < $1.key }).map { "\($0.key): \($0.value)".replacingOccurrences(of: ",", with: ",,") }.joined(separator: ",")
@@ -935,6 +935,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                     if key == "demuxer-cache-time" { state.cacheEnd = nil }
                     if key == "sub-text" { state.primarySubtitleText = "" }
                     if key == "secondary-sub-text" { state.secondarySubtitleText = "" }
+                    if key == "video-params/gamma" { state.hdrGamma = "" }
                     continue
                 }
                 if property.format == MPV_FORMAT_DOUBLE {
@@ -982,6 +983,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                     let text = value.assumingMemoryBound(to: UnsafePointer<CChar>?.self).pointee.map { String(cString: $0) } ?? ""
                     if key == "sub-text" { state.primarySubtitleText = text }
                     if key == "secondary-sub-text" { state.secondarySubtitleText = text }
+                    if key == "video-params/gamma" { state.hdrGamma = text }
                     if key == "current-vo" { videoOutputName = text }
                 } else if property.format == MPV_FORMAT_NODE {
 #if targetEnvironment(simulator)

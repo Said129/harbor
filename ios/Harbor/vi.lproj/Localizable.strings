@@ -145,6 +145,7 @@
 "After 5" = "Sau 5 tập";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Sau một lúc ở một trang trình chiếu, trailer của nội dung nổi bật sẽ phát không tiếng trong nền. Tốn nhiều băng thông hơn.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Sau khi tự động phát liên tiếp vài tập mà không có thao tác, tạm dừng và kiểm tra xem bạn có còn đang xem không trước khi tiếp tục. Mặc định tắt.";
+"Age ratings and content notes when playback starts." = "Phân loại độ tuổi và lưu ý về nội dung khi bắt đầu phát.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Dịu mắt";
 "Agregar a favoritos" = "Thêm vào mục yêu thích";
@@ -309,6 +310,7 @@
 "Bajar {name}" = "Chuyển {name} xuống";
 "Balance picture quality and performance. Changes apply to the next video you play." = "Cân bằng chất lượng hình ảnh và hiệu năng. Thay đổi áp dụng cho video tiếp theo bạn phát.";
 "Balanced" = "Cân bằng";
+"Bar" = "Thanh";
 "Bar color" = "Màu thanh";
 "Barra de búsqueda" = "Thanh tua";
 "Barra inferior" = "Thanh dưới";
@@ -485,6 +487,7 @@
 "China" = "Trung Quốc";
 "Chinese" = "Tiếng Trung";
 "Chinese (Simplified)" = "Tiếng Trung (Giản thể)";
+"Chips" = "Thẻ chọn";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Chọn tên, rồi chọn độ phân giải, nguồn, codec và âm thanh bạn muốn.";
 "Choose an avatar" = "Chọn ảnh đại diện";
 "Choose image" = "Chọn hình ảnh";
@@ -495,6 +498,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Chọn tối đa 5 phim lẻ hoặc phim bộ bạn đã thích. Harbor sẽ dùng chúng để điều chỉnh các đề xuất nổi bật và nội dung gợi ý. Hoàn toàn không bắt buộc.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Chọn khi nào Harbor yêu cầu chọn hồ sơ. Lời nhắc theo thời gian xuất hiện khi bạn quay lại Harbor.";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "Chọn nơi Harbor tìm phụ đề. Kết quả từ các nguồn đã bật được gộp lại và loại bỏ trùng lặp.";
+"Choose whether the content advisory appears in full color or a restrained monochrome tone." = "Choose whether the content advisory appears in full color or a restrained monochrome tone.";
 "Choose which Simkl rails appear on your home screen." = "Chọn các hàng Simkl hiển thị trên màn hình chính.";
 "Choose which addon results appear when you pick a stream." = "Chọn kết quả từ tiện ích nào xuất hiện khi chọn luồng.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Chọn điểm đánh giá xuất hiện trên thẻ và trang chi tiết. Điểm bị khóa trên thẻ cần khóa nhà cung cấp trong Siêu dữ liệu.";
@@ -594,6 +598,7 @@
 "Conservar original" = "Giữ nguyên bản";
 "Contenido" = "Nội dung";
 "Content" = "Nội dung";
+"Content advisory" = "Cảnh báo nội dung";
 "Continuar al siguiente capítulo" = "Continue to next chapter";
 "Continuar viendo" = "Xem tiếp";
 "Continue" = "Tiếp tục";
@@ -1146,6 +1151,8 @@
 "Idiomas y subtítulos" = "Ngôn ngữ & phụ đề";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "Nếu luồng phát không bắt đầu kịp thời (nguồn không hoạt động hoặc tiện ích bổ sung gặp sự cố), tự động thử luồng phát khả dụng tiếp theo. Mặc định tắt.";
 "If multiple Rokus appear, pick the one matching your TV's name." = "Nếu có nhiều Roku xuất hiện, hãy chọn thiết bị có tên khớp với TV của bạn.";
+"Ignore this title" = "Bỏ qua tựa phim này";
+"Ignored titles" = "Tựa phim đã bỏ qua";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "Ngôn ngữ hình ảnh";
 "Imagen" = "Hình ảnh";
@@ -1480,6 +1487,7 @@
 "Netflix Originals" = "Nội dung gốc Netflix";
 "Never" = "Không bao giờ";
 "Never auto-select tracks containing" = "Không bao giờ tự động chọn rãnh có chứa";
+"Never show the content advisory for this title again" = "Không bao giờ hiện cảnh báo nội dung cho tựa phim này nữa";
 "New Anime Releases" = "Anime mới phát hành";
 "New Episodes" = "Tập mới";
 "New Episodes row" = "Hàng Tập mới";
@@ -1683,6 +1691,7 @@
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "Các khóa tùy chọn giúp mở khóa hàng TMDB, điểm đánh giá tích hợp trên áp phích, fanart và dữ liệu tập TVDB.";
+"Optional. TheIntroDB answers without a key, but a key raises your rate limit so timing keeps arriving when you binge. Get one at" = "Không bắt buộc. TheIntroDB vẫn phản hồi khi không có khóa, nhưng khóa sẽ nâng giới hạn tốc độ để dữ liệu thời điểm tiếp tục được gửi về khi bạn cày phim liên tục. Lấy khóa tại";
 "Options" = "Tùy chọn";
 "Orden de addons" = "Thứ tự tiện ích bổ sung";
 "Orden de idiomas preferidos" = "Thứ tự ưu tiên ngôn ngữ";
@@ -1724,6 +1733,7 @@
 "Paste the code or page URL" = "Dán mã hoặc URL trang";
 "Paste the manifest URL the configure page gave you" = "Dán URL manifest do trang cấu hình cung cấp";
 "Paste the text from AniList" = "Dán văn bản từ AniList";
+"Paste your TheIntroDB API key" = "Dán khóa API TheIntroDB của bạn";
 "Peacock" = "Peacock";
 "Peligro" = "Nguy hiểm";
 "Películas" = "Phim điện ảnh";
@@ -1818,6 +1828,7 @@
 "Predeterminado (acento dorado)" = "Mặc định (điểm nhấn màu vàng kim)";
 "Prefer embedded subtitles" = "Ưu tiên phụ đề nhúng";
 "Prefer episode still artwork" = "Prefer episode still artwork";
+"Prefer my installed metadata addon" = "Ưu tiên tiện ích bổ sung siêu dữ liệu đã cài đặt";
 "Prefer these sources" = "Prefer these sources";
 "Preferred language for anime titles displayed on poster cards." = "Ngôn ngữ ưu tiên cho tên anime hiển thị trên thẻ áp phích.";
 "Preguntar si reanudar o empezar de nuevo" = "Hỏi tiếp tục xem hay xem lại từ đầu";
@@ -1867,6 +1878,7 @@
 "Página siguiente" = "Trang tiếp theo";
 "Pósteres, calificaciones y listas" = "Áp phích, điểm đánh giá, danh sách";
 "Quality" = "Chất lượng";
+"Quality badge style" = "Kiểu huy hiệu chất lượng";
 "Quedan {h} h" = "còn {h} giờ";
 "Quedan {h} h {m} min" = "còn {h} giờ {m} phút";
 "Quedan {m} min" = "còn {m} phút";
@@ -2012,6 +2024,7 @@
 "Restablecer zoom" = "Đặt lại thu phóng";
 "Restart" = "Khởi động lại";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore" = "Khôi phục";
 "Restore dismissed hints" = "Khôi phục gợi ý đã ẩn";
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
@@ -2126,6 +2139,7 @@
 "Secondary copy." = "Bản sao phụ.";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "Xem chi tiết";
+"See the resolution, HDR format and audio while you watch." = "Xem độ phân giải, định dạng HDR và âm thanh trong khi xem.";
 "Seek bar" = "Thanh tua";
 "Seen so far: {hosts}" = "Đã thấy đến nay: {hosts}";
 "Seguir viendo en la parte superior" = "Đưa mục Xem tiếp lên đầu";
@@ -2196,6 +2210,7 @@
 "Show comments" = "Hiện bình luận";
 "Show comments on detail pages" = "Hiển thị bình luận trên trang chi tiết";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Hiển thị mô tả đầy đủ của tiện ích trong trình chọn Stremio, mục tải xuống và Big Picture.";
+"Show content ratings?" = "Hiển thị phân loại nội dung?";
 "Show controls" = "Hiện điều khiển";
 "Show cursors" = "Hiện con trỏ";
 "Show details" = "Hiện chi tiết";
@@ -2205,6 +2220,7 @@
 "Show episode ratings" = "Hiển thị điểm đánh giá tập";
 "Show every addon row" = "Hiển thị mọi hàng tiện ích bổ sung";
 "Show everything anyway" = "Vẫn hiển thị tất cả";
+"Show format chips on stream rows" = "Hiện nhãn định dạng trên các hàng luồng phát";
 "Show forum threads and comments from AniList on anime detail pages." = "Hiển thị chủ đề diễn đàn và bình luận từ AniList trên trang chi tiết anime.";
 "Show full descriptions" = "Hiển thị mô tả đầy đủ";
 "Show hidden episodes" = "Hiển thị các tập bị ẩn";
@@ -2219,6 +2235,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "Hiển thị tên tệp của bản phát hành trong trình chọn Thu gọn và Big Picture.";
 "Show release name" = "Hiển thị tên bản phát hành";
 "Show row" = "Hiển thị hàng";
+"Show stream quality under the title" = "Hiển thị chất lượng luồng dưới tiêu đề";
 "Show subtitle sync indicator" = "Hiện chỉ báo đồng bộ phụ đề";
 "Show the Skip button" = "Hiển thị nút Bỏ qua";
 "Show this catalog" = "Hiện danh mục này";
@@ -2348,6 +2365,7 @@
 "Storage overview" = "Tổng quan bộ nhớ";
 "Stream" = "Luồng";
 "Stream priority" = "Ưu tiên luồng phát";
+"Stream quality in player" = "Chất lượng luồng phát trong trình phát";
 "Stream ranking" = "Xếp hạng luồng";
 "Stream safety filter" = "Bộ lọc an toàn luồng phát";
 "Streaming" = "Phát trực tuyến";
@@ -2486,12 +2504,14 @@
 "The most anticipated upcoming releases on Trakt" = "Các nội dung sắp ra mắt được mong đợi nhất trên Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Các phim điện ảnh và phim bộ được xem nhiều nhất trên {name} hiện nay tại {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
+"The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "Trình chọn gắn nhãn cho từng luồng phát theo độ phân giải, loại HDR, codec và định dạng âm thanh. Tắt để ẩn tất cả.";
 "The quick brown fox jumps over the lazy dog" = "Con cáo nâu nhanh nhẹn nhảy qua chú chó lười biếng";
 "The ratings row on a title's detail page, next to runtime and genre." = "Hàng điểm đánh giá trên trang chi tiết nội dung, bên cạnh thời lượng và thể loại.";
 "The server answered with status {status}. Is that a streaming server?" = "Máy chủ phản hồi với trạng thái {status}. Đây có phải là máy chủ phát trực tuyến không?";
 "The server responded in {ms} ms." = "Máy chủ đã phản hồi sau {ms} mili giây.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Bố cục tổng thể của trang chủ. Mọi tùy chọn bên dưới điều chỉnh các hàng trong trang.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheIntroDB · intro and credits timing" = "TheIntroDB · thời điểm phần mở đầu và danh đề";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "Theme is missing a name." = "Giao diện chưa có tên.";
@@ -2524,6 +2544,7 @@
 "Titles" = "Tựa phim";
 "Titles and descriptions" = "Tiêu đề và mô tả";
 "Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
+"Titles you ignore on the advisory card never show it again." = "Những tựa phim bạn bỏ qua trên thẻ cảnh báo sẽ không hiện lại cảnh báo nữa.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "Tất cả";
 "Todas las categorías" = "Tất cả danh mục";
@@ -2614,6 +2635,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "Thịnh hành, Phổ biến, Đang chiếu rạp và các hàng nội dung theo từng dịch vụ.";
 "Trending, in theaters, what's on every streamer." = "Thịnh hành, đang chiếu rạp và nội dung trên mọi dịch vụ phát trực tuyến.";
 "Try again" = "Thử lại";
+"Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Ưu tiên tiện ích để tìm tên và mô tả. Dùng Cinemeta khi tiện ích không có kết quả.";
 "Tu avatar, nombre e identificador en Harbor." = "Ảnh đại diện, tên và tên người dùng của bạn trên Harbor.";
 "Tu color" = "Màu của bạn";
 "Tu perfil" = "Hồ sơ của bạn";
@@ -2621,6 +2643,7 @@
 "Tune anime" = "Tinh chỉnh anime";
 "Tune your recommendations" = "Điều chỉnh đề xuất";
 "Turkish" = "Tiếng Thổ Nhĩ Kỳ";
+"Turn on" = "Bật";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
@@ -3993,6 +4016,7 @@
 "{count} picks ready" = "{count} lựa chọn đã sẵn sàng";
 "{count} results" = "{count} kết quả";
 "{count} selected" = "Đã chọn {count}";
+"{count} titles will never show the content advisory again." = "{count} tựa phim sẽ không bao giờ hiện lại cảnh báo nội dung.";
 "{count} tracks" = "{count} bài hát";
 "{h}h left" = "còn {h} giờ";
 "{h}h {m}m left" = "còn {h} giờ {m} phút";

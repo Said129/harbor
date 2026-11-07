@@ -16,25 +16,25 @@
     },
     "settings": {
       "total": 511,
-      "ported": 207,
-      "partial": 48,
-      "missing": 40,
-      "excluded": 216,
-      "counted": 295,
-      "weighted_percent": 78.3,
-      "ported_only_percent": 70.2,
-      "ported_or_partial_percent": 86.4
+      "ported": 214,
+      "partial": 49,
+      "missing": 30,
+      "excluded": 218,
+      "counted": 293,
+      "weighted_percent": 81.4,
+      "ported_only_percent": 73.0,
+      "ported_or_partial_percent": 89.8
     },
     "all": {
       "total": 949,
-      "ported": 359,
-      "partial": 277,
-      "missing": 47,
-      "excluded": 266,
-      "counted": 683,
-      "weighted_percent": 72.8,
-      "ported_only_percent": 52.6,
-      "ported_or_partial_percent": 93.1
+      "ported": 366,
+      "partial": 278,
+      "missing": 37,
+      "excluded": 268,
+      "counted": 681,
+      "weighted_percent": 74.2,
+      "ported_only_percent": 53.7,
+      "ported_or_partial_percent": 94.6
     }
   },
   "behavior_areas": [
@@ -3630,15 +3630,15 @@
       "index": 48,
       "id": "showQualityBadge",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card badges and home languages not ported"
+      "verdict": "D",
+      "note": "format chips on stream picker rows can be turned off (7 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 49,
       "id": "qualityBadgeStyle",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card badges and home languages not ported"
+      "verdict": "D",
+      "note": "quality line style under the player title: text bar or chips (7 Nov, uncompiled)"
     },
     {
       "index": 50,
@@ -4050,22 +4050,22 @@
       "index": 108,
       "id": "contentAdvisoryToast",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advisory toasts and volume HUD"
+      "verdict": "D",
+      "note": "content advisory card in the player: shows once per source after playback starts, from Harbor's parental guide for an IMDb id (7 Nov, written by Haiku, uncompiled; the endpoint host is unconfirmed)"
     },
     {
       "index": 109,
       "id": "contentAdvisoryTheme",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advisory toasts and volume HUD"
+      "verdict": "D",
+      "note": "content advisory card theme (7 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 110,
       "id": "contentAdvisoryShowIgnore",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advisory toasts and volume HUD"
+      "verdict": "D",
+      "note": "\"Ignore this title\" on the content advisory card, kept on the device (7 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 111,
@@ -4652,8 +4652,8 @@
       "index": 194,
       "id": "showQualityInfo",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "stream quality under the player title: resolution and HDR from the decoded picture and mpv's gamma (7 Nov, uncompiled)"
     },
     {
       "index": 195,
@@ -5695,8 +5695,8 @@
       "index": 343,
       "id": "theIntroDbKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "subtitle provider keys"
+      "verdict": "D",
+      "note": "TheIntroDB key, kept in the Keychain per profile and sent as X-API-Key (7 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 344,
@@ -5821,8 +5821,8 @@
       "index": 361,
       "id": "showSimklCard",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "SIMKL card setting: Desktop shows an owner-only card in its profile sidebar and iOS has no profile cards"
     },
     {
       "index": 362,
@@ -6066,8 +6066,8 @@
       "index": 396,
       "id": "preferCustomMetaAddon",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "prefer my installed metadata addon: the meta plans are reordered with Cinemeta last; Desktop's poster preference is not ported (7 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 397,
@@ -6199,8 +6199,8 @@
       "index": 415,
       "id": "resumeDetailScroll",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "remember the detail page scroll: the navigation stack already keeps it on iOS"
     },
     {
       "index": 416,

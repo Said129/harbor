@@ -704,6 +704,16 @@ SETTINGS = expand("""
 151 D Watch Together relay address (7 Nov, written by Haiku, CI runs 43 and 44 green)
 155 X share cursors: a touch screen has no pointer, the value is stored only
 156 P guests pick their own source: stored and read by the follower, no screen applies it yet (7 Nov, written by Haiku, CI runs 43 and 44 green)
+108 D content advisory card in the player: shows once per source after playback starts, from Harbor's parental guide for an IMDb id (7 Nov, written by Haiku, uncompiled; the endpoint host is unconfirmed)
+109 D content advisory card theme (7 Nov, written by Haiku, uncompiled)
+110 D "Ignore this title" on the content advisory card, kept on the device (7 Nov, written by Haiku, uncompiled)
+48 D format chips on stream picker rows can be turned off (7 Nov, written by Haiku, uncompiled)
+49 D quality line style under the player title: text bar or chips (7 Nov, uncompiled)
+194 D stream quality under the player title: resolution and HDR from the decoded picture and mpv's gamma (7 Nov, uncompiled)
+343 D TheIntroDB key, kept in the Keychain per profile and sent as X-API-Key (7 Nov, written by Haiku, uncompiled)
+396 P prefer my installed metadata addon: the meta plans are reordered with Cinemeta last; Desktop's poster preference is not ported (7 Nov, written by Haiku, uncompiled)
+415 X remember the detail page scroll: the navigation stack already keeps it on iOS
+361 X SIMKL card setting: Desktop shows an owner-only card in its profile sidebar and iOS has no profile cards
 """)
 
 def audit(items, verdicts, label):

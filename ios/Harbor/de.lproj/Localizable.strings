@@ -145,6 +145,7 @@
 "After 5" = "Nach 5";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Nachdem eine Kachel einen Moment lang angezeigt wurde, wird der Trailer des hervorgehobenen Titels stumm im Hintergrund abgespielt. Verbraucht mehr Bandbreite.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Nach mehreren automatisch nacheinander abgespielten Episoden ohne Eingabe pausieren und vor dem Fortfahren prüfen, ob du noch da bist. Standardmäßig deaktiviert.";
+"Age ratings and content notes when playback starts." = "Altersfreigaben und Inhaltshinweise beim Wiedergabestart.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Angenehm für die Augen";
 "Agregar a favoritos" = "Zu Favoriten hinzufügen";
@@ -309,6 +310,7 @@
 "Bajar {name}" = "{name} nach unten verschieben";
 "Balance picture quality and performance. Changes apply to the next video you play." = "Stimme Bildqualität und Leistung aufeinander ab. Änderungen gelten für das nächste Video.";
 "Balanced" = "Ausgewogen";
+"Bar" = "Leiste";
 "Bar color" = "Leistenfarbe";
 "Barra de búsqueda" = "Zeitleiste";
 "Barra inferior" = "Untere Leiste";
@@ -485,6 +487,7 @@
 "China" = "China";
 "Chinese" = "Chinesisch";
 "Chinese (Simplified)" = "Chinesisch (vereinfacht)";
+"Chips" = "Chips";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Wähle einen Namen und dann deine bevorzugten Auflösungen, Quellen, Codecs und Audioformate.";
 "Choose an avatar" = "Avatar auswählen";
 "Choose image" = "Bild auswählen";
@@ -495,6 +498,7 @@
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Wähle bis zu 5 Filme oder Serien aus, die dir bereits gefallen. Harbor nutzt sie, um deine Top-Auswahl und Empfehlungen anzupassen. Völlig optional.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Lege fest, wann Harbor nach einem Profil fragt. Zeitgesteuerte Abfragen erscheinen, wenn du zu Harbor zurückkehrst.";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "Wähle, wo Harbor nach Untertiteln sucht. Ergebnisse aktivierter Quellen werden zusammengeführt und Duplikate entfernt.";
+"Choose whether the content advisory appears in full color or a restrained monochrome tone." = "Choose whether the content advisory appears in full color or a restrained monochrome tone.";
 "Choose which Simkl rails appear on your home screen." = "Wähle aus, welche Simkl-Reihen auf deinem Startbildschirm erscheinen.";
 "Choose which addon results appear when you pick a stream." = "Wähle, welche Addon-Ergebnisse bei der Streamauswahl erscheinen.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Wähle die Bewertungen für Karten und Detailseiten. Gesperrte Kartenbewertungen benötigen einen Anbieterschlüssel unter Metadaten.";
@@ -594,6 +598,7 @@
 "Conservar original" = "Original beibehalten";
 "Contenido" = "Inhalt";
 "Content" = "Inhalt";
+"Content advisory" = "Inhaltshinweis";
 "Continuar al siguiente capítulo" = "Continue to next chapter";
 "Continuar viendo" = "Weiterschauen";
 "Continue" = "Fortsetzen";
@@ -1146,6 +1151,8 @@
 "Idiomas y subtítulos" = "Sprachen & Untertitel";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "Wenn ein Stream nicht rechtzeitig startet, etwa wegen einer nicht erreichbaren Quelle oder eines ausgefallenen Add-ons, wird automatisch der nächste verfügbare Stream ausprobiert. Standardmäßig deaktiviert.";
 "If multiple Rokus appear, pick the one matching your TV's name." = "Wenn mehrere Roku-Geräte angezeigt werden, wähle das Gerät mit dem Namen deines Fernsehers aus.";
+"Ignore this title" = "Diesen Titel ignorieren";
+"Ignored titles" = "Ignorierte Titel";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "Bildsprachen";
 "Imagen" = "Bild";
@@ -1480,6 +1487,7 @@
 "Netflix Originals" = "Netflix Originals";
 "Never" = "Nie";
 "Never auto-select tracks containing" = "Nie automatisch Tonspuren auswählen, die Folgendes enthalten";
+"Never show the content advisory for this title again" = "Den Inhaltshinweis für diesen Titel nie wieder anzeigen";
 "New Anime Releases" = "Anime-Neuerscheinungen";
 "New Episodes" = "Neue Folgen";
 "New Episodes row" = "Zeile „Neue Folgen“";
@@ -1683,6 +1691,7 @@
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "Optionale Schlüssel, die TMDB-Reihen, integrierte Posterbewertungen, Fanart und TVDB-Folgendaten freischalten.";
+"Optional. TheIntroDB answers without a key, but a key raises your rate limit so timing keeps arriving when you binge. Get one at" = "Optional. TheIntroDB antwortet auch ohne Schlüssel, aber ein Schlüssel erhöht dein Anfragelimit, damit die Zeitangaben auch bei einem Serienmarathon weiter eintreffen. Erhältlich unter";
 "Options" = "Optionen";
 "Orden de addons" = "Add-on-Reihenfolge";
 "Orden de idiomas preferidos" = "Sprachreihenfolge";
@@ -1724,6 +1733,7 @@
 "Paste the code or page URL" = "Füge den Code oder die Seiten-URL ein";
 "Paste the manifest URL the configure page gave you" = "Füge die Manifest-URL ein, die dir die Konfigurationsseite angezeigt hat";
 "Paste the text from AniList" = "Text aus AniList einfügen";
+"Paste your TheIntroDB API key" = "TheIntroDB-API-Schlüssel einfügen";
 "Peacock" = "Peacock";
 "Peligro" = "Gefahr";
 "Películas" = "Filme";
@@ -1818,6 +1828,7 @@
 "Predeterminado (acento dorado)" = "Standard (goldener Akzent)";
 "Prefer embedded subtitles" = "Eingebettete Untertitel bevorzugen";
 "Prefer episode still artwork" = "Prefer episode still artwork";
+"Prefer my installed metadata addon" = "Mein installiertes Metadaten-Add-on bevorzugen";
 "Prefer these sources" = "Prefer these sources";
 "Preferred language for anime titles displayed on poster cards." = "Bevorzugte Sprache für Anime-Titel auf Posterkarten.";
 "Preguntar si reanudar o empezar de nuevo" = "Fragen, ob fortgesetzt oder neu begonnen werden soll";
@@ -1867,6 +1878,7 @@
 "Página siguiente" = "Nächste Seite";
 "Pósteres, calificaciones y listas" = "Poster, Bewertungen, Listen";
 "Quality" = "Qualität";
+"Quality badge style" = "Stil des Qualitätsabzeichens";
 "Quedan {h} h" = "noch {h} Std.";
 "Quedan {h} h {m} min" = "noch {h} Std. {m} Min.";
 "Quedan {m} min" = "noch {m} Min.";
@@ -2012,6 +2024,7 @@
 "Restablecer zoom" = "Zoom zurücksetzen";
 "Restart" = "Neu starten";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore" = "Wiederherstellen";
 "Restore dismissed hints" = "Ausgeblendete Hinweise wiederherstellen";
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
@@ -2126,6 +2139,7 @@
 "Secondary copy." = "Sekundärtext.";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
 "See details" = "Details ansehen";
+"See the resolution, HDR format and audio while you watch." = "Auflösung, HDR-Format und Audio während der Wiedergabe anzeigen.";
 "Seek bar" = "Zeitleiste";
 "Seen so far: {hosts}" = "Bisher gesehen: {hosts}";
 "Seguir viendo en la parte superior" = "„Weiterschauen“ oben";
@@ -2196,6 +2210,7 @@
 "Show comments" = "Kommentare anzeigen";
 "Show comments on detail pages" = "Kommentare auf Detailseiten anzeigen";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Vollständige Addon-Beschreibungen in der Stremio-Quellenauswahl, bei Downloads und im Großbildmodus anzeigen.";
+"Show content ratings?" = "Inhaltsbewertungen anzeigen?";
 "Show controls" = "Steuerelemente anzeigen";
 "Show cursors" = "Cursor anzeigen";
 "Show details" = "Details anzeigen";
@@ -2205,6 +2220,7 @@
 "Show episode ratings" = "Episodenbewertungen anzeigen";
 "Show every addon row" = "Jede Add-on-Zeile anzeigen";
 "Show everything anyway" = "Trotzdem alles anzeigen";
+"Show format chips on stream rows" = "Formatangaben in Stream-Zeilen anzeigen";
 "Show forum threads and comments from AniList on anime detail pages." = "Zeige Forenthreads und Kommentare von AniList auf Anime-Detailseiten.";
 "Show full descriptions" = "Vollständige Beschreibungen anzeigen";
 "Show hidden episodes" = "Ausgeblendete Episoden anzeigen";
@@ -2219,6 +2235,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "Dateinamen der Releases in der kompakten Quellenauswahl und im Großbildmodus anzeigen.";
 "Show release name" = "Release-Namen anzeigen";
 "Show row" = "Zeile anzeigen";
+"Show stream quality under the title" = "Streamqualität unter dem Titel anzeigen";
 "Show subtitle sync indicator" = "Anzeige für die Untertitelsynchronisierung anzeigen";
 "Show the Skip button" = "Überspringen-Schaltfläche anzeigen";
 "Show this catalog" = "Diesen Katalog anzeigen";
@@ -2348,6 +2365,7 @@
 "Storage overview" = "Speicherübersicht";
 "Stream" = "Stream";
 "Stream priority" = "Stream-Priorität";
+"Stream quality in player" = "Streamqualität im Player";
 "Stream ranking" = "Stream-Rangfolge";
 "Stream safety filter" = "Sicherheitsfilter für Streams";
 "Streaming" = "Streaming";
@@ -2486,12 +2504,14 @@
 "The most anticipated upcoming releases on Trakt" = "Die am sehnlichsten erwarteten Neuerscheinungen auf Trakt";
 "The most-watched movies and series on {name} right now in {region}." = "Die derzeit meistgesehenen Filme und Serien auf {name} in {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
+"The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "Die Auswahl kennzeichnet jeden Stream mit Auflösung, HDR-Variante, Codec und Audioformat. Bei „Aus“ werden alle Kennzeichnungen ausgeblendet.";
 "The quick brown fox jumps over the lazy dog" = "Franz jagt im komplett verwahrlosten Taxi quer durch Bayern";
 "The ratings row on a title's detail page, next to runtime and genre." = "Die Bewertungszeile auf der Detailseite eines Titels, neben Laufzeit und Genre.";
 "The server answered with status {status}. Is that a streaming server?" = "Der Server hat mit Status {status} geantwortet. Ist das ein Streamingserver?";
 "The server responded in {ms} ms." = "Der Server hat nach {ms} ms geantwortet.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Das Layout der gesamten Startseite. Mit den Optionen darunter passt du die enthaltenen Reihen an.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheIntroDB · intro and credits timing" = "TheIntroDB · Zeitpunkte von Intro und Abspann";
 "TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "Theme is missing a name." = "Dem Design fehlt ein Name.";
@@ -2524,6 +2544,7 @@
 "Titles" = "Titel";
 "Titles and descriptions" = "Titel und Beschreibungen";
 "Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
+"Titles you ignore on the advisory card never show it again." = "Titel, die du auf der Hinweiskarte ignorierst, zeigen den Inhaltshinweis nie wieder an.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "Alle";
 "Todas las categorías" = "Alle Kategorien";
@@ -2614,6 +2635,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "Im Trend, Beliebt, Im Kino und die Inhaltsreihen der einzelnen Dienste.";
 "Trending, in theaters, what's on every streamer." = "Trends, Kinofilme und Inhalte aller Streamingdienste.";
 "Try again" = "Erneut versuchen";
+"Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Für Titel und Beschreibungen zuerst dein Addon verwenden. Cinemeta nutzen, wenn das Addon kein Ergebnis liefert.";
 "Tu avatar, nombre e identificador en Harbor." = "Dein Avatar, dein Name und dein Benutzername in ganz Harbor.";
 "Tu color" = "Deine Farbe";
 "Tu perfil" = "Dein Profil";
@@ -2621,6 +2643,7 @@
 "Tune anime" = "Anime anpassen";
 "Tune your recommendations" = "Empfehlungen anpassen";
 "Turkish" = "Türkisch";
+"Turn on" = "Einschalten";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
@@ -3993,6 +4016,7 @@
 "{count} picks ready" = "{count} ausgewählte Titel bereit";
 "{count} results" = "{count} Ergebnisse";
 "{count} selected" = "{count} ausgewählt";
+"{count} titles will never show the content advisory again." = "Bei {count} Titeln wird der Inhaltshinweis nie wieder angezeigt.";
 "{count} tracks" = "{count} Titel";
 "{h}h left" = "noch {h} Std.";
 "{h}h {m}m left" = "noch {h} Std. {m} Min.";

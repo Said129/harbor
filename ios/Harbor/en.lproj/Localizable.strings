@@ -128,6 +128,7 @@
 "After 5" = "After 5";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default.";
+"Age ratings and content notes when playback starts." = "Age ratings and content notes when playback starts.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Easy on the eyes";
 "Agregar a favoritos" = "Add to favorites";
@@ -280,6 +281,7 @@
 "Bajar {name}" = "Move {name} down";
 "Balance picture quality and performance. Changes apply to the next video you play." = "Balance picture quality and performance. Changes apply to the next video you play.";
 "Balanced" = "Balanced";
+"Bar" = "Bar";
 "Bar color" = "Bar color";
 "Barra de búsqueda" = "Seek bar";
 "Barra inferior" = "Bottom bar";
@@ -412,6 +414,7 @@
 "Checking with MyAnimeList..." = "Checking with MyAnimeList...";
 "Checks the username against Stremboxd and turns on the catalogs it finds." = "Checks the username against Stremboxd and turns on the catalogs it finds.";
 "China" = "China";
+"Chips" = "Chips";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Choose a name, then select the resolutions, sources, codecs and audio you prefer.";
 "Choose an avatar" = "Choose an avatar";
 "Choose image" = "Choose image";
@@ -421,6 +424,7 @@
 "Choose the streams you prefer." = "Choose the streams you prefer.";
 "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor.";
 "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed." = "Choose where Harbor searches for subtitles. Results from enabled sources appear together, with duplicates removed.";
+"Choose whether the content advisory appears in full color or a restrained monochrome tone." = "Choose whether the content advisory appears in full color or a restrained monochrome tone.";
 "Choose which Simkl rails appear on your home screen." = "Choose which Simkl rails appear on your home screen.";
 "Choose which addon results appear when you pick a stream." = "Choose which addon results appear when you pick a stream.";
 "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata." = "Choose which ratings appear on cards and detail pages. Locked card ratings need a provider key in Metadata.";
@@ -515,6 +519,7 @@
 "Conservar original" = "Keep original";
 "Contenido" = "Content";
 "Content" = "Content";
+"Content advisory" = "Content advisory";
 "Continuar al siguiente capítulo" = "Continue to next chapter";
 "Continuar viendo" = "Continue Watching";
 "Continue Watching" = "Continue Watching";
@@ -999,6 +1004,8 @@
 "Idiomas y subtítulos" = "Languages & subtitles";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default.";
 "If multiple Rokus appear, pick the one matching your TV's name." = "If multiple Rokus appear, pick the one matching your TV's name.";
+"Ignore this title" = "Ignore this title";
+"Ignored titles" = "Ignored titles";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "Image languages";
 "Imagen" = "Picture";
@@ -1297,6 +1304,7 @@
 "Needs artwork-rich titles to feed the hero" = "Needs artwork-rich titles to feed the hero";
 "Needs at least 10 titles for the Top 10 look" = "Needs at least 10 titles for the Top 10 look";
 "Never auto-select tracks containing" = "Never auto-select tracks containing";
+"Never show the content advisory for this title again" = "Never show the content advisory for this title again";
 "New Anime Releases" = "New Anime Releases";
 "New Episodes" = "New Episodes";
 "New Episodes row" = "New Episodes row";
@@ -1478,6 +1486,7 @@
 "Opening book…" = "Opening book…";
 "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf." = "Opens stremboxd.com, the community bridge that reads Letterboxd on Harbor's behalf.";
 "Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data." = "Optional keys that unlock TMDB rails, baked-in poster ratings, fanart, and TVDB episode data.";
+"Optional. TheIntroDB answers without a key, but a key raises your rate limit so timing keeps arriving when you binge. Get one at" = "Optional. TheIntroDB answers without a key, but a key raises your rate limit so timing keeps arriving when you binge. Get one at";
 "Options" = "Options";
 "Orden de addons" = "Addon order";
 "Orden de idiomas preferidos" = "Language preference order";
@@ -1511,6 +1520,7 @@
 "Paste the code or page URL" = "Paste the code or page URL";
 "Paste the manifest URL the configure page gave you" = "Paste the manifest URL the configure page gave you";
 "Paste the text from AniList" = "Paste the text from AniList";
+"Paste your TheIntroDB API key" = "Paste your TheIntroDB API key";
 "Peligro" = "Danger";
 "Películas" = "Movies";
 "Películas animadas" = "Animated Movies";
@@ -1586,6 +1596,7 @@
 "Predeterminado (acento dorado)" = "Default (gold accent)";
 "Prefer embedded subtitles" = "Prefer embedded subtitles";
 "Prefer episode still artwork" = "Prefer episode still artwork";
+"Prefer my installed metadata addon" = "Prefer my installed metadata addon";
 "Prefer these sources" = "Prefer these sources";
 "Preferred language for anime titles displayed on poster cards." = "Preferred language for anime titles displayed on poster cards.";
 "Preguntar si reanudar o empezar de nuevo" = "Ask to resume or start over";
@@ -1630,6 +1641,7 @@
 "Página siguiente" = "Next page";
 "Pósteres, calificaciones y listas" = "Posters, ratings, lists";
 "Quality" = "Quality";
+"Quality badge style" = "Quality badge style";
 "Quedan {h} h" = "{h}h left";
 "Quedan {h} h {m} min" = "{h}h {m}m left";
 "Quedan {m} min" = "{m}m left";
@@ -1763,6 +1775,7 @@
 "Restablecer zoom" = "Reset zoom";
 "Restart" = "Restart";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore" = "Restore";
 "Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "Restored";
@@ -1869,6 +1882,7 @@
 "Second subtitle language" = "Second subtitle language";
 "Secondary copy." = "Secondary copy.";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
+"See the resolution, HDR format and audio while you watch." = "See the resolution, HDR format and audio while you watch.";
 "Seek bar" = "Seek bar";
 "Seguir viendo en la parte superior" = "Continue Watching at top";
 "Segundo idioma de subtítulos" = "Second subtitle language";
@@ -1932,6 +1946,7 @@
 "Show comments" = "Show comments";
 "Show comments on detail pages" = "Show comments on detail pages";
 "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture." = "Show complete addon descriptions in the Stremio picker, downloads, and Big Picture.";
+"Show content ratings?" = "Show content ratings?";
 "Show controls" = "Show controls";
 "Show cursors" = "Show cursors";
 "Show details" = "Show details";
@@ -1941,6 +1956,7 @@
 "Show episode ratings" = "Show episode ratings";
 "Show every addon row" = "Show every addon row";
 "Show everything anyway" = "Show everything anyway";
+"Show format chips on stream rows" = "Show format chips on stream rows";
 "Show forum threads and comments from AniList on anime detail pages." = "Show forum threads and comments from AniList on anime detail pages.";
 "Show full descriptions" = "Show full descriptions";
 "Show hidden episodes" = "Show hidden episodes";
@@ -1952,6 +1968,7 @@
 "Show release filenames in the Condensed picker and Big Picture." = "Show release filenames in the Condensed picker and Big Picture.";
 "Show release name" = "Show release name";
 "Show row" = "Show row";
+"Show stream quality under the title" = "Show stream quality under the title";
 "Show subtitle sync indicator" = "Show subtitle sync indicator";
 "Show the Skip button" = "Show the Skip button";
 "Show this catalog" = "Show this catalog";
@@ -2063,6 +2080,7 @@
 "Stop showing as second subtitle" = "Stop showing as second subtitle";
 "Storage overview" = "Storage overview";
 "Stream priority" = "Stream priority";
+"Stream quality in player" = "Stream quality in player";
 "Stream ranking" = "Stream ranking";
 "Stream safety filter" = "Stream safety filter";
 "Streaming" = "Streaming";
@@ -2187,12 +2205,14 @@
 "The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
 "The most anticipated upcoming releases on Trakt" = "The most anticipated upcoming releases on Trakt";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
+"The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all.";
 "The quick brown fox jumps over the lazy dog" = "The quick brown fox jumps over the lazy dog";
 "The ratings row on a title's detail page, next to runtime and genre." = "The ratings row on a title's detail page, next to runtime and genre.";
 "The server answered with status {status}. Is that a streaming server?" = "The server answered with status {status}. Is that a streaming server?";
 "The server responded in {ms} ms." = "The server responded in {ms} ms.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "The shape of the whole Home page. Everything below tunes the rows inside it.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheIntroDB · intro and credits timing" = "TheIntroDB · intro and credits timing";
 "Theater Capture" = "Theater Capture";
 "Theme is missing a name." = "Theme is missing a name.";
 "Theme name" = "Theme name";
@@ -2222,6 +2242,7 @@
 "Titles" = "Titles";
 "Titles and descriptions" = "Titles and descriptions";
 "Titles you are part-way through in your local downloads, even offline." = "Titles you are part-way through in your local downloads, even offline.";
+"Titles you ignore on the advisory card never show it again." = "Titles you ignore on the advisory card never show it again.";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "All";
 "Todas las categorías" = "All categories";
@@ -2300,10 +2321,12 @@
 "Trending on {source}" = "Trending on {source}";
 "Trending, Popular, In Theaters, and the per service rails." = "Trending, Popular, In Theaters, and the per service rails.";
 "Try again" = "Try again";
+"Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result.";
 "Tu avatar, nombre e identificador en Harbor." = "Your avatar, name, and handle across Harbor.";
 "Tu color" = "Your color";
 "Tu perfil" = "Your profile";
 "Tune anime" = "Tune anime";
+"Turn on" = "Turn on";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
 "Turn pages horizontally" = "Turn pages horizontally";
 "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page." = "Turning this on adds your Letterboxd catalogs to the home page and a Letterboxd panel to every film page.";
@@ -3619,6 +3642,7 @@
 "your-name" = "your-name";
 "{count} results" = "{count} results";
 "{count} selected" = "{count} selected";
+"{count} titles will never show the content advisory again." = "{count} titles will never show the content advisory again.";
 "{count} tracks" = "{count} tracks";
 "{h}h left" = "{h}h left";
 "{h}h {m}m left" = "{h}h {m}m left";
