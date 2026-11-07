@@ -131,6 +131,7 @@
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "이미 시청 중인 시리즈에서 최근 방영된 에피소드를 이어서 시청 아래의 행에 표시합니다. 하나씩 숨기거나 행 전체를 지울 수 있습니다. 기본값은 꺼짐입니다.";
 "Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "검색에 \"AI에게 묻기\" 버튼을 추가하여 일상 언어로 요청을 입력할 수 있습니다.";
 "Adjust the text and background. The preview shows your changes as you make them." = "텍스트와 배경을 조정합니다. 변경 사항이 바로 미리보기에 표시됩니다.";
+"Adjust volume on the speaker. Computer volume and boost do not apply." = "스피커에서 볼륨을 조절하세요. 컴퓨터 볼륨과 증폭은 적용되지 않습니다.";
 "Administrar" = "관리";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "이어 보기를 다음 에피소드로 넘기기";
@@ -441,6 +442,7 @@
 "Cards, panels." = "카드, 패널.";
 "Cargar archivo" = "파일 불러오기";
 "Cargar más" = "더 불러오기";
+"Cast to TV or speaker" = "TV 또는 스피커로 전송";
 "Catalog" = "카탈로그";
 "Catalogs" = "카탈로그";
 "Categories" = "카테고리";
@@ -501,6 +503,7 @@
 "Close" = "닫기";
 "Close navigation" = "Close navigation";
 "Close player" = "플레이어 닫기";
+"Close the cast menu and reopen it to rescan the network." = "전송 메뉴를 닫았다가 다시 열어 네트워크를 재검색하세요.";
 "Clásica" = "클래식";
 "Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "컬렉션";
@@ -513,6 +516,7 @@
 "Colores" = "색상";
 "Colors" = "색상";
 "Colors your name, your cursor in Watch Together, and the ring around your avatar." = "이름, 같이 보기의 커서, 아바타 주변 테두리에 색을 적용합니다.";
+"Come back to Harbor and try casting again." = "Harbor로 돌아와 다시 전송해 보세요.";
 "Comedy" = "코미디";
 "Comedy Series" = "코미디 시리즈";
 "Comenzar a ver" = "시청 시작";
@@ -593,6 +597,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not cast to {deviceName}." = "{deviceName}(으)로 전송할 수 없습니다.";
 "Could not complete this action. Try again." = "이 작업을 완료하지 못했습니다. 다시 시도하세요.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not identify this title on Trakt." = "Trakt에서 이 작품을 식별하지 못했습니다.";
@@ -625,6 +630,7 @@
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Simkl에 연결할 수 없음";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt에 연결하지 못했습니다. 연결을 확인하고 다시 시도하세요.";
+"Couldn't reach this Roku" = "이 Roku에 연결할 수 없음";
 "Couldn't read that image. Try a different file." = "이미지를 읽을 수 없습니다. 다른 파일을 사용해 보세요.";
 "Couldn't scan that folder." = "해당 폴더를 스캔할 수 없습니다.";
 "Cover Image URL" = "표지 이미지 URL";
@@ -664,6 +670,7 @@
 "Czech" = "체코어";
 "César Awards" = "세자르상";
 "Cómo leer tus libros" = "Reading help";
+"DLNA TV" = "DLNA TV";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "이름, 같이 보기의 커서, 아바타 주변 테두리에 색을 적용합니다.";
 "Danger" = "위험";
@@ -798,6 +805,7 @@
 "En reproducción" = "현재 재생 중";
 "En reproducción: {label}" = "현재 재생 중: {label}";
 "Enable Letterboxd integration" = "Letterboxd 연동 사용";
+"Enable Roku Network Access" = "Roku 네트워크 액세스 허용";
 "Enable User Ratings" = "사용자 평점 사용";
 "Enable addon" = "Enable addon";
 "Enabled" = "사용";
@@ -993,6 +1001,7 @@
 "Harbor default" = "Harbor 기본값";
 "Harbor dropped {n} suspicious or mismatched result." = "Harbor가 의심스럽거나 일치하지 않는 결과 {n}개를 제외했습니다.";
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor가 의심스럽거나 일치하지 않는 결과 {n}개를 제외했습니다.";
+"Harbor found something at this address that looked like a Roku, but it didn't respond like one. The device may be offline or another product picked up the same broadcast." = "Harbor가 이 주소에서 Roku로 보이는 기기를 찾았지만 Roku처럼 응답하지 않았습니다. 기기가 오프라인이거나 다른 제품이 동일한 브로드캐스트에 감지되었을 수 있습니다.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "Harbor가 MyAnimeList 시청 진행 상황을 동기화합니다.";
 "Harbor library" = "Harbor library";
@@ -1056,6 +1065,7 @@
 "Horizontal view" = "가로 보기";
 "Horror" = "호러";
 "Horror & Supernatural" = "공포 및 초자연";
+"Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "스트립 및 그리드 레이아웃의 에피소드 카드 크기입니다. 카드가 클수록 아트워크도 크게 표시됩니다.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "음량 막대에서 100%를 넘어 얼마나 증폭할 수 있는지 설정합니다. 높게 설정하면 소리가 매우 커질 수 있습니다.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
@@ -1077,6 +1087,7 @@
 "Idiomas de subtítulos" = "자막 언어";
 "Idiomas y subtítulos" = "언어 및 자막";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "스트림이 제한 시간 내에 재생되지 않으면(작동하지 않는 소스이거나 애드온이 중단된 경우) 사용 가능한 다음 스트림을 자동으로 시도합니다. 기본적으로 꺼져 있습니다.";
+"If multiple Rokus appear, pick the one matching your TV's name." = "Roku가 여러 대 표시되면 TV 이름과 일치하는 기기를 선택하세요.";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "이미지 언어";
 "Imagen" = "사진";
@@ -1119,9 +1130,11 @@
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Stremio 애드온을 설치하면 해당 카탈로그가 포스터 목록으로 여기에 표시되어 바로 둘러볼 수 있습니다.";
 "Instalar addon" = "애드온 설치";
 "Install" = "설치";
+"Install Media Assistant" = "Media Assistant 설치";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Stremio 애드온을 설치하면 해당 카탈로그가 포스터 목록으로 여기에 표시되어 바로 둘러볼 수 있습니다.";
 "Install addon" = "애드온 설치";
 "Install all" = "모두 설치";
+"Install it." = "설치하세요.";
 "Installed" = "설치됨";
 "Installing" = "설치 중";
 "Installing {done} of {total}" = "{total}개 중 {done}개 설치 중";
@@ -1260,6 +1273,7 @@
 "MUBI" = "MUBI";
 "Magnet stream" = "마그넷 스트리밍";
 "Make it yours" = "나만의 공간으로 꾸미기";
+"Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "Roku가 켜져 있고 컴퓨터와 동일한 Wi-Fi에 연결되어 있는지 확인하세요.";
 "Manage" = "관리";
 "Manage profiles" = "프로필 관리";
 "Manga" = "만화";
@@ -1417,6 +1431,7 @@
 "Ningún proveedor devolvió una fuente" = "스트림을 반환한 소스가 없습니다";
 "Ningún título coincide con estos filtros." = "이 필터와 일치하는 작품이 없습니다.";
 "No" = "아니요";
+"No Chromecast, DLNA, or Roku devices found. Make sure your TV is on, woken up, and on the same Wi-Fi." = "Chromecast, DLNA 또는 Roku 기기를 찾을 수 없습니다. TV가 켜져 있고 절전 모드가 해제되어 있으며 같은 Wi-Fi에 연결되어 있는지 확인하세요.";
 "No Label" = "레이블 없음";
 "No Simkl premieres this month" = "이번 달 Simkl 공개 예정작 없음";
 "No background image" = "배경 이미지 없음";
@@ -1540,6 +1555,8 @@
 "On Tonight" = "오늘 밤 방송";
 "On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "기본적으로 켜져 있습니다. 방영된 모든 에피소드를 시청하면 해당 프로그램이 이어보기에서 사라지고 새 에피소드가 공개될 때 다시 나타납니다. 정주행을 마친 프로그램을 계속 표시하려면 끄세요.";
 "On start" = "On start";
+"On your Roku remote, press Home." = "Roku 리모컨에서 홈 버튼을 누르세요.";
+"On your Roku, open Streaming Channels from the home screen." = "Roku 홈 화면에서 스트리밍 채널을 여세요.";
 "Onboarding" = "시작 안내";
 "One list" = "목록 하나";
 "Ongoing" = "연재 중";
@@ -1558,6 +1575,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "AniList 다시 열기";
 "Open MyAnimeList again" = "MyAnimeList 다시 열기";
+"Open Settings, then System, then Advanced system settings." = "설정, 시스템, 고급 시스템 설정 순서로 여세요.";
 "Open a title and tap Add to Watchlist to save it here." = "작품을 열고 «관심 목록에 추가»를 탭하면 여기에 저장됩니다.";
 "Open image" = "이미지 열기";
 "Open in Safari" = "Open in Safari";
@@ -1919,6 +1937,7 @@
 "Richer, more vivid picture with a touch more contrast." = "대비를 약간 높여 더 풍부하고 생생한 화면을 만듭니다.";
 "Right" = "오른쪽";
 "Right to left" = "오른쪽에서 왼쪽";
+"Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "Roku의 OS 변경으로 내장 Media Player가 다른 앱의 동영상을 수신할 수 없게 되었습니다. Media Assistant는 이 역할을 대신하도록 제작된 무료 채널입니다. Roku에 한 번 설치하면 전송할 수 있습니다.";
 "Romance" = "로맨스";
 "Romanian" = "루마니아어";
 "Rostro" = "얼굴";
@@ -1960,6 +1979,7 @@
 "Saved" = "저장됨";
 "Saved app data" = "Saved app data";
 "Saving" = "저장 중";
+"Scanning your network…" = "네트워크 검색 중…";
 "Sci-Fi" = "SF";
 "Sci-Fi & Fantasy" = "SF & 판타지";
 "Scores" = "평점";
@@ -1975,6 +1995,7 @@
 "Search actors, directors…" = "배우, 감독 검색…";
 "Search addons" = "애드온 검색";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search for \"Media Assistant\" (channel ID 782875, free)." = "\"Media Assistant\"를 검색하세요(채널 ID 782875, 무료).";
 "Search is too long." = "Search is too long.";
 "Search languages" = "언어 검색";
 "Search music" = "음악 검색";
@@ -2002,6 +2023,7 @@
 "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selección de Harbor" = "Harbor 큐레이션";
+"Select \"Control by mobile apps\" and set Network access to \"Default\"." = "\"모바일 앱으로 제어\"를 선택하고 네트워크 액세스를 \"기본값\"으로 설정하세요.";
 "Select a subtitle track first." = "먼저 자막 트랙을 선택하세요.";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
@@ -2190,6 +2212,7 @@
 "Step 4 · Subtitles" = "4단계 · 자막";
 "Still watching check-in" = "Still watching check-in";
 "Still watching?" = "계속 시청하시겠어요?";
+"Stop" = "중지";
 "Stop ({n})" = "중지({n})";
 "Stop feeding the hero carousel (back to automatic)" = "히어로 캐러셀에 더 이상 제공하지 않기(자동으로 되돌리기)";
 "Stop playback" = "Stop playback";
@@ -2614,6 +2637,7 @@
 "Your AniList is empty" = "내 AniList가 비어 있음";
 "Your Discovery Queue" = "내 탐색 대기열";
 "Your Letterboxd password" = "Letterboxd 비밀번호";
+"Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Roku가 네트워크 내 앱의 제어 요청을 차단하도록 설정되어 있어 Harbor에서 연결할 수 없습니다. Roku에서 한 번만 설정하면 됩니다.";
 "Your Stremio library + addons sync in untouched." = "Stremio 보관함과 애드온을 그대로 동기화합니다.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Trakt 관심 목록이 비어 있어 가져올 항목이 없습니다.";

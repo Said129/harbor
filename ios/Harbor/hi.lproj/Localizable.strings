@@ -131,6 +131,7 @@
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "देखना जारी रखें के नीचे एक पंक्ति जोड़ता है, जिसमें उन शो के हाल में प्रसारित एपिसोड होते हैं जिन्हें आप पहले से देख रहे थे। उन्हें एक-एक करके हटाएँ या पूरी पंक्ति साफ़ करें। डिफ़ॉल्ट रूप से बंद है।";
 "Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "खोज में \"AI से पूछें\" बटन जोड़ता है, ताकि आप सामान्य भाषा में अनुरोध लिख सकें।";
 "Adjust the text and background. The preview shows your changes as you make them." = "टेक्स्ट और पृष्ठभूमि समायोजित करें। बदलाव करते ही पूर्वावलोकन में दिखते हैं।";
+"Adjust volume on the speaker. Computer volume and boost do not apply." = "वॉल्यूम स्पीकर पर बदलें। कंप्यूटर का वॉल्यूम और बूस्ट लागू नहीं होते।";
 "Administrar" = "मैनेज करें";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "देखना जारी रखें में अगला एपिसोड दिखाएँ";
@@ -441,6 +442,7 @@
 "Cards, panels." = "कार्ड, पैनल।";
 "Cargar archivo" = "फ़ाइल लोड करें";
 "Cargar más" = "और लोड करें";
+"Cast to TV or speaker" = "TV या स्पीकर पर कास्ट करें";
 "Catalog" = "कैटलॉग";
 "Catalogs" = "कैटलॉग";
 "Categories" = "श्रेणियाँ";
@@ -501,6 +503,7 @@
 "Close" = "बंद करें";
 "Close navigation" = "Close navigation";
 "Close player" = "प्लेयर बंद करें";
+"Close the cast menu and reopen it to rescan the network." = "नेटवर्क को फिर से स्कैन करने के लिए कास्ट मेन्यू बंद करके दोबारा खोलें।";
 "Clásica" = "क्लासिक";
 "Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "कलेक्शन";
@@ -513,6 +516,7 @@
 "Colores" = "रंग";
 "Colors" = "रंग";
 "Colors your name, your cursor in Watch Together, and the ring around your avatar." = "आपके नाम, साथ में देखें में आपके कर्सर और आपके अवतार के चारों ओर के घेरे का रंग बदलता है।";
+"Come back to Harbor and try casting again." = "Harbor पर वापस आएँ और फिर से कास्ट करने की कोशिश करें।";
 "Comedy" = "कॉमेडी";
 "Comedy Series" = "कॉमेडी सीरीज़";
 "Comenzar a ver" = "देखना शुरू करें";
@@ -593,6 +597,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not cast to {deviceName}." = "{deviceName} पर कास्ट नहीं किया जा सका।";
 "Could not complete this action. Try again." = "यह कार्रवाई पूरी नहीं हो सकी। फिर से कोशिश करें।";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not identify this title on Trakt." = "Trakt पर इस शीर्षक की पहचान नहीं हो सकी।";
@@ -625,6 +630,7 @@
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Simkl से संपर्क नहीं हो सका";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt से संपर्क नहीं हो सका। अपना कनेक्शन जाँचें और फिर कोशिश करें।";
+"Couldn't reach this Roku" = "इस Roku से संपर्क नहीं हो सका";
 "Couldn't read that image. Try a different file." = "वह इमेज पढ़ी नहीं जा सकी। कोई दूसरी फ़ाइल आज़माएँ।";
 "Couldn't scan that folder." = "वह फ़ोल्डर स्कैन नहीं किया जा सका।";
 "Cover Image URL" = "कवर इमेज URL";
@@ -664,6 +670,7 @@
 "Czech" = "चेक";
 "César Awards" = "César पुरस्कार";
 "Cómo leer tus libros" = "Reading help";
+"DLNA TV" = "DLNA TV";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "आपके नाम, साथ में देखें में आपके कर्सर और आपके अवतार के चारों ओर के घेरे का रंग बदलता है।";
 "Danger" = "खतरा";
@@ -798,6 +805,7 @@
 "En reproducción" = "अभी चल रहा है";
 "En reproducción: {label}" = "अभी चल रहा है: {label}";
 "Enable Letterboxd integration" = "Letterboxd इंटीग्रेशन सक्षम करें";
+"Enable Roku Network Access" = "Roku नेटवर्क एक्सेस चालू करें";
 "Enable User Ratings" = "यूज़र रेटिंग सक्षम करें";
 "Enable addon" = "Enable addon";
 "Enabled" = "सक्षम";
@@ -993,6 +1001,7 @@
 "Harbor default" = "Harbor डिफ़ॉल्ट";
 "Harbor dropped {n} suspicious or mismatched result." = "Harbor ने {n} संदिग्ध या बेमेल नतीजा हटा दिया।";
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor ने {n} संदिग्ध या बेमेल नतीजे हटा दिए।";
+"Harbor found something at this address that looked like a Roku, but it didn't respond like one. The device may be offline or another product picked up the same broadcast." = "Harbor को इस पते पर ऐसा डिवाइस मिला जो Roku जैसा लगा, लेकिन उसने Roku की तरह जवाब नहीं दिया। हो सकता है कि डिवाइस ऑफ़लाइन हो या उसी ब्रॉडकास्ट का जवाब किसी दूसरे प्रोडक्ट ने दिया हो।";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "Harbor आपकी MyAnimeList वॉच प्रोग्रेस को सिंक रखता है।";
 "Harbor library" = "Harbor library";
@@ -1056,6 +1065,7 @@
 "Horizontal view" = "क्षैतिज दृश्य";
 "Horror" = "हॉरर";
 "Horror & Supernatural" = "हॉरर और अलौकिक";
+"Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "स्ट्रिप और ग्रिड लेआउट में एपिसोड कार्ड कितने बड़े हों। बड़े कार्ड में बड़ा आर्टवर्क दिखाई देता है।";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "वॉल्यूम बार पर आवाज़ को 100 प्रतिशत से कितना ज़्यादा बढ़ा सकते हैं। मान बढ़ाने पर आवाज़ बहुत तेज़ हो सकती है।";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
@@ -1077,6 +1087,7 @@
 "Idiomas de subtítulos" = "सबटाइटल भाषाएँ";
 "Idiomas y subtítulos" = "भाषाएँ और सबटाइटल";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "अगर कोई स्ट्रीम समय पर चलना शुरू न करे (स्रोत बंद हो या ऐडऑन काम न कर रहा हो), तो अगली उपलब्ध स्ट्रीम अपने आप आज़माएँ। डिफ़ॉल्ट रूप से बंद।";
+"If multiple Rokus appear, pick the one matching your TV's name." = "अगर कई Roku दिखाई दें, तो वह चुनें जिसका नाम आपके TV के नाम से मेल खाता हो।";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "इमेज की भाषाएँ";
 "Imagen" = "चित्र";
@@ -1119,9 +1130,11 @@
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "कोई Stremio ऐडऑन इंस्टॉल करें। उसके कैटलॉग यहाँ ब्राउज़ करने के लिए तैयार पोस्टर रेल्स के रूप में दिखेंगे।";
 "Instalar addon" = "ऐडऑन इंस्टॉल करें";
 "Install" = "इंस्टॉल करें";
+"Install Media Assistant" = "मीडिया असिस्टेंट इंस्टॉल करें";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "कोई Stremio ऐडऑन इंस्टॉल करें। उसके कैटलॉग यहाँ ब्राउज़ करने के लिए तैयार पोस्टर रेल्स के रूप में दिखेंगे।";
 "Install addon" = "ऐडऑन इंस्टॉल करें";
 "Install all" = "सभी इंस्टॉल करें";
+"Install it." = "इसे इंस्टॉल करें।";
 "Installed" = "इंस्टॉल हो गया";
 "Installing" = "इंस्टॉल हो रहा है";
 "Installing {done} of {total}" = "{total} में से {done} इंस्टॉल हो रहे हैं";
@@ -1260,6 +1273,7 @@
 "MUBI" = "MUBI";
 "Magnet stream" = "मैग्नेट स्ट्रीम";
 "Make it yours" = "इसे अपना बनाएँ";
+"Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "पक्का करें कि Roku चालू है और उसी Wi-Fi से जुड़ा है जिससे आपका कंप्यूटर जुड़ा है।";
 "Manage" = "मैनेज करें";
 "Manage profiles" = "प्रोफ़ाइल मैनेज करें";
 "Manga" = "मंगा";
@@ -1417,6 +1431,7 @@
 "Ningún proveedor devolvió una fuente" = "किसी स्रोत से कोई स्ट्रीम नहीं मिली";
 "Ningún título coincide con estos filtros." = "इन फ़िल्टर से मेल खाने वाला कोई शीर्षक नहीं।";
 "No" = "नहीं";
+"No Chromecast, DLNA, or Roku devices found. Make sure your TV is on, woken up, and on the same Wi-Fi." = "कोई Chromecast, DLNA या Roku डिवाइस नहीं मिला। पक्का करें कि आपका TV चालू और सक्रिय है और उसी Wi-Fi पर है।";
 "No Label" = "कोई लेबल नहीं";
 "No Simkl premieres this month" = "इस महीने कोई Simkl प्रीमियर नहीं है";
 "No background image" = "कोई बैकग्राउंड इमेज नहीं";
@@ -1540,6 +1555,8 @@
 "On Tonight" = "आज रात प्रसारण में";
 "On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "डिफ़ॉल्ट रूप से चालू: प्रसारित हो चुके सभी एपिसोड देखने के बाद शो 'देखना जारी रखें' से हट जाता है और नया एपिसोड आने पर लौट आता है। जिन शो के सभी उपलब्ध एपिसोड आप देख चुके हैं, उन्हें इस पंक्ति में बनाए रखने के लिए इसे बंद करें।";
 "On start" = "On start";
+"On your Roku remote, press Home." = "अपने Roku रिमोट पर Home दबाएँ।";
+"On your Roku, open Streaming Channels from the home screen." = "अपने Roku की होम स्क्रीन से Streaming Channels खोलें।";
 "Onboarding" = "शुरुआती सेटअप";
 "One list" = "एक सूची";
 "Ongoing" = "जारी";
@@ -1558,6 +1575,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "AniList फिर से खोलें";
 "Open MyAnimeList again" = "MyAnimeList फिर से खोलें";
+"Open Settings, then System, then Advanced system settings." = "Settings खोलें, फिर System और उसके बाद Advanced system settings खोलें।";
 "Open a title and tap Add to Watchlist to save it here." = "कोई शीर्षक खोलें और उसे यहाँ सहेजने के लिए «वॉचलिस्ट में जोड़ें» पर टैप करें।";
 "Open image" = "चित्र खोलें";
 "Open in Safari" = "Open in Safari";
@@ -1919,6 +1937,7 @@
 "Richer, more vivid picture with a touch more contrast." = "थोड़े अधिक कंट्रास्ट के साथ अधिक समृद्ध और चटख तस्वीर।";
 "Right" = "दायाँ";
 "Right to left" = "दाएँ से बाएँ";
+"Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "Roku ने अपना OS बदल दिया है, जिससे बिल्ट-इन Media Player दूसरे ऐप्स से वीडियो स्वीकार नहीं कर सकता। Media Assistant एक मुफ़्त चैनल है, जिसे यह काम संभालने के लिए बनाया गया है। इसे अपने Roku पर एक बार इंस्टॉल करें, फिर कास्टिंग काम करेगी।";
 "Romance" = "रोमांस";
 "Romanian" = "रोमानियाई";
 "Rostro" = "चेहरा";
@@ -1960,6 +1979,7 @@
 "Saved" = "सेव किया गया";
 "Saved app data" = "Saved app data";
 "Saving" = "सेव हो रहा है";
+"Scanning your network…" = "आपका नेटवर्क स्कैन हो रहा है…";
 "Sci-Fi" = "साइंस फ़िक्शन";
 "Sci-Fi & Fantasy" = "साइंस फ़िक्शन और फ़ैंटेसी";
 "Scores" = "स्कोर";
@@ -1975,6 +1995,7 @@
 "Search actors, directors…" = "अभिनेता, निर्देशक खोजें…";
 "Search addons" = "ऐडऑन खोजें";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search for \"Media Assistant\" (channel ID 782875, free)." = "\"Media Assistant\" खोजें (चैनल ID 782875, मुफ़्त)।";
 "Search is too long." = "Search is too long.";
 "Search languages" = "भाषाएँ खोजें";
 "Search music" = "संगीत खोजें";
@@ -2002,6 +2023,7 @@
 "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selección de Harbor" = "Harbor द्वारा चयनित";
+"Select \"Control by mobile apps\" and set Network access to \"Default\"." = "\"मोबाइल ऐप्स से नियंत्रित करें\" चुनें और नेटवर्क एक्सेस को \"डिफ़ॉल्ट\" पर सेट करें।";
 "Select a subtitle track first." = "पहले एक सबटाइटल ट्रैक चुनें।";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
@@ -2190,6 +2212,7 @@
 "Step 4 · Subtitles" = "चरण 4 · सबटाइटल";
 "Still watching check-in" = "Still watching check-in";
 "Still watching?" = "अभी भी देख रहे हैं?";
+"Stop" = "रोकें";
 "Stop ({n})" = "रोकें ({n})";
 "Stop feeding the hero carousel (back to automatic)" = "हीरो कैरोसेल पर असर डालना बंद करें (फिर से ऑटोमैटिक)";
 "Stop playback" = "Stop playback";
@@ -2614,6 +2637,7 @@
 "Your AniList is empty" = "आपका AniList खाली है";
 "Your Discovery Queue" = "आपकी डिस्कवरी क्यू";
 "Your Letterboxd password" = "आपका Letterboxd पासवर्ड";
+"Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "आपका Roku आपके नेटवर्क के ऐप्स से आने वाले कंट्रोल अनुरोधों को ब्लॉक करने के लिए सेट किया गया है, इसलिए Harbor उस तक नहीं पहुँच सकता। Roku पर यह सेटिंग सिर्फ़ एक बार बदलनी होगी।";
 "Your Stremio library + addons sync in untouched." = "आपकी Stremio लाइब्रेरी + ऐडऑन बिना किसी बदलाव के सिंक हो जाते हैं।";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "आपकी Trakt वॉचलिस्ट खाली है, इंपोर्ट करने के लिए कुछ नहीं है।";

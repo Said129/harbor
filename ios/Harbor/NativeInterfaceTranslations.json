@@ -158,7 +158,8 @@
     "30 minutes before": "30 minutos antes",
     "1 hour before": "1 hora antes",
     "Date-only releases have no hour, so they alert at 9:00 AM on their day.": "Los estrenos sin hora avisan a las 9:00 del día.",
-    "Local files": "Archivos locales"
+    "Local files": "Archivos locales",
+    "Host or address": "Host o dirección"
   },
   "pt": {
     "Auto-sync": "Sincronização automática",

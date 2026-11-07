@@ -131,6 +131,7 @@
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "在“继续观看”下方添加一行，列出你已在观看的剧集最近播出的单集。可逐个忽略，也可清空整行。默认关闭。";
 "Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "在搜索中添加“询问 AI”按钮，以便用自然语言描述你的需求。";
 "Adjust the text and background. The preview shows your changes as you make them." = "调整文字和背景。预览会实时显示更改。";
+"Adjust volume on the speaker. Computer volume and boost do not apply." = "请在扬声器上调节音量。电脑音量和增益不适用。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "自动将“继续观看”推进到下一集";
@@ -441,6 +442,7 @@
 "Cards, panels." = "卡片、面板。";
 "Cargar archivo" = "加载文件";
 "Cargar más" = "加载更多";
+"Cast to TV or speaker" = "投屏到电视或扬声器";
 "Catalog" = "目录";
 "Catalogs" = "目录";
 "Categories" = "分类";
@@ -501,6 +503,7 @@
 "Close" = "关闭";
 "Close navigation" = "Close navigation";
 "Close player" = "关闭播放器";
+"Close the cast menu and reopen it to rescan the network." = "关闭投屏菜单后重新打开，以重新扫描网络。";
 "Clásica" = "经典";
 "Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "合集";
@@ -513,6 +516,7 @@
 "Colores" = "颜色";
 "Colors" = "颜色";
 "Colors your name, your cursor in Watch Together, and the ring around your avatar." = "为你的名字、一起看中的光标和头像周围的圆环设置颜色。";
+"Come back to Harbor and try casting again." = "返回 Harbor 并再次尝试投屏。";
 "Comedy" = "喜剧";
 "Comedy Series" = "喜剧剧集";
 "Comenzar a ver" = "开始观看";
@@ -593,6 +597,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not cast to {deviceName}." = "无法投屏到 {deviceName}。";
 "Could not complete this action. Try again." = "无法完成此操作。请重试。";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not identify this title on Trakt." = "无法在 Trakt 上识别此条目。";
@@ -625,6 +630,7 @@
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "无法连接 Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "无法连接到 Trakt。请检查网络连接后重试。";
+"Couldn't reach this Roku" = "无法连接到此 Roku";
 "Couldn't read that image. Try a different file." = "无法读取该图片，请尝试其他文件。";
 "Couldn't scan that folder." = "无法扫描该文件夹。";
 "Cover Image URL" = "封面图片 URL";
@@ -664,6 +670,7 @@
 "Czech" = "捷克语";
 "César Awards" = "凯撒奖";
 "Cómo leer tus libros" = "Reading help";
+"DLNA TV" = "DLNA 电视";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "为你的名字、一起看中的光标和头像周围的圆环设置颜色。";
 "Danger" = "危险";
@@ -798,6 +805,7 @@
 "En reproducción" = "正在播放";
 "En reproducción: {label}" = "正在播放：{label}";
 "Enable Letterboxd integration" = "启用 Letterboxd 集成";
+"Enable Roku Network Access" = "启用 Roku 网络访问";
 "Enable User Ratings" = "启用用户评分";
 "Enable addon" = "Enable addon";
 "Enabled" = "已启用";
@@ -993,6 +1001,7 @@
 "Harbor default" = "Harbor 默认";
 "Harbor dropped {n} suspicious or mismatched result." = "Harbor 已剔除 {n} 个可疑或不匹配的结果。";
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor 已剔除 {n} 个可疑或不匹配的结果。";
+"Harbor found something at this address that looked like a Roku, but it didn't respond like one. The device may be offline or another product picked up the same broadcast." = "Harbor 在此地址发现了一个疑似 Roku 的设备，但其响应方式并不像 Roku。该设备可能已离线，也可能是其他产品接收到了同一广播。";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "Harbor 会同步你的 MyAnimeList 观看进度。";
 "Harbor library" = "Harbor library";
@@ -1056,6 +1065,7 @@
 "Horizontal view" = "横向视图";
 "Horror" = "恐怖";
 "Horror & Supernatural" = "恐怖与超自然";
+"Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "剧集卡片在条带和网格布局中的大小。卡片越大，图稿越大。";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "设置音量条可超过 100% 的最大增益。较高的设置可能会非常响。";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
@@ -1077,6 +1087,7 @@
 "Idiomas de subtítulos" = "字幕语言";
 "Idiomas y subtítulos" = "语言与字幕";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "如果播放源未能在规定时间内开始播放（播放源失效或插件宕机），则自动尝试下一个可用播放源。默认关闭。";
+"If multiple Rokus appear, pick the one matching your TV's name." = "如果出现多个 Roku，请选择名称与你的电视相符的设备。";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "图片语言";
 "Imagen" = "画面";
@@ -1119,9 +1130,11 @@
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "安装 Stremio 插件后，其目录会以海报横栏显示在这里，供你浏览。";
 "Instalar addon" = "安装插件";
 "Install" = "安装";
+"Install Media Assistant" = "安装 Media Assistant";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "安装 Stremio 插件后，其目录会以海报横栏显示在这里，供你浏览。";
 "Install addon" = "安装插件";
 "Install all" = "全部安装";
+"Install it." = "安装它。";
 "Installed" = "已安装";
 "Installing" = "正在安装";
 "Installing {done} of {total}" = "正在安装 {done}/{total}";
@@ -1260,6 +1273,7 @@
 "MUBI" = "MUBI";
 "Magnet stream" = "Magnet 流式播放";
 "Make it yours" = "打造专属风格";
+"Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "请确保 Roku 已开机，并与电脑连接到同一 Wi-Fi。";
 "Manage" = "管理";
 "Manage profiles" = "管理个人资料";
 "Manga" = "漫画";
@@ -1417,6 +1431,7 @@
 "Ningún proveedor devolvió una fuente" = "没有任何来源返回视频流";
 "Ningún título coincide con estos filtros." = "没有符合这些筛选条件的内容。";
 "No" = "否";
+"No Chromecast, DLNA, or Roku devices found. Make sure your TV is on, woken up, and on the same Wi-Fi." = "未找到 Chromecast、DLNA 或 Roku 设备。请确保电视已开机或唤醒，并连接到同一 Wi-Fi。";
 "No Label" = "无标签";
 "No Simkl premieres this month" = "本月 Simkl 没有首播作品";
 "No background image" = "无背景图片";
@@ -1540,6 +1555,8 @@
 "On Tonight" = "今晚播出";
 "On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "默认开启：看完所有已播出的剧集后，该节目会从「继续观看」中移除，并在新一集上线时重新出现。关闭后，已追完的节目会继续显示在该行中。";
 "On start" = "On start";
+"On your Roku remote, press Home." = "按 Roku 遥控器上的 Home 键。";
+"On your Roku, open Streaming Channels from the home screen." = "在 Roku 主屏幕上打开“流媒体频道”。";
 "Onboarding" = "新手引导";
 "One list" = "单个列表";
 "Ongoing" = "连载中";
@@ -1558,6 +1575,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "再次打开 AniList";
 "Open MyAnimeList again" = "再次打开 MyAnimeList";
+"Open Settings, then System, then Advanced system settings." = "依次打开“设置”、“系统”和“高级系统设置”。";
 "Open a title and tap Add to Watchlist to save it here." = "打开一个条目，轻点“添加到待看列表”即可将其保存到这里。";
 "Open image" = "打开图片";
 "Open in Safari" = "Open in Safari";
@@ -1919,6 +1937,7 @@
 "Richer, more vivid picture with a touch more contrast." = "画面色彩更饱满、更鲜艳，并略微提高对比度。";
 "Right" = "右对齐";
 "Right to left" = "从右到左";
+"Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "Roku 更改了操作系统，导致内置 Media Player 无法接收其他应用发送的视频。Media Assistant 是一个免费频道，可接替这一功能。只需在 Roku 上安装一次，即可正常投屏。";
 "Romance" = "爱情";
 "Romanian" = "罗马尼亚语";
 "Rostro" = "字体";
@@ -1960,6 +1979,7 @@
 "Saved" = "已保存";
 "Saved app data" = "Saved app data";
 "Saving" = "正在保存";
+"Scanning your network…" = "正在扫描你的网络…";
 "Sci-Fi" = "科幻";
 "Sci-Fi & Fantasy" = "科幻与奇幻";
 "Scores" = "评分";
@@ -1975,6 +1995,7 @@
 "Search actors, directors…" = "搜索演员、导演…";
 "Search addons" = "搜索插件";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search for \"Media Assistant\" (channel ID 782875, free)." = "搜索“Media Assistant”（频道 ID 782875，免费）。";
 "Search is too long." = "Search is too long.";
 "Search languages" = "搜索语言";
 "Search music" = "搜索音乐";
@@ -2002,6 +2023,7 @@
 "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selección de Harbor" = "Harbor 精选";
+"Select \"Control by mobile apps\" and set Network access to \"Default\"." = "选择“通过移动应用控制”，并将“网络访问”设为“默认”。";
 "Select a subtitle track first." = "请先选择字幕轨道。";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
@@ -2190,6 +2212,7 @@
 "Step 4 · Subtitles" = "第 4 步 · 字幕";
 "Still watching check-in" = "Still watching check-in";
 "Still watching?" = "还在观看吗？";
+"Stop" = "停止";
 "Stop ({n})" = "停止（{n}）";
 "Stop feeding the hero carousel (back to automatic)" = "停止将此目录用于焦点轮播（恢复自动选择）";
 "Stop playback" = "Stop playback";
@@ -2614,6 +2637,7 @@
 "Your AniList is empty" = "您的 AniList 为空";
 "Your Discovery Queue" = "你的发现队列";
 "Your Letterboxd password" = "你的 Letterboxd 密码";
+"Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "你的 Roku 已设置为阻止网络中应用发出的控制请求，因此 Harbor 无法访问它。此设置只需在 Roku 上更改一次。";
 "Your Stremio library + addons sync in untouched." = "你的 Stremio 媒体库和插件将原样同步。";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "你的 Trakt 片单为空，没有可导入的内容。";

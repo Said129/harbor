@@ -131,6 +131,7 @@
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "Thêm một hàng bên dưới Xem tiếp, liệt kê các tập mới phát gần đây của những phim bộ bạn đang xem. Có thể ẩn từng tập hoặc xóa toàn bộ hàng. Mặc định tắt.";
 "Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "Thêm nút \"Hỏi AI\" vào phần tìm kiếm để bạn có thể nhập yêu cầu bằng ngôn ngữ tự nhiên.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Điều chỉnh chữ và nền. Bản xem trước hiển thị ngay các thay đổi của bạn.";
+"Adjust volume on the speaker. Computer volume and boost do not apply." = "Chỉnh âm lượng trên loa. Âm lượng và tăng âm của máy tính không áp dụng.";
 "Administrar" = "Quản lý";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "Chuyển mục Xem tiếp sang tập tiếp theo";
@@ -441,6 +442,7 @@
 "Cards, panels." = "Thẻ, bảng.";
 "Cargar archivo" = "Tải tệp";
 "Cargar más" = "Tải thêm";
+"Cast to TV or speaker" = "Truyền tới TV hoặc loa";
 "Catalog" = "Danh mục";
 "Catalogs" = "Danh mục";
 "Categories" = "Danh mục";
@@ -501,6 +503,7 @@
 "Close" = "Đóng";
 "Close navigation" = "Close navigation";
 "Close player" = "Đóng trình phát";
+"Close the cast menu and reopen it to rescan the network." = "Đóng rồi mở lại menu truyền để quét lại mạng.";
 "Clásica" = "Cổ điển";
 "Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "Bộ sưu tập";
@@ -513,6 +516,7 @@
 "Colores" = "Màu sắc";
 "Colors" = "Màu sắc";
 "Colors your name, your cursor in Watch Together, and the ring around your avatar." = "Tô màu tên, con trỏ trong Xem cùng nhau và vòng quanh ảnh đại diện của bạn.";
+"Come back to Harbor and try casting again." = "Quay lại Harbor và thử truyền lại.";
 "Comedy" = "Hài";
 "Comedy Series" = "Phim bộ hài";
 "Comenzar a ver" = "Bắt đầu xem";
@@ -593,6 +597,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not cast to {deviceName}." = "Không thể truyền tới {deviceName}.";
 "Could not complete this action. Try again." = "Không thể hoàn tất thao tác này. Hãy thử lại.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not identify this title on Trakt." = "Không thể xác định nội dung này trên Trakt.";
@@ -625,6 +630,7 @@
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Không thể kết nối với Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Không thể kết nối với Trakt. Hãy kiểm tra kết nối rồi thử lại.";
+"Couldn't reach this Roku" = "Không thể kết nối với Roku này";
 "Couldn't read that image. Try a different file." = "Không thể đọc ảnh đó. Hãy thử một tệp khác.";
 "Couldn't scan that folder." = "Không thể quét thư mục đó.";
 "Cover Image URL" = "URL ảnh bìa";
@@ -664,6 +670,7 @@
 "Czech" = "Tiếng Séc";
 "César Awards" = "Giải César";
 "Cómo leer tus libros" = "Reading help";
+"DLNA TV" = "TV DLNA";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Tô màu tên, con trỏ trong Xem cùng nhau và vòng quanh ảnh đại diện của bạn.";
 "Danger" = "Nguy hiểm";
@@ -798,6 +805,7 @@
 "En reproducción" = "Đang phát";
 "En reproducción: {label}" = "Đang phát: {label}";
 "Enable Letterboxd integration" = "Bật tích hợp Letterboxd";
+"Enable Roku Network Access" = "Bật quyền truy cập mạng trên Roku";
 "Enable User Ratings" = "Bật điểm đánh giá của người dùng";
 "Enable addon" = "Enable addon";
 "Enabled" = "Đã bật";
@@ -993,6 +1001,7 @@
 "Harbor default" = "Mặc định của Harbor";
 "Harbor dropped {n} suspicious or mismatched result." = "Harbor đã loại {n} kết quả đáng ngờ hoặc không khớp.";
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor đã loại {n} kết quả đáng ngờ hoặc không khớp.";
+"Harbor found something at this address that looked like a Roku, but it didn't respond like one. The device may be offline or another product picked up the same broadcast." = "Harbor tìm thấy một thiết bị tại địa chỉ này có vẻ là Roku, nhưng thiết bị không phản hồi như Roku. Thiết bị có thể đang ngoại tuyến hoặc một sản phẩm khác đã nhận cùng tín hiệu quảng bá.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "Harbor luôn đồng bộ tiến độ xem trên MyAnimeList của bạn.";
 "Harbor library" = "Harbor library";
@@ -1056,6 +1065,7 @@
 "Horizontal view" = "Chế độ xem ngang";
 "Horror" = "Kinh dị";
 "Horror & Supernatural" = "Kinh dị và siêu nhiên";
+"Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "Kích thước thẻ tập trong bố cục dải và lưới. Thẻ lớn hơn sẽ hiển thị hình ảnh lớn hơn.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "Mức có thể tăng vượt quá 100 phần trăm trên thanh âm lượng. Cài đặt cao hơn có thể tạo âm lượng rất lớn.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
@@ -1077,6 +1087,7 @@
 "Idiomas de subtítulos" = "Ngôn ngữ phụ đề";
 "Idiomas y subtítulos" = "Ngôn ngữ & phụ đề";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "Nếu luồng phát không bắt đầu kịp thời (nguồn không hoạt động hoặc tiện ích bổ sung gặp sự cố), tự động thử luồng phát khả dụng tiếp theo. Mặc định tắt.";
+"If multiple Rokus appear, pick the one matching your TV's name." = "Nếu có nhiều Roku xuất hiện, hãy chọn thiết bị có tên khớp với TV của bạn.";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "Ngôn ngữ hình ảnh";
 "Imagen" = "Hình ảnh";
@@ -1119,9 +1130,11 @@
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Cài đặt một tiện ích bổ sung Stremio để các danh mục của tiện ích xuất hiện tại đây dưới dạng các hàng áp phích, sẵn sàng để duyệt.";
 "Instalar addon" = "Cài đặt tiện ích bổ sung";
 "Install" = "Cài đặt";
+"Install Media Assistant" = "Cài đặt Media Assistant";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Cài đặt một tiện ích bổ sung Stremio để các danh mục của tiện ích xuất hiện tại đây dưới dạng các hàng áp phích, sẵn sàng để duyệt.";
 "Install addon" = "Cài đặt tiện ích bổ sung";
 "Install all" = "Cài tất cả";
+"Install it." = "Cài đặt ứng dụng.";
 "Installed" = "Đã cài đặt";
 "Installing" = "Đang cài đặt";
 "Installing {done} of {total}" = "Đang cài {done}/{total}";
@@ -1260,6 +1273,7 @@
 "MUBI" = "MUBI";
 "Magnet stream" = "Luồng magnet";
 "Make it yours" = "Tùy biến theo ý bạn";
+"Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "Đảm bảo Roku đã bật và kết nối cùng mạng Wi-Fi với máy tính của bạn.";
 "Manage" = "Quản lý";
 "Manage profiles" = "Quản lý hồ sơ";
 "Manga" = "Manga";
@@ -1417,6 +1431,7 @@
 "Ningún proveedor devolvió una fuente" = "Không nguồn nào trả về luồng phát";
 "Ningún título coincide con estos filtros." = "Không có tựa phim nào khớp với các bộ lọc này.";
 "No" = "Không";
+"No Chromecast, DLNA, or Roku devices found. Make sure your TV is on, woken up, and on the same Wi-Fi." = "Không tìm thấy thiết bị Chromecast, DLNA hoặc Roku. Hãy đảm bảo TV đã bật, đang hoạt động và kết nối cùng mạng Wi-Fi.";
 "No Label" = "Không nhãn";
 "No Simkl premieres this month" = "Không có phim công chiếu trên Simkl trong tháng này";
 "No background image" = "Không có ảnh nền";
@@ -1540,6 +1555,8 @@
 "On Tonight" = "Chiếu tối nay";
 "On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "Bật theo mặc định: sau khi bạn xem hết các tập đã phát sóng, phim bộ sẽ rời khỏi Xem tiếp và xuất hiện lại khi có tập mới. Tắt tùy chọn này để giữ các phim bộ đã xem kịp tiến độ trong hàng.";
 "On start" = "On start";
+"On your Roku remote, press Home." = "Trên điều khiển Roku, nhấn Home.";
+"On your Roku, open Streaming Channels from the home screen." = "Trên Roku, mở Kênh truyền phát từ màn hình chính.";
 "Onboarding" = "Hướng dẫn ban đầu";
 "One list" = "Một danh sách";
 "Ongoing" = "Đang phát hành";
@@ -1558,6 +1575,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "Mở lại AniList";
 "Open MyAnimeList again" = "Mở lại MyAnimeList";
+"Open Settings, then System, then Advanced system settings." = "Mở Cài đặt, rồi chọn Hệ thống, sau đó chọn Cài đặt hệ thống nâng cao.";
 "Open a title and tap Add to Watchlist to save it here." = "Mở một tựa phim và chạm vào «Thêm vào danh sách xem» để lưu tại đây.";
 "Open image" = "Mở ảnh";
 "Open in Safari" = "Open in Safari";
@@ -1919,6 +1937,7 @@
 "Richer, more vivid picture with a touch more contrast." = "Hình ảnh đậm đà, sống động hơn với độ tương phản cao hơn một chút.";
 "Right" = "Phải";
 "Right to left" = "Từ phải sang trái";
+"Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "Roku đã thay đổi hệ điều hành để chặn Media Player tích hợp nhận video từ các ứng dụng khác. Media Assistant là kênh miễn phí được tạo ra để đảm nhiệm việc này. Chỉ cần cài đặt một lần trên Roku là có thể truyền nội dung.";
 "Romance" = "Lãng mạn";
 "Romanian" = "Tiếng Romania";
 "Rostro" = "Khuôn mặt";
@@ -1960,6 +1979,7 @@
 "Saved" = "Đã lưu";
 "Saved app data" = "Saved app data";
 "Saving" = "Đang lưu";
+"Scanning your network…" = "Đang quét mạng…";
 "Sci-Fi" = "Khoa học viễn tưởng";
 "Sci-Fi & Fantasy" = "Khoa học viễn tưởng & kỳ ảo";
 "Scores" = "Điểm số";
@@ -1975,6 +1995,7 @@
 "Search actors, directors…" = "Tìm kiếm diễn viên, đạo diễn…";
 "Search addons" = "Tìm tiện ích bổ sung";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search for \"Media Assistant\" (channel ID 782875, free)." = "Tìm \"Media Assistant\" (ID kênh 782875, miễn phí).";
 "Search is too long." = "Search is too long.";
 "Search languages" = "Tìm ngôn ngữ";
 "Search music" = "Tìm nhạc";
@@ -2002,6 +2023,7 @@
 "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selección de Harbor" = "Do Harbor tuyển chọn";
+"Select \"Control by mobile apps\" and set Network access to \"Default\"." = "Chọn \"Điều khiển bằng ứng dụng di động\" và đặt Quyền truy cập mạng thành \"Mặc định\".";
 "Select a subtitle track first." = "Trước tiên, hãy chọn một rãnh phụ đề.";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
@@ -2190,6 +2212,7 @@
 "Step 4 · Subtitles" = "Bước 4 · Phụ đề";
 "Still watching check-in" = "Still watching check-in";
 "Still watching?" = "Bạn vẫn đang xem chứ?";
+"Stop" = "Dừng";
 "Stop ({n})" = "Dừng ({n})";
 "Stop feeding the hero carousel (back to automatic)" = "Ngừng đưa nội dung vào băng chuyền nổi bật (trở lại tự động)";
 "Stop playback" = "Stop playback";
@@ -2614,6 +2637,7 @@
 "Your AniList is empty" = "AniList của bạn đang trống";
 "Your Discovery Queue" = "Hàng đợi khám phá của bạn";
 "Your Letterboxd password" = "Mật khẩu Letterboxd của bạn";
+"Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Roku của bạn đang chặn yêu cầu điều khiển từ các ứng dụng trong mạng, nên Harbor không thể kết nối với thiết bị. Đây là cài đặt chỉ cần thực hiện một lần trên Roku.";
 "Your Stremio library + addons sync in untouched." = "Thư viện Stremio và tiện ích bổ sung của bạn được đồng bộ nguyên vẹn.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Danh sách xem Trakt của bạn đang trống, không có gì để nhập.";

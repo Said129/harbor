@@ -1554,3 +1554,17 @@ season-source-lock policies with their settings. The season lock is wired in `De
 to the automatic start); the stall switch only has its policy and setting, because Desktop's rule is a first-load check
 that needs the player's loaded state fed back to the detail model. Excluded with reasons: award tabs on poster cards,
 instant playback preparation, NFO artwork, background scanning.
+
+## Eighth Haiku round and the seek-test bisect (8 November)
+
+Eighth round, written by Haiku and merged after review (CI run 32 green (43 cases), cast run green (36 cases)): Live TV in search plus Desktop's region top-network rows
+on the channel list, Critics Pick on Discover, addon sharing and recommendations on the addon detail, and casting to a
+Roku or a DLNA renderer (protocol code, controller, sheet and a cast button in the player controls, hidden when the stream
+needs headers or a local file; AirPlay keeps its own picker). The cast branch was validated on `ios/wip-cast` (36 cases)
+before it joined the development branch. Not ported: Chromecast, SSDP discovery, cast transcoding.
+
+`SubtitleSeekTests` bisect (real mpv seeks): the old commit `02278d3e` passes 3 of 3 twice, hours apart (runs 28 and 33),
+so the runner is not the cause. `44ef42fb` passes 3 of 3. `002e1b32` and every later commit fail two of three (the failure
+is always the `playing seek 21` step, position 29.667, no subtitle text). Removing `volume-max` does not change it. The
+change therefore sits in the four commits between `44ef42fb` and `002e1b32` (the poster-title setting, the home-language
+filter and anime-only Continue Watching, and their merges); runs on `2f5baf57` and `8ca3944d` narrow it further.

@@ -5,14 +5,14 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 136,
-      "partial": 216,
-      "missing": 45,
-      "excluded": 41,
-      "counted": 397,
-      "weighted_percent": 61.5,
-      "ported_only_percent": 34.3,
-      "ported_or_partial_percent": 88.7
+      "ported": 143,
+      "partial": 220,
+      "missing": 31,
+      "excluded": 44,
+      "counted": 394,
+      "weighted_percent": 64.2,
+      "ported_only_percent": 36.3,
+      "ported_or_partial_percent": 92.1
     },
     "settings": {
       "total": 511,
@@ -27,34 +27,34 @@
     },
     "all": {
       "total": 949,
-      "ported": 315,
-      "partial": 249,
-      "missing": 160,
-      "excluded": 225,
-      "counted": 724,
-      "weighted_percent": 60.7,
-      "ported_only_percent": 43.5,
-      "ported_or_partial_percent": 77.9
+      "ported": 322,
+      "partial": 253,
+      "missing": 146,
+      "excluded": 228,
+      "counted": 721,
+      "weighted_percent": 62.2,
+      "ported_only_percent": 44.7,
+      "ported_or_partial_percent": 79.8
     }
   },
   "behavior_areas": [
     {
       "area": "Home, Discover and rooms",
       "range": "B1-B21",
-      "ported": 2,
+      "ported": 3,
       "partial": 18,
-      "missing": 1,
+      "missing": 0,
       "excluded": 0,
-      "weighted_percent": 52.4
+      "weighted_percent": 57.1
     },
     {
       "area": "Search",
       "range": "B22-B32",
-      "ported": 3,
+      "ported": 4,
       "partial": 6,
-      "missing": 2,
+      "missing": 1,
       "excluded": 0,
-      "weighted_percent": 54.5
+      "weighted_percent": 63.6
     },
     {
       "area": "Details and episodes",
@@ -68,11 +68,11 @@
     {
       "area": "Addons and catalogs",
       "range": "B48-B67",
-      "ported": 4,
-      "partial": 14,
-      "missing": 2,
+      "ported": 5,
+      "partial": 15,
+      "missing": 0,
       "excluded": 0,
-      "weighted_percent": 55.0
+      "weighted_percent": 62.5
     },
     {
       "area": "Stream pipeline, parser, trust and scoring",
@@ -113,20 +113,20 @@
     {
       "area": "Live TV, VOD, DVR and multiview",
       "range": "B217-B238",
-      "ported": 0,
+      "ported": 1,
       "partial": 12,
-      "missing": 5,
+      "missing": 4,
       "excluded": 5,
-      "weighted_percent": 35.3
+      "weighted_percent": 41.2
     },
     {
       "area": "Casting and Watch Together",
       "range": "B239-B259",
-      "ported": 0,
-      "partial": 1,
-      "missing": 19,
-      "excluded": 1,
-      "weighted_percent": 2.5
+      "ported": 3,
+      "partial": 4,
+      "missing": 10,
+      "excluded": 4,
+      "weighted_percent": 29.4
     },
     {
       "area": "Stremio account, library and local files",
@@ -275,8 +275,8 @@
       "index": 7,
       "id": "Critics Pick",
       "desktop_source": "src/views/discover.tsx",
-      "verdict": "M",
-      "note": "no Critics Pick rail"
+      "verdict": "D",
+      "note": "Critics Pick: the daily pick with reviews and scores on Discover; cast chips, stills and genre chips are left out (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 8,
@@ -422,8 +422,8 @@
       "index": 28,
       "id": "Search Live TV",
       "desktop_source": "src/components/search",
-      "verdict": "M",
-      "note": "no Live TV search"
+      "verdict": "D",
+      "note": "search Live TV channels from the search box (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 29,
@@ -597,8 +597,8 @@
       "index": 53,
       "id": "Addon sharing",
       "desktop_source": "src/lib/addon-store.ts",
-      "verdict": "M",
-      "note": "no addon sharing"
+      "verdict": "P",
+      "note": "addon sharing: the stremio:// link is shared from the addon detail; opening an incoming link is not wired (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 54,
@@ -625,8 +625,8 @@
       "index": 57,
       "id": "Addon recommendations",
       "desktop_source": "src/lib/addons-store",
-      "verdict": "M",
-      "note": "no addon recommendations"
+      "verdict": "D",
+      "note": "addon recommendations on the addon detail (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 58,
@@ -1794,8 +1794,8 @@
       "index": 224,
       "id": "Region top networks",
       "desktop_source": "src/lib/iptv",
-      "verdict": "M",
-      "note": "no region top networks"
+      "verdict": "D",
+      "note": "region top networks rows on the Live TV channel list (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 225,
@@ -1906,36 +1906,36 @@
       "index": 240,
       "id": "Cast control",
       "desktop_source": "src-tauri/src/cast.rs",
-      "verdict": "M",
-      "note": "no Chromecast or DLNA"
+      "verdict": "P",
+      "note": "cast control for Roku and DLNA renderers: play, pause, seek where the device supports it, stop, volume; Chromecast is not ported (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 241,
       "id": "Resume locally after cast",
       "desktop_source": "src-tauri/src/cast.rs",
-      "verdict": "M",
-      "note": "no Chromecast or DLNA"
+      "verdict": "D",
+      "note": "resume locally after a Roku or DLNA cast stops (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 242,
       "id": "DLNA discovery",
       "desktop_source": "src-tauri/src/dlna.rs",
-      "verdict": "M",
-      "note": "no Chromecast or DLNA"
+      "verdict": "P",
+      "note": "DLNA devices are added by their description address; SSDP multicast needs an entitlement iOS apps do not get freely (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 243,
       "id": "DLNA vendor capabilities",
       "desktop_source": "src-tauri/src/dlna.rs",
-      "verdict": "M",
-      "note": "no Chromecast or DLNA"
+      "verdict": "P",
+      "note": "DLNA vendor handling in the load request (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 244,
       "id": "DLNA transport controls",
       "desktop_source": "src-tauri/src/dlna.rs",
-      "verdict": "M",
-      "note": "no Chromecast or DLNA"
+      "verdict": "D",
+      "note": "DLNA transport controls through AVTransport (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 245,
@@ -1948,29 +1948,29 @@
       "index": 246,
       "id": "Roku discovery / playback",
       "desktop_source": "src-tauri/src/roku.rs",
-      "verdict": "M",
-      "note": "no Roku or cast transcoding/subtitles"
+      "verdict": "D",
+      "note": "Roku discovery by Bonjour, a local network probe or a typed address, and playback through its media channel (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
     },
     {
       "index": 247,
       "id": "Cast HLS transcoding",
       "desktop_source": "src-tauri/src/cast_hls.rs",
-      "verdict": "M",
-      "note": "no Roku or cast transcoding/subtitles"
+      "verdict": "X",
+      "note": "cast HLS transcoding: Desktop re-encodes with a local ffmpeg server that a phone does not have"
     },
     {
       "index": 248,
       "id": "Receiver compatible re-encode",
       "desktop_source": "src-tauri/src/cast_hls.rs",
-      "verdict": "M",
-      "note": "no Roku or cast transcoding/subtitles"
+      "verdict": "X",
+      "note": "receiver compatible re-encode: needs the same local transcoder"
     },
     {
       "index": 249,
       "id": "Cast subtitle conversion / serving",
       "desktop_source": "src-tauri/src/cast_subs.rs",
-      "verdict": "M",
-      "note": "no Roku or cast transcoding/subtitles"
+      "verdict": "X",
+      "note": "cast subtitle conversion and serving: needs the local cast server"
     },
     {
       "index": 250,

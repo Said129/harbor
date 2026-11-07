@@ -131,6 +131,7 @@
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "Ajoute sous Reprendre la lecture une rangée répertoriant les épisodes récemment diffusés des séries que vous regardiez déjà. Vous pouvez les retirer un par un ou effacer toute la rangée. Cette option est désactivée par défaut.";
 "Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "Ajoute un bouton « Demander à l’IA » à la recherche afin de pouvoir saisir, par exemple, une demande en langage naturel.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Réglez le texte et le fond. L’aperçu affiche vos modifications en direct.";
+"Adjust volume on the speaker. Computer volume and boost do not apply." = "Réglez le volume sur l’enceinte. Le volume et l’amplification du PC ne s’appliquent pas.";
 "Administrar" = "Gérer";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "Faire passer À suivre à l’épisode suivant";
@@ -441,6 +442,7 @@
 "Cards, panels." = "Cartes, panneaux.";
 "Cargar archivo" = "Charger un fichier";
 "Cargar más" = "Charger plus";
+"Cast to TV or speaker" = "Diffuser sur un téléviseur ou une enceinte";
 "Catalog" = "Catalogue";
 "Catalogs" = "Catalogues";
 "Categories" = "Catégories";
@@ -501,6 +503,7 @@
 "Close" = "Fermer";
 "Close navigation" = "Close navigation";
 "Close player" = "Fermer le lecteur";
+"Close the cast menu and reopen it to rescan the network." = "Fermez le menu de diffusion, puis rouvrez-le pour analyser de nouveau le réseau.";
 "Clásica" = "Classique";
 "Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "Collections";
@@ -513,6 +516,7 @@
 "Colores" = "Couleurs";
 "Colors" = "Couleurs";
 "Colors your name, your cursor in Watch Together, and the ring around your avatar." = "Colore votre nom, votre curseur dans Regarder ensemble et l’anneau autour de votre avatar.";
+"Come back to Harbor and try casting again." = "Revenez dans Harbor et réessayez de diffuser.";
 "Comedy" = "Comédie";
 "Comedy Series" = "Séries comiques";
 "Comenzar a ver" = "Commencer à regarder";
@@ -593,6 +597,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not cast to {deviceName}." = "Impossible de diffuser sur {deviceName}.";
 "Could not complete this action. Try again." = "Impossible de terminer cette action. Réessayez.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not identify this title on Trakt." = "Impossible d’identifier ce titre sur Trakt.";
@@ -625,6 +630,7 @@
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Impossible de joindre Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Impossible de joindre Trakt. Vérifiez votre connexion et réessayez.";
+"Couldn't reach this Roku" = "Impossible de joindre ce Roku";
 "Couldn't read that image. Try a different file." = "Impossible de lire cette image. Essayez un autre fichier.";
 "Couldn't scan that folder." = "Impossible d’analyser ce dossier.";
 "Cover Image URL" = "URL de l’image de couverture";
@@ -664,6 +670,7 @@
 "Czech" = "Tchèque";
 "César Awards" = "César";
 "Cómo leer tus libros" = "Reading help";
+"DLNA TV" = "TV DLNA";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Colore votre nom, votre curseur dans Regarder ensemble et l’anneau autour de votre avatar.";
 "Danger" = "Danger";
@@ -798,6 +805,7 @@
 "En reproducción" = "Lecture en cours";
 "En reproducción: {label}" = "Lecture en cours : {label}";
 "Enable Letterboxd integration" = "Activer l’intégration de Letterboxd";
+"Enable Roku Network Access" = "Activer l’accès réseau de Roku";
 "Enable User Ratings" = "Activer les notes des utilisateurs";
 "Enable addon" = "Enable addon";
 "Enabled" = "Activé";
@@ -993,6 +1001,7 @@
 "Harbor default" = "Par défaut de Harbor";
 "Harbor dropped {n} suspicious or mismatched result." = "Harbor a écarté {n} résultat suspect ou non concordant.";
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor a écarté {n} résultats suspects ou non concordants.";
+"Harbor found something at this address that looked like a Roku, but it didn't respond like one. The device may be offline or another product picked up the same broadcast." = "Harbor a détecté à cette adresse un appareil qui semblait être un Roku, mais il n’a pas répondu comme tel. L’appareil est peut-être hors ligne, ou un autre produit a émis le même signal de diffusion.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "Harbor synchronise votre progression de visionnage avec MyAnimeList.";
 "Harbor library" = "Harbor library";
@@ -1056,6 +1065,7 @@
 "Horizontal view" = "Vue horizontale";
 "Horror" = "Horreur";
 "Horror & Supernatural" = "Horreur et surnaturel";
+"Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "Taille des cartes d’épisode dans les dispositions en bande et en grille. Les cartes plus grandes affichent des illustrations plus grandes.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "Jusqu’où le volume peut être amplifié au-delà de 100 % sur la barre de volume. Les réglages élevés peuvent produire un son très fort.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
@@ -1077,6 +1087,7 @@
 "Idiomas de subtítulos" = "Langues des sous-titres";
 "Idiomas y subtítulos" = "Langues et sous-titres";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "Si la lecture d’un flux ne démarre pas à temps (source inactive ou extension indisponible), essayer automatiquement le prochain flux disponible. Désactivé par défaut.";
+"If multiple Rokus appear, pick the one matching your TV's name." = "Si plusieurs appareils Roku s’affichent, choisissez celui qui porte le même nom que votre téléviseur.";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "Langues des images";
 "Imagen" = "Image";
@@ -1119,9 +1130,11 @@
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Installez une extension Stremio pour afficher ici ses catalogues sous forme de carrousels d’affiches prêts à parcourir.";
 "Instalar addon" = "Installer l’extension";
 "Install" = "Installer";
+"Install Media Assistant" = "Installer Media Assistant";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Installez une extension Stremio pour afficher ici ses catalogues sous forme de carrousels d’affiches prêts à parcourir.";
 "Install addon" = "Installer l’extension";
 "Install all" = "Tout installer";
+"Install it." = "Installez-le.";
 "Installed" = "Installé";
 "Installing" = "Installation";
 "Installing {done} of {total}" = "Installation de {done} sur {total}";
@@ -1260,6 +1273,7 @@
 "MUBI" = "MUBI";
 "Magnet stream" = "Flux magnet";
 "Make it yours" = "Personnalisez-le";
+"Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "Vérifiez que le Roku est allumé et connecté au même réseau Wi-Fi que votre ordinateur.";
 "Manage" = "Gérer";
 "Manage profiles" = "Gérer les profils";
 "Manga" = "Manga";
@@ -1417,6 +1431,7 @@
 "Ningún proveedor devolvió una fuente" = "Aucune source n’a renvoyé de flux";
 "Ningún título coincide con estos filtros." = "Aucun titre ne correspond à ces filtres.";
 "No" = "Non";
+"No Chromecast, DLNA, or Roku devices found. Make sure your TV is on, woken up, and on the same Wi-Fi." = "Aucun appareil Chromecast, DLNA ou Roku détecté. Vérifiez que votre téléviseur est allumé, sorti de veille et connecté au même réseau Wi-Fi.";
 "No Label" = "Aucun libellé";
 "No Simkl premieres this month" = "Aucune avant-première Simkl ce mois-ci";
 "No background image" = "Aucune image d’arrière-plan";
@@ -1540,6 +1555,8 @@
 "On Tonight" = "Ce soir";
 "On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "Activé par défaut : une fois tous les épisodes diffusés regardés, la série quitte Reprendre la lecture et y revient à la sortie d’un nouvel épisode. Désactivez cette option pour conserver dans cette rangée les séries dont vous êtes à jour.";
 "On start" = "On start";
+"On your Roku remote, press Home." = "Sur votre télécommande Roku, appuyez sur Home.";
+"On your Roku, open Streaming Channels from the home screen." = "Sur votre Roku, ouvrez Chaînes de streaming depuis l’écran d’accueil.";
 "Onboarding" = "Prise en main";
 "One list" = "Une seule liste";
 "Ongoing" = "En cours";
@@ -1558,6 +1575,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "Rouvrir AniList";
 "Open MyAnimeList again" = "Rouvrir MyAnimeList";
+"Open Settings, then System, then Advanced system settings." = "Ouvrez Paramètres, puis Système, puis Paramètres système avancés.";
 "Open a title and tap Add to Watchlist to save it here." = "Ouvrez un titre et touchez « Ajouter à la liste » pour l’enregistrer ici.";
 "Open image" = "Ouvrir l’image";
 "Open in Safari" = "Open in Safari";
@@ -1919,6 +1937,7 @@
 "Richer, more vivid picture with a touch more contrast." = "Image plus riche et plus vive, avec un peu plus de contraste.";
 "Right" = "Droite";
 "Right to left" = "De droite à gauche";
+"Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "Roku a modifié son OS pour empêcher le lecteur multimédia intégré d’accepter les vidéos provenant d’autres applications. Media Assistant est une chaîne gratuite conçue pour prendre le relais. Installez-la une seule fois sur votre Roku, puis la diffusion fonctionne.";
 "Romance" = "Romance";
 "Romanian" = "Roumain";
 "Rostro" = "Visage";
@@ -1960,6 +1979,7 @@
 "Saved" = "Enregistré";
 "Saved app data" = "Saved app data";
 "Saving" = "Enregistrement";
+"Scanning your network…" = "Analyse de votre réseau…";
 "Sci-Fi" = "Science-fiction";
 "Sci-Fi & Fantasy" = "Science-fiction et fantastique";
 "Scores" = "Notes";
@@ -1975,6 +1995,7 @@
 "Search actors, directors…" = "Rechercher des acteurs, des réalisateurs…";
 "Search addons" = "Rechercher des extensions";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search for \"Media Assistant\" (channel ID 782875, free)." = "Recherchez « Media Assistant » (ID de chaîne 782875, gratuite).";
 "Search is too long." = "Search is too long.";
 "Search languages" = "Rechercher des langues";
 "Search music" = "Rechercher de la musique";
@@ -2002,6 +2023,7 @@
 "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selección de Harbor" = "Sélection Harbor";
+"Select \"Control by mobile apps\" and set Network access to \"Default\"." = "Sélectionnez « Contrôle par les applications mobiles » et réglez l’accès réseau sur « Par défaut ».";
 "Select a subtitle track first." = "Sélectionnez d’abord une piste de sous-titres.";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
@@ -2190,6 +2212,7 @@
 "Step 4 · Subtitles" = "Étape 4 · Sous-titres";
 "Still watching check-in" = "Still watching check-in";
 "Still watching?" = "Vous regardez toujours ?";
+"Stop" = "Arrêter";
 "Stop ({n})" = "Arrêter ({n})";
 "Stop feeding the hero carousel (back to automatic)" = "Ne plus alimenter le carrousel principal (retour au mode automatique)";
 "Stop playback" = "Stop playback";
@@ -2614,6 +2637,7 @@
 "Your AniList is empty" = "Votre AniList est vide";
 "Your Discovery Queue" = "Votre file de découverte";
 "Your Letterboxd password" = "Votre mot de passe Letterboxd";
+"Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Votre Roku est configuré pour bloquer les demandes de contrôle provenant des applications de votre réseau. Harbor ne peut donc pas y accéder. Ce réglage ne doit être effectué qu’une seule fois sur le Roku.";
 "Your Stremio library + addons sync in untouched." = "Votre médiathèque Stremio et vos extensions sont synchronisés à l’identique.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Votre liste à voir Trakt est vide, rien à importer.";

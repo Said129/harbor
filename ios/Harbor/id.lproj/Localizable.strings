@@ -131,6 +131,7 @@
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "Menambahkan baris di bawah Lanjutkan Menonton yang mencantumkan episode yang baru-baru ini ditayangkan dari acara yang sudah Anda ikuti. Singkirkan satu per satu atau hapus seluruh baris. Dinonaktifkan secara default.";
 "Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "Menambahkan tombol \"Tanya AI\" ke pencarian, sehingga Anda dapat mengetik permintaan dengan bahasa sehari-hari.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Sesuaikan teks dan latar belakang. Pratinjau langsung menunjukkan perubahan Anda.";
+"Adjust volume on the speaker. Computer volume and boost do not apply." = "Atur volume pada speaker. Volume dan penguatan komputer tidak berlaku.";
 "Administrar" = "Kelola";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "Majukan Lanjutkan Menonton ke episode berikutnya";
@@ -441,6 +442,7 @@
 "Cards, panels." = "Kartu, panel.";
 "Cargar archivo" = "Muat file";
 "Cargar más" = "Muat lebih banyak";
+"Cast to TV or speaker" = "Transmisikan ke TV atau speaker";
 "Catalog" = "Katalog";
 "Catalogs" = "Katalog";
 "Categories" = "Kategori";
@@ -501,6 +503,7 @@
 "Close" = "Tutup";
 "Close navigation" = "Close navigation";
 "Close player" = "Tutup pemutar";
+"Close the cast menu and reopen it to rescan the network." = "Tutup menu cast, lalu buka kembali untuk memindai ulang jaringan.";
 "Clásica" = "Klasik";
 "Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "Koleksi";
@@ -513,6 +516,7 @@
 "Colores" = "Warna";
 "Colors" = "Warna";
 "Colors your name, your cursor in Watch Together, and the ring around your avatar." = "Mewarnai nama, kursor di Nonton Bersama, dan lingkaran di sekeliling avatar Anda.";
+"Come back to Harbor and try casting again." = "Kembali ke Harbor dan coba casting lagi.";
 "Comedy" = "Komedi";
 "Comedy Series" = "Serial Komedi";
 "Comenzar a ver" = "Mulai Menonton";
@@ -593,6 +597,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not cast to {deviceName}." = "Tidak dapat melakukan casting ke {deviceName}.";
 "Could not complete this action. Try again." = "Tindakan ini tidak dapat diselesaikan. Coba lagi.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not identify this title on Trakt." = "Tidak dapat mengidentifikasi judul ini di Trakt.";
@@ -625,6 +630,7 @@
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Tidak dapat menghubungi Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "Tidak dapat menghubungi Trakt. Periksa koneksi Anda lalu coba lagi.";
+"Couldn't reach this Roku" = "Tidak dapat terhubung ke Roku ini";
 "Couldn't read that image. Try a different file." = "Tidak dapat membaca gambar tersebut. Coba file lain.";
 "Couldn't scan that folder." = "Tidak dapat memindai folder tersebut.";
 "Cover Image URL" = "URL Gambar Sampul";
@@ -664,6 +670,7 @@
 "Czech" = "Ceko";
 "César Awards" = "Penghargaan César";
 "Cómo leer tus libros" = "Reading help";
+"DLNA TV" = "TV DLNA";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Mewarnai nama, kursor di Nonton Bersama, dan lingkaran di sekeliling avatar Anda.";
 "Danger" = "Bahaya";
@@ -798,6 +805,7 @@
 "En reproducción" = "Sedang Diputar";
 "En reproducción: {label}" = "Sedang diputar: {label}";
 "Enable Letterboxd integration" = "Aktifkan integrasi Letterboxd";
+"Enable Roku Network Access" = "Aktifkan Akses Jaringan Roku";
 "Enable User Ratings" = "Aktifkan Rating Pengguna";
 "Enable addon" = "Enable addon";
 "Enabled" = "Diaktifkan";
@@ -993,6 +1001,7 @@
 "Harbor default" = "Bawaan Harbor";
 "Harbor dropped {n} suspicious or mismatched result." = "Harbor menyingkirkan {n} hasil yang mencurigakan atau tidak cocok.";
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor menyingkirkan {n} hasil yang mencurigakan atau tidak cocok.";
+"Harbor found something at this address that looked like a Roku, but it didn't respond like one. The device may be offline or another product picked up the same broadcast." = "Harbor menemukan sesuatu di alamat ini yang tampak seperti Roku, tetapi tidak merespons seperti Roku. Perangkat mungkin sedang offline atau produk lain menangkap siaran yang sama.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "Harbor menjaga progres tontonan MyAnimeList Anda tetap tersinkron.";
 "Harbor library" = "Harbor library";
@@ -1056,6 +1065,7 @@
 "Horizontal view" = "Tampilan horizontal";
 "Horror" = "Horor";
 "Horror & Supernatural" = "Horor & Supranatural";
+"Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "Ukuran kartu episode dalam tata letak strip dan kisi. Kartu yang lebih besar menampilkan gambar yang lebih besar.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "Seberapa jauh volume dapat dinaikkan melampaui 100 persen pada bilah volume. Pengaturan yang lebih tinggi dapat membuat volumenya sangat keras.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
@@ -1077,6 +1087,7 @@
 "Idiomas de subtítulos" = "Bahasa subtitle";
 "Idiomas y subtítulos" = "Bahasa & subtitle";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "Jika stream belum mulai diputar dalam waktu yang ditentukan (sumber mati atau addon tidak aktif), coba stream berikutnya yang tersedia secara otomatis. Nonaktif secara default.";
+"If multiple Rokus appear, pick the one matching your TV's name." = "Jika beberapa Roku muncul, pilih yang namanya sesuai dengan nama TV Anda.";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "Bahasa gambar";
 "Imagen" = "Gambar";
@@ -1119,9 +1130,11 @@
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Instal addon Stremio dan katalognya akan muncul di sini sebagai deretan poster yang siap dijelajahi.";
 "Instalar addon" = "Instal addon";
 "Install" = "Instal";
+"Install Media Assistant" = "Instal Asisten Media";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Instal addon Stremio dan katalognya akan muncul di sini sebagai deretan poster yang siap dijelajahi.";
 "Install addon" = "Instal addon";
 "Install all" = "Pasang semua";
+"Install it." = "Instal.";
 "Installed" = "Terinstal";
 "Installing" = "Menginstal";
 "Installing {done} of {total}" = "Memasang {done} dari {total}";
@@ -1260,6 +1273,7 @@
 "MUBI" = "MUBI";
 "Magnet stream" = "Stream magnet";
 "Make it yours" = "Jadikan milik Anda";
+"Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "Pastikan Roku menyala dan terhubung ke Wi-Fi yang sama dengan komputer Anda.";
 "Manage" = "Kelola";
 "Manage profiles" = "Kelola profil";
 "Manga" = "Manga";
@@ -1417,6 +1431,7 @@
 "Ningún proveedor devolvió una fuente" = "Tidak ada sumber yang memberikan stream";
 "Ningún título coincide con estos filtros." = "Tidak ada judul yang cocok dengan filter ini.";
 "No" = "Tidak";
+"No Chromecast, DLNA, or Roku devices found. Make sure your TV is on, woken up, and on the same Wi-Fi." = "Tidak ada perangkat Chromecast, DLNA, atau Roku yang ditemukan. Pastikan TV Anda menyala, tidak dalam mode tidur, dan terhubung ke Wi-Fi yang sama.";
 "No Label" = "Tanpa Label";
 "No Simkl premieres this month" = "Tidak ada tayangan perdana Simkl bulan ini";
 "No background image" = "Tidak ada gambar latar";
@@ -1540,6 +1555,8 @@
 "On Tonight" = "Tayang Malam Ini";
 "On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "Aktif secara default: setelah Anda menonton semua episode yang telah tayang, acara akan keluar dari Lanjutkan Menonton dan kembali saat episode baru dirilis. Nonaktifkan agar acara yang sudah ditonton hingga episode terbaru tetap ada di baris.";
 "On start" = "On start";
+"On your Roku remote, press Home." = "Di remote Roku Anda, tekan Home.";
+"On your Roku, open Streaming Channels from the home screen." = "Di Roku Anda, buka Streaming Channels dari layar utama.";
 "Onboarding" = "Pengenalan awal";
 "One list" = "Satu daftar";
 "Ongoing" = "Berlanjut";
@@ -1558,6 +1575,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "Buka AniList lagi";
 "Open MyAnimeList again" = "Buka MyAnimeList lagi";
+"Open Settings, then System, then Advanced system settings." = "Buka Pengaturan, lalu Sistem, lalu Pengaturan sistem lanjutan.";
 "Open a title and tap Add to Watchlist to save it here." = "Buka judul dan ketuk «Tambah ke Daftar Tontonan» untuk menyimpannya di sini.";
 "Open image" = "Buka gambar";
 "Open in Safari" = "Open in Safari";
@@ -1919,6 +1937,7 @@
 "Richer, more vivid picture with a touch more contrast." = "Gambar lebih kaya dan hidup dengan sedikit tambahan kontras.";
 "Right" = "Kanan";
 "Right to left" = "Kanan ke kiri";
+"Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "Roku mengubah OS-nya sehingga Media Player bawaan tidak dapat menerima video dari aplikasi lain. Media Assistant adalah kanal gratis yang dibuat untuk mengambil alih fungsi tersebut. Cukup instal sekali di Roku Anda, lalu casting akan berfungsi.";
 "Romance" = "Romansa";
 "Romanian" = "Rumania";
 "Rostro" = "Wajah";
@@ -1960,6 +1979,7 @@
 "Saved" = "Tersimpan";
 "Saved app data" = "Saved app data";
 "Saving" = "Menyimpan";
+"Scanning your network…" = "Memindai jaringan Anda…";
 "Sci-Fi" = "Fiksi Ilmiah";
 "Sci-Fi & Fantasy" = "Fiksi Ilmiah & Fantasi";
 "Scores" = "Skor";
@@ -1975,6 +1995,7 @@
 "Search actors, directors…" = "Cari aktor, sutradara…";
 "Search addons" = "Cari addon";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search for \"Media Assistant\" (channel ID 782875, free)." = "Cari \"Media Assistant\" (ID saluran 782875, gratis).";
 "Search is too long." = "Search is too long.";
 "Search languages" = "Cari bahasa";
 "Search music" = "Cari musik";
@@ -2002,6 +2023,7 @@
 "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selección de Harbor" = "Dikurasi Harbor";
+"Select \"Control by mobile apps\" and set Network access to \"Default\"." = "Pilih \"Kontrol melalui aplikasi seluler\" dan atur Akses jaringan ke \"Default\".";
 "Select a subtitle track first." = "Pilih trek subtitle terlebih dahulu.";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
@@ -2190,6 +2212,7 @@
 "Step 4 · Subtitles" = "Langkah 4 · Subtitle";
 "Still watching check-in" = "Still watching check-in";
 "Still watching?" = "Masih menonton?";
+"Stop" = "Hentikan";
 "Stop ({n})" = "Hentikan ({n})";
 "Stop feeding the hero carousel (back to automatic)" = "Berhenti mengisi karusel utama (kembali ke otomatis)";
 "Stop playback" = "Stop playback";
@@ -2614,6 +2637,7 @@
 "Your AniList is empty" = "AniList Anda kosong";
 "Your Discovery Queue" = "Antrean Penemuan Anda";
 "Your Letterboxd password" = "Kata sandi Letterboxd Anda";
+"Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Roku Anda diatur untuk memblokir permintaan kontrol dari aplikasi di jaringan Anda, sehingga Harbor tidak dapat menjangkaunya. Pengaturan ini hanya perlu diubah sekali di Roku.";
 "Your Stremio library + addons sync in untouched." = "Perpustakaan Stremio + addon Anda disinkronkan tanpa perubahan.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Daftar tontonan Trakt Anda kosong, tidak ada yang dapat diimpor.";

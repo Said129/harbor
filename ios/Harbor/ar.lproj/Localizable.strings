@@ -138,6 +138,7 @@
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "يضيف صفًا أسفل «متابعة المشاهدة» يعرض الحلقات التي عُرضت مؤخرًا من المسلسلات التي كنت تشاهدها. تجاهلها واحدة تلو الأخرى أو امسح الصف بالكامل. معطّل افتراضيًا.";
 "Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "يضيف زر \"اسأل الذكاء الاصطناعي\" إلى البحث، لتكتب طلبك بلغة بسيطة ومباشرة.";
 "Adjust the text and background. The preview shows your changes as you make them." = "اضبط النص والخلفية. تُظهر المعاينة تغييراتك فور إجرائها.";
+"Adjust volume on the speaker. Computer volume and boost do not apply." = "اضبط مستوى الصوت على المكبر. لا ينطبق مستوى صوت الكمبيوتر أو تعزيزه.";
 "Administrar" = "إدارة";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "تقديم متابعة المشاهدة إلى الحلقة التالية";
@@ -460,6 +461,7 @@
 "Cards, panels." = "بطاقات، لوحات.";
 "Cargar archivo" = "تحميل ملف";
 "Cargar más" = "تحميل المزيد";
+"Cast to TV or speaker" = "البثّ إلى التلفاز أو السمّاعة";
 "Catalog" = "الكتالوج";
 "Catalogs" = "الكتالوجات";
 "Categories" = "الفئات";
@@ -520,6 +522,7 @@
 "Close" = "إغلاق";
 "Close navigation" = "Close navigation";
 "Close player" = "إغلاق المشغل";
+"Close the cast menu and reopen it to rescan the network." = "أغلق قائمة البث وأعد فتحها لإعادة فحص الشبكة.";
 "Clásica" = "الكلاسيكي";
 "Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "المجموعات";
@@ -532,6 +535,7 @@
 "Colores" = "الألوان";
 "Colors" = "الألوان";
 "Colors your name, your cursor in Watch Together, and the ring around your avatar." = "يلوّن اسمك ومؤشرك في المشاهدة معاً والحلقة المحيطة بصورتك الرمزية.";
+"Come back to Harbor and try casting again." = "عُد إلى Harbor وحاول البث مجددًا.";
 "Comedy" = "كوميديا";
 "Comedy Series" = "مسلسلات كوميدية";
 "Comenzar a ver" = "بدء المشاهدة";
@@ -616,6 +620,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "تعذر تحليل هذا المصدر. تستمر المشاهدة ويمكنك المحاولة مجددًا.";
 "Could not apply the timing. The original subtitle is kept." = "تعذر تطبيق التوقيت. تم الاحتفاظ بالترجمة الأصلية.";
+"Could not cast to {deviceName}." = "تعذر البث إلى {deviceName}.";
 "Could not complete this action. Try again." = "تعذّر إكمال هذا الإجراء. حاول مجددًا.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not identify this title on Trakt." = "تعذّر التعرف على هذا العنوان على Trakt.";
@@ -648,6 +653,7 @@
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "تعذّر الوصول إلى Simkl";
 "Couldn't reach Trakt. Check your connection and try again." = "تعذّر الوصول إلى Trakt. تحقق من اتصالك وحاول مرة أخرى.";
+"Couldn't reach this Roku" = "تعذر الوصول إلى جهاز Roku هذا";
 "Couldn't read that image. Try a different file." = "تعذرت قراءة تلك الصورة. جرّب ملفًا آخر.";
 "Couldn't scan that folder." = "تعذّر فحص ذلك المجلد.";
 "Cover Image URL" = "رابط الصورة (Cover Image URL)";
@@ -687,6 +693,7 @@
 "Czech" = "التشيكية";
 "César Awards" = "جوائز سيزار";
 "Cómo leer tus libros" = "كيفية استخدام المانغا والكتب الإلكترونية";
+"DLNA TV" = "تلفاز DLNA";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "يلوّن اسمك ومؤشرك في المشاهدة معاً والحلقة المحيطة بصورتك الرمزية.";
 "Danger" = "خطر";
@@ -821,6 +828,7 @@
 "En reproducción" = "قيد التشغيل الآن";
 "En reproducción: {label}" = "يُعرض الآن: {label}";
 "Enable Letterboxd integration" = "تفعيل دمج ليتربوكسد (Letterboxd)";
+"Enable Roku Network Access" = "تفعيل وصول Roku إلى الشبكة";
 "Enable User Ratings" = "تفعيل تقييمات المستخدمين";
 "Enable addon" = "Enable addon";
 "Enabled" = "مُفعّلة";
@@ -1017,6 +1025,7 @@
 "Harbor default" = "الافتراضي في Harbor";
 "Harbor dropped {n} suspicious or mismatched result." = "استبعد Harbor عددًا قدره {n} من النتائج المشبوهة أو غير المتطابقة.";
 "Harbor dropped {n} suspicious or mismatched results." = "استبعد Harbor عددًا قدره {n} من النتائج المشبوهة أو غير المتطابقة.";
+"Harbor found something at this address that looked like a Roku, but it didn't respond like one. The device may be offline or another product picked up the same broadcast." = "عثر Harbor في هذا العنوان على جهاز بدا كأنه Roku، لكنه لم يستجب مثله. قد يكون الجهاز غير متصل أو أن منتجًا آخر التقط البث نفسه.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "يبقي Harbor تقدّم مشاهدتك في MyAnimeList متزامنًا.";
 "Harbor library" = "Harbor library";
@@ -1080,6 +1089,7 @@
 "Horizontal view" = "عرض أفقي";
 "Horror" = "رعب";
 "Horror & Supernatural" = "رعب وخوارق";
+"Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "حجم بطاقات الحلقات في تخطيطَي الشريط والشبكة. البطاقات الأكبر تعرض صورًا أكبر.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "إلى أي مدى يمكنك تجاوز 100 بالمئة على شريط الصوت. القيم الأعلى قد تجعل الصوت مرتفعًا جدًا.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
@@ -1101,6 +1111,7 @@
 "Idiomas de subtítulos" = "لغات الترجمة";
 "Idiomas y subtítulos" = "اللغات والترجمات";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "إذا لم يبدأ البثّ في الوقت المحدّد (مصدر ميّت أو إضافة معطّلة)، جرّب البثّ المتاح التالي تلقائيًا. مُعطّل افتراضيًا.";
+"If multiple Rokus appear, pick the one matching your TV's name." = "إذا ظهرت عدة أجهزة Roku، فاختر الجهاز المطابق لاسم تلفزيونك.";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "لغات الصور";
 "Imagen" = "الصورة";
@@ -1143,9 +1154,11 @@
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "ثبّت إضافة Stremio وستظهر كتالوجاتها هنا على هيئة صفوف من الملصقات جاهزة للتصفح.";
 "Instalar addon" = "تثبيت إضافة";
 "Install" = "تثبيت";
+"Install Media Assistant" = "تثبيت Media Assistant";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "ثبّت إضافة Stremio وستظهر كتالوجاتها هنا على هيئة صفوف من الملصقات جاهزة للتصفح.";
 "Install addon" = "تثبيت إضافة";
 "Install all" = "تثبيت الكل";
+"Install it." = "ثبّته.";
 "Installed" = "مثبّتة";
 "Installing" = "جارٍ التثبيت";
 "Installing {done} of {total}" = "جارٍ تثبيت {done} من {total}";
@@ -1284,6 +1297,7 @@
 "MUBI" = "MUBI";
 "Magnet stream" = "بث Magnet";
 "Make it yours" = "اجعلها تخصّك";
+"Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "تأكد من تشغيل Roku واتصاله بشبكة Wi-Fi نفسها المتصل بها حاسوبك.";
 "Manage" = "إدارة";
 "Manage profiles" = "إدارة الملفات الشخصية";
 "Manga" = "المانغا";
@@ -1444,6 +1458,7 @@
 "Ningún proveedor devolvió una fuente" = "لم يرجع أي مصدر نتائج";
 "Ningún título coincide con estos filtros." = "لا توجد عناوين تطابق هذه المرشّحات.";
 "No" = "لا";
+"No Chromecast, DLNA, or Roku devices found. Make sure your TV is on, woken up, and on the same Wi-Fi." = "لم يُعثر على أجهزة Chromecast أو DLNA أو Roku. تأكّد من أن التلفاز قيد التشغيل ونشط وعلى الشبكة اللاسلكية نفسها.";
 "No Label" = "بدون تسمية";
 "No Simkl premieres this month" = "لا عروض أولى على Simkl هذا الشهر";
 "No background image" = "بدون صورة خلفية";
@@ -1568,6 +1583,8 @@
 "On Tonight" = "يعرض الليلة";
 "On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "مفعّل افتراضيًا: بمجرد مشاهدتك كل حلقة عُرضت، يغادر المسلسل متابعة المشاهدة ويعود عند نزول حلقة جديدة. عطّله لإبقاء المسلسلات المكتملة في الصف.";
 "On start" = "On start";
+"On your Roku remote, press Home." = "على جهاز تحكم Roku، اضغط على Home.";
+"On your Roku, open Streaming Channels from the home screen." = "على Roku، افتح Streaming Channels من الشاشة الرئيسية.";
 "Onboarding" = "الإعداد الأولي";
 "One list" = "قائمة واحدة";
 "Ongoing" = "مستمر";
@@ -1586,6 +1603,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "افتح AniList مرة أخرى";
 "Open MyAnimeList again" = "افتح MyAnimeList مرة أخرى";
+"Open Settings, then System, then Advanced system settings." = "افتح Settings، ثم System، ثم Advanced system settings.";
 "Open a title and tap Add to Watchlist to save it here." = "افتح عنوانًا واضغط على «إضافة إلى قائمة المشاهدة» لحفظه هنا.";
 "Open image" = "فتح الصورة";
 "Open in Safari" = "Open in Safari";
@@ -1950,6 +1968,7 @@
 "Richer, more vivid picture with a touch more contrast." = "صورة أغنى وأكثر حيوية مع القليل من التباين الإضافي.";
 "Right" = "يمين";
 "Right to left" = "من اليمين إلى اليسار";
+"Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "غيّرت Roku نظام التشغيل لديها لمنع Media Player المدمج من استقبال الفيديو من التطبيقات الأخرى. Media Assistant قناة مجانية صُممت لتولي هذه المهمة. ثبّتها مرة واحدة على جهاز Roku وسيعمل الإرسال.";
 "Romance" = "رومانسي";
 "Romanian" = "الرومانية";
 "Rostro" = "التعبئة";
@@ -1993,6 +2012,7 @@
 "Saved" = "محفوظ";
 "Saved app data" = "Saved app data";
 "Saving" = "جارٍ الحفظ";
+"Scanning your network…" = "جارٍ فحص شبكتك…";
 "Sci-Fi" = "خيال علمي";
 "Sci-Fi & Fantasy" = "خيال علمي وفانتازيا";
 "Scores" = "التقييمات";
@@ -2008,6 +2028,7 @@
 "Search actors, directors…" = "ابحث عن ممثلين ومخرجين…";
 "Search addons" = "ابحث عن الإضافات";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search for \"Media Assistant\" (channel ID 782875, free)." = "ابحث عن \"Media Assistant\" (معرّف القناة 782875، مجانًا).";
 "Search is too long." = "Search is too long.";
 "Search languages" = "ابحث في اللغات";
 "Search music" = "البحث في الموسيقى";
@@ -2035,6 +2056,7 @@
 "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas." = "اختر ترجمة خارجية بصيغة SRT أو VTT تحتوي على أربعة أسطر على الأقل.";
 "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto." = "اختر ترجمة خارجية SRT/VTT دون ترجمة مزدوجة، لفيديو مدته دقيقة على الأقل.";
 "Selección de Harbor" = "اختيار Harbor";
+"Select \"Control by mobile apps\" and set Network access to \"Default\"." = "اختر \"التحكم عبر تطبيقات الجوال\" واضبط الوصول إلى الشبكة على \"افتراضي\".";
 "Select a subtitle track first." = "اختر مسار ترجمة أولًا.";
 "Select an external SRT or VTT subtitle with at least four lines." = "اختر ترجمة خارجية بصيغة SRT أو VTT تحتوي على أربعة أسطر على الأقل.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "اختر ترجمة خارجية SRT/VTT دون ترجمة مزدوجة، لفيديو مدته دقيقة على الأقل.";
@@ -2225,6 +2247,7 @@
 "Step 4 · Subtitles" = "الخطوة 4 · الترجمات";
 "Still watching check-in" = "Still watching check-in";
 "Still watching?" = "هل ما زلت تشاهد؟";
+"Stop" = "إيقاف";
 "Stop ({n})" = "إيقاف ({n})";
 "Stop feeding the hero carousel (back to automatic)" = "إيقاف تغذية شريط العرض الرئيسي (العودة إلى التلقائي)";
 "Stop playback" = "Stop playback";
@@ -2655,6 +2678,7 @@
 "Your AniList is empty" = "AniList الخاص بك فارغ";
 "Your Discovery Queue" = "طابور الاستكشاف الخاص بك";
 "Your Letterboxd password" = "كلمة مرور ليتربوكسد الخاصة بك";
+"Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "جهاز Roku مضبوط على حظر طلبات التحكم من التطبيقات على شبكتك، لذا لا يستطيع Harbor الوصول إليه. ما عليك سوى تغيير هذا الإعداد مرة واحدة على Roku.";
 "Your Stremio library + addons sync in untouched." = "تتزامن مكتبة Stremio وإضافاتك كما هي دون تغيير.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "قائمة المشاهدة في Trakt فارغة، لا شيء لاستيراده.";

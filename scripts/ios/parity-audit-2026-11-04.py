@@ -281,6 +281,20 @@ BEHAVIORS = expand("""
 273 D local episode discovery from file names (8 Nov, written by Haiku, CI run 31 green, 80 cases)
 314 P Wikidata awards for titles; people awards are not ported (8 Nov, written by Haiku, CI run 31 green, 80 cases)
 345 P content notifications as local notifications for upcoming episodes and releases, scheduled while the app is open; Discord and Telegram webhooks stay excluded (8 Nov, written by Haiku, CI run 31 green, 80 cases)
+7 D Critics Pick: the daily pick with reviews and scores on Discover; cast chips, stills and genre chips are left out (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))
+28 D search Live TV channels from the search box (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))
+53 P addon sharing: the stremio:// link is shared from the addon detail; opening an incoming link is not wired (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))
+57 D addon recommendations on the addon detail (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))
+224 D region top networks rows on the Live TV channel list (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))
+240 P cast control for Roku and DLNA renderers: play, pause, seek where the device supports it, stop, volume; Chromecast is not ported (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))
+241 D resume locally after a Roku or DLNA cast stops (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))
+242 P DLNA devices are added by their description address; SSDP multicast needs an entitlement iOS apps do not get freely (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))
+243 P DLNA vendor handling in the load request (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))
+244 D DLNA transport controls through AVTransport (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))
+246 D Roku discovery by Bonjour, a local network probe or a typed address, and playback through its media channel (8 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))
+247 X cast HLS transcoding: Desktop re-encodes with a local ffmpeg server that a phone does not have
+248 X receiver compatible re-encode: needs the same local transcoder
+249 X cast subtitle conversion and serving: needs the local cast server
 """)
 
 SETTINGS = expand("""

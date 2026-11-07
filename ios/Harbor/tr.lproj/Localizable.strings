@@ -131,6 +131,7 @@
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "İzlemeye Devam Et'in altına, hâlihazırda izlediğiniz dizilerin yakın zamanda yayımlanan bölümlerini listeleyen bir satır ekler. Bölümleri tek tek kaldırabilir veya satırın tamamını temizleyebilirsiniz. Varsayılan olarak kapalıdır.";
 "Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "Aramaya bir \"AI'a Sor\" düğmesi ekler, böylece isteklerinizi doğal dille yazabilirsiniz.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Metni ve arka planı ayarlayın. Önizleme yaptığınız değişiklikleri anında gösterir.";
+"Adjust volume on the speaker. Computer volume and boost do not apply." = "Sesi hoparlörden ayarlayın. Bilgisayar ses düzeyi ve güçlendirmesi uygulanmaz.";
 "Administrar" = "Yönet";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "İzlemeye Devam Et'i sonraki bölüme ilerlet";
@@ -441,6 +442,7 @@
 "Cards, panels." = "Kartlar, paneller.";
 "Cargar archivo" = "Dosya yükle";
 "Cargar más" = "Daha fazla yükle";
+"Cast to TV or speaker" = "TV'ye veya hoparlöre aktar";
 "Catalog" = "Katalog";
 "Catalogs" = "Kataloglar";
 "Categories" = "Kategoriler";
@@ -501,6 +503,7 @@
 "Close" = "Kapat";
 "Close navigation" = "Close navigation";
 "Close player" = "Oynatıcıyı kapat";
+"Close the cast menu and reopen it to rescan the network." = "Ağı yeniden taramak için aktarma menüsünü kapatıp tekrar açın.";
 "Clásica" = "Klasik";
 "Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "Koleksiyonlar";
@@ -513,6 +516,7 @@
 "Colores" = "Renkler";
 "Colors" = "Renkler";
 "Colors your name, your cursor in Watch Together, and the ring around your avatar." = "Adını, Birlikte İzle içindeki imlecini ve avatarının çevresindeki halkayı renklendirir.";
+"Come back to Harbor and try casting again." = "Harbor'a dönüp tekrar aktarmayı deneyin.";
 "Comedy" = "Komedi";
 "Comedy Series" = "Komedi Dizileri";
 "Comenzar a ver" = "İzlemeye Başla";
@@ -593,6 +597,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not cast to {deviceName}." = "{deviceName} cihazına aktarılamadı.";
 "Could not complete this action. Try again." = "Bu işlem tamamlanamadı. Tekrar deneyin.";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not identify this title on Trakt." = "Bu içerik Trakt'ta tanımlanamadı.";
@@ -625,6 +630,7 @@
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Simkl'a ulaşılamadı";
 "Couldn't reach Trakt. Check your connection and try again." = "Trakt'a erişilemedi. Bağlantınızı kontrol edip tekrar deneyin.";
+"Couldn't reach this Roku" = "Bu Roku'ya erişilemedi";
 "Couldn't read that image. Try a different file." = "Bu görüntü okunamadı. Başka bir dosya deneyin.";
 "Couldn't scan that folder." = "Bu klasör taranamadı.";
 "Cover Image URL" = "Kapak Görseli URL'si";
@@ -664,6 +670,7 @@
 "Czech" = "Çekçe";
 "César Awards" = "César Ödülleri";
 "Cómo leer tus libros" = "Reading help";
+"DLNA TV" = "DLNA TV";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Adını, Birlikte İzle içindeki imlecini ve avatarının çevresindeki halkayı renklendirir.";
 "Danger" = "Tehlike";
@@ -798,6 +805,7 @@
 "En reproducción" = "Şimdi oynatılıyor";
 "En reproducción: {label}" = "Şimdi oynatılıyor: {label}";
 "Enable Letterboxd integration" = "Letterboxd entegrasyonunu etkinleştir";
+"Enable Roku Network Access" = "Roku Ağ Erişimini Etkinleştir";
 "Enable User Ratings" = "Kullanıcı Puanlarını Etkinleştir";
 "Enable addon" = "Enable addon";
 "Enabled" = "Etkin";
@@ -993,6 +1001,7 @@
 "Harbor default" = "Harbor varsayılanı";
 "Harbor dropped {n} suspicious or mismatched result." = "Harbor, şüpheli veya eşleşmeyen {n} sonucu eledi.";
 "Harbor dropped {n} suspicious or mismatched results." = "Harbor, şüpheli veya eşleşmeyen {n} sonucu eledi.";
+"Harbor found something at this address that looked like a Roku, but it didn't respond like one. The device may be offline or another product picked up the same broadcast." = "Harbor bu adreste Roku'ya benzeyen bir cihaz buldu ancak cihaz bir Roku gibi yanıt vermedi. Cihaz çevrimdışı olabilir veya aynı yayını başka bir ürün algılamış olabilir.";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "Harbor, MyAnimeList izleme ilerlemenizi senkronize tutar.";
 "Harbor library" = "Harbor library";
@@ -1056,6 +1065,7 @@
 "Horizontal view" = "Yatay görünüm";
 "Horror" = "Korku";
 "Horror & Supernatural" = "Korku ve Doğaüstü";
+"Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "Şerit ve ızgara düzenlerindeki bölüm kartlarının boyutu. Daha büyük kartlar, görselleri daha büyük gösterir.";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "Ses çubuğunda yüzde 100'ün ne kadar üzerine çıkabileceğinizi belirleyin. Yüksek ayarlar sesi çok fazla yükseltebilir.";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
@@ -1077,6 +1087,7 @@
 "Idiomas de subtítulos" = "Altyazı dilleri";
 "Idiomas y subtítulos" = "Diller ve altyazılar";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "Bir yayın zamanında oynatılmaya başlamazsa (çalışmayan bir kaynak veya devre dışı bir eklenti nedeniyle), sonraki kullanılabilir yayın otomatik olarak denenir. Varsayılan olarak kapalıdır.";
+"If multiple Rokus appear, pick the one matching your TV's name." = "Birden fazla Roku görünüyorsa TV'nizin adıyla eşleşeni seçin.";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "Görsel dilleri";
 "Imagen" = "Resim";
@@ -1119,9 +1130,11 @@
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Bir Stremio eklentisi yüklediğinizde eklentinin katalogları, göz atmaya hazır poster şeritleri olarak burada görünür.";
 "Instalar addon" = "Eklentiyi yükle";
 "Install" = "Yükle";
+"Install Media Assistant" = "Media Assistant'ı yükle";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Bir Stremio eklentisi yüklediğinizde eklentinin katalogları, göz atmaya hazır poster şeritleri olarak burada görünür.";
 "Install addon" = "Eklentiyi yükle";
 "Install all" = "Tümünü yükle";
+"Install it." = "Yükleyin.";
 "Installed" = "Yüklü";
 "Installing" = "Yükleniyor";
 "Installing {done} of {total}" = "{total} içinden {done} yükleniyor";
@@ -1260,6 +1273,7 @@
 "MUBI" = "MUBI";
 "Magnet stream" = "Magnet yayını";
 "Make it yours" = "Kendinize göre düzenleyin";
+"Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "Roku'nun açık ve bilgisayarınızla aynı Wi-Fi ağına bağlı olduğundan emin olun.";
 "Manage" = "Yönet";
 "Manage profiles" = "Profilleri yönet";
 "Manga" = "Manga";
@@ -1417,6 +1431,7 @@
 "Ningún proveedor devolvió una fuente" = "Hiçbir kaynak yayın döndürmedi";
 "Ningún título coincide con estos filtros." = "Bu filtrelerle eşleşen içerik yok.";
 "No" = "Hayır";
+"No Chromecast, DLNA, or Roku devices found. Make sure your TV is on, woken up, and on the same Wi-Fi." = "Chromecast, DLNA veya Roku cihazı bulunamadı. TV'nizin açık ve uyku modunda olmadığından, ayrıca aynı Wi-Fi ağına bağlı olduğundan emin olun.";
 "No Label" = "Etiket Yok";
 "No Simkl premieres this month" = "Bu ay Simkl'da prömiyer yok";
 "No background image" = "Arka plan görseli yok";
@@ -1540,6 +1555,8 @@
 "On Tonight" = "Bu Akşam Yayında";
 "On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "Varsayılan olarak açık: Yayınlanan tüm bölümleri izlediğinizde dizi İzlemeye Devam Et'ten kaldırılır ve yeni bir bölüm yayınlandığında geri döner. Yayınlanan tüm bölümleri izlenmiş dizileri sırada tutmak için kapatın.";
 "On start" = "On start";
+"On your Roku remote, press Home." = "Roku kumandanızda Ana Sayfa düğmesine basın.";
+"On your Roku, open Streaming Channels from the home screen." = "Roku'nuzun ana ekranından Yayın Kanalları'nı açın.";
 "Onboarding" = "Başlangıç rehberi";
 "One list" = "Tek liste";
 "Ongoing" = "Devam ediyor";
@@ -1558,6 +1575,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "AniList'i yeniden aç";
 "Open MyAnimeList again" = "MyAnimeList'i yeniden aç";
+"Open Settings, then System, then Advanced system settings." = "Ayarlar'ı, ardından Sistem'i ve Gelişmiş sistem ayarları'nı açın.";
 "Open a title and tap Add to Watchlist to save it here." = "Bir başlığı açıp buraya kaydetmek için «İzleme listesine ekle» seçeneğine dokun.";
 "Open image" = "Görseli aç";
 "Open in Safari" = "Open in Safari";
@@ -1919,6 +1937,7 @@
 "Richer, more vivid picture with a touch more contrast." = "Biraz daha fazla kontrastla daha zengin ve canlı bir görüntü sunar.";
 "Right" = "Sağ";
 "Right to left" = "Sağdan sola";
+"Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "Roku, yerleşik Media Player'ın diğer uygulamalardan video almasını engellemek için işletim sistemini değiştirdi. Media Assistant, bu görevi devralmak üzere geliştirilmiş ücretsiz bir kanaldır. Roku'nuza bir kez yükledikten sonra aktarım yapabilirsiniz.";
 "Romance" = "Romantik";
 "Romanian" = "Rumence";
 "Rostro" = "Yüz";
@@ -1960,6 +1979,7 @@
 "Saved" = "Kaydedildi";
 "Saved app data" = "Saved app data";
 "Saving" = "Kaydediliyor";
+"Scanning your network…" = "Ağınız taranıyor…";
 "Sci-Fi" = "Bilim Kurgu";
 "Sci-Fi & Fantasy" = "Bilim Kurgu ve Fantastik";
 "Scores" = "Puanlar";
@@ -1975,6 +1995,7 @@
 "Search actors, directors…" = "Oyuncu, yönetmen ara…";
 "Search addons" = "Eklenti ara";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search for \"Media Assistant\" (channel ID 782875, free)." = "\"Media Assistant\"ı arayın (kanal kimliği 782875, ücretsiz).";
 "Search is too long." = "Search is too long.";
 "Search languages" = "Dil ara";
 "Search music" = "Müzik ara";
@@ -2002,6 +2023,7 @@
 "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selección de Harbor" = "Harbor seçkisi";
+"Select \"Control by mobile apps\" and set Network access to \"Default\"." = "\"Mobil uygulamalarla kontrol\"ü seçip Ağ erişimi'ni \"Varsayılan\" olarak ayarlayın.";
 "Select a subtitle track first." = "Önce bir altyazı parçası seçin.";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
@@ -2190,6 +2212,7 @@
 "Step 4 · Subtitles" = "4. Adım · Altyazılar";
 "Still watching check-in" = "Still watching check-in";
 "Still watching?" = "Hâlâ izliyor musunuz?";
+"Stop" = "Durdur";
 "Stop ({n})" = "Durdur ({n})";
 "Stop feeding the hero carousel (back to automatic)" = "Vitrin karuseline içerik sağlamayı durdur (otomatik seçime dön)";
 "Stop playback" = "Stop playback";
@@ -2614,6 +2637,7 @@
 "Your AniList is empty" = "AniList'iniz boş";
 "Your Discovery Queue" = "Keşif Kuyruğunuz";
 "Your Letterboxd password" = "Letterboxd parolanız";
+"Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Roku'nuz, ağınızdaki uygulamalardan gelen kontrol isteklerini engelleyecek şekilde ayarlandığından Harbor cihaza erişemiyor. Bu ayarı Roku'da yalnızca bir kez yapmanız gerekir.";
 "Your Stremio library + addons sync in untouched." = "Stremio kütüphaneniz ve eklentileriniz değişmeden eşitlenir.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Trakt izleme listeniz boş, içe aktarılacak bir şey yok.";

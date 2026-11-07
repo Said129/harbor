@@ -131,6 +131,7 @@
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "「視聴を続ける」の下に、視聴中の作品で最近放送されたエピソードを表示する列を追加します。1件ずつ非表示にすることも、列全体を消去することもできます。デフォルトではオフです。";
 "Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "検索に「AIに聞く」ボタンを追加し、自然な言葉でリクエストを入力できるようにします。";
 "Adjust the text and background. The preview shows your changes as you make them." = "文字と背景を調整します。変更がその場でプレビューに反映されます。";
+"Adjust volume on the speaker. Computer volume and boost do not apply." = "音量はスピーカー側で調整してください。コンピューターの音量や増幅は適用されません。";
 "Administrar" = "管理";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "「視聴を続ける」を次のエピソードに進める";
@@ -441,6 +442,7 @@
 "Cards, panels." = "カード、パネル。";
 "Cargar archivo" = "ファイルを読み込む";
 "Cargar más" = "さらに読み込む";
+"Cast to TV or speaker" = "テレビやスピーカーにキャスト";
 "Catalog" = "カタログ";
 "Catalogs" = "カタログ";
 "Categories" = "カテゴリー";
@@ -501,6 +503,7 @@
 "Close" = "閉じる";
 "Close navigation" = "Close navigation";
 "Close player" = "プレイヤーを閉じる";
+"Close the cast menu and reopen it to rescan the network." = "ネットワークを再スキャンするには、キャストメニューを閉じてから開き直してください。";
 "Clásica" = "クラシック";
 "Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "コレクション";
@@ -513,6 +516,7 @@
 "Colores" = "カラー";
 "Colors" = "カラー";
 "Colors your name, your cursor in Watch Together, and the ring around your avatar." = "名前、同時視聴中のカーソル、アバターの周囲のリングの色を設定します。";
+"Come back to Harbor and try casting again." = "Harborに戻り、もう一度キャストしてください。";
 "Comedy" = "コメディ";
 "Comedy Series" = "コメディシリーズ";
 "Comenzar a ver" = "視聴を開始";
@@ -593,6 +597,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not cast to {deviceName}." = "{deviceName}にキャストできませんでした。";
 "Could not complete this action. Try again." = "この操作を完了できませんでした。もう一度お試しください。";
 "Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not identify this title on Trakt." = "Traktでこの作品を特定できませんでした。";
@@ -625,6 +630,7 @@
 "Couldn't reach MyAnimeList." = "Couldn't reach MyAnimeList.";
 "Couldn't reach Simkl" = "Simklに接続できませんでした";
 "Couldn't reach Trakt. Check your connection and try again." = "Traktに接続できませんでした。接続を確認して、もう一度お試しください。";
+"Couldn't reach this Roku" = "このRokuに接続できませんでした";
 "Couldn't read that image. Try a different file." = "画像を読み込めませんでした。別のファイルをお試しください。";
 "Couldn't scan that folder." = "そのフォルダーをスキャンできませんでした。";
 "Cover Image URL" = "カバー画像URL";
@@ -664,6 +670,7 @@
 "Czech" = "チェコ語";
 "César Awards" = "セザール賞";
 "Cómo leer tus libros" = "Reading help";
+"DLNA TV" = "DLNAテレビ";
 "DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "名前、同時視聴中のカーソル、アバターの周囲のリングの色を設定します。";
 "Danger" = "危険";
@@ -798,6 +805,7 @@
 "En reproducción" = "再生中";
 "En reproducción: {label}" = "再生中: {label}";
 "Enable Letterboxd integration" = "Letterboxd連携を有効にする";
+"Enable Roku Network Access" = "Rokuのネットワークアクセスを有効化";
 "Enable User Ratings" = "ユーザー評価を有効化";
 "Enable addon" = "Enable addon";
 "Enabled" = "有効";
@@ -993,6 +1001,7 @@
 "Harbor default" = "Harborのデフォルト";
 "Harbor dropped {n} suspicious or mismatched result." = "Harborは不審または不一致の検索結果を{n}件除外しました。";
 "Harbor dropped {n} suspicious or mismatched results." = "Harborは不審または不一致の検索結果を{n}件除外しました。";
+"Harbor found something at this address that looked like a Roku, but it didn't respond like one. The device may be offline or another product picked up the same broadcast." = "このアドレスでRokuらしきデバイスが見つかりましたが、Rokuとして応答しませんでした。デバイスがオフラインか、別の製品が同じブロードキャストに反応した可能性があります。";
 "Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor keeps your MyAnimeList watch progress in sync." = "HarborがMyAnimeListの視聴進捗を同期します。";
 "Harbor library" = "Harbor library";
@@ -1056,6 +1065,7 @@
 "Horizontal view" = "横表示";
 "Horror" = "ホラー";
 "Horror & Supernatural" = "ホラー＆超常現象";
+"Host or address" = "Host or address";
 "How big episode cards are in the strip and grid layouts. Bigger cards show larger artwork." = "ストリップ表示とグリッド表示のエピソードカードの大きさです。大きくするとアートワークも大きく表示されます。";
 "How far you can boost past 100 percent on the volume bar. Higher settings can get very loud." = "音量バーで100%を超えて増幅できる上限です。高く設定すると非常に大きな音になる場合があります。";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
@@ -1077,6 +1087,7 @@
 "Idiomas de subtítulos" = "字幕言語";
 "Idiomas y subtítulos" = "言語と字幕";
 "If a stream hasn't started playing in time (a dead source or an addon that's down), automatically try the next available stream. Off by default." = "ストリームが時間内に再生を開始しない場合（無効なソースや停止中のアドオンなど）、次に利用できるストリームを自動的に試します。初期設定ではオフです。";
+"If multiple Rokus appear, pick the one matching your TV's name." = "複数のRokuが表示された場合は、テレビの名前と一致するものを選んでください。";
 "Image cache cleared." = "Image cache cleared.";
 "Image languages" = "画像の言語";
 "Imagen" = "映像";
@@ -1119,9 +1130,11 @@
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Stremioアドオンをインストールすると、そのカタログがポスターの一覧としてここに表示され、すぐに閲覧できます。";
 "Instalar addon" = "アドオンをインストール";
 "Install" = "インストール";
+"Install Media Assistant" = "Media Assistantをインストール";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Stremioアドオンをインストールすると、そのカタログがポスターの一覧としてここに表示され、すぐに閲覧できます。";
 "Install addon" = "アドオンをインストール";
 "Install all" = "すべてインストール";
+"Install it." = "インストールしてください。";
 "Installed" = "インストール済み";
 "Installing" = "インストール中";
 "Installing {done} of {total}" = "{total}件中{done}件をインストール中";
@@ -1260,6 +1273,7 @@
 "MUBI" = "MUBI";
 "Magnet stream" = "マグネットストリーム";
 "Make it yours" = "自分好みにカスタマイズ";
+"Make sure the Roku is powered on and on the same Wi-Fi as your computer." = "Rokuの電源が入っていて、パソコンと同じWi-Fiに接続されていることを確認してください。";
 "Manage" = "管理";
 "Manage profiles" = "プロフィールを管理";
 "Manga" = "マンガ";
@@ -1417,6 +1431,7 @@
 "Ningún proveedor devolvió una fuente" = "どのソースからもストリームが返されませんでした";
 "Ningún título coincide con estos filtros." = "この条件に一致する作品はありません。";
 "No" = "いいえ";
+"No Chromecast, DLNA, or Roku devices found. Make sure your TV is on, woken up, and on the same Wi-Fi." = "Chromecast、DLNA、Rokuデバイスが見つかりません。テレビの電源が入っていて、スリープが解除され、同じWi-Fiに接続されていることを確認してください。";
 "No Label" = "ラベルなし";
 "No Simkl premieres this month" = "今月Simklで配信開始する作品はありません";
 "No background image" = "背景画像なし";
@@ -1540,6 +1555,8 @@
 "On Tonight" = "今夜放送";
 "On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row." = "デフォルトではオンです。配信済みの全エピソードを視聴すると、その番組は「視聴を続ける」から非表示になり、新しいエピソードの配信時に戻ります。視聴済みの番組を列に残すにはオフにしてください。";
 "On start" = "On start";
+"On your Roku remote, press Home." = "Rokuリモコンのホームボタンを押します。";
+"On your Roku, open Streaming Channels from the home screen." = "Rokuのホーム画面から「ストリーミングチャンネル」を開きます。";
 "Onboarding" = "初期ガイド";
 "One list" = "1件のリスト";
 "Ongoing" = "連載中";
@@ -1558,6 +1575,7 @@
 "Opciones del reproductor" = "Player options";
 "Open AniList again" = "AniListをもう一度開く";
 "Open MyAnimeList again" = "MyAnimeListをもう一度開く";
+"Open Settings, then System, then Advanced system settings." = "「設定」、「システム」、「システムの詳細設定」の順に開きます。";
 "Open a title and tap Add to Watchlist to save it here." = "作品を開き、「ウォッチリストに追加」をタップするとここに保存されます。";
 "Open image" = "画像を開く";
 "Open in Safari" = "Open in Safari";
@@ -1919,6 +1937,7 @@
 "Richer, more vivid picture with a touch more contrast." = "コントラストを少し上げ、より深みのある鮮やかな映像にします。";
 "Right" = "右揃え";
 "Right to left" = "右から左";
+"Roku changed its OS to block the built-in Media Player from accepting video from other apps. Media Assistant is a free channel built to take over that job. One-time install on your Roku and casting works." = "RokuのOS変更により、内蔵Media Playerは他のアプリから動画を受け取れなくなりました。Media Assistantは、その役割を代わりに担う無料チャンネルです。Rokuに一度インストールすれば、キャストできるようになります。";
 "Romance" = "恋愛";
 "Romanian" = "ルーマニア語";
 "Rostro" = "塗り";
@@ -1960,6 +1979,7 @@
 "Saved" = "保存済み";
 "Saved app data" = "Saved app data";
 "Saving" = "保存中";
+"Scanning your network…" = "ネットワークをスキャン中…";
 "Sci-Fi" = "SF";
 "Sci-Fi & Fantasy" = "SF＆ファンタジー";
 "Scores" = "スコア";
@@ -1975,6 +1995,7 @@
 "Search actors, directors…" = "俳優、監督を検索…";
 "Search addons" = "アドオンを検索";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search for \"Media Assistant\" (channel ID 782875, free)." = "「Media Assistant」（チャンネルID 782875、無料）を検索してください。";
 "Search is too long." = "Search is too long.";
 "Search languages" = "言語を検索";
 "Search music" = "音楽を検索";
@@ -2002,6 +2023,7 @@
 "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selección de Harbor" = "Harborセレクト";
+"Select \"Control by mobile apps\" and set Network access to \"Default\"." = "「モバイルアプリでの操作」を選択し、ネットワークアクセスを「デフォルト」に設定してください。";
 "Select a subtitle track first." = "先に字幕トラックを選択してください。";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
@@ -2190,6 +2212,7 @@
 "Step 4 · Subtitles" = "ステップ4 · 字幕";
 "Still watching check-in" = "Still watching check-in";
 "Still watching?" = "まだ視聴中ですか？";
+"Stop" = "停止";
 "Stop ({n})" = "停止（{n}）";
 "Stop feeding the hero carousel (back to automatic)" = "ヒーローカルーセルへの表示をやめる（自動選択に戻す）";
 "Stop playback" = "Stop playback";
@@ -2614,6 +2637,7 @@
 "Your AniList is empty" = "AniListは空です";
 "Your Discovery Queue" = "あなたの発見キュー";
 "Your Letterboxd password" = "Letterboxdのパスワード";
+"Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Rokuがネットワーク上のアプリからの操作リクエストをブロックする設定になっているため、Harborから接続できません。Rokuで一度だけ設定を変更してください。";
 "Your Stremio library + addons sync in untouched." = "Stremioのライブラリとアドオンをそのまま同期。";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Traktのウォッチリストは空です。インポートする項目はありません。";
