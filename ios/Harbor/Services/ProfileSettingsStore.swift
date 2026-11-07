@@ -61,7 +61,7 @@ struct ContinueWatchingPreferences: Sendable {
         "iphone.theme.library", "iphone.theme.backgroundFile", "iphone.theme.backgroundDim",
         "iphone.player-options.v1", "mpvHwdec", "resumePlayback", "resumePrompt", "subtitleAutoSync",
         "streamFilterLevel", "streams.addonOrder", "streams.automatic", "keepSourceNextEpisode", "autoNextStreamOnStall", "autoNextStreamOnStallSec", "seasonSourceLock", "streams.excludeCamera", "streams.maximum", "streams.minimum",
-        "streams.addonTimeoutSec", "streams.mode", "streams.priority", "streams.pickerLayout", "streams.pickerShowFilename", "streams.fullDescription", "streams.pickerRefreshNextToBack", "streams.languages", "streams.requireLanguage", "streams.rememberLast", "customStreamFilters", "activeStreamFilterId", "customSleepMinutes", "customPlaybackSpeeds", "anilistAutoSync", "malAutoSync",
+        "streams.addonTimeoutSec", "streams.mode", "streams.priority", "streams.pickerLayout", "streams.pickerShowFilename", "streams.fullDescription", "streams.pickerRefreshNextToBack", "streams.languages", "streams.requireLanguage", "streams.rememberLast", "customStreamFilters", "activeStreamFilterId", "customSleepMinutes", "customPlaybackSpeeds", "anilistAutoSync", "malAutoSync", "animeFavoriteGenres", "animeExcludeOrigins", "animeHideWatchedPicks",
         "pluginsEnabled", "pluginsGroupByRepo", "blockTrackers", "hideContent.adult",
         "metadata.region", "metadata.language", "metadata.translateTitles", "cwPerProfile", "downloadsCellular",
         "profilePromptInterval", "defaultProfileId", "tvdbSeasonType", "tvdbOrderPanel",

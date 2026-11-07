@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Desktop's MyAnimeList panel (`settings/mal-panel.tsx`): connect with a pasted code, sync watch progress.
-/// The lists and the avatar option of that panel are not ported.
+/// The lists open from here (`MyAnimeListListsView`, read-only); the avatar option of that panel is not ported.
 struct MyAnimeListSettingsView: View {
     @State private var account: MALAccount
     @State private var connectModel: MALConnectModel
@@ -9,11 +9,20 @@ struct MyAnimeListSettingsView: View {
     @State private var disconnecting = false
     @State private var loadFailed = false
     @AppStorage("malAutoSync") private var autoSync = true
+    private let app: AppModel
     @MainActor init(app: AppModel) {
+        self.app = app
         let account = MALAccount.forOwner(app.personalOwner)
         _account = State(initialValue: account); _connectModel = State(initialValue: MALConnectModel(account: account))
     }
     private func text(_ key: String, _ variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables) }
+    private var listsRowLabel: some View {
+        HStack(spacing: 12) {
+            Text(text("Lists")).font(HarborTheme.font(16, weight: .semibold))
+            Spacer(minLength: 0)
+            Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(.secondary)
+        }.frame(minHeight: 44).contentShape(Rectangle())
+    }
 
     var body: some View {
         ScrollView {
@@ -35,6 +44,8 @@ struct MyAnimeListSettingsView: View {
                         Link(destination: profile) { Label("myanimelist.net", systemImage: "arrow.up.right.square").frame(minHeight: 44) }
                             .accessibilityIdentifier("mal-profile")
                     }
+                    NavigationLink { MyAnimeListListsView(app: app) } label: { listsRowLabel }
+                        .accessibilityIdentifier("mal-lists")
                     Text(text("Harbor keeps your MyAnimeList watch progress in sync.")).font(.callout).foregroundStyle(.secondary)
                     HarborSettingsToggle(text("Sync watch progress"),
                                          note: text("Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have."),
