@@ -5,36 +5,36 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 125,
-      "partial": 210,
-      "missing": 62,
+      "ported": 133,
+      "partial": 213,
+      "missing": 51,
       "excluded": 41,
       "counted": 397,
-      "weighted_percent": 57.9,
-      "ported_only_percent": 31.5,
-      "ported_or_partial_percent": 84.4
+      "weighted_percent": 60.3,
+      "ported_only_percent": 33.5,
+      "ported_or_partial_percent": 87.2
     },
     "settings": {
       "total": 511,
-      "ported": 151,
-      "partial": 24,
-      "missing": 166,
-      "excluded": 170,
-      "counted": 341,
-      "weighted_percent": 47.8,
-      "ported_only_percent": 44.3,
-      "ported_or_partial_percent": 51.3
+      "ported": 176,
+      "partial": 31,
+      "missing": 128,
+      "excluded": 176,
+      "counted": 335,
+      "weighted_percent": 57.2,
+      "ported_only_percent": 52.5,
+      "ported_or_partial_percent": 61.8
     },
     "all": {
       "total": 949,
-      "ported": 276,
-      "partial": 234,
-      "missing": 228,
-      "excluded": 211,
-      "counted": 738,
-      "weighted_percent": 53.3,
-      "ported_only_percent": 37.4,
-      "ported_or_partial_percent": 69.1
+      "ported": 309,
+      "partial": 244,
+      "missing": 179,
+      "excluded": 217,
+      "counted": 732,
+      "weighted_percent": 58.9,
+      "ported_only_percent": 42.2,
+      "ported_or_partial_percent": 75.5
     }
   },
   "behavior_areas": [
@@ -50,11 +50,11 @@
     {
       "area": "Search",
       "range": "B22-B32",
-      "ported": 1,
+      "ported": 3,
       "partial": 6,
-      "missing": 4,
+      "missing": 2,
       "excluded": 0,
-      "weighted_percent": 36.4
+      "weighted_percent": 54.5
     },
     {
       "area": "Details and episodes",
@@ -95,20 +95,20 @@
     {
       "area": "Torrent engine and streaming server",
       "range": "B136-B153",
-      "ported": 0,
-      "partial": 0,
-      "missing": 4,
+      "ported": 3,
+      "partial": 1,
+      "missing": 0,
       "excluded": 14,
-      "weighted_percent": 0.0
+      "weighted_percent": 87.5
     },
     {
       "area": "Player, subtitles, skip, trailers and downloads",
       "range": "B154-B216",
-      "ported": 28,
+      "ported": 29,
       "partial": 20,
-      "missing": 6,
+      "missing": 5,
       "excluded": 9,
-      "weighted_percent": 70.4
+      "weighted_percent": 72.2
     },
     {
       "area": "Live TV, VOD, DVR and multiview",
@@ -140,11 +140,11 @@
     {
       "area": "Trackers",
       "range": "B274-B304",
-      "ported": 14,
-      "partial": 12,
-      "missing": 5,
+      "ported": 16,
+      "partial": 13,
+      "missing": 2,
       "excluded": 0,
-      "weighted_percent": 64.5
+      "weighted_percent": 72.6
     },
     {
       "area": "Metadata providers, calendar and lists",
@@ -159,10 +159,10 @@
       "area": "Profiles, appearance, integrations and system",
       "range": "B324-B365",
       "ported": 12,
-      "partial": 15,
-      "missing": 4,
+      "partial": 16,
+      "missing": 3,
       "excluded": 11,
-      "weighted_percent": 62.9
+      "weighted_percent": 64.5
     },
     {
       "area": "Manga",
@@ -408,8 +408,8 @@
       "index": 26,
       "id": "Search people",
       "desktop_source": "src/components/search",
-      "verdict": "M",
-      "note": "no people search"
+      "verdict": "D",
+      "note": "search people: People rail, top match and person page with filmography; cast opens it (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 27,
@@ -450,8 +450,8 @@
       "index": 32,
       "id": "AI search",
       "desktop_source": "src/components/search",
-      "verdict": "M",
-      "note": "no search guide or AI search"
+      "verdict": "D",
+      "note": "AI search: the Ask AI screen from search with OpenRouter or Groq keys (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 33,
@@ -1269,29 +1269,29 @@
       "index": 149,
       "id": "Remote streaming server",
       "desktop_source": "src/lib/stremio-server.ts",
-      "verdict": "M",
-      "note": "remote Stremio streaming server not ported"
+      "verdict": "D",
+      "note": "remote streaming server: torrent streams resolve through the configured server, after debrid or first without one; wired in HarborService.resolve and compiled, parsing and policy tested, not exercised against a real server (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 150,
       "id": "Strict remote server policy",
       "desktop_source": "src/lib/stremio-server.ts",
-      "verdict": "M",
-      "note": "remote Stremio streaming server not ported"
+      "verdict": "D",
+      "note": "strict remote server policy (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 151,
       "id": "Transcode URL generation",
       "desktop_source": "src/lib/stremio-server.ts",
-      "verdict": "M",
-      "note": "remote Stremio streaming server not ported"
+      "verdict": "P",
+      "note": "transcode URL generation is built and tested; the decode-error retry that uses it is not wired (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 152,
       "id": "Streaming server health",
       "desktop_source": "src/lib/stremio-server.ts",
-      "verdict": "M",
-      "note": "remote Stremio streaming server not ported"
+      "verdict": "D",
+      "note": "streaming server health check and Test connection (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 153,
@@ -1661,8 +1661,8 @@
       "index": 205,
       "id": "Wyzie subtitles",
       "desktop_source": "src/lib/subtitles",
-      "verdict": "M",
-      "note": "no Wyzie"
+      "verdict": "D",
+      "note": "Wyzie subtitles through the optional provider search; wired in the player's addon-subtitle task and compiled, request and parsing tested, not exercised against Wyzie (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 206,
@@ -2340,22 +2340,22 @@
       "index": 302,
       "id": "Letterboxd / Stremboxd session",
       "desktop_source": "src/lib/stremboxd",
-      "verdict": "M",
-      "note": "Letterboxd not ported"
+      "verdict": "D",
+      "note": "Letterboxd (Stremboxd) session: public username or full sign-in, token in the Keychain (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 303,
       "id": "Letterboxd home rails",
       "desktop_source": "src/lib/stremboxd",
-      "verdict": "M",
-      "note": "Letterboxd not ported"
+      "verdict": "D",
+      "note": "Letterboxd home rails (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 304,
       "id": "Letterboxd catalog integration",
       "desktop_source": "src/lib/stremboxd",
-      "verdict": "M",
-      "note": "Letterboxd not ported"
+      "verdict": "P",
+      "note": "Letterboxd catalogs appear as Home rails and in View All; no catalog-browser integration (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 305,
@@ -2655,8 +2655,8 @@
       "index": 347,
       "id": "AI assisted recommendations / search",
       "desktop_source": "src/lib/ai-search.ts",
-      "verdict": "M",
-      "note": "no AI, song identification or Wrapped"
+      "verdict": "P",
+      "note": "AI assisted search with own keys; recommendations and the episode mode are not ported (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 348,
@@ -3455,50 +3455,50 @@
       "index": 23,
       "id": "showRtBadge",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card rating chips not ported"
+      "verdict": "D",
+      "note": "Rotten Tomatoes chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 24,
       "id": "showMalBadge",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card rating chips not ported"
+      "verdict": "D",
+      "note": "MAL chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 25,
       "id": "animeCardRating",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card rating chips not ported"
+      "verdict": "X",
+      "note": "anime card rating choice: iOS has no IMDb title source for anime, so MAL is always used"
     },
     {
       "index": 26,
       "id": "showMetacriticBadge",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card rating chips not ported"
+      "verdict": "D",
+      "note": "Metacritic chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 27,
       "id": "showLetterboxdBadge",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card rating chips not ported"
+      "verdict": "D",
+      "note": "Letterboxd chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 28,
       "id": "showMdblistBadge",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card rating chips not ported"
+      "verdict": "D",
+      "note": "MDBList chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 29,
       "id": "showTraktBadge",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card rating chips not ported"
+      "verdict": "D",
+      "note": "Trakt chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 30,
@@ -3581,8 +3581,8 @@
       "index": 41,
       "id": "showSimklBadge",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card rating chips not ported"
+      "verdict": "D",
+      "note": "SIMKL chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 42,
@@ -3623,8 +3623,8 @@
       "index": 47,
       "id": "cardBadgeLimit",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "card badges and home languages not ported"
+      "verdict": "D",
+      "note": "maximum score chips per card (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 48,
@@ -4113,8 +4113,8 @@
       "index": 117,
       "id": "badgePlacement",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "score chip placement top or bottom (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 118,
@@ -4134,22 +4134,22 @@
       "index": 120,
       "id": "showPopcornBadge",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "Popcornmeter chip on poster cards (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 121,
       "id": "episodeLayout",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "episode layout list, strip or grid (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 122,
       "id": "episodeCardScale",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "episode card scale (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 123,
@@ -4183,15 +4183,15 @@
       "index": 127,
       "id": "hdEpisodeImages",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "HD episode images: iOS never builds TMDB still URLs, so the toggle would change nothing"
     },
     {
       "index": 128,
       "id": "episodeArcGroups",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "episode arcs from TMDB story groups on plain series; no TVDB order or anime pool (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 129,
@@ -4659,8 +4659,8 @@
       "index": 195,
       "id": "stremioServerTranscode",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "P",
+      "note": "stremioServerTranscode is stored; Desktop has no control for it either (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 196,
@@ -4757,22 +4757,22 @@
       "index": 209,
       "id": "remoteStreamServerUrl",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "remote streaming server, cast transcoding"
+      "verdict": "D",
+      "note": "remote streaming server address (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 210,
       "id": "remoteStreamServerStrict",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "remote streaming server, cast transcoding"
+      "verdict": "D",
+      "note": "use the remote server exclusively (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 211,
       "id": "castAlwaysTranscode",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "remote streaming server, cast transcoding"
+      "verdict": "P",
+      "note": "castAlwaysTranscode is stored; there is no cast pipeline yet (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 212,
@@ -4946,8 +4946,8 @@
       "index": 236,
       "id": "subProvidersEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "subtitle providers"
+      "verdict": "P",
+      "note": "subtitle sources: Wyzie is wired but not exercised at runtime; SUBDL and Subsource are searched but their zip or key-protected files are not loadable yet (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 237,
@@ -5366,8 +5366,8 @@
       "index": 296,
       "id": "aiSearchKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "song ID, AI keys"
+      "verdict": "D",
+      "note": "AI search key (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 297,
@@ -5408,36 +5408,36 @@
       "index": 302,
       "id": "aiSearchModel",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "AI search settings"
+      "verdict": "D",
+      "note": "AI search model (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 303,
       "id": "aiSearchProvider",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "AI search settings"
+      "verdict": "D",
+      "note": "AI search provider (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 304,
       "id": "aiGroqKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "AI search settings"
+      "verdict": "D",
+      "note": "Groq key (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 305,
       "id": "jinaKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "AI search settings"
+      "verdict": "D",
+      "note": "Jina key (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 306,
       "id": "aiWebSearch",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "AI search settings"
+      "verdict": "D",
+      "note": "live web context for AI search (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 307,
@@ -5688,8 +5688,8 @@
       "index": 342,
       "id": "opensubtitlesApiKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "subtitle provider keys"
+      "verdict": "P",
+      "note": "OpenSubtitles key is stored; auto-sync does not read it yet (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 343,
@@ -5702,22 +5702,22 @@
       "index": 344,
       "id": "jimakuToken",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "subtitle provider keys"
+      "verdict": "X",
+      "note": "Jimaku token: Desktop has no Jimaku provider, the key is only declared"
     },
     {
       "index": 345,
       "id": "subdlApiKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "subtitle provider keys"
+      "verdict": "P",
+      "note": "SUBDL key stored and used for search; zip downloads not loadable yet (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 346,
       "id": "subsourceApiKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "subtitle provider keys"
+      "verdict": "P",
+      "note": "Subsource key stored and used for search; downloads that need the key are not loadable yet (8 Nov, written by Haiku, CI run 25 pending)"
     },
     {
       "index": 347,
@@ -5828,8 +5828,8 @@
       "index": 362,
       "id": "showLetterboxdCard",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "Letterboxd profile card: iOS has no profile surface for it"
     },
     {
       "index": 363,
@@ -6045,8 +6045,8 @@
       "index": 393,
       "id": "homeNewEpisodes",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "New Episodes row on Home (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 394,
@@ -6087,8 +6087,8 @@
       "index": 399,
       "id": "animeCwEnd",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "what happens to a finished anime in Continue Watching (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 400,
@@ -6101,8 +6101,8 @@
       "index": 401,
       "id": "cwHideCaughtUp",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "remove shows from Continue Watching once caught up (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 402,
@@ -6290,22 +6290,22 @@
       "index": 428,
       "id": "cwSnapshotRetentionDays",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "Continue Watching snapshot retention: iOS saves the position only, not frames"
     },
     {
       "index": 429,
       "id": "cwSnapshotFullQuality",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "Continue Watching snapshot quality: iOS saves the position only, not frames"
     },
     {
       "index": 430,
       "id": "cwPreferEpisodeStill",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "Continue Watching episode still artwork (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 431,
@@ -6829,8 +6829,8 @@
       "index": 505,
       "id": "letterboxd",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "Letterboxd settings: enable, mode, username, catalogs, custom lists, ratings on posters (8 Nov, written by Haiku, CI run 24 green)"
     },
     {
       "index": 506,

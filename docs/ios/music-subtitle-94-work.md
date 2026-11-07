@@ -1499,3 +1499,20 @@ and catalog pins/hides with the Customize list plus Home `homeShowAllAddonRows`.
 asks addons before Cinemeta), `resumeDetailScroll` (needs DetailView), top genres/people in statistics (Desktop fetches them
 over the network). Status: CI run 23 green. The background image screens are transparent over `ThemeBackdrop`; that layering has
 not been looked at on a device.
+
+## Fifth and sixth Haiku rounds (8 November)
+
+Fifth round, merged after review (CI run 24 green): score chips on poster cards (RT, Popcornmeter, MAL, Metacritic, Letterboxd,
+MDBList, Trakt, SIMKL, with the limit and the top/bottom placement), Letterboxd through Stremboxd (settings, session in the
+Keychain, Home rails), episode layouts (list, strip, grid, card scale, TMDB story arcs on plain series) and the Continue
+Watching settings (caught-up hiding, end-of-series timer, episode stills, the New Episodes row). Excluded with reasons:
+`hdEpisodeImages` (iOS never builds TMDB still URLs), snapshot retention and quality (iOS stores the position only),
+`animeCardRating` (no IMDb title source for anime), the Letterboxd profile card (no profile surface).
+
+Sixth round (CI run 25 pending): remote streaming server (address, strict policy, health, URL and transcode builders; torrent streams
+now resolve through it in `HarborService.resolve`, after the debrid services or first when the profile has none), people
+search with a person page (cast now opens it), AI search with OpenRouter or Groq keys (an "AI search" entry in search),
+and the optional subtitle providers (SUBDL and Subsource are searched but their archives and key-protected files are
+filtered out until the player can load them). These hooks are wired and compiled, but only the parsing, policy and
+request building are covered by tests: nothing was exercised against a real server, Wyzie or an AI provider. The
+decode-error transcode retry is still not wired.

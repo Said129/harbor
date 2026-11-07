@@ -264,6 +264,17 @@ BEHAVIORS = expand("""
 340 D theme library: save, apply, rename, export, remove (8 Nov, written by Haiku, CI run 23 green)
 341 P custom background image with dim; no logo (iOS cannot change the app icon this way) (8 Nov, written by Haiku, CI run 23 green)
 349 P watching statistics: hours, titles, split, top titles, highlights, year heatmap from local history; genres and people need Desktop's network enrichment (8 Nov, written by Haiku, CI run 23 green)
+302 D Letterboxd (Stremboxd) session: public username or full sign-in, token in the Keychain (8 Nov, written by Haiku, CI run 24 green)
+303 D Letterboxd home rails (8 Nov, written by Haiku, CI run 24 green)
+304 P Letterboxd catalogs appear as Home rails and in View All; no catalog-browser integration (8 Nov, written by Haiku, CI run 24 green)
+26 D search people: People rail, top match and person page with filmography; cast opens it (8 Nov, written by Haiku, CI run 25 pending)
+32 D AI search: the Ask AI screen from search with OpenRouter or Groq keys (8 Nov, written by Haiku, CI run 25 pending)
+149 D remote streaming server: torrent streams resolve through the configured server, after debrid or first without one; wired in HarborService.resolve and compiled, parsing and policy tested, not exercised against a real server (8 Nov, written by Haiku, CI run 25 pending)
+150 D strict remote server policy (8 Nov, written by Haiku, CI run 25 pending)
+151 P transcode URL generation is built and tested; the decode-error retry that uses it is not wired (8 Nov, written by Haiku, CI run 25 pending)
+152 D streaming server health check and Test connection (8 Nov, written by Haiku, CI run 25 pending)
+205 D Wyzie subtitles through the optional provider search; wired in the player's addon-subtitle task and compiled, request and parsing tested, not exercised against Wyzie (8 Nov, written by Haiku, CI run 25 pending)
+347 P AI assisted search with own keys; recommendations and the episode mode are not ported (8 Nov, written by Haiku, CI run 25 pending)
 """)
 
 SETTINGS = expand("""
@@ -521,6 +532,44 @@ SETTINGS = expand("""
 280 D hidden catalogs on the Catalogs screen (8 Nov, written by Haiku, CI run 23 green)
 392 D Home show every addon row (8 Nov, written by Haiku, CI run 23 green)
 494 D Stats entry in the library header (8 Nov, written by Haiku, CI run 23 green)
+23 D Rotten Tomatoes chip on poster cards (8 Nov, written by Haiku, CI run 24 green)
+24 D MAL chip on poster cards (8 Nov, written by Haiku, CI run 24 green)
+25 X anime card rating choice: iOS has no IMDb title source for anime, so MAL is always used
+26 D Metacritic chip on poster cards (8 Nov, written by Haiku, CI run 24 green)
+27 D Letterboxd chip on poster cards (8 Nov, written by Haiku, CI run 24 green)
+28 D MDBList chip on poster cards (8 Nov, written by Haiku, CI run 24 green)
+29 D Trakt chip on poster cards (8 Nov, written by Haiku, CI run 24 green)
+41 D SIMKL chip on poster cards (8 Nov, written by Haiku, CI run 24 green)
+47 D maximum score chips per card (8 Nov, written by Haiku, CI run 24 green)
+117 D score chip placement top or bottom (8 Nov, written by Haiku, CI run 24 green)
+120 D Popcornmeter chip on poster cards (8 Nov, written by Haiku, CI run 24 green)
+121 D episode layout list, strip or grid (8 Nov, written by Haiku, CI run 24 green)
+122 D episode card scale (8 Nov, written by Haiku, CI run 24 green)
+127 X HD episode images: iOS never builds TMDB still URLs, so the toggle would change nothing
+128 P episode arcs from TMDB story groups on plain series; no TVDB order or anime pool (8 Nov, written by Haiku, CI run 24 green)
+362 X Letterboxd profile card: iOS has no profile surface for it
+393 D New Episodes row on Home (8 Nov, written by Haiku, CI run 24 green)
+399 D what happens to a finished anime in Continue Watching (8 Nov, written by Haiku, CI run 24 green)
+401 D remove shows from Continue Watching once caught up (8 Nov, written by Haiku, CI run 24 green)
+428 X Continue Watching snapshot retention: iOS saves the position only, not frames
+429 X Continue Watching snapshot quality: iOS saves the position only, not frames
+430 D Continue Watching episode still artwork (8 Nov, written by Haiku, CI run 24 green)
+505 D Letterboxd settings: enable, mode, username, catalogs, custom lists, ratings on posters (8 Nov, written by Haiku, CI run 24 green)
+195 P stremioServerTranscode is stored; Desktop has no control for it either (8 Nov, written by Haiku, CI run 25 pending)
+209 D remote streaming server address (8 Nov, written by Haiku, CI run 25 pending)
+210 D use the remote server exclusively (8 Nov, written by Haiku, CI run 25 pending)
+211 P castAlwaysTranscode is stored; there is no cast pipeline yet (8 Nov, written by Haiku, CI run 25 pending)
+236 P subtitle sources: Wyzie is wired but not exercised at runtime; SUBDL and Subsource are searched but their zip or key-protected files are not loadable yet (8 Nov, written by Haiku, CI run 25 pending)
+296 D AI search key (8 Nov, written by Haiku, CI run 25 pending)
+302 D AI search model (8 Nov, written by Haiku, CI run 25 pending)
+303 D AI search provider (8 Nov, written by Haiku, CI run 25 pending)
+304 D Groq key (8 Nov, written by Haiku, CI run 25 pending)
+305 D Jina key (8 Nov, written by Haiku, CI run 25 pending)
+306 D live web context for AI search (8 Nov, written by Haiku, CI run 25 pending)
+342 P OpenSubtitles key is stored; auto-sync does not read it yet (8 Nov, written by Haiku, CI run 25 pending)
+344 X Jimaku token: Desktop has no Jimaku provider, the key is only declared
+345 P SUBDL key stored and used for search; zip downloads not loadable yet (8 Nov, written by Haiku, CI run 25 pending)
+346 P Subsource key stored and used for search; downloads that need the key are not loadable yet (8 Nov, written by Haiku, CI run 25 pending)
 """)
 
 def audit(items, verdicts, label):
