@@ -103,9 +103,9 @@ struct EpisodeList: View {
     /// Desktop's `useArcGroups`: the show's story-arc group from TMDB, found by its TMDB id or else its IMDb id.
     private func loadArcs() async {
         arcs = []
-        let key = MetadataPreferences.shared.tmdbKey
+        let configuration = MetadataPreferences.shared.configuration()
+        let key = configuration.tmdbKey
         guard InterfacePreferences.shared.episodeArcGroups, ordering == nil, pool == nil, !key.isEmpty else { return }
-        let configuration = MetadataConfiguration(tmdbKey: key, region: MetadataPreferences.shared.region, language: MetadataPreferences.shared.language, translateTitles: MetadataPreferences.shared.translateTitles)
         let service = TMDBService()
         var resolved = EpisodeArcPolicy.tvID(forMediaID: media.id)
         if resolved == nil, let imdb = seriesIMDb, let reference = try? await service.pluginReference(imdb: imdb, type: "series", key: key), reference.kind == "tv" {
