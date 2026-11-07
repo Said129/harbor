@@ -642,6 +642,7 @@ struct PlayerView: View {
                 }
             }.accessibilityLabel("Velocidad").accessibilityValue(sleepTimer.badge() ?? "\(state.speed.formatted())×").frame(minWidth: 44, minHeight: 44)
             AudioRoutePicker(state: state)
+            CastButton(state: state, session: session)
             if state.pictureInPictureSupported {
                 Button { state.controller?.togglePictureInPicture(); restartHideTimer() } label: {
                     PlayerGlyph(name: "pip", size: 22).frame(width: 44, height: 44)
