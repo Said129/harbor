@@ -46,9 +46,7 @@ struct SearchView: View {
     /// Desktop's "Ask AI" entry: a screen that finds titles from a plain-language request with the person's own key.
     @ViewBuilder private var aiSearchLink: some View {
         if isTitleQuery && !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            NavigationLink { AISearchView(app: app, initialQuery: query) } label: {
-                Label(DesktopInterfaceText.value("AI search"), systemImage: "sparkles").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-            }.padding(.horizontal).accessibilityIdentifier("search-ai")
+            SearchAILink(app: app, query: query)
         }
     }
     private var searchTitles: [String: String] {
