@@ -106,12 +106,31 @@ struct ContinueSourceControls: View {
                 Text(DesktopInterfaceText.value("Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.")).font(.caption).foregroundStyle(.secondary)
             }
             }
+            ContinueEndingControls()
         }
     }
     private func source(_ key: WritableKeyPath<ContinueWatchingSources, Bool>) -> Binding<Bool> {
         Binding(get: { ContinueWatchingSources(rawValue: cwSources)[keyPath: key] }, set: { value in
             var next = ContinueWatchingSources(rawValue: cwSources); next[keyPath: key] = value; cwSources = next.rawValue
         })
+    }
+}
+
+/// Desktop's Continue Watching group: caught-up shows, the end-of-series behaviour and the card artwork.
+struct ContinueEndingControls: View {
+    @Bindable var preferences = InterfacePreferences.shared
+    var body: some View {
+        HarborSettingsSection(DesktopInterfaceText.value("Continue Watching")) {
+            HarborSettingsToggle(DesktopInterfaceText.value("Remove shows once you're caught up"),
+                note: DesktopInterfaceText.value("On by default: once you've watched every episode that has aired, the show leaves Continue Watching and returns when a new episode drops. Turn it off to keep caught-up shows on the row."),
+                isOn: $preferences.cwHideCaughtUp).accessibilityIdentifier("settings-cw-hide-caught-up")
+            HarborSettingsChoice("When the latest episode ends", selection: $preferences.animeCwEnd,
+                choices: [("Hide", "hide"), ("Timer", "timer")], identifier: "settings-cw-anime-end")
+            Text(DesktopInterfaceText.value("Hide until the next episode airs, or keep showing a countdown to when it drops."))
+                .font(.caption).foregroundStyle(.secondary)
+            HarborSettingsToggle(DesktopInterfaceText.value("Prefer episode still artwork"),
+                isOn: $preferences.cwPreferEpisodeStill).accessibilityIdentifier("settings-cw-prefer-still")
+        }
     }
 }
 
