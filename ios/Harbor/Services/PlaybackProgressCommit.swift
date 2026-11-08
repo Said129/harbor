@@ -4,6 +4,7 @@ import Foundation
 /// Its personal owner is captured when playback starts, before asynchronous I/O.
 @MainActor enum PlaybackProgressCommit {
     static func save(_ value: ResumeSnapshot, session: PlaybackSession, resume: ResumeStore, media: Media?, library: LibraryModel?) async throws -> Bool {
+        WatchedDownloadRemoval.shared.note(session: session, value: value)
         guard session.progressEnabled, try await resume.save(session.target, snapshot: value) else { return false }
         var mirrorError: Error?
         if let stores = session.progressStores, stores.personalOwner == session.personalOwner {

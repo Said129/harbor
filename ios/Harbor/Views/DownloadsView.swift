@@ -92,7 +92,7 @@ struct DownloadsView: View {
         }.navigationTitle("Descargas").navigationBarTitleDisplayMode(.inline)
             .searchable(text: $query, prompt: "Buscar en descargas")
             .onChange(of: owner) { _, _ in clearPresentation() }
-            .fullScreenCover(item: $playback) { session in PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: playbackMedia?.name ?? "Harbor", media: playbackMedia, library: app.library) }
+            .fullScreenCover(item: $playback, onDismiss: { WatchedDownloadRemoval.shared.playerClosed() }) { session in PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: playbackMedia?.name ?? "Harbor", media: playbackMedia, library: app.library) }
     }
     private func play(_ item: DownloadItem) async {
         guard preparation == nil, item.status == .complete, allItems.contains(where: { $0.id == item.id && $0.status == .complete }) else { return }

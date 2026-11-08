@@ -235,6 +235,7 @@ targets:
       - path: HarborTests/TheIntroDBTests.swift
       - path: HarborTests/DetailSettingsRulesTests.swift
       - path: HarborTests/OverviewTranslationPolicyTests.swift
+      - path: HarborTests/WireUITests.swift
       - path: HarborTests/TogetherToastRulesTests.swift
       - path: HarborTests/AdSkipTests.swift
       - path: HarborTests/AdReportEntryTests.swift
