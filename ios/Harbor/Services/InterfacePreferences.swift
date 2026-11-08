@@ -84,6 +84,8 @@ final class InterfacePreferences {
     var preferCustomMetaAddon = UserDefaults.standard.object(forKey: "preferCustomMetaAddon") as? Bool ?? false { didSet { persist(preferCustomMetaAddon, forKey: "preferCustomMetaAddon") } }
     var hideSpoilers = UserDefaults.standard.object(forKey: "hideSpoilers") as? Bool ?? false { didSet { persist(hideSpoilers, forKey: "hideSpoilers") } }
     var blurEpisodes = UserDefaults.standard.object(forKey: "blurEpisodes") as? Bool ?? false { didSet { persist(blurEpisodes, forKey: "blurEpisodes") } }
+    /// Desktop's `spoilerHideThumbnails` (default on): frosts the still of each unwatched episode. Read by the episode rows through `UISettingsPolicy.spoilerMask`.
+    var spoilerHideThumbnails = UserDefaults.standard.object(forKey: "spoilerHideThumbnails") as? Bool ?? true { didSet { persist(spoilerHideThumbnails, forKey: "spoilerHideThumbnails") } }
     var spoilerHideTitles = UserDefaults.standard.object(forKey: "spoilerHideTitles") as? Bool ?? true { didSet { persist(spoilerHideTitles, forKey: "spoilerHideTitles") } }
     var spoilerHideDescriptions = UserDefaults.standard.object(forKey: "spoilerHideDescriptions") as? Bool ?? true { didSet { persist(spoilerHideDescriptions, forKey: "spoilerHideDescriptions") } }
     /// Desktop's `spoilerSkipNext` (default on): the next episode to watch stays clear. Read by the episode rows through `UISettingsPolicy.spoilerMask` and by the Up Next card in `PlayerView`.
@@ -164,6 +166,7 @@ final class InterfacePreferences {
         preferCustomMetaAddon = UserDefaults.standard.object(forKey: "preferCustomMetaAddon") as? Bool ?? false
         hideSpoilers = UserDefaults.standard.object(forKey: "hideSpoilers") as? Bool ?? false
         blurEpisodes = UserDefaults.standard.object(forKey: "blurEpisodes") as? Bool ?? false
+        spoilerHideThumbnails = UserDefaults.standard.object(forKey: "spoilerHideThumbnails") as? Bool ?? true
         spoilerHideTitles = UserDefaults.standard.object(forKey: "spoilerHideTitles") as? Bool ?? true
         spoilerHideDescriptions = UserDefaults.standard.object(forKey: "spoilerHideDescriptions") as? Bool ?? true
         spoilerSkipNext = UserDefaults.standard.object(forKey: "spoilerSkipNext") as? Bool ?? true

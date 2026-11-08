@@ -205,7 +205,7 @@ private struct PlayerEpisodeCard: View {
     private var title: String { (episode.name ?? episode.title).flatMap { $0.isEmpty ? nil : $0 } ?? fallbackTitle }
     private var hidesTitle: Bool { hidden && preferences.spoilerHideTitles }
     private var hidesDescription: Bool { hidden && preferences.spoilerHideDescriptions }
-    private var canReveal: Bool { hidden && (preferences.blurEpisodes || preferences.spoilerHideTitles || preferences.spoilerHideDescriptions) }
+    private var canReveal: Bool { hidden && (preferences.spoilerHideThumbnails || preferences.spoilerHideTitles || preferences.spoilerHideDescriptions) }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -257,8 +257,8 @@ private struct PlayerEpisodeCard: View {
             LinearGradient(colors: [ThemePreferences.shared.color("elevated").opacity(0.5), HarborTheme.background.opacity(0.7)], startPoint: .topLeading, endPoint: .bottomTrailing)
             if !hasArtwork { episodeGlyph("episode-await", size: 18).foregroundStyle(ThemePreferences.shared.color("ink-subtle").opacity(0.45)) }
             Artwork(url: episode.thumbnail, maxPixels: 480, showsPlaceholder: false, onImageAvailability: { hasArtwork = $0 })
-                .blur(radius: hidden && preferences.blurEpisodes ? 14 : 0)
-                .scaleEffect(hidden && preferences.blurEpisodes ? 1.04 : 1)
+                .blur(radius: hidden && preferences.spoilerHideThumbnails ? 14 : 0)
+                .scaleEffect(hidden && preferences.spoilerHideThumbnails ? 1.04 : 1)
             LinearGradient(colors: [.clear, .black.opacity(0.45)], startPoint: .top, endPoint: .bottom)
         }.frame(width: thumbnailWidth, height: thumbnailWidth * 9 / 16).clipped().clipShape(.rect(cornerRadius: 12))
             .overlay { RoundedRectangle(cornerRadius: 12).stroke(ThemePreferences.shared.color("edge-soft").opacity(0.6), lineWidth: 1) }

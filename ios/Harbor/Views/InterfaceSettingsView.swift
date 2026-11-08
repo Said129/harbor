@@ -95,7 +95,7 @@ struct InterfaceSettingsView: View {
                     HarborSettingsToggle(DesktopInterfaceText.value("Blur spoilers"), note: DesktopInterfaceText.value("Hides spoiler-prone episode details in episode lists until you have watched them."), isOn: $preferences.hideSpoilers)
                     if preferences.hideSpoilers {
                         VStack(spacing: 18) {
-                            HarborSettingsToggle(DesktopInterfaceText.value("Blur thumbnails"), note: DesktopInterfaceText.value("Frosts the still image on each unwatched episode in the list."), isOn: $preferences.blurEpisodes)
+                            HarborSettingsToggle(DesktopInterfaceText.value("Blur thumbnails"), note: DesktopInterfaceText.value("Frosts the still image on each unwatched episode in the list."), isOn: $preferences.spoilerHideThumbnails)
                             HarborSettingsToggle(DesktopInterfaceText.value("Blur titles"), note: DesktopInterfaceText.value("Hides the episode name, which often gives the twist away on its own."), isOn: $preferences.spoilerHideTitles)
                             HarborSettingsToggle(DesktopInterfaceText.value("Blur descriptions"), note: DesktopInterfaceText.value("Hides the synopsis text under each unwatched episode."), isOn: $preferences.spoilerHideDescriptions)
                             HarborSettingsToggle(DesktopInterfaceText.value("Keep the next episode visible"), note: DesktopInterfaceText.value("Leave the episode you are up to clear and only blur the ones after it."), isOn: $preferences.spoilerSkipNext)
