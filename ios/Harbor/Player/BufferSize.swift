@@ -35,4 +35,12 @@ enum BufferSize: String, CaseIterable, Codable, Identifiable {
                 ("cache-pause-initial", profile.wait > 0 ? "yes" : "no"),
                 ("cache-pause-wait", String(profile.wait))]
     }
+
+    /// The UserDefaults key of Desktop's `mpvBufferBoost`, read when a video opens.
+    static let boostKey = "mpvBufferBoost"
+
+    /// Desktop's `bufferSizeFor`: an explicit size always wins. With no size chosen (`auto`), the boost means `large`.
+    static func effective(_ size: BufferSize, boost: Bool) -> BufferSize {
+        size == .auto && boost ? .large : size
+    }
 }

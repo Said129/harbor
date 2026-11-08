@@ -52,6 +52,10 @@ enum MPVConfiguration {
 #endif
             let selected = decoding ?? HardwareDecoding(rawValue: UserDefaults.standard.string(forKey: "mpvHwdec") ?? "auto") ?? .auto
             try check(mpv_set_option_string(handle, "hwdec", selected.mpvValue))
+            // Desktop's HDR-to-SDR block comes first, so the mpvQuality lines below still win on the shared keys, as on Desktop.
+            for (name, value) in UISettingsPolicy.hdrToSdrMpvOptions(UserDefaults.standard.bool(forKey: UISettingsPolicy.hdrToSdrKey)) {
+                _ = mpv_set_option_string(handle, name, value)
+            }
             // Desktop's mpvQuality lines (`mpv-tuning.ts`). An option this mpv build refuses is ignored, so it cannot stop playback.
             for (name, value) in UISettingsPolicy.mpvQualityOptions(UserDefaults.standard.string(forKey: UISettingsPolicy.mpvQualityKey)) {
                 _ = mpv_set_option_string(handle, name, value)
@@ -61,7 +65,9 @@ enum MPVConfiguration {
             if let fonts = Bundle.main.url(forResource: "Inter", withExtension: "ttf") {
                 try check(mpv_set_option_string(handle, "sub-fonts-dir", fonts.deletingLastPathComponent().path))
             }
-            for (name, value) in settings.bufferSize.mpvOptions + settings.mpvOptions {
+            // Desktop's `mpvBufferBoost` gives `large` when no size is chosen. Its memory is bounded by `BufferSize`'s budget.
+            let boost = UserDefaults.standard.bool(forKey: BufferSize.boostKey)
+            for (name, value) in BufferSize.effective(settings.bufferSize, boost: boost).mpvOptions + settings.mpvOptions {
                 try check(mpv_set_option_string(handle, name, value))
             }
             if startMs.isFinite && startMs > 0 {

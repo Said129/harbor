@@ -68,4 +68,16 @@ enum UISettingsPolicy {
     static func removesWatchedDownload(enabled: Bool, progress: Double) -> Bool {
         enabled && progress >= 0.9
     }
+
+    /// The UserDefaults key of Desktop's `playerHdrToSdr`, read when a video opens.
+    static let hdrToSdrKey = "playerHdrToSdr"
+
+    /// The mpv options of Desktop's HDR-to-SDR block (`src-tauri/src/mpv.rs`, the `hdr_to_sdr` branch), in Desktop's order.
+    /// Off adds nothing. `target-colorspace-hint` is left out because Desktop sets it only on Windows and macOS.
+    static func hdrToSdrMpvOptions(_ on: Bool) -> [(String, String)] {
+        guard on else { return [] }
+        return [("tone-mapping", "spline"), ("gamut-mapping-mode", "perceptual"), ("hdr-compute-peak", "yes"),
+                ("hdr-contrast-recovery", "0.30"), ("hdr-peak-percentile", "99.995"), ("dither-depth", "auto"),
+                ("target-trc", "bt.1886"), ("target-prim", "bt.709")]
+    }
 }

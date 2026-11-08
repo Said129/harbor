@@ -35,6 +35,10 @@ struct PlayerSettingsView: View {
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     /// Desktop's `mpvQuality` profile, read by `MPVConfiguration` when a video opens.
     @AppStorage(UISettingsPolicy.mpvQualityKey) private var mpvQuality = UISettingsPolicy.mpvQualityDefault
+    /// Desktop's `playerHdrToSdr`, read by `MPVConfiguration` when a video opens. iOS starts off, which keeps mpv's own mapping.
+    @AppStorage(UISettingsPolicy.hdrToSdrKey) private var playerHdrToSdr = false
+    /// Desktop's `mpvBufferBoost`, read by `MPVConfiguration` when a video opens.
+    @AppStorage(BufferSize.boostKey) private var mpvBufferBoost = false
     /// Desktop's `mpvQuality` choices, in Desktop's order (`mpv-panel/profile.tsx`).
     private var mpvQualityChoices: [(String, String)] {
         [(DesktopInterfaceText.value("Smooth on weak PCs"), "performance"), (DesktopInterfaceText.value("Balanced"), "balanced"),
@@ -127,6 +131,11 @@ struct PlayerSettingsView: View {
         PlayerAdSkipSettings()
         HarborSettingsSection("Búfer") {
             HarborSettingsChoice("Tamaño del búfer", selection: $preferences.options.bufferSize, choices: BufferSize.allCases.map { ($0.title, $0) })
+            HarborSettingsToggle(DesktopInterfaceText.value("Slow or unstable connection"),
+                                 note: DesktopInterfaceText.value("Reads up to ten minutes ahead. Uses more memory to help with an unstable connection."),
+                                 isOn: $mpvBufferBoost)
+                .disabled(preferences.options.bufferSize != .auto)
+                .accessibilityIdentifier("settings-buffer-boost")
         }
     }
 
@@ -173,6 +182,9 @@ struct PlayerSettingsView: View {
             HarborSettingsChoice(DesktopInterfaceText.value("Picture quality"), selection: $mpvQuality, choices: mpvQualityChoices, localizeChoices: false, identifier: "settings-mpv-quality")
             Text(DesktopInterfaceText.value("Balance picture quality and performance. Changes apply to the next video you play."))
                 .font(HarborTheme.font(12)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+            HarborSettingsToggle(DesktopInterfaceText.value("HDR-to-SDR tonemapping"),
+                                 note: DesktopInterfaceText.value("Maps HDR sources to SDR using bt.2446a. Recommended on SDR displays."),
+                                 isOn: $playerHdrToSdr).accessibilityIdentifier("settings-hdr-to-sdr")
         }
         HarborSettingsSection(DesktopInterfaceText.value("Stream quality in player")) {
             HarborSettingsToggle(DesktopInterfaceText.value("Show stream quality under the title"),
