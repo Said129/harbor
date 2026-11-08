@@ -52,6 +52,8 @@ struct PlaybackSession: Identifiable, Sendable {
     var promptForResume = false
     var subtitleRequest: SubtitleRequest? = nil
     var media: Media? = nil
+    /// The title the detail page shows, with the cast in `details` for the player's X-Ray. Empty for sources opened without a detail page.
+    var xrayTitle: Media? = nil
     /// Set for a source the automatic start chose, so the player can ask for the next one when it stalls.
     var stall: StreamStallHandle? = nil
     /// The chosen stream's identity for the ad corpus lookup (Desktop's `PlayerStreamRef` plus the play URL).

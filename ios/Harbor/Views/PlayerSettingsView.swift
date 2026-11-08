@@ -178,6 +178,11 @@ struct PlayerSettingsView: View {
                                      localizeChoices: false, identifier: "settings-quality-badge-style")
             }
         }
+        HarborSettingsSection(DesktopInterfaceText.value("X-Ray (experimental)")) {
+            HarborSettingsToggle(DesktopInterfaceText.value("Enable X-Ray"),
+                                 note: DesktopInterfaceText.value("Adds an X-Ray button in the player to see the full cast with photos and tap through to any actor. Needs a TMDB key for photos and filmographies."),
+                                 isOn: $sources.xrayEnabled).accessibilityIdentifier("settings-xray-enabled")
+        }
         HarborSettingsSection(DesktopInterfaceText.value("Picture")) {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
                 ForEach(PicturePreset.allCases) { preset in

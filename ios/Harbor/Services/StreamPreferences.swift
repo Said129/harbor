@@ -50,6 +50,10 @@ final class StreamPreferences {
     var autoSkipAd = UserDefaults.standard.object(forKey: "autoSkipAd") as? Bool ?? false {
         didSet { persist(autoSkipAd, forKey: "autoSkipAd") }
     }
+    /// Desktop's `xrayEnabled` (default off, "Enable X-Ray"): the cast button in the player (`XrayOverlayDriver`).
+    var xrayEnabled = XrayRules.enabled(UserDefaults.standard) {
+        didSet { persist(xrayEnabled, forKey: XrayRules.enabledKey) }
+    }
     var fullStreamDescription = UserDefaults.standard.object(forKey: "streams.fullDescription") as? Bool ?? true {
         didSet { persist(fullStreamDescription, forKey: "streams.fullDescription") }
     }
@@ -138,6 +142,7 @@ final class StreamPreferences {
         adSkipEnabled = UserDefaults.standard.object(forKey: "adSkipEnabled") as? Bool ?? false
         autoSkipAd = UserDefaults.standard.object(forKey: "autoSkipAd") as? Bool ?? false
         qualityBadgeStyle = QualityBadgeStyle.restored(UserDefaults.standard.string(forKey: "qualityBadgeStyle")).rawValue
+        xrayEnabled = XrayRules.enabled(UserDefaults.standard)
         fullStreamDescription = UserDefaults.standard.object(forKey: "streams.fullDescription") as? Bool ?? true
         pickerRefreshNextToBack = UserDefaults.standard.object(forKey: "streams.pickerRefreshNextToBack") as? Bool ?? false
         streamLanguages = UserDefaults.standard.string(forKey: "streams.languages") ?? PlaybackPreferences.shared.options.audioLanguage

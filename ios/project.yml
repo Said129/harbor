@@ -237,6 +237,7 @@ targets:
       - path: HarborTests/OverviewTranslationPolicyTests.swift
       - path: HarborTests/TogetherToastRulesTests.swift
       - path: HarborTests/AdSkipTests.swift
+      - path: HarborTests/XrayTests.swift
       - path: HarborTests/QualityBadgePolicyTests.swift
       - path: HarborTests/ContentAdvisoryTests.swift
       - path: HarborTests/TogetherPlayerSyncTests.swift
