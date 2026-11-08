@@ -23,7 +23,7 @@ struct HarborService: Sendable {
 
     func catalogs(_ addons: [Addon], search: String? = nil, genre: String? = nil, skip: Int = 0, previous: [CatalogRow] = [], onRow: (@MainActor @Sendable (CatalogRow) -> Void)? = nil) async throws -> ([CatalogRow], [String]) {
         let requested: [RequestPlan] = try await core.call("catalogs", ["addons": try .encoded(addons), "search": search.map(JSONValue.string) ?? .null, "genre": genre.map(JSONValue.string) ?? .null, "skip": .integer(Int64(skip))])
-        let plans = requested.filter { !$0.isPlaybackHistoryCatalog }
+        let plans = requested.filter { !$0.isPlaybackHistoryCatalog && AddonCatalogRules.isContentType($0.kind) }
         return try await withThrowingTaskGroup(of: (RequestPlan, JSONValue?, String?).self) { group in
             var iterator = plans.makeIterator()
             func enqueue(_ plan: RequestPlan) {
@@ -158,11 +158,11 @@ struct HarborService: Sendable {
     private func decodeCatalog(_ response: JSONValue, plan: RequestPlan) throws -> CatalogRow {
         guard case .array(let values) = response["metas"] else { throw HarborError(code: "invalid-catalog-response") }
         var seen = Set<String>()
-        let parsed = values.compactMap { value -> Media? in
+        let parsed = AddonCatalogRules.collapseEpisodeMetas(values.compactMap { value -> Media? in
             guard var media = Media.parse(value, kind: plan.kind) else { return nil }
             media.addonOrigin = media.addonOrigin ?? MediaAddonOrigin.from(plan.addon)
             return media
-        }.filter { seen.insert($0.identity).inserted }
+        }).filter { seen.insert($0.identity).inserted }
         guard values.isEmpty || !parsed.isEmpty else { throw HarborError(code: "invalid-catalog-response") }
         return CatalogRow(plan: plan, metas: parsed, receivedCount: values.count)
     }

@@ -90,15 +90,18 @@ final class LibraryModel {
         let localVisible = localReady && localActive()
         let localRecords = continuingPrivate ? localSnapshot.personalRecords : localSnapshot.sharedRecords
         let local = localVisible ? localRecords.filter { $0.raw["nativeSource"] == .string("library") ? continueSources.library : continueSources.local } : []
-        let base = continueSources.library && !continuingPrivate ? snapshot.continuing.filter { !CloudAnimeContinueImport.owns($0.id) || !localVisible } : []
+        let base = continueSources.library && !continuingPrivate ? snapshot.continuing.filter { ContinueWatchingSortRules.keepsCloudRecord(id: $0.id) } : []
         guard !external.isEmpty || !local.isEmpty else { return base }
         if let saved = continuationCache, saved.library == continuationRevision, saved.tracker == simklPlayback.revision,
            saved.trakt == traktPlayback.revision,
            saved.local == localRevision, saved.trackerVisible == !external.isEmpty, saved.localVisible == localVisible,
            saved.sources == continueSources { return saved.records }
         var seen = Set<String>()
+        // Desktop's `cwSortKey`: a local resume timestamp for the same id moves the record by its newest time.
+        let localTimes: [String: Double] = Dictionary(localRecords.map { ($0.id, $0.activityTimestamp) }, uniquingKeysWith: { max($0, $1) })
+        let sortKey: (LibraryRecord) -> Double = { ContinueWatchingSortRules.sortKey(activity: $0.activityTimestamp, resumeTimestamp: localTimes[$0.id]) }
         let merged = (base + external.filter(\.continuing) + local.filter(\.continuing))
-            .sorted { $0.activityTimestamp == $1.activityTimestamp ? $0.id < $1.id : $0.activityTimestamp > $1.activityTimestamp }
+            .sorted { sortKey($0) == sortKey($1) ? $0.id < $1.id : sortKey($0) > sortKey($1) }
             .filter { seen.insert($0.id).inserted }
         continuationCache = (continuationRevision, simklPlayback.revision, traktPlayback.revision, localRevision, !external.isEmpty, localVisible, continueSources, merged)
         return merged

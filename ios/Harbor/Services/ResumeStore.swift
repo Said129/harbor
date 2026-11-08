@@ -62,6 +62,12 @@ actor ResumeStore {
         return document.entries[result.key]
     }
 
+    /// Desktop `lastPlayedEpisode`: the episode of this series with the newest resume entry.
+    func lastPlayedEpisode(seriesID: String) throws -> SeriesLastPlayedEpisode.Hit? {
+        guard ready else { throw HarborError(code: "resume-store-unavailable") }
+        return SeriesLastPlayedEpisode.find(seriesID: seriesID, entries: document.entries)
+    }
+
     /// Preserve the provider pause time; importing an unchanged remote checkpoint
     /// must never manufacture fresh local activity or replace a newer Start Over.
     @discardableResult

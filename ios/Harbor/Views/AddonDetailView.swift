@@ -62,7 +62,9 @@ struct AddonDetailView: View {
                     NavigationStack {
                         AddonConfigurationView(name: addon.name, url: url) { value in
                             guard owner == (app.accountOperationScope) else { return }
-                            configurationLink = value; message = "Enlace recibido. Pulsa Guardar configuración para aplicarlo."; error = nil
+                            configurationLink = value; error = nil
+                            // Desktop installs a captured configuration link at once.
+                            save(link: value)
                         }
                     }.font(HarborTheme.font()).tint(HarborTheme.accent)
                 }

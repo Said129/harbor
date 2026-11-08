@@ -518,7 +518,7 @@ final class AppModel {
         try Task.checkCancellation()
         guard owner == accountOperationScope else { throw HarborError(code: "account-cancelled") }
         if let expectedManifestID, addon.manifest["id"].string != expectedManifestID { throw HarborError(code: "addon-reconfigure-mismatch") }
-        let next = addons.filter { $0.transportUrl != addon.transportUrl } + [addon]
+        let next = AddonInstallOrder.merged(addons, installing: addon)
         try await saveCollection(next)
         Diagnostics.shared.record(.addonInstalled, count: addons.count)
         await loadHome()
