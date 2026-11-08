@@ -6,8 +6,8 @@ struct LibraryRecord: Identifiable, Sendable {
     let media: Media?
     let activityTimestamp: Double
     let createdTimestamp: Double
-    private let modifiedTimestamp: Double?
-    private let lastWatchedTimestamp: Double?
+    let modifiedTimestamp: Double?
+    let lastWatchedTimestamp: Double?
 
     init(raw: JSONValue) {
         self.raw = raw

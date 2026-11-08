@@ -109,6 +109,16 @@ struct CinemaHero: View {
             if !moreInfo, let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
         }
         .onChange(of: metas.map(\.identity)) { _, _ in if selected >= min(5, metas.count) { selected = 0 } }
+        .task(id: min(5, metas.count)) {
+            // Desktop's cinema hero moves on its own every `ROTATE_MS` while it has more than one title.
+            let count = min(5, metas.count)
+            guard count > 1 else { return }
+            while !Task.isCancelled {
+                try? await Task.sleep(for: CinemaHeroRotation.interval)
+                guard !Task.isCancelled else { return }
+                withAnimation { selected = CinemaHeroRotation.next(after: selected, count: count) }
+            }
+        }
     }
     @ViewBuilder private func destination(_ media: Media, play: Bool) -> some View {
         if media.type == "manga", let customList, let item = customList.items.first(where: { $0.id == media.id }) {

@@ -48,13 +48,20 @@ struct CatalogRails: View {
                     ScrollView(.horizontal) {
                         LazyHStack(alignment: .top, spacing: 12) {
                             ForEach(row.metas, id: \.identity) { media in
-                                if let app {
-                                    NavigationLink { DetailView(media: media, app: app) } label: { Poster(media: media) }
-                                        .buttonStyle(.plain).accessibilityLabel(media.name)
-                                        .accessibilityIdentifier(media.type == "movie" ? "catalog-movie" : "catalog-media")
-                                        .simultaneousGesture(TapGesture().onEnded { onSelect?() })
-                                } else {
-                                    NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name)
+                                Group {
+                                    if let app {
+                                        NavigationLink { DetailView(media: media, app: app) } label: { Poster(media: media) }
+                                            .buttonStyle(.plain).accessibilityLabel(media.name)
+                                            .accessibilityIdentifier(media.type == "movie" ? "catalog-movie" : "catalog-media")
+                                            .simultaneousGesture(TapGesture().onEnded { onSelect?() })
+                                    } else {
+                                        NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name)
+                                    }
+                                }
+                                .onAppear {
+                                    // Desktop's row `onEndReached`: reaching the last title asks the page model for the next catalog page.
+                                    guard browseCatalogs, let app, media.identity == row.metas.last?.identity else { return }
+                                    Task { await app.pageModel(row.plan.kind).loadMoreRow(id: row.id, app: app) }
                                 }
                             }
                         }.padding(.horizontal)

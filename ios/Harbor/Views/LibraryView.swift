@@ -215,7 +215,9 @@ struct ContinueWatching: View {
     }
     private var items: [LibraryRecord] {
         let selected = app.library.continuing.filter { ContinueWatchingSelection.includes($0, kind: kind, detectedAnime: app.animeDetection.identifiers) }
-        return HomeCatalogFilter.continueWatching(selected, animeOnlyInAnimeRoom: excludesAnime, detectedAnime: app.animeDetection.identifiers)
+        let visible = HomeCatalogFilter.continueWatching(selected, animeOnlyInAnimeRoom: excludesAnime, detectedAnime: app.animeDetection.identifiers)
+        // Desktop's Home row keeps one card per title and caps it (`home.tsx`). Kind-specific rows keep every card.
+        return kind == nil ? HomeContinueWatchingRules.cards(visible) : visible
     }
     var body: some View {
         if !items.isEmpty || app.library.presentationError != nil {
@@ -236,6 +238,8 @@ struct ContinueWatching: View {
                     }.padding(.horizontal)
                 }.scrollIndicators(.hidden)
             }
+        } else if kind == nil {
+            HomeContinueWatchingEmptyState(title: titleIsLiteral ? title : DesktopInterfaceText.value(title), signedIn: app.library.hasCloudSession)
         }
     }
 }

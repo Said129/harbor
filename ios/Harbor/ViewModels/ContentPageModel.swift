@@ -11,6 +11,10 @@ final class ContentPageModel {
     var error: String?
     private var generation = 0
     private var loadedSignature = ""
+    /// Inline paging state for movie and series rows, keyed by row id (Desktop's `loadMore` in `movies.tsx`).
+    private var rowPaging: [String: DesktopGridPaging] = [:]
+    private var rowHasMore: [String: Bool] = [:]
+    private var rowPagingLoading: Set<String> = []
     func load(kind: String, app: AppModel, refresh: Bool = false) async {
         let configuration = MetadataPreferences.shared.configuration()
         let signature = kind + app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined() + configuration.tmdbKey + configuration.region + configuration.language + String(configuration.translateTitles)
@@ -18,6 +22,7 @@ final class ContentPageModel {
         generation += 1
         let current = generation
         loading = true; error = nil
+        rowPaging = [:]; rowHasMore = [:]
         let previousRows = signature == loadedSignature ? rows : []
         let previousCurated = signature == loadedSignature ? curated : []
         rows = previousRows; curated = previousCurated
@@ -134,6 +139,10 @@ final class ContentPageModel {
                 }
                 heroes = await AnimeArtwork.shared.enrich(heroes)
                 guard current == generation else { return }
+            } else if kind == "movie" {
+                // Desktop's movie hero is a daily pick from titles with artwork (`rotateDaily`).
+                let pool = (curated.flatMap(\.metas) + rows.flatMap(\.metas)).filter { $0.background != nil && seen.insert($0.identity).inserted }
+                heroes = DailyHeroRotation.pick(pool, count: 5, day: DailyHeroRotation.currentDay())
             } else {
                 heroes = Array((curated.flatMap(\.metas) + rows.flatMap(\.metas)).filter { seen.insert($0.identity).inserted }.prefix(5))
             }
@@ -162,6 +171,26 @@ final class ContentPageModel {
             if hasTitles { loadedSignature = signature }
         } catch is CancellationError { return }
         catch { if current == generation { self.error = safeMessage(error) } }
+    }
+    /// Desktop's `loadMore` (`movies.tsx`): when a movie or series row reaches its end, request its next catalog page,
+    /// skip the titles it has, and stop at Desktop's row cap. Native Cinemeta fallback rows never page, as on Desktop.
+    func loadMoreRow(id: String, app: AppModel) async {
+        guard let index = rows.firstIndex(where: { $0.id == id }), ["movie", "series"].contains(rows[index].plan.kind),
+              !rows[index].plan.key.hasPrefix("native-") else { return }
+        let row = rows[index]
+        let hasMore = rowHasMore[id] ?? CatalogRowPaging.initialHasMore(count: row.metas.count)
+        guard CatalogRowPaging.shouldRequest(hasMore: hasMore, loading: rowPagingLoading.contains(id), count: row.metas.count) else { return }
+        rowPagingLoading.insert(id)
+        defer { rowPagingLoading.remove(id) }
+        var paging = rowPaging[id] ?? DesktopGridPaging(initialCount: row.receivedCount ?? row.metas.count)
+        guard let result = try? await app.service.catalog(row.plan, genre: row.selectedGenre, skip: paging.loaded) else { return }
+        let received = result.receivedCount ?? result.metas.count
+        paging.received(received)
+        rowPaging[id] = paging
+        guard let current = rows.firstIndex(where: { $0.id == id }) else { return }
+        let merged = CatalogRowPaging.merge(current: rows[current].metas, more: result.metas, received: received)
+        rows[current].metas = merged.metas
+        rowHasMore[id] = merged.hasMore
     }
     /// The anime library titles the viewer has watched, read on the main actor for the picks filter.
     private static func watchedAnimeIDs(_ records: [LibraryRecord], app: AppModel) -> Set<String> {
