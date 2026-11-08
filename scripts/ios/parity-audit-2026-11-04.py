@@ -481,7 +481,7 @@ BEHAVIORS = expand("""
 385 D manga automatic next chapter off: a chapter-complete card with a Next chapter button ends paged, double and strip modes (8 Nov, written by Haiku, uncompiled)
 386 D manga chapter-end hint shows the next chapter name, a Next chapter button and a dismiss control (8 Nov, written by Haiku, uncompiled)
 389 D manga chapter progress is sent when the app leaves the foreground and a rejected GraphQL update falls back to REST (8 Nov, written by Haiku, uncompiled; the REST fallback is untested against a real server)
-391 D sports league catalog: the NCAA soccer leagues read Soccer as Desktop labels them (8 Nov, written by Haiku, uncompiled)
+391 D sports league catalog: the NCAA soccer leagues are labelled from the catalog as Desktop's getLeagueLabel does; Desktop's English catalog says Football for them, so English reads as before and other languages get their own word for soccer (8 Nov, written by Haiku, test fixed by Sonnet)
 392 P sports calendar: the native date picker cannot mark live days and iOS does not fetch live state for other days
 393 D sports filtering: finished games sort newest first and the live scope covers yesterday and today (8 Nov, written by Haiku, uncompiled)
 394 D sports live refresh: refreshes at once on returning to the foreground and keeps games that run past midnight (8 Nov, written by Haiku, uncompiled; local calendar days where Desktop uses UTC)

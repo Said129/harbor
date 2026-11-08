@@ -15,8 +15,10 @@ final class G2SportsTests: XCTestCase {
     }
 
     func testNCAASoccerLeaguesUseDesktopLabels() {
-        XCTAssertEqual(SportsRules.leagueTitle(id: "NCAAMSOCCER", title: "NCAA Men's Football", language: "en"), "NCAA Men's Soccer")
-        XCTAssertEqual(SportsRules.leagueTitle(id: "NCAAWSOCCER", title: "NCAA Women's Football", language: "en"), "NCAA Women's Soccer")
+        // Desktop's English catalog translates "Soccer" to "Football", so its English label for these leagues reads Football;
+        // the sport word comes from the catalog so every other language gets its own word for soccer.
+        XCTAssertEqual(SportsRules.leagueTitle(id: "NCAAMSOCCER", title: "NCAA Men's Football", language: "en"), "NCAA Men's Football")
+        XCTAssertEqual(SportsRules.leagueTitle(id: "NCAAWSOCCER", title: "NCAA Women's Football", language: "en"), "NCAA Women's Football")
         XCTAssertEqual(SportsRules.leagueTitle(id: "NCAAF", title: "NCAA Football", language: "en"), "NCAA Football")
     }
 

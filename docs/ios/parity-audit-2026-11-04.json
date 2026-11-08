@@ -2964,7 +2964,7 @@
       "id": "Sports original league catalog",
       "desktop_source": "src/lib/sports/espn-leagues.ts",
       "verdict": "D",
-      "note": "sports league catalog: the NCAA soccer leagues read Soccer as Desktop labels them (8 Nov, written by Haiku, uncompiled)"
+      "note": "sports league catalog: the NCAA soccer leagues are labelled from the catalog as Desktop's getLeagueLabel does; Desktop's English catalog says Football for them, so English reads as before and other languages get their own word for soccer (8 Nov, written by Haiku, test fixed by Sonnet)"
     },
     {
       "index": 392,

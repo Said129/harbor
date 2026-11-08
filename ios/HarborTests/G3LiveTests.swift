@@ -30,7 +30,7 @@ final class G3LiveTests: XCTestCase {
 
     func testEmptyLogoCountsAsMissing() {
         XCTAssertNil(VODLibrary.fillLogo(nil, from: nil))
-        XCTAssertNil(VODLibrary.fillLogo("", from: ""))
+        XCTAssertEqual(VODLibrary.fillLogo("", from: ""), "", "Desktop leaves an empty logo as it is when no episode has one")
         XCTAssertEqual(VODLibrary.fillLogo("", from: "https://img.example.com/a.png"), "https://img.example.com/a.png")
         XCTAssertEqual(VODLibrary.fillLogo("https://img.example.com/a.png", from: "https://img.example.com/b.png"), "https://img.example.com/a.png")
     }
