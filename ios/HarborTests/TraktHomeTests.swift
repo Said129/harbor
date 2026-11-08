@@ -93,7 +93,7 @@ import XCTest
             let account = try Self.account(), transport = Self.transport(scenario)
             let gate = OwnedTraktHomeHeldReply()
             let model = TraktHomeModel(account: account, client: .init(transport: { request in await gate.wait(); return try await transport.send(request) }), hydrator: Self.hydrator(scenario), active: { true })
-            let loading = Task { await model.load(configuration: configuration) }
+            let loading = Task { await model.load(configuration: configuration, date: Date(timeIntervalSince1970: 1_793_230_800)) }
             for _ in 0..<100 { if await gate.isHolding { break }; try await Task.sleep(for: .milliseconds(10)) }
             let holding = await gate.isHolding; XCTAssertTrue(holding)
             try account.set(replacement ? .init(accessToken: "owned-second", refreshToken: "owned-second-refresh", createdAt: 1_700_000_000, expiresIn: 7_776_000) : nil)
@@ -103,7 +103,7 @@ import XCTest
         }
         let account = try Self.account(), transport = Self.transport(scenario), activation = OwnedTraktHomeActivation()
         let model = TraktHomeModel(account: account, client: .init(transport: { try await transport.send($0) }), hydrator: Self.hydrator(scenario), active: { activation.current })
-        await model.load(configuration: configuration)
+        await model.load(configuration: configuration, date: Date(timeIntervalSince1970: 1_793_230_800))
         let oldPager = try XCTUnwrap(model.rows.first?.personal)
         activation.current = false
         XCTAssertTrue(model.rows.isEmpty); XCTAssertFalse(oldPager.available())
@@ -128,7 +128,7 @@ import XCTest
     func testTraktRowsParticipateInExistingHomeLayoutWithoutExposingCredentialOrLosingOtherRows() async throws {
         let scenario = try XCTUnwrap(Self.reference()["cases"].array.first), account = try Self.account()
         let transport = Self.transport(scenario), model = TraktHomeModel(account: account, client: .init(transport: { try await transport.send($0) }), hydrator: Self.hydrator(scenario), active: { true })
-        await model.load(configuration: configuration)
+        await model.load(configuration: configuration, date: Date(timeIntervalSince1970: 1_793_230_800))
         let owner = "owned-trakt-home-layout-" + UUID().uuidString
         defer { UserDefaults.standard.removeObject(forKey: "page-layout-" + EBookShelf.hash(owner + "|home")) }
         let customization = PageCustomization(owner: owner, page: "home")
