@@ -33,6 +33,10 @@ private struct LiveTVDocument: Codable {
     var version = 1
     var sources: [LivePlaylistSource] = []
     var favorites: Set<String> = []
+    /// Optional so documents saved before these fields existed still decode.
+    var favoriteItems: [LiveChannel]?
+    var pinnedChannels: [String]?
+    var groupPrefs: [String: LiveGroupPrefs]?
 }
 
 @MainActor @Observable
@@ -43,6 +47,10 @@ final class LiveTVPreferences {
     private(set) var error: String?
     var sources: [LivePlaylistSource] { stored.sources }
     var favorites: Set<String> { stored.favorites }
+    /// Desktop's favourites snapshot: favourites keep their own channel data, so they show when their playlist is not loaded.
+    var favoriteItems: [LiveChannel] { stored.favoriteItems ?? [] }
+    var pinnedChannels: [String] { stored.pinnedChannels ?? [] }
+    func groupPrefs(for sourceID: String) -> LiveGroupPrefs { stored.groupPrefs?[sourceID] ?? LiveGroupPrefs() }
     private var key: String { "live-tv-" + EBookShelf.hash(owner) }
     init(owner: String) {
         self.owner = owner
@@ -58,15 +66,54 @@ final class LiveTVPreferences {
         next.sources.append(source); try save(next)
     }
     func remove(_ source: LivePlaylistSource) throws {
-        var next = stored; next.sources.removeAll { $0.id == source.id }; next.favorites = next.favorites.filter { !$0.hasPrefix(source.id + "::") }; try save(next)
+        var next = stored; next.sources.removeAll { $0.id == source.id }; next.favorites = next.favorites.filter { !$0.hasPrefix(source.id + "::") }
+        next.favoriteItems = next.favoriteItems?.filter { $0.source != source.id }
+        next.pinnedChannels = next.pinnedChannels?.filter { !$0.hasPrefix(source.id + "::") }
+        next.groupPrefs?[source.id] = nil
+        try save(next)
     }
     func toggle(_ channel: LiveChannel) throws {
         var next = stored
-        if next.favorites.contains(channel.id) { next.favorites.remove(channel.id) } else { next.favorites.insert(channel.id) }
+        var items = next.favoriteItems ?? []
+        if next.favorites.contains(channel.id) { next.favorites.remove(channel.id); items.removeAll { $0.id == channel.id } }
+        else { next.favorites.insert(channel.id); items.append(channel) }
+        next.favoriteItems = items
         try save(next)
     }
+    func togglePinned(_ channel: LiveChannel) throws {
+        var next = stored
+        next.pinnedChannels = LiveTVCatalogOrder.togglingChannelPin(next.pinnedChannels ?? [], channelID: channel.id)
+        try save(next)
+    }
+    func toggleGroupPin(source sourceID: String, group: String) throws {
+        var next = stored
+        var map = next.groupPrefs ?? [:]
+        map[sourceID] = LiveTVCatalogOrder.togglingPin(map[sourceID] ?? LiveGroupPrefs(), group: group)
+        next.groupPrefs = map
+        try save(next)
+    }
+    func toggleGroupHidden(source sourceID: String, group: String) throws {
+        var next = stored
+        var map = next.groupPrefs ?? [:]
+        map[sourceID] = LiveTVCatalogOrder.togglingHidden(map[sourceID] ?? LiveGroupPrefs(), group: group)
+        next.groupPrefs = map
+        try save(next)
+    }
+    /// Desktop's favourites hydrate: favourites saved before snapshots existed get one once their playlist loads.
+    func rememberFavorites(_ channels: [LiveChannel]) {
+        guard ready else { return }
+        var items = stored.favoriteItems ?? []
+        var known = Set(items.map(\.id))
+        var added = false
+        for channel in channels where stored.favorites.contains(channel.id) {
+            if known.insert(channel.id).inserted { items.append(channel); added = true }
+        }
+        guard added else { return }
+        var next = stored; next.favoriteItems = items
+        try? save(next)
+    }
     private func save(_ next: LiveTVDocument) throws {
-        guard ready, next.sources.count <= 32, next.favorites.count <= 10_000 else { throw HarborError(code: "iptv-store") }
+        guard ready, next.sources.count <= 32, next.favorites.count <= 10_000, (next.favoriteItems?.count ?? 0) <= 10_000, (next.pinnedChannels?.count ?? 0) <= 10_000 else { throw HarborError(code: "iptv-store") }
         let bytes = try JSONEncoder().encode(next)
         guard bytes.count <= 2 * 1024 * 1024 else { throw HarborError(code: "iptv-store") }
         try KeychainStore().write(next, key: key); stored = next
