@@ -501,6 +501,15 @@ BEHAVIORS = expand("""
 202 D SDH and forced flags: the hide-SDH filter now follows Desktop's gate (not forced, not foreign-only, safe language) (8 Nov, written by Haiku, uncompiled; iOS tracks carry no foreign-only flag)
 109 D embedded addon subtitle URLs: the Stremio streaming-server path passes them on (8 Nov, written by Haiku, uncompiled)
 177 D player resilience: a network stream that ends before 85 percent of a known duration reloads once, never local or downloaded files (8 Nov, written by Haiku, uncompiled; restarts from the beginning and has no second retry per candidate)
+3 D Home row customization: Top 10 numerals need the ten-title minimum at render time (8 Nov, written by Haiku, uncompiled)
+405 D Home Top 10 numerals: the defaults follow Desktop (Home rows are not Top 10 by default, Movies and Series keep their rank row, anime rank rows need ten titles) (8 Nov, written by Haiku, uncompiled); Desktop's separate first-row Top 10 block is not ported
+406 D Home hero source: backdrop first, no duplicates, at most four slides, Featured as the fallback (8 Nov, written by Haiku, uncompiled); anime and series keep their own counts
+35 P synopsis, genres and ratings: only the first three genres show and a TMDB genre opens a filtered browse; unmapped genre names stay plain text (8 Nov, written by Haiku, uncompiled)
+40 D seasons: the default season follows Desktop's resume rule (history hint, latest watched season, next unfinished) (8 Nov, written by Haiku, uncompiled)
+42 P episode selection: the initial season follows Desktop's resume rule; mark-season, cross-season search and the random-episode button are not ported (8 Nov, written by Haiku, uncompiled)
+424 P music audio cover import: a sidecar cover (cover, folder, front) fills in when there is no embedded art, for folder imports; the front-cover tag preference is not possible with AVFoundation's artwork key (8 Nov, written by Haiku, uncompiled)
+437 D music track title copying: Copy title and artist in the catalog, playlist and collection track menus (8 Nov, written by Haiku, uncompiled)
+438 D subtitle source FPS correction: the control is blocked with Desktop's message while auto-sync analyses or applies (8 Nov, written by Haiku, uncompiled)
 """)
 
 SETTINGS = expand("""

@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 226,
-      "partial": 153,
+      "ported": 232,
+      "partial": 147,
       "missing": 2,
       "excluded": 57,
       "counted": 381,
-      "weighted_percent": 79.4,
-      "ported_only_percent": 59.3,
+      "weighted_percent": 80.2,
+      "ported_only_percent": 60.9,
       "ported_or_partial_percent": 99.5
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 466,
-      "partial": 187,
+      "ported": 472,
+      "partial": 181,
       "missing": 5,
       "excluded": 291,
       "counted": 658,
-      "weighted_percent": 85.0,
-      "ported_only_percent": 70.8,
+      "weighted_percent": 85.5,
+      "ported_only_percent": 71.7,
       "ported_or_partial_percent": 99.2
     }
   },
@@ -41,11 +41,11 @@
     {
       "area": "Home, Discover and rooms",
       "range": "B1-B21",
-      "ported": 3,
-      "partial": 18,
+      "ported": 4,
+      "partial": 17,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 57.1
+      "weighted_percent": 59.5
     },
     {
       "area": "Search",
@@ -59,11 +59,11 @@
     {
       "area": "Details and episodes",
       "range": "B33-B47",
-      "ported": 5,
-      "partial": 10,
+      "ported": 6,
+      "partial": 9,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 66.7
+      "weighted_percent": 70.0
     },
     {
       "area": "Addons and catalogs",
@@ -185,11 +185,11 @@
     {
       "area": "Home customization",
       "range": "B402-B409",
-      "ported": 6,
-      "partial": 2,
+      "ported": 8,
+      "partial": 0,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 87.5
+      "weighted_percent": 100.0
     },
     {
       "area": "VOD details",
@@ -212,20 +212,20 @@
     {
       "area": "Music",
       "range": "B422-B437",
-      "ported": 12,
-      "partial": 4,
+      "ported": 13,
+      "partial": 3,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 87.5
+      "weighted_percent": 90.6
     },
     {
       "area": "Subtitle FPS",
       "range": "B438-B438",
-      "ported": 0,
-      "partial": 1,
+      "ported": 1,
+      "partial": 0,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 50.0
+      "weighted_percent": 100.0
     }
   ],
   "behaviors": [
@@ -247,8 +247,8 @@
       "index": 3,
       "id": "Home row customization",
       "desktop_source": "src/views/home.tsx",
-      "verdict": "P",
-      "note": "Top 10 numerals are not gated by the 10-title minimum at render time: PageCustomization.ranked and TopTenRail do not check the title count, while Desktop renders a row as Top 10 only when it has at least 10 titles."
+      "verdict": "D",
+      "note": "Home row customization: Top 10 numerals need the ten-title minimum at render time (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 4,
@@ -472,7 +472,7 @@
       "id": "Synopsis / genres / ratings",
       "desktop_source": "src/views/detail.tsx",
       "verdict": "P",
-      "note": "iOS genre badges are not clickable and every genre is shown, while Desktop shows the first three genres as pills that open a genre filter (openFilter) when clicked."
+      "note": "synopsis, genres and ratings: only the first three genres show and a TMDB genre opens a filtered browse; unmapped genre names stay plain text (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 36,
@@ -506,8 +506,8 @@
       "index": 40,
       "id": "Seasons",
       "desktop_source": "src/views/detail/series-episodes.tsx",
-      "verdict": "P",
-      "note": "iOS picks the default season from the history episode hint or the first real season, with no watched-progress choice of the next unfinished season (resumeDefaultSeason). No mark-season action was found in the episo..."
+      "verdict": "D",
+      "note": "seasons: the default season follows Desktop's resume rule (history hint, latest watched season, next unfinished) (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 41,
@@ -521,7 +521,7 @@
       "id": "Episode selection",
       "desktop_source": "src/views/detail/series-episodes.tsx",
       "verdict": "P",
-      "note": "The initial season ignores Desktop's resumeDefaultSeason logic (EpisodeList.chooseInitialSeason uses only the preferred episode or the first season), and no cross-season episode search or random-episode control is..."
+      "note": "episode selection: the initial season follows Desktop's resume rule; mark-season, cross-season search and the random-episode button are not ported (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 43,
@@ -3061,15 +3061,15 @@
       "index": 405,
       "id": "Home Top 10 numerals",
       "desktop_source": "src/lib/home-customization.ts",
-      "verdict": "P",
-      "note": "iOS also gives Top 10 styling by default to -top10 and cm-top-movies, cm-drama and cm-comedy rails, renders ranked rails without the 10-title check (PageCustomizationView line 95), and has no first-row Top 10 block with its own h..."
+      "verdict": "D",
+      "note": "Home Top 10 numerals: the defaults follow Desktop (Home rows are not Top 10 by default, Movies and Series keep their rank row, anime rank rows need ten titles) (8 Nov, written by Haiku, uncompiled); Desktop's separate first-row Top 10 block is not ported"
     },
     {
       "index": 406,
       "id": "Home hero source selection",
       "desktop_source": "src/lib/home-customization.ts",
-      "verdict": "P",
-      "note": "iOS takes the first five titles of the chosen row without the backdrop-first ordering, the four-slide cap, or the artwork check at render time."
+      "verdict": "D",
+      "note": "Home hero source: backdrop first, no duplicates, at most four slides, Featured as the fallback (8 Nov, written by Haiku, uncompiled); anime and series keep their own counts"
     },
     {
       "index": 407,
@@ -3195,7 +3195,7 @@
       "id": "Music audio cover import",
       "desktop_source": "src-tauri/src/music/connectors/local/tags.rs",
       "verdict": "P",
-      "note": "The sidecar image fallback (cover, folder or front, jpg/jpeg/png) does not exist on iOS, and folder import copies only audio files so sidecar images are never read. Embedded art is taken as the first picture rather than preferrin..."
+      "note": "music audio cover import: a sidecar cover (cover, folder, front) fills in when there is no embedded art, for folder imports; the front-cover tag preference is not possible with AVFoundation's artwork key (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 425,
@@ -3285,15 +3285,15 @@
       "index": 437,
       "id": "Music track title copying",
       "desktop_source": "src/components/music/music-track-menu.tsx",
-      "verdict": "P",
-      "note": "Copy title exists only in MusicTrackActions for local library records. The connector and catalog track menu (MusicRecordingActions, used by catalog cards, catalog detail and playlist rows when a session is active) has no copy act..."
+      "verdict": "D",
+      "note": "music track title copying: Copy title and artist in the catalog, playlist and collection track menus (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 438,
       "id": "Subtitle source FPS correction",
       "desktop_source": "src/lib/player/subtitle-fps.ts",
-      "verdict": "P",
-      "note": "iOS does not disable the FPS control while auto-sync is running (SubtitleTiming.unavailable has no auto-sync check); applySubtitleFPS instead cancels the running sync through cancelSubtitleSync()."
+      "verdict": "D",
+      "note": "subtitle source FPS correction: the control is blocked with Desktop's message while auto-sync analyses or applies (8 Nov, written by Haiku, uncompiled)"
     }
   ],
   "settings": [

@@ -1783,3 +1783,22 @@ their gap in the audit instead of "earlier review Partial".
 One finding to confirm with the owner: there is no Stremio sign-in on iOS. Commit 986184c8 replaced it with local profile sources and migrated old
 sessions, so Stremio login, profile, cloud library and cloud addon sync (rows 67, 260, 261, 262) stay partial or missing, and a profile that still
 holds an old Stremio session cannot install, remove, reorder or toggle addons (`AppModel.persist` throws `profile-account-migration`).
+
+## Twentieth round: gaps found by the re-audit (8 November, written by Haiku, uncompiled)
+
+Five Haiku branches closed the small gaps the row-by-row re-audit named, area by area.
+**Manga**: the connection check tells wrong credentials, no server, unsupported and unreachable apart and shows the server name and version; a folder of
+CBZ/ZIP archives imports one chapter per archive; "original" fit uses container width times zoom; the zoom panel has the 0.1 steppers and the 50 to 300 percent
+presets; the double-page gap reaches 48; focus mode keeps a thin progress meter; with auto-next off a chapter-complete card and a Next chapter button end
+paged, double and strip modes; progress is sent when the app leaves the foreground, with a GraphQL-to-REST fallback.
+**Sports**: NCAA soccer labels, finished games newest first, a live scope of yesterday and today, an immediate refresh on returning to the foreground,
+a typed key-event timeline, Desktop's permission and endorsement sections in the notice (consent version 2), Desktop's reminder lead options with re-sync
+when a start time moves, and the standings group in the match detail. Not done: live-day markers on the date picker.
+**Live TV and VOD**: series logo from any episode, Xtream https base, the decorative-row filter, Arabic-aware channel search and region and language
+ordering of the category picker; the short-EPG guide was skipped because iOS has no now-and-next display.
+**Detail, Home, Music, FPS**: Top 10 numerals need ten titles and follow Desktop's defaults, the Home hero orders backdrop first with at most four slides,
+the first three genres are pills that open a filtered browse, the default season follows Desktop's resume rule, a sidecar cover fills missing album art in
+folder imports, "Copy title and artist" joins the catalog track menus, and the subtitle FPS control is blocked while auto-sync runs.
+**Player and subtitles**: the seek bar draws the buffered fill, external SRT/ASS/VTT files are converted to UTF-8 when they use a legacy encoding, the SDH
+filter follows Desktop's gate, the streaming-server path keeps the addon subtitles, and a network stream that ends before 85 percent of a known duration
+reloads once.
