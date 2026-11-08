@@ -26,12 +26,17 @@ actor XtreamClient {
         let raw = try await request(nil, refresh: refresh), info = raw["user_info"]
         guard case .object = info else { throw HarborError(code: "xtream-response") }
         guard Self.number(info["auth"]) == 1, !["expired", "banned", "disabled"].contains((info["status"].string ?? "").lowercased()) else { throw HarborError(code: "xtream-authorization") }
-        var base = account.base
-        if raw["server_info"]["server_protocol"].string?.lowercased() == "https", var url = URLComponents(string: base) {
-            let port = raw["server_info"]["https_port"].textValue ?? raw["server_info"]["port"].textValue
-            if let port = port.flatMap(Int.init), (1...65_535).contains(port) { url.scheme = "https"; url.port = port; base = url.url?.absoluteString ?? base }
-        }
+        let base = Self.streamBase(account.base, serverProtocol: raw["server_info"]["server_protocol"].string, httpsPort: raw["server_info"]["https_port"].textValue, port: raw["server_info"]["port"].textValue)
         return XtreamCapabilities(formats: info["allowed_output_formats"].array.compactMap(\.string).map { $0.lowercased() }, streamBase: base)
+    }
+    /// Desktop's `deriveStreamBase` (`src/lib/iptv/xtream.ts`): an https server is always reached as
+    /// `https://host`, on the first non-empty of https_port / port when that is a valid port.
+    nonisolated static func streamBase(_ base: String, serverProtocol: String?, httpsPort: String?, port: String?) -> String {
+        guard serverProtocol?.lowercased() == "https", var url = URLComponents(string: base), url.host?.isEmpty == false else { return base }
+        url.scheme = "https"; url.user = nil; url.password = nil; url.path = ""; url.query = nil; url.fragment = nil
+        let typed = [httpsPort, port].compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }.first(where: { !$0.isEmpty })
+        url.port = typed.flatMap(Int.init).flatMap { (1...65_535).contains($0) ? $0 : nil }
+        return url.url?.absoluteString ?? base
     }
     func live(refresh: Bool) async throws -> [LiveChannel] {
         let caps = try await capabilities(refresh: refresh)
