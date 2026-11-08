@@ -471,7 +471,10 @@ enum MangaReaderRules {
         func pageViewController(_ view: UIPageViewController, viewControllerAfter controller: UIViewController) -> UIViewController? { guard let leaf = controller as? Leaf else { return nil }; return self.leaf(leaf.index + (parent.rtl ? -1 : 1)) }
         func pageViewController(_ view: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
             animating = false; parent.turning = false
-            if completed, let page = view.viewControllers?.compactMap({ ($0 as? Leaf)?.index }.min(), page < parent.pages.count) { parent.selected = anchor(page) }
+            guard completed,
+                  let page = view.viewControllers?.compactMap({ ($0 as? Leaf)?.index }).min(),
+                  page < parent.pages.count else { return }
+            parent.selected = anchor(page)
         }
     }
 }
