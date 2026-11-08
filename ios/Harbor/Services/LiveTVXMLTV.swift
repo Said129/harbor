@@ -91,7 +91,7 @@ private final class LiveTVXMLTVDelegate: NSObject, XMLParserDelegate {
 
     private var programme: (channel: String, start: TimeInterval, end: TimeInterval)?
     private var title: String?
-    private var description: String?
+    private var programmeDescription: String?
     private var titleDone = false
     private var descriptionDone = false
 
@@ -109,7 +109,7 @@ private final class LiveTVXMLTVDelegate: NSObject, XMLParserDelegate {
             guard channelID != nil, !channelNameDone else { return }
             textTarget = elementName; text = ""
         case "programme":
-            programme = nil; title = nil; description = nil; titleDone = false; descriptionDone = false
+            programme = nil; title = nil; programmeDescription = nil; titleDone = false; descriptionDone = false
             guard let channel = attributeDict["channel"], !channel.isEmpty,
                   let startRaw = attributeDict["start"], !startRaw.isEmpty,
                   let stopRaw = attributeDict["stop"], !stopRaw.isEmpty,
@@ -147,7 +147,7 @@ private final class LiveTVXMLTVDelegate: NSObject, XMLParserDelegate {
                 title = value.isEmpty ? "Untitled" : value
                 titleDone = true
             default:
-                description = value.isEmpty ? nil : value
+                programmeDescription = value.isEmpty ? nil : value
                 descriptionDone = true
             }
         }
@@ -168,14 +168,14 @@ private final class LiveTVXMLTVDelegate: NSObject, XMLParserDelegate {
     }
 
     private func storeProgramme() {
-        defer { programme = nil; title = nil; description = nil; titleDone = false; descriptionDone = false }
+        defer { programme = nil; title = nil; programmeDescription = nil; titleDone = false; descriptionDone = false }
         guard let entry = programme else { return }
         if let window, entry.end < window.lowerBound || entry.start > window.upperBound { return }
         programmeCount += 1
         let program = LiveProgram(
             id: "\(entry.channel)|\(Int(entry.start))|\(programmeCount)",
             title: title ?? "Untitled",
-            description: description,
+            description: programmeDescription,
             start: Date(timeIntervalSince1970: entry.start),
             end: Date(timeIntervalSince1970: entry.end)
         )
