@@ -8,6 +8,7 @@ actor AnimeService {
     private var cacheLoaded = false
     private var pending: [String: Task<[Media], Error>] = [:]
     private var nextJikan = Date.distantPast
+    private var genreCache: [Int: (at: Date, items: [Media])] = [:]
     private var cacheURL: URL? {
         try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("harbor-public-anime-rails.json")
     }
@@ -195,11 +196,10 @@ actor AnimeService {
         return values
     }
 
-    func picks(records: [LibraryRecord]) async throws -> [Media] {
+    /// Desktop's Top Picks candidates: the airing and popular rails, then page 1 of Jikan's score-sorted list for each
+    /// favourite genre (`jikanByGenre`, seeded by `animeSeedGenres`). Empty favourites add no requests.
+    func picks(records: [LibraryRecord], options: AnimePicksPolicy.Options, watchedIDs: Set<String>) async throws -> [Media] {
         let active = records.compactMap(\.media).filter { Self.isAnime($0.id) }
-        let excluded = Set(active.map { Self.nameKey($0.name) })
-        let excludedIDs = Set(active.map(\.id))
-        let genres = Array(Set(active.flatMap { $0.genres ?? [] })).sorted()
         var candidates: [Media] = []
         for title in ["anime-airing", "anime-popular"] {
             try Task.checkCancellation()
@@ -210,9 +210,38 @@ actor AnimeService {
             // results as MAL during a Jikan outage.
             candidates = try await page(rail, page: 1)
         }
+        // Desktop fetches a random page per day; page 1 is used here. Like `page`, a genre list is kept for an hour
+        // and an empty result is not kept.
+        for genre in Self.favouriteSeedIDs(options) {
+            try Task.checkCancellation()
+            if let hit = genreCache[genre], Date().timeIntervalSince(hit.at) < 3_600 {
+                candidates.append(contentsOf: hit.items)
+                continue
+            }
+            if let values = try? await fetchJikan(path: "anime", parameters: ["genres": String(genre), "order_by": "score", "sort": "desc", "min_score": "7"]) {
+                let items = values.compactMap(Self.jikanMedia)
+                if !items.isEmpty { genreCache[genre] = (at: Date(), items: items) }
+                candidates.append(contentsOf: items)
+            }
+        }
         try Task.checkCancellation()
         guard !candidates.isEmpty else { throw HarborError(code: "anime-picks") }
-        return Array(Self.unique(candidates).filter { !excludedIDs.contains($0.id) && !excluded.contains(Self.nameKey($0.name)) }
+        return Self.rankedPicks(candidates, library: active, options: options, watchedIDs: watchedIDs)
+    }
+
+    /// Desktop's `animeSeedGenres` without taste: the favourite genres, at most three, with no repeats.
+    static func favouriteSeedIDs(_ options: AnimePicksPolicy.Options) -> [Int] {
+        AnimePicksPolicy.seedGenreIDs(favorites: options.favoriteGenres, tasteGenres: [])
+    }
+
+    /// Removes the library's titles, then the hidden origins and watched titles (`AnimePicksPolicy`), then sorts by the
+    /// library's genres as the picks always did, and keeps 24.
+    static func rankedPicks(_ candidates: [Media], library active: [Media], options: AnimePicksPolicy.Options, watchedIDs: Set<String>) -> [Media] {
+        let excluded = Set(active.map { Self.nameKey($0.name) })
+        let excludedIDs = Set(active.map(\.id))
+        let genres = Array(Set(active.flatMap { $0.genres ?? [] })).sorted()
+        let open = Self.unique(candidates).filter { !excludedIDs.contains($0.id) && !excluded.contains(Self.nameKey($0.name)) }
+        return Array(AnimePicksPolicy.filtered(open, options: options, isWatched: { watchedIDs.contains($0) })
             .sorted { first, second in
                 let a = (first.genres ?? []).filter { genres.contains($0) }.count
                 let b = (second.genres ?? []).filter { genres.contains($0) }.count

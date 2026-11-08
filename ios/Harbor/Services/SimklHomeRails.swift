@@ -32,6 +32,23 @@ enum SimklHomeRails {
         var id: String { rawValue }
     }
 
+    /// The stored `simklAnimeTitleLanguage` value; anything unknown or missing reads as English, Desktop's default.
+    static func animeTitleLanguage(stored: String?) -> AnimeTitleLanguage {
+        stored.flatMap(AnimeTitleLanguage.init(rawValue:)) ?? .english
+    }
+
+    /// Desktop's `getTitleFromAniZip`: the title of the chosen language from an ani.zip `titles` map, with empty
+    /// values skipped. Nil when none of the fallbacks has a title.
+    static func preferredAnimeTitle(_ titles: [String: String], language: AnimeTitleLanguage) -> String? {
+        let order: [String]
+        switch language {
+        case .english: order = ["en", "en_jp", "ja"]
+        case .romaji: order = ["x-jat", "en_jp", "en"]
+        case .native: order = ["ja", "x-jat", "en"]
+        }
+        return order.compactMap { titles[$0] }.first { !$0.isEmpty }
+    }
+
     /// The Desktop settings that shape the rails. Defaults match Desktop's `defaults.ts` and `simkl-panel.tsx`.
     struct Settings: Equatable, Sendable {
         var homeRails = false

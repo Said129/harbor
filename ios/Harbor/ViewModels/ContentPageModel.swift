@@ -81,12 +81,14 @@ final class ContentPageModel {
                 let definitions = AnimeService.definitions()
                 guard definitions.count == 24 else { throw HarborError(code: "anime-row-assets") }
                 let records = app.library.items
+                let picksOptions = AnimePicksPreferences.shared.options
+                let watchedIDs: Set<String> = picksOptions.hideWatched ? Self.watchedAnimeIDs(records, app: app) : []
                 await withTaskGroup(of: (Int, DiscoveryRail?).self) { group in
                     for (index, rail) in definitions.enumerated() {
                         group.addTask {
                             do {
                                 var result = rail
-                                if rail.path == "anime:picks" { result.metas = try await AnimeService.shared.picks(records: records) }
+                                if rail.path == "anime:picks" { result.metas = try await AnimeService.shared.picks(records: records, options: picksOptions, watchedIDs: watchedIDs) }
                                 else if rail.id == "anilist-top100" {
                                     let first = try await AnimeService.shared.page(rail, page: 1)
                                     let second = try await AnimeService.shared.page(rail, page: 2)
@@ -161,10 +163,17 @@ final class ContentPageModel {
         } catch is CancellationError { return }
         catch { if current == generation { self.error = safeMessage(error) } }
     }
+    /// The anime library titles the viewer has watched, read on the main actor for the picks filter.
+    private static func watchedAnimeIDs(_ records: [LibraryRecord], app: AppModel) -> Set<String> {
+        Set(records.compactMap(\.media).filter { AnimeService.isAnime($0.id) && app.library.watched($0) }.map(\.id))
+    }
+
     func refreshAnimePicks(app: AppModel) async {
         guard !loading, let index = curated.firstIndex(where: { $0.id == "anime-picks" }) else { return }
         let current = generation, owner = app.accountOperationScope
-        guard let picks = try? await AnimeService.shared.picks(records: app.library.items), !Task.isCancelled,
+        let picksOptions = AnimePicksPreferences.shared.options
+        let watchedIDs: Set<String> = picksOptions.hideWatched ? Self.watchedAnimeIDs(app.library.items, app: app) : []
+        guard let picks = try? await AnimeService.shared.picks(records: app.library.items, options: picksOptions, watchedIDs: watchedIDs), !Task.isCancelled,
               current == generation, owner == app.accountOperationScope, curated.indices.contains(index), curated[index].id == "anime-picks" else { return }
         curated[index].metas = picks
     }
