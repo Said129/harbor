@@ -286,6 +286,8 @@ final class LibraryModel {
         if let remote = traktWatched.state(for: personalOwner) { watched.formUnion(remote.episodes(media)) }
         // Desktop's `simklWatched` joins the watched set before the manual decisions below.
         watched.formUnion(SimklWatchedEpisodes.keys(in: SimklLibraryStore.forOwner(personalOwner).snapshot, for: media))
+        // Desktop's `useAnilistWatched` and `useMalWatched` add their list progress the same way.
+        watched.formUnion(TrackerListWatched.keys(in: TrackerListProgressStore.forOwner(personalOwner), for: media))
         let manual = state["nativeManualEpisodes"].objectValue
         for (key, value) in manual { if value == .bool(true) { watched.insert(key) } else if value == .bool(false) { watched.remove(key) } }
         for episode in media.videos ?? [] {

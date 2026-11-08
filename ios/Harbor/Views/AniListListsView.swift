@@ -155,6 +155,7 @@ struct AniListListsView: View {
         let client = AniListClient(transport: AniListHTTPTransport())
         do {
             entries = try await AniListListsService.collection(userID: session.userId, token: session.accessToken, client: client)
+            TrackerListProgressStore.forOwner(account.owner).replace(TrackerListWatched.aniListProgress(entries))
         } catch {
             if let apiError = error as? AniListAPIError, apiError.isAuthenticationError { await account.validate() }
             loadFailed = true
