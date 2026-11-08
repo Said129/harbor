@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 244,
-      "partial": 131,
+      "ported": 249,
+      "partial": 126,
       "missing": 1,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 82.3,
-      "ported_only_percent": 64.9,
+      "weighted_percent": 83.0,
+      "ported_only_percent": 66.2,
       "ported_or_partial_percent": 99.7
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 484,
-      "partial": 164,
+      "ported": 489,
+      "partial": 159,
       "missing": 4,
       "excluded": 297,
       "counted": 652,
-      "weighted_percent": 86.8,
-      "ported_only_percent": 74.2,
+      "weighted_percent": 87.2,
+      "ported_only_percent": 75.0,
       "ported_or_partial_percent": 99.4
     }
   },
@@ -50,20 +50,20 @@
     {
       "area": "Search",
       "range": "B22-B32",
-      "ported": 4,
-      "partial": 6,
+      "ported": 7,
+      "partial": 3,
       "missing": 0,
       "excluded": 1,
-      "weighted_percent": 70.0
+      "weighted_percent": 85.0
     },
     {
       "area": "Details and episodes",
       "range": "B33-B47",
-      "ported": 7,
-      "partial": 8,
+      "ported": 8,
+      "partial": 7,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 73.3
+      "weighted_percent": 76.7
     },
     {
       "area": "Addons and catalogs",
@@ -104,11 +104,11 @@
     {
       "area": "Player, subtitles, skip, trailers and downloads",
       "range": "B154-B216",
-      "ported": 36,
-      "partial": 14,
+      "ported": 37,
+      "partial": 13,
       "missing": 0,
       "excluded": 13,
-      "weighted_percent": 86.0
+      "weighted_percent": 87.0
     },
     {
       "area": "Live TV, VOD, DVR and multiview",
@@ -262,14 +262,14 @@
       "id": "Discover personalized feed",
       "desktop_source": "src/views/discover.tsx",
       "verdict": "P",
-      "note": "DiscoverView, DiscoveryRails, DiscoveryPreferences"
+      "note": "Discover personalized feed: Desktop's affinity ranking (genre 4, decade 1.5) orders the Trending and Top Rated shelves, and the featured ranking already matched (8 Nov, written by Haiku, uncompiled); exclusions of downvoted titles, the locale penalty and the extra lanes are not ported"
     },
     {
       "index": 6,
       "id": "Daily discovery rails",
       "desktop_source": "src/views/discover.tsx",
       "verdict": "P",
-      "note": "DiscoverView, DiscoveryRails, DiscoveryPreferences"
+      "note": "daily discovery rails: the seeded row order with pinned anchors exists as a tested helper (8 Nov, written by Haiku, uncompiled); iOS has no daily row catalog to order"
     },
     {
       "index": 7,
@@ -283,7 +283,7 @@
       "id": "Genre discovery",
       "desktop_source": "src/views/discover.tsx",
       "verdict": "P",
-      "note": "genre preferences in DiscoveryPreferences"
+      "note": "genre discovery: the genre tiles are Desktop's 18 in order (8 Nov, written by Haiku, uncompiled); Desktop opens a TMDB genre filter while iOS still routes to the add-on catalog, and tiles with no matching catalog stay hidden"
     },
     {
       "index": 9,
@@ -339,7 +339,7 @@
       "id": "Network and premiere rails",
       "desktop_source": "src/views/shows.tsx",
       "verdict": "P",
-      "note": "network and premiere rails: the network list now matches Desktop (AMC and FX added); the premiere rail's parameters were not compared (8 Nov, written by Haiku, uncompiled)"
+      "note": "network and premiere rails: the network list, the premiere parameters and the Quick Watches Under 90 parameters match Desktop (8 Nov, written by Haiku, uncompiled); the series rail order and about fifteen Desktop rails (80s Classics, Prestige Drama and others) are not in iOS"
     },
     {
       "index": 17,
@@ -381,28 +381,28 @@
       "id": "Global search",
       "desktop_source": "src/lib/search.ts",
       "verdict": "P",
-      "note": "global search: Desktop's poster filter and 12-title cap apply to the merged movie and series rows (8 Nov, written by Haiku, uncompiled); no TMDB search source, no top-match ranking and no year or genre intent"
+      "note": "global search: with a TMDB key the search adds Desktop's TMDB movie and series rows after the addon rows, leaving out titles an addon row already shows (8 Nov, written by Haiku, uncompiled); the top-match ranking and the year or genre intent exist as helpers that no screen uses"
     },
     {
       "index": 23,
       "id": "Movie search",
       "desktop_source": "src/lib/search.ts",
-      "verdict": "P",
-      "note": "movie search: the poster filter and the 12-title cap are in (8 Nov, written by Haiku, uncompiled); iOS still has no TMDB search source for movies and no top-match ranking"
+      "verdict": "D",
+      "note": "movie search: TMDB movies join the addon rows with the poster filter and the 12-title cap (8 Nov, written by Haiku, uncompiled); the top-match order is a helper only"
     },
     {
       "index": 24,
       "id": "Series search",
       "desktop_source": "src/lib/search.ts",
-      "verdict": "P",
-      "note": "series search: the poster filter and the 12-title cap are in (8 Nov, written by Haiku, uncompiled); iOS still has no TMDB search source for series and no top-match ranking"
+      "verdict": "D",
+      "note": "series search: TMDB series join the addon rows with the poster filter and the 12-title cap (8 Nov, written by Haiku, uncompiled); the top-match order is a helper only"
     },
     {
       "index": 25,
       "id": "Search provider aggregation",
       "desktop_source": "src/lib/search.ts",
-      "verdict": "P",
-      "note": "addon search aggregation"
+      "verdict": "D",
+      "note": "search provider aggregation: TMDB rows are merged into the addon rows in the search screen, and with no TMDB key nothing changes (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 26,
@@ -416,7 +416,7 @@
       "id": "Search anime",
       "desktop_source": "src/components/search",
       "verdict": "P",
-      "note": "anime results section in SearchView"
+      "note": "search anime: the merge rule (source order, repeated ids and names skipped, cap of 8) exists (8 Nov, written by Haiku, uncompiled); iOS has no AniList, Jikan or Kitsu text search client to feed it"
     },
     {
       "index": 28,
@@ -458,7 +458,7 @@
       "id": "Real content details",
       "desktop_source": "src/views/detail.tsx",
       "verdict": "P",
-      "note": "iOS has no shared crew line (other films by the same crew), no user-reorderable detail section layout (Desktop DetailLayoutEditor), and no per-title reminder button on the title page; EpisodeAlertsSettingsView is o..."
+      "note": "real content details: the shared crew rules (three or more shared films, the line text) exist as helpers (8 Nov, written by Haiku, uncompiled); there is no crew query, cache or line on the page and no detail layout editor"
     },
     {
       "index": 34,
@@ -499,8 +499,8 @@
       "index": 39,
       "id": "Recommendations and similar titles",
       "desktop_source": "src/views/detail.tsx",
-      "verdict": "P",
-      "note": "related titles (loadRelated)"
+      "verdict": "D",
+      "note": "recommendations and similar titles: the related list falls back to Trakt related titles when the main source is empty, merged and mapped with Desktop's rules (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 40,
@@ -514,7 +514,7 @@
       "id": "Episode details",
       "desktop_source": "src/views/detail/series-episodes.tsx",
       "verdict": "P",
-      "note": "episode details: rows show the runtime and a New badge for episodes aired in the last three days (8 Nov, written by Haiku, uncompiled); still no percent-watched or watched-ago text, no progress bar and no dedicated episode detail view"
+      "note": "episode details: rows show the runtime, a New badge, the percent watched and the watched-ago text with a thin progress bar (8 Nov, written by Haiku, uncompiled); no manual unwatched override in that text, no dedicated episode detail view"
     },
     {
       "index": 42,
@@ -1430,8 +1430,8 @@
       "index": 172,
       "id": "Subtitle styling",
       "desktop_source": "src/lib/player",
-      "verdict": "P",
-      "note": "There are no saved subtitle look presets (Desktop's loadSubPresets, saveSubPresets and snapshotSub) and no custom subtitle font import; the font choice is limited to five fixed families."
+      "verdict": "D",
+      "note": "subtitle styling: the current look can be saved as one of up to 12 presets (Desktop's English, Foreign and Arabic seeds), applied and removed from the subtitle style settings (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 173,
@@ -1445,7 +1445,7 @@
       "id": "Custom subtitle fonts",
       "desktop_source": "src/lib/player",
       "verdict": "P",
-      "note": "subtitle font choice; no custom subtitle fonts"
+      "note": "custom subtitle fonts: the accepted file types, the 32 MB limit and the name rule exist (8 Nov, written by Haiku, uncompiled); the import is not wired because the player maps any unknown font id to Inter"
     },
     {
       "index": 175,

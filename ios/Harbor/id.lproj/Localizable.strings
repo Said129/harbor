@@ -547,6 +547,7 @@
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Hapus pencarian";
 "Clears the saved URL so you can point Harbor at another relay." = "Menghapus URL yang tersimpan agar Anda dapat mengarahkan Harbor ke relay lain.";
+"Click to apply · Right-click to delete" = "Klik untuk menerapkan · Klik kanan untuk menghapus";
 "Close" = "Tutup";
 "Close navigation" = "Close navigation";
 "Close player" = "Tutup pemutar";
@@ -1533,6 +1534,7 @@
 "NFL" = "NFL";
 "NHL" = "NHL";
 "Name" = "Nama";
+"Name your look" = "Beri nama tampilan Anda";
 "Name your theme" = "Beri nama tema Anda";
 "Native/Japanese" = "Asli/Jepang";
 "Navegación" = "Navigasi";
@@ -1557,6 +1559,7 @@
 "New Year, New Stories" = "Tahun Baru, Cerita Baru";
 "New filter" = "Filter baru";
 "New list" = "Daftar baru";
+"New look name" = "Nama tampilan baru";
 "New profile" = "Profil baru";
 "New shows and anime premiering this month, from Simkl" = "Acara dan anime baru yang tayang perdana bulan ini, dari Simkl";
 "New voyage" = "Pelayaran baru";
@@ -1646,6 +1649,7 @@
 "No threads for this title yet." = "Belum ada utas untuk judul ini.";
 "No titles match these filters." = "Tidak ada judul yang cocok dengan filter ini.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Tidak ada trek yang cocok dengan filter ini. Coba aktifkan atau nonaktifkan HI/SDH atau Forced.";
+"No unsaved changes" = "Tidak ada perubahan yang belum disimpan";
 "No video files found in that folder." = "Tidak ada file video di folder tersebut.";
 "No {kind} releases this month. Try a different filter." = "Tidak ada rilisan {kind} bulan ini. Coba filter lain.";
 "Noir" = "Noir";
@@ -1778,6 +1782,8 @@
 "Outline thickness" = "Ketebalan garis tepi";
 "Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "Abaikan gaya tersemat";
+"Override {name}" = "Timpa {name}";
+"Overwrite {name} with this look" = "Timpa {name} dengan tampilan ini";
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "Sumber P2P, siap untuk debrid";
 "PBS" = "PBS";
@@ -2169,13 +2175,16 @@
 "Save" = "Simpan";
 "Save a track and it will appear here." = "Simpan lagu dari Temukan dan lagu itu akan muncul di sini.";
 "Save and share pages" = "Save and share pages";
+"Save as a new look" = "Simpan sebagai tampilan baru";
 "Save changes" = "Simpan perubahan";
 "Save for later" = "Simpan untuk nanti";
+"Save look" = "Simpan tampilan";
 "Save page" = "Save page";
 "Save reminder" = "Simpan pengingat";
 "Save settings" = "Save settings";
 "Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "Simpan kualitas stream pilihan Anda. Stream harus cocok dengan setiap kategori yang Anda atur; kosongkan kategori untuk menerima nilai apa pun. Jika tidak ada yang cocok, Harbor menggunakan sumber terbaik berikutnya yang tersedia.";
 "Save theme" = "Simpan tema";
+"Save this look" = "Simpan tampilan ini";
 "Save to this library" = "Save to this library";
 "Save track" = "Simpan lagu";
 "Saved" = "Tersimpan";
@@ -2277,6 +2286,9 @@
 "Share" = "Bagikan";
 "Share file" = "Share file";
 "Share with {name}" = "Bagikan dengan {name}";
+"Shares crew with 1 other film" = "Shares crew with 1 other film";
+"Shares crew with {n} other films" = "Shares crew with {n} other films";
+"Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
 "Sharpen" = "Pertajam";
 "Sharper lines and a little more pop." = "Garis lebih tajam dan tampilan sedikit lebih menonjol.";
@@ -2870,6 +2882,7 @@
 "Watched" = "Sudah ditonton";
 "Watched badge" = "Lencana sudah ditonton";
 "Watched by {name}" = "Ditonton oleh {name}";
+"Watched {ago}" = "Ditonton {ago}";
 "Watching" = "Sedang menonton";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "Daftar tontonan";
@@ -3005,6 +3018,9 @@
 "jina_..." = "jina_...";
 "just now" = "baru saja";
 "language" = "bahasa";
+"last month" = "last month";
+"last week" = "last week";
+"last year" = "last year";
 "left" = "kiri";
 "letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "lokal";
@@ -4131,6 +4147,7 @@
 "today" = "hari ini";
 "trailers/extras" = "trailer/ekstra";
 "unknown" = "tidak diketahui";
+"unsaved changes" = "perubahan belum disimpan";
 "username" = "nama pengguna";
 "v3 API key" = "kunci API v3";
 "watched" = "sudah ditonton";
@@ -4139,6 +4156,7 @@
 "wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "tahun tidak cocok";
 "yes" = "ya";
+"yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} sendiri tidak menghosting, mendistribusikan, atau mengindeks media apa pun. Semua stream berasal dari addon pihak ketiga, layanan debrid, atau akun {service} milik Anda yang Anda konfigurasi sendiri. Anda bertanggung jawab atas apa yang Anda pilih untuk diputar dan atas kepatuhan terhadap hukum di yurisdiksi Anda.";
 "{count} picks ready" = "{count} pilihan sudah siap";
@@ -4183,12 +4201,15 @@
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} sumber · 0 lolos";
 "{n} watching" = "{n} sedang menonton";
+"{n} weeks ago" = "{n} weeks ago";
+"{n} years ago" = "{n} years ago";
 "{n}+ seeds" = "{n}+ seed";
 "{n}d ago" = "{n} hari lalu";
 "{n}d left" = "tersisa {n} hari";
 "{n}h ago" = "{n} jam lalu";
 "{n}m ago" = "{n} mnt lalu";
 "{n}mo ago" = "{n} bln lalu";
+"{pct}% watched" = "{pct}% ditonton";
 "{requests} requests" = "{requests} permintaan";
 "{seconds} seconds" = "{seconds} detik";
 "{shown} of {total}" = "{shown} dari {total}";

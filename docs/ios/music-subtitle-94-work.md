@@ -1860,3 +1860,11 @@ only the programmes from two hours ago to three days ahead are kept so a big gui
 **Metadata**: OMDb award counts are parsed, the detail page follows Desktop's poster rule when choosing among the metadata addons (Cinemeta with a poster first unless "prefer my installed metadata addon"
 is on), and the subtitle auto-selection order and the person award rules exist as helpers. Review fix: the AniList and MyAnimeList progress store adds to what the other list left instead of replacing it.
 The preferences worker produced only unconnected tables (Top 10 ribbon rules, font pairings, card and button style options), which were left out.
+
+## Twenty-fourth round: TMDB search, Discover, episode progress, subtitle looks (8 November, written by Haiku, uncompiled)
+
+**Search**: with a TMDB key the search adds Desktop's TMDB movie and series rows after the addon rows and leaves out titles the addon rows already show; the top-match ranking, the intent
+detection and the anime merge exist as helpers nothing calls yet. **Discover**: the Trending and Top Rated shelves are ordered by Desktop's affinity scoring, the genre tiles are Desktop's 18,
+the Quick Watches Under 90 rail uses Desktop's parameters; the seeded daily row order is a helper. **Detail**: episode rows show the percent watched, the watched-ago text and a thin progress bar,
+the related list falls back to Trakt related titles when the main source is empty, and the shared crew rules exist as helpers. **Subtitles**: the current subtitle look can be saved as a preset
+(up to 12, with Desktop's English, Foreign and Arabic seeds), applied and removed; the custom font rules exist but the import is not wired because the player maps unknown font ids to Inter.

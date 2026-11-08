@@ -547,6 +547,7 @@
 "Clear image cache" = "Clear image cache";
 "Clear search" = "खोज मिटाएँ";
 "Clears the saved URL so you can point Harbor at another relay." = "सहेजा गया URL हटाता है, ताकि आप Harbor को किसी दूसरे रिले से जोड़ सकें।";
+"Click to apply · Right-click to delete" = "लागू करने के लिए क्लिक करें · मिटाने के लिए राइट-क्लिक करें";
 "Close" = "बंद करें";
 "Close navigation" = "Close navigation";
 "Close player" = "प्लेयर बंद करें";
@@ -1533,6 +1534,7 @@
 "NFL" = "NFL";
 "NHL" = "NHL";
 "Name" = "नाम";
+"Name your look" = "अपने लुक को नाम दें";
 "Name your theme" = "अपनी थीम को नाम दें";
 "Native/Japanese" = "मूल/जापानी";
 "Navegación" = "नेविगेशन";
@@ -1557,6 +1559,7 @@
 "New Year, New Stories" = "नया साल, नई कहानियाँ";
 "New filter" = "नया फ़िल्टर";
 "New list" = "नई सूची";
+"New look name" = "नए लुक का नाम";
 "New profile" = "नई प्रोफ़ाइल";
 "New shows and anime premiering this month, from Simkl" = "Simkl से मिले, इस महीने प्रीमियर होने वाले नए शो और एनीमे";
 "New voyage" = "नई यात्रा";
@@ -1646,6 +1649,7 @@
 "No threads for this title yet." = "इस शीर्षक के लिए अभी कोई थ्रेड नहीं।";
 "No titles match these filters." = "इन फ़िल्टर से मेल खाने वाला कोई शीर्षक नहीं।";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "इन फ़िल्टर से मेल खाने वाला कोई ट्रैक नहीं। HI/SDH या फ़ोर्स्ड को टॉगल करके देखें।";
+"No unsaved changes" = "कोई बदलाव सेव होना बाकी नहीं है";
 "No video files found in that folder." = "उस फ़ोल्डर में कोई वीडियो फ़ाइल नहीं मिली।";
 "No {kind} releases this month. Try a different filter." = "इस महीने कोई {kind} रिलीज़ नहीं है। कोई दूसरा फ़िल्टर आज़माएँ।";
 "Noir" = "नॉयर";
@@ -1778,6 +1782,8 @@
 "Outline thickness" = "आउटलाइन की मोटाई";
 "Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "एम्बेडेड स्टाइल ओवरराइड करें";
+"Override {name}" = "{name} को ओवरराइड करें";
+"Overwrite {name} with this look" = "{name} को इस लुक से ओवरराइट करें";
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2P स्रोत, debrid के लिए तैयार";
 "PBS" = "PBS";
@@ -2169,13 +2175,16 @@
 "Save" = "सेव करें";
 "Save a track and it will appear here." = "खोजें से कोई ट्रैक सहेजें और वह यहाँ दिखाई देगा।";
 "Save and share pages" = "Save and share pages";
+"Save as a new look" = "नए लुक के रूप में सेव करें";
 "Save changes" = "बदलाव सेव करें";
 "Save for later" = "बाद के लिए सेव करें";
+"Save look" = "लुक सेव करें";
 "Save page" = "Save page";
 "Save reminder" = "रिमाइंडर सहेजें";
 "Save settings" = "Save settings";
 "Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "पसंदीदा स्ट्रीम गुणवत्ता सहेजें। स्ट्रीम को आपकी चुनी हर श्रेणी से मेल खाना होगा; कोई भी मान स्वीकार करने के लिए श्रेणी खाली रखें। कुछ मेल न खाए तो Harbor अगला सबसे अच्छा उपलब्ध स्रोत इस्तेमाल करता है।";
 "Save theme" = "थीम सेव करें";
+"Save this look" = "यह लुक सेव करें";
 "Save to this library" = "Save to this library";
 "Save track" = "ट्रैक सहेजें";
 "Saved" = "सेव किया गया";
@@ -2277,6 +2286,9 @@
 "Share" = "साझा करें";
 "Share file" = "Share file";
 "Share with {name}" = "{name} के साथ साझा करें";
+"Shares crew with 1 other film" = "Shares crew with 1 other film";
+"Shares crew with {n} other films" = "Shares crew with {n} other films";
+"Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
 "Sharpen" = "शार्प करें";
 "Sharper lines and a little more pop." = "ज़्यादा शार्प लाइनें और थोड़ी ज़्यादा स्पष्टता।";
@@ -2870,6 +2882,7 @@
 "Watched" = "देख लिया";
 "Watched badge" = "देखा हुआ बैज";
 "Watched by {name}" = "{name} ने देखा";
+"Watched {ago}" = "{ago} देखा";
 "Watching" = "देख रहे हैं";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "वॉचलिस्ट";
@@ -3005,6 +3018,9 @@
 "jina_..." = "jina_...";
 "just now" = "अभी-अभी";
 "language" = "भाषा";
+"last month" = "last month";
+"last week" = "last week";
+"last year" = "last year";
 "left" = "बाएँ";
 "letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "लोकल";
@@ -4131,6 +4147,7 @@
 "today" = "आज";
 "trailers/extras" = "ट्रेलर/अतिरिक्त सामग्री";
 "unknown" = "अज्ञात";
+"unsaved changes" = "न सहेजे गए बदलाव";
 "username" = "उपयोगकर्ता नाम";
 "v3 API key" = "v3 API कुंजी";
 "watched" = "देखा गया";
@@ -4139,6 +4156,7 @@
 "wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "वर्ष मेल नहीं खाता";
 "yes" = "हाँ";
+"yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} स्वयं किसी मीडिया को होस्ट, वितरित या इंडेक्स नहीं करता। सभी स्ट्रीम तृतीय-पक्ष ऐडऑन, डीब्रिड सेवाओं या आपके अपने {service} अकाउंट से आती हैं, जिसे आप स्वयं कॉन्फ़िगर करते हैं। आप क्या चलाना चुनते हैं और अपने अधिकार क्षेत्र के कानूनों का पालन करते हैं, इसकी ज़िम्मेदारी आपकी है।";
 "{count} picks ready" = "{count} चुने हुए विकल्प तैयार हैं";
@@ -4183,12 +4201,15 @@
 "{n} semillas" = "{n} सीड";
 "{n} sources · 0 made it through" = "{n} स्रोत · 0 सफल रहे";
 "{n} watching" = "{n} देख रहे हैं";
+"{n} weeks ago" = "{n} weeks ago";
+"{n} years ago" = "{n} years ago";
 "{n}+ seeds" = "{n}+ सीड";
 "{n}d ago" = "{n} दिन पहले";
 "{n}d left" = "{n} दिन बाकी";
 "{n}h ago" = "{n} घंटे पहले";
 "{n}m ago" = "{n} मिनट पहले";
 "{n}mo ago" = "{n} महीने पहले";
+"{pct}% watched" = "{pct}% देखा गया";
 "{requests} requests" = "{requests} अनुरोध";
 "{seconds} seconds" = "{seconds} सेकंड";
 "{shown} of {total}" = "{total} में से {shown}";

@@ -547,6 +547,7 @@
 "Clear image cache" = "Clear image cache";
 "Clear search" = "清除搜索";
 "Clears the saved URL so you can point Harbor at another relay." = "清除已保存的 URL，以便将 Harbor 指向其他中继。";
+"Click to apply · Right-click to delete" = "点击应用 · 右键点击删除";
 "Close" = "关闭";
 "Close navigation" = "Close navigation";
 "Close player" = "关闭播放器";
@@ -1533,6 +1534,7 @@
 "NFL" = "NFL";
 "NHL" = "NHL";
 "Name" = "名称";
+"Name your look" = "为外观命名";
 "Name your theme" = "为主题命名";
 "Native/Japanese" = "原语言/日语";
 "Navegación" = "导航";
@@ -1557,6 +1559,7 @@
 "New Year, New Stories" = "新年新故事";
 "New filter" = "新建筛选器";
 "New list" = "新建片单";
+"New look name" = "新外观名称";
 "New profile" = "新建个人资料";
 "New shows and anime premiering this month, from Simkl" = "Simkl 中本月首播的新节目和动漫";
 "New voyage" = "新航程";
@@ -1646,6 +1649,7 @@
 "No threads for this title yet." = "此作品暂无主题。";
 "No titles match these filters." = "没有符合这些筛选条件的内容。";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "没有符合这些筛选条件的字幕轨道。请尝试切换 HI/SDH 或强制字幕。";
+"No unsaved changes" = "所有更改均已保存";
 "No video files found in that folder." = "该文件夹中未找到视频文件。";
 "No {kind} releases this month. Try a different filter." = "本月没有{kind}上线。请尝试其他筛选条件。";
 "Noir" = "黑色电影";
@@ -1778,6 +1782,8 @@
 "Outline thickness" = "描边粗细";
 "Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "覆盖内嵌样式";
+"Override {name}" = "覆盖 {name}";
+"Overwrite {name} with this look" = "用此样式覆盖 {name}";
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2P 来源，支持 debrid";
 "PBS" = "PBS";
@@ -2169,13 +2175,16 @@
 "Save" = "保存";
 "Save a track and it will appear here." = "从“发现”中收藏歌曲后，它会显示在这里。";
 "Save and share pages" = "Save and share pages";
+"Save as a new look" = "另存为新外观";
 "Save changes" = "保存更改";
 "Save for later" = "保存以便稍后查看";
+"Save look" = "保存样式";
 "Save page" = "Save page";
 "Save reminder" = "保存提醒";
 "Save settings" = "Save settings";
 "Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "保存偏好的播放源画质。播放源必须匹配你设置的每个类别；类别留空表示不限。如果没有匹配项，Harbor 会使用次优的可用播放源。";
 "Save theme" = "保存主题";
+"Save this look" = "保存此外观";
 "Save to this library" = "Save to this library";
 "Save track" = "收藏歌曲";
 "Saved" = "已保存";
@@ -2277,6 +2286,9 @@
 "Share" = "分享";
 "Share file" = "Share file";
 "Share with {name}" = "与 {name} 共享";
+"Shares crew with 1 other film" = "Shares crew with 1 other film";
+"Shares crew with {n} other films" = "Shares crew with {n} other films";
+"Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
 "Sharpen" = "锐化";
 "Sharper lines and a little more pop." = "线条更锐利，画面更有活力。";
@@ -2870,6 +2882,7 @@
 "Watched" = "已观看";
 "Watched badge" = "已观看徽章";
 "Watched by {name}" = "{name} 已观看";
+"Watched {ago}" = "于 {ago} 观看";
 "Watching" = "正在观看";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "想看清单";
@@ -3005,6 +3018,9 @@
 "jina_..." = "jina_...";
 "just now" = "刚刚";
 "language" = "语言";
+"last month" = "last month";
+"last week" = "last week";
+"last year" = "last year";
 "left" = "左";
 "letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "本地";
@@ -4131,6 +4147,7 @@
 "today" = "今天";
 "trailers/extras" = "预告片/花絮";
 "unknown" = "未知";
+"unsaved changes" = "未保存的更改";
 "username" = "用户名";
 "v3 API key" = "v3 API 密钥";
 "watched" = "看过了";
@@ -4139,6 +4156,7 @@
 "wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "年份不符";
 "yes" = "是";
+"yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} 本身不托管、分发或索引任何媒体。所有流均来自第三方插件、Debrid 服务或您自行配置的 {service} 账户。您须对自己选择播放的内容以及遵守所在司法管辖区的法律负责。";
 "{count} picks ready" = "有 {count} 个推荐待探索";
@@ -4183,12 +4201,15 @@
 "{n} semillas" = "{n} 个做种者";
 "{n} sources · 0 made it through" = "{n} 个片源 · 0 个通过筛选";
 "{n} watching" = "{n} 人正在观看";
+"{n} weeks ago" = "{n} weeks ago";
+"{n} years ago" = "{n} years ago";
 "{n}+ seeds" = "{n}+ 个做种源";
 "{n}d ago" = "{n} 天前";
 "{n}d left" = "剩余 {n} 天";
 "{n}h ago" = "{n} 小时前";
 "{n}m ago" = "{n} 分钟前";
 "{n}mo ago" = "{n} 个月前";
+"{pct}% watched" = "已观看 {pct}%";
 "{requests} requests" = "{requests} 次请求";
 "{seconds} seconds" = "{seconds} 秒";
 "{shown} of {total}" = "已显示 {shown} 个，共 {total} 个";

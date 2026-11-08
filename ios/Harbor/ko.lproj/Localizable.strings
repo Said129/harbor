@@ -547,6 +547,7 @@
 "Clear image cache" = "Clear image cache";
 "Clear search" = "검색어 지우기";
 "Clears the saved URL so you can point Harbor at another relay." = "저장된 URL을 지워 Harbor가 다른 릴레이를 가리키도록 합니다.";
+"Click to apply · Right-click to delete" = "클릭하여 적용 · 마우스 오른쪽 버튼으로 클릭하여 삭제";
 "Close" = "닫기";
 "Close navigation" = "Close navigation";
 "Close player" = "플레이어 닫기";
@@ -1533,6 +1534,7 @@
 "NFL" = "NFL";
 "NHL" = "NHL";
 "Name" = "이름";
+"Name your look" = "스타일 이름 지정";
 "Name your theme" = "테마 이름 지정";
 "Native/Japanese" = "원어/일본어";
 "Navegación" = "탐색";
@@ -1557,6 +1559,7 @@
 "New Year, New Stories" = "새해, 새로운 이야기";
 "New filter" = "새 필터";
 "New list" = "새 목록";
+"New look name" = "새 스타일 이름";
 "New profile" = "새 프로필";
 "New shows and anime premiering this month, from Simkl" = "Simkl에서 이번 달 첫 공개되는 새 시리즈와 애니메이션";
 "New voyage" = "새 여정";
@@ -1646,6 +1649,7 @@
 "No threads for this title yet." = "아직 이 작품에 대한 스레드가 없습니다.";
 "No titles match these filters." = "이 필터와 일치하는 작품이 없습니다.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "이 필터와 일치하는 트랙이 없습니다. HI/SDH 또는 강제 자막을 전환해 보세요.";
+"No unsaved changes" = "저장하지 않은 변경 사항 없음";
 "No video files found in that folder." = "해당 폴더에서 동영상 파일을 찾지 못했습니다.";
 "No {kind} releases this month. Try a different filter." = "이번 달에는 {kind} 공개작이 없습니다. 다른 필터를 사용해 보세요.";
 "Noir" = "누아르";
@@ -1778,6 +1782,8 @@
 "Outline thickness" = "외곽선 두께";
 "Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "내장 스타일 덮어쓰기";
+"Override {name}" = "{name} 재정의";
+"Overwrite {name} with this look" = "{name}을(를) 이 스타일로 덮어쓰기";
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2P 소스, Debrid 지원";
 "PBS" = "PBS";
@@ -2169,13 +2175,16 @@
 "Save" = "저장";
 "Save a track and it will appear here." = "둘러보기에서 트랙을 저장하면 여기에 표시됩니다.";
 "Save and share pages" = "Save and share pages";
+"Save as a new look" = "새 스타일로 저장";
 "Save changes" = "변경 사항 저장";
 "Save for later" = "나중에 보기";
+"Save look" = "스타일 저장";
 "Save page" = "Save page";
 "Save reminder" = "알림 저장";
 "Save settings" = "Save settings";
 "Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "선호하는 스트림 화질을 저장하세요. 설정한 모든 항목이 일치해야 합니다. 제한하지 않을 항목은 비워 두세요. 일치하는 스트림이 없으면 Harbor가 다음으로 좋은 소스를 사용합니다.";
 "Save theme" = "테마 저장";
+"Save this look" = "이 스타일 저장";
 "Save to this library" = "Save to this library";
 "Save track" = "트랙 저장";
 "Saved" = "저장됨";
@@ -2277,6 +2286,9 @@
 "Share" = "공유";
 "Share file" = "Share file";
 "Share with {name}" = "{name}과(와) 공유";
+"Shares crew with 1 other film" = "Shares crew with 1 other film";
+"Shares crew with {n} other films" = "Shares crew with {n} other films";
+"Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
 "Sharpen" = "선명도";
 "Sharper lines and a little more pop." = "선을 더 선명하게 하고 생동감을 약간 높입니다.";
@@ -2870,6 +2882,7 @@
 "Watched" = "시청함";
 "Watched badge" = "시청 완료 배지";
 "Watched by {name}" = "{name} 님이 시청함";
+"Watched {ago}" = "{ago}에 시청";
 "Watching" = "시청 중";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "관심 목록";
@@ -3005,6 +3018,9 @@
 "jina_..." = "jina_...";
 "just now" = "방금";
 "language" = "언어";
+"last month" = "last month";
+"last week" = "last week";
+"last year" = "last year";
 "left" = "왼쪽";
 "letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "로컬";
@@ -4131,6 +4147,7 @@
 "today" = "오늘";
 "trailers/extras" = "예고편/부가 영상";
 "unknown" = "알 수 없음";
+"unsaved changes" = "저장하지 않은 변경 사항";
 "username" = "사용자명";
 "v3 API key" = "v3 API 키";
 "watched" = "시청함";
@@ -4139,6 +4156,7 @@
 "wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "연도 불일치";
 "yes" = "예";
+"yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} 자체는 어떠한 미디어도 호스팅, 배포 또는 색인하지 않습니다. 모든 스트림은 서드 파티 애드온, Debrid 서비스 또는 사용자가 직접 구성한 {service} 계정에서 제공됩니다. 재생할 콘텐츠를 선택하고 관할 지역의 법률을 준수할 책임은 사용자에게 있습니다.";
 "{count} picks ready" = "추천 {count}개 준비됨";
@@ -4183,12 +4201,15 @@
 "{n} semillas" = "시드 {n}개";
 "{n} sources · 0 made it through" = "소스 {n}개 · 통과 0개";
 "{n} watching" = "{n}명 시청 중";
+"{n} weeks ago" = "{n} weeks ago";
+"{n} years ago" = "{n} years ago";
 "{n}+ seeds" = "시드 {n}개 이상";
 "{n}d ago" = "{n}일 전";
 "{n}d left" = "{n}일 남음";
 "{n}h ago" = "{n}시간 전";
 "{n}m ago" = "{n}분 전";
 "{n}mo ago" = "{n}개월 전";
+"{pct}% watched" = "{pct}% 시청";
 "{requests} requests" = "요청 {requests}개";
 "{seconds} seconds" = "{seconds}초";
 "{shown} of {total}" = "{total}개 중 {shown}개";

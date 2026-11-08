@@ -547,6 +547,7 @@
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Suche löschen";
 "Clears the saved URL so you can point Harbor at another relay." = "Löscht die gespeicherte URL, damit du Harbor auf ein anderes Relay verweisen kannst.";
+"Click to apply · Right-click to delete" = "Zum Anwenden klicken · Zum Löschen mit der rechten Maustaste klicken";
 "Close" = "Schließen";
 "Close navigation" = "Close navigation";
 "Close player" = "Player schließen";
@@ -1533,6 +1534,7 @@
 "NFL" = "NFL";
 "NHL" = "NHL";
 "Name" = "Name";
+"Name your look" = "Benenne deinen Look";
 "Name your theme" = "Gib deinem Design einen Namen";
 "Native/Japanese" = "Original/Japanisch";
 "Navegación" = "Navigation";
@@ -1557,6 +1559,7 @@
 "New Year, New Stories" = "Neues Jahr, neue Geschichten";
 "New filter" = "Neuer Filter";
 "New list" = "Neue Liste";
+"New look name" = "Name des neuen Erscheinungsbilds";
 "New profile" = "Neues Profil";
 "New shows and anime premiering this month, from Simkl" = "Neue Serien und Anime, die diesen Monat Premiere feiern, von Simkl";
 "New voyage" = "Neue Reise";
@@ -1646,6 +1649,7 @@
 "No threads for this title yet." = "Für diesen Titel gibt es noch keine Threads.";
 "No titles match these filters." = "Keine Titel entsprechen diesen Filtern.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Keine Untertitel entsprechen diesen Filtern. Schalte versuchsweise HI/SDH oder „Erzwungen“ um.";
+"No unsaved changes" = "Keine ungespeicherten Änderungen";
 "No video files found in that folder." = "Keine Videodateien in diesem Ordner gefunden.";
 "No {kind} releases this month. Try a different filter." = "Keine {kind}-Veröffentlichungen in diesem Monat. Probiere einen anderen Filter.";
 "Noir" = "Noir";
@@ -1778,6 +1782,8 @@
 "Outline thickness" = "Konturstärke";
 "Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "Eingebettete Stile überschreiben";
+"Override {name}" = "{name} überschreiben";
+"Overwrite {name} with this look" = "{name} mit diesem Erscheinungsbild überschreiben";
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2P-Quellen, Debrid-kompatibel";
 "PBS" = "PBS";
@@ -2169,13 +2175,16 @@
 "Save" = "Speichern";
 "Save a track and it will appear here." = "Speichere einen Titel aus „Entdecken“, dann erscheint er hier.";
 "Save and share pages" = "Save and share pages";
+"Save as a new look" = "Als neues Design speichern";
 "Save changes" = "Änderungen speichern";
 "Save for later" = "Für später speichern";
+"Save look" = "Design speichern";
 "Save page" = "Save page";
 "Save reminder" = "Erinnerung speichern";
 "Save settings" = "Save settings";
 "Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "Speichere deine bevorzugte Stream-Qualität. Streams müssen jede festgelegte Kategorie erfüllen; lasse eine Kategorie leer, um jeden Wert zuzulassen. Passt kein Stream, verwendet Harbor die nächstbeste verfügbare Quelle.";
 "Save theme" = "Design speichern";
+"Save this look" = "Dieses Design speichern";
 "Save to this library" = "Save to this library";
 "Save track" = "Titel speichern";
 "Saved" = "Gespeichert";
@@ -2277,6 +2286,9 @@
 "Share" = "Teilen";
 "Share file" = "Share file";
 "Share with {name}" = "Mit {name} teilen";
+"Shares crew with 1 other film" = "Shares crew with 1 other film";
+"Shares crew with {n} other films" = "Shares crew with {n} other films";
+"Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
 "Sharpen" = "Schärfen";
 "Sharper lines and a little more pop." = "Schärfere Linien und etwas mehr Ausdruck.";
@@ -2870,6 +2882,7 @@
 "Watched" = "Angesehen";
 "Watched badge" = "Abzeichen „Angesehen“";
 "Watched by {name}" = "Von {name} angesehen";
+"Watched {ago}" = "Vor {ago} gesehen";
 "Watching" = "Wird angesehen";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "Merkliste";
@@ -3005,6 +3018,9 @@
 "jina_..." = "jina_...";
 "just now" = "gerade eben";
 "language" = "Sprache";
+"last month" = "last month";
+"last week" = "last week";
+"last year" = "last year";
 "left" = "links";
 "letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "lokal";
@@ -4131,6 +4147,7 @@
 "today" = "heute";
 "trailers/extras" = "Trailer/Extras";
 "unknown" = "unbekannt";
+"unsaved changes" = "nicht gespeicherte Änderungen";
 "username" = "Benutzername";
 "v3 API key" = "v3-API-Schlüssel";
 "watched" = "angesehen";
@@ -4139,6 +4156,7 @@
 "wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "abweichendes Jahr";
 "yes" = "ja";
+"yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} selbst hostet, verbreitet oder indexiert keinerlei Medien. Alle Streams stammen von Drittanbieter-Add-ons, Debrid-Diensten oder deinem eigenen {service}-Konto, das du selbst konfigurierst. Du bist dafür verantwortlich, was du abspielst, und musst die Gesetze deiner Rechtsordnung einhalten.";
 "{count} picks ready" = "{count} ausgewählte Titel bereit";
@@ -4183,12 +4201,15 @@
 "{n} semillas" = "{n} Seeds";
 "{n} sources · 0 made it through" = "{n} Quellen · 0 erfolgreich";
 "{n} watching" = "{n} sehen gerade zu";
+"{n} weeks ago" = "{n} weeks ago";
+"{n} years ago" = "{n} years ago";
 "{n}+ seeds" = "{n}+ Seeds";
 "{n}d ago" = "vor {n} T.";
 "{n}d left" = "noch {n} T.";
 "{n}h ago" = "vor {n} Std.";
 "{n}m ago" = "vor {n} Min.";
 "{n}mo ago" = "vor {n} Mon.";
+"{pct}% watched" = "zu {pct} % gesehen";
 "{requests} requests" = "{requests} Anfragen";
 "{seconds} seconds" = "{seconds} Sekunden";
 "{shown} of {total}" = "{shown} von {total}";

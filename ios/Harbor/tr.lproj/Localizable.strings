@@ -547,6 +547,7 @@
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Aramayı temizle";
 "Clears the saved URL so you can point Harbor at another relay." = "Kayıtlı URL'yi kaldırarak Harbor'ı başka bir aktarıcıya yönlendirmenizi sağlar.";
+"Click to apply · Right-click to delete" = "Uygulamak için tıklayın · Silmek için sağ tıklayın";
 "Close" = "Kapat";
 "Close navigation" = "Close navigation";
 "Close player" = "Oynatıcıyı kapat";
@@ -1533,6 +1534,7 @@
 "NFL" = "NFL";
 "NHL" = "NHL";
 "Name" = "Ad";
+"Name your look" = "Görünümünüzü adlandırın";
 "Name your theme" = "Temanızı adlandırın";
 "Native/Japanese" = "Orijinal/Japonca";
 "Navegación" = "Gezinme";
@@ -1557,6 +1559,7 @@
 "New Year, New Stories" = "Yeni Yıl, Yeni Hikâyeler";
 "New filter" = "Yeni filtre";
 "New list" = "Yeni liste";
+"New look name" = "Yeni görünüm adı";
 "New profile" = "Yeni profil";
 "New shows and anime premiering this month, from Simkl" = "Simkl'den bu ay prömiyer yapacak yeni diziler ve animeler";
 "New voyage" = "Yeni yolculuk";
@@ -1646,6 +1649,7 @@
 "No threads for this title yet." = "Bu içerik için henüz konu yok.";
 "No titles match these filters." = "Bu filtrelerle eşleşen içerik yok.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Bu filtrelerle eşleşen parça yok. HI/SDH veya Zorunlu seçeneğini açıp kapatmayı deneyin.";
+"No unsaved changes" = "Kaydedilmemiş değişiklik yok";
 "No video files found in that folder." = "Bu klasörde video dosyası bulunamadı.";
 "No {kind} releases this month. Try a different filter." = "Bu ay yayınlanacak {kind} yok. Farklı bir filtre deneyin.";
 "Noir" = "Noir";
@@ -1778,6 +1782,8 @@
 "Outline thickness" = "Kontur kalınlığı";
 "Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "Gömülü stilleri geçersiz kıl";
+"Override {name}" = "{name} şablonunu geçersiz kıl";
+"Overwrite {name} with this look" = "{name} şablonunun üzerine bu görünümü yaz";
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2P kaynakları, debrid uyumlu";
 "PBS" = "PBS";
@@ -2169,13 +2175,16 @@
 "Save" = "Kaydet";
 "Save a track and it will appear here." = "Keşfet'ten bir parça kaydedin, burada görünsün.";
 "Save and share pages" = "Save and share pages";
+"Save as a new look" = "Yeni görünüm olarak kaydet";
 "Save changes" = "Değişiklikleri kaydet";
 "Save for later" = "Daha sonrası için kaydet";
+"Save look" = "Görünümü kaydet";
 "Save page" = "Save page";
 "Save reminder" = "Hatırlatıcıyı kaydet";
 "Save settings" = "Save settings";
 "Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "Tercih ettiğiniz yayın kalitesini kaydedin. Yayınlar belirlediğiniz her kategoriyle eşleşmelidir; herhangi bir değeri kabul etmek için kategoriyi boş bırakın. Eşleşme yoksa Harbor mevcut en iyi alternatif kaynağı kullanır.";
 "Save theme" = "Temayı kaydet";
+"Save this look" = "Bu görünümü kaydet";
 "Save to this library" = "Save to this library";
 "Save track" = "Parçayı kaydet";
 "Saved" = "Kaydedildi";
@@ -2277,6 +2286,9 @@
 "Share" = "Paylaş";
 "Share file" = "Share file";
 "Share with {name}" = "{name} ile paylaş";
+"Shares crew with 1 other film" = "Shares crew with 1 other film";
+"Shares crew with {n} other films" = "Shares crew with {n} other films";
+"Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
 "Sharpen" = "Keskinlik";
 "Sharper lines and a little more pop." = "Daha keskin çizgiler ve biraz daha canlı bir görünüm sunar.";
@@ -2870,6 +2882,7 @@
 "Watched" = "İzlendi";
 "Watched badge" = "İzlendi rozeti";
 "Watched by {name}" = "{name} tarafından izlendi";
+"Watched {ago}" = "İzlendi: {ago}";
 "Watching" = "İzleniyor";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "İzleme Listesi";
@@ -3005,6 +3018,9 @@
 "jina_..." = "jina_...";
 "just now" = "az önce";
 "language" = "dil";
+"last month" = "last month";
+"last week" = "last week";
+"last year" = "last year";
 "left" = "sol";
 "letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "yerel";
@@ -4131,6 +4147,7 @@
 "today" = "bugün";
 "trailers/extras" = "fragmanlar/ekstralar";
 "unknown" = "bilinmiyor";
+"unsaved changes" = "kaydedilmemiş değişiklikler";
 "username" = "kullanıcı adı";
 "v3 API key" = "v3 API anahtarı";
 "watched" = "izlendi";
@@ -4139,6 +4156,7 @@
 "wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "yıl uyuşmazlığı";
 "yes" = "evet";
+"yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} hiçbir medyayı barındırmaz, dağıtmaz veya dizine eklemez. Tüm yayınlar üçüncü taraf eklentilerden, debrid hizmetlerinden veya kendi yapılandırdığınız {service} hesabınızdan gelir. Oynatmayı seçtiğiniz içeriklerden ve bulunduğunuz yargı alanındaki yasalara uymaktan siz sorumlusunuz.";
 "{count} picks ready" = "{count} öneri hazır";
@@ -4183,12 +4201,15 @@
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} kaynak · 0 tanesi filtreleri geçti";
 "{n} watching" = "{n} kişi izliyor";
+"{n} weeks ago" = "{n} weeks ago";
+"{n} years ago" = "{n} years ago";
 "{n}+ seeds" = "{n}+ kaynak";
 "{n}d ago" = "{n} gün önce";
 "{n}d left" = "{n} gün kaldı";
 "{n}h ago" = "{n} saat önce";
 "{n}m ago" = "{n} dakika önce";
 "{n}mo ago" = "{n} ay önce";
+"{pct}% watched" = "%{pct} izlendi";
 "{requests} requests" = "{requests} istek";
 "{seconds} seconds" = "{seconds} saniye";
 "{shown} of {total}" = "{total} öğeden {shown} tanesi";

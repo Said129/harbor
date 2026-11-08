@@ -547,6 +547,7 @@
 "Clear image cache" = "Clear image cache";
 "Clear search" = "検索をクリア";
 "Clears the saved URL so you can point Harbor at another relay." = "保存済みのURLを削除し、Harborを別のリレーに接続できるようにします。";
+"Click to apply · Right-click to delete" = "クリックで適用 · 右クリックで削除";
 "Close" = "閉じる";
 "Close navigation" = "Close navigation";
 "Close player" = "プレイヤーを閉じる";
@@ -1533,6 +1534,7 @@
 "NFL" = "NFL";
 "NHL" = "NHL";
 "Name" = "名前";
+"Name your look" = "スタイル名を入力";
 "Name your theme" = "テーマ名";
 "Native/Japanese" = "オリジナル／日本語";
 "Navegación" = "ナビゲーション";
@@ -1557,6 +1559,7 @@
 "New Year, New Stories" = "新年、新しい物語";
 "New filter" = "新しいフィルター";
 "New list" = "新しいリスト";
+"New look name" = "新しいスタイル名";
 "New profile" = "新しいプロフィール";
 "New shows and anime premiering this month, from Simkl" = "Simkl掲載の今月初公開の新作番組とアニメ";
 "New voyage" = "新しい航海";
@@ -1646,6 +1649,7 @@
 "No threads for this title yet." = "この作品にはまだスレッドがありません。";
 "No titles match these filters." = "この条件に一致する作品はありません。";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "このフィルターに一致するトラックはありません。HI/SDHまたは強制字幕の切り替えをお試しください。";
+"No unsaved changes" = "未保存の変更はありません";
 "No video files found in that folder." = "そのフォルダーに動画ファイルはありません。";
 "No {kind} releases this month. Try a different filter." = "今月は{kind}の配信がありません。別のフィルターをお試しください。";
 "Noir" = "ノワール";
@@ -1778,6 +1782,8 @@
 "Outline thickness" = "縁取りの太さ";
 "Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "埋め込みスタイルを上書き";
+"Override {name}" = "{name}を上書き";
+"Overwrite {name} with this look" = "この表示で{name}を上書き";
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2Pソース、debrid対応";
 "PBS" = "PBS";
@@ -2169,13 +2175,16 @@
 "Save" = "保存";
 "Save a track and it will appear here." = "「見つける」で曲を保存すると、ここに表示されます。";
 "Save and share pages" = "Save and share pages";
+"Save as a new look" = "新しいスタイルとして保存";
 "Save changes" = "変更を保存";
 "Save for later" = "あとで見るに保存";
+"Save look" = "表示を保存";
 "Save page" = "Save page";
 "Save reminder" = "リマインダーを保存";
 "Save settings" = "Save settings";
 "Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "好みのストリーム画質を保存します。設定したすべての項目に一致する必要があります。制限しない項目は空欄にしてください。一致しない場合は、利用可能な次善のソースを使用します。";
 "Save theme" = "テーマを保存";
+"Save this look" = "このスタイルを保存";
 "Save to this library" = "Save to this library";
 "Save track" = "曲を保存";
 "Saved" = "保存済み";
@@ -2277,6 +2286,9 @@
 "Share" = "共有";
 "Share file" = "Share file";
 "Share with {name}" = "{name}と共有";
+"Shares crew with 1 other film" = "Shares crew with 1 other film";
+"Shares crew with {n} other films" = "Shares crew with {n} other films";
+"Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
 "Sharpen" = "シャープネス";
 "Sharper lines and a little more pop." = "線をよりくっきりさせ、少しメリハリを加えます。";
@@ -2870,6 +2882,7 @@
 "Watched" = "視聴済み";
 "Watched badge" = "視聴済みバッジ";
 "Watched by {name}" = "{name}が視聴済み";
+"Watched {ago}" = "{ago}に視聴";
 "Watching" = "視聴中";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "ウォッチリスト";
@@ -3005,6 +3018,9 @@
 "jina_..." = "jina_...";
 "just now" = "たった今";
 "language" = "言語";
+"last month" = "last month";
+"last week" = "last week";
+"last year" = "last year";
 "left" = "左";
 "letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "ローカル";
@@ -4131,6 +4147,7 @@
 "today" = "今日";
 "trailers/extras" = "予告編/特典映像";
 "unknown" = "不明";
+"unsaved changes" = "未保存の変更";
 "username" = "ユーザー名";
 "v3 API key" = "v3 APIキー";
 "watched" = "視聴済み";
@@ -4139,6 +4156,7 @@
 "wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "公開年の不一致";
 "yes" = "はい";
+"yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app}自体がメディアをホスト、配信、インデックス化することはありません。すべてのストリームは、サードパーティー製アドオン、デブリッドサービス、またはご自身で設定した{service}アカウントから提供されます。何を再生するかを判断し、お住まいの地域の法律を順守する責任はお客様にあります。";
 "{count} picks ready" = "おすすめ{count}件を用意しました";
@@ -4183,12 +4201,15 @@
 "{n} semillas" = "シード数: {n}";
 "{n} sources · 0 made it through" = "{n}件のソース · 利用可能 0件";
 "{n} watching" = "{n}人が視聴中";
+"{n} weeks ago" = "{n} weeks ago";
+"{n} years ago" = "{n} years ago";
 "{n}+ seeds" = "シード{n}+";
 "{n}d ago" = "{n}日前";
 "{n}d left" = "残り{n}日";
 "{n}h ago" = "{n}時間前";
 "{n}m ago" = "{n}分前";
 "{n}mo ago" = "{n}か月前";
+"{pct}% watched" = "{pct}%視聴済み";
 "{requests} requests" = "{requests}件のリクエスト";
 "{seconds} seconds" = "{seconds}秒";
 "{shown} of {total}" = "{total}件中{shown}件";

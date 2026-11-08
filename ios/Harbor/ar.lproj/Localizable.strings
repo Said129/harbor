@@ -566,6 +566,7 @@
 "Clear image cache" = "Clear image cache";
 "Clear search" = "مسح البحث";
 "Clears the saved URL so you can point Harbor at another relay." = "يمسح عنوان URL المحفوظ لتوجيه Harbor إلى مُرحِّل آخر.";
+"Click to apply · Right-click to delete" = "انقر للتطبيق · انقر بالزرّ الأيمن للحذف";
 "Close" = "إغلاق";
 "Close navigation" = "Close navigation";
 "Close player" = "إغلاق المشغل";
@@ -1559,6 +1560,7 @@
 "NR" = "NR";
 "NRR" = "NRR";
 "Name" = "الاسم";
+"Name your look" = "سمِّ مظهرك";
 "Name your theme" = "سمِّ سمتك";
 "Native/Japanese" = "الأصلية/اليابانية";
 "Navegación" = "التنقل";
@@ -1584,6 +1586,7 @@
 "New Year, New Stories" = "عام جديد، قصص جديدة";
 "New filter" = "مرشّح جديد";
 "New list" = "قائمة جديدة";
+"New look name" = "اسم المظهر الجديد";
 "New profile" = "ملف شخصي جديد";
 "New shows and anime premiering this month, from Simkl" = "المسلسلات والأنمي الجديدة التي تُعرض لأول مرة هذا الشهر، من Simkl";
 "New voyage" = "رحلة جديدة";
@@ -1673,6 +1676,7 @@
 "No threads for this title yet." = "لا توجد مواضيع لهذا العمل بعد.";
 "No titles match these filters." = "لا توجد عناوين تطابق هذه المرشّحات.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "لا توجد مسارات مطابقة لهذه المرشّحات. جرّب تبديل ترجمة الصمّ أو الإجبارية.";
+"No unsaved changes" = "لا توجد تغييرات غير محفوظة";
 "No video files found in that folder." = "لم يُعثر على ملفات فيديو في ذلك المجلد.";
 "No {kind} releases this month. Try a different filter." = "لا توجد إصدارات {kind} هذا الشهر. جرّب مرشّحًا مختلفًا.";
 "Noir" = "نوار";
@@ -1806,6 +1810,8 @@
 "Outline thickness" = "سُمك الإطار";
 "Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "تجاوز الأنماط المضمّنة";
+"Override {name}" = "تجاوز {name}";
+"Overwrite {name} with this look" = "استبدال {name} بهذا المظهر";
 "P" = "P";
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "مصادر P2P، جاهزة لـ debrid";
@@ -2202,13 +2208,16 @@
 "Save" = "حفظ";
 "Save a track and it will appear here." = "احفظ مقطعًا من «اكتشف» وسيظهر هنا.";
 "Save and share pages" = "Save and share pages";
+"Save as a new look" = "حفظ كمظهر جديد";
 "Save changes" = "حفظ التغييرات";
 "Save for later" = "حفظ لوقت لاحق";
+"Save look" = "حفظ المظهر";
 "Save page" = "Save page";
 "Save reminder" = "حفظ التذكير";
 "Save settings" = "Save settings";
 "Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "احفظ جودة البث التي تفضّلها. يجب أن يطابق البث كل فئة تحدّدها؛ اترك الفئة فارغة لقبول أي قيمة. إذا لم يوجد تطابق، يستخدم Harbor أفضل مصدر متاح يليه.";
 "Save theme" = "حفظ السمة";
+"Save this look" = "احفظ هذا المظهر";
 "Save to this library" = "Save to this library";
 "Save track" = "حفظ المقطع";
 "Saved" = "محفوظ";
@@ -2310,6 +2319,9 @@
 "Share" = "مشاركة";
 "Share file" = "Share file";
 "Share with {name}" = "مشاركة مع {name}";
+"Shares crew with 1 other film" = "Shares crew with 1 other film";
+"Shares crew with {n} other films" = "Shares crew with {n} other films";
+"Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
 "Sharpen" = "الحدة";
 "Sharper lines and a little more pop." = "خطوط أكثر حدة وقليل من البروز.";
@@ -2907,6 +2919,7 @@
 "Watched" = "تمت المشاهدة";
 "Watched badge" = "شارة المُشاهَد";
 "Watched by {name}" = "شاهده {name}";
+"Watched {ago}" = "تمت المشاهدة {ago}";
 "Watching" = "قيد المشاهدة";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "قائمة المشاهدة";
@@ -3046,6 +3059,9 @@
 "jina_..." = "jina_...";
 "just now" = "الآن";
 "language" = "اللغة";
+"last month" = "last month";
+"last week" = "last week";
+"last year" = "last year";
 "left" = "اليسار";
 "letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "محلي";
@@ -4172,6 +4188,7 @@
 "today" = "اليوم";
 "trailers/extras" = "إعلانات تشويقية/إضافات";
 "unknown" = "غير معروف";
+"unsaved changes" = "تغييرات غير محفوظة";
 "username" = "اسم المستخدم";
 "v3 API key" = "مفتاح API الإصدار 3";
 "watched" = "شاهد";
@@ -4180,6 +4197,7 @@
 "wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "السنة غير متطابقة";
 "yes" = "نعم";
+"yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "لا يستضيف {app} نفسه أي وسائط أو يوزعها أو يفهرسها. تأتي جميع عمليات البث من إضافات تابعة لجهات خارجية أو خدمات debrid أو حسابك في {service} الذي تضبطه بنفسك. أنت مسؤول عما تختار تشغيله وعن الامتثال لقوانين نطاقك القضائي.";
 "{count} picks ready" = "{count} اختيارات جاهزة";
@@ -4224,12 +4242,15 @@
 "{n} semillas" = "{n} موزع";
 "{n} sources · 0 made it through" = "{n} مصادر · لم يجتز أي منها";
 "{n} watching" = "{n} يشاهدون";
+"{n} weeks ago" = "{n} weeks ago";
+"{n} years ago" = "{n} years ago";
 "{n}+ seeds" = "{n}+ موزّع";
 "{n}d ago" = "قبل {n} يوم";
 "{n}d left" = "متبقي {n} يوم";
 "{n}h ago" = "قبل {n} ساعة";
 "{n}m ago" = "قبل {n} دقيقة";
 "{n}mo ago" = "قبل {n} شهر";
+"{pct}% watched" = "تمت مشاهدة {pct}%";
 "{requests} requests" = "{requests} طلبًا";
 "{seconds} seconds" = "{seconds} ثانية";
 "{shown} of {total}" = "{shown} من {total}";

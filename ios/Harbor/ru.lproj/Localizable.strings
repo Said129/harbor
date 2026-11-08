@@ -550,6 +550,7 @@
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Очистить поиск";
 "Clears the saved URL so you can point Harbor at another relay." = "Удаляет сохранённый URL, чтобы направить Harbor на другой ретранслятор.";
+"Click to apply · Right-click to delete" = "Клик – применить · Правый клик – удалить";
 "Close" = "Закрыть";
 "Close navigation" = "Close navigation";
 "Close player" = "Закрыть плеер";
@@ -1539,6 +1540,7 @@
 "NR" = "NR";
 "NRR" = "NRR";
 "Name" = "Название";
+"Name your look" = "Назовите стиль";
 "Name your theme" = "Назовите тему";
 "Native/Japanese" = "Оригинальный/японский";
 "Navegación" = "Навигация";
@@ -1564,6 +1566,7 @@
 "New Year, New Stories" = "Новый год, новые истории";
 "New filter" = "Новый фильтр";
 "New list" = "Новый список";
+"New look name" = "Название нового стиля";
 "New profile" = "Новый профиль";
 "New shows and anime premiering this month, from Simkl" = "Новые сериалы и аниме этого месяца, по данным Simkl";
 "New voyage" = "Новое плавание";
@@ -1653,6 +1656,7 @@
 "No threads for this title yet." = "Пока нет тем по этому названию.";
 "No titles match these filters." = "Нет названий по этим фильтрам.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Нет дорожек по этим фильтрам. Попробуйте переключить HI/SDH или «Форсированные».";
+"No unsaved changes" = "Нет несохранённых изменений";
 "No video files found in that folder." = "В этой папке нет видеофайлов.";
 "No {kind} releases this month. Try a different filter." = "В этом месяце нет релизов ({kind}). Попробуйте другой фильтр.";
 "Noir" = "Нуар";
@@ -1786,6 +1790,8 @@
 "Outline thickness" = "Толщина обводки";
 "Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "Переопределять встроенные стили";
+"Override {name}" = "Переопределить {name}";
+"Overwrite {name} with this look" = "Заменить {name} этим видом";
 "P" = "P";
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2P-источники, поддержка debrid";
@@ -2180,13 +2186,16 @@
 "Save" = "Сохранить";
 "Save a track and it will appear here." = "Сохраните трек из раздела «Обзор», и он появится здесь.";
 "Save and share pages" = "Save and share pages";
+"Save as a new look" = "Сохранить как новый стиль";
 "Save changes" = "Сохранить изменения";
 "Save for later" = "Сохранить на потом";
+"Save look" = "Сохранить вид";
 "Save page" = "Save page";
 "Save reminder" = "Сохранить напоминание";
 "Save settings" = "Save settings";
 "Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "Сохраните предпочтительное качество потока. Поток должен соответствовать каждой заданной категории; оставьте категорию пустой, чтобы принимать любое значение. Если совпадений нет, Harbor выберет следующий лучший доступный источник.";
 "Save theme" = "Сохранить тему";
+"Save this look" = "Сохранить стиль";
 "Save to this library" = "Save to this library";
 "Save track" = "Сохранить трек";
 "Saved" = "Сохранено";
@@ -2288,6 +2297,9 @@
 "Share" = "Поделиться";
 "Share file" = "Share file";
 "Share with {name}" = "Общий доступ с {name}";
+"Shares crew with 1 other film" = "Shares crew with 1 other film";
+"Shares crew with {n} other films" = "Shares crew with {n} other films";
+"Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
 "Sharpen" = "Повысить резкость";
 "Sharper lines and a little more pop." = "Более чёткие линии и чуть больше выразительности.";
@@ -2884,6 +2896,7 @@
 "Watched" = "Просмотрено";
 "Watched badge" = "Значок «Просмотрено»";
 "Watched by {name}" = "Просмотрено: {name}";
+"Watched {ago}" = "Просмотрено {ago}";
 "Watching" = "Смотрю";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "Список для просмотра";
@@ -3019,6 +3032,9 @@
 "jina_..." = "jina_...";
 "just now" = "только что";
 "language" = "язык";
+"last month" = "last month";
+"last week" = "last week";
+"last year" = "last year";
 "left" = "слева";
 "letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "локально";
@@ -4145,6 +4161,7 @@
 "today" = "сегодня";
 "trailers/extras" = "трейлеры и допматериалы";
 "unknown" = "неизвестно";
+"unsaved changes" = "несохранённых изменений";
 "username" = "имя пользователя";
 "v3 API key" = "Ключ API v3";
 "watched" = "посмотрено";
@@ -4153,6 +4170,7 @@
 "wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "неверный год";
 "yes" = "да";
+"yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "Само приложение {app} не размещает, не распространяет и не индексирует медиаконтент. Все потоки поступают из сторонних дополнений, debrid-сервисов или вашей учётной записи {service}, которую вы настраиваете самостоятельно. Вы несёте ответственность за выбор воспроизводимого контента и соблюдение законодательства вашей юрисдикции.";
 "{count} picks ready" = "Готово вариантов: {count}";
@@ -4197,12 +4215,15 @@
 "{n} semillas" = "Сидов: {n}";
 "{n} sources · 0 made it through" = "{n} источников · ни один не прошёл отбор";
 "{n} watching" = "Зрителей: {n}";
+"{n} weeks ago" = "{n} weeks ago";
+"{n} years ago" = "{n} years ago";
 "{n}+ seeds" = "Сидеров: {n}+";
 "{n}d ago" = "{n} д. назад";
 "{n}d left" = "осталось {n} дн.";
 "{n}h ago" = "{n} ч. назад";
 "{n}m ago" = "{n} мин. назад";
 "{n}mo ago" = "{n} мес. назад";
+"{pct}% watched" = "просмотрено {pct}%";
 "{requests} requests" = "{requests} запросов";
 "{seconds} seconds" = "{seconds} сек.";
 "{shown} of {total}" = "{shown} из {total}";

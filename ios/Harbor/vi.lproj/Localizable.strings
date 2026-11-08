@@ -547,6 +547,7 @@
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Xóa tìm kiếm";
 "Clears the saved URL so you can point Harbor at another relay." = "Xóa URL đã lưu để Harbor có thể trỏ đến một relay khác.";
+"Click to apply · Right-click to delete" = "Nhấp để áp dụng · Nhấp chuột phải để xóa";
 "Close" = "Đóng";
 "Close navigation" = "Close navigation";
 "Close player" = "Đóng trình phát";
@@ -1533,6 +1534,7 @@
 "NFL" = "NFL";
 "NHL" = "NHL";
 "Name" = "Tên";
+"Name your look" = "Đặt tên cho giao diện";
 "Name your theme" = "Đặt tên chủ đề";
 "Native/Japanese" = "Nguyên bản/Tiếng Nhật";
 "Navegación" = "Điều hướng";
@@ -1557,6 +1559,7 @@
 "New Year, New Stories" = "Năm mới, chuyện mới";
 "New filter" = "Bộ lọc mới";
 "New list" = "Danh sách mới";
+"New look name" = "Tên giao diện mới";
 "New profile" = "Hồ sơ mới";
 "New shows and anime premiering this month, from Simkl" = "Phim bộ và anime mới ra mắt trong tháng này, từ Simkl";
 "New voyage" = "Hải trình mới";
@@ -1646,6 +1649,7 @@
 "No threads for this title yet." = "Chưa có chủ đề nào cho tựa phim này.";
 "No titles match these filters." = "Không có tựa phim nào khớp với các bộ lọc này.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "Không có bản phụ đề nào khớp với các bộ lọc này. Hãy thử bật hoặc tắt HI/SDH hay Bắt buộc.";
+"No unsaved changes" = "Không có thay đổi chưa lưu";
 "No video files found in that folder." = "Không tìm thấy tệp video nào trong thư mục đó.";
 "No {kind} releases this month. Try a different filter." = "Tháng này không có nội dung {kind} phát hành. Hãy thử bộ lọc khác.";
 "Noir" = "Phim đen";
@@ -1778,6 +1782,8 @@
 "Outline thickness" = "Độ dày đường viền";
 "Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "Ghi đè kiểu nhúng";
+"Override {name}" = "Ghi đè {name}";
+"Overwrite {name} with this look" = "Ghi đè {name} bằng giao diện này";
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "Nguồn P2P, hỗ trợ debrid";
 "PBS" = "PBS";
@@ -2169,13 +2175,16 @@
 "Save" = "Lưu";
 "Save a track and it will appear here." = "Lưu một bài hát từ Khám phá và bài hát sẽ xuất hiện tại đây.";
 "Save and share pages" = "Save and share pages";
+"Save as a new look" = "Lưu thành giao diện mới";
 "Save changes" = "Lưu thay đổi";
 "Save for later" = "Lưu để xem sau";
+"Save look" = "Lưu giao diện";
 "Save page" = "Save page";
 "Save reminder" = "Lưu nhắc nhở";
 "Save settings" = "Save settings";
 "Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "Lưu chất lượng luồng bạn ưu tiên. Luồng phải khớp mọi danh mục bạn đặt; để trống danh mục để chấp nhận mọi giá trị. Nếu không có kết quả khớp, Harbor dùng nguồn tốt nhất tiếp theo hiện có.";
 "Save theme" = "Lưu giao diện";
+"Save this look" = "Lưu giao diện này";
 "Save to this library" = "Save to this library";
 "Save track" = "Lưu bài hát";
 "Saved" = "Đã lưu";
@@ -2277,6 +2286,9 @@
 "Share" = "Chia sẻ";
 "Share file" = "Share file";
 "Share with {name}" = "Chia sẻ với {name}";
+"Shares crew with 1 other film" = "Shares crew with 1 other film";
+"Shares crew with {n} other films" = "Shares crew with {n} other films";
+"Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
 "Sharpen" = "Độ sắc nét";
 "Sharper lines and a little more pop." = "Đường nét rõ hơn và hình ảnh nổi bật hơn một chút.";
@@ -2870,6 +2882,7 @@
 "Watched" = "Đã xem";
 "Watched badge" = "Huy hiệu đã xem";
 "Watched by {name}" = "Đã được {name} xem";
+"Watched {ago}" = "Đã xem {ago}";
 "Watching" = "Đang xem";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "Danh sách xem";
@@ -3005,6 +3018,9 @@
 "jina_..." = "jina_...";
 "just now" = "vừa xong";
 "language" = "ngôn ngữ";
+"last month" = "last month";
+"last week" = "last week";
+"last year" = "last year";
 "left" = "trái";
 "letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "local" = "cục bộ";
@@ -4131,6 +4147,7 @@
 "today" = "hôm nay";
 "trailers/extras" = "trailer/nội dung bổ sung";
 "unknown" = "không xác định";
+"unsaved changes" = "thay đổi chưa lưu";
 "username" = "tên người dùng";
 "v3 API key" = "Khóa API v3";
 "watched" = "đã xem";
@@ -4139,6 +4156,7 @@
 "wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "sai năm";
 "yes" = "có";
+"yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "Bản thân {app} không lưu trữ, phân phối hay lập chỉ mục bất kỳ nội dung nghe nhìn nào. Mọi luồng phát đều đến từ tiện ích bổ sung của bên thứ ba, dịch vụ debrid hoặc tài khoản {service} do chính bạn cấu hình. Bạn chịu trách nhiệm về nội dung mình chọn phát và việc tuân thủ luật pháp tại nơi mình sinh sống.";
 "{count} picks ready" = "{count} lựa chọn đã sẵn sàng";
@@ -4183,12 +4201,15 @@
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} nguồn · 0 nguồn vượt qua";
 "{n} watching" = "{n} người đang xem";
+"{n} weeks ago" = "{n} weeks ago";
+"{n} years ago" = "{n} years ago";
 "{n}+ seeds" = "{n}+ nguồn seed";
 "{n}d ago" = "{n} ngày trước";
 "{n}d left" = "còn {n} ngày";
 "{n}h ago" = "{n} giờ trước";
 "{n}m ago" = "{n} phút trước";
 "{n}mo ago" = "{n} tháng trước";
+"{pct}% watched" = "đã xem {pct}%";
 "{requests} requests" = "{requests} yêu cầu";
 "{seconds} seconds" = "{seconds} giây";
 "{shown} of {total}" = "{shown} trên {total}";

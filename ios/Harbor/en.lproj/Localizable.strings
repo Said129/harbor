@@ -473,6 +473,7 @@
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Clear search";
 "Clears the saved URL so you can point Harbor at another relay." = "Clears the saved URL so you can point Harbor at another relay.";
+"Click to apply · Right-click to delete" = "Click to apply · Right-click to delete";
 "Close" = "Close";
 "Close navigation" = "Close navigation";
 "Close player" = "Close player";
@@ -1354,6 +1355,7 @@
 "Más suave y tenue, ideal para ver por la noche." = "Softer and dimmer, kinder for late-night watching.";
 "Música" = "Music";
 "Name" = "Name";
+"Name your look" = "Name your look";
 "Name your theme" = "Name your theme";
 "Native/Japanese" = "Native/Japanese";
 "Navegación" = "Navigation";
@@ -1374,6 +1376,7 @@
 "New Year, New Stories" = "New Year, New Stories";
 "New filter" = "New filter";
 "New list" = "New list";
+"New look name" = "New look name";
 "New profile" = "New profile";
 "New shows and anime premiering this month, from Simkl" = "New shows and anime premiering this month, from Simkl";
 "Newest" = "Newest";
@@ -1456,6 +1459,7 @@
 "No threads for this title yet." = "No threads for this title yet.";
 "No titles match these filters." = "No titles match these filters.";
 "No tracks match these filters. Try toggling HI/SDH or Forced." = "No tracks match these filters. Try toggling HI/SDH or Forced.";
+"No unsaved changes" = "No unsaved changes";
 "No video files found in that folder." = "No video files found in that folder.";
 "No {kind} releases this month. Try a different filter." = "No {kind} releases this month. Try a different filter.";
 "Nombre" = "Name";
@@ -1572,6 +1576,8 @@
 "Outline thickness" = "Outline thickness";
 "Over half your year was anime. Respect the grind." = "Over half your year was anime. Respect the grind.";
 "Override embedded styles" = "Override embedded styles";
+"Override {name}" = "Override {name}";
+"Overwrite {name} with this look" = "Overwrite {name} with this look";
 "P2P sources, debrid-ready" = "P2P sources, debrid-ready";
 "Page base." = "Page base.";
 "Page turn sound" = "Page turn sound";
@@ -1913,13 +1919,16 @@
 "Save" = "Save";
 "Save a track and it will appear here." = "Save a track and it will appear here.";
 "Save and share pages" = "Save and share pages";
+"Save as a new look" = "Save as a new look";
 "Save changes" = "Save changes";
 "Save for later" = "Save for later";
+"Save look" = "Save look";
 "Save page" = "Save page";
 "Save reminder" = "Save reminder";
 "Save settings" = "Save settings";
 "Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source." = "Save the stream quality you prefer. Streams must match every category you set; leave a category blank to accept any value. If nothing matches, Harbor uses the next best available source.";
 "Save theme" = "Save theme";
+"Save this look" = "Save this look";
 "Save to this library" = "Save to this library";
 "Save track" = "Save track";
 "Saved" = "Saved";
@@ -2016,6 +2025,9 @@
 "Shadow strength" = "Shadow strength";
 "Share" = "Share";
 "Share file" = "Share file";
+"Shares crew with 1 other film" = "Shares crew with 1 other film";
+"Shares crew with {n} other films" = "Shares crew with {n} other films";
+"Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
 "Sharpen" = "Sharpen";
 "Sharper lines and a little more pop." = "Sharper lines and a little more pop.";
@@ -2548,6 +2560,7 @@
 "Watched" = "Watched";
 "Watched badge" = "Watched badge";
 "Watched by {name}" = "Watched by {name}";
+"Watched {ago}" = "Watched {ago}";
 "Watching" = "Watching";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";
 "Watchlist" = "Watchlist";
@@ -2659,6 +2672,9 @@
 "jina_..." = "jina_...";
 "just now" = "just now";
 "language" = "language";
+"last month" = "last month";
+"last week" = "last week";
+"last year" = "last year";
 "letterboxd.com/username/list/slug" = "letterboxd.com/username/list/slug";
 "mdblist api key" = "mdblist api key";
 "min" = "min";
@@ -3764,12 +3780,14 @@
 "titles" = "titles";
 "today" = "today";
 "trailers/extras" = "trailers/extras";
+"unsaved changes" = "unsaved changes";
 "username" = "username";
 "v3 API key" = "v3 API key";
 "wrong episode" = "wrong episode";
 "wrong movie" = "wrong movie";
 "wss://your-relay.workers.dev" = "wss://your-relay.workers.dev";
 "year mismatch" = "year mismatch";
+"yesterday" = "yesterday";
 "your-name" = "your-name";
 "{count} results" = "{count} results";
 "{count} selected" = "{count} selected";
@@ -3809,12 +3827,15 @@
 "{n} semillas" = "{n} seeds";
 "{n} sources · 0 made it through" = "{n} sources · 0 made it through";
 "{n} watching" = "{n} watching";
+"{n} weeks ago" = "{n} weeks ago";
+"{n} years ago" = "{n} years ago";
 "{n}+ seeds" = "{n}+ seeds";
 "{n}d ago" = "{n}d ago";
 "{n}d left" = "{n}d left";
 "{n}h ago" = "{n}h ago";
 "{n}m ago" = "{n}m ago";
 "{n}mo ago" = "{n}mo ago";
+"{pct}% watched" = "{pct}% watched";
 "{seconds} seconds" = "{seconds} seconds";
 "{shown} of {total}" = "{shown} of {total}";
 "{title} · Episode {episode}" = "{title} · Episode {episode}";
