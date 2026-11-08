@@ -71,6 +71,7 @@ final class DetailModel {
         && franchise?.entries.first(where: { $0.id == activeFranchiseEntryID })?.extra != true }
     var animeEpisodeGrouping = AnimeEpisodeGrouping.saved
     var allowsContinuousAnimeEpisodes: Bool { animeEpisodeVariants?.allowsContinuous == true }
+    var animeTVDBSeriesID: Int? { animeEpisodeVariants?.tvdbSeriesID }
     var episodeMetadataURL: URL? {
         guard let id = tvdbOrder?.seriesID ?? animeEpisodeVariants?.tvdbSeriesID else { return nil }
         return URL(string: "https://thetvdb.com/?tab=series&id=\(id)")

@@ -247,6 +247,7 @@ targets:
       - path: HarborTests/CommunitySyncTests.swift
       - path: HarborTests/QualityBadgePolicyTests.swift
       - path: HarborTests/WireAnimeTests.swift
+      - path: HarborTests/R19FanartTests.swift
       - path: HarborTests/ContentAdvisoryTests.swift
       - path: HarborTests/TogetherPlayerSyncTests.swift
       - path: HarborTests/CastChromecastTests.swift

@@ -103,6 +103,9 @@ struct DetailView: View {
         .task(id: seasonMetadataTaskID) {
             await model.loadSeasonArtworkMetadata(configuration: MetadataPreferences.shared.configuration(), owner: app.library.owner, library: app.library)
         }
+        .task(id: fanartTaskID) {
+            await model.loadFanartArtwork(fanartKey: MetadataPreferences.shared.configuration().fanartKey, owner: app.library.owner, library: app.library, seriesID: model.animeTVDBSeriesID)
+        }
         .onChange(of: model.playback?.id) { _, _ in
             if let session = model.playback, session.owner == app.library.owner { app.library.discovery.track(.play, media: session.media ?? model.media) }
         }
@@ -175,6 +178,10 @@ struct DetailView: View {
     private var seasonMetadataTaskID: String {
         [model.media.identity, model.media.imdbID ?? "", model.media.videos?.first?.imdbID ?? "", String(model.franchiseChoices.count),
             MetadataPreferences.shared.language, EBookShelf.hash(MetadataPreferences.shared.tmdbKey)].joined(separator: "|")
+    }
+    private var fanartTaskID: String {
+        [model.media.identity, String(model.metadataReady), String(model.animeTVDBSeriesID ?? 0),
+            EBookShelf.hash(MetadataPreferences.shared.configuration().fanartKey)].joined(separator: "|")
     }
     private var streamPicker: StreamPickerView {
         StreamPickerView(model: model, addons: app.addons, episode: selectedEpisode, selection: streamSelection, downloading: downloading, downloadMessage: downloadMessage,
