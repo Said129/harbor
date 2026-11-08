@@ -9,6 +9,8 @@ struct MetadataConfiguration: Sendable {
     var imageLanguages: [String] = ["English", "Original"]
     /// Desktop's `rpdbKey`: rated posters. Read from the Keychain store of the profile, empty when none is saved.
     var rpdbKey: String = ""
+    /// Desktop's `fanartKey`: logos and backdrops. Read from the same Keychain store, empty when none is saved.
+    var fanartKey: String = ""
     /// Desktop's `translateDescriptions`: plot text and tagline in the metadata language (on) or in English (off).
     var translateDescriptions = true
 }
@@ -48,15 +50,16 @@ final class MetadataPreferences {
     }
     func configuration() -> MetadataConfiguration {
         var result = MetadataConfiguration(tmdbKey: tmdbKey, region: region, language: language, translateTitles: translateTitles, imageLanguages: imageLanguages)
-        result.rpdbKey = savedRPDBKey()
+        result.rpdbKey = savedArtworkKey(.rpdb)
+        result.fanartKey = savedArtworkKey(.fanart)
         result.translateDescriptions = translateDescriptions
         return result
     }
-    private func savedRPDBKey() -> String {
+    private func savedArtworkKey(_ provider: ArtworkKeyStore.Provider) -> String {
         guard let owner = settingsOwner else { return "" }
         let store = ArtworkKeyStore.forOwner(owner)
         if !store.ready { try? store.load() }
-        return store.key(.rpdb)
+        return store.key(provider)
     }
 
     private var reloading = false
