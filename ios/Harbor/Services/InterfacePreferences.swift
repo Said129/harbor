@@ -80,7 +80,7 @@ final class InterfacePreferences {
     var blurEpisodes = UserDefaults.standard.object(forKey: "blurEpisodes") as? Bool ?? false { didSet { persist(blurEpisodes, forKey: "blurEpisodes") } }
     var spoilerHideTitles = UserDefaults.standard.object(forKey: "spoilerHideTitles") as? Bool ?? true { didSet { persist(spoilerHideTitles, forKey: "spoilerHideTitles") } }
     var spoilerHideDescriptions = UserDefaults.standard.object(forKey: "spoilerHideDescriptions") as? Bool ?? true { didSet { persist(spoilerHideDescriptions, forKey: "spoilerHideDescriptions") } }
-    /// Desktop's `spoilerSkipNext` (default on): the next episode to watch stays clear. Stored for the episode-row hook in `UISettingsPolicy.spoilerMask`; no view reads it yet.
+    /// Desktop's `spoilerSkipNext` (default on): the next episode to watch stays clear. Read by the episode rows through `UISettingsPolicy.spoilerMask` and by the Up Next card in `PlayerView`.
     var spoilerSkipNext = UserDefaults.standard.object(forKey: "spoilerSkipNext") as? Bool ?? true { didSet { persist(spoilerSkipNext, forKey: "spoilerSkipNext") } }
     /// Desktop's `playerTitleSeriesFirst` (default off): the series name leads the player title. Stored for the player title hook in `UISettingsPolicy.titleLines`; no view reads it yet.
     var playerTitleSeriesFirst = UserDefaults.standard.object(forKey: "playerTitleSeriesFirst") as? Bool ?? false { didSet { persist(playerTitleSeriesFirst, forKey: "playerTitleSeriesFirst") } }

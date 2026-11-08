@@ -238,6 +238,7 @@ targets:
       - path: HarborTests/WireUITests.swift
       - path: HarborTests/TogetherToastRulesTests.swift
       - path: HarborTests/AdSkipTests.swift
+      - path: HarborTests/WireSpoilerTests.swift
       - path: HarborTests/AdReportEntryTests.swift
       - path: HarborTests/XrayTests.swift
       - path: HarborTests/CommunitySyncTests.swift

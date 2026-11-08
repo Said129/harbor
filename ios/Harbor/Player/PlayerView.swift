@@ -181,7 +181,7 @@ struct PlayerView: View {
                     HStack {
                         Spacer(minLength: 0)
                         PlayerUpNextView(episode: next, remaining: max(0, state.duration - state.position), automatic: automaticAdvanceEnabled,
-                            hideSpoiler: InterfacePreferences.shared.hideSpoilers && library?.watchedEpisodes(episodePool?.source(for: next) ?? media ?? Media(id: session.target.id, type: "series", name: title)).contains(next.watchedKey) != true,
+                            hideSpoiler: InterfacePreferences.shared.hideSpoilers && !InterfacePreferences.shared.spoilerSkipNext && library?.watchedEpisodes(episodePool?.source(for: next) ?? media ?? Media(id: session.target.id, type: "series", name: title)).contains(next.watchedKey) != true,
                             play: { requestEpisode(next) }, cancel: { autoNextCancelled = true })
                     }
                 }.padding(.horizontal, 12).padding(.bottom, controlsVisible ? 160 : 24).transition(.opacity)
