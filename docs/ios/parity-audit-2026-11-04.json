@@ -5,14 +5,14 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 192,
-      "partial": 188,
-      "missing": 1,
+      "ported": 201,
+      "partial": 178,
+      "missing": 2,
       "excluded": 57,
       "counted": 381,
-      "weighted_percent": 75.1,
-      "ported_only_percent": 50.4,
-      "ported_or_partial_percent": 99.7
+      "weighted_percent": 76.1,
+      "ported_only_percent": 52.8,
+      "ported_or_partial_percent": 99.5
     },
     "settings": {
       "total": 511,
@@ -27,14 +27,14 @@
     },
     "all": {
       "total": 949,
-      "ported": 432,
-      "partial": 222,
-      "missing": 4,
+      "ported": 441,
+      "partial": 212,
+      "missing": 5,
       "excluded": 291,
       "counted": 658,
-      "weighted_percent": 82.5,
-      "ported_only_percent": 65.7,
-      "ported_or_partial_percent": 99.4
+      "weighted_percent": 83.1,
+      "ported_only_percent": 67.0,
+      "ported_or_partial_percent": 99.2
     }
   },
   "behavior_areas": [
@@ -68,29 +68,29 @@
     {
       "area": "Addons and catalogs",
       "range": "B48-B67",
-      "ported": 5,
-      "partial": 15,
-      "missing": 0,
+      "ported": 6,
+      "partial": 13,
+      "missing": 1,
       "excluded": 0,
       "weighted_percent": 62.5
     },
     {
       "area": "Stream pipeline, parser, trust and scoring",
       "range": "B68-B106",
-      "ported": 31,
-      "partial": 8,
+      "ported": 32,
+      "partial": 7,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 89.7
+      "weighted_percent": 91.0
     },
     {
       "area": "Resolution and Debrid",
       "range": "B107-B135",
-      "ported": 18,
-      "partial": 10,
+      "ported": 19,
+      "partial": 9,
       "missing": 0,
       "excluded": 1,
-      "weighted_percent": 82.1
+      "weighted_percent": 83.9
     },
     {
       "area": "Torrent engine and streaming server",
@@ -113,11 +113,11 @@
     {
       "area": "Live TV, VOD, DVR and multiview",
       "range": "B217-B238",
-      "ported": 2,
-      "partial": 12,
+      "ported": 6,
+      "partial": 8,
       "missing": 0,
       "excluded": 8,
-      "weighted_percent": 57.1
+      "weighted_percent": 71.4
     },
     {
       "area": "Casting and Watch Together",
@@ -149,11 +149,11 @@
     {
       "area": "Metadata providers, calendar and lists",
       "range": "B305-B323",
-      "ported": 9,
-      "partial": 10,
+      "ported": 11,
+      "partial": 8,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 73.7
+      "weighted_percent": 78.9
     },
     {
       "area": "Profiles, appearance, integrations and system",
@@ -234,21 +234,21 @@
       "id": "Home hero and real catalogs",
       "desktop_source": "src/views/home.tsx",
       "verdict": "P",
-      "note": "earlier review Partial; personalised rails and physical checks incomplete"
+      "note": "iOS never fetches Desktop's hosted hero pool: the trending feed falls back to the first catalog titles, and the trakt and simkl feeds only pick an already-loaded rail whose name contains that service. The Desktop 4..."
     },
     {
       "index": 2,
       "id": "Continue Watching on Home",
       "desktop_source": "src/views/home.tsx",
       "verdict": "P",
-      "note": "earlier review Partial; personalised rails and physical checks incomplete"
+      "note": "iOS shows no empty-state message or sign-in prompt when the row is empty (ContinueWatching returns nothing). It also lacks Desktop's duplicate-by-name and franchise-root removal and the 100-item cap, and it orders..."
     },
     {
       "index": 3,
       "id": "Home row customization",
       "desktop_source": "src/views/home.tsx",
       "verdict": "P",
-      "note": "earlier review Partial; personalised rails and physical checks incomplete"
+      "note": "Top 10 numerals are not gated by the 10-title minimum at render time: PageCustomization.ranked and TopTenRail do not check the title count, while Desktop renders a row as Top 10 only when it has at least 10 titles."
     },
     {
       "index": 4,
@@ -297,14 +297,14 @@
       "id": "Movies room",
       "desktop_source": "src/views/movies.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The iOS movie room has no user collection rows assigned to the page, no Top 10 Movies Today row (no movie top-10 rail was found in ContentPageModel or TMDBService), no cross-row de-duplication against the hero and..."
     },
     {
       "index": 11,
       "id": "Cinema hero",
       "desktop_source": "src/views/movies.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "CinemaHero on iOS has no auto-advance (no timer or rotate task), and the movie hero is the first titles of the catalog with no daily rotation and no exclusion of recently played titles."
     },
     {
       "index": 12,
@@ -318,7 +318,7 @@
       "id": "Movie catalog pagination",
       "desktop_source": "src/views/movies.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS movie rows never request a second page inline; CatalogRails has no load-more trigger and ContentPageModel fetches page 1 only. Pagination exists only in the View all grid, and only for addon catalogs whose mani..."
     },
     {
       "index": 14,
@@ -346,7 +346,7 @@
       "id": "Series catalogs",
       "desktop_source": "src/views/shows.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS series rows never load a second page inline (same gap as movie catalog pagination), the hero is the first titles of the catalog rather than Desktop's curated 6-title pool, and hero titles are not removed from t..."
     },
     {
       "index": 18,
@@ -381,21 +381,21 @@
       "id": "Global search",
       "desktop_source": "src/lib/search.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS has no TMDB search/multi aggregation, no top-match ranking, no fuzzy people fallback, and no year or genre intent results; it only merges addon catalog search rows."
     },
     {
       "index": 23,
       "id": "Movie search",
       "desktop_source": "src/lib/search.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS has no TMDB search source for movies, no poster filter, no 12-title cap and no top-match ranking; movie rows are whatever the addon catalogs return for the query."
     },
     {
       "index": 24,
       "id": "Series search",
       "desktop_source": "src/lib/search.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS has no TMDB search source for series, no poster filter, no 12-title cap and no top-match ranking; series rows are whatever the addon catalogs return for the query."
     },
     {
       "index": 25,
@@ -458,21 +458,21 @@
       "id": "Real content details",
       "desktop_source": "src/views/detail.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS has no shared crew line (other films by the same crew), no user-reorderable detail section layout (Desktop DetailLayoutEditor), and no per-title reminder button on the title page; EpisodeAlertsSettingsView is o..."
     },
     {
       "index": 34,
       "id": "Poster / backdrop / logo",
       "desktop_source": "src/views/detail.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The title page logo for movies and series comes only from the metadata or the saved artwork choice. DetailView never calls CardArtworkResolver (only card and profile poster views do), and FanartClient.movie is neve..."
     },
     {
       "index": 35,
       "id": "Synopsis / genres / ratings",
       "desktop_source": "src/views/detail.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS genre badges are not clickable and every genre is shown, while Desktop shows the first three genres as pills that open a genre filter (openFilter) when clicked."
     },
     {
       "index": 36,
@@ -507,28 +507,28 @@
       "id": "Seasons",
       "desktop_source": "src/views/detail/series-episodes.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS picks the default season from the history episode hint or the first real season, with no watched-progress choice of the next unfinished season (resumeDefaultSeason). No mark-season action was found in the episo..."
     },
     {
       "index": 41,
       "id": "Episode details",
       "desktop_source": "src/views/detail/series-episodes.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS rows never show runtime, the percent-watched or watched-ago text, the progress bar, or New badges, and there is no dedicated episode detail view (Desktop openEpisodeDetail); the list and card builders in Episod..."
     },
     {
       "index": 42,
       "id": "Episode selection",
       "desktop_source": "src/views/detail/series-episodes.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The initial season ignores Desktop's resumeDefaultSeason logic (EpisodeList.chooseInitialSeason uses only the preferred episode or the first season), and no cross-season episode search or random-episode control is..."
     },
     {
       "index": 43,
       "id": "Episode watched state",
       "desktop_source": "src/views/detail/series-episodes.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "Simkl watched episodes are parsed into SimklLibraryItem.watchedEpisodes (ios/Harbor/Models/SimklLibrary.swift) but no episode watched function reads them, so they never reach LibraryModel.watchedEpisodes; the seaso..."
     },
     {
       "index": 44,
@@ -563,35 +563,35 @@
       "id": "Install addon URL",
       "desktop_source": "src/lib/addon-store.ts",
       "verdict": "P",
-      "note": "earlier review Partial (install, validate, configure, uninstall, enable)"
+      "note": "AppModel.install dedupes only by transport URL and appends the addon at the end, so the same manifest id at a new URL is duplicated and loses its position (Desktop dedupes by id and keeps the order on replace); the..."
     },
     {
       "index": 49,
       "id": "Validate and fetch manifest",
       "desktop_source": "src/lib/addon-store.ts",
-      "verdict": "P",
-      "note": "earlier review Partial (install, validate, configure, uninstall, enable)"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/HarborService.swift: HarborService.install fetches the normalized URL with http.json before installing"
     },
     {
       "index": 50,
       "id": "Configure addon URL",
       "desktop_source": "src/lib/addon-store.ts",
       "verdict": "P",
-      "note": "earlier review Partial (install, validate, configure, uninstall, enable)"
+      "note": "The replacement is saved only to the local profile through AppModel.persist, which throws profile-account-migration when a Stremio account is signed in; Desktop also pushes the replacement to the Stremio account (p..."
     },
     {
       "index": 51,
       "id": "Uninstall addon",
       "desktop_source": "src/lib/addon-store.ts",
       "verdict": "P",
-      "note": "earlier review Partial (install, validate, configure, uninstall, enable)"
+      "note": "Removal is local only: no iOS code makes the Stremio account write (Desktop uninstallAddon calls setUserAddons), and AppModel.persist throws profile-account-migration for a signed-in Stremio account, so removal fai..."
     },
     {
       "index": 52,
       "id": "Enable / disable addon",
       "desktop_source": "src/lib/addon-store.ts",
       "verdict": "P",
-      "note": "earlier review Partial (install, validate, configure, uninstall, enable)"
+      "note": "AppModel.setEnabled saves through AppModel.persist, which throws profile-account-migration when the active configuration carries a signed-in Stremio account (HouseholdSourceAccount.account), so the toggle cannot be..."
     },
     {
       "index": 53,
@@ -605,14 +605,14 @@
       "id": "Configured addon credentials persistence",
       "desktop_source": "src/lib/addon-store.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "Local persistence of the configured manifest URL exists through HouseholdSessionVault.save, but the Stremio account write does not: no iOS code makes the addonCollectionSet call, and AppModel.persist throws profile..."
     },
     {
       "index": 55,
       "id": "Addon order",
       "desktop_source": "src/lib/addons-store",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The order is saved only locally and only for guest profiles (AppModel.move goes through persist, which throws for a signed-in Stremio account); there is no stale check, no account write or verification, and no back..."
     },
     {
       "index": 56,
@@ -647,14 +647,14 @@
       "id": "Installed addons management",
       "desktop_source": "src/views/addons.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "Local list management is present, but for signed-in Stremio profiles every install, remove, reorder and toggle write goes through AppModel.persist and fails, and no iOS code writes uninstall or reorder changes to t..."
     },
     {
       "index": 61,
       "id": "Addon configuration viewport",
       "desktop_source": "src/views/addons.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "A captured link is not installed automatically: iOS puts it in the native field and waits for the user to tap Save, and there is no timed fallback to the browser, only the manual Abrir en Safari button and the load..."
     },
     {
       "index": 62,
@@ -668,49 +668,49 @@
       "id": "Addon catalog discovery",
       "desktop_source": "src/lib/addons.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS applies none of Desktop's addon_catalog type filter, episode-meta collapse or normalized-name row dedupe (addons.ts NON_CONTENT_TYPES, collapseEpisodeMetas and dedupeAddonRows); HarborService.catalogs only drop..."
     },
     {
       "index": 64,
       "id": "Catalog extras / filters",
       "desktop_source": "src/lib/addons.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "Genre and skip paging are wired into CatalogBrowserView, but the required-extra default is missing: catalog_plans drops every catalog with an unmet required extra and HarborService.catalogs passes no genre during d..."
     },
     {
       "index": 65,
       "id": "Catalog pages",
       "desktop_source": "src/lib/addons.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "Desktop also reads the older manifest form (extraSupported) to decide whether a catalog supports search, but the Rust Catalog type has no such field, so addons that declare search only through extraSupported are ne..."
     },
     {
       "index": 66,
       "id": "Addon resource matching",
       "desktop_source": "src/lib/addons.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "Rust deserializes a missing types or idPrefixes list in a specific resource entry as empty, so an entry without its own types never matches and an entry without its own idPrefixes accepts every id, whereas Desktop..."
     },
     {
       "index": 67,
       "id": "Stremio addon collection sync",
       "desktop_source": "src/lib/addons.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "M",
+      "note": "No iOS flow calls the account bridge (accountRequest) or AccountCollection.merging, and there is no Stremio sign-in, startup pull or cloud push; the protocol builders and merge rules exist but are unused, and exist... Stremio sign-in was replaced by local profile sources in commit 986184c8."
     },
     {
       "index": 68,
       "id": "Real addon stream requests",
       "desktop_source": "src/lib/streams/addons.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The alternate-type retry and the declared-type lookup for non-standard ids (pickIdByDeclaredTypes) apply only to the origin addon in iOS; other addons are queried only for their resource-declared types, and I found..."
     },
     {
       "index": 69,
       "id": "Concurrent addon requests",
       "desktop_source": "src/lib/streams/addons.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/HarborService.swift: streamResults (launches every stream request in a task group and streams partial rankings at most every 250..."
     },
     {
       "index": 70,
@@ -752,7 +752,7 @@
       "id": "Tracker preservation",
       "desktop_source": "src/lib/streams/addons.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "StreamRequestPolicy.deduplicated drops later duplicates without uniting their sources, no iOS path passes tracker sources to a torrent or streaming-server request, and no iOS code recovers a missing infoHash from t..."
     },
     {
       "index": 76,
@@ -976,21 +976,21 @@
       "id": "Direct stream resolution",
       "desktop_source": "src/lib/streams/resolve.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The iOS direct-URL path has no HEAD web-page probe, no error-clip size check on direct links (the check runs only on debrid links), and no completed-download precedence in resolve."
     },
     {
       "index": 108,
       "id": "Playback request headers",
       "desktop_source": "src/lib/streams/resolve.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): harbor-ios-bridge/src/dispatch.rs: resolve_direct (reads behaviorHints proxyHeaders request or headers and rejects invalid names and CR, LF or NUL in..."
     },
     {
       "index": 109,
       "id": "Embedded addon subtitle URLs",
       "desktop_source": "src/lib/streams/resolve.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The Stremio streaming-server path returns a PlaybackSource with subtitles nil, so addon subtitles are dropped on that path, while the direct path keeps them."
     },
     {
       "index": 110,
@@ -1025,7 +1025,7 @@
       "id": "User committed uncached downloads",
       "desktop_source": "src/lib/streams/resolve.ts",
       "verdict": "P",
-      "note": "earlier review Partial; queueing uncached sources missing"
+      "note": "iOS has no P2P engine fallback or P2P download preference (torrent handling is limited to the Stremio streaming server), and it has no automatic or season download flow that commits uncached picks."
     },
     {
       "index": 115,
@@ -1431,14 +1431,14 @@
       "id": "Subtitle styling",
       "desktop_source": "src/lib/player",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "There are no saved subtitle look presets (Desktop's loadSubPresets, saveSubPresets and snapshotSub) and no custom subtitle font import; the font choice is limited to five fixed families."
     },
     {
       "index": 173,
       "id": "Dual subtitle tracks",
       "desktop_source": "src/lib/player",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The second-line size (subSecondaryScale) is saved and shown by SecondLineSizeControl but no mpv property reads it, and the secondary text captured in state.secondarySubtitleText has no view that draws it, so the se..."
     },
     {
       "index": 174,
@@ -1466,7 +1466,7 @@
       "id": "Player resilience / errors",
       "desktop_source": "src/lib/player",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS has no automatic single reload of a VOD stream that ends prematurely (Desktop's isTruncatedEnd and use-auto-retry), its natural-end decision uses only mpv's EOF reason rather than the 85 percent rule, and the e..."
     },
     {
       "index": 178,
@@ -1480,14 +1480,14 @@
       "id": "Touch-equivalent transport controls",
       "desktop_source": "src/components/player",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS offers mute but no volume control, and has no shader (Anime4k) menu, screenshot, draw toggle, in-player download or DVR control; the RTX HDR and RTX VSR toggles are NVIDIA-only and impossible on a phone, while..."
     },
     {
       "index": 180,
       "id": "Stream switcher",
       "desktop_source": "src/components/player",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The iOS picker opened from the player's Change source action has only quality and provider filters plus the Both/Direct-debrid mode toggle; cached-only, preferred-language, source-group and flagged/rejected toggles..."
     },
     {
       "index": 181,
@@ -1529,7 +1529,7 @@
       "id": "Custom seek bar",
       "desktop_source": "src/components/player",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "HarborSeekBar takes only position and duration: it draws no buffered or downloaded fill (cacheEnd is never passed to it), no skip or ad segment spans, no trickplay thumbnails, and dot size and fill are fixed (only..."
     },
     {
       "index": 187,
@@ -1543,7 +1543,7 @@
       "id": "Player episode panel",
       "desktop_source": "src/components/player",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS has the season/order browser, the next-up row and adjacent-episode logic, but choosing an episode always autoplays the best stream: the instant-play off mode that shows a per-episode stream picker, the queue-dr..."
     },
     {
       "index": 189,
@@ -1599,21 +1599,21 @@
       "id": "External SRT",
       "desktop_source": "src/lib/subtitles",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS imports SRT as raw bytes (8 MB cap, Files security-scoped copy) and passes it to mpv without any encoding detection; sub-codepage is never set and no legacy or Arabic encoding handling exists on the iOS side, s..."
     },
     {
       "index": 197,
       "id": "External ASS / SSA",
       "desktop_source": "src/lib/subtitles",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "ASS/SSA track detection and the ASS size normalisation are wired (isASSTrack, SubtitleSelectionWiring), and .ass/.ssa files are accepted by the Files import. The same missing Desktop encoding detection applies to A..."
     },
     {
       "index": 198,
       "id": "External WebVTT",
       "desktop_source": "src/lib/subtitles",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS downloads VTT addon subtitles (sniffing the WEBVTT header and rejecting HTML responses) and imports .vtt files through mpv, but has no encoding detection on the Desktop model, so non-UTF-8 WebVTT files are not..."
     },
     {
       "index": 199,
@@ -1641,7 +1641,7 @@
       "id": "SDH / forced flags",
       "desktop_source": "src/lib/subtitles",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The flag-driven filters, tags and auto-selection exclusions are implemented, but the hide-SDH setting is sent to mpv as sub-filter-sdh unconditionally: the Desktop gate (sdhFilterAllowed: not forced, not foreignOnl..."
     },
     {
       "index": 203,
@@ -1746,14 +1746,14 @@
       "id": "M3U import",
       "desktop_source": "src/lib/iptv",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS imports M3U by URL or file with EXTINF, group, VLC/Kodi/pipe options and DRM detection, but it has no decorative-row filter (only a check that the name has alphanumerics) and no EPG derivation from get.php; XML..."
     },
     {
       "index": 218,
       "id": "Xtream credentials",
       "desktop_source": "src/lib/iptv",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Models/Xtream.swift: XtreamAccount"
     },
     {
       "index": 219,
@@ -1767,28 +1767,28 @@
       "id": "Live channel catalogs",
       "desktop_source": "src/lib/iptv",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS loads M3U and Xtream live catalogs from all sources with a six-hour cache and shows them in source order; the group-relevance ordering, pinned channel order, most-watched ordering and per-group hide, pin and re..."
     },
     {
       "index": 221,
       "id": "Channel categories",
       "desktop_source": "src/lib/iptv",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS offers a category picker of groups sorted alphabetically (localizedStandardCompare) with no relevance ordering, no group pin, hide or reorder, and no counts. Category filtering itself works."
     },
     {
       "index": 222,
       "id": "Live favorites",
       "desktop_source": "src/lib/iptv",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS keeps favorites only as channel ids in LiveTVPreferences and filters the currently loaded channels, so a favorite whose playlist is not loaded disappears; there is no snapshot-based Favorites group or favorites..."
     },
     {
       "index": 223,
       "id": "Live text search",
       "desktop_source": "src/lib/iptv",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The Live TV screen search in LiveTVView uses plain localizedCaseInsensitiveContains without Arabic normalisation; the Arabic-aware LiveTVSearch.channels rule is only called from the global search section, where it..."
     },
     {
       "index": 224,
@@ -1808,15 +1808,15 @@
       "index": 226,
       "id": "Xtream VOD movies",
       "desktop_source": "src/lib/iptv",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/XtreamClient.swift: XtreamClient"
     },
     {
       "index": 227,
       "id": "Xtream VOD series",
       "desktop_source": "src/lib/iptv",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/XtreamClient.swift: XtreamClient.vod (lists Xtream series rows by series_id, decodes base64 names, keeps the series type filter)"
     },
     {
       "index": 228,
@@ -1830,14 +1830,14 @@
       "id": "Persistent IPTV cache",
       "desktop_source": "src/lib/iptv",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The EPG snapshot kind from epg-store.ts (IndexedDB 'epg' entries) has no iOS counterpart: XMLTV is not implemented, and Xtream short EPG (XtreamClient.programs) is refetched every time with refresh set to true."
     },
     {
       "index": 230,
       "id": "Channel headers",
       "desktop_source": "src/lib/iptv",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/M3UParser.swift: M3UParser.option (maps EXTVLCOPT, KODIPROP and pipe options to vlcopt-user-agent, vlcopt-referrer and vlcopt-coo..."
     },
     {
       "index": 231,
@@ -2047,21 +2047,21 @@
       "id": "Stremio login / logout",
       "desktop_source": "src/lib/stremio.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The Rust account rules exist, but no Swift code calls AccountPlan, no iOS screen offers Stremio sign-in or sign-out (AccountView has no Stremio flow), and nothing constructs an AccountSession, so the login and logo... Stremio sign-in was replaced by local profile sources in commit 986184c8."
     },
     {
       "index": 261,
       "id": "Stremio user profile",
       "desktop_source": "src/lib/stremio.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "No iOS code calls getUser and no screen shows a Stremio profile; AccountUser.displayName has no caller. Stremio sign-in was replaced by local profile sources in commit 986184c8."
     },
     {
       "index": 262,
       "id": "Cloud library",
       "desktop_source": "src/lib/stremio.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The read, write and remove code is in place, but nothing on iOS creates an AccountSession (no login flow), so a user cannot activate the cloud library; only legacy stored sessions reach LibraryModel.setSession. Stremio sign-in was replaced by local profile sources in commit 986184c8."
     },
     {
       "index": 263,
@@ -2089,14 +2089,14 @@
       "id": "Continue Watching merge",
       "desktop_source": "src/lib/continue-watching.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "Desktop always drops anime cloud-id items (ANIME_CLOUD_ID) from the cloud list and folds resume timestamps into the sort key; iOS keeps cloud anime items whenever the local source is not visible (LibraryModel.allCo..."
     },
     {
       "index": 267,
       "id": "Local playback resume",
       "desktop_source": "src/lib/resume.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "There is no series-level last-played lookup equivalent to lastPlayedEpisode; iOS resume is per target only, and grep finds no iOS code that returns the most recent season and episode of a series."
     },
     {
       "index": 268,
@@ -2361,8 +2361,8 @@
       "index": 305,
       "id": "Cinemeta metadata",
       "desktop_source": "src/lib/providers",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/HarborService.swift: HarborService.addonMetadata (falls back to the Cinemeta meta endpoint for tt ids)"
     },
     {
       "index": 306,
@@ -2466,8 +2466,8 @@
       "index": 320,
       "id": "Release Calendar",
       "desktop_source": "src/lib/calendar.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Views/CalendarView.swift: CalendarView.monthGrid (month grid with movie, TV and anime type filter and source pills)"
     },
     {
       "index": 321,
@@ -2481,7 +2481,7 @@
       "id": "Library release calendar",
       "desktop_source": "src/lib/calendar.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS takes only bookmarked or continuing records (CalendarModel.load), does not add the Trakt watchlist even when Trakt is connected, takes dates from addon metadata instead of TMDB upcoming resolution, and has no 8..."
     },
     {
       "index": 323,
@@ -2551,21 +2551,21 @@
       "id": "Harbor visual identity",
       "desktop_source": "src/lib/theme.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS hard-codes Fraunces for every display heading (HarborTheme.displayFont) instead of the Desktop default display face (Sentient in sentient-switzer), and the Desktop layout, card and button styling of the identit..."
     },
     {
       "index": 333,
       "id": "Theme presets",
       "desktop_source": "src/lib/theme.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS has the eight base palettes, custom colors and saved themes with backgrounds, but no layout, card-style, button-style, CSS or navigation chrome choices, and no beta, featured or template theme catalogue."
     },
     {
       "index": 334,
       "id": "Font pairings",
       "desktop_source": "src/lib/theme.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS offers only three body choices (Switzer, Inter, System) and a fixed Fraunces display face; the Sentient, Fraunces + Inter, General Sans, Cabinet Grotesk, IBM Plex and Plus Jakarta pairs are not offered and the..."
     },
     {
       "index": 335,
