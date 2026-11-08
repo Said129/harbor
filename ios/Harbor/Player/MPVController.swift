@@ -44,7 +44,8 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
     private let subtitleSession = UUID()
     /// Desktop's `truncatedReloadedRef`: a stream that ends early gets one fresh session of the same source.
     private var truncatedReloadUsed = false
-    private var subtitleSDHFilterValue: String?
+    /// What mpv's `sub-filter-sdh` holds now. It starts at mpv's own default ("no"), so with the setting off Harbor sends nothing to mpv.
+    private var subtitleSDHFilterValue: String? = "no"
     private var addonSubtitleFiles: [String: ImportedSubtitle] = [:]
     private var lifecycleTokens: [NSObjectProtocol] = []
     private var deferredCloseToken: NSObjectProtocol?
