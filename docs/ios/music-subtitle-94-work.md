@@ -1868,3 +1868,13 @@ detection and the anime merge exist as helpers nothing calls yet. **Discover**: 
 the Quick Watches Under 90 rail uses Desktop's parameters; the seeded daily row order is a helper. **Detail**: episode rows show the percent watched, the watched-ago text and a thin progress bar,
 the related list falls back to Trakt related titles when the main source is empty, and the shared crew rules exist as helpers. **Subtitles**: the current subtitle look can be saved as a preset
 (up to 12, with Desktop's English, Foreign and Arabic seeds), applied and removed; the custom font rules exist but the import is not wired because the player maps unknown font ids to Inter.
+
+## Suwayomi category filtering (8 November)
+
+Both final round 24 runs (42518713717 and 42518720676) succeeded for c7cb1c72.
+The next change connects the saved manga category endpoints to the Manga library.
+The filter keeps the server's category order, matches titles locally, deduplicates
+results and preserves reading progress through the existing shelf records. Switching
+category or server discards stale results. Category endpoints can fall back from
+GraphQL to REST while authorization failures and cancellation stop the request.
+The B369 source audit is updated. Focused Apple validation is pending.

@@ -14,6 +14,11 @@ struct MangaView: View {
     @State private var query = ""
     @State private var books: [MangaBook] = []
     @State private var serverLibrary: [MangaBook] = []
+    @State private var libraryCategories: [MangaCategory] = []
+    @State private var libraryCategoryID: String?
+    @State private var categoryBooks: [MangaBook]?
+    @State private var categoryError: String?
+    @State private var categoryRetry = 0
     @State private var sourcePages: [String: Int] = [:]
     @State private var sourceMore: [String: Bool] = [:]
     @State private var more = false
@@ -59,7 +64,10 @@ struct MangaView: View {
     private var savedBooks: [MangaBook] {
         let order = ReadingShelfSort(rawValue: shelfSort) ?? .title
         let dates = Dictionary(uniqueKeysWithValues: shelf.records.map { ($0.id, $0.updated) })
-        return allSavedBooks.filter { ReadingShelfSort.matches(query, title: $0.title, author: $0.author) }.sorted {
+        let matches = libraryCategoryID == nil
+            ? allSavedBooks.filter { ReadingShelfSort.matches(query, title: $0.title, author: $0.author) }
+            : MangaCategoryRules.books(categoryBooks ?? [], matching: query)
+        return matches.sorted {
             order.before(title: $0.title, author: $0.author, updated: dates[$0.id] ?? .distantPast, id: $0.id,
                          title: $1.title, author: $1.author, updated: dates[$1.id] ?? .distantPast, id: $1.id)
         }
@@ -80,7 +88,7 @@ struct MangaView: View {
                 }.scrollIndicators(.hidden)
                 HStack { Text(screen == "shelf" ? "Biblioteca" : "Explorar manga").font(HarborTheme.font(21, weight: .semibold)).accessibilityIdentifier("manga-content-heading"); Spacer(); mangaOptions }.padding(.horizontal)
                 HarborSearchField(prompt: "Buscar manga…", text: $query, dismissOnSubmit: true).padding(.horizontal).accessibilityIdentifier("manga-search")
-                if screen == "shelf" { HStack { Spacer(); ReadingSortMenu(selection: $shelfSort) }.padding(.horizontal) }
+                if screen == "shelf" { libraryFilters }
                 if importingDocument { ProgressView("Importando manga…").frame(maxWidth: .infinity) }
                 if let message = error ?? shelf.error ?? connection.error { Text(message).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 if screen == "browse" {
@@ -95,7 +103,13 @@ struct MangaView: View {
                     }
                 } else {
                     grid(savedBooks)
-                    if savedBooks.isEmpty { emptyShelf("No se encontró ningún manga", message: "") }
+                    if let categoryError {
+                        Text(categoryError).font(.caption).foregroundStyle(.orange).padding(.horizontal)
+                        Button(DesktopInterfaceText.value("Retry")) { self.categoryError = nil; categoryRetry += 1 }
+                            .frame(maxWidth: .infinity)
+                    } else if libraryCategoryID != nil && categoryBooks == nil {
+                        ProgressView().frame(maxWidth: .infinity)
+                    } else if savedBooks.isEmpty { emptyShelf("No se encontró ningún manga", message: "") }
                 }
                 if loading { ProgressView().frame(maxWidth: .infinity) }
             }.padding(.vertical, 16)
@@ -106,8 +120,12 @@ struct MangaView: View {
                 catch is CancellationError { return }
                 catch { self.error = HarborPluginMessages.error(error) }
             }
-            .task(id: signature) { await browse(next: false) }
+            .task(id: screen == "browse" ? signature : nil) {
+                if screen == "browse" { await browse(next: false) }
+            }
             .task(id: tagSignature) { await loadTags() }
+            .task(id: libraryClient.map { ObjectIdentifier($0) }) { await loadLibraryCategories() }
+            .task(id: categoryRequest) { await loadCategoryBooks() }
             .onChange(of: adult) { _, _ in
                 if selected != "all" && !visibleSources.contains(where: { $0.id == selected }) { books = []; selected = "all" }
                 if !visibleSources.contains(where: \.latest) { latest = false }
@@ -224,6 +242,29 @@ struct MangaView: View {
                 }
             }
         }.buttonStyle(.plain).accessibilityIdentifier("manga-library-card")
+    }
+    private var libraryFilters: some View {
+        HStack {
+            if !libraryCategories.isEmpty {
+                Menu {
+                    Picker(DesktopInterfaceText.value("Categories"), selection: Binding(
+                        get: { libraryCategoryID },
+                        set: { id in
+                            guard libraryCategoryID != id else { return }
+                            categoryBooks = nil; categoryError = nil; libraryCategoryID = id
+                        }
+                    )) {
+                        Text(DesktopInterfaceText.value("All categories")).tag(nil as String?)
+                        ForEach(libraryCategories) { Text($0.name).tag(Optional($0.id)) }
+                    }
+                } label: {
+                    filterLabel(libraryCategories.first { $0.id == libraryCategoryID }?.name
+                                ?? DesktopInterfaceText.value("All categories"), icon: "desktop-layers")
+                }.accessibilityIdentifier("manga-library-category")
+            }
+            Spacer()
+            ReadingSortMenu(selection: $shelfSort)
+        }.padding(.horizontal)
     }
     private var popularRail: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -343,7 +384,10 @@ struct MangaView: View {
         }.padding(.horizontal)
     }
     private func connect() async {
+        let changedServer = client?.server != connection.server
         generation = UUID(); client = nil; serverSources = []; books = []; serverLibrary = []; more = false; sourcePages = [:]; sourceMore = [:]
+        if changedServer { libraryCategories = []; libraryCategoryID = nil }
+        categoryBooks = nil; categoryError = nil
         guard let server = connection.server else { loading = false; return }
         let service = SuwayomiClient(server: server); client = service; loading = true; error = nil
         do {
@@ -358,6 +402,46 @@ struct MangaView: View {
         } catch is CancellationError { return }
         catch { self.error = safeMessage(error) }
         if connection.server == server { loading = false }
+    }
+    private var libraryClient: SuwayomiClient? {
+        guard screen == "shelf", shelf.owner == app.personalOwner, let client, client.server == connection.server else { return nil }
+        return client
+    }
+    private struct CategoryRequest: Equatable {
+        let client: ObjectIdentifier
+        let category: String
+        let retry: Int
+    }
+    private var categoryRequest: CategoryRequest? {
+        guard let libraryClient, let libraryCategoryID else { return nil }
+        return CategoryRequest(client: ObjectIdentifier(libraryClient), category: libraryCategoryID, retry: categoryRetry)
+    }
+    private func loadLibraryCategories() async {
+        guard let service = libraryClient else { return }
+        do {
+            let options = try await service.categories()
+            try Task.checkCancellation()
+            guard libraryClient === service else { return }
+            libraryCategories = options
+            if let libraryCategoryID, !options.contains(where: { $0.id == libraryCategoryID }) {
+                self.libraryCategoryID = nil; categoryBooks = nil; categoryError = nil
+            }
+        } catch {
+            // An unavailable category list must not block the unfiltered library.
+        }
+    }
+    private func loadCategoryBooks() async {
+        guard let service = libraryClient, let request = categoryRequest else { return }
+        do {
+            let books = try await service.categoryBooks(id: request.category)
+            try Task.checkCancellation()
+            guard categoryRequest == request else { return }
+            categoryBooks = books; categoryError = nil
+        } catch is CancellationError {
+        } catch {
+            guard !Task.isCancelled, categoryRequest == request else { return }
+            categoryError = safeMessage(error)
+        }
     }
     private func browse(next: Bool) async {
         let client = client, reading = reading

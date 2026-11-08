@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 249,
-      "partial": 126,
+      "ported": 250,
+      "partial": 125,
       "missing": 1,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 83.0,
-      "ported_only_percent": 66.2,
+      "weighted_percent": 83.1,
+      "ported_only_percent": 66.5,
       "ported_or_partial_percent": 99.7
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 489,
-      "partial": 159,
+      "ported": 490,
+      "partial": 158,
       "missing": 4,
       "excluded": 297,
       "counted": 652,
-      "weighted_percent": 87.2,
-      "ported_only_percent": 75.0,
+      "weighted_percent": 87.3,
+      "ported_only_percent": 75.2,
       "ported_or_partial_percent": 99.4
     }
   },
@@ -167,11 +167,11 @@
     {
       "area": "Manga",
       "range": "B366-B390",
-      "ported": 21,
-      "partial": 2,
+      "ported": 22,
+      "partial": 1,
       "missing": 1,
       "excluded": 1,
-      "weighted_percent": 91.7
+      "weighted_percent": 93.8
     },
     {
       "area": "Sports",
@@ -2809,8 +2809,8 @@
       "index": 369,
       "id": "Manga Suwayomi library",
       "desktop_source": "src/lib/manga/sources/suwayomi/api.ts",
-      "verdict": "P",
-      "note": "Manga Suwayomi library: the client can list categories and their books over GraphQL and REST (8 Nov, written by Haiku, uncompiled); the library has no category filter yet"
+      "verdict": "D",
+      "note": "Suwayomi library categories are selectable in the iOS shelf with saved progress, title search and return to the full shelf; category requests use GraphQL with REST fallback. Code review status; Apple validation pending."
     },
     {
       "index": 370,

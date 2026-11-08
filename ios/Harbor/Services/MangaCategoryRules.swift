@@ -14,7 +14,16 @@ enum MangaCategoryRules {
             guard let id = digitsID(value["id"]), let name = value["name"].string else { return nil }
             return (index: index, order: orderValue(value["order"]), category: MangaCategory(id: id, name: name))
         }
-        return rows.sorted { $0.order != $1.order ? $0.order < $1.order : $0.index < $1.index }.map(\.category)
+        var seen = Set<String>()
+        return rows.sorted { $0.order != $1.order ? $0.order < $1.order : $0.index < $1.index }
+            .map(\.category).filter { seen.insert($0.id).inserted }
+    }
+
+    /// Desktop filters the saved category by title and keeps the first matching copy.
+    static func books(_ books: [MangaBook], matching query: String) -> [MangaBook] {
+        let term = query.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        var seen = Set<String>()
+        return books.filter { (term.isEmpty || $0.title.lowercased().contains(term)) && seen.insert($0.id).inserted }
     }
 
     /// Desktop's /^\d+$/ test on String(id). JSON numbers are accepted when they are whole and not negative.

@@ -20,9 +20,12 @@ in `parity-audit-2026-11-04.json`, produced by
 
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
-| Behaviors |   438 |    249 |     126 |       1 |       62 |           83.0 % |      66.2 % |            99.7 % |
+| Behaviors |   438 |    250 |     125 |       1 |       62 |           83.1 % |      66.5 % |            99.7 % |
 | Settings  |   511 |    240 |      33 |       3 |      235 |           92.9 % |      87.0 % |            98.9 % |
-| All       |   949 |    489 |     159 |       4 |      297 |           87.2 % |      75.0 % |            99.4 % |
+| All       |   949 |    490 |     158 |       4 |      297 |           87.3 % |      75.2 % |            99.4 % |
+
+The 8 November follow-up connects Suwayomi categories to the manga shelf (B369).
+This is a source audit. Focused Apple validation is pending.
 
 The 6 November refresh adds the OMDb and MDBList ratings on the detail page (the two
 provider keys, the Details column of the ratings matrix and the scores row), on top

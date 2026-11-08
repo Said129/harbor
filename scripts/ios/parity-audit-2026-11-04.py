@@ -576,6 +576,7 @@ BEHAVIORS = expand("""
 33 P real content details: the shared crew rules (three or more shared films, the line text) exist as helpers (8 Nov, written by Haiku, uncompiled); there is no crew query, cache or line on the page and no detail layout editor
 172 D subtitle styling: the current look can be saved as one of up to 12 presets (Desktop's English, Foreign and Arabic seeds), applied and removed from the subtitle style settings (8 Nov, written by Haiku, uncompiled)
 174 P custom subtitle fonts: the accepted file types, the 32 MB limit and the name rule exist (8 Nov, written by Haiku, uncompiled); the import is not wired because the player maps any unknown font id to Inter
+369 D Suwayomi library categories are selectable in the iOS shelf with saved progress, title search and return to the full shelf; category requests use GraphQL with REST fallback. Code review status; Apple validation pending.
 """)
 
 SETTINGS = expand("""

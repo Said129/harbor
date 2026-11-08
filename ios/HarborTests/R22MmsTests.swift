@@ -37,7 +37,7 @@ final class R22MmsTests: XCTestCase {
     // MARK: Manga Suwayomi categories (Desktop provider.ts categoryTags)
 
     func testCategoriesKeepNumericIdsAndSortByServerOrder() throws {
-        let json = #"[{"id":2,"name":"B","order":2},{"id":"1","name":"A","order":1},{"id":"x","name":"bad","order":0},{"id":3,"name":"C"},{"id":-1,"name":"neg","order":0},{"id":4,"order":0}]"#
+        let json = #"[{"id":2,"name":"B","order":2},{"id":"1","name":"A","order":1},{"id":"x","name":"bad","order":0},{"id":3,"name":"C"},{"id":-1,"name":"neg","order":0},{"id":4,"order":0},{"id":"2","name":"Duplicate","order":4}]"#
         let values = try JSONDecoder().decode(JSONValue.self, from: Data(json.utf8)).array
         XCTAssertEqual(MangaCategoryRules.categories(from: values), [
             MangaCategory(id: "3", name: "C"),
@@ -52,6 +52,15 @@ final class R22MmsTests: XCTestCase {
         XCTAssertEqual(MangaCategoryRules.orderValue(.null), 0)
         XCTAssertEqual(MangaCategoryRules.digitsID(.number(3)), "3")
         XCTAssertNil(MangaCategoryRules.digitsID(.number(3.5)))
+    }
+
+    func testSavedCategorySearchMatchesTitlesAndDeduplicatesAfterFiltering() {
+        let other = MangaBook(id: "1", title: "Unrelated title", author: "Harbor")
+        let match = MangaBook(id: "1", title: "Harbor Vol. 1")
+        let duplicate = MangaBook(id: "1", title: "Harbor duplicate")
+        let second = MangaBook(id: "2", title: "HARBOR Vol. 2")
+        XCTAssertEqual(MangaCategoryRules.books([other, match, duplicate, second], matching: " harbor "), [match, second])
+        XCTAssertEqual(MangaCategoryRules.books([other, match, duplicate, second], matching: ""), [other, second])
     }
 
     // MARK: Music queue continuation (Desktop queue-continuation.ts)

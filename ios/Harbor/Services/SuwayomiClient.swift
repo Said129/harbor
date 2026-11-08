@@ -122,34 +122,37 @@ actor SuwayomiClient {
     /// Desktop's gqlCategories and restCategories: server categories in server order.
     func categories() async throws -> [MangaCategory] {
         if graphql == nil { _ = try await sources() }
-        let values: [JSONValue]
         if graphql == true {
-            let response = try await gql("query { categories { nodes { id name order } } }")
-            guard case .array(let nodes) = response["categories"]["nodes"] else { throw HarborError(code: "manga-protocol") }
-            values = nodes
-        } else {
-            let response = try await json("/api/v1/category")
-            guard case .array(let nodes) = response else { throw HarborError(code: "manga-protocol") }
-            values = nodes
+            do {
+                let response = try await gql("query { categories { nodes { id name order } } }")
+                guard case .array(let nodes) = response["categories"]["nodes"] else { throw HarborError(code: "manga-protocol") }
+                return MangaCategoryRules.categories(from: nodes)
+            } catch {
+                if Self.authorizationError(error) { throw error }
+                try Task.checkCancellation()
+            }
         }
-        return MangaCategoryRules.categories(from: values)
+        let response = try await json("/api/v1/category")
+        guard case .array(let nodes) = response else { throw HarborError(code: "manga-protocol") }
+        return MangaCategoryRules.categories(from: nodes)
     }
     /// Desktop's gqlCategoryManga and restCategoryManga: the complete saved list of one category.
     func categoryBooks(id: String) async throws -> [MangaBook] {
         guard Self.digits(id) else { throw HarborError(code: "manga-protocol") }
         if graphql == nil { _ = try await sources() }
-        let values: [JSONValue]
-        if graphql == true {
-            guard let number = Int64(id) else { throw HarborError(code: "manga-protocol") }
-            let response = try await gql("query($id: Int!) { category(id: $id) { mangas { nodes { id title author artist description sourceId } } } }", variables: ["id": .integer(number)])
-            guard case .array(let nodes) = response["category"]["mangas"]["nodes"] else { throw HarborError(code: "manga-protocol") }
-            values = nodes
-        } else {
-            let response = try await json("/api/v1/category/\(id)")
-            guard case .array(let nodes) = response else { throw HarborError(code: "manga-protocol") }
-            values = nodes
+        if graphql == true, let number = Int32(id) {
+            do {
+                let response = try await gql("query($id: Int!) { category(id: $id) { mangas { nodes { id title author artist description sourceId } } } }", variables: ["id": .integer(Int64(number))])
+                guard case .array(let nodes) = response["category"]["mangas"]["nodes"] else { throw HarborError(code: "manga-protocol") }
+                return nodes.compactMap { book($0, source: $0["sourceId"].mangaID ?? $0["source"]["id"].mangaID ?? "") }
+            } catch {
+                if Self.authorizationError(error) { throw error }
+                try Task.checkCancellation()
+            }
         }
-        return values.compactMap { value in book(value, source: value["sourceId"].mangaID ?? "") }
+        let response = try await json("/api/v1/category/\(id)")
+        guard case .array(let nodes) = response else { throw HarborError(code: "manga-protocol") }
+        return nodes.compactMap { book($0, source: $0["sourceId"].mangaID ?? $0["source"]["id"].mangaID ?? "") }
     }
     func setLibrary(_ book: MangaBook, enabled: Bool) async throws {
         let id = try remoteID(book)
