@@ -121,9 +121,9 @@ struct DiscoverView: View {
                 catalogBrowser
                 surpriseChooser
                 voyageChooser
-                if !model.trending.isEmpty { shelf(DesktopVoyage.copy("Trending This Week"), items: model.trending) }
+                if !model.trending.isEmpty { shelf(DesktopVoyage.copy("Trending This Week"), items: DiscoveryAffinityRules.ranked(model.trending, affinity: app.library.discovery.affinity(now: Date()))) }
                 genreTiles
-                if !model.topRated.isEmpty { shelf(DesktopVoyage.copy("Top Rated"), items: model.topRated) }
+                if !model.topRated.isEmpty { shelf(DesktopVoyage.copy("Top Rated"), items: DiscoveryAffinityRules.ranked(model.topRated, affinity: app.library.discovery.affinity(now: Date()))) }
                 CriticsPickView(app: app, featuredIDs: Set(model.recommended.prefix(10).map(\.id)))
                 if !queueItems.isEmpty { queue }
                 if !model.awards.isEmpty { shelf("Award Winning", items: model.awards) }
@@ -222,10 +222,10 @@ struct DiscoverView: View {
         VStack(alignment: .leading, spacing: 14) {
             Text(DesktopVoyage.copy("Browse by Genre")).font(HarborTheme.font(19, weight: .semibold))
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                ForEach(["Action", "Drama", "Comedy", "Horror", "Sci-Fi", "Romance"], id: \.self) { name in
+                ForEach(DiscoveryGenreRules.tileNames, id: \.self) { name in
                     if let row = app.rows.first(where: { !$0.plan.isPlaybackHistoryCatalog && $0.plan.kind == "movie" && $0.plan.catalog?.extra.contains(where: { $0.name == "genre" && $0.options.contains(name) }) == true }) {
                         NavigationLink { CatalogBrowserView(app: app, initial: CatalogRow(plan: row.plan, metas: [], selectedGenre: name, receivedCount: 0)) } label: {
-                            ZStack(alignment: .bottomLeading) { Artwork(url: row.metas.first(where: { $0.genres?.contains(name) == true })?.background, maxPixels: 500); LinearGradient(colors: [.black.opacity(0.3), .black.opacity(0.7)], startPoint: .top, endPoint: .bottom); Text(DesktopVoyage.copy(name)).font(HarborTheme.displayFont(22)).padding(14) }.frame(height: 90).clipShape(.rect(cornerRadius: 10))
+                            ZStack(alignment: .bottomLeading) { Artwork(url: row.metas.first(where: { $0.genres?.contains(name) == true })?.background, maxPixels: 500); LinearGradient(colors: [.black.opacity(0.3), .black.opacity(0.7)], startPoint: .top, endPoint: .bottom); Text(DiscoveryGenreRules.tileLabel(name)).font(HarborTheme.displayFont(22)).padding(14) }.frame(height: 90).clipShape(.rect(cornerRadius: 10))
                         }.buttonStyle(.plain)
                     }
                 }
