@@ -46,6 +46,10 @@ final class StreamPreferences {
     var adSkipEnabled = UserDefaults.standard.object(forKey: "adSkipEnabled") as? Bool ?? false {
         didSet { persist(adSkipEnabled, forKey: "adSkipEnabled") }
     }
+    /// Desktop's `adReportAlwaysShow` (default off): the report button on every stream the corpus can name, not just new releases.
+    var adReportAlwaysShow = UserDefaults.standard.object(forKey: "adReportAlwaysShow") as? Bool ?? false {
+        didSet { persist(adReportAlwaysShow, forKey: "adReportAlwaysShow") }
+    }
     /// Desktop's `autoSkipAd` (default off): jump past a known injected ad as soon as it starts.
     var autoSkipAd = UserDefaults.standard.object(forKey: "autoSkipAd") as? Bool ?? false {
         didSet { persist(autoSkipAd, forKey: "autoSkipAd") }
@@ -141,6 +145,7 @@ final class StreamPreferences {
         showQualityInfo = UserDefaults.standard.object(forKey: "showQualityInfo") as? Bool ?? false
         adSkipEnabled = UserDefaults.standard.object(forKey: "adSkipEnabled") as? Bool ?? false
         autoSkipAd = UserDefaults.standard.object(forKey: "autoSkipAd") as? Bool ?? false
+        adReportAlwaysShow = UserDefaults.standard.object(forKey: "adReportAlwaysShow") as? Bool ?? false
         qualityBadgeStyle = QualityBadgeStyle.restored(UserDefaults.standard.string(forKey: "qualityBadgeStyle")).rawValue
         xrayEnabled = XrayRules.enabled(UserDefaults.standard)
         fullStreamDescription = UserDefaults.standard.object(forKey: "streams.fullDescription") as? Bool ?? true

@@ -91,16 +91,20 @@
 "Actualizar" = "Atualizar";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Atualizar fontes";
+"Ad {n}" = "Anúncio {n}";
 "Add" = "Adicionar";
 "Add Custom Source" = "Adicionar Fonte Personalizada";
 "Add Source" = "Adicionar Fonte";
 "Add a TMDB API key in Metadata settings to search for titles." = "Adicione uma chave API do TMDB nas definições de metadados para pesquisar títulos.";
+"Add a TMDB key in Settings to identify the cast." = "Adicione uma chave TMDB nas Configurações para identificar o elenco.";
+"Add a TMDB key in Settings to see the cast, crew, and details." = "Adicione uma chave TMDB nas Configurações para ver o elenco, a equipe e os detalhes.";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Adicione uma chave do TMDB em Configurações para desbloquear o feed completo de descoberta.";
 "Add a TMDB key in settings first" = "Primeiro, adicione uma chave do TMDB nas configurações";
 "Add a list" = "Adicionar uma lista";
 "Add a movie or show to this list..." = "Adicione um filme ou série a esta lista...";
 "Add a repository" = "Adicionar um repositório";
 "Add an API key to use this source." = "Adicione uma chave de API para usar esta fonte.";
+"Add an ad starting at the current time" = "Adicionar um anúncio a partir do momento atual";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "Adicione animes à sua AniList e eles aparecem aqui, agrupados por status e prontos para editar.";
 "Add anime to your MyAnimeList and they show up here, grouped by status and ready to edit." = "Adicione animes ao seu MyAnimeList e eles aparecem aqui, agrupados por status e prontos para editar.";
 "Add bookmark" = "Add bookmark";
@@ -138,6 +142,7 @@
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "Adiciona uma linha abaixo de Continuar assistindo com episódios exibidos recentemente de séries que você já assistia. Dispense um por vez ou limpe a linha inteira. Desativado por padrão.";
 "Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "Adiciona um botão \"Perguntar à IA\" à busca, para você digitar pedidos em linguagem simples.";
+"Adds an X-Ray button in the player to see the full cast with photos and tap through to any actor. Needs a TMDB key for photos and filmographies." = "Adiciona um botão X-Ray no player para ver o elenco completo com fotos e navegar até qualquer ator. Precisa de uma chave TMDB para fotos e filmografias.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Ajuste o texto e o fundo. A prévia mostra as alterações em tempo real.";
 "Adjust volume on the speaker. Computer volume and boost do not apply." = "Ajuste o volume no altifalante. O volume e a amplificação do computador não se aplicam.";
 "Administrar" = "Gerenciar";
@@ -198,6 +203,7 @@
 "Already added." = "Já adicionado.";
 "Also Nominated" = "Também indicados";
 "Alternate" = "Alternar";
+"Always show the report button" = "Sempre mostrar o botão de denúncia";
 "Analizando el audio… Puedes seguir viendo." = "Analisando áudio… Continue assistindo.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "A análise parou para priorizar a reprodução. Tente novamente após o carregamento.";
 "Analyzing audio… Keep watching." = "Analisando áudio… Continue assistindo.";
@@ -473,6 +479,7 @@
 "Cards, panels." = "Cartões, painéis.";
 "Cargar archivo" = "Carregar arquivo";
 "Cargar más" = "Carregar mais";
+"Cast" = "Transmitir";
 "Cast to TV or speaker" = "Transmitir para TV ou alto-falante";
 "Catalog" = "Catálogo";
 "Catalogs" = "Catálogos";
@@ -489,11 +496,13 @@
 "Cerrar sesión" = "Sair";
 "Change" = "Alterar";
 "Change chapter order" = "Change chapter order";
+"Change server" = "Alterar servidor";
 "Channel format" = "Channel format";
 "Chapters" = "Capítulos";
 "Chat" = "Chat";
 "Check it works" = "Verificar se funciona";
 "Check the highlighted values before saving." = "Confira os valores destacados antes de salvar.";
+"Check the shared database first. When this exact subtitle has already been synced by someone else, yours snaps into place with no analysis." = "Consulta primeiro o banco de dados compartilhado. Quando esta legenda exata já tiver sido sincronizada por outra pessoa, a sua se encaixa no lugar sem nenhuma análise.";
 "Check whether this device can reach the saved server address." = "Verifique se este dispositivo consegue acessar o endereço salvo do servidor.";
 "Checking with AniList..." = "Verificando com AniList...";
 "Checking with MyAnimeList..." = "Verificando com MyAnimeList...";
@@ -573,6 +582,8 @@
 "Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
 "Comments are hidden" = "Os comentários estão ocultos";
 "Community index" = "Índice da comunidade";
+"Community sync" = "Sincronização da comunidade";
+"Community sync server" = "Servidor de sincronização da comunidade";
 "Compact" = "Compacto";
 "Compacta" = "Compacto";
 "Compartir" = "Compartilhar";
@@ -672,6 +683,7 @@
 "Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
+"Could not send. Try again." = "Não foi possível enviar. Tente novamente.";
 "Couldn't auto-sync" = "Não foi possível sincronizar";
 "Couldn't compress this image small enough. Try a different photo or crop it down." = "Não foi possível comprimir esta imagem o suficiente. Tente outra foto ou reduza o recorte.";
 "Couldn't connect to AniList" = "Não foi possível conectar ao AniList";
@@ -868,16 +880,20 @@
 "Enable Letterboxd integration" = "Ativar integração com Letterboxd";
 "Enable Roku Network Access" = "Ativar acesso à rede no Roku";
 "Enable User Ratings" = "Ativar Avaliações de Usuários";
+"Enable X-Ray" = "Ativar X-Ray";
 "Enable addon" = "Enable addon";
+"Enable injected ad skip" = "Ativar pular anúncios injetados";
 "Enabled" = "Ativado";
 "End" = "Fim";
 "End ep" = "Ep. final";
 "End of episode" = "Fim do episódio";
 "End of next episode" = "Fim do próximo episódio";
+"Ends at" = "Termina às";
 "Enfocar" = "Realçar nitidez";
 "Engine" = "Mecanismo";
 "English" = "Inglês";
 "Enter Harbor" = "Entrar no Harbor";
+"Enter a full http:// or https:// address, or leave blank to use Harbor's server." = "Digite um endereço completo http:// ou https://, ou deixe em branco para usar o servidor do Harbor.";
 "Enter a size of 0 or more." = "Digite um tamanho igual ou maior que 0.";
 "Enter a whole number of 0 or more." = "Digite um número inteiro igual ou maior que 0.";
 "Enter an FPS from 1 to 240." = "Introduza uma taxa de FPS entre 1 e 240.";
@@ -969,6 +985,7 @@
 "Filter countries" = "Filtrar países";
 "Filter genres" = "Filtrar gêneros";
 "Filters" = "Filtros";
+"Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "Encontre e compartilhe correções verificadas de sincronização para arquivos de vídeo e legenda correspondentes. Ative o modo privado para interromper consultas e contribuições à comunidade.";
 "Finding lyrics" = "Procurando a letra";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Terminar um episódio de anime atualiza seu progresso no AniList. Só avança: nunca reduz uma contagem que você já tem.";
@@ -1085,6 +1102,7 @@
 "Harbor ranking" = "Classificação do Harbor";
 "Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "A classificação do Harbor coloca as fontes com melhor pontuação primeiro. A ordem dos addons mantém os resultados de cada addon na ordem em que foram retornados, como nos apps Stremio e Vidi. A prioridade de streams abaixo decide qual addon lidera, nos dois modos.";
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "O Harbor exibe suas listas do AniList na página de Anime e mantém seu progresso sincronizado.";
+"Harbor uses its own community server. You can point it at a server you run yourself." = "O Harbor usa um servidor próprio para a comunidade. Você pode configurar um servidor que você mesmo administra.";
 "Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "A busca de OpenSubtitles integrada ao Harbor, ativada por padrão. Se você instalar um addon do OpenSubtitles, ela se desativa automaticamente para que seus resultados nunca sejam duplicados.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Menus e rótulos do próprio Harbor. Os idiomas das legendas vêm depois, e você pode mudar os dois em Configurações.";
 "Harbor's public relay" = "Retransmissor público do Harbor";
@@ -1214,6 +1232,7 @@
 "Ingresa una cantidad de FPS entre 1 y 240." = "Introduza uma taxa de FPS entre 1 e 240.";
 "Iniciar sesión" = "Entrar";
 "Iniciar sesión con Stremio" = "Entrar com o Stremio";
+"Injected ad skip (experimental)" = "Pular anúncio injetado (experimental)";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Instale um complemento do Stremio e seus catálogos aparecem aqui como faixas de pôsteres, prontos para explorar.";
 "Instalar addon" = "Instalar addon";
 "Install" = "Instalar";
@@ -1252,6 +1271,7 @@
 "Jina API key (optional)" = "Chave de API do Jina (opcional)";
 "Jina Reader" = "Jina Reader";
 "Join" = "Entrar";
+"Jump past a known injected ad on its own instead of showing the Skip button." = "Pular automaticamente um anúncio injetado conhecido em vez de mostrar o botão Pular.";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Pule aberturas automaticamente assim que começarem. Voltar para uma abertura a reproduz sem pular novamente. O botão Pular segue a configuração acima.";
 "Just added" = "Recém-adicionado";
 "Kanopy" = "Kanopy";
@@ -1284,6 +1304,7 @@
 "Leave" = "Sair";
 "Leave room" = "Sair da sala";
 "Leave the show?" = "Sair da série?";
+"Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself." = "Deixe em branco para usar o servidor da comunidade do Harbor ou informe o endereço de um servidor seu.";
 "Lectura" = "Lendo";
 "Left" = "Esquerda";
 "Left to right" = "Da esquerda para a direita";
@@ -1509,6 +1530,7 @@
 "Netflix Originals" = "Originais Netflix";
 "Never" = "Nunca";
 "Never auto-select tracks containing" = "Nunca selecionar automaticamente faixas contendo";
+"Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "Nunca entra em contato com o servidor da comunidade em nenhuma direção. Nada é consultado e nada é compartilhado a partir deste dispositivo.";
 "Never show the content advisory for this title again" = "Nunca mais mostrar o aviso de conteúdo deste título";
 "New Anime Releases" = "Novos Lançamentos de Anime";
 "New Episodes" = "Novos episódios";
@@ -1545,6 +1567,8 @@
 "No Label" = "Sem rótulo";
 "No Simkl premieres this month" = "Nenhuma estreia no Simkl este mês";
 "No background image" = "Nenhuma imagem de fundo";
+"No cast information for this title." = "Nenhuma informação de elenco para este título.";
+"No cast photos are available for this title." = "Não há fotos do elenco disponíveis para este título.";
 "No catalogs match your search." = "Nenhum catálogo corresponde à sua pesquisa.";
 "No catalogs yet" = "Nenhum catálogo ainda";
 "No comments yet" = "Nenhum comentário ainda";
@@ -1808,6 +1832,7 @@
 "Play now" = "Reproduzir agora";
 "Play opens the stream list so you pick the release yourself." = "Play opens the stream list so you pick the release yourself.";
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
+"Play to where the ad starts and add it, then play to the end and tap Now. You can also type the times. Add more than one if there are several." = "Reproduza até onde o anúncio começa e adicione, depois reproduza até o fim e toque em Agora. Você também pode digitar os tempos. Adicione mais de um se houver vários.";
 "Play trailers in the hero" = "Reproduzir trailers no destaque";
 "Playback" = "Reprodução";
 "Playback has ended." = "Playback has ended.";
@@ -1873,6 +1898,9 @@
 "Primetime Emmys" = "Emmys do horário nobre";
 "Priority applies once you have two or more stream addons." = "A prioridade passa a valer quando você tem dois ou mais addons de stream.";
 "Priorizar {language}" = "Priorizar {language}";
+"Private mode" = "Modo privado";
+"Private mode is on, so nothing is looked up or contributed from this device." = "O modo privado está ativado, então nada é consultado nem enviado deste dispositivo.";
+"Private mode stops all contact with this server in either direction." = "O modo privado interrompe todo contato com este servidor nos dois sentidos.";
 "Producer" = "Produtor";
 "Profile PIN" = "PIN do perfil";
 "Profile changed. Please try again." = "Profile changed. Please try again.";
@@ -2014,6 +2042,7 @@
 "Replace image" = "Substituir imagem";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Reproduza o tutorial novamente ou reexiba todas as dicas dispensadas no app.";
 "Replay walkthrough" = "Repetir tour guiado";
+"Report an injected ad" = "Denunciar um anúncio injetado";
 "Repositories" = "Repositórios";
 "Repository link" = "Link do repositório";
 "Reproducción" = "Reprodução";
@@ -2164,6 +2193,7 @@
 "Second subtitle language" = "Idioma da segunda legenda";
 "Secondary copy." = "Texto secundário.";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
+"See an injected ad? Report it" = "Viu um anúncio injetado? Denuncie";
 "See details" = "Ver detalhes";
 "See the resolution, HDR format and audio while you watch." = "Veja a resolução, o formato HDR e o áudio enquanto assiste.";
 "Seek bar" = "Barra de progresso";
@@ -2184,6 +2214,7 @@
 "Send" = "Enviar";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Enviando para o Trakt…";
+"Sending..." = "Enviando...";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n} enviado(s) para o Trakt";
 "Sequels & Prequels" = "Sequências e prequelas";
@@ -2211,6 +2242,7 @@
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
+"Set to where the video is right now" = "Definir para onde o vídeo está agora";
 "Set up a debrid" = "Configurar um debrid";
 "Set up rating providers" = "Configurar provedores de avaliações";
 "Settings" = "Configurações";
@@ -2227,6 +2259,7 @@
 "Show" = "Mostrar";
 "Show More info button" = "Mostrar o botão Mais informações";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Mostra um botão Pular Abertura / Pular Créditos quando o Harbor detecta um. Desative para nunca mostrar. Você também pode tocar no X do botão para dispensar um errado pelo resto do episódio.";
+"Show a Skip button when a known injected ad plays, and a small report button on new releases so you can mark ads for review." = "Mostra um botão Pular quando um anúncio injetado conhecido é reproduzido, e um pequeno botão de denúncia em lançamentos novos para você marcar anúncios para revisão.";
 "Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "Mostra no player um controle que bloqueia o mouse, o teclado, o controle remoto e as teclas de mídia até ser desbloqueado.";
 "Show adult addons" = "Mostrar addons adultos";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "Mostre todos os resultados dos complementos, incluindo versões incompatíveis ou suspeitas.";
@@ -2265,6 +2298,7 @@
 "Show subtitle sync indicator" = "Mostrar indicador de sincronização da legenda";
 "Show subtitles in Picture-in-Picture" = "Mostrar legendas no Picture-in-Picture";
 "Show the Skip button" = "Mostrar o botão Pular";
+"Show the report button on every P2P stream, not just likely new releases." = "Mostra o botão de denúncia em todo stream P2P, não só em prováveis lançamentos novos.";
 "Show this catalog" = "Mostrar este catálogo";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Mostre nomes traduzidos no idioma selecionado acima. Desative para manter os títulos originais.";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "Mostre legendas em dois idiomas ao mesmo tempo. Útil para aprender um idioma ou assistir junto.";
@@ -2313,6 +2347,8 @@
 "Skip Intro" = "Pular Abertura";
 "Skip Recap" = "Pular Recapitulação";
 "Skip for now" = "Pular por enquanto";
+"Skip injected ad?" = "Pular anúncio inserido?";
+"Skip injected ads automatically" = "Pular anúncios inseridos automaticamente";
 "Skip setup" = "Pular configuração";
 "Skip these tracks" = "Pular estas faixas";
 "Sleep timer" = "Temporizador de suspensão";
@@ -2327,6 +2363,8 @@
 "Solo posición y tamaño" = "Apenas posição e tamanho";
 "Solo redimensionar" = "Somente redimensionar";
 "Sombra paralela" = "Sombra projetada";
+"Some cam and new-release rips have ads spliced into the video itself. When the community has marked one, a Skip button appears. You can also report ads you spot for review. Off by default." = "Alguns rips de cam e lançamentos recentes têm anúncios inseridos diretamente no vídeo. Quando a comunidade marca um, aparece um botão Pular. Você também pode reportar anúncios encontrados para revisão. Desativado por padrão.";
+"Some copies of new releases have ads spliced into the video itself. This is experimental: the community marks where those ads are so others can skip them." = "Algumas cópias de novos lançamentos têm anúncios inseridos no próprio vídeo. Isso é experimental: a comunidade marca onde esses anúncios estão para que outros possam pulá-los.";
 "Song position" = "Song position";
 "Songs" = "Songs";
 "Sonido al pasar página" = "Page turn sound";
@@ -2369,6 +2407,7 @@
 "Start trailers with audio" = "Iniciar trailers com áudio";
 "Start with subtitles off" = "Iniciar com legendas desativadas";
 "Starting" = "Iniciando";
+"Starts at" = "Começa em";
 "Startup & default" = "Inicialização e padrão";
 "Stats" = "Estatísticas";
 "Status" = "Status";
@@ -2411,6 +2450,7 @@
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Envie uma foto sua ou escolha uma no catálogo do Harbor.";
 "Subir foto" = "Enviar foto";
 "Subir {name}" = "Mover {name} para cima";
+"Submit report" = "Enviar relatório";
 "Subsource" = "Subsource";
 "Subtitle FPS" = "FPS da legenda";
 "Subtitle FPS conversion is only available for text-based subtitles." = "A conversão de FPS só está disponível para legendas de texto.";
@@ -2507,6 +2547,7 @@
 "Texto sutil" = "Texto discreto";
 "Textos auxiliares y antetítulos." = "Legendas, sobretítulos.";
 "Thai" = "Tailandês";
+"Thanks. Sent for review." = "Obrigado. Enviado para revisão.";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Essa configuração não é válida. Verifique baseUrl, popularPath, list, chapters e pages.";
 "That does not look like a valid magnet link or infohash." = "Isso não parece ser um link magnet ou infohash válido.";
 "That link did not answer." = "Esse link não respondeu.";
@@ -2525,6 +2566,7 @@
 "The authorization code timed out before you finished. Try again." = "O código de autorização expirou antes de você terminar. Tente novamente.";
 "The comics industry's highest honor" = "A maior honraria da indústria de quadrinhos";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
+"The end time has to be after the start." = "O horário de término precisa ser depois do início.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
 "The little score chip printed on poster cards across your rows and grids." = "O pequeno chip de nota impresso nos cards de pôster nas suas fileiras e grades.";
@@ -2729,8 +2771,10 @@
 "Use Harbor's public relay" = "Usar o relay público do Harbor";
 "Use addon order" = "Usar a ordem dos addons";
 "Use an existing relay" = "Usar um relay existente";
+"Use community corrections" = "Usar correções da comunidade";
 "Use live web context" = "Usar contexto da web em tempo real";
 "Use model" = "Usar modelo";
+"Use my own server" = "Usar meu próprio servidor";
 "Use my style" = "Usar meu estilo";
 "Use plugins" = "Usar plugins";
 "Use shared settings" = "Usar configurações compartilhadas";
@@ -2795,6 +2839,7 @@
 "Western" = "Faroeste";
 "What everyone is reading" = "O que todos estão lendo";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "O que preenche o destaque. Em alta é uma nova lista dos mais populares do Harbor, atualizada ao longo do dia. Clássico usa as suas próprias linhas da tela Início.";
+"What is this?" = "O que é isso?";
 "What you watched" = "O que você assistiu";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Quando o Esc for fechar o player, mostra primeiro uma confirmação rápida. Você pode marcar \"Não perguntar novamente\" nesse aviso para sempre sair com o Esc.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Quando um release traz várias faixas de áudio, o Harbor seleciona a primeira correspondência desta lista.";
@@ -2824,6 +2869,8 @@
 "Writer" = "Roteirista";
 "Wrong PIN" = "PIN incorreto";
 "Wyzie" = "Wyzie";
+"X-Ray" = "X-Ray";
+"X-Ray (experimental)" = "X-Ray (experimental)";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "Year" = "Ano";
@@ -2864,6 +2911,7 @@
 "Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "Seu perfil";
 "Your rating" = "Sua avaliação";
+"Your report is sent for review before it ever skips anything for anyone. Nothing about the video is uploaded, just the timestamps you mark. It is off by default and you can turn it off anytime in Settings." = "Sua denúncia é enviada para análise antes de pular qualquer coisa para qualquer pessoa. Nada do vídeo é enviado, apenas as marcações de tempo que você indica. Vem desativado por padrão e você pode desativá-lo a qualquer momento nas Configurações.";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "Suas séries salvas não têm episódios programados para este mês. Mude para Todos os próximos para navegar pelo calendário completo de lançamentos.";
 "Your services are saved locally. Cloud sync will retry." = "Os seus serviços estão guardados neste dispositivo. A sincronização será tentada novamente.";
 "Your themes" = "Seus temas";
@@ -2910,6 +2958,7 @@
 "hours watched" = "horas assistidas";
 "hr" = "h";
 "http://192.168.1.50:11470" = "http://192.168.1.50:11470";
+"https://sync.harbor.site" = "https://sync.harbor.site";
 "item" = "item";
 "jina_..." = "jina_...";
 "just now" = "agora mesmo";

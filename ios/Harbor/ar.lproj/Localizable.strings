@@ -93,16 +93,20 @@
 "Actualizar" = "تحديث";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "تحديث المصادر";
+"Ad {n}" = "إعلان {n}";
 "Add" = "إضافة";
 "Add Custom Source" = "إضافة قسم خارجي";
 "Add Source" = "إضافة قسم";
 "Add a TMDB API key in Metadata settings to search for titles." = "أضف مفتاح API لخدمة TMDB في إعدادات البيانات الوصفية للبحث عن العناوين.";
+"Add a TMDB key in Settings to identify the cast." = "أضف مفتاح TMDB في الإعدادات للتعرّف على طاقم العمل.";
+"Add a TMDB key in Settings to see the cast, crew, and details." = "أضف مفتاح TMDB في الإعدادات لعرض طاقم التمثيل وطاقم العمل والتفاصيل.";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "أضف مفتاح TMDB في الإعدادات لفتح موجز الاكتشاف الكامل.";
 "Add a TMDB key in settings first" = "أضف مفتاح TMDB في الإعدادات أولًا";
 "Add a list" = "إضافة قائمة";
 "Add a movie or show to this list..." = "أضف فيلمًا أو مسلسلًا إلى هذه القائمة...";
 "Add a repository" = "إضافة مستودع";
 "Add an API key to use this source." = "أضف مفتاح API لاستخدام هذا المصدر.";
+"Add an ad starting at the current time" = "إضافة إعلان يبدأ عند الوقت الحالي";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "أضف أنمي إلى AniList الخاص بك ليظهر هنا، مجمّعًا حسب الحالة وجاهزًا للتعديل.";
 "Add anime to your MyAnimeList and they show up here, grouped by status and ready to edit." = "أضِف الأنمي إلى MyAnimeList الخاص بك وسيظهر هنا مُجمَّعًا حسب الحالة وجاهزًا للتعديل.";
 "Add bookmark" = "Add bookmark";
@@ -140,6 +144,7 @@
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "يضيف صفًا أسفل «متابعة المشاهدة» يعرض الحلقات التي عُرضت مؤخرًا من المسلسلات التي كنت تشاهدها. تجاهلها واحدة تلو الأخرى أو امسح الصف بالكامل. معطّل افتراضيًا.";
 "Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "يضيف زر \"اسأل الذكاء الاصطناعي\" إلى البحث، لتكتب طلبك بلغة بسيطة ومباشرة.";
+"Adds an X-Ray button in the player to see the full cast with photos and tap through to any actor. Needs a TMDB key for photos and filmographies." = "يضيف زر X-Ray في المشغّل لعرض طاقم العمل كاملًا مع الصور والانتقال إلى أي ممثل. يتطلب مفتاح TMDB للصور وقوائم الأعمال.";
 "Adjust the text and background. The preview shows your changes as you make them." = "اضبط النص والخلفية. تُظهر المعاينة تغييراتك فور إجرائها.";
 "Adjust volume on the speaker. Computer volume and boost do not apply." = "اضبط مستوى الصوت على المكبر. لا ينطبق مستوى صوت الكمبيوتر أو تعزيزه.";
 "Administrar" = "إدارة";
@@ -200,6 +205,7 @@
 "Already added." = "مضاف مسبقًا.";
 "Also Nominated" = "مُرشّح أيضًا";
 "Alternate" = "بديل";
+"Always show the report button" = "إظهار زر الإبلاغ دائمًا";
 "Analizando el audio… Puedes seguir viendo." = "جارٍ تحليل الصوت… يمكنك متابعة المشاهدة.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "توقف التحليل لإعطاء الأولوية للمشاهدة. أعد المحاولة بعد اكتمال التحميل.";
 "Analyzing audio… Keep watching." = "جارٍ تحليل الصوت… يمكنك متابعة المشاهدة.";
@@ -476,6 +482,7 @@
 "Cards, panels." = "بطاقات، لوحات.";
 "Cargar archivo" = "تحميل ملف";
 "Cargar más" = "تحميل المزيد";
+"Cast" = "البثّ";
 "Cast to TV or speaker" = "البثّ إلى التلفاز أو السمّاعة";
 "Catalog" = "الكتالوج";
 "Catalogs" = "الكتالوجات";
@@ -492,11 +499,13 @@
 "Cerrar sesión" = "تسجيل الخروج";
 "Change" = "تغيير";
 "Change chapter order" = "Change chapter order";
+"Change server" = "تغيير الخادم";
 "Channel format" = "Channel format";
 "Chapters" = "الفصول";
 "Chat" = "الدردشة";
 "Check it works" = "التحقق من عمله";
 "Check the highlighted values before saving." = "تحقّق من القيم المميّزة قبل الحفظ.";
+"Check the shared database first. When this exact subtitle has already been synced by someone else, yours snaps into place with no analysis." = "يتحقّق أولًا من قاعدة البيانات المشتركة. وعندما تكون هذه الترجمة بالتحديد قد تمّت مزامنتها من قِبل شخص آخر، تنضبط ترجمتك في مكانها دون أي تحليل.";
 "Check whether this device can reach the saved server address." = "تحقّق من قدرة هذا الجهاز على الاتصال بعنوان الخادم المحفوظ.";
 "Checking with AniList..." = "جارٍ التحقق مع AniList...";
 "Checking with MyAnimeList..." = "جارٍ التحقق مع MyAnimeList...";
@@ -576,6 +585,8 @@
 "Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
 "Comments are hidden" = "التعليقات مخفية";
 "Community index" = "فهرس المجتمع";
+"Community sync" = "مزامنة المجتمع";
+"Community sync server" = "خادم مزامنة المجتمع";
 "Compact" = "مضغوط";
 "Compacta" = "مضغوط";
 "Compartir" = "مشاركة";
@@ -675,6 +686,7 @@
 "Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
+"Could not send. Try again." = "تعذّر الإرسال. حاول مرة أخرى.";
 "Couldn't auto-sync" = "تعذرت المزامنة التلقائية";
 "Couldn't compress this image small enough. Try a different photo or crop it down." = "تعذر ضغط هذه الصورة إلى حجم صغير بما يكفي. جرّب صورة أخرى أو قصّها.";
 "Couldn't connect to AniList" = "تعذّر الاتصال بـ AniList";
@@ -871,16 +883,20 @@
 "Enable Letterboxd integration" = "تفعيل دمج ليتربوكسد (Letterboxd)";
 "Enable Roku Network Access" = "تفعيل وصول Roku إلى الشبكة";
 "Enable User Ratings" = "تفعيل تقييمات المستخدمين";
+"Enable X-Ray" = "تفعيل X-Ray";
 "Enable addon" = "Enable addon";
+"Enable injected ad skip" = "تفعيل تخطّي الإعلانات المُحقَن";
 "Enabled" = "مُفعّلة";
 "End" = "النهاية";
 "End ep" = "الحلقة الأخيرة";
 "End of episode" = "نهاية الحلقة";
 "End of next episode" = "نهاية الحلقة التالية";
+"Ends at" = "ينتهي عند";
 "Enfocar" = "الحدة";
 "Engine" = "المحرك";
 "English" = "الإنجليزية";
 "Enter Harbor" = "ادخل إلى Harbor";
+"Enter a full http:// or https:// address, or leave blank to use Harbor's server." = "أدخل عنوانًا كاملًا يبدأ بـ http:// أو https://، أو اتركه فارغًا لاستخدام خادم Harbor.";
 "Enter a size of 0 or more." = "أدخل حجمًا يساوي 0 أو أكثر.";
 "Enter a whole number of 0 or more." = "أدخل عددًا صحيحًا يساوي 0 أو أكثر.";
 "Enter an FPS from 1 to 240." = "أدخل معدل إطارات من 1 إلى 240.";
@@ -972,6 +988,7 @@
 "Filter countries" = "تصفية البلدان";
 "Filter genres" = "تصفية الأنواع";
 "Filters" = "المرشّحات";
+"Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "اعثر على تصحيحات توقيت موثّقة لملفات الفيديو والترجمة المتطابقة وشاركها. فعّل الوضع الخاص لإيقاف البحث في بيانات المجتمع والمساهمة فيها.";
 "Finding lyrics" = "جارٍ البحث عن الكلمات";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "إكمال حلقة أنمي يحدّث تقدمك على AniList. للتقدم فقط: لا يُنقص أبدًا عددًا لديك بالفعل.";
@@ -1089,6 +1106,7 @@
 "Harbor ranking" = "ترتيب Harbor";
 "Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "يضع ترتيب Harbor المصادر الأعلى تقييمًا أولًا. ويحافظ ترتيب الإضافات على نتائج كل إضافة بالترتيب الذي أعادتها به، مثل تطبيقَي Stremio وVidi. وتحدّد أولوية البث أدناه أي إضافة تتصدّر، في كلا الوضعين.";
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "يعرض Harbor قوائم AniList الخاصة بك في صفحة الأنمي ويُبقي تقدمك متزامنًا.";
+"Harbor uses its own community server. You can point it at a server you run yourself." = "يستخدم Harbor خادم المجتمع الخاص به. يمكنك توجيهه إلى خادم تديره بنفسك.";
 "Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "بحث OpenSubtitles المدمج في Harbor، مفعّل افتراضيًا. إذا ثبّتَ إضافة OpenSubtitles، يتنحّى هذا البحث تلقائيًا حتى لا تتكرّر نتائجك أبدًا.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "قوائم Harbor وتسمياته. لغات الترجمة تأتي لاحقًا، ويمكنك تغيير كليهما من الإعدادات.";
 "Harbor's public relay" = "مُرحّل Harbor العام";
@@ -1218,6 +1236,7 @@
 "Ingresa una cantidad de FPS entre 1 y 240." = "أدخل معدل إطارات من 1 إلى 240.";
 "Iniciar sesión" = "تسجيل الدخول";
 "Iniciar sesión con Stremio" = "تسجيل الدخول باستخدام Stremio";
+"Injected ad skip (experimental)" = "تخطّي الإعلانات المُدرَج (تجريبي)";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "ثبّت إضافة Stremio وستظهر كتالوجاتها هنا على هيئة صفوف من الملصقات جاهزة للتصفح.";
 "Instalar addon" = "تثبيت إضافة";
 "Install" = "تثبيت";
@@ -1256,6 +1275,7 @@
 "Jina API key (optional)" = "مفتاح Jina API (اختياري)";
 "Jina Reader" = "Jina Reader";
 "Join" = "انضمام";
+"Jump past a known injected ad on its own instead of showing the Skip button." = "تجاوز إعلان مُدرَج معروف تلقائيًا بدلًا من عرض زر التخطي.";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "تجاوز المقدّمات تلقائيًا فور بدئها. الرجوع إلى مقدّمة يعيد تشغيلها دون تجاوزها مجددًا. يتبع زر التجاوز الإعداد أعلاه.";
 "Just added" = "أُضيف حديثًا";
 "Kanopy" = "Kanopy";
@@ -1288,6 +1308,7 @@
 "Leave" = "مغادرة";
 "Leave room" = "مغادرة الغرفة";
 "Leave the show?" = "مغادرة المسلسل؟";
+"Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself." = "اتركه فارغًا لاستخدام خادم مجتمع Harbor، أو أدخل عنوان خادم تشغّله بنفسك.";
 "Lectura" = "جارٍ القراءة";
 "Left" = "يسار";
 "Left to right" = "من اليسار إلى اليمين";
@@ -1515,6 +1536,7 @@
 "Netflix Originals" = "أعمال نتفليكس الأصلية";
 "Never" = "أبدًا";
 "Never auto-select tracks containing" = "عدم اختيار المسارات تلقائيًا التي تحتوي على";
+"Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "لا يتّصل بخادم المجتمع في أيّ اتجاه على الإطلاق. لا يُجرى أي استعلام ولا تُرسَل أي مساهمة من هذا الجهاز.";
 "Never show the content advisory for this title again" = "عدم إظهار تنبيه المحتوى لهذا العنوان مرة أخرى";
 "Never shown again" = "لن يظهر مجددًا";
 "New Anime Releases" = "أحدث إصدارات الأنمي";
@@ -1552,6 +1574,8 @@
 "No Label" = "بدون تسمية";
 "No Simkl premieres this month" = "لا عروض أولى على Simkl هذا الشهر";
 "No background image" = "بدون صورة خلفية";
+"No cast information for this title." = "لا توجد معلومات عن طاقم التمثيل لهذا العنوان.";
+"No cast photos are available for this title." = "لا تتوفر صور لطاقم العمل لهذا العنوان.";
 "No catalogs match your search." = "لا توجد كتالوجات تطابق بحثك.";
 "No catalogs yet" = "لا توجد كتالوجات بعد";
 "No comments yet" = "لا توجد تعليقات بعد";
@@ -1818,6 +1842,7 @@
 "Play now" = "التشغيل الآن";
 "Play opens the stream list so you pick the release yourself." = "Play opens the stream list so you pick the release yourself.";
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
+"Play to where the ad starts and add it, then play to the end and tap Now. You can also type the times. Add more than one if there are several." = "شغّل الفيديو حتى بداية الإعلان وأضِفه، ثم شغّله حتى النهاية واضغط على الآن. يمكنك أيضًا كتابة الأوقات. أضِف أكثر من واحد إذا كان هناك عدة إعلانات.";
 "Play trailers in the hero" = "تشغيل العروض الدعائية في واجهة البطل";
 "Playback" = "التشغيل";
 "Playback has ended." = "Playback has ended.";
@@ -1883,6 +1908,9 @@
 "Primetime Emmys" = "جوائز إيمي لأوقات الذروة";
 "Priority applies once you have two or more stream addons." = "تُطبَّق الأولوية عندما تمتلك إضافتَي بث أو أكثر.";
 "Priorizar {language}" = "رفع أولوية {language}";
+"Private mode" = "الوضع الخاص";
+"Private mode is on, so nothing is looked up or contributed from this device." = "الوضع الخاص مفعّل، لذا لا يُجلب أي شيء ولا يُرسل من هذا الجهاز.";
+"Private mode stops all contact with this server in either direction." = "يوقف الوضع الخاص كل اتصال بهذا الخادم في الاتجاهين.";
 "Producer" = "منتج";
 "Profile PIN" = "رمز PIN للملف الشخصي";
 "Profile changed. Please try again." = "Profile changed. Please try again.";
@@ -2025,6 +2053,7 @@
 "Replace image" = "استبدل الصورة";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "أعِد تشغيل الجولة التعريفية أو أظهر كل تلميح رفضته.";
 "Replay walkthrough" = "إعادة تشغيل الجولة التعريفية";
+"Report an injected ad" = "الإبلاغ عن إعلان مُدرَج";
 "Repositories" = "المستودعات";
 "Repository link" = "رابط المستودع";
 "Reproducción" = "التشغيل";
@@ -2175,6 +2204,7 @@
 "Second subtitle language" = "لغة الترجمة الثانية";
 "Secondary copy." = "نص ثانوي.";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
+"See an injected ad? Report it" = "هل ترى إعلانًا مُدرَجًا؟ أبلغ عنه";
 "See details" = "عرض التفاصيل";
 "See the resolution, HDR format and audio while you watch." = "اعرض الدقة وتنسيق HDR ومعلومات الصوت أثناء المشاهدة.";
 "Seek bar" = "شريط التقدم";
@@ -2195,6 +2225,7 @@
 "Send" = "إرسال";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "جارٍ الإرسال إلى Trakt…";
+"Sending..." = "جارٍ الإرسال...";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "تم إرسال {n} إلى Trakt";
 "Sequels & Prequels" = "الأجزاء اللاحقة والسابقة";
@@ -2222,6 +2253,7 @@
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
+"Set to where the video is right now" = "الضبط على موضع الفيديو الحالي";
 "Set up a debrid" = "إعداد debrid";
 "Set up rating providers" = "إعداد مزوّدي التقييمات";
 "Settings" = "الإعدادات";
@@ -2238,6 +2270,7 @@
 "Show" = "إظهار";
 "Show More info button" = "عرض زر \"مزيد من المعلومات\"";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "إظهار زر تخطّي المقدمة / تخطّي الشارة عندما يكتشف Harbor واحداً منها. عطّل هذا الخيار لعدم إظهاره أبداً. يمكنك أيضاً النقر على X على الزر لتجاهل زر خاطئ لبقية الحلقة.";
+"Show a Skip button when a known injected ad plays, and a small report button on new releases so you can mark ads for review." = "إظهار زر تخطّي عند تشغيل إعلان مُدرَج معروف، وزر إبلاغ صغير على الإصدارات الجديدة لتتمكّن من وضع علامة على الإعلانات للمراجعة.";
 "Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "يعرض زر قفل في المشغّل يمنع إدخال الفأرة ولوحة المفاتيح وجهاز التحكم ومفاتيح الوسائط حتى إلغاء القفل.";
 "Show adult addons" = "إظهار إضافات البالغين";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "اعرض جميع نتائج الإضافات، بما فيها الإصدارات غير المطابقة أو التي قد تكون مشبوهة.";
@@ -2276,6 +2309,7 @@
 "Show subtitle sync indicator" = "عرض مؤشر مزامنة الترجمة";
 "Show subtitles in Picture-in-Picture" = "عرض الترجمات في صورة داخل صورة";
 "Show the Skip button" = "إظهار زر التخطّي";
+"Show the report button on every P2P stream, not just likely new releases." = "إظهار زر الإبلاغ على كل بث P2P، وليس فقط على الإصدارات الجديدة المحتملة.";
 "Show this catalog" = "إظهار هذا الكتالوج";
 "Show translated names in the language selected above. Turn off to keep original titles." = "اعرض الأسماء المترجمة باللغة المحدّدة أعلاه. عطّل هذا الخيار للاحتفاظ بالعناوين الأصلية.";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "اعرض ترجمات بلغتين في الوقت نفسه. مفيد لتعلّم لغة أو المشاهدة مع الآخرين.";
@@ -2324,6 +2358,8 @@
 "Skip Intro" = "تخطّي المقدمة";
 "Skip Recap" = "تخطّي الملخص";
 "Skip for now" = "تخطّي الآن";
+"Skip injected ad?" = "تخطّي الإعلان المُدرَج؟";
+"Skip injected ads automatically" = "تخطّي الإعلانات المُدرَجة تلقائياً";
 "Skip setup" = "تخطّي الإعداد";
 "Skip these tracks" = "تخطّي هذه المسارات";
 "Skipped: {reason}" = "تم التخطي: {reason}";
@@ -2340,6 +2376,8 @@
 "Solo posición y tamaño" = "الموضع والحجم فقط";
 "Solo redimensionar" = "تغيير الحجم فقط";
 "Sombra paralela" = "ظل الإسقاط";
+"Some cam and new-release rips have ads spliced into the video itself. When the community has marked one, a Skip button appears. You can also report ads you spot for review. Off by default." = "بعض نسخ الكام والإصدارات الجديدة تحتوي على إعلانات مُدمجة داخل الفيديو نفسه. عندما يضع المجتمع علامة على أحدها، يظهر زر تخطّي. يمكنك أيضاً الإبلاغ عن الإعلانات التي تلاحظها للمراجعة. مُعطّل افتراضياً.";
+"Some copies of new releases have ads spliced into the video itself. This is experimental: the community marks where those ads are so others can skip them." = "بعض نسخ الإصدارات الجديدة تحتوي على إعلانات مدمجة داخل الفيديو نفسه. هذه ميزة تجريبية: يحدّد المجتمع مواضع تلك الإعلانات ليتمكّن الآخرون من تخطّيها.";
 "Song position" = "Song position";
 "Songs" = "Songs";
 "Sonido al pasar página" = "Page turn sound";
@@ -2382,6 +2420,7 @@
 "Start trailers with audio" = "بدء المقاطع الدعائية مع الصوت";
 "Start with subtitles off" = "البدء مع إيقاف الترجمة";
 "Starting" = "قيد البدء";
+"Starts at" = "يبدأ عند";
 "Startup & default" = "بدء التشغيل والافتراضي";
 "Stats" = "الإحصائيات";
 "Status" = "الحالة";
@@ -2424,6 +2463,7 @@
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "ارفع صورتك الخاصة أو اختر صورة من كتالوج Harbor.";
 "Subir foto" = "رفع صورة";
 "Subir {name}" = "نقل {name} لأعلى";
+"Submit report" = "إرسال التقرير";
 "Subsource" = "Subsource";
 "Subtitle FPS" = "معدل إطارات الترجمة";
 "Subtitle FPS conversion is only available for text-based subtitles." = "لا يتوفر تحويل معدل الإطارات إلا للترجمات النصية.";
@@ -2520,6 +2560,7 @@
 "Texto sutil" = "نص خافت";
 "Textos auxiliares y antetítulos." = "التسميات التوضيحية، العناوين العلوية.";
 "Thai" = "التايلندية";
+"Thanks. Sent for review." = "شكرًا. تم الإرسال للمراجعة.";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "هذا الإعداد غير صالح. تحقّق من baseUrl وpopularPath وlist وchapters وpages.";
 "That does not look like a valid magnet link or infohash." = "لا يبدو هذا رابط magnet أو infohash صالحًا.";
 "That link did not answer." = "لم يستجب هذا الرابط.";
@@ -2538,6 +2579,7 @@
 "The authorization code timed out before you finished. Try again." = "انتهت مهلة رمز التفويض قبل أن تُكمل. حاول مرة أخرى.";
 "The comics industry's highest honor" = "أرفع تكريم في صناعة القصص المصوّرة";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
+"The end time has to be after the start." = "يجب أن يكون وقت النهاية بعد وقت البداية.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
 "The little score chip printed on poster cards across your rows and grids." = "شارة الدرجة الصغيرة المطبوعة على بطاقات الملصقات في صفوفك وشبكاتك.";
@@ -2743,8 +2785,10 @@
 "Use Harbor's public relay" = "استخدام مُرحّل Harbor العام";
 "Use addon order" = "استخدام ترتيب الإضافات";
 "Use an existing relay" = "استخدام مُرحِّل موجود";
+"Use community corrections" = "استخدام تصحيحات المجتمع";
 "Use live web context" = "استخدام سياق الويب المباشر";
 "Use model" = "استخدام النموذج";
+"Use my own server" = "استخدام خادمي الخاص";
 "Use my style" = "استخدام التنسيق الخاص بي";
 "Use plugins" = "استخدام المكوّنات الإضافية";
 "Use shared settings" = "استخدام الإعدادات المشتركة";
@@ -2809,6 +2853,7 @@
 "Western" = "غربي";
 "What everyone is reading" = "ما يقرؤه الجميع";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "ما يملأ الواجهة المميّزة. «الرائج» قائمة جديدة بأبرز العناوين من Harbor، تتجدّد على مدار اليوم. «الكلاسيكي» يستخدم صفوفك الخاصّة في الصفحة الرئيسية.";
+"What is this?" = "ما هذا؟";
 "What you watched" = "ما شاهدته";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "عندما يؤدي الضغط على Esc إلى إغلاق المشغّل، يظهر تأكيد سريع أولًا. يمكنك تحديد \"عدم السؤال مجددًا\" في تلك الرسالة للخروج دائمًا عند الضغط على Esc.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "عندما يأتي إصدار بمسارات صوت متعددة، يختار Harbor أول مطابقة من هذه القائمة.";
@@ -2838,6 +2883,8 @@
 "Writer" = "الكاتب";
 "Wrong PIN" = "رمز PIN خاطئ";
 "Wyzie" = "Wyzie";
+"X-Ray" = "X-Ray";
+"X-Ray (experimental)" = "X-Ray (تجريبي)";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "Year" = "السنة";
@@ -2878,6 +2925,7 @@
 "Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "ملفك الشخصي";
 "Your rating" = "تقييمك";
+"Your report is sent for review before it ever skips anything for anyone. Nothing about the video is uploaded, just the timestamps you mark. It is off by default and you can turn it off anytime in Settings." = "يُرسَل بلاغك للمراجعة قبل أن يؤدي إلى تخطّي أي شيء لأي أحد. لا يُرفع أي شيء يخص الفيديو، فقط الطوابع الزمنية التي تحدّدها. وهو معطّل افتراضيًا، ويمكنك إيقافه في أي وقت من الإعدادات.";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "ليس لمسلسلاتك المحفوظة حلقات مجدولة هذا الشهر. بدّل إلى \"كل القادم\" لتصفّح تقويم الإصدارات الكامل.";
 "Your services are saved locally. Cloud sync will retry." = "تم حفظ خدماتك على هذا الجهاز. ستتم إعادة محاولة المزامنة.";
 "Your themes" = "سماتك";
@@ -2924,6 +2972,7 @@
 "hours watched" = "ساعات المشاهدة";
 "hr" = "ساعة";
 "http://192.168.1.50:11470" = "http://192.168.1.50:11470";
+"https://sync.harbor.site" = "https://sync.harbor.site";
 "item" = "عنصر";
 "jina_..." = "jina_...";
 "just now" = "الآن";

@@ -324,6 +324,7 @@ BEHAVIORS = expand("""
 190 X local episode chooser: the iOS local library list already shows every season and episode file and plays one on a tap
 209 X trickplay seeking previews: Desktop's sprites come from video media servers, which iOS does not have (Plex and Jellyfin are music only)
 210 X shadow mpv thumbnail session: a second decoder opened on the same stream would double the bandwidth and memory of a phone for a debrid or torrent source
+195 D injected ad skip: the signed corpus is fetched and checked (Ed25519), matched on the content and the exact release (info hash or release fingerprint) and offered as a Skip button or skipped by itself; the report button sends the marked times for review (8 Nov, written by Haiku, report screen by Sonnet, uncompiled; iOS has the info hash and size of a stream but the release group and parsed title only when an enrichment added them, so some releases fall back to a key the corpus never holds)
 256 P host summon and invite: guests get the invite card (Join or Choose) and the summon card, and the host's invite goes out when its sources open (8 Nov, uncompiled); Desktop's host-side summon actions live in its context menu and have no iOS screen yet
 """)
 
@@ -736,6 +737,14 @@ SETTINGS = expand("""
 386 X custom app icon preset: same reason, the presets would have to ship as alternate icons in the build
 388 X music seek thumb: the iOS dock uses the system slider, which always draws its own thumb; Desktop's hover thumb needs a pointer
 172 X seek preview setting: the previews are excluded (a second decoder on the stream), so nothing would read it
+261 D skip injected ads automatically: read by the segment loader and the player (8 Nov, uncompiled)
+506 D enable injected ad skip: gates the corpus lookup and the report button (8 Nov, uncompiled)
+507 D always show the report button (8 Nov, uncompiled)
+508 D report button first-time tip, dismissed once and kept per profile (8 Nov, uncompiled)
+509 D X-Ray: a player button opens the cast rail and the browser with the cast and the about text, a tap opens the person's page; the live scene scan is excluded (8 Nov, written by Haiku, uncompiled)
+250 D use community corrections: a tier A answer from the shared database is applied without analysing the audio (8 Nov, written by Haiku, uncompiled)
+251 D community sync server: blank uses Harbor's server, any http or https address replaces it (8 Nov, written by Haiku, uncompiled)
+252 D private mode: no lookup and no report while it is on (8 Nov, written by Haiku, uncompiled)
 156 D guests pick their own source: the invite carries the flag and the guest's card then reads Choose instead of Join, leaving the source to the guest (8 Nov, uncompiled)
 510 X X-Ray live scan: Desktop matches faces on the frame against the cast photos with its own recognition model (useFaceId); iOS Vision only detects faces and no model ships
 248 X subtitle auto-sync speech recognition: Desktop runs a downloaded model through Rust commands (asr_ensure_model, asr_transcribe_windows) that iOS does not have

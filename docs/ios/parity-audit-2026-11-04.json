@@ -5,36 +5,36 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 152,
+      "ported": 153,
       "partial": 229,
-      "missing": 3,
+      "missing": 2,
       "excluded": 54,
       "counted": 384,
-      "weighted_percent": 69.4,
-      "ported_only_percent": 39.6,
-      "ported_or_partial_percent": 99.2
+      "weighted_percent": 69.7,
+      "ported_only_percent": 39.8,
+      "ported_or_partial_percent": 99.5
     },
     "settings": {
       "total": 511,
-      "ported": 220,
+      "ported": 228,
       "partial": 46,
-      "missing": 13,
+      "missing": 5,
       "excluded": 232,
       "counted": 279,
-      "weighted_percent": 87.1,
-      "ported_only_percent": 78.9,
-      "ported_or_partial_percent": 95.3
+      "weighted_percent": 90.0,
+      "ported_only_percent": 81.7,
+      "ported_or_partial_percent": 98.2
     },
     "all": {
       "total": 949,
-      "ported": 372,
+      "ported": 381,
       "partial": 275,
-      "missing": 16,
+      "missing": 7,
       "excluded": 286,
       "counted": 663,
-      "weighted_percent": 76.8,
-      "ported_only_percent": 56.1,
-      "ported_or_partial_percent": 97.6
+      "weighted_percent": 78.2,
+      "ported_only_percent": 57.5,
+      "ported_or_partial_percent": 98.9
     }
   },
   "behavior_areas": [
@@ -104,11 +104,11 @@
     {
       "area": "Player, subtitles, skip, trailers and downloads",
       "range": "B154-B216",
-      "ported": 29,
+      "ported": 30,
       "partial": 20,
-      "missing": 1,
+      "missing": 0,
       "excluded": 13,
-      "weighted_percent": 78.0
+      "weighted_percent": 80.0
     },
     {
       "area": "Live TV, VOD, DVR and multiview",
@@ -1591,8 +1591,8 @@
       "index": 195,
       "id": "Ad corpus / fingerprint skip",
       "desktop_source": "src/lib/skip-intro",
-      "verdict": "M",
-      "note": "no ad corpus skip"
+      "verdict": "D",
+      "note": "injected ad skip: the signed corpus is fetched and checked (Ed25519), matched on the content and the exact release (info hash or release fingerprint) and offered as a Skip button or skipped by itself; the report button sends the marked times for review (8 Nov, written by Haiku, report screen by Sonnet, uncompiled; iOS has the info hash and size of a stream but the release group and parsed title only when an enrichment added them, so some releases fall back to a key the corpus never holds)"
     },
     {
       "index": 196,
@@ -5044,22 +5044,22 @@
       "index": 250,
       "id": "subtitleAutoSyncCrowd",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advanced auto-sync options"
+      "verdict": "D",
+      "note": "use community corrections: a tier A answer from the shared database is applied without analysing the audio (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 251,
       "id": "communitySyncUrl",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advanced auto-sync options"
+      "verdict": "D",
+      "note": "community sync server: blank uses Harbor's server, any http or https address replaces it (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 252,
       "id": "communitySyncOptOut",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advanced auto-sync options"
+      "verdict": "D",
+      "note": "private mode: no lookup and no report while it is on (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 253,
@@ -5121,8 +5121,8 @@
       "index": 261,
       "id": "autoSkipAd",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "no ad skip source"
+      "verdict": "D",
+      "note": "skip injected ads automatically: read by the segment loader and the player (8 Nov, uncompiled)"
     },
     {
       "index": 262,
@@ -6836,29 +6836,29 @@
       "index": 506,
       "id": "adSkipEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "enable injected ad skip: gates the corpus lookup and the report button (8 Nov, uncompiled)"
     },
     {
       "index": 507,
       "id": "adReportAlwaysShow",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "always show the report button (8 Nov, uncompiled)"
     },
     {
       "index": 508,
       "id": "adReportFirstSeen",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "report button first-time tip, dismissed once and kept per profile (8 Nov, uncompiled)"
     },
     {
       "index": 509,
       "id": "xrayEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "X-Ray: a player button opens the cast rail and the browser with the cast and the about text, a tap opens the person's page; the live scene scan is excluded (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 510,

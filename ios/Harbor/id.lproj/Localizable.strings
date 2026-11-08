@@ -86,16 +86,20 @@
 "Actualizar" = "Segarkan";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Segarkan sumber";
+"Ad {n}" = "Iklan {n}";
 "Add" = "Tambah";
 "Add Custom Source" = "Tambah Sumber Kustom";
 "Add Source" = "Tambah Sumber";
 "Add a TMDB API key in Metadata settings to search for titles." = "Tambahkan kunci API TMDB di pengaturan metadata untuk mencari judul.";
+"Add a TMDB key in Settings to identify the cast." = "Tambahkan kunci TMDB di Pengaturan untuk mengidentifikasi pemeran.";
+"Add a TMDB key in Settings to see the cast, crew, and details." = "Tambahkan kunci TMDB di Pengaturan untuk melihat pemeran, kru, dan detail.";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Tambahkan kunci TMDB di Pengaturan untuk membuka seluruh feed penemuan.";
 "Add a TMDB key in settings first" = "Tambahkan kunci TMDB di pengaturan terlebih dahulu";
 "Add a list" = "Tambah daftar";
 "Add a movie or show to this list..." = "Tambahkan film atau acara ke daftar ini...";
 "Add a repository" = "Tambah repositori";
 "Add an API key to use this source." = "Tambahkan kunci API untuk menggunakan sumber ini.";
+"Add an ad starting at the current time" = "Tambahkan iklan yang dimulai pada waktu saat ini";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "Tambahkan anime ke AniList agar muncul di sini, dikelompokkan berdasarkan status dan siap diedit.";
 "Add anime to your MyAnimeList and they show up here, grouped by status and ready to edit." = "Tambahkan anime ke MyAnimeList agar muncul di sini, dikelompokkan berdasarkan status dan siap diedit.";
 "Add bookmark" = "Add bookmark";
@@ -133,6 +137,7 @@
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "Menambahkan baris di bawah Lanjutkan Menonton yang mencantumkan episode yang baru-baru ini ditayangkan dari acara yang sudah Anda ikuti. Singkirkan satu per satu atau hapus seluruh baris. Dinonaktifkan secara default.";
 "Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "Menambahkan tombol \"Tanya AI\" ke pencarian, sehingga Anda dapat mengetik permintaan dengan bahasa sehari-hari.";
+"Adds an X-Ray button in the player to see the full cast with photos and tap through to any actor. Needs a TMDB key for photos and filmographies." = "Menambahkan tombol X-Ray di pemutar untuk melihat seluruh pemeran beserta foto dan membuka halaman aktor mana pun. Memerlukan kunci TMDB untuk foto dan filmografi.";
 "Adjust the text and background. The preview shows your changes as you make them." = "Sesuaikan teks dan latar belakang. Pratinjau langsung menunjukkan perubahan Anda.";
 "Adjust volume on the speaker. Computer volume and boost do not apply." = "Atur volume pada speaker. Volume dan penguatan komputer tidak berlaku.";
 "Administrar" = "Kelola";
@@ -191,6 +196,7 @@
 "Already added." = "Sudah ditambahkan.";
 "Also Nominated" = "Juga Dinominasikan";
 "Alternate" = "Alternatif";
+"Always show the report button" = "Selalu tampilkan tombol Laporkan";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
@@ -457,6 +463,7 @@
 "Cards, panels." = "Kartu, panel.";
 "Cargar archivo" = "Muat file";
 "Cargar más" = "Muat lebih banyak";
+"Cast" = "Pemeran";
 "Cast to TV or speaker" = "Transmisikan ke TV atau speaker";
 "Catalog" = "Katalog";
 "Catalogs" = "Katalog";
@@ -473,11 +480,13 @@
 "Cerrar sesión" = "Keluar";
 "Change" = "Ubah";
 "Change chapter order" = "Change chapter order";
+"Change server" = "Ubah server";
 "Channel format" = "Channel format";
 "Chapters" = "Bab";
 "Chat" = "Obrolan";
 "Check it works" = "Periksa apakah berfungsi";
 "Check the highlighted values before saving." = "Periksa nilai yang ditandai sebelum menyimpan.";
+"Check the shared database first. When this exact subtitle has already been synced by someone else, yours snaps into place with no analysis." = "Periksa database bersama terlebih dahulu. Jika subtitle yang sama persis ini sudah pernah disinkronkan oleh orang lain, subtitle Anda akan langsung disesuaikan tanpa analisis.";
 "Check whether this device can reach the saved server address." = "Periksa apakah perangkat ini dapat menjangkau alamat server yang disimpan.";
 "Checking with AniList..." = "Memeriksa di AniList...";
 "Checking with MyAnimeList..." = "Memeriksa di MyAnimeList...";
@@ -557,6 +566,8 @@
 "Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
 "Comments are hidden" = "Komentar disembunyikan";
 "Community index" = "Indeks komunitas";
+"Community sync" = "Sinkronisasi komunitas";
+"Community sync server" = "Server sinkronisasi komunitas";
 "Compact" = "Ringkas";
 "Compacta" = "Ringkas";
 "Compartir" = "Bagikan";
@@ -652,6 +663,7 @@
 "Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
+"Could not send. Try again." = "Tidak dapat mengirim. Coba lagi.";
 "Couldn't auto-sync" = "Tidak dapat menyinkronkan otomatis";
 "Couldn't compress this image small enough. Try a different photo or crop it down." = "Gambar ini tidak dapat dikompresi hingga cukup kecil. Coba foto lain atau pangkas agar lebih kecil.";
 "Couldn't connect to AniList" = "Tidak dapat terhubung ke AniList";
@@ -848,16 +860,20 @@
 "Enable Letterboxd integration" = "Aktifkan integrasi Letterboxd";
 "Enable Roku Network Access" = "Aktifkan Akses Jaringan Roku";
 "Enable User Ratings" = "Aktifkan Rating Pengguna";
+"Enable X-Ray" = "Aktifkan X-Ray";
 "Enable addon" = "Enable addon";
+"Enable injected ad skip" = "Aktifkan pelewatan iklan sisipan";
 "Enabled" = "Diaktifkan";
 "End" = "Akhir";
 "End ep" = "Ep akhir";
 "End of episode" = "Akhir episode";
 "End of next episode" = "Akhir episode berikutnya";
+"Ends at" = "Berakhir pada";
 "Enfocar" = "Pertajam";
 "Engine" = "Mesin";
 "English" = "Inggris";
 "Enter Harbor" = "Masuk ke Harbor";
+"Enter a full http:// or https:// address, or leave blank to use Harbor's server." = "Masukkan alamat http:// atau https:// lengkap, atau biarkan kosong untuk menggunakan server Harbor.";
 "Enter a size of 0 or more." = "Masukkan ukuran 0 atau lebih.";
 "Enter a whole number of 0 or more." = "Masukkan bilangan bulat 0 atau lebih.";
 "Enter an FPS from 1 to 240." = "Masukkan FPS dari 1 hingga 240.";
@@ -949,6 +965,7 @@
 "Filter countries" = "Filter negara";
 "Filter genres" = "Filter genre";
 "Filters" = "Filter";
+"Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "Temukan dan bagikan koreksi waktu terverifikasi untuk berkas video dan subtitle yang cocok. Aktifkan Mode privat untuk menghentikan pencarian dan kontribusi komunitas.";
 "Finding lyrics" = "Mencari lirik";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Menyelesaikan episode anime akan memperbarui progres AniList Anda. Hanya bertambah: jumlah yang sudah ada tidak akan pernah dikurangi.";
@@ -1065,6 +1082,7 @@
 "Harbor ranking" = "Peringkat Harbor";
 "Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Peringkat Harbor menempatkan sumber dengan skor terbaik di awal. Urutan addon mempertahankan urutan hasil yang dikembalikan setiap addon, seperti aplikasi Stremio dan Vidi. Prioritas stream di bawah menentukan addon yang didahulukan dalam kedua mode.";
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harbor menampilkan daftar AniList Anda di halaman Anime dan menjaga progres Anda tetap tersinkron.";
+"Harbor uses its own community server. You can point it at a server you run yourself." = "Harbor menggunakan server komunitasnya sendiri. Anda dapat mengarahkannya ke server yang Anda kelola sendiri.";
 "Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "Pencarian OpenSubtitles bawaan Harbor, aktif secara default. Jika Anda menginstal addon OpenSubtitles, fitur ini otomatis dinonaktifkan agar hasil tidak pernah terduplikasi.";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Menu dan label Harbor sendiri. Bahasa subtitle ditentukan nanti, dan keduanya dapat Anda ubah di Pengaturan.";
 "Harbor's public relay" = "Relay publik Harbor";
@@ -1194,6 +1212,7 @@
 "Ingresa una cantidad de FPS entre 1 y 240." = "Masukkan FPS dari 1 hingga 240.";
 "Iniciar sesión" = "Masuk";
 "Iniciar sesión con Stremio" = "Masuk dengan Stremio";
+"Injected ad skip (experimental)" = "Pelewatan iklan yang disisipkan (eksperimental)";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Instal addon Stremio dan katalognya akan muncul di sini sebagai deretan poster yang siap dijelajahi.";
 "Instalar addon" = "Instal addon";
 "Install" = "Instal";
@@ -1232,6 +1251,7 @@
 "Jina API key (optional)" = "Kunci API Jina (opsional)";
 "Jina Reader" = "Jina Reader";
 "Join" = "Bergabung";
+"Jump past a known injected ad on its own instead of showing the Skip button." = "Lewati otomatis iklan sisipan yang diketahui tanpa menampilkan tombol Lewati.";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Lewati pembuka secara otomatis begitu dimulai. Kembali ke bagian pembuka akan memutarnya tanpa melewati lagi. Tombol Lewati mengikuti pengaturan di atas.";
 "Just added" = "Baru ditambahkan";
 "Kanopy" = "Kanopy";
@@ -1264,6 +1284,7 @@
 "Leave" = "Keluar";
 "Leave room" = "Keluar dari ruang";
 "Leave the show?" = "Tinggalkan tayangan ini?";
+"Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself." = "Kosongkan untuk menggunakan server komunitas milik Harbor sendiri, atau masukkan alamat server yang Anda jalankan sendiri.";
 "Lectura" = "Sedang membaca";
 "Left" = "Kiri";
 "Left to right" = "Kiri ke kanan";
@@ -1489,6 +1510,7 @@
 "Netflix Originals" = "Netflix Originals";
 "Never" = "Tidak pernah";
 "Never auto-select tracks containing" = "Jangan pernah memilih secara otomatis trek yang memuat";
+"Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "Jangan pernah menghubungi server komunitas, baik untuk menerima maupun mengirim data. Tidak ada yang dicari dan tidak ada yang dikontribusikan dari perangkat ini.";
 "Never show the content advisory for this title again" = "Jangan pernah tampilkan peringatan konten untuk judul ini lagi";
 "New Anime Releases" = "Rilisan Anime Baru";
 "New Episodes" = "Episode Baru";
@@ -1525,6 +1547,8 @@
 "No Label" = "Tanpa Label";
 "No Simkl premieres this month" = "Tidak ada tayangan perdana Simkl bulan ini";
 "No background image" = "Tidak ada gambar latar";
+"No cast information for this title." = "Tidak ada informasi pemeran untuk judul ini.";
+"No cast photos are available for this title." = "Tidak ada foto pemeran yang tersedia untuk judul ini.";
 "No catalogs match your search." = "Tidak ada katalog yang cocok dengan pencarian Anda.";
 "No catalogs yet" = "Belum ada katalog";
 "No comments yet" = "Belum ada komentar";
@@ -1788,6 +1812,7 @@
 "Play now" = "Putar sekarang";
 "Play opens the stream list so you pick the release yourself." = "Play opens the stream list so you pick the release yourself.";
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
+"Play to where the ad starts and add it, then play to the end and tap Now. You can also type the times. Add more than one if there are several." = "Putar hingga iklan dimulai lalu tambahkan waktunya, kemudian putar hingga akhir dan ketuk Sekarang. Anda juga dapat mengetik waktunya. Tambahkan lebih dari satu jika ada beberapa.";
 "Play trailers in the hero" = "Putar trailer di bagian hero";
 "Playback" = "Pemutaran";
 "Playback has ended." = "Playback has ended.";
@@ -1853,6 +1878,9 @@
 "Primetime Emmys" = "Primetime Emmys";
 "Priority applies once you have two or more stream addons." = "Prioritas berlaku setelah Anda memiliki dua addon stream atau lebih.";
 "Priorizar {language}" = "Prioritaskan {language}";
+"Private mode" = "Mode privat";
+"Private mode is on, so nothing is looked up or contributed from this device." = "Mode privat aktif, jadi tidak ada data yang dicari atau disumbangkan dari perangkat ini.";
+"Private mode stops all contact with this server in either direction." = "Mode privat menghentikan semua komunikasi dua arah dengan server ini.";
 "Producer" = "Produser";
 "Profile PIN" = "PIN profil";
 "Profile changed. Please try again." = "Profile changed. Please try again.";
@@ -1994,6 +2022,7 @@
 "Replace image" = "Ganti gambar";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Putar ulang panduan atau tampilkan kembali semua kiat yang telah ditutup di aplikasi.";
 "Replay walkthrough" = "Putar ulang panduan";
+"Report an injected ad" = "Laporkan iklan yang disisipkan";
 "Repositories" = "Repositori";
 "Repository link" = "Tautan repositori";
 "Reproducción" = "Pemutaran";
@@ -2142,6 +2171,7 @@
 "Second subtitle language" = "Bahasa subtitle kedua";
 "Secondary copy." = "Teks sekunder.";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
+"See an injected ad? Report it" = "Melihat iklan yang disisipkan? Laporkan";
 "See details" = "Lihat detail";
 "See the resolution, HDR format and audio while you watch." = "Lihat resolusi, format HDR, dan audio saat menonton.";
 "Seek bar" = "Bilah waktu";
@@ -2162,6 +2192,7 @@
 "Send" = "Kirim";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Mengirim ke Trakt…";
+"Sending..." = "Mengirim...";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n} dikirim ke Trakt";
 "Sequels & Prequels" = "Sekuel & Prekuel";
@@ -2189,6 +2220,7 @@
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
+"Set to where the video is right now" = "Atur ke posisi video saat ini";
 "Set up a debrid" = "Siapkan debrid";
 "Set up rating providers" = "Siapkan penyedia rating";
 "Settings" = "Pengaturan";
@@ -2205,6 +2237,7 @@
 "Show" = "Acara";
 "Show More info button" = "Tampilkan tombol Info selengkapnya";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Tampilkan tombol Lewati Intro / Lewati Kredit saat Harbor mendeteksinya. Nonaktifkan ini agar tombol tidak pernah ditampilkan. Anda juga dapat mengetuk X pada tombol untuk menutup tombol yang keliru selama sisa episode.";
+"Show a Skip button when a known injected ad plays, and a small report button on new releases so you can mark ads for review." = "Tampilkan tombol Lewati saat iklan sisipan yang dikenali diputar, serta tombol kecil untuk melaporkan pada rilisan baru agar Anda dapat menandai iklan untuk ditinjau.";
 "Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "Tampilkan kontrol kunci di pemutar yang memblokir input mouse, keyboard, remote, dan tombol media hingga Anda membukanya.";
 "Show adult addons" = "Tampilkan addon dewasa";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "Tampilkan semua hasil dari addon, termasuk rilis yang tidak cocok atau mungkin mencurigakan.";
@@ -2243,6 +2276,7 @@
 "Show subtitle sync indicator" = "Tampilkan indikator sinkronisasi subtitle";
 "Show subtitles in Picture-in-Picture" = "Tampilkan subtitle dalam Picture-in-Picture";
 "Show the Skip button" = "Tampilkan tombol Lewati";
+"Show the report button on every P2P stream, not just likely new releases." = "Tampilkan tombol laporan pada setiap stream P2P, bukan hanya yang kemungkinan merupakan rilisan baru.";
 "Show this catalog" = "Tampilkan katalog ini";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Tampilkan nama terjemahan dalam bahasa yang dipilih di atas. Nonaktifkan untuk mempertahankan judul asli.";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "Tampilkan dua bahasa subtitle sekaligus. Berguna untuk belajar bahasa atau menonton bersama.";
@@ -2291,6 +2325,8 @@
 "Skip Intro" = "Lewati Intro";
 "Skip Recap" = "Lewati Rekap";
 "Skip for now" = "Lewati untuk saat ini";
+"Skip injected ad?" = "Lewati iklan yang disisipkan?";
+"Skip injected ads automatically" = "Lewati iklan yang disisipkan secara otomatis";
 "Skip setup" = "Lewati penyiapan";
 "Skip these tracks" = "Lewati trek ini";
 "Sleep timer" = "Timer tidur";
@@ -2305,6 +2341,8 @@
 "Solo posición y tamaño" = "Hanya posisi dan ukuran";
 "Solo redimensionar" = "Ubah ukuran saja";
 "Sombra paralela" = "Bayangan jatuh";
+"Some cam and new-release rips have ads spliced into the video itself. When the community has marked one, a Skip button appears. You can also report ads you spot for review. Off by default." = "Beberapa rekaman kamera dan rip rilisan baru memiliki iklan yang disisipkan langsung ke dalam video. Saat komunitas menandainya, tombol Lewati akan muncul. Anda juga dapat melaporkan iklan yang ditemukan untuk ditinjau. Nonaktif secara default.";
+"Some copies of new releases have ads spliced into the video itself. This is experimental: the community marks where those ads are so others can skip them." = "Beberapa salinan rilisan baru memiliki iklan yang disisipkan langsung ke dalam video. Fitur ini bersifat eksperimental: komunitas menandai lokasi iklan tersebut agar orang lain dapat melewatinya.";
 "Song position" = "Song position";
 "Songs" = "Songs";
 "Sonido al pasar página" = "Page turn sound";
@@ -2347,6 +2385,7 @@
 "Start trailers with audio" = "Mulai trailer dengan audio";
 "Start with subtitles off" = "Mulai dengan subtitle nonaktif";
 "Starting" = "Memulai";
+"Starts at" = "Dimulai pukul";
 "Startup & default" = "Mulai & bawaan";
 "Stats" = "Statistik";
 "Status" = "Status";
@@ -2389,6 +2428,7 @@
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "Unggah gambar Anda sendiri atau pilih dari katalog Harbor.";
 "Subir foto" = "Unggah foto";
 "Subir {name}" = "Pindahkan {name} ke atas";
+"Submit report" = "Kirim laporan";
 "Subsource" = "Subsource";
 "Subtitle FPS" = "FPS subtitle";
 "Subtitle FPS conversion is only available for text-based subtitles." = "Konversi FPS subtitle hanya tersedia untuk subtitle berbasis teks.";
@@ -2484,6 +2524,7 @@
 "Texto sutil" = "Teks samar";
 "Textos auxiliares y antetítulos." = "Teks keterangan, teks pengantar.";
 "Thai" = "Thai";
+"Thanks. Sent for review." = "Terima kasih. Dikirim untuk ditinjau.";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Konfigurasi itu tidak valid. Periksa baseUrl, popularPath, list, chapters, dan pages.";
 "That does not look like a valid magnet link or infohash." = "Itu sepertinya bukan tautan magnet atau infohash yang valid.";
 "That link did not answer." = "Tautan itu tidak merespons.";
@@ -2502,6 +2543,7 @@
 "The authorization code timed out before you finished. Try again." = "Kode otorisasi kedaluwarsa sebelum Anda selesai. Coba lagi.";
 "The comics industry's highest honor" = "Penghargaan tertinggi industri komik";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
+"The end time has to be after the start." = "Waktu selesai harus setelah waktu mulai.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
 "The little score chip printed on poster cards across your rows and grids." = "Chip skor kecil yang ditampilkan pada kartu poster di seluruh baris dan kisi Anda.";
@@ -2706,8 +2748,10 @@
 "Use Harbor's public relay" = "Gunakan relay publik Harbor";
 "Use addon order" = "Gunakan urutan addon";
 "Use an existing relay" = "Gunakan relay yang sudah ada";
+"Use community corrections" = "Gunakan koreksi komunitas";
 "Use live web context" = "Gunakan konteks web langsung";
 "Use model" = "Gunakan model";
+"Use my own server" = "Gunakan server saya sendiri";
 "Use my style" = "Gunakan gaya saya";
 "Use plugins" = "Gunakan plugin";
 "Use shared settings" = "Gunakan pengaturan bersama";
@@ -2772,6 +2816,7 @@
 "Western" = "Western";
 "What everyone is reading" = "Yang sedang dibaca semua orang";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "Yang mengisi bagian hero. Trending adalah daftar teratas terbaru dari Harbor, diperbarui sepanjang hari. Klasik menggunakan baris Beranda Anda sendiri.";
+"What is this?" = "Apa ini?";
 "What you watched" = "Yang Anda tonton";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Saat Esc akan menutup pemutar, tampilkan konfirmasi singkat terlebih dahulu. Anda dapat mencentang \"Jangan tanya lagi\" pada dialog tersebut agar Esc selalu langsung keluar.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Jika suatu rilis memiliki beberapa trek audio, Harbor memilih kecocokan pertama dari daftar ini.";
@@ -2797,6 +2842,8 @@
 "Writer" = "Penulis";
 "Wrong PIN" = "PIN salah";
 "Wyzie" = "Wyzie";
+"X-Ray" = "X-Ray";
+"X-Ray (experimental)" = "X-Ray (eksperimental)";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "Year" = "Tahun";
@@ -2837,6 +2884,7 @@
 "Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "Profil Anda";
 "Your rating" = "Rating Anda";
+"Your report is sent for review before it ever skips anything for anyone. Nothing about the video is uploaded, just the timestamps you mark. It is off by default and you can turn it off anytime in Settings." = "Laporan Anda dikirim untuk ditinjau sebelum digunakan untuk melewati bagian apa pun bagi siapa pun. Tidak ada bagian video yang diunggah, hanya stempel waktu yang Anda tandai. Fitur ini dinonaktifkan secara default dan dapat Anda nonaktifkan kapan saja di Pengaturan.";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "Acara yang Anda simpan tidak memiliki episode yang dijadwalkan bulan ini. Beralihlah ke Semua yang akan datang untuk melihat kalender rilis lengkap.";
 "Your services are saved locally. Cloud sync will retry." = "Layanan Anda tersimpan di perangkat ini. Sinkronisasi cloud akan dicoba lagi.";
 "Your themes" = "Tema Anda";
@@ -2883,6 +2931,7 @@
 "hours watched" = "jam ditonton";
 "hr" = "jam";
 "http://192.168.1.50:11470" = "http://192.168.1.50:11470";
+"https://sync.harbor.site" = "https://sync.harbor.site";
 "item" = "item";
 "jina_..." = "jina_...";
 "just now" = "baru saja";

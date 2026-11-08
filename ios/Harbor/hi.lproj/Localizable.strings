@@ -86,16 +86,20 @@
 "Actualizar" = "रिफ़्रेश करें";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "स्रोत रिफ़्रेश करें";
+"Ad {n}" = "विज्ञापन {n}";
 "Add" = "जोड़ें";
 "Add Custom Source" = "कस्टम स्रोत जोड़ें";
 "Add Source" = "स्रोत जोड़ें";
 "Add a TMDB API key in Metadata settings to search for titles." = "शीर्षक खोजने के लिए मेटाडेटा सेटिंग में TMDB API कुंजी जोड़ें।";
+"Add a TMDB key in Settings to identify the cast." = "कलाकारों की पहचान के लिए सेटिंग्स में TMDB कुंजी जोड़ें।";
+"Add a TMDB key in Settings to see the cast, crew, and details." = "कलाकार, क्रू और विवरण देखने के लिए सेटिंग्स में TMDB कुंजी जोड़ें।";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "पूरी डिस्कवरी फ़ीड अनलॉक करने के लिए सेटिंग्स में TMDB कुंजी जोड़ें।";
 "Add a TMDB key in settings first" = "पहले सेटिंग्स में TMDB कुंजी जोड़ें";
 "Add a list" = "एक सूची जोड़ें";
 "Add a movie or show to this list..." = "इस सूची में कोई फ़िल्म या शो जोड़ें...";
 "Add a repository" = "रिपॉज़िटरी जोड़ें";
 "Add an API key to use this source." = "इस स्रोत का उपयोग करने के लिए API कुंजी जोड़ें।";
+"Add an ad starting at the current time" = "वर्तमान समय से शुरू होने वाला विज्ञापन जोड़ें";
 "Add anime to your AniList and they show up here, grouped by status and ready to edit." = "अपने AniList में ऐनिमे जोड़ें और वे यहाँ स्थिति के अनुसार समूहित और संपादन के लिए तैयार दिखाई देंगे।";
 "Add anime to your MyAnimeList and they show up here, grouped by status and ready to edit." = "अपने MyAnimeList में ऐनिमे जोड़ें और वे यहाँ स्थिति के अनुसार समूहित और संपादन के लिए तैयार दिखाई देंगे।";
 "Add bookmark" = "Add bookmark";
@@ -133,6 +137,7 @@
 "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them." = "Adds a comments section to movie, show, and episode pages. No Trakt account needed to read them.";
 "Adds a row under Continue Watching listing episodes that aired recently for shows you were already watching. Dismiss them one at a time or clear the whole row. Off by default." = "देखना जारी रखें के नीचे एक पंक्ति जोड़ता है, जिसमें उन शो के हाल में प्रसारित एपिसोड होते हैं जिन्हें आप पहले से देख रहे थे। उन्हें एक-एक करके हटाएँ या पूरी पंक्ति साफ़ करें। डिफ़ॉल्ट रूप से बंद है।";
 "Adds an \"Ask AI\" button to search, so you can type things like a plain-language request." = "खोज में \"AI से पूछें\" बटन जोड़ता है, ताकि आप सामान्य भाषा में अनुरोध लिख सकें।";
+"Adds an X-Ray button in the player to see the full cast with photos and tap through to any actor. Needs a TMDB key for photos and filmographies." = "प्लेयर में X-Ray बटन जोड़ता है, जिससे आप फ़ोटो सहित पूरी कास्ट देख सकते हैं और किसी भी अभिनेता का पेज खोल सकते हैं। फ़ोटो और फ़िल्मोग्राफ़ी के लिए TMDB कुंजी चाहिए।";
 "Adjust the text and background. The preview shows your changes as you make them." = "टेक्स्ट और पृष्ठभूमि समायोजित करें। बदलाव करते ही पूर्वावलोकन में दिखते हैं।";
 "Adjust volume on the speaker. Computer volume and boost do not apply." = "वॉल्यूम स्पीकर पर बदलें। कंप्यूटर का वॉल्यूम और बूस्ट लागू नहीं होते।";
 "Administrar" = "मैनेज करें";
@@ -191,6 +196,7 @@
 "Already added." = "पहले से जोड़ा गया है।";
 "Also Nominated" = "अन्य नामांकन";
 "Alternate" = "वैकल्पिक";
+"Always show the report button" = "रिपोर्ट बटन हमेशा दिखाएँ";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
@@ -457,6 +463,7 @@
 "Cards, panels." = "कार्ड, पैनल।";
 "Cargar archivo" = "फ़ाइल लोड करें";
 "Cargar más" = "और लोड करें";
+"Cast" = "कलाकार";
 "Cast to TV or speaker" = "TV या स्पीकर पर कास्ट करें";
 "Catalog" = "कैटलॉग";
 "Catalogs" = "कैटलॉग";
@@ -473,11 +480,13 @@
 "Cerrar sesión" = "साइन आउट करें";
 "Change" = "बदलें";
 "Change chapter order" = "Change chapter order";
+"Change server" = "सर्वर बदलें";
 "Channel format" = "Channel format";
 "Chapters" = "अध्याय";
 "Chat" = "चैट";
 "Check it works" = "जाँचें कि यह काम करता है";
 "Check the highlighted values before saving." = "सहेजने से पहले हाइलाइट किए गए मान जाँचें।";
+"Check the shared database first. When this exact subtitle has already been synced by someone else, yours snaps into place with no analysis." = "पहले साझा डेटाबेस में जाँचें। अगर यही सबटाइटल किसी और ने पहले ही सिंक किया है, तो आपका सबटाइटल बिना किसी विश्लेषण के तुरंत सही जगह पर आ जाएगा।";
 "Check whether this device can reach the saved server address." = "जाँचें कि यह डिवाइस सहेजे गए सर्वर पते तक पहुँच सकता है या नहीं।";
 "Checking with AniList..." = "AniList पर जाँच हो रही है...";
 "Checking with MyAnimeList..." = "MyAnimeList पर जाँच हो रही है...";
@@ -557,6 +566,8 @@
 "Comments and reviews posted by other Trakt members." = "Comments and reviews posted by other Trakt members.";
 "Comments are hidden" = "टिप्पणियाँ छिपी हुई हैं";
 "Community index" = "कम्युनिटी इंडेक्स";
+"Community sync" = "कम्युनिटी सिंक";
+"Community sync server" = "कम्युनिटी सिंक सर्वर";
 "Compact" = "कॉम्पैक्ट";
 "Compacta" = "कॉम्पैक्ट";
 "Compartir" = "साझा करें";
@@ -652,6 +663,7 @@
 "Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
+"Could not send. Try again." = "भेजा नहीं जा सका। फिर कोशिश करें।";
 "Couldn't auto-sync" = "अपने-आप सिंक नहीं हो सका";
 "Couldn't compress this image small enough. Try a different photo or crop it down." = "इस इमेज को पर्याप्त छोटा कंप्रेस नहीं किया जा सका। कोई दूसरी फ़ोटो आज़माएँ या इसे और क्रॉप करें।";
 "Couldn't connect to AniList" = "AniList से कनेक्ट नहीं हो सका";
@@ -848,16 +860,20 @@
 "Enable Letterboxd integration" = "Letterboxd इंटीग्रेशन सक्षम करें";
 "Enable Roku Network Access" = "Roku नेटवर्क एक्सेस चालू करें";
 "Enable User Ratings" = "यूज़र रेटिंग सक्षम करें";
+"Enable X-Ray" = "X-Ray सक्षम करें";
 "Enable addon" = "Enable addon";
+"Enable injected ad skip" = "इंजेक्ट किए गए विज्ञापनों को स्किप करना सक्षम करें";
 "Enabled" = "सक्षम";
 "End" = "समाप्ति";
 "End ep" = "अंतिम एपिसोड";
 "End of episode" = "एपिसोड का अंत";
 "End of next episode" = "अगले एपिसोड का अंत";
+"Ends at" = "समाप्ति समय";
 "Enfocar" = "शार्प करें";
 "Engine" = "इंजन";
 "English" = "अंग्रेज़ी";
 "Enter Harbor" = "Harbor में प्रवेश करें";
+"Enter a full http:// or https:// address, or leave blank to use Harbor's server." = "पूरा http:// या https:// पता दर्ज करें, या Harbor का सर्वर इस्तेमाल करने के लिए खाली छोड़ें।";
 "Enter a size of 0 or more." = "0 या उससे अधिक आकार दर्ज करें।";
 "Enter a whole number of 0 or more." = "0 या उससे बड़ा पूर्णांक दर्ज करें।";
 "Enter an FPS from 1 to 240." = "1 से 240 तक का FPS दर्ज करें।";
@@ -949,6 +965,7 @@
 "Filter countries" = "देश फ़िल्टर करें";
 "Filter genres" = "शैलियाँ फ़िल्टर करें";
 "Filters" = "फ़िल्टर";
+"Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "मेल खाने वाले वीडियो और उपशीर्षक के लिए सत्यापित टाइमिंग सुधार खोजें और साझा करें। समुदाय से खोज और योगदान रोकने के लिए निजी मोड चालू करें।";
 "Finding lyrics" = "बोल खोजे जा रहे हैं";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "एनीमे एपिसोड पूरा करने पर आपकी AniList प्रगति अपडेट होती है। प्रगति केवल आगे बढ़ती है: यह आपकी मौजूदा गिनती कभी कम नहीं करता।";
@@ -1065,6 +1082,7 @@
 "Harbor ranking" = "Harbor रैंकिंग";
 "Harbor ranking puts the best-scoring sources first. Addon order keeps each addon's results in the order it returned them, like the Stremio and Vidi apps. Stream priority below decides which addon leads, in both modes." = "Harbor रैंकिंग सबसे अच्छे स्कोर वाले स्रोतों को पहले रखती है। ऐडऑन का क्रम हर ऐडऑन के नतीजों को उसी क्रम में रखता है जिसमें उसने उन्हें लौटाया था, ठीक Stremio और Vidi ऐप्स की तरह। नीचे दी गई स्ट्रीम प्राथमिकता तय करती है कि दोनों मोड में कौन-सा ऐडऑन पहले रहेगा।";
 "Harbor shows your AniList lists on the Anime page and keeps your progress in sync." = "Harbor एनीमे पेज पर आपकी AniList सूचियाँ दिखाता है और आपकी प्रगति सिंक रखता है।";
+"Harbor uses its own community server. You can point it at a server you run yourself." = "Harbor अपना कम्युनिटी सर्वर इस्तेमाल करता है। आप इसे अपने चलाए हुए सर्वर से भी जोड़ सकते हैं।";
 "Harbor's built-in OpenSubtitles search, on by default. If you install an OpenSubtitles addon, this steps aside automatically so your results are never duplicated." = "Harbor की बिल्ट-इन OpenSubtitles खोज डिफ़ॉल्ट रूप से चालू रहती है। अगर आप कोई OpenSubtitles ऐडऑन इंस्टॉल करते हैं, तो यह अपने आप बंद हो जाती है, ताकि नतीजे डुप्लिकेट न हों।";
 "Harbor's own menus and labels. Subtitle languages come later, and you can change both in Settings." = "Harbor के अपने मेन्यू और लेबल। सबटाइटल की भाषाएँ बाद में सेट की जाती हैं और आप दोनों को सेटिंग्स में बदल सकते हैं।";
 "Harbor's public relay" = "Harbor का सार्वजनिक रिले";
@@ -1194,6 +1212,7 @@
 "Ingresa una cantidad de FPS entre 1 y 240." = "1 से 240 तक का FPS दर्ज करें।";
 "Iniciar sesión" = "साइन इन करें";
 "Iniciar sesión con Stremio" = "Stremio से साइन इन करें";
+"Injected ad skip (experimental)" = "इंजेक्ट किए गए विज्ञापन को स्किप करना (प्रायोगिक)";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "कोई Stremio ऐडऑन इंस्टॉल करें। उसके कैटलॉग यहाँ ब्राउज़ करने के लिए तैयार पोस्टर रेल्स के रूप में दिखेंगे।";
 "Instalar addon" = "ऐडऑन इंस्टॉल करें";
 "Install" = "इंस्टॉल करें";
@@ -1232,6 +1251,7 @@
 "Jina API key (optional)" = "Jina API कुंजी (वैकल्पिक)";
 "Jina Reader" = "Jina रीडर";
 "Join" = "जुड़ें";
+"Jump past a known injected ad on its own instead of showing the Skip button." = "स्किप बटन दिखाने के बजाय, पहचाने गए इंजेक्टेड विज्ञापन को अपने-आप स्किप करें।";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "ओपनिंग शुरू होते ही अपने-आप आगे बढ़ें। इंट्रो पर वापस जाने पर वह दोबारा चलेगा और फिर स्किप नहीं होगा। स्किप बटन ऊपर की सेटिंग का पालन करता है।";
 "Just added" = "हाल ही में जोड़ा गया";
 "Kanopy" = "Kanopy";
@@ -1264,6 +1284,7 @@
 "Leave" = "छोड़ें";
 "Leave room" = "रूम छोड़ें";
 "Leave the show?" = "शो छोड़ना है?";
+"Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself." = "Harbor का अपना कम्युनिटी सर्वर इस्तेमाल करने के लिए इसे खाली छोड़ें, या अपने चलाए जा रहे सर्वर का पता डालें।";
 "Lectura" = "पढ़ा जा रहा है";
 "Left" = "बायाँ";
 "Left to right" = "बाएँ से दाएँ";
@@ -1489,6 +1510,7 @@
 "Netflix Originals" = "Netflix ओरिजिनल्स";
 "Never" = "कभी नहीं";
 "Never auto-select tracks containing" = "इन शब्दों वाले ट्रैक कभी अपने-आप न चुनें";
+"Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "किसी भी दिशा में कम्युनिटी सर्वर से कभी संपर्क न करें। इस डिवाइस से न कुछ खोजा जाता है, न कोई जानकारी साझा की जाती है।";
 "Never show the content advisory for this title again" = "इस शीर्षक के लिए कॉन्टेंट संबंधी चेतावनी दोबारा कभी न दिखाएँ";
 "New Anime Releases" = "नई एनीमे रिलीज़";
 "New Episodes" = "नए एपिसोड";
@@ -1525,6 +1547,8 @@
 "No Label" = "कोई लेबल नहीं";
 "No Simkl premieres this month" = "इस महीने कोई Simkl प्रीमियर नहीं है";
 "No background image" = "कोई बैकग्राउंड इमेज नहीं";
+"No cast information for this title." = "इस शीर्षक के लिए कलाकारों की जानकारी नहीं है।";
+"No cast photos are available for this title." = "इस शीर्षक के लिए कलाकारों की कोई फ़ोटो उपलब्ध नहीं है।";
 "No catalogs match your search." = "आपकी खोज से कोई कैटलॉग मेल नहीं खाता।";
 "No catalogs yet" = "अभी तक कोई कैटलॉग नहीं है";
 "No comments yet" = "अभी तक कोई टिप्पणी नहीं";
@@ -1788,6 +1812,7 @@
 "Play now" = "अभी चलाएँ";
 "Play opens the stream list so you pick the release yourself." = "Play opens the stream list so you pick the release yourself.";
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
+"Play to where the ad starts and add it, then play to the end and tap Now. You can also type the times. Add more than one if there are several." = "जहाँ विज्ञापन शुरू होता है वहाँ तक चलाएँ और उसे जोड़ें, फिर अंत तक चलाकर अभी पर टैप करें। आप समय टाइप भी कर सकते हैं। अगर कई विज्ञापन हैं, तो एक से अधिक जोड़ें।";
 "Play trailers in the hero" = "हीरो सेक्शन में ट्रेलर चलाएँ";
 "Playback" = "प्लेबैक";
 "Playback has ended." = "Playback has ended.";
@@ -1853,6 +1878,9 @@
 "Primetime Emmys" = "प्राइमटाइम एमी पुरस्कार";
 "Priority applies once you have two or more stream addons." = "प्राथमिकता तब लागू होती है, जब आपके पास दो या अधिक स्ट्रीम ऐडऑन हों।";
 "Priorizar {language}" = "{language} की प्राथमिकता बढ़ाएँ";
+"Private mode" = "निजी मोड";
+"Private mode is on, so nothing is looked up or contributed from this device." = "निजी मोड चालू है, इसलिए इस डिवाइस से न कुछ खोजा जाता है, न कोई योगदान दिया जाता है।";
+"Private mode stops all contact with this server in either direction." = "निजी मोड इस सर्वर से किसी भी दिशा में सारा संचार रोक देता है।";
 "Producer" = "निर्माता";
 "Profile PIN" = "प्रोफ़ाइल PIN";
 "Profile changed. Please try again." = "Profile changed. Please try again.";
@@ -1994,6 +2022,7 @@
 "Replace image" = "इमेज बदलें";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "वॉकथ्रू फिर चलाएँ या ऐप में हटाए गए सभी सुझाव फिर दिखाएँ।";
 "Replay walkthrough" = "वॉकथ्रू फिर चलाएँ";
+"Report an injected ad" = "जोड़े गए विज्ञापन की रिपोर्ट करें";
 "Repositories" = "रिपॉज़िटरी";
 "Repository link" = "रिपॉज़िटरी लिंक";
 "Reproducción" = "प्लेबैक";
@@ -2142,6 +2171,7 @@
 "Second subtitle language" = "दूसरी सबटाइटल भाषा";
 "Secondary copy." = "द्वितीयक टेक्स्ट।";
 "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening." = "Secure handshake failed. Make sure the TV is on the same network, and update its firmware if this keeps happening.";
+"See an injected ad? Report it" = "बीच में डाला गया विज्ञापन दिखा? रिपोर्ट करें";
 "See details" = "विवरण देखें";
 "See the resolution, HDR format and audio while you watch." = "देखते समय रिज़ॉल्यूशन, HDR फ़ॉर्मैट और ऑडियो देखें।";
 "Seek bar" = "सीक बार";
@@ -2162,6 +2192,7 @@
 "Send" = "भेजें";
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Trakt को भेजा जा रहा है…";
+"Sending..." = "भेजा जा रहा है...";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n} को Trakt पर भेजा गया";
 "Sequels & Prequels" = "सीक्वल और प्रीक्वल";
@@ -2189,6 +2220,7 @@
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
+"Set to where the video is right now" = "वीडियो अभी जहाँ है, वहाँ सेट करें";
 "Set up a debrid" = "डीब्रिड सेट अप करें";
 "Set up rating providers" = "रेटिंग प्रदाता सेट करें";
 "Settings" = "सेटिंग्स";
@@ -2205,6 +2237,7 @@
 "Show" = "दिखाएँ";
 "Show More info button" = "अधिक जानकारी वाला बटन दिखाएँ";
 "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Harbor को इंट्रो या क्रेडिट मिलने पर इंट्रो छोड़ें / क्रेडिट छोड़ें बटन दिखाएँ। इसे कभी न दिखाने के लिए यह विकल्प बंद करें। अगर पहचान गलत हो, तो बाकी एपिसोड के लिए इसे हटाने हेतु बटन पर मौजूद X टैप करें।";
+"Show a Skip button when a known injected ad plays, and a small report button on new releases so you can mark ads for review." = "किसी पहचाने गए डाले हुए विज्ञापन के चलने पर छोड़ें बटन दिखाएँ, और नई रिलीज़ पर एक छोटा रिपोर्ट बटन दिखाएँ ताकि आप विज्ञापनों को समीक्षा के लिए चिह्नित कर सकें।";
 "Show a lock control in the player that blocks mouse, keyboard, remote, and media-key input until you unlock it." = "प्लेयर में लॉक कंट्रोल दिखाएँ, जो तब तक माउस, कीबोर्ड, रिमोट और मीडिया-की इनपुट को ब्लॉक करता है, जब तक आप इसे अनलॉक न करें।";
 "Show adult addons" = "वयस्क ऐडऑन दिखाएँ";
 "Show all results returned by addons, including releases that do not match or may be suspicious." = "ऐडऑन के सभी नतीजे दिखाएँ, जिनमें मेल न खाने वाली या संदिग्ध रिलीज़ भी शामिल हों।";
@@ -2243,6 +2276,7 @@
 "Show subtitle sync indicator" = "सबटाइटल सिंक संकेतक दिखाएँ";
 "Show subtitles in Picture-in-Picture" = "Picture-in-Picture में सबटाइटल दिखाएँ";
 "Show the Skip button" = "स्किप बटन दिखाएँ";
+"Show the report button on every P2P stream, not just likely new releases." = "रिपोर्ट बटन हर P2P स्ट्रीम पर दिखाएँ, केवल संभावित नई रिलीज़ पर नहीं।";
 "Show this catalog" = "यह कैटलॉग दिखाएँ";
 "Show translated names in the language selected above. Turn off to keep original titles." = "ऊपर चुनी भाषा में अनूदित नाम दिखाएँ। मूल शीर्षक रखने के लिए बंद करें।";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "दो भाषाओं के उपशीर्षक एक साथ दिखाएँ। भाषा सीखने या साथ देखने के लिए उपयोगी।";
@@ -2291,6 +2325,8 @@
 "Skip Intro" = "इंट्रो स्किप करें";
 "Skip Recap" = "रिकैप स्किप करें";
 "Skip for now" = "अभी के लिए स्किप करें";
+"Skip injected ad?" = "बीच में डाला गया विज्ञापन स्किप करें?";
+"Skip injected ads automatically" = "बीच में डाले गए विज्ञापन अपने-आप स्किप करें";
 "Skip setup" = "सेटअप स्किप करें";
 "Skip these tracks" = "ये ट्रैक छोड़ें";
 "Sleep timer" = "स्लीप टाइमर";
@@ -2305,6 +2341,8 @@
 "Solo posición y tamaño" = "केवल स्थिति और आकार";
 "Solo redimensionar" = "केवल आकार बदलें";
 "Sombra paralela" = "ड्रॉप शैडो";
+"Some cam and new-release rips have ads spliced into the video itself. When the community has marked one, a Skip button appears. You can also report ads you spot for review. Off by default." = "कुछ कैम और नई रिलीज़ के रिप्स में विज्ञापन सीधे वीडियो के बीच जोड़े गए होते हैं। कम्युनिटी के किसी विज्ञापन को चिह्नित करने पर स्किप बटन दिखाई देता है। आपको जो विज्ञापन दिखें, उन्हें भी समीक्षा के लिए रिपोर्ट कर सकते हैं। डिफ़ॉल्ट रूप से बंद।";
+"Some copies of new releases have ads spliced into the video itself. This is experimental: the community marks where those ads are so others can skip them." = "नई रिलीज़ की कुछ कॉपी में विज्ञापन सीधे वीडियो के बीच जोड़े गए होते हैं। यह प्रयोगात्मक है: कम्युनिटी चिह्नित करती है कि वे विज्ञापन कहाँ हैं, ताकि दूसरे उन्हें छोड़ सकें।";
 "Song position" = "Song position";
 "Songs" = "Songs";
 "Sonido al pasar página" = "Page turn sound";
@@ -2347,6 +2385,7 @@
 "Start trailers with audio" = "ट्रेलर की शुरुआत ऑडियो के साथ करें";
 "Start with subtitles off" = "सबटाइटल बंद रखकर शुरू करें";
 "Starting" = "शुरू हो रहा है";
+"Starts at" = "इस समय शुरू होता है";
 "Startup & default" = "स्टार्टअप और डिफ़ॉल्ट";
 "Stats" = "आँकड़े";
 "Status" = "स्थिति";
@@ -2389,6 +2428,7 @@
 "Sube una imagen tuya o elige una del catálogo de Harbor." = "अपना चित्र अपलोड करें या Harbor कैटलॉग से चुनें।";
 "Subir foto" = "फ़ोटो अपलोड करें";
 "Subir {name}" = "{name} ऊपर ले जाएँ";
+"Submit report" = "रिपोर्ट सबमिट करें";
 "Subsource" = "Subsource";
 "Subtitle FPS" = "सबटाइटल FPS";
 "Subtitle FPS conversion is only available for text-based subtitles." = "सबटाइटल का FPS बदलने की सुविधा केवल टेक्स्ट-आधारित सबटाइटल के लिए उपलब्ध है।";
@@ -2484,6 +2524,7 @@
 "Texto sutil" = "हल्का टेक्स्ट";
 "Textos auxiliares y antetítulos." = "कैप्शन, आइब्रो टेक्स्ट।";
 "Thai" = "थाई";
+"Thanks. Sent for review." = "धन्यवाद। समीक्षा के लिए भेज दिया गया है।";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "वह कॉन्फ़िग मान्य नहीं है। baseUrl, popularPath, list, chapters और pages जाँचें।";
 "That does not look like a valid magnet link or infohash." = "यह मान्य मैग्नेट लिंक या इन्फोहैश नहीं लगता।";
 "That link did not answer." = "उस लिंक ने जवाब नहीं दिया।";
@@ -2502,6 +2543,7 @@
 "The authorization code timed out before you finished. Try again." = "आपके पूरा करने से पहले ही ऑथराइज़ेशन कोड की समय-सीमा समाप्त हो गई। फिर से कोशिश करें।";
 "The comics industry's highest honor" = "कॉमिक्स उद्योग का सर्वोच्च सम्मान";
 "The dub schedule has no episodes releasing this month. Try a different month." = "The dub schedule has no episodes releasing this month. Try a different month.";
+"The end time has to be after the start." = "समाप्ति समय, प्रारंभ समय के बाद होना चाहिए।";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
 "The little score chip printed on poster cards across your rows and grids." = "आपकी पंक्तियों और ग्रिड में पोस्टर कार्ड पर दिखने वाली छोटी स्कोर चिप।";
@@ -2706,8 +2748,10 @@
 "Use Harbor's public relay" = "Harbor का सार्वजनिक रिले इस्तेमाल करें";
 "Use addon order" = "ऐडऑन का क्रम इस्तेमाल करें";
 "Use an existing relay" = "मौजूदा रिले इस्तेमाल करें";
+"Use community corrections" = "कम्युनिटी द्वारा किए गए सुधार इस्तेमाल करें";
 "Use live web context" = "लाइव वेब संदर्भ इस्तेमाल करें";
 "Use model" = "मॉडल इस्तेमाल करें";
+"Use my own server" = "अपना सर्वर इस्तेमाल करें";
 "Use my style" = "मेरी शैली इस्तेमाल करें";
 "Use plugins" = "प्लगइन इस्तेमाल करें";
 "Use shared settings" = "साझा सेटिंग इस्तेमाल करें";
@@ -2772,6 +2816,7 @@
 "Western" = "वेस्टर्न";
 "What everyone is reading" = "हर कोई क्या पढ़ रहा है";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "हीरो सेक्शन में क्या दिखेगा। ट्रेंडिंग Harbor की नई टॉप लिस्ट है, जो दिन भर रीफ़्रेश होती रहती है। क्लासिक आपकी अपनी होम पंक्तियों का उपयोग करता है।";
+"What is this?" = "यह क्या है?";
 "What you watched" = "आपने क्या देखा";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "जब Esc दबाने से प्लेयर बंद होने वाला हो, तो पहले तुरंत पुष्टि करने का विकल्प दिखाएँ। Esc दबाने पर हमेशा बाहर निकलने के लिए उस प्रॉम्प्ट में \"फिर न पूछें\" पर टिक कर सकते हैं।";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "जब किसी रिलीज़ में कई ऑडियो ट्रैक हों, तो Harbor इस सूची से पहला मेल चुनता है।";
@@ -2797,6 +2842,8 @@
 "Writer" = "लेखक";
 "Wrong PIN" = "गलत PIN";
 "Wyzie" = "Wyzie";
+"X-Ray" = "X-Ray";
+"X-Ray (experimental)" = "X-Ray (प्रायोगिक)";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "Year" = "वर्ष";
@@ -2837,6 +2884,7 @@
 "Your own Harbor account progress. The primary source for almost everyone." = "Your own Harbor account progress. The primary source for almost everyone.";
 "Your profile" = "आपकी प्रोफ़ाइल";
 "Your rating" = "आपकी रेटिंग";
+"Your report is sent for review before it ever skips anything for anyone. Nothing about the video is uploaded, just the timestamps you mark. It is off by default and you can turn it off anytime in Settings." = "आपकी रिपोर्ट से किसी के लिए कुछ भी स्किप किए जाने से पहले उसे समीक्षा के लिए भेजा जाता है। वीडियो अपलोड नहीं होता, सिर्फ आपके मार्क किए हुए टाइमस्टैम्प भेजे जाते हैं। यह डिफ़ॉल्ट रूप से बंद है और आप इसे सेटिंग्स में कभी भी बंद कर सकते हैं।";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "आपके सेव किए गए किसी भी शो का कोई एपिसोड इस महीने के लिए शेड्यूल नहीं है। पूरा रिलीज़ कैलेंडर देखने के लिए सभी आगामी पर जाएँ।";
 "Your services are saved locally. Cloud sync will retry." = "आपकी सेवाएँ इस डिवाइस पर सहेजी गई हैं। क्लाउड सिंक फिर से किया जाएगा।";
 "Your themes" = "आपकी थीम";
@@ -2883,6 +2931,7 @@
 "hours watched" = "देखने में बिताए घंटे";
 "hr" = "घं";
 "http://192.168.1.50:11470" = "http://192.168.1.50:11470";
+"https://sync.harbor.site" = "https://sync.harbor.site";
 "item" = "आइटम";
 "jina_..." = "jina_...";
 "just now" = "अभी-अभी";

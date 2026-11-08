@@ -1721,3 +1721,26 @@ host and sends the play invite once per title and episode (Desktop's `use-room-i
 knows movies and series. `TogetherInviteRules` and `TogetherToastRules` hold the rules and have nine cases. Not ported: the four-second
 automatic join of the invite card (a phone has no pointer to hold it back and the title page would open behind a running player), the
 automatic start of the host's source, and the host-side summon actions that Desktop keeps in its context menu.
+
+## Fifteenth to seventeenth rounds: ad skip, X-Ray, community sync (8 November, written by Haiku, uncompiled; report screen by Sonnet)
+
+Three Haiku branches were reviewed (the signature check, the key rules, the hooks and every call into existing code were read) and merged;
+only the test list in `ios/project.yml`, `StreamPreferences` and `Resume.swift` needed hand merging.
+
+**Injected ad skip** (`AdSkipFingerprint`, `AdCorpus`, `AdReportRules`, `AdReportSubmitter`, `SkipIntroService`): Desktop's signed corpus
+(`harbor.site/updates/ad-segments.json`, Ed25519 over the payload text) is matched on the content and the exact release and its ranges join the
+skip segments first, so they win an overlap; `autoSkipAd` jumps past one by itself. The chosen stream's identity travels on
+`PlaybackSession.adSkipStream`. iOS carries the info hash and the size of a stream, but the release group and the parsed title only when an
+enrichment added them, so some releases fall back to a key the corpus never holds. The report button, its first-time tip and the report screen
+(`AdReportOverlay`, written by Sonnet because the settings text promises it) send the marked times to `bugs.harbor.site/v1/adreport` for review.
+The button does not hide while a skip button takes its place, as Desktop's does, because the player's segments are not visible to its modifier.
+
+**X-Ray** (`XrayRules`, `XrayOverlay`): the player button opens the cast rail and the browser with the cast and the about text; a tap opens the
+person's page. The cast is the title's loaded details, carried on `PlaybackSession.xrayTitle`, so live TV, downloads and local files have no
+button. Not ported: the live face scan (no recognition model on iOS), the scene and crew tabs, the TVDB cast fallback and the trailer.
+
+**Community sync** (`CommunitySync`): the shared database is asked first with the subtitle's timeline hash; only a tier A answer inside the
+report limits is applied without analysing the audio, because tiers B and C need Desktop's audio gate. A verified audio result (confidence 0.85,
+a video of a minute or more, offset within a minute, ratio 0.8 to 1.25) is reported in the background. Private mode and the setting turn every
+request off. Desktop's movie hash, IMDb id, fingerprint and file hash are not sent because iOS has none of them at that point, and Desktop 0.9.132
+sends no client id either. The feedback call is left out: its trigger is a rating popover iOS does not have.

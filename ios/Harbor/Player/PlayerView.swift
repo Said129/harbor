@@ -411,6 +411,7 @@ struct PlayerView: View {
             .modifier(ContentAdvisoryDriver(state: state, session: session, media: media))
             .modifier(StreamStallDriver(state: state, session: session))
             .modifier(XrayOverlayDriver(session: session, state: state, visible: controlsVisible && !resumePending))
+            .modifier(AdReportDriver(session: session, media: media, state: state, visible: controlsVisible && !resumePending))
     }
 
     /// Reactions to playback state and settings, kept in a function of their own so the lifecycle chain stays quick to type-check.

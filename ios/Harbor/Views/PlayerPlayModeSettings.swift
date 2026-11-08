@@ -108,6 +108,10 @@ struct PlayerAdSkipSettings: View {
             HarborSettingsToggle(DesktopInterfaceText.value("Enable injected ad skip"), note: DesktopInterfaceText.value("Show a Skip button when a known injected ad plays, and a small report button on new releases so you can mark ads for review."), isOn: $sources.adSkipEnabled)
                 .accessibilityIdentifier("settings-ad-skip")
             if sources.adSkipEnabled {
+                HarborSettingsToggle(DesktopInterfaceText.value("Always show the report button"), note: DesktopInterfaceText.value("Show the report button on every P2P stream, not just likely new releases."), isOn: $sources.adReportAlwaysShow)
+                    .accessibilityIdentifier("settings-ad-report-always")
+            }
+            if sources.adSkipEnabled {
                 HarborSettingsToggle(DesktopInterfaceText.value("Skip injected ads automatically"), note: DesktopInterfaceText.value("Jump past a known injected ad on its own instead of showing the Skip button."), isOn: $sources.autoSkipAd)
                     .accessibilityIdentifier("settings-auto-skip-ad")
             }
