@@ -1826,3 +1826,11 @@ The owner confirmed that they removed the Stremio sign-in before the port began.
 profile, cloud library, library repair, addon collection sync) are now Excluded, and five addon-management rows whose only gap was the Stremio account
 write (configure, uninstall, enable and disable, credentials persistence, installed addons management) are Ported on the local list. This changes the
 audit from 85.8 to 86.5 percent weighted and from 72.3 to 73.6 percent ported only, without any code change.
+
+## Intermittent addon subtitle case (8 November)
+
+MobileSourcesAndSubtitlesTests/testAddonSubtitleLoadsOnlyChosenFileWithoutDuplicatingOrStoppingVideo (a real mpv with a fixture in the simulator) fails with a
+12 second timeout in most isolated runs since the subtitle selection wiring, and the two full gates also showed it. It is not a clean regression: the same
+isolated case failed once on the old green commit 302fb0c9 (one pass, one fail, one pass out of three), and removing the track selection call from the track
+update, or the first sub-filter-sdh write, did not make it pass. The cause is not found. The test message now prints the player state (loaded, changing, the
+subtitle tracks) so the next failure explains itself. Worth a look on the phone: load an addon subtitle and check it selects.

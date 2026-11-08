@@ -148,7 +148,8 @@ final class MobileSourcesAndSubtitlesTests: XCTestCase {
                 surface.display(); if condition() { return }
                 try await Task.sleep(for: .milliseconds(50))
             }
-            XCTFail("Actual addon subtitle operation failed: \(state.subtitleIssue ?? state.error ?? "timeout")")
+            let subtitleTracks = state.tracks.filter { $0.type == "sub" }.map { "\($0.id):external=\($0.external):selected=\($0.selected)" }
+            XCTFail("Actual addon subtitle operation failed: \(state.subtitleIssue ?? state.error ?? "timeout") loaded=\(state.loaded) changing=\(state.subtitleChanging) subtitleTracks=\(subtitleTracks)")
             throw HarborError(code: "subtitle-timeout")
         }
         try await wait { state.loaded }
