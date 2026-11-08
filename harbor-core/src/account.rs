@@ -163,7 +163,8 @@ mod tests {
         assert_eq!(decoded["records"], records);
         assert!(addons[0].accepts("meta", "movie", "tt123"));
         assert!(addons[0].accepts("stream", "movie", "custom123"));
-        assert!(!addons[0].accepts("subtitles", "movie", "tt123"));
+        assert!(addons[0].accepts("subtitles", "movie", "tt123"));
+        assert!(!addons[0].accepts("subtitles", "series", "tt123"));
         let plans = addons::catalog_plans(&addons, None, None, 0).unwrap();
         assert_eq!(plans.len(), 1);
         assert_eq!(plans[0].title, "Configured addon");

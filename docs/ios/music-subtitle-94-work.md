@@ -1939,3 +1939,8 @@ separate stream selector. Focused Rust and Apple verification are pending.
 Apple run 42525126155 stopped at a Swift parse error in the Manga spread turn
 callback. db704ee1 corrects the callback. Run 42534579007 includes that fix, the
 subtitle and guide cases, and the local-season priority case.
+
+The first Harbor Core matrix (42534860006) found a stale assertion for null
+subtitle resource types. That assertion now verifies inheritance of the manifest
+movie type and rejection of series. Its original raw-record round trip still
+checks that account records are preserved byte for byte as JSON values.
