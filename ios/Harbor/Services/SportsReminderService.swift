@@ -16,7 +16,7 @@ actor SportsReminderService {
         content.title = event.title
         content.body = minutes == 0 ? "El evento empieza ahora · " + event.league.title : "Empieza en \(minutes) minutos · " + event.league.title
         content.sound = .default
-        content.userInfo = ["harborSportsOwner": EBookShelf.hash(owner)]
+        content.userInfo = ["harborSportsOwner": EBookShelf.hash(owner), "harborSportsLead": minutes]
         let parts = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: fire)
         let trigger = UNCalendarNotificationTrigger(dateMatching: parts, repeats: false)
         try await add(UNNotificationRequest(identifier: identifier(event, owner: owner), content: content, trigger: trigger))
@@ -32,6 +32,24 @@ actor SportsReminderService {
         let prefix = "harbor-sports-" + EBookShelf.hash(owner) + "-"
         let old = await pendingIDs().filter { $0.hasPrefix("harbor-sports-") && !$0.hasPrefix(prefix) }
         if activeOwner == owner { center.removePendingNotificationRequests(withIdentifiers: old) }
+    }
+    /// Desktop's syncSportsReminders: a pending reminder moves with its game's start time.
+    func resync(_ events: [SportsEvent], owner: String) async {
+        guard activeOwner == owner else { return }
+        let pending = await pendingRequests()
+        for event in events {
+            let id = identifier(event, owner: owner)
+            guard let request = pending.first(where: { $0.identifier == id }), let minutes = request.content.userInfo["harborSportsLead"] as? Int else { continue }
+            let fire = (request.trigger as? UNCalendarNotificationTrigger)?.nextTriggerDate()
+            guard SportsRules.reminderNeedsResync(scheduledFire: fire, event: event, minutes: minutes) else { continue }
+            center.removePendingNotificationRequests(withIdentifiers: [id])
+            try? await schedule(event, owner: owner, minutes: minutes)
+        }
+    }
+    private func pendingRequests() async -> [UNNotificationRequest] {
+        await withCheckedContinuation { continuation in
+            center.getPendingNotificationRequests { requests in continuation.resume(returning: requests) }
+        }
     }
     private func identifier(_ event: SportsEvent, owner: String) -> String { "harbor-sports-" + EBookShelf.hash(owner) + "-" + EBookShelf.hash(event.id) }
     private func pendingIDs() async -> [String] {

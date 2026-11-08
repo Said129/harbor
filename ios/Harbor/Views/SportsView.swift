@@ -5,6 +5,8 @@ private struct SportsConsent: Codable {
     let status: String
     let acceptedAt: Date?
 }
+/// Version 2 adds Desktop's paywall/DRM and endorsement wording, so earlier acceptances see the notice again.
+private enum SportsNotice { static let version = 2 }
 
 struct SportsView: View {
     let app: AppModel
@@ -22,9 +24,9 @@ struct SportsView: View {
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage("harbor-sports-consent") private var consent = ""
     @MainActor init(app: AppModel) { self.app = app; _preferences = State(initialValue: SportsPreferences(owner: app.settingsOwner)) }
-    private var accepted: Bool { guard let data = consent.data(using: .utf8), let receipt = try? JSONDecoder().decode(SportsConsent.self, from: data) else { return false }; return receipt.version == 1 && receipt.status == "accepted" && receipt.acceptedAt != nil }
+    private var accepted: Bool { guard let data = consent.data(using: .utf8), let receipt = try? JSONDecoder().decode(SportsConsent.self, from: data) else { return false }; return receipt.version == SportsNotice.version && receipt.status == "accepted" && receipt.acceptedAt != nil }
     private var day: String { let parts = Calendar.current.dateComponents([.year, .month, .day], from: date); return String(format: "%04d%02d%02d", parts.year ?? 0, parts.month ?? 0, parts.day ?? 0) }
-    private var signature: String { day + "|" + preferences.leagues.joined(separator: ",") + "|" + String(accepted) }
+    private var signature: String { day + "|" + state + "|" + preferences.leagues.joined(separator: ",") + "|" + String(accepted) }
     private var filtered: [SportsEvent] { events.filter { event in (state == "all" || event.state == state) && (sport == "all" || event.league.group == sport) && (!onlyFavorites || event.sides.contains(where: { preferences.favorite($0, league: event.league) })) } }
     var body: some View {
         Group {
@@ -40,9 +42,10 @@ struct SportsView: View {
             .task(id: signature + "|" + String(describing: scenePhase)) {
                 guard accepted, scenePhase == .active else { return }
                 while !Task.isCancelled {
+                    // Refresh first, so returning to the foreground updates at once instead of after the first sleep.
+                    if !loading { await load(refresh: true) }
                     do { try await Task.sleep(for: .seconds(Calendar.current.isDateInToday(date) ? 30 : 120)) } catch { return }
                     guard scenePhase == .active, accepted, !Task.isCancelled else { return }
-                    if !loading { await load(refresh: true) }
                 }
             }
             .sheet(isPresented: $configuring) { SportsSettingsView(leagues: leagues, preferences: preferences, onRevoke: { acknowledge(false); configuring = false }) }
@@ -84,6 +87,9 @@ struct SportsView: View {
                 Text("Harbor muestra metadata de servicios externos. No aloja retransmisiones ni proporciona suscripciones deportivas.")
                 Text("Los horarios, resultados, estadísticas e imágenes proceden de terceros y se guardan temporalmente en este dispositivo. Al abrir Sports, esos servicios reciben las solicitudes de conexión.").foregroundStyle(.secondary)
                 Text("Utiliza fuentes que tengas permiso para ver. Las coincidencias con tus canales no garantizan disponibilidad ni derechos de acceso.").foregroundStyle(.secondary)
+                Text(DesktopInterfaceText.value("Your sources, your permission")).font(.headline)
+                Text(DesktopInterfaceText.value("Use only sources and content you have permission to access. Follow the provider's terms and applicable law. Harbor does not supply subscriptions or grant viewing, copying or redistribution rights. Do not use it to bypass paywalls, DRM or access restrictions.")).foregroundStyle(.secondary)
+                Text(DesktopInterfaceText.value("Official links and videos remain subject to the originating service's availability, regional restrictions and terms. Names and logos identify third parties and do not imply endorsement or affiliation.")).foregroundStyle(.secondary)
                 Link("Condiciones del servicio ESPN", destination: URL(string: "https://disneytermsofuse.com/english/")!)
                 if let error { Text(error).foregroundStyle(.orange) }
                 Button("Aceptar y abrir Sports") { acknowledge(true) }.buttonStyle(.borderedProminent)
@@ -92,21 +98,23 @@ struct SportsView: View {
         }
     }
     private func acknowledge(_ accepted: Bool) {
-        let receipt = SportsConsent(version: 1, status: accepted ? "accepted" : "declined", acceptedAt: accepted ? Date() : nil)
+        let receipt = SportsConsent(version: SportsNotice.version, status: accepted ? "accepted" : "declined", acceptedAt: accepted ? Date() : nil)
         if let data = try? JSONEncoder().encode(receipt), let text = String(data: data, encoding: .utf8) { consent = text }
     }
     private func shift(_ amount: Int) { if let shifted = Calendar.current.date(byAdding: .day, value: amount, to: date) { date = shifted } }
     private func load(refresh: Bool) async {
         guard accepted else { return }
         let token = UUID(); generation = token; loading = true; error = nil
-        let stamp = day, selected = leagues.filter { preferences.leagues.contains($0.id) }
+        let selectedDay = day, currentState = state, today = SportsRules.dayStamp(Date())
+        let requested = SportsRules.requestDate(selected: selectedDay, today: today, state: currentState)
+        let selected = leagues.filter { preferences.leagues.contains($0.id) }
         defer { if generation == token { loading = false } }
         let results = await withTaskGroup(of: ([SportsEvent], Bool).self, returning: [([SportsEvent], Bool)].self) { group in
             var iterator = selected.makeIterator(), output: [([SportsEvent], Bool)] = []
             func submit(_ league: SportsLeague) {
                 group.addTask {
-                    do { return (try await SportsService.shared.events(league, date: stamp, refresh: refresh), false) }
-                    catch { return (await SportsService.shared.savedEvents(league, date: stamp) ?? [], true) }
+                    do { return (try await SportsService.shared.events(league, date: requested, refresh: refresh), false) }
+                    catch { return (await SportsService.shared.savedEvents(league, date: requested) ?? [], true) }
                 }
             }
             for _ in 0..<4 { if let league = iterator.next() { submit(league) } }
@@ -114,9 +122,10 @@ struct SportsView: View {
             return output
         }
         guard generation == token, !Task.isCancelled, accepted else { return }
-        let loaded = results.flatMap { $0.0 }
+        let loaded = SportsRules.ordered(results.flatMap { $0.0 }.filter { SportsRules.includes(eventDay: SportsRules.dayStamp($0.date), eventState: $0.state, selected: selectedDay, today: today, state: currentState) })
         if !loaded.isEmpty || !results.contains(where: { $0.1 }) || events.first.map({ Calendar.current.isDate($0.date, inSameDayAs: date) }) != true { events = loaded }
         if results.contains(where: { $0.1 }) && loaded.isEmpty { error = "No se pudieron actualizar las ligas seleccionadas. Vuelve a intentarlo." }
+        if !loaded.isEmpty { await SportsReminderService.shared.resync(loaded, owner: preferences.owner) }
     }
 }
 
