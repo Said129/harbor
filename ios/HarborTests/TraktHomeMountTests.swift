@@ -20,7 +20,8 @@ import XCTest
             var media = Media.parse(scenario["cinemetaRaw"][id], kind: kind); media?.poster = base + "/poster.png"; return media
         })
         let model = TraktHomeModel(account: account, client: .init(transport: { try await transport.send($0) }), hydrator: hydrator, active: { true })
-        await model.load(configuration: .init(tmdbKey: "", region: "US", language: "en-US", translateTitles: true))
+        // The fixture's calendar path is the 28 October 2026 UTC day, so the load date is fixed like the model cases in TraktHomeTests.
+        await model.load(configuration: .init(tmdbKey: "", region: "US", language: "en-US", translateTitles: true), date: Date(timeIntervalSince1970: 1_793_230_800))
         XCTAssertEqual(model.rows.count, 4)
         let app = AppModel(), owner = "owned-trakt-home-mount-" + UUID().uuidString
         let customization = PageCustomization(owner: owner, page: "home"), rows = model.rows.map(PageRail.discovery)
