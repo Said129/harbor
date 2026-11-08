@@ -246,6 +246,7 @@ targets:
       - path: HarborTests/XrayTests.swift
       - path: HarborTests/WireSubsTests.swift
       - path: HarborTests/G5PlayerTests.swift
+      - path: HarborTests/R23MetaTests.swift
       - path: HarborTests/R22SearchTests.swift
       - path: HarborTests/R21DetailTests.swift
       - path: HarborTests/R19PlayerTests.swift

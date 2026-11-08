@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: OMDb (Desktop's lib/providers/omdb.ts)
 
-/// The scores OMDb returns for an IMDb id. Awards are not read yet.
+/// The scores OMDb returns for an IMDb id.
 struct OmdbScores: Codable, Equatable, Sendable {
     var imdbRating: String?
     var rated: String?
@@ -12,6 +12,8 @@ struct OmdbScores: Codable, Equatable, Sendable {
     var certifiedFresh = false
     /// Milliseconds since 1970, as on Desktop.
     var fetchedAt: Double
+    /// Desktop's `awards`; nil when OMDb names no award count. Older cache entries decode as nil.
+    var awards: OmdbAwards? = nil
 }
 
 enum OmdbOutcome: Equatable, Sendable {
@@ -65,7 +67,8 @@ enum OmdbParser {
         if let critics, let voteCount { fresh = critics >= 75 && voteCount >= certifiedFreshMinimumVotes }
         return .scores(OmdbScores(imdbRating: imdb, rated: rated, imdbVotes: voteCount, rtCritics: critics, metascore: percent(value("Metacritic")),
                                   certifiedFresh: fresh,
-                                  fetchedAt: now.timeIntervalSince1970 * 1_000))
+                                  fetchedAt: now.timeIntervalSince1970 * 1_000,
+                                  awards: OmdbAwardsParser.parse(json["Awards"].string)))
     }
 }
 
