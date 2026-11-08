@@ -29,7 +29,12 @@ final class CommunitySyncTests: XCTestCase {
 
     /// Cue i starts at 4i + 1.25 s and ends 1.25 s later.
     private func cues(_ count: Int = 10) -> [(Double, Double)] {
-        (0..<count).map { index in (Double(index) * 4 + 1.25, Double(index) * 4 + 2.5) }
+        var result: [(Double, Double)] = []
+        for index in 0..<count {
+            let base = Double(index) * 4.0
+            result.append((base + 1.25, base + 2.5))
+        }
+        return result
     }
 
     private func freshDefaults() -> (UserDefaults, String) {

@@ -24,6 +24,9 @@ struct PlayerEpisodesView: View {
     private var sections: [EpisodeOrderSection] { episodeOrder?.sections ?? [] }
     private var currentSection: EpisodeOrderSection? { sections.first { $0.id == orderSection } ?? sections.first }
     private var visible: [Episode] { currentSection?.episodes ?? episodes.filter { ($0.listedSeason ?? season) == season } }
+    private var nextUpKey: String? {
+        NextUpEpisode.routingKey(in: visible) { episode in library?.watchedEpisodes(episodePool?.source(for: episode) ?? media).contains(episode.watchedKey) == true }
+    }
     private var visibleRows: [EpisodeOrderRow] { currentSection?.rows ?? visible.map(EpisodeOrderRow.episode) }
     private var nextOrderSection: EpisodeOrderSection? {
         guard let currentSection, let index = sections.firstIndex(where: { $0.id == currentSection.id }), index + 1 < sections.count else { return nil }
@@ -95,7 +98,9 @@ struct PlayerEpisodesView: View {
         let playing = isCurrent(episode)
         let source = episodePool?.source(for: episode) ?? media
         let watched = library?.watchedEpisodes(source).contains(episode.watchedKey) == true
-        let hidden = InterfacePreferences.shared.hideSpoilers && !playing && !watched && !revealed.contains(episode.routingKey)
+        // Desktop's "Keep the next episode visible": the next unwatched episode of the list on screen stays clear.
+        let nextUp = InterfacePreferences.shared.spoilerSkipNext && nextUpKey == episode.routingKey
+        let hidden = InterfacePreferences.shared.hideSpoilers && !playing && !watched && !nextUp && !revealed.contains(episode.routingKey)
         return PlayerEpisodeCard(episode: episode, playing: playing, watched: watched, hidden: hidden,
             expanded: expanded == episode.routingKey, canRestart: canRestart, thumbnailWidth: thumbnailWidth,
             activate: { if playing { restart(); close() } else { play(episode) } },

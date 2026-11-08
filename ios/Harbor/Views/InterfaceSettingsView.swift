@@ -98,6 +98,8 @@ struct InterfaceSettingsView: View {
                             HarborSettingsToggle(DesktopInterfaceText.value("Blur thumbnails"), note: DesktopInterfaceText.value("Frosts the still image on each unwatched episode in the list."), isOn: $preferences.blurEpisodes)
                             HarborSettingsToggle(DesktopInterfaceText.value("Blur titles"), note: DesktopInterfaceText.value("Hides the episode name, which often gives the twist away on its own."), isOn: $preferences.spoilerHideTitles)
                             HarborSettingsToggle(DesktopInterfaceText.value("Blur descriptions"), note: DesktopInterfaceText.value("Hides the synopsis text under each unwatched episode."), isOn: $preferences.spoilerHideDescriptions)
+                            HarborSettingsToggle(DesktopInterfaceText.value("Keep the next episode visible"), note: DesktopInterfaceText.value("Leave the episode you are up to clear and only blur the ones after it."), isOn: $preferences.spoilerSkipNext)
+                                .accessibilityIdentifier("settings-spoiler-skip-next")
                         }.padding(.leading, 14)
                             .overlay(alignment: .leading) { Rectangle().fill(ThemePreferences.shared.color("edge-soft")).frame(width: 1) }
                     }
