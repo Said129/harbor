@@ -46,6 +46,19 @@ struct HTTPClient: Sendable {
         return try await receive(request, session: Self.accountSession)
     }
 
+    /// Desktop's `submitAdReport` POST: true for a 2xx answer. The body is not read, as Desktop only checks `res.ok`.
+    func postAdReport(_ value: String, body: JSONValue) async throws -> Bool {
+        guard let url = URL(string: value), url.scheme == "https" else { throw HarborError(code: "invalid-url") }
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15)
+        request.httpMethod = "POST"
+        request.httpBody = try JSONEncoder().encode(body)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Harbor-iOS/0.1", forHTTPHeaderField: "User-Agent")
+        let (_, response) = try await Self.metadataSession.data(for: request)
+        guard let http = response as? HTTPURLResponse else { return false }
+        return (200..<300).contains(http.statusCode)
+    }
+
     func simklArtwork(_ id: Int) async throws -> JSONValue {
         try await SimklClient.shared.response(.anime(id))
     }

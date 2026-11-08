@@ -118,6 +118,7 @@ struct PlayerSettingsView: View {
         }
         advisorySettings
         PlayerNextEpisodeSettings()
+        PlayerAdSkipSettings()
         HarborSettingsSection("Búfer") {
             HarborSettingsChoice("Tamaño del búfer", selection: $preferences.options.bufferSize, choices: BufferSize.allCases.map { ($0.title, $0) })
         }

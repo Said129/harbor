@@ -1,7 +1,7 @@
 import Foundation
 
 struct SkipSegment: Identifiable, Equatable, Sendable {
-    enum Kind: String, Sendable { case intro, outro, recap }
+    enum Kind: String, Sendable { case intro, outro, recap, ad }
     let kind: Kind
     let start: Double
     let end: Double
@@ -12,6 +12,7 @@ struct SkipSegment: Identifiable, Equatable, Sendable {
         case .intro: DesktopInterfaceText.value("Skip Intro")
         case .outro: DesktopInterfaceText.value("Skip Credits")
         case .recap: DesktopInterfaceText.value("Skip Recap")
+        case .ad: DesktopInterfaceText.value("Skip injected ad?")
         }
     }
     func active(at position: Double) -> Bool { position.isFinite && position >= start && position < end - 0.75 }
@@ -49,34 +50,43 @@ struct SkipSegment: Identifiable, Equatable, Sendable {
 }
 
 extension PlaybackOptions {
-    func autoSkips(_ kind: SkipSegment.Kind) -> Bool {
+    /// `autoSkipAd` is Desktop's setting, kept in the UserDefaults store `StreamPreferences` writes.
+    func autoSkips(_ kind: SkipSegment.Kind, autoSkipAd: Bool = UserDefaults.standard.bool(forKey: "autoSkipAd")) -> Bool {
         switch kind {
         case .intro: autoSkipIntro
         case .recap: autoSkipRecap
         case .outro: autoSkipOutro
+        case .ad: autoSkipAd
         }
     }
-    var autoSkipsAnySegment: Bool { autoSkipIntro || autoSkipRecap || autoSkipOutro }
+    var autoSkipsAnySegment: Bool { autoSkipIntro || autoSkipRecap || autoSkipOutro || UserDefaults.standard.bool(forKey: "autoSkipAd") }
 }
 
 actor SkipIntroService {
     static let shared = SkipIntroService()
     private var cache: [String: (Date, [SkipSegment])] = [:]
     private var pending: [String: Task<[SkipSegment], Never>] = [:]
-    func segments(target: ResumeTarget, media: Media?, duration: Double) async throws -> [SkipSegment] {
+    /// `stream` is the chosen release for the ad corpus. Without it, or with ad skip off, no ad segments are asked for.
+    func segments(target: ResumeTarget, media: Media?, duration: Double, stream: AdSkipStream? = nil) async throws -> [SkipSegment] {
         guard duration.isFinite, duration > 0, duration < 86400 else { return [] }
         let selected = media?.videos?.first { $0.id == target.videoId }
         let external = media?.imdbID ?? selected?.imdbID ?? target.id
         let season = selected?.imdbSeason ?? target.season, episode = selected?.imdbEpisode ?? target.episode
         let apiKey = await Self.theIntroDBKey()
+        // Desktop's `useAdSegments`: only while ad skip is on, for the content and the exact release that plays.
+        let ad = await Self.adFingerprint(metaID: media?.id ?? target.id, imdbID: media?.imdbID, stream: stream)
+        let adKey = ad.map { "\($0.content)|\($0.source)" } ?? "ad-off"
         // A new TheIntroDB key must not reuse an answer given for the old one, as Desktop clears its cache on a key change.
-        let key = [target.id, external, String(season ?? -1), String(episode ?? -1), String(target.episode ?? -1), String(Int(duration.rounded())), String(apiKey.hashValue)].joined(separator: "|")
+        // Another release of the same episode must not reuse this one's ad ranges either.
+        let key = [target.id, external, String(season ?? -1), String(episode ?? -1), String(target.episode ?? -1), String(Int(duration.rounded())), String(apiKey.hashValue), adKey].joined(separator: "|")
         if let hit = cache[key], hit.0 > Date() { return hit.1 }
         if let task = pending[key] { return try checked(await task.value) }
         let task = Task {
+            async let ads = Self.ads(ad)
             async let anime = Self.anime(id: target.id, episode: target.episode, duration: duration)
             async let television = Self.television(id: external, season: season, episode: episode, duration: duration, apiKey: apiKey)
-            return await SkipSegment.merge([anime, television], duration: duration)
+            // Ad segments come first, as Desktop merges them first, so they win an overlap.
+            return await SkipSegment.merge([ads, anime, television], duration: duration)
         }
         pending[key] = task
         let result = await task.value
@@ -109,6 +119,16 @@ actor SkipIntroService {
     }
     private static func television(id: String, season: Int?, episode: Int?, duration: Double, apiKey: String) async -> [SkipSegment] {
         await TheIntroDBClient.shared.segments(metaID: id, season: season, episode: episode, duration: duration, apiKey: apiKey)
+    }
+    /// The fingerprint of the chosen release while ad skip is on, else nil.
+    @MainActor private static func adFingerprint(metaID: String, imdbID: String?, stream: AdSkipStream?) -> AdSkipFingerprint.Key? {
+        guard StreamPreferences.shared.adSkipEnabled, let stream else { return nil }
+        return AdSkipFingerprint.fingerprint(metaID: metaID, imdbID: imdbID, infoHash: stream.infoHash, fileIdx: stream.fileIdx,
+                                             releaseGroup: stream.releaseGroup, size: stream.size, parsedTitle: stream.parsedTitle, url: stream.url)
+    }
+    private static func ads(_ key: AdSkipFingerprint.Key?) async -> [SkipSegment] {
+        guard let key else { return [] }
+        return await AdCorpus.shared.segments(content: key.content, source: key.source, fresh: true)
     }
     /// The TheIntroDB key of the profile whose settings are bound, kept in its Keychain store. Empty when none is bound.
     @MainActor private static func theIntroDBKey() -> String {

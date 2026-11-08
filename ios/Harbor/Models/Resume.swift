@@ -54,6 +54,8 @@ struct PlaybackSession: Identifiable, Sendable {
     var media: Media? = nil
     /// Set for a source the automatic start chose, so the player can ask for the next one when it stalls.
     var stall: StreamStallHandle? = nil
+    /// The chosen stream's identity for the ad corpus lookup (Desktop's `PlayerStreamRef` plus the play URL).
+    var adSkipStream: AdSkipStream? = nil
 }
 
 struct ResumeSnapshot: Sendable {

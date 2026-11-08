@@ -42,6 +42,14 @@ final class StreamPreferences {
     var qualityBadgeStyle = QualityBadgeStyle.restored(UserDefaults.standard.string(forKey: "qualityBadgeStyle")).rawValue {
         didSet { persist(qualityBadgeStyle, forKey: "qualityBadgeStyle") }
     }
+    /// Desktop's `adSkipEnabled` (default off, "Enable injected ad skip"): the community corpus of injected ads in the player.
+    var adSkipEnabled = UserDefaults.standard.object(forKey: "adSkipEnabled") as? Bool ?? false {
+        didSet { persist(adSkipEnabled, forKey: "adSkipEnabled") }
+    }
+    /// Desktop's `autoSkipAd` (default off): jump past a known injected ad as soon as it starts.
+    var autoSkipAd = UserDefaults.standard.object(forKey: "autoSkipAd") as? Bool ?? false {
+        didSet { persist(autoSkipAd, forKey: "autoSkipAd") }
+    }
     var fullStreamDescription = UserDefaults.standard.object(forKey: "streams.fullDescription") as? Bool ?? true {
         didSet { persist(fullStreamDescription, forKey: "streams.fullDescription") }
     }
@@ -127,6 +135,8 @@ final class StreamPreferences {
         pickerShowFilename = UserDefaults.standard.object(forKey: "streams.pickerShowFilename") as? Bool ?? false
         showQualityBadge = UserDefaults.standard.object(forKey: "showQualityBadge") as? Bool ?? true
         showQualityInfo = UserDefaults.standard.object(forKey: "showQualityInfo") as? Bool ?? false
+        adSkipEnabled = UserDefaults.standard.object(forKey: "adSkipEnabled") as? Bool ?? false
+        autoSkipAd = UserDefaults.standard.object(forKey: "autoSkipAd") as? Bool ?? false
         qualityBadgeStyle = QualityBadgeStyle.restored(UserDefaults.standard.string(forKey: "qualityBadgeStyle")).rawValue
         fullStreamDescription = UserDefaults.standard.object(forKey: "streams.fullDescription") as? Bool ?? true
         pickerRefreshNextToBack = UserDefaults.standard.object(forKey: "streams.pickerRefreshNextToBack") as? Bool ?? false
