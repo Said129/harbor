@@ -122,10 +122,73 @@ enum SportsRules {
         let expected = event.date.addingTimeInterval(-Double(minutes) * 60)
         return abs(scheduledFire.timeIntervalSince(expected)) >= 1
     }
+    /// Desktop's setHomeTeam: the favourite becomes the home team of its group, or stops being it when it already is.
+    static func toggledHome(_ home: [String: String], group: String, id: String) -> [String: String] {
+        var next = home
+        if next[group] == id { next[group] = nil } else { next[group] = id }
+        return next
+    }
+    /// Desktop's toggleFavouriteTeam: removing a favourite also clears its home slot in the group.
+    static func homeAfterUnfavourite(_ home: [String: String], group: String, id: String) -> [String: String] {
+        var next = home
+        if next[group] == id { next[group] = nil }
+        return next
+    }
+    /// Desktop's outcomeFor for one team. iOS sides keep ESPN's competitor order without a home flag, so sides[0]
+    /// stands in for Desktop's home side and the team matches by name only (iOS has no abbreviation).
+    static func outcome(_ event: SportsEvent, team: String) -> SportsTeamOutcome? {
+        guard event.state == "post", event.sides.count == 2, !team.isEmpty else { return nil }
+        let key = team.lowercased()
+        let atHome = event.sides[0].name.lowercased() == key
+        let own = atHome ? event.sides[0] : event.sides[1]
+        let opponent = atHome ? event.sides[1] : event.sides[0]
+        if own.winner { return .win }
+        if opponent.winner { return .loss }
+        guard let ownText = own.score, let theirText = opponent.score, !ownText.isEmpty, !theirText.isEmpty,
+              let mine = Double(ownText), let theirs = Double(theirText), mine.isFinite, theirs.isFinite else { return nil }
+        return mine == theirs ? .draw : mine > theirs ? .win : .loss
+    }
+    /// Desktop's nextFixture: the first live event, otherwise the earliest upcoming one.
+    static func nextFixture(_ events: [SportsEvent]) -> SportsEvent? {
+        if let live = events.first(where: { $0.state == "in" }) { return live }
+        return events.filter { $0.state == "pre" }.sorted { $0.date < $1.date }.first
+    }
+    /// Desktop's lastResult: the newest finished event.
+    static func lastResult(_ events: [SportsEvent]) -> SportsEvent? {
+        events.filter { $0.state == "post" }.sorted { $0.date > $1.date }.first
+    }
+    /// Desktop's recentForm: the newest `size` finished events, read oldest first, without the events that have no outcome.
+    static func recentForm(_ events: [SportsEvent], team: String, size: Int = 5) -> [SportsTeamOutcome] {
+        let newest = events.filter { $0.state == "post" }.sorted { $0.date > $1.date }.prefix(size)
+        return Array(newest.compactMap { outcome($0, team: team) }.reversed())
+    }
+    /// Desktop's mergeGames: the extra list replaces an event with the same id, keeps the first position, then sorts.
+    static func merged(_ base: [SportsEvent], _ extra: [SportsEvent]) -> [SportsEvent] {
+        var byID: [String: SportsEvent] = [:]
+        var order: [String] = []
+        for event in base + extra {
+            if byID[event.id] == nil { order.append(event.id) }
+            byID[event.id] = event
+        }
+        return ordered(order.compactMap { byID[$0] })
+    }
 }
-private struct SportsPersonalization: Codable {
+enum SportsTeamOutcome: String, Equatable, Sendable {
+    case win, draw, loss
+}
+struct SportsPersonalization: Codable {
     var leagues: [String] = ["ROSHN", "EPL", "UCL", "NBA", "NFL"]
     var favorites: Set<String> = []
+    /// Desktop's home map: league group to the favourite id of the home team.
+    var home: [String: String] = [:]
+    init() {}
+    /// Stored profiles from before the home team existed have no `home` key, so every field is optional on read.
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        leagues = try container.decodeIfPresent([String].self, forKey: .leagues) ?? SportsPersonalization().leagues
+        favorites = try container.decodeIfPresent(Set<String>.self, forKey: .favorites) ?? []
+        home = try container.decodeIfPresent([String: String].self, forKey: .home) ?? [:]
+    }
 }
 
 @MainActor @Observable
@@ -146,12 +209,24 @@ final class SportsPreferences {
     func toggle(_ side: SportsSide, league: SportsLeague) throws {
         let id = league.path + ":" + side.id
         var next = stored
-        if next.favorites.contains(id) { next.favorites.remove(id) } else { next.favorites.insert(id) }
+        if next.favorites.contains(id) {
+            next.favorites.remove(id)
+            next.home = SportsRules.homeAfterUnfavourite(next.home, group: league.group, id: id)
+        } else { next.favorites.insert(id) }
+        try save(next)
+    }
+    /// Desktop's setHomeTeam: marks or clears the home team of the league's group, and the side becomes a favourite.
+    func toggleHome(_ side: SportsSide, league: SportsLeague) throws {
+        let id = league.path + ":" + side.id
+        var next = stored
+        next.home = SportsRules.toggledHome(next.home, group: league.group, id: id)
+        if next.home[league.group] == id { next.favorites.insert(id) }
         try save(next)
     }
     func favorite(_ side: SportsSide, league: SportsLeague) -> Bool { stored.favorites.contains(league.path + ":" + side.id) }
+    func isHome(_ side: SportsSide, league: SportsLeague) -> Bool { stored.home[league.group] == league.path + ":" + side.id }
     private func save(_ next: SportsPersonalization) throws {
-        guard ready, next.leagues.count <= 200, next.favorites.count <= 2_000 else { throw HarborError(code: "sports-store") }
+        guard ready, next.leagues.count <= 200, next.favorites.count <= 2_000, next.home.count <= 200 else { throw HarborError(code: "sports-store") }
         try KeychainStore().write(next, key: key); stored = next
     }
 }

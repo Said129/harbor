@@ -28,7 +28,7 @@ struct SportsEventView: View {
                 NavigationLink { LiveTVView(app: app, initialQuery: event.broadcasts.first ?? "") } label: { Label("Buscar canales en Live TV", image: "nav-livetv") }.buttonStyle(.bordered)
                 ForEach(event.sides) { side in
                     VStack(alignment: .leading, spacing: 8) {
-                        HStack { Text(side.name).font(.headline); Spacer(); Button { do { try preferences.toggle(side, league: event.league) } catch { self.error = safeMessage(error) } } label: { Image(systemName: preferences.favorite(side, league: event.league) ? "star.fill" : "star") }.accessibilityLabel("Favorito: \(side.name)") }
+                        HStack { Text(side.name).font(.headline); Spacer(); Button { do { try preferences.toggle(side, league: event.league) } catch { self.error = safeMessage(error) } } label: { Image(systemName: preferences.favorite(side, league: event.league) ? "star.fill" : "star") }.accessibilityLabel("Favorito: \(side.name)"); Button(DesktopInterfaceText.value(preferences.isHome(side, league: event.league) ? "Clear home team" : "Set as home team")) { do { try preferences.toggleHome(side, league: event.league) } catch { self.error = safeMessage(error) } }.font(.caption).buttonStyle(.bordered) }
                         if let record = side.record { Text(record).font(.caption).foregroundStyle(.secondary) }
                         if !side.periods.isEmpty {
                             ScrollView(.horizontal, showsIndicators: false) {
