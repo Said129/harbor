@@ -1262,6 +1262,7 @@
 "Keep same source on next episode" = "下一集沿用相同来源";
 "Keep screen awake" = "Keep screen awake";
 "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "让媒体库的“稍后观看”标签页仅显示你在 Stremio 中添加的作品。关闭此项后，还会显示你按下播放时由 Stremio 自动添加的所有内容。";
+"Keep the next episode visible" = "保持下一集可见";
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "保留视频文件内的字幕轨道，不切换到下载的字幕。";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "保留可疑文件和版本检查，但允许更多结果，包括较大文件和整季合集。";
 "Keep watching" = "继续观看";
@@ -1283,6 +1284,7 @@
 "Laterales" = "双页";
 "Leave" = "离开";
 "Leave room" = "离开房间";
+"Leave the episode you are up to clear and only blur the ones after it." = "保持当前看到的这一集清晰，仅模糊之后的剧集。";
 "Leave the show?" = "要离开此节目吗？";
 "Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself." = "留空即可使用 Harbor 自有的社区服务器，也可以输入你自行运行的服务器地址。";
 "Lectura" = "正在读取";

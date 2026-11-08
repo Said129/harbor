@@ -1262,6 +1262,7 @@
 "Keep same source on next episode" = "Giữ nguyên nguồn cho tập tiếp theo";
 "Keep screen awake" = "Keep screen awake";
 "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "Giới hạn thẻ Danh sách xem trong Thư viện ở những nội dung bạn đã thêm vào Stremio. Tắt tùy chọn này để bao gồm cả nội dung Stremio tự động thêm khi bạn nhấn phát.";
+"Keep the next episode visible" = "Giữ tập tiếp theo hiển thị";
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "Giữ bản phụ đề có sẵn trong tệp video thay vì chuyển sang bản tải xuống.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Vẫn kiểm tra tệp và bản phát hành đáng ngờ, nhưng cho phép thêm kết quả, gồm cả tệp lớn và gói trọn mùa.";
 "Keep watching" = "Xem tiếp";
@@ -1283,6 +1284,7 @@
 "Laterales" = "Hai bên";
 "Leave" = "Rời khỏi";
 "Leave room" = "Rời phòng";
+"Leave the episode you are up to clear and only blur the ones after it." = "Giữ rõ tập bạn đang xem đến và chỉ làm mờ các tập sau đó.";
 "Leave the show?" = "Rời khỏi phim bộ?";
 "Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself." = "Để trống để dùng máy chủ cộng đồng của Harbor hoặc nhập địa chỉ máy chủ do bạn tự vận hành.";
 "Lectura" = "Đang đọc";

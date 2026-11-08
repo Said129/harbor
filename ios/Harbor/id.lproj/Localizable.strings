@@ -1262,6 +1262,7 @@
 "Keep same source on next episode" = "Gunakan sumber yang sama pada episode berikutnya";
 "Keep screen awake" = "Keep screen awake";
 "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "Batasi tab Daftar Tontonan di Perpustakaan hanya untuk judul yang Anda tambahkan di Stremio. Nonaktifkan ini agar judul yang otomatis ditambahkan Stremio saat Anda menekan tombol putar juga disertakan.";
+"Keep the next episode visible" = "Tetap tampilkan episode berikutnya";
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "Gunakan trek subtitle yang disertakan dalam file video alih-alih beralih ke subtitle yang diunduh.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Tetap periksa file dan rilis yang mencurigakan, tetapi izinkan lebih banyak hasil, termasuk file berukuran besar dan paket satu musim.";
 "Keep watching" = "Lanjutkan menonton";
@@ -1283,6 +1284,7 @@
 "Laterales" = "Sisi";
 "Leave" = "Keluar";
 "Leave room" = "Keluar dari ruang";
+"Leave the episode you are up to clear and only blur the ones after it." = "Biarkan episode yang sedang Anda tonton tetap jelas dan buramkan hanya episode setelahnya.";
 "Leave the show?" = "Tinggalkan tayangan ini?";
 "Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself." = "Kosongkan untuk menggunakan server komunitas milik Harbor sendiri, atau masukkan alamat server yang Anda jalankan sendiri.";
 "Lectura" = "Sedang membaca";

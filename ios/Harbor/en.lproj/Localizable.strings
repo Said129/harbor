@@ -1106,6 +1106,7 @@
 "Keep same source on next episode" = "Keep same source on next episode";
 "Keep screen awake" = "Keep screen awake";
 "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play.";
+"Keep the next episode visible" = "Keep the next episode visible";
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "Keep the subtitle track included in the video file instead of switching to a downloaded one.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs.";
 "Keep watching" = "Keep watching";
@@ -1125,6 +1126,7 @@
 "Laterales" = "Sides";
 "Leave" = "Leave";
 "Leave room" = "Leave room";
+"Leave the episode you are up to clear and only blur the ones after it." = "Leave the episode you are up to clear and only blur the ones after it.";
 "Leave the show?" = "Leave the show?";
 "Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself." = "Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself.";
 "Lectura" = "Reading";
@@ -1584,6 +1586,7 @@
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "Play";
+"Play movie" = "Play movie";
 "Play next" = "Play next";
 "Play now" = "Play now";
 "Play opens the stream list so you pick the release yourself." = "Play opens the stream list so you pick the release yourself.";

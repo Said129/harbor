@@ -1262,6 +1262,7 @@
 "Keep same source on next episode" = "Conserver la même source pour l’épisode suivant";
 "Keep screen awake" = "Keep screen awake";
 "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "Limiter l’onglet Liste de suivi de la bibliothèque aux titres que vous avez ajoutés dans Stremio. Désactivez cette option pour inclure aussi tout ce que Stremio a ajouté automatiquement lorsque vous avez lancé la lecture.";
+"Keep the next episode visible" = "Garder l’épisode suivant visible";
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "Conservez la piste de sous-titres incluse dans la vidéo au lieu d’utiliser une piste téléchargée.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Conservez les vérifications des fichiers suspects et des versions, mais autorisez plus de résultats, dont les gros fichiers et packs de saisons.";
 "Keep watching" = "Continuer à regarder";
@@ -1283,6 +1284,7 @@
 "Laterales" = "Côtés";
 "Leave" = "Quitter";
 "Leave room" = "Quitter la salle";
+"Leave the episode you are up to clear and only blur the ones after it." = "Laisser visible l’épisode où vous en êtes et ne flouter que les suivants.";
 "Leave the show?" = "Quitter la série ?";
 "Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself." = "Laissez ce champ vide pour utiliser le serveur communautaire de Harbor, ou saisissez l’adresse d’un serveur que vous gérez vous-même.";
 "Lectura" = "Lecture";

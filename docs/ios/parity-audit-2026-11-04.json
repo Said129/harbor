@@ -16,24 +16,24 @@
     },
     "settings": {
       "total": 511,
-      "ported": 228,
-      "partial": 46,
+      "ported": 235,
+      "partial": 39,
       "missing": 3,
       "excluded": 234,
       "counted": 277,
-      "weighted_percent": 90.6,
-      "ported_only_percent": 82.3,
+      "weighted_percent": 91.9,
+      "ported_only_percent": 84.8,
       "ported_or_partial_percent": 98.9
     },
     "all": {
       "total": 949,
-      "ported": 381,
-      "partial": 275,
+      "ported": 388,
+      "partial": 268,
       "missing": 3,
       "excluded": 290,
       "counted": 659,
-      "weighted_percent": 78.7,
-      "ported_only_percent": 57.8,
+      "weighted_percent": 79.2,
+      "ported_only_percent": 58.9,
       "ported_or_partial_percent": 99.5
     }
   },
@@ -3791,8 +3791,8 @@
       "index": 71,
       "id": "playerTitleSeriesFirst",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "series first title in the player: stored, the player title does not read it yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "verdict": "D",
+      "note": "series name first in the player: the top bar shows the episode line (S1 E3 · name) and the show name, swapped by the setting; Desktop's own code and label disagree on the default order and the label was followed (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 72,
@@ -4736,8 +4736,8 @@
       "index": 206,
       "id": "deleteWatchedDownloads",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "delete watched downloads: stored, not wired to the download manager (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "verdict": "D",
+      "note": "delete watched downloads: a download that reaches 90 percent is removed when its player closes (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 207,
@@ -4884,7 +4884,7 @@
       "id": "subAssNormalizeSize",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "normalise ASS subtitle size: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "note": "normalise ASS subtitle size: applied to external local ASS files only; embedded tracks need Desktop's Tauri-only extract command and remote files are not fetched (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 228,
@@ -5072,22 +5072,22 @@
       "index": 254,
       "id": "preferEmbeddedSubs",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "prefer embedded subtitles: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "verdict": "D",
+      "note": "prefer embedded subtitles: read when mpv reports its tracks; it picks the embedded track of the preferred language and refuses late external ones (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 255,
       "id": "subtitleAutoUpgrade",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "subtitle auto upgrade: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "verdict": "D",
+      "note": "subtitle auto upgrade: a better track that arrives later replaces an automatic choice, never a manual one (8 Nov, written by Haiku, uncompiled; iOS does not load addon subtitles by itself, so only tracks mpv adds later count)"
     },
     {
       "index": 256,
       "id": "subtitlePreselect",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "preselect subtitles before playback: policy and setting exist, the picker does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "note": "preselect subtitles before playback: not wired, iOS hands the source straight to the player and the tracks only exist once mpv has loaded the file"
     },
     {
       "index": 257,
@@ -5142,8 +5142,8 @@
       "index": 264,
       "id": "trackBlockWords",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "block words for audio and subtitle tracks: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "verdict": "D",
+      "note": "block words for tracks: an audio or subtitle track that mpv picked is replaced when its title holds a blocked word, \"commentary\" by default as on Desktop (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 265,
@@ -5926,8 +5926,8 @@
       "index": 376,
       "id": "spoilerSkipNext",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "spoilers skip the next episode: stored, the episode list does not read it yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "verdict": "D",
+      "note": "keep the next episode visible: the next unwatched episode stays clear in the episode lists and in the player panel, with its own switch (8 Nov, written by Haiku and Sonnet, uncompiled)"
     },
     {
       "index": 377,
@@ -6361,21 +6361,21 @@
       "id": "animeFavoriteGenres",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "favourite anime genres: setting and policy exist, the Anime page does not apply them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "note": "favourite anime genres: each favourite adds a Jikan genre request to Top Picks (8 Nov, written by Haiku, uncompiled); Desktop's daily seeded page, history seeding and franchise merge are not ported"
     },
     {
       "index": 439,
       "id": "animeExcludeOrigins",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "excluded anime origins: setting and policy exist, picks carry no origin on iOS (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "note": "excluded anime origins: passed through the policy, but no pick carries a country on iOS"
     },
     {
       "index": 440,
       "id": "animeHideWatchedPicks",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "hide watched anime picks (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "verdict": "D",
+      "note": "hide watched anime picks: wired, close to a no-op because Top Picks already drop every library anime (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 441,
@@ -6620,7 +6620,7 @@
       "id": "simklAnimeTitleLanguage",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "Simkl anime title language: stored, applied nowhere yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "note": "Simkl anime title language: the helpers exist and are tested, no card calls them yet because iOS has one title per Simkl row"
     },
     {
       "index": 476,

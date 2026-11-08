@@ -1744,3 +1744,20 @@ report limits is applied without analysing the audio, because tiers B and C need
 a video of a minute or more, offset within a minute, ratio 0.8 to 1.25) is reported in the background. Private mode and the setting turn every
 request off. Desktop's movie hash, IMDb id, fingerprint and file hash are not sent because iOS has none of them at that point, and Desktop 0.9.132
 sends no client id either. The feedback call is left out: its trigger is a rating popover iOS does not have.
+
+## Eighteenth round: settings that had a policy and no caller (8 November, written by Haiku, uncompiled; merge fixes by Sonnet)
+
+Four Haiku branches connected settings whose toggles and pure policies already existed but that no code read. **Player title order**
+(`PlayerTitleLines`): the top bar shows the episode line (`S1 E3 · name`) and the show name; `playerTitleSeriesFirst` swaps them. Desktop's own code
+and its label disagree about the default order and the label was followed, so with the setting off the episode line now leads, which changes
+today's look. **Watched downloads** (`WatchedDownloadRemoval`): a download that reaches 90 percent is removed through the download manager when its
+player closes. **Keep the next episode visible** (`NextUpEpisode`): the next unwatched episode stays clear in the episode lists and in the player
+panel; the switch itself was missing from Settings and was added next to the other spoiler options. **Subtitle selection**
+(`SubtitleSelectionWiring`, `MPVController.applyTrackSelectionSettings`): block words replace a blocked audio or subtitle track that mpv picked
+("commentary" by default, as on Desktop), "prefer embedded" and "auto upgrade" act when mpv reports its tracks, and external local ASS files are
+resized; a manual pick is never changed. Not wired: preselecting a subtitle before playback (the player gets the source with no step before it),
+embedded and remote ASS sizing. **Anime picks**: favourite genres add a Jikan request per favourite to Top Picks, hide-watched is wired but close to
+a no-op, excluded origins cannot work because no pick carries a country, and the Simkl anime title language has helpers but no caller.
+
+The focused run of rounds 15 to 17 (run 42431841003) compiled the app and failed only on one test expression in `CommunitySyncTests` that the
+compiler could not type-check in time; it was rewritten as a loop.

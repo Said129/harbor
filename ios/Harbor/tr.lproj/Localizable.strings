@@ -1262,6 +1262,7 @@
 "Keep same source on next episode" = "Sonraki bölümde aynı kaynağı kullan";
 "Keep screen awake" = "Keep screen awake";
 "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "Kütüphanedeki İzleme Listesi sekmesini yalnızca Stremio'ya kendiniz eklediğiniz içeriklerle sınırlı tutun. Oynat düğmesine bastığınızda Stremio'nun otomatik eklediği içerikleri de dahil etmek için bunu kapatın.";
+"Keep the next episode visible" = "Sonraki bölümü görünür tut";
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "İndirilen altyazıya geçmek yerine video dosyasındaki altyazı izini kullanın.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Şüpheli dosya ve sürüm denetimlerini koruyun; ancak büyük dosyalar ve sezon paketleri dahil daha fazla sonuca izin verin.";
 "Keep watching" = "İzlemeye devam et";
@@ -1283,6 +1284,7 @@
 "Laterales" = "Kenarlar";
 "Leave" = "Ayrıl";
 "Leave room" = "Odadan ayrıl";
+"Leave the episode you are up to clear and only blur the ones after it." = "İzlemekte olduğunuz bölümü net bırakıp yalnızca sonrakileri bulanıklaştırır.";
 "Leave the show?" = "Yayından ayrılmak istiyor musunuz?";
 "Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself." = "Harbor'ın kendi topluluk sunucusunu kullanmak için burayı boş bırakın veya kendi çalıştırdığınız sunucunun adresini girin.";
 "Lectura" = "Okunuyor";

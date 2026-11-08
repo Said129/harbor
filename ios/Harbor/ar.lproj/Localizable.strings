@@ -1286,6 +1286,7 @@
 "Keep same source on next episode" = "الإبقاء على المصدر نفسه في الحلقة التالية";
 "Keep screen awake" = "Keep screen awake";
 "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "أبقِ علامة تبويب قائمة المشاهدة في المكتبة مقتصرة على العناوين التي أضفتها في Stremio. عطّل هذا لتضمين أي شيء أضافه Stremio تلقائيًا عند الضغط على تشغيل.";
+"Keep the next episode visible" = "إبقاء الحلقة التالية ظاهرة";
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "احتفظ بمسار الترجمة المضمّن في ملف الفيديو بدلًا من التبديل إلى ترجمة منزّلة.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "أبقِ فحوص الملفات المشبوهة والإصدارات، لكن اسمح بنتائج أكثر تشمل الملفات الكبيرة وحزم المواسم.";
 "Keep watching" = "متابعة المشاهدة";
@@ -1307,6 +1308,7 @@
 "Laterales" = "الجوانب";
 "Leave" = "مغادرة";
 "Leave room" = "مغادرة الغرفة";
+"Leave the episode you are up to clear and only blur the ones after it." = "اترك الحلقة التي وصلت إليها واضحة وموّه فقط ما بعدها.";
 "Leave the show?" = "مغادرة المسلسل؟";
 "Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself." = "اتركه فارغًا لاستخدام خادم مجتمع Harbor، أو أدخل عنوان خادم تشغّله بنفسك.";
 "Lectura" = "جارٍ القراءة";

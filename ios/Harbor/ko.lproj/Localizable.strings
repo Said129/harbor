@@ -1262,6 +1262,7 @@
 "Keep same source on next episode" = "다음 에피소드에서 같은 소스 유지";
 "Keep screen awake" = "Keep screen awake";
 "Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play." = "라이브러리의 관심 목록 탭을 Stremio에서 직접 추가한 작품으로만 제한합니다. 이 옵션을 끄면 재생할 때 Stremio가 자동으로 추가한 항목도 포함됩니다.";
+"Keep the next episode visible" = "다음 에피소드 표시 유지";
 "Keep the subtitle track included in the video file instead of switching to a downloaded one." = "다운로드한 자막으로 전환하지 않고 동영상 파일에 포함된 자막 트랙을 유지합니다.";
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "의심스러운 파일 및 릴리스 검사는 유지하면서 대용량 파일과 시즌 묶음을 포함한 더 많은 결과를 허용합니다.";
 "Keep watching" = "이어서 시청";
@@ -1283,6 +1284,7 @@
 "Laterales" = "양면";
 "Leave" = "나가기";
 "Leave room" = "방 나가기";
+"Leave the episode you are up to clear and only blur the ones after it." = "현재 시청 중인 에피소드는 선명하게 유지하고 이후 에피소드만 흐리게 표시합니다.";
 "Leave the show?" = "프로그램에서 나갈까요?";
 "Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself." = "Harbor 자체 커뮤니티 서버를 사용하려면 비워 두고, 직접 운영하는 서버를 사용하려면 주소를 입력하세요.";
 "Lectura" = "읽는 중";

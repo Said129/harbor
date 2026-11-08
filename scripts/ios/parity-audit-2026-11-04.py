@@ -747,6 +747,18 @@ SETTINGS = expand("""
 250 D use community corrections: a tier A answer from the shared database is applied without analysing the audio (8 Nov, written by Haiku, uncompiled)
 251 D community sync server: blank uses Harbor's server, any http or https address replaces it (8 Nov, written by Haiku, uncompiled)
 252 D private mode: no lookup and no report while it is on (8 Nov, written by Haiku, uncompiled)
+71 D series name first in the player: the top bar shows the episode line (S1 E3 · name) and the show name, swapped by the setting; Desktop's own code and label disagree on the default order and the label was followed (8 Nov, written by Haiku, uncompiled)
+206 D delete watched downloads: a download that reaches 90 percent is removed when its player closes (8 Nov, written by Haiku, uncompiled)
+376 D keep the next episode visible: the next unwatched episode stays clear in the episode lists and in the player panel, with its own switch (8 Nov, written by Haiku and Sonnet, uncompiled)
+254 D prefer embedded subtitles: read when mpv reports its tracks; it picks the embedded track of the preferred language and refuses late external ones (8 Nov, written by Haiku, uncompiled)
+255 D subtitle auto upgrade: a better track that arrives later replaces an automatic choice, never a manual one (8 Nov, written by Haiku, uncompiled; iOS does not load addon subtitles by itself, so only tracks mpv adds later count)
+264 D block words for tracks: an audio or subtitle track that mpv picked is replaced when its title holds a blocked word, "commentary" by default as on Desktop (8 Nov, written by Haiku, uncompiled)
+227 P normalise ASS subtitle size: applied to external local ASS files only; embedded tracks need Desktop's Tauri-only extract command and remote files are not fetched (8 Nov, written by Haiku, uncompiled)
+256 P preselect subtitles before playback: not wired, iOS hands the source straight to the player and the tracks only exist once mpv has loaded the file
+438 P favourite anime genres: each favourite adds a Jikan genre request to Top Picks (8 Nov, written by Haiku, uncompiled); Desktop's daily seeded page, history seeding and franchise merge are not ported
+440 D hide watched anime picks: wired, close to a no-op because Top Picks already drop every library anime (8 Nov, written by Haiku, uncompiled)
+439 P excluded anime origins: passed through the policy, but no pick carries a country on iOS
+475 P Simkl anime title language: the helpers exist and are tested, no card calls them yet because iOS has one title per Simkl row
 156 D guests pick their own source: the invite carries the flag and the guest's card then reads Choose instead of Join, leaving the source to the guest (8 Nov, uncompiled)
 435 X own navigation layout kept while a theme brings one: iOS themes import colors and backgrounds only and carry no navigation layout, so there is nothing to put aside
 496 X manga enabled: Desktop's opt-in start page for manga sources; iOS opens the manga section directly and reaches its sources and imports from inside it
