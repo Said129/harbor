@@ -488,6 +488,7 @@
 "Chinese" = "चीनी";
 "Chinese (Simplified)" = "चीनी (सरलीकृत)";
 "Chips" = "चिप्स";
+"Choose" = "चुनें";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "नाम चुनें, फिर पसंदीदा रिज़ॉल्यूशन, स्रोत, कोडेक और ऑडियो चुनें।";
 "Choose an avatar" = "कोई अवतार चुनें";
 "Choose image" = "इमेज चुनें";
@@ -1763,6 +1764,7 @@
 "Pick what you actually use" = "वही चुनें जिसका आप सच में इस्तेमाल करते हैं";
 "Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "अपनी भाषा चुनें";
+"Pick your source" = "अपना स्रोत चुनें";
 "Pick your subtitle languages" = "अपनी सबटाइटल भाषाएँ चुनें";
 "Picker" = "पिकर";
 "Picker details" = "स्रोत चयन के विवरण";
@@ -2413,6 +2415,7 @@
 "Superficie" = "सतह";
 "Superficies" = "सरफ़ेस";
 "Supernatural" = "अलौकिक";
+"Sure" = "ज़रूर";
 "Surface" = "सतह";
 "Surfaces" = "सरफ़ेस";
 "Surprise me" = "मुझे चौंकाएँ";
@@ -2842,8 +2845,10 @@
 "Your watchlist is empty, nothing to send." = "आपकी वॉचलिस्ट खाली है, भेजने के लिए कुछ नहीं है।";
 "Yours" = "आपका";
 "Zoom" = "ज़ूम";
+"a title" = "एक शीर्षक";
 "active" = "सक्रिय";
 "added" = "जोड़ा गया";
+"an addon" = "एक ऐडऑन";
 "anime" = "ऐनिमे";
 "auto" = "ऑटो";
 "cam rips" = "कैम रिप्स";
@@ -4031,6 +4036,8 @@
 "{name} (TV)" = "{name} (TV)";
 "{name} + {n} more" = "{name} + {n} और";
 "{name} + {n} más" = "{name} + {n} और";
+"{name} started watching" = "{name} ने देखना शुरू किया";
+"{name} wants you here" = "आपको {name} ने यहाँ बुलाया है";
 "{n} / {max} items" = "{n} / {max} आइटम";
 "{n} / {max} lists" = "{n} / {max} सूचियाँ";
 "{n} addon loading" = "{n} ऐडऑन लोड हो रहा है";

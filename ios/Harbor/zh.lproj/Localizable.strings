@@ -488,6 +488,7 @@
 "Chinese" = "中文";
 "Chinese (Simplified)" = "简体中文";
 "Chips" = "标签";
+"Choose" = "选择";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "先取一个名字，再选择偏好的分辨率、来源、编解码器和音频。";
 "Choose an avatar" = "选择头像";
 "Choose image" = "选择图片";
@@ -1763,6 +1764,7 @@
 "Pick what you actually use" = "选择你实际使用的服务";
 "Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "选择你的语言";
+"Pick your source" = "选择来源";
 "Pick your subtitle languages" = "选择字幕语言";
 "Picker" = "选择器";
 "Picker details" = "选择器详情";
@@ -2413,6 +2415,7 @@
 "Superficie" = "表面";
 "Superficies" = "界面层";
 "Supernatural" = "超自然";
+"Sure" = "好的";
 "Surface" = "表面";
 "Surfaces" = "界面层";
 "Surprise me" = "给我个惊喜";
@@ -2842,8 +2845,10 @@
 "Your watchlist is empty, nothing to send." = "你的片单为空，没有可发送的内容。";
 "Yours" = "你的";
 "Zoom" = "缩放";
+"a title" = "一个条目";
 "active" = "已启用";
 "added" = "已添加";
+"an addon" = "一个插件";
 "anime" = "动漫";
 "auto" = "自动";
 "cam rips" = "枪版";
@@ -4031,6 +4036,8 @@
 "{name} (TV)" = "{name}（电视剧）";
 "{name} + {n} more" = "{name} + 另 {n} 个";
 "{name} + {n} más" = "{name} + 另 {n} 个";
+"{name} started watching" = "{name} 开始观看";
+"{name} wants you here" = "{name} 邀请你来这里";
 "{n} / {max} items" = "{n} / {max} 项";
 "{n} / {max} lists" = "{n} / {max} 个列表";
 "{n} addon loading" = "{n} 个插件正在加载";

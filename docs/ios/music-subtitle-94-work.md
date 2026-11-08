@@ -1709,3 +1709,15 @@ and never mounted), `localReviewDismissedCount` (it dismisses a review banner fo
 The audit also shows 276 partial rows, 137 of them only because an earlier review recorded them as Partial. Whole areas (Manga, Sports, Home
 customization, VOD details, Spooktober, Music, Subtitle FPS) have no row marked ported, so the weighted percentage says more about how those
 rows were classified than about missing code.
+
+## Watch Together invite and summon cards (8 November, written by Sonnet, uncompiled)
+
+The room session already stored an incoming invite and summon and had `sendInvite` and `summon`, but no screen showed the first two and nothing
+sent an invite. `TogetherToastDriver` (a modifier on the shell, like `SimklPendingRecovery`) now shows Desktop's two cards at the top: the
+invite card reads "{name} started watching" with Join, or "Pick your source" with Choose when the host lets guests pick, and opens the title
+page; the summon card reads "{name} wants you here" with Sure and opens Home, Discover, Anime, My Library, the addons screen or a title.
+On the host side `DetailModel.findStreams` calls `announceToRoom`: opening a title's sources while joined to a room with no other host claims
+host and sends the play invite once per title and episode (Desktop's `use-room-invite.ts`), anime going out as a series because Desktop only
+knows movies and series. `TogetherInviteRules` and `TogetherToastRules` hold the rules and have nine cases. Not ported: the four-second
+automatic join of the invite card (a phone has no pointer to hold it back and the title page would open behind a running player), the
+automatic start of the host's source, and the host-side summon actions that Desktop keeps in its context menu.

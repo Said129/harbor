@@ -415,6 +415,7 @@
 "Checks the username against Stremboxd and turns on the catalogs it finds." = "Checks the username against Stremboxd and turns on the catalogs it finds.";
 "China" = "China";
 "Chips" = "Chips";
+"Choose" = "Choose";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Choose a name, then select the resolutions, sources, codecs and audio you prefer.";
 "Choose an avatar" = "Choose an avatar";
 "Choose image" = "Choose image";
@@ -1541,6 +1542,7 @@
 "Pick up where you left off" = "Pick up where you left off";
 "Pick what you actually use" = "Pick what you actually use";
 "Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
+"Pick your source" = "Pick your source";
 "Picker" = "Picker";
 "Picker details" = "Picker details";
 "Picker layout" = "Picker layout";
@@ -2127,6 +2129,7 @@
 "Subtítulos en tu idioma" = "Captions in your language";
 "Superficie" = "Surface";
 "Superficies" = "Surfaces";
+"Sure" = "Sure";
 "Surface" = "Surface";
 "Surfaces" = "Surfaces";
 "Surprise me" = "Surprise me";
@@ -2505,8 +2508,10 @@
 "Your watchlist is empty" = "Your watchlist is empty";
 "Your watchlist is empty, nothing to send." = "Your watchlist is empty, nothing to send.";
 "Zoom" = "Zoom";
+"a title" = "a title";
 "active" = "active";
 "added" = "added";
+"an addon" = "an addon";
 "cam rips" = "cam rips";
 "code" = "code";
 "commentary, descriptive" = "commentary, descriptive";
@@ -3656,6 +3661,8 @@
 "{name} (TV)" = "{name} (TV)";
 "{name} + {n} more" = "{name} + {n} more";
 "{name} + {n} más" = "{name} + {n} more";
+"{name} started watching" = "{name} started watching";
+"{name} wants you here" = "{name} wants you here";
 "{n} / {max} items" = "{n} / {max} items";
 "{n} / {max} lists" = "{n} / {max} lists";
 "{n} addon loading" = "{n} addon loading";

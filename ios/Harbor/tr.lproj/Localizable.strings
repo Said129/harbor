@@ -488,6 +488,7 @@
 "Chinese" = "Çince";
 "Chinese (Simplified)" = "Basitleştirilmiş Çince";
 "Chips" = "Etiketler";
+"Choose" = "Seç";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Bir ad seçin, ardından tercih ettiğiniz çözünürlükleri, kaynakları, kodekleri ve sesi seçin.";
 "Choose an avatar" = "Bir avatar seçin";
 "Choose image" = "Görsel seç";
@@ -1763,6 +1764,7 @@
 "Pick what you actually use" = "Kullandığınız hizmetleri seçin";
 "Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "Dilinizi seçin";
+"Pick your source" = "Kaynağınızı seçin";
 "Pick your subtitle languages" = "Altyazı dillerinizi seçin";
 "Picker" = "Seçici";
 "Picker details" = "Seçici ayrıntıları";
@@ -2413,6 +2415,7 @@
 "Superficie" = "Yüzey";
 "Superficies" = "Yüzeyler";
 "Supernatural" = "Doğaüstü";
+"Sure" = "Olur";
 "Surface" = "Yüzey";
 "Surfaces" = "Yüzeyler";
 "Surprise me" = "Beni şaşırt";
@@ -2842,8 +2845,10 @@
 "Your watchlist is empty, nothing to send." = "İzleme listeniz boş, gönderilecek bir şey yok.";
 "Yours" = "Size ait";
 "Zoom" = "Yakınlaştırma";
+"a title" = "bir yapım";
 "active" = "aktif";
 "added" = "eklendi";
+"an addon" = "bir eklenti";
 "anime" = "anime";
 "auto" = "otomatik";
 "cam rips" = "kamera çekimleri";
@@ -4031,6 +4036,8 @@
 "{name} (TV)" = "{name} (TV)";
 "{name} + {n} more" = "{name} + {n} tane daha";
 "{name} + {n} más" = "{name} + {n} tane daha";
+"{name} started watching" = "{name} izlemeye başladı";
+"{name} wants you here" = "{name} sizi burada görmek istiyor";
 "{n} / {max} items" = "{n} / {max} öğe";
 "{n} / {max} lists" = "{n} / {max} liste";
 "{n} addon loading" = "{n} eklenti yükleniyor";

@@ -488,6 +488,7 @@
 "Chinese" = "Tiếng Trung";
 "Chinese (Simplified)" = "Tiếng Trung (Giản thể)";
 "Chips" = "Thẻ chọn";
+"Choose" = "Chọn";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Chọn tên, rồi chọn độ phân giải, nguồn, codec và âm thanh bạn muốn.";
 "Choose an avatar" = "Chọn ảnh đại diện";
 "Choose image" = "Chọn hình ảnh";
@@ -1763,6 +1764,7 @@
 "Pick what you actually use" = "Chọn các dịch vụ bạn thực sự dùng";
 "Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "Chọn ngôn ngữ";
+"Pick your source" = "Chọn nguồn";
 "Pick your subtitle languages" = "Chọn ngôn ngữ phụ đề";
 "Picker" = "Trình chọn";
 "Picker details" = "Chi tiết trình chọn";
@@ -2413,6 +2415,7 @@
 "Superficie" = "Bề mặt";
 "Superficies" = "Bề mặt";
 "Supernatural" = "Siêu nhiên";
+"Sure" = "Đồng ý";
 "Surface" = "Bề mặt";
 "Surfaces" = "Bề mặt";
 "Surprise me" = "Chọn bất ngờ";
@@ -2842,8 +2845,10 @@
 "Your watchlist is empty, nothing to send." = "Danh sách xem của bạn đang trống, không có gì để gửi.";
 "Yours" = "Của bạn";
 "Zoom" = "Thu phóng";
+"a title" = "một tựa phim";
 "active" = "đang hoạt động";
 "added" = "đã thêm";
+"an addon" = "một tiện ích bổ sung";
 "anime" = "anime";
 "auto" = "tự động";
 "cam rips" = "bản quay lén";
@@ -4031,6 +4036,8 @@
 "{name} (TV)" = "{name} (TV)";
 "{name} + {n} more" = "{name} + thêm {n}";
 "{name} + {n} más" = "{name} + thêm {n}";
+"{name} started watching" = "{name} đã bắt đầu xem";
+"{name} wants you here" = "{name} muốn bạn đến đây";
 "{n} / {max} items" = "{n} / {max} mục";
 "{n} / {max} lists" = "{n} / {max} danh sách";
 "{n} addon loading" = "Đang tải {n} tiện ích bổ sung";

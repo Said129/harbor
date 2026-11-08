@@ -488,6 +488,7 @@
 "Chinese" = "Bahasa Tionghoa";
 "Chinese (Simplified)" = "Bahasa Tionghoa (Sederhana)";
 "Chips" = "Chip";
+"Choose" = "Pilih";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Pilih nama, lalu tentukan resolusi, sumber, codec, dan audio yang Anda sukai.";
 "Choose an avatar" = "Pilih avatar";
 "Choose image" = "Pilih gambar";
@@ -1763,6 +1764,7 @@
 "Pick what you actually use" = "Pilih yang benar-benar Anda gunakan";
 "Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "Pilih bahasa Anda";
+"Pick your source" = "Pilih sumber Anda";
 "Pick your subtitle languages" = "Pilih bahasa subtitle Anda";
 "Picker" = "Pemilih";
 "Picker details" = "Detail pemilih";
@@ -2413,6 +2415,7 @@
 "Superficie" = "Permukaan";
 "Superficies" = "Permukaan";
 "Supernatural" = "Supranatural";
+"Sure" = "Tentu";
 "Surface" = "Permukaan";
 "Surfaces" = "Permukaan";
 "Surprise me" = "Beri saya kejutan";
@@ -2842,8 +2845,10 @@
 "Your watchlist is empty, nothing to send." = "Daftar tontonan Anda kosong, tidak ada yang dapat dikirim.";
 "Yours" = "Milik Anda";
 "Zoom" = "Perbesar";
+"a title" = "sebuah judul";
 "active" = "aktif";
 "added" = "ditambahkan";
+"an addon" = "sebuah addon";
 "anime" = "anime";
 "auto" = "otomatis";
 "cam rips" = "rekaman kamera";
@@ -4031,6 +4036,8 @@
 "{name} (TV)" = "{name} (TV)";
 "{name} + {n} more" = "{name} + {n} lainnya";
 "{name} + {n} más" = "{name} + {n} lainnya";
+"{name} started watching" = "{name} mulai menonton";
+"{name} wants you here" = "{name} ingin Anda berada di sini";
 "{n} / {max} items" = "{n} / {max} item";
 "{n} / {max} lists" = "{n} / {max} daftar";
 "{n} addon loading" = "{n} addon sedang dimuat";

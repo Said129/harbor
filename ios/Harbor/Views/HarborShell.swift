@@ -125,6 +125,7 @@ struct HarborShell: View {
             }
         }.safeAreaInset(edge: .bottom, spacing: 0) { MusicMiniPlayer() }
             .modifier(SimklPendingRecovery(app: app))
+            .modifier(TogetherToastDriver(select: { select($0) }, open: { path.append($0) }))
             .environment(\.locale, Locale(identifier: InterfaceLanguage.resolve(uiLanguage)))
             .environment(\.layoutDirection, InterfaceLanguage.resolve(uiLanguage) == "ar" ? .rightToLeft : .leftToRight)
             .onChange(of: uiLanguage) { _, _ in navigationID = UUID() }

@@ -498,6 +498,22 @@ final class DetailModel {
         }
     }
 
+    /// The play invite already sent from this model, one per title and episode (Desktop's `inviteSentRef`).
+    private var roomInviteKey: String?
+
+    /// Desktop's `use-room-invite.ts`: opening a title's sources while joined to a room with no other host makes this device the
+    /// host and tells the room, so the guests get a card that opens the same title.
+    private func announceToRoom(episode: Episode?) {
+        let session = TogetherSession.shared
+        let key = TogetherInviteRules.key(mediaId: media.id, season: episode?.season, episode: episode?.episode)
+        let foreignHost = session.snapshot.hostClientId != nil && !session.isHost
+        guard TogetherInviteRules.shouldInvite(joined: session.snapshot.state == .joined, invitedToKey: session.lastInvite?.key == key,
+                                               foreignHost: foreignHost, alreadySent: roomInviteKey == key) else { return }
+        roomInviteKey = key
+        session.claimHost(fresh: true)
+        session.sendInvite(TogetherInviteRules.invite(media: media, episode: episode))
+    }
+
     func findStreams(_ addons: [Addon], episode: Episode? = nil, selection: MediaPlaybackSelection? = nil, autoplay: StreamAutoplay? = nil) async {
         let request = UUID(), context = contextRevision()
         streamRequest = request
@@ -517,6 +533,7 @@ final class DetailModel {
         playback = nil
         let episode = selection == nil ? episode : selection?.episode
         selectedEpisode = episode
+        announceToRoom(episode: episode)
         // Desktop resets Search wider and Show all for another title, episode or safety level.
         let filterKey = [selection?.key ?? episode?.routingKey ?? media.identity, StreamPreferences.shared.filterLevel].joined(separator: "|")
         if filterKey != pickerFilterKey { pickerFilter = StreamSafetyOverride(); pickerFilterKey = filterKey }

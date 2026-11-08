@@ -488,6 +488,7 @@
 "Chinese" = "중국어";
 "Chinese (Simplified)" = "중국어(간체)";
 "Chips" = "칩";
+"Choose" = "선택";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "이름을 지정한 다음 선호하는 해상도, 소스, 코덱, 오디오를 선택하세요.";
 "Choose an avatar" = "아바타 선택";
 "Choose image" = "이미지 선택";
@@ -1763,6 +1764,7 @@
 "Pick what you actually use" = "실제로 이용하는 서비스 선택";
 "Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "언어 선택";
+"Pick your source" = "소스 선택";
 "Pick your subtitle languages" = "자막 언어 선택";
 "Picker" = "선택기";
 "Picker details" = "소스 선택 세부 정보";
@@ -2413,6 +2415,7 @@
 "Superficie" = "표면";
 "Superficies" = "표면";
 "Supernatural" = "초자연";
+"Sure" = "좋아요";
 "Surface" = "표면";
 "Surfaces" = "표면";
 "Surprise me" = "무작위 추천";
@@ -2842,8 +2845,10 @@
 "Your watchlist is empty, nothing to send." = "관심 목록이 비어 있어 보낼 항목이 없습니다.";
 "Yours" = "내 것";
 "Zoom" = "확대/축소";
+"a title" = "작품";
 "active" = "활성";
 "added" = "추가됨";
+"an addon" = "애드온";
 "anime" = "애니메이션";
 "auto" = "자동";
 "cam rips" = "캠 촬영본";
@@ -4031,6 +4036,8 @@
 "{name} (TV)" = "{name} (TV)";
 "{name} + {n} more" = "{name} 외 {n}개";
 "{name} + {n} más" = "{name} 외 {n}개";
+"{name} started watching" = "{name} 님이 시청을 시작했습니다";
+"{name} wants you here" = "{name}님이 회원님을 여기로 초대했습니다";
 "{n} / {max} items" = "항목 {n} / {max}개";
 "{n} / {max} lists" = "목록 {n} / {max}개";
 "{n} addon loading" = "애드온 {n}개 로드 중";

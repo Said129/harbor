@@ -491,6 +491,7 @@
 "Chinese" = "Китайский";
 "Chinese (Simplified)" = "Китайский (упрощённый)";
 "Chips" = "Чипы";
+"Choose" = "Выбрать";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Задайте имя, затем выберите предпочтительные разрешения, источники, кодеки и звук.";
 "Choose an avatar" = "Выберите аватар";
 "Choose image" = "Выбрать изображение";
@@ -1773,6 +1774,7 @@
 "Pick what you actually use" = "Отметьте то, чем реально пользуетесь";
 "Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "Выберите язык";
+"Pick your source" = "Выберите источник";
 "Pick your subtitle languages" = "Выберите языки субтитров";
 "Picker" = "Выбор потока";
 "Picker details" = "Детали выбора источника";
@@ -2426,6 +2428,7 @@
 "Superficie" = "Поверхность";
 "Superficies" = "Поверхности";
 "Supernatural" = "Мистика";
+"Sure" = "Хорошо";
 "Surface" = "Поверхность";
 "Surfaces" = "Поверхности";
 "Surprise me" = "Удивите меня";
@@ -2856,8 +2859,10 @@
 "Your watchlist is empty, nothing to send." = "Ваш список к просмотру пуст, отправлять нечего.";
 "Yours" = "У вас";
 "Zoom" = "Масштаб";
+"a title" = "название";
 "active" = "активных";
 "added" = "добавлено";
+"an addon" = "дополнение";
 "anime" = "аниме";
 "auto" = "авто";
 "cam rips" = "экранные копии";
@@ -4045,6 +4050,8 @@
 "{name} (TV)" = "{name} (ТВ)";
 "{name} + {n} more" = "{name} и ещё {n}";
 "{name} + {n} más" = "{name} и ещё {n}";
+"{name} started watching" = "{name} начинает смотреть";
+"{name} wants you here" = "{name} приглашает вас сюда";
 "{n} / {max} items" = "{n} / {max} элементов";
 "{n} / {max} lists" = "{n} / {max} списков";
 "{n} addon loading" = "Загружается дополнение: {n}";

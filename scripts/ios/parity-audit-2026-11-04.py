@@ -324,6 +324,7 @@ BEHAVIORS = expand("""
 190 X local episode chooser: the iOS local library list already shows every season and episode file and plays one on a tap
 209 X trickplay seeking previews: Desktop's sprites come from video media servers, which iOS does not have (Plex and Jellyfin are music only)
 210 X shadow mpv thumbnail session: a second decoder opened on the same stream would double the bandwidth and memory of a phone for a debrid or torrent source
+256 P host summon and invite: guests get the invite card (Join or Choose) and the summon card, and the host's invite goes out when its sources open (8 Nov, uncompiled); Desktop's host-side summon actions live in its context menu and have no iOS screen yet
 """)
 
 SETTINGS = expand("""
@@ -735,6 +736,7 @@ SETTINGS = expand("""
 386 X custom app icon preset: same reason, the presets would have to ship as alternate icons in the build
 388 X music seek thumb: the iOS dock uses the system slider, which always draws its own thumb; Desktop's hover thumb needs a pointer
 172 X seek preview setting: the previews are excluded (a second decoder on the stream), so nothing would read it
+156 D guests pick their own source: the invite carries the flag and the guest's card then reads Choose instead of Join, leaving the source to the guest (8 Nov, uncompiled)
 510 X X-Ray live scan: Desktop matches faces on the frame against the cast photos with its own recognition model (useFaceId); iOS Vision only detects faces and no model ships
 248 X subtitle auto-sync speech recognition: Desktop runs a downloaded model through Rust commands (asr_ensure_model, asr_transcribe_windows) that iOS does not have
 """)

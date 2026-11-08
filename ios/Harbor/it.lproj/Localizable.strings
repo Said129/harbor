@@ -488,6 +488,7 @@
 "Chinese" = "Cinese";
 "Chinese (Simplified)" = "Cinese (semplificato)";
 "Chips" = "Chip";
+"Choose" = "Scegli";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Scegli un nome, poi seleziona risoluzioni, fonti, codec e audio che preferisci.";
 "Choose an avatar" = "Scegli un avatar";
 "Choose image" = "Scegli immagine";
@@ -1763,6 +1764,7 @@
 "Pick what you actually use" = "Scegli ciò che usi davvero";
 "Pick which corner of the poster the bookmark sits in." = "Pick which corner of the poster the bookmark sits in.";
 "Pick your language" = "Scegli la lingua";
+"Pick your source" = "Scegli la fonte";
 "Pick your subtitle languages" = "Scegli le lingue dei sottotitoli";
 "Picker" = "Selettore";
 "Picker details" = "Dettagli del selettore";
@@ -2413,6 +2415,7 @@
 "Superficie" = "Superficie";
 "Superficies" = "Superfici";
 "Supernatural" = "Soprannaturale";
+"Sure" = "Certo";
 "Surface" = "Superficie";
 "Surfaces" = "Superfici";
 "Surprise me" = "Sorprendimi";
@@ -2842,8 +2845,10 @@
 "Your watchlist is empty, nothing to send." = "La tua Lista è vuota, non c'è nulla da inviare.";
 "Yours" = "I tuoi";
 "Zoom" = "Zoom";
+"a title" = "un titolo";
 "active" = "attivo";
 "added" = "aggiunto";
+"an addon" = "un Add-on";
 "anime" = "anime";
 "auto" = "automatico";
 "cam rips" = "copie riprese in sala";
@@ -4031,6 +4036,8 @@
 "{name} (TV)" = "{name} (TV)";
 "{name} + {n} more" = "{name} + altri {n}";
 "{name} + {n} más" = "{name} + altri {n}";
+"{name} started watching" = "{name} ha iniziato a guardare";
+"{name} wants you here" = "{name} ti invita qui";
 "{n} / {max} items" = "{n} / {max} elementi";
 "{n} / {max} lists" = "{n} / {max} liste";
 "{n} addon loading" = "{n} Add-on in caricamento";

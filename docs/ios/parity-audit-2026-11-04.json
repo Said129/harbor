@@ -7,34 +7,34 @@
       "total": 438,
       "ported": 152,
       "partial": 229,
-      "missing": 5,
-      "excluded": 52,
-      "counted": 386,
-      "weighted_percent": 69.0,
-      "ported_only_percent": 39.4,
-      "ported_or_partial_percent": 98.7
+      "missing": 3,
+      "excluded": 54,
+      "counted": 384,
+      "weighted_percent": 69.4,
+      "ported_only_percent": 39.6,
+      "ported_or_partial_percent": 99.2
     },
     "settings": {
       "total": 511,
-      "ported": 219,
-      "partial": 47,
-      "missing": 19,
-      "excluded": 226,
-      "counted": 285,
-      "weighted_percent": 85.1,
-      "ported_only_percent": 76.8,
-      "ported_or_partial_percent": 93.3
+      "ported": 220,
+      "partial": 46,
+      "missing": 13,
+      "excluded": 232,
+      "counted": 279,
+      "weighted_percent": 87.1,
+      "ported_only_percent": 78.9,
+      "ported_or_partial_percent": 95.3
     },
     "all": {
       "total": 949,
-      "ported": 371,
-      "partial": 276,
-      "missing": 24,
-      "excluded": 278,
-      "counted": 671,
-      "weighted_percent": 75.9,
-      "ported_only_percent": 55.3,
-      "ported_or_partial_percent": 96.4
+      "ported": 372,
+      "partial": 275,
+      "missing": 16,
+      "excluded": 286,
+      "counted": 663,
+      "weighted_percent": 76.8,
+      "ported_only_percent": 56.1,
+      "ported_or_partial_percent": 97.6
     }
   },
   "behavior_areas": [
@@ -106,9 +106,9 @@
       "range": "B154-B216",
       "ported": 29,
       "partial": 20,
-      "missing": 3,
-      "excluded": 11,
-      "weighted_percent": 75.0
+      "missing": 1,
+      "excluded": 13,
+      "weighted_percent": 78.0
     },
     {
       "area": "Live TV, VOD, DVR and multiview",
@@ -1689,15 +1689,15 @@
       "index": 209,
       "id": "Trickplay seeking previews",
       "desktop_source": "src-tauri/src/thumbs.rs",
-      "verdict": "M",
-      "note": "no trickplay previews"
+      "verdict": "X",
+      "note": "trickplay seeking previews: Desktop's sprites come from video media servers, which iOS does not have (Plex and Jellyfin are music only)"
     },
     {
       "index": 210,
       "id": "Shadow mpv thumbnail session",
       "desktop_source": "src-tauri/src/thumbs.rs",
-      "verdict": "M",
-      "note": "no trickplay previews"
+      "verdict": "X",
+      "note": "shadow mpv thumbnail session: a second decoder opened on the same stream would double the bandwidth and memory of a phone for a debrid or torrent source"
     },
     {
       "index": 211,
@@ -2019,7 +2019,7 @@
       "id": "Host summon / invite",
       "desktop_source": "src/lib/together",
       "verdict": "P",
-      "note": "host summon and invite: the session stores them, no screen shows them yet (7 Nov, written by Haiku, CI runs 43 and 44 green)"
+      "note": "host summon and invite: guests get the invite card (Join or Choose) and the summon card, and the host's invite goes out when its sources open (8 Nov, uncompiled); Desktop's host-side summon actions live in its context menu and have no iOS screen yet"
     },
     {
       "index": 257,
@@ -4386,8 +4386,8 @@
       "index": 156,
       "id": "togetherGuestsPick",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "guests pick their own source: stored and read by the follower, no screen applies it yet (7 Nov, written by Haiku, CI runs 43 and 44 green)"
+      "verdict": "D",
+      "note": "guests pick their own source: the invite carries the flag and the guest's card then reads Choose instead of Join, leaving the source to the guest (8 Nov, uncompiled)"
     },
     {
       "index": 157,
@@ -4498,8 +4498,8 @@
       "index": 172,
       "id": "seekPreviewEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "seek preview"
+      "verdict": "X",
+      "note": "seek preview setting: the previews are excluded (a second decoder on the stream), so nothing would read it"
     },
     {
       "index": 173,
@@ -5030,8 +5030,8 @@
       "index": 248,
       "id": "subtitleAutoSyncAsr",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advanced auto-sync options"
+      "verdict": "X",
+      "note": "subtitle auto-sync speech recognition: Desktop runs a downloaded model through Rust commands (asr_ensure_model, asr_transcribe_windows) that iOS does not have"
     },
     {
       "index": 249,
@@ -5989,15 +5989,15 @@
       "index": 385,
       "id": "customAppIcon",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "custom logos, app icons, music seek thumbs"
+      "verdict": "X",
+      "note": "custom app icon: iOS only accepts alternate icons built into the app, never an image chosen at run time"
     },
     {
       "index": 386,
       "id": "customAppIconPreset",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "custom logos, app icons, music seek thumbs"
+      "verdict": "X",
+      "note": "custom app icon preset: same reason, the presets would have to ship as alternate icons in the build"
     },
     {
       "index": 387,
@@ -6010,8 +6010,8 @@
       "index": 388,
       "id": "musicSeekThumb",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "custom logos, app icons, music seek thumbs"
+      "verdict": "X",
+      "note": "music seek thumb: the iOS dock uses the system slider, which always draws its own thumb; Desktop's hover thumb needs a pointer"
     },
     {
       "index": 389,
@@ -6864,8 +6864,8 @@
       "index": 510,
       "id": "xrayLiveScan",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "X-Ray live scan: Desktop matches faces on the frame against the cast photos with its own recognition model (useFaceId); iOS Vision only detects faces and no model ships"
     },
     {
       "index": 511,
