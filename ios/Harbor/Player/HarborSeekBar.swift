@@ -1,10 +1,20 @@
 import SwiftUI
 
+/// Desktop's buffered fill (`seek-bar-visual.tsx`, `bufferedPct`): the cache end as a share of the duration, clamped to 0...1.
+enum PlaybackCacheFill {
+    static func fraction(cacheEnd: Double?, duration: Double) -> Double {
+        guard let cacheEnd = cacheEnd, cacheEnd.isFinite, duration.isFinite, duration > 0 else { return 0 }
+        return min(1, max(0, cacheEnd / duration))
+    }
+}
+
 /// Harbor's original six-point track, with a full touch target and native
 /// accessibility adjustment. Only releasing a scrub sends a seek to mpv.
 struct HarborSeekBar: View {
     let position: Double
     let duration: Double
+    /// Where the read-ahead cache ends on the timeline (`PlayerState.cacheEnd`), drawn as Desktop's buffered fill.
+    var cacheEnd: Double? = nil
     var enabled = true
     var previewOnly = false
     var editing: (Bool) -> Void = { _ in }
@@ -19,8 +29,12 @@ struct HarborSeekBar: View {
         GeometryReader { bounds in
             let width = max(0, bounds.size.width)
             let x = width * fraction
+            let cached = PlaybackCacheFill.fraction(cacheEnd: cacheEnd, duration: duration)
             ZStack(alignment: .leading) {
                 Capsule().fill(.white.opacity(0.15)).frame(height: dragging ? 10 : 6)
+                if cached > 0 {
+                    Capsule().fill(.white.opacity(0.35)).frame(width: width * cached, height: dragging ? 10 : 6)
+                }
                 Capsule().fill(ThemePreferences.shared.seekColor).frame(width: x, height: dragging ? 10 : 6)
                 if dragging || previewOnly {
                     Circle().fill(ThemePreferences.shared.seekColor).frame(width: dragging ? 22 : 16, height: dragging ? 22 : 16)

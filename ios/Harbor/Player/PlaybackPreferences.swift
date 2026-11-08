@@ -206,7 +206,8 @@ struct PlaybackOptions: Codable, Equatable {
             ("secondary-sub-pos", secondarySubtitlePlacement == "top" ? "0" : String(max(0, min(100, subtitlePosition - 8)))),
             ("sub-font-size", String(subtitleSize)), ("sub-pos", String(subtitlePosition)),
             ("sub-font", subtitleFamily), ("sub-spacing", String(subtitleSpacing)),
-            ("sub-filter-sdh", hideSDH ? "yes" : "no"), ("sub-filter-sdh-harder", "no"),
+            // Set per selected track by MPVController.applySubtitleSDHFilter, so the Desktop gate applies from the first track.
+            ("sub-filter-sdh", "no"), ("sub-filter-sdh-harder", "no"),
             ("sub-bold", subtitleBold ? "yes" : "no"), ("sub-ass-override", subtitleASS),
             ("sub-align-x", subtitleAlignment), ("sub-color", Self.alphaColor(subtitleColor, opacity: subtitleOpacity)),
             ("sub-border-color", Self.alphaColor(borderColor, opacity: subtitleOpacity)), ("sub-border-size", subtitleStyle == "outline" ? String(borderSize) : "0"),

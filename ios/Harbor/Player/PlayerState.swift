@@ -92,3 +92,40 @@ final class PlayerState {
         let time: Double
     }
 }
+
+/// Desktop's hide-SDH gate: `sdhFilterAllowed` in `use-player-media.ts` with `sdhSafeForLanguage` from `lib/subtitles/sdh-filter.ts`.
+enum SubtitleSDHGate {
+    /// Desktop's `NON_LATIN_LANGS`, by primary language subtag.
+    private static let nonLatinLanguages = Set([
+        "ar", "arb", "he", "heb", "iw", "fa", "per", "fas", "ur", "urd",
+        "ru", "rus", "uk", "ukr", "bg", "bul", "sr", "srp", "mk", "mkd", "be", "bel",
+        "el", "gre", "ell", "hy", "hye", "ka", "kat", "th", "tha", "km", "khm", "lo", "lao",
+        "ja", "jpn", "zh", "zho", "chi", "yue", "ko", "kor",
+        "hi", "hin", "bn", "ben", "ta", "tam", "te", "tel", "ml", "mal", "kn", "kan",
+        "mr", "mar", "gu", "guj", "pa", "pan", "si", "sin", "am", "amh", "yi", "yid",
+    ])
+
+    /// Hide-SDH is sent only for a track that is not forced, not foreign-only and in a language outside the non-Latin list.
+    static func allows(forced: Bool, foreignOnly: Bool, language: String?) -> Bool {
+        !forced && !foreignOnly && languageAllows(language)
+    }
+
+    static func languageAllows(_ language: String?) -> Bool {
+        guard let language = language, !language.isEmpty else { return true }
+        let primary = language.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            .components(separatedBy: CharacterSet(charactersIn: "-_")).first ?? ""
+        return !nonLatinLanguages.contains(primary)
+    }
+}
+
+/// Desktop's `lib/player/playback-end.ts`: an end before 85 percent of a known duration is truncated, not natural.
+enum PlaybackEndRule {
+    static func isNaturalEnd(position: Double, duration: Double) -> Bool {
+        guard duration.isFinite, duration > 0 else { return true }
+        return position / duration >= 0.85
+    }
+
+    static func isTruncatedEnd(position: Double, duration: Double) -> Bool {
+        !isNaturalEnd(position: position, duration: duration)
+    }
+}
