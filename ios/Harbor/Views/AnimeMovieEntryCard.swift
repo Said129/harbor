@@ -48,7 +48,14 @@ struct AnimeFranchiseExtraRow: View {
     let play: () -> Void
     let toggleWatched: (() -> Void)?
     @State private var revealed = false
-    private var hidden: Bool { InterfacePreferences.shared.hideSpoilers && !watched && !revealed }
+    /// Franchise extras are not in the episode list's next-up scan, so they pass `isNextUp: false`.
+    private var hidden: Bool {
+        let preferences = InterfacePreferences.shared
+        let mask = UISettingsPolicy.spoilerMask(hideSpoilers: preferences.hideSpoilers, blurThumbnails: preferences.blurEpisodes,
+            hideTitles: preferences.spoilerHideTitles, hideDescriptions: preferences.spoilerHideDescriptions,
+            skipNext: preferences.spoilerSkipNext, watched: watched, isNextUp: false)
+        return mask.active && !revealed
+    }
     private var episodeLabel: String { DesktopInterfaceText.value("Episode {n}", variables: ["n": String(extra.slot.number)]) }
     private var available: Bool {
         guard let date = extra.slot.aired else { return !extra.entry.upcoming }

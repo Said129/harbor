@@ -85,6 +85,23 @@ struct EpisodeList: View {
             return nil
         }
     }
+    /// Desktop's `nextUpKey`: the first episode on screen that is not watched yet, by routing key. Desktop picks it
+    /// from the list before the newest-first flip, so the scan runs in natural order even when newest is shown first.
+    private func nextUpRoutingKey(_ watched: [String: Set<String>]) -> String? {
+        let natural = InterfacePreferences.shared.episodeSort == "newest" ? Array(shownEpisodes.reversed()) : shownEpisodes
+        return NextUpEpisode.routingKey(in: natural) { episode in
+            watched[(pool?.source(for: episode) ?? media).id]?.contains(episode.watchedKey) == true
+        }
+    }
+    /// Whether an episode row is blurred: Desktop's `spoilerMaskFor` through `UISettingsPolicy.spoilerMask`.
+    /// The row's own Reveal tap still clears it.
+    private func isSpoilerHidden(_ episode: Episode, seen: Bool, isNextUp: Bool) -> Bool {
+        let preferences = InterfacePreferences.shared
+        let mask = UISettingsPolicy.spoilerMask(hideSpoilers: preferences.hideSpoilers, blurThumbnails: preferences.blurEpisodes,
+            hideTitles: preferences.spoilerHideTitles, hideDescriptions: preferences.spoilerHideDescriptions,
+            skipNext: preferences.spoilerSkipNext, watched: seen, isNextUp: isNextUp)
+        return mask.active && !revealed.contains(episode.routingKey)
+    }
     private func isFranchiseRow(_ row: EpisodeOrderRow) -> Bool {
         if case .franchise = row { return true }
         return false
@@ -199,6 +216,7 @@ struct EpisodeList: View {
     }
     var body: some View {
         let watched = pool?.watched(in: library) ?? [media.id: library.watchedEpisodes(media)]
+        let nextUp = nextUpRoutingKey(watched)
         LazyVStack(alignment: .leading, spacing: 18) {
             if let animeGrouping {
                 Picker(DesktopInterfaceText.value("Episodes"), selection: animeGrouping) {
@@ -229,10 +247,10 @@ struct EpisodeList: View {
             }
             if arcsAvailable { arcControls }
             if layout == .list {
-                ForEach(visibleRows) { row in rowView(row, watched: watched) }
+                ForEach(visibleRows) { row in rowView(row, watched: watched, nextUp: nextUp) }
             } else {
-                episodeGallery(watched: watched)
-                ForEach(visibleRows.filter { isFranchiseRow($0) }) { row in rowView(row, watched: watched) }
+                episodeGallery(watched: watched, nextUp: nextUp)
+                ForEach(visibleRows.filter { isFranchiseRow($0) }) { row in rowView(row, watched: watched, nextUp: nextUp) }
             }
         }.animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: revealed)
             .task(id: [media.identity, ordering?.kind.rawValue ?? "", currentSection?.id ?? "", currentSection?.from ?? "", currentSection?.to ?? ""].joined(separator: "|")) {
@@ -259,34 +277,34 @@ struct EpisodeList: View {
         if !preferredApplied, let preferred = preferredEpisode?.season, seasons.contains(preferred) { season = preferred; preferredApplied = true }
         else if !seasons.contains(season) { season = seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1 }
     }
-    @ViewBuilder private func rowView(_ row: EpisodeOrderRow, watched: [String: Set<String>]) -> some View {
+    @ViewBuilder private func rowView(_ row: EpisodeOrderRow, watched: [String: Set<String>], nextUp: String?) -> some View {
         switch row {
-        case .episode(let episode): sourceRow(episode, watched: watched)
+        case .episode(let episode): sourceRow(episode, watched: watched, nextUp: nextUp)
         case .franchise(let extra):
             AnimeFranchiseExtraRow(extra: extra, watched: library.items.first(where: { $0.id == extra.entry.id })?.watched == true,
                 loading: loadingExtras.contains(extra.entry.id), play: { playExtra(extra) }, toggleWatched: { toggleExtraWatched(extra) })
         }
     }
     /// Desktop's `EpisodeStrip` and `EpisodeGrid`: cards in one horizontal row, or a grid with as many columns as the width allows.
-    @ViewBuilder private func episodeGallery(watched: [String: Set<String>]) -> some View {
+    @ViewBuilder private func episodeGallery(watched: [String: Set<String>], nextUp: String?) -> some View {
         let scale = InterfacePreferences.shared.episodeCardScale
         if layout == .grid {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: CGFloat(EpisodeLayoutPolicy.gridMinimumWidth(scale))), spacing: 16, alignment: .top)], alignment: .leading, spacing: 18) {
-                ForEach(shownEpisodes) { episode in episodeCard(episode, watched: watched, width: nil) }
+                ForEach(shownEpisodes) { episode in episodeCard(episode, watched: watched, nextUp: nextUp, width: nil) }
             }
         } else {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(alignment: .top, spacing: 12) {
-                    ForEach(shownEpisodes) { episode in episodeCard(episode, watched: watched, width: CGFloat(EpisodeLayoutPolicy.stripWidth(scale))) }
+                    ForEach(shownEpisodes) { episode in episodeCard(episode, watched: watched, nextUp: nextUp, width: CGFloat(EpisodeLayoutPolicy.stripWidth(scale))) }
                 }
             }
         }
     }
     /// One strip or grid card: play, mark watched, and the same spoiler rules as the list row.
-    @ViewBuilder private func episodeCard(_ episode: Episode, watched: [String: Set<String>], width: CGFloat?) -> some View {
+    @ViewBuilder private func episodeCard(_ episode: Episode, watched: [String: Set<String>], nextUp: String?, width: CGFloat?) -> some View {
         let source = pool?.source(for: episode) ?? media
         let seen = watched[source.id]?.contains(episode.watchedKey) == true
-        let hidden = InterfacePreferences.shared.hideSpoilers && !seen && !revealed.contains(episode.routingKey)
+        let hidden = isSpoilerHidden(episode, seen: seen, isNextUp: episode.routingKey == nextUp)
         let episodeLabel = DesktopInterfaceText.value("Episode {n}").replacingOccurrences(of: "{n}", with: String(episode.listedEpisode ?? 0))
         let title = episode.name ?? episode.title ?? episodeLabel
         let blurTitle = hidden && InterfacePreferences.shared.spoilerHideTitles
@@ -338,10 +356,10 @@ struct EpisodeList: View {
             }
             .clipShape(.rect(cornerRadius: 8))
     }
-    @ViewBuilder private func sourceRow(_ episode: Episode, watched: [String: Set<String>]) -> some View {
+    @ViewBuilder private func sourceRow(_ episode: Episode, watched: [String: Set<String>], nextUp: String?) -> some View {
         let source = pool?.source(for: episode) ?? media
         let seen = watched[source.id]?.contains(episode.watchedKey) == true
-        let hidden = InterfacePreferences.shared.hideSpoilers && !seen && !revealed.contains(episode.routingKey)
+        let hidden = isSpoilerHidden(episode, seen: seen, isNextUp: episode.routingKey == nextUp)
         let episodeLabel = DesktopInterfaceText.value("Episode {n}").replacingOccurrences(of: "{n}", with: String(episode.listedEpisode ?? 0))
         VStack(alignment: .leading, spacing: 9) {
             HStack(alignment: .top, spacing: 0) {
