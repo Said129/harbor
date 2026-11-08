@@ -517,7 +517,10 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
     }
 
     func applySubtitleFPS(_ value: Double) {
-        cancelSubtitleSync()
+        // Desktop disables the FPS control while auto-sync is active and never cancels the sync from it.
+        guard !SubtitleFPSAvailability.autoSyncActive(state.subtitleSyncPhase) else {
+            state.subtitleIssue = DesktopInterfaceText.value("Turn off Auto Sync before changing subtitle FPS."); return
+        }
         guard value == 0 || SubtitleTiming.valid(value) else { state.subtitleIssue = DesktopInterfaceText.value("Enter an FPS from 1 to 240."); return }
         let trackID = state.primarySubtitle?.id
         enqueueSubtitleOperation { controller in

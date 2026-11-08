@@ -32,12 +32,21 @@ enum SubtitleTiming {
     }
 
     @MainActor static func unavailable(_ state: PlayerState) -> String? {
-        guard state.loaded, let track = state.primarySubtitle else { return DesktopInterfaceText.value("Select a subtitle track first.") }
-        guard track.isTextSubtitle else { return DesktopInterfaceText.value("Subtitle FPS conversion is only available for text-based subtitles.") }
-        guard state.secondarySubtitle == nil else { return DesktopInterfaceText.value("Subtitle FPS is unavailable while a secondary subtitle is active.") }
-        guard state.videoFPS != nil else { return DesktopInterfaceText.value("Video FPS is unavailable.") }
-        guard state.subtitleFPS != nil else { return DesktopInterfaceText.value("Subtitle FPS is unavailable in this libmpv runtime.") }
-        return nil
+        switch SubtitleFPSAvailability.unavailable(
+            hasTrack: state.loaded && state.primarySubtitle != nil,
+            textBased: state.primarySubtitle?.isTextSubtitle ?? false,
+            hasSecondary: state.secondarySubtitle != nil,
+            autoSyncActive: SubtitleFPSAvailability.autoSyncActive(state.subtitleSyncPhase),
+            videoFPSKnown: state.videoFPS != nil,
+            nativeSupported: state.subtitleFPS != nil) {
+        case nil: return nil
+        case .noTrack?: return DesktopInterfaceText.value("Select a subtitle track first.")
+        case .notTextBased?: return DesktopInterfaceText.value("Subtitle FPS conversion is only available for text-based subtitles.")
+        case .secondaryActive?: return DesktopInterfaceText.value("Subtitle FPS is unavailable while a secondary subtitle is active.")
+        case .autoSyncActive?: return DesktopInterfaceText.value("Turn off Auto Sync before changing subtitle FPS.")
+        case .videoFPSUnavailable?: return DesktopInterfaceText.value("Video FPS is unavailable.")
+        case .nativeUnavailable?: return DesktopInterfaceText.value("Subtitle FPS is unavailable in this libmpv runtime.")
+        }
     }
 }
 

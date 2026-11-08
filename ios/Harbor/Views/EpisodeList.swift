@@ -274,8 +274,16 @@ struct EpisodeList: View {
             }
     }
     private func chooseInitialSeason() {
-        if !preferredApplied, let preferred = preferredEpisode?.season, seasons.contains(preferred) { season = preferred; preferredApplied = true }
-        else if !seasons.contains(season) { season = seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1 }
+        guard !preferredApplied || !seasons.contains(season) else { return }
+        // Desktop's resumeDefaultSeason: the history hint, then the latest watched season, then the next unfinished one.
+        let watched = library.watchedEpisodes(media)
+        let infos = seasons.map { number -> SeasonResumeRules.SeasonInfo in
+            let episodes = videos.filter { $0.listedSeason == number }
+            return SeasonResumeRules.SeasonInfo(number: number, episodeCount: episodes.count,
+                                                watchedCount: episodes.filter { watched.contains($0.watchedKey) }.count)
+        }
+        season = SeasonResumeRules.defaultSeason(infos, hint: preferredEpisode?.season)
+        preferredApplied = !seasons.isEmpty
     }
     @ViewBuilder private func rowView(_ row: EpisodeOrderRow, watched: [String: Set<String>], nextUp: String?) -> some View {
         switch row {

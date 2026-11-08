@@ -92,7 +92,7 @@ struct CustomizedRails: View {
                         let title = customization.title(rail, among: rails)
                         if case .list(let list) = rail {
                             CustomListHomeRow(list: list, title: title, app: app, ranked: customization.ranked(rail))
-                        } else if customization.ranked(rail) {
+                        } else if TopTenGate.renders(active: customization.ranked(rail), count: rail.metas.count) {
                             VStack(alignment: .leading, spacing: 12) {
                                 HStack { Text(title).font(.headline).accessibilityIdentifier("catalog-title"); Spacer(); browse(rail) }.padding(.horizontal)
                                 TopTenRail(metas: rail.metas)
@@ -137,7 +137,7 @@ struct CustomizedHero: View {
         return list
     }
     private var signature: String {
-        let ids = source?.metas.prefix(6).map(\.identity).joined(separator: "|") ?? ""
+        let ids = source.map { heroOriginals($0).map(\.identity).joined(separator: "|") } ?? ""
         let list = sourceList.map { list in
             EBookShelf.hash(String(decoding: (try? JSONEncoder().encode(JSONValue.array(list.items.prefix(6).map(\.raw)))) ?? Data(), as: UTF8.self))
         } ?? ""
@@ -149,13 +149,21 @@ struct CustomizedHero: View {
     private var featuredDefaults: [Media] {
         guard customization.page == "home" else { return defaults }
         let candidates = rails.map { HeroLayoutPolicy.Candidate(title: $0.title, hasMetas: !$0.metas.isEmpty) }
-        guard let index = HeroLayoutPolicy.featuredRailIndex(feed: HeroLayoutPreferences.shared.feed, candidates: candidates) else { return defaults }
-        return Array(rails[index].metas.prefix(5))
+        guard let index = HeroLayoutPolicy.featuredRailIndex(feed: HeroLayoutPreferences.shared.feed, candidates: candidates) else { return HomeHeroSlides.cap(defaults) }
+        // Desktop's heroPool is only deduplicated and capped, without the backdrop-first ordering.
+        return HomeHeroSlides.cap(rails[index].metas)
+    }
+    /// Desktop's hero source (`home.tsx`): Home uses backdrop-first slides capped at four; anime and series keep their own counts.
+    private func heroOriginals(_ source: PageRail) -> [Media] {
+        if customization.page == "home" { return HomeHeroSlides.pick(source.metas) }
+        return Array(source.metas.prefix(customization.page == "anime" ? 6 : 5))
     }
     private var metas: [Media] {
         guard let source else { return featuredDefaults }
+        // A hero row without any artwork is ignored, and Home falls back to Featured (Desktop's heroSourceRow).
+        if customization.page == "home" && heroOriginals(source).isEmpty { return featuredDefaults }
         if enrichedSignature == signature && !selected.isEmpty { return selected }
-        return Array(source.metas.prefix(customization.page == "anime" ? 6 : 5))
+        return heroOriginals(source)
     }
     var body: some View {
         Group {
@@ -170,7 +178,7 @@ struct CustomizedHero: View {
             .task(id: signature) {
                 guard let source else { selected = []; enrichedSignature = ""; return }
                 let currentSignature = signature
-                let originals = Array(source.metas.prefix(customization.page == "anime" ? 6 : 5)); selected = originals; enrichedSignature = currentSignature
+                let originals = heroOriginals(source); selected = originals; enrichedSignature = currentSignature
                 let owner = app.accountOperationScope, service = app.service, addons = app.addons
                 let fetched = await withTaskGroup(of: (Int, Media).self, returning: [(Int, Media)].self) { group in
                     for (index, media) in originals.enumerated() {

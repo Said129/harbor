@@ -12,7 +12,9 @@ enum PageRail: Identifiable, Sendable {
     var kind: String { switch self { case .catalog(let row): row.plan.kind; case .discovery(let row): row.kind; case .continuing(let kind): kind; case .sources: "source"; case .list: "movie" } }
     var metas: [Media] { switch self { case .catalog(let row): row.metas; case .discovery(let row): row.metas; case .continuing, .sources: []; case .list(let list): list.items.map(\.media) } }
     var supportsArtworkCustomization: Bool { switch self { case .continuing, .sources: false; default: true } }
-    var defaultNumerals: Bool { switch self { case .catalog, .continuing, .sources, .list: false; case .discovery(let row): row.ranked || row.id.hasSuffix("-top10") || ["cm-top-movies", "cm-drama", "cm-comedy"].contains(row.id) } }
+    /// Desktop's own ranked rows: anime rank rows, and the Top 10 Today row on Movies and Series. Home has no default numerals.
+    var defaultNumerals: Bool { defaultRanked(page: "") }
+    func defaultRanked(page: String) -> Bool { switch self { case .catalog, .continuing, .sources, .list: false; case .discovery(let row): row.ranked || (page != "home" && row.id.hasSuffix("-top10")) } }
     static func addingContinuation(to rails: [PageRail], kind: String, records: [LibraryRecord], detectedAnime: Set<String>, presentationError: Bool) -> [PageRail] {
         let rows = rails.filter { $0.id != "continueWatching" }
         guard presentationError || records.contains(where: { $0.continuing && ContinueWatchingSelection.includes($0, kind: kind, detectedAnime: detectedAnime) }) else { return rows }
@@ -110,7 +112,7 @@ final class PageCustomization {
         if let title = layout.renamed[rail.id] { return title }
         return rail.title
     }
-    func ranked(_ rail: PageRail) -> Bool { rail.supportsArtworkCustomization && (layout.numerals.contains(rail.id) || (rail.defaultNumerals && !layout.plain.contains(rail.id))) }
+    func ranked(_ rail: PageRail) -> Bool { rail.supportsArtworkCustomization && (layout.numerals.contains(rail.id) || (rail.defaultRanked(page: page) && !layout.plain.contains(rail.id))) }
     func bind(_ next: NavigationScope) {
         guard next.owner == owner else { return }
         if scope == next && ready { return }

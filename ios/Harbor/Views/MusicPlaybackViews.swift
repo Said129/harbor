@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 private struct MusicPlaybackSessionKey: EnvironmentKey { static let defaultValue: MusicPlaybackSession? = nil }
 extension EnvironmentValues {
@@ -283,5 +284,7 @@ extension EnvironmentValues {
                 Button(playlist.name) { session.playlists.add([track], to: playlist.id) }.disabled(playlist.trackIds.contains(track.id))
             }
         }.disabled(!session.playlists.ready || session.playlists.playlists.isEmpty)
+        // Desktop's music.card.copyTitle: "title - artist", the same text the local library menu copies.
+        Button(DesktopInterfaceText.value("music.card.copyTitle")) { UIPasteboard.general.string = track.title + " - " + track.artist }
     }
 }
