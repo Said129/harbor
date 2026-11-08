@@ -27,7 +27,8 @@ enum SearchPresentation {
         return rows.compactMap { row in
             guard row.plan.kind != "addon_catalog" else { return nil }
             var result = row
-            result.metas = row.metas.filter { seen.insert($0.identity).inserted }
+            let metas = SearchTitleRules.isTitleRow(row.plan.kind) ? SearchTitleRules.limited(row.metas) : row.metas
+            result.metas = metas.filter { seen.insert($0.identity).inserted }
             return result.metas.isEmpty ? nil : result
         }
     }
