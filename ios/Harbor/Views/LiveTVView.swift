@@ -18,6 +18,7 @@ struct LiveTVView: View {
     @State private var playback: PlaybackSession?
     @State private var playing: LiveChannel?
     @State private var managingCategories = false
+    @State private var guidePrograms: [String: [LiveProgram]] = [:]
     @MainActor init(app: AppModel, initialQuery: String = "") {
         self.app = app; _preferences = State(initialValue: LiveTVPreferences(owner: app.settingsOwner)); _query = State(initialValue: initialQuery)
     }
@@ -70,7 +71,7 @@ struct LiveTVView: View {
                     HStack(spacing: 14) {
                         if let logo = channel.logo { Artwork(url: logo, fit: .fit, maxPixels: 180).frame(width: 48, height: 44) }
                         else { Image("nav-livetv").resizable().scaledToFit().frame(width: 32, height: 32).frame(width: 48, height: 44).foregroundStyle(.secondary) }
-                        VStack(alignment: .leading, spacing: 5) { Text(channel.name).font(.subheadline.weight(.medium)).lineLimit(2); if let group = channel.group { Text(group).font(.caption).foregroundStyle(.secondary).lineLimit(1) } }
+                        VStack(alignment: .leading, spacing: 5) { Text(channel.name).font(.subheadline.weight(.medium)).lineLimit(2); if let group = channel.group { Text(group).font(.caption).foregroundStyle(.secondary).lineLimit(1) }; LiveTVNowNextLine(programs: guidePrograms[channel.id] ?? []) }
                         Spacer(); if preferences.favorites.contains(channel.id) { Image(systemName: "star.fill").font(.caption).foregroundStyle(HarborTheme.accent) }
                     }.foregroundStyle(HarborTheme.ink).padding(.vertical, 4)
                 }.buttonStyle(.plain).contextMenu {
@@ -102,6 +103,7 @@ struct LiveTVView: View {
         guard generation == token, !Task.isCancelled else { return }
         let bySource = Dictionary(grouping: result.flatMap { $0.0 }, by: \.source)
         channels = sources.flatMap { bySource[$0.id] ?? [] }
+        guidePrograms = await LiveTVGuideBuilder.programsByChannel(channels: channels, sources: sources, owner: owner, refresh: refresh)
         preferences.rememberFavorites(channels)
         if result.contains(where: { $0.1 }) { error = "No se pudieron cargar algunas listas. Los canales disponibles siguen accesibles." }
         if sources.isEmpty { providers = true }
@@ -188,7 +190,7 @@ struct LiveSourcesView: View {
         catch { try? await LivePlaylistService.shared.remove(source, owner: preferences.owner); self.error = safeMessage(error) }
     }
     private func remove(_ source: LivePlaylistSource) {
-        do { try preferences.remove(source); Task { do { try await LivePlaylistService.shared.remove(source, owner: preferences.owner) } catch { self.error = "La lista se ha quitado. No se pudo limpiar su copia local." } } }
+        do { try preferences.remove(source); Task { try? await LiveTVGuideService.shared.remove(source, owner: preferences.owner) }; Task { do { try await LivePlaylistService.shared.remove(source, owner: preferences.owner) } catch { self.error = "La lista se ha quitado. No se pudo limpiar su copia local." } } }
         catch { self.error = safeMessage(error) }
     }
 }
