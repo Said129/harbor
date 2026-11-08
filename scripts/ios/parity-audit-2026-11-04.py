@@ -323,6 +323,8 @@ BEHAVIORS = expand("""
 31 X search guide: Desktop's guide is the Live TV programme guide opened from the empty search, and iOS loads no programme data (XMLTV), so it would only repeat the channel list in Live TV
 190 X local episode chooser: the iOS local library list already shows every season and episode file and plays one on a tap
 209 X trickplay seeking previews: Desktop's sprites come from video media servers, which iOS does not have (Plex and Jellyfin are music only)
+352 X remote control sessions: Desktop's remote is a mobile web page served by the Desktop app (about twelve thousand lines of its own screens) that drives the Desktop player; the iOS app is itself the phone client and plays on the phone
+353 X remote player binding: same reason, it binds that web remote to the Desktop player
 210 X shadow mpv thumbnail session: a second decoder opened on the same stream would double the bandwidth and memory of a phone for a debrid or torrent source
 195 D injected ad skip: the signed corpus is fetched and checked (Ed25519), matched on the content and the exact release (info hash or release fingerprint) and offered as a Skip button or skipped by itself; the report button sends the marked times for review (8 Nov, written by Haiku, report screen by Sonnet, uncompiled; iOS has the info hash and size of a stream but the release group and parsed title only when an enrichment added them, so some releases fall back to a key the corpus never holds)
 256 P host summon and invite: guests get the invite card (Join or Choose) and the summon card, and the host's invite goes out when its sources open (8 Nov, uncompiled); Desktop's host-side summon actions live in its context menu and have no iOS screen yet
@@ -746,6 +748,8 @@ SETTINGS = expand("""
 251 D community sync server: blank uses Harbor's server, any http or https address replaces it (8 Nov, written by Haiku, uncompiled)
 252 D private mode: no lookup and no report while it is on (8 Nov, written by Haiku, uncompiled)
 156 D guests pick their own source: the invite carries the flag and the guest's card then reads Choose instead of Join, leaving the source to the guest (8 Nov, uncompiled)
+435 X own navigation layout kept while a theme brings one: iOS themes import colors and backgrounds only and carry no navigation layout, so there is nothing to put aside
+496 X manga enabled: Desktop's opt-in start page for manga sources; iOS opens the manga section directly and reaches its sources and imports from inside it
 510 X X-Ray live scan: Desktop matches faces on the frame against the cast photos with its own recognition model (useFaceId); iOS Vision only detects faces and no model ships
 248 X subtitle auto-sync speech recognition: Desktop runs a downloaded model through Rust commands (asr_ensure_model, asr_transcribe_windows) that iOS does not have
 """)

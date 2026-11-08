@@ -7,34 +7,34 @@
       "total": 438,
       "ported": 153,
       "partial": 229,
-      "missing": 2,
-      "excluded": 54,
-      "counted": 384,
-      "weighted_percent": 69.7,
-      "ported_only_percent": 39.8,
-      "ported_or_partial_percent": 99.5
+      "missing": 0,
+      "excluded": 56,
+      "counted": 382,
+      "weighted_percent": 70.0,
+      "ported_only_percent": 40.1,
+      "ported_or_partial_percent": 100.0
     },
     "settings": {
       "total": 511,
       "ported": 228,
       "partial": 46,
-      "missing": 5,
-      "excluded": 232,
-      "counted": 279,
-      "weighted_percent": 90.0,
-      "ported_only_percent": 81.7,
-      "ported_or_partial_percent": 98.2
+      "missing": 3,
+      "excluded": 234,
+      "counted": 277,
+      "weighted_percent": 90.6,
+      "ported_only_percent": 82.3,
+      "ported_or_partial_percent": 98.9
     },
     "all": {
       "total": 949,
       "ported": 381,
       "partial": 275,
-      "missing": 7,
-      "excluded": 286,
-      "counted": 663,
-      "weighted_percent": 78.2,
-      "ported_only_percent": 57.5,
-      "ported_or_partial_percent": 98.9
+      "missing": 3,
+      "excluded": 290,
+      "counted": 659,
+      "weighted_percent": 78.7,
+      "ported_only_percent": 57.8,
+      "ported_or_partial_percent": 99.5
     }
   },
   "behavior_areas": [
@@ -160,9 +160,9 @@
       "range": "B324-B365",
       "ported": 12,
       "partial": 17,
-      "missing": 2,
-      "excluded": 11,
-      "weighted_percent": 66.1
+      "missing": 0,
+      "excluded": 13,
+      "weighted_percent": 70.7
     },
     {
       "area": "Manga",
@@ -2690,15 +2690,15 @@
       "index": 352,
       "id": "Remote control sessions",
       "desktop_source": "src/lib/remote",
-      "verdict": "M",
-      "note": "no remote control"
+      "verdict": "X",
+      "note": "remote control sessions: Desktop's remote is a mobile web page served by the Desktop app (about twelve thousand lines of its own screens) that drives the Desktop player; the iOS app is itself the phone client and plays on the phone"
     },
     {
       "index": 353,
       "id": "Remote player binding",
       "desktop_source": "src/lib/remote",
-      "verdict": "M",
-      "note": "no remote control"
+      "verdict": "X",
+      "note": "remote player binding: same reason, it binds that web remote to the Desktop player"
     },
     {
       "index": 354,
@@ -6339,8 +6339,8 @@
       "index": 435,
       "id": "navCustomizationOwn",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "own navigation layout kept while a theme brings one: iOS themes import colors and backgrounds only and carry no navigation layout, so there is nothing to put aside"
     },
     {
       "index": 436,
@@ -6766,8 +6766,8 @@
       "index": 496,
       "id": "mangaEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "manga enabled: Desktop's opt-in start page for manga sources; iOS opens the manga section directly and reaches its sources and imports from inside it"
     },
     {
       "index": 497,
