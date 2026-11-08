@@ -178,8 +178,9 @@ final class AdSkipTests: XCTestCase {
     func testAdSettingsAreProfileKeys() {
         XCTAssertTrue(ProfileSettingsStore.keys.contains("adSkipEnabled"))
         XCTAssertTrue(ProfileSettingsStore.keys.contains("autoSkipAd"))
-        XCTAssertFalse(ProfileSettingsStore.keys.contains("adReportAlwaysShow"))
-        XCTAssertFalse(ProfileSettingsStore.keys.contains("adReportFirstSeen"))
+        // The report button joined later (AdReportOverlay), so its two keys travel with the profile too.
+        XCTAssertTrue(ProfileSettingsStore.keys.contains("adReportAlwaysShow"))
+        XCTAssertTrue(ProfileSettingsStore.keys.contains("adReportFirstSeen"))
     }
 
     // MARK: Report window and button rule
