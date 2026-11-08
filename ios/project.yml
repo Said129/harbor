@@ -263,6 +263,7 @@ targets:
       - path: HarborTests/G4MiscTests.swift
       - path: HarborTests/R19FanartTests.swift
       - path: HarborTests/G1MangaTests.swift
+      - path: HarborTests/R24SubsTests.swift
       - path: HarborTests/R22MmsTests.swift
       - path: HarborTests/R21AddonsTests.swift
       - path: HarborTests/ContentAdvisoryTests.swift

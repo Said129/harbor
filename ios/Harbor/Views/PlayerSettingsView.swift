@@ -370,6 +370,7 @@ struct PlayerSettingsView: View {
         }
         HarborSettingsSection(DesktopInterfaceText.value("Subtitle style"), note: DesktopInterfaceText.value("Adjust the text and background. The preview shows your changes as you make them.")) {
             SubtitleStylePreview(options: preferences.options)
+            SubtitleLookPresetsView(options: $preferences.options)
             Text(DesktopInterfaceText.value("Background")).font(HarborTheme.font(14, weight: .semibold))
             SubtitleBackgroundChoices(selection: $preferences.options.subtitleStyle)
             Text(DesktopInterfaceText.value("Font")).font(HarborTheme.font(14, weight: .semibold))
