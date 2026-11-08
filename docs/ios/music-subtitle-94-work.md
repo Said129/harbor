@@ -1843,3 +1843,9 @@ added, the iOS-only October Spooky rail dropped because the seasonal one covers 
 Trakt is connected. Review fix: the time-of-day titles are translated word by word. Not done: Discover feed, daily rails, genre discovery, My Simkl calendar source.
 **Manga, Music, Sports**: the Suwayomi client lists categories and their books; the spread, queue continuation and folder rescan rules exist as tested helpers that nothing calls
 yet; a home team per league group can be set in the match detail and is kept in the Keychain.
+
+## The 33 failures of the second full gate, compared with the old commit (8 November)
+
+The 33 cases that failed in the full gate on 09aa9eb6 were run alone on 302fb0c9 (before this night's work) and on 06db6fc8. The same 27 fail on both and none fails only on the
+new commit: the interface seed cases (they refuse to run on a device that already holds data), the Music catalog and server label cases, HarborPluginSettingsTests,
+PosterBehaviorMountTests (an iPad-only case) and MobileSourcesAndSubtitlesTests. The other 6 pass alone. So none of the 33 is a regression of this work.
