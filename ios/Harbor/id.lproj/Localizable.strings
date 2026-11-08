@@ -228,6 +228,7 @@
 "Anterior" = "Sebelumnya";
 "Anular estilos integrados" = "Abaikan gaya tersemat";
 "Any" = "Apa saja";
+"Any Stremio subtitle addons you have installed are searched here too." = "Addon subtitle Stremio yang Anda pasang juga akan ditelusuri di sini.";
 "Any public website. This plugin did not say which sites it uses." = "Situs publik mana pun. Plugin ini tidak menyebutkan situs yang digunakannya.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "Tampilan";
@@ -1026,6 +1027,7 @@
 "French" = "Bahasa Prancis";
 "From" = "Dari";
 "From HBO" = "Dari HBO";
+"From your addons" = "Dari addon Anda";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
 "Fuente" = "Font";
@@ -2502,6 +2504,7 @@
 "Subtitle FPS conversion is only available for text-based subtitles." = "Konversi FPS subtitle hanya tersedia untuk subtitle berbasis teks.";
 "Subtitle FPS is unavailable in this libmpv runtime." = "FPS subtitle tidak tersedia di runtime libmpv ini.";
 "Subtitle FPS is unavailable while a secondary subtitle is active." = "FPS subtitle tidak tersedia saat subtitle sekunder aktif.";
+"Subtitle addons" = "Addon subtitle";
 "Subtitle appearance" = "Tampilan subtitle";
 "Subtitle languages" = "Bahasa subtitle";
 "Subtitle source FPS" = "FPS sumber subtitle";

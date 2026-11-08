@@ -228,6 +228,7 @@
 "Anterior" = "Precedente";
 "Anular estilos integrados" = "Ignora gli stili incorporati";
 "Any" = "Qualsiasi";
+"Any Stremio subtitle addons you have installed are searched here too." = "La ricerca include anche tutti gli Add-on per i sottotitoli di Stremio che hai installato.";
 "Any public website. This plugin did not say which sites it uses." = "Qualsiasi sito pubblico. Questo plugin non ha indicato quali siti usa.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "Aspetto";
@@ -1026,6 +1027,7 @@
 "French" = "Francese";
 "From" = "Da";
 "From HBO" = "Da HBO";
+"From your addons" = "Dai tuoi Add-on";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
 "Fuente" = "Carattere";
@@ -2502,6 +2504,7 @@
 "Subtitle FPS conversion is only available for text-based subtitles." = "La conversione degli FPS è disponibile solo per i sottotitoli testuali.";
 "Subtitle FPS is unavailable in this libmpv runtime." = "Gli FPS dei sottotitoli non sono disponibili in questo runtime di libmpv.";
 "Subtitle FPS is unavailable while a secondary subtitle is active." = "Gli FPS dei sottotitoli non sono disponibili mentre è attivo un sottotitolo secondario.";
+"Subtitle addons" = "Add-on per i sottotitoli";
 "Subtitle appearance" = "Aspetto dei sottotitoli";
 "Subtitle languages" = "Lingue dei sottotitoli";
 "Subtitle source FPS" = "FPS della fonte dei sottotitoli";

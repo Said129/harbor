@@ -228,6 +228,7 @@
 "Anterior" = "पिछला";
 "Anular estilos integrados" = "एम्बेडेड स्टाइल ओवरराइड करें";
 "Any" = "कोई भी";
+"Any Stremio subtitle addons you have installed are searched here too." = "आपके इंस्टॉल किए गए सभी Stremio सबटाइटल ऐडऑन में भी यहाँ खोज की जाती है।";
 "Any public website. This plugin did not say which sites it uses." = "कोई भी सार्वजनिक वेबसाइट। इस प्लगइन ने नहीं बताया कि यह किन साइटों का उपयोग करता है।";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "दिखावट";
@@ -1026,6 +1027,7 @@
 "French" = "फ़्रेंच";
 "From" = "से";
 "From HBO" = "HBO से";
+"From your addons" = "आपके ऐडऑन से";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
 "Fuente" = "फ़ॉन्ट";
@@ -2502,6 +2504,7 @@
 "Subtitle FPS conversion is only available for text-based subtitles." = "सबटाइटल का FPS बदलने की सुविधा केवल टेक्स्ट-आधारित सबटाइटल के लिए उपलब्ध है।";
 "Subtitle FPS is unavailable in this libmpv runtime." = "इस libmpv रनटाइम में सबटाइटल FPS उपलब्ध नहीं है।";
 "Subtitle FPS is unavailable while a secondary subtitle is active." = "दूसरा सबटाइटल सक्रिय होने पर सबटाइटल FPS उपलब्ध नहीं है।";
+"Subtitle addons" = "सबटाइटल ऐडऑन";
 "Subtitle appearance" = "सबटाइटल की दिखावट";
 "Subtitle languages" = "सबटाइटल भाषाएँ";
 "Subtitle source FPS" = "सबटाइटल स्रोत का FPS";

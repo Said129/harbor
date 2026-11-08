@@ -16,24 +16,24 @@
     },
     "settings": {
       "total": 511,
-      "ported": 240,
-      "partial": 34,
+      "ported": 243,
+      "partial": 31,
       "missing": 2,
       "excluded": 235,
       "counted": 276,
-      "weighted_percent": 93.1,
-      "ported_only_percent": 87.0,
+      "weighted_percent": 93.7,
+      "ported_only_percent": 88.0,
       "ported_or_partial_percent": 99.3
     },
     "all": {
       "total": 949,
-      "ported": 497,
-      "partial": 153,
+      "ported": 500,
+      "partial": 150,
       "missing": 2,
       "excluded": 297,
       "counted": 652,
-      "weighted_percent": 88.0,
-      "ported_only_percent": 76.2,
+      "weighted_percent": 88.2,
+      "ported_only_percent": 76.7,
       "ported_or_partial_percent": 99.7
     }
   },
@@ -4946,8 +4946,8 @@
       "index": 236,
       "id": "subProvidersEnabled",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "subtitle sources: Wyzie is wired but not exercised at runtime; SUBDL and Subsource are searched but their zip or key-protected files are not loadable yet (7 Nov, written by Haiku, CI run 25 pending)"
+      "verdict": "D",
+      "note": "Per-profile OpenSubtitles, Wyzie, addon, SUBDL and Subsource toggles drive the player search. OpenSubtitles steps aside for an enabled equivalent addon. The player accepts bounded ZIP files and exact-origin Subsource downloads."
     },
     {
       "index": 237,
@@ -5709,15 +5709,15 @@
       "index": 345,
       "id": "subdlApiKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "SUBDL key stored and used for search; zip downloads not loadable yet (7 Nov, written by Haiku, CI run 25 pending)"
+      "verdict": "D",
+      "note": "The profile key enables SUBDL lookup, and the player prepares its downloaded subtitles or selects a matching episode and language from the ZIP."
     },
     {
       "index": 346,
       "id": "subsourceApiKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "Subsource key stored and used for search; downloads that need the key are not loadable yet (7 Nov, written by Haiku, CI run 25 pending)"
+      "verdict": "D",
+      "note": "The profile key enables Subsource lookup and its authenticated download. The player sends the key only to the Subsource HTTPS endpoint, refuses redirects and extracts bounded text subtitles."
     },
     {
       "index": 347,

@@ -9,12 +9,17 @@ struct SubtitleRequest: Sendable {
     let stream: JSONValue
     var movieHash: SubtitleMovieHash? = nil
 
+    var filename: String? {
+        let hints = stream["behaviorHints"]
+        return hints["filename"].string ?? hints["fileName"].string
+    }
+
     var extras: String {
         let hints = stream["behaviorHints"]
         var values: [String: String] = [:]
         if let hash = hints["videoHash"].string, !hash.isEmpty { values["videoHash"] = hash }
         if let size = hints["videoSize"].integer, size > 0 { values["videoSize"] = String(size) }
-        if let name = hints["filename"].string ?? hints["fileName"].string, !name.isEmpty { values["filename"] = name }
+        if let filename, !filename.isEmpty { values["filename"] = filename }
         if let movieHash { values["videoHash"] = movieHash.hash; values["videoSize"] = String(movieHash.size) }
         let allowed = CharacterSet.alphanumerics.union(CharacterSet(charactersIn: "-._~"))
         return values.sorted { $0.key < $1.key }.map { $0.key + "=" + ($0.value.addingPercentEncoding(withAllowedCharacters: allowed) ?? "") }.joined(separator: "&")

@@ -272,5 +272,14 @@ struct PlaybackSource: Codable, Identifiable, Sendable {
     let subtitles: [Subtitle]?
     let via: String
     var id: String { url }
-    struct Subtitle: Codable, Sendable { let url: String; var lang: String?; var id: String?; var title: String? = nil }
+    struct Subtitle: Codable, Sendable {
+        let url: String
+        var lang: String?
+        var id: String?
+        var title: String? = nil
+        // Only the optional provider search can attach this context. Addon JSON cannot request a profile key.
+        var providerDownload: SubtitleProviderDownload? = nil
+
+        private enum CodingKeys: String, CodingKey { case url, lang, id, title }
+    }
 }

@@ -31,6 +31,63 @@ final class G5PlayerTests: XCTestCase {
         XCTAssertEqual(SubtitleTextEncoding.convertedUTF8(legacy, language: "fr"), Data("café".utf8))
     }
 
+    func testProviderSubtitleArchiveSelectsEpisodeAndLanguageAndRejectsUnsafePaths() throws {
+        // Deflated subtitle fixtures with two competing tracks and a separate traversal entry.
+        let valid = try XCTUnwrap(Data(base64Encoded: """
+        UEsDBBQAAAAIAAAAIQDwsIk5JgAAAC4AAAASAAAAU2hvdy5TMDFFMDYuZXMuc3J0M+QyMLACIUMdAwMDBV1dOwWogBFIgCu8KD
+        8vXSG1ILM4PyWVCwBQSwMEFAAAAAgAAAAhAMVYbjInAAAALwAAABIAAABTaG93LlMwMUUwNy5lbi5zcnQz5DIwsAIhQx0DAwMF
+        XV07BaiAEUiAK7woPy9dIScxL700MT2VCwBQSwMEFAAAAAgAAAAhAJlpf1gkAAAALAAAABIAAABTaG93LlMwMUUwNy5lcy5zcn
+        Qz5DIwsAIhQx0DAwMFXV07BaiAEUiAyydRITm/qCg1uSSRCwBQSwECFAAUAAAACAAAACEA8LCJOSYAAAAuAAAAEgAAAAAAAAAA
+        AAAAgAEAAAAAU2hvdy5TMDFFMDYuZXMuc3J0UEsBAhQAFAAAAAgAAAAhAMVYbjInAAAALwAAABIAAAAAAAAAAAAAAIABVgAAAF
+        Nob3cuUzAxRTA3LmVuLnNydFBLAQIUABQAAAAIAAAAIQCZaX9YJAAAACwAAAASAAAAAAAAAAAAAACAAa0AAABTaG93LlMwMUUw
+        Ny5lcy5zcnRQSwUGAAAAAAMAAwDAAAAAAQEAAAAA
+        """, options: .ignoreUnknownCharacters))
+        let unsafe = try XCTUnwrap(Data(base64Encoded: """
+        UEsDBBQAAAAIAAAAIQAP6KT2HwAAACcAAAANAAAALi4vZXNjYXBlLnNydDPkMjCwAiFDHQMDAwVdXTsFqIARSIArNK84MS2VCw
+        BQSwECFAAUAAAACAAAACEAD+ik9h8AAAAnAAAADQAAAAAAAAAAAAAAgAEAAAAALi4vZXNjYXBlLnNydFBLBQYAAAAAAQABADsA
+        AABKAAAAAAA=
+        """, options: .ignoreUnknownCharacters))
+        let context = SubtitleProviderDownload(owner: "fixture", provider: .subdl, requiresKey: false,
+            season: 1, episode: 7, release: nil, filename: nil)
+
+        let subtitle = try ProviderSubtitleArchive.extract(valid, language: "es", context: context)
+        XCTAssertEqual(subtitle.ext, "srt")
+        XCTAssertTrue(String(decoding: subtitle.data, as: UTF8.self).contains("La correcta"))
+        XCTAssertThrowsError(try ProviderSubtitleArchive.extract(unsafe, language: "es", context: context))
+    }
+
+    func testBuiltInOpenSubtitlesStepsAsideOnlyForAnEnabledSubtitleAddon() {
+        let manifest: JSONValue = .object([
+            "id": .string("com.opensubtitles.v3"), "resources": .array([.string("subtitles")])
+        ])
+        let configured = Addon(manifest: manifest, transportUrl: "https://opensubtitles-v3.strem.io/manifest.json", enabled: true)
+        let disabled = Addon(manifest: manifest, transportUrl: configured.transportUrl, enabled: false)
+        let enabled: Set<SubtitleProviderID> = [.opensubtitles, .subsource]
+        XCTAssertEqual(OptionalSubtitleProviders.directProviders(enabled, addons: []), enabled)
+        XCTAssertEqual(OptionalSubtitleProviders.directProviders(enabled, addons: [disabled]), enabled)
+        XCTAssertEqual(OptionalSubtitleProviders.directProviders(enabled, addons: [configured]), [.subsource])
+    }
+
+    func testOnlyInMemorySubsourceDownloadGetsAnExactOriginCredential() throws {
+        let context = SubtitleProviderDownload(owner: "fixture", provider: .subsource, requiresKey: true,
+            season: nil, episode: nil, release: nil, filename: nil)
+        let trusted = PlaybackSource.Subtitle(url: "https://api.subsource.net/api/v1/subtitles/abc-123/download",
+            lang: "es", id: "subsource:abc-123", providerDownload: context)
+        XCTAssertEqual(try SubtitleFileService.providerRequest(trusted, key: "fixture-key").value(forHTTPHeaderField: "X-API-Key"), "fixture-key")
+        XCTAssertThrowsError(try SubtitleFileService.providerRequest(trusted, key: nil))
+
+        for url in ["https://example.test/api/v1/subtitles/abc/download",
+                    "https://api.subsource.net:8443/api/v1/subtitles/abc/download",
+                    "https://api.subsource.net/api/v1/subtitles/abc/download?redirect=1"] {
+            let other = PlaybackSource.Subtitle(url: url, lang: nil, id: nil, providerDownload: context)
+            XCTAssertThrowsError(try SubtitleFileService.providerRequest(other, key: "fixture-key"))
+        }
+
+        let decoded = try JSONDecoder().decode(PlaybackSource.Subtitle.self, from: JSONEncoder().encode(trusted))
+        XCTAssertNil(decoded.providerDownload)
+        XCTAssertNil(try SubtitleFileService.providerRequest(decoded, key: "fixture-key").value(forHTTPHeaderField: "X-API-Key"))
+    }
+
     func testSDHGateFollowsDesktopRules() {
         XCTAssertTrue(SubtitleSDHGate.allows(forced: false, foreignOnly: false, language: "eng"))
         XCTAssertTrue(SubtitleSDHGate.allows(forced: false, foreignOnly: false, language: ""))

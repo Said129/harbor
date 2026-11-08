@@ -380,22 +380,58 @@ struct PlayerView: View {
             let generation = state.mediaGeneration
             let retry = state.addonSubtitlesRetry
             defer { if generation == state.mediaGeneration, retry == state.addonSubtitlesRetry { state.addonSubtitlesLoading = false } }
-            do {
-                let result = try await SubtitleAddonService().search(request, source: session.source) { batch in
-                    guard !Task.isCancelled, generation == state.mediaGeneration, library.map({ $0.owner == session.owner }) ?? true else { return }
-                    var urls = Set(state.addonSubtitles.map(\.url))
-                    state.addonSubtitles += batch.filter { urls.insert($0.url).inserted }
+            let settingsOwner = MetadataPreferences.shared.settingsOwner ?? "guest"
+            let addonDownload = SubtitleProviderDownload(owner: settingsOwner, provider: nil, requiresKey: false,
+                season: request.season, episode: request.episode, release: nil, filename: request.filename)
+            state.addonSubtitles = state.addonSubtitles.map { subtitle in
+                var prepared = subtitle
+                if prepared.providerDownload == nil { prepared.providerDownload = addonDownload }
+                return prepared
+            }
+            let addonsEnabled = SubtitleProviderPreferences.addonsEnabled()
+            async let optional = OptionalSubtitleProviders.search(request, owner: settingsOwner, addonsEnabled: addonsEnabled)
+            let result: SubtitleAddonService.Result?
+            if addonsEnabled {
+                do {
+                    result = try await SubtitleAddonService().search(request, source: session.source) { batch in
+                        guard !Task.isCancelled, generation == state.mediaGeneration, retry == state.addonSubtitlesRetry,
+                              settingsOwner == (MetadataPreferences.shared.settingsOwner ?? "guest"),
+                              library.map({ $0.owner == session.owner }) ?? true else { return }
+                        var urls = Set(state.addonSubtitles.map(\.url))
+                        state.addonSubtitles += batch.filter { urls.insert($0.url).inserted }.map { subtitle in
+                            var prepared = subtitle
+                            prepared.providerDownload = addonDownload
+                            return prepared
+                        }
+                    }
+                } catch is CancellationError { return }
+                catch { result = nil }
+            } else {
+                result = SubtitleAddonService.Result()
+            }
+            let extra = await optional
+            guard !Task.isCancelled, generation == state.mediaGeneration, retry == state.addonSubtitlesRetry,
+                  settingsOwner == (MetadataPreferences.shared.settingsOwner ?? "guest"),
+                  library.map({ $0.owner == session.owner }) ?? true else { return }
+            if !extra.isEmpty {
+                var subtitles = state.addonSubtitles
+                var positions = Dictionary(subtitles.enumerated().map { ($0.element.url, $0.offset) }, uniquingKeysWith: { first, _ in first })
+                for subtitle in extra {
+                    if let index = positions[subtitle.url] { subtitles[index] = subtitle }
+                    else {
+                        positions[subtitle.url] = subtitles.count
+                        subtitles.append(subtitle)
+                    }
                 }
-                let extra = await OptionalSubtitleProviders.search(request, owner: session.owner)
-                try Task.checkCancellation()
-                guard generation == state.mediaGeneration, library.map({ $0.owner == session.owner }) ?? true else { return }
-                var known = Set(state.addonSubtitles.map(\.url))
-                state.addonSubtitles += extra.filter { known.insert($0.url).inserted }
+                state.addonSubtitles = subtitles
+            }
+            if let result {
                 if result.providers == 0 && state.addonSubtitles.isEmpty { state.addonSubtitlesMessage = "No hay addons de subtítulos activados compatibles con este título." }
                 else if result.failures > 0 { state.addonSubtitlesMessage = "Algunos addons no respondieron. Puedes reintentar la búsqueda." }
                 else if state.addonSubtitles.isEmpty { state.addonSubtitlesMessage = "Tus addons no devolvieron subtítulos para este título." }
-            } catch is CancellationError { return }
-            catch { if !Task.isCancelled { state.addonSubtitlesMessage = "No se pudieron buscar subtítulos. Puedes reintentarlo." } }
+            } else if state.addonSubtitles.isEmpty {
+                state.addonSubtitlesMessage = "No se pudieron buscar subtítulos. Puedes reintentarlo."
+            }
         }
     }
 

@@ -228,6 +228,7 @@
 "Anterior" = "Trước";
 "Anular estilos integrados" = "Ghi đè kiểu nhúng";
 "Any" = "Bất kỳ";
+"Any Stremio subtitle addons you have installed are searched here too." = "Mọi tiện ích bổ sung phụ đề Stremio bạn đã cài đặt cũng được tìm kiếm tại đây.";
 "Any public website. This plugin did not say which sites it uses." = "Bất kỳ trang web công khai nào. Plugin này không cho biết nó dùng những trang nào.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "Giao diện";
@@ -1026,6 +1027,7 @@
 "French" = "Tiếng Pháp";
 "From" = "Từ";
 "From HBO" = "Từ HBO";
+"From your addons" = "Từ các tiện ích bổ sung của bạn";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
 "Fuente" = "Phông chữ";
@@ -2502,6 +2504,7 @@
 "Subtitle FPS conversion is only available for text-based subtitles." = "Chuyển đổi FPS phụ đề chỉ khả dụng cho phụ đề dạng văn bản.";
 "Subtitle FPS is unavailable in this libmpv runtime." = "FPS phụ đề không khả dụng trong môi trường chạy libmpv này.";
 "Subtitle FPS is unavailable while a secondary subtitle is active." = "FPS phụ đề không khả dụng khi đang bật phụ đề thứ hai.";
+"Subtitle addons" = "Tiện ích bổ sung phụ đề";
 "Subtitle appearance" = "Giao diện phụ đề";
 "Subtitle languages" = "Ngôn ngữ phụ đề";
 "Subtitle source FPS" = "FPS nguồn phụ đề";

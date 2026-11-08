@@ -203,6 +203,7 @@
 "Anterior" = "Previous";
 "Anular estilos integrados" = "Override embedded styles";
 "Any" = "Any";
+"Any Stremio subtitle addons you have installed are searched here too." = "Any Stremio subtitle addons you have installed are searched here too.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "Appearance";
 "Apariencia de los subtítulos" = "Subtitle appearance";
@@ -903,6 +904,7 @@
 "Frame rate" = "Frame rate";
 "France" = "France";
 "From" = "From";
+"From your addons" = "From your addons";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fuente" = "Font";
 "Fuentes" = "Sources";
@@ -2220,6 +2222,7 @@
 "Subtitle FPS conversion is only available for text-based subtitles." = "Subtitle FPS conversion is only available for text-based subtitles.";
 "Subtitle FPS is unavailable in this libmpv runtime." = "Subtitle FPS is unavailable in this libmpv runtime.";
 "Subtitle FPS is unavailable while a secondary subtitle is active." = "Subtitle FPS is unavailable while a secondary subtitle is active.";
+"Subtitle addons" = "Subtitle addons";
 "Subtitle appearance" = "Subtitle appearance";
 "Subtitle languages" = "Subtitle languages";
 "Subtitle source FPS" = "Subtitle source FPS";

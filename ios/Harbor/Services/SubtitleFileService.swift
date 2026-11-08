@@ -1,4 +1,5 @@
 import Foundation
+import ZIPFoundation
 
 struct ImportedSubtitle: Sendable {
     let url: URL
@@ -86,6 +87,116 @@ enum SubtitleTextEncoding {
     }
 }
 
+struct SubtitleProviderDownload: Sendable {
+    let owner: String
+    let provider: SubtitleProviderID?
+    let requiresKey: Bool
+    let season: Int?
+    let episode: Int?
+    let release: String?
+    let filename: String?
+}
+
+/// The player extracts one bounded text subtitle in memory. Archive paths are never written to disk.
+enum ProviderSubtitleArchive {
+    private static let entryLimit = 100
+    private static let expandedLimit: UInt64 = 32 * 1_024 * 1_024
+    private static let fileLimit = 4 * 1_024 * 1_024
+    private static let subtitleExtensions: Set<String> = ["srt", "vtt", "ass", "ssa"]
+    private static let archiveExtensions: Set<String> = ["zip", "rar", "7z", "gz", "bz2", "xz", "tar", "cbz"]
+    private static let episodePatterns = [
+        try! NSRegularExpression(pattern: #"(?:^|[^a-z0-9])s([0-9]{1,2})[ ._-]*e([0-9]{1,3})(?:[^a-z0-9]|$)"#, options: .caseInsensitive),
+        try! NSRegularExpression(pattern: #"(?:^|[^0-9])([0-9]{1,2})x([0-9]{1,3})(?:[^0-9]|$)"#, options: .caseInsensitive),
+    ]
+
+    static func extract(_ data: Data, language: String?, context: SubtitleProviderDownload) throws -> (data: Data, ext: String) {
+        let archive = try Archive(data: data, accessMode: .read)
+        var candidates: [(entry: Entry, ext: String, score: Double, index: Int)] = []
+        var total: UInt64 = 0
+        let release = tokens(context.release ?? "")
+        let filename = tokens(context.filename ?? "")
+        let preferred = Set(SubtitleLanguages.preferredCodes(language ?? "").flatMap { code in
+            [code, String(code.prefix { $0 != "-" })]
+        })
+        let wantedStem = ((context.filename ?? "") as NSString).deletingPathExtension.lowercased()
+        for (index, entry) in archive.enumerated() {
+            try Task.checkCancellation()
+            let parts = entry.path.split(separator: "/", omittingEmptySubsequences: false)
+            let ext = (entry.path as NSString).pathExtension.lowercased()
+            guard index < entryLimit, entry.uncompressedSize <= expandedLimit - total,
+                  !entry.path.hasPrefix("/"), !entry.path.contains("\\"), !entry.path.contains("\0"),
+                  !parts.contains(".."), !parts.contains(where: { $0.contains(":") }),
+                  !archiveExtensions.contains(ext) else { throw HarborError(code: "subtitle-file") }
+            total += entry.uncompressedSize
+            guard entry.type == .file, subtitleExtensions.contains(ext),
+                  !parts.contains(where: { $0.hasPrefix(".") || $0 == "__MACOSX" }) else { continue }
+            guard entry.uncompressedSize <= UInt64(fileLimit) else { throw HarborError(code: "subtitle-file") }
+            guard let leaf = parts.last else { continue }
+            let stem = (String(leaf) as NSString).deletingPathExtension.lowercased()
+            let episode = episodeNumber(stem)
+            var score = 0.0
+            if let season = context.season, let number = context.episode, let episode {
+                guard episode.season == season, episode.number == number else { continue }
+                score += 300
+            }
+            let words = stem.split { !$0.isLetter && !$0.isNumber && $0 != "-" }
+            if words.contains(where: { preferred.contains(SubtitleLanguages.normalize(String($0))) }) { score += 1_000 }
+            let names = tokens(stem)
+            score += overlap(names, release) * 180 + overlap(names, filename) * 220
+            if !wantedStem.isEmpty, stem == wantedStem { score += 500 }
+            candidates.append((entry, ext, score, index))
+        }
+        for candidate in candidates.sorted(by: { $0.score == $1.score ? $0.index < $1.index : $0.score > $1.score }) {
+            var result = Data()
+            let crc = try archive.extract(candidate.entry) { chunk in
+                try Task.checkCancellation()
+                guard chunk.count <= fileLimit - result.count else { throw HarborError(code: "subtitle-file") }
+                result.append(chunk)
+            }
+            guard result.count == Int(candidate.entry.uncompressedSize), crc == candidate.entry.checksum,
+                  !result.starts(with: [0x50, 0x4B]) else { throw HarborError(code: "subtitle-file") }
+            let decoded = SubtitleTextEncoding.convertedUTF8(result, language: language) ?? result
+            guard decoded.count <= fileLimit, let text = String(data: decoded, encoding: .utf8), !text.contains("\0") else { continue }
+            let withoutBOM = text.first == "\u{FEFF}" ? String(text.dropFirst()) : text
+            let header = withoutBOM.trimmingCharacters(in: .whitespacesAndNewlines)
+            let isSubtitle: Bool
+            switch candidate.ext {
+            case "vtt": isSubtitle = header.hasPrefix("WEBVTT") && header.contains("-->")
+            case "ass", "ssa": isSubtitle = header.lowercased().contains("[script info]") && header.lowercased().contains("dialogue:")
+            default: isSubtitle = header.range(of: #"[0-9]{2}:[0-9]{2}:[0-9]{2}[,.][0-9]{3}[ \t]+-->"#, options: .regularExpression) != nil
+            }
+            if isSubtitle { return (decoded, candidate.ext) }
+        }
+        throw HarborError(code: "subtitle-file")
+    }
+
+    private static func episodeNumber(_ value: String) -> (season: Int, number: Int)? {
+        for expression in episodePatterns {
+            guard let match = expression.firstMatch(in: value, range: NSRange(value.startIndex..., in: value)),
+                  let seasonRange = Range(match.range(at: 1), in: value), let season = Int(value[seasonRange]),
+                  let numberRange = Range(match.range(at: 2), in: value), let number = Int(value[numberRange]) else { continue }
+            return (season, number)
+        }
+        return nil
+    }
+
+    private static func tokens(_ value: String) -> Set<String> {
+        Set(value.lowercased().split { !$0.isLetter && !$0.isNumber }.filter { $0.count >= 2 }.map(String.init))
+    }
+
+    private static func overlap(_ lhs: Set<String>, _ rhs: Set<String>) -> Double {
+        Double(lhs.intersection(rhs).count) / Double(max(1, max(lhs.count, rhs.count)))
+    }
+}
+
+/// A credential is scoped to the original provider endpoint and cannot follow a redirect.
+private final class SubtitleDownloadNoRedirects: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
+    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse,
+                    newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
+        completionHandler(nil)
+    }
+}
+
 /// A Files selection is copied while its security-scoped access is held.
 /// Session copies remain available to mpv until that player has closed.
 actor SubtitleFileService {
@@ -111,12 +222,34 @@ actor SubtitleFileService {
         return request
     }
 
+    static func providerRequest(_ input: PlaybackSource.Subtitle, key: String?) throws -> URLRequest {
+        var request = try remoteRequest(input.url)
+        guard let context = input.providerDownload, context.requiresKey else { return request }
+        guard context.provider == .subsource, let key, !key.isEmpty,
+              let url = request.url, url.scheme == "https", url.host?.lowercased() == "api.subsource.net",
+              url.port == nil || url.port == 443, url.query == nil, url.fragment == nil,
+              url.path.range(of: #"^/api/v1/subtitles/[A-Za-z0-9][A-Za-z0-9_.:-]*/download$"#, options: .regularExpression) != nil else {
+            throw HarborError(code: "subtitle-file")
+        }
+        request.setValue(key, forHTTPHeaderField: "X-API-Key")
+        return request
+    }
+
     func download(_ input: PlaybackSource.Subtitle, session: UUID) async throws -> ImportedSubtitle {
         try Task.checkCancellation()
-        let request = try Self.remoteRequest(input.url)
+        let key = await MainActor.run { () -> String? in
+            guard let context = input.providerDownload, context.requiresKey,
+                  context.owner == (MetadataPreferences.shared.settingsOwner ?? "guest") else { return nil }
+            let store = SubtitleProviderKeyStore.forOwner(context.owner)
+            if !store.ready { try? store.load() }
+            return store.key(.subsource)
+        }
+        try Task.checkCancellation()
+        let request = try Self.providerRequest(input, key: key)
         let root = try directory(session, create: true)
         guard try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: nil).count < 24 else { throw HarborError(code: "subtitle-capacity") }
-        let (bytes, response) = try await Self.remoteSession.bytes(for: request)
+        let delegate = input.providerDownload?.requiresKey == true ? SubtitleDownloadNoRedirects() : nil
+        let (bytes, response) = try await Self.remoteSession.bytes(for: request, delegate: delegate)
         guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode),
               response.expectedContentLength <= Int64(Self.maximumSize) else { throw HarborError(code: "subtitle-file") }
         var data = Data()
@@ -126,11 +259,19 @@ actor SubtitleFileService {
             data.append(byte)
         }
         try Task.checkCancellation()
-        if let converted = SubtitleTextEncoding.convertedUTF8(data, language: input.lang) { data = converted }
-        let prefix = String(data: data.prefix(1024), encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? ""
-        guard !data.isEmpty, !prefix.hasPrefix("<!doctype html"), !prefix.hasPrefix("<html"), data.prefix(2) != Data([0x50, 0x4b]) else { throw HarborError(code: "subtitle-file") }
-        let supplied = request.url?.pathExtension.lowercased() ?? ""
-        let ext = Self.extensions.contains(supplied) ? supplied : prefix.contains("[script info]") ? "ass" : prefix.hasPrefix("webvtt") ? "vtt" : "srt"
+        let ext: String
+        if data.starts(with: [0x50, 0x4b]) {
+            guard let context = input.providerDownload else { throw HarborError(code: "subtitle-file") }
+            let entry = try ProviderSubtitleArchive.extract(data, language: input.lang, context: context)
+            data = entry.data
+            ext = entry.ext
+        } else {
+            if let converted = SubtitleTextEncoding.convertedUTF8(data, language: input.lang) { data = converted }
+            let prefix = String(data: data.prefix(1024), encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? ""
+            guard !data.isEmpty, !prefix.hasPrefix("<!doctype html"), !prefix.hasPrefix("<html") else { throw HarborError(code: "subtitle-file") }
+            let supplied = request.url?.pathExtension.lowercased() ?? ""
+            ext = Self.extensions.contains(supplied) ? supplied : prefix.contains("[script info]") ? "ass" : prefix.hasPrefix("webvtt") ? "vtt" : "srt"
+        }
         let url = root.appendingPathComponent(UUID().uuidString + "." + ext)
         try data.write(to: url, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
         return ImportedSubtitle(url: url, title: input.title ?? "Addon")

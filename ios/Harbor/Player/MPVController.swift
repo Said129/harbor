@@ -585,6 +585,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         cancelSubtitleSync()
         enqueueSubtitleOperation { controller in
             guard controller.state.loaded else { throw HarborError(code: "subtitle-context") }
+            let revision = controller.mediaRevision
             controller.state.addonSubtitleDownloading = true
             defer { controller.state.addonSubtitleDownloading = false }
             let file: ImportedSubtitle
@@ -592,9 +593,13 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
             else {
                 if let input = URL(string: subtitle.url), input.isFileURL { file = try await SubtitleFileService.shared.copy(input, session: controller.subtitleSession) }
                 else { file = try await SubtitleFileService.shared.download(subtitle, session: controller.subtitleSession) }
+                guard !Task.isCancelled, !controller.didClose, controller.mediaRevision == revision, controller.state.loaded else {
+                    await SubtitleFileService.shared.discard(file, session: controller.subtitleSession)
+                    throw HarborError(code: "subtitle-context")
+                }
                 controller.addonSubtitleFiles[subtitle.url] = file
             }
-            guard !controller.didClose, controller.state.loaded else { throw HarborError(code: "subtitle-context") }
+            guard !controller.didClose, controller.mediaRevision == revision, controller.state.loaded else { throw HarborError(code: "subtitle-context") }
             try await controller.resetSubtitleFPS()
             let local = PlaybackSource.Subtitle(url: file.url.absoluteString, lang: subtitle.lang, id: subtitle.id)
             controller.subtitleSelectionOrigin = .manual
@@ -605,7 +610,6 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 return
             }
             let previous = controller.state.primarySubtitle?.id
-            let revision = controller.mediaRevision
             do {
                 // Downloaded through a separate cookie/credential-free session;
                 // mpv's video HTTP headers must never reach a subtitle addon.

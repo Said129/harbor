@@ -1,8 +1,7 @@
 import Foundation
 
 /// Runs the subtitle sources the person turned on in Settings, Subtitle sources, besides the addon search that always runs.
-/// OpenSubtitles stays with that addon search, so its results are never doubled. Zip archives and downloads that need the
-/// person's key are left out: the player's download sends no headers and does not unpack archives yet.
+/// The built-in OpenSubtitles search steps aside for a configured OpenSubtitles addon. Download context stays in memory.
 enum OptionalSubtitleProviders {
     static func query(_ request: SubtitleRequest, languages: [String]) -> SubtitleProviderQuery {
         let media = request.media
@@ -16,16 +15,27 @@ enum OptionalSubtitleProviders {
         query.season = request.season
         query.episode = request.episode
         query.languages = languages
+        query.filename = request.filename
+        if media.id.hasPrefix("tmdb:"), let id = media.id.split(separator: ":").last,
+           !id.isEmpty, id.allSatisfy({ $0.isASCII && $0.isNumber }) { query.tmdbID = String(id) }
         return query
     }
 
-    /// Candidates the player can load as they are, from the providers that are on.
-    static func usable(_ found: [SubtitleProviderCandidate]) -> [PlaybackSource.Subtitle] {
-        found.filter { !$0.archive && !$0.requiresKey }.map { $0.subtitle }
+    static func directProviders(_ enabled: Set<SubtitleProviderID>, addons: [Addon]) -> Set<SubtitleProviderID> {
+        let installed = addons.contains { addon in
+            guard addon.enabled else { return false }
+            let id = addon.manifest["id"].string?.lowercased()
+            let isOpenSubtitles = id == "org.stremio.opensubtitles" || id == "com.opensubtitles.v3" ||
+                URL(string: addon.transportUrl)?.host?.lowercased() == "opensubtitles-v3.strem.io"
+            return isOpenSubtitles && addon.manifest["resources"].array.contains {
+                $0.string == "subtitles" || $0["name"].string == "subtitles"
+            }
+        }
+        return installed ? enabled.subtracting([.opensubtitles]) : enabled
     }
 
-    static func search(_ request: SubtitleRequest, owner: String) async -> [PlaybackSource.Subtitle] {
-        let enabled = SubtitleProviderPreferences.enabledProviders().subtracting([SubtitleProviderID.opensubtitles])
+    static func search(_ request: SubtitleRequest, owner: String, addonsEnabled: Bool) async -> [PlaybackSource.Subtitle] {
+        let enabled = directProviders(SubtitleProviderPreferences.enabledProviders(), addons: addonsEnabled ? request.addons : [])
         guard !enabled.isEmpty else { return [] }
         let setup: (keys: SubtitleProviderKeys, languages: [String]) = await MainActor.run {
             let store = SubtitleProviderKeyStore.forOwner(owner)
@@ -34,7 +44,13 @@ enum OptionalSubtitleProviders {
             let languages = SubtitleLanguages.preferredCodes(PlaybackPreferences.shared.options.subtitleLanguage)
             return (keys, languages)
         }
-        let found = await SubtitleProviderService().search(query(request, languages: setup.languages), enabled: enabled, keys: setup.keys)
-        return usable(found)
+        let lookup = query(request, languages: setup.languages)
+        let found = await SubtitleProviderService().search(lookup, enabled: enabled, keys: setup.keys)
+        return found.map { candidate in
+            var subtitle = candidate.subtitle
+            subtitle.providerDownload = SubtitleProviderDownload(owner: owner, provider: candidate.provider, requiresKey: candidate.requiresKey,
+                season: request.season, episode: request.episode, release: candidate.release, filename: lookup.filename)
+            return subtitle
+        }
     }
 }

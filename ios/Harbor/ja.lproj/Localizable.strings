@@ -228,6 +228,7 @@
 "Anterior" = "前へ";
 "Anular estilos integrados" = "埋め込みスタイルを上書き";
 "Any" = "指定なし";
+"Any Stremio subtitle addons you have installed are searched here too." = "インストール済みのStremio字幕アドオンも検索対象になります。";
 "Any public website. This plugin did not say which sites it uses." = "すべての公開サイト。このプラグインは使用するサイトを申告していません。";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "外観";
@@ -1026,6 +1027,7 @@
 "French" = "フランス語";
 "From" = "提供元";
 "From HBO" = "HBO作品";
+"From your addons" = "アドオンから";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
 "Fuente" = "フォント";
@@ -2502,6 +2504,7 @@
 "Subtitle FPS conversion is only available for text-based subtitles." = "字幕FPSの変換はテキスト形式の字幕でのみ使用できます。";
 "Subtitle FPS is unavailable in this libmpv runtime." = "このlibmpvランタイムでは字幕FPSを使用できません。";
 "Subtitle FPS is unavailable while a secondary subtitle is active." = "第2字幕が有効な間は字幕FPSを使用できません。";
+"Subtitle addons" = "字幕アドオン";
 "Subtitle appearance" = "字幕の表示";
 "Subtitle languages" = "字幕言語";
 "Subtitle source FPS" = "字幕のソースFPS";

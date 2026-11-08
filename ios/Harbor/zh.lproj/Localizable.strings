@@ -228,6 +228,7 @@
 "Anterior" = "上一个";
 "Anular estilos integrados" = "覆盖内嵌样式";
 "Any" = "不限";
+"Any Stremio subtitle addons you have installed are searched here too." = "这里也会搜索你已安装的所有 Stremio 字幕插件。";
 "Any public website. This plugin did not say which sites it uses." = "任何公开网站。此脚本插件未说明它使用哪些网站。";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "外观";
@@ -1026,6 +1027,7 @@
 "French" = "法语";
 "From" = "来源";
 "From HBO" = "HBO 出品";
+"From your addons" = "来自你的插件";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
 "Fuente" = "字体";
@@ -2502,6 +2504,7 @@
 "Subtitle FPS conversion is only available for text-based subtitles." = "字幕 FPS 转换仅适用于文本字幕。";
 "Subtitle FPS is unavailable in this libmpv runtime." = "此 libmpv 运行时不支持字幕 FPS。";
 "Subtitle FPS is unavailable while a secondary subtitle is active." = "启用第二字幕时，字幕 FPS 不可用。";
+"Subtitle addons" = "字幕插件";
 "Subtitle appearance" = "字幕外观";
 "Subtitle languages" = "字幕语言";
 "Subtitle source FPS" = "字幕源 FPS";

@@ -228,6 +228,7 @@
 "Anterior" = "Önceki";
 "Anular estilos integrados" = "Gömülü stilleri geçersiz kıl";
 "Any" = "Herhangi biri";
+"Any Stremio subtitle addons you have installed are searched here too." = "Yüklediğiniz tüm Stremio altyazı eklentilerinde de burada arama yapılır.";
 "Any public website. This plugin did not say which sites it uses." = "Herhangi bir herkese açık site. Bu uzantı hangi siteleri kullandığını belirtmedi.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "Görünüm";
@@ -1026,6 +1027,7 @@
 "French" = "Fransızca";
 "From" = "Kaynak";
 "From HBO" = "HBO Yapımları";
+"From your addons" = "Eklentilerinizden";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
 "Fuente" = "Yazı tipi";
@@ -2502,6 +2504,7 @@
 "Subtitle FPS conversion is only available for text-based subtitles." = "Altyazı FPS'si dönüşümü yalnızca metin tabanlı altyazılarda kullanılabilir.";
 "Subtitle FPS is unavailable in this libmpv runtime." = "Altyazı FPS'si bu libmpv çalışma ortamında kullanılamıyor.";
 "Subtitle FPS is unavailable while a secondary subtitle is active." = "İkincil altyazı etkinken altyazı FPS'si kullanılamaz.";
+"Subtitle addons" = "Altyazı eklentileri";
 "Subtitle appearance" = "Altyazı görünümü";
 "Subtitle languages" = "Altyazı dilleri";
 "Subtitle source FPS" = "Altyazı kaynak FPS'si";

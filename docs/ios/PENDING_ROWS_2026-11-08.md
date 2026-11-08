@@ -125,7 +125,7 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 426 | Music playback queue | P | music playback queue: the queue continuation rule exists as a tested helper (8 Nov, written by Haiku, uncompiled); nothing loads more tracks when the queue ends [Desktop: src-tauri/src/music/commands/playback.rs]
 - B 433 | Music local folder scanning | P | music local folder scanning: the unchanged-file and removed-file rules exist as tested helpers (8 Nov, written by Haiku, uncompiled); imports are still a one-time copy with no rescan [Desktop: src-tauri/src/music/connectors/local/scan.rs]
 
-## settings (36 filas)
+## settings (33 filas)
 
 - S 11 | tvdbKey | P | TVDB used without a user key setting [Desktop: src/lib/settings/types.ts]
 - S 65 | top10Ribbon | P | Top 10 rail without ribbon options [Desktop: src/lib/settings/types.ts]
@@ -135,7 +135,6 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - S 211 | castAlwaysTranscode | P | castAlwaysTranscode is stored; there is no cast pipeline yet (7 Nov, written by Haiku, CI run 25 pending) [Desktop: src/lib/settings/types.ts]
 - S 227 | subAssNormalizeSize | P | normalise ASS subtitle size: applied to external local ASS files only; embedded tracks need Desktop's Tauri-only extract command and remote files are not fetched (8 Nov, written by Haiku, uncompiled) [Desktop: src/lib/settings/types.ts]
 - S 231 | customFonts | P | reading fonts only [Desktop: src/lib/settings/types.ts]
-- S 236 | subProvidersEnabled | P | subtitle sources: Wyzie is wired but not exercised at runtime; SUBDL and Subsource are searched but their zip or key-protected files are not loadable yet (7 Nov, written by Haiku, CI run 25 pending) [Desktop: src/lib/settings/types.ts]
 - S 244 | subSecondaryScale | P | secondary subtitle scale: stored, nothing draws a second subtitle line yet (7 Nov, written by Haiku, CI runs 37 to 39 green) [Desktop: src/lib/settings/types.ts]
 - S 246 | autoSyncApplyStructural | P | Uncalibrated audio corrections are offered for review in the player. The calibrated auto-apply path and its setting are pending. [Desktop: src/lib/settings/types.ts]
 - S 247 | autoSyncDrift | M | advanced auto-sync options [Desktop: src/lib/settings/types.ts]
@@ -144,8 +143,6 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - S 265 | forcedSubsWhenNativeAudio | P | forced subtitles option partial [Desktop: src/lib/settings/types.ts]
 - S 318 | mpvTweaks | P | earlier review Partial [Desktop: src/lib/settings/types.ts]
 - S 342 | opensubtitlesApiKey | P | OpenSubtitles key is stored; auto-sync does not read it yet (7 Nov, written by Haiku, CI run 25 pending) [Desktop: src/lib/settings/types.ts]
-- S 345 | subdlApiKey | P | SUBDL key stored and used for search; zip downloads not loadable yet (7 Nov, written by Haiku, CI run 25 pending) [Desktop: src/lib/settings/types.ts]
-- S 346 | subsourceApiKey | P | Subsource key stored and used for search; downloads that need the key are not loadable yet (7 Nov, written by Haiku, CI run 25 pending) [Desktop: src/lib/settings/types.ts]
 - S 349 | audioDevice | P | route picker instead of a device setting [Desktop: src/lib/settings/types.ts]
 - S 363 | externalContinueWatching | P | external continue watching via cwSources [Desktop: src/lib/settings/types.ts]
 - S 366 | skipProfileScreen | P | profile prompt interval [Desktop: src/lib/settings/types.ts]

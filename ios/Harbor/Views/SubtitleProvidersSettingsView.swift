@@ -2,11 +2,11 @@ import SwiftUI
 
 /// Desktop's "Subtitle sources" panel (`views/settings/sub-sources-panel.tsx`): one toggle per source, and a key field
 /// under each source that needs one (OpenSubtitles takes an optional key). Opened from the subtitle settings screen.
-/// The toggles only store the choice for now. The search that reads them is not wired into the player yet.
 struct SubtitleProvidersSettingsView: View {
     @State private var store: SubtitleProviderKeyStore
     @AppStorage("subtitleProvider.opensubtitles.enabled") private var openSubtitlesOn = true
     @AppStorage("subtitleProvider.wyzie.enabled") private var wyzieOn = false
+    @AppStorage("subtitleProvider.addons.enabled") private var addonsOn = true
     @AppStorage("subtitleProvider.subdl.enabled") private var subdlOn = false
     @AppStorage("subtitleProvider.subsource.enabled") private var subsourceOn = false
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
@@ -24,6 +24,10 @@ struct SubtitleProvidersSettingsView: View {
                     }
                     HarborSettingsToggle(text("Wyzie"), note: text("A fast community subtitle index. Off by default; turn it on for extra coverage on newer or niche releases."), isOn: $wyzieOn)
                         .accessibilityIdentifier("subtitle-provider-wyzie")
+                }
+                HarborSettingsSection(text("From your addons")) {
+                    HarborSettingsToggle(text("Subtitle addons"), note: text("Any Stremio subtitle addons you have installed are searched here too."), isOn: $addonsOn)
+                        .accessibilityIdentifier("subtitle-provider-addons")
                 }
                 HarborSettingsSection(text("Needs an API key")) {
                     HarborSettingsToggle(text("SUBDL"), note: text("Search SUBDL for subtitles in multiple languages. Requires an API key."), isOn: $subdlOn)

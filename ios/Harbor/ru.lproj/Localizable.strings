@@ -230,6 +230,7 @@
 "Anterior" = "Предыдущее";
 "Anular estilos integrados" = "Переопределять встроенные стили";
 "Any" = "Любой";
+"Any Stremio subtitle addons you have installed are searched here too." = "Установленные дополнения субтитров для Stremio тоже участвуют в поиске.";
 "Any public website. This plugin did not say which sites it uses." = "Любой публичный сайт. Этот плагин не указал, какие сайты использует.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Анализ остановлен ради воспроизведения. Повторите попытку после буферизации.";
 "Apariencia" = "Оформление";
@@ -1029,6 +1030,7 @@
 "French" = "Французский";
 "From" = "Источник";
 "From HBO" = "От HBO";
+"From your addons" = "Из ваших дополнений";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
 "Fuente" = "Шрифт";
@@ -2515,6 +2517,7 @@
 "Subtitle FPS conversion is only available for text-based subtitles." = "Преобразование частоты кадров доступно только для текстовых субтитров.";
 "Subtitle FPS is unavailable in this libmpv runtime." = "Настройка частоты кадров субтитров недоступна в этой версии libmpv.";
 "Subtitle FPS is unavailable while a secondary subtitle is active." = "Настройка частоты кадров недоступна, пока включены вторые субтитры.";
+"Subtitle addons" = "Дополнения субтитров";
 "Subtitle appearance" = "Вид субтитров";
 "Subtitle languages" = "Языки субтитров";
 "Subtitle source FPS" = "Исходная частота кадров субтитров";

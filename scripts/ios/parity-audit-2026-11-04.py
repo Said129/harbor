@@ -1030,6 +1030,9 @@ SETTINGS = expand("""
 5 X blurEpisodes: Desktop blurs the hero image and stills on its episode detail page; iOS has no dedicated episode detail page, so nothing reads the setting (the toggle labelled Blur thumbnails is Desktop's spoilerHideThumbnails)
 396 P prefer my installed metadata addon: the meta plans are reordered with Cinemeta last, and Desktop's poster rule picks the answer for the detail page, filling missing artwork from Cinemeta (8 Nov, written by Haiku, uncompiled); the card title swap is not ported
 246 P Uncalibrated audio corrections are offered for review in the player, following the shipped Desktop calibration. Automatic application of calibrated structural results and its setting are pending.
+236 D Per-profile OpenSubtitles, Wyzie, addon, SUBDL and Subsource toggles drive the player search. OpenSubtitles steps aside for an enabled equivalent addon. The player accepts bounded ZIP files and exact-origin Subsource downloads.
+345 D The profile key enables SUBDL lookup, and the player prepares its downloaded subtitles or selects a matching episode and language from the ZIP.
+346 D The profile key enables Subsource lookup and its authenticated download. The player sends the key only to the Subsource HTTPS endpoint, refuses redirects and extracts bounded text subtitles.
 """)
 
 def audit(items, verdicts, label):

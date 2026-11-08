@@ -55,16 +55,15 @@ struct SubtitleProviderKeys: Equatable, Sendable {
     var subsource = ""
 }
 
-/// One candidate. `subtitle` is the app's existing player type, unchanged. The metadata sits beside it because
-/// `PlaybackSource.Subtitle` has no room for it, and the player pipeline is out of scope for this port.
+/// One search result, including provider match evidence and the information needed to prepare its download.
 struct SubtitleProviderCandidate: Sendable {
     var subtitle: PlaybackSource.Subtitle
     var provider: SubtitleProviderID
     /// Lower-case Desktop format (`srt`, `vtt`, `ass`, `ssa`, `sub`, `zip`), or nil when unknown.
     var format: String? = nil
-    /// A zip archive. iOS does not unpack these yet, so the player cannot load them as they are.
+    /// A zip archive. The player checks the downloaded bytes before extracting a playable entry.
     var archive = false
-    /// The download needs the person's key (Subsource). The player's download does not send it today.
+    /// The download requires an exact-origin Subsource request with the profile's key.
     var requiresKey = false
     var hearingImpaired = false
     var forced = false
@@ -825,6 +824,10 @@ enum SubtitleProviderPreferences {
 
     static func isEnabled(_ provider: SubtitleProviderID, defaults: UserDefaults = .standard) -> Bool {
         (defaults.object(forKey: storageKey(provider)) as? Bool) ?? provider.enabledByDefault
+    }
+
+    static func addonsEnabled(defaults: UserDefaults = .standard) -> Bool {
+        defaults.object(forKey: "subtitleProvider.addons.enabled") as? Bool ?? true
     }
 
     static func enabledProviders(defaults: UserDefaults = .standard) -> Set<SubtitleProviderID> {

@@ -228,6 +228,7 @@
 "Anterior" = "이전";
 "Anular estilos integrados" = "내장 스타일 덮어쓰기";
 "Any" = "모두";
+"Any Stremio subtitle addons you have installed are searched here too." = "설치한 Stremio 자막 애드온도 여기에서 함께 검색됩니다.";
 "Any public website. This plugin did not say which sites it uses." = "모든 공개 웹사이트. 이 플러그인은 사용하는 사이트를 밝히지 않았습니다.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "모양";
@@ -1026,6 +1027,7 @@
 "French" = "프랑스어";
 "From" = "출처";
 "From HBO" = "HBO 작품";
+"From your addons" = "내 애드온에서";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
 "Fuente" = "글꼴";
@@ -2502,6 +2504,7 @@
 "Subtitle FPS conversion is only available for text-based subtitles." = "자막 FPS 변환은 텍스트 기반 자막에서만 사용할 수 있습니다.";
 "Subtitle FPS is unavailable in this libmpv runtime." = "이 libmpv 런타임에서는 자막 FPS를 사용할 수 없습니다.";
 "Subtitle FPS is unavailable while a secondary subtitle is active." = "보조 자막이 활성화된 동안에는 자막 FPS를 사용할 수 없습니다.";
+"Subtitle addons" = "자막 애드온";
 "Subtitle appearance" = "자막 모양";
 "Subtitle languages" = "자막 언어";
 "Subtitle source FPS" = "자막 소스 FPS";

@@ -1944,3 +1944,21 @@ The first Harbor Core matrix (42534860006) found a stale assertion for null
 subtitle resource types. That assertion now verifies inheritance of the manifest
 movie type and rejection of series. Its original raw-record round trip still
 checks that account records are preserved byte for byte as JSON values.
+
+The corrected matrix 42535073402 passed the addon cases and Rust tests on macOS
+and Linux. Its Clippy warnings are in unchanged music files, and its Windows
+test failure is the unchanged M3U path expectation. The new addon Swift cases
+run separately in 42534875140.
+
+## Player subtitle sources and archives
+
+Profile settings now control each subtitle provider and the addon search. The
+built-in OpenSubtitles path steps aside for an enabled OpenSubtitles addon.
+Direct provider results and addon results can prepare bounded ZIP archives
+without extracting archive paths to disk. The matching episode and language
+drive the selection. Subsource keys are read from the active settings owner
+and can be sent only to the original HTTPS download endpoint. The player
+refuses redirects for that request and discards downloads for a replaced
+playback session. Test fixtures cover the archive selection, traversal guard,
+credential boundary and built-in provider fallback. Live services and native
+validation remain pending. The physical subtitle seek defect is still open.
