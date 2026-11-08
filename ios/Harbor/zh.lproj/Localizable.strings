@@ -51,6 +51,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "AI 搜索失败。";
 "AI search failed. Tap to retry." = "AI 搜索失败。点按重试。";
+"AMC" = "AMC";
 "AMC+" = "AMC+";
 "API key" = "API 密钥";
 "API token" = "API 令牌";
@@ -142,6 +143,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "调整文字和背景。预览会实时显示更改。";
 "Adjust volume on the speaker. Computer volume and boost do not apply." = "请在扬声器上调节音量。电脑音量和增益不适用。";
 "Administrar" = "管理";
+"Adrenaline Rush" = "肾上腺素飙升";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "自动将“继续观看”推进到下一集";
 "Adventure" = "冒险";
@@ -149,6 +151,7 @@
 "After 3" = "连续播放 3 集后";
 "After 4" = "连续播放 4 集后";
 "After 5" = "连续播放 5 集后";
+"After Dark" = "夜色渐深";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "在幻灯片上停留片刻后，焦点推荐内容的预告片会在背景中静音播放。此功能会占用更多带宽。";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "连续自动播放数集且没有任何操作后，暂停并确认你是否仍在观看，再继续播放。默认关闭。";
 "Age ratings and content notes when playback starts." = "在播放开始时显示年龄分级和内容提示。";
@@ -210,6 +213,7 @@
 "Animated Movies" = "动画电影";
 "Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "动画";
+"Animation Night" = "动画之夜";
 "Animation speed" = "动画速度";
 "Anime" = "动漫";
 "Anime Expo" = "Anime Expo";
@@ -296,6 +300,7 @@
 "Aviso del siguiente episodio" = "下一集提示";
 "Award Winning Anime" = "获奖动漫";
 "Awards & Recognition" = "奖项与荣誉";
+"Awards Contenders" = "奖季热门";
 "Ayuda e información" = "帮助与关于";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "添加来源";
@@ -325,6 +330,7 @@
 "Barra negra" = "黑色条幅";
 "Base de la página." = "页面底色。";
 "Bass boost" = "低音增强";
+"Be My Valentine" = "做我的心上人";
 "Be the first to start a discussion." = "来发起第一个讨论吧。";
 "Beloved by readers and critics" = "深受读者和评论家喜爱";
 "Berlin Film Festival" = "柏林电影节";
@@ -393,6 +399,7 @@
 "Brightness" = "亮度";
 "Brillo" = "亮度";
 "Bring in your library" = "导入你的媒体库";
+"Bring the Tissues" = "催泪佳作";
 "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "将动画列表导入 Harbor，并在观看时更新已看集数。现有进度会保留。";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "恢复已忽略的应用内小提示，无需重新进行欢迎流程。";
@@ -536,6 +543,7 @@
 "Clear cache now" = "立即清除缓存";
 "Clear caches" = "清除缓存";
 "Clear filters" = "清除筛选条件";
+"Clear home team" = "Clear home team";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "清除搜索";
 "Clears the saved URL so you can point Harbor at another relay." = "清除已保存的 URL，以便将 Harbor 指向其他中继。";
@@ -562,6 +570,8 @@
 "Comenzar a ver" = "开始观看";
 "Comenzar con los subtítulos desactivados" = "开始播放时关闭字幕";
 "Comfort" = "Comfort";
+"Comfort Watch" = "轻松下饭";
+"Coming of Age" = "青春成长";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "即将上映";
 "Comments" = "评论";
@@ -686,6 +696,7 @@
 "Couldn't read that image. Try a different file." = "无法读取该图片，请尝试其他文件。";
 "Couldn't scan that folder." = "无法扫描该文件夹。";
 "Cover Image URL" = "封面图片 URL";
+"Cozy Autumn Nights" = "温馨秋夜";
 "Crash" = "崩溃";
 "Crea tu propia paleta" = "创建自己的配色方案";
 "Create" = "创建";
@@ -710,6 +721,7 @@
 "Cuenta" = "账户";
 "Cuenta de Harbor" = "Harbor 账号";
 "Cuenta y configuración" = "账号与设置";
+"Cult Classics" = "邪典经典";
 "CuriosityStream" = "CuriosityStream";
 "Current" = "当前";
 "Custom" = "自定义";
@@ -730,6 +742,7 @@
 "Danish" = "丹麦语";
 "Dark" = "深色";
 "Date" = "日期";
+"Date Night" = "约会之夜";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "视频来源";
 "Debrid services" = "Debrid 服务";
@@ -886,6 +899,7 @@
 "Enter an FPS from 1 to 240." = "请输入 1 到 240 之间的 FPS。";
 "Enter an existing relay URL:" = "输入现有中继 URL：";
 "Enter current PIN" = "输入当前 PIN";
+"Epic Adventures" = "史诗冒险";
 "Episode" = "剧集";
 "Episode cards" = "单集卡片";
 "Episode ordering" = "单集排序";
@@ -943,10 +957,12 @@
 "Externo" = "外部";
 "Extra large" = "超大";
 "Extras" = "花絮";
+"Eye Candy" = "视觉盛宴";
 "FPS de los subtítulos" = "字幕 FPS";
 "FPS de origen de los subtítulos" = "字幕源 FPS";
 "FPS del video" = "视频 FPS";
 "FPS personalizados para subtítulos" = "自定义字幕 FPS";
+"FX" = "FX";
 "Face" = "字体";
 "Fade" = "淡化";
 "Failed to fetch JSON" = "无法获取 JSON";
@@ -963,6 +979,7 @@
 "Featured source" = "精选内容来源";
 "Featured tonight" = "今晚精选";
 "Fecha" = "日期";
+"Feel-Good Hits" = "治愈佳作";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "获取 DuckDuckGo 结果，并将排名靠前的结果加入模型提示词。";
 "Fiction" = "虚构类";
 "File is larger than 2 MB." = "文件大于 2 MB。";
@@ -1099,6 +1116,7 @@
 "Harvey Winner" = "哈维奖获奖作品";
 "Hearing impaired" = "听障字幕";
 "Hebrew" = "希伯来语";
+"Heists & Cons" = "劫案与骗局";
 "Help & about" = "帮助与关于";
 "Hero trailers" = "主视觉区预告片";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "焦点推荐、热门前 10、热门趋势、正在上映及各流媒体服务内容栏。你的插件内容栏将依次显示在下方。";
@@ -1141,7 +1159,9 @@
 "Highlights" = "精彩回顾";
 "Hindi" = "印地语";
 "History" = "历史";
+"History Buff" = "历史迷必看";
 "Hockey" = "曲棍球";
+"Holiday Warmth" = "节日暖意";
 "Home" = "首页";
 "Home Rail Settings" = "首页内容栏设置";
 "Home catalogs" = "首页目录";
@@ -1243,6 +1263,7 @@
 "Interfaz" = "界面";
 "Interfaz del sistema" = "系统界面";
 "Interlineado" = "行高";
+"Into the Stars" = "奔向星海";
 "Invalid SourceRow JSON format" = "SourceRow JSON 格式无效";
 "Invite link" = "邀请链接";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "它与 {product} 的制作者，以及应用内提及的任何公司、插件作者或商标持有人均无关联。";
@@ -1290,7 +1311,9 @@
 "Languages & subtitles" = "语言与字幕";
 "Large" = "大号";
 "Larger" = "较大";
+"Late Night" = "深夜";
 "Laterales" = "双页";
+"Laugh Out Loud" = "爆笑不停";
 "Leave" = "离开";
 "Leave room" = "离开房间";
 "Leave the episode you are up to clear and only blur the ones after it." = "保持当前看到的这一集清晰，仅模糊之后的剧集。";
@@ -1428,6 +1451,7 @@
 "Mexico" = "墨西哥";
 "Mezclar sonido envolvente a estéreo" = "将环绕声下混为立体声";
 "Mi biblioteca" = "我的媒体库";
+"Mind Benders" = "烧脑神作";
 "Minimum file size" = "最小文件大小";
 "Minimum seeders" = "最少做种人数";
 "Mis canales" = "My channels";
@@ -1518,6 +1542,7 @@
 "Needs an API key" = "需要 API 密钥";
 "Needs artwork-rich titles to feed the hero" = "需要包含丰富图片素材的作品才能用于焦点推荐";
 "Needs at least 10 titles for the Top 10 look" = "至少需要 10 部作品才能使用前 10 名样式";
+"Neo-Noir" = "新黑色电影";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflix 原创";
 "Never" = "从不";
@@ -1529,6 +1554,7 @@
 "New Episodes" = "新剧集";
 "New Episodes row" = "“新剧集”行";
 "New Face Award" = "新人奖";
+"New Year, New Stories" = "新年新故事";
 "New filter" = "新建筛选器";
 "New list" = "新建片单";
 "New profile" = "新建个人资料";
@@ -2130,6 +2156,7 @@
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
+"Saddle Up" = "纵马驰骋";
 "Salir de imagen en imagen" = "退出画中画";
 "Saltar créditos" = "跳过片尾";
 "Saltar intro" = "跳过片头";
@@ -2236,6 +2263,7 @@
 "Set B" = "Set B";
 "Set a PIN" = "设置 PIN";
 "Set active" = "设为当前使用";
+"Set as home team" = "Set as home team";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2353,6 +2381,7 @@
 "Slightly lighter than background." = "比背景稍亮。";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "速度较慢的插件和 P2P 播放源通常需要超过 10 秒才能开始播放。如果播放源还没获得充分的连接机会就被跳过，请延长此时间。";
 "Slow or unstable connection" = "网络连接缓慢或不稳定";
+"Slow-Burn Dramas" = "慢热剧情片";
 "Smaller" = "较小";
 "Smooth on weak PCs" = "低性能电脑流畅优先";
 "Sobre la línea principal" = "主字幕上方";
@@ -2394,6 +2423,7 @@
 "Sports" = "体育";
 "Spotlight" = "焦点推荐";
 "Spotlighted at the show" = "展会焦点作品";
+"Spring Awakening" = "春日新生";
 "Square play button" = "方形播放按钮";
 "Standard" = "普通";
 "Standard Def" = "Standard Def";
@@ -2473,6 +2503,7 @@
 "Subtítulos de tus addons" = "Subtitles from your addons";
 "Subtítulos duales" = "双字幕";
 "Subtítulos en tu idioma" = "您所选语言的字幕";
+"Summer Blockbusters" = "暑期大片";
 "Superficie" = "表面";
 "Superficies" = "界面层";
 "Supernatural" = "超自然";
@@ -2487,6 +2518,7 @@
 "Switch stream" = "切换视频流";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "播放开始后，如有更符合语言偏好的字幕到达，则切换到该字幕。关闭可保留当前轨道。";
 "Switch to {name}" = "切换到 {name}";
+"Sword & Sorcery" = "剑与魔法";
 "Sync" = "同步";
 "Sync Offset" = "同步偏移量";
 "Sync addons" = "Sync addons";
@@ -2587,6 +2619,8 @@
 "Theme name" = "主题名称";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "设置 TMDB 密钥后，这些内容栏便会启用。你随时可以在“设置”中返回这里。";
 "They email an activation link the first time. Click it, then come back and save." = "首次使用时，他们会通过电子邮件发送激活链接。点击该链接，然后返回并保存。";
+"This Afternoon" = "今天下午";
+"This Morning" = "今早";
 "This file has one audio track." = "此文件只有一条音轨。";
 "This file isn't a Harbor theme." = "此文件不是 Harbor 主题。";
 "This file isn't a readable theme." = "无法将此文件作为主题读取。";
@@ -2629,6 +2663,7 @@
 "Todos los deportes" = "所有运动";
 "Todos los géneros" = "所有类型";
 "Todos los idiomas" = "所有语言";
+"Tonight" = "今晚";
 "Tonight's main event" = "今晚重头戏";
 "Top" = "顶部";
 "Top 10 Comedy" = "十大热门喜剧片";
@@ -2706,6 +2741,7 @@
 "Trending on {source}" = "{source} 上的热门内容";
 "Trending, Popular, In Theaters, and the per service rails." = "趋势、热门、院线热映以及各服务的内容栏。";
 "Trending, in theaters, what's on every streamer." = "热门趋势、正在上映，以及各流媒体平台的内容。";
+"True Crime Files" = "真实罪案档案";
 "Try again" = "重试";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "优先通过插件获取标题和简介。插件无结果时使用 Cinemeta。";
 "Tu avatar, nombre e identificador en Harbor." = "你在 Harbor 中使用的头像、名称和账号名。";
@@ -2715,6 +2751,7 @@
 "Tune anime" = "调整动漫偏好";
 "Tune your recommendations" = "调整你的推荐";
 "Turkish" = "土耳其语";
+"Turn It Up" = "调高音量";
 "Turn off Auto Sync before changing subtitle FPS." = "更改字幕 FPS 前请关闭自动同步。";
 "Turn on" = "开启";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
@@ -2824,6 +2861,7 @@
 "Waiting for you to authorize on simkl.com…" = "正在等待你在 simkl.com 上授权…";
 "Waiting for you to authorize on trakt.tv…" = "正在等待你在 trakt.tv 上授权…";
 "War" = "战争";
+"War Stories" = "战争故事";
 "Watch Together" = "一起看";
 "Watch Together needs a relay." = "“一起观看”需要中继服务。";
 "Watch on" = "在以下平台观看";
@@ -2863,6 +2901,7 @@
 "Which subtitle Harbor lands on when more than one is available." = "有多个字幕可用时 Harbor 默认选中的字幕。";
 "Who's watching" = "谁在观看";
 "Who's watching?" = "谁在看？";
+"Whodunit" = "悬疑推理";
 "Wide search · still empty" = "扩大搜索范围 · 仍无结果";
 "Works without a key at low volume; add a key for higher quotas." = "低用量时无需密钥即可使用；添加密钥可获得更高配额。";
 "Writer" = "编剧";

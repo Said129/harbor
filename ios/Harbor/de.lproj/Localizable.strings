@@ -51,6 +51,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "KI-Suche fehlgeschlagen.";
 "AI search failed. Tap to retry." = "KI-Suche fehlgeschlagen. Zum Wiederholen klicken.";
+"AMC" = "AMC";
 "AMC+" = "AMC+";
 "API key" = "API-Schlüssel";
 "API token" = "API-Token";
@@ -142,6 +143,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "Passe Text und Hintergrund an. Die Vorschau zeigt deine Änderungen sofort.";
 "Adjust volume on the speaker. Computer volume and boost do not apply." = "Lautstärke am Lautsprecher einstellen. Computerlautstärke und Verstärkung gelten hier nicht.";
 "Administrar" = "Verwalten";
+"Adrenaline Rush" = "Adrenalinkick";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "„Weiterschauen“ auf die nächste Folge setzen";
 "Adventure" = "Abenteuer";
@@ -149,6 +151,7 @@
 "After 3" = "Nach 3";
 "After 4" = "Nach 4";
 "After 5" = "Nach 5";
+"After Dark" = "Nachts";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Nachdem eine Kachel einen Moment lang angezeigt wurde, wird der Trailer des hervorgehobenen Titels stumm im Hintergrund abgespielt. Verbraucht mehr Bandbreite.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Nach mehreren automatisch nacheinander abgespielten Episoden ohne Eingabe pausieren und vor dem Fortfahren prüfen, ob du noch da bist. Standardmäßig deaktiviert.";
 "Age ratings and content notes when playback starts." = "Altersfreigaben und Inhaltshinweise beim Wiedergabestart.";
@@ -210,6 +213,7 @@
 "Animated Movies" = "Animationsfilme";
 "Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "Animation";
+"Animation Night" = "Animationsabend";
 "Animation speed" = "Animationsgeschwindigkeit";
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
@@ -296,6 +300,7 @@
 "Aviso del siguiente episodio" = "Hinweis auf nächste Folge";
 "Award Winning Anime" = "Preisgekrönte Anime";
 "Awards & Recognition" = "Auszeichnungen & Anerkennung";
+"Awards Contenders" = "Anwärter auf Auszeichnungen";
 "Ayuda e información" = "Hilfe & Info";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "Quelle hinzufügen";
@@ -325,6 +330,7 @@
 "Barra negra" = "Schwarzer Balken";
 "Base de la página." = "Seitenbasis.";
 "Bass boost" = "Bassverstärkung";
+"Be My Valentine" = "Sei mein Valentinsschatz";
 "Be the first to start a discussion." = "Starte als Erste:r eine Diskussion.";
 "Beloved by readers and critics" = "Bei Lesern und Kritikern beliebt";
 "Berlin Film Festival" = "Internationale Filmfestspiele Berlin";
@@ -393,6 +399,7 @@
 "Brightness" = "Helligkeit";
 "Brillo" = "Helligkeit";
 "Bring in your library" = "Deine Mediathek importieren";
+"Bring the Tissues" = "Taschentücher bereithalten";
 "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Übernimm deine Anime-Liste in Harbor und aktualisiere die Episodenzahl beim Schauen. Dein bisheriger Fortschritt bleibt erhalten.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Zeigt die kleinen Hinweise in der App wieder an, die du geschlossen hast, ohne die Einführung zu wiederholen.";
@@ -536,6 +543,7 @@
 "Clear cache now" = "Cache jetzt leeren";
 "Clear caches" = "Caches leeren";
 "Clear filters" = "Filter zurücksetzen";
+"Clear home team" = "Clear home team";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Suche löschen";
 "Clears the saved URL so you can point Harbor at another relay." = "Löscht die gespeicherte URL, damit du Harbor auf ein anderes Relay verweisen kannst.";
@@ -562,6 +570,8 @@
 "Comenzar a ver" = "Ansehen";
 "Comenzar con los subtítulos desactivados" = "Mit ausgeschalteten Untertiteln starten";
 "Comfort" = "Comfort";
+"Comfort Watch" = "Zum Wohlfühlen";
+"Coming of Age" = "Erwachsenwerden";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Demnächst im Kino";
 "Comments" = "Kommentare";
@@ -686,6 +696,7 @@
 "Couldn't read that image. Try a different file." = "Dieses Bild konnte nicht gelesen werden. Versuche es mit einer anderen Datei.";
 "Couldn't scan that folder." = "Dieser Ordner konnte nicht gescannt werden.";
 "Cover Image URL" = "URL des Titelbilds";
+"Cozy Autumn Nights" = "Gemütliche Herbstnächte";
 "Crash" = "Absturz";
 "Crea tu propia paleta" = "Eigene Farbpalette erstellen";
 "Create" = "Erstellen";
@@ -710,6 +721,7 @@
 "Cuenta" = "Konto";
 "Cuenta de Harbor" = "Harbor-Konto";
 "Cuenta y configuración" = "Konto & Einrichtung";
+"Cult Classics" = "Kultklassiker";
 "CuriosityStream" = "CuriosityStream";
 "Current" = "Aktuell";
 "Custom" = "Benutzerdefiniert";
@@ -730,6 +742,7 @@
 "Danish" = "Dänisch";
 "Dark" = "Dunkel";
 "Date" = "Datum";
+"Date Night" = "Abend zu zweit";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "Woher dein Video stammt";
 "Debrid services" = "Debrid-Dienste";
@@ -886,6 +899,7 @@
 "Enter an FPS from 1 to 240." = "Gib einen FPS-Wert zwischen 1 und 240 ein.";
 "Enter an existing relay URL:" = "Vorhandene Relay-URL eingeben:";
 "Enter current PIN" = "Aktuelle PIN eingeben";
+"Epic Adventures" = "Epische Abenteuer";
 "Episode" = "Folge";
 "Episode cards" = "Episodenkarten";
 "Episode ordering" = "Episodenreihenfolge";
@@ -943,10 +957,12 @@
 "Externo" = "Extern";
 "Extra large" = "Sehr groß";
 "Extras" = "Extras";
+"Eye Candy" = "Augenschmaus";
 "FPS de los subtítulos" = "Untertitel-FPS";
 "FPS de origen de los subtítulos" = "FPS der Untertitelquelle";
 "FPS del video" = "Video-FPS";
 "FPS personalizados para subtítulos" = "Benutzerdefinierte Untertitel-FPS";
+"FX" = "FX";
 "Face" = "Gesicht";
 "Fade" = "Überblenden";
 "Failed to fetch JSON" = "JSON konnte nicht abgerufen werden";
@@ -963,6 +979,7 @@
 "Featured source" = "Quelle für Highlights";
 "Featured tonight" = "Heute Abend im Fokus";
 "Fecha" = "Datum";
+"Feel-Good Hits" = "Gute-Laune-Hits";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "Ruft DuckDuckGo-Ergebnisse ab und fügt die besten Treffer in den Modell-Prompt ein.";
 "Fiction" = "Belletristik";
 "File is larger than 2 MB." = "Die Datei ist größer als 2 MB.";
@@ -1099,6 +1116,7 @@
 "Harvey Winner" = "Harvey-Award-Gewinner";
 "Hearing impaired" = "Für Hörgeschädigte";
 "Hebrew" = "Hebräisch";
+"Heists & Cons" = "Raubzüge & Betrügereien";
 "Help & about" = "Hilfe & Info";
 "Hero trailers" = "Trailer im Hero-Bereich";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Hero-Bereich, Top 10, Trends, Im Kino und Reihen pro Dienst. Deine Add-ons werden darunter angefügt.";
@@ -1141,7 +1159,9 @@
 "Highlights" = "Highlights";
 "Hindi" = "Hindi";
 "History" = "Geschichte";
+"History Buff" = "Geschichtskenner";
 "Hockey" = "Hockey";
+"Holiday Warmth" = "Festliche Wärme";
 "Home" = "Startseite";
 "Home Rail Settings" = "Einstellungen für Startseitenreihen";
 "Home catalogs" = "Startseitenkataloge";
@@ -1243,6 +1263,7 @@
 "Interfaz" = "Oberfläche";
 "Interfaz del sistema" = "Systemoberfläche";
 "Interlineado" = "Zeilenhöhe";
+"Into the Stars" = "Zu den Sternen";
 "Invalid SourceRow JSON format" = "Ungültiges SourceRow-JSON-Format";
 "Invite link" = "Einladungslink";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Es besteht keine Verbindung zum Hersteller von {product} oder zu Unternehmen, Add-on-Autoren oder Markeninhabern, auf die in der App verwiesen wird.";
@@ -1290,7 +1311,9 @@
 "Languages & subtitles" = "Sprachen & Untertitel";
 "Large" = "Groß";
 "Larger" = "Größer";
+"Late Night" = "Spätabend";
 "Laterales" = "Seiten";
+"Laugh Out Loud" = "Laut loslachen";
 "Leave" = "Verlassen";
 "Leave room" = "Raum verlassen";
 "Leave the episode you are up to clear and only blur the ones after it." = "Lass die aktuelle Folge unverdeckt und mache nur die nachfolgenden unscharf.";
@@ -1428,6 +1451,7 @@
 "Mexico" = "Mexiko";
 "Mezclar sonido envolvente a estéreo" = "Surround-Sound auf Stereo heruntermischen";
 "Mi biblioteca" = "Meine Mediathek";
+"Mind Benders" = "Rätselhafte Filme";
 "Minimum file size" = "Mindestdateigröße";
 "Minimum seeders" = "Mindestanzahl an Seedern";
 "Mis canales" = "My channels";
@@ -1518,6 +1542,7 @@
 "Needs an API key" = "API-Schlüssel erforderlich";
 "Needs artwork-rich titles to feed the hero" = "Benötigt Titel mit umfangreichem Bildmaterial für das Titelkarussell";
 "Needs at least 10 titles for the Top 10 look" = "Für die Top-10-Ansicht sind mindestens 10 Titel erforderlich";
+"Neo-Noir" = "Neo-Noir";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflix Originals";
 "Never" = "Nie";
@@ -1529,6 +1554,7 @@
 "New Episodes" = "Neue Folgen";
 "New Episodes row" = "Zeile „Neue Folgen“";
 "New Face Award" = "Newcomer-Preis";
+"New Year, New Stories" = "Neues Jahr, neue Geschichten";
 "New filter" = "Neuer Filter";
 "New list" = "Neue Liste";
 "New profile" = "Neues Profil";
@@ -2130,6 +2156,7 @@
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
+"Saddle Up" = "Aufsatteln";
 "Salir de imagen en imagen" = "Bild-in-Bild-Modus beenden";
 "Saltar créditos" = "Abspann überspringen";
 "Saltar intro" = "Intro überspringen";
@@ -2236,6 +2263,7 @@
 "Set B" = "Set B";
 "Set a PIN" = "PIN festlegen";
 "Set active" = "Aktivieren";
+"Set as home team" = "Set as home team";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2353,6 +2381,7 @@
 "Slightly lighter than background." = "Etwas heller als der Hintergrund.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Langsame Add-ons und P2P-Quellen brauchen zum Starten oft mehr als 10 Sekunden. Erhöhe diesen Wert, wenn Streams übersprungen werden, bevor sie eine faire Chance hatten.";
 "Slow or unstable connection" = "Langsame oder instabile Verbindung";
+"Slow-Burn Dramas" = "Dramen mit langsamem Aufbau";
 "Smaller" = "Kleiner";
 "Smooth on weak PCs" = "Flüssig auf leistungsschwachen PCs";
 "Sobre la línea principal" = "Oberhalb der Hauptzeile";
@@ -2394,6 +2423,7 @@
 "Sports" = "Sport";
 "Spotlight" = "Im Rampenlicht";
 "Spotlighted at the show" = "Auf der Messe im Rampenlicht";
+"Spring Awakening" = "Frühlingserwachen";
 "Square play button" = "Quadratische Wiedergabetaste";
 "Standard" = "Standard";
 "Standard Def" = "Standard Def";
@@ -2473,6 +2503,7 @@
 "Subtítulos de tus addons" = "Subtitles from your addons";
 "Subtítulos duales" = "Zwei Untertitelspuren";
 "Subtítulos en tu idioma" = "Untertitel in deiner Sprache";
+"Summer Blockbusters" = "Sommer-Blockbuster";
 "Superficie" = "Oberfläche";
 "Superficies" = "Oberflächen";
 "Supernatural" = "Übernatürliches";
@@ -2487,6 +2518,7 @@
 "Switch stream" = "Stream wechseln";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "Zu einer besser passenden Sprache wechseln, wenn sie nach Wiedergabestart verfügbar wird. Deaktiviert lassen, um die aktuelle Spur beizubehalten.";
 "Switch to {name}" = "Zu {name} wechseln";
+"Sword & Sorcery" = "Schwert & Magie";
 "Sync" = "Synchronisieren";
 "Sync Offset" = "Synchronversatz";
 "Sync addons" = "Sync addons";
@@ -2587,6 +2619,8 @@
 "Theme name" = "Designname";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Diese Reihen werden aktiviert, sobald ein TMDB-Schlüssel eingerichtet ist. Du kannst jederzeit in den Einstellungen hierher zurückkehren.";
 "They email an activation link the first time. Click it, then come back and save." = "Beim ersten Mal schicken sie dir per E-Mail einen Aktivierungslink. Klicke darauf, kehre dann zurück und speichere.";
+"This Afternoon" = "Heute Nachmittag";
+"This Morning" = "Heute Morgen";
 "This file has one audio track." = "Diese Datei hat eine Tonspur.";
 "This file isn't a Harbor theme." = "Diese Datei ist kein gültiges Harbor-Design.";
 "This file isn't a readable theme." = "Diese Datei ist kein lesbares Theme.";
@@ -2629,6 +2663,7 @@
 "Todos los deportes" = "Alle Sportarten";
 "Todos los géneros" = "Alle Genres";
 "Todos los idiomas" = "Alle Sprachen";
+"Tonight" = "Heute Abend";
 "Tonight's main event" = "Das heutige Hauptereignis";
 "Top" = "Oben";
 "Top 10 Comedy" = "Top 10 Komödien";
@@ -2706,6 +2741,7 @@
 "Trending on {source}" = "Im Trend auf {source}";
 "Trending, Popular, In Theaters, and the per service rails." = "Im Trend, Beliebt, Im Kino und die Inhaltsreihen der einzelnen Dienste.";
 "Trending, in theaters, what's on every streamer." = "Trends, Kinofilme und Inhalte aller Streamingdienste.";
+"True Crime Files" = "True-Crime-Akten";
 "Try again" = "Erneut versuchen";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Für Titel und Beschreibungen zuerst dein Addon verwenden. Cinemeta nutzen, wenn das Addon kein Ergebnis liefert.";
 "Tu avatar, nombre e identificador en Harbor." = "Dein Avatar, dein Name und dein Benutzername in ganz Harbor.";
@@ -2715,6 +2751,7 @@
 "Tune anime" = "Anime anpassen";
 "Tune your recommendations" = "Empfehlungen anpassen";
 "Turkish" = "Türkisch";
+"Turn It Up" = "Dreh auf";
 "Turn off Auto Sync before changing subtitle FPS." = "Deaktiviere „Automatische Synchronisierung“, bevor du die Untertitel-FPS änderst.";
 "Turn on" = "Einschalten";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
@@ -2824,6 +2861,7 @@
 "Waiting for you to authorize on simkl.com…" = "Warte darauf, dass du die Autorisierung auf simkl.com abschließt…";
 "Waiting for you to authorize on trakt.tv…" = "Warte auf deine Autorisierung auf trakt.tv…";
 "War" = "Krieg";
+"War Stories" = "Kriegsgeschichten";
 "Watch Together" = "Gemeinsam ansehen";
 "Watch Together needs a relay." = "Für „Gemeinsam ansehen“ ist ein Relay-Server erforderlich.";
 "Watch on" = "Ansehen auf";
@@ -2863,6 +2901,7 @@
 "Which subtitle Harbor lands on when more than one is available." = "Welchen Untertitel Harbor auswählt, wenn mehrere verfügbar sind.";
 "Who's watching" = "Wer schaut gerade?";
 "Who's watching?" = "Wer schaut gerade?";
+"Whodunit" = "Rätselkrimi";
 "Wide search · still empty" = "Breite Suche · weiterhin leer";
 "Works without a key at low volume; add a key for higher quotas." = "Funktioniert bei geringer Nutzung ohne Schlüssel. Füge für höhere Kontingente einen Schlüssel hinzu.";
 "Writer" = "Drehbuchautor";

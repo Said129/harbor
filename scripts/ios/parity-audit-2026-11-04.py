@@ -538,6 +538,17 @@ BEHAVIORS = expand("""
 52 D enable and disable addon: the toggle is saved to the local profile; the Stremio account case does not apply because the owner removed the sign-in (confirmed 8 Nov)
 54 D configured addon credentials persistence: the configured manifest URL is kept locally through the household vault; the Stremio account write does not apply because the owner removed the sign-in (confirmed 8 Nov)
 60 D installed addons management: install, remove, reorder and toggle work on the local list; the signed-in Stremio case does not apply because the owner removed the sign-in (confirmed 8 Nov)
+22 P global search: Desktop's poster filter and 12-title cap apply to the merged movie and series rows (8 Nov, written by Haiku, uncompiled); no TMDB search source, no top-match ranking and no year or genre intent
+23 P movie search: the poster filter and the 12-title cap are in (8 Nov, written by Haiku, uncompiled); iOS still has no TMDB search source for movies and no top-match ranking
+24 P series search: the poster filter and the 12-title cap are in (8 Nov, written by Haiku, uncompiled); iOS still has no TMDB search source for series and no top-match ranking
+12 D movie mood and decade rails: Desktop's mood rails (24 moods, 8 seasonal, time-of-day buckets, daily seed) join the decade rails on the movie page (8 Nov, written by Haiku, uncompiled)
+16 P network and premiere rails: the network list now matches Desktop (AMC and FX added); the premiere rail's parameters were not compared (8 Nov, written by Haiku, uncompiled)
+322 P library release calendar: every library title that is not removed, plus the Trakt watchlist when Trakt is connected, with Desktop's curated order, the 80 shows and 80 movies limits, no season 0 episode 0 and a dedupe (8 Nov, written by Haiku, uncompiled); dates still come from the addon metadata, not Desktop's Cinemeta and TMDB resolution
+369 P Manga Suwayomi library: the client can list categories and their books over GraphQL and REST (8 Nov, written by Haiku, uncompiled); the library has no category filter yet
+377 P manga book page turns: Desktop's two-page spread rule exists as a tested helper (8 Nov, written by Haiku, uncompiled); the book pager still shows single leaves
+426 P music playback queue: the queue continuation rule exists as a tested helper (8 Nov, written by Haiku, uncompiled); nothing loads more tracks when the queue ends
+433 P music local folder scanning: the unchanged-file and removed-file rules exist as tested helpers (8 Nov, written by Haiku, uncompiled); imports are still a one-time copy with no rescan
+397 P sports favorite leagues and teams: a home team per league group can be set from the match detail and is kept in the Keychain, and the form, last result and next fixture rules exist (8 Nov, written by Haiku, uncompiled); no team browser, no followed-team schedule view
 """)
 
 SETTINGS = expand("""

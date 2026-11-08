@@ -51,6 +51,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "Yapay zekâ araması başarısız oldu.";
 "AI search failed. Tap to retry." = "AI araması başarısız oldu. Yeniden denemek için dokunun.";
+"AMC" = "AMC";
 "AMC+" = "AMC+";
 "API key" = "API anahtarı";
 "API token" = "API belirteci";
@@ -142,6 +143,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "Metni ve arka planı ayarlayın. Önizleme yaptığınız değişiklikleri anında gösterir.";
 "Adjust volume on the speaker. Computer volume and boost do not apply." = "Sesi hoparlörden ayarlayın. Bilgisayar ses düzeyi ve güçlendirmesi uygulanmaz.";
 "Administrar" = "Yönet";
+"Adrenaline Rush" = "Adrenalin Patlaması";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "İzlemeye Devam Et'i sonraki bölüme ilerlet";
 "Adventure" = "Macera";
@@ -149,6 +151,7 @@
 "After 3" = "3 bölüm sonra";
 "After 4" = "4 bölüm sonra";
 "After 5" = "5'ten sonra";
+"After Dark" = "Hava Karardıktan Sonra";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Bir slaytta kısa süre beklendiğinde öne çıkan içeriğin fragmanı arka planda sessiz oynatılır. Daha fazla bant genişliği kullanır.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Herhangi bir giriş olmadan art arda birkaç bölüm otomatik oynatıldıktan sonra duraklatır ve devam etmeden önce hâlâ orada olup olmadığınızı sorar. Varsayılan olarak kapalıdır.";
 "Age ratings and content notes when playback starts." = "Oynatma başladığında yaş sınırları ve içerik uyarıları.";
@@ -210,6 +213,7 @@
 "Animated Movies" = "Animasyon Filmleri";
 "Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "Animasyon";
+"Animation Night" = "Animasyon Gecesi";
 "Animation speed" = "Animasyon hızı";
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
@@ -296,6 +300,7 @@
 "Aviso del siguiente episodio" = "Sonraki bölüm bildirimi";
 "Award Winning Anime" = "Ödüllü animeler";
 "Awards & Recognition" = "Ödüller ve Başarılar";
+"Awards Contenders" = "Ödül Yarışındakiler";
 "Ayuda e información" = "Yardım ve hakkında";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "Kaynak ekle";
@@ -325,6 +330,7 @@
 "Barra negra" = "Siyah şerit";
 "Base de la página." = "Sayfa tabanı.";
 "Bass boost" = "Bas güçlendirme";
+"Be My Valentine" = "Sevgilim Ol";
 "Be the first to start a discussion." = "İlk tartışmayı siz başlatın.";
 "Beloved by readers and critics" = "Okurların ve eleştirmenlerin gözdesi";
 "Berlin Film Festival" = "Berlin Film Festivali";
@@ -393,6 +399,7 @@
 "Brightness" = "Parlaklık";
 "Brillo" = "Parlaklık";
 "Bring in your library" = "Kütüphanenizi aktarın";
+"Bring the Tissues" = "Mendilleri Hazırlayın";
 "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Anime listenizi Harbor'a getirin ve izlerken bölüm sayınızı güncelleyin. Mevcut ilerlemeniz korunur.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Karşılama akışını yeniden başlatmadan, kapattığınız küçük uygulama içi ipuçlarını geri getirir.";
@@ -536,6 +543,7 @@
 "Clear cache now" = "Önbelleği şimdi temizle";
 "Clear caches" = "Önbellekleri temizle";
 "Clear filters" = "Filtreleri temizle";
+"Clear home team" = "Clear home team";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Aramayı temizle";
 "Clears the saved URL so you can point Harbor at another relay." = "Kayıtlı URL'yi kaldırarak Harbor'ı başka bir aktarıcıya yönlendirmenizi sağlar.";
@@ -562,6 +570,8 @@
 "Comenzar a ver" = "İzlemeye Başla";
 "Comenzar con los subtítulos desactivados" = "Altyazıları kapalı başlat";
 "Comfort" = "Comfort";
+"Comfort Watch" = "İç Isıtan Seyirlikler";
+"Coming of Age" = "Büyüme Hikâyeleri";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Yakında Sinemalarda";
 "Comments" = "Yorumlar";
@@ -686,6 +696,7 @@
 "Couldn't read that image. Try a different file." = "Bu görüntü okunamadı. Başka bir dosya deneyin.";
 "Couldn't scan that folder." = "Bu klasör taranamadı.";
 "Cover Image URL" = "Kapak Görseli URL'si";
+"Cozy Autumn Nights" = "Sıcacık Sonbahar Geceleri";
 "Crash" = "Çökme";
 "Crea tu propia paleta" = "Kendi paletinizi oluşturun";
 "Create" = "Oluştur";
@@ -710,6 +721,7 @@
 "Cuenta" = "Hesap";
 "Cuenta de Harbor" = "Harbor hesabı";
 "Cuenta y configuración" = "Hesap ve kurulum";
+"Cult Classics" = "Kült Klasikler";
 "CuriosityStream" = "CuriosityStream";
 "Current" = "Mevcut";
 "Custom" = "Özel";
@@ -730,6 +742,7 @@
 "Danish" = "Danca";
 "Dark" = "Koyu";
 "Date" = "Tarih";
+"Date Night" = "Romantik Bir Gece";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "Video kaynakları";
 "Debrid services" = "Debrid hizmetleri";
@@ -886,6 +899,7 @@
 "Enter an FPS from 1 to 240." = "1 ile 240 arasında bir FPS girin.";
 "Enter an existing relay URL:" = "Mevcut bir aktarıcı URL'si girin:";
 "Enter current PIN" = "Geçerli PIN'i girin";
+"Epic Adventures" = "Destansı Maceralar";
 "Episode" = "Bölüm";
 "Episode cards" = "Bölüm kartları";
 "Episode ordering" = "Bölüm sıralaması";
@@ -943,10 +957,12 @@
 "Externo" = "Harici";
 "Extra large" = "Çok büyük";
 "Extras" = "Ekstralar";
+"Eye Candy" = "Görsel Şölen";
 "FPS de los subtítulos" = "Altyazı FPS'si";
 "FPS de origen de los subtítulos" = "Altyazı kaynak FPS'si";
 "FPS del video" = "Video FPS'si";
 "FPS personalizados para subtítulos" = "Özel altyazı FPS'si";
+"FX" = "FX";
 "Face" = "Yüz";
 "Fade" = "Solma";
 "Failed to fetch JSON" = "JSON alınamadı";
@@ -963,6 +979,7 @@
 "Featured source" = "Öne çıkan içerik kaynağı";
 "Featured tonight" = "Bu gece öne çıkanlar";
 "Fecha" = "Tarih";
+"Feel-Good Hits" = "İyi Hissettiren Yapımlar";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "DuckDuckGo sonuçlarını getirir ve en iyi sonuçları model istemine ekler.";
 "Fiction" = "Kurgu";
 "File is larger than 2 MB." = "Dosya 2 MB'tan büyük.";
@@ -1099,6 +1116,7 @@
 "Harvey Winner" = "Harvey Ödülü Sahibi";
 "Hearing impaired" = "İşitme engelliler için";
 "Hebrew" = "İbranice";
+"Heists & Cons" = "Soygunlar ve Dolandırıcılıklar";
 "Help & about" = "Yardım ve hakkında";
 "Hero trailers" = "Öne çıkan fragmanlar";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Öne Çıkanlar, İlk 10, Gündemdekiler, Vizyondakiler ve hizmete özel satırlar. Eklentileriniz bunların altına eklenir.";
@@ -1141,7 +1159,9 @@
 "Highlights" = "Öne çıkanlar";
 "Hindi" = "Hintçe";
 "History" = "Tarih";
+"History Buff" = "Tarih Meraklılarına";
 "Hockey" = "Hokey";
+"Holiday Warmth" = "Sıcacık Tatil Günleri";
 "Home" = "Ana Sayfa";
 "Home Rail Settings" = "Ana Sayfa Satır Ayarları";
 "Home catalogs" = "Ana Sayfa katalogları";
@@ -1243,6 +1263,7 @@
 "Interfaz" = "Arayüz";
 "Interfaz del sistema" = "Sistem arayüzü";
 "Interlineado" = "Satır yüksekliği";
+"Into the Stars" = "Yıldızlara Doğru";
 "Invalid SourceRow JSON format" = "Geçersiz SourceRow JSON biçimi";
 "Invite link" = "Davet bağlantısı";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "{product} geliştiricisiyle veya uygulamada adı geçen herhangi bir şirket, eklenti geliştiricisi ya da ticari marka sahibiyle bağlantılı değildir.";
@@ -1290,7 +1311,9 @@
 "Languages & subtitles" = "Diller ve altyazılar";
 "Large" = "Büyük";
 "Larger" = "Daha büyük";
+"Late Night" = "Gece Kuşağı";
 "Laterales" = "Kenarlar";
+"Laugh Out Loud" = "Kahkahaya Boğanlar";
 "Leave" = "Ayrıl";
 "Leave room" = "Odadan ayrıl";
 "Leave the episode you are up to clear and only blur the ones after it." = "İzlemekte olduğunuz bölümü net bırakıp yalnızca sonrakileri bulanıklaştırır.";
@@ -1428,6 +1451,7 @@
 "Mexico" = "Meksika";
 "Mezclar sonido envolvente a estéreo" = "Çevresel sesi stereoya indirge";
 "Mi biblioteca" = "Kütüphanem";
+"Mind Benders" = "Akıl Oyunları";
 "Minimum file size" = "Minimum dosya boyutu";
 "Minimum seeders" = "En az kaynak sayısı";
 "Mis canales" = "My channels";
@@ -1518,6 +1542,7 @@
 "Needs an API key" = "API anahtarı gerekli";
 "Needs artwork-rich titles to feed the hero" = "Vitrinde gösterilebilmesi için zengin görsellere sahip içerikler gerekir";
 "Needs at least 10 titles for the Top 10 look" = "İlk 10 görünümü için en az 10 içerik gerekir";
+"Neo-Noir" = "Neo-Noir";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflix Orijinal Yapımları";
 "Never" = "Asla";
@@ -1529,6 +1554,7 @@
 "New Episodes" = "Yeni Bölümler";
 "New Episodes row" = "Yeni Bölümler satırı";
 "New Face Award" = "Yeni Yüz Ödülü";
+"New Year, New Stories" = "Yeni Yıl, Yeni Hikâyeler";
 "New filter" = "Yeni filtre";
 "New list" = "Yeni liste";
 "New profile" = "Yeni profil";
@@ -2130,6 +2156,7 @@
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
+"Saddle Up" = "Atlara Atlayın!";
 "Salir de imagen en imagen" = "Resim İçinde Resim modundan çık";
 "Saltar créditos" = "Jeneriği Atla";
 "Saltar intro" = "Girişi Atla";
@@ -2236,6 +2263,7 @@
 "Set B" = "Set B";
 "Set a PIN" = "PIN belirle";
 "Set active" = "Etkin olarak ayarla";
+"Set as home team" = "Set as home team";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2353,6 +2381,7 @@
 "Slightly lighter than background." = "Arka plandan biraz daha açık.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Yavaş eklentilerin ve P2P kaynaklarının başlaması genellikle 10 saniyeden uzun sürer. Yayınlar yeterince beklenmeden atlanıyorsa bu süreyi artırın.";
 "Slow or unstable connection" = "Yavaş veya kararsız bağlantı";
+"Slow-Burn Dramas" = "Ağır İlerleyen Dramalar";
 "Smaller" = "Daha küçük";
 "Smooth on weak PCs" = "Düşük donanımlı bilgisayarlarda akıcı";
 "Sobre la línea principal" = "Ana satırın üstü";
@@ -2394,6 +2423,7 @@
 "Sports" = "Spor";
 "Spotlight" = "Öne çıkanlar";
 "Spotlighted at the show" = "Etkinlikte öne çıkanlar";
+"Spring Awakening" = "Bahar Uyanışı";
 "Square play button" = "Kare oynat düğmesi";
 "Standard" = "Standart";
 "Standard Def" = "Standard Def";
@@ -2473,6 +2503,7 @@
 "Subtítulos de tus addons" = "Subtitles from your addons";
 "Subtítulos duales" = "Çift altyazı";
 "Subtítulos en tu idioma" = "Dilinizde altyazılar";
+"Summer Blockbusters" = "Yazın Gişe Rekortmenleri";
 "Superficie" = "Yüzey";
 "Superficies" = "Yüzeyler";
 "Supernatural" = "Doğaüstü";
@@ -2487,6 +2518,7 @@
 "Switch stream" = "Yayını değiştir";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "Oynatma başladıktan sonra daha uygun bir dil gelirse ona geçin. Mevcut izi korumak için kapalı bırakın.";
 "Switch to {name}" = "{name} profiline geç";
+"Sword & Sorcery" = "Kılıç ve Büyü";
 "Sync" = "Senkronize et";
 "Sync Offset" = "Senkronizasyon farkı";
 "Sync addons" = "Sync addons";
@@ -2587,6 +2619,8 @@
 "Theme name" = "Tema adı";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Bu satırlar, bir TMDB anahtarı ayarlandığında etkinleşir. Bu bölüme dilediğiniz zaman Ayarlar'dan dönebilirsiniz.";
 "They email an activation link the first time. Click it, then come back and save." = "İlk seferde e-postayla bir etkinleştirme bağlantısı gönderirler. Bağlantıya tıklayın, ardından buraya dönüp kaydedin.";
+"This Afternoon" = "Bu Öğleden Sonra";
+"This Morning" = "Bu Sabah";
 "This file has one audio track." = "Bu dosyada tek bir ses parçası var.";
 "This file isn't a Harbor theme." = "Bu dosya bir Harbor teması değil.";
 "This file isn't a readable theme." = "Bu dosya okunabilir bir tema değil.";
@@ -2629,6 +2663,7 @@
 "Todos los deportes" = "Tüm sporlar";
 "Todos los géneros" = "Tüm türler";
 "Todos los idiomas" = "Tüm diller";
+"Tonight" = "Bu Gece";
 "Tonight's main event" = "Bu gecenin büyük olayı";
 "Top" = "Üst";
 "Top 10 Comedy" = "En İyi 10 Komedi";
@@ -2706,6 +2741,7 @@
 "Trending on {source}" = "{source} üzerinde trend olanlar";
 "Trending, Popular, In Theaters, and the per service rails." = "Trendler, Popüler, Vizyondakiler ve hizmetlere özel satırlar.";
 "Trending, in theaters, what's on every streamer." = "Gündemdekiler, vizyondakiler ve tüm yayın hizmetlerindeki içerikler.";
+"True Crime Files" = "Gerçek Suç Dosyaları";
 "Try again" = "Tekrar dene";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Adlar ve açıklamalar için önce eklentinizi deneyin. Eklenti sonuç vermezse Cinemeta'yı kullanın.";
 "Tu avatar, nombre e identificador en Harbor." = "Harbor genelinde avatarınız, adınız ve kullanıcı adınız.";
@@ -2715,6 +2751,7 @@
 "Tune anime" = "Anime tercihlerini ayarla";
 "Tune your recommendations" = "Önerilerini özelleştir";
 "Turkish" = "Türkçe";
+"Turn It Up" = "Sesi Aç";
 "Turn off Auto Sync before changing subtitle FPS." = "Altyazı FPS'sini değiştirmeden önce Otomatik Eşzamanlama'yı kapatın.";
 "Turn on" = "Aç";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
@@ -2824,6 +2861,7 @@
 "Waiting for you to authorize on simkl.com…" = "simkl.com'da yetkilendirmeniz bekleniyor…";
 "Waiting for you to authorize on trakt.tv…" = "trakt.tv'de yetkilendirmeniz bekleniyor…";
 "War" = "Savaş";
+"War Stories" = "Savaş Hikâyeleri";
 "Watch Together" = "Birlikte İzle";
 "Watch Together needs a relay." = "Birlikte İzle için bir aktarıcı gerekir.";
 "Watch on" = "Şurada izle";
@@ -2863,6 +2901,7 @@
 "Which subtitle Harbor lands on when more than one is available." = "Birden fazla seçenek olduğunda Harbor'ın hangi altyazıyı seçeceği.";
 "Who's watching" = "Kim izliyor?";
 "Who's watching?" = "Kim izliyor?";
+"Whodunit" = "Katil Kim?";
 "Wide search · still empty" = "Kapsamlı arama · hâlâ boş";
 "Works without a key at low volume; add a key for higher quotas." = "Düşük kullanımda anahtarsız çalışır; daha yüksek kotalar için bir anahtar ekleyin.";
 "Writer" = "Senarist";

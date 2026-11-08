@@ -51,6 +51,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "AI検索に失敗しました。";
 "AI search failed. Tap to retry." = "AI検索に失敗しました。タップして再試行してください。";
+"AMC" = "AMC";
 "AMC+" = "AMC+";
 "API key" = "APIキー";
 "API token" = "APIトークン";
@@ -142,6 +143,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "文字と背景を調整します。変更がその場でプレビューに反映されます。";
 "Adjust volume on the speaker. Computer volume and boost do not apply." = "音量はスピーカー側で調整してください。コンピューターの音量や増幅は適用されません。";
 "Administrar" = "管理";
+"Adrenaline Rush" = "アドレナリン全開";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "「視聴を続ける」を次のエピソードに進める";
 "Adventure" = "アドベンチャー";
@@ -149,6 +151,7 @@
 "After 3" = "3話後";
 "After 4" = "4話後";
 "After 5" = "5話後";
+"After Dark" = "深夜に観たい作品";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "スライドをしばらく表示すると、注目作品の予告編がバックグラウンドでミュート再生されます。通信量が増加します。";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "操作なしで複数のエピソードが連続自動再生されたら、一時停止して視聴を続けているか確認します。初期設定ではオフです。";
 "Age ratings and content notes when playback starts." = "再生開始時に年齢区分と内容に関する注意を表示します。";
@@ -210,6 +213,7 @@
 "Animated Movies" = "アニメ映画";
 "Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "アニメーション";
+"Animation Night" = "アニメーションナイト";
 "Animation speed" = "アニメーション速度";
 "Anime" = "アニメ";
 "Anime Expo" = "Anime Expo";
@@ -296,6 +300,7 @@
 "Aviso del siguiente episodio" = "次のエピソードの案内";
 "Award Winning Anime" = "受賞アニメ";
 "Awards & Recognition" = "受賞歴";
+"Awards Contenders" = "賞レース有力作";
 "Ayuda e información" = "ヘルプと情報";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "ソースを追加";
@@ -325,6 +330,7 @@
 "Barra negra" = "黒い帯";
 "Base de la página." = "ページのベース。";
 "Bass boost" = "低音ブースト";
+"Be My Valentine" = "バレンタインに";
 "Be the first to start a discussion." = "最初にディスカッションを始めましょう。";
 "Beloved by readers and critics" = "読者と批評家に愛される作品";
 "Berlin Film Festival" = "ベルリン国際映画祭";
@@ -393,6 +399,7 @@
 "Brightness" = "明るさ";
 "Brillo" = "明るさ";
 "Bring in your library" = "ライブラリを取り込む";
+"Bring the Tissues" = "ハンカチ必須";
 "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "アニメのリストをHarborに取り込み、視聴に合わせて話数を更新します。これまでの進捗は保持されます。";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "ウェルカムガイドをやり直さずに、閉じたアプリ内のヒントを再表示します。";
@@ -536,6 +543,7 @@
 "Clear cache now" = "今すぐキャッシュを消去";
 "Clear caches" = "キャッシュを消去";
 "Clear filters" = "フィルターをクリア";
+"Clear home team" = "Clear home team";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "検索をクリア";
 "Clears the saved URL so you can point Harbor at another relay." = "保存済みのURLを削除し、Harborを別のリレーに接続できるようにします。";
@@ -562,6 +570,8 @@
 "Comenzar a ver" = "視聴を開始";
 "Comenzar con los subtítulos desactivados" = "字幕をオフで再生開始";
 "Comfort" = "Comfort";
+"Comfort Watch" = "ほっとする作品";
+"Coming of Age" = "青春と成長";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "近日劇場公開";
 "Comments" = "コメント";
@@ -686,6 +696,7 @@
 "Couldn't read that image. Try a different file." = "画像を読み込めませんでした。別のファイルをお試しください。";
 "Couldn't scan that folder." = "そのフォルダーをスキャンできませんでした。";
 "Cover Image URL" = "カバー画像URL";
+"Cozy Autumn Nights" = "秋の夜にほっこり";
 "Crash" = "クラッシュ";
 "Crea tu propia paleta" = "独自のパレットを作成";
 "Create" = "作成";
@@ -710,6 +721,7 @@
 "Cuenta" = "アカウント";
 "Cuenta de Harbor" = "Harborアカウント";
 "Cuenta y configuración" = "アカウントと初期設定";
+"Cult Classics" = "カルトクラシック";
 "CuriosityStream" = "CuriosityStream";
 "Current" = "現在";
 "Custom" = "カスタム";
@@ -730,6 +742,7 @@
 "Danish" = "デンマーク語";
 "Dark" = "ダーク";
 "Date" = "日付";
+"Date Night" = "デートの夜に";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "動画の配信元";
 "Debrid services" = "Debridサービス";
@@ -886,6 +899,7 @@
 "Enter an FPS from 1 to 240." = "1から240までのFPSを入力してください。";
 "Enter an existing relay URL:" = "既存のリレーURLを入力:";
 "Enter current PIN" = "現在のPINを入力";
+"Epic Adventures" = "壮大な冒険";
 "Episode" = "エピソード";
 "Episode cards" = "エピソードカード";
 "Episode ordering" = "エピソードの順序";
@@ -943,10 +957,12 @@
 "Externo" = "外部";
 "Extra large" = "特大";
 "Extras" = "特典映像";
+"Eye Candy" = "映像美を堪能";
 "FPS de los subtítulos" = "字幕FPS";
 "FPS de origen de los subtítulos" = "字幕のソースFPS";
 "FPS del video" = "動画FPS";
 "FPS personalizados para subtítulos" = "カスタム字幕FPS";
+"FX" = "FX";
 "Face" = "塗り";
 "Fade" = "フェード";
 "Failed to fetch JSON" = "JSONの取得に失敗しました";
@@ -963,6 +979,7 @@
 "Featured source" = "注目コンテンツのソース";
 "Featured tonight" = "今夜のおすすめ";
 "Fecha" = "日付";
+"Feel-Good Hits" = "元気が出るヒット作";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "DuckDuckGoの検索結果を取得し、上位の結果をモデルへのプロンプトに追加します。";
 "Fiction" = "フィクション";
 "File is larger than 2 MB." = "ファイルが2 MBを超えています。";
@@ -1099,6 +1116,7 @@
 "Harvey Winner" = "ハーベイ賞受賞";
 "Hearing impaired" = "聴覚障害者向け";
 "Hebrew" = "ヘブライ語";
+"Heists & Cons" = "強盗＆詐欺";
 "Help & about" = "ヘルプと情報";
 "Hero trailers" = "ヒーローバナーの予告編";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "ヒーロー、トップ10、トレンド、劇場公開中、配信サービス別レールを表示します。その下にアドオンのカタログが追加されます。";
@@ -1141,7 +1159,9 @@
 "Highlights" = "ハイライト";
 "Hindi" = "ヒンディー語";
 "History" = "歴史";
+"History Buff" = "歴史好きにおすすめ";
 "Hockey" = "ホッケー";
+"Holiday Warmth" = "心温まるホリデー";
 "Home" = "ホーム";
 "Home Rail Settings" = "ホームの行設定";
 "Home catalogs" = "ホームのカタログ";
@@ -1243,6 +1263,7 @@
 "Interfaz" = "インターフェース";
 "Interfaz del sistema" = "システムUI";
 "Interlineado" = "行の高さ";
+"Into the Stars" = "星の彼方へ";
 "Invalid SourceRow JSON format" = "SourceRowのJSON形式が無効です";
 "Invite link" = "招待リンク";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "本アプリは、{product}の開発元、およびアプリ内で言及される企業、アドオン作者、商標権者とは提携していません。";
@@ -1290,7 +1311,9 @@
 "Languages & subtitles" = "言語と字幕";
 "Large" = "大";
 "Larger" = "大きく";
+"Late Night" = "深夜";
 "Laterales" = "見開き";
+"Laugh Out Loud" = "抱腹絶倒";
 "Leave" = "退出";
 "Leave room" = "ルームから退出";
 "Leave the episode you are up to clear and only blur the ones after it." = "現在視聴中のエピソードはそのまま表示し、それより後のエピソードだけをぼかします。";
@@ -1428,6 +1451,7 @@
 "Mexico" = "メキシコ";
 "Mezclar sonido envolvente a estéreo" = "サラウンド音声をステレオにダウンミックス";
 "Mi biblioteca" = "マイライブラリ";
+"Mind Benders" = "予測不能な作品";
 "Minimum file size" = "最小ファイルサイズ";
 "Minimum seeders" = "最小シーダー数";
 "Mis canales" = "My channels";
@@ -1518,6 +1542,7 @@
 "Needs an API key" = "APIキーが必要です";
 "Needs artwork-rich titles to feed the hero" = "ヒーロー表示には画像が豊富な作品が必要です";
 "Needs at least 10 titles for the Top 10 look" = "トップ10表示には10作品以上が必要です";
+"Neo-Noir" = "ネオノワール";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflixオリジナル";
 "Never" = "しない";
@@ -1529,6 +1554,7 @@
 "New Episodes" = "新着エピソード";
 "New Episodes row" = "「新着エピソード」行";
 "New Face Award" = "新人賞";
+"New Year, New Stories" = "新年、新しい物語";
 "New filter" = "新しいフィルター";
 "New list" = "新しいリスト";
 "New profile" = "新しいプロフィール";
@@ -2130,6 +2156,7 @@
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
+"Saddle Up" = "西部劇";
 "Salir de imagen en imagen" = "ピクチャ・イン・ピクチャを終了";
 "Saltar créditos" = "クレジットをスキップ";
 "Saltar intro" = "イントロをスキップ";
@@ -2236,6 +2263,7 @@
 "Set B" = "Set B";
 "Set a PIN" = "PINを設定";
 "Set active" = "有効にする";
+"Set as home team" = "Set as home team";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2353,6 +2381,7 @@
 "Slightly lighter than background." = "背景よりわずかに明るい色。";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "低速なアドオンやP2Pソースは、開始まで10秒以上かかることがあります。開始する前にストリームがスキップされる場合は、この時間を長くしてください。";
 "Slow or unstable connection" = "低速または不安定な接続";
+"Slow-Burn Dramas" = "じっくり展開するドラマ";
 "Smaller" = "小さく";
 "Smooth on weak PCs" = "低スペックPCでも滑らか";
 "Sobre la línea principal" = "メイン字幕の上";
@@ -2394,6 +2423,7 @@
 "Sports" = "スポーツ";
 "Spotlight" = "スポットライト";
 "Spotlighted at the show" = "イベントで注目された作品";
+"Spring Awakening" = "春の目覚め";
 "Square play button" = "四角い再生ボタン";
 "Standard" = "通常";
 "Standard Def" = "Standard Def";
@@ -2473,6 +2503,7 @@
 "Subtítulos de tus addons" = "Subtitles from your addons";
 "Subtítulos duales" = "2言語字幕";
 "Subtítulos en tu idioma" = "あなたの言語の字幕";
+"Summer Blockbusters" = "夏の超大作";
 "Superficie" = "サーフェス";
 "Superficies" = "サーフェス";
 "Supernatural" = "超自然";
@@ -2487,6 +2518,7 @@
 "Switch stream" = "ストリームを切り替え";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "再生開始後に言語の優先順位が高い字幕が見つかった場合は切り替えます。現在のトラックを維持する場合はオフにしてください。";
 "Switch to {name}" = "{name}に切り替え";
+"Sword & Sorcery" = "剣と魔法";
 "Sync" = "同期";
 "Sync Offset" = "同期オフセット";
 "Sync addons" = "Sync addons";
@@ -2587,6 +2619,8 @@
 "Theme name" = "テーマ名";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "TMDBキーを設定すると、これらのレールが有効になります。後からいつでも「設定」で変更できます。";
 "They email an activation link the first time. Click it, then come back and save." = "初回はアクティベーションリンクがメールで届きます。リンクをクリックしてから、ここに戻って保存してください。";
+"This Afternoon" = "今日の午後";
+"This Morning" = "今朝のおすすめ";
 "This file has one audio track." = "このファイルには音声トラックが1つあります。";
 "This file isn't a Harbor theme." = "このファイルはHarborテーマではありません。";
 "This file isn't a readable theme." = "このテーマファイルは読み込めません。";
@@ -2629,6 +2663,7 @@
 "Todos los deportes" = "すべてのスポーツ";
 "Todos los géneros" = "すべてのジャンル";
 "Todos los idiomas" = "すべての言語";
+"Tonight" = "今夜";
 "Tonight's main event" = "今夜のメイン";
 "Top" = "上";
 "Top 10 Comedy" = "コメディ トップ10";
@@ -2706,6 +2741,7 @@
 "Trending on {source}" = "{source}でトレンド";
 "Trending, Popular, In Theaters, and the per service rails." = "「トレンド」「人気」「上映中」と、サービス別のレール。";
 "Trending, in theaters, what's on every streamer." = "トレンド、劇場公開中、各配信サービスの話題作。";
+"True Crime Files" = "実録犯罪ファイル";
 "Try again" = "再試行";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "タイトルと説明はまずアドオンで検索し、結果がない場合は Cinemeta を使用します。";
 "Tu avatar, nombre e identificador en Harbor." = "Harbor全体で使用するアバター、名前、ハンドルネームです。";
@@ -2715,6 +2751,7 @@
 "Tune anime" = "アニメをカスタマイズ";
 "Tune your recommendations" = "おすすめを調整";
 "Turkish" = "トルコ語";
+"Turn It Up" = "音量を上げて";
 "Turn off Auto Sync before changing subtitle FPS." = "字幕FPSを変更する前に自動同期をオフにしてください。";
 "Turn on" = "オンにする";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
@@ -2824,6 +2861,7 @@
 "Waiting for you to authorize on simkl.com…" = "simkl.comでの認証を待っています…";
 "Waiting for you to authorize on trakt.tv…" = "trakt.tvでの認証を待っています…";
 "War" = "戦争";
+"War Stories" = "戦争の物語";
 "Watch Together" = "同時視聴";
 "Watch Together needs a relay." = "一緒に観るにはリレーが必要です。";
 "Watch on" = "視聴先";
@@ -2863,6 +2901,7 @@
 "Which subtitle Harbor lands on when more than one is available." = "複数ある場合にHarborが選択する字幕。";
 "Who's watching" = "視聴する人";
 "Who's watching?" = "どなたが視聴しますか？";
+"Whodunit" = "犯人当て";
 "Wide search · still empty" = "広範囲検索・結果なし";
 "Works without a key at low volume; add a key for higher quotas." = "少量ならキーなしで利用できます。上限を増やすにはキーを追加してください。";
 "Writer" = "脚本家";

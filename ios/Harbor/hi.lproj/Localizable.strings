@@ -51,6 +51,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "AI खोज विफल रही।";
 "AI search failed. Tap to retry." = "AI सर्च विफल रही। फिर कोशिश करने के लिए टैप करें।";
+"AMC" = "AMC";
 "AMC+" = "AMC+";
 "API key" = "API कुंजी";
 "API token" = "API टोकन";
@@ -142,6 +143,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "टेक्स्ट और पृष्ठभूमि समायोजित करें। बदलाव करते ही पूर्वावलोकन में दिखते हैं।";
 "Adjust volume on the speaker. Computer volume and boost do not apply." = "वॉल्यूम स्पीकर पर बदलें। कंप्यूटर का वॉल्यूम और बूस्ट लागू नहीं होते।";
 "Administrar" = "मैनेज करें";
+"Adrenaline Rush" = "एड्रेनलिन रश";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "देखना जारी रखें में अगला एपिसोड दिखाएँ";
 "Adventure" = "रोमांच";
@@ -149,6 +151,7 @@
 "After 3" = "3 के बाद";
 "After 4" = "4 के बाद";
 "After 5" = "5 के बाद";
+"After Dark" = "देर रात";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "किसी स्लाइड पर कुछ देर रुकने के बाद, फ़ीचर्ड टाइटल का ट्रेलर बैकग्राउंड में बिना आवाज़ के चलता है। इसमें अधिक बैंडविड्थ लगती है।";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "बिना किसी इनपुट के लगातार कई एपिसोड अपने आप चलने के बाद, आगे बढ़ने से पहले रुककर जाँचें कि आप अभी भी मौजूद हैं। डिफ़ॉल्ट रूप से बंद है।";
 "Age ratings and content notes when playback starts." = "प्लेबैक शुरू होने पर उम्र की रेटिंग और कॉन्टेंट की जानकारी।";
@@ -210,6 +213,7 @@
 "Animated Movies" = "एनिमेटेड फ़िल्में";
 "Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "एनीमेशन";
+"Animation Night" = "एनीमेशन नाइट";
 "Animation speed" = "एनीमेशन की गति";
 "Anime" = "एनीमे";
 "Anime Expo" = "Anime Expo";
@@ -296,6 +300,7 @@
 "Aviso del siguiente episodio" = "अगले एपिसोड की सूचना";
 "Award Winning Anime" = "पुरस्कार विजेता एनीमे";
 "Awards & Recognition" = "पुरस्कार और सम्मान";
+"Awards Contenders" = "पुरस्कार के दावेदार";
 "Ayuda e información" = "मदद और परिचय";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "स्रोत जोड़ें";
@@ -325,6 +330,7 @@
 "Barra negra" = "काली पट्टी";
 "Base de la página." = "पेज का आधार।";
 "Bass boost" = "बेस बूस्ट";
+"Be My Valentine" = "मेरे वैलेंटाइन बनो";
 "Be the first to start a discussion." = "चर्चा शुरू करने वाले पहले व्यक्ति बनें।";
 "Beloved by readers and critics" = "पाठकों और समीक्षकों का चहेता";
 "Berlin Film Festival" = "बर्लिन फ़िल्म समारोह";
@@ -393,6 +399,7 @@
 "Brightness" = "ब्राइटनेस";
 "Brillo" = "ब्राइटनेस";
 "Bring in your library" = "अपनी लाइब्रेरी लाएँ";
+"Bring the Tissues" = "रूमाल साथ रखें";
 "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "अपनी एनीमे सूची Harbor में लाएँ और देखते समय एपिसोड की गिनती अपडेट करें। मौजूदा प्रगति बनी रहती है।";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "वेलकम फ़्लो दोबारा चलाए बिना, आपके पहले बंद किए गए छोटे इन-ऐप सुझाव वापस लाता है।";
@@ -536,6 +543,7 @@
 "Clear cache now" = "कैश अभी साफ़ करें";
 "Clear caches" = "कैश साफ़ करें";
 "Clear filters" = "फ़िल्टर हटाएँ";
+"Clear home team" = "Clear home team";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "खोज मिटाएँ";
 "Clears the saved URL so you can point Harbor at another relay." = "सहेजा गया URL हटाता है, ताकि आप Harbor को किसी दूसरे रिले से जोड़ सकें।";
@@ -562,6 +570,8 @@
 "Comenzar a ver" = "देखना शुरू करें";
 "Comenzar con los subtítulos desactivados" = "सबटाइटल बंद रखकर शुरू करें";
 "Comfort" = "Comfort";
+"Comfort Watch" = "सुकून भरा मनोरंजन";
+"Coming of Age" = "किशोरावस्था से वयस्कता तक";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "सिनेमाघरों में जल्द";
 "Comments" = "टिप्पणियाँ";
@@ -686,6 +696,7 @@
 "Couldn't read that image. Try a different file." = "वह इमेज पढ़ी नहीं जा सकी। कोई दूसरी फ़ाइल आज़माएँ।";
 "Couldn't scan that folder." = "वह फ़ोल्डर स्कैन नहीं किया जा सका।";
 "Cover Image URL" = "कवर इमेज URL";
+"Cozy Autumn Nights" = "सुकून भरी पतझड़ की रातें";
 "Crash" = "क्रैश";
 "Crea tu propia paleta" = "अपना पैलेट बनाएँ";
 "Create" = "बनाएँ";
@@ -710,6 +721,7 @@
 "Cuenta" = "अकाउंट";
 "Cuenta de Harbor" = "Harbor अकाउंट";
 "Cuenta y configuración" = "खाता और सेटअप";
+"Cult Classics" = "कल्ट क्लासिक्स";
 "CuriosityStream" = "CuriosityStream";
 "Current" = "वर्तमान";
 "Custom" = "कस्टम";
@@ -730,6 +742,7 @@
 "Danish" = "डेनिश";
 "Dark" = "डार्क";
 "Date" = "तारीख";
+"Date Night" = "डेट नाइट";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "आपका वीडियो कहाँ से आता है";
 "Debrid services" = "Debrid सेवाएँ";
@@ -886,6 +899,7 @@
 "Enter an FPS from 1 to 240." = "1 से 240 तक का FPS दर्ज करें।";
 "Enter an existing relay URL:" = "मौजूदा रिले URL दर्ज करें:";
 "Enter current PIN" = "मौजूदा PIN दर्ज करें";
+"Epic Adventures" = "महाकाव्य रोमांच";
 "Episode" = "एपिसोड";
 "Episode cards" = "एपिसोड कार्ड";
 "Episode ordering" = "एपिसोड क्रम";
@@ -943,10 +957,12 @@
 "Externo" = "बाहरी";
 "Extra large" = "बहुत बड़ा";
 "Extras" = "अतिरिक्त सामग्री";
+"Eye Candy" = "मनमोहक दृश्य";
 "FPS de los subtítulos" = "सबटाइटल FPS";
 "FPS de origen de los subtítulos" = "सबटाइटल स्रोत का FPS";
 "FPS del video" = "वीडियो FPS";
 "FPS personalizados para subtítulos" = "कस्टम सबटाइटल FPS";
+"FX" = "FX";
 "Face" = "चेहरा";
 "Fade" = "फ़ेड";
 "Failed to fetch JSON" = "JSON फ़ेच नहीं किया जा सका";
@@ -963,6 +979,7 @@
 "Featured source" = "चुनिंदा स्रोत";
 "Featured tonight" = "आज रात के लिए चुनिंदा";
 "Fecha" = "तारीख";
+"Feel-Good Hits" = "मन खुश करने वाले हिट्स";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "DuckDuckGo के नतीजे लाता है और सबसे अच्छे नतीजों को मॉडल प्रॉम्प्ट में भेजता है।";
 "Fiction" = "कथा-साहित्य";
 "File is larger than 2 MB." = "फ़ाइल 2 MB से बड़ी है।";
@@ -1099,6 +1116,7 @@
 "Harvey Winner" = "हार्वे विजेता";
 "Hearing impaired" = "श्रवण-बाधित";
 "Hebrew" = "हिब्रू";
+"Heists & Cons" = "डकैतियाँ और ठगी";
 "Help & about" = "मदद और परिचय";
 "Hero trailers" = "हीरो ट्रेलर";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "हीरो, टॉप 10, ट्रेंडिंग, सिनेमाघरों में, हर सेवा की पंक्तियाँ। आपके ऐडऑन नीचे जुड़ते हैं।";
@@ -1141,7 +1159,9 @@
 "Highlights" = "हाइलाइट्स";
 "Hindi" = "हिंदी";
 "History" = "इतिहास";
+"History Buff" = "इतिहास प्रेमी";
 "Hockey" = "हॉकी";
+"Holiday Warmth" = "छुट्टियों की गर्माहट";
 "Home" = "होम";
 "Home Rail Settings" = "होम रेल सेटिंग्स";
 "Home catalogs" = "होम कैटलॉग";
@@ -1243,6 +1263,7 @@
 "Interfaz" = "इंटरफ़ेस";
 "Interfaz del sistema" = "सिस्टम UI";
 "Interlineado" = "लाइन की ऊँचाई";
+"Into the Stars" = "सितारों की ओर";
 "Invalid SourceRow JSON format" = "अमान्य SourceRow JSON फ़ॉर्मैट";
 "Invite link" = "आमंत्रण लिंक";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "यह {product} के निर्माता या ऐप में संदर्भित किसी भी कंपनी, ऐडऑन लेखक या ट्रेडमार्क धारक से संबद्ध नहीं है।";
@@ -1290,7 +1311,9 @@
 "Languages & subtitles" = "भाषाएँ और सबटाइटल";
 "Large" = "बड़ा";
 "Larger" = "और बड़ा";
+"Late Night" = "देर रात";
 "Laterales" = "किनारे";
+"Laugh Out Loud" = "खुलकर हँसें";
 "Leave" = "छोड़ें";
 "Leave room" = "रूम छोड़ें";
 "Leave the episode you are up to clear and only blur the ones after it." = "जिस एपिसोड तक आप पहुँच चुके हैं, उसे धुँधला न करें और केवल उसके बाद वाले एपिसोड धुँधले करें।";
@@ -1428,6 +1451,7 @@
 "Mexico" = "मेक्सिको";
 "Mezclar sonido envolvente a estéreo" = "सराउंड साउंड को स्टीरियो में मिक्स करें";
 "Mi biblioteca" = "मेरी लाइब्रेरी";
+"Mind Benders" = "दिमाग घुमा देने वाली फ़िल्में";
 "Minimum file size" = "न्यूनतम फ़ाइल आकार";
 "Minimum seeders" = "न्यूनतम सीडर";
 "Mis canales" = "My channels";
@@ -1518,6 +1542,7 @@
 "Needs an API key" = "API key चाहिए";
 "Needs artwork-rich titles to feed the hero" = "हीरो सेक्शन में दिखाने के लिए भरपूर आर्टवर्क वाले टाइटल चाहिए";
 "Needs at least 10 titles for the Top 10 look" = "Top 10 लुक के लिए कम से कम 10 शीर्षक चाहिए";
+"Neo-Noir" = "नियो-नॉयर";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflix ओरिजिनल्स";
 "Never" = "कभी नहीं";
@@ -1529,6 +1554,7 @@
 "New Episodes" = "नए एपिसोड";
 "New Episodes row" = "नए एपिसोड की पंक्ति";
 "New Face Award" = "नया चेहरा पुरस्कार";
+"New Year, New Stories" = "नया साल, नई कहानियाँ";
 "New filter" = "नया फ़िल्टर";
 "New list" = "नई सूची";
 "New profile" = "नई प्रोफ़ाइल";
@@ -2130,6 +2156,7 @@
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
+"Saddle Up" = "तैयार हो जाएँ";
 "Salir de imagen en imagen" = "पिक्चर इन पिक्चर से बाहर निकलें";
 "Saltar créditos" = "क्रेडिट स्किप करें";
 "Saltar intro" = "इंट्रो स्किप करें";
@@ -2236,6 +2263,7 @@
 "Set B" = "Set B";
 "Set a PIN" = "PIN सेट करें";
 "Set active" = "सक्रिय के रूप में सेट करें";
+"Set as home team" = "Set as home team";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2353,6 +2381,7 @@
 "Slightly lighter than background." = "बैकग्राउंड से थोड़ा हल्का।";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "धीमे ऐडऑन और P2P स्रोतों को शुरू होने में अक्सर 10 सेकंड से ज़्यादा लगते हैं। अगर स्ट्रीम को पूरा मौका मिलने से पहले ही छोड़ा जा रहा हो, तो इसे बढ़ाएँ।";
 "Slow or unstable connection" = "धीमा या अस्थिर कनेक्शन";
+"Slow-Burn Dramas" = "धीरे-धीरे असर करने वाले ड्रामा";
 "Smaller" = "और छोटा";
 "Smooth on weak PCs" = "कम क्षमता वाले PC पर भी स्मूद";
 "Sobre la línea principal" = "मुख्य पंक्ति के ऊपर";
@@ -2394,6 +2423,7 @@
 "Sports" = "खेल";
 "Spotlight" = "स्पॉटलाइट";
 "Spotlighted at the show" = "शो में विशेष रूप से प्रदर्शित";
+"Spring Awakening" = "वसंत जागरण";
 "Square play button" = "वर्गाकार प्ले बटन";
 "Standard" = "सामान्य";
 "Standard Def" = "Standard Def";
@@ -2473,6 +2503,7 @@
 "Subtítulos de tus addons" = "Subtitles from your addons";
 "Subtítulos duales" = "दोहरे सबटाइटल";
 "Subtítulos en tu idioma" = "आपकी भाषा में सबटाइटल";
+"Summer Blockbusters" = "गर्मियों की ब्लॉकबस्टर फ़िल्में";
 "Superficie" = "सतह";
 "Superficies" = "सरफ़ेस";
 "Supernatural" = "अलौकिक";
@@ -2487,6 +2518,7 @@
 "Switch stream" = "स्ट्रीम बदलें";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "प्लेबैक शुरू होने के बाद बेहतर भाषा मिलान आए तो उस पर बदलें। मौजूदा ट्रैक रखने के लिए बंद रखें।";
 "Switch to {name}" = "{name} पर जाएँ";
+"Sword & Sorcery" = "तलवार और जादूगरी";
 "Sync" = "सिंक";
 "Sync Offset" = "सिंक ऑफ़सेट";
 "Sync addons" = "Sync addons";
@@ -2587,6 +2619,8 @@
 "Theme name" = "थीम का नाम";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "TMDB कुंजी सेट होते ही ये पंक्तियाँ सक्रिय हो जाती हैं। आप सेटिंग्स में कभी भी इस पर वापस आ सकते हैं।";
 "They email an activation link the first time. Click it, then come back and save." = "पहली बार वे ईमेल से एक्टिवेशन लिंक भेजते हैं। उस पर क्लिक करें, फिर वापस आकर सेव करें।";
+"This Afternoon" = "आज दोपहर";
+"This Morning" = "आज सुबह";
 "This file has one audio track." = "इस फ़ाइल में एक ऑडियो ट्रैक है।";
 "This file isn't a Harbor theme." = "यह फ़ाइल Harbor की थीम नहीं है।";
 "This file isn't a readable theme." = "यह थीम फ़ाइल पढ़ी नहीं जा सकती।";
@@ -2629,6 +2663,7 @@
 "Todos los deportes" = "सभी खेल";
 "Todos los géneros" = "सभी शैलियाँ";
 "Todos los idiomas" = "सभी भाषाएँ";
+"Tonight" = "आज रात";
 "Tonight's main event" = "आज रात का मुख्य आकर्षण";
 "Top" = "शीर्ष";
 "Top 10 Comedy" = "शीर्ष 10 कॉमेडी";
@@ -2706,6 +2741,7 @@
 "Trending on {source}" = "{source} पर ट्रेंडिंग";
 "Trending, Popular, In Theaters, and the per service rails." = "ट्रेंडिंग, लोकप्रिय, सिनेमाघरों में और हर सेवा की अलग-अलग पंक्तियाँ।";
 "Trending, in theaters, what's on every streamer." = "ट्रेंडिंग, सिनेमाघरों में चल रही फ़िल्में और हर स्ट्रीमिंग सेवा पर उपलब्ध टाइटल।";
+"True Crime Files" = "ट्रू क्राइम फ़ाइलें";
 "Try again" = "फिर कोशिश करें";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "शीर्षक और विवरण के लिए पहले अपना ऐडऑन आज़माएँ। उसमें नतीजा न हो तो Cinemeta इस्तेमाल करें।";
 "Tu avatar, nombre e identificador en Harbor." = "पूरे Harbor में आपका अवतार, नाम और हैंडल।";
@@ -2715,6 +2751,7 @@
 "Tune anime" = "ऐनिमे को अपने मुताबिक ढालें";
 "Tune your recommendations" = "अपने सुझावों को बेहतर बनाएँ";
 "Turkish" = "तुर्की";
+"Turn It Up" = "आवाज़ बढ़ाएँ";
 "Turn off Auto Sync before changing subtitle FPS." = "सबटाइटल FPS बदलने से पहले ऑटो सिंक बंद करें।";
 "Turn on" = "चालू करें";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
@@ -2824,6 +2861,7 @@
 "Waiting for you to authorize on simkl.com…" = "simkl.com पर आपके अनुमति देने की प्रतीक्षा हो रही है…";
 "Waiting for you to authorize on trakt.tv…" = "trakt.tv पर आपके अनुमति देने की प्रतीक्षा हो रही है…";
 "War" = "युद्ध";
+"War Stories" = "युद्ध की कहानियाँ";
 "Watch Together" = "साथ में देखें";
 "Watch Together needs a relay." = "साथ में देखने के लिए रिले चाहिए।";
 "Watch on" = "इस पर देखें";
@@ -2863,6 +2901,7 @@
 "Which subtitle Harbor lands on when more than one is available." = "एक से ज़्यादा उपलब्ध होने पर Harbor कौन-सा सबटाइटल चुनता है।";
 "Who's watching" = "कौन देख रहा है";
 "Who's watching?" = "कौन देख रहा है?";
+"Whodunit" = "मर्डर मिस्ट्री";
 "Wide search · still empty" = "व्यापक खोज · अब भी खाली";
 "Works without a key at low volume; add a key for higher quotas." = "कम उपयोग पर बिना कुंजी के काम करता है; ज़्यादा कोटा पाने के लिए कुंजी जोड़ें।";
 "Writer" = "लेखक";

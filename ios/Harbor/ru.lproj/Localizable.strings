@@ -53,6 +53,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "Не удалось выполнить поиск с помощью ИИ.";
 "AI search failed. Tap to retry." = "Не удалось выполнить поиск с ИИ. Нажмите, чтобы повторить.";
+"AMC" = "AMC";
 "AMC+" = "AMC+";
 "API key" = "API-ключ";
 "API token" = "API-токен";
@@ -144,6 +145,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "Настройте текст и фон. Изменения сразу видны в предпросмотре.";
 "Adjust volume on the speaker. Computer volume and boost do not apply." = "Регулируйте громкость на колонке. Громкость и усиление компьютера не применяются.";
 "Administrar" = "Управление";
+"Adrenaline Rush" = "Прилив адреналина";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "Перевести «Продолжить просмотр» на следующий эпизод";
 "Adventure" = "Приключения";
@@ -151,6 +153,7 @@
 "After 3" = "После 3";
 "After 4" = "После 4";
 "After 5" = "После 5";
+"After Dark" = "После заката";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Через пару секунд на слайде трейлер выбранного названия начинает беззвучно играть на фоне. Расходует больше трафика.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "После нескольких серий подряд без каких-либо действий ставить на паузу и уточнять, здесь ли вы. По умолчанию выключено.";
 "Age ratings and content notes when playback starts." = "Возрастной рейтинг и предупреждения о содержании в начале просмотра.";
@@ -212,6 +215,7 @@
 "Animated Movies" = "Мультфильмы";
 "Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "Мультфильм";
+"Animation Night" = "Вечер анимации";
 "Animation speed" = "Скорость анимации";
 "Anime" = "Аниме";
 "Anime Expo" = "Anime Expo";
@@ -298,6 +302,7 @@
 "Aviso del siguiente episodio" = "Подсказка о следующей серии";
 "Award Winning Anime" = "Аниме-лауреат";
 "Awards & Recognition" = "Премии и признание";
+"Awards Contenders" = "Претенденты на награды";
 "Ayuda e información" = "Помощь и информация";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "Добавить источник";
@@ -328,6 +333,7 @@
 "Barra negra" = "Чёрная плашка";
 "Base de la página." = "Основа страницы.";
 "Bass boost" = "Усиление басов";
+"Be My Valentine" = "Ко Дню всех влюблённых";
 "Be the first to start a discussion." = "Начните обсуждение первыми.";
 "Beloved by readers and critics" = "Любимцы читателей и критиков";
 "Berlin Film Festival" = "Берлинский кинофестиваль";
@@ -396,6 +402,7 @@
 "Brightness" = "Яркость";
 "Brillo" = "Яркость";
 "Bring in your library" = "Перенесите свою библиотеку";
+"Bring the Tissues" = "Приготовьте платочки";
 "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Добавьте свой список аниме в Harbor и обновляйте число просмотренных серий во время просмотра. Текущий прогресс сохранится.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Возвращает закрытые подсказки в приложении без повторного приветственного тура.";
@@ -539,6 +546,7 @@
 "Clear cache now" = "Очистить кэш сейчас";
 "Clear caches" = "Очистить кэши";
 "Clear filters" = "Сбросить фильтры";
+"Clear home team" = "Clear home team";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Очистить поиск";
 "Clears the saved URL so you can point Harbor at another relay." = "Удаляет сохранённый URL, чтобы направить Harbor на другой ретранслятор.";
@@ -565,6 +573,8 @@
 "Comenzar a ver" = "Начать просмотр";
 "Comenzar con los subtítulos desactivados" = "Запускать с выключенными субтитрами";
 "Comfort" = "Comfort";
+"Comfort Watch" = "Уютный просмотр";
+"Coming of Age" = "Взросление";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Скоро в кино";
 "Comments" = "Комментарии";
@@ -689,6 +699,7 @@
 "Couldn't read that image. Try a different file." = "Не удалось прочитать изображение. Попробуйте другой файл.";
 "Couldn't scan that folder." = "Не удалось просканировать папку.";
 "Cover Image URL" = "URL обложки";
+"Cozy Autumn Nights" = "Уютные осенние вечера";
 "Crash" = "Сбой";
 "Crea tu propia paleta" = "Создать свою палитру";
 "Create" = "Создать";
@@ -713,6 +724,7 @@
 "Cuenta" = "Аккаунт";
 "Cuenta de Harbor" = "Аккаунт Harbor";
 "Cuenta y configuración" = "Аккаунт и настройка";
+"Cult Classics" = "Культовая классика";
 "CuriosityStream" = "CuriosityStream";
 "Current" = "Текущий";
 "Custom" = "Свой";
@@ -733,6 +745,7 @@
 "Danish" = "Датский";
 "Dark" = "Тёмная";
 "Date" = "Дата";
+"Date Night" = "Вечер вдвоём";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "Источники видео";
 "Debrid services" = "Debrid-сервисы";
@@ -889,6 +902,7 @@
 "Enter an FPS from 1 to 240." = "Введите частоту кадров от 1 до 240.";
 "Enter an existing relay URL:" = "Введите URL существующего ретранслятора:";
 "Enter current PIN" = "Введите текущий PIN";
+"Epic Adventures" = "Эпические приключения";
 "Episode" = "Серия";
 "Episode cards" = "Карточки серий";
 "Episode ordering" = "Порядок серий";
@@ -946,10 +960,12 @@
 "Externo" = "Внешние";
 "Extra large" = "Очень большой";
 "Extras" = "Дополнительные материалы";
+"Eye Candy" = "Услада для глаз";
 "FPS de los subtítulos" = "Частота кадров субтитров";
 "FPS de origen de los subtítulos" = "Исходная частота кадров субтитров";
 "FPS del video" = "Частота кадров видео";
 "FPS personalizados para subtítulos" = "Другая частота кадров субтитров";
+"FX" = "FX";
 "Face" = "Заливка";
 "Fade" = "Затухание";
 "Failed to fetch JSON" = "Не удалось загрузить JSON";
@@ -966,6 +982,7 @@
 "Featured source" = "Источник витрины";
 "Featured tonight" = "Выбор на вечер";
 "Fecha" = "Дата";
+"Feel-Good Hits" = "Для хорошего настроения";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "Получает результаты DuckDuckGo и передаёт лучшие из них в запрос к модели.";
 "Fiction" = "Художественная литература";
 "File is larger than 2 MB." = "Файл больше 2 МБ.";
@@ -1103,6 +1120,7 @@
 "Harvey Winner" = "Лауреат премии Харви";
 "Hearing impaired" = "Для слабослышащих";
 "Hebrew" = "Иврит";
+"Heists & Cons" = "Ограбления и аферы";
 "Help & about" = "Помощь и информация";
 "Hero trailers" = "Трейлеры в баннере";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Баннер, Топ-10, «В тренде», «В кино», ряды по сервисам. Ваши дополнения – ниже.";
@@ -1145,7 +1163,9 @@
 "Highlights" = "Главное";
 "Hindi" = "Хинди";
 "History" = "История";
+"History Buff" = "Для любителей истории";
 "Hockey" = "Хоккей";
+"Holiday Warmth" = "Праздничное тепло";
 "Home" = "Главная";
 "Home Rail Settings" = "Настройки рядов на Главной";
 "Home catalogs" = "Каталоги на главной";
@@ -1247,6 +1267,7 @@
 "Interfaz" = "Интерфейс";
 "Interfaz del sistema" = "System UI";
 "Interlineado" = "Межстрочный интервал";
+"Into the Stars" = "К звёздам";
 "Invalid SourceRow JSON format" = "Неверный формат JSON SourceRow";
 "Invite link" = "Ссылка-приглашение";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Он не связан с создателем {product}, а также с компаниями, авторами дополнений или правообладателями товарных знаков, упомянутыми в приложении.";
@@ -1294,7 +1315,9 @@
 "Languages & subtitles" = "Языки и субтитры";
 "Large" = "Крупный";
 "Larger" = "Больше";
+"Late Night" = "Поздний вечер";
 "Laterales" = "Стороны";
+"Laugh Out Loud" = "Смех до слёз";
 "Leave" = "Выйти";
 "Leave room" = "Покинуть комнату";
 "Leave the episode you are up to clear and only blur the ones after it." = "Оставляет текущую серию открытой и размывает только последующие.";
@@ -1432,6 +1455,7 @@
 "Mexico" = "Мексика";
 "Mezclar sonido envolvente a estéreo" = "Сводить объёмный звук в стерео";
 "Mi biblioteca" = "Моя библиотека";
+"Mind Benders" = "Взрыв мозга";
 "Minimum file size" = "Минимальный размер файла";
 "Minimum seeders" = "Минимум сидов";
 "Mis canales" = "My channels";
@@ -1524,6 +1548,7 @@
 "Needs an API key" = "Нужен ключ API";
 "Needs artwork-rich titles to feed the hero" = "Для главного баннера нужны материалы с качественными изображениями";
 "Needs at least 10 titles for the Top 10 look" = "Для вида Топ-10 нужно минимум 10 материалов";
+"Neo-Noir" = "Неонуар";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Оригиналы Netflix";
 "Never" = "Никогда";
@@ -1536,6 +1561,7 @@
 "New Episodes" = "Новые серии";
 "New Episodes row" = "Ряд «Новые серии»";
 "New Face Award" = "Премия «Новое лицо»";
+"New Year, New Stories" = "Новый год, новые истории";
 "New filter" = "Новый фильтр";
 "New list" = "Новый список";
 "New profile" = "Новый профиль";
@@ -2141,6 +2167,7 @@
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
+"Saddle Up" = "По коням";
 "Salir de imagen en imagen" = "Выйти из картинки в картинке";
 "Saltar créditos" = "Пропустить титры";
 "Saltar intro" = "Пропустить заставку";
@@ -2247,6 +2274,7 @@
 "Set B" = "Set B";
 "Set a PIN" = "Задать PIN";
 "Set active" = "Сделать активным";
+"Set as home team" = "Set as home team";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2365,6 +2393,7 @@
 "Slightly lighter than background." = "Чуть светлее фона.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Медленным дополнениям и P2P-источникам часто нужно больше 10 секунд на старт. Увеличьте значение, если потоки пропускаются, не успев запуститься.";
 "Slow or unstable connection" = "Медленное или нестабильное соединение";
+"Slow-Burn Dramas" = "Неспешные драмы";
 "Smaller" = "Меньше";
 "Smooth on weak PCs" = "Плавно на слабых ПК";
 "Sobre la línea principal" = "Над основной строкой";
@@ -2407,6 +2436,7 @@
 "Sports" = "Спорт";
 "Spotlight" = "Витрина";
 "Spotlighted at the show" = "В центре внимания выставки";
+"Spring Awakening" = "Весеннее пробуждение";
 "Square play button" = "Квадратная кнопка воспроизведения";
 "Standard" = "Обычные";
 "Standard Def" = "Standard Def";
@@ -2486,6 +2516,7 @@
 "Subtítulos de tus addons" = "Subtitles from your addons";
 "Subtítulos duales" = "Двойные субтитры";
 "Subtítulos en tu idioma" = "Субтитры на вашем языке";
+"Summer Blockbusters" = "Летние блокбастеры";
 "Superficie" = "Поверхность";
 "Superficies" = "Поверхности";
 "Supernatural" = "Мистика";
@@ -2500,6 +2531,7 @@
 "Switch stream" = "Сменить поток";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "Переключаться на более подходящий язык, если он появится после начала воспроизведения. Оставьте выключенным, чтобы сохранить текущую дорожку.";
 "Switch to {name}" = "Переключиться на {name}";
+"Sword & Sorcery" = "Меч и магия";
 "Sync" = "Синхронизация";
 "Sync Offset" = "Смещение синхронизации";
 "Sync addons" = "Sync addons";
@@ -2600,6 +2632,8 @@
 "Theme name" = "Название темы";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Эти ряды заработают после добавления ключа TMDB. Вернуться к этому можно в любой момент в Настройках.";
 "They email an activation link the first time. Click it, then come back and save." = "При первом использовании ссылка для активации придёт по электронной почте. Перейдите по ней, затем вернитесь и сохраните.";
+"This Afternoon" = "Сегодня днём";
+"This Morning" = "Этим утром";
 "This file has one audio track." = "В этом файле одна аудиодорожка.";
 "This file isn't a Harbor theme." = "Этот файл не является темой Harbor.";
 "This file isn't a readable theme." = "Не удалось прочитать тему из этого файла.";
@@ -2643,6 +2677,7 @@
 "Todos los deportes" = "Все виды спорта";
 "Todos los géneros" = "Все жанры";
 "Todos los idiomas" = "Все языки";
+"Tonight" = "Сегодня вечером";
 "Tonight's main event" = "Главное событие вечера";
 "Top" = "Сверху";
 "Top 10 Comedy" = "Топ-10 комедий";
@@ -2720,6 +2755,7 @@
 "Trending on {source}" = "В тренде на {source}";
 "Trending, Popular, In Theaters, and the per service rails." = "Ряды «В тренде», «Популярное», «В кино» и ряды сервисов.";
 "Trending, in theaters, what's on every streamer." = "В тренде, в кино и что идёт на каждом сервисе.";
+"True Crime Files" = "Реальные преступления";
 "Try again" = "Повторить";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Сначала искать названия и описания в вашем дополнении. Использовать Cinemeta, если дополнение ничего не найдёт.";
 "Tu avatar, nombre e identificador en Harbor." = "Ваш аватар, имя и ник во всём Harbor.";
@@ -2729,6 +2765,7 @@
 "Tune anime" = "Настроить аниме";
 "Tune your recommendations" = "Настроить рекомендации";
 "Turkish" = "Турецкий";
+"Turn It Up" = "Сделайте погромче";
 "Turn off Auto Sync before changing subtitle FPS." = "Отключите автосинхронизацию перед изменением частоты кадров субтитров.";
 "Turn on" = "Включить";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
@@ -2838,6 +2875,7 @@
 "Waiting for you to authorize on simkl.com…" = "Ожидание авторизации на simkl.com…";
 "Waiting for you to authorize on trakt.tv…" = "Ожидание авторизации на trakt.tv…";
 "War" = "Военный";
+"War Stories" = "Военные истории";
 "Watch Together" = "Совместный просмотр";
 "Watch Together needs a relay." = "Для совместного просмотра нужен ретранслятор.";
 "Watch on" = "Смотреть на";
@@ -2877,6 +2915,7 @@
 "Which subtitle Harbor lands on when more than one is available." = "Какие субтитры выбирает Harbor, когда доступно несколько.";
 "Who's watching" = "Кто смотрит";
 "Who's watching?" = "Кто смотрит?";
+"Whodunit" = "Детектив";
 "Wide search · still empty" = "Расширенный поиск · всё равно пусто";
 "Works without a key at low volume; add a key for higher quotas." = "При небольшом объёме работает без ключа; добавьте ключ для увеличения квот.";
 "Writer" = "Сценарист";

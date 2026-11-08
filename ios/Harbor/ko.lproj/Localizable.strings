@@ -51,6 +51,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "AI 검색에 실패했습니다.";
 "AI search failed. Tap to retry." = "AI 검색에 실패했습니다. 탭하여 다시 시도하세요.";
+"AMC" = "AMC";
 "AMC+" = "AMC+";
 "API key" = "API 키";
 "API token" = "API 토큰";
@@ -142,6 +143,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "텍스트와 배경을 조정합니다. 변경 사항이 바로 미리보기에 표시됩니다.";
 "Adjust volume on the speaker. Computer volume and boost do not apply." = "스피커에서 볼륨을 조절하세요. 컴퓨터 볼륨과 증폭은 적용되지 않습니다.";
 "Administrar" = "관리";
+"Adrenaline Rush" = "아드레날린 폭발";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "이어 보기를 다음 에피소드로 넘기기";
 "Adventure" = "어드벤처";
@@ -149,6 +151,7 @@
 "After 3" = "3편 후";
 "After 4" = "4편 후";
 "After 5" = "5편 후";
+"After Dark" = "어둠이 내린 뒤";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "슬라이드에 잠시 머무르면 추천 콘텐츠의 예고편이 배경에서 음소거로 재생됩니다. 더 많은 대역폭을 사용합니다.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "사용자 입력 없이 여러 에피소드가 연속 자동 재생되면 재생을 일시 정지하고 계속 시청 중인지 확인합니다. 기본적으로 꺼져 있습니다.";
 "Age ratings and content notes when playback starts." = "재생이 시작될 때 연령 등급과 콘텐츠 안내를 표시합니다.";
@@ -210,6 +213,7 @@
 "Animated Movies" = "애니메이션 영화";
 "Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "애니메이션";
+"Animation Night" = "애니메이션 나이트";
 "Animation speed" = "애니메이션 속도";
 "Anime" = "애니메이션";
 "Anime Expo" = "Anime Expo";
@@ -296,6 +300,7 @@
 "Aviso del siguiente episodio" = "다음 에피소드 알림";
 "Award Winning Anime" = "수상 애니메이션";
 "Awards & Recognition" = "수상 및 선정";
+"Awards Contenders" = "수상 유력작";
 "Ayuda e información" = "도움말 및 정보";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "소스 추가";
@@ -325,6 +330,7 @@
 "Barra negra" = "검은색 바";
 "Base de la página." = "페이지 기본.";
 "Bass boost" = "저음 강화";
+"Be My Valentine" = "내 발렌타인이 되어 주세요";
 "Be the first to start a discussion." = "첫 토론을 시작해 보세요.";
 "Beloved by readers and critics" = "독자와 평단 모두가 사랑한 작품";
 "Berlin Film Festival" = "베를린 영화제";
@@ -393,6 +399,7 @@
 "Brightness" = "밝기";
 "Brillo" = "밝기";
 "Bring in your library" = "보관함 가져오기";
+"Bring the Tissues" = "휴지를 준비하세요";
 "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "애니메이션 목록을 Harbor로 가져오고 시청하면서 시청한 화수를 업데이트합니다. 기존 진행 상황은 유지됩니다.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "환영 절차를 다시 진행하지 않고 닫았던 작은 앱 내 팁을 다시 표시합니다.";
@@ -536,6 +543,7 @@
 "Clear cache now" = "지금 캐시 지우기";
 "Clear caches" = "캐시 삭제";
 "Clear filters" = "필터 초기화";
+"Clear home team" = "Clear home team";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "검색어 지우기";
 "Clears the saved URL so you can point Harbor at another relay." = "저장된 URL을 지워 Harbor가 다른 릴레이를 가리키도록 합니다.";
@@ -562,6 +570,8 @@
 "Comenzar a ver" = "시청 시작";
 "Comenzar con los subtítulos desactivados" = "자막을 끈 상태로 시작";
 "Comfort" = "Comfort";
+"Comfort Watch" = "마음이 편안해지는 작품";
+"Coming of Age" = "성장 이야기";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "극장 개봉 예정작";
 "Comments" = "댓글";
@@ -686,6 +696,7 @@
 "Couldn't read that image. Try a different file." = "이미지를 읽을 수 없습니다. 다른 파일을 사용해 보세요.";
 "Couldn't scan that folder." = "해당 폴더를 스캔할 수 없습니다.";
 "Cover Image URL" = "표지 이미지 URL";
+"Cozy Autumn Nights" = "포근한 가을밤";
 "Crash" = "충돌";
 "Crea tu propia paleta" = "나만의 팔레트 만들기";
 "Create" = "만들기";
@@ -710,6 +721,7 @@
 "Cuenta" = "계정";
 "Cuenta de Harbor" = "Harbor 계정";
 "Cuenta y configuración" = "계정 및 초기 설정";
+"Cult Classics" = "컬트 명작";
 "CuriosityStream" = "CuriosityStream";
 "Current" = "현재";
 "Custom" = "사용자 지정";
@@ -730,6 +742,7 @@
 "Danish" = "덴마크어";
 "Dark" = "어둡게";
 "Date" = "날짜";
+"Date Night" = "데이트 나이트";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "동영상 제공 출처";
 "Debrid services" = "디브리드 서비스";
@@ -886,6 +899,7 @@
 "Enter an FPS from 1 to 240." = "1~240 사이의 FPS를 입력하세요.";
 "Enter an existing relay URL:" = "기존 릴레이 URL 입력:";
 "Enter current PIN" = "현재 PIN 입력";
+"Epic Adventures" = "대서사 모험";
 "Episode" = "에피소드";
 "Episode cards" = "에피소드 카드";
 "Episode ordering" = "에피소드 순서";
@@ -943,10 +957,12 @@
 "Externo" = "외부";
 "Extra large" = "매우 크게";
 "Extras" = "부가 콘텐츠";
+"Eye Candy" = "눈이 즐거운 작품";
 "FPS de los subtítulos" = "자막 FPS";
 "FPS de origen de los subtítulos" = "자막 소스 FPS";
 "FPS del video" = "동영상 FPS";
 "FPS personalizados para subtítulos" = "사용자 지정 자막 FPS";
+"FX" = "FX";
 "Face" = "얼굴";
 "Fade" = "페이드";
 "Failed to fetch JSON" = "JSON을 가져오지 못했습니다.";
@@ -963,6 +979,7 @@
 "Featured source" = "추천 콘텐츠 소스";
 "Featured tonight" = "오늘 밤의 추천작";
 "Fecha" = "날짜";
+"Feel-Good Hits" = "기분 좋아지는 히트작";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "DuckDuckGo 결과를 가져와 상위 검색 결과를 모델 프롬프트에 전달합니다.";
 "Fiction" = "소설";
 "File is larger than 2 MB." = "파일이 2 MB보다 큽니다.";
@@ -1099,6 +1116,7 @@
 "Harvey Winner" = "Harvey 수상작";
 "Hearing impaired" = "청각 장애인용";
 "Hebrew" = "히브리어";
+"Heists & Cons" = "강도와 사기꾼";
 "Help & about" = "도움말 및 정보";
 "Hero trailers" = "히어로 트레일러";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "히어로, Top 10, 인기 콘텐츠, 극장 상영작과 서비스별 콘텐츠 줄이 표시됩니다. 그 아래에 애드온 콘텐츠가 추가됩니다.";
@@ -1141,7 +1159,9 @@
 "Highlights" = "하이라이트";
 "Hindi" = "힌디어";
 "History" = "역사";
+"History Buff" = "역사 애호가";
 "Hockey" = "하키";
+"Holiday Warmth" = "연말연시의 온기";
 "Home" = "홈";
 "Home Rail Settings" = "홈 콘텐츠 행 설정";
 "Home catalogs" = "홈 카탈로그";
@@ -1243,6 +1263,7 @@
 "Interfaz" = "인터페이스";
 "Interfaz del sistema" = "시스템 UI";
 "Interlineado" = "줄 높이";
+"Into the Stars" = "별을 향해";
 "Invalid SourceRow JSON format" = "SourceRow JSON 형식이 잘못되었습니다.";
 "Invite link" = "초대 링크";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "{product} 제작사 또는 앱 내에서 언급된 회사, 애드온 제작자, 상표권자와 제휴 관계가 없습니다.";
@@ -1290,7 +1311,9 @@
 "Languages & subtitles" = "언어 및 자막";
 "Large" = "크게";
 "Larger" = "더 크게";
+"Late Night" = "심야";
 "Laterales" = "양면";
+"Laugh Out Loud" = "포복절도 코미디";
 "Leave" = "나가기";
 "Leave room" = "방 나가기";
 "Leave the episode you are up to clear and only blur the ones after it." = "현재 시청 중인 에피소드는 선명하게 유지하고 이후 에피소드만 흐리게 표시합니다.";
@@ -1428,6 +1451,7 @@
 "Mexico" = "멕시코";
 "Mezclar sonido envolvente a estéreo" = "서라운드 사운드를 스테레오로 다운믹스";
 "Mi biblioteca" = "내 라이브러리";
+"Mind Benders" = "두뇌를 자극하는 작품";
 "Minimum file size" = "최소 파일 크기";
 "Minimum seeders" = "최소 시더 수";
 "Mis canales" = "My channels";
@@ -1518,6 +1542,7 @@
 "Needs an API key" = "API 키 필요";
 "Needs artwork-rich titles to feed the hero" = "히어로에 표시하려면 아트워크가 풍부한 작품이 필요합니다";
 "Needs at least 10 titles for the Top 10 look" = "상위 10개 스타일에는 작품이 10개 이상 필요합니다";
+"Neo-Noir" = "네오 누아르";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflix 오리지널";
 "Never" = "안 함";
@@ -1529,6 +1554,7 @@
 "New Episodes" = "새 에피소드";
 "New Episodes row" = "새 에피소드 행";
 "New Face Award" = "신인상";
+"New Year, New Stories" = "새해, 새로운 이야기";
 "New filter" = "새 필터";
 "New list" = "새 목록";
 "New profile" = "새 프로필";
@@ -2130,6 +2156,7 @@
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
+"Saddle Up" = "서부로 출발";
 "Salir de imagen en imagen" = "화면 속 화면 종료";
 "Saltar créditos" = "크레딧 건너뛰기";
 "Saltar intro" = "오프닝 건너뛰기";
@@ -2236,6 +2263,7 @@
 "Set B" = "Set B";
 "Set a PIN" = "PIN 설정";
 "Set active" = "활성화";
+"Set as home team" = "Set as home team";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2353,6 +2381,7 @@
 "Slightly lighter than background." = "배경보다 약간 밝습니다.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "느린 애드온과 P2P 소스는 시작하는 데 10초 넘게 걸리는 경우가 많습니다. 충분히 기다리기 전에 스트림을 건너뛴다면 이 값을 늘리세요.";
 "Slow or unstable connection" = "느리거나 불안정한 연결";
+"Slow-Burn Dramas" = "서서히 빠져드는 드라마";
 "Smaller" = "더 작게";
 "Smooth on weak PCs" = "저사양 PC에서 부드럽게";
 "Sobre la línea principal" = "기본 자막 위";
@@ -2394,6 +2423,7 @@
 "Sports" = "스포츠";
 "Spotlight" = "스포트라이트";
 "Spotlighted at the show" = "행사에서 주목받은 작품";
+"Spring Awakening" = "봄의 기지개";
 "Square play button" = "정사각형 재생 버튼";
 "Standard" = "일반";
 "Standard Def" = "Standard Def";
@@ -2473,6 +2503,7 @@
 "Subtítulos de tus addons" = "Subtitles from your addons";
 "Subtítulos duales" = "이중 자막";
 "Subtítulos en tu idioma" = "내 언어로 된 자막";
+"Summer Blockbusters" = "여름 블록버스터";
 "Superficie" = "표면";
 "Superficies" = "표면";
 "Supernatural" = "초자연";
@@ -2487,6 +2518,7 @@
 "Switch stream" = "스트림 전환";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "재생 시작 후 더 선호하는 언어의 자막이 도착하면 전환합니다. 현재 트랙을 유지하려면 끄세요.";
 "Switch to {name}" = "{name}(으)로 전환";
+"Sword & Sorcery" = "검과 마법";
 "Sync" = "동기화";
 "Sync Offset" = "동기화 오프셋";
 "Sync addons" = "Sync addons";
@@ -2587,6 +2619,8 @@
 "Theme name" = "테마 이름";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "TMDB 키를 설정하면 이 콘텐츠 줄이 활성화됩니다. 설정에서 언제든 다시 변경할 수 있습니다.";
 "They email an activation link the first time. Click it, then come back and save." = "처음에는 활성화 링크가 이메일로 전송됩니다. 링크를 클릭한 다음 돌아와 저장하세요.";
+"This Afternoon" = "오늘 오후";
+"This Morning" = "오늘 아침";
 "This file has one audio track." = "이 파일에는 오디오 트랙이 하나 있습니다.";
 "This file isn't a Harbor theme." = "Harbor 테마 파일이 아닙니다.";
 "This file isn't a readable theme." = "읽을 수 있는 테마 파일이 아닙니다.";
@@ -2629,6 +2663,7 @@
 "Todos los deportes" = "모든 스포츠";
 "Todos los géneros" = "모든 장르";
 "Todos los idiomas" = "모든 언어";
+"Tonight" = "오늘 밤";
 "Tonight's main event" = "오늘 밤의 메인 이벤트";
 "Top" = "상단";
 "Top 10 Comedy" = "코미디 Top 10";
@@ -2706,6 +2741,7 @@
 "Trending on {source}" = "{source} 인기 콘텐츠";
 "Trending, Popular, In Theaters, and the per service rails." = "트렌딩, 인기, 극장 상영작 및 서비스별 콘텐츠 행입니다.";
 "Trending, in theaters, what's on every streamer." = "인기 콘텐츠, 극장 상영작, 모든 스트리밍 서비스의 콘텐츠를 한곳에서 확인하세요.";
+"True Crime Files" = "실화 범죄 파일";
 "Try again" = "다시 시도";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "제목과 설명을 먼저 애드온에서 찾습니다. 애드온에 결과가 없으면 Cinemeta를 사용합니다.";
 "Tu avatar, nombre e identificador en Harbor." = "Harbor 전반에 표시되는 아바타, 이름 및 핸들입니다.";
@@ -2715,6 +2751,7 @@
 "Tune anime" = "애니메이션 맞춤 설정";
 "Tune your recommendations" = "추천 맞춤 설정";
 "Turkish" = "튀르키예어";
+"Turn It Up" = "볼륨을 높여요";
 "Turn off Auto Sync before changing subtitle FPS." = "자막 FPS를 변경하기 전에 자동 동기화를 끄세요.";
 "Turn on" = "켜기";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
@@ -2824,6 +2861,7 @@
 "Waiting for you to authorize on simkl.com…" = "simkl.com에서 인증하기를 기다리는 중…";
 "Waiting for you to authorize on trakt.tv…" = "trakt.tv에서 인증하기를 기다리는 중…";
 "War" = "전쟁";
+"War Stories" = "전쟁 이야기";
 "Watch Together" = "같이 보기";
 "Watch Together needs a relay." = "함께 보기를 사용하려면 릴레이가 필요합니다.";
 "Watch on" = "다음에서 시청";
@@ -2863,6 +2901,7 @@
 "Which subtitle Harbor lands on when more than one is available." = "자막이 여러 개일 때 Harbor가 처음 선택할 자막입니다.";
 "Who's watching" = "시청자 선택";
 "Who's watching?" = "누가 시청하나요?";
+"Whodunit" = "범인 찾기";
 "Wide search · still empty" = "넓게 검색함 · 결과 없음";
 "Works without a key at low volume; add a key for higher quotas." = "키가 없어도 낮은 사용량으로 이용할 수 있습니다. 한도를 늘리려면 키를 추가하세요.";
 "Writer" = "작가";

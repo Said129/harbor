@@ -1834,3 +1834,12 @@ MobileSourcesAndSubtitlesTests/testAddonSubtitleLoadsOnlyChosenFileWithoutDuplic
 isolated case failed once on the old green commit 302fb0c9 (one pass, one fail, one pass out of three), and removing the track selection call from the track
 update, or the first sub-filter-sdh write, did not make it pass. The cause is not found. The test message now prints the player state (loaded, changing, the
 subtitle tracks) so the next failure explains itself. Worth a look on the phone: load an addon subtitle and check it selects.
+
+## Twenty-second round: search, mood rails, calendar, Suwayomi, sports home team (8 November, written by Haiku, uncompiled; review fixes by Sonnet)
+
+**Search**: the movie and series rows of a search keep only titles with a poster and at most 12 each (Desktop's rule). No TMDB search source, ranking or intent.
+**Discover and calendar**: Desktop's mood rails (24 moods, 8 seasonal, time-of-day buckets, daily seed) join the movie page, the TV network list matches Desktop (AMC and FX
+added, the iOS-only October Spooky rail dropped because the seasonal one covers it), and the library calendar takes every library title plus the Trakt watchlist when
+Trakt is connected. Review fix: the time-of-day titles are translated word by word. Not done: Discover feed, daily rails, genre discovery, My Simkl calendar source.
+**Manga, Music, Sports**: the Suwayomi client lists categories and their books; the spread, queue continuation and folder rescan rules exist as tested helpers that nothing calls
+yet; a home team per league group can be set in the match detail and is kept in the Keychain.

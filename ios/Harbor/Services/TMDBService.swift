@@ -56,7 +56,7 @@ struct TMDBService: Sendable {
             DiscoveryRail(id: "tmdb-\(kind)-rated", title: kind == "movie" ? "All-Time Greats" : "All-Time Great Series", kind: kind, path: "\(providerKind)/top_rated")
         ]
         if kind == "movie" {
-            rows.append(contentsOf: MoodRails.pick().map { DiscoveryRail(id: $0.id, title: DesktopInterfaceText.value($0.title), kind: kind, path: "discover/movie", parameters: $0.parameters) })
+            rows.append(contentsOf: MoodRails.pick().map { DiscoveryRail(id: $0.id, title: $0.title.components(separatedBy: " · ").map { DesktopInterfaceText.value($0) }.joined(separator: " · "), kind: kind, path: "discover/movie", parameters: $0.parameters) })
             rows.append(DiscoveryRail(id: "tmdb-critics", title: "Critics' Picks", kind: kind, path: "discover/movie", parameters: ["primary_release_date.gte": "2015-01-01", "vote_average.gte": "7.6", "vote_count.gte": "2500", "sort_by": "vote_average.desc"]))
             rows.append(DiscoveryRail(id: "tmdb-\(kind)-gems", title: "Hidden Gems", kind: kind, path: "discover/movie", parameters: ["vote_average.gte": "7.6", "vote_count.gte": "200", "vote_count.lte": "1500", "sort_by": "vote_average.desc"]))
             rows.append(DiscoveryRail(id: "tmdb-coming", title: "Coming to Theaters", kind: kind, path: "movie/upcoming"))

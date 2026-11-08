@@ -51,6 +51,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "Tìm kiếm bằng AI thất bại.";
 "AI search failed. Tap to retry." = "Tìm kiếm bằng AI không thành công. Nhấn để thử lại.";
+"AMC" = "AMC";
 "AMC+" = "AMC+";
 "API key" = "Khóa API";
 "API token" = "Token API";
@@ -142,6 +143,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "Điều chỉnh chữ và nền. Bản xem trước hiển thị ngay các thay đổi của bạn.";
 "Adjust volume on the speaker. Computer volume and boost do not apply." = "Chỉnh âm lượng trên loa. Âm lượng và tăng âm của máy tính không áp dụng.";
 "Administrar" = "Quản lý";
+"Adrenaline Rush" = "Bùng nổ adrenaline";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "Chuyển mục Xem tiếp sang tập tiếp theo";
 "Adventure" = "Phiêu lưu";
@@ -149,6 +151,7 @@
 "After 3" = "Sau 3 tập";
 "After 4" = "Sau 4 tập";
 "After 5" = "Sau 5 tập";
+"After Dark" = "Sau màn đêm";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Sau một lúc ở một trang trình chiếu, trailer của nội dung nổi bật sẽ phát không tiếng trong nền. Tốn nhiều băng thông hơn.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Sau khi tự động phát liên tiếp vài tập mà không có thao tác, tạm dừng và kiểm tra xem bạn có còn đang xem không trước khi tiếp tục. Mặc định tắt.";
 "Age ratings and content notes when playback starts." = "Phân loại độ tuổi và lưu ý về nội dung khi bắt đầu phát.";
@@ -210,6 +213,7 @@
 "Animated Movies" = "Phim hoạt hình";
 "Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "Hoạt hình";
+"Animation Night" = "Đêm phim hoạt hình";
 "Animation speed" = "Tốc độ hiệu ứng";
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
@@ -296,6 +300,7 @@
 "Aviso del siguiente episodio" = "Nhắc tập tiếp theo";
 "Award Winning Anime" = "Anime đoạt giải";
 "Awards & Recognition" = "Giải thưởng & Vinh danh";
+"Awards Contenders" = "Ứng viên giải thưởng";
 "Ayuda e información" = "Trợ giúp và giới thiệu";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "Thêm nguồn";
@@ -325,6 +330,7 @@
 "Barra negra" = "Nền đen";
 "Base de la página." = "Nền trang.";
 "Bass boost" = "Tăng âm trầm";
+"Be My Valentine" = "Hẹn hò Valentine";
 "Be the first to start a discussion." = "Hãy là người đầu tiên bắt đầu thảo luận.";
 "Beloved by readers and critics" = "Được độc giả và giới phê bình yêu thích";
 "Berlin Film Festival" = "Liên hoan phim Berlin";
@@ -393,6 +399,7 @@
 "Brightness" = "Độ sáng";
 "Brillo" = "Độ sáng";
 "Bring in your library" = "Nhập thư viện của bạn";
+"Bring the Tissues" = "Chuẩn bị khăn giấy";
 "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Đưa danh sách anime vào Harbor và cập nhật số tập khi xem. Tiến độ hiện có được giữ nguyên.";
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Hiển thị lại các mẹo nhỏ trong ứng dụng mà bạn đã ẩn mà không cần thực hiện lại quy trình chào mừng.";
@@ -536,6 +543,7 @@
 "Clear cache now" = "Xóa bộ nhớ đệm ngay";
 "Clear caches" = "Xóa bộ nhớ đệm";
 "Clear filters" = "Xóa bộ lọc";
+"Clear home team" = "Clear home team";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Xóa tìm kiếm";
 "Clears the saved URL so you can point Harbor at another relay." = "Xóa URL đã lưu để Harbor có thể trỏ đến một relay khác.";
@@ -562,6 +570,8 @@
 "Comenzar a ver" = "Bắt đầu xem";
 "Comenzar con los subtítulos desactivados" = "Tắt phụ đề khi bắt đầu";
 "Comfort" = "Comfort";
+"Comfort Watch" = "Phim xem để thư giãn";
+"Coming of Age" = "Tuổi mới lớn";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Sắp ra rạp";
 "Comments" = "Bình luận";
@@ -686,6 +696,7 @@
 "Couldn't read that image. Try a different file." = "Không thể đọc ảnh đó. Hãy thử một tệp khác.";
 "Couldn't scan that folder." = "Không thể quét thư mục đó.";
 "Cover Image URL" = "URL ảnh bìa";
+"Cozy Autumn Nights" = "Đêm thu ấm cúng";
 "Crash" = "Sự cố";
 "Crea tu propia paleta" = "Tạo bảng màu riêng";
 "Create" = "Tạo";
@@ -710,6 +721,7 @@
 "Cuenta" = "Tài khoản";
 "Cuenta de Harbor" = "Tài khoản Harbor";
 "Cuenta y configuración" = "Tài khoản và thiết lập";
+"Cult Classics" = "Tác phẩm kinh điển đình đám";
 "CuriosityStream" = "CuriosityStream";
 "Current" = "Hiện tại";
 "Custom" = "Tùy chỉnh";
@@ -730,6 +742,7 @@
 "Danish" = "Tiếng Đan Mạch";
 "Dark" = "Tối";
 "Date" = "Ngày";
+"Date Night" = "Đêm hẹn hò";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "Nguồn video";
 "Debrid services" = "Dịch vụ debrid";
@@ -886,6 +899,7 @@
 "Enter an FPS from 1 to 240." = "Nhập FPS từ 1 đến 240.";
 "Enter an existing relay URL:" = "Nhập URL relay hiện có:";
 "Enter current PIN" = "Nhập mã PIN hiện tại";
+"Epic Adventures" = "Phiêu lưu sử thi";
 "Episode" = "Tập";
 "Episode cards" = "Thẻ tập";
 "Episode ordering" = "Thứ tự tập";
@@ -943,10 +957,12 @@
 "Externo" = "Bên ngoài";
 "Extra large" = "Cực lớn";
 "Extras" = "Nội dung bổ sung";
+"Eye Candy" = "Mãn nhãn";
 "FPS de los subtítulos" = "FPS phụ đề";
 "FPS de origen de los subtítulos" = "FPS nguồn phụ đề";
 "FPS del video" = "FPS video";
 "FPS personalizados para subtítulos" = "FPS phụ đề tùy chỉnh";
+"FX" = "FX";
 "Face" = "Khuôn mặt";
 "Fade" = "Mờ dần";
 "Failed to fetch JSON" = "Không thể tải JSON";
@@ -963,6 +979,7 @@
 "Featured source" = "Nguồn nổi bật";
 "Featured tonight" = "Nổi bật tối nay";
 "Fecha" = "Ngày";
+"Feel-Good Hits" = "Phim vui vẻ, tích cực";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "Lấy kết quả từ DuckDuckGo và đưa các kết quả hàng đầu vào lời nhắc của mô hình.";
 "Fiction" = "Hư cấu";
 "File is larger than 2 MB." = "Tệp lớn hơn 2 MB.";
@@ -1099,6 +1116,7 @@
 "Harvey Winner" = "Đoạt giải Harvey";
 "Hearing impaired" = "Dành cho người khiếm thính";
 "Hebrew" = "Tiếng Do Thái";
+"Heists & Cons" = "Trộm cướp và lừa đảo";
 "Help & about" = "Trợ giúp và giới thiệu";
 "Hero trailers" = "Trailer nổi bật";
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Nổi bật, Top 10, Thịnh hành, Đang chiếu rạp và các hàng theo từng dịch vụ. Tiện ích bổ sung của bạn sẽ được thêm bên dưới.";
@@ -1141,7 +1159,9 @@
 "Highlights" = "Nổi bật";
 "Hindi" = "Tiếng Hindi";
 "History" = "Lịch sử";
+"History Buff" = "Mê lịch sử";
 "Hockey" = "Khúc côn cầu";
+"Holiday Warmth" = "Ấm áp mùa lễ hội";
 "Home" = "Trang chủ";
 "Home Rail Settings" = "Cài đặt hàng nội dung Trang chủ";
 "Home catalogs" = "Danh mục trang chủ";
@@ -1243,6 +1263,7 @@
 "Interfaz" = "Giao diện";
 "Interfaz del sistema" = "Giao diện hệ thống";
 "Interlineado" = "Chiều cao dòng";
+"Into the Stars" = "Vươn tới các vì sao";
 "Invalid SourceRow JSON format" = "Định dạng JSON SourceRow không hợp lệ";
 "Invite link" = "Liên kết mời";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Ứng dụng này không liên kết với nhà sản xuất {product}, hay bất kỳ công ty, tác giả tiện ích bổ sung hoặc chủ sở hữu nhãn hiệu nào được đề cập trong ứng dụng.";
@@ -1290,7 +1311,9 @@
 "Languages & subtitles" = "Ngôn ngữ & phụ đề";
 "Large" = "Lớn";
 "Larger" = "Lớn hơn";
+"Late Night" = "Đêm khuya";
 "Laterales" = "Hai bên";
+"Laugh Out Loud" = "Cười thả ga";
 "Leave" = "Rời khỏi";
 "Leave room" = "Rời phòng";
 "Leave the episode you are up to clear and only blur the ones after it." = "Giữ rõ tập bạn đang xem đến và chỉ làm mờ các tập sau đó.";
@@ -1428,6 +1451,7 @@
 "Mexico" = "Mexico";
 "Mezclar sonido envolvente a estéreo" = "Trộn âm thanh vòm xuống stereo";
 "Mi biblioteca" = "Thư viện của tôi";
+"Mind Benders" = "Cân não";
 "Minimum file size" = "Kích thước tệp tối thiểu";
 "Minimum seeders" = "Số người chia sẻ tối thiểu";
 "Mis canales" = "My channels";
@@ -1518,6 +1542,7 @@
 "Needs an API key" = "Cần khóa API";
 "Needs artwork-rich titles to feed the hero" = "Cần các tựa phim có hình ảnh phong phú để đưa lên mục nổi bật";
 "Needs at least 10 titles for the Top 10 look" = "Cần ít nhất 10 tựa phim để hiển thị theo dạng Top 10";
+"Neo-Noir" = "Neo-Noir";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Nội dung gốc Netflix";
 "Never" = "Không bao giờ";
@@ -1529,6 +1554,7 @@
 "New Episodes" = "Tập mới";
 "New Episodes row" = "Hàng Tập mới";
 "New Face Award" = "Giải Gương mặt mới";
+"New Year, New Stories" = "Năm mới, chuyện mới";
 "New filter" = "Bộ lọc mới";
 "New list" = "Danh sách mới";
 "New profile" = "Hồ sơ mới";
@@ -2130,6 +2156,7 @@
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
+"Saddle Up" = "Lên yên ngựa";
 "Salir de imagen en imagen" = "Thoát chế độ Hình trong hình";
 "Saltar créditos" = "Bỏ qua phần danh đề";
 "Saltar intro" = "Bỏ qua phần mở đầu";
@@ -2236,6 +2263,7 @@
 "Set B" = "Set B";
 "Set a PIN" = "Đặt mã PIN";
 "Set active" = "Đặt làm đang hoạt động";
+"Set as home team" = "Set as home team";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2353,6 +2381,7 @@
 "Slightly lighter than background." = "Sáng hơn nền một chút.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Các tiện ích bổ sung chậm và nguồn P2P thường cần hơn 10 giây để bắt đầu. Hãy tăng thời gian này nếu luồng phát bị bỏ qua trước khi có đủ thời gian kết nối.";
 "Slow or unstable connection" = "Kết nối chậm hoặc không ổn định";
+"Slow-Burn Dramas" = "Chính kịch chậm mà cuốn";
 "Smaller" = "Nhỏ hơn";
 "Smooth on weak PCs" = "Mượt trên PC yếu";
 "Sobre la línea principal" = "Phía trên dòng chính";
@@ -2394,6 +2423,7 @@
 "Sports" = "Thể thao";
 "Spotlight" = "Nổi bật";
 "Spotlighted at the show" = "Được giới thiệu nổi bật tại sự kiện";
+"Spring Awakening" = "Bừng tỉnh mùa xuân";
 "Square play button" = "Nút phát hình vuông";
 "Standard" = "Tiêu chuẩn";
 "Standard Def" = "Standard Def";
@@ -2473,6 +2503,7 @@
 "Subtítulos de tus addons" = "Subtitles from your addons";
 "Subtítulos duales" = "Phụ đề kép";
 "Subtítulos en tu idioma" = "Phụ đề bằng ngôn ngữ của bạn";
+"Summer Blockbusters" = "Bom tấn mùa hè";
 "Superficie" = "Bề mặt";
 "Superficies" = "Bề mặt";
 "Supernatural" = "Siêu nhiên";
@@ -2487,6 +2518,7 @@
 "Switch stream" = "Đổi luồng phát";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "Chuyển sang ngôn ngữ phù hợp hơn nếu có sau khi bắt đầu phát. Để tắt để giữ bản hiện tại.";
 "Switch to {name}" = "Chuyển sang {name}";
+"Sword & Sorcery" = "Kiếm hiệp & Phép thuật";
 "Sync" = "Đồng bộ";
 "Sync Offset" = "Độ lệch đồng bộ";
 "Sync addons" = "Sync addons";
@@ -2587,6 +2619,8 @@
 "Theme name" = "Tên giao diện";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Các hàng này sẽ được kích hoạt sau khi đặt khóa TMDB. Bạn có thể quay lại đây bất cứ lúc nào trong Cài đặt.";
 "They email an activation link the first time. Click it, then come back and save." = "Lần đầu, họ sẽ gửi liên kết kích hoạt qua email. Hãy nhấp vào đó, rồi quay lại và lưu.";
+"This Afternoon" = "Chiều nay";
+"This Morning" = "Sáng nay";
 "This file has one audio track." = "Tệp này có một rãnh âm thanh.";
 "This file isn't a Harbor theme." = "Tệp này không phải giao diện Harbor.";
 "This file isn't a readable theme." = "Không thể đọc tệp giao diện này.";
@@ -2629,6 +2663,7 @@
 "Todos los deportes" = "Tất cả môn thể thao";
 "Todos los géneros" = "Tất cả thể loại";
 "Todos los idiomas" = "Tất cả ngôn ngữ";
+"Tonight" = "Tối nay";
 "Tonight's main event" = "Sự kiện chính tối nay";
 "Top" = "Trên cùng";
 "Top 10 Comedy" = "Top 10 hài";
@@ -2706,6 +2741,7 @@
 "Trending on {source}" = "Đang thịnh hành trên {source}";
 "Trending, Popular, In Theaters, and the per service rails." = "Thịnh hành, Phổ biến, Đang chiếu rạp và các hàng nội dung theo từng dịch vụ.";
 "Trending, in theaters, what's on every streamer." = "Thịnh hành, đang chiếu rạp và nội dung trên mọi dịch vụ phát trực tuyến.";
+"True Crime Files" = "Hồ sơ trọng án có thật";
 "Try again" = "Thử lại";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Ưu tiên tiện ích để tìm tên và mô tả. Dùng Cinemeta khi tiện ích không có kết quả.";
 "Tu avatar, nombre e identificador en Harbor." = "Ảnh đại diện, tên và tên người dùng của bạn trên Harbor.";
@@ -2715,6 +2751,7 @@
 "Tune anime" = "Tinh chỉnh anime";
 "Tune your recommendations" = "Điều chỉnh đề xuất";
 "Turkish" = "Tiếng Thổ Nhĩ Kỳ";
+"Turn It Up" = "Bật lớn âm lượng";
 "Turn off Auto Sync before changing subtitle FPS." = "Tắt Tự động đồng bộ trước khi thay đổi FPS phụ đề.";
 "Turn on" = "Bật";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
@@ -2824,6 +2861,7 @@
 "Waiting for you to authorize on simkl.com…" = "Đang chờ bạn cấp quyền trên simkl.com…";
 "Waiting for you to authorize on trakt.tv…" = "Đang chờ bạn cấp quyền trên trakt.tv…";
 "War" = "Chiến tranh";
+"War Stories" = "Chuyện thời chiến";
 "Watch Together" = "Xem cùng nhau";
 "Watch Together needs a relay." = "Xem cùng nhau cần một relay.";
 "Watch on" = "Xem trên";
@@ -2863,6 +2901,7 @@
 "Which subtitle Harbor lands on when more than one is available." = "Phụ đề Harbor chọn khi có nhiều phụ đề.";
 "Who's watching" = "Ai đang xem";
 "Who's watching?" = "Ai đang xem?";
+"Whodunit" = "Bí ẩn truy tìm thủ phạm";
 "Wide search · still empty" = "Tìm kiếm rộng · vẫn không có kết quả";
 "Works without a key at low volume; add a key for higher quotas." = "Dùng được không cần khóa ở lưu lượng thấp; thêm khóa để có hạn mức cao hơn.";
 "Writer" = "Biên kịch";

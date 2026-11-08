@@ -41,6 +41,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "AI search failed.";
 "AI search failed. Tap to retry." = "AI search failed. Tap to retry.";
+"AMC" = "AMC";
 "API key" = "API key";
 "API token" = "API token";
 "Abajo a la derecha" = "Bottom right";
@@ -125,6 +126,7 @@
 "Adjust the text and background. The preview shows your changes as you make them." = "Adjust the text and background. The preview shows your changes as you make them.";
 "Adjust volume on the speaker. Computer volume and boost do not apply." = "Adjust volume on the speaker. Computer volume and boost do not apply.";
 "Administrar" = "Manage";
+"Adrenaline Rush" = "Adrenaline Rush";
 "Adult sources" = "Adult sources";
 "Advance Continue Watching to the next episode" = "Advance Continue Watching to the next episode";
 "Adventure" = "Adventure";
@@ -132,6 +134,7 @@
 "After 3" = "After 3";
 "After 4" = "After 4";
 "After 5" = "After 5";
+"After Dark" = "After Dark";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default.";
 "Age ratings and content notes when playback starts." = "Age ratings and content notes when playback starts.";
@@ -187,6 +190,7 @@
 "Animated Movies" = "Animated Movies";
 "Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "Animation";
+"Animation Night" = "Animation Night";
 "Animation speed" = "Animation speed";
 "Anime" = "Anime";
 "Anime Title Language" = "Anime Title Language";
@@ -268,6 +272,7 @@
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "Next episode prompt";
 "Awards & Recognition" = "Awards & Recognition";
+"Awards Contenders" = "Awards Contenders";
 "Ayuda e información" = "Help & about";
 "Añadir a biblioteca Suwayomi" = "Add to Suwayomi library";
 "Añadir fuente" = "Add source";
@@ -297,6 +302,7 @@
 "Barra negra" = "Black bar";
 "Base de la página." = "Page base.";
 "Bass boost" = "Bass boost";
+"Be My Valentine" = "Be My Valentine";
 "Be the first to start a discussion." = "Be the first to start a discussion.";
 "Berlin Film Festival" = "Berlin Film Festival";
 "Biblioteca" = "Library";
@@ -336,6 +342,7 @@
 "Brighten dark movies" = "Brighten dark movies";
 "Brightness" = "Brightness";
 "Brillo" = "Brightness";
+"Bring the Tissues" = "Bring the Tissues";
 "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge." = "Bring your Letterboxd watchlist, diary, liked films and lists into Harbor through the Stremboxd bridge.";
 "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept." = "Bring your anime list into Harbor and update your episode count as you watch. Your existing progress is kept.";
 "British Independent Film Awards" = "British Independent Film Awards";
@@ -462,6 +469,7 @@
 "Clear cache" = "Clear cache now";
 "Clear cache now" = "Clear cache now";
 "Clear filters" = "Clear filters";
+"Clear home team" = "Clear home team";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Clear search";
 "Clears the saved URL so you can point Harbor at another relay." = "Clears the saved URL so you can point Harbor at another relay.";
@@ -488,6 +496,8 @@
 "Comenzar a ver" = "Start Watching";
 "Comenzar con los subtítulos desactivados" = "Start with subtitles off";
 "Comfort" = "Comfort";
+"Comfort Watch" = "Comfort Watch";
+"Coming of Age" = "Coming of Age";
 "Coming soon" = "Coming soon";
 "Comments" = "Comments";
 "Comments and reviews on detail pages stay blurred until you reveal them, even when they are not tagged as spoilers. This one switch covers Trakt and Letterboxd." = "Comments and reviews on detail pages stay blurred until you reveal them, even when they are not tagged as spoilers. This one switch covers Trakt and Letterboxd.";
@@ -605,6 +615,7 @@
 "Couldn't read that image. Try a different file." = "Couldn't read that image. Try a different file.";
 "Couldn't scan that folder." = "Couldn't scan that folder.";
 "Cover Image URL" = "Cover Image URL";
+"Cozy Autumn Nights" = "Cozy Autumn Nights";
 "Crea tu propia paleta" = "Build your own palette";
 "Create" = "Create";
 "Create new list" = "Create new list";
@@ -622,6 +633,7 @@
 "Cuenta" = "Account";
 "Cuenta de Harbor" = "Harbor account";
 "Cuenta y configuración" = "Account & setup";
+"Cult Classics" = "Cult Classics";
 "Current" = "Current";
 "Custom" = "Custom";
 "Custom model id" = "Custom model id";
@@ -638,6 +650,7 @@
 "Danger" = "Danger";
 "Dark" = "Dark";
 "Date" = "Date";
+"Date Night" = "Date Night";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
 "De dónde viene tu video" = "Where your video comes from";
 "Debrid services" = "Debrid services";
@@ -779,6 +792,7 @@
 "Enter a whole number of 0 or more." = "Enter a whole number of 0 or more.";
 "Enter an FPS from 1 to 240." = "Enter an FPS from 1 to 240.";
 "Enter an existing relay URL:" = "Enter an existing relay URL:";
+"Epic Adventures" = "Epic Adventures";
 "Episode" = "Episode";
 "Episode cards" = "Episode cards";
 "Episode ordering" = "Episode ordering";
@@ -830,10 +844,12 @@
 "External subtitle" = "External subtitle";
 "Externo" = "External";
 "Extra large" = "Extra large";
+"Eye Candy" = "Eye Candy";
 "FPS de los subtítulos" = "Subtitle FPS";
 "FPS de origen de los subtítulos" = "Subtitle source FPS";
 "FPS del video" = "Video FPS";
 "FPS personalizados para subtítulos" = "Custom subtitle FPS";
+"FX" = "FX";
 "Face" = "Face";
 "Fade" = "Fade";
 "Failed to fetch JSON" = "Failed to fetch JSON";
@@ -849,6 +865,7 @@
 "Featured source" = "Featured source";
 "Featured tonight" = "Featured tonight";
 "Fecha" = "Date";
+"Feel-Good Hits" = "Feel-Good Hits";
 "Fetches DuckDuckGo results and feeds top hits into the model prompt." = "Fetches DuckDuckGo results and feeds top hits into the model prompt.";
 "Fill" = "Fill";
 "Fills in where TMDB comes up empty (anime, older catalog). Free at" = "Fills in where TMDB comes up empty (anime, older catalog). Free at";
@@ -962,6 +979,7 @@
 "Harbor's public relay" = "Harbor's public relay";
 "Hard stroke around each letter. High contrast." = "Hard stroke around each letter. High contrast.";
 "Hearing impaired" = "Hearing impaired";
+"Heists & Cons" = "Heists & Cons";
 "Help & about" = "Help & about";
 "Hero trailers" = "Hero trailers";
 "Hidden" = "Hidden";
@@ -1001,6 +1019,8 @@
 "Highlighted blocks." = "Highlighted blocks.";
 "Highlights" = "Highlights";
 "History" = "History";
+"History Buff" = "History Buff";
+"Holiday Warmth" = "Holiday Warmth";
 "Home" = "Home";
 "Home Rail Settings" = "Home Rail Settings";
 "Home catalogs" = "Home catalogs";
@@ -1094,6 +1114,7 @@
 "Interfaz" = "Interface";
 "Interfaz del sistema" = "System UI";
 "Interlineado" = "Line height";
+"Into the Stars" = "Into the Stars";
 "Invalid SourceRow JSON format" = "Invalid SourceRow JSON format";
 "Invite link" = "Invite link";
 "Italy" = "Italy";
@@ -1133,7 +1154,9 @@
 "Languages & subtitles" = "Languages & subtitles";
 "Large" = "Large";
 "Larger" = "Larger";
+"Late Night" = "Late Night";
 "Laterales" = "Sides";
+"Laugh Out Loud" = "Laugh Out Loud";
 "Leave" = "Leave";
 "Leave room" = "Leave room";
 "Leave the episode you are up to clear and only blur the ones after it." = "Leave the episode you are up to clear and only blur the ones after it.";
@@ -1258,6 +1281,7 @@
 "Mexico" = "Mexico";
 "Mezclar sonido envolvente a estéreo" = "Mix surround sound down to stereo";
 "Mi biblioteca" = "My Library";
+"Mind Benders" = "Mind Benders";
 "Minimum file size" = "Minimum file size";
 "Minimum seeders" = "Minimum seeders";
 "Mis canales" = "My channels";
@@ -1339,6 +1363,7 @@
 "Needs an API key" = "Needs an API key";
 "Needs artwork-rich titles to feed the hero" = "Needs artwork-rich titles to feed the hero";
 "Needs at least 10 titles for the Top 10 look" = "Needs at least 10 titles for the Top 10 look";
+"Neo-Noir" = "Neo-Noir";
 "Never auto-select tracks containing" = "Never auto-select tracks containing";
 "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device.";
 "Never show the content advisory for this title again" = "Never show the content advisory for this title again";
@@ -1346,6 +1371,7 @@
 "New Anime Releases" = "New Anime Releases";
 "New Episodes" = "New Episodes";
 "New Episodes row" = "New Episodes row";
+"New Year, New Stories" = "New Year, New Stories";
 "New filter" = "New filter";
 "New list" = "New list";
 "New profile" = "New profile";
@@ -1874,6 +1900,7 @@
 "Rows" = "Rows";
 "SIMKL" = "SIMKL";
 "SUBDL" = "SUBDL";
+"Saddle Up" = "Saddle Up";
 "Salir de imagen en imagen" = "Exit Picture in Picture";
 "Saltar créditos" = "Skip Credits";
 "Saltar intro" = "Skip Intro";
@@ -1976,6 +2003,7 @@
 "Set A" = "Set A";
 "Set B" = "Set B";
 "Set active" = "Set active";
+"Set as home team" = "Set as home team";
 "Set as show backdrop" = "Set as show backdrop";
 "Set as show logo" = "Set as show logo";
 "Set as show poster" = "Set as show poster";
@@ -2083,6 +2111,7 @@
 "Slightly lighter than background." = "Slightly lighter than background.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance.";
 "Slow or unstable connection" = "Slow or unstable connection";
+"Slow-Burn Dramas" = "Slow-Burn Dramas";
 "Smaller" = "Smaller";
 "Smooth on weak PCs" = "Smooth on weak PCs";
 "Sobre la línea principal" = "Above the main line";
@@ -2117,8 +2146,10 @@
 "Spoiler — Click to reveal" = "Spoiler — Click to reveal";
 "Spoilers" = "Spoilers";
 "Spooktober" = "Spooktober";
+"Spooky Season" = "Spooky Season";
 "Sport" = "Sport";
 "Sports" = "Sports";
+"Spring Awakening" = "Spring Awakening";
 "Square play button" = "Square play button";
 "Standard" = "Standard";
 "Standard Def" = "Standard Def";
@@ -2190,6 +2221,7 @@
 "Subtítulos de tus addons" = "Subtitles from your addons";
 "Subtítulos duales" = "Dual subtitles";
 "Subtítulos en tu idioma" = "Captions in your language";
+"Summer Blockbusters" = "Summer Blockbusters";
 "Superficie" = "Surface";
 "Superficies" = "Surfaces";
 "Sure" = "Sure";
@@ -2201,6 +2233,7 @@
 "Switch quality" = "Switch quality";
 "Switch stream" = "Switch stream";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track.";
+"Sword & Sorcery" = "Sword & Sorcery";
 "Sync" = "Sync";
 "Sync Offset" = "Sync Offset";
 "Sync addons" = "Sync addons";
@@ -2289,6 +2322,8 @@
 "Theme name" = "Theme name";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "These rails activate once a TMDB key is set. You can come back to this anytime in Settings.";
 "They email an activation link the first time. Click it, then come back and save." = "They email an activation link the first time. Click it, then come back and save.";
+"This Afternoon" = "This Afternoon";
+"This Morning" = "This Morning";
 "This file has one audio track." = "This file has one audio track.";
 "This file isn't a Harbor theme." = "This file isn't a Harbor theme.";
 "This file isn't a readable theme." = "This file isn't a readable theme.";
@@ -2329,6 +2364,7 @@
 "Todos los deportes" = "All sports";
 "Todos los géneros" = "All genres";
 "Todos los idiomas" = "All languages";
+"Tonight" = "Tonight";
 "Tonight's main event" = "Tonight's main event";
 "Top" = "Top";
 "Top 10 Comedy" = "Top 10 Comedy";
@@ -2394,12 +2430,14 @@
 "Trending on {site}" = "Trending on {site}";
 "Trending on {source}" = "Trending on {source}";
 "Trending, Popular, In Theaters, and the per service rails." = "Trending, Popular, In Theaters, and the per service rails.";
+"True Crime Files" = "True Crime Files";
 "Try again" = "Try again";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result.";
 "Tu avatar, nombre e identificador en Harbor." = "Your avatar, name, and handle across Harbor.";
 "Tu color" = "Your color";
 "Tu perfil" = "Your profile";
 "Tune anime" = "Tune anime";
+"Turn It Up" = "Turn It Up";
 "Turn off Auto Sync before changing subtitle FPS." = "Turn off Auto Sync before changing subtitle FPS.";
 "Turn on" = "Turn on";
 "Turn on AniList comments first." = "Turn on AniList comments first.";
@@ -2501,6 +2539,7 @@
 "Waiting for you to authorize on simkl.com…" = "Waiting for you to authorize on simkl.com…";
 "Waiting for you to authorize on trakt.tv…" = "Waiting for you to authorize on trakt.tv…";
 "War" = "War";
+"War Stories" = "War Stories";
 "Watch Together" = "Watch Together";
 "Watch Together needs a relay." = "Watch Together needs a relay.";
 "Watch on" = "Watch on";
@@ -2536,6 +2575,7 @@
 "Which order" = "Which order";
 "Which subtitle Harbor lands on when more than one is available." = "Which subtitle Harbor lands on when more than one is available.";
 "Who's watching" = "Who's watching";
+"Whodunit" = "Whodunit";
 "Wide search · still empty" = "Wide search · still empty";
 "Works without a key at low volume; add a key for higher quotas." = "Works without a key at low volume; add a key for higher quotas.";
 "Writer" = "Writer";
