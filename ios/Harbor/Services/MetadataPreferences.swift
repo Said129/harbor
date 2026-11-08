@@ -9,6 +9,8 @@ struct MetadataConfiguration: Sendable {
     var imageLanguages: [String] = ["English", "Original"]
     /// Desktop's `rpdbKey`: rated posters. Read from the Keychain store of the profile, empty when none is saved.
     var rpdbKey: String = ""
+    /// Desktop's `translateDescriptions`: plot text and tagline in the metadata language (on) or in English (off).
+    var translateDescriptions = true
 }
 
 @MainActor @Observable
@@ -27,6 +29,9 @@ final class MetadataPreferences {
     var translateTitles = UserDefaults.standard.object(forKey: "metadata.translateTitles") as? Bool ?? true {
         didSet { persist(translateTitles, forKey: "metadata.translateTitles") }
     }
+    var translateDescriptions = UserDefaults.standard.object(forKey: "metadata.translateDescriptions") as? Bool ?? true {
+        didSet { persist(translateDescriptions, forKey: "metadata.translateDescriptions") }
+    }
     var imageLanguages = UserDefaults.standard.stringArray(forKey: "tmdbImageLangs") ?? ["English", "Original"] {
         didSet { persist(imageLanguages, forKey: "tmdbImageLangs") }
     }
@@ -44,6 +49,7 @@ final class MetadataPreferences {
     func configuration() -> MetadataConfiguration {
         var result = MetadataConfiguration(tmdbKey: tmdbKey, region: region, language: language, translateTitles: translateTitles, imageLanguages: imageLanguages)
         result.rpdbKey = savedRPDBKey()
+        result.translateDescriptions = translateDescriptions
         return result
     }
     private func savedRPDBKey() -> String {
@@ -62,6 +68,7 @@ final class MetadataPreferences {
         region = UserDefaults.standard.string(forKey: "metadata.region") ?? "US"
         language = UserDefaults.standard.string(forKey: "metadata.language") ?? "es-ES"
         translateTitles = UserDefaults.standard.object(forKey: "metadata.translateTitles") as? Bool ?? true
+        translateDescriptions = UserDefaults.standard.object(forKey: "metadata.translateDescriptions") as? Bool ?? true
         imageLanguages = UserDefaults.standard.stringArray(forKey: "tmdbImageLangs") ?? ["English", "Original"]
     }
 }

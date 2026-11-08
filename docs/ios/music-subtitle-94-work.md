@@ -1694,3 +1694,18 @@ picks `StreamStallPolicy.nextCandidate` and closes the player. `DetailView.playe
 source opens only after the old player has released its surface. The attempt chain of `considerAutoplay` became `continueChain`, shared by
 both paths with the same limit of eight. Buffering after playback has begun is left alone, as on Desktop. There is no test at the
 `DetailModel` level because its offer lists are private to the model; the decision rules keep their own tests.
+
+## Overview translation and a triage of loose rows (8 November, written by Sonnet, uncompiled)
+
+Desktop's "Translate overviews" (`translateDescriptions`) keeps the English plot and tagline while the metadata language is another one.
+`OverviewTranslationPolicy` holds the rules; `TMDBService.detail` asks TMDB for the English record only when the setting is off and the language
+is not English, and the localized text stays when TMDB has none. The setting sits in Metadata providers under "Translate titles" (locked while
+the language is English, as on Desktop), travels with the profile, and is part of the cached detail key. Eight policy cases cover it.
+
+The same pass settled five loose rows by reading code. `musicSpeedPresets` was already ported (`MusicSavedSpeedPresets`) and the audit had
+missed it. Excluded with a reason: `tvdbPin` (declared by Desktop, read nowhere), `arabicWelcomeSeen` (the Arabic welcome screen is exported
+and never mounted), `localReviewDismissedCount` (it dismisses a review banner for local files that iOS never flags).
+
+The audit also shows 276 partial rows, 137 of them only because an earlier review recorded them as Partial. Whole areas (Manga, Sports, Home
+customization, VOD details, Spooktober, Music, Subtitle FPS) have no row marked ported, so the weighted percentage says more about how those
+rows were classified than about missing code.

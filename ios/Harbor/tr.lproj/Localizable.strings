@@ -1754,6 +1754,7 @@
 "Pick a direction. You steer from there, one film at a time." = "Bir yön seçin. Sonrasında rotayı her seferinde bir film seçerek siz belirleyin.";
 "Pick a few you love" = "Sevdiklerinizden birkaçını seçin";
 "Pick a home layout" = "Ana sayfa düzenini seçin";
+"Pick a metadata language above to translate overviews." = "Özetleri çevirmek için yukarıdan bir meta veri dili seçin.";
 "Pick a profile to continue." = "Devam etmek için bir profil seçin.";
 "Pick a random title" = "Rastgele bir yapım seç";
 "Pick a source" = "Bir kaynak seçin";
@@ -2625,6 +2626,8 @@
 "Trakt sources" = "Trakt kaynakları";
 "Trakt watchlist" = "Trakt izleme listesi";
 "Transfer primary" = "Birincil profili aktar";
+"Translate overviews" = "Özetleri çevir";
+"Translate plot descriptions and taglines into the language above. Turn off to keep English overviews." = "Konu açıklamalarını ve sloganları yukarıdaki dile çevirir. Özetleri İngilizce tutmak için kapatın.";
 "Translate titles" = "Başlıkları çevir";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Her harfin çevresinde keskin bir kontur. Yüksek kontrast.";
 "Trending" = "Trendler";

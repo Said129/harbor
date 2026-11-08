@@ -234,6 +234,7 @@ targets:
       - path: HarborTests/PictureInPictureRulesTests.swift
       - path: HarborTests/TheIntroDBTests.swift
       - path: HarborTests/DetailSettingsRulesTests.swift
+      - path: HarborTests/OverviewTranslationPolicyTests.swift
       - path: HarborTests/QualityBadgePolicyTests.swift
       - path: HarborTests/ContentAdvisoryTests.swift
       - path: HarborTests/TogetherPlayerSyncTests.swift

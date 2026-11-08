@@ -1754,6 +1754,7 @@
 "Pick a direction. You steer from there, one film at a time." = "Pilih arah. Setelah itu, Anda menentukan jalannya, satu film setiap kali.";
 "Pick a few you love" = "Pilih beberapa yang Anda sukai";
 "Pick a home layout" = "Pilih tata letak beranda";
+"Pick a metadata language above to translate overviews." = "Pilih bahasa metadata di atas untuk menerjemahkan ringkasan.";
 "Pick a profile to continue." = "Pilih profil untuk melanjutkan.";
 "Pick a random title" = "Pilih judul secara acak";
 "Pick a source" = "Pilih sumber";
@@ -2625,6 +2626,8 @@
 "Trakt sources" = "Sumber Trakt";
 "Trakt watchlist" = "Daftar tontonan Trakt";
 "Transfer primary" = "Alihkan profil utama";
+"Translate overviews" = "Terjemahkan ringkasan";
+"Translate plot descriptions and taglines into the language above. Turn off to keep English overviews." = "Terjemahkan deskripsi alur dan slogan ke bahasa di atas. Nonaktifkan untuk mempertahankan ringkasan dalam bahasa Inggris.";
 "Translate titles" = "Terjemahkan judul";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Garis tegas di sekeliling setiap huruf. Kontras tinggi.";
 "Trending" = "Sedang tren";

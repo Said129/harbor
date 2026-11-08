@@ -1754,6 +1754,7 @@
 "Pick a direction. You steer from there, one film at a time." = "选个方向。接下来由你掌舵，一次选一部电影。";
 "Pick a few you love" = "选择几部你喜爱的作品";
 "Pick a home layout" = "选择首页布局";
+"Pick a metadata language above to translate overviews." = "在上方选择元数据语言，以翻译内容简介。";
 "Pick a profile to continue." = "选择个人资料以继续。";
 "Pick a random title" = "随机选一部";
 "Pick a source" = "选择来源";
@@ -2625,6 +2626,8 @@
 "Trakt sources" = "Trakt 片源";
 "Trakt watchlist" = "Trakt 待看清单";
 "Transfer primary" = "转移主个人资料";
+"Translate overviews" = "翻译内容简介";
+"Translate plot descriptions and taglines into the language above. Turn off to keep English overviews." = "将剧情简介和宣传语翻译成上方所选语言。关闭后保留英文简介。";
 "Translate titles" = "翻译标题";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "为每个字符添加硬边描边，对比度高。";
 "Trending" = "趋势";

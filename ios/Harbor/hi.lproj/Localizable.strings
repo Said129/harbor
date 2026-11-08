@@ -1754,6 +1754,7 @@
 "Pick a direction. You steer from there, one film at a time." = "एक दिशा चुनें। फिर वहाँ से एक-एक फ़िल्म करके आगे बढ़ें।";
 "Pick a few you love" = "अपनी पसंद की कुछ चीज़ें चुनें";
 "Pick a home layout" = "होम लेआउट चुनें";
+"Pick a metadata language above to translate overviews." = "सारांशों का अनुवाद करने के लिए ऊपर मेटाडेटा की भाषा चुनें।";
 "Pick a profile to continue." = "जारी रखने के लिए प्रोफ़ाइल चुनें।";
 "Pick a random title" = "कोई रैंडम शीर्षक चुनें";
 "Pick a source" = "स्रोत चुनें";
@@ -2625,6 +2626,8 @@
 "Trakt sources" = "Trakt स्रोत";
 "Trakt watchlist" = "Trakt वॉचलिस्ट";
 "Transfer primary" = "मुख्य प्रोफ़ाइल ट्रांसफ़र करें";
+"Translate overviews" = "सारांशों का अनुवाद करें";
+"Translate plot descriptions and taglines into the language above. Turn off to keep English overviews." = "कथानक के विवरणों और टैगलाइन का ऊपर चुनी गई भाषा में अनुवाद करें। अंग्रेज़ी सारांश बनाए रखने के लिए इसे बंद करें।";
 "Translate titles" = "टाइटल का अनुवाद करें";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "हर अक्षर के चारों ओर मोटी रेखा। अधिक कंट्रास्ट।";
 "Trending" = "ट्रेंडिंग";

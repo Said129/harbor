@@ -16,25 +16,25 @@
     },
     "settings": {
       "total": 511,
-      "ported": 217,
+      "ported": 219,
       "partial": 47,
-      "missing": 24,
-      "excluded": 223,
-      "counted": 288,
-      "weighted_percent": 83.5,
-      "ported_only_percent": 75.3,
-      "ported_or_partial_percent": 91.7
+      "missing": 19,
+      "excluded": 226,
+      "counted": 285,
+      "weighted_percent": 85.1,
+      "ported_only_percent": 76.8,
+      "ported_or_partial_percent": 93.3
     },
     "all": {
       "total": 949,
-      "ported": 369,
+      "ported": 371,
       "partial": 276,
-      "missing": 29,
-      "excluded": 275,
-      "counted": 674,
-      "weighted_percent": 75.2,
-      "ported_only_percent": 54.7,
-      "ported_or_partial_percent": 95.7
+      "missing": 24,
+      "excluded": 278,
+      "counted": 671,
+      "weighted_percent": 75.9,
+      "ported_only_percent": 55.3,
+      "ported_or_partial_percent": 96.4
     }
   },
   "behavior_areas": [
@@ -4218,8 +4218,8 @@
       "index": 132,
       "id": "tvdbPin",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "TVDB PIN: Desktop declares tvdbPin in its settings but nothing reads it"
     },
     {
       "index": 133,
@@ -5807,8 +5807,8 @@
       "index": 359,
       "id": "localReviewDismissedCount",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "local review dismissal count: dismisses Desktop's local-file review banner; iOS local records are not matched to titles, so no file is flagged for review"
     },
     {
       "index": 360,
@@ -6024,8 +6024,8 @@
       "index": 390,
       "id": "musicSpeedPresets",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "saved music speed presets: name, speed, pitch, reverb and keep pitch are kept per profile in the Keychain (MusicSavedSpeedPresets); the earlier audit missed it"
     },
     {
       "index": 391,
@@ -6787,8 +6787,8 @@
       "index": 499,
       "id": "arabicWelcomeSeen",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "X",
+      "note": "Arabic welcome seen flag: Desktop 0.9.132 exports the Arabic welcome screen and never mounts it"
     },
     {
       "index": 500,
@@ -6822,8 +6822,8 @@
       "index": 504,
       "id": "translateDescriptions",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": ""
+      "verdict": "D",
+      "note": "translate overviews: off keeps the English plot and tagline from TMDB while the metadata language is another one; the setting travels with the profile (8 Nov, policy tests, uncompiled)"
     },
     {
       "index": 505,

@@ -1784,6 +1784,7 @@
 "Pick a direction. You steer from there, one film at a time." = "اختر اتجاهًا. ومن هناك تتولّى القيادة، فيلمًا تلو الآخر.";
 "Pick a few you love" = "اختر بعضًا مما تحب";
 "Pick a home layout" = "اختر تخطيط الصفحة الرئيسية";
+"Pick a metadata language above to translate overviews." = "اختر لغة البيانات الوصفية أعلاه لترجمة الملخصات.";
 "Pick a profile to continue." = "اختر ملفاً شخصياً للمتابعة.";
 "Pick a random title" = "اختر عنواناً عشوائياً";
 "Pick a source" = "اختر مصدرًا";
@@ -2662,6 +2663,8 @@
 "Trakt sources" = "مصادر Trakt";
 "Trakt watchlist" = "قائمة مشاهدة Trakt";
 "Transfer primary" = "نقل الأساسي";
+"Translate overviews" = "ترجمة الملخصات";
+"Translate plot descriptions and taglines into the language above. Turn off to keep English overviews." = "ترجمة أوصاف الحبكة والشعارات إلى اللغة المذكورة أعلاه. عطّل الخيار للإبقاء على الملخصات بالإنجليزية.";
 "Translate titles" = "ترجمة العناوين";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "حد صلب حول كل حرف. تباين عالٍ.";
 "Trending" = "رائج";

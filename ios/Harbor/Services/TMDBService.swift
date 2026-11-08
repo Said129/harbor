@@ -141,6 +141,12 @@ struct TMDBService: Sendable {
         } else { return media }
         let policy = CardArtworkPolicy(languages: configuration.imageLanguages, metadataLanguage: configuration.language, originalLanguage: media.originalLanguage)
         let value = try await get(path, parameters: ["append_to_response": "external_ids,images,credits,recommendations,similar,videos", "include_image_language": policy.parameter], configuration: configuration)
+        // "Translate overviews" off: the plot and tagline come from TMDB's English record; the localized text stays when it has none.
+        var english: JSONValue = .null
+        if OverviewTranslationPolicy.needsEnglish(translate: configuration.translateDescriptions, language: configuration.language) {
+            var englishConfiguration = configuration; englishConfiguration.language = "en-US"
+            english = (try? await get(path, configuration: englishConfiguration)) ?? .null
+        }
         var result = media
         if let imdb = value["imdb_id"].string ?? value["external_ids"]["imdb_id"].string, !imdb.isEmpty {
             if imdb != media.id { result.artworkSourceID = media.artworkSourceID ?? media.id }
@@ -150,14 +156,15 @@ struct TMDBService: Sendable {
         result.poster = image(value["poster_path"].string, size: "w342") ?? result.poster
         result.originalLanguage = value["original_language"].string ?? media.originalLanguage
         result.logo = CardArtworkPolicy(languages: configuration.imageLanguages, metadataLanguage: configuration.language, originalLanguage: result.originalLanguage).logo(value["images"]["logos"].array) ?? result.logo
-        result.description = value["overview"].string ?? result.description
+        result.description = OverviewTranslationPolicy.text(localized: value["overview"].string, english: english["overview"].string, translate: configuration.translateDescriptions) ?? result.description
         result.genres = value["genres"].array.compactMap { $0["name"].string }
         result.cast = Array(value["credits"]["cast"].array.compactMap { $0["name"].string }.prefix(15))
         result.director = value["credits"]["crew"].array.filter { $0["job"].string == "Director" }.compactMap { $0["name"].string }
         if let minutes = value["runtime"].integer { result.runtime = "\(minutes) min" }
         var details = MediaDetails()
         LocalizedMetadataText.apply(value, language: configuration.language, to: &details)
-        details.tagline = value["tagline"].string
+        if !configuration.translateDescriptions, !OverviewTranslationPolicy.isEnglish(configuration.language) { details.localizedOverview = nil }
+        details.tagline = OverviewTranslationPolicy.text(localized: value["tagline"].string, english: english["tagline"].string, translate: configuration.translateDescriptions)
         details.status = value["status"].string
         details.language = value["original_language"].string
         details.countries = value["production_countries"].array.compactMap { $0["name"].string }

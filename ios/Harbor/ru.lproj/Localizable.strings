@@ -1764,6 +1764,7 @@
 "Pick a direction. You steer from there, one film at a time." = "Выберите направление. Дальше вы у руля, фильм за фильмом.";
 "Pick a few you love" = "Выберите несколько любимых";
 "Pick a home layout" = "Выберите вид главной";
+"Pick a metadata language above to translate overviews." = "Выберите выше язык метаданных, чтобы переводить описания.";
 "Pick a profile to continue." = "Выберите профиль, чтобы продолжить.";
 "Pick a random title" = "Выбрать случайное";
 "Pick a source" = "Выберите источник";
@@ -2639,6 +2640,8 @@
 "Trakt sources" = "Источники Trakt";
 "Trakt watchlist" = "Список просмотра Trakt";
 "Transfer primary" = "Передать основной профиль";
+"Translate overviews" = "Переводить описания";
+"Translate plot descriptions and taglines into the language above. Turn off to keep English overviews." = "Переводить описания сюжета и слоганы на выбранный выше язык. Отключите, чтобы оставить описания на английском.";
 "Translate titles" = "Переводить названия";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Жёсткая обводка каждой буквы. Высокий контраст.";
 "Trending" = "В тренде";

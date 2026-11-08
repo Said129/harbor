@@ -1754,6 +1754,7 @@
 "Pick a direction. You steer from there, one film at a time." = "方向を選びましょう。あとは1作品ずつ、自分で舵を取れます。";
 "Pick a few you love" = "お気に入りをいくつか選択";
 "Pick a home layout" = "ホームのレイアウトを選択";
+"Pick a metadata language above to translate overviews." = "概要を翻訳するには、上でメタデータの言語を選択してください。";
 "Pick a profile to continue." = "続行するプロフィールを選択してください。";
 "Pick a random title" = "ランダムに作品を選ぶ";
 "Pick a source" = "ソースを選択";
@@ -2625,6 +2626,8 @@
 "Trakt sources" = "Traktのソース";
 "Trakt watchlist" = "Traktウォッチリスト";
 "Transfer primary" = "メインプロフィールを移行";
+"Translate overviews" = "あらすじを翻訳";
+"Translate plot descriptions and taglines into the language above. Turn off to keep English overviews." = "あらすじとキャッチコピーを上で選択した言語に翻訳します。英語のあらすじをそのまま表示するにはオフにしてください。";
 "Translate titles" = "タイトルを翻訳";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "各文字をくっきり縁取ります。高コントラストです。";
 "Trending" = "トレンド";

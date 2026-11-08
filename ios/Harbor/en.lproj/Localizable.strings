@@ -1535,6 +1535,7 @@
 "Personalizar inicio" = "Customize home";
 "Personalizar página" = "Customize page";
 "Personas" = "People";
+"Pick a metadata language above to translate overviews." = "Pick a metadata language above to translate overviews.";
 "Pick a source" = "Pick a source";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows.";
 "Pick up where you left off" = "Pick up where you left off";
@@ -2313,6 +2314,8 @@
 "Trakt sign-in expired. Reconnect Trakt in settings and try again." = "Trakt sign-in expired. Reconnect Trakt in settings and try again.";
 "Trakt sources" = "Trakt sources";
 "Trakt watchlist" = "Trakt watchlist";
+"Translate overviews" = "Translate overviews";
+"Translate plot descriptions and taglines into the language above. Turn off to keep English overviews." = "Translate plot descriptions and taglines into the language above. Turn off to keep English overviews.";
 "Translate titles" = "Translate titles";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Hard stroke around each letter. High contrast.";
 "Trending" = "Trending";

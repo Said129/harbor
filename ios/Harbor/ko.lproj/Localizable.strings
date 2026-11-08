@@ -1754,6 +1754,7 @@
 "Pick a direction. You steer from there, one film at a time." = "방향을 선택하세요. 이후에는 영화 한 편씩 직접 항로를 정합니다.";
 "Pick a few you love" = "좋아하는 작품을 골라보세요";
 "Pick a home layout" = "홈 레이아웃 선택";
+"Pick a metadata language above to translate overviews." = "개요를 번역할 메타데이터 언어를 위에서 선택하세요.";
 "Pick a profile to continue." = "계속하려면 프로필을 선택하세요.";
 "Pick a random title" = "작품 무작위 선택";
 "Pick a source" = "소스 선택";
@@ -2625,6 +2626,8 @@
 "Trakt sources" = "Trakt 소스";
 "Trakt watchlist" = "Trakt 관심 목록";
 "Transfer primary" = "기본 프로필 이전";
+"Translate overviews" = "개요 번역";
+"Translate plot descriptions and taglines into the language above. Turn off to keep English overviews." = "줄거리 설명과 태그라인을 위에서 선택한 언어로 번역합니다. 영어 개요를 유지하려면 끄세요.";
 "Translate titles" = "제목 번역";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "각 글자 주변의 선명한 외곽선입니다. 대비가 높습니다.";
 "Trending" = "인기 급상승";

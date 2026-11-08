@@ -724,6 +724,11 @@ SETTINGS = expand("""
 273 X local playback mode: iOS has no choice between a local copy and a stream by catalog id
 274 X playback source preference: iOS has no video media servers (Plex and Jellyfin are music only) and no local match by id
 275 X preferred media server: iOS has no video media servers
+390 D saved music speed presets: name, speed, pitch, reverb and keep pitch are kept per profile in the Keychain (MusicSavedSpeedPresets); the earlier audit missed it
+504 D translate overviews: off keeps the English plot and tagline from TMDB while the metadata language is another one; the setting travels with the profile (8 Nov, policy tests, uncompiled)
+132 X TVDB PIN: Desktop declares tvdbPin in its settings but nothing reads it
+499 X Arabic welcome seen flag: Desktop 0.9.132 exports the Arabic welcome screen and never mounts it
+359 X local review dismissal count: dismisses Desktop's local-file review banner; iOS local records are not matched to titles, so no file is flagged for review
 """)
 
 def audit(items, verdicts, label):

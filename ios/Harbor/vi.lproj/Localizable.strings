@@ -1754,6 +1754,7 @@
 "Pick a direction. You steer from there, one film at a time." = "Chọn một hướng. Từ đó, bạn cầm lái qua từng bộ phim.";
 "Pick a few you love" = "Chọn vài phim bạn yêu thích";
 "Pick a home layout" = "Chọn bố cục trang chủ";
+"Pick a metadata language above to translate overviews." = "Chọn ngôn ngữ siêu dữ liệu ở trên để dịch phần tổng quan.";
 "Pick a profile to continue." = "Chọn một hồ sơ để tiếp tục.";
 "Pick a random title" = "Chọn ngẫu nhiên một phim";
 "Pick a source" = "Chọn nguồn";
@@ -2625,6 +2626,8 @@
 "Trakt sources" = "Nguồn Trakt";
 "Trakt watchlist" = "Danh sách xem Trakt";
 "Transfer primary" = "Chuyển hồ sơ chính";
+"Translate overviews" = "Dịch phần tổng quan";
+"Translate plot descriptions and taglines into the language above. Turn off to keep English overviews." = "Dịch mô tả cốt truyện và câu giới thiệu sang ngôn ngữ ở trên. Tắt để giữ phần tổng quan bằng tiếng Anh.";
 "Translate titles" = "Dịch tiêu đề";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Viền đậm quanh từng chữ. Độ tương phản cao.";
 "Trending" = "Thịnh hành";
