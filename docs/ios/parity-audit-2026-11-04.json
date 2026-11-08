@@ -5,14 +5,14 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 153,
-      "partial": 229,
-      "missing": 0,
-      "excluded": 56,
-      "counted": 382,
-      "weighted_percent": 70.0,
-      "ported_only_percent": 40.1,
-      "ported_or_partial_percent": 100.0
+      "ported": 192,
+      "partial": 188,
+      "missing": 1,
+      "excluded": 57,
+      "counted": 381,
+      "weighted_percent": 75.1,
+      "ported_only_percent": 50.4,
+      "ported_or_partial_percent": 99.7
     },
     "settings": {
       "total": 511,
@@ -27,14 +27,14 @@
     },
     "all": {
       "total": 949,
-      "ported": 393,
-      "partial": 263,
-      "missing": 3,
-      "excluded": 290,
-      "counted": 659,
-      "weighted_percent": 79.6,
-      "ported_only_percent": 59.6,
-      "ported_or_partial_percent": 99.5
+      "ported": 432,
+      "partial": 222,
+      "missing": 4,
+      "excluded": 291,
+      "counted": 658,
+      "weighted_percent": 82.5,
+      "ported_only_percent": 65.7,
+      "ported_or_partial_percent": 99.4
     }
   },
   "behavior_areas": [
@@ -167,11 +167,11 @@
     {
       "area": "Manga",
       "range": "B366-B390",
-      "ported": 0,
-      "partial": 25,
-      "missing": 0,
-      "excluded": 0,
-      "weighted_percent": 50.0
+      "ported": 12,
+      "partial": 11,
+      "missing": 1,
+      "excluded": 1,
+      "weighted_percent": 72.9
     },
     {
       "area": "Sports",
@@ -185,38 +185,38 @@
     {
       "area": "Home customization",
       "range": "B402-B409",
-      "ported": 0,
-      "partial": 8,
+      "ported": 6,
+      "partial": 2,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 50.0
+      "weighted_percent": 87.5
     },
     {
       "area": "VOD details",
       "range": "B410-B417",
-      "ported": 0,
-      "partial": 8,
+      "ported": 5,
+      "partial": 3,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 50.0
+      "weighted_percent": 81.2
     },
     {
       "area": "Spooktober",
       "range": "B418-B421",
-      "ported": 0,
-      "partial": 4,
+      "ported": 4,
+      "partial": 0,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 50.0
+      "weighted_percent": 100.0
     },
     {
       "area": "Music",
       "range": "B422-B437",
-      "ported": 0,
-      "partial": 16,
+      "ported": 12,
+      "partial": 4,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 50.0
+      "weighted_percent": 87.5
     },
     {
       "area": "Subtitle FPS",
@@ -2789,511 +2789,511 @@
       "id": "Manga Suwayomi connection",
       "desktop_source": "src/lib/manga/sources/suwayomi/api.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "Every failed probe on iOS collapses into manga-network, manga-authorization or manga-protocol, so a missing Suwayomi endpoint (not_found) is not told apart from an unsupported server, and the server name and version from aboutSer..."
     },
     {
       "index": 367,
       "id": "Manga Suwayomi source discovery",
       "desktop_source": "src/lib/manga/sources/suwayomi/api.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/SuwayomiClient.swift: sources() loads id, name, language, latest support and adult flag through GraphQL or REST, and removes dupl..."
     },
     {
       "index": 368,
       "id": "Manga popular/latest/search pagination",
       "desktop_source": "src/lib/manga/sources/suwayomi/api.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/SuwayomiClient.swift: browse(source:latest:query:page:) requests fetchSourceManga POPULAR, LATEST or SEARCH over GraphQL, or the..."
     },
     {
       "index": 369,
       "id": "Manga Suwayomi library",
       "desktop_source": "src/lib/manga/sources/suwayomi/api.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "No Suwayomi category support on iOS: gqlCategories, gqlCategoryManga and their REST equivalents are not implemented, so the library cannot be filtered or opened by Suwayomi category and no category tags exist."
     },
     {
       "index": 370,
       "id": "Manga extension install/update/remove",
       "desktop_source": "src/lib/manga/sources/suwayomi/graphql.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/SuwayomiClient.swift: changeExtension(_:action:) runs install, uninstall or update through GraphQL updateExtension or REST /api/v..."
     },
     {
       "index": 371,
       "id": "Manga extension repositories",
       "desktop_source": "src/lib/manga/sources/suwayomi/graphql.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "M",
+      "note": "No iOS implementation: there is no extensionStores query, addExtensionStore or removeExtensionStore mutation, no fetchExtensions refresh, and no repository UI."
     },
     {
       "index": 372,
       "id": "Manga local CBZ/ZIP",
       "desktop_source": "src/lib/manga/sources/local.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS imports one archive as one single-chapter book. Archives inside an imported folder are ignored by importFolder(), which accepts only image files, so a folder of CBZ/ZIP chapters cannot be imported as chapters and fails with m..."
     },
     {
       "index": 373,
       "id": "Manga image-folder chapters",
       "desktop_source": "src/lib/manga/sources/local.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/MangaArchive.swift: MangaLocalStore.importFolder() keeps image files with their relative paths, and chapters() groups them by fir..."
     },
     {
       "index": 374,
       "id": "Manga natural page ordering",
       "desktop_source": "src/lib/manga/sources/local.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/MangaArchive.swift: MangaArchive.init sorts image paths with compare(.numeric, .caseInsensitive) so page 2 precedes page 10"
     },
     {
       "index": 375,
       "id": "Manga vertical/horizontal strips",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Views/MangaReaderView.swift: reader(size:) renders mode 'long' as a vertical LazyVStack in a ScrollView and mode 'long-h' as a horizontal..."
     },
     {
       "index": 376,
       "id": "Manga single/double pages",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Views/MangaReaderView.swift: mode 'paged' shows one page per TabView tab; mode 'double' shows fixed pairs (page 2n and 2n+1) with a double..."
     },
     {
       "index": 377,
       "id": "Manga book page turns",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS book mode always shows single leaves. Desktop's aspect-ratio rule that switches to two-page spreads for wide pages has no iOS equivalent; this matters only on wide screens, since Desktop forces single pages on mobile (singleP..."
     },
     {
       "index": 378,
       "id": "Manga width/height/original fit",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The 'original' fit on iOS uses the image's own pixel size times zoom, while Desktop uses container width times zoom, so original-fit pages can be much larger than the screen on iOS."
     },
     {
       "index": 379,
       "id": "Manga zoom",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The +/-0.1 stepper buttons and the quick preset buttons (50, 100, 150, 200, 300 percent) of the Desktop zoom panel are missing on iOS, which has only the slider, the value label and reset."
     },
     {
       "index": 380,
       "id": "Manga RTL direction",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Views/MangaReaderView.swift: @AppStorage manga.reader.rtl (default true) and directionCard options in the direction settings section (line..."
     },
     {
       "index": 381,
       "id": "Manga backgrounds",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Views/MangaReaderView.swift: canvas and ink computed from @AppStorage manga.reader.background with dark #0B0B0D, gray 0.15 and light 0.96..."
     },
     {
       "index": 382,
       "id": "Manga navigation placement",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Views/MangaReaderView.swift: @AppStorage manga.reader.navPos with Picker for stack-br, stack-bl, bottom and sides (lines 35, 172)"
     },
     {
       "index": 383,
       "id": "Manga double-page gap",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The iOS slider stops at 40, so gaps of 42 to 48 px available on Desktop cannot be chosen on iOS."
     },
     {
       "index": 384,
       "id": "Manga focus mode",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS focus mode hides the page counter, slider, arrows and any progress indicator with no temporary reveal; the Desktop thin ReaderProgressMeter stays visible in focus, and the only way back on iOS is the eye button, which turns t..."
     },
     {
       "index": 385,
       "id": "Manga automatic next chapter",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "With auto-next off, iOS shows no end-of-chapter card or Next chapter button in paged or strip modes; turn() only sets the hint, so the user must use the chapter list. The iOS long strip also auto-advances, which the Desktop long..."
     },
     {
       "index": 386,
       "id": "Manga chapter-end hint",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The iOS hint is a plain caption with no next-chapter button, no next-chapter name and no dismiss control; it can only be hidden through the settings toggle."
     },
     {
       "index": 387,
       "id": "Manga page download",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Views/MangaReaderView.swift: @AppStorage manga.reader.enablePageDownload and the save-and-share pages toggle (lines 39, 178)"
     },
     {
       "index": 388,
       "id": "Manga page-turn sound",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Views/MangaReaderView.swift: @AppStorage manga.reader.flipSound default true and page-turn sound toggle in book mode (lines 40, 174)"
     },
     {
       "index": 389,
       "id": "Manga chapter progress sync",
       "desktop_source": "src/lib/manga/sources/suwayomi/sync.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS has no GraphQL-to-REST fallback at send time (the protocol is fixed per chapter at load), and leaving the active scene does not send the Suwayomi update (sync false), so the last page only reaches the server when the app beco..."
     },
     {
       "index": 390,
       "id": "Manga source filters",
       "desktop_source": "src/lib/manga/sources/suwayomi/rest.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "X",
+      "note": "Desktop defines the per-source filters call (rest.ts restFilters) and nothing in Desktop calls it, so there is no behavior to port"
     },
     {
       "index": 391,
       "id": "Sports original league catalog",
       "desktop_source": "src/lib/sports/espn-leagues.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS shows English titles only (no Arabic or Russian labels), and the NCAA soccer leagues read 'NCAA Men's/Women's Football' where Desktop getLeagueLabel shows 'NCAA Men's/Women's Soccer'."
     },
     {
       "index": 392,
       "id": "Sports calendar and scores",
       "desktop_source": "src/lib/sports/espn-scoreboard.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The iOS date picker has no live-day markers, so users cannot see which dates contain live games before choosing them."
     },
     {
       "index": 393,
       "id": "Sports live/upcoming/final filtering",
       "desktop_source": "src/lib/sports/espn-scoreboard.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The iOS state filter covers only the selected day and the leagues the user selected, and iOS sorts finished games oldest first where Desktop sorts them newest first."
     },
     {
       "index": 394,
       "id": "Sports live score refresh",
       "desktop_source": "src/lib/sports/espn-scoreboard.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS refreshes only the selected day's scoreboards, so games that continue past midnight are not covered, and returning to the foreground does not refresh at once because the loop sleeps first."
     },
     {
       "index": 395,
       "id": "Sports score periods and statistics",
       "desktop_source": "src/lib/sports/espn-summary.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS has no sport-specific period labels (overtime, innings, sets) and no cricket partnership or player tables, baseball or football situation panels, or volleyball set data."
     },
     {
       "index": 396,
       "id": "Sports event commentary",
       "desktop_source": "src/lib/sports/espn-summary.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS does not read keyEvents or football events, so no typed timeline with clock and participant is shown; it displays unstructured commentary text instead."
     },
     {
       "index": 397,
       "id": "Sports favorite leagues and teams",
       "desktop_source": "src/lib/sports/favourites.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS has no league-team browser, no home team per group, and no following or team schedule view; only teams that appear in loaded events or standings can be starred."
     },
     {
       "index": 398,
       "id": "Sports external-service consent",
       "desktop_source": "src/lib/sports/usage-notice.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The iOS notice has no warning against paywall or DRM bypass and no statement that league names and logos do not imply endorsement (usage-notice.ts SPORTS_USAGE_SECTIONS and SPORTS_USAGE_DETAILS)."
     },
     {
       "index": 399,
       "id": "Sports event reminders",
       "desktop_source": "src/lib/sports/reminders.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS lead options differ (0, 5, 10, 15, 30 minutes, default 10) and stored reminders are never re-synced when the start time moves. Local notifications replacing Discord and Telegram are a platform adaptation, not counted as a gap."
     },
     {
       "index": 400,
       "id": "Sports standings",
       "desktop_source": "src/lib/sports/standings.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS has no standings panel inside the match detail and does not highlight the two teams' rows there; standings are reachable only from the league menu."
     },
     {
       "index": 401,
       "id": "Sports configured broadcast sources",
       "desktop_source": "src/lib/sports/stream-resolver.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS has no per-event attached sources, no matching of playlist channels to the game, and no page-URL stream resolver; it only starts a Live TV search for the first broadcast name."
     },
     {
       "index": 402,
       "id": "Home row ordering",
       "desktop_source": "src/lib/home-customization.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Models/PageCustomization.swift: PageLayout.order, PageCustomization.ordered() and move(_:toward:)"
     },
     {
       "index": 403,
       "id": "Home row visibility",
       "desktop_source": "src/lib/home-customization.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Models/PageCustomization.swift: PageLayout.hidden and ordered(includeHidden:)"
     },
     {
       "index": 404,
       "id": "Home row titles",
       "desktop_source": "src/lib/home-customization.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Models/PageCustomization.swift: PageLayout.renamed, title(_:among:) and rename(_:to:) with a 120 character limit"
     },
     {
       "index": 405,
       "id": "Home Top 10 numerals",
       "desktop_source": "src/lib/home-customization.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS also gives Top 10 styling by default to -top10 and cm-top-movies, cm-drama and cm-comedy rails, renders ranked rails without the 10-title check (PageCustomizationView line 95), and has no first-row Top 10 block with its own h..."
     },
     {
       "index": 406,
       "id": "Home hero source selection",
       "desktop_source": "src/lib/home-customization.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS takes the first five titles of the chosen row without the backdrop-first ordering, the four-slide cap, or the artwork check at render time."
     },
     {
       "index": 407,
       "id": "Home play button shape",
       "desktop_source": "src/lib/home-customization.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Models/PageCustomization.swift: PageLayout.playButtonSquare"
     },
     {
       "index": 408,
       "id": "Home secondary button selection",
       "desktop_source": "src/lib/home-customization.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Models/PageCustomization.swift: PageLayout.secondaryMoreInfo"
     },
     {
       "index": 409,
       "id": "Home Continue Watching placement",
       "desktop_source": "src/lib/home-customization.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Models/PageCustomization.swift: PageLayout.cwTop"
     },
     {
       "index": 410,
       "id": "M3U VOD classification",
       "desktop_source": "src/lib/iptv/vod.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Models/VOD.swift: VODTitles.kind follows Desktop classifyChannel order (declared tvg-type, /series/ /movie/ /live/ paths, VOD and live ext..."
     },
     {
       "index": 411,
       "id": "VOD M3U episode grouping",
       "desktop_source": "src/lib/iptv/vod.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS sets the series logo only from the first episode, so a show whose first episode has no logo never gets one from later episodes, while Desktop fills it (vod.ts line 113)."
     },
     {
       "index": 412,
       "id": "VOD title normalization",
       "desktop_source": "src/lib/iptv/vod-title.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Models/VOD.swift: VODTitles.clean, tags, isTag, show, number, year and normalized mirror vod-title.ts (region tag stripping, bracket and n..."
     },
     {
       "index": 413,
       "id": "Xtream short EPG",
       "desktop_source": "src/lib/iptv/xtream.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "Only the per-channel schedule sheet calls programs(); no iOS path hydrates short EPG into the live guide or now and next data as use-xtream-epg-fallback.ts does, and a failed request throws where Desktop returns an empty list."
     },
     {
       "index": 414,
       "id": "Xtream live container selection",
       "desktop_source": "src/lib/iptv/xtream.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "Container negotiation matches, but when server_protocol is https and neither https_port nor port is given, iOS keeps the typed base (which may be http) while Desktop forces https://host."
     },
     {
       "index": 415,
       "id": "VOD metadata enrichment",
       "desktop_source": "src/lib/iptv/vod-enrich.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/VODMetadataService.swift: enrich searches TMDB by original title, kind and year, takes the first result, applies poster, overview..."
     },
     {
       "index": 416,
       "id": "VOD Arabic-aware search",
       "desktop_source": "src/lib/iptv/rtl.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Models/VOD.swift: VODTitles.searchKey applies NFKC, removes invisible marks and harakat, folds alef, ta marbuta, alef maksura and hamza fo..."
     },
     {
       "index": 417,
       "id": "VOD episode progress display",
       "desktop_source": "src/views/playlist-vod/episode-row.tsx",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Views/VODView.swift: VODEpisodeRow reads the owner resume entry, draws a progress bar, shows minutes left below 90 percent, a watched chec..."
     },
     {
       "index": 418,
       "id": "Spooktober seasonal availability",
       "desktop_source": "src/lib/spooktober-season.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Models/Spooktober.swift: SpooktoberSeason.available (October in any year, or 28 September onward in 2026 only) and SpooktoberSeason.nextCh..."
     },
     {
       "index": 419,
       "id": "Spooktober invitation and dismissal",
       "desktop_source": "src/views/spooktober/spooktober-entry.tsx",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Views/SpooktoberView.swift: SpooktoberInvitation shows the full card, or a collapsed pumpkin chip after dismissal that still opens the fes..."
     },
     {
       "index": 420,
       "id": "Spooktober original curated selections",
       "desktop_source": "public/spooktober/content.json",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/SpooktoberContent.json: 71 entries identical to public/spooktober/content.json in order and every field (43 Film, 10 Series, 12 Book, 6 Ma..."
     },
     {
       "index": 421,
       "id": "Spooktober native detail navigation",
       "desktop_source": "src/views/spooktober/spooktober-view.tsx",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Views/SpooktoberView.swift: SpooktoberView.shelf opens DetailView for items with a Media value and SpooktoberSourceView for the rest"
     },
     {
       "index": 422,
       "id": "Local music file import",
       "desktop_source": "src-tauri/src/music/connectors/local/tags.rs",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/MusicFileService.swift: importFile copies the picked file into a SHA256-named private file, probes tags with libmpv (MusicProbe.i..."
     },
     {
       "index": 423,
       "id": "Music album and artist grouping",
       "desktop_source": "src-tauri/src/music/connectors/local/tags.rs",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): harbor-core/src/music.rs: local_track computes album_key from credited artist plus album and artist_key from the credited (album-artist-preferred) ar..."
     },
     {
       "index": 424,
       "id": "Music audio cover import",
       "desktop_source": "src-tauri/src/music/connectors/local/tags.rs",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "The sidecar image fallback (cover, folder or front, jpg/jpeg/png) does not exist on iOS, and folder import copies only audio files so sidecar images are never read. Embedded art is taken as the first picture rather than preferrin..."
     },
     {
       "index": 425,
       "id": "Music native audio playback",
       "desktop_source": "src-tauri/src/music/commands/playback.rs",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Player/MusicAudioEngine.swift: MusicAudioEngine actor wraps libmpv; open(stream) loads a local file or URL with headers, command() handles..."
     },
     {
       "index": 426,
       "id": "Music playback queue",
       "desktop_source": "src-tauri/src/music/commands/playback.rs",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "No queue continuation: when the queue ends iOS stops, while Desktop's music-queue-continuation.tsx loads more tracks from the origin (playlist, catalog, Spotify page or similar/discover). Also, enqueue(next:) inserts directly aft..."
     },
     {
       "index": 427,
       "id": "Music system controls",
       "desktop_source": "src-tauri/src/music/commands/playback.rs",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Player/MusicPlayback.swift: remoteControls() registers MPRemoteCommandCenter play, pause, toggle play/pause, next, previous and changePlay..."
     },
     {
       "index": 428,
       "id": "Music and video coordination",
       "desktop_source": "src-tauri/src/music/commands/playback.rs",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Player/MPVController.swift: initialize() calls MusicPlayback.shared.pauseForVideo() before the video session opens"
     },
     {
       "index": 429,
       "id": "Music playlist creation and rename",
       "desktop_source": "src-tauri/src/music/library.rs",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): harbor-core/src/music.rs: playlist_name trims the name and enforces 1 to 100 characters, as Desktop library.rs does"
     },
     {
       "index": 430,
       "id": "Music playlist track membership",
       "desktop_source": "src-tauri/src/music/library.rs",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Models/MusicPlaylists.swift: MusicPlaylistStore.add(_:to:) skips tracks already in the playlist and records trackAddedAt; remove(_:from:)..."
     },
     {
       "index": 431,
       "id": "Music playlist track ordering",
       "desktop_source": "src-tauri/src/music/library.rs",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): harbor-core/src/music.rs: playlist_order applies the same remove-then-insert index arithmetic with clamping as Desktop library.rs reordered()"
     },
     {
       "index": 432,
       "id": "Music playlist deletion preserving library",
       "desktop_source": "src-tauri/src/music/library.rs",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Models/MusicPlaylists.swift: MusicPlaylistStore.delete(_:) removes only the playlist entry and never calls MusicLibrary.remove or MusicFil..."
     },
     {
       "index": 433,
       "id": "Music local folder scanning",
       "desktop_source": "src-tauri/src/music/connectors/local/scan.rs",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS does a one-time copy import and keeps no folder source: there is no rescan, no skipping of unchanged files by size and modification time, and no pruning of tracks whose files were removed. It also skips hidden files, which De..."
     },
     {
       "index": 434,
       "id": "Music playlist search and content filters",
       "desktop_source": "src/lib/music/playlist-filters.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/MusicCollectionTools.swift: MusicCollectionTools runs the pinned src/lib/music/playlist-filters.ts program in JavaScriptCore for..."
     },
     {
       "index": 435,
       "id": "Music playlist listening order",
       "desktop_source": "src/lib/music/playlist-filters.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Services/MusicCollectionTools.swift: the pinned playlist-filters program applies the six sorts, descending order and unknown-value-last ru..."
     },
     {
       "index": 436,
       "id": "Music playlist compact view",
       "desktop_source": "src/components/music/music-playlist-toolbar.tsx",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "read row by row (8 Nov): ios/Harbor/Views/MusicCollectionViews.swift: MusicCollectionToolsView offers List and Compact in the options menu, stored in AppStorage harbor.music...."
     },
     {
       "index": 437,
       "id": "Music track title copying",
       "desktop_source": "src/components/music/music-track-menu.tsx",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "Copy title exists only in MusicTrackActions for local library records. The connector and catalog track menu (MusicRecordingActions, used by catalog cards, catalog detail and playlist rows when a session is active) has no copy act..."
     },
     {
       "index": 438,
       "id": "Subtitle source FPS correction",
       "desktop_source": "src/lib/player/subtitle-fps.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "iOS does not disable the FPS control while auto-sync is running (SubtitleTiming.unavailable has no auto-sync check); applySubtitleFPS instead cancels the running sync through cancelSubtitleSync()."
     }
   ],
   "settings": [
