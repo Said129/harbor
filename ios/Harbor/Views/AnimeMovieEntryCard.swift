@@ -18,7 +18,7 @@ struct AnimeMovieEntryCard: View {
                 VStack {
                     HStack {
                         Spacer()
-                        if watched {
+                        if watched && InterfacePreferences.shared.showWatchedBadge {
                             HStack(spacing: 6) {
                                 Image("music-check").resizable().scaledToFit().frame(width: 13, height: 13)
                                 Text(DesktopInterfaceText.value("Watched"))

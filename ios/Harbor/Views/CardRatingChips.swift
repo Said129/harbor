@@ -12,7 +12,9 @@ struct CardRatingChips: View {
     private var preferences: InterfacePreferences { InterfacePreferences.shared }
     private var anime: Bool { AnimeService.isAnime(media.id) }
     private var keys: Set<CardRatingKey> { CardRatingPolicy.keySources(omdb: store.key(.omdb), mdblist: store.key(.mdblist)) }
-    private var selected: Set<CardRatingProvider> { Set(CardRatingProvider.allCases.filter { preferences.cardRatingOn($0) }) }
+    private var selected: Set<CardRatingProvider> {
+        CardRatingPolicy.selectedProviders(Set(CardRatingProvider.allCases.filter { preferences.cardRatingOn($0) }), simklCommunity: preferences.simklShowCommunityRatings)
+    }
     private var enabled: [CardRatingProvider] { CardRatingPolicy.enabled(selected: selected, keys: keys) }
     private var needs: CardRatingNeeds {
         CardRatingPolicy.needs(anime: anime, enabled: enabled, inlineRating: media.imdbRating, inlineSource: media.ratingSource)

@@ -23,6 +23,11 @@ enum DetailRatings {
 
     static func rounded(_ value: Double) -> Int { Int((value + 0.5).rounded(.down)) }
 
+    /// Desktop's `simklShowCommunityRatings`: with the switch off the SIMKL score leaves the detail row, as if its Details toggle were off.
+    static func hiddenForCommunity(_ hidden: Set<String>, simklCommunity: Bool) -> Set<String> {
+        simklCommunity ? hidden : hidden.union(["simkl"])
+    }
+
     /// Items for the scores at hand, skipping any the person turned off in the ratings matrix.
     /// `simkl` is SIMKL's own community score; it needs no key and is preferred over the copy MDBList carries.
     static func items(omdb: OmdbScores?, mdblist: MdblistScores?, simkl: Double? = nil, imdbID: String?, isShow: Bool, hidden: Set<String>) -> [Item] {

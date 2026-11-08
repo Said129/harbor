@@ -7,6 +7,7 @@ struct SimklSettingsView: View {
     @State private var disconnecting = false
     @AppStorage("simklEnableUserRatings") private var ratings = true
     @AppStorage("simklScrobbleEnabled") private var scrobble = true
+    @Bindable private var interface = InterfacePreferences.shared
     @MainActor init(app: AppModel) {
         let owner = app.personalOwner, scope = app.accountOperationScope
         self.init(model: SimklAccountModel(store: SimklAccountStore.forOwner(owner), active: { [weak app] in
@@ -31,6 +32,8 @@ struct SimklSettingsView: View {
                     Toggle(text("Enable User Ratings"), isOn: $ratings).accessibilityIdentifier("simkl-enable-ratings")
                     Toggle(text("Scrobble to SIMKL"), isOn: $scrobble).accessibilityIdentifier("simkl-enable-scrobble")
                     Text(text("Automatically track what you are playing and save watch progress in real-time.")).font(.caption).foregroundStyle(.secondary)
+                    Toggle(text("Display Simkl Community Ratings"), isOn: $interface.simklShowCommunityRatings).accessibilityIdentifier("simkl-community-ratings")
+                    Text(text("Display SIMKL community score badge on details pages.")).font(.caption).foregroundStyle(.secondary)
                     NavigationLink { SimklRailsSettingsView().toolbar(.visible, for: .navigationBar) } label: {
                         Text(text("Home Rail Settings")).frame(maxWidth: .infinity, alignment: .leading).frame(minHeight: 44)
                     }.accessibilityIdentifier("simkl-home-rails")

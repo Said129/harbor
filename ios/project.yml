@@ -236,6 +236,7 @@ targets:
       - path: HarborTests/DetailSettingsRulesTests.swift
       - path: HarborTests/OverviewTranslationPolicyTests.swift
       - path: HarborTests/WireUITests.swift
+      - path: HarborTests/R19BadgesTests.swift
       - path: HarborTests/TogetherToastRulesTests.swift
       - path: HarborTests/AdSkipTests.swift
       - path: HarborTests/WireSpoilerTests.swift
