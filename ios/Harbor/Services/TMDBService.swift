@@ -56,7 +56,7 @@ struct TMDBService: Sendable {
             DiscoveryRail(id: "tmdb-\(kind)-rated", title: kind == "movie" ? "All-Time Greats" : "All-Time Great Series", kind: kind, path: "\(providerKind)/top_rated")
         ]
         if kind == "movie" {
-            if Calendar.current.component(.month, from: Date()) == 10 { rows.insert(DiscoveryRail(id: "tmdb-spooky", title: "Spooky Season", kind: kind, path: "discover/movie", parameters: ["with_genres": "27", "sort_by": "popularity.desc"]), at: 2) }
+            rows.append(contentsOf: MoodRails.pick().map { DiscoveryRail(id: $0.id, title: DesktopInterfaceText.value($0.title), kind: kind, path: "discover/movie", parameters: $0.parameters) })
             rows.append(DiscoveryRail(id: "tmdb-critics", title: "Critics' Picks", kind: kind, path: "discover/movie", parameters: ["primary_release_date.gte": "2015-01-01", "vote_average.gte": "7.6", "vote_count.gte": "2500", "sort_by": "vote_average.desc"]))
             rows.append(DiscoveryRail(id: "tmdb-\(kind)-gems", title: "Hidden Gems", kind: kind, path: "discover/movie", parameters: ["vote_average.gte": "7.6", "vote_count.gte": "200", "vote_count.lte": "1500", "sort_by": "vote_average.desc"]))
             rows.append(DiscoveryRail(id: "tmdb-coming", title: "Coming to Theaters", kind: kind, path: "movie/upcoming"))
@@ -66,8 +66,8 @@ struct TMDBService: Sendable {
         } else {
             let formatter = ISO8601DateFormatter(); formatter.formatOptions = [.withFullDate]
             rows.insert(DiscoveryRail(id: "tmdb-tv-fresh", title: "Premiered This Month", kind: kind, path: "discover/tv", parameters: ["first_air_date.gte": formatter.string(from: Date().addingTimeInterval(-45 * 86_400)), "first_air_date.lte": formatter.string(from: Date()), "vote_count.gte": "20", "sort_by": "popularity.desc"]), at: 3)
-            for (name, network, minimum) in [("From HBO", "49", "200"), ("Netflix Originals", "213", "300"), ("Apple TV+", "2552", "100"), ("Disney+ Originals", "2739", "100"), ("Prime Video", "1024", "200")] {
-                rows.append(DiscoveryRail(id: "tmdb-tv-network-" + network, title: name, kind: kind, path: "discover/tv", parameters: ["with_networks": network, "vote_count.gte": minimum, "sort_by": "popularity.desc"]))
+            for (name, network, minimum) in [("From HBO", "49", "200"), ("Netflix Originals", "213", "300"), ("Apple TV+", "2552", "100"), ("AMC", "174", "200"), ("FX", "88", "200"), ("Disney+ Originals", "2739", "100"), ("Prime Video", "1024", "200")] {
+                rows.append(DiscoveryRail(id: "tmdb-tv-network-" + network, title: DesktopInterfaceText.value(name), kind: kind, path: "discover/tv", parameters: ["with_networks": network, "vote_count.gte": minimum, "sort_by": "popularity.desc"]))
             }
             rows.append(DiscoveryRail(id: "tmdb-tv-limited", title: "Limited Series & Miniseries", kind: kind, path: "discover/tv", parameters: ["with_type": "2", "vote_average.gte": "7.5", "vote_count.gte": "300", "sort_by": "vote_count.desc"]))
         }

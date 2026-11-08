@@ -28,9 +28,11 @@ final class CalendarModel {
         let current = generation
         let accountSignature = app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined()
         if accountSignature != signature { metadata = [:]; signature = accountSignature }
-        let records = app.library.items.filter { $0.bookmarked || $0.continuing }
         loading = true; error = nil; events = []
         defer { if current == generation { loading = false } }
+        let traktEntries = await traktWatchlistEntries(app: app)
+        guard current == generation, !Task.isCancelled else { return }
+        let mediaList = LibraryCalendarCandidates.select(LibraryCalendarCandidates.entries(from: app.library.items) + traktEntries)
         let calendar = Calendar.current
         guard let interval = calendar.dateInterval(of: .month, for: month) else { return }
         var failures = 0
@@ -38,7 +40,7 @@ final class CalendarModel {
         var tvmazeCandidates: [Media] = []
         let cachedMetadata = metadata; let service = app.service; let addons = app.addons
         await withTaskGroup(of: (String, Media?).self) { group in
-            var iterator = records.compactMap(\.media).makeIterator()
+            var iterator = mediaList.makeIterator()
             func enqueue(_ media: Media) {
                 let cached = cachedMetadata[media.identity]
                 group.addTask {
@@ -53,7 +55,7 @@ final class CalendarModel {
                     metadata[id] = media
                     if media.episodic {
                         let before = events.count
-                        for episode in media.videos ?? [] {
+                        for episode in media.videos ?? [] where !LibraryCalendarCandidates.skipsEpisode(season: episode.season, number: episode.episode) {
                             if let date = episode.releaseDate, interval.contains(date) { events.append(ReleaseEvent(media: media, episode: episode, date: date)) }
                         }
                         if events.count == before, media.id.hasPrefix("tt") { tvmazeCandidates.append(media) }
@@ -72,7 +74,21 @@ final class CalendarModel {
             events.append(contentsOf: found)
             events.sort { $0.date < $1.date }
         }
+        events = LibraryCalendarCandidates.dedupe(events) { event in
+            let day = String(Int(calendar.startOfDay(for: event.date).timeIntervalSince1970))
+            return LibraryCalendarCandidates.dedupeKey(showName: event.media.name, season: event.episode?.season, episode: event.episode?.episode, day: day)
+        }
         if failures > 0 && events.isEmpty { error = "No se pudieron recuperar algunas fechas de tu biblioteca. Puedes volver a intentarlo." }
+    }
+    /// The signed-in Trakt watchlist as calendar candidates, when Trakt is connected (Desktop's `includeTrakt`); a failure leaves it out.
+    private func traktWatchlistEntries(app: AppModel) async -> [LibraryCalendarEntry] {
+        let owner = app.personalOwner, scope = app.accountOperationScope
+        let account = TraktAccountStore.forOwner(owner)
+        do { if !account.ready { try account.load() } } catch { return [] }
+        guard account.session != nil else { return [] }
+        let lease: TraktClient.Active = { [weak app] in app?.personalOwner == owner && app?.accountOperationScope == scope && app?.storageReady == true }
+        guard let value = try? await account.response(.library(.watchlist), active: lease), let items = try? TraktLibraryItem.watchlist(value) else { return [] }
+        return LibraryCalendarCandidates.entries(traktWatchlist: items)
     }
     /// One of Desktop's other sources: All upcoming (TMDB), My Trakt, Trakt anticipated or Anime (AniList).
     private func loadSource(_ source: CalendarSource, month: Date, app: AppModel, animeDub: Bool) async {
