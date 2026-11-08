@@ -137,6 +137,7 @@ struct MyAnimeListListsView: View {
         do {
             let client = MALClient(transport: MALHTTPTransport())
             entries = try await MALListsService.fetchAll(token: token, client: client, refresh: { await owner.refresh() })
+            TrackerListProgressStore.forOwner(account.owner).replace(TrackerListWatched.malProgress(entries))
         } catch {
             loadFailed = true
         }
