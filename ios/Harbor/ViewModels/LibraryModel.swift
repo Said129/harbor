@@ -281,6 +281,8 @@ final class LibraryModel {
         let state = records.first { $0["_id"].string == media.id }?["state"] ?? .null
         var watched = (try? WatchedCodec.decode(state["watched"].string, videos: media.videos ?? [])) ?? []
         if let remote = traktWatched.state(for: personalOwner) { watched.formUnion(remote.episodes(media)) }
+        // Desktop's `simklWatched` joins the watched set before the manual decisions below.
+        watched.formUnion(SimklWatchedEpisodes.keys(in: SimklLibraryStore.forOwner(personalOwner).snapshot, for: media))
         let manual = state["nativeManualEpisodes"].objectValue
         for (key, value) in manual { if value == .bool(true) { watched.insert(key) } else if value == .bool(false) { watched.remove(key) } }
         for episode in media.videos ?? [] {
@@ -306,6 +308,25 @@ final class LibraryModel {
             fields["state"] = .object(state)
         }
         if success, current == generation, !wasWatched { traktWatched.enqueueMark(media, episodes: [episode], owner: personalOwner) }
+    }
+    /// Desktop's mark-season write (`use-mark-season.ts`): one write sets the given episodes watched or unwatched.
+    func setEpisodesWatched(_ media: Media, episodes: [Episode], watched: Bool) async {
+        let keys = Set(episodes.map(\.watchedKey))
+        guard media.episodic, !keys.isEmpty else { return }
+        let current = generation
+        let success = await update(media) { fields in
+            var state = (fields["state"] ?? .null).objectValue
+            let videos = media.videos ?? []
+            var marks = try WatchedCodec.decode(state["watched"]?.string, videos: videos)
+            if watched { marks.formUnion(keys) } else { marks.subtract(keys) }
+            state["watched"] = .string(try WatchedCodec.encode(marks, videos: videos))
+            var manual = (state["nativeManualEpisodes"] ?? .null).objectValue
+            for key in keys { manual[key] = .bool(watched) }
+            state["nativeManualEpisodes"] = .object(manual)
+            if watched && fields["removed"] == .bool(true) { fields["temp"] = .bool(true) }
+            fields["state"] = .object(state)
+        }
+        if success, current == generation, watched { traktWatched.enqueueMark(media, episodes: episodes, owner: personalOwner) }
     }
     func matchesSession(_ session: AccountSession?, personalOwner: String, guestOwner: String) -> Bool {
         writable && presentationReady && self.session?.authKey == session?.authKey

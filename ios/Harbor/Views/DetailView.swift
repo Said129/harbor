@@ -18,6 +18,7 @@ struct DetailView: View {
     @State private var downloading = false
     @State private var downloadMessage: String?
     @State private var logoLoaded = false
+    @State private var resolvedLogo: String?
     @State private var artworkSection: EpisodeOrderSection?
     @State private var artworkSectionOwner: String?
     @State private var actionHint: String?
@@ -105,6 +106,11 @@ struct DetailView: View {
         }
         .task(id: fanartTaskID) {
             await model.loadFanartArtwork(fanartKey: MetadataPreferences.shared.configuration().fanartKey, owner: app.library.owner, library: app.library, seriesID: model.animeTVDBSeriesID)
+        }
+        .task(id: "logo:\(model.media.identity):\(model.metadataReady)") {
+            // Desktop's detail page logo comes from the same artwork resolution the cards use (`CardArtworkResolver`).
+            resolvedLogo = nil
+            resolvedLogo = await CardArtworkResolver.shared.resolve(model.media, configuration: MetadataPreferences.shared.configuration()).logo
         }
         .onChange(of: model.playback?.id) { _, _ in
             if let session = model.playback, session.owner == app.library.owner { app.library.discovery.track(.play, media: session.media ?? model.media) }
@@ -272,7 +278,7 @@ struct DetailView: View {
         entry.media.logo = model.episodePool?.sources[entry.id]?.logo ?? entry.media.logo
         return AnimeSeasonArtwork.presentation(entry, root: model.media, episodes: model.episodePool?.episodes ?? model.media.videos ?? [], language: MetadataPreferences.shared.language)
     }
-    private var heroLogo: String? { TitleArtworkPreferences.shared.value(.logo, id: model.media.artworkID) ?? seasonArtwork?.logo ?? model.media.logo }
+    private var heroLogo: String? { TitleLogoPolicy.logo(pinned: TitleArtworkPreferences.shared.value(.logo, id: model.media.artworkID), season: seasonArtwork?.logo, resolved: resolvedLogo, fallback: model.media.logo) }
     private var hero: some View {
         ZStack(alignment: .bottomLeading) {
             Artwork(url: TitleArtworkPreferences.shared.value(.backdrop, id: model.media.artworkID) ?? seasonArtwork?.background ?? model.media.background,

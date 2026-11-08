@@ -51,7 +51,7 @@ struct AnimeFranchiseExtraRow: View {
     /// Franchise extras are not in the episode list's next-up scan, so they pass `isNextUp: false`.
     private var hidden: Bool {
         let preferences = InterfacePreferences.shared
-        let mask = UISettingsPolicy.spoilerMask(hideSpoilers: preferences.hideSpoilers, blurThumbnails: preferences.blurEpisodes,
+        let mask = UISettingsPolicy.spoilerMask(hideSpoilers: preferences.hideSpoilers, blurThumbnails: preferences.spoilerHideThumbnails,
             hideTitles: preferences.spoilerHideTitles, hideDescriptions: preferences.spoilerHideDescriptions,
             skipNext: preferences.spoilerSkipNext, watched: watched, isNextUp: false)
         return mask.active && !revealed
@@ -67,7 +67,7 @@ struct AnimeFranchiseExtraRow: View {
                 Button(action: play) {
                     HStack(alignment: .top, spacing: 12) {
                         Artwork(url: extra.image, maxPixels: 400).frame(width: 125, height: 74)
-                            .blur(radius: hidden && InterfacePreferences.shared.blurEpisodes ? 14 : 0)
+                            .blur(radius: hidden && InterfacePreferences.shared.spoilerHideThumbnails ? 14 : 0)
                             .overlay { Image("ui-play-filled").resizable().scaledToFit().frame(width: 24, height: 24).foregroundStyle(.white).shadow(radius: 5) }
                             .clipShape(.rect(cornerRadius: 8))
                         VStack(alignment: .leading, spacing: 6) {
@@ -92,7 +92,7 @@ struct AnimeFranchiseExtraRow: View {
                     .blur(radius: hidden && InterfacePreferences.shared.spoilerHideDescriptions ? 5 : 0)
                     .accessibilityLabel(hidden && InterfacePreferences.shared.spoilerHideDescriptions ? DesktopInterfaceText.value("Spoilers") : extra.slot.overview)
             }
-            if hidden && (InterfacePreferences.shared.blurEpisodes || InterfacePreferences.shared.spoilerHideTitles || InterfacePreferences.shared.spoilerHideDescriptions) {
+            if hidden && (InterfacePreferences.shared.spoilerHideThumbnails || InterfacePreferences.shared.spoilerHideTitles || InterfacePreferences.shared.spoilerHideDescriptions) {
                 Button(DesktopInterfaceText.value("Reveal")) { revealed = true }.font(.caption).frame(minHeight: 44)
             }
             if !available { Text(DesktopInterfaceText.value("Próximamente")).font(.caption).foregroundStyle(HarborTheme.accent) }

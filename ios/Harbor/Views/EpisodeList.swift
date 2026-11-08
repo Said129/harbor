@@ -97,7 +97,7 @@ struct EpisodeList: View {
     /// The row's own Reveal tap still clears it.
     private func isSpoilerHidden(_ episode: Episode, seen: Bool, isNextUp: Bool) -> Bool {
         let preferences = InterfacePreferences.shared
-        let mask = UISettingsPolicy.spoilerMask(hideSpoilers: preferences.hideSpoilers, blurThumbnails: preferences.blurEpisodes,
+        let mask = UISettingsPolicy.spoilerMask(hideSpoilers: preferences.hideSpoilers, blurThumbnails: preferences.spoilerHideThumbnails,
             hideTitles: preferences.spoilerHideTitles, hideDescriptions: preferences.spoilerHideDescriptions,
             skipNext: preferences.spoilerSkipNext, watched: seen, isNextUp: isNextUp)
         return mask.active && !revealed.contains(episode.routingKey)
@@ -155,6 +155,8 @@ struct EpisodeList: View {
     /// Desktop's episode sort menu (`episode-grid-controls.tsx`).
     private var sortMenu: some View {
         let current = InterfacePreferences.shared.episodeSort
+        let watchedKeys = library.watchedEpisodes(media)
+        let seasonWatched = SeasonWatchPolicy.allWatched(visible, watched: watchedKeys)
         return Menu {
             ForEach(["oldest", "newest"], id: \.self) { value in
                 Button { InterfacePreferences.shared.episodeSort = value } label: {
@@ -162,10 +164,34 @@ struct EpisodeList: View {
                     else { Text(DesktopInterfaceText.value(value == "newest" ? "Newest" : "Oldest")) }
                 }
             }
+            // Desktop's OptionsMenu mark-season item: plain seasons only, as Desktop hides the grid controls for ordered and arc views.
+            if pool == nil, ordering == nil, !arcActive {
+                Divider()
+                Button {
+                    Task { await library.setEpisodesWatched(media, episodes: SeasonWatchPolicy.targets(visible, marking: !seasonWatched), watched: !seasonWatched) }
+                } label: {
+                    Text(DesktopInterfaceText.value(seasonWatched ? "Mark season as unwatched" : "Mark season as watched"))
+                }.disabled(library.busy || visible.isEmpty).accessibilityIdentifier("episode-mark-season")
+            }
         } label: {
             Image(systemName: "arrow.up.arrow.down").frame(width: 40, height: 40).background(.white.opacity(0.06), in: .circle)
         }
         .accessibilityLabel(DesktopInterfaceText.value(current == "newest" ? "Newest" : "Oldest")).accessibilityIdentifier("episode-sort")
+    }
+    /// Desktop's `RandomEpisodeButton` (`random-episode-button.tsx`): plays one random episode, the same way a row does.
+    private var randomButton: some View {
+        Button {
+            if let episode = EpisodeDetailPolicy.randomEpisode(videos) { play(episode) }
+        } label: {
+            Image(systemName: "shuffle").frame(width: 40, height: 40).background(.white.opacity(0.06), in: .circle)
+        }
+        .accessibilityLabel(DesktopInterfaceText.value("Play a random episode")).accessibilityIdentifier("episode-random")
+    }
+    /// Desktop's `NewBadge` (`badges.tsx`): the accent tag beside an episode that aired within the last three days.
+    private var newBadge: some View {
+        Text(DesktopInterfaceText.value("New")).font(.system(size: 9, weight: .bold)).textCase(.uppercase).tracking(1.2)
+            .foregroundStyle(HarborTheme.accent).padding(.horizontal, 6).padding(.vertical, 1)
+            .background(HarborTheme.accent.opacity(0.12), in: .rect(cornerRadius: 3))
     }
     /// Desktop's `EpisodeLayoutToggle` (`episode-layout-toggle.tsx`), as a menu beside the sort menu.
     private var layoutMenu: some View {
@@ -229,6 +255,7 @@ struct EpisodeList: View {
                     .accessibilityValue(episodeSummary)
                 Spacer()
                 if InterfacePreferences.shared.episodeHiding && orderedRows.contains(where: isHidden) { hiddenToggle }
+                if pool == nil { randomButton }
                 layoutMenu
                 sortMenu
                 if let ordering, richOrderPanel {
@@ -338,7 +365,7 @@ struct EpisodeList: View {
                     Image(seen ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 23, height: 23).frame(width: 44, height: 44).contentShape(Rectangle())
                 }.buttonStyle(.plain).disabled(library.busy || !episode.available)
                     .accessibilityLabel(DesktopInterfaceText.value(seen ? "Mark as unwatched" : "Mark as watched"))
-                if hidden && (InterfacePreferences.shared.blurEpisodes || blurTitle || blurOverview) {
+                if hidden && (InterfacePreferences.shared.spoilerHideThumbnails || blurTitle || blurOverview) {
                     Button(DesktopInterfaceText.value("Reveal")) { revealed.insert(episode.routingKey) }.font(.caption).frame(minHeight: 44)
                 }
             }
@@ -358,7 +385,7 @@ struct EpisodeList: View {
         Artwork(url: episode.thumbnail, fallback: source.background, maxPixels: 600)
             .aspectRatio(16.0 / 9.0, contentMode: .fit)
             .frame(maxWidth: .infinity)
-            .blur(radius: hidden && InterfacePreferences.shared.blurEpisodes ? 14 : 0)
+            .blur(radius: hidden && InterfacePreferences.shared.spoilerHideThumbnails ? 14 : 0)
             .overlay(alignment: .bottomLeading) {
                 if InterfacePreferences.shared.showEpisodeRating, let rating = EpisodeRatings.rating(for: episode, in: episodeRatings) { EpisodeRatingBadge(value: rating).padding(5) }
             }
@@ -375,17 +402,24 @@ struct EpisodeList: View {
                     VStack(alignment: .leading, spacing: 9) {
                         HStack(alignment: .top, spacing: 12) {
                             Artwork(url: episode.thumbnail, fallback: source.background, maxPixels: 400)
-                                .blur(radius: hidden && InterfacePreferences.shared.blurEpisodes ? 14 : 0)
-                                .scaleEffect(hidden && InterfacePreferences.shared.blurEpisodes ? 1.04 : 1)
+                                .blur(radius: hidden && InterfacePreferences.shared.spoilerHideThumbnails ? 14 : 0)
+                                .scaleEffect(hidden && InterfacePreferences.shared.spoilerHideThumbnails ? 1.04 : 1)
                                 .frame(width: 125, height: 74).overlay { Image("ui-play-filled").resizable().scaledToFit().frame(width: 24, height: 24).foregroundStyle(.white).shadow(radius: 5) }
                                 .overlay(alignment: .bottomLeading) {
                                     if InterfacePreferences.shared.showEpisodeRating, let rating = EpisodeRatings.rating(for: episode, in: episodeRatings) { EpisodeRatingBadge(value: rating).padding(5) }
                                 }.clipShape(.rect(cornerRadius: 8))
                             VStack(alignment: .leading, spacing: 6) {
-                                Text(episode.name ?? episode.title ?? episodeLabel).font(.subheadline.weight(.semibold)).lineLimit(2)
-                                    .blur(radius: hidden && InterfacePreferences.shared.spoilerHideTitles ? 5 : 0)
-                                    .accessibilityLabel(hidden && InterfacePreferences.shared.spoilerHideTitles ? episodeLabel : episode.name ?? episode.title ?? episodeLabel)
-                                Text("T\(episode.listedSeason ?? 0) · E\(episode.listedEpisode ?? 0)").font(.caption).foregroundStyle(.secondary)
+                                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                                    Text(episode.name ?? episode.title ?? episodeLabel).font(.subheadline.weight(.semibold)).lineLimit(2)
+                                        .blur(radius: hidden && InterfacePreferences.shared.spoilerHideTitles ? 5 : 0)
+                                        .accessibilityLabel(hidden && InterfacePreferences.shared.spoilerHideTitles ? episodeLabel : episode.name ?? episode.title ?? episodeLabel)
+                                    if EpisodeDetailPolicy.isNew(episode.released) { newBadge }
+                                }
+                                // Desktop's meta line: the episode code, then the runtime.
+                                let metaParts: [String?] = ["T\(episode.listedSeason ?? 0) · E\(episode.listedEpisode ?? 0)",
+                                    EpisodeDetailPolicy.runtimeMinutes(episode.runtime).map { DesktopInterfaceText.value("{n} min", variables: ["n": String($0)]) }]
+                                Text(metaParts.compactMap { $0 }.joined(separator: " · "))
+                                    .font(.caption).foregroundStyle(.secondary)
                                 if let date = episode.releaseDate { Text(date, style: .date).font(.caption2).foregroundStyle(.secondary) }
                             }.frame(maxWidth: .infinity, alignment: .leading)
                         }
@@ -402,7 +436,7 @@ struct EpisodeList: View {
                     Image(seen ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 23, height: 23).frame(width: 44, height: 44).contentShape(Rectangle())
                 }.buttonStyle(.plain).disabled(library.busy || !episode.available).accessibilityLabel(seen ? "Marcar episodio como no visto" : "Marcar episodio como visto")
             }
-            if hidden && (InterfacePreferences.shared.blurEpisodes || InterfacePreferences.shared.spoilerHideTitles || InterfacePreferences.shared.spoilerHideDescriptions) {
+            if hidden && (InterfacePreferences.shared.spoilerHideThumbnails || InterfacePreferences.shared.spoilerHideTitles || InterfacePreferences.shared.spoilerHideDescriptions) {
                 Button(DesktopInterfaceText.value("Reveal")) { revealed.insert(episode.routingKey) }.font(.caption).frame(minHeight: 44)
             }
             if !episode.available { Text("Próximamente").font(.caption).foregroundStyle(HarborTheme.accent) }
