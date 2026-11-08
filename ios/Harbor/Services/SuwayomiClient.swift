@@ -7,6 +7,24 @@ private final class MangaRedirectPolicy: NSObject, URLSessionTaskDelegate, @unch
     }
 }
 
+/// Desktop's ProbeReason: why a Suwayomi server test failed.
+enum MangaProbeFailure: String, Sendable {
+    case auth, notFound, unsupported, unreachable
+    /// Desktop's classifyFailure: no response, 401/403, 404, anything else.
+    static func classify(status: Int?) -> MangaProbeFailure {
+        guard let status else { return .unreachable }
+        if status == 401 || status == 403 { return .auth }
+        if status == 404 { return .notFound }
+        return .unsupported
+    }
+}
+
+struct MangaServerProbe: Sendable {
+    let name: String?
+    let version: String?
+    let failure: MangaProbeFailure?
+}
+
 /// The same GraphQL/REST operations used by Desktop's Suwayomi provider.
 /// Chapter identifiers retain their protocol: a GraphQL ID is not a REST index.
 actor SuwayomiClient {
@@ -42,6 +60,28 @@ actor SuwayomiClient {
             guard let id = value["id"].mangaID else { return nil }
             return MangaSource(id: id, name: value["name"].string ?? value["displayName"].string ?? id, language: value["lang"].string ?? "", latest: value["supportsLatest"].mangaBool, adult: value["isNsfw"].mangaBool)
         }.filter { seen.insert($0.id).inserted }
+    }
+    /// Desktop's testConnection: About over GraphQL or REST first; on failure the About status tells the reason apart.
+    func probe() async -> MangaServerProbe {
+        if let about = try? await aboutInfo() { return MangaServerProbe(name: about.name, version: about.version, failure: nil) }
+        let status = await aboutStatus()
+        return MangaServerProbe(name: nil, version: nil, failure: MangaProbeFailure.classify(status: status))
+    }
+    private func aboutInfo() async throws -> (name: String?, version: String?) {
+        let value: JSONValue
+        do { value = try await gql("query { aboutServer { name version } }")["aboutServer"] }
+        catch { value = try await json("/api/v1/settings/about") }
+        let name = value["name"].string, version = value["version"].string
+        guard name != nil || version != nil else { throw HarborError(code: "manga-protocol") }
+        return (name, version)
+    }
+    private func aboutStatus() async -> Int? {
+        guard let url = try? server.url("/api/v1/settings/about") else { return nil }
+        var request = URLRequest(url: url, timeoutInterval: 45)
+        request.setValue(server.authorization, forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        do { let (_, response) = try await session.data(for: request); return (response as? HTTPURLResponse)?.statusCode }
+        catch { return nil }
     }
     func browse(source: String, latest: Bool, query: String, page: Int) async throws -> ([MangaBook], Bool) {
         guard Self.digits(source) else { throw HarborError(code: "manga-protocol") }
@@ -174,16 +214,15 @@ actor SuwayomiClient {
     private func sendProgress(_ book: MangaBook, chapter: MangaChapter, page: Int, completed: Bool) async throws {
         let id = try remoteID(book)
         guard Self.digits(chapter.id) else { throw HarborError(code: "manga-protocol") }
-        if chapter.graphql {
-            guard let number = Int64(chapter.id) else { throw HarborError(code: "manga-protocol") }
+        if chapter.graphql, let number = Int64(chapter.id) {
             // Never send false: opening an earlier page must not unfinish a chapter.
             let patch = completed ? "isRead: true, lastPageRead: $last" : "lastPageRead: $last"
-            let data = try await gql("mutation($id: Int!, $last: Int!) { updateChapter(input: { id: $id, patch: { \(patch) } }) { chapter { id } } }", variables: ["id": .integer(number), "last": .integer(Int64(max(0, page)))])
-            guard data["updateChapter"]["chapter"]["id"].mangaID != nil else { throw HarborError(code: "manga-protocol") }
-        } else {
-            let body = "lastPageRead=\(max(0, page))" + (completed ? "&read=true" : "")
-            _ = try await bytes("/api/v1/manga/\(id)/chapter/\(chapter.id)", method: "PATCH", body: Data(body.utf8), contentType: "application/x-www-form-urlencoded", limit: 1024 * 1024)
+            let data = try? await gql("mutation($id: Int!, $last: Int!) { updateChapter(input: { id: $id, patch: { \(patch) } }) { chapter { id } } }", variables: ["id": .integer(number), "last": .integer(Int64(max(0, page)))])
+            if data?["updateChapter"]["chapter"]["id"].mangaID != nil { return }
         }
+        // Desktop's pushChapterProgress: when GraphQL does not accept the update, the REST PATCH uses the same key.
+        let body = "lastPageRead=\(max(0, page))" + (completed ? "&read=true" : "")
+        _ = try await bytes("/api/v1/manga/\(id)/chapter/\(chapter.id)", method: "PATCH", body: Data(body.utf8), contentType: "application/x-www-form-urlencoded", limit: 1024 * 1024)
     }
     func image(_ path: String) async throws -> Data {
         let url = try imageURL(path), key = url.absoluteString as NSString

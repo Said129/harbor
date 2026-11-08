@@ -39,6 +39,20 @@ final class MangaArchive {
     }
 }
 
+/// Folder imports: a CBZ/ZIP is one chapter named like Desktop's local provider (file name without extension).
+enum MangaFolderChapterRules {
+    static func archiveChapter(stem: String, taken: Set<String>) -> String {
+        guard taken.contains(stem) else { return stem }
+        var number = 2
+        while taken.contains("\(stem) (\(number))") { number += 1 }
+        return "\(stem) (\(number))"
+    }
+    /// The chapter a stored page belongs to: its first folder, or "local" for loose images.
+    static func chapterKey(_ path: String) -> String { path.contains("/") ? String(path.split(separator: "/")[0]) : "local" }
+    /// The stored entry for an image inside an archive: the chapter folder, then the archive's own path flattened.
+    static func entryPath(chapter: String, inner: String) -> String { chapter + "/" + inner.replacingOccurrences(of: "/", with: "_") }
+}
+
 actor MangaLocalStore {
     static let shared = MangaLocalStore()
     private var opened: [String: MangaArchive] = [:]
@@ -90,7 +104,7 @@ actor MangaLocalStore {
         let root = input.resolvingSymlinksInPath().standardizedFileURL
         let book = MangaBook(id: "local:" + UUID().uuidString, title: input.lastPathComponent, folderChapters: true)
         guard let enumerator = FileManager.default.enumerator(at: root, includingPropertiesForKeys: [.isRegularFileKey, .isDirectoryKey, .isSymbolicLinkKey, .fileSizeKey], options: [.skipsHiddenFiles, .skipsPackageDescendants]) else { throw HarborError(code: "manga-format") }
-        var images: [(String, URL)] = [], total = 0, count = 0
+        var images: [(String, URL)] = [], archives: [URL] = [], total = 0, count = 0
         for case let source as URL in enumerator {
             try Task.checkCancellation(); count += 1
             guard count <= 10_000 else { throw HarborError(code: "manga-size") }
@@ -98,17 +112,35 @@ actor MangaLocalStore {
             if values.isSymbolicLink == true { enumerator.skipDescendants(); continue }
             let resolved = source.resolvingSymlinksInPath().standardizedFileURL
             guard resolved.path.hasPrefix(root.path + "/") else { throw HarborError(code: "manga-format") }
-            guard values.isRegularFile == true, ["jpg", "jpeg", "png", "webp", "gif", "avif", "bmp", "heic", "tiff"].contains(source.pathExtension.lowercased()) else { continue }
+            guard values.isRegularFile == true else { continue }
+            // Each CBZ/ZIP in the folder is one chapter (Desktop's local provider); its images are copied in below.
+            let isArchive = ["cbz", "zip"].contains(source.pathExtension.lowercased())
+            guard isArchive || ["jpg", "jpeg", "png", "webp", "gif", "avif", "bmp", "heic", "tiff"].contains(source.pathExtension.lowercased()) else { continue }
             let size = values.fileSize ?? 0
-            guard size > 0, size <= 32 * 1024 * 1024, total <= 240 * 1024 * 1024 - size, images.count < 5_000 else { throw HarborError(code: "manga-size") }
-            total += size; images.append((String(source.path.dropFirst(root.path.count + 1)), resolved))
+            guard size > 0, size <= (isArchive ? 256 : 32) * 1024 * 1024, total <= 240 * 1024 * 1024 - size, images.count < 5_000 else { throw HarborError(code: "manga-size") }
+            total += size
+            if isArchive { archives.append(resolved) } else { images.append((String(source.path.dropFirst(root.path.count + 1)), resolved)) }
         }
-        guard !images.isEmpty else { throw HarborError(code: "manga-format") }
+        guard !images.isEmpty || !archives.isEmpty else { throw HarborError(code: "manga-format") }
         let file = try Self.file(book, owner)
         try FileManager.default.createDirectory(at: file.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication])
         do {
             let zip = try Archive(url: file, accessMode: .create)
             for (path, source) in images { try Task.checkCancellation(); try zip.addEntry(with: path, fileURL: source) }
+            var chapters = Set<String>()
+            for archiveURL in archives {
+                try Task.checkCancellation()
+                let folder = MangaFolderChapterRules.archiveChapter(stem: archiveURL.deletingPathExtension().lastPathComponent, taken: chapters)
+                chapters.insert(folder)
+                let inner = try MangaArchive(file: archiveURL)
+                for path in inner.paths {
+                    try Task.checkCancellation()
+                    let temporary = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+                    defer { try? FileManager.default.removeItem(at: temporary) }
+                    try inner.data(path).write(to: temporary, options: .atomic)
+                    try zip.addEntry(with: MangaFolderChapterRules.entryPath(chapter: folder, inner: path), fileURL: temporary)
+                }
+            }
             try FileManager.default.setAttributes([.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication], ofItemAtPath: file.path)
             _ = try archive(book, owner: owner)
             return book
@@ -159,7 +191,7 @@ actor MangaLocalStore {
         return archive
     }
     nonisolated private static func key(_ book: MangaBook, _ owner: String) -> String { EBookShelf.hash(owner + "|" + book.id) }
-    nonisolated private static func chapter(_ path: String) -> String { path.contains("/") ? String(path.split(separator: "/")[0]) : "local" }
+    nonisolated private static func chapter(_ path: String) -> String { MangaFolderChapterRules.chapterKey(path) }
     nonisolated private static func file(_ book: MangaBook, _ owner: String) throws -> URL {
         guard book.server == nil else { throw HarborError(code: "manga-format") }
         let support = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false).resolvingSymlinksInPath().standardizedFileURL

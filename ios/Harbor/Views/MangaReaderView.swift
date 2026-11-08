@@ -14,7 +14,6 @@ struct MangaReaderView: View {
     @State private var visible: Int? = 0
     @State private var spread = 0
     @State private var ratios: [Int: CGFloat] = [:]
-    @State private var dimensions: [Int: CGSize] = [:]
     @State private var loading = false
     @State private var settings = false
     @State private var settingsCategory = "mode"
@@ -23,9 +22,10 @@ struct MangaReaderView: View {
     @State private var progressTask: Task<Void, Never>?
     @State private var export: URL?
     @State private var chapterEnded = false
-    @State private var hasScrolled = false
+    @State private var hintDismissed = false
     @State private var pageSound: AVAudioPlayer?
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.dismiss) private var dismiss
     @AppStorage("manga.reader.mode") private var mode = "long"
     @AppStorage("manga.reader.fit") private var fit = "width"
     @AppStorage("manga.reader.background") private var background = "dark"
@@ -55,8 +55,10 @@ struct MangaReaderView: View {
                 reader(size: geometry.size)
                     .overlay(alignment: navPos == "stack-bl" ? .bottomLeading : .bottomTrailing) { if !focus && navPos.hasPrefix("stack") { VStack(spacing: 6) { previousButton; nextButton }.padding(12).background(.thinMaterial, in: .rect(cornerRadius: 12)).padding(12) } }
                     .overlay { if !focus && navPos == "sides" { HStack { previousButton; Spacer(); nextButton }.padding(8) } }
+                    .overlay(alignment: .bottom) { if focus && !pages.isEmpty { focusProgress } }
+                    .overlay { if pagedEndCard { endCard.frame(maxWidth: .infinity, maxHeight: .infinity).background(canvas.opacity(0.94)) } }
             }
-            if chapterEnded && !hideEndHint && !focus { Text(index + 1 < chapters.count ? "Fin del capítulo · Siguiente para continuar" : "Fin del manga").font(.caption).padding(8) }
+            if endHintVisible { endHint }
             if !focus { bottomBar }
         }.background(canvas).foregroundStyle(ink).navigationTitle(chapter.title).navigationBarTitleDisplayMode(.inline)
             .toolbar(focus ? .hidden : .visible, for: .navigationBar)
@@ -68,7 +70,7 @@ struct MangaReaderView: View {
             .onChange(of: mode) { _, _ in spread = current / (double ? 2 : 1) }
             .onChange(of: scenePhase) { _, phase in
                 if phase == .active { scheduleProgress() }
-                else { progressTask?.cancel(); if !pages.isEmpty { persist(page: current, sync: false) } }
+                else { progressTask?.cancel(); if !pages.isEmpty { persist(page: current, sync: true) } }
             }
             .onDisappear { progressTask?.cancel(); pageSound?.stop(); if !pages.isEmpty { persist(page: current, sync: true) }; if let export { try? FileManager.default.removeItem(at: export) } }
             .sheet(isPresented: $settings) { readerSettings }
@@ -100,26 +102,20 @@ struct MangaReaderView: View {
                     LazyVStack(spacing: 0) {
                         ForEach(pages) { page in
                             let ratio = ratios[page.id] ?? 2.0 / 3.0
-                            let width = max(40, (fit == "original" ? dimensions[page.id]?.width ?? size.width : fit == "height" ? size.height * ratio : size.width) * zoom)
-                            MangaImage(book: book, owner: shelf.owner, path: page.path, client: client, retryOnFailure: true, onSize: { size in if size.height > 0 { ratios[page.id] = size.width / size.height; dimensions[page.id] = size } }).frame(width: width, height: width / ratio).accessibilityIdentifier("manga-page-\(page.id)").id(page.id)
+                            let width = max(40, MangaReaderRules.displayWidth(fit: fit, width: size.width, height: size.height, ratio: ratio, zoom: zoom))
+                            MangaImage(book: book, owner: shelf.owner, path: page.path, client: client, retryOnFailure: true, onSize: { size in if size.height > 0 { ratios[page.id] = size.width / size.height } }).frame(width: width, height: width / ratio).accessibilityIdentifier("manga-page-\(page.id)").id(page.id)
                         }
-                        Color.clear.frame(height: 20).background { GeometryReader { proxy in Color.clear.preference(key: MangaEndOffset.self, value: proxy.frame(in: .named("manga-vertical")).minY) } }
+                        endCard.frame(maxWidth: .infinity).padding(.vertical, 40)
                     }.scrollTargetLayout()
-                }.coordinateSpace(name: "manga-vertical").scrollPosition(id: $visible, anchor: .top)
-                    .simultaneousGesture(DragGesture().onChanged { _ in hasScrolled = true })
-                    .onPreferenceChange(MangaEndOffset.self) { offset in
-                        guard hasScrolled, !loading, autoNext, index + 1 < chapters.count, offset >= 0, offset < size.height else { return }
-                        hasScrolled = false
-                        Task { await load(chapters[index + 1], page: 0) }
-                    }
+                }.scrollPosition(id: $visible, anchor: .top)
             }
         }
     }
     private func pageView(_ page: MangaPage, width: CGFloat, height: CGFloat) -> some View {
         let ratio = ratios[page.id] ?? 2.0 / 3.0
-        let displayWidth = (fit == "height" ? height * ratio : fit == "original" ? dimensions[page.id]?.width ?? width : width) * zoom
+        let displayWidth = MangaReaderRules.displayWidth(fit: fit, width: width, height: height, ratio: ratio, zoom: zoom)
         return ScrollView([.horizontal, .vertical]) {
-            MangaImage(book: book, owner: shelf.owner, path: page.path, client: client, retryOnFailure: true, onSize: { size in if size.height > 0 { ratios[page.id] = size.width / size.height; dimensions[page.id] = size } }).frame(width: max(40, displayWidth), height: max(40, displayWidth / ratio)).accessibilityIdentifier("manga-page-\(page.id)")
+            MangaImage(book: book, owner: shelf.owner, path: page.path, client: client, retryOnFailure: true, onSize: { size in if size.height > 0 { ratios[page.id] = size.width / size.height } }).frame(width: max(40, displayWidth), height: max(40, displayWidth / ratio)).accessibilityIdentifier("manga-page-\(page.id)")
         }.frame(width: width, height: height).background(canvas).clipped()
     }
     private var previousButton: some View { Button { turn(-1) } label: { Image(systemName: rtl ? "chevron.right" : "chevron.left").frame(width: 40, height: 40) }.disabled(current == 0 && index == 0 || loading).accessibilityLabel("Página anterior") }
@@ -138,6 +134,39 @@ struct MangaReaderView: View {
             }
         }.padding(.horizontal, 12).padding(.vertical, 4).background(.thinMaterial)
     }
+    private var pagedEndCard: Bool { chapterEnded && !autoNext && (mode == "paged" || double) }
+    private var endHintVisible: Bool { chapterEnded && !hideEndHint && !focus && !hintDismissed && !pagedEndCard && mode != "long" }
+    private var isLastChapter: Bool { index + 1 >= chapters.count }
+    private var endHint: some View {
+        HStack(spacing: 10) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(DesktopInterfaceText.value(isLastChapter ? "All caught up" : "Chapter finished")).font(.caption2.weight(.bold)).textCase(.uppercase).foregroundStyle(.secondary)
+                if !isLastChapter { Text(chapters[index + 1].title).font(.caption).lineLimit(1).foregroundStyle(.secondary) }
+            }
+            Spacer(minLength: 0)
+            if !isLastChapter { Button { Task { await load(chapters[index + 1], page: 0) } } label: { Label(DesktopInterfaceText.value("Next chapter"), systemImage: "chevron.right") }.buttonStyle(.borderedProminent).controlSize(.small) }
+            Button { hintDismissed = true } label: { Image(systemName: "xmark").frame(width: 32, height: 32) }.accessibilityLabel(DesktopInterfaceText.value("Dismiss"))
+        }.padding(.leading, 16).padding(.trailing, 6).padding(.vertical, 6).background(.thinMaterial, in: .capsule).padding(.horizontal, 12).padding(.vertical, 6)
+    }
+    private var endCard: some View {
+        VStack(spacing: 18) {
+            Text(DesktopInterfaceText.value(isLastChapter ? "All caught up" : "Chapter complete")).font(.caption.weight(.bold)).textCase(.uppercase).foregroundStyle(.secondary)
+            Text(chapter.title).font(.title2.weight(.medium)).multilineTextAlignment(.center)
+            if isLastChapter { Text(DesktopInterfaceText.value("You have reached the latest chapter available.")).font(.callout).foregroundStyle(.secondary).multilineTextAlignment(.center) }
+            else { Button { Task { await load(chapters[index + 1], page: 0) } } label: { Label(DesktopInterfaceText.value("Next chapter"), systemImage: "chevron.right") }.buttonStyle(.borderedProminent).controlSize(.large) }
+            Button(DesktopInterfaceText.value("Back to details")) { dismiss() }.foregroundStyle(.secondary)
+        }.padding(32).frame(maxWidth: .infinity)
+    }
+    /// Desktop keeps its thin ReaderProgressMeter visible in focus mode, with the sync point marked.
+    private var focusProgress: some View {
+        GeometryReader { proxy in
+            ZStack(alignment: .leading) {
+                Rectangle().fill(ink.opacity(0.2))
+                Rectangle().fill(HarborTheme.accent).frame(width: proxy.size.width * MangaReaderRules.progressFraction(current: current, total: pages.count))
+                Rectangle().fill(ink.opacity(0.45)).frame(width: 2).offset(x: proxy.size.width * MangaReaderRules.syncThreshold)
+            }
+        }.frame(height: 3).allowsHitTesting(false).accessibilityHidden(true)
+    }
     private var readerSettings: some View {
         NavigationStack {
             Form {
@@ -153,7 +182,7 @@ struct MangaReaderView: View {
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                             modeCard("long", "Tira vertical", "layout-long"); modeCard("long-h", "Horizontal", "layout-long", rotated: true); modeCard("paged", "Una página", "layout-single"); modeCard("double", "Dos páginas", "layout-double"); modeCard("book", "Libro", "layout-book")
                         }.padding(.vertical, 6)
-                        if double { LabeledContent("Separación entre páginas", value: "\(Int(doubleGap))"); Slider(value: $doubleGap, in: 0...40, step: 2) }
+                        if double { LabeledContent("Separación entre páginas", value: "\(Int(doubleGap))"); Slider(value: $doubleGap, in: 0...48, step: 2) }
                     }
                 }
                 if settingsCategory == "direction" {
@@ -165,7 +194,17 @@ struct MangaReaderView: View {
                     }
                 }
                 if settingsCategory == "zoom" { Section("Zoom") {
-                    LabeledContent("Zoom", value: "\(Int(zoom * 100)) %"); Slider(value: $zoom, in: 0.5...3, step: 0.1)
+                    LabeledContent("Zoom", value: "\(Int(zoom * 100)) %")
+                    HStack(spacing: 12) {
+                        Button { zoom = MangaReaderRules.zoomed(zoom, by: -0.1) } label: { Image(systemName: "minus").frame(width: 36, height: 36) }
+                        Slider(value: $zoom, in: 0.5...3, step: 0.1)
+                        Button { zoom = MangaReaderRules.zoomed(zoom, by: 0.1) } label: { Image(systemName: "plus").frame(width: 36, height: 36) }
+                    }.buttonStyle(.borderless)
+                    HStack(spacing: 8) {
+                        ForEach(MangaReaderRules.zoomPresets, id: \.self) { preset in
+                            Button("\(Int(preset * 100))%") { zoom = preset }.buttonStyle(.bordered).controlSize(.small).tint(abs(zoom - preset) < 0.001 ? HarborTheme.accent : nil).frame(maxWidth: .infinity)
+                        }
+                    }
                     Button("Restablecer zoom") { zoom = 1 }
                 } }
                 if settingsCategory == "background" { Section("Fondo") { Picker("Fondo", selection: $background) { Text("Oscuro").tag("dark"); Text("Gris").tag("gray"); Text("Claro").tag("light") }.pickerStyle(.segmented) } }
@@ -203,7 +242,7 @@ struct MangaReaderView: View {
         guard !loading else { return }
         progressTask?.cancel()
         if !pages.isEmpty { persist(page: current, sync: true) }
-        loading = true; error = nil; chapterEnded = false; hasScrolled = false
+        loading = true; error = nil; chapterEnded = false; hintDismissed = false
         defer { loading = false }
         do {
             let loaded: [MangaPage]
@@ -214,7 +253,7 @@ struct MangaReaderView: View {
             else { guard let client else { throw HarborError(code: "manga-connection") }; loaded = try await client.pages(book, chapter: selected) }
             try Task.checkCancellation(); guard !loaded.isEmpty else { throw HarborError(code: "manga-pages") }
             let saved = shelf.record(book)?.progress[selected.id]
-            chapter = selected; pages = loaded; ratios = [:]; dimensions = [:]
+            chapter = selected; pages = loaded; ratios = [:]
             let start = min(loaded.count - 1, max(0, page ?? saved?.page ?? selected.lastPage))
             visible = start; spread = start / (double ? 2 : 1)
             if shelf.record(book) == nil { try shelf.save(MangaRecord(book: book, chapter: selected.id)) }
@@ -281,9 +320,19 @@ struct MangaReaderView: View {
     }
 }
 
-private struct MangaEndOffset: PreferenceKey {
-    static let defaultValue: CGFloat = .greatestFiniteMagnitude
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) { value = min(value, nextValue()) }
+/// Pure reader rules (Desktop reader-prefs.ts and manga-reader.tsx); covered by G1MangaTests.
+enum MangaReaderRules {
+    static let zoomPresets: [Double] = [0.5, 1, 1.5, 2, 3]
+    static let syncThreshold: CGFloat = 0.8
+    /// Desktop's zoom stepper: +/-0.1, rounded to two decimals, clamped to 0.5...3.
+    static func zoomed(_ zoom: Double, by delta: Double) -> Double { min(3, max(0.5, ((zoom + delta) * 100).rounded() / 100)) }
+    /// Desktop's "original" fit is container width times zoom, not the image's own pixel width.
+    static func displayWidth(fit: String, width: CGFloat, height: CGFloat, ratio: CGFloat, zoom: Double) -> CGFloat { (fit == "height" ? height * ratio : width) * CGFloat(zoom) }
+    static func progressFraction(current: Int, total: Int) -> CGFloat {
+        let last = max(0, total - 1)
+        guard last > 0 else { return 0 }
+        return CGFloat(min(max(0, current), last)) / CGFloat(last)
+    }
 }
 
 /// Native UIKit page-curl transition replaces Desktop's JavaScript flipbook.
