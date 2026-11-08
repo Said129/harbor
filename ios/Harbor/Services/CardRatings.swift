@@ -56,6 +56,11 @@ enum CardRatingPolicy {
         return found
     }
 
+    /// Desktop's `simklShowCommunityRatings`: the SIMKL community chip is asked for and drawn on cards only while the switch is on.
+    static func selectedProviders(_ selected: Set<CardRatingProvider>, simklCommunity: Bool) -> Set<CardRatingProvider> {
+        simklCommunity ? selected : selected.subtracting([CardRatingProvider.simkl])
+    }
+
     /// The selected providers that have their key, in Desktop's push order.
     static func enabled(selected: Set<CardRatingProvider>, keys: Set<CardRatingKey>) -> [CardRatingProvider] {
         CardRatingProvider.allCases.filter { provider in

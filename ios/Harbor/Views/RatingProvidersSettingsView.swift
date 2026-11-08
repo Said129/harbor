@@ -27,6 +27,8 @@ struct RatingProvidersSettingsView: View {
                     }.background(HarborTheme.surface.opacity(0.65), in: .rect(cornerRadius: 12)).accessibilityIdentifier("rating-cards-settings")
                 }
                 HarborSettingsSection(text("Details"), note: text("The ratings row on a title's detail page, next to runtime and genre.")) {
+                    HarborSettingsToggle(text("Details"), note: text("The ratings row on a title's detail page, next to runtime and genre."),
+                                         isOn: $interface.showDetailRatings).accessibilityIdentifier("ratings-detail-master")
                     ForEach(DetailRatings.sources) { source in
                         HarborSettingsToggle(source.name, isOn: Binding(get: { !interface.detailRatingsHidden.contains(source.id) }, set: { shown in
                             if shown { interface.detailRatingsHidden.remove(source.id) } else { interface.detailRatingsHidden.insert(source.id) }
@@ -127,7 +129,10 @@ struct DetailProviderRatings: View {
 
     private var imdbID: String? { [media.id, media.imdbID ?? ""].first { $0.range(of: "^tt[0-9]+$", options: .regularExpression) != nil } }
     private var items: [DetailRatings.Item] {
-        let hidden = InterfacePreferences.shared.detailRatingsHidden
+        let interface = InterfacePreferences.shared
+        // Desktop's `showDetailRatings` master switch hides the whole row, MAL included.
+        guard interface.showDetailRatings else { return [] }
+        let hidden = DetailRatings.hiddenForCommunity(interface.detailRatingsHidden, simklCommunity: interface.simklShowCommunityRatings)
         let others = DetailRatings.items(omdb: omdb, mdblist: mdblist, simkl: simklRating, imdbID: imdbID, isShow: media.type != "movie", hidden: hidden)
         // An anime's primary rating on Desktop is MyAnimeList's catalog score (`hero-ratings.tsx`).
         guard let mal = CardTagPolicy.malDetailItem(media, detailHidden: hidden) else { return others }

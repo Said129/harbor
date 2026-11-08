@@ -50,14 +50,14 @@ struct ContinueWatchingPreferences: Sendable {
     static let shared = ProfileSettingsStore()
     nonisolated static let keys: Set<String> = [
         "uiLanguage", "navIconAnimations", "interface.autoRotateBanners", "homeMode", "showImdbBadge", "showTmdbBadge", "showRtBadge", "showMalBadge", "showSimklBadge", "showPopcornBadge", "showMetacriticBadge", "showLetterboxdBadge", "showMdblistBadge", "showTraktBadge", "cardBadgeLimit", "badgePlacement",
-        "watchlistBadge", "showDubBadge", "showCardBadges",
+        "watchlistBadge", "showDubBadge", "showCardBadges", "showWatchedBadge",
         "rowCardStyle", "tvCardLogoPos", "posterScale", "posterRadius", "posterEffect", "posterQuality",
         "posterFocusedCard", "posterBackdropExpansion", "posterDockMagnification", "posterDockTransitionMs", "hidePosterTitles",
-        "simklEnableUserRatings", "simklScrobbleEnabled", "cwSources",
+        "simklEnableUserRatings", "simklScrobbleEnabled", "simklShowCommunityRatings", "cwSources",
         "simklHomeRailsEnabled", "simklUpNextRailEnabled", "simklTrendingRailEnabled", "simklAnimeTitleLanguage",
         "simklGranularFilters.movies.plantowatch", "simklGranularFilters.shows.watching", "simklGranularFilters.shows.plantowatch",
         "tmdbImageLangs", "harbor:title-logos", "harbor:title-posters", "harbor:title-backdrops",
-        "showWatchedButton", "wrappedButton", "showEpisodeDescription", "showEpisodeRating", "episodeLayout", "episodeCardScale", "episodeArcGroups", "hideWatchedInCatalogs", "hideUnreleased", "homeShowAllAddonRows", "catalogsPinned", "catalogsHidden", "homeLanguages", "animeOnlyInAnimeRoom", "libraryBookmarkedOnly", "cwAdvanceNext", "cwHideCaughtUp", "cwPreferEpisodeStill", "animeCwEnd", "homeNewEpisodes", "episodeSort", "episodeHiding", "showTraktComments", "blurComments", "ratings.detailHidden", "preferCustomMetaAddon", "hideSpoilers", "blurEpisodes", "spoilerHideTitles", "spoilerHideDescriptions", "spoilerSkipNext", "playerTitleSeriesFirst", "deleteWatchedDownloads",
+        "showWatchedButton", "wrappedButton", "showEpisodeDescription", "showEpisodeRating", "episodeLayout", "episodeCardScale", "episodeArcGroups", "hideWatchedInCatalogs", "hideUnreleased", "homeShowAllAddonRows", "catalogsPinned", "catalogsHidden", "homeLanguages", "animeOnlyInAnimeRoom", "libraryBookmarkedOnly", "cwAdvanceNext", "cwHideCaughtUp", "cwPreferEpisodeStill", "animeCwEnd", "homeNewEpisodes", "episodeSort", "episodeHiding", "showTraktComments", "blurComments", "ratings.detailHidden", "showDetailRatings", "preferCustomMetaAddon", "hideSpoilers", "blurEpisodes", "spoilerHideTitles", "spoilerHideDescriptions", "spoilerSkipNext", "playerTitleSeriesFirst", "deleteWatchedDownloads",
         "iphone.theme.preset", "iphone.theme.custom", "iphone.theme.font", "iphone.theme.colors", "seekBarColor",
         "iphone.theme.library", "iphone.theme.backgroundFile", "iphone.theme.backgroundDim",
         "iphone.player-options.v1", "mpvHwdec", "mpvQuality", "resumePlayback", "resumePrompt", "subtitleAutoSync", "subtitleAutoSyncCrowd", "communitySyncUrl", "communitySyncOptOut",

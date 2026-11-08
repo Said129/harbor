@@ -14,6 +14,8 @@ final class InterfacePreferences {
     var showRtBadge = UserDefaults.standard.object(forKey: "showRtBadge") as? Bool ?? true { didSet { persist(showRtBadge, forKey: "showRtBadge") } }
     var showMalBadge = UserDefaults.standard.object(forKey: "showMalBadge") as? Bool ?? true { didSet { persist(showMalBadge, forKey: "showMalBadge") } }
     var showSimklBadge = UserDefaults.standard.object(forKey: "showSimklBadge") as? Bool ?? true { didSet { persist(showSimklBadge, forKey: "showSimklBadge") } }
+    /// Desktop's `simklShowCommunityRatings` (default on): the SIMKL community score on cards and on detail pages.
+    var simklShowCommunityRatings = UserDefaults.standard.object(forKey: "simklShowCommunityRatings") as? Bool ?? true { didSet { persist(simklShowCommunityRatings, forKey: "simklShowCommunityRatings") } }
     var showPopcornBadge = UserDefaults.standard.object(forKey: "showPopcornBadge") as? Bool ?? false { didSet { persist(showPopcornBadge, forKey: "showPopcornBadge") } }
     var showMetacriticBadge = UserDefaults.standard.object(forKey: "showMetacriticBadge") as? Bool ?? false { didSet { persist(showMetacriticBadge, forKey: "showMetacriticBadge") } }
     var showLetterboxdBadge = UserDefaults.standard.object(forKey: "showLetterboxdBadge") as? Bool ?? false { didSet { persist(showLetterboxdBadge, forKey: "showLetterboxdBadge") } }
@@ -29,6 +31,8 @@ final class InterfacePreferences {
     /// Desktop's `showCardBadges` (default on, "Show tags on cards"): the New tag on cards.
     var showCardBadges = UserDefaults.standard.object(forKey: "showCardBadges") as? Bool ?? true { didSet { persist(showCardBadges, forKey: "showCardBadges") } }
     var showWatchedButton = UserDefaults.standard.object(forKey: "showWatchedButton") as? Bool ?? true { didSet { persist(showWatchedButton, forKey: "showWatchedButton") } }
+    /// Desktop's `showWatchedBadge` (default on): the watched check on posters and episode rows.
+    var showWatchedBadge = UserDefaults.standard.object(forKey: "showWatchedBadge") as? Bool ?? true { didSet { persist(showWatchedBadge, forKey: "showWatchedBadge") } }
     /// Desktop's `wrappedButton` (default true): the Stats entry in the library header.
     var wrappedButton = UserDefaults.standard.object(forKey: "wrappedButton") as? Bool ?? true { didSet { persist(wrappedButton, forKey: "wrappedButton") } }
     var showEpisodeDescription = UserDefaults.standard.object(forKey: "showEpisodeDescription") as? Bool ?? true { didSet { persist(showEpisodeDescription, forKey: "showEpisodeDescription") } }
@@ -74,6 +78,8 @@ final class InterfacePreferences {
     var blurComments = UserDefaults.standard.object(forKey: "blurComments") as? Bool ?? false { didSet { persist(blurComments, forKey: "blurComments") } }
     /// Ratings turned off in the detail column of Desktop's ratings matrix (`DetailRatings.sources` ids); empty shows them all.
     var detailRatingsHidden = Set(UserDefaults.standard.stringArray(forKey: "ratings.detailHidden") ?? []) { didSet { persist(detailRatingsHidden.sorted(), forKey: "ratings.detailHidden") } }
+    /// Desktop's `showDetailRatings` (default on): the master switch for the ratings row on detail pages. The per-provider toggles stay in `detailRatingsHidden`.
+    var showDetailRatings = UserDefaults.standard.object(forKey: "showDetailRatings") as? Bool ?? true { didSet { persist(showDetailRatings, forKey: "showDetailRatings") } }
     /// Desktop's `preferCustomMetaAddon` (default off): an installed metadata addon is asked before Cinemeta. Hook: `HarborService.addonMetadata`.
     var preferCustomMetaAddon = UserDefaults.standard.object(forKey: "preferCustomMetaAddon") as? Bool ?? false { didSet { persist(preferCustomMetaAddon, forKey: "preferCustomMetaAddon") } }
     var hideSpoilers = UserDefaults.standard.object(forKey: "hideSpoilers") as? Bool ?? false { didSet { persist(hideSpoilers, forKey: "hideSpoilers") } }
@@ -117,6 +123,7 @@ final class InterfacePreferences {
         showRtBadge = UserDefaults.standard.object(forKey: "showRtBadge") as? Bool ?? true
         showMalBadge = UserDefaults.standard.object(forKey: "showMalBadge") as? Bool ?? true
         showSimklBadge = UserDefaults.standard.object(forKey: "showSimklBadge") as? Bool ?? true
+        simklShowCommunityRatings = UserDefaults.standard.object(forKey: "simklShowCommunityRatings") as? Bool ?? true
         showPopcornBadge = UserDefaults.standard.object(forKey: "showPopcornBadge") as? Bool ?? false
         showMetacriticBadge = UserDefaults.standard.object(forKey: "showMetacriticBadge") as? Bool ?? false
         showLetterboxdBadge = UserDefaults.standard.object(forKey: "showLetterboxdBadge") as? Bool ?? false
@@ -128,6 +135,7 @@ final class InterfacePreferences {
         showDubBadge = UserDefaults.standard.object(forKey: "showDubBadge") as? Bool ?? true
         showCardBadges = UserDefaults.standard.object(forKey: "showCardBadges") as? Bool ?? true
         showWatchedButton = UserDefaults.standard.object(forKey: "showWatchedButton") as? Bool ?? true
+        showWatchedBadge = UserDefaults.standard.object(forKey: "showWatchedBadge") as? Bool ?? true
         wrappedButton = UserDefaults.standard.object(forKey: "wrappedButton") as? Bool ?? true
         showEpisodeDescription = UserDefaults.standard.object(forKey: "showEpisodeDescription") as? Bool ?? true
         showEpisodeRating = UserDefaults.standard.object(forKey: "showEpisodeRating") as? Bool ?? true
@@ -152,6 +160,7 @@ final class InterfacePreferences {
         showTraktComments = UserDefaults.standard.object(forKey: "showTraktComments") as? Bool ?? false
         blurComments = UserDefaults.standard.object(forKey: "blurComments") as? Bool ?? false
         detailRatingsHidden = Set(UserDefaults.standard.stringArray(forKey: "ratings.detailHidden") ?? [])
+        showDetailRatings = UserDefaults.standard.object(forKey: "showDetailRatings") as? Bool ?? true
         preferCustomMetaAddon = UserDefaults.standard.object(forKey: "preferCustomMetaAddon") as? Bool ?? false
         hideSpoilers = UserDefaults.standard.object(forKey: "hideSpoilers") as? Bool ?? false
         blurEpisodes = UserDefaults.standard.object(forKey: "blurEpisodes") as? Bool ?? false

@@ -19,7 +19,9 @@ struct CardBadgesSettingsView: View {
                 set: { shown in if shown { interface.detailRatingsHidden.remove("mal") } else { interface.detailRatingsHidden.insert("mal") } })
     }
     private var keys: Set<CardRatingKey> { CardRatingPolicy.keySources(omdb: store.key(.omdb), mdblist: store.key(.mdblist)) }
-    private var selected: Set<CardRatingProvider> { Set(CardRatingProvider.allCases.filter { interface.cardRatingOn($0) }) }
+    private var selected: Set<CardRatingProvider> {
+        CardRatingPolicy.selectedProviders(Set(CardRatingProvider.allCases.filter { interface.cardRatingOn($0) }), simklCommunity: interface.simklShowCommunityRatings)
+    }
     private var enabledCount: Int { CardRatingPolicy.chipCount(CardRatingPolicy.enabled(selected: selected, keys: keys)) }
     /// Desktop offers limits up to the enabled count, never fewer than 2.
     private var maxChoice: Int { max(2, enabledCount) }
@@ -54,6 +56,9 @@ struct CardBadgesSettingsView: View {
                         Text(text("Pick which corner of the poster the bookmark sits in.")).font(HarborTheme.font(13)).foregroundStyle(.secondary)
                             .fixedSize(horizontal: false, vertical: true)
                     }
+                    HarborSettingsToggle(DesktopInterfaceText.value("Watched badge"), note: DesktopInterfaceText.value("Puts a check on titles you have already finished."),
+                                         isOn: $interface.showWatchedBadge)
+                        .accessibilityIdentifier("card-watched-badge")
                     HarborSettingsToggle("Show DUB badge on anime cards",
                                          note: "Flags anime with an English dub. Also tags dub / sub / dual on stream sources.",
                                          isOn: $interface.showDubBadge)

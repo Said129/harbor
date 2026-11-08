@@ -278,7 +278,7 @@ private struct VODEpisodeRow: View {
             VStack(alignment: .leading, spacing: 6) {
                 HStack {
                     Text("\(episode.episode). \(episode.title)").font(.subheadline.weight(.medium))
-                    if progress >= 0.9 { Image(systemName: "checkmark.circle.fill").foregroundStyle(HarborTheme.accent).accessibilityLabel("Visto") }
+                    if progress >= 0.9, InterfacePreferences.shared.showWatchedBadge { Image(systemName: "checkmark.circle.fill").foregroundStyle(HarborTheme.accent).accessibilityLabel("Visto") }
                 }
                 if let plot = episode.plot { Text(plot).font(.caption).foregroundStyle(.secondary).lineLimit(3) }
                 if let minutes { Text(progress > 0 && progress < 0.9 ? "\(minutes) min restantes" : "\(Int((episode.channel.duration ?? 0) / 60)) min").font(.caption2).foregroundStyle(.secondary) }
