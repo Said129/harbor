@@ -322,6 +322,8 @@ BEHAVIORS = expand("""
 258 P self-hosted relay: the relay address setting works; Desktop's Cloudflare deploy is excluded (7 Nov, written by Haiku, CI runs 43 and 44 green)
 31 X search guide: Desktop's guide is the Live TV programme guide opened from the empty search, and iOS loads no programme data (XMLTV), so it would only repeat the channel list in Live TV
 190 X local episode chooser: the iOS local library list already shows every season and episode file and plays one on a tap
+209 X trickplay seeking previews: Desktop's sprites come from video media servers, which iOS does not have (Plex and Jellyfin are music only)
+210 X shadow mpv thumbnail session: a second decoder opened on the same stream would double the bandwidth and memory of a phone for a debrid or torrent source
 """)
 
 SETTINGS = expand("""
@@ -729,6 +731,12 @@ SETTINGS = expand("""
 132 X TVDB PIN: Desktop declares tvdbPin in its settings but nothing reads it
 499 X Arabic welcome seen flag: Desktop 0.9.132 exports the Arabic welcome screen and never mounts it
 359 X local review dismissal count: dismisses Desktop's local-file review banner; iOS local records are not matched to titles, so no file is flagged for review
+385 X custom app icon: iOS only accepts alternate icons built into the app, never an image chosen at run time
+386 X custom app icon preset: same reason, the presets would have to ship as alternate icons in the build
+388 X music seek thumb: the iOS dock uses the system slider, which always draws its own thumb; Desktop's hover thumb needs a pointer
+172 X seek preview setting: the previews are excluded (a second decoder on the stream), so nothing would read it
+510 X X-Ray live scan: Desktop matches faces on the frame against the cast photos with its own recognition model (useFaceId); iOS Vision only detects faces and no model ships
+248 X subtitle auto-sync speech recognition: Desktop runs a downloaded model through Rust commands (asr_ensure_model, asr_transcribe_windows) that iOS does not have
 """)
 
 def audit(items, verdicts, label):
