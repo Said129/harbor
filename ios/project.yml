@@ -253,6 +253,7 @@ targets:
       - path: HarborTests/R21DetailTests.swift
       - path: HarborTests/R19PlayerTests.swift
       - path: HarborTests/G3LiveTests.swift
+      - path: HarborTests/R24DetailTests.swift
       - path: HarborTests/R23XMLTVTests.swift
       - path: HarborTests/CommunitySyncTests.swift
       - path: HarborTests/QualityBadgePolicyTests.swift

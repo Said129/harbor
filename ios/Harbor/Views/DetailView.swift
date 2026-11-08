@@ -51,7 +51,7 @@ struct DetailView: View {
                     if model.loading { ProgressView() }
                     if model.isAnimeOneOff {
                         animeMovieSection
-                    } else if model.media.type != "movie" && model.media.episodic { EpisodeList(media: model.media, library: app.library, preferredEpisode: episodeHint,
+                    } else if model.media.type != "movie" && model.media.episodic { EpisodeList(media: model.media, library: app.library, resume: app.resume, preferredEpisode: episodeHint,
                         animeGrouping: model.episodeOrderProjection == nil && model.allowsContinuousAnimeEpisodes ? Binding(get: { model.animeEpisodeGrouping }, set: { model.setAnimeEpisodeGrouping($0) }) : nil,
                         ordering: model.episodeOrderProjection, pool: model.episodePool, orderOptions: model.episodeOrderOptions,
                         selectOrder: { episodeOrderSetting = $0.rawValue }, richOrderPanel: richEpisodeOrderPanel, orderLoading: model.episodeOrderLoading,

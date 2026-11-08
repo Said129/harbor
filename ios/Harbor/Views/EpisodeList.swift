@@ -3,6 +3,8 @@ import SwiftUI
 struct EpisodeList: View {
     let media: Media
     let library: LibraryModel
+    /// The saved positions of the episode rows (Desktop's `getEpisodeProgress`); nil shows no progress.
+    var resume: ResumeStore? = nil
     var preferredEpisode: Episode? = nil
     var animeGrouping: Binding<AnimeEpisodeGrouping>? = nil
     var ordering: EpisodeOrderProjection? = nil
@@ -27,6 +29,7 @@ struct EpisodeList: View {
     @State private var hiddenKeys = HiddenEpisodes.all()
     @State private var showHidden = false
     @State private var episodeRatings: [String: Double] = [:]
+    @State private var progressEntries: [String: ResumeEntry] = [:]
     @State private var arcMode = false
     @State private var arcID = ""
     @State private var arcs: [EpisodeArc] = []
@@ -133,6 +136,21 @@ struct EpisodeList: View {
         let found = EpisodeArcPolicy.arcs(detail)
         arcs = found
         if !found.contains(where: { $0.id == arcID }) { arcID = found.first?.id ?? "" }
+    }
+    private func progressKey(_ source: Media, _ episode: Episode) -> String {
+        "\(source.id):\(episode.season ?? 0):\(episode.episode ?? 0)"
+    }
+    /// Reads each row's saved position off the main thread: the resume store is an actor.
+    private func loadProgressEntries() async {
+        guard let resume else { progressEntries = [:]; return }
+        var found: [String: ResumeEntry] = [:]
+        for episode in videos {
+            let source = pool?.source(for: episode) ?? media
+            let target = ResumeTarget(id: source.id, season: episode.season, episode: episode.episode, videoId: episode.id)
+            if let entry = try? await resume.entry(target) { found[progressKey(source, episode)] = entry }
+            if Task.isCancelled { return }
+        }
+        progressEntries = found
     }
     /// Desktop's episode ratings: the community's IMDb ratings, completed with OMDb's season ratings when a key is set.
     private func loadRatings() async {
@@ -288,6 +306,7 @@ struct EpisodeList: View {
             }
             .task(id: ratingsTaskID) { await loadRatings() }
             .task(id: arcTaskID) { await loadArcs() }
+            .task(id: media.identity) { await loadProgressEntries() }
             .onChange(of: seasons) { _, _ in chooseInitialSeason() }
             .onChange(of: sections.map(\.id)) { _, ids in
                 if !ids.contains(orderSection) {
@@ -394,6 +413,7 @@ struct EpisodeList: View {
     @ViewBuilder private func sourceRow(_ episode: Episode, watched: [String: Set<String>], nextUp: String?) -> some View {
         let source = pool?.source(for: episode) ?? media
         let seen = watched[source.id]?.contains(episode.watchedKey) == true
+        let progress = EpisodeRowProgress.progress(entry: progressEntries[progressKey(source, episode)], runtimeMinutes: episode.runtime, done: seen)
         let hidden = isSpoilerHidden(episode, seen: seen, isNextUp: episode.routingKey == nextUp)
         let episodeLabel = DesktopInterfaceText.value("Episode {n}").replacingOccurrences(of: "{n}", with: String(episode.listedEpisode ?? 0))
         VStack(alignment: .leading, spacing: 9) {
@@ -407,7 +427,9 @@ struct EpisodeList: View {
                                 .frame(width: 125, height: 74).overlay { Image("ui-play-filled").resizable().scaledToFit().frame(width: 24, height: 24).foregroundStyle(.white).shadow(radius: 5) }
                                 .overlay(alignment: .bottomLeading) {
                                     if InterfacePreferences.shared.showEpisodeRating, let rating = EpisodeRatings.rating(for: episode, in: episodeRatings) { EpisodeRatingBadge(value: rating).padding(5) }
-                                }.clipShape(.rect(cornerRadius: 8))
+                                }
+                                .overlay(alignment: .bottom) { EpisodeProgressBar(ratio: progress.ratio) }
+                                .clipShape(.rect(cornerRadius: 8))
                             VStack(alignment: .leading, spacing: 6) {
                                 HStack(alignment: .firstTextBaseline, spacing: 6) {
                                     Text(episode.name ?? episode.title ?? episodeLabel).font(.subheadline.weight(.semibold)).lineLimit(2)
@@ -421,6 +443,7 @@ struct EpisodeList: View {
                                 Text(metaParts.compactMap { $0 }.joined(separator: " · "))
                                     .font(.caption).foregroundStyle(.secondary)
                                 if let date = episode.releaseDate { Text(date, style: .date).font(.caption2).foregroundStyle(.secondary) }
+                                EpisodeProgressLine(progress: progress)
                             }.frame(maxWidth: .infinity, alignment: .leading)
                         }
                         if InterfacePreferences.shared.showEpisodeDescription, let overview = episode.overview, !overview.isEmpty {
