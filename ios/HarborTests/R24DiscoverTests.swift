@@ -146,7 +146,8 @@ final class R24DiscoverTests: XCTestCase {
             ("174", "200", "popularity.desc"), ("88", "200", "popularity.desc"), ("2739", "100", "popularity.desc"),
             ("1024", "200", "popularity.desc"),
         ]
-        let quick = rails.first { $0.id == "tmdb-quick" }?.parameters
+        // The Quick Watches rail belongs to the movie list, not the series list.
+        let quick = TMDBService().definitions("movie").first { $0.id == "tmdb-quick" }?.parameters
         XCTAssertEqual(quick?["with_runtime.lte"], "90")
         XCTAssertEqual(quick?["with_runtime.gte"], "70")
         XCTAssertEqual(quick?["vote_average.gte"], "7.0")
