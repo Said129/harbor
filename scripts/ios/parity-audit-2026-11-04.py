@@ -528,6 +528,16 @@ BEHAVIORS = expand("""
 267 P local playback resume: the series-level last-played lookup exists in the resume store (8 Nov, written by Haiku, uncompiled); no screen calls it yet
 395 P sports score periods: the headings follow Desktop (Set, Period, Quarter, Overtime, Innings) (8 Nov, written by Haiku, uncompiled); cricket partnership and player tables, baseball and football situation panels and volleyball set data are not ported
 413 P Xtream short EPG: the fallback rule (120 channels, existing guides skipped, one failure leaves that channel empty) exists as a helper (8 Nov, written by Haiku, uncompiled); the live list shows no now and next, so nothing calls it
+260 X Stremio login / logout: the owner removed the Stremio sign-in from the iOS app before this port began (confirmed 8 Nov); profiles use local sources (commit 986184c8)
+261 X Stremio user profile: needs the Stremio sign-in the owner removed (confirmed 8 Nov)
+262 X Cloud library: it can only be activated by a Stremio sign-in, which the owner removed (confirmed 8 Nov)
+265 X Stremio library repair: it repairs the Stremio cloud library, which needs the sign-in the owner removed (confirmed 8 Nov)
+67 X Stremio addon collection sync: it syncs the addon collection with a Stremio account, and the owner removed the sign-in (confirmed 8 Nov)
+50 D configure addon URL: the replacement is saved to the local profile; Desktop's extra push to a Stremio account does not apply because the owner removed the sign-in (confirmed 8 Nov)
+51 D uninstall addon: removal is saved to the local profile; the Stremio account write does not apply because the owner removed the sign-in (confirmed 8 Nov)
+52 D enable and disable addon: the toggle is saved to the local profile; the Stremio account case does not apply because the owner removed the sign-in (confirmed 8 Nov)
+54 D configured addon credentials persistence: the configured manifest URL is kept locally through the household vault; the Stremio account write does not apply because the owner removed the sign-in (confirmed 8 Nov)
+60 D installed addons management: install, remove, reorder and toggle work on the local list; the signed-in Stremio case does not apply because the owner removed the sign-in (confirmed 8 Nov)
 """)
 
 SETTINGS = expand("""

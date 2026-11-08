@@ -5,14 +5,14 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 235,
-      "partial": 144,
-      "missing": 2,
-      "excluded": 57,
-      "counted": 381,
-      "weighted_percent": 80.6,
-      "ported_only_percent": 61.7,
-      "ported_or_partial_percent": 99.5
+      "ported": 240,
+      "partial": 135,
+      "missing": 1,
+      "excluded": 62,
+      "counted": 376,
+      "weighted_percent": 81.8,
+      "ported_only_percent": 63.8,
+      "ported_or_partial_percent": 99.7
     },
     "settings": {
       "total": 511,
@@ -27,14 +27,14 @@
     },
     "all": {
       "total": 949,
-      "ported": 475,
-      "partial": 177,
-      "missing": 5,
-      "excluded": 292,
-      "counted": 657,
-      "weighted_percent": 85.8,
-      "ported_only_percent": 72.3,
-      "ported_or_partial_percent": 99.2
+      "ported": 480,
+      "partial": 168,
+      "missing": 4,
+      "excluded": 297,
+      "counted": 652,
+      "weighted_percent": 86.5,
+      "ported_only_percent": 73.6,
+      "ported_or_partial_percent": 99.4
     }
   },
   "behavior_areas": [
@@ -68,11 +68,11 @@
     {
       "area": "Addons and catalogs",
       "range": "B48-B67",
-      "ported": 6,
-      "partial": 13,
-      "missing": 1,
-      "excluded": 0,
-      "weighted_percent": 62.5
+      "ported": 11,
+      "partial": 8,
+      "missing": 0,
+      "excluded": 1,
+      "weighted_percent": 78.9
     },
     {
       "area": "Stream pipeline, parser, trust and scoring",
@@ -132,10 +132,10 @@
       "area": "Stremio account, library and local files",
       "range": "B260-B273",
       "ported": 6,
-      "partial": 8,
+      "partial": 4,
       "missing": 0,
-      "excluded": 0,
-      "weighted_percent": 71.4
+      "excluded": 4,
+      "weighted_percent": 80.0
     },
     {
       "area": "Trackers",
@@ -576,22 +576,22 @@
       "index": 50,
       "id": "Configure addon URL",
       "desktop_source": "src/lib/addon-store.ts",
-      "verdict": "P",
-      "note": "The replacement is saved only to the local profile through AppModel.persist, which throws profile-account-migration when a Stremio account is signed in; Desktop also pushes the replacement to the Stremio account (p..."
+      "verdict": "D",
+      "note": "configure addon URL: the replacement is saved to the local profile; Desktop's extra push to a Stremio account does not apply because the owner removed the sign-in (confirmed 8 Nov)"
     },
     {
       "index": 51,
       "id": "Uninstall addon",
       "desktop_source": "src/lib/addon-store.ts",
-      "verdict": "P",
-      "note": "Removal is local only: no iOS code makes the Stremio account write (Desktop uninstallAddon calls setUserAddons), and AppModel.persist throws profile-account-migration for a signed-in Stremio account, so removal fai..."
+      "verdict": "D",
+      "note": "uninstall addon: removal is saved to the local profile; the Stremio account write does not apply because the owner removed the sign-in (confirmed 8 Nov)"
     },
     {
       "index": 52,
       "id": "Enable / disable addon",
       "desktop_source": "src/lib/addon-store.ts",
-      "verdict": "P",
-      "note": "AppModel.setEnabled saves through AppModel.persist, which throws profile-account-migration when the active configuration carries a signed-in Stremio account (HouseholdSourceAccount.account), so the toggle cannot be..."
+      "verdict": "D",
+      "note": "enable and disable addon: the toggle is saved to the local profile; the Stremio account case does not apply because the owner removed the sign-in (confirmed 8 Nov)"
     },
     {
       "index": 53,
@@ -604,8 +604,8 @@
       "index": 54,
       "id": "Configured addon credentials persistence",
       "desktop_source": "src/lib/addon-store.ts",
-      "verdict": "P",
-      "note": "Local persistence of the configured manifest URL exists through HouseholdSessionVault.save, but the Stremio account write does not: no iOS code makes the addonCollectionSet call, and AppModel.persist throws profile..."
+      "verdict": "D",
+      "note": "configured addon credentials persistence: the configured manifest URL is kept locally through the household vault; the Stremio account write does not apply because the owner removed the sign-in (confirmed 8 Nov)"
     },
     {
       "index": 55,
@@ -646,8 +646,8 @@
       "index": 60,
       "id": "Installed addons management",
       "desktop_source": "src/views/addons.tsx",
-      "verdict": "P",
-      "note": "Local list management is present, but for signed-in Stremio profiles every install, remove, reorder and toggle write goes through AppModel.persist and fails, and no iOS code writes uninstall or reorder changes to t..."
+      "verdict": "D",
+      "note": "installed addons management: install, remove, reorder and toggle work on the local list; the signed-in Stremio case does not apply because the owner removed the sign-in (confirmed 8 Nov)"
     },
     {
       "index": 61,
@@ -695,8 +695,8 @@
       "index": 67,
       "id": "Stremio addon collection sync",
       "desktop_source": "src/lib/addons.ts",
-      "verdict": "M",
-      "note": "No iOS flow calls the account bridge (accountRequest) or AccountCollection.merging, and there is no Stremio sign-in, startup pull or cloud push; the protocol builders and merge rules exist but are unused, and exist... Stremio sign-in was replaced by local profile sources in commit 986184c8."
+      "verdict": "X",
+      "note": "Stremio addon collection sync: it syncs the addon collection with a Stremio account, and the owner removed the sign-in (confirmed 8 Nov)"
     },
     {
       "index": 68,
@@ -2046,22 +2046,22 @@
       "index": 260,
       "id": "Stremio login / logout",
       "desktop_source": "src/lib/stremio.ts",
-      "verdict": "P",
-      "note": "The Rust account rules exist, but no Swift code calls AccountPlan, no iOS screen offers Stremio sign-in or sign-out (AccountView has no Stremio flow), and nothing constructs an AccountSession, so the login and logo... Stremio sign-in was replaced by local profile sources in commit 986184c8."
+      "verdict": "X",
+      "note": "Stremio login / logout: the owner removed the Stremio sign-in from the iOS app before this port began (confirmed 8 Nov); profiles use local sources (commit 986184c8)"
     },
     {
       "index": 261,
       "id": "Stremio user profile",
       "desktop_source": "src/lib/stremio.ts",
-      "verdict": "P",
-      "note": "No iOS code calls getUser and no screen shows a Stremio profile; AccountUser.displayName has no caller. Stremio sign-in was replaced by local profile sources in commit 986184c8."
+      "verdict": "X",
+      "note": "Stremio user profile: needs the Stremio sign-in the owner removed (confirmed 8 Nov)"
     },
     {
       "index": 262,
       "id": "Cloud library",
       "desktop_source": "src/lib/stremio.ts",
-      "verdict": "P",
-      "note": "The read, write and remove code is in place, but nothing on iOS creates an AccountSession (no login flow), so a user cannot activate the cloud library; only legacy stored sessions reach LibraryModel.setSession. Stremio sign-in was replaced by local profile sources in commit 986184c8."
+      "verdict": "X",
+      "note": "Cloud library: it can only be activated by a Stremio sign-in, which the owner removed (confirmed 8 Nov)"
     },
     {
       "index": 263,
@@ -2081,8 +2081,8 @@
       "index": 265,
       "id": "Stremio library repair",
       "desktop_source": "src/lib/stremio-library-repair.ts",
-      "verdict": "P",
-      "note": "library repair preview in Settings; applying the repair needs a write method the library model does not have (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
+      "verdict": "X",
+      "note": "Stremio library repair: it repairs the Stremio cloud library, which needs the sign-in the owner removed (confirmed 8 Nov)"
     },
     {
       "index": 266,

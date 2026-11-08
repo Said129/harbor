@@ -1819,3 +1819,10 @@ fallback is a tested helper that nothing calls, because the live list has no now
 **Addons and library**: an install replaces by manifest id or URL and keeps the position; a captured configuration link installs at once; addon_catalog catalogs are
 left out of the rows and episode metas of one series collapse; Continue Watching sorts by the newer of the activity and the local resume time; the resume
 store can return the last played episode of a series (no screen uses it). Review fix: cloud anime items are still dropped only while their local copy is shown.
+
+## Stremio sign-in confirmed as the owner's decision (8 November)
+
+The owner confirmed that they removed the Stremio sign-in before the port began. Five rows that only existed for that sign-in (login and logout, user
+profile, cloud library, library repair, addon collection sync) are now Excluded, and five addon-management rows whose only gap was the Stremio account
+write (configure, uninstall, enable and disable, credentials persistence, installed addons management) are Ported on the local list. This changes the
+audit from 85.8 to 86.5 percent weighted and from 72.3 to 73.6 percent ported only, without any code change.
