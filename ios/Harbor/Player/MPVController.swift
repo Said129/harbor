@@ -35,6 +35,12 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
     private var mediaRevision = 0
     private var acknowledgedSubtitleFPS = 0.0
     private var preferredSecondaryHandled = false
+    /// Who chose the current subtitle (Desktop `autoSubIdRef`), for the subtitle selection settings.
+    private var subtitleSelectionOrigin: SubtitleSelectionOrigin = .none
+    private var knownSubtitleCandidates: [SubtitleSelectionCandidate] = []
+    private var audioUserPicked = false
+    private var assNormalizationKey: String?
+    private var assScaleApplied = false
     private let subtitleSession = UUID()
     private var addonSubtitleFiles: [String: ImportedSubtitle] = [:]
     private var lifecycleTokens: [NSObjectProtocol] = []
@@ -188,6 +194,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
 
     func set(_ name: String, _ value: String) {
         if name == "sid" || name == "secondary-sid" { selectSubtitle(value, secondary: name == "secondary-sid"); return }
+        if name == "aid" { audioUserPicked = true }
         guard let handle else { return }
         do {
             let result = value.withCString { pointer in
@@ -526,6 +533,8 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         cancelSubtitleSync()
         guard value == "no" || value == "auto" || Int(value).map({ $0 > 0 }) == true else { return }
         if secondary { preferredSecondaryHandled = true }
+        // "auto" turns subtitles back on and leaves the choice to automatic selection; any other pick is the person's.
+        if !secondary { subtitleSelectionOrigin = value == "auto" ? .none : .manual }
         enqueueSubtitleOperation { controller in
             if let id = Int(value) {
                 guard let track = controller.state.tracks.first(where: { $0.type == "sub" && $0.id == id }) else { throw HarborError(code: "subtitle-context") }
@@ -572,6 +581,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
             guard !controller.didClose, controller.state.loaded else { throw HarborError(code: "subtitle-context") }
             try await controller.resetSubtitleFPS()
             let local = PlaybackSource.Subtitle(url: file.url.absoluteString, lang: subtitle.lang, id: subtitle.id)
+            controller.subtitleSelectionOrigin = .manual
             if let track = controller.state.tracks.first(where: { $0.type == "sub" && local.matchesFilename($0.externalFilename) }) {
                 if controller.state.secondarySubtitle?.id == track.id { try await controller.setChecked("secondary-sid", "no") }
                 try await controller.setChecked("sid", String(track.id))
@@ -617,6 +627,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
             do {
                 guard !controller.didClose, controller.mediaRevision == revision else { throw HarborError(code: "subtitle-context") }
                 try await controller.resetSubtitleFPS()
+                controller.subtitleSelectionOrigin = .manual
                 try await controller.commandChecked(["sub-add", subtitle.url.absoluteString, "select", subtitle.title])
                 let deadline = Date().addingTimeInterval(7)
                 var importedTrack: Int?
@@ -697,6 +708,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                     }
                     do {
                         try await controller.resetSubtitleFPS()
+                        controller.subtitleSelectionOrigin = .manual
                         try await controller.commandChecked(["sub-add", file.url.absoluteString, "select", file.title])
                         try await controller.setChecked("sub-delay", "0")
                         let deadline = Date().addingTimeInterval(5)
@@ -740,6 +752,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         let timing = subtitleSyncOriginalTiming
         enqueueSubtitleOperation { controller in
             try await controller.resetSubtitleFPS()
+            controller.subtitleSelectionOrigin = .manual
             try await controller.setChecked("sid", String(id))
             if let timing {
                 try await controller.setChecked("sub-delay", String(timing.delay))
@@ -901,6 +914,8 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 subtitleSyncKey = nil; synchronizedTracks = []; state.subtitleSyncOriginal = nil; subtitleSyncOriginalTiming = nil; state.updateSubtitleSync(.idle)
                 mediaRevision += 1
                 preferredSecondaryHandled = false
+                subtitleSelectionOrigin = .none; knownSubtitleCandidates = []; audioUserPicked = false
+                resetASSScale()
                 state.mediaGeneration = mediaRevision
                 state.tracks = []
                 state.estimatedVideoFPS = nil
@@ -1062,6 +1077,95 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         }
         state.tracks = tracks
         applyPreferredSecondary()
+        applyTrackSelectionSettings()
+    }
+
+    /// Desktop `use-track-autoload.ts:801-864`: applies the subtitle and audio selection settings to the tracks mpv just reported. With those settings off and nothing blocked, mpv keeps its own choice.
+    private func applyTrackSelectionSettings() {
+        let preferences = SubtitleSelectionPreferences.shared
+        let options = PlaybackPreferences.shared.options
+        if state.primarySubtitle == nil {
+            if subtitleSelectionOrigin != .manual { subtitleSelectionOrigin = .none }
+        } else if subtitleSelectionOrigin == .none {
+            subtitleSelectionOrigin = .playerDefault
+        }
+        let candidates = state.tracks.subtitleSelectionCandidates
+        let context = SubtitleAutoSelectionContext(
+            origin: subtitleSelectionOrigin,
+            languages: SubtitleLanguages.preferredCodes(options.subtitleLanguage),
+            preferEmbedded: preferences.preferEmbeddedSubs,
+            autoUpgrade: preferences.subtitleAutoUpgrade,
+            blockWords: preferences.trackBlockWords,
+            suppressed: options.subtitlesOff)
+        if let id = SubtitleSelectionWiring.subtitleChoice(candidates: candidates, previous: knownSubtitleCandidates, currentID: state.primarySubtitle?.id, context: context) {
+            selectAutomaticSubtitle(id)
+        }
+        knownSubtitleCandidates = candidates
+        let currentAudio = state.tracks.first(where: { $0.type == "audio" && $0.selected })?.id
+        if let id = SubtitleSelectionWiring.audioChoice(candidates: state.tracks.audioSelectionCandidates, currentID: currentAudio, languages: SubtitleLanguages.preferredCodes(options.audioLanguage), blockWords: preferences.trackBlockWords, userPicked: audioUserPicked) {
+            selectAutomaticAudio(id)
+        }
+        applyASSNormalization()
+    }
+
+    private func selectAutomaticSubtitle(_ id: Int) {
+        let revision = mediaRevision
+        subtitleSelectionOrigin = .automatic
+        enqueueSubtitleOperation { controller in
+            // A manual pick queued meanwhile wins, as Desktop's `userPicked` check does.
+            guard controller.mediaRevision == revision, controller.subtitleSelectionOrigin == .automatic,
+                  controller.state.primarySubtitle?.id != id else { return }
+            try? await controller.resetSubtitleFPS()
+            if controller.state.secondarySubtitle?.id == id { try? await controller.setChecked("secondary-sid", "no") }
+            try? await controller.setChecked("sid", String(id))
+        }
+    }
+
+    private func selectAutomaticAudio(_ id: Int) {
+        let revision = mediaRevision
+        enqueueSubtitleOperation { controller in
+            guard controller.mediaRevision == revision, !controller.audioUserPicked else { return }
+            try? await controller.setChecked("aid", String(id))
+        }
+    }
+
+    /// Desktop `use-ass-normalize.ts` with `sub-style.ts:79-95`: sizes an external ASS file from its own header. Desktop reads embedded ASS through the Tauri-only `subtitle_extract_ass` command, which iOS does not have, so embedded tracks keep mpv's sizing. Remote files are not fetched here.
+    private func applyASSNormalization() {
+        let normalize = SubtitleSelectionPreferences.shared.subAssNormalizeSize
+        let assOverride = PlaybackPreferences.shared.options.subtitleASS
+        let fontSize = PlaybackPreferences.shared.options.subtitleSize
+        guard normalize, let track = state.primarySubtitle, track.external, !track.externalFilename.isEmpty,
+              AssSizeNormalization.isActive(normalizeSize: normalize, assOverride: assOverride, selectedIsASS: SubtitleSelectionWiring.isASSSelection(track)) else {
+            resetASSScale()
+            return
+        }
+        let key = "\(mediaRevision):\(track.id)"
+        guard assNormalizationKey != key, let url = SubtitleSelectionWiring.localFileURL(track.externalFilename) else { return }
+        assNormalizationKey = key
+        let revision = mediaRevision, trackID = track.id
+        Task { @MainActor [weak self] in
+            let text = await Task.detached(priority: .utility) { () -> String? in
+                try? String(contentsOf: url, encoding: .utf8)
+            }.value
+            guard let self, self.mediaRevision == revision, self.state.primarySubtitle?.id == trackID else { return }
+            if let scale = SubtitleSelectionWiring.assSubScale(normalizeSize: normalize, assOverride: assOverride, selectedIsASS: true, assText: text, targetFontSize: fontSize) {
+                // Desktop `sub-style.ts:81`: a normalised scale switches the override to "scale".
+                self.set("sub-ass-override", SubtitleSelectionWiring.assOverride(scaled: true, userOverride: assOverride))
+                self.set("sub-scale", String(scale))
+                self.assScaleApplied = true
+            } else {
+                self.resetASSScale()
+            }
+        }
+    }
+
+    /// Undoes the normalised scale and restores the person's override, only when Harbor changed them, so the default path sends nothing. iOS sends the font size as `sub-font-size`, so mpv's base `sub-scale` is 1.
+    private func resetASSScale() {
+        assNormalizationKey = nil
+        guard assScaleApplied else { return }
+        assScaleApplied = false
+        set("sub-ass-override", SubtitleSelectionWiring.assOverride(scaled: false, userOverride: PlaybackPreferences.shared.options.subtitleASS))
+        set("sub-scale", "1")
     }
 
     private func updateChapters(_ node: mpv_node) {

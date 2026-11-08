@@ -241,6 +241,7 @@ targets:
       - path: HarborTests/WireSpoilerTests.swift
       - path: HarborTests/AdReportEntryTests.swift
       - path: HarborTests/XrayTests.swift
+      - path: HarborTests/WireSubsTests.swift
       - path: HarborTests/CommunitySyncTests.swift
       - path: HarborTests/QualityBadgePolicyTests.swift
       - path: HarborTests/ContentAdvisoryTests.swift
