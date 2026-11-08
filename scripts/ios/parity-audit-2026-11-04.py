@@ -510,6 +510,24 @@ BEHAVIORS = expand("""
 424 P music audio cover import: a sidecar cover (cover, folder, front) fills in when there is no embedded art, for folder imports; the front-cover tag preference is not possible with AVFoundation's artwork key (8 Nov, written by Haiku, uncompiled)
 437 D music track title copying: Copy title and artist in the catalog, playlist and collection track menus (8 Nov, written by Haiku, uncompiled)
 438 D subtitle source FPS correction: the control is blocked with Desktop's message while auto-sync analyses or applies (8 Nov, written by Haiku, uncompiled)
+2 P Continue Watching on Home: the empty-state box and the one-card-per-title pass with the 100-card cap are in (8 Nov, written by Haiku, uncompiled); franchise-root removal is not, and Desktop's signed-out Stremio prompt is replaced by the empty message because iOS has no Stremio sign-in
+11 P cinema hero: auto-advance every 11 seconds and the daily pick of titles with artwork for the movie hero (8 Nov, written by Haiku, uncompiled); no pause on drag, no exclusion of recently played titles, and the pool is the iOS rails rather than Desktop's TMDB pool
+13 D movie catalog pagination: reaching the last title of a row asks for the next catalog page, with Desktop's 14-title first-page rule, 30-title cap and duplicate skipping; native fallback rows never page (8 Nov, written by Haiku, uncompiled)
+17 P series catalogs: inline paging is in, shared with the movie rows (8 Nov, written by Haiku, uncompiled); the curated 6-title hero pool and the removal of hero titles from the rows are not
+34 P poster, backdrop and logo: the title page logo now resolves through CardArtworkResolver after the saved choice and the season artwork (8 Nov, written by Haiku, uncompiled); the resolver only accepts TMDB and anime ids, so IMDb titles keep the metadata logo
+41 P episode details: rows show the runtime and a New badge for episodes aired in the last three days (8 Nov, written by Haiku, uncompiled); still no percent-watched or watched-ago text, no progress bar and no dedicated episode detail view
+42 P episode selection: the initial season follows Desktop's resume rule, and a random-episode button and a mark-season item in the sort menu are in for plain seasons (8 Nov, written by Haiku, uncompiled); cross-season search is not ported and mark-season writes to Trakt only, not Simkl
+43 D episode watched state: Simkl watched episodes join the watched set before the manual decisions, read from the in-memory list that fills when the Simkl library refreshes (8 Nov, written by Haiku, uncompiled)
+48 P install addon URL: an install now replaces the addon with the same manifest id or URL, keeps its place in the list and keeps the disabled state by URL (8 Nov, written by Haiku, uncompiled); the Stremio account write is still absent (see rows 50 to 52)
+61 P addon configuration viewport: a captured link now installs at once as on Desktop (8 Nov, written by Haiku, uncompiled); there is still no timed fallback to the browser
+63 P addon catalog discovery: the addon_catalog type filter and the episode-meta collapse are in (8 Nov, written by Haiku, uncompiled); the normalized-name row dedupe is not
+220 P live channel catalogs: channels follow Desktop's group relevance order with pinned channels first and hidden categories removed (8 Nov, written by Haiku, uncompiled); most-watched ordering is not ported because iOS keeps no play counts
+221 P channel categories: relevance order, per-list pins and hidden categories with a management sheet (8 Nov, written by Haiku, uncompiled); no drag reorder and no counts
+222 D live favorites: each favorite keeps a snapshot of its channel, so it shows when its playlist is not loaded, and the Favorites view ignores the list and category pickers as Desktop does (8 Nov, written by Haiku, uncompiled)
+266 P Continue Watching merge: the sort key now takes the newer of the activity and the local resume time (8 Nov, written by Haiku, uncompiled); cloud anime items are dropped only while their local copy is shown, because iOS imports them into the local library and Desktop's unconditional drop would hide them otherwise
+267 P local playback resume: the series-level last-played lookup exists in the resume store (8 Nov, written by Haiku, uncompiled); no screen calls it yet
+395 P sports score periods: the headings follow Desktop (Set, Period, Quarter, Overtime, Innings) (8 Nov, written by Haiku, uncompiled); cricket partnership and player tables, baseball and football situation panels and volleyball set data are not ported
+413 P Xtream short EPG: the fallback rule (120 channels, existing guides skipped, one failure leaves that channel empty) exists as a helper (8 Nov, written by Haiku, uncompiled); the live list shows no now and next, so nothing calls it
 """)
 
 SETTINGS = expand("""
@@ -951,6 +969,8 @@ SETTINGS = expand("""
 496 X manga enabled: Desktop's opt-in start page for manga sources; iOS opens the manga section directly and reaches its sources and imports from inside it
 510 X X-Ray live scan: Desktop matches faces on the frame against the cast photos with its own recognition model (useFaceId); iOS Vision only detects faces and no model ships
 248 X subtitle auto-sync speech recognition: Desktop runs a downloaded model through Rust commands (asr_ensure_model, asr_transcribe_windows) that iOS does not have
+373 D spoilerHideThumbnails: the Blur thumbnails toggle now writes Desktop's key (default on) and every episode list, card and the player panel read it (8 Nov, written by Haiku, uncompiled)
+5 X blurEpisodes: Desktop blurs the hero image and stills on its episode detail page; iOS has no dedicated episode detail page, so nothing reads the setting (the toggle labelled Blur thumbnails is Desktop's spoilerHideThumbnails)
 """)
 
 def audit(items, verdicts, label):

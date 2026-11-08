@@ -502,6 +502,7 @@
 "Change" = "تغيير";
 "Change chapter order" = "Change chapter order";
 "Change server" = "تغيير الخادم";
+"Channel categories" = "فئات القنوات";
 "Channel format" = "Channel format";
 "Chapters" = "الفصول";
 "Chat" = "الدردشة";
@@ -1135,6 +1136,7 @@
 "Hide and skip episodes" = "إخفاء الحلقات وتخطّيها";
 "Hide anime I've already watched" = "إخفاء الأنمي الذي شاهدته بالفعل";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide category" = "إخفاء الفئة";
 "Hide comments" = "إخفاء التعليقات";
 "Hide details" = "إخفاء التفاصيل";
 "Hide end notice" = "Hide end notice";
@@ -1549,6 +1551,7 @@
 "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "لا يتّصل بخادم المجتمع في أيّ اتجاه على الإطلاق. لا يُجرى أي استعلام ولا تُرسَل أي مساهمة من هذا الجهاز.";
 "Never show the content advisory for this title again" = "عدم إظهار تنبيه المحتوى لهذا العنوان مرة أخرى";
 "Never shown again" = "لن يظهر مجددًا";
+"New" = "جديد";
 "New Anime Releases" = "أحدث إصدارات الأنمي";
 "New Episodes" = "حلقات جديدة";
 "New Episodes row" = "صف الحلقات الجديدة";
@@ -1669,6 +1672,7 @@
 "Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "لا شيء من مكتبتك يقع هذا الشهر. عطّل قائمة المشاهدة لرؤية كل الإصدارات.";
 "Nothing from your library this month" = "لا شيء من مكتبتك هذا الشهر";
 "Nothing here yet" = "لا يوجد شيء هنا بعد";
+"Nothing in progress yet. Press Play on something." = "لا شيء قيد التقدم بعد. اضغط تشغيل على شيء ما.";
 "Nothing installed yet" = "لم يُثبَّت شيء بعد";
 "Nothing matched this filter. Try another category or change your region in Settings." = "لا شيء يطابق هذا الفلتر. جرّب فئة أخرى أو غيّر منطقتك من الإعدادات.";
 "Nothing on Trakt this month" = "لا شيء على Trakt هذا الشهر";
@@ -1849,6 +1853,7 @@
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "تشغيل";
+"Play a random episode" = "تشغيل حلقة عشوائية";
 "Play movie" = "تشغيل الفيلم";
 "Play next" = "تشغيل تاليًا";
 "Play now" = "التشغيل الآن";
@@ -2773,6 +2778,7 @@
 "Unavailable" = "غير متاح";
 "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "تراجع";
+"Unhide {name}" = "إظهار {name}";
 "United Kingdom" = "المملكة المتحدة";
 "United States" = "الولايات المتحدة";
 "Unknown" = "غير معروف";
@@ -4162,6 +4168,7 @@
 "{n} ep" = "{n} حلقة";
 "{n} eps" = "{n} حلقة";
 "{n} films." = "{n} films.";
+"{n} hidden" = "{n} مخفي";
 "{n} hr" = "{n} س";
 "{n} in a day" = "{n} في يوم واحد";
 "{n} item" = "{n} عنصر";

@@ -483,6 +483,7 @@
 "Change" = "Değiştir";
 "Change chapter order" = "Change chapter order";
 "Change server" = "Sunucuyu değiştir";
+"Channel categories" = "Kanal kategorileri";
 "Channel format" = "Channel format";
 "Chapters" = "Bölümler";
 "Chat" = "Sohbet";
@@ -1111,6 +1112,7 @@
 "Hide and skip episodes" = "Bölümleri gizle ve atla";
 "Hide anime I've already watched" = "İzlediğim animeleri gizle";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide category" = "Kategoriyi gizle";
 "Hide comments" = "Yorumları gizle";
 "Hide details" = "Ayrıntıları gizle";
 "Hide end notice" = "Hide end notice";
@@ -1522,6 +1524,7 @@
 "Never auto-select tracks containing" = "Şunları içeren parçaları asla otomatik seçme";
 "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "Topluluk sunucusuyla hiçbir yönde iletişim kurulmaz. Bu cihazdan hiçbir şey sorgulanmaz veya paylaşılmaz.";
 "Never show the content advisory for this title again" = "Bu içerik için içerik uyarısını bir daha gösterme";
+"New" = "Yeni";
 "New Anime Releases" = "Yeni Çıkan Animeler";
 "New Episodes" = "Yeni Bölümler";
 "New Episodes row" = "Yeni Bölümler satırı";
@@ -1642,6 +1645,7 @@
 "Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "Kütüphanenizdeki hiçbir içerik bu ay yayınlanmıyor. Tüm yayınları görmek için İzleme Listesi'ni kapatın.";
 "Nothing from your library this month" = "Bu ay kütüphanenizden hiçbir şey yok";
 "Nothing here yet" = "Burada henüz bir şey yok";
+"Nothing in progress yet. Press Play on something." = "Henüz devam eden bir izleme yok. Bir içerikte Oynat'a basın.";
 "Nothing installed yet" = "Henüz bir şey yüklenmedi";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Bu filtreyle eşleşen bir şey yok. Başka bir kategori deneyin veya Ayarlar'dan bölgenizi değiştirin.";
 "Nothing on Trakt this month" = "Bu ay Trakt'ta bir şey yok";
@@ -1819,6 +1823,7 @@
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "Oynat";
+"Play a random episode" = "Rastgele bir bölüm oynat";
 "Play movie" = "Filmi oynat";
 "Play next" = "Sıradaki olarak çal";
 "Play now" = "Şimdi oynat";
@@ -2736,6 +2741,7 @@
 "Unavailable" = "Kullanılamıyor";
 "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "Geri al";
+"Unhide {name}" = "{name} kategorisini göster";
 "United Kingdom" = "Birleşik Krallık";
 "United States" = "Amerika Birleşik Devletleri";
 "Unknown" = "Bilinmiyor";
@@ -4121,6 +4127,7 @@
 "{n} ep" = "{n} blm";
 "{n} eps" = "{n} blm";
 "{n} films." = "{n} films.";
+"{n} hidden" = "{n} gizli";
 "{n} hr" = "{n} sa.";
 "{n} in a day" = "Bir günde {n}";
 "{n} item" = "{n} öğe";

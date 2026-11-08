@@ -1802,3 +1802,20 @@ folder imports, "Copy title and artist" joins the catalog track menus, and the s
 **Player and subtitles**: the seek bar draws the buffered fill, external SRT/ASS/VTT files are converted to UTF-8 when they use a legacy encoding, the SDH
 filter follows Desktop's gate, the streaming-server path keeps the addon subtitles, and a network stream that ends before 85 percent of a known duration
 reloads once.
+
+## Twenty-first round: Home, detail, Live TV and addons (8 November, written by Haiku, uncompiled; review fixes by Sonnet)
+
+Four Haiku branches, one per area, merged without conflicts.
+**Home**: the Home Continue Watching row shows Desktop's empty-state box and keeps one card per title with the 100-card cap; the cinema hero advances on its own
+every 11 seconds and the movie hero is Desktop's daily pick of titles with artwork; movie and series rows ask for the next catalog page when the last title
+appears (14-title first-page rule, 30-title cap, duplicates skipped). Not done: the Top 10 Movies Today row and the Top 10 ribbon setting. The signed-out
+Stremio prompt of the empty box is replaced by the plain empty message because iOS has no Stremio sign-in.
+**Detail**: the title page logo goes through CardArtworkResolver; episode rows show the runtime and a New badge for the last three days; the episode header has
+a random-episode button and the sort menu a mark-season item; Simkl watched episodes join the watched set; the Blur thumbnails toggle now writes Desktop's
+spoilerHideThumbnails key (default on) and every spoiler mask reads it. blurEpisodes (Desktop's episode detail page blur) is excluded because iOS has no such page.
+**Live TV and Sports**: channels follow Desktop's group relevance order, channels can be pinned, categories can be pinned and hidden per list (a management
+sheet), favorites keep a snapshot of their channel and show without their playlist, and the score headings use Desktop's period words. The Xtream short-EPG
+fallback is a tested helper that nothing calls, because the live list has no now and next.
+**Addons and library**: an install replaces by manifest id or URL and keeps the position; a captured configuration link installs at once; addon_catalog catalogs are
+left out of the rows and episode metas of one series collapse; Continue Watching sorts by the newer of the activity and the local resume time; the resume
+store can return the last played episode of a series (no screen uses it). Review fix: cloud anime items are still dropped only while their local copy is shown.

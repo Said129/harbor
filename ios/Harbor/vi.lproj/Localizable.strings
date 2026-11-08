@@ -483,6 +483,7 @@
 "Change" = "Thay đổi";
 "Change chapter order" = "Change chapter order";
 "Change server" = "Đổi máy chủ";
+"Channel categories" = "Danh mục kênh";
 "Channel format" = "Channel format";
 "Chapters" = "Các chương";
 "Chat" = "Trò chuyện";
@@ -1111,6 +1112,7 @@
 "Hide and skip episodes" = "Ẩn và bỏ qua tập";
 "Hide anime I've already watched" = "Ẩn anime tôi đã xem";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide category" = "Ẩn danh mục";
 "Hide comments" = "Ẩn bình luận";
 "Hide details" = "Ẩn chi tiết";
 "Hide end notice" = "Hide end notice";
@@ -1522,6 +1524,7 @@
 "Never auto-select tracks containing" = "Không bao giờ tự động chọn rãnh có chứa";
 "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "Không bao giờ liên hệ với máy chủ cộng đồng theo bất kỳ chiều nào. Thiết bị này sẽ không tra cứu hay đóng góp bất kỳ dữ liệu nào.";
 "Never show the content advisory for this title again" = "Không bao giờ hiện cảnh báo nội dung cho tựa phim này nữa";
+"New" = "Mới";
 "New Anime Releases" = "Anime mới phát hành";
 "New Episodes" = "Tập mới";
 "New Episodes row" = "Hàng Tập mới";
@@ -1642,6 +1645,7 @@
 "Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "Tháng này thư viện không có nội dung mới. Tắt Danh sách xem để xem tất cả nội dung phát hành.";
 "Nothing from your library this month" = "Tháng này thư viện không có nội dung";
 "Nothing here yet" = "Chưa có nội dung";
+"Nothing in progress yet. Press Play on something." = "Chưa có nội dung đang xem. Hãy nhấn Phát trên một nội dung.";
 "Nothing installed yet" = "Chưa cài gì";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Không có nội dung nào khớp với bộ lọc này. Hãy thử danh mục khác hoặc đổi khu vực trong Cài đặt.";
 "Nothing on Trakt this month" = "Tháng này không có nội dung nào trên Trakt";
@@ -1819,6 +1823,7 @@
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "Phát";
+"Play a random episode" = "Phát một tập ngẫu nhiên";
 "Play movie" = "Phát phim";
 "Play next" = "Phát tiếp theo";
 "Play now" = "Phát ngay";
@@ -2736,6 +2741,7 @@
 "Unavailable" = "Không khả dụng";
 "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "Hoàn tác";
+"Unhide {name}" = "Hiện lại {name}";
 "United Kingdom" = "Vương quốc Anh";
 "United States" = "Hoa Kỳ";
 "Unknown" = "Không xác định";
@@ -4121,6 +4127,7 @@
 "{n} ep" = "{n} tập";
 "{n} eps" = "{n} tập";
 "{n} films." = "{n} films.";
+"{n} hidden" = "{n} đã ẩn";
 "{n} hr" = "{n} giờ";
 "{n} in a day" = "{n} trong một ngày";
 "{n} item" = "{n} mục";

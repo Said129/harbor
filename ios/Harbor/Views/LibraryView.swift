@@ -238,8 +238,8 @@ struct ContinueWatching: View {
                     }.padding(.horizontal)
                 }.scrollIndicators(.hidden)
             }
-        } else if kind == nil {
-            HomeContinueWatchingEmptyState(title: titleIsLiteral ? title : DesktopInterfaceText.value(title), signedIn: app.library.hasCloudSession)
+        } else if kind == nil && !app.library.loading {
+            HomeContinueWatchingEmptyState(title: titleIsLiteral ? title : DesktopInterfaceText.value(title))
         }
     }
 }

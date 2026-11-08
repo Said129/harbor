@@ -486,6 +486,7 @@
 "Change" = "Изменить";
 "Change chapter order" = "Change chapter order";
 "Change server" = "Сменить сервер";
+"Channel categories" = "Категории каналов";
 "Channel format" = "Channel format";
 "Chapters" = "Главы";
 "Chat" = "Чат";
@@ -1115,6 +1116,7 @@
 "Hide and skip episodes" = "Скрывать и пропускать серии";
 "Hide anime I've already watched" = "Скрывать просмотренное аниме";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide category" = "Скрыть категорию";
 "Hide comments" = "Скрыть комментарии";
 "Hide details" = "Скрыть подробности";
 "Hide end notice" = "Hide end notice";
@@ -1529,6 +1531,7 @@
 "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "Никогда не обращаться к серверу сообщества ни в ту, ни в другую сторону. С этого устройства ничего не запрашивается и ничего не отправляется.";
 "Never show the content advisory for this title again" = "Больше не показывать предупреждение о контенте для этого названия";
 "Never shown again" = "Never shown again";
+"New" = "Новое";
 "New Anime Releases" = "Новинки аниме";
 "New Episodes" = "Новые серии";
 "New Episodes row" = "Ряд «Новые серии»";
@@ -1649,6 +1652,7 @@
 "Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "В этом месяце из вашей библиотеки ничего не выходит. Отключите «Список просмотра», чтобы увидеть все релизы.";
 "Nothing from your library this month" = "В этом месяце ничего из вашей библиотеки";
 "Nothing here yet" = "Здесь пока пусто";
+"Nothing in progress yet. Press Play on something." = "Пока ничего не начато. Запустите что-нибудь.";
 "Nothing installed yet" = "Пока ничего не установлено";
 "Nothing matched this filter. Try another category or change your region in Settings." = "По этому фильтру ничего не найдено. Попробуйте другую категорию или измените регион в настройках.";
 "Nothing on Trakt this month" = "В этом месяце на Trakt ничего нет";
@@ -1829,6 +1833,7 @@
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "Воспроизвести";
+"Play a random episode" = "Включить случайную серию";
 "Play movie" = "Смотреть фильм";
 "Play next" = "Воспроизвести следующим";
 "Play now" = "Смотреть сейчас";
@@ -2750,6 +2755,7 @@
 "Unavailable" = "Недоступно";
 "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "Отменить";
+"Unhide {name}" = "Показать {name}";
 "United Kingdom" = "Великобритания";
 "United States" = "США";
 "Unknown" = "Неизвестно";
@@ -4135,6 +4141,7 @@
 "{n} ep" = "{n} эп";
 "{n} eps" = "{n} эп";
 "{n} films." = "{n} films.";
+"{n} hidden" = "скрыто {n}";
 "{n} hr" = "{n} ч";
 "{n} in a day" = "{n} за день";
 "{n} item" = "{n} элементов";

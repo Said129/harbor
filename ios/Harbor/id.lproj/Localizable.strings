@@ -483,6 +483,7 @@
 "Change" = "Ubah";
 "Change chapter order" = "Change chapter order";
 "Change server" = "Ubah server";
+"Channel categories" = "Kategori saluran";
 "Channel format" = "Channel format";
 "Chapters" = "Bab";
 "Chat" = "Obrolan";
@@ -1111,6 +1112,7 @@
 "Hide and skip episodes" = "Sembunyikan dan lewati episode";
 "Hide anime I've already watched" = "Sembunyikan anime yang sudah saya tonton";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide category" = "Sembunyikan kategori";
 "Hide comments" = "Sembunyikan komentar";
 "Hide details" = "Sembunyikan detail";
 "Hide end notice" = "Hide end notice";
@@ -1522,6 +1524,7 @@
 "Never auto-select tracks containing" = "Jangan pernah memilih secara otomatis trek yang memuat";
 "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "Jangan pernah menghubungi server komunitas, baik untuk menerima maupun mengirim data. Tidak ada yang dicari dan tidak ada yang dikontribusikan dari perangkat ini.";
 "Never show the content advisory for this title again" = "Jangan pernah tampilkan peringatan konten untuk judul ini lagi";
+"New" = "Baru";
 "New Anime Releases" = "Rilisan Anime Baru";
 "New Episodes" = "Episode Baru";
 "New Episodes row" = "Baris Episode Baru";
@@ -1642,6 +1645,7 @@
 "Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "Tidak ada dari perpustakaan Anda yang dirilis bulan ini. Nonaktifkan Daftar tontonan untuk melihat semua rilisan.";
 "Nothing from your library this month" = "Tidak ada apa pun dari perpustakaan Anda bulan ini";
 "Nothing here yet" = "Belum ada apa pun di sini";
+"Nothing in progress yet. Press Play on something." = "Belum ada yang sedang ditonton. Tekan Putar pada sesuatu.";
 "Nothing installed yet" = "Belum ada yang terpasang";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Tidak ada yang cocok dengan filter ini. Coba kategori lain atau ubah wilayah Anda di Pengaturan.";
 "Nothing on Trakt this month" = "Tidak ada apa pun di Trakt bulan ini";
@@ -1819,6 +1823,7 @@
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "Putar";
+"Play a random episode" = "Putar episode acak";
 "Play movie" = "Putar film";
 "Play next" = "Putar berikutnya";
 "Play now" = "Putar sekarang";
@@ -2736,6 +2741,7 @@
 "Unavailable" = "Tidak tersedia";
 "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "Urungkan";
+"Unhide {name}" = "Tampilkan kembali {name}";
 "United Kingdom" = "Britania Raya";
 "United States" = "Amerika Serikat";
 "Unknown" = "Tidak diketahui";
@@ -4121,6 +4127,7 @@
 "{n} ep" = "{n} ep";
 "{n} eps" = "{n} ep";
 "{n} films." = "{n} films.";
+"{n} hidden" = "{n} disembunyikan";
 "{n} hr" = "{n} jam";
 "{n} in a day" = "{n} dalam sehari";
 "{n} item" = "{n} item";

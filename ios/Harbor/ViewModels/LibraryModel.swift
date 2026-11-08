@@ -90,7 +90,7 @@ final class LibraryModel {
         let localVisible = localReady && localActive()
         let localRecords = continuingPrivate ? localSnapshot.personalRecords : localSnapshot.sharedRecords
         let local = localVisible ? localRecords.filter { $0.raw["nativeSource"] == .string("library") ? continueSources.library : continueSources.local } : []
-        let base = continueSources.library && !continuingPrivate ? snapshot.continuing.filter { ContinueWatchingSortRules.keepsCloudRecord(id: $0.id) } : []
+        let base = continueSources.library && !continuingPrivate ? snapshot.continuing.filter { ContinueWatchingSortRules.keepsCloudRecord(id: $0.id, localVisible: localVisible) } : []
         guard !external.isEmpty || !local.isEmpty else { return base }
         if let saved = continuationCache, saved.library == continuationRevision, saved.tracker == simklPlayback.revision,
            saved.trakt == traktPlayback.revision,

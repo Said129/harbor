@@ -483,6 +483,7 @@
 "Change" = "변경";
 "Change chapter order" = "Change chapter order";
 "Change server" = "서버 변경";
+"Channel categories" = "채널 카테고리";
 "Channel format" = "Channel format";
 "Chapters" = "챕터";
 "Chat" = "채팅";
@@ -1111,6 +1112,7 @@
 "Hide and skip episodes" = "에피소드 숨기기 및 건너뛰기";
 "Hide anime I've already watched" = "이미 본 애니메이션 숨기기";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide category" = "카테고리 숨기기";
 "Hide comments" = "댓글 숨기기";
 "Hide details" = "세부 정보 숨기기";
 "Hide end notice" = "Hide end notice";
@@ -1522,6 +1524,7 @@
 "Never auto-select tracks containing" = "다음 문구가 포함된 트랙 자동 선택 안 함";
 "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "커뮤니티 서버와 어떠한 방향으로도 통신하지 않습니다. 이 기기에서는 아무것도 조회하거나 공유하지 않습니다.";
 "Never show the content advisory for this title again" = "이 작품에는 콘텐츠 주의 사항을 다시 표시하지 않습니다";
+"New" = "신규";
 "New Anime Releases" = "최신 애니메이션";
 "New Episodes" = "새 에피소드";
 "New Episodes row" = "새 에피소드 행";
@@ -1642,6 +1645,7 @@
 "Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "이번 달에 공개되는 라이브러리 항목이 없습니다. 모든 공개작을 보려면 관심 목록을 끄세요.";
 "Nothing from your library this month" = "이번 달에는 라이브러리 항목이 없습니다";
 "Nothing here yet" = "아직 아무것도 없습니다";
+"Nothing in progress yet. Press Play on something." = "아직 시청 중인 콘텐츠가 없습니다. 콘텐츠를 재생해 보세요.";
 "Nothing installed yet" = "아직 설치된 것이 없습니다";
 "Nothing matched this filter. Try another category or change your region in Settings." = "이 필터와 일치하는 항목이 없습니다. 다른 카테고리를 선택하거나 설정에서 지역을 변경해 보세요.";
 "Nothing on Trakt this month" = "이번 달 Trakt 항목 없음";
@@ -1819,6 +1823,7 @@
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "재생";
+"Play a random episode" = "무작위 에피소드 재생";
 "Play movie" = "영화 재생";
 "Play next" = "다음에 재생";
 "Play now" = "지금 재생";
@@ -2736,6 +2741,7 @@
 "Unavailable" = "사용할 수 없음";
 "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "실행 취소";
+"Unhide {name}" = "{name} 숨기기 해제";
 "United Kingdom" = "영국";
 "United States" = "미국";
 "Unknown" = "알 수 없음";
@@ -4121,6 +4127,7 @@
 "{n} ep" = "에피소드 {n}개";
 "{n} eps" = "에피소드 {n}개";
 "{n} films." = "{n} films.";
+"{n} hidden" = "숨김 {n}개";
 "{n} hr" = "{n}시간";
 "{n} in a day" = "하루에 {n}개";
 "{n} item" = "항목 {n}개";

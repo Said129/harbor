@@ -483,6 +483,7 @@
 "Change" = "Cambiar";
 "Change chapter order" = "Cambiar orden de capítulos";
 "Change server" = "Cambiar servidor";
+"Channel categories" = "Categorías de canales";
 "Channel format" = "Formato de canales";
 "Chapters" = "Capítulos";
 "Chat" = "Chat";
@@ -1111,6 +1112,7 @@
 "Hide and skip episodes" = "Ocultar y omitir episodios";
 "Hide anime I've already watched" = "Ocultar anime que ya vi";
 "Hide camera recordings · CAM / TS / TC" = "Ocultar grabaciones de cámara · CAM / TS / TC";
+"Hide category" = "Ocultar categoría";
 "Hide comments" = "Ocultar comentarios";
 "Hide details" = "Ocultar detalles";
 "Hide end notice" = "Ocultar aviso de fin";
@@ -1522,6 +1524,7 @@
 "Never auto-select tracks containing" = "Nunca seleccionar automáticamente pistas que contengan";
 "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "Nunca conectarse con el servidor comunitario en ninguna dirección. No se consulta ni se aporta nada desde este dispositivo.";
 "Never show the content advisory for this title again" = "No volver a mostrar la advertencia de contenido de este título";
+"New" = "Nuevo";
 "New Anime Releases" = "Nuevos estrenos de anime";
 "New Episodes" = "Nuevos episodios";
 "New Episodes row" = "Fila de nuevos episodios";
@@ -1642,6 +1645,7 @@
 "Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "Nada de tu biblioteca se estrena este mes. Desactiva Lista de seguimiento para ver todos los estrenos.";
 "Nothing from your library this month" = "Nada de tu biblioteca este mes";
 "Nothing here yet" = "Aún no hay nada aquí";
+"Nothing in progress yet. Press Play on something." = "Aún no hay nada en progreso. Presiona Reproducir en algún título.";
 "Nothing installed yet" = "Aún no hay nada instalado";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Nada coincidió con este filtro. Prueba otra categoría o cambia tu región en Configuración.";
 "Nothing on Trakt this month" = "Nada en Trakt este mes";
@@ -1819,6 +1823,7 @@
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "Reproducir";
+"Play a random episode" = "Reproducir un episodio al azar";
 "Play movie" = "Reproducir película";
 "Play next" = "Reproducir después";
 "Play now" = "Reproducir ahora";
@@ -2736,6 +2741,7 @@
 "Unavailable" = "No disponible";
 "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "Deshacer";
+"Unhide {name}" = "Volver a mostrar {name}";
 "United Kingdom" = "Reino Unido";
 "United States" = "Estados Unidos";
 "Unknown" = "Desconocido";
@@ -4121,6 +4127,7 @@
 "{n} ep" = "{n} ep.";
 "{n} eps" = "{n} epis.";
 "{n} films." = "{n} films.";
+"{n} hidden" = "{n} ocultos";
 "{n} hr" = "{n} h";
 "{n} in a day" = "{n} en un día";
 "{n} item" = "{n} elemento";

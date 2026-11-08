@@ -96,10 +96,11 @@ final class R21AddonsTests: XCTestCase {
 
     // MARK: Desktop Continue Watching merge (behaviors 266)
 
-    func testCloudAnimeIsNeverAContinueWatchingCloudRecord() {
-        XCTAssertFalse(ContinueWatchingSortRules.keepsCloudRecord(id: "kitsu:1"))
-        XCTAssertFalse(ContinueWatchingSortRules.keepsCloudRecord(id: "anilist:3"))
-        XCTAssertTrue(ContinueWatchingSortRules.keepsCloudRecord(id: "tt1"))
+    func testCloudAnimeLeavesTheCloudListOnlyWhileTheLocalCopyIsShown() {
+        XCTAssertFalse(ContinueWatchingSortRules.keepsCloudRecord(id: "kitsu:1", localVisible: true))
+        XCTAssertFalse(ContinueWatchingSortRules.keepsCloudRecord(id: "anilist:3", localVisible: true))
+        XCTAssertTrue(ContinueWatchingSortRules.keepsCloudRecord(id: "kitsu:1", localVisible: false))
+        XCTAssertTrue(ContinueWatchingSortRules.keepsCloudRecord(id: "tt1", localVisible: true))
     }
 
     func testSortKeyTakesTheNewerResumeTimestamp() {

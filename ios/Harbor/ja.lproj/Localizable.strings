@@ -483,6 +483,7 @@
 "Change" = "変更";
 "Change chapter order" = "Change chapter order";
 "Change server" = "サーバーを変更";
+"Channel categories" = "チャンネルカテゴリー";
 "Channel format" = "Channel format";
 "Chapters" = "話";
 "Chat" = "チャット";
@@ -1111,6 +1112,7 @@
 "Hide and skip episodes" = "エピソードを非表示にしてスキップ";
 "Hide anime I've already watched" = "視聴済みのアニメを非表示";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide category" = "カテゴリーを非表示";
 "Hide comments" = "コメントを非表示";
 "Hide details" = "詳細を隠す";
 "Hide end notice" = "Hide end notice";
@@ -1522,6 +1524,7 @@
 "Never auto-select tracks containing" = "次を含むトラックを自動選択しない";
 "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "コミュニティサーバーとの送受信を一切行いません。このデバイスから検索も投稿も行われません。";
 "Never show the content advisory for this title again" = "この作品では今後コンテンツに関する注意を表示しない";
+"New" = "新着";
 "New Anime Releases" = "新作アニメ";
 "New Episodes" = "新着エピソード";
 "New Episodes row" = "「新着エピソード」行";
@@ -1642,6 +1645,7 @@
 "Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "今月、ライブラリ内の作品は配信されません。すべての配信作品を表示するには、ウォッチリストをオフにしてください。";
 "Nothing from your library this month" = "今月、ライブラリからの配信予定はありません";
 "Nothing here yet" = "まだ何もありません";
+"Nothing in progress yet. Press Play on something." = "再生中の作品はまだありません。何か再生してみましょう。";
 "Nothing installed yet" = "まだ何もインストールされていません";
 "Nothing matched this filter. Try another category or change your region in Settings." = "このフィルターに一致する作品はありません。別のカテゴリーを試すか、設定で地域を変更してください。";
 "Nothing on Trakt this month" = "今月のTraktには何もありません";
@@ -1819,6 +1823,7 @@
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "再生";
+"Play a random episode" = "ランダムなエピソードを再生";
 "Play movie" = "映画を再生";
 "Play next" = "次に再生";
 "Play now" = "今すぐ再生";
@@ -2736,6 +2741,7 @@
 "Unavailable" = "利用できません";
 "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "元に戻す";
+"Unhide {name}" = "{name}を再表示";
 "United Kingdom" = "イギリス";
 "United States" = "アメリカ";
 "Unknown" = "不明";
@@ -4121,6 +4127,7 @@
 "{n} ep" = "{n}話";
 "{n} eps" = "{n}話";
 "{n} films." = "{n} films.";
+"{n} hidden" = "{n}件非表示";
 "{n} hr" = "{n}時間";
 "{n} in a day" = "1日で{n}本";
 "{n} item" = "{n}件";

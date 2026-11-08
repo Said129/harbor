@@ -483,6 +483,7 @@
 "Change" = "बदलें";
 "Change chapter order" = "Change chapter order";
 "Change server" = "सर्वर बदलें";
+"Channel categories" = "चैनल श्रेणियाँ";
 "Channel format" = "Channel format";
 "Chapters" = "अध्याय";
 "Chat" = "चैट";
@@ -1111,6 +1112,7 @@
 "Hide and skip episodes" = "एपिसोड छिपाएँ और छोड़ें";
 "Hide anime I've already watched" = "जो एनीमे मैं पहले ही देख चुका हूँ, उन्हें छिपाएँ";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide category" = "श्रेणी छिपाएँ";
 "Hide comments" = "टिप्पणियाँ छिपाएँ";
 "Hide details" = "विवरण छिपाएँ";
 "Hide end notice" = "Hide end notice";
@@ -1522,6 +1524,7 @@
 "Never auto-select tracks containing" = "इन शब्दों वाले ट्रैक कभी अपने-आप न चुनें";
 "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "किसी भी दिशा में कम्युनिटी सर्वर से कभी संपर्क न करें। इस डिवाइस से न कुछ खोजा जाता है, न कोई जानकारी साझा की जाती है।";
 "Never show the content advisory for this title again" = "इस शीर्षक के लिए कॉन्टेंट संबंधी चेतावनी दोबारा कभी न दिखाएँ";
+"New" = "नया";
 "New Anime Releases" = "नई एनीमे रिलीज़";
 "New Episodes" = "नए एपिसोड";
 "New Episodes row" = "नए एपिसोड की पंक्ति";
@@ -1642,6 +1645,7 @@
 "Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "इस महीने आपकी लाइब्रेरी से कुछ भी रिलीज़ नहीं हो रहा है। सभी रिलीज़ देखने के लिए वॉचलिस्ट बंद करें।";
 "Nothing from your library this month" = "इस महीने आपकी लाइब्रेरी से कुछ भी रिलीज़ नहीं हो रहा है";
 "Nothing here yet" = "अभी तक यहाँ कुछ नहीं है";
+"Nothing in progress yet. Press Play on something." = "अभी तक कुछ भी चल नहीं रहा है। कुछ चलाने के लिए प्ले दबाएँ।";
 "Nothing installed yet" = "अभी तक कुछ इंस्टॉल नहीं है";
 "Nothing matched this filter. Try another category or change your region in Settings." = "इस फ़िल्टर से कुछ भी मेल नहीं खाया। कोई दूसरी कैटेगरी आज़माएँ या सेटिंग्स में अपना क्षेत्र बदलें।";
 "Nothing on Trakt this month" = "इस महीने Trakt पर कुछ नहीं है";
@@ -1819,6 +1823,7 @@
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "चलाएँ";
+"Play a random episode" = "कोई रैंडम एपिसोड चलाएँ";
 "Play movie" = "फ़िल्म चलाएँ";
 "Play next" = "अगला चलाएँ";
 "Play now" = "अभी चलाएँ";
@@ -2736,6 +2741,7 @@
 "Unavailable" = "उपलब्ध नहीं";
 "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "पहले जैसा करें";
+"Unhide {name}" = "{name} को फिर दिखाएँ";
 "United Kingdom" = "यूनाइटेड किंगडम";
 "United States" = "संयुक्त राज्य अमेरिका";
 "Unknown" = "अज्ञात";
@@ -4121,6 +4127,7 @@
 "{n} ep" = "{n} एपिसोड";
 "{n} eps" = "{n} एपिसोड";
 "{n} films." = "{n} films.";
+"{n} hidden" = "{n} छिपे हुए";
 "{n} hr" = "{n} घंटे";
 "{n} in a day" = "एक दिन में {n}";
 "{n} item" = "{n} आइटम";

@@ -483,6 +483,7 @@
 "Change" = "Ändern";
 "Change chapter order" = "Change chapter order";
 "Change server" = "Server wechseln";
+"Channel categories" = "Senderkategorien";
 "Channel format" = "Channel format";
 "Chapters" = "Kapitel";
 "Chat" = "Chat";
@@ -1111,6 +1112,7 @@
 "Hide and skip episodes" = "Episoden ausblenden und überspringen";
 "Hide anime I've already watched" = "Bereits angesehene Anime ausblenden";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide category" = "Kategorie ausblenden";
 "Hide comments" = "Kommentare ausblenden";
 "Hide details" = "Details ausblenden";
 "Hide end notice" = "Hide end notice";
@@ -1522,6 +1524,7 @@
 "Never auto-select tracks containing" = "Nie automatisch Tonspuren auswählen, die Folgendes enthalten";
 "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "Niemals eine Verbindung zum Community-Server herstellen, weder zum Abrufen noch zum Senden von Daten. Auf diesem Gerät werden weder Daten abgerufen noch bereitgestellt.";
 "Never show the content advisory for this title again" = "Den Inhaltshinweis für diesen Titel nie wieder anzeigen";
+"New" = "Neu";
 "New Anime Releases" = "Anime-Neuerscheinungen";
 "New Episodes" = "Neue Folgen";
 "New Episodes row" = "Zeile „Neue Folgen“";
@@ -1642,6 +1645,7 @@
 "Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "Aus deiner Mediathek erscheint diesen Monat nichts. Deaktiviere die Merkliste, um alle Veröffentlichungen zu sehen.";
 "Nothing from your library this month" = "Diesen Monat nichts aus deiner Mediathek";
 "Nothing here yet" = "Hier gibt es noch nichts";
+"Nothing in progress yet. Press Play on something." = "Noch nichts angefangen. Drücke bei einem Titel auf „Wiedergabe“.";
 "Nothing installed yet" = "Noch nichts installiert";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Für diesen Filter wurden keine Treffer gefunden. Probiere eine andere Kategorie aus oder ändere deine Region in den Einstellungen.";
 "Nothing on Trakt this month" = "Diesen Monat nichts auf Trakt";
@@ -1819,6 +1823,7 @@
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "Abspielen";
+"Play a random episode" = "Zufällige Episode abspielen";
 "Play movie" = "Film abspielen";
 "Play next" = "Als Nächstes abspielen";
 "Play now" = "Jetzt abspielen";
@@ -2736,6 +2741,7 @@
 "Unavailable" = "Nicht verfügbar";
 "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "Rückgängig";
+"Unhide {name}" = "{name} einblenden";
 "United Kingdom" = "Vereinigtes Königreich";
 "United States" = "Vereinigte Staaten";
 "Unknown" = "Unbekannt";
@@ -4121,6 +4127,7 @@
 "{n} ep" = "{n} Folge";
 "{n} eps" = "{n} Folgen";
 "{n} films." = "{n} films.";
+"{n} hidden" = "{n} ausgeblendet";
 "{n} hr" = "{n} Std.";
 "{n} in a day" = "{n} an einem Tag";
 "{n} item" = "{n} Element";

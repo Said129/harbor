@@ -416,6 +416,7 @@
 "Change" = "Change";
 "Change chapter order" = "Change chapter order";
 "Change server" = "Change server";
+"Channel categories" = "Channel categories";
 "Channel format" = "Channel format";
 "Chapters" = "Chapters";
 "Chat" = "Chat";
@@ -972,6 +973,7 @@
 "Hide and skip episodes" = "Hide and skip episodes";
 "Hide anime I've already watched" = "Hide anime I've already watched";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide category" = "Hide category";
 "Hide comments" = "Hide comments";
 "Hide details" = "Hide details";
 "Hide end notice" = "Hide end notice";
@@ -1340,6 +1342,7 @@
 "Never auto-select tracks containing" = "Never auto-select tracks containing";
 "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device.";
 "Never show the content advisory for this title again" = "Never show the content advisory for this title again";
+"New" = "New";
 "New Anime Releases" = "New Anime Releases";
 "New Episodes" = "New Episodes";
 "New Episodes row" = "New Episodes row";
@@ -1446,6 +1449,7 @@
 "Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "Nothing from your library lands this month. Toggle Watchlist off to see all releases.";
 "Nothing from your library this month" = "Nothing from your library this month";
 "Nothing here yet" = "Nothing here yet";
+"Nothing in progress yet. Press Play on something." = "Nothing in progress yet. Press Play on something.";
 "Nothing on Trakt this month" = "Nothing on Trakt this month";
 "Nothing saved on Trakt yet." = "Nothing saved on Trakt yet.";
 "Nothing this month" = "Nothing this month";
@@ -1597,6 +1601,7 @@
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "Play";
+"Play a random episode" = "Play a random episode";
 "Play movie" = "Play movie";
 "Play next" = "Play next";
 "Play now" = "Play now";
@@ -2417,6 +2422,7 @@
 "Unavailable" = "Unavailable";
 "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "Undo";
+"Unhide {name}" = "Unhide {name}";
 "United Kingdom" = "United Kingdom";
 "United States" = "United States";
 "Unknown" = "Unknown";
@@ -3746,6 +3752,7 @@
 "{n} day ago" = "{n} day ago";
 "{n} days ago" = "{n} days ago";
 "{n} films." = "{n} films.";
+"{n} hidden" = "{n} hidden";
 "{n} hr" = "{n} hr";
 "{n} in a day" = "{n} in a day";
 "{n} item" = "{n} item";

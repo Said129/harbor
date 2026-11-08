@@ -483,6 +483,7 @@
 "Change" = "更改";
 "Change chapter order" = "Change chapter order";
 "Change server" = "更换服务器";
+"Channel categories" = "频道分类";
 "Channel format" = "Channel format";
 "Chapters" = "章节";
 "Chat" = "聊天";
@@ -1111,6 +1112,7 @@
 "Hide and skip episodes" = "隐藏并跳过单集";
 "Hide anime I've already watched" = "隐藏我已看过的动漫";
 "Hide camera recordings · CAM / TS / TC" = "Hide camera recordings · CAM / TS / TC";
+"Hide category" = "隐藏分类";
 "Hide comments" = "隐藏评论";
 "Hide details" = "隐藏详情";
 "Hide end notice" = "Hide end notice";
@@ -1522,6 +1524,7 @@
 "Never auto-select tracks containing" = "从不自动选择名称中包含以下内容的轨道";
 "Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device." = "绝不以任何方式连接社区服务器。此设备不会查询或贡献任何内容。";
 "Never show the content advisory for this title again" = "不再为这部作品显示内容警告";
+"New" = "新";
 "New Anime Releases" = "动漫新作";
 "New Episodes" = "新剧集";
 "New Episodes row" = "“新剧集”行";
@@ -1642,6 +1645,7 @@
 "Nothing from your library lands this month. Toggle Watchlist off to see all releases." = "你的媒体库本月没有内容上线。关闭“待看清单”即可查看所有上线内容。";
 "Nothing from your library this month" = "你的媒体库本月无内容";
 "Nothing here yet" = "暂无内容";
+"Nothing in progress yet. Press Play on something." = "暂无正在观看的内容。请播放任意内容。";
 "Nothing installed yet" = "尚未安装任何内容";
 "Nothing matched this filter. Try another category or change your region in Settings." = "没有符合此筛选器的内容。请尝试其他类别，或在“设置”中更改你的地区。";
 "Nothing on Trakt this month" = "Trakt 本月无内容";
@@ -1819,6 +1823,7 @@
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
 "Play" = "播放";
+"Play a random episode" = "随机播放一集";
 "Play movie" = "播放电影";
 "Play next" = "下一首播放";
 "Play now" = "立即播放";
@@ -2736,6 +2741,7 @@
 "Unavailable" = "不可用";
 "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account." = "Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.";
 "Undo" = "撤销";
+"Unhide {name}" = "取消隐藏 {name}";
 "United Kingdom" = "英国";
 "United States" = "美国";
 "Unknown" = "未知";
@@ -4121,6 +4127,7 @@
 "{n} ep" = "{n} 集";
 "{n} eps" = "{n} 集";
 "{n} films." = "{n} films.";
+"{n} hidden" = "{n} 个已隐藏";
 "{n} hr" = "{n} 小时";
 "{n} in a day" = "一天内 {n} 部";
 "{n} item" = "{n} 个项目";
