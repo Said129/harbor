@@ -116,13 +116,32 @@ struct HarborService: Sendable {
             !attempted.contains(AddonOriginPolicy.resourceURL($0.addon.transportUrl, resource: "meta", kind: media.type, id: media.id) ?? $0.url)
         }
         let result = try await fetch(plans)
-        // Desktop's `preferCustomMetaAddon`: with it on, an installed meta addon is read before Cinemeta.
-        for plan in DetailSettingsRules.preferringCustomMeta(plans) {
-            if let value = result.values.first(where: { $0.0.key == plan.key })?.1,
-               var meta = Media.parse(value["meta"], kind: media.type) {
-                meta.addonOrigin = meta.addonOrigin ?? media.addonOrigin ?? MediaAddonOrigin.from(plan.addon)
-                return meta
+        // Desktop's `resolveMeta` poster rule (MetaPosterPreference), read from the `preferCustomMetaAddon` setting.
+        let answers: [(plan: RequestPlan, meta: Media)] = DetailSettingsRules.preferringCustomMeta(plans).compactMap { plan in
+            guard let value = result.values.first(where: { $0.0.key == plan.key })?.1,
+                  let meta = Media.parse(value["meta"], kind: media.type) else { return nil }
+            return (plan: plan, meta: meta)
+        }
+        if !answers.isEmpty {
+            let preferCustom = UserDefaults.standard.bool(forKey: "preferCustomMetaAddon")
+            let choice = MetaPosterPreference.choose(answers.map { answer in
+                MetaPosterPreference.MetaAnswer(isCinemeta: DetailSettingsRules.isCinemeta(answer.plan.addon.manifest["id"].string),
+                                                hasPoster: !(answer.meta.poster ?? "").isEmpty)
+            }, preferCustom: preferCustom)
+            // Desktop returns nothing here; an answer without a poster is kept, as this service did before the rule.
+            let answer = answers[choice.index ?? 0]
+            var meta = answer.meta
+            if choice.fillArtwork {
+                var cinemeta = answers.first(where: { DetailSettingsRules.isCinemeta($0.plan.addon.manifest["id"].string) })?.meta
+                if cinemeta == nil, let value = try? await http.json("https://v3-cinemeta.strem.io/meta/\(media.type)/\(media.id).json") {
+                    cinemeta = Media.parse(value["meta"], kind: media.type)
+                }
+                if (meta.poster ?? "").isEmpty { meta.poster = cinemeta?.poster }
+                if (meta.background ?? "").isEmpty { meta.background = cinemeta?.background }
+                if (meta.logo ?? "").isEmpty { meta.logo = cinemeta?.logo }
             }
+            meta.addonOrigin = meta.addonOrigin ?? media.addonOrigin ?? MediaAddonOrigin.from(answer.plan.addon)
+            return meta
         }
         if AnimeService.isAnime(media.id), var parsed = try? await AnimeService.metadata(id: media.id, kind: media.type) {
             parsed.addonOrigin = media.addonOrigin; return parsed
