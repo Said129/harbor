@@ -40,6 +40,12 @@ actor SportsService {
             }
         }
         let comments = data["commentary"].array.isEmpty ? data["plays"].array : data["commentary"].array
+        summary.timeline = data["keyEvents"].array.enumerated().compactMap { index, event -> SportsTimelineEntry? in
+            let text = event["shortText"].string ?? event["text"].string ?? ""
+            let clock = event["clock"]["displayValue"].string ?? ""
+            guard !text.isEmpty || !clock.isEmpty else { return nil }
+            return SportsTimelineEntry(id: event["id"].textValue ?? String(index), clock: clock, kind: SportsTimelineKind.classify(event["type"]["text"].string ?? ""), text: text, participant: event["participants"].array.first?["athlete"]["displayName"].string)
+        }
         summary.commentary = comments.suffix(100).compactMap { $0["text"].string ?? $0["comment"].string }
         return summary
     }
@@ -71,7 +77,7 @@ actor SportsService {
                 events.append(SportsEvent(id: id, eventID: eventID, league: league, title: competition["name"].string ?? value["name"].string ?? sides.map(\.name).joined(separator: " · "), date: date, state: state, status: detail, sides: sides, venue: competition["venue"]["fullName"].string ?? "", broadcasts: broadcasts, link: link))
             }
         }
-        return events.sorted { a, b in let left = a.state == "in" ? 0 : a.state == "pre" ? 1 : 2, right = b.state == "in" ? 0 : b.state == "pre" ? 1 : 2; return left == right ? a.date < b.date : left < right }
+        return SportsRules.ordered(events)
     }
     nonisolated private static func side(_ value: JSONValue, league: SportsLeague) -> SportsSide? {
         let team = value["team"], athlete = value["athlete"], roster = value["roster"]

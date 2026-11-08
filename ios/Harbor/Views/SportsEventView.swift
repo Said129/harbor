@@ -7,9 +7,10 @@ struct SportsEventView: View {
     @State private var summary = SportsSummary()
     @State private var loading = false
     @State private var scheduled = false
-    @State private var minutes = 10
+    @State private var minutes = SportsRules.defaultReminderLead
     @State private var reminder = false
     @State private var error: String?
+    @State private var table: SportsStandings?
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
@@ -51,26 +52,78 @@ struct SportsEventView: View {
                         ForEach(group.values) { value in VStack(alignment: .leading, spacing: 5) { Text(value.title).font(.subheadline.weight(.medium)); Text(value.value).font(.caption).foregroundStyle(.secondary).textSelection(.enabled) } }
                     }.padding(14).frame(maxWidth: .infinity, alignment: .leading).background(HarborTheme.surface, in: .rect(cornerRadius: 12))
                 }
-                if !summary.commentary.isEmpty {
+                if !summary.timeline.isEmpty {
+                    Text("Desarrollo del evento").font(.headline)
+                    ForEach(summary.timeline) { entry in
+                        HStack(alignment: .top, spacing: 10) {
+                            Text(entry.clock).font(.caption.monospacedDigit()).foregroundStyle(.secondary).frame(width: 52, alignment: .leading)
+                            Image(systemName: symbol(entry.kind)).frame(width: 18).foregroundStyle(tint(entry.kind))
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text(entry.text).font(.subheadline)
+                                if let participant = entry.participant { Text(participant).font(.caption).foregroundStyle(.secondary) }
+                            }
+                        }
+                    }
+                } else if !summary.commentary.isEmpty {
                     Text("Desarrollo del evento").font(.headline)
                     ForEach(Array(summary.commentary.enumerated()), id: \.offset) { _, text in Text(text).font(.subheadline).foregroundStyle(.secondary) }
+                }
+                if let group = highlightedGroup {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Clasificación").font(.headline)
+                        Text(group.title).font(.caption).foregroundStyle(.secondary)
+                        ForEach(group.rows) { row in
+                            let highlighted = sideIDs.contains(row.side.id)
+                            HStack(spacing: 10) {
+                                Text("\(row.rank)").font(.caption.monospacedDigit()).frame(width: 26, alignment: .leading)
+                                Text(row.side.name).font(.caption.weight(highlighted ? .bold : .regular)).lineLimit(1)
+                                Spacer()
+                                Text(row.value(["points"])).font(.caption.monospacedDigit().weight(.bold))
+                            }.padding(8).background(highlighted ? HarborTheme.surface : Color.clear, in: .rect(cornerRadius: 8))
+                        }
+                    }.padding(14).frame(maxWidth: .infinity, alignment: .leading).background(HarborTheme.surface, in: .rect(cornerRadius: 12))
                 }
                 if let raw = event.link, let url = URL(string: raw) { Link("Evento en ESPN", destination: url) }
             }.padding(16)
         }.background(HarborTheme.background).navigationTitle(event.league.title).navigationBarTitleDisplayMode(.inline)
-            .task { scheduled = await SportsReminderService.shared.scheduled(event, owner: preferences.owner); await load() }
+            .task { scheduled = await SportsReminderService.shared.scheduled(event, owner: preferences.owner); await load(); table = try? await SportsStandingsService.shared.table(event.league) }
             .refreshable { await load() }
             .sheet(isPresented: $reminder) {
                 NavigationStack {
                     Form {
                         Text(event.title).font(.headline)
-                        Picker("Avisarme", selection: $minutes) { Text("Al empezar").tag(0); Text("5 minutos antes").tag(5); Text("10 minutos antes").tag(10); Text("15 minutos antes").tag(15); Text("30 minutos antes").tag(30) }
+                        Picker("Avisarme", selection: $minutes) { ForEach(SportsRules.reminderLeads, id: \.self) { lead in Text(leadLabel(lead)).tag(lead) } }
                         Button("Guardar recordatorio") {
                             Task { do { try await SportsReminderService.shared.schedule(event, owner: preferences.owner, minutes: minutes); scheduled = true; reminder = false } catch { self.error = safeMessage(error); reminder = false } }
                         }
                     }.navigationTitle("Recordatorio").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Cancelar") { reminder = false } } }
                 }
             }
+    }
+    private var sideIDs: Set<String> { Set(event.sides.map(\.id)) }
+    /// The standings group that holds both teams, else the first group that holds either.
+    private var highlightedGroup: SportsStandingGroup? {
+        let groups = table?.groups ?? []
+        let ids = sideIDs
+        return groups.first { group in ids.isSubset(of: Set(group.rows.map { $0.side.id })) } ?? groups.first { group in group.rows.contains { ids.contains($0.side.id) } }
+    }
+    private func leadLabel(_ lead: Int) -> String {
+        lead == 1440 ? DesktopInterfaceText.value("1 day before") : DesktopInterfaceText.value("{n} minutes before", variables: ["n": String(lead)])
+    }
+    private func symbol(_ kind: SportsTimelineKind) -> String {
+        switch kind {
+        case .goal: return "soccerball"
+        case .yellowCard, .redCard: return "rectangle.portrait.fill"
+        case .substitution: return "arrow.left.arrow.right"
+        case .other: return "circle.fill"
+        }
+    }
+    private func tint(_ kind: SportsTimelineKind) -> Color {
+        switch kind {
+        case .yellowCard: return .yellow
+        case .redCard: return .red
+        default: return .secondary
+        }
     }
     private func load() async {
         guard !loading else { return }
