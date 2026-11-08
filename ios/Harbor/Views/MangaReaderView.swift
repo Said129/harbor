@@ -13,6 +13,8 @@ struct MangaReaderView: View {
     @State private var pages: [MangaPage] = []
     @State private var visible: Int? = 0
     @State private var spread = 0
+    @State private var bookSpreadActive = false
+    @State private var bookTurnInProgress = false
     @State private var ratios: [Int: CGFloat] = [:]
     @State private var loading = false
     @State private var settings = false
@@ -25,6 +27,7 @@ struct MangaReaderView: View {
     @State private var hintDismissed = false
     @State private var pageSound: AVAudioPlayer?
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.dismiss) private var dismiss
     @AppStorage("manga.reader.mode") private var mode = "long"
     @AppStorage("manga.reader.fit") private var fit = "width"
@@ -47,6 +50,20 @@ struct MangaReaderView: View {
     private var current: Int { max(0, min(visible ?? 0, pages.count - 1)) }
     private var double: Bool { mode == "double" }
     private var spreadCount: Int { double ? (pages.count + 1) / 2 : pages.count }
+    private var pageTurnStep: Int { double || (mode == "book" && bookSpreadActive) ? 2 : 1 }
+    private var pageTurnStart: Int { pageTurnStep == 2 ? current - current % 2 : current }
+    private var bookAspectSampleIndices: [Int] { MangaSpreadRules.sampleIndices(count: pages.count) }
+    private var bookAspectSampleReady: Bool {
+        !bookAspectSampleIndices.isEmpty && bookAspectSampleIndices.allSatisfy { ratios[$0] != nil }
+    }
+    private var bookAspect: Double? {
+        guard bookAspectSampleReady else { return nil }
+        let aspects: [Double] = bookAspectSampleIndices.compactMap { page -> Double? in
+            guard let widthToHeight = ratios[page], widthToHeight > 0 else { return nil }
+            return Double(1 / widthToHeight)
+        }
+        return MangaSpreadRules.representativeAspect(aspects)
+    }
     var body: some View {
         VStack(spacing: 0) {
             if loading { ProgressView("Cargando páginas…").padding() }
@@ -67,7 +84,8 @@ struct MangaReaderView: View {
             .task(id: book.pluginID == nil ? "local" : String(reading?.ready ?? false)) { await load(chapter) }
             .onChange(of: visible) { _, _ in scheduleProgress() }
             .onChange(of: spread) { _, value in if !loading { visible = min(pages.count - 1, value * (double ? 2 : 1)) } }
-            .onChange(of: mode) { _, _ in spread = current / (double ? 2 : 1) }
+            .onChange(of: bookSpreadActive) { _, _ in scheduleProgress() }
+            .onChange(of: mode) { _, _ in spread = current / (double ? 2 : 1); scheduleProgress() }
             .onChange(of: scenePhase) { _, phase in
                 if phase == .active { scheduleProgress() }
                 else { progressTask?.cancel(); if !pages.isEmpty { persist(page: current, sync: true) } }
@@ -79,7 +97,18 @@ struct MangaReaderView: View {
     @ViewBuilder private func reader(size: CGSize) -> some View {
         if !pages.isEmpty {
             if mode == "book" {
-                MangaBookPager(pages: pages, selected: Binding(get: { current }, set: { page in if current != page { playPageTurnSound() }; visible = page }), rtl: rtl, canvas: canvas) { page in AnyView(pageView(page, width: size.width, height: size.height)) }
+                let shouldSpread = bookUsesTwoPageSpread(size: size)
+                let usesSpread = bookSpreadActive
+                ZStack {
+                    MangaBookPager(pages: pages, selected: Binding(get: { current }, set: { page in if current != page { playPageTurnSound() }; visible = page }), turning: $bookTurnInProgress, rtl: rtl, spread: usesSpread, canvas: canvas) { page in
+                        AnyView(pageView(page, width: usesSpread ? size.width / 2 : size.width, height: size.height))
+                    }.id("\(chapter.id)-\(usesSpread)-\(rtl)")
+                    if shouldMeasureBookSpread(size: size) && !bookAspectSampleReady {
+                        bookAspectProbe
+                    }
+                }
+                .onChange(of: shouldSpread, initial: true) { _, value in if !bookTurnInProgress { bookSpreadActive = value } }
+                .onChange(of: bookTurnInProgress) { _, turning in if !turning { bookSpreadActive = shouldSpread } }
             } else if mode == "paged" || double {
                 TabView(selection: $spread) {
                     ForEach(0..<spreadCount, id: \.self) { number in
@@ -115,11 +144,41 @@ struct MangaReaderView: View {
         let ratio = ratios[page.id] ?? 2.0 / 3.0
         let displayWidth = MangaReaderRules.displayWidth(fit: fit, width: width, height: height, ratio: ratio, zoom: zoom)
         return ScrollView([.horizontal, .vertical]) {
-            MangaImage(book: book, owner: shelf.owner, path: page.path, client: client, retryOnFailure: true, onSize: { size in if size.height > 0 { ratios[page.id] = size.width / size.height } }).frame(width: max(40, displayWidth), height: max(40, displayWidth / ratio)).accessibilityIdentifier("manga-page-\(page.id)")
+            MangaImage(book: book, owner: shelf.owner, path: page.path, client: client, retryOnFailure: true, onSize: { size in recordPageSize(page.id, size) }).frame(width: max(40, displayWidth), height: max(40, displayWidth / ratio)).accessibilityIdentifier("manga-page-\(page.id)")
         }.frame(width: width, height: height).background(canvas).clipped()
     }
-    private var previousButton: some View { Button { turn(-1) } label: { Image(systemName: rtl ? "chevron.right" : "chevron.left").frame(width: 40, height: 40) }.disabled(current == 0 && index == 0 || loading).accessibilityLabel("Página anterior") }
-    private var nextButton: some View { Button { turn(1) } label: { Image(systemName: rtl ? "chevron.left" : "chevron.right").frame(width: 40, height: 40) }.disabled(current >= pages.count - 1 && index + 1 >= chapters.count || loading).accessibilityLabel("Página siguiente") }
+    private var bookAspectProbe: some View {
+        VStack(spacing: 0) {
+            ForEach(bookAspectSampleIndices.filter { ratios[$0] == nil }, id: \.self) { pageIndex in
+                let page = pages[pageIndex]
+                MangaImage(book: book, owner: shelf.owner, path: page.path, client: client, maxPixels: 64, onSize: { size in recordPageSize(page.id, size) }, onLoadCompletion: { loaded in
+                    if !loaded { recordFallbackPageAspect(page.id) }
+                })
+                    .frame(width: 1, height: 1)
+            }
+        }.frame(width: 1, height: 1).opacity(0).allowsHitTesting(false).accessibilityHidden(true)
+    }
+    private func recordPageSize(_ page: Int, _ size: CGSize) {
+        guard size.width > 0, size.height > 0 else { return }
+        let ratio = size.width / size.height
+        if ratios[page] != ratio { ratios[page] = ratio }
+    }
+    private func recordFallbackPageAspect(_ page: Int) {
+        guard ratios[page] == nil else { return }
+        ratios[page] = CGFloat(1 / MangaSpreadRules.fallbackAspect)
+    }
+    private func shouldMeasureBookSpread(size: CGSize) -> Bool {
+        horizontalSizeClass == .regular && size.width > 750 && size.width > size.height * 1.1 && pages.count > 1
+    }
+    private func bookUsesTwoPageSpread(size: CGSize) -> Bool {
+        guard shouldMeasureBookSpread(size: size), let aspect = bookAspect else { return false }
+        return !MangaSpreadRules.singlePageMode(aspect: aspect, isMobile: false)
+    }
+    private var previousButton: some View { Button { turn(-1) } label: { Image(systemName: rtl ? "chevron.right" : "chevron.left").frame(width: 40, height: 40) }.disabled(pageTurnStart == 0 && index == 0 || loading).accessibilityLabel("Página anterior") }
+    private var nextButton: some View {
+        let disabled = (mode == "book" && bookSpreadActive ? chapterEnded && index + 1 >= chapters.count : current >= pages.count - 1 && index + 1 >= chapters.count) || loading
+        return Button { turn(1) } label: { Image(systemName: rtl ? "chevron.left" : "chevron.right").frame(width: 40, height: 40) }.disabled(disabled).accessibilityLabel("Página siguiente")
+    }
     private var bottomBar: some View {
         VStack(spacing: 6) {
             HStack {
@@ -242,6 +301,7 @@ struct MangaReaderView: View {
         guard !loading else { return }
         progressTask?.cancel()
         if !pages.isEmpty { persist(page: current, sync: true) }
+        if selected.id != chapter.id { bookTurnInProgress = false; bookSpreadActive = false }
         loading = true; error = nil; chapterEnded = false; hintDismissed = false
         defer { loading = false }
         do {
@@ -276,7 +336,7 @@ struct MangaReaderView: View {
         } catch { self.error = "No se pudo reproducir el sonido de página. Puedes desactivarlo en las opciones del lector." }
     }
     private func turn(_ direction: Int) {
-        let next = current + direction * (double ? 2 : 1)
+        let next = pageTurnStart + direction * pageTurnStep
         if next >= pages.count {
             chapterEnded = true; persist(page: pages.count - 1, sync: true)
             if autoNext && index + 1 < chapters.count { Task { await load(chapters[index + 1], page: 0) } }
@@ -288,14 +348,24 @@ struct MangaReaderView: View {
         guard !loading, !pages.isEmpty, scenePhase == .active else { return }
         progressTask?.cancel()
         let page = current
-        chapterEnded = page == pages.count - 1
-        progressTask = Task { do { try await Task.sleep(for: .milliseconds(650)); persist(page: page, sync: true) } catch {} }
+        let targetChapter = chapter.id
+        let bookSpread = mode == "book" && bookSpreadActive
+        let spreadEnd = bookSpread && page - page % 2 + 1 >= pages.count - 1
+        chapterEnded = page == pages.count - 1 || spreadEnd
+        progressTask = Task {
+            do {
+                try await Task.sleep(for: .milliseconds(650))
+                guard current == page, chapter.id == targetChapter, (mode == "book" && bookSpreadActive) == bookSpread else { return }
+                persist(page: page, sync: true, bookSpread: bookSpread)
+            } catch {}
+        }
     }
-    private func persist(page: Int, sync: Bool) {
+    private func persist(page: Int, sync: Bool, bookSpread: Bool? = nil) {
         guard !pages.isEmpty else { return }
         do {
             var record = shelf.record(book) ?? MangaRecord(book: book)
-            let completed = record.progress[chapter.id]?.completed == true || chapter.read || page >= pages.count - 1
+            let countsLastSpread = (bookSpread ?? (mode == "book" && bookSpreadActive)) && page - page % 2 + 1 >= pages.count - 1
+            let completed = record.progress[chapter.id]?.completed == true || chapter.read || page >= pages.count - 1 || countsLastSpread
             record.chapter = chapter.id; record.progress[chapter.id] = MangaProgress(page: max(0, page), completed: completed); record.updated = Date()
             try shelf.save(record)
             if sync, let client, book.server != nil {
@@ -339,21 +409,29 @@ enum MangaReaderRules {
 @MainActor private struct MangaBookPager: UIViewControllerRepresentable {
     let pages: [MangaPage]
     @Binding var selected: Int
+    @Binding var turning: Bool
     let rtl: Bool
+    let spread: Bool
     let canvas: Color
     let content: (MangaPage) -> AnyView
     func makeCoordinator() -> Coordinator { Coordinator(self) }
     func makeUIViewController(context: Context) -> UIPageViewController {
-        let view = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: [.spineLocation: NSNumber(value: UIPageViewController.SpineLocation.min.rawValue)])
+        let spine: UIPageViewController.SpineLocation = spread ? .mid : .min
+        let view = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: [.spineLocation: NSNumber(value: spine.rawValue)])
+        view.isDoubleSided = spread
         view.dataSource = context.coordinator; view.delegate = context.coordinator
         view.view.backgroundColor = UIColor(canvas)
-        if let leaf = context.coordinator.leaf(selected) { view.setViewControllers([leaf], direction: .forward, animated: false) }
+        view.setViewControllers(context.coordinator.controllers(selected), direction: .forward, animated: false)
         return view
     }
     func updateUIViewController(_ view: UIPageViewController, context: Context) {
         context.coordinator.parent = self; view.view.backgroundColor = UIColor(canvas)
-        if let leaf = view.viewControllers?.first as? Leaf, pages.indices.contains(leaf.index) { leaf.rootView = content(pages[leaf.index]) }
-        if (view.viewControllers?.first as? Leaf)?.index != selected, let leaf = context.coordinator.leaf(selected) { view.setViewControllers([leaf], direction: .forward, animated: false) }
+        for leaf in view.viewControllers?.compactMap({ $0 as? Leaf }) ?? [] { leaf.rootView = context.coordinator.content(leaf.index) }
+        context.coordinator.show(view)
+    }
+    static func dismantleUIViewController(_ view: UIPageViewController, coordinator: Coordinator) {
+        view.dataSource = nil
+        view.delegate = nil
     }
     private final class Leaf: UIHostingController<AnyView> {
         let index: Int
@@ -362,13 +440,38 @@ enum MangaReaderRules {
     }
     @MainActor final class Coordinator: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
         var parent: MangaBookPager
+        private var animating = false
         init(_ parent: MangaBookPager) { self.parent = parent }
+        fileprivate func anchor(_ index: Int) -> Int { parent.spread ? index - index % 2 : index }
+        fileprivate func content(_ index: Int) -> AnyView {
+            parent.pages.indices.contains(index) ? parent.content(parent.pages[index]) : AnyView(parent.canvas)
+        }
         fileprivate func leaf(_ index: Int) -> UIViewController? {
-            guard parent.pages.indices.contains(index) else { return nil }
-            let leaf = Leaf(index: index, content: parent.content(parent.pages[index])); leaf.view.backgroundColor = UIColor(parent.canvas); return leaf
+            guard parent.pages.indices.contains(index) || (parent.spread && index == parent.pages.count && index % 2 == 1) else { return nil }
+            let leaf = Leaf(index: index, content: content(index)); leaf.view.backgroundColor = UIColor(parent.canvas); return leaf
+        }
+        fileprivate func controllers(_ index: Int) -> [UIViewController] {
+            let first = anchor(index)
+            guard let page = leaf(first) else { return [] }
+            if parent.spread, let next = leaf(first + 1) { return parent.rtl ? [next, page] : [page, next] }
+            return [page]
+        }
+        fileprivate func show(_ view: UIPageViewController) {
+            guard !animating else { return }
+            let current = view.viewControllers?.compactMap { ($0 as? Leaf)?.index }.min() ?? 0
+            let target = anchor(parent.selected)
+            guard current != target else { return }
+            let forward = parent.rtl ? target < current : target > current
+            view.setViewControllers(controllers(target), direction: forward ? .forward : .reverse, animated: false)
+        }
+        func pageViewController(_ view: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+            animating = true; parent.turning = true
         }
         func pageViewController(_ view: UIPageViewController, viewControllerBefore controller: UIViewController) -> UIViewController? { guard let leaf = controller as? Leaf else { return nil }; return self.leaf(leaf.index + (parent.rtl ? 1 : -1)) }
         func pageViewController(_ view: UIPageViewController, viewControllerAfter controller: UIViewController) -> UIViewController? { guard let leaf = controller as? Leaf else { return nil }; return self.leaf(leaf.index + (parent.rtl ? -1 : 1)) }
-        func pageViewController(_ view: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) { if completed, let leaf = view.viewControllers?.first as? Leaf { parent.selected = leaf.index } }
+        func pageViewController(_ view: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+            animating = false; parent.turning = false
+            if completed, let page = view.viewControllers?.compactMap({ ($0 as? Leaf)?.index }.min(), page < parent.pages.count) { parent.selected = anchor(page) }
+        }
     }
 }

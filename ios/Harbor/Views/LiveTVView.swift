@@ -263,23 +263,21 @@ private struct LiveProgramView: View {
     private func load(refresh: Bool = false) async {
         guard refresh || programs.isEmpty else { return }
         guard !loading else { return }; loading = true; error = nil; defer { loading = false }
-        var providerError: Error?
-        if source.xtream != nil {
-            do {
-                let latest = try await XtreamClient(source: source, owner: owner).programs(channel)
-                if !latest.isEmpty { programs = latest }
-            } catch is CancellationError {
-                return
-            } catch {
-                providerError = error
-            }
+        if let guide = try? await LiveTVGuideService.shared.guide(source, owner: owner, refresh: refresh),
+           !Task.isCancelled,
+           let latest = LiveTVGuideLookup.programs(for: channel, guide: guide, tvgIDCounts: LiveTVGuideLookup.tvgIDCounts(guideChannels)),
+           !latest.isEmpty {
+            programs = latest
+            return
         }
-        if source.xtream == nil || programs.isEmpty {
-            let latest = await LiveTVGuideBuilder.programsByChannel(channels: guideChannels, sources: [source], owner: owner, refresh: refresh)[channel.id] ?? []
-            if !latest.isEmpty || programs.isEmpty { programs = latest }
-        }
-        if programs.isEmpty, let providerError {
-            error = safeMessage(providerError)
+        guard source.xtream != nil, !Task.isCancelled else { return }
+        do {
+            let latest = try await XtreamClient(source: source, owner: owner).programs(channel)
+            if programs.isEmpty { programs = LiveTVGuideLookup.sanitize(latest) }
+        } catch is CancellationError {
+            return
+        } catch {
+            if programs.isEmpty { self.error = safeMessage(error) }
         }
     }
 }

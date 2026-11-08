@@ -579,6 +579,7 @@ BEHAVIORS = expand("""
 369 D Suwayomi library categories are selectable in the iOS shelf with saved progress, title search and return to the full shelf; category requests use GraphQL with REST fallback. Apple build and the two selected category cases passed.
 371 D The Suwayomi extension manager lists, adds and removes server repositories, normalizes GitHub links, offers Desktop suggestions and refreshes the server index after edits. Apple build and the URL case passed; live server mutations remain unverified.
 225 D Past programmes can open the native player from the channel programme list when the catch-up URL is valid. Channel headers, title, profile scope and the twelve-hour XMLTV history are wired. Native route and provider playback need validation.
+377 D Book mode adapts to two-page spreads on wide regular-width iPad layouts with compatible page shapes. It uses native page curls, RTL pairing, odd-page padding and spread-aware resume and completion. Physical iPad validation remains pending.
 203 P External subtitle estimates can be reviewed and applied from the player, and verified community matches keep automatic application. Desktop's full source matching and structural calibration are pending.
 """)
 

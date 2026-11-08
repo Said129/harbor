@@ -1909,3 +1909,12 @@ programme title. In-flight results are scoped to the current profile and saved
 source. The XMLTV cache keeps twelve hours of history, with the existing 72-hour
 future bound. The history-bound test is new. Provider playback and the Apple UI
 route still need validation.
+
+## Manga book spreads
+
+The Book reader pairs pages on wide iPad layouts when the sampled proportions
+match Desktop's spread rules. Compact layouts and pages outside the aspect
+range use single pages. The native curl follows the selected reading direction.
+The reader keeps the saved page when layout changes and marks the chapter
+complete when its last page is visible in a spread. The actual iPad gesture and
+rotation still need validation.

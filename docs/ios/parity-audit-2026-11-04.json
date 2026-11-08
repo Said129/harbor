@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 252,
-      "partial": 124,
+      "ported": 253,
+      "partial": 123,
       "missing": 0,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 83.5,
-      "ported_only_percent": 67.0,
+      "weighted_percent": 83.6,
+      "ported_only_percent": 67.3,
       "ported_or_partial_percent": 100.0
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 492,
-      "partial": 158,
+      "ported": 493,
+      "partial": 157,
       "missing": 2,
       "excluded": 297,
       "counted": 652,
-      "weighted_percent": 87.6,
-      "ported_only_percent": 75.5,
+      "weighted_percent": 87.7,
+      "ported_only_percent": 75.6,
       "ported_or_partial_percent": 99.7
     }
   },
@@ -167,11 +167,11 @@
     {
       "area": "Manga",
       "range": "B366-B390",
-      "ported": 23,
-      "partial": 1,
+      "ported": 24,
+      "partial": 0,
       "missing": 0,
       "excluded": 1,
-      "weighted_percent": 97.9
+      "weighted_percent": 100.0
     },
     {
       "area": "Sports",
@@ -2865,8 +2865,8 @@
       "index": 377,
       "id": "Manga book page turns",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "manga book page turns: Desktop's two-page spread rule exists as a tested helper (8 Nov, written by Haiku, uncompiled); the book pager still shows single leaves"
+      "verdict": "D",
+      "note": "Book mode adapts to two-page spreads on wide regular-width iPad layouts with compatible page shapes. It uses native page curls, RTL pairing, odd-page padding and spread-aware resume and completion. Physical iPad validation remains pending."
     },
     {
       "index": 378,
