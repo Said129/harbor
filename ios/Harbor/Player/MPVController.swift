@@ -42,6 +42,9 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
     private var assNormalizationKey: String?
     private var assScaleApplied = false
     private let subtitleSession = UUID()
+    /// Desktop's `truncatedReloadedRef`: a stream that ends early gets one fresh session of the same source.
+    private var truncatedReloadUsed = false
+    private var subtitleSDHFilterValue: String?
     private var addonSubtitleFiles: [String: ImportedSubtitle] = [:]
     private var lifecycleTokens: [NSObjectProtocol] = []
     private var deferredCloseToken: NSObjectProtocol?
@@ -1009,18 +1012,31 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 }
             case MPV_EVENT_END_FILE:
                 state.endedNaturally = false
+                var reloadTruncated = false
                 if let data = event.data {
                     let end = data.assumingMemoryBound(to: mpv_event_end_file.self).pointee
-                    state.endedNaturally = end.reason == MPV_END_FILE_REASON_EOF && end.error >= 0
+                    let eof = end.reason == MPV_END_FILE_REASON_EOF && end.error >= 0
+                    state.endedNaturally = eof && PlaybackEndRule.isNaturalEnd(position: state.position, duration: state.duration)
+                    // Desktop's use-auto-retry: an EOF before 85 percent of a known duration reloads the same source once.
+                    // Local and downloaded files are never reloaded.
+                    reloadTruncated = eof && !truncatedReloadUsed && canRestartPlayback && !state.restarting
+                        && source.via != "local" && source.via != "download" && !source.url.hasPrefix("file:") && !source.url.hasPrefix("/")
+                        && PlaybackEndRule.isTruncatedEnd(position: state.position, duration: state.duration)
                     if end.error < 0 {
                         Diagnostics.shared.record(.playerFailed, count: Int(end.error))
                         state.error = "No se pudo abrir esta fuente. Prueba con otro enlace."
                     }
                 }
-                state.loaded = false
-                state.ended = true
-                state.buffering = false
-                Diagnostics.shared.record(.playerEnded)
+                if reloadTruncated {
+                    truncatedReloadUsed = true
+                    state.loaded = false
+                    replay()
+                } else {
+                    state.loaded = false
+                    state.ended = true
+                    state.buffering = false
+                    Diagnostics.shared.record(.playerEnded)
+                }
             case MPV_EVENT_SHUTDOWN: state.loaded = false
             default: break
             }
@@ -1106,6 +1122,18 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
             selectAutomaticAudio(id)
         }
         applyASSNormalization()
+        applySubtitleSDHFilter()
+    }
+
+    /// Desktop's `hideSdh = settings.subHideSdh && sdhFilterAllowed` (use-player-media.ts), evaluated on the selected subtitle.
+    /// With no subtitle selected Desktop allows the filter, so the setting alone decides.
+    private func applySubtitleSDHFilter() {
+        let track = state.primarySubtitle
+        let allowed = track.map { SubtitleSDHGate.allows(forced: $0.forced, foreignOnly: false, language: $0.language) } ?? true
+        let value = PlaybackPreferences.shared.options.hideSDH && allowed ? "yes" : "no"
+        guard value != subtitleSDHFilterValue else { return }
+        subtitleSDHFilterValue = value
+        set("sub-filter-sdh", value)
     }
 
     private func selectAutomaticSubtitle(_ id: Int) {

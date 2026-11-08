@@ -243,6 +243,7 @@ targets:
       - path: HarborTests/AdReportEntryTests.swift
       - path: HarborTests/XrayTests.swift
       - path: HarborTests/WireSubsTests.swift
+      - path: HarborTests/G5PlayerTests.swift
       - path: HarborTests/R19PlayerTests.swift
       - path: HarborTests/CommunitySyncTests.swift
       - path: HarborTests/QualityBadgePolicyTests.swift

@@ -599,7 +599,7 @@ struct PlayerView: View {
                 }
                 HStack(spacing: 10) {
                     Text(time(state.position)).monospacedDigit().accessibilityLabel("Tiempo reproducido").accessibilityIdentifier("player-position")
-                    HarborSeekBar(position: state.position, duration: state.duration,
+                    HarborSeekBar(position: state.position, duration: state.duration, cacheEnd: state.cacheEnd,
                         enabled: state.loaded && !retrying && !state.restarting && !sourceChanging && !episodeChanging,
                         editing: { editingSeek = $0; restartHideTimer() },
                         seek: { state.controller?.run(["seek", String($0), "absolute+exact"]); restartHideTimer() })

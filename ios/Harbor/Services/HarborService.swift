@@ -397,7 +397,8 @@ struct HarborService: Sendable {
     private static func resolveRemote(_ remote: StremioServerResolver, _ raw: JSONValue, season: Int?, episode: Int?) async throws -> PlaybackSource {
         switch await remote.resolve(raw, season: season, episode: episode) {
         case .stream(let url, _):
-            return PlaybackSource(url: url, headers: nil, subtitles: nil, via: "remote-server")
+            // The stream's own subtitle entries pass through as the direct path does (`resolveDirect` keeps `subtitles`).
+            return PlaybackSource(url: url, headers: nil, subtitles: try? raw["subtitles"].decoded([PlaybackSource.Subtitle].self), via: "remote-server")
         case .failure(let code):
             throw HarborError(code: code)
         }
