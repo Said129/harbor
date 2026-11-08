@@ -1,5 +1,22 @@
 import Foundation
 
+/// Desktop's `deriveEpgUrls` (`src/lib/iptv/m3u.ts`): an Xtream get.php or player_api.php link also names
+/// its guide, the XMLTV feed first, then get.php with type=epg. Keeps the link's credentials.
+enum LiveTVEPG {
+    static func derivedURLs(playlist raw: String) -> [String] {
+        guard let url = URLComponents(string: raw), url.path.hasSuffix("get.php") || url.path.hasSuffix("player_api.php"), url.scheme != nil, url.host?.isEmpty == false,
+              let username = url.queryItems?.first(where: { $0.name == "username" })?.value, !username.isEmpty,
+              let password = url.queryItems?.first(where: { $0.name == "password" })?.value, !password.isEmpty else { return [] }
+        func link(_ path: String, _ extra: [URLQueryItem]) -> String? {
+            var origin = url
+            origin.user = nil; origin.password = nil; origin.fragment = nil; origin.path = "/" + path
+            origin.queryItems = [URLQueryItem(name: "username", value: username), URLQueryItem(name: "password", value: password)] + extra
+            return origin.url?.absoluteString
+        }
+        return [link("xmltv.php", []), link("get.php", [URLQueryItem(name: "type", value: "epg")])].compactMap { $0 }
+    }
+}
+
 enum M3UParser {
     private struct Entry { var title: String; var duration: Double?; var attrs: [String: String] }
     private static let attributePattern = try! NSRegularExpression(pattern: #"([^\s=]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s]+))"#)
@@ -37,8 +54,8 @@ enum M3UParser {
                 guard let scheme = URL(string: url)?.scheme?.lowercased(), ["http", "https", "rtsp", "rtmp", "udp", "rtp"].contains(scheme) else { pending = nil; continue }
                 var entry = pending ?? Entry(title: "Canal \(channels.count + 1)", attrs: [:])
                 if pieces.count > 1 { for pair in pieces[1].split(separator: "&") { option(String(pair), kind: "pipe", entry: &entry) } }
-                let name = entry.attrs["tvg-name"] ?? (entry.title.isEmpty ? "Canal \(channels.count + 1)" : entry.title)
-                if name.unicodeScalars.contains(where: { CharacterSet.alphanumerics.contains($0) }) {
+                let name = [entry.attrs["tvg-name"], entry.title].compactMap { $0 }.first(where: { !$0.isEmpty }) ?? "Canal \(channels.count + 1)"
+                if !isDecorativeRow(name) {
                     let tvgID = entry.attrs["tvg-id"] ?? entry.attrs["tvg-chno"]
                     let identity = tvgID ?? entry.attrs["tvg-name"] ?? name
                     channels.append(LiveChannel(id: source + "::" + identity + "::\(channels.count)", source: source, tvgID: tvgID, name: name, logo: entry.attrs["tvg-logo"] ?? entry.attrs["logo"], group: entry.attrs["group-title"] ?? entry.attrs["group"] ?? stickyGroup, url: url, catchup: entry.attrs["catchup-source"] ?? entry.attrs["catchup"], duration: entry.duration, attributes: entry.attrs))
@@ -48,6 +65,21 @@ enum M3UParser {
         }
         guard !channels.isEmpty else { throw HarborError(code: "iptv-empty") }
         return channels
+    }
+    /// Desktop's `isDecorativeRow` (`src/lib/iptv/m3u.ts`): blank names, separator art and names with no
+    /// letter or number are not channels.
+    static func isDecorativeRow(_ name: String) -> Bool {
+        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return true }
+        if trimmed.unicodeScalars.allSatisfy({ decorativeScalars.contains($0) || CharacterSet.whitespacesAndNewlines.contains($0) }) { return true }
+        return !trimmed.unicodeScalars.contains(where: isLetterOrNumber)
+    }
+    private static let decorativeScalars = Set("#=─━▓█▀▄░♦◆■▼▲★☆-_*+~|·•:.".unicodeScalars)
+    private static func isLetterOrNumber(_ scalar: Unicode.Scalar) -> Bool {
+        switch scalar.properties.generalCategory {
+        case .uppercaseLetter, .lowercaseLetter, .titlecaseLetter, .modifierLetter, .otherLetter, .decimalNumber, .letterNumber, .otherNumber: return true
+        default: return false
+        }
     }
     private static func option(_ raw: String, kind: String, entry: inout Entry) {
         guard let equals = raw.firstIndex(of: "=") else { return }

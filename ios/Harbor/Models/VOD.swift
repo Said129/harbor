@@ -21,7 +21,7 @@ struct VODSeries: Identifiable, Sendable {
     let source: String
     let title: String
     let searchKey: String
-    let logo: String?
+    var logo: String?
     let group: String?
     let xtreamID: String?
     var episodes: [VODEpisode]
@@ -30,6 +30,13 @@ struct VODSeries: Identifiable, Sendable {
 struct VODLibrary: Sendable {
     var movies: [VODMovie] = []
     var series: [VODSeries] = []
+    /// Desktop's `if (!series.logo && ch.logo) series.logo = ch.logo` (`vod.ts`): the first usable logo
+    /// of any episode fills a series that has none yet.
+    static func fillLogo(_ current: String?, from candidate: String?) -> String? {
+        if let current, !current.isEmpty { return current }
+        if let candidate, !candidate.isEmpty { return candidate }
+        return current
+    }
     static func build(_ channels: [LiveChannel]) throws -> Self {
         var result = Self(), seen = Set<String>(), seenChannels = Set<String>(), shows: [String: VODSeries] = [:]
         for channel in channels {
@@ -44,6 +51,7 @@ struct VODLibrary: Sendable {
                 let title = VODTitles.show(channel.name), xtream = channel.attributes["xtream-series-id"]
                 let id = channel.source + "|" + (xtream.map { "xtream:" + $0 } ?? VODTitles.normalized(title))
                 var series = shows[id] ?? VODSeries(id: id, source: channel.source, title: title, searchKey: VODTitles.searchKey(title), logo: channel.logo, group: channel.group, xtreamID: xtream, episodes: [])
+                series.logo = VODLibrary.fillLogo(series.logo, from: channel.logo)
                 if xtream == nil {
                     let number = VODTitles.number(channel.name)
                     series.episodes.append(VODEpisode(channel: channel, season: number?.0 ?? 1, episode: number?.1 ?? 0, title: VODTitles.clean(channel.name)))

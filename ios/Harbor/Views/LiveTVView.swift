@@ -21,8 +21,8 @@ struct LiveTVView: View {
         self.app = app; _preferences = State(initialValue: LiveTVPreferences(owner: app.settingsOwner)); _query = State(initialValue: initialQuery)
     }
     private var selectedChannels: [LiveChannel] { channels.filter { source == "all" || $0.source == source } }
-    private var groups: [String] { Array(Set(selectedChannels.compactMap(\.group))).sorted { $0.localizedStandardCompare($1) == .orderedAscending } }
-    private var filtered: [LiveChannel] { selectedChannels.filter { (category == "all" || $0.group == category) && (!favorites || preferences.favorites.contains($0.id)) && (query.isEmpty || $0.name.localizedCaseInsensitiveContains(query) || $0.group?.localizedCaseInsensitiveContains(query) == true) } }
+    private var groups: [String] { LiveTVGroupOrder.sortedGroups(Array(Set(selectedChannels.compactMap(\.group))), region: MetadataPreferences.shared.region, preferredLanguages: StreamSourceSettings.names(StreamPreferences.shared.streamLanguages)) }
+    private var filtered: [LiveChannel] { selectedChannels.filter { (category == "all" || $0.group == category) && (!favorites || preferences.favorites.contains($0.id)) && LiveTVSearch.channelMatches($0, query: query) } }
     var body: some View {
         VStack(spacing: 0) {
             Picker("Contenido", selection: $providers) { Text("Mis canales").tag(false); Text("Addons").tag(true) }.pickerStyle(.segmented).padding(.horizontal, 16).padding(.bottom, 10)
