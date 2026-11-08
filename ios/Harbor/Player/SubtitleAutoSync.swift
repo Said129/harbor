@@ -18,6 +18,11 @@ enum SubtitleAutoSync {
     static func analyze(source: PlaybackSource, subtitle: String, duration: Double, audioID: Int?) async throws -> (SubtitleDocument, SubtitleSyncResult?) {
         guard duration.isFinite, (60...28_800).contains(duration) else { throw HarborError(code: "subtitle-sync-duration") }
         let document = try await load(subtitle)
+        let cues = document.cues.map { ($0.start, $0.end) }
+        // Desktop's community database goes first. Only a tier A answer is applied without analysing the audio.
+        if let communityTiming = await CommunitySync.communityTiming(cues: cues, durationSec: duration) {
+            return (document, communityTiming)
+        }
         let windows = windows(duration)
         var intervals: [(Double, Double)] = []
         for window in windows {
@@ -25,7 +30,9 @@ enum SubtitleAutoSync {
             intervals += try speech(source, window: window, audioID: audioID)
         }
         try Task.checkCancellation()
-        return (document, try solve(audio: intervals, cues: document.cues.map { ($0.start, $0.end) }, duration: duration, windows: windows))
+        let result = try solve(audio: intervals, cues: cues, duration: duration, windows: windows)
+        if let result { CommunitySync.reportInBackground(cues: cues, durationSec: duration, result: result) }
+        return (document, result)
     }
 
     private static func load(_ path: String) async throws -> SubtitleDocument {
