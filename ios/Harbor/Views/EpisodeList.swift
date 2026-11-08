@@ -23,7 +23,8 @@ struct EpisodeList: View {
     var toggleExtraWatched: (AnimeFranchiseExtra) -> Void = { _ in }
     let play: (Episode?) -> Void
     @State private var season = 1
-    @State private var preferredApplied = false
+    @State private var userPickedSeason = false
+    @State private var localResumeSeason: Int?
     @State private var orderSection = ""
     @State private var revealed = Set<String>()
     @State private var hiddenKeys = HiddenEpisodes.all()
@@ -283,7 +284,10 @@ struct EpisodeList: View {
                     Picker(DesktopInterfaceText.value("Seasons"), selection: Binding(get: { currentSection?.id ?? "" }, set: { orderSection = $0 })) {
                         ForEach(sections) { Text($0.label).tag($0.id) }
                     }.pickerStyle(.menu).accessibilityIdentifier("episode-season")
-                } else if seasons.count > 1, !arcActive { Picker("Temporada", selection: $season) {
+                } else if seasons.count > 1, !arcActive { Picker("Temporada", selection: Binding(get: { season }, set: { value in
+                    userPickedSeason = true
+                    season = value
+                })) {
                     ForEach(seasons, id: \.self) { Text($0 == 0 ? "Especiales" : "Temporada \($0)").tag($0) }
                 }.pickerStyle(.menu).accessibilityIdentifier("episode-season") }
                 else if franchise.count > 1 {
@@ -302,12 +306,19 @@ struct EpisodeList: View {
                 selectSeasonArtwork(currentSection)
             }
             .task(id: media.identity) {
-                preferredApplied = false; chooseInitialSeason()
+                userPickedSeason = false
+                localResumeSeason = nil
+                chooseInitialSeason()
+                guard ordering == nil, pool == nil, let resume,
+                      let lastPlayed = try? await resume.lastPlayedEpisode(seriesID: media.id),
+                      !Task.isCancelled else { return }
+                localResumeSeason = lastPlayed.season
             }
             .task(id: ratingsTaskID) { await loadRatings() }
             .task(id: arcTaskID) { await loadArcs() }
             .task(id: media.identity) { await loadProgressEntries() }
             .onChange(of: seasons) { _, _ in chooseInitialSeason() }
+            .onChange(of: localResumeSeason) { _, _ in chooseInitialSeason() }
             .onChange(of: sections.map(\.id)) { _, ids in
                 if !ids.contains(orderSection) {
                     let record = library.items.first { $0.id == media.id }
@@ -320,7 +331,7 @@ struct EpisodeList: View {
             }
     }
     private func chooseInitialSeason() {
-        guard !preferredApplied || !seasons.contains(season) else { return }
+        guard ordering == nil, !userPickedSeason || !seasons.contains(season) else { return }
         // Desktop's resumeDefaultSeason: the history hint, then the latest watched season, then the next unfinished one.
         let watched = library.watchedEpisodes(media)
         let infos = seasons.map { number -> SeasonResumeRules.SeasonInfo in
@@ -328,8 +339,7 @@ struct EpisodeList: View {
             return SeasonResumeRules.SeasonInfo(number: number, episodeCount: episodes.count,
                                                 watchedCount: episodes.filter { watched.contains($0.watchedKey) }.count)
         }
-        season = SeasonResumeRules.defaultSeason(infos, hint: preferredEpisode?.season)
-        preferredApplied = !seasons.isEmpty
+        season = SeasonResumeRules.defaultSeason(infos, hint: preferredEpisode?.season, localHint: localResumeSeason)
     }
     @ViewBuilder private func rowView(_ row: EpisodeOrderRow, watched: [String: Set<String>], nextUp: String?) -> some View {
         switch row {

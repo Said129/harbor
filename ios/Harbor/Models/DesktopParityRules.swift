@@ -56,7 +56,7 @@ enum SeasonResumeRules {
         let watchedCount: Int
     }
 
-    static func defaultSeason(_ seasons: [SeasonInfo], hint: Int?) -> Int {
+    static func defaultSeason(_ seasons: [SeasonInfo], hint: Int?, localHint: Int? = nil) -> Int {
         let real = seasons.filter { $0.number >= 1 }.sorted { $0.number < $1.number }
         let first = real.first?.number ?? seasons.first?.number ?? 1
         if real.count <= 1 { return first }
@@ -64,7 +64,9 @@ enum SeasonResumeRules {
         func done(_ season: SeasonInfo) -> Bool { season.episodeCount > 0 && season.watchedCount >= season.episodeCount }
         let nextUnwatched = real.first(where: { !done($0) })?.number
         let latestWatched = real.last(where: { $0.watchedCount > 0 })?.number
-        let hinted: Int? = hint.flatMap { value -> Int? in real.contains(where: { $0.number == value }) ? value : nil }
+        let hinted = [hint, localHint].compactMap { $0 }.first { value in
+            real.contains { $0.number == value }
+        }
         if let chosen = hinted ?? latestWatched, let season = real.first(where: { $0.number == chosen }) {
             if done(season), let nextUnwatched, nextUnwatched > chosen { return nextUnwatched }
             return chosen

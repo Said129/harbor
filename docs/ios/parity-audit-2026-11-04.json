@@ -2096,7 +2096,7 @@
       "id": "Local playback resume",
       "desktop_source": "src/lib/resume.ts",
       "verdict": "P",
-      "note": "local playback resume: the series-level last-played lookup exists in the resume store (8 Nov, written by Haiku, uncompiled); no screen calls it yet"
+      "note": "The plain series episode picker uses the local last-played season after a valid explicit hint and before watched history. A manual season choice stays selected. Playback entry-point and alias parity remain open."
     },
     {
       "index": 268,

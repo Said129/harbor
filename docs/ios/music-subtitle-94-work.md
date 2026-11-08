@@ -1918,3 +1918,10 @@ range use single pages. The native curl follows the selected reading direction.
 The reader keeps the saved page when layout changes and marks the chapter
 complete when its last page is visible in a spread. The actual iPad gesture and
 rotation still need validation.
+
+## Local season selection
+
+Plain series now choose the initial season from an explicit episode hint, then
+the last local playback checkpoint and then watched history. A manual selection
+keeps priority while the resume store responds. Ordered anime views continue to
+use their existing episode projection. The priority test awaits an Apple run.

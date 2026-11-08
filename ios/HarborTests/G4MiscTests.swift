@@ -86,6 +86,13 @@ final class G4MiscTests: XCTestCase {
         XCTAssertEqual(SeasonResumeRules.defaultSeason([season(1, 10, 10), season(2, 10, 10)], hint: nil), 2)
     }
 
+    func testInitialSeasonPrefersExplicitThenLocalResumeThenWatched() {
+        let seasons = [season(1, 10, 0), season(2, 10, 4), season(3, 10, 0)]
+        XCTAssertEqual(SeasonResumeRules.defaultSeason(seasons, hint: 1, localHint: 3), 1)
+        XCTAssertEqual(SeasonResumeRules.defaultSeason(seasons, hint: 0, localHint: 3), 3)
+        XCTAssertEqual(SeasonResumeRules.defaultSeason(seasons, hint: nil, localHint: 8), 2)
+    }
+
     func testSidecarCoverUsesDesktopNamesWithoutCaseAndLowestRankWins() {
         XCTAssertEqual(MusicSidecarCover.choose(["track.flac", "Folder.JPG", "cover.png"]), "cover.png")
         XCTAssertEqual(MusicSidecarCover.choose(["front.jpg", "COVER.JPEG"]), "COVER.JPEG")
