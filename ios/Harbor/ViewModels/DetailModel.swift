@@ -143,7 +143,11 @@ final class DetailModel {
         guard library.owner == owner, media.details?.similar.isEmpty ?? true else { return }
         let selected = media
         do {
-            let related = try await service.related(selected, addons: addons)
+            let primary = try await service.related(selected, addons: addons)
+            // Desktop's Trakt fallback, used only when the primary source has no titles.
+            var fallback: [Media] = []
+            if primary.isEmpty { fallback = await TraktRelatedTitles.fetch(TraktRelatedTarget(imdbId: selected.id, show: selected.type == "series")) }
+            let related = TraktRelatedTitles.merge(primary: primary, fallback: fallback, taken: [selected.id])
             try Task.checkCancellation()
             guard library.owner == owner, media.identity == selected.identity, !related.isEmpty, media.details?.similar.isEmpty ?? true else { return }
             var details = media.details ?? MediaDetails()
