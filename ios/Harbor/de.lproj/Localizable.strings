@@ -948,6 +948,7 @@
 "Export log" = "Export log";
 "Export to Trakt" = "Zu Trakt exportieren";
 "Extension" = "Extension";
+"Extension repositories" = "Erweiterungs-Repositories";
 "Extensiones" = "Erweiterungen";
 "Extensiones Manga" = "Manga extensions";
 "Extensions" = "Erweiterungen";
@@ -1713,6 +1714,7 @@
 "Ocultar {name} de la navegación" = "{name} in der Navigation ausblenden";
 "Oculto" = "Ausgeblendet";
 "Off" = "Aus";
+"Official Suwayomi extensions" = "Official Suwayomi extensions";
 "Official links and videos remain subject to the originating service's availability, regional restrictions and terms. Names and logos identify third parties and do not imply endorsement or affiliation." = "Offizielle Links und Videos unterliegen weiterhin der Verfügbarkeit, regionalen Einschränkungen und den Bedingungen des ursprünglichen Dienstes. Namen und Logos kennzeichnen Dritte und bedeuten keine Unterstützung oder Zugehörigkeit.";
 "Oldest" = "Älteste";
 "On" = "Ein";
@@ -2592,6 +2594,7 @@
 "Thai" = "Thailändisch";
 "Thanks. Sent for review." = "Danke. Zur Überprüfung gesendet.";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Diese Konfiguration ist ungültig. Prüfe baseUrl, popularPath, list, chapters und pages.";
+"That does not look like a repository URL" = "Das sieht nicht nach einer Repository-URL aus";
 "That does not look like a valid magnet link or infohash." = "Das sieht nicht nach einem gültigen Magnet-Link oder Infohash aus.";
 "That link did not answer." = "Dieser Link hat nicht geantwortet.";
 "That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
@@ -2612,6 +2615,7 @@
 "The end time has to be after the start." = "Die Endzeit muss nach der Startzeit liegen.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The largest community catalog" = "The largest community catalog";
 "The little score chip printed on poster cards across your rows and grids." = "Die kleine Bewertungsanzeige auf den Posterkarten in deinen Reihen und Rastern.";
 "The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
 "The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
@@ -2622,6 +2626,7 @@
 "The quick brown fox jumps over the lazy dog" = "Franz jagt im komplett verwahrlosten Taxi quer durch Bayern";
 "The ratings row on a title's detail page, next to runtime and genre." = "Die Bewertungszeile auf der Detailseite eines Titels, neben Laufzeit und Genre.";
 "The server answered with status {status}. Is that a streaming server?" = "Der Server hat mit Status {status} geantwortet. Ist das ein Streamingserver?";
+"The server could not load that repository" = "Der Server konnte dieses Repository nicht laden";
 "The server responded in {ms} ms." = "Der Server hat nach {ms} ms geantwortet.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Das Layout der gesamten Startseite. Mit den Optionen darunter passt du die enthaltenen Reihen an.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";

@@ -948,6 +948,7 @@
 "Export log" = "Export log";
 "Export to Trakt" = "Trakt में एक्सपोर्ट करें";
 "Extension" = "Extension";
+"Extension repositories" = "एक्सटेंशन रिपॉज़िटरी";
 "Extensiones" = "एक्सटेंशन";
 "Extensiones Manga" = "Manga extensions";
 "Extensions" = "एक्सटेंशन";
@@ -1713,6 +1714,7 @@
 "Ocultar {name} de la navegación" = "नेविगेशन में {name} छिपाएँ";
 "Oculto" = "छिपा हुआ";
 "Off" = "बंद";
+"Official Suwayomi extensions" = "Official Suwayomi extensions";
 "Official links and videos remain subject to the originating service's availability, regional restrictions and terms. Names and logos identify third parties and do not imply endorsement or affiliation." = "आधिकारिक लिंक और वीडियो मूल सेवा की उपलब्धता, क्षेत्रीय प्रतिबंधों और शर्तों के अधीन रहते हैं। नाम और लोगो तृतीय पक्षों की पहचान करते हैं और समर्थन या संबद्धता का संकेत नहीं देते।";
 "Oldest" = "सबसे पुराना";
 "On" = "चालू";
@@ -2592,6 +2594,7 @@
 "Thai" = "थाई";
 "Thanks. Sent for review." = "धन्यवाद। समीक्षा के लिए भेज दिया गया है।";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "वह कॉन्फ़िग मान्य नहीं है। baseUrl, popularPath, list, chapters और pages जाँचें।";
+"That does not look like a repository URL" = "यह रिपॉज़िटरी URL नहीं लगता";
 "That does not look like a valid magnet link or infohash." = "यह मान्य मैग्नेट लिंक या इन्फोहैश नहीं लगता।";
 "That link did not answer." = "उस लिंक ने जवाब नहीं दिया।";
 "That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
@@ -2612,6 +2615,7 @@
 "The end time has to be after the start." = "समाप्ति समय, प्रारंभ समय के बाद होना चाहिए।";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The largest community catalog" = "The largest community catalog";
 "The little score chip printed on poster cards across your rows and grids." = "आपकी पंक्तियों और ग्रिड में पोस्टर कार्ड पर दिखने वाली छोटी स्कोर चिप।";
 "The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
 "The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
@@ -2622,6 +2626,7 @@
 "The quick brown fox jumps over the lazy dog" = "तेज़ भूरी लोमड़ी आलसी कुत्ते के ऊपर से कूदती है";
 "The ratings row on a title's detail page, next to runtime and genre." = "किसी टाइटल के विवरण पेज पर अवधि और शैली के पास दिखाई देने वाली रेटिंग पंक्ति।";
 "The server answered with status {status}. Is that a streaming server?" = "सर्वर ने {status} स्टेटस के साथ जवाब दिया। क्या यह स्ट्रीमिंग सर्वर है?";
+"The server could not load that repository" = "सर्वर उस रिपॉज़िटरी को लोड नहीं कर सका";
 "The server responded in {ms} ms." = "सर्वर ने {ms} मिलीसेकंड में जवाब दिया।";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "पूरे होम पेज की बनावट। नीचे की सभी सेटिंग्स इसके अंदर की पंक्तियों को सँवारती हैं।";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";

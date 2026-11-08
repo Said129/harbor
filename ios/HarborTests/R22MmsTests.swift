@@ -63,6 +63,19 @@ final class R22MmsTests: XCTestCase {
         XCTAssertEqual(MangaCategoryRules.books([other, match, duplicate, second], matching: ""), [other, second])
     }
 
+    func testMangaRepositoryURLsUseDesktopIndexRulesAndRejectCredentials() {
+        XCTAssertEqual(MangaExtensionRepository.indexURL(for: " https://github.com/acme/manga.git "),
+                       "https://raw.githubusercontent.com/acme/manga/repo/index.min.json")
+        XCTAssertEqual(MangaExtensionRepository.indexURL(for: "https://github.com/acme/manga/tree/main"),
+                       "https://raw.githubusercontent.com/acme/manga/main/index.min.json")
+        XCTAssertEqual(MangaExtensionRepository.indexURL(for: "https://host.example/shelf/"),
+                       "https://host.example/shelf/index.min.json")
+        XCTAssertEqual(MangaExtensionRepository.indexURL(for: "https://host.example/index.json?format=1"),
+                       "https://host.example/index.json?format=1")
+        XCTAssertNil(MangaExtensionRepository.indexURL(for: "https://user@host.example/repo"))
+        XCTAssertNil(MangaExtensionRepository.indexURL(for: "file:///repo/index.json"))
+    }
+
     // MARK: Music queue continuation (Desktop queue-continuation.ts)
 
     func testExcludedAddsHistoryOnlyInDiscoverMode() {

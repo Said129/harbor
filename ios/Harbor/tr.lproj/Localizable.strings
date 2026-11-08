@@ -948,6 +948,7 @@
 "Export log" = "Export log";
 "Export to Trakt" = "Trakt'a aktar";
 "Extension" = "Extension";
+"Extension repositories" = "Eklenti depoları";
 "Extensiones" = "Eklentiler";
 "Extensiones Manga" = "Manga extensions";
 "Extensions" = "Eklentiler";
@@ -1713,6 +1714,7 @@
 "Ocultar {name} de la navegación" = "{name} öğesini gezinmeden gizle";
 "Oculto" = "Gizli";
 "Off" = "Kapalı";
+"Official Suwayomi extensions" = "Official Suwayomi extensions";
 "Official links and videos remain subject to the originating service's availability, regional restrictions and terms. Names and logos identify third parties and do not imply endorsement or affiliation." = "Resmî bağlantılar ve videolar, kaynak hizmetin kullanılabilirliğine, bölgesel kısıtlamalarına ve koşullarına tabidir. Adlar ve logolar üçüncü tarafları tanımlar; destek veya bağlantı anlamına gelmez.";
 "Oldest" = "En eski";
 "On" = "Açık";
@@ -2592,6 +2594,7 @@
 "Thai" = "Tayca";
 "Thanks. Sent for review." = "Teşekkürler. İncelenmek üzere gönderildi.";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Bu yapılandırma geçerli değil. baseUrl, popularPath, list, chapters ve pages alanlarını kontrol edin.";
+"That does not look like a repository URL" = "Bu, bir depo URL'sine benzemiyor";
 "That does not look like a valid magnet link or infohash." = "Bu, geçerli bir magnet bağlantısı veya infohash gibi görünmüyor.";
 "That link did not answer." = "Bu bağlantı yanıt vermedi.";
 "That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
@@ -2612,6 +2615,7 @@
 "The end time has to be after the start." = "Bitiş zamanı başlangıçtan sonra olmalıdır.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The largest community catalog" = "The largest community catalog";
 "The little score chip printed on poster cards across your rows and grids." = "Satır ve ızgaralarınızdaki poster kartlarında gösterilen küçük puan etiketi.";
 "The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
 "The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
@@ -2622,6 +2626,7 @@
 "The quick brown fox jumps over the lazy dog" = "Pijamalı hasta yağız şoföre çabucak güvendi";
 "The ratings row on a title's detail page, next to runtime and genre." = "Bir içeriğin ayrıntı sayfasında süre ve türün yanında yer alan puanlar satırı.";
 "The server answered with status {status}. Is that a streaming server?" = "Sunucu {status} durumuyla yanıt verdi. Bu bir yayın sunucusu mu?";
+"The server could not load that repository" = "Sunucu bu depoyu yükleyemedi";
 "The server responded in {ms} ms." = "Sunucu {ms} ms içinde yanıt verdi.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Ana Sayfanın genel düzeni. Aşağıdaki seçeneklerin tümü içindeki satırları ayarlar.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";

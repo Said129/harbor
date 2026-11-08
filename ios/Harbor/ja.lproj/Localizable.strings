@@ -948,6 +948,7 @@
 "Export log" = "Export log";
 "Export to Trakt" = "Traktにエクスポート";
 "Extension" = "Extension";
+"Extension repositories" = "拡張機能リポジトリ";
 "Extensiones" = "拡張機能";
 "Extensiones Manga" = "Manga extensions";
 "Extensions" = "拡張機能";
@@ -1713,6 +1714,7 @@
 "Ocultar {name} de la navegación" = "ナビゲーションから{name}を非表示";
 "Oculto" = "非表示";
 "Off" = "オフ";
+"Official Suwayomi extensions" = "Official Suwayomi extensions";
 "Official links and videos remain subject to the originating service's availability, regional restrictions and terms. Names and logos identify third parties and do not imply endorsement or affiliation." = "公式リンクと動画には、元のサービスの提供状況、地域制限、利用規約が引き続き適用されます。名称とロゴは第三者を識別するもので、推奨や提携を意味しません。";
 "Oldest" = "古い順";
 "On" = "オン";
@@ -2592,6 +2594,7 @@
 "Thai" = "タイ語";
 "Thanks. Sent for review." = "ありがとうございます。審査に送信しました。";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "この設定は無効です。baseUrl、popularPath、list、chapters、pagesを確認してください。";
+"That does not look like a repository URL" = "リポジトリのURLではないようです";
 "That does not look like a valid magnet link or infohash." = "有効なマグネットリンクまたはinfohashではないようです。";
 "That link did not answer." = "そのリンクは応答しませんでした。";
 "That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
@@ -2612,6 +2615,7 @@
 "The end time has to be after the start." = "終了時刻は開始時刻より後に設定してください。";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The largest community catalog" = "The largest community catalog";
 "The little score chip printed on poster cards across your rows and grids." = "各行やグリッドのポスターカードに表示される小さなスコアバッジです。";
 "The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
 "The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
@@ -2622,6 +2626,7 @@
 "The quick brown fox jumps over the lazy dog" = "素早い茶色のキツネが、のろまな犬を飛び越える";
 "The ratings row on a title's detail page, next to runtime and genre." = "作品の詳細ページで、再生時間やジャンルの横に表示される評価欄です。";
 "The server answered with status {status}. Is that a streaming server?" = "サーバーからステータス {status} が返されました。ストリーミングサーバーのアドレスで間違いありませんか？";
+"The server could not load that repository" = "サーバーでこのリポジトリを読み込めませんでした";
 "The server responded in {ms} ms." = "サーバーは {ms} ミリ秒で応答しました。";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "ホームページ全体のレイアウトです。以下の項目では、その中の各行を調整します。";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";

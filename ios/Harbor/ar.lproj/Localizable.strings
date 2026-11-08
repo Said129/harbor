@@ -971,6 +971,7 @@
 "Export log" = "Export log";
 "Export to Trakt" = "التصدير إلى Trakt";
 "Extension" = "Extension";
+"Extension repositories" = "مستودعات الإضافات";
 "Extensiones" = "الإضافات";
 "Extensiones Manga" = "Manga extensions";
 "Extensions" = "الإضافات";
@@ -1741,6 +1742,7 @@
 "Ocultar {name} de la navegación" = "إخفاء {name} من التنقل";
 "Oculto" = "مخفي";
 "Off" = "إيقاف";
+"Official Suwayomi extensions" = "Official Suwayomi extensions";
 "Official links and videos remain subject to the originating service's availability, regional restrictions and terms. Names and logos identify third parties and do not imply endorsement or affiliation." = "تظل الروابط والفيديوهات الرسمية خاضعة لتوافر الخدمة الأصلية وقيودها الإقليمية وشروطها. تعرّف الأسماء والشعارات بالجهات الخارجية ولا تعني تأييدًا أو ارتباطًا بها.";
 "Oldest" = "الأقدم";
 "On" = "تشغيل";
@@ -2628,6 +2630,7 @@
 "Thai" = "التايلندية";
 "Thanks. Sent for review." = "شكرًا. تم الإرسال للمراجعة.";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "هذا الإعداد غير صالح. تحقّق من baseUrl وpopularPath وlist وchapters وpages.";
+"That does not look like a repository URL" = "لا يبدو هذا كعنوان URL لمستودع";
 "That does not look like a valid magnet link or infohash." = "لا يبدو هذا رابط magnet أو infohash صالحًا.";
 "That link did not answer." = "لم يستجب هذا الرابط.";
 "That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
@@ -2648,6 +2651,7 @@
 "The end time has to be after the start." = "يجب أن يكون وقت النهاية بعد وقت البداية.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The largest community catalog" = "The largest community catalog";
 "The little score chip printed on poster cards across your rows and grids." = "شارة الدرجة الصغيرة المطبوعة على بطاقات الملصقات في صفوفك وشبكاتك.";
 "The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
 "The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
@@ -2658,6 +2662,7 @@
 "The quick brown fox jumps over the lazy dog" = "أبجد هوز حطي كلمن سعفص قرشت ثخذ ضظغ";
 "The ratings row on a title's detail page, next to runtime and genre." = "صف التقييمات في صفحة تفاصيل العنوان، بجوار مدة العرض والنوع.";
 "The server answered with status {status}. Is that a streaming server?" = "أجاب الخادم بالحالة {status}. هل هذا خادم بثّ؟";
+"The server could not load that repository" = "تعذّر على الخادم تحميل ذلك المستودع";
 "The server responded in {ms} ms." = "استجاب الخادم خلال {ms} مللي ثانية.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "شكل صفحة الرئيسية بأكملها. كل ما بالأسفل يضبط الصفوف داخلها.";
 "The subtitle already matches the audio." = "تتطابق الترجمة مع الصوت بالفعل.";

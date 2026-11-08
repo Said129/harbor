@@ -186,6 +186,43 @@ actor SuwayomiClient {
             return MangaExtension(id: id, name: value["name"].string ?? id, language: value["lang"].string ?? "", version: value["versionName"].string ?? "", installed: value[graphql == true ? "isInstalled" : "installed"].mangaBool, update: value["hasUpdate"].mangaBool, obsolete: value[graphql == true ? "isObsolete" : "obsolete"].mangaBool, adult: value["isNsfw"].mangaBool)
         }
     }
+    func extensionRepositories() async throws -> [MangaExtensionRepository]? {
+        if graphql == nil { _ = try await sources() }
+        guard graphql == true else { return nil }
+        do {
+            let response = try await gql("query { extensionStores { nodes { name indexUrl } } }")
+            guard case .array(let nodes) = response["extensionStores"]["nodes"] else { return nil }
+            var seen = Set<String>()
+            return nodes.compactMap { node in
+                guard let url = node["indexUrl"].string, !url.isEmpty, seen.insert(url).inserted else { return nil }
+                return MangaExtensionRepository(name: node["name"].string ?? url, indexURL: url)
+            }
+        } catch let error as HarborError where error.code == "manga-protocol" {
+            return nil
+        }
+    }
+    func addExtensionRepository(_ indexURL: String) async throws {
+        if graphql == nil { _ = try await sources() }
+        guard graphql == true else { throw HarborError(code: "manga-protocol") }
+        let response = try await gql(
+            "mutation($url: String!) { addExtensionStore(input: { indexUrl: $url }) { extensionStore { indexUrl } } }",
+            variables: ["url": .string(indexURL)]
+        )
+        guard response["addExtensionStore"]["extensionStore"]["indexUrl"].string != nil else { throw HarborError(code: "manga-protocol") }
+    }
+    func removeExtensionRepository(_ repository: MangaExtensionRepository) async throws {
+        if graphql == nil { _ = try await sources() }
+        guard graphql == true else { throw HarborError(code: "manga-protocol") }
+        let response = try await gql(
+            "mutation($url: String!) { removeExtensionStore(input: { indexUrl: $url }) { clientMutationId } }",
+            variables: ["url": .string(repository.indexURL)]
+        )
+        guard case .object = response["removeExtensionStore"] else { throw HarborError(code: "manga-protocol") }
+    }
+    func refreshExtensionIndex() async throws {
+        let response = try await gql("mutation { fetchExtensions(input: {}) { clientMutationId } }")
+        guard case .object = response["fetchExtensions"] else { throw HarborError(code: "manga-protocol") }
+    }
     func changeExtension(_ entry: MangaExtension, action: String) async throws {
         guard ["install", "uninstall", "update"].contains(action), !entry.id.isEmpty, entry.id.utf8.allSatisfy({ (48...57).contains($0) || (65...90).contains($0) || (97...122).contains($0) || [45, 46, 95].contains($0) }) else { throw HarborError(code: "manga-protocol") }
         if graphql == nil { _ = try await sources() }

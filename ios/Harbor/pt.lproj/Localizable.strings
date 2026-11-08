@@ -968,6 +968,7 @@
 "Export log" = "Export log";
 "Export to Trakt" = "Exportar para o Trakt";
 "Extension" = "Extension";
+"Extension repositories" = "Repositórios de extensões";
 "Extensiones" = "Extensões";
 "Extensiones Manga" = "Manga extensions";
 "Extensions" = "Extensões";
@@ -1733,6 +1734,7 @@
 "Ocultar {name} de la navegación" = "Ocultar {name} da navegação";
 "Oculto" = "Oculto";
 "Off" = "Desligado";
+"Official Suwayomi extensions" = "Official Suwayomi extensions";
 "Official links and videos remain subject to the originating service's availability, regional restrictions and terms. Names and logos identify third parties and do not imply endorsement or affiliation." = "Links e vídeos oficiais continuam sujeitos à disponibilidade, às restrições regionais e aos termos do serviço de origem. Nomes e logotipos identificam terceiros e não implicam endosso ou afiliação.";
 "Oldest" = "Mais antigos";
 "On" = "Ativado";
@@ -2615,6 +2617,7 @@
 "Thai" = "Tailandês";
 "Thanks. Sent for review." = "Obrigado. Enviado para revisão.";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Essa configuração não é válida. Verifique baseUrl, popularPath, list, chapters e pages.";
+"That does not look like a repository URL" = "Isso não parece uma URL de repositório";
 "That does not look like a valid magnet link or infohash." = "Isso não parece ser um link magnet ou infohash válido.";
 "That link did not answer." = "Esse link não respondeu.";
 "That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
@@ -2635,6 +2638,7 @@
 "The end time has to be after the start." = "O horário de término precisa ser depois do início.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The largest community catalog" = "The largest community catalog";
 "The little score chip printed on poster cards across your rows and grids." = "O pequeno chip de nota impresso nos cards de pôster nas suas fileiras e grades.";
 "The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
 "The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
@@ -2645,6 +2649,7 @@
 "The quick brown fox jumps over the lazy dog" = "Um pequeno jabuti xereta viu dez cegonhas felizes";
 "The ratings row on a title's detail page, next to runtime and genre." = "A linha de avaliações na página de detalhes de um título, ao lado da duração e do gênero.";
 "The server answered with status {status}. Is that a streaming server?" = "O servidor respondeu com o status {status}. Isso é mesmo um servidor de streaming?";
+"The server could not load that repository" = "O servidor não conseguiu carregar esse repositório";
 "The server responded in {ms} ms." = "O servidor respondeu em {ms} ms.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "O formato de toda a página Início. Tudo abaixo ajusta as fileiras dentro dela.";
 "The subtitle already matches the audio." = "A legenda já corresponde ao áudio.";

@@ -1877,4 +1877,13 @@ The filter keeps the server's category order, matches titles locally, deduplicat
 results and preserves reading progress through the existing shelf records. Switching
 category or server discards stale results. Category endpoints can fall back from
 GraphQL to REST while authorization failures and cancellation stop the request.
-The B369 source audit is updated. Focused Apple validation is pending.
+The B369 source audit is updated. Focused Apple run 42521965263 is pending.
+
+## Suwayomi extension repositories (8 November)
+
+The Manga extensions list now manages repositories through the server's GraphQL
+extension store. It reuses the saved server connection, normalizes repository
+links, presents Desktop's two suggestions and reloads extensions after a change.
+A failed index refresh can be retried separately from the completed mutation.
+The controls appear on servers that support listing repositories. B371 is
+implemented in source and awaits Apple validation.

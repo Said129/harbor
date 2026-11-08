@@ -948,6 +948,7 @@
 "Export log" = "Export log";
 "Export to Trakt" = "Trakt로 내보내기";
 "Extension" = "Extension";
+"Extension repositories" = "확장 프로그램 저장소";
 "Extensiones" = "확장 프로그램";
 "Extensiones Manga" = "Manga extensions";
 "Extensions" = "확장 프로그램";
@@ -1713,6 +1714,7 @@
 "Ocultar {name} de la navegación" = "탐색에서 {name} 숨기기";
 "Oculto" = "숨김";
 "Off" = "끔";
+"Official Suwayomi extensions" = "Official Suwayomi extensions";
 "Official links and videos remain subject to the originating service's availability, regional restrictions and terms. Names and logos identify third parties and do not imply endorsement or affiliation." = "공식 링크와 동영상에는 원본 서비스의 제공 여부, 지역 제한, 약관이 계속 적용됩니다. 이름과 로고는 타사를 식별하며 보증이나 제휴를 의미하지 않습니다.";
 "Oldest" = "오래된 순";
 "On" = "켬";
@@ -2592,6 +2594,7 @@
 "Thai" = "태국어";
 "Thanks. Sent for review." = "감사합니다. 검토를 위해 전송했습니다.";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "이 구성은 유효하지 않습니다. baseUrl, popularPath, list, chapters, pages를 확인하세요.";
+"That does not look like a repository URL" = "올바른 저장소 URL이 아닌 것 같습니다";
 "That does not look like a valid magnet link or infohash." = "유효한 마그넷 링크 또는 정보 해시가 아닌 것 같습니다.";
 "That link did not answer." = "해당 링크가 응답하지 않았습니다.";
 "That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
@@ -2612,6 +2615,7 @@
 "The end time has to be after the start." = "종료 시간은 시작 시간보다 뒤여야 합니다.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The largest community catalog" = "The largest community catalog";
 "The little score chip printed on poster cards across your rows and grids." = "행과 그리드의 포스터 카드에 표시되는 작은 평점 칩입니다.";
 "The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
 "The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
@@ -2622,6 +2626,7 @@
 "The quick brown fox jumps over the lazy dog" = "다람쥐 헌 쳇바퀴에 타고파";
 "The ratings row on a title's detail page, next to runtime and genre." = "제목 상세 페이지에서 재생 시간 및 장르 옆에 표시되는 평점 행입니다.";
 "The server answered with status {status}. Is that a streaming server?" = "서버가 상태 {status}(으)로 응답했습니다. 스트리밍 서버가 맞나요?";
+"The server could not load that repository" = "서버에서 해당 저장소를 불러오지 못했습니다";
 "The server responded in {ms} ms." = "서버가 {ms}밀리초 만에 응답했습니다.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "홈 페이지 전체의 구성입니다. 아래의 모든 설정은 그 안의 행을 조정합니다.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";

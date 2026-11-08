@@ -948,6 +948,7 @@
 "Export log" = "Export log";
 "Export to Trakt" = "Ekspor ke Trakt";
 "Extension" = "Extension";
+"Extension repositories" = "Repositori ekstensi";
 "Extensiones" = "Ekstensi";
 "Extensiones Manga" = "Manga extensions";
 "Extensions" = "Ekstensi";
@@ -1713,6 +1714,7 @@
 "Ocultar {name} de la navegación" = "Sembunyikan {name} dari navigasi";
 "Oculto" = "Tersembunyi";
 "Off" = "Nonaktif";
+"Official Suwayomi extensions" = "Official Suwayomi extensions";
 "Official links and videos remain subject to the originating service's availability, regional restrictions and terms. Names and logos identify third parties and do not imply endorsement or affiliation." = "Tautan dan video resmi tetap tunduk pada ketersediaan, pembatasan wilayah, dan ketentuan layanan asal. Nama dan logo mengidentifikasi pihak ketiga dan tidak menyiratkan dukungan atau afiliasi.";
 "Oldest" = "Terlama";
 "On" = "Aktif";
@@ -2592,6 +2594,7 @@
 "Thai" = "Thai";
 "Thanks. Sent for review." = "Terima kasih. Dikirim untuk ditinjau.";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Konfigurasi itu tidak valid. Periksa baseUrl, popularPath, list, chapters, dan pages.";
+"That does not look like a repository URL" = "Itu sepertinya bukan URL repositori";
 "That does not look like a valid magnet link or infohash." = "Itu sepertinya bukan tautan magnet atau infohash yang valid.";
 "That link did not answer." = "Tautan itu tidak merespons.";
 "That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
@@ -2612,6 +2615,7 @@
 "The end time has to be after the start." = "Waktu selesai harus setelah waktu mulai.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The largest community catalog" = "The largest community catalog";
 "The little score chip printed on poster cards across your rows and grids." = "Chip skor kecil yang ditampilkan pada kartu poster di seluruh baris dan kisi Anda.";
 "The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
 "The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
@@ -2622,6 +2626,7 @@
 "The quick brown fox jumps over the lazy dog" = "Rubah cokelat yang gesit melompati anjing malas";
 "The ratings row on a title's detail page, next to runtime and genre." = "Baris rating di halaman detail judul, di sebelah durasi dan genre.";
 "The server answered with status {status}. Is that a streaming server?" = "Server merespons dengan status {status}. Apakah itu server streaming?";
+"The server could not load that repository" = "Server tidak dapat memuat repositori tersebut";
 "The server responded in {ms} ms." = "Server merespons dalam {ms} ms.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Bentuk keseluruhan halaman Beranda. Semua pengaturan di bawah menyesuaikan baris di dalamnya.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";

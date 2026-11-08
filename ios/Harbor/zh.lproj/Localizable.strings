@@ -948,6 +948,7 @@
 "Export log" = "Export log";
 "Export to Trakt" = "导出到 Trakt";
 "Extension" = "Extension";
+"Extension repositories" = "扩展仓库";
 "Extensiones" = "扩展";
 "Extensiones Manga" = "Manga extensions";
 "Extensions" = "扩展";
@@ -1713,6 +1714,7 @@
 "Ocultar {name} de la navegación" = "在导航中隐藏{name}";
 "Oculto" = "已隐藏";
 "Off" = "关闭";
+"Official Suwayomi extensions" = "Official Suwayomi extensions";
 "Official links and videos remain subject to the originating service's availability, regional restrictions and terms. Names and logos identify third parties and do not imply endorsement or affiliation." = "官方链接和视频仍受来源服务的可用性、地区限制及条款约束。名称和标志用于识别第三方，不代表认可或关联。";
 "Oldest" = "最早";
 "On" = "开启";
@@ -2592,6 +2594,7 @@
 "Thai" = "泰语";
 "Thanks. Sent for review." = "谢谢。已提交审核。";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "该配置无效。请检查 baseUrl、popularPath、list、chapters 和 pages。";
+"That does not look like a repository URL" = "这似乎不是有效的仓库 URL";
 "That does not look like a valid magnet link or infohash." = "这似乎不是有效的 magnet 链接或 infohash。";
 "That link did not answer." = "该链接没有响应。";
 "That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
@@ -2612,6 +2615,7 @@
 "The end time has to be after the start." = "结束时间必须晚于开始时间。";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The largest community catalog" = "The largest community catalog";
 "The little score chip printed on poster cards across your rows and grids." = "各内容行和网格中的海报卡片上显示的小型评分标签。";
 "The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
 "The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
@@ -2622,6 +2626,7 @@
 "The quick brown fox jumps over the lazy dog" = "敏捷的棕狐跃过懒狗";
 "The ratings row on a title's detail page, next to runtime and genre." = "影片详情页中位于时长和类型旁边的评分栏。";
 "The server answered with status {status}. Is that a streaming server?" = "服务器返回状态 {status}。这是流媒体服务器吗？";
+"The server could not load that repository" = "服务器无法加载该仓库";
 "The server responded in {ms} ms." = "服务器在 {ms} 毫秒内响应。";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "整个首页的布局。下方各项用于调整其中的内容行。";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";

@@ -633,6 +633,7 @@ private struct MangaExtensionsView: View {
     var body: some View {
         NavigationStack {
             List {
+                MangaExtensionRepositoriesSection(client: client) { await load() }
                 if let error { Text(error).foregroundStyle(.orange) }
                 ForEach(entries.filter { (adult || !$0.adult) && (query.isEmpty || $0.name.localizedCaseInsensitiveContains(query)) }) { entry in
                     VStack(alignment: .leading, spacing: 8) {
@@ -650,7 +651,7 @@ private struct MangaExtensionsView: View {
         }
     }
     private func load() async {
-        loading = true; defer { loading = false }
+        loading = true; error = nil; defer { loading = false }
         do { entries = try await client.extensions() } catch { self.error = safeMessage(error) }
     }
     private func change(_ entry: MangaExtension, action: String) {

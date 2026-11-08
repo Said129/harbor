@@ -3,7 +3,7 @@
 Cada fila: `lista indice | id | verdicto | hueco`. P = parcial, M = falta. El indice vuelve a empezar en 1 en cada lista (`behaviors`, `settings`).
 El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo de iOS y el fuente de Desktop (`desktop_source` del inventario `desktop-parity-0.9.132.json`).
 
-## behaviors (126 filas)
+## behaviors (125 filas)
 
 - B 1 | Home hero and real catalogs | P | iOS never fetches Desktop's hosted hero pool: the trending feed falls back to the first catalog titles, and the trakt and simkl feeds only pick an already-loaded rail whose name contains that service. The Desktop 4... [Desktop: src/views/home.tsx]
 - B 2 | Continue Watching on Home | P | Continue Watching on Home: the empty-state box and the one-card-per-title pass with the 100-card cap are in (8 Nov, written by Haiku, uncompiled); franchise-root removal is not, and Desktop's signed-out Stremio prompt is replaced by the empty message because iOS has no Stremio sign-in [Desktop: src/views/home.tsx]
@@ -121,7 +121,6 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 361 | Advanced configuration | P | migrations and advanced configuration partial [Desktop: src/lib/settings]
 - B 363 | Crash diagnostics | P | Diagnostics log export [Desktop: src-tauri/src/crash_report.rs]
 - B 364 | Harbor / Stremio deep links | P | deep links partial [Desktop: src/lib/deep-link.ts]
-- B 371 | Manga extension repositories | M | No iOS implementation: there is no extensionStores query, addExtensionStore or removeExtensionStore mutation, no fetchExtensions refresh, and no repository UI. [Desktop: src/lib/manga/sources/suwayomi/graphql.ts]
 - B 377 | Manga book page turns | P | manga book page turns: Desktop's two-page spread rule exists as a tested helper (8 Nov, written by Haiku, uncompiled); the book pager still shows single leaves [Desktop: src/views/manga/manga-reader/reader-prefs.ts]
 - B 392 | Sports calendar and scores | P | sports calendar: the native date picker cannot mark live days and iOS does not fetch live state for other days [Desktop: src/lib/sports/espn-scoreboard.ts]
 - B 395 | Sports score periods and statistics | P | sports score periods: the headings follow Desktop (Set, Period, Quarter, Overtime, Innings) (8 Nov, written by Haiku, uncompiled); cricket partnership and player tables, baseball and football situation panels and volleyball set data are not ported [Desktop: src/lib/sports/espn-summary.ts]

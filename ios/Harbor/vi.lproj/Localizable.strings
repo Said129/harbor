@@ -948,6 +948,7 @@
 "Export log" = "Export log";
 "Export to Trakt" = "Xuất sang Trakt";
 "Extension" = "Extension";
+"Extension repositories" = "Kho tiện ích mở rộng";
 "Extensiones" = "Tiện ích mở rộng";
 "Extensiones Manga" = "Manga extensions";
 "Extensions" = "Tiện ích mở rộng";
@@ -1713,6 +1714,7 @@
 "Ocultar {name} de la navegación" = "Ẩn {name} khỏi thanh điều hướng";
 "Oculto" = "Đã ẩn";
 "Off" = "Tắt";
+"Official Suwayomi extensions" = "Official Suwayomi extensions";
 "Official links and videos remain subject to the originating service's availability, regional restrictions and terms. Names and logos identify third parties and do not imply endorsement or affiliation." = "Liên kết và video chính thức vẫn tuân theo tình trạng cung cấp, hạn chế khu vực và điều khoản của dịch vụ gốc. Tên và logo dùng để nhận diện bên thứ ba, không ngụ ý sự bảo chứng hay liên kết.";
 "Oldest" = "Cũ nhất";
 "On" = "Bật";
@@ -2592,6 +2594,7 @@
 "Thai" = "Tiếng Thái";
 "Thanks. Sent for review." = "Cảm ơn. Đã gửi để xem xét.";
 "That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Cấu hình này không hợp lệ. Hãy kiểm tra baseUrl, popularPath, list, chapters và pages.";
+"That does not look like a repository URL" = "Đây có vẻ không phải là URL kho lưu trữ";
 "That does not look like a valid magnet link or infohash." = "Đây có vẻ không phải là liên kết magnet hoặc infohash hợp lệ.";
 "That link did not answer." = "Liên kết đó không phản hồi.";
 "That request was too big for this model. Pick a model with a larger context." = "That request was too big for this model. Pick a model with a larger context.";
@@ -2612,6 +2615,7 @@
 "The end time has to be after the start." = "Thời gian kết thúc phải sau thời gian bắt đầu.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The handle in your profile address, letterboxd.com/your-name." = "The handle in your profile address, letterboxd.com/your-name.";
+"The largest community catalog" = "The largest community catalog";
 "The little score chip printed on poster cards across your rows and grids." = "Nhãn điểm nhỏ hiển thị trên các thẻ áp phích trong các hàng và lưới.";
 "The model is rate-limited right now. Try again in a moment or switch models." = "The model is rate-limited right now. Try again in a moment or switch models.";
 "The model replied with nothing usable. Try another model (hold the AI button) or rephrase." = "The model replied with nothing usable. Try another model (hold the AI button) or rephrase.";
@@ -2622,6 +2626,7 @@
 "The quick brown fox jumps over the lazy dog" = "Con cáo nâu nhanh nhẹn nhảy qua chú chó lười biếng";
 "The ratings row on a title's detail page, next to runtime and genre." = "Hàng điểm đánh giá trên trang chi tiết nội dung, bên cạnh thời lượng và thể loại.";
 "The server answered with status {status}. Is that a streaming server?" = "Máy chủ phản hồi với trạng thái {status}. Đây có phải là máy chủ phát trực tuyến không?";
+"The server could not load that repository" = "Máy chủ không thể tải kho lưu trữ đó";
 "The server responded in {ms} ms." = "Máy chủ đã phản hồi sau {ms} mili giây.";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Bố cục tổng thể của trang chủ. Mọi tùy chọn bên dưới điều chỉnh các hàng trong trang.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";

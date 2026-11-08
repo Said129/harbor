@@ -5,14 +5,14 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 250,
+      "ported": 251,
       "partial": 125,
-      "missing": 1,
+      "missing": 0,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 83.1,
-      "ported_only_percent": 66.5,
-      "ported_or_partial_percent": 99.7
+      "weighted_percent": 83.4,
+      "ported_only_percent": 66.8,
+      "ported_or_partial_percent": 100.0
     },
     "settings": {
       "total": 511,
@@ -27,14 +27,14 @@
     },
     "all": {
       "total": 949,
-      "ported": 490,
+      "ported": 491,
       "partial": 158,
-      "missing": 4,
+      "missing": 3,
       "excluded": 297,
       "counted": 652,
-      "weighted_percent": 87.3,
-      "ported_only_percent": 75.2,
-      "ported_or_partial_percent": 99.4
+      "weighted_percent": 87.4,
+      "ported_only_percent": 75.3,
+      "ported_or_partial_percent": 99.5
     }
   },
   "behavior_areas": [
@@ -167,11 +167,11 @@
     {
       "area": "Manga",
       "range": "B366-B390",
-      "ported": 22,
+      "ported": 23,
       "partial": 1,
-      "missing": 1,
+      "missing": 0,
       "excluded": 1,
-      "weighted_percent": 93.8
+      "weighted_percent": 97.9
     },
     {
       "area": "Sports",
@@ -2823,8 +2823,8 @@
       "index": 371,
       "id": "Manga extension repositories",
       "desktop_source": "src/lib/manga/sources/suwayomi/graphql.ts",
-      "verdict": "M",
-      "note": "No iOS implementation: there is no extensionStores query, addExtensionStore or removeExtensionStore mutation, no fetchExtensions refresh, and no repository UI."
+      "verdict": "D",
+      "note": "The Suwayomi extension manager lists, adds and removes server repositories, normalizes GitHub links, offers Desktop suggestions and refreshes the server index after edits. Code review status; Apple validation pending."
     },
     {
       "index": 372,
