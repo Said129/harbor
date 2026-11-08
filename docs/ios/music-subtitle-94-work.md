@@ -1886,9 +1886,9 @@ The Manga extensions list now manages repositories through the server's GraphQL
 extension store. It reuses the saved server connection, normalizes repository
 links, presents Desktop's two suggestions and reloads extensions after a change.
 A failed index refresh can be retried separately from the completed mutation.
-The controls appear on servers that support listing repositories. B371 is
-implemented in source and awaits Apple validation.
-Focused Apple run 42522351707 covers e29e2f27.
+The controls appear on servers that support listing repositories. Focused Apple
+run 42522351707 compiled e29e2f27 and passed the repository URL case. The
+result artifact was verified by SHA-256. Server mutations still need a live check.
 
 ## Subtitle timing offers
 
@@ -1900,3 +1900,12 @@ the native correction and restore flow. Audio estimates no longer submit a
 community verification when analysis alone completes. The native mpv fixture
 checks the offer, explicit application and restoration. Structural auto-apply
 with calibrated evidence, drift and cross-language pivot remain open.
+
+## Live TV replay
+
+The channel programme list opens finished programmes with supported catch-up URLs
+in the native player. Playback carries the channel request headers and the
+programme title. In-flight results are scoped to the current profile and saved
+source. The XMLTV cache keeps twelve hours of history, with the existing 72-hour
+future bound. The history-bound test is new. Provider playback and the Apple UI
+route still need validation.

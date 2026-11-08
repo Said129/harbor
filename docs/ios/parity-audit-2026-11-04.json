@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 251,
-      "partial": 125,
+      "ported": 252,
+      "partial": 124,
       "missing": 0,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 83.4,
-      "ported_only_percent": 66.8,
+      "weighted_percent": 83.5,
+      "ported_only_percent": 67.0,
       "ported_or_partial_percent": 100.0
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 491,
-      "partial": 159,
+      "ported": 492,
+      "partial": 158,
       "missing": 2,
       "excluded": 297,
       "counted": 652,
-      "weighted_percent": 87.5,
-      "ported_only_percent": 75.3,
+      "weighted_percent": 87.6,
+      "ported_only_percent": 75.5,
       "ported_or_partial_percent": 99.7
     }
   },
@@ -113,11 +113,11 @@
     {
       "area": "Live TV, VOD, DVR and multiview",
       "range": "B217-B238",
-      "ported": 9,
-      "partial": 5,
+      "ported": 10,
+      "partial": 4,
       "missing": 0,
       "excluded": 8,
-      "weighted_percent": 82.1
+      "weighted_percent": 85.7
     },
     {
       "area": "Casting and Watch Together",
@@ -1801,8 +1801,8 @@
       "index": 225,
       "id": "Live catchup",
       "desktop_source": "src/lib/iptv",
-      "verdict": "P",
-      "note": "live catchup: the catch-up URL builder exists with tests (8 Nov, written by Haiku, uncompiled); no channel menu entry plays it because the list has no start-time playback route"
+      "verdict": "D",
+      "note": "Past programmes can open the native player from the channel programme list when the catch-up URL is valid. Channel headers, title, profile scope and the twelve-hour XMLTV history are wired. Native route and provider playback need validation."
     },
     {
       "index": 226,
@@ -2810,7 +2810,7 @@
       "id": "Manga Suwayomi library",
       "desktop_source": "src/lib/manga/sources/suwayomi/api.ts",
       "verdict": "D",
-      "note": "Suwayomi library categories are selectable in the iOS shelf with saved progress, title search and return to the full shelf; category requests use GraphQL with REST fallback. Code review status; Apple validation pending."
+      "note": "Suwayomi library categories are selectable in the iOS shelf with saved progress, title search and return to the full shelf; category requests use GraphQL with REST fallback. Apple build and the two selected category cases passed."
     },
     {
       "index": 370,
@@ -2824,7 +2824,7 @@
       "id": "Manga extension repositories",
       "desktop_source": "src/lib/manga/sources/suwayomi/graphql.ts",
       "verdict": "D",
-      "note": "The Suwayomi extension manager lists, adds and removes server repositories, normalizes GitHub links, offers Desktop suggestions and refreshes the server index after edits. Code review status; Apple validation pending."
+      "note": "The Suwayomi extension manager lists, adds and removes server repositories, normalizes GitHub links, offers Desktop suggestions and refreshes the server index after edits. Apple build and the URL case passed; live server mutations remain unverified."
     },
     {
       "index": 372,

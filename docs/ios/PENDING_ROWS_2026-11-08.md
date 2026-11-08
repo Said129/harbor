@@ -3,7 +3,7 @@
 Cada fila: `lista indice | id | verdicto | hueco`. P = parcial, M = falta. El indice vuelve a empezar en 1 en cada lista (`behaviors`, `settings`).
 El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo de iOS y el fuente de Desktop (`desktop_source` del inventario `desktop-parity-0.9.132.json`).
 
-## behaviors (125 filas)
+## behaviors (124 filas)
 
 - B 1 | Home hero and real catalogs | P | iOS never fetches Desktop's hosted hero pool: the trending feed falls back to the first catalog titles, and the trakt and simkl feeds only pick an already-loaded rail whose name contains that service. The Desktop 4... [Desktop: src/views/home.tsx]
 - B 2 | Continue Watching on Home | P | Continue Watching on Home: the empty-state box and the one-card-per-title pass with the 100-card cap are in (8 Nov, written by Haiku, uncompiled); franchise-root removal is not, and Desktop's signed-out Stremio prompt is replaced by the empty message because iOS has no Stremio sign-in [Desktop: src/views/home.tsx]
@@ -70,7 +70,6 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 219 | XMLTV EPG | P | XMLTV EPG: Desktop's parser, now and next lookup, tvg-shift and shared tvg-id rule, a per-source cache and the now and next line under each channel are in (8 Nov, written by Haiku, uncompiled); a gzip guide is refused, only the first answering address is used, and the programmes kept are those from [Desktop: src/lib/iptv]
 - B 220 | Live channel catalogs | P | live channel catalogs: channels follow Desktop's group relevance order with pinned channels first and hidden categories removed (8 Nov, written by Haiku, uncompiled); most-watched ordering is not ported because iOS keeps no play counts [Desktop: src/lib/iptv]
 - B 221 | Channel categories | P | channel categories: relevance order, per-list pins and hidden categories with a management sheet (8 Nov, written by Haiku, uncompiled); no drag reorder and no counts [Desktop: src/lib/iptv]
-- B 225 | Live catchup | P | live catchup: the catch-up URL builder exists with tests (8 Nov, written by Haiku, uncompiled); no channel menu entry plays it because the list has no start-time playback route [Desktop: src/lib/iptv]
 - B 229 | Persistent IPTV cache | P | persistent IPTV cache: the guide is kept as a raw XMLTV file per source with Desktop's one hour freshness and twelve hour offline use (8 Nov, written by Haiku, uncompiled); no parsed snapshot is stored [Desktop: src/lib/iptv]
 - B 242 | DLNA discovery | P | DLNA devices are added by their description address; SSDP multicast needs an entitlement iOS apps do not get freely (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases)) [Desktop: src-tauri/src/dlna.rs]
 - B 243 | DLNA vendor capabilities | P | DLNA vendor handling in the load request (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases)) [Desktop: src-tauri/src/dlna.rs]

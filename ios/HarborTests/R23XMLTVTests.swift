@@ -141,4 +141,11 @@ final class R23XMLTVTests: XCTestCase {
         XCTAssertEqual(LiveTVCatchup.url(for: standard, start: at(0), end: at(3_600), now: at(60)), "http://a.example/stream.ts?utc=0&lutc=60")
         XCTAssertNil(LiveTVCatchup.url(for: channel("n", name: "N", tvgID: nil, url: "http://a.example/stream.ts"), start: at(0), end: at(3_600)))
     }
+
+    func testCatchupGuideWindowMatchesDesktopsTwelveHourHistory() {
+        let now = at(1_800_000_000)
+        let window = LiveTVGuideService.window(now: now)
+        XCTAssertEqual(window.lowerBound, now.addingTimeInterval(-12 * 3_600))
+        XCTAssertEqual(window.upperBound, now.addingTimeInterval(72 * 3_600))
+    }
 }

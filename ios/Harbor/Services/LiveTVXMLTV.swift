@@ -7,8 +7,8 @@ enum LiveTVXMLTV {
     /// Desktop's `MAX_BYTES`.
     static let maximumBytes = 200 * 1024 * 1024
 
-    /// iOS reads only what the now and next line can use. The service passes a window around the current time so a big
-    /// guide does not fill the phone's memory with days of programmes; nil keeps every programme, as Desktop does.
+    /// iOS keeps the bounded Desktop guide window for now-next and catch-up. The service passes that time range so a
+    /// big guide does not fill the phone's memory with unbounded history; nil keeps every programme, as Desktop does.
     static func parse(_ data: Data, window: ClosedRange<Date>? = nil) throws -> LiveTVGuide {
         guard data.count <= maximumBytes else { throw HarborError(code: "iptv-size") }
         if data.count >= 2, data[data.startIndex] == 0x1f, data[data.startIndex + 1] == 0x8b { throw HarborError(code: "iptv-format") }

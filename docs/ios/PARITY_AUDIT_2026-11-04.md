@@ -20,13 +20,14 @@ in `parity-audit-2026-11-04.json`, produced by
 
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
-| Behaviors |   438 |    251 |     125 |       0 |       62 |           83.4 % |      66.8 % |           100.0 % |
+| Behaviors |   438 |    252 |     124 |       0 |       62 |           83.5 % |      67.0 % |           100.0 % |
 | Settings  |   511 |    240 |      34 |       2 |      235 |           93.1 % |      87.0 % |            99.3 % |
-| All       |   949 |    491 |     159 |       2 |      297 |           87.5 % |      75.3 % |            99.7 % |
+| All       |   949 |    492 |     158 |       2 |      297 |           87.6 % |      75.5 % |            99.7 % |
 
 The 8 November follow-up connects Suwayomi categories to the manga shelf (B369)
-and adds extension repository management (B371). Focused Apple validation is
-pending. These verdicts reflect source review.
+and adds extension repository management (B371). Focused Apple validation
+compiled both changes and passed their three selected cases. The repository case
+checks URL handling. Server mutations still need a live check.
 
 Audio estimates now appear as player offers. S246 remains partial while
 calibrated structural auto-apply and its setting are pending.

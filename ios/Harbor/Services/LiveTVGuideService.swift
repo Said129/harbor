@@ -49,9 +49,9 @@ actor LiveTVGuideService {
         return nil
     }
 
-    /// The programmes now and next can use: from two hours ago to three days ahead.
-    private static func window(now: Date = Date()) -> ClosedRange<Date> {
-        now.addingTimeInterval(-2 * 3600)...now.addingTimeInterval(72 * 3600)
+    /// Desktop's guide window: twelve hours of catch-up history through three days ahead.
+    static func window(now: Date = Date()) -> ClosedRange<Date> {
+        now.addingTimeInterval(-12 * 3600)...now.addingTimeInterval(72 * 3600)
     }
 
     func remove(_ source: LivePlaylistSource, owner: String) throws {

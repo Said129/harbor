@@ -16,7 +16,7 @@ struct LiveTVView: View {
     @State private var error: String?
     @State private var generation = UUID()
     @State private var playback: PlaybackSession?
-    @State private var playing: LiveChannel?
+    @State private var playbackRequest = UUID()
     @State private var managingCategories = false
     @State private var guidePrograms: [String: [LiveProgram]] = [:]
     @MainActor init(app: AppModel, initialQuery: String = "") {
@@ -44,13 +44,15 @@ struct LiveTVView: View {
             .toolbar { ToolbarItem(placement: .topBarTrailing) { Button { configuring = true } label: { Image(systemName: "slider.horizontal.3") }.accessibilityLabel("Listas de Live TV") } }
             .sheet(isPresented: $configuring) { LiveSourcesView(preferences: preferences) }
             .sheet(isPresented: $managingCategories) { LiveCategoryManageView(preferences: preferences, sourceID: source, groups: sourceGroups) }
-            .task(id: preferences.sources.map(\.id).joined(separator: "|")) { await load(refresh: false) }
+            .task(id: preferences.sources) { await load(refresh: false) }
             .onChange(of: query) { _, _ in visibleCount = 100 }
             .onChange(of: category) { _, _ in visibleCount = 100 }
             .onChange(of: favorites) { _, _ in visibleCount = 100 }
             .onChange(of: source) { _, _ in category = "all"; visibleCount = 100 }
             .onChange(of: preferences.sources.count) { previous, next in if next > previous { providers = false } }
-            .fullScreenCover(item: $playback) { session in PlayerView(session: session, resume: app.resume, title: playing?.name ?? "Live TV", media: playing?.media) }
+            .fullScreenCover(item: $playback) { session in
+                PlayerView(session: session, resume: app.resume, title: session.media?.name ?? "Live TV", media: session.media)
+            }
     }
     private var channelList: some View {
         let rows = filtered
@@ -77,8 +79,12 @@ struct LiveTVView: View {
                 }.buttonStyle(.plain).contextMenu {
                     Button(preferences.favorites.contains(channel.id) ? "Quitar de favoritos" : "Añadir a favoritos") { do { try preferences.toggle(channel) } catch { self.error = safeMessage(error) } }
                     Button(DesktopInterfaceText.value(preferences.pinnedChannels.contains(channel.id) ? "Unpin channel" : "Pin to top")) { do { try preferences.togglePinned(channel) } catch { self.error = safeMessage(error) } }
-                    if let source = preferences.sources.first(where: { $0.id == channel.source }), source.xtream != nil {
-                        NavigationLink("Programación") { LiveProgramView(channel: channel, source: source, owner: preferences.owner) }
+                    if let list = preferences.sources.first(where: { $0.id == channel.source }), list.xtream != nil || !(guidePrograms[channel.id]?.isEmpty ?? true) {
+                        NavigationLink("Programación") {
+                            LiveProgramView(channel: channel, source: list, owner: preferences.owner, guideChannels: channels, initialPrograms: guidePrograms[channel.id] ?? []) { program in
+                                Task { await play(channel, program: program, sourceSnapshot: list) }
+                            }
+                        }.accessibilityIdentifier("live-tv-program-guide-\(channel.id)")
                     }
                 }
             }
@@ -100,30 +106,57 @@ struct LiveTVView: View {
             for await value in group { output.append(value); if !Task.isCancelled, let item = iterator.next() { submit(item) } }
             return output
         }
-        guard generation == token, !Task.isCancelled else { return }
+        guard generation == token, app.settingsOwner == owner, preferences.sources == sources, !Task.isCancelled else { return }
         let bySource = Dictionary(grouping: result.flatMap { $0.0 }, by: \.source)
         channels = sources.flatMap { bySource[$0.id] ?? [] }
         // The guide loads after the channel list is on screen: it can take a long download or many Xtream requests.
         let guideChannels = channels
         Task {
             let programs = await LiveTVGuideBuilder.programsByChannel(channels: guideChannels, sources: sources, owner: owner, refresh: refresh)
-            if generation == token { guidePrograms = programs }
+            guard generation == token, app.settingsOwner == owner, preferences.sources == sources, !Task.isCancelled else { return }
+            guidePrograms = programs
         }
         preferences.rememberFavorites(channels)
         if result.contains(where: { $0.1 }) { error = "No se pudieron cargar algunas listas. Los canales disponibles siguen accesibles." }
         if sources.isEmpty { providers = true }
     }
-    private func play(_ channel: LiveChannel) async {
+    private func play(_ channel: LiveChannel, program: LiveProgram? = nil, sourceSnapshot expectedSource: LivePlaylistSource? = nil) async {
+        guard let sourceSnapshot = expectedSource ?? preferences.sources.first(where: { $0.id == channel.source }) else { return }
+        guard app.settingsOwner == preferences.owner,
+              sourceSnapshot.id == channel.source,
+              preferences.sources.contains(sourceSnapshot) else { return }
         let owner = app.accountOperationScope
+        let request = UUID()
+        playbackRequest = request
         do {
             guard !channel.drm else { throw HarborError(code: "iptv-drm") }
+            let streamURL: String
+            if let program {
+                guard program.start.timeIntervalSince1970.isFinite,
+                      program.end.timeIntervalSince1970.isFinite,
+                      program.end > program.start,
+                      program.end <= Date(),
+                      let catchup = LiveTVCatchup.url(for: channel, start: program.start, end: program.end) else { return }
+                streamURL = catchup
+            } else {
+                streamURL = channel.url
+            }
             let headers = JSONValue.object(channel.headers.mapValues(JSONValue.string))
-            let stream: JSONValue = .object(["addonId": .string("iptv:" + channel.source), "addonName": .string("Live TV"), "url": .string(channel.url), "behaviorHints": .object(["proxyHeaders": .object(["request": headers])])])
+            let stream: JSONValue = .object(["addonId": .string("iptv:" + sourceSnapshot.id), "addonName": .string("Live TV"), "url": .string(streamURL), "behaviorHints": .object(["proxyHeaders": .object(["request": headers])])])
             let resolved = try await app.service.resolve(StreamOffer(id: 0, raw: stream))
-            guard owner == app.accountOperationScope, app.settingsOwner == preferences.owner else { return }
-            playing = channel
-            playback = PlaybackSession(source: resolved, target: ResumeTarget(id: "iptv:" + channel.id), startMs: 0, storageWarning: nil, progressEnabled: false, owner: owner)
-        } catch { self.error = safeMessage(error) }
+            guard playbackRequest == request, owner == app.accountOperationScope,
+                  app.settingsOwner == preferences.owner, preferences.sources.contains(sourceSnapshot) else { return }
+            var sessionMedia = channel.media
+            if let program {
+                sessionMedia.name = program.title
+                sessionMedia.description = channel.name + " · catch up"
+            }
+            playback = PlaybackSession(source: resolved, target: ResumeTarget(id: "iptv:" + channel.id), startMs: 0, storageWarning: nil, progressEnabled: false, owner: owner, media: sessionMedia)
+        } catch {
+            guard playbackRequest == request, owner == app.accountOperationScope,
+                  app.settingsOwner == preferences.owner, preferences.sources.contains(sourceSnapshot) else { return }
+            self.error = safeMessage(error)
+        }
     }
 }
 
@@ -204,27 +237,89 @@ private struct LiveProgramView: View {
     let channel: LiveChannel
     let source: LivePlaylistSource
     let owner: String
+    let guideChannels: [LiveChannel]
+    let onPlayCatchup: (LiveProgram) -> Void
     @State private var programs: [LiveProgram] = []
     @State private var error: String?
     @State private var loading = false
+    init(channel: LiveChannel, source: LivePlaylistSource, owner: String, guideChannels: [LiveChannel], initialPrograms: [LiveProgram], onPlayCatchup: @escaping (LiveProgram) -> Void) {
+        self.channel = channel
+        self.source = source
+        self.owner = owner
+        self.guideChannels = guideChannels
+        self.onPlayCatchup = onPlayCatchup
+        _programs = State(initialValue: initialPrograms)
+    }
     var body: some View {
         List {
             if loading { ProgressView("Cargando programación…") }
             if let error { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await load() } } }
             ForEach(programs) { program in
-                VStack(alignment: .leading, spacing: 8) {
-                    HStack { Text(program.start, format: .dateTime.hour().minute()); Text("–"); Text(program.end, format: .dateTime.hour().minute()); Spacer(); if program.start <= Date() && program.end > Date() { Text("Ahora").foregroundStyle(HarborTheme.accent) } }.font(.caption)
-                    Text(program.title).font(.headline)
-                    if let description = program.description, !description.isEmpty { Text(description).font(.subheadline).foregroundStyle(.secondary) }
-                }.padding(.vertical, 6)
+                LiveProgramRow(channel: channel, program: program, onPlayCatchup: { onPlayCatchup(program) })
             }
             if programs.isEmpty && !loading && error == nil { Text("El proveedor no publica programación para este canal.").foregroundStyle(.secondary) }
-        }.scrollContentBackground(.hidden).background(HarborTheme.background).navigationTitle(channel.name).navigationBarTitleDisplayMode(.inline).task { await load() }.refreshable { await load() }
+        }.scrollContentBackground(.hidden).background(HarborTheme.background).navigationTitle(channel.name).navigationBarTitleDisplayMode(.inline).task { await load() }.refreshable { await load(refresh: true) }
     }
-    private func load() async {
+    private func load(refresh: Bool = false) async {
+        guard refresh || programs.isEmpty else { return }
         guard !loading else { return }; loading = true; error = nil; defer { loading = false }
-        do { programs = try await XtreamClient(source: source, owner: owner).programs(channel) }
-        catch is CancellationError { return }
-        catch { self.error = safeMessage(error) }
+        var providerError: Error?
+        if source.xtream != nil {
+            do {
+                let latest = try await XtreamClient(source: source, owner: owner).programs(channel)
+                if !latest.isEmpty { programs = latest }
+            } catch is CancellationError {
+                return
+            } catch {
+                providerError = error
+            }
+        }
+        if source.xtream == nil || programs.isEmpty {
+            let latest = await LiveTVGuideBuilder.programsByChannel(channels: guideChannels, sources: [source], owner: owner, refresh: refresh)[channel.id] ?? []
+            if !latest.isEmpty || programs.isEmpty { programs = latest }
+        }
+        if programs.isEmpty, let providerError {
+            error = safeMessage(providerError)
+        }
+    }
+}
+
+private struct LiveProgramRow: View {
+    let channel: LiveChannel
+    let program: LiveProgram
+    let onPlayCatchup: () -> Void
+
+    var body: some View {
+        TimelineView(.periodic(from: .now, by: 30)) { context in
+            let replayable = !channel.drm && program.start.timeIntervalSince1970.isFinite && program.end.timeIntervalSince1970.isFinite &&
+                program.end <= context.date && program.end > program.start &&
+                LiveTVCatchup.url(for: channel, start: program.start, end: program.end, now: context.date) != nil
+            Group {
+                if replayable {
+                    Button(action: onPlayCatchup) { content(now: context.date, replayable: true) }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel(DesktopInterfaceText.value("Play") + " " + program.title)
+                        .accessibilityIdentifier("live-tv-catchup-\(channel.id)-\(Int(program.start.timeIntervalSince1970))")
+                } else {
+                    content(now: context.date, replayable: false)
+                }
+            }
+        }
+    }
+
+    private func content(now: Date, replayable: Bool) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text(program.start, format: .dateTime.hour().minute()); Text("–"); Text(program.end, format: .dateTime.hour().minute())
+                Spacer()
+                if program.start <= now && program.end > now { Text("Ahora").foregroundStyle(HarborTheme.accent) }
+                if replayable { Label(DesktopInterfaceText.value("Play"), systemImage: "play.circle.fill").foregroundStyle(HarborTheme.accent) }
+            }.font(.caption)
+            Text(program.title).font(.headline)
+            if let description = program.description, !description.isEmpty { Text(description).font(.subheadline).foregroundStyle(.secondary) }
+        }
+        .foregroundStyle(HarborTheme.ink)
+        .padding(.vertical, 6)
+        .contentShape(Rectangle())
     }
 }
