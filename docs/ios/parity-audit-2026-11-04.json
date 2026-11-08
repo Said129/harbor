@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 241,
-      "partial": 134,
+      "ported": 244,
+      "partial": 131,
       "missing": 1,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 81.9,
-      "ported_only_percent": 64.1,
+      "weighted_percent": 82.3,
+      "ported_only_percent": 64.9,
       "ported_or_partial_percent": 99.7
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 481,
-      "partial": 167,
+      "ported": 484,
+      "partial": 164,
       "missing": 4,
       "excluded": 297,
       "counted": 652,
-      "weighted_percent": 86.6,
-      "ported_only_percent": 73.8,
+      "weighted_percent": 86.8,
+      "ported_only_percent": 74.2,
       "ported_or_partial_percent": 99.4
     }
   },
@@ -113,11 +113,11 @@
     {
       "area": "Live TV, VOD, DVR and multiview",
       "range": "B217-B238",
-      "ported": 8,
-      "partial": 6,
+      "ported": 9,
+      "partial": 5,
       "missing": 0,
       "excluded": 8,
-      "weighted_percent": 78.6
+      "weighted_percent": 82.1
     },
     {
       "area": "Casting and Watch Together",
@@ -140,11 +140,11 @@
     {
       "area": "Trackers",
       "range": "B274-B304",
-      "ported": 17,
-      "partial": 14,
+      "ported": 18,
+      "partial": 13,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 77.4
+      "weighted_percent": 79.0
     },
     {
       "area": "Metadata providers, calendar and lists",
@@ -194,11 +194,11 @@
     {
       "area": "VOD details",
       "range": "B410-B417",
-      "ported": 7,
-      "partial": 1,
+      "ported": 8,
+      "partial": 0,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 93.8
+      "weighted_percent": 100.0
     },
     {
       "area": "Spooktober",
@@ -1634,7 +1634,7 @@
       "id": "Subtitle ranking / dedupe",
       "desktop_source": "src/lib/subtitles",
       "verdict": "P",
-      "note": "no Desktop subtitle ranking/dedupe"
+      "note": "subtitle ranking and dedupe: Desktop's auto-selection order for the no-hints path exists as a tested helper (8 Nov, written by Haiku, uncompiled); no caller uses it and the duplicate merge is not ported"
     },
     {
       "index": 202,
@@ -1745,8 +1745,8 @@
       "index": 217,
       "id": "M3U import",
       "desktop_source": "src/lib/iptv",
-      "verdict": "P",
-      "note": "M3U import: the decorative-row filter is in; the EPG address derived from a get.php link is tested but nothing uses it because iOS has no XMLTV guide (8 Nov, written by Haiku, uncompiled)"
+      "verdict": "D",
+      "note": "M3U import: the decorative-row filter is in and the guide address derived from a get.php or player_api link now feeds the XMLTV guide (8 Nov, written by Haiku, uncompiled); a header url-tvg and a configured guide address are not read because iOS keeps neither"
     },
     {
       "index": 218,
@@ -1760,7 +1760,7 @@
       "id": "XMLTV EPG",
       "desktop_source": "src/lib/iptv",
       "verdict": "P",
-      "note": "Xtream short EPG; no XMLTV guide"
+      "note": "XMLTV EPG: Desktop's parser, now and next lookup, tvg-shift and shared tvg-id rule, a per-source cache and the now and next line under each channel are in (8 Nov, written by Haiku, uncompiled); a gzip guide is refused, only the first answering address is used, and the programmes kept are those from two hours ago to three days ahead"
     },
     {
       "index": 220,
@@ -1802,7 +1802,7 @@
       "id": "Live catchup",
       "desktop_source": "src/lib/iptv",
       "verdict": "P",
-      "note": "catch-up fields parsed"
+      "note": "live catchup: the catch-up URL builder exists with tests (8 Nov, written by Haiku, uncompiled); no channel menu entry plays it because the list has no start-time playback route"
     },
     {
       "index": 226,
@@ -1830,7 +1830,7 @@
       "id": "Persistent IPTV cache",
       "desktop_source": "src/lib/iptv",
       "verdict": "P",
-      "note": "The EPG snapshot kind from epg-store.ts (IndexedDB 'epg' entries) has no iOS counterpart: XMLTV is not implemented, and Xtream short EPG (XtreamClient.programs) is refetched every time with refresh set to true."
+      "note": "persistent IPTV cache: the guide is kept as a raw XMLTV file per source with Desktop's one hour freshness and twelve hour offline use (8 Nov, written by Haiku, uncompiled); no parsed snapshot is stored"
     },
     {
       "index": 230,
@@ -2215,7 +2215,7 @@
       "id": "Trakt comments",
       "desktop_source": "src/lib/trakt",
       "verdict": "P",
-      "note": "Trakt comments of movies and shows: sort, spoilers, replies, paging (5 Nov, uncompiled); posting, likes and ratings not ported"
+      "note": "Trakt comments: sort, spoilers, replies and paging are in; the post, like and rating request builders exist (8 Nov, written by Haiku, uncompiled) but no screen posts"
     },
     {
       "index": 285,
@@ -2229,7 +2229,7 @@
       "id": "AniList watched sync",
       "desktop_source": "src/lib/anilist",
       "verdict": "P",
-      "note": "AniList progress is pushed while watching; the watched map from the lists is not read"
+      "note": "AniList watched sync: list progress marks the first aired episodes watched (8 Nov, written by Haiku, uncompiled); the progress is read only after the AniList lists screen has been opened, and kitsu ids are not mapped"
     },
     {
       "index": 287,
@@ -2249,8 +2249,8 @@
       "index": 289,
       "id": "AniList profile / avatar",
       "desktop_source": "src/lib/anilist",
-      "verdict": "P",
-      "note": "AniList name and avatar in Settings; not used as the Harbor avatar"
+      "verdict": "D",
+      "note": "AniList profile and avatar: the AniList name and avatar show in Settings and a toggle uses the avatar as the Harbor avatar (AniListAvatarSync); the earlier note was out of date"
     },
     {
       "index": 290,
@@ -2285,7 +2285,7 @@
       "id": "MAL watched sync",
       "desktop_source": "src/lib/mal",
       "verdict": "P",
-      "note": "MyAnimeList progress is pushed while watching; the watched map is not read"
+      "note": "MAL watched sync: list progress marks the first aired episodes watched (8 Nov, written by Haiku, uncompiled); the progress is read only after the MyAnimeList lists screen has been opened"
     },
     {
       "index": 295,
@@ -2334,7 +2334,7 @@
       "id": "Simkl anime grouping",
       "desktop_source": "src/lib/simkl",
       "verdict": "P",
-      "note": "Simkl ratings, anime grouping partial"
+      "note": "Simkl anime grouping: the pure grouping, rating average and year range are ported (8 Nov, written by Haiku, uncompiled); no screen uses them and the relations enhancement is not ported"
     },
     {
       "index": 302,
@@ -2397,7 +2397,7 @@
       "id": "OMDB ratings and budget",
       "desktop_source": "src/lib/providers",
       "verdict": "P",
-      "note": "OmdbService: scores, 90-day cache, daily budget, refused key; no awards, season ratings or budget panel (7 Nov, compiled; cases passed)"
+      "note": "OMDB ratings and budget: scores, cache, budget, refused key and now the awards parsing (8 Nov, written by Haiku, uncompiled); no screen shows awards or the budget, as Desktop reads neither"
     },
     {
       "index": 311,
@@ -2425,7 +2425,7 @@
       "id": "Wikidata awards / people",
       "desktop_source": "src/lib/providers",
       "verdict": "P",
-      "note": "Wikidata awards for titles; people awards are not ported (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "note": "Wikidata awards and people: titles have awards; the person award kind and collapse rules exist (8 Nov, written by Haiku, uncompiled); iOS fetches no people awards"
     },
     {
       "index": 315,
@@ -3117,8 +3117,8 @@
       "index": 413,
       "id": "Xtream short EPG",
       "desktop_source": "src/lib/iptv/xtream.ts",
-      "verdict": "P",
-      "note": "Xtream short EPG: the fallback rule (120 channels, existing guides skipped, one failure leaves that channel empty) exists as a helper (8 Nov, written by Haiku, uncompiled); the live list shows no now and next, so nothing calls it"
+      "verdict": "D",
+      "note": "Xtream short EPG: the fallback rule runs for Xtream sources whose XMLTV guide is empty, up to 120 channels, and feeds the now and next line (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 414,
@@ -6067,7 +6067,7 @@
       "id": "preferCustomMetaAddon",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "prefer my installed metadata addon: the meta plans are reordered with Cinemeta last; Desktop's poster preference is not ported (7 Nov, written by Haiku, uncompiled)"
+      "note": "prefer my installed metadata addon: the meta plans are reordered with Cinemeta last, and Desktop's poster rule picks the answer for the detail page, filling missing artwork from Cinemeta (8 Nov, written by Haiku, uncompiled); the card title swap is not ported"
     },
     {
       "index": 397,

@@ -549,6 +549,19 @@ BEHAVIORS = expand("""
 426 P music playback queue: the queue continuation rule exists as a tested helper (8 Nov, written by Haiku, uncompiled); nothing loads more tracks when the queue ends
 433 P music local folder scanning: the unchanged-file and removed-file rules exist as tested helpers (8 Nov, written by Haiku, uncompiled); imports are still a one-time copy with no rescan
 397 P sports favorite leagues and teams: a home team per league group can be set from the match detail and is kept in the Keychain, and the form, last result and next fixture rules exist (8 Nov, written by Haiku, uncompiled); no team browser, no followed-team schedule view
+217 D M3U import: the decorative-row filter is in and the guide address derived from a get.php or player_api link now feeds the XMLTV guide (8 Nov, written by Haiku, uncompiled); a header url-tvg and a configured guide address are not read because iOS keeps neither
+219 P XMLTV EPG: Desktop's parser, now and next lookup, tvg-shift and shared tvg-id rule, a per-source cache and the now and next line under each channel are in (8 Nov, written by Haiku, uncompiled); a gzip guide is refused, only the first answering address is used, and the programmes kept are those from two hours ago to three days ahead
+229 P persistent IPTV cache: the guide is kept as a raw XMLTV file per source with Desktop's one hour freshness and twelve hour offline use (8 Nov, written by Haiku, uncompiled); no parsed snapshot is stored
+413 D Xtream short EPG: the fallback rule runs for Xtream sources whose XMLTV guide is empty, up to 120 channels, and feeds the now and next line (8 Nov, written by Haiku, uncompiled)
+225 P live catchup: the catch-up URL builder exists with tests (8 Nov, written by Haiku, uncompiled); no channel menu entry plays it because the list has no start-time playback route
+286 P AniList watched sync: list progress marks the first aired episodes watched (8 Nov, written by Haiku, uncompiled); the progress is read only after the AniList lists screen has been opened, and kitsu ids are not mapped
+294 P MAL watched sync: list progress marks the first aired episodes watched (8 Nov, written by Haiku, uncompiled); the progress is read only after the MyAnimeList lists screen has been opened
+289 D AniList profile and avatar: the AniList name and avatar show in Settings and a toggle uses the avatar as the Harbor avatar (AniListAvatarSync); the earlier note was out of date
+301 P Simkl anime grouping: the pure grouping, rating average and year range are ported (8 Nov, written by Haiku, uncompiled); no screen uses them and the relations enhancement is not ported
+284 P Trakt comments: sort, spoilers, replies and paging are in; the post, like and rating request builders exist (8 Nov, written by Haiku, uncompiled) but no screen posts
+310 P OMDB ratings and budget: scores, cache, budget, refused key and now the awards parsing (8 Nov, written by Haiku, uncompiled); no screen shows awards or the budget, as Desktop reads neither
+314 P Wikidata awards and people: titles have awards; the person award kind and collapse rules exist (8 Nov, written by Haiku, uncompiled); iOS fetches no people awards
+201 P subtitle ranking and dedupe: Desktop's auto-selection order for the no-hints path exists as a tested helper (8 Nov, written by Haiku, uncompiled); no caller uses it and the duplicate merge is not ported
 """)
 
 SETTINGS = expand("""
@@ -992,6 +1005,7 @@ SETTINGS = expand("""
 248 X subtitle auto-sync speech recognition: Desktop runs a downloaded model through Rust commands (asr_ensure_model, asr_transcribe_windows) that iOS does not have
 373 D spoilerHideThumbnails: the Blur thumbnails toggle now writes Desktop's key (default on) and every episode list, card and the player panel read it (8 Nov, written by Haiku, uncompiled)
 5 X blurEpisodes: Desktop blurs the hero image and stills on its episode detail page; iOS has no dedicated episode detail page, so nothing reads the setting (the toggle labelled Blur thumbnails is Desktop's spoilerHideThumbnails)
+396 P prefer my installed metadata addon: the meta plans are reordered with Cinemeta last, and Desktop's poster rule picks the answer for the detail page, filling missing artwork from Cinemeta (8 Nov, written by Haiku, uncompiled); the card title swap is not ported
 """)
 
 def audit(items, verdicts, label):

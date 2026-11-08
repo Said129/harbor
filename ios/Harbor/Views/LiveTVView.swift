@@ -103,7 +103,12 @@ struct LiveTVView: View {
         guard generation == token, !Task.isCancelled else { return }
         let bySource = Dictionary(grouping: result.flatMap { $0.0 }, by: \.source)
         channels = sources.flatMap { bySource[$0.id] ?? [] }
-        guidePrograms = await LiveTVGuideBuilder.programsByChannel(channels: channels, sources: sources, owner: owner, refresh: refresh)
+        // The guide loads after the channel list is on screen: it can take a long download or many Xtream requests.
+        let guideChannels = channels
+        Task {
+            let programs = await LiveTVGuideBuilder.programsByChannel(channels: guideChannels, sources: sources, owner: owner, refresh: refresh)
+            if generation == token { guidePrograms = programs }
+        }
         preferences.rememberFavorites(channels)
         if result.contains(where: { $0.1 }) { error = "No se pudieron cargar algunas listas. Los canales disponibles siguen accesibles." }
         if sources.isEmpty { providers = true }

@@ -1849,3 +1849,14 @@ yet; a home team per league group can be set in the match detail and is kept in 
 The 33 cases that failed in the full gate on 09aa9eb6 were run alone on 302fb0c9 (before this night's work) and on 06db6fc8. The same 27 fail on both and none fails only on the
 new commit: the interface seed cases (they refuse to run on a device that already holds data), the Music catalog and server label cases, HarborPluginSettingsTests,
 PosterBehaviorMountTests (an iPad-only case) and MobileSourcesAndSubtitlesTests. The other 6 pass alone. So none of the 33 is a regression of this work.
+
+## Twenty-third round: trackers, XMLTV guide, metadata (8 November, written by Haiku, uncompiled; review fixes by Sonnet)
+
+**Trackers**: AniList and MyAnimeList list progress marks the first aired episodes of a title as watched once the lists screen has loaded; the Simkl anime grouping rules and the
+Trakt comment post, like and rating request builders exist as tested helpers.
+**Live TV guide**: Desktop's XMLTV parser, now and next lookup (tvg-id, tvg-shift and name matching), a per-source cache (one hour fresh, twelve hours offline) and a now and next line
+under every channel; Xtream sources with an empty guide fall back to the short EPG for up to 120 channels. Review fixes: the guide loads after the channel list is shown instead of before it, and
+only the programmes from two hours ago to three days ahead are kept so a big guide cannot fill the phone's memory. The catch-up URL builder exists but nothing plays it.
+**Metadata**: OMDb award counts are parsed, the detail page follows Desktop's poster rule when choosing among the metadata addons (Cinemeta with a poster first unless "prefer my installed metadata addon"
+is on), and the subtitle auto-selection order and the person award rules exist as helpers. Review fix: the AniList and MyAnimeList progress store adds to what the other list left instead of replacing it.
+The preferences worker produced only unconnected tables (Top 10 ribbon rules, font pairings, card and button style options), which were left out.

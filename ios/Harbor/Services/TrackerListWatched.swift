@@ -59,5 +59,6 @@ enum TrackerListWatched {
 
     private(set) var entries: [String: TrackerListWatched.Progress] = [:]
 
-    func replace(_ entries: [String: TrackerListWatched.Progress]) { self.entries = entries }
+    /// AniList and MyAnimeList each fill their own ids, so a load adds to what the other list left instead of replacing it.
+    func replace(_ entries: [String: TrackerListWatched.Progress]) { self.entries.merge(entries) { _, new in new } }
 }

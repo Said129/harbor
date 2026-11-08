@@ -30,13 +30,13 @@ actor LiveTVGuideService {
         let file = try cacheFile(source, owner: owner)
         let savedAt = try? file.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
         if !refresh, let saved = savedAt, Date().timeIntervalSince(saved) < Self.freshFor {
-            return try LiveTVXMLTV.parse(Data(contentsOf: file))
+            return try LiveTVXMLTV.parse(Data(contentsOf: file), window: Self.window())
         }
         for url in urls {
             do {
                 try Task.checkCancellation()
                 let data = try await download(url)
-                let guide = try LiveTVXMLTV.parse(data)
+                let guide = try LiveTVXMLTV.parse(data, window: Self.window())
                 try data.write(to: file, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
                 return guide
             } catch {
@@ -44,9 +44,14 @@ actor LiveTVGuideService {
             }
         }
         if let saved = savedAt, Date().timeIntervalSince(saved) < Self.usableWhenOffline {
-            return try? LiveTVXMLTV.parse(Data(contentsOf: file))
+            return try? LiveTVXMLTV.parse(Data(contentsOf: file), window: Self.window())
         }
         return nil
+    }
+
+    /// The programmes now and next can use: from two hours ago to three days ahead.
+    private static func window(now: Date = Date()) -> ClosedRange<Date> {
+        now.addingTimeInterval(-2 * 3600)...now.addingTimeInterval(72 * 3600)
     }
 
     func remove(_ source: LivePlaylistSource, owner: String) throws {

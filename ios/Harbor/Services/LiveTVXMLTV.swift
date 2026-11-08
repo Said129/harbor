@@ -7,10 +7,13 @@ enum LiveTVXMLTV {
     /// Desktop's `MAX_BYTES`.
     static let maximumBytes = 200 * 1024 * 1024
 
-    static func parse(_ data: Data) throws -> LiveTVGuide {
+    /// iOS reads only what the now and next line can use. The service passes a window around the current time so a big
+    /// guide does not fill the phone's memory with days of programmes; nil keeps every programme, as Desktop does.
+    static func parse(_ data: Data, window: ClosedRange<Date>? = nil) throws -> LiveTVGuide {
         guard data.count <= maximumBytes else { throw HarborError(code: "iptv-size") }
         if data.count >= 2, data[data.startIndex] == 0x1f, data[data.startIndex + 1] == 0x8b { throw HarborError(code: "iptv-format") }
         let delegate = LiveTVXMLTVDelegate()
+        delegate.window = window.map { $0.lowerBound.timeIntervalSince1970...$0.upperBound.timeIntervalSince1970 }
         let parser = XMLParser(data: data)
         parser.shouldProcessNamespaces = false
         parser.delegate = delegate
@@ -79,6 +82,8 @@ private final class LiveTVXMLTVDelegate: NSObject, XMLParserDelegate {
     private(set) var channelOrder: [String] = []
     private var seenChannels = Set<String>()
     private var programmeCount = 0
+    /// When set, a programme that ends before the window or starts after it is not kept.
+    var window: ClosedRange<TimeInterval>?
 
     private var channelID: String?
     private var channelName: String?
@@ -165,6 +170,7 @@ private final class LiveTVXMLTVDelegate: NSObject, XMLParserDelegate {
     private func storeProgramme() {
         defer { programme = nil; title = nil; description = nil; titleDone = false; descriptionDone = false }
         guard let entry = programme else { return }
+        if let window, entry.end < window.lowerBound || entry.start > window.upperBound { return }
         programmeCount += 1
         let program = LiveProgram(
             id: "\(entry.channel)|\(Int(entry.start))|\(programmeCount)",
