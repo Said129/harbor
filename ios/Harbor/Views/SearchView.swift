@@ -96,8 +96,9 @@ struct SearchView: View {
                 completedQuery = requestedQuery
             })
             try Task.checkCancellation()
+            let tmdbRows = await SearchTMDBSource.rows(query: requestedQuery, addonRows: result, configuration: MetadataPreferences.shared.configuration())
             guard generation == request, query.trimmingCharacters(in: .whitespacesAndNewlines) == requestedQuery else { return }
-            rows = SearchPresentation.rows(result)
+            rows = SearchPresentation.rows(result + tmdbRows)
             completedQuery = requestedQuery
             error = warnings.isEmpty || result.contains(where: { !$0.metas.isEmpty }) ? nil : "No se pudo completar la búsqueda. Reintentar puede recuperar los resultados."
             loading = false
