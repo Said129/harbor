@@ -492,6 +492,7 @@ struct MangaConnectionView: View {
     @State private var password = ""
     @State private var busy = false
     @State private var error: String?
+    @State private var connected: String?
     var body: some View {
         NavigationStack {
             Form {
@@ -502,6 +503,7 @@ struct MangaConnectionView: View {
                     Text("Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite.").font(.caption).foregroundStyle(.secondary)
                 }
                 if let error { Section { Text(error).foregroundStyle(.orange) } }
+                if let connected { Section { Text(connected).foregroundStyle(.green) } }
                 Section {
                     Button(busy ? "Conectando…" : "Comprobar y guardar") { Task { await save() } }.disabled(busy || !connection.ready)
                     if connection.server != nil { Button("Desconectar", role: .destructive) { do { try connection.save(nil); dismiss() } catch { self.error = safeMessage(error) } }.disabled(busy) }
@@ -511,12 +513,28 @@ struct MangaConnectionView: View {
         }
     }
     private func save() async {
-        busy = true; error = nil; defer { busy = false }
+        busy = true; error = nil; connected = nil; defer { busy = false }
         do {
             let server = try MangaServer.normalized(base, username: username, password: password)
-            _ = try await SuwayomiClient(server: server).sources()
-            try Task.checkCancellation(); try connection.save(server); dismiss()
+            let probe = await SuwayomiClient(server: server).probe()
+            try Task.checkCancellation()
+            if let failure = probe.failure { error = failureText(failure); return }
+            try connection.save(server)
+            let label: String? = probe.name.map { name in probe.version.map { "\(name) · \($0)" } ?? name }
+            connected = label.map { DesktopInterfaceText.value("Connected to {name}", variables: ["name": $0]) } ?? DesktopInterfaceText.value("Connected")
         } catch { self.error = safeMessage(error) }
+    }
+    private func failureText(_ failure: MangaProbeFailure) -> String {
+        switch failure {
+        case .auth:
+            return DesktopInterfaceText.value("Wrong username or password")
+        case .notFound:
+            return DesktopInterfaceText.value("No Suwayomi server at this address")
+        case .unsupported:
+            return DesktopInterfaceText.value("This server responded but is not supported")
+        case .unreachable:
+            return DesktopInterfaceText.value("Could not reach this server")
+        }
     }
 }
 
