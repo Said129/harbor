@@ -1770,3 +1770,16 @@ nowhere). **Player**: `mpvBufferBoost` ("Slow or unstable connection") makes the
 budget the buffer already respects, and `playerHdrToSdr` adds Desktop's eight tone-mapping options for an SDR display behind a switch that is off by
 default here, because Desktop's default of on would change today's output. **Fanart**: with a Fanart key, an anime title's logo and backdrops fill what its
 detail page lacks, one request per title and session; nothing happens without a key or a TVDB id.
+
+## Row-by-row re-audit of 143 partial behaviors (8 November, read-only Haiku passes, spot-checked by Sonnet)
+
+137 behavior rows were Partial only because an earlier review said so (Manga, Sports, Home customization, VOD, Spooktober, Music, Subtitle FPS and a
+spread of rows in the first areas). Ten read-only Haiku passes re-read each of them against its Desktop source and the iOS code and wrote the verdict, the
+iOS evidence and the specific gap. Of the first 73 rows, 39 are ported, 32 stay partial with a named gap, one is missing (Suwayomi extension repositories)
+and one is excluded because Desktop defines the call and never uses it. Of the next 70, 9 are ported, 60 stay partial and one is missing (Stremio addon
+collection sync). Every ported row was checked by script: the cited file exists and holds a symbol named in the evidence. The partial rows now carry
+their gap in the audit instead of "earlier review Partial".
+
+One finding to confirm with the owner: there is no Stremio sign-in on iOS. Commit 986184c8 replaced it with local profile sources and migrated old
+sessions, so Stremio login, profile, cloud library and cloud addon sync (rows 67, 260, 261, 262) stay partial or missing, and a profile that still
+holds an old Stremio session cannot install, remove, reorder or toggle addons (`AppModel.persist` throws `profile-account-migration`).
