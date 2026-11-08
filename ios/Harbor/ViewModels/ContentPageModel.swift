@@ -82,7 +82,7 @@ final class ContentPageModel {
                     }
                 }
             } else if kind == "anime" {
-                rows = app.rows.filter(\.isAnimeCatalog)
+                rows = AddonCatalogRules.discoveredRows(app.rows.filter(\.isAnimeCatalog))
                 let definitions = AnimeService.definitions()
                 guard definitions.count == 24 else { throw HarborError(code: "anime-row-assets") }
                 let records = app.library.items
@@ -119,8 +119,10 @@ final class ContentPageModel {
             }
             try Task.checkCancellation()
             guard current == generation else { return }
-            let addonRows = app.rows.filter { $0.plan.kind == kind && $0.plan.addon.manifest["id"].string != "com.linvo.cinemeta" }
-            for row in addonRows where !rows.contains(where: { $0.id == row.id }) { rows.append(row) }
+            if kind != "anime" {
+                let addonRows = app.rows.filter { $0.plan.kind == kind && $0.plan.addon.manifest["id"].string != "com.linvo.cinemeta" }
+                for row in addonRows where !rows.contains(where: { $0.id == row.id }) { rows.append(row) }
+            }
             var seen = Set<String>()
             if kind == "anime" {
                 let trending = curated.first { $0.id == "anilist-trending" }?.metas ?? []

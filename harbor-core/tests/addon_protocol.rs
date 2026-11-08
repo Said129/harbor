@@ -24,8 +24,8 @@ fn simple_and_specific_resource_matching_follows_desktop() {
     assert!(!a.accepts("stream", "movie", "kitsu:123"));
     a.manifest.resources.push(Resource::Specific {
         name: "stream".into(),
-        types: vec!["anime".into()],
-        id_prefixes: vec!["kitsu:".into()],
+        types: Some(vec!["anime".into()]),
+        id_prefixes: Some(vec!["kitsu:".into()]),
     });
     assert!(!a.accepts("stream", "movie", "tt123"));
     assert!(a.accepts("stream", "anime", "kitsu:123"));
@@ -54,6 +54,65 @@ fn skips_required_extras_and_unsearchable_catalogs() {
     assert!(catalog_plans(&[a], Some("film"), None, 0)
         .unwrap()
         .is_empty());
+}
+
+#[test]
+fn metadata_and_subtitle_resources_inherit_only_absent_constraints() {
+    let mut a = addon();
+    a.manifest.resources = serde_json::from_value(json!([
+        {"name": "meta", "types": null},
+        {"name": "subtitles", "types": ["series"], "idPrefixes": []},
+        {"name": "stream"}
+    ]))
+    .unwrap();
+    let projected = serde_json::to_value(a).unwrap();
+    assert!(projected["manifest"]["resources"][0].get("types").is_none());
+    let a: Addon = serde_json::from_value(projected).unwrap();
+    assert!(a.accepts("meta", "movie", "tt123"));
+    assert!(!a.accepts("meta", "movie", "kitsu:123"));
+    assert!(!a.accepts("meta", "anime", "tt123"));
+    assert!(a.accepts("subtitles", "series", "kitsu:123"));
+    assert!(!a.accepts("subtitles", "movie", "tt123"));
+    assert!(!a.accepts("stream", "movie", "tt123"));
+}
+
+#[test]
+fn legacy_catalog_extras_survive_install_projection_and_plan_search_pages() {
+    let mut a = addon();
+    a.manifest.catalogs[0] = serde_json::from_value(json!({
+        "id": "legacy",
+        "type": "movie",
+        "extra": null,
+        "extraSupported": ["search", null, "skip", 3]
+    }))
+    .unwrap();
+    let addon = serde_json::from_value(serde_json::to_value(a).unwrap()).unwrap();
+    let plans = catalog_plans(&[addon], Some("one / two"), None, 12).unwrap();
+    assert_eq!(plans.len(), 1);
+    assert!(plans[0]
+        .url
+        .ends_with("/catalog/movie/legacy/search=one%20%2F%20two&skip=12.json?token=private"));
+    assert_eq!(
+        serde_json::to_value(&plans[0]).unwrap()["catalog"]["extraSupported"],
+        json!(["search", "skip"])
+    );
+}
+
+#[test]
+fn required_catalog_extras_use_the_first_option_until_explicitly_overridden() {
+    let mut a = addon();
+    a.manifest.catalogs[0].extra[2].is_required = true;
+    a.manifest.catalogs[0].extra[2].options = vec!["Sci-Fi".into(), "Drama".into()];
+
+    let default = catalog_plans(std::slice::from_ref(&a), None, None, 0).unwrap();
+    assert!(default[0].url.ends_with("/genre=Sci-Fi.json?token=private"));
+    let filtered = catalog_plans(std::slice::from_ref(&a), None, Some("Drama"), 24).unwrap();
+    assert!(filtered[0]
+        .url
+        .ends_with("/genre=Drama&skip=24.json?token=private"));
+
+    a.manifest.catalogs[0].extra[2].options.clear();
+    assert!(catalog_plans(&[a], None, None, 0).unwrap().is_empty());
 }
 
 #[test]

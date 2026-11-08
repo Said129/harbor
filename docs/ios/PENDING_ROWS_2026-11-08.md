@@ -3,7 +3,7 @@
 Cada fila: `lista indice | id | verdicto | hueco`. P = parcial, M = falta. El indice vuelve a empezar en 1 en cada lista (`behaviors`, `settings`).
 El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo de iOS y el fuente de Desktop (`desktop_source` del inventario `desktop-parity-0.9.132.json`).
 
-## behaviors (123 filas)
+## behaviors (119 filas)
 
 - B 1 | Home hero and real catalogs | P | iOS never fetches Desktop's hosted hero pool: the trending feed falls back to the first catalog titles, and the trakt and simkl feeds only pick an already-loaded rail whose name contains that service. The Desktop 4... [Desktop: src/views/home.tsx]
 - B 2 | Continue Watching on Home | P | Continue Watching on Home: the empty-state box and the one-card-per-title pass with the 100-card cap are in (8 Nov, written by Haiku, uncompiled); franchise-root removal is not, and Desktop's signed-out Stremio prompt is replaced by the empty message because iOS has no Stremio sign-in [Desktop: src/views/home.tsx]
@@ -34,10 +34,6 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 53 | Addon sharing | P | addon sharing: the stremio:// link is shared from the addon detail; opening an incoming link is not wired (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases)) [Desktop: src/lib/addon-store.ts]
 - B 55 | Addon order | P | The order is saved only locally and only for guest profiles (AppModel.move goes through persist, which throws for a signed-in Stremio account); there is no stale check, no account write or verification, and no back... [Desktop: src/lib/addons-store]
 - B 61 | Addon configuration viewport | P | addon configuration viewport: a captured link now installs at once as on Desktop (8 Nov, written by Haiku, uncompiled); there is still no timed fallback to the browser [Desktop: src/views/addons.tsx]
-- B 63 | Addon catalog discovery | P | addon catalog discovery: the addon_catalog type filter and the episode-meta collapse are in (8 Nov, written by Haiku, uncompiled); the normalized-name row dedupe is not [Desktop: src/lib/addons.ts]
-- B 64 | Catalog extras / filters | P | Genre and skip paging are wired into CatalogBrowserView, but the required-extra default is missing: catalog_plans drops every catalog with an unmet required extra and HarborService.catalogs passes no genre during d... [Desktop: src/lib/addons.ts]
-- B 65 | Catalog pages | P | Desktop also reads the older manifest form (extraSupported) to decide whether a catalog supports search, but the Rust Catalog type has no such field, so addons that declare search only through extraSupported are ne... [Desktop: src/lib/addons.ts]
-- B 66 | Addon resource matching | P | Rust deserializes a missing types or idPrefixes list in a specific resource entry as empty, so an entry without its own types never matches and an entry without its own idPrefixes accepts every id, whereas Desktop... [Desktop: src/lib/addons.ts]
 - B 68 | Real addon stream requests | P | The alternate-type retry and the declared-type lookup for non-standard ids (pickIdByDeclaredTypes) apply only to the origin addon in iOS; other addons are queried only for their resource-declared types, and I found... [Desktop: src/lib/streams/addons.ts]
 - B 75 | Tracker preservation | P | StreamRequestPolicy.deduplicated drops later duplicates without uniting their sources, no iOS path passes tracker sources to a torrent or streaming-server request, and no iOS code recovers a missing infoHash from t... [Desktop: src/lib/streams/addons.ts]
 - B 85 | Anime filename parsing | P | anitomy enrichment of anime names not ported [Desktop: harbor-core/src/parser.rs]

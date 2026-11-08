@@ -213,6 +213,12 @@ struct CatalogDefinition: Codable, Sendable {
     var type: String
     var name: String
     var extra: [Extra]
+    var extraSupported: [String]? = nil
+
+    func supports(_ name: String) -> Bool {
+        extra.contains { $0.name == name } || extraSupported?.contains(name) == true
+    }
+
     struct Extra: Codable, Sendable {
         var name: String
         var isRequired: Bool

@@ -581,6 +581,10 @@ BEHAVIORS = expand("""
 225 D Past programmes can open the native player from the channel programme list when the catch-up URL is valid. Channel headers, title, profile scope and the twelve-hour XMLTV history are wired. Native route and provider playback need validation.
 377 D Book mode adapts to two-page spreads on wide regular-width iPad layouts with compatible page shapes. It uses native page curls, RTL pairing, odd-page padding and spread-aware resume and completion. Physical iPad validation remains pending.
 203 P External subtitle estimates can be reviewed and applied from the player, and verified community matches keep automatic application. Desktop's full source matching and structural calibration are pending.
+63 D Home and Anime use Desktop's normalized-name and type dedupe, preserving the first loaded catalog in source order. Home keeps its classic and show-all behavior. Non-content filtering and episode-meta collapse remain wired.
+64 D Catalog request planning fills required extras from the first offered option when no explicit value is supplied. Search-only catalogs stay out of browse, and selected genres and skip values override their defaults.
+65 D Catalog planning and the native browser preserve legacy extraSupported declarations through the addon bridge and honor search and skip. Existing installations refresh from their configured manifests.
+66 D Metadata and subtitle resource plans inherit absent manifest types and ID prefixes while respecting explicit overrides. Playback stream requests preserve Desktop's separate stream-specific selector.
 """)
 
 SETTINGS = expand("""

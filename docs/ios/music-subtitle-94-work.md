@@ -1925,3 +1925,17 @@ Plain series now choose the initial season from an explicit episode hint, then
 the last local playback checkpoint and then watched history. A manual selection
 keeps priority while the resume store responds. Ordered anime views continue to
 use their existing episode projection. The priority test awaits an Apple run.
+
+## Catalog manifest compatibility
+
+The native catalog planner keeps legacy search and paging declarations and uses
+the first advertised value for other required extras. Existing manifest refresh
+repopulates legacy fields lost by older builds. Home and Anime collapse repeated
+rows using Desktop's name normalization, while Home's classic and show-all
+choices continue to keep duplicates. Generic metadata and subtitle requests
+now inherit missing manifest resource constraints. Playback retains Desktop's
+separate stream selector. Focused Rust and Apple verification are pending.
+
+Apple run 42525126155 stopped at a Swift parse error in the Manga spread turn
+callback. db704ee1 corrects the callback. Run 42534579007 includes that fix, the
+subtitle and guide cases, and the local-season priority case.

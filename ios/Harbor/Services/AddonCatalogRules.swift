@@ -3,6 +3,24 @@ import Foundation
 /// Desktop addon catalogs (src/lib/addons.ts): `NON_CONTENT_TYPES` keeps `addon_catalog` out of the
 /// content rows, and `collapseEpisodeMetas` folds the episode ids of one series into its series id.
 enum AddonCatalogRules {
+    /// Desktop strips media-type words and punctuation before comparing rows of the same kind.
+    private static let mediaTypeWords = try! NSRegularExpression(pattern: #"(?<![a-z0-9_])(?:movies|movie|series|shows|show|tv)(?![a-z0-9_])"#)
+    private static let separator = try! NSRegularExpression(pattern: #"[^a-z0-9]+"#)
+
+    static func normalizedName(_ name: String, kind: String) -> String {
+        let lower = name.lowercased()
+        let words = mediaTypeWords.stringByReplacingMatches(in: lower, range: NSRange(lower.startIndex..., in: lower), withTemplate: "")
+        let normalized = separator.stringByReplacingMatches(in: words, range: NSRange(words.startIndex..., in: words), withTemplate: " ")
+        return normalized.trimmingCharacters(in: .whitespaces) + "::" + kind
+    }
+
+    static func discoveredRows(_ rows: [CatalogRow], showAll: Bool = false) -> [CatalogRow] {
+        let available = rows.filter { !$0.metas.isEmpty }
+        let distinct = HomeCatalogFilter.uniqueAddonRows(available, takenKeys: [],
+            key: { normalizedName($0.plan.title, kind: $0.plan.kind) }, showAll: showAll)
+        return Array(distinct.prefix(showAll ? 200 : 24))
+    }
+
     static func isContentType(_ type: String) -> Bool {
         type.lowercased() != "addon_catalog"
     }

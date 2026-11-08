@@ -194,7 +194,7 @@ struct CatalogBrowserView: View {
     @State private var loadedGenre: String?
     @State private var generation = 0
     private var genres: [String] { initial.plan.catalog?.extra.first { $0.name == "genre" }?.options ?? [] }
-    private var supportsPaging: Bool { initial.plan.catalog?.extra.contains { $0.name == "skip" } ?? false }
+    private var supportsPaging: Bool { initial.plan.catalog?.supports("skip") == true }
     init(app: AppModel, initial: CatalogRow, titleOverride: String? = nil) {
         self.app = app; self.initial = initial; self.titleOverride = titleOverride
         _genre = State(initialValue: initial.selectedGenre ?? "")

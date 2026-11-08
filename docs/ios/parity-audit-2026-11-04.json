@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 253,
-      "partial": 123,
+      "ported": 257,
+      "partial": 119,
       "missing": 0,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 83.6,
-      "ported_only_percent": 67.3,
+      "weighted_percent": 84.2,
+      "ported_only_percent": 68.4,
       "ported_or_partial_percent": 100.0
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 493,
-      "partial": 157,
+      "ported": 497,
+      "partial": 153,
       "missing": 2,
       "excluded": 297,
       "counted": 652,
-      "weighted_percent": 87.7,
-      "ported_only_percent": 75.6,
+      "weighted_percent": 88.0,
+      "ported_only_percent": 76.2,
       "ported_or_partial_percent": 99.7
     }
   },
@@ -68,11 +68,11 @@
     {
       "area": "Addons and catalogs",
       "range": "B48-B67",
-      "ported": 11,
-      "partial": 8,
+      "ported": 15,
+      "partial": 4,
       "missing": 0,
       "excluded": 1,
-      "weighted_percent": 78.9
+      "weighted_percent": 89.5
     },
     {
       "area": "Stream pipeline, parser, trust and scoring",
@@ -667,29 +667,29 @@
       "index": 63,
       "id": "Addon catalog discovery",
       "desktop_source": "src/lib/addons.ts",
-      "verdict": "P",
-      "note": "addon catalog discovery: the addon_catalog type filter and the episode-meta collapse are in (8 Nov, written by Haiku, uncompiled); the normalized-name row dedupe is not"
+      "verdict": "D",
+      "note": "Home and Anime use Desktop's normalized-name and type dedupe, preserving the first loaded catalog in source order. Home keeps its classic and show-all behavior. Non-content filtering and episode-meta collapse remain wired."
     },
     {
       "index": 64,
       "id": "Catalog extras / filters",
       "desktop_source": "src/lib/addons.ts",
-      "verdict": "P",
-      "note": "Genre and skip paging are wired into CatalogBrowserView, but the required-extra default is missing: catalog_plans drops every catalog with an unmet required extra and HarborService.catalogs passes no genre during d..."
+      "verdict": "D",
+      "note": "Catalog request planning fills required extras from the first offered option when no explicit value is supplied. Search-only catalogs stay out of browse, and selected genres and skip values override their defaults."
     },
     {
       "index": 65,
       "id": "Catalog pages",
       "desktop_source": "src/lib/addons.ts",
-      "verdict": "P",
-      "note": "Desktop also reads the older manifest form (extraSupported) to decide whether a catalog supports search, but the Rust Catalog type has no such field, so addons that declare search only through extraSupported are ne..."
+      "verdict": "D",
+      "note": "Catalog planning and the native browser preserve legacy extraSupported declarations through the addon bridge and honor search and skip. Existing installations refresh from their configured manifests."
     },
     {
       "index": 66,
       "id": "Addon resource matching",
       "desktop_source": "src/lib/addons.ts",
-      "verdict": "P",
-      "note": "Rust deserializes a missing types or idPrefixes list in a specific resource entry as empty, so an entry without its own types never matches and an entry without its own idPrefixes accepts every id, whereas Desktop..."
+      "verdict": "D",
+      "note": "Metadata and subtitle resource plans inherit absent manifest types and ID prefixes while respecting explicit overrides. Playback stream requests preserve Desktop's separate stream-specific selector."
     },
     {
       "index": 67,

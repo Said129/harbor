@@ -33,7 +33,7 @@ where
 pub struct Manifest {
     pub id: String,
     pub name: String,
-    #[serde(default)]
+    #[serde(default, deserialize_with = "null_default")]
     pub types: Vec<String>,
     #[serde(default, deserialize_with = "null_default")]
     pub id_prefixes: Vec<String>,
@@ -51,10 +51,10 @@ pub enum Resource {
     Name(String),
     Specific {
         name: String,
-        #[serde(default, deserialize_with = "null_default")]
-        types: Vec<String>,
-        #[serde(rename = "idPrefixes", default, deserialize_with = "null_default")]
-        id_prefixes: Vec<String>,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        types: Option<Vec<String>>,
+        #[serde(rename = "idPrefixes", default, skip_serializing_if = "Option::is_none")]
+        id_prefixes: Option<Vec<String>>,
     },
 }
 
@@ -65,9 +65,34 @@ pub struct Catalog {
     pub kind: String,
     #[serde(default, deserialize_with = "null_default")]
     pub name: String,
-    #[serde(default)]
+    #[serde(default, deserialize_with = "null_default")]
     pub extra: Vec<CatalogExtra>,
+    #[serde(
+        rename = "extraSupported",
+        default,
+        deserialize_with = "catalog_extra_names",
+        skip_serializing_if = "Vec::is_empty"
+    )]
+    pub extra_supported: Vec<String>,
 }
+// Legacy manifests can mix other JSON values into the list. Ignore them as Desktop does.
+fn catalog_extra_names<'de, D>(deserializer: D) -> Result<Vec<String>, D::Error>
+where
+    D: serde::Deserializer<'de>,
+{
+    let value = Value::deserialize(deserializer)?;
+    let Value::Array(names) = value else {
+        return Ok(Vec::new());
+    };
+    Ok(names
+        .into_iter()
+        .filter_map(|name| match name {
+            Value::String(name) => Some(name),
+            _ => None,
+        })
+        .collect())
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CatalogExtra {
@@ -113,9 +138,21 @@ impl Addon {
         let prefix_ok =
             |prefixes: &[String]| prefixes.is_empty() || prefixes.iter().any(|p| id.starts_with(p));
         if !specific.is_empty() {
-            return specific
-                .iter()
-                .any(|(types, prefixes)| types.iter().any(|t| t == kind) && prefix_ok(prefixes));
+            return specific.iter().any(|(types, prefixes)| {
+                // Desktop uses a stricter selector in its playback stream path.
+                let (types, prefixes) = if resource == "stream" {
+                    (
+                        types.as_deref().unwrap_or_default(),
+                        prefixes.as_deref().unwrap_or_default(),
+                    )
+                } else {
+                    (
+                        types.as_deref().unwrap_or(&self.manifest.types),
+                        prefixes.as_deref().unwrap_or(&self.manifest.id_prefixes),
+                    )
+                };
+                types.iter().any(|t| t == kind) && prefix_ok(prefixes)
+            });
         }
         self.manifest
             .resources
@@ -210,8 +247,11 @@ pub fn catalog_plans(
 ) -> Result<Vec<RequestPlan>, &'static str> {
     let mut plans = Vec::new();
     for (priority, addon) in addons.iter().enumerate().filter(|(_, a)| a.enabled) {
-        for catalog in &addon.manifest.catalogs {
-            let supports = |name: &str| catalog.extra.iter().any(|e| e.name == name);
+        'catalog: for catalog in &addon.manifest.catalogs {
+            let supports = |name: &str| {
+                catalog.extra.iter().any(|e| e.name == name)
+                    || catalog.extra_supported.iter().any(|extra| extra == name)
+            };
             if search.is_some() && !supports("search") {
                 continue;
             }
@@ -230,12 +270,17 @@ pub fn catalog_plans(
                 }
                 extras.insert("skip".into(), skip.to_string());
             }
-            if catalog
-                .extra
-                .iter()
-                .any(|e| e.is_required && !extras.contains_key(&e.name))
-            {
-                continue;
+            for required in catalog.extra.iter().filter(|extra| extra.is_required) {
+                if extras.contains_key(&required.name) {
+                    continue;
+                }
+                if required.name == "search" {
+                    continue 'catalog;
+                }
+                let Some(value) = required.options.first().filter(|value| !value.is_empty()) else {
+                    continue 'catalog;
+                };
+                extras.insert(required.name.clone(), value.clone());
             }
             plans.push(RequestPlan {
                 key: format!("{}:{}:{}", priority, catalog.kind, catalog.id),

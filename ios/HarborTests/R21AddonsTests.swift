@@ -78,6 +78,39 @@ final class R21AddonsTests: XCTestCase {
         XCTAssertTrue(AddonCatalogRules.isContentType("movie"))
     }
 
+    func testCatalogDiscoveryKeepsFirstNormalizedNamePerKindAndAllowsAll() {
+        func row(_ key: String, _ title: String, _ kind: String = "movie", empty: Bool = false) -> CatalogRow {
+            let source = addon("test", "https://example.com/manifest.json")
+            let plan = RequestPlan(key: key, url: source.transportUrl, title: title, kind: kind,
+                addon: source, addonPriority: 0, timeoutMs: 8_000, catalog: nil)
+            return CatalogRow(plan: plan, metas: empty ? [] : [media(key, kind)])
+        }
+        let rows = [row("empty", "Popular", empty: true), row("one", "Popular Movies!"), row("two", "popular"),
+                    row("other-kind", "Popular TV Shows", "series"), row("distinct", "Most popular")]
+        XCTAssertEqual(AddonCatalogRules.discoveredRows(rows).map(\.id), ["one", "other-kind", "distinct"])
+        XCTAssertEqual(AddonCatalogRules.discoveredRows(rows, showAll: true).map(\.id), ["one", "two", "other-kind", "distinct"])
+        XCTAssertEqual(AddonCatalogRules.normalizedName("MOVIES_2", kind: "movie"), "movies 2::movie")
+    }
+
+    func testLegacyCatalogCapabilitiesSurviveNativeRequestPlanning() async throws {
+        let manifest: JSONValue = .object([
+            "id": .string("legacy"), "name": .string("Legacy"),
+            "catalogs": .array([.object([
+                "id": .string("search"), "name": .string("Search"), "type": .string("movie"),
+                "extraSupported": .array([.string("search"), .string("skip"), .null])
+            ])])
+        ])
+        let core = CoreBridge()
+        let addon: Addon = try await core.call("installAddon", ["url": .string("https://example.com/manifest.json"), "manifest": manifest])
+        let plans: [RequestPlan] = try await core.call("catalogs", ["addons": try .encoded([addon]),
+            "search": .string("test"), "genre": .null, "skip": .integer(20)])
+        let plan = try XCTUnwrap(plans.first)
+        XCTAssertEqual(plans.count, 1)
+        XCTAssertTrue(plan.url.hasSuffix("/search=test&skip=20.json"))
+        XCTAssertEqual(plan.catalog?.supports("skip"), true)
+        XCTAssertEqual(plan.catalog?.supports("search"), true)
+    }
+
     func testSeriesBaseIDStripsEpisodeSuffixOnlyForSeriesAndAnime() {
         XCTAssertEqual(AddonCatalogRules.seriesBaseID(id: "tt1:1:2", type: "series"), "tt1")
         XCTAssertEqual(AddonCatalogRules.seriesBaseID(id: "tt1:1:2", type: "anime"), "tt1")

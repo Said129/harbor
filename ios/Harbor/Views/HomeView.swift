@@ -20,20 +20,20 @@ struct HomeView: View {
         HomeCatalogFilter.homeLanguageRails(allRails, languages: InterfacePreferences.shared.homeLanguages)
     }
     private var allRails: [PageRail] {
-        let catalogs = model.rows.filter { !$0.metas.isEmpty }.map(PageRail.catalog)
+        let showAll = classic || InterfacePreferences.shared.homeShowAllAddonRows
+        let catalogs = AddonCatalogRules.discoveredRows(model.rows, showAll: showAll).map(PageRail.catalog)
         let sources = customization.sourceRows.map(PageRail.sources)
         let lists = CustomListHomeRows.selected(model.customLists.lists, ids: customization.listRowIDs).map(PageRail.list)
         guard !classic else { return sources + lists + catalogs }
         let built = (model.home.rows + model.home.animeRows).filter { !$0.metas.isEmpty }.map(PageRail.discovery)
         let takenNames = Set(built.map(HomeView.rowNameKey))
-        let addonRails = HomeCatalogFilter.uniqueAddonRows(catalogs, takenKeys: takenNames, key: HomeView.rowNameKey, showAll: InterfacePreferences.shared.homeShowAllAddonRows)
+        let addonRails = HomeCatalogFilter.uniqueAddonRows(catalogs, takenKeys: takenNames, key: HomeView.rowNameKey, showAll: showAll)
         let traktRails: [PageRail] = trakt.rows.map(PageRail.discovery)
         let letterboxdRails: [PageRail] = StremboxdHomeModel.forOwner(model.personalOwner).rails.map(PageRail.discovery)
         let simklRails: [PageRail] = SimklHomeModel.forOwner(model.personalOwner).rails.map(PageRail.discovery)
         return sources + lists + traktRails + simklRails + letterboxdRails + built + addonRails
     }
-    /// Desktop's duplicate test for addon rows: same kind and same trimmed, lowercased title.
-    static func rowNameKey(_ rail: PageRail) -> String { rail.kind + "|" + rail.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() }
+    static func rowNameKey(_ rail: PageRail) -> String { AddonCatalogRules.normalizedName(rail.title, kind: rail.kind) }
     private var heroes: [Media] {
         if !classic && !model.home.heroes.isEmpty { return model.home.heroes }
         return model.heroes.isEmpty ? Array(model.rows.first(where: { !$0.metas.isEmpty })?.metas.prefix(5) ?? []) : model.heroes
