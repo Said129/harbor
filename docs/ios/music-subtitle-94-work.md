@@ -1761,3 +1761,12 @@ a no-op, excluded origins cannot work because no pick carries a country, and the
 
 The focused run of rounds 15 to 17 (run 42431841003) compiled the app and failed only on one test expression in `CommunitySyncTests` that the
 compiler could not type-check in time; it was rewritten as a loop.
+
+## Nineteenth round: switches and options with no effect yet (8 November, written by Haiku, uncompiled)
+
+Three Haiku branches. **Badges and ratings**: `showWatchedBadge` hides the check on anime movie entries and live episode rows, `showDetailRatings` is a
+master switch for the ratings row of the detail page, and `simklShowCommunityRatings` gates the Simkl chip (Desktop 0.9.132 stores that one and reads it
+nowhere). **Player**: `mpvBufferBoost` ("Slow or unstable connection") makes the automatic buffer size use Desktop's large profile inside the memory
+budget the buffer already respects, and `playerHdrToSdr` adds Desktop's eight tone-mapping options for an SDR display behind a switch that is off by
+default here, because Desktop's default of on would change today's output. **Fanart**: with a Fanart key, an anime title's logo and backdrops fill what its
+detail page lacks, one request per title and session; nothing happens without a key or a TVDB id.

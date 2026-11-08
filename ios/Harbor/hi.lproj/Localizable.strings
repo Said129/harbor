@@ -790,6 +790,8 @@
 "Dismiss tip" = "Dismiss tip";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "Disney+ ओरिजिनल्स";
+"Display SIMKL community score badge on details pages." = "विवरण पेज पर SIMKL कम्युनिटी स्कोर बैज दिखाएँ।";
+"Display Simkl Community Ratings" = "Simkl कम्युनिटी रेटिंग दिखाएँ";
 "Display name" = "दिखाया जाने वाला नाम";
 "Distance from bottom" = "नीचे से दूरी";
 "Distancia desde la parte inferior" = "नीचे से दूरी";
@@ -1059,6 +1061,7 @@
 "HD" = "HD";
 "HDR" = "HDR";
 "HDR only" = "केवल HDR";
+"HDR-to-SDR tonemapping" = "HDR-से-SDR टोन-मैपिंग";
 "HI" = "HI";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "HW डिकोड";
@@ -1389,6 +1392,7 @@
 "Manifest URL" = "मैनिफ़ेस्ट URL";
 "Mantener la misma fuente en el siguiente episodio" = "अगले एपिसोड में भी वही स्रोत रखें";
 "Mantener la pantalla encendida" = "Keep screen awake";
+"Maps HDR sources to SDR using bt.2446a. Recommended on SDR displays." = "bt.2446a का उपयोग करके HDR स्रोतों को SDR में बदलता है। SDR डिस्प्ले के लिए अनुशंसित।";
 "Marcadores" = "बुकमार्क";
 "Marcar como leído" = "Mark as read";
 "Margins" = "हाशिए";
@@ -1906,6 +1910,7 @@
 "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "अधिक चटख रंग";
 "Puntuaciones" = "स्कोर";
+"Puts a check on titles you have already finished." = "आप जिन टाइटल को पूरा कर चुके हैं, उन पर चेक लगाता है।";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "पिछला पेज";
@@ -1945,6 +1950,7 @@
 "Reading mode" = "पढ़ने का मोड";
 "Reading options" = "Reading options";
 "Reading your search" = "आपकी खोज पढ़ी जा रही है";
+"Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Real IMDb and Rotten Tomatoes scores." = "असली IMDb और Rotten Tomatoes स्कोर।";
 "Real-Debrid API token" = "Real-Debrid API टोकन";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link। कैश की गई स्ट्रीम सीधे चलती हैं। कीज़ आपके डिवाइस पर ही रहती हैं।";
@@ -2335,6 +2341,7 @@
 "Slice of Life" = "स्लाइस ऑफ लाइफ़";
 "Slightly lighter than background." = "बैकग्राउंड से थोड़ा हल्का।";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "धीमे ऐडऑन और P2P स्रोतों को शुरू होने में अक्सर 10 सेकंड से ज़्यादा लगते हैं। अगर स्ट्रीम को पूरा मौका मिलने से पहले ही छोड़ा जा रहा हो, तो इसे बढ़ाएँ।";
+"Slow or unstable connection" = "धीमा या अस्थिर कनेक्शन";
 "Smaller" = "और छोटा";
 "Smooth on weak PCs" = "कम क्षमता वाले PC पर भी स्मूद";
 "Sobre la línea principal" = "मुख्य पंक्ति के ऊपर";
@@ -2806,6 +2813,7 @@
 "Watch on" = "इस पर देखें";
 "Watch together" = "साथ में देखें";
 "Watched" = "देख लिया";
+"Watched badge" = "देखा हुआ बैज";
 "Watched by {name}" = "{name} ने देखा";
 "Watching" = "देख रहे हैं";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";

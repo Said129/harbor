@@ -790,6 +790,8 @@
 "Dismiss tip" = "Ocultar consejo";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "Originales de Disney+";
+"Display SIMKL community score badge on details pages." = "Mostrar la insignia de puntuación de la comunidad de SIMKL en las páginas de detalles.";
+"Display Simkl Community Ratings" = "Mostrar calificaciones de la comunidad de Simkl";
 "Display name" = "Nombre para mostrar";
 "Distance from bottom" = "Distancia desde la parte inferior";
 "Distancia desde la parte inferior" = "Distancia desde la parte inferior";
@@ -1059,6 +1061,7 @@
 "HD" = "HD";
 "HDR" = "HDR";
 "HDR only" = "Solo HDR";
+"HDR-to-SDR tonemapping" = "Mapeo de tonos de HDR a SDR";
 "HI" = "HI";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "Decodificación por hardware";
@@ -1389,6 +1392,7 @@
 "Manifest URL" = "URL del manifiesto";
 "Mantener la misma fuente en el siguiente episodio" = "Mantener la misma fuente en el siguiente episodio";
 "Mantener la pantalla encendida" = "Mantener la pantalla encendida";
+"Maps HDR sources to SDR using bt.2446a. Recommended on SDR displays." = "Convierte fuentes HDR a SDR mediante bt.2446a. Recomendado para pantallas SDR.";
 "Marcadores" = "Marcadores";
 "Marcar como leído" = "Marcar como leído";
 "Margins" = "Márgenes";
@@ -1906,6 +1910,7 @@
 "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "Color más intenso";
 "Puntuaciones" = "Puntuaciones";
+"Puts a check on titles you have already finished." = "Marca los títulos que ya terminaste.";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "Página anterior";
@@ -1945,6 +1950,7 @@
 "Reading mode" = "Modo de lectura";
 "Reading options" = "Opciones de lectura";
 "Reading your search" = "Interpretando tu búsqueda";
+"Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Real IMDb and Rotten Tomatoes scores." = "Puntuaciones reales de IMDb y Rotten Tomatoes.";
 "Real-Debrid API token" = "Token de API de Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Las fuentes en caché se reproducen directamente. Las claves permanecen en el dispositivo.";
@@ -2335,6 +2341,7 @@
 "Slice of Life" = "Vida cotidiana";
 "Slightly lighter than background." = "Un poco más claro que el fondo.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Los complementos lentos y las fuentes P2P suelen necesitar más de 10 segundos para iniciar. Aumenta este valor si se omiten fuentes antes de darles tiempo suficiente.";
+"Slow or unstable connection" = "Conexión lenta o inestable";
 "Smaller" = "Más pequeño";
 "Smooth on weak PCs" = "Fluido en computadoras poco potentes";
 "Sobre la línea principal" = "Sobre la línea principal";
@@ -2806,6 +2813,7 @@
 "Watch on" = "Ver en";
 "Watch together" = "Ver juntos";
 "Watched" = "Visto";
+"Watched badge" = "Insignia de visto";
 "Watched by {name}" = "Visto por {name}";
 "Watching" = "Viendo";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";

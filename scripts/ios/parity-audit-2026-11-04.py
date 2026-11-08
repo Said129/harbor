@@ -326,6 +326,7 @@ BEHAVIORS = expand("""
 352 X remote control sessions: Desktop's remote is a mobile web page served by the Desktop app (about twelve thousand lines of its own screens) that drives the Desktop player; the iOS app is itself the phone client and plays on the phone
 353 X remote player binding: same reason, it binds that web remote to the Desktop player
 210 X shadow mpv thumbnail session: a second decoder opened on the same stream would double the bandwidth and memory of a phone for a debrid or torrent source
+312 P Fanart artwork: with a Fanart key, an anime title's logo and backdrops fill what is missing on its detail page (8 Nov, written by Haiku, uncompiled); Desktop's poster, the home hero logos and the movie lookup are not ported
 195 D injected ad skip: the signed corpus is fetched and checked (Ed25519), matched on the content and the exact release (info hash or release fingerprint) and offered as a Skip button or skipped by itself; the report button sends the marked times for review (8 Nov, written by Haiku, report screen by Sonnet, uncompiled; iOS has the info hash and size of a stream but the release group and parsed title only when an enrichment added them, so some releases fall back to a key the corpus never holds)
 256 P host summon and invite: guests get the invite card (Join or Choose) and the summon card, and the host's invite goes out when its sources open (8 Nov, uncompiled); Desktop's host-side summon actions live in its context menu and have no iOS screen yet
 """)
@@ -747,6 +748,11 @@ SETTINGS = expand("""
 250 D use community corrections: a tier A answer from the shared database is applied without analysing the audio (8 Nov, written by Haiku, uncompiled)
 251 D community sync server: blank uses Harbor's server, any http or https address replaces it (8 Nov, written by Haiku, uncompiled)
 252 D private mode: no lookup and no report while it is on (8 Nov, written by Haiku, uncompiled)
+272 D watched badge: hides the check on anime movie entries and live episode rows; iOS has no check on posters (8 Nov, written by Haiku, uncompiled)
+30 D detail ratings master switch: hides the whole ratings row and the main score badge, next to the per-provider switches (8 Nov, written by Haiku, uncompiled)
+44 D Simkl community ratings switch: gates the Simkl chip on cards and on the detail row; Desktop 0.9.132 stores it but reads it nowhere (8 Nov, written by Haiku, uncompiled)
+314 D slow or unstable connection (buffer boost): with the automatic buffer size it uses Desktop's large profile, capped by the phone-memory budget the buffer already has; Desktop shows no control for it, the rule is an interpretation (8 Nov, written by Haiku, uncompiled)
+181 D HDR to SDR tone mapping: Desktop's eight mpv options for an SDR display behind a switch; off by default here (Desktop: on) so today's output does not change (8 Nov, written by Haiku, uncompiled)
 71 D series name first in the player: the top bar shows the episode line (S1 E3 · name) and the show name, swapped by the setting; Desktop's own code and label disagree on the default order and the label was followed (8 Nov, written by Haiku, uncompiled)
 206 D delete watched downloads: a download that reaches 90 percent is removed when its player closes (8 Nov, written by Haiku, uncompiled)
 376 D keep the next episode visible: the next unwatched episode stays clear in the episode lists and in the player panel, with its own switch (8 Nov, written by Haiku and Sonnet, uncompiled)

@@ -790,6 +790,8 @@
 "Dismiss tip" = "Dismiss tip";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "Disney+ Orijinal Yapımları";
+"Display SIMKL community score badge on details pages." = "Ayrıntı sayfalarında SIMKL topluluk puanı rozetini gösterir.";
+"Display Simkl Community Ratings" = "Simkl Topluluk Puanlarını Göster";
 "Display name" = "Görünen ad";
 "Distance from bottom" = "Alttan uzaklık";
 "Distancia desde la parte inferior" = "Alttan uzaklık";
@@ -1059,6 +1061,7 @@
 "HD" = "HD";
 "HDR" = "HDR";
 "HDR only" = "Yalnızca HDR";
+"HDR-to-SDR tonemapping" = "HDR'den SDR'ye ton eşleme";
 "HI" = "HI";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "Donanım kod çözme";
@@ -1389,6 +1392,7 @@
 "Manifest URL" = "Manifest URL'si";
 "Mantener la misma fuente en el siguiente episodio" = "Sonraki bölümde aynı kaynağı kullan";
 "Mantener la pantalla encendida" = "Keep screen awake";
+"Maps HDR sources to SDR using bt.2446a. Recommended on SDR displays." = "HDR kaynaklarını bt.2446a kullanarak SDR'ye eşler. SDR ekranlar için önerilir.";
 "Marcadores" = "Yer İmleri";
 "Marcar como leído" = "Mark as read";
 "Margins" = "Kenar boşlukları";
@@ -1906,6 +1910,7 @@
 "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "Daha canlı renkler";
 "Puntuaciones" = "Puanlar";
+"Puts a check on titles you have already finished." = "Bitirdiğiniz içeriklere onay işareti ekler.";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "Önceki sayfa";
@@ -1945,6 +1950,7 @@
 "Reading mode" = "Okuma modu";
 "Reading options" = "Reading options";
 "Reading your search" = "Aramanız yorumlanıyor";
+"Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Real IMDb and Rotten Tomatoes scores." = "Gerçek IMDb ve Rotten Tomatoes puanları.";
 "Real-Debrid API token" = "Real-Debrid API belirteci";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Önbelleğe alınmış yayınlar doğrudan oynatılır. Anahtarlar cihazınızda kalır.";
@@ -2335,6 +2341,7 @@
 "Slice of Life" = "Gündelik Yaşam";
 "Slightly lighter than background." = "Arka plandan biraz daha açık.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Yavaş eklentilerin ve P2P kaynaklarının başlaması genellikle 10 saniyeden uzun sürer. Yayınlar yeterince beklenmeden atlanıyorsa bu süreyi artırın.";
+"Slow or unstable connection" = "Yavaş veya kararsız bağlantı";
 "Smaller" = "Daha küçük";
 "Smooth on weak PCs" = "Düşük donanımlı bilgisayarlarda akıcı";
 "Sobre la línea principal" = "Ana satırın üstü";
@@ -2806,6 +2813,7 @@
 "Watch on" = "Şurada izle";
 "Watch together" = "Birlikte İzle";
 "Watched" = "İzlendi";
+"Watched badge" = "İzlendi rozeti";
 "Watched by {name}" = "{name} tarafından izlendi";
 "Watching" = "İzleniyor";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";

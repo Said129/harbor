@@ -790,6 +790,8 @@
 "Dismiss tip" = "Dismiss tip";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "Nội dung gốc Disney+";
+"Display SIMKL community score badge on details pages." = "Hiển thị huy hiệu điểm cộng đồng SIMKL trên trang chi tiết.";
+"Display Simkl Community Ratings" = "Hiển thị điểm đánh giá cộng đồng Simkl";
 "Display name" = "Tên hiển thị";
 "Distance from bottom" = "Khoảng cách từ cạnh dưới";
 "Distancia desde la parte inferior" = "Khoảng cách từ cạnh dưới";
@@ -1059,6 +1061,7 @@
 "HD" = "HD";
 "HDR" = "HDR";
 "HDR only" = "Chỉ HDR";
+"HDR-to-SDR tonemapping" = "Ánh xạ tông màu HDR sang SDR";
 "HI" = "HI";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "Giải mã phần cứng";
@@ -1389,6 +1392,7 @@
 "Manifest URL" = "URL manifest";
 "Mantener la misma fuente en el siguiente episodio" = "Giữ nguyên nguồn cho tập tiếp theo";
 "Mantener la pantalla encendida" = "Keep screen awake";
+"Maps HDR sources to SDR using bt.2446a. Recommended on SDR displays." = "Ánh xạ nguồn HDR sang SDR bằng bt.2446a. Khuyên dùng trên màn hình SDR.";
 "Marcadores" = "Dấu trang";
 "Marcar como leído" = "Mark as read";
 "Margins" = "Lề";
@@ -1906,6 +1910,7 @@
 "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "Màu sắc nổi bật hơn";
 "Puntuaciones" = "Điểm số";
+"Puts a check on titles you have already finished." = "Đánh dấu các tiêu đề bạn đã xem xong.";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "Trang trước";
@@ -1945,6 +1950,7 @@
 "Reading mode" = "Chế độ đọc";
 "Reading options" = "Reading options";
 "Reading your search" = "Đang đọc nội dung tìm kiếm";
+"Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Real IMDb and Rotten Tomatoes scores." = "Điểm IMDb và Rotten Tomatoes thực.";
 "Real-Debrid API token" = "Token API Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Luồng đã lưu đệm được phát trực tiếp. Các khóa chỉ được lưu cục bộ.";
@@ -2335,6 +2341,7 @@
 "Slice of Life" = "Đời thường";
 "Slightly lighter than background." = "Sáng hơn nền một chút.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Các tiện ích bổ sung chậm và nguồn P2P thường cần hơn 10 giây để bắt đầu. Hãy tăng thời gian này nếu luồng phát bị bỏ qua trước khi có đủ thời gian kết nối.";
+"Slow or unstable connection" = "Kết nối chậm hoặc không ổn định";
 "Smaller" = "Nhỏ hơn";
 "Smooth on weak PCs" = "Mượt trên PC yếu";
 "Sobre la línea principal" = "Phía trên dòng chính";
@@ -2806,6 +2813,7 @@
 "Watch on" = "Xem trên";
 "Watch together" = "Xem cùng nhau";
 "Watched" = "Đã xem";
+"Watched badge" = "Huy hiệu đã xem";
 "Watched by {name}" = "Đã được {name} xem";
 "Watching" = "Đang xem";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";

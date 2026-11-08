@@ -793,6 +793,8 @@
 "Dismiss tip" = "Dismiss tip";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "Оригиналы Disney+";
+"Display SIMKL community score badge on details pages." = "Показывать значок оценки сообщества SIMKL на страницах с подробностями.";
+"Display Simkl Community Ratings" = "Показывать оценки сообщества Simkl";
 "Display name" = "Отображаемое имя";
 "Distance from bottom" = "Отступ снизу";
 "Distancia desde la parte inferior" = "Отступ снизу";
@@ -1063,6 +1065,7 @@
 "HD" = "HD";
 "HDR" = "HDR";
 "HDR only" = "Только HDR";
+"HDR-to-SDR tonemapping" = "Тонмаппинг HDR в SDR";
 "HI" = "HI";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "Аппаратное декодирование";
@@ -1393,6 +1396,7 @@
 "Manifest URL" = "URL манифеста";
 "Mantener la misma fuente en el siguiente episodio" = "Сохранять источник для следующей серии";
 "Mantener la pantalla encendida" = "Keep screen awake";
+"Maps HDR sources to SDR using bt.2446a. Recommended on SDR displays." = "Преобразует HDR-источники в SDR по bt.2446a. Рекомендуется для SDR-дисплеев.";
 "Marcadores" = "Закладки";
 "Marcar como leído" = "Mark as read";
 "Margins" = "Поля";
@@ -1916,6 +1920,7 @@
 "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "Насыщеннее цвет";
 "Puntuaciones" = "Оценки";
+"Puts a check on titles you have already finished." = "Ставит галочку на названиях, которые вы уже досмотрели.";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "Предыдущая страница";
@@ -1955,6 +1960,7 @@
 "Reading mode" = "Режим чтения";
 "Reading options" = "Reading options";
 "Reading your search" = "Разбор запроса";
+"Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Real IMDb and Rotten Tomatoes scores." = "Настоящие оценки IMDb и Rotten Tomatoes.";
 "Real-Debrid API token" = "API-токен Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Кэшированные потоки воспроизводятся напрямую. Ключи хранятся локально.";
@@ -2347,6 +2353,7 @@
 "Slice of Life" = "Повседневность";
 "Slightly lighter than background." = "Чуть светлее фона.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Медленным дополнениям и P2P-источникам часто нужно больше 10 секунд на старт. Увеличьте значение, если потоки пропускаются, не успев запуститься.";
+"Slow or unstable connection" = "Медленное или нестабильное соединение";
 "Smaller" = "Меньше";
 "Smooth on weak PCs" = "Плавно на слабых ПК";
 "Sobre la línea principal" = "Над основной строкой";
@@ -2820,6 +2827,7 @@
 "Watch on" = "Смотреть на";
 "Watch together" = "Смотреть вместе";
 "Watched" = "Просмотрено";
+"Watched badge" = "Значок «Просмотрено»";
 "Watched by {name}" = "Просмотрено: {name}";
 "Watching" = "Смотрю";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";

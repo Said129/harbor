@@ -790,6 +790,8 @@
 "Dismiss tip" = "Dismiss tip";
 "Disney+" = "Disney+";
 "Disney+ Originals" = "Disney+ 原创";
+"Display SIMKL community score badge on details pages." = "在详情页显示 SIMKL 社区评分徽章。";
+"Display Simkl Community Ratings" = "显示 Simkl 社区评分";
 "Display name" = "显示名称";
 "Distance from bottom" = "距底部距离";
 "Distancia desde la parte inferior" = "距底部距离";
@@ -1059,6 +1061,7 @@
 "HD" = "HD";
 "HDR" = "HDR";
 "HDR only" = "仅 HDR";
+"HDR-to-SDR tonemapping" = "HDR 转 SDR 色调映射";
 "HI" = "HI";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "硬件解码";
@@ -1389,6 +1392,7 @@
 "Manifest URL" = "清单 URL";
 "Mantener la misma fuente en el siguiente episodio" = "下一集沿用相同来源";
 "Mantener la pantalla encendida" = "Keep screen awake";
+"Maps HDR sources to SDR using bt.2446a. Recommended on SDR displays." = "使用 bt.2446a 将 HDR 片源映射为 SDR。建议在 SDR 显示器上使用。";
 "Marcadores" = "书签";
 "Marcar como leído" = "Mark as read";
 "Margins" = "页边距";
@@ -1906,6 +1910,7 @@
 "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "更鲜艳的色彩";
 "Puntuaciones" = "评分";
+"Puts a check on titles you have already finished." = "为你已看完的作品添加勾选标记。";
 "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them." = "Puts the current offset on screen while you nudge subtitle timing with Z or X, so you can see how far you have shifted them.";
 "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you." = "Puts the score you gave a film in the corner of its poster, wherever Letterboxd has one for you.";
 "Página anterior" = "上一页";
@@ -1945,6 +1950,7 @@
 "Reading mode" = "阅读模式";
 "Reading options" = "Reading options";
 "Reading your search" = "正在理解你的搜索内容";
+"Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Real IMDb and Rotten Tomatoes scores." = "真实的 IMDb 和 Rotten Tomatoes 评分。";
 "Real-Debrid API token" = "Real-Debrid API 令牌";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "支持 Real-Debrid、TorBox、AllDebrid、Premiumize 和 Debrid-Link。已缓存的播放源可直接播放。密钥仅保存在本地。";
@@ -2335,6 +2341,7 @@
 "Slice of Life" = "日常";
 "Slightly lighter than background." = "比背景稍亮。";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "速度较慢的插件和 P2P 播放源通常需要超过 10 秒才能开始播放。如果播放源还没获得充分的连接机会就被跳过，请延长此时间。";
+"Slow or unstable connection" = "网络连接缓慢或不稳定";
 "Smaller" = "较小";
 "Smooth on weak PCs" = "低性能电脑流畅优先";
 "Sobre la línea principal" = "主字幕上方";
@@ -2806,6 +2813,7 @@
 "Watch on" = "在以下平台观看";
 "Watch together" = "一起观看";
 "Watched" = "已观看";
+"Watched badge" = "已观看徽章";
 "Watched by {name}" = "{name} 已观看";
 "Watching" = "正在观看";
 "Watching TV Shows on Simkl" = "Watching TV Shows on Simkl";

@@ -16,24 +16,24 @@
     },
     "settings": {
       "total": 511,
-      "ported": 235,
-      "partial": 39,
+      "ported": 240,
+      "partial": 34,
       "missing": 3,
       "excluded": 234,
       "counted": 277,
-      "weighted_percent": 91.9,
-      "ported_only_percent": 84.8,
+      "weighted_percent": 92.8,
+      "ported_only_percent": 86.6,
       "ported_or_partial_percent": 98.9
     },
     "all": {
       "total": 949,
-      "ported": 388,
-      "partial": 268,
+      "ported": 393,
+      "partial": 263,
       "missing": 3,
       "excluded": 290,
       "counted": 659,
-      "weighted_percent": 79.2,
-      "ported_only_percent": 58.9,
+      "weighted_percent": 79.6,
+      "ported_only_percent": 59.6,
       "ported_or_partial_percent": 99.5
     }
   },
@@ -2411,7 +2411,7 @@
       "id": "Fanart artwork",
       "desktop_source": "src/lib/providers",
       "verdict": "P",
-      "note": "Fanart logos and backdrops: provider and ranking exist, no detail screen calls them yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
+      "note": "Fanart artwork: with a Fanart key, an anime title's logo and backdrops fill what is missing on its detail page (8 Nov, written by Haiku, uncompiled); Desktop's poster, the home hero logos and the movie lookup are not ported"
     },
     {
       "index": 313,
@@ -3504,8 +3504,8 @@
       "index": 30,
       "id": "showDetailRatings",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "no master switch: each provider has its own Details toggle (7 Nov, compiled; cases passed)"
+      "verdict": "D",
+      "note": "detail ratings master switch: hides the whole ratings row and the main score badge, next to the per-provider switches (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 31,
@@ -3602,8 +3602,8 @@
       "index": 44,
       "id": "simklShowCommunityRatings",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "SIMKL community score is shown as a chip on cards and on the detail page; the switch itself is not ported"
+      "verdict": "D",
+      "note": "Simkl community ratings switch: gates the Simkl chip on cards and on the detail row; Desktop 0.9.132 stores it but reads it nowhere (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 45,
@@ -4561,8 +4561,8 @@
       "index": 181,
       "id": "playerHdrToSdr",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "tone mapping without the SDR toggle"
+      "verdict": "D",
+      "note": "HDR to SDR tone mapping: Desktop's eight mpv options for an SDR display behind a switch; off by default here (Desktop: on) so today's output does not change (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 182,
@@ -5198,8 +5198,8 @@
       "index": 272,
       "id": "showWatchedBadge",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "watched markers without the badge option"
+      "verdict": "D",
+      "note": "watched badge: hides the check on anime movie entries and live episode rows; iOS has no check on posters (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 273,
@@ -5492,8 +5492,8 @@
       "index": 314,
       "id": "mpvBufferBoost",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "buffer size without boost"
+      "verdict": "D",
+      "note": "slow or unstable connection (buffer boost): with the automatic buffer size it uses Desktop's large profile, capped by the phone-memory budget the buffer already has; Desktop shows no control for it, the rule is an interpretation (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 315,
