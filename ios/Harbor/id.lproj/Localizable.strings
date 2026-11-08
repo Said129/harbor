@@ -242,6 +242,7 @@
 "Apply" = "Terapkan";
 "Apply custom subtitle FPS" = "Terapkan FPS subtitle khusus";
 "Apply custom theme" = "Terapkan tema khusus";
+"Apply it, then nudge if it's off." = "Terapkan, lalu sesuaikan sedikit jika belum pas.";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "Arab";
 "Arcs" = "Alur cerita";
@@ -1432,6 +1433,7 @@
 "Mark as watched" = "Tandai sebagai sudah ditonton";
 "Mark watched button" = "Tombol tandai sudah ditonton";
 "Match Dolby Vision, HDR10 and HLG streams." = "Cocokkan stream Dolby Vision, HDR10, dan HLG.";
+"Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Selaraskan subtitle yang diunduh dengan audio di pemutar mpv. Trek subtitle bawaan tetap menggunakan waktu aslinya.";
 "Match streams marked as cached or already in your debrid library." = "Cocokkan stream yang ditandai sudah di-cache atau sudah ada di pustaka debrid Anda.";
 "Max" = "Maks";
 "Max {n} GB" = "Maks {n} GB";
@@ -2509,6 +2511,7 @@
 "Subtitle track" = "Trek subtitle";
 "Subtitles" = "Subtitle";
 "Subtitles from your addons" = "Subtitles from your addons";
+"Subtitles may be off" = "Subtitle mungkin tidak tepat";
 "Subtitles synced" = "Subtitle tersinkron";
 "Subtle" = "Subtle";
 "Subtle text" = "Teks samar";

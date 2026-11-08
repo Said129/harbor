@@ -578,6 +578,7 @@ BEHAVIORS = expand("""
 174 P custom subtitle fonts: the accepted file types, the 32 MB limit and the name rule exist (8 Nov, written by Haiku, uncompiled); the import is not wired because the player maps any unknown font id to Inter
 369 D Suwayomi library categories are selectable in the iOS shelf with saved progress, title search and return to the full shelf; category requests use GraphQL with REST fallback. Code review status; Apple validation pending.
 371 D The Suwayomi extension manager lists, adds and removes server repositories, normalizes GitHub links, offers Desktop suggestions and refreshes the server index after edits. Code review status; Apple validation pending.
+203 P External subtitle estimates can be reviewed and applied from the player, and verified community matches keep automatic application. Desktop's full source matching and structural calibration are pending.
 """)
 
 SETTINGS = expand("""
@@ -1022,6 +1023,7 @@ SETTINGS = expand("""
 373 D spoilerHideThumbnails: the Blur thumbnails toggle now writes Desktop's key (default on) and every episode list, card and the player panel read it (8 Nov, written by Haiku, uncompiled)
 5 X blurEpisodes: Desktop blurs the hero image and stills on its episode detail page; iOS has no dedicated episode detail page, so nothing reads the setting (the toggle labelled Blur thumbnails is Desktop's spoilerHideThumbnails)
 396 P prefer my installed metadata addon: the meta plans are reordered with Cinemeta last, and Desktop's poster rule picks the answer for the detail page, filling missing artwork from Cinemeta (8 Nov, written by Haiku, uncompiled); the card title swap is not ported
+246 P Uncalibrated audio corrections are offered for review in the player, following the shipped Desktop calibration. Automatic application of calibrated structural results and its setting are pending.
 """)
 
 def audit(items, verdicts, label):

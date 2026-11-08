@@ -17,24 +17,24 @@
     "settings": {
       "total": 511,
       "ported": 240,
-      "partial": 33,
-      "missing": 3,
+      "partial": 34,
+      "missing": 2,
       "excluded": 235,
       "counted": 276,
-      "weighted_percent": 92.9,
+      "weighted_percent": 93.1,
       "ported_only_percent": 87.0,
-      "ported_or_partial_percent": 98.9
+      "ported_or_partial_percent": 99.3
     },
     "all": {
       "total": 949,
       "ported": 491,
-      "partial": 158,
-      "missing": 3,
+      "partial": 159,
+      "missing": 2,
       "excluded": 297,
       "counted": 652,
-      "weighted_percent": 87.4,
+      "weighted_percent": 87.5,
       "ported_only_percent": 75.3,
-      "ported_or_partial_percent": 99.5
+      "ported_or_partial_percent": 99.7
     }
   },
   "behavior_areas": [
@@ -1648,7 +1648,7 @@
       "id": "Subtitle text resync",
       "desktop_source": "src/lib/subtitles",
       "verdict": "P",
-      "note": "SubtitleAutoSync"
+      "note": "External subtitle estimates can be reviewed and applied from the player, and verified community matches keep automatic application. Desktop's full source matching and structural calibration are pending."
     },
     {
       "index": 204,
@@ -5016,8 +5016,8 @@
       "index": 246,
       "id": "autoSyncApplyStructural",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advanced auto-sync options"
+      "verdict": "P",
+      "note": "Uncalibrated audio corrections are offered for review in the player, following the shipped Desktop calibration. Automatic application of calibrated structural results and its setting are pending."
     },
     {
       "index": 247,

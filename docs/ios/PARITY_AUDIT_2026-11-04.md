@@ -21,12 +21,15 @@ in `parity-audit-2026-11-04.json`, produced by
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
 | Behaviors |   438 |    251 |     125 |       0 |       62 |           83.4 % |      66.8 % |           100.0 % |
-| Settings  |   511 |    240 |      33 |       3 |      235 |           92.9 % |      87.0 % |            98.9 % |
-| All       |   949 |    491 |     158 |       3 |      297 |           87.4 % |      75.3 % |            99.5 % |
+| Settings  |   511 |    240 |      34 |       2 |      235 |           93.1 % |      87.0 % |            99.3 % |
+| All       |   949 |    491 |     159 |       2 |      297 |           87.5 % |      75.3 % |            99.7 % |
 
 The 8 November follow-up connects Suwayomi categories to the manga shelf (B369)
 and adds extension repository management (B371). Focused Apple validation is
 pending. These verdicts reflect source review.
+
+Audio estimates now appear as player offers. S246 remains partial while
+calibrated structural auto-apply and its setting are pending.
 
 The 6 November refresh adds the OMDb and MDBList ratings on the detail page (the two
 provider keys, the Details column of the ratings matrix and the scores row), on top

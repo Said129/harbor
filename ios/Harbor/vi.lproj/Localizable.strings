@@ -242,6 +242,7 @@
 "Apply" = "Áp dụng";
 "Apply custom subtitle FPS" = "Áp dụng FPS phụ đề tùy chỉnh";
 "Apply custom theme" = "Áp dụng giao diện tùy chỉnh";
+"Apply it, then nudge if it's off." = "Áp dụng rồi tinh chỉnh nếu vẫn lệch.";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "Tiếng Ả Rập";
 "Arcs" = "Phần truyện";
@@ -1432,6 +1433,7 @@
 "Mark as watched" = "Đánh dấu là đã xem";
 "Mark watched button" = "Nút đánh dấu đã xem";
 "Match Dolby Vision, HDR10 and HLG streams." = "Lọc luồng Dolby Vision, HDR10 và HLG.";
+"Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Đồng bộ phụ đề tải xuống với âm thanh trong trình phát mpv. Phụ đề nhúng giữ nguyên thời gian hiện tại.";
 "Match streams marked as cached or already in your debrid library." = "Lọc luồng được đánh dấu đã lưu đệm hoặc đã có trong thư viện debrid của bạn.";
 "Max" = "Tối đa";
 "Max {n} GB" = "Tối đa {n} GB";
@@ -2509,6 +2511,7 @@
 "Subtitle track" = "Rãnh phụ đề";
 "Subtitles" = "Phụ đề";
 "Subtitles from your addons" = "Subtitles from your addons";
+"Subtitles may be off" = "Phụ đề có thể bị lệch";
 "Subtitles synced" = "Đã đồng bộ phụ đề";
 "Subtle" = "Subtle";
 "Subtle text" = "Văn bản phụ";

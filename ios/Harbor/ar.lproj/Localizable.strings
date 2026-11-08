@@ -251,6 +251,7 @@
 "Apply" = "تطبيق";
 "Apply custom subtitle FPS" = "تطبيق معدل الإطارات المخصص للترجمة";
 "Apply custom theme" = "تطبيق سمة مخصصة";
+"Apply it, then nudge if it's off." = "طبّقها، ثم اضبطها قليلًا إن كانت غير متزامنة.";
 "Applying subtitle timing…" = "جارٍ تطبيق توقيت الترجمة…";
 "Arabian Gulf Cup" = "كأس الخليج العربي";
 "Arabic" = "العربية";
@@ -1456,6 +1457,7 @@
 "Mark as watched" = "تحديد كمُشاهَد";
 "Mark watched button" = "زر التحديد كمُشاهَد";
 "Match Dolby Vision, HDR10 and HLG streams." = "مطابقة بث Dolby Vision وHDR10 وHLG.";
+"Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "زامن الترجمات المنزّلة مع الصوت في مشغّل mpv. تحتفظ مسارات الترجمة المضمّنة بتوقيتها الحالي.";
 "Match streams marked as cached or already in your debrid library." = "مطابقة البث المحدد بأنه مخزّن مؤقتًا أو موجود بالفعل في مكتبة debrid لديك.";
 "Max" = "الأقصى";
 "Max {n} GB" = "بحد أقصى {n} GB";
@@ -2544,6 +2546,7 @@
 "Subtitle track" = "مسار الترجمة";
 "Subtitles" = "الترجمة";
 "Subtitles from your addons" = "Subtitles from your addons";
+"Subtitles may be off" = "قد تكون الترجمة غير متزامنة";
 "Subtitles synced" = "تمت مزامنة الترجمة";
 "Subtle" = "Subtle";
 "Subtle text" = "نص خافت";

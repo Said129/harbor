@@ -257,6 +257,7 @@ targets:
       - path: HarborTests/R24DetailTests.swift
       - path: HarborTests/R23XMLTVTests.swift
       - path: HarborTests/CommunitySyncTests.swift
+      - path: HarborTests/SubtitleAutoSyncTests.swift
       - path: HarborTests/QualityBadgePolicyTests.swift
       - path: HarborTests/WireAnimeTests.swift
       - path: HarborTests/R22CalendarTests.swift

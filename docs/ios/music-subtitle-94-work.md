@@ -1877,7 +1877,8 @@ The filter keeps the server's category order, matches titles locally, deduplicat
 results and preserves reading progress through the existing shelf records. Switching
 category or server discards stale results. Category endpoints can fall back from
 GraphQL to REST while authorization failures and cancellation stop the request.
-The B369 source audit is updated. Focused Apple run 42521965263 is pending.
+Focused Apple run 42521965263 compiled the app and passed both selected
+category cases for 08fb5f34. The result artifact was verified by SHA-256.
 
 ## Suwayomi extension repositories (8 November)
 
@@ -1887,3 +1888,15 @@ links, presents Desktop's two suggestions and reloads extensions after a change.
 A failed index refresh can be retried separately from the completed mutation.
 The controls appear on servers that support listing repositories. B371 is
 implemented in source and awaits Apple validation.
+Focused Apple run 42522351707 covers e29e2f27.
+
+## Subtitle timing offers
+
+The player now distinguishes an estimate from an existing verified community
+match. The current Desktop calibration is provisional, so an audio estimate
+offers a Sync action while the original track keeps playing. The offer expires
+when its source, audio, subtitle or timing scope changes. Accepting it uses
+the native correction and restore flow. Audio estimates no longer submit a
+community verification when analysis alone completes. The native mpv fixture
+checks the offer, explicit application and restoration. Structural auto-apply
+with calibrated evidence, drift and cross-language pivot remain open.

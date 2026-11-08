@@ -6,6 +6,12 @@ import Libmpv
 /// The playback handle and its rendering/event callbacks never wait for analysis.
 enum SubtitleAutoSync {
     struct Window: Sendable { let start: Double; let length: Double }
+    struct Correction: Sendable {
+        enum Origin: Sendable { case verifiedCommunity, audioEstimate }
+        let document: SubtitleDocument
+        let timing: SubtitleSyncResult
+        let origin: Origin
+    }
     static func windows(_ duration: Double) -> [Window] {
         if duration < 900 {
             let start = max(5, duration * 0.05)
@@ -15,13 +21,13 @@ enum SubtitleAutoSync {
         return [.init(start: 180, length: 600), .init(start: late, length: min(600, duration - late))]
     }
 
-    static func analyze(source: PlaybackSource, subtitle: String, duration: Double, audioID: Int?) async throws -> (SubtitleDocument, SubtitleSyncResult?) {
+    static func analyze(source: PlaybackSource, subtitle: String, duration: Double, audioID: Int?) async throws -> Correction? {
         guard duration.isFinite, (60...28_800).contains(duration) else { throw HarborError(code: "subtitle-sync-duration") }
         let document = try await load(subtitle)
         let cues = document.cues.map { ($0.start, $0.end) }
         // Desktop's community database goes first. Only a tier A answer is applied without analysing the audio.
         if let communityTiming = await CommunitySync.communityTiming(cues: cues, durationSec: duration) {
-            return (document, communityTiming)
+            return Correction(document: document, timing: communityTiming, origin: .verifiedCommunity)
         }
         let windows = windows(duration)
         var intervals: [(Double, Double)] = []
@@ -30,9 +36,8 @@ enum SubtitleAutoSync {
             intervals += try speech(source, window: window, audioID: audioID)
         }
         try Task.checkCancellation()
-        let result = try solve(audio: intervals, cues: cues, duration: duration, windows: windows)
-        if let result { CommunitySync.reportInBackground(cues: cues, durationSec: duration, result: result) }
-        return (document, result)
+        guard let result = try solve(audio: intervals, cues: cues, duration: duration, windows: windows) else { return nil }
+        return Correction(document: document, timing: result, origin: .audioEstimate)
     }
 
     private static func load(_ path: String) async throws -> SubtitleDocument {

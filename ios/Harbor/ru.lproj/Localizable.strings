@@ -244,6 +244,7 @@
 "Apply" = "Применить";
 "Apply custom subtitle FPS" = "Применить другую частоту кадров субтитров";
 "Apply custom theme" = "Применить свою тему";
+"Apply it, then nudge if it's off." = "Примените, а потом подстройте, если не совпадёт.";
 "Applying subtitle timing…" = "Применение синхронизации…";
 "Arabic" = "Арабский";
 "Arcs" = "Арки";
@@ -1436,6 +1437,7 @@
 "Mark as watched" = "Отметить просмотренным";
 "Mark watched button" = "Кнопка «Отметить просмотренным»";
 "Match Dolby Vision, HDR10 and HLG streams." = "Выбирать потоки Dolby Vision, HDR10 и HLG.";
+"Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Синхронизируйте загруженные субтитры со звуком в плеере mpv. Встроенные дорожки субтитров сохраняют своё время показа.";
 "Match streams marked as cached or already in your debrid library." = "Выбирать потоки, отмеченные как кешированные или уже находящиеся в вашей библиотеке debrid.";
 "Max" = "Максимум";
 "Max {n} GB" = "Макс. {n} ГБ";
@@ -2522,6 +2524,7 @@
 "Subtitle track" = "Дорожка субтитров";
 "Subtitles" = "Субтитры";
 "Subtitles from your addons" = "Subtitles from your addons";
+"Subtitles may be off" = "Субтитры могут не совпадать";
 "Subtitles synced" = "Субтитры синхронизированы";
 "Subtle" = "Subtle";
 "Subtle text" = "Приглушённый текст";

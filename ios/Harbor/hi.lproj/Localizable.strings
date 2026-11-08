@@ -242,6 +242,7 @@
 "Apply" = "लागू करें";
 "Apply custom subtitle FPS" = "कस्टम सबटाइटल FPS लागू करें";
 "Apply custom theme" = "कस्टम थीम लागू करें";
+"Apply it, then nudge if it's off." = "इसे लागू करें, फिर सही न हो तो थोड़ा समायोजित करें।";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "अरबी";
 "Arcs" = "कथा-खंड";
@@ -1432,6 +1433,7 @@
 "Mark as watched" = "देखा हुआ मार्क करें";
 "Mark watched button" = "देखा हुआ चिह्नित करने का बटन";
 "Match Dolby Vision, HDR10 and HLG streams." = "Dolby Vision, HDR10 और HLG स्ट्रीम से मिलान करें।";
+"Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "mpv प्लेयर में डाउनलोड किए उपशीर्षक को ऑडियो से मिलाएँ। वीडियो में मौजूद उपशीर्षक की टाइमिंग बनी रहती है।";
 "Match streams marked as cached or already in your debrid library." = "कैश की हुई या आपकी debrid लाइब्रेरी में मौजूद चिह्नित स्ट्रीम से मिलान करें।";
 "Max" = "अधिकतम";
 "Max {n} GB" = "अधिकतम {n} GB";
@@ -2509,6 +2511,7 @@
 "Subtitle track" = "सबटाइटल ट्रैक";
 "Subtitles" = "सबटाइटल";
 "Subtitles from your addons" = "Subtitles from your addons";
+"Subtitles may be off" = "सबटाइटल का तालमेल बिगड़ा हो सकता है";
 "Subtitles synced" = "सबटाइटल सिंक हो गए";
 "Subtle" = "Subtle";
 "Subtle text" = "हल्का टेक्स्ट";

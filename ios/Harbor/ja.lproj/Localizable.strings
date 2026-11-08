@@ -242,6 +242,7 @@
 "Apply" = "適用";
 "Apply custom subtitle FPS" = "カスタム字幕FPSを適用";
 "Apply custom theme" = "カスタムテーマを適用";
+"Apply it, then nudge if it's off." = "適用後、ずれていれば微調整してください。";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "アラビア語";
 "Arcs" = "編";
@@ -1432,6 +1433,7 @@
 "Mark as watched" = "視聴済みにする";
 "Mark watched button" = "「視聴済みにする」ボタン";
 "Match Dolby Vision, HDR10 and HLG streams." = "Dolby Vision、HDR10、HLG のストリームに一致します。";
+"Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "mpv プレーヤーで、ダウンロードした字幕を音声に合わせます。埋め込み字幕のタイミングは変更しません。";
 "Match streams marked as cached or already in your debrid library." = "キャッシュ済み、または debrid ライブラリ内にあると示されたストリームに一致します。";
 "Max" = "最大";
 "Max {n} GB" = "最大 {n} GB";
@@ -2509,6 +2511,7 @@
 "Subtitle track" = "字幕トラック";
 "Subtitles" = "字幕";
 "Subtitles from your addons" = "Subtitles from your addons";
+"Subtitles may be off" = "字幕がずれている可能性があります";
 "Subtitles synced" = "字幕を同期しました";
 "Subtle" = "Subtle";
 "Subtle text" = "控えめなテキスト";

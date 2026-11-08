@@ -113,13 +113,18 @@ struct SubtitleTracksView: View {
             Toggle("Sincronizar automáticamente con el audio", isOn: $autoSync)
                 .accessibilityIdentifier("subtitle-auto-sync")
                 .onChange(of: autoSync) { _, _ in state.controller?.subtitleAutoSyncPreferenceChanged() }
-            Text("Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable.")
+            Text(DesktopInterfaceText.value("Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing."))
                 .font(HarborTheme.font(11)).foregroundStyle(.secondary)
             if state.subtitleSyncPhase.working {
                 HStack {
                     ProgressView()
                     Button("Cancelar análisis") { state.controller?.cancelSubtitleSync() }
                 }
+            } else if state.subtitleSyncPhase == .offered {
+                Button(DesktopInterfaceText.value("Sync")) { state.controller?.applySubtitleSyncOffer() }
+                    .disabled(disabled).frame(minHeight: 44)
+                Button(DesktopInterfaceText.value("Dismiss")) { state.controller?.cancelSubtitleSync() }
+                    .frame(minHeight: 44)
             } else {
                 Button(DesktopInterfaceText.value("Auto-sync")) { state.controller?.synchronizeSubtitle() }
                     .disabled(disabled)

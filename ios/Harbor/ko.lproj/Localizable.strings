@@ -242,6 +242,7 @@
 "Apply" = "적용";
 "Apply custom subtitle FPS" = "사용자 지정 자막 FPS 적용";
 "Apply custom theme" = "사용자 지정 테마 적용";
+"Apply it, then nudge if it's off." = "적용한 후 어긋나면 미세 조정하세요.";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "아랍어";
 "Arcs" = "스토리 아크";
@@ -1432,6 +1433,7 @@
 "Mark as watched" = "시청함으로 표시";
 "Mark watched button" = "시청함 표시 버튼";
 "Match Dolby Vision, HDR10 and HLG streams." = "Dolby Vision, HDR10, HLG 스트림과 일치합니다.";
+"Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "mpv 플레이어에서 다운로드한 자막을 오디오에 맞춥니다. 내장 자막 트랙은 기존 타이밍을 유지합니다.";
 "Match streams marked as cached or already in your debrid library." = "캐시됨으로 표시되거나 debrid 라이브러리에 이미 있는 스트림과 일치합니다.";
 "Max" = "최대";
 "Max {n} GB" = "최대 {n}GB";
@@ -2509,6 +2511,7 @@
 "Subtitle track" = "자막 트랙";
 "Subtitles" = "자막";
 "Subtitles from your addons" = "Subtitles from your addons";
+"Subtitles may be off" = "자막이 어긋날 수 있음";
 "Subtitles synced" = "자막 동기화됨";
 "Subtle" = "Subtle";
 "Subtle text" = "은은한 텍스트";

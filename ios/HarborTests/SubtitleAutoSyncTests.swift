@@ -41,6 +41,15 @@ final class SubtitleAutoSyncTests: XCTestCase {
     }
     @available(iOS, deprecated: 12.0)
     @MainActor func testActualBundledMPVExtractsSpeechWithoutPlayingAudio() async throws {
+        let defaults = UserDefaults.standard
+        let previousAutoSync = defaults.object(forKey: "subtitleAutoSync")
+        let previousPrivacy = defaults.object(forKey: CommunitySync.privateKey)
+        defaults.set(false, forKey: "subtitleAutoSync")
+        defaults.set(true, forKey: CommunitySync.privateKey)
+        defer {
+            defaults.set(previousAutoSync, forKey: "subtitleAutoSync")
+            defaults.set(previousPrivacy, forKey: CommunitySync.privateKey)
+        }
         let pairs = cues()
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
@@ -99,6 +108,10 @@ final class SubtitleAutoSyncTests: XCTestCase {
         try await wait { !state.subtitleChanging && state.primarySubtitle?.id == original.id }
         controller.synchronizeSubtitle()
         XCTAssertEqual(state.subtitleSyncPhase, .analyzing)
+        try await wait { !state.subtitleSyncing && state.subtitleSyncPhase == .offered }
+        XCTAssertEqual(state.primarySubtitle?.id, original.id)
+        XCTAssertNil(state.subtitleSyncOriginal)
+        controller.applySubtitleSyncOffer()
         try await wait { !state.subtitleSyncing && !state.subtitleChanging && state.subtitleSyncOriginal == original.id }
         let synchronized = try XCTUnwrap(state.primarySubtitle)
         XCTAssertEqual(state.subtitleSyncPhase, .synced)

@@ -249,6 +249,7 @@
 "Apply" = "Aplicar";
 "Apply custom subtitle FPS" = "Aplicar FPS personalizado da legenda";
 "Apply custom theme" = "Aplicar tema personalizado";
+"Apply it, then nudge if it's off." = "Aplique e ajuste levemente se estiver fora de sincronia.";
 "Applying subtitle timing…" = "Aplicando a sincronização…";
 "Arabian Gulf Cup" = "Copa do Golfo";
 "Arabic" = "Árabe";
@@ -1452,6 +1453,7 @@
 "Mark as watched" = "Marcar como assistido";
 "Mark watched button" = "Botão marcar como assistido";
 "Match Dolby Vision, HDR10 and HLG streams." = "Selecione streams Dolby Vision, HDR10 e HLG.";
+"Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Sincronize legendas baixadas com o áudio no mpv. As legendas incorporadas mantêm a sincronização original.";
 "Match streams marked as cached or already in your debrid library." = "Selecione streams marcados como em cache ou já presentes na sua biblioteca debrid.";
 "Max" = "Máximo";
 "Max {n} GB" = "Máx. {n} GB";
@@ -2531,6 +2533,7 @@
 "Subtitle track" = "Faixa de legenda";
 "Subtitles" = "Legendas";
 "Subtitles from your addons" = "Subtitles from your addons";
+"Subtitles may be off" = "As legendas podem estar dessincronizadas";
 "Subtitles synced" = "Legendas sincronizadas";
 "Subtle" = "Subtle";
 "Subtle text" = "Texto discreto";

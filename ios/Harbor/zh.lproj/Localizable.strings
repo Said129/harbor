@@ -242,6 +242,7 @@
 "Apply" = "应用";
 "Apply custom subtitle FPS" = "应用自定义字幕 FPS";
 "Apply custom theme" = "应用自定义主题";
+"Apply it, then nudge if it's off." = "应用后若仍未对齐，可再微调。";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "阿拉伯语";
 "Arcs" = "篇章";
@@ -1432,6 +1433,7 @@
 "Mark as watched" = "标记为已观看";
 "Mark watched button" = "“标为已看”按钮";
 "Match Dolby Vision, HDR10 and HLG streams." = "匹配 Dolby Vision、HDR10 和 HLG 播放源。";
+"Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "在 mpv 播放器中将下载的字幕与音频对齐。内嵌字幕轨道保持原有时间。";
 "Match streams marked as cached or already in your debrid library." = "匹配标记为已缓存或已在 debrid 媒体库中的播放源。";
 "Max" = "最大";
 "Max {n} GB" = "最多 {n} GB";
@@ -2509,6 +2511,7 @@
 "Subtitle track" = "字幕轨道";
 "Subtitles" = "字幕";
 "Subtitles from your addons" = "Subtitles from your addons";
+"Subtitles may be off" = "字幕可能未对齐";
 "Subtitles synced" = "字幕已同步";
 "Subtle" = "Subtle";
 "Subtle text" = "弱化文本";

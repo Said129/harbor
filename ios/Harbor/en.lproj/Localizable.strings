@@ -215,6 +215,7 @@
 "Apply" = "Apply";
 "Apply custom subtitle FPS" = "Apply custom subtitle FPS";
 "Apply custom theme" = "Apply custom theme";
+"Apply it, then nudge if it's off." = "Apply it, then nudge if it's off.";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "Arabic";
 "Arcs" = "Arcs";
@@ -1264,6 +1265,7 @@
 "Mark as watched" = "Mark as watched";
 "Mark watched button" = "Mark watched button";
 "Match Dolby Vision, HDR10 and HLG streams." = "Match Dolby Vision, HDR10 and HLG streams.";
+"Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing.";
 "Match streams marked as cached or already in your debrid library." = "Match streams marked as cached or already in your debrid library.";
 "Max {n} GB" = "Max {n} GB";
 "Maximum" = "Maximum";
@@ -2227,6 +2229,7 @@
 "Subtitle track" = "Subtitle track";
 "Subtitles" = "Subtitles";
 "Subtitles from your addons" = "Subtitles from your addons";
+"Subtitles may be off" = "Subtitles may be off";
 "Subtitles synced" = "Subtitles synced";
 "Subtle" = "Subtle";
 "Subtle text" = "Subtle text";

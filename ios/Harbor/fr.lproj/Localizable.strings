@@ -242,6 +242,7 @@
 "Apply" = "Appliquer";
 "Apply custom subtitle FPS" = "Appliquer une fréquence d’images personnalisée aux sous-titres";
 "Apply custom theme" = "Appliquer le thème personnalisé";
+"Apply it, then nudge if it's off." = "Appliquez-le, puis ajustez-le s’il y a un décalage.";
 "Applying subtitle timing…" = "Applying subtitle timing…";
 "Arabic" = "Arabe";
 "Arcs" = "Arcs narratifs";
@@ -1432,6 +1433,7 @@
 "Mark as watched" = "Marquer comme visionné";
 "Mark watched button" = "Bouton Marquer comme regardé";
 "Match Dolby Vision, HDR10 and HLG streams." = "Sélectionnez les flux Dolby Vision, HDR10 et HLG.";
+"Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Synchronisez les sous-titres téléchargés avec l’audio dans mpv. Les pistes intégrées conservent leur synchronisation actuelle.";
 "Match streams marked as cached or already in your debrid library." = "Sélectionnez les flux en cache ou déjà présents dans votre bibliothèque debrid.";
 "Max" = "Max.";
 "Max {n} GB" = "{n} Go max.";
@@ -2509,6 +2511,7 @@
 "Subtitle track" = "Piste de sous-titres";
 "Subtitles" = "Sous-titres";
 "Subtitles from your addons" = "Subtitles from your addons";
+"Subtitles may be off" = "Les sous-titres peuvent être décalés";
 "Subtitles synced" = "Sous-titres synchronisés";
 "Subtle" = "Subtle";
 "Subtle text" = "Texte discret";
