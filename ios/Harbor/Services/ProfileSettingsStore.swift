@@ -79,7 +79,7 @@ struct ContinueWatchingPreferences: Sendable {
         "localMinFileSizeMb", "localEpisodeSortDesc", "localLibrary.sort", "localLibrary.sortDescending",
         "heroTrailers", "heroTrailerAudio", "detailTrailerAutoplay", "detailTrailerAudio",
         "heroShadow", "heroFull", "heroFullQuality", "heroFeed",
-        "togetherRelayUrl", "togetherShareCursors", "togetherGuestsPick"
+        "togetherRelayUrl", "togetherShareCursors", "togetherGuestsPick", "xrayEnabled"
     ]
     private let defaults: UserDefaults
     private let persistence: any ProfileSettingsPersistence
