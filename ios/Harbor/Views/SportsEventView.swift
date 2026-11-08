@@ -35,7 +35,7 @@ struct SportsEventView: View {
                                 HStack(spacing: 16) {
                                     ForEach(side.periods) { period in
                                         VStack(spacing: 5) {
-                                            Text("\(period.id)").font(.caption2).foregroundStyle(.secondary)
+                                            Text(SportsPeriodHeading.label(group: event.league.group, leagueID: event.league.id, period: period.id)).font(.caption2).foregroundStyle(.secondary)
                                             Text(period.value).font(.subheadline.monospacedDigit())
                                         }
                                     }

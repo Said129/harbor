@@ -17,12 +17,22 @@ struct LiveTVView: View {
     @State private var generation = UUID()
     @State private var playback: PlaybackSession?
     @State private var playing: LiveChannel?
+    @State private var managingCategories = false
     @MainActor init(app: AppModel, initialQuery: String = "") {
         self.app = app; _preferences = State(initialValue: LiveTVPreferences(owner: app.settingsOwner)); _query = State(initialValue: initialQuery)
     }
     private var selectedChannels: [LiveChannel] { channels.filter { source == "all" || $0.source == source } }
-    private var groups: [String] { LiveTVGroupOrder.sortedGroups(Array(Set(selectedChannels.compactMap(\.group))), region: MetadataPreferences.shared.region, preferredLanguages: StreamSourceSettings.names(StreamPreferences.shared.streamLanguages)) }
-    private var filtered: [LiveChannel] { selectedChannels.filter { (category == "all" || $0.group == category) && (!favorites || preferences.favorites.contains($0.id)) && LiveTVSearch.channelMatches($0, query: query) } }
+    private var groups: [String] { LiveTVCatalogOrder.groups(LiveTVGroupOrder.sortedGroups(Array(Set(selectedChannels.compactMap(\.group))), region: MetadataPreferences.shared.region, preferredLanguages: StreamSourceSettings.names(StreamPreferences.shared.streamLanguages)), prefs: groupPrefs) }
+    /// Desktop's category pins and hidden categories belong to one playlist, so they apply only when a single list is selected.
+    private var groupPrefs: LiveGroupPrefs { source == "all" ? LiveGroupPrefs() : preferences.groupPrefs(for: source) }
+    private var sourceGroups: [String] { LiveTVGroupOrder.sortedGroups(Array(Set(channels.filter { $0.source == source }.compactMap(\.group))), region: MetadataPreferences.shared.region, preferredLanguages: StreamSourceSettings.names(StreamPreferences.shared.streamLanguages)) }
+    private var catalog: [LiveChannel] { LiveTVCatalogOrder.catalog(selectedChannels, region: MetadataPreferences.shared.region, preferredLanguages: StreamSourceSettings.names(StreamPreferences.shared.streamLanguages), pinnedChannels: preferences.pinnedChannels, prefs: groupPrefs) }
+    private var sourceNames: [String: String] { Dictionary(preferences.sources.map { ($0.id, $0.name) }, uniquingKeysWith: { first, _ in first }) }
+    /// Desktop's Favorites group ignores the list and category pickers and shows the saved favourites, loaded or not.
+    private var filtered: [LiveChannel] {
+        if favorites { return LiveTVCatalogOrder.favoriteChannels(preferences.favoriteItems, sourceNames: sourceNames).filter { LiveTVSearch.channelMatches($0, query: query) } }
+        return catalog.filter { (category == "all" || $0.group == category) && LiveTVSearch.channelMatches($0, query: query) }
+    }
     var body: some View {
         VStack(spacing: 0) {
             Picker("Contenido", selection: $providers) { Text("Mis canales").tag(false); Text("Addons").tag(true) }.pickerStyle(.segmented).padding(.horizontal, 16).padding(.bottom, 10)
@@ -32,6 +42,7 @@ struct LiveTVView: View {
             .searchable(text: $query, prompt: "Canales y categorías")
             .toolbar { ToolbarItem(placement: .topBarTrailing) { Button { configuring = true } label: { Image(systemName: "slider.horizontal.3") }.accessibilityLabel("Listas de Live TV") } }
             .sheet(isPresented: $configuring) { LiveSourcesView(preferences: preferences) }
+            .sheet(isPresented: $managingCategories) { LiveCategoryManageView(preferences: preferences, sourceID: source, groups: sourceGroups) }
             .task(id: preferences.sources.map(\.id).joined(separator: "|")) { await load(refresh: false) }
             .onChange(of: query) { _, _ in visibleCount = 100 }
             .onChange(of: category) { _, _ in visibleCount = 100 }
@@ -41,16 +52,20 @@ struct LiveTVView: View {
             .fullScreenCover(item: $playback) { session in PlayerView(session: session, resume: app.resume, title: playing?.name ?? "Live TV", media: playing?.media) }
     }
     private var channelList: some View {
-        List {
+        let rows = filtered
+        return List {
             Section {
                 Picker("Lista", selection: $source) { Text("Todas las listas").tag("all"); ForEach(preferences.sources) { Text($0.name).tag($0.id) } }
                 Picker("Categoría", selection: $category) { Text("Todas las categorías").tag("all"); ForEach(groups, id: \.self) { Text($0).tag($0) } }
                 Toggle("Sólo favoritos", isOn: $favorites)
+                if source != "all" {
+                    Button { managingCategories = true } label: { HStack { Text(DesktopInterfaceText.value("Channel categories")); Spacer(); Text(DesktopInterfaceText.value("Manage")).foregroundStyle(.secondary) } }
+                }
             }
             LiveTVTopNetworksRow(region: MetadataPreferences.shared.region, channels: selectedChannels, active: category == "all" && query.isEmpty, onPlay: { channel in Task { await play(channel) } })
             if loading { ProgressView("Cargando canales…") }
             if let error = error ?? preferences.error { Text(error).font(.caption).foregroundStyle(.orange) }
-            ForEach(Array(filtered.prefix(visibleCount))) { channel in
+            ForEach(Array(rows.prefix(visibleCount))) { channel in
                 Button { Task { await play(channel) } } label: {
                     HStack(spacing: 14) {
                         if let logo = channel.logo { Artwork(url: logo, fit: .fit, maxPixels: 180).frame(width: 48, height: 44) }
@@ -60,13 +75,14 @@ struct LiveTVView: View {
                     }.foregroundStyle(HarborTheme.ink).padding(.vertical, 4)
                 }.buttonStyle(.plain).contextMenu {
                     Button(preferences.favorites.contains(channel.id) ? "Quitar de favoritos" : "Añadir a favoritos") { do { try preferences.toggle(channel) } catch { self.error = safeMessage(error) } }
+                    Button(DesktopInterfaceText.value(preferences.pinnedChannels.contains(channel.id) ? "Unpin channel" : "Pin to top")) { do { try preferences.togglePinned(channel) } catch { self.error = safeMessage(error) } }
                     if let source = preferences.sources.first(where: { $0.id == channel.source }), source.xtream != nil {
                         NavigationLink("Programación") { LiveProgramView(channel: channel, source: source, owner: preferences.owner) }
                     }
                 }
             }
-            if filtered.count > visibleCount { Button("Mostrar más canales") { visibleCount += 100 }.frame(maxWidth: .infinity) }
-            if filtered.isEmpty && !loading {
+            if rows.count > visibleCount { Button("Mostrar más canales") { visibleCount += 100 }.frame(maxWidth: .infinity) }
+            if rows.isEmpty && !loading {
                 ContentUnavailableView("Sin canales", image: "nav-livetv", description: Text(preferences.sources.isEmpty ? "Añade una lista M3U desde una URL o un archivo. Los canales de tus addons están en la otra pestaña." : "No hay canales que coincidan con estos filtros."))
             }
         }.scrollContentBackground(.hidden).refreshable { await load(refresh: true) }
@@ -86,6 +102,7 @@ struct LiveTVView: View {
         guard generation == token, !Task.isCancelled else { return }
         let bySource = Dictionary(grouping: result.flatMap { $0.0 }, by: \.source)
         channels = sources.flatMap { bySource[$0.id] ?? [] }
+        preferences.rememberFavorites(channels)
         if result.contains(where: { $0.1 }) { error = "No se pudieron cargar algunas listas. Los canales disponibles siguen accesibles." }
         if sources.isEmpty { providers = true }
     }
