@@ -3,6 +3,7 @@
 "#" = "#";
 "%" = "%";
 "+{n} ep" = "+{n} حلقة";
+"1 day before" = "قبل يوم واحد";
 "1 item" = "عنصر واحد";
 "1 min" = "1 دقيقة";
 "1 source · 0 made it through" = "مصدر واحد · لم يجتز أي منها";
@@ -316,6 +317,7 @@
 "BAFTA Television Awards" = "جوائز BAFTA التلفزيونية";
 "Back" = "رجوع";
 "Back in two weeks" = "يعود بعد أسبوعين";
+"Back to details" = "العودة إلى التفاصيل";
 "Back to lists" = "العودة إلى القوائم";
 "Back to threads" = "العودة للمواضيع";
 "Back to top" = "العودة إلى الأعلى";
@@ -624,6 +626,7 @@
 "Connected to AniList" = "متصل بـ AniList";
 "Connected to MyAnimeList" = "تم الاتصال بـ MyAnimeList";
 "Connected to Simkl" = "تم الاتصال بـ Simkl";
+"Connected to {name}" = "متصل بـ {name}";
 "Connected. {n} catalogs are available." = "Connected. {n} catalogs are available.";
 "Connecting" = "جارٍ الاتصال";
 "Conservar original" = "الاحتفاظ بالأصل";
@@ -674,6 +677,7 @@
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "تعذر فتح الكتاب";
 "Could not reach the server within 1.5 seconds. Check the address and that the server machine is online." = "تعذّر الوصول إلى الخادم خلال 1.5 ثانية. تحقّق من العنوان ومن أن جهاز الخادم متصل.";
+"Could not reach this server" = "تعذّر الوصول إلى هذا الخادم";
 "Could not read file" = "تعذّرت قراءة الملف";
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "تعذرت قراءة قوائمك. بياناتك المحفوظة محفوظة.";
@@ -1579,6 +1583,7 @@
 "No Chromecast, DLNA, or Roku devices found. Make sure your TV is on, woken up, and on the same Wi-Fi." = "لم يُعثر على أجهزة Chromecast أو DLNA أو Roku. تأكّد من أن التلفاز قيد التشغيل ونشط وعلى الشبكة اللاسلكية نفسها.";
 "No Label" = "بدون تسمية";
 "No Simkl premieres this month" = "لا عروض أولى على Simkl هذا الشهر";
+"No Suwayomi server at this address" = "لا يوجد خادم Suwayomi على هذا العنوان";
 "No background image" = "بدون صورة خلفية";
 "No cast information for this title." = "لا توجد معلومات عن طاقم التمثيل لهذا العنوان.";
 "No cast photos are available for this title." = "لا تتوفر صور لطاقم العمل لهذا العنوان.";
@@ -1701,6 +1706,7 @@
 "Ocultar {name} de la navegación" = "إخفاء {name} من التنقل";
 "Oculto" = "مخفي";
 "Off" = "إيقاف";
+"Official links and videos remain subject to the originating service's availability, regional restrictions and terms. Names and logos identify third parties and do not imply endorsement or affiliation." = "تظل الروابط والفيديوهات الرسمية خاضعة لتوافر الخدمة الأصلية وقيودها الإقليمية وشروطها. تعرّف الأسماء والشعارات بالجهات الخارجية ولا تعني تأييدًا أو ارتباطًا بها.";
 "Oldest" = "الأقدم";
 "On" = "تشغيل";
 "On Hold" = "متوقّف مؤقتًا";
@@ -2379,6 +2385,7 @@
 "Smaller" = "أصغر";
 "Smooth on weak PCs" = "سلس على الأجهزة الضعيفة";
 "Sobre la línea principal" = "فوق السطر الأساسي";
+"Soccer" = "كرة القدم";
 "Soft halo around the text. Cleanest on most content." = "هالة ناعمة حول النص. الأفضل لمعظم المحتوى.";
 "Softer and dimmer, kinder for late-night watching." = "أكثر نعومة وخفوتًا، ألطف للمشاهدة في وقت متأخر من الليل.";
 "Software" = "Software";
@@ -2622,6 +2629,7 @@
 "This month" = "هذا الشهر";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This server responded but is not supported" = "استجاب هذا الخادم لكنه غير مدعوم";
 "This theme is missing a color ({color})." = "يفتقد هذا القالب لونًا ({color}).";
 "This theme is missing its colors." = "هذا القالب بلا ألوان.";
 "This theme's preview colors look invalid." = "تبدو ألوان معاينة هذا القالب غير صالحة.";
@@ -2799,6 +2807,7 @@
 "Use model" = "استخدام النموذج";
 "Use my own server" = "استخدام خادمي الخاص";
 "Use my style" = "استخدام التنسيق الخاص بي";
+"Use only sources and content you have permission to access. Follow the provider's terms and applicable law. Harbor does not supply subscriptions or grant viewing, copying or redistribution rights. Do not use it to bypass paywalls, DRM or access restrictions." = "استخدم فقط المصادر والمحتوى المسموح لك بالوصول إليهما. اتبع شروط المزود والقانون المعمول به. لا يوفر Harbor اشتراكات ولا يمنح حقوق المشاهدة أو النسخ أو إعادة التوزيع. لا تستخدمه لتجاوز حواجز الدفع أو إدارة الحقوق الرقمية أو قيود الوصول.";
 "Use plugins" = "استخدام المكوّنات الإضافية";
 "Use shared settings" = "استخدام الإعدادات المشتركة";
 "Use the \"personal\" key, not the project one." = "استخدم مفتاح \"personal\"، وليس مفتاح المشروع.";
@@ -2892,6 +2901,7 @@
 "World Cup Qualifying: CONMEBOL" = "تصفيات كأس العالم: أمريكا الجنوبية";
 "Writer" = "الكاتب";
 "Wrong PIN" = "رمز PIN خاطئ";
+"Wrong username or password" = "اسم المستخدم أو كلمة المرور غير صحيحة";
 "Wyzie" = "Wyzie";
 "X-Ray" = "X-Ray";
 "X-Ray (experimental)" = "X-Ray (تجريبي)";
@@ -2900,6 +2910,7 @@
 "Year" = "السنة";
 "You can switch later in Settings under Library & metadata." = "يمكنك التبديل لاحقًا من الإعدادات ضمن المكتبة والبيانات الوصفية.";
 "You cast a wide net across everything." = "You cast a wide net across everything.";
+"You have reached the latest chapter available." = "لقد وصلت إلى أحدث فصل متاح.";
 "You have reached {max} lists. Remove one to make room." = "لقد وصلت إلى {max} قائمة. احذف واحدة لإفساح المجال.";
 "You live one episode at a time." = "You live one episode at a time.";
 "You must install this addon in your Stremio account first so Harbor can fetch its works." = "يجب عليك تثبيت هذه الإضافة في حساب Stremio الخاص بك أولاً لكي يتمكن Harbor من جلب الأعمال الخاصة بها.";
@@ -2938,6 +2949,7 @@
 "Your report is sent for review before it ever skips anything for anyone. Nothing about the video is uploaded, just the timestamps you mark. It is off by default and you can turn it off anytime in Settings." = "يُرسَل بلاغك للمراجعة قبل أن يؤدي إلى تخطّي أي شيء لأي أحد. لا يُرفع أي شيء يخص الفيديو، فقط الطوابع الزمنية التي تحدّدها. وهو معطّل افتراضيًا، ويمكنك إيقافه في أي وقت من الإعدادات.";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "ليس لمسلسلاتك المحفوظة حلقات مجدولة هذا الشهر. بدّل إلى \"كل القادم\" لتصفّح تقويم الإصدارات الكامل.";
 "Your services are saved locally. Cloud sync will retry." = "تم حفظ خدماتك على هذا الجهاز. ستتم إعادة محاولة المزامنة.";
+"Your sources, your permission" = "مصادرك وإذنك بالوصول";
 "Your themes" = "سماتك";
 "Your watch year" = "عامك في المشاهدة";
 "Your watchlist is empty" = "قائمة مشاهدتك فارغة";
@@ -4155,6 +4167,7 @@
 "{n} items" = "{n} عناصر";
 "{n} items need repair." = "{n} عنصر يحتاج إصلاحًا.";
 "{n} min" = "{n} دقيقة";
+"{n} minutes before" = "قبل {n} دقيقة";
 "{n} month ago" = "منذ {n} شهر";
 "{n} months ago" = "منذ {n} أشهر";
 "{n} not matched" = "{n} غير مطابق";

@@ -472,6 +472,35 @@ BEHAVIORS = expand("""
 332 P iOS hard-codes Fraunces for every display heading (HarborTheme.displayFont) instead of the Desktop default display face (Sentient in sentient-switzer), and the Desktop layout, card and button styling of the identit...
 333 P iOS has the eight base palettes, custom colors and saved themes with backgrounds, but no layout, card-style, button-style, CSS or navigation chrome choices, and no beta, featured or template theme catalogue.
 334 P iOS offers only three body choices (Switzer, Inter, System) and a fixed Fraunces display face; the Sentient, Fraunces + Inter, General Sans, Cabinet Grotesk, IBM Plex and Plus Jakarta pairs are not offered and the...
+366 D Suwayomi connection check tells wrong credentials, no server, unsupported and unreachable apart and shows the server name and version (8 Nov, written by Haiku, uncompiled)
+372 D local CBZ/ZIP: a folder of archives imports one chapter per archive (8 Nov, written by Haiku, uncompiled)
+378 D manga original fit uses container width times zoom as Desktop (8 Nov, written by Haiku, uncompiled)
+379 D manga zoom panel has the 0.1 steppers and the 50 to 300 percent presets (8 Nov, written by Haiku, uncompiled)
+383 D manga double-page gap goes up to 48 (8 Nov, written by Haiku, uncompiled)
+384 D manga focus mode keeps a thin progress meter (8 Nov, written by Haiku, uncompiled)
+385 D manga automatic next chapter off: a chapter-complete card with a Next chapter button ends paged, double and strip modes (8 Nov, written by Haiku, uncompiled)
+386 D manga chapter-end hint shows the next chapter name, a Next chapter button and a dismiss control (8 Nov, written by Haiku, uncompiled)
+389 D manga chapter progress is sent when the app leaves the foreground and a rejected GraphQL update falls back to REST (8 Nov, written by Haiku, uncompiled; the REST fallback is untested against a real server)
+391 D sports league catalog: the NCAA soccer leagues read Soccer as Desktop labels them (8 Nov, written by Haiku, uncompiled)
+392 P sports calendar: the native date picker cannot mark live days and iOS does not fetch live state for other days
+393 D sports filtering: finished games sort newest first and the live scope covers yesterday and today (8 Nov, written by Haiku, uncompiled)
+394 D sports live refresh: refreshes at once on returning to the foreground and keeps games that run past midnight (8 Nov, written by Haiku, uncompiled; local calendar days where Desktop uses UTC)
+396 P sports event commentary: a typed timeline from key events with clock and participant; American football drive plays still fall back to commentary text (8 Nov, written by Haiku, uncompiled)
+398 D sports external-service consent: the notice carries Desktop's permission and endorsement sections and the consent version moved to 2 (8 Nov, written by Haiku, uncompiled)
+399 D sports reminders: Desktop's lead options (5, 15, 60, 1440 minutes, default 15) and reminders re-sync when a start time moves, when the list reloads (8 Nov, written by Haiku, uncompiled)
+400 D sports standings: the match detail shows the standings group with both teams highlighted (8 Nov, written by Haiku, uncompiled)
+411 D VOD M3U episode grouping: the series logo is filled from any episode (8 Nov, written by Haiku, uncompiled)
+414 D Xtream live container selection: https stays https with Desktop's port rule (8 Nov, written by Haiku, uncompiled)
+217 P M3U import: the decorative-row filter is in; the EPG address derived from a get.php link is tested but nothing uses it because iOS has no XMLTV guide (8 Nov, written by Haiku, uncompiled)
+221 P channel categories: the category picker orders groups by relevance to the person's region and language; channel relevance order, group pins and hidden groups are not ported (8 Nov, written by Haiku, uncompiled)
+223 D live text search: uses the Arabic-aware matching as Desktop (8 Nov, written by Haiku, uncompiled)
+186 D custom seek bar: draws the buffered fill from the demuxer cache end (8 Nov, written by Haiku, uncompiled); Desktop's fully-cached rule is not ported
+196 D external SRT: legacy encodings are detected and converted to UTF-8 before mpv gets the file, UTF-8 stays byte-identical (8 Nov, written by Haiku, uncompiled; Desktop's Arabic plausibility tie-break is not ported)
+197 D external ASS/SSA: same encoding detection and conversion (8 Nov, written by Haiku, uncompiled)
+198 D external WebVTT: same encoding detection and conversion (8 Nov, written by Haiku, uncompiled)
+202 D SDH and forced flags: the hide-SDH filter now follows Desktop's gate (not forced, not foreign-only, safe language) (8 Nov, written by Haiku, uncompiled; iOS tracks carry no foreign-only flag)
+109 D embedded addon subtitle URLs: the Stremio streaming-server path passes them on (8 Nov, written by Haiku, uncompiled)
+177 D player resilience: a network stream that ends before 85 percent of a known duration reloads once, never local or downloaded files (8 Nov, written by Haiku, uncompiled; restarts from the beginning and has no second retry per candidate)
 """)
 
 SETTINGS = expand("""

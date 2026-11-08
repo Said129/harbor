@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 201,
-      "partial": 178,
+      "ported": 226,
+      "partial": 153,
       "missing": 2,
       "excluded": 57,
       "counted": 381,
-      "weighted_percent": 76.1,
-      "ported_only_percent": 52.8,
+      "weighted_percent": 79.4,
+      "ported_only_percent": 59.3,
       "ported_or_partial_percent": 99.5
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 441,
-      "partial": 212,
+      "ported": 466,
+      "partial": 187,
       "missing": 5,
       "excluded": 291,
       "counted": 658,
-      "weighted_percent": 83.1,
-      "ported_only_percent": 67.0,
+      "weighted_percent": 85.0,
+      "ported_only_percent": 70.8,
       "ported_or_partial_percent": 99.2
     }
   },
@@ -86,11 +86,11 @@
     {
       "area": "Resolution and Debrid",
       "range": "B107-B135",
-      "ported": 19,
-      "partial": 9,
+      "ported": 20,
+      "partial": 8,
       "missing": 0,
       "excluded": 1,
-      "weighted_percent": 83.9
+      "weighted_percent": 85.7
     },
     {
       "area": "Torrent engine and streaming server",
@@ -104,20 +104,20 @@
     {
       "area": "Player, subtitles, skip, trailers and downloads",
       "range": "B154-B216",
-      "ported": 30,
-      "partial": 20,
+      "ported": 36,
+      "partial": 14,
       "missing": 0,
       "excluded": 13,
-      "weighted_percent": 80.0
+      "weighted_percent": 86.0
     },
     {
       "area": "Live TV, VOD, DVR and multiview",
       "range": "B217-B238",
-      "ported": 6,
-      "partial": 8,
+      "ported": 7,
+      "partial": 7,
       "missing": 0,
       "excluded": 8,
-      "weighted_percent": 71.4
+      "weighted_percent": 75.0
     },
     {
       "area": "Casting and Watch Together",
@@ -167,20 +167,20 @@
     {
       "area": "Manga",
       "range": "B366-B390",
-      "ported": 12,
-      "partial": 11,
+      "ported": 21,
+      "partial": 2,
       "missing": 1,
       "excluded": 1,
-      "weighted_percent": 72.9
+      "weighted_percent": 91.7
     },
     {
       "area": "Sports",
       "range": "B391-B401",
-      "ported": 0,
-      "partial": 11,
+      "ported": 6,
+      "partial": 5,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 50.0
+      "weighted_percent": 77.3
     },
     {
       "area": "Home customization",
@@ -194,11 +194,11 @@
     {
       "area": "VOD details",
       "range": "B410-B417",
-      "ported": 5,
-      "partial": 3,
+      "ported": 7,
+      "partial": 1,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 81.2
+      "weighted_percent": 93.8
     },
     {
       "area": "Spooktober",
@@ -989,8 +989,8 @@
       "index": 109,
       "id": "Embedded addon subtitle URLs",
       "desktop_source": "src/lib/streams/resolve.ts",
-      "verdict": "P",
-      "note": "The Stremio streaming-server path returns a PlaybackSource with subtitles nil, so addon subtitles are dropped on that path, while the direct path keeps them."
+      "verdict": "D",
+      "note": "embedded addon subtitle URLs: the Stremio streaming-server path passes them on (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 110,
@@ -1465,8 +1465,8 @@
       "index": 177,
       "id": "Player resilience / errors",
       "desktop_source": "src/lib/player",
-      "verdict": "P",
-      "note": "iOS has no automatic single reload of a VOD stream that ends prematurely (Desktop's isTruncatedEnd and use-auto-retry), its natural-end decision uses only mpv's EOF reason rather than the 85 percent rule, and the e..."
+      "verdict": "D",
+      "note": "player resilience: a network stream that ends before 85 percent of a known duration reloads once, never local or downloaded files (8 Nov, written by Haiku, uncompiled; restarts from the beginning and has no second retry per candidate)"
     },
     {
       "index": 178,
@@ -1528,8 +1528,8 @@
       "index": 186,
       "id": "Custom seek bar",
       "desktop_source": "src/components/player",
-      "verdict": "P",
-      "note": "HarborSeekBar takes only position and duration: it draws no buffered or downloaded fill (cacheEnd is never passed to it), no skip or ad segment spans, no trickplay thumbnails, and dot size and fill are fixed (only..."
+      "verdict": "D",
+      "note": "custom seek bar: draws the buffered fill from the demuxer cache end (8 Nov, written by Haiku, uncompiled); Desktop's fully-cached rule is not ported"
     },
     {
       "index": 187,
@@ -1598,22 +1598,22 @@
       "index": 196,
       "id": "External SRT",
       "desktop_source": "src/lib/subtitles",
-      "verdict": "P",
-      "note": "iOS imports SRT as raw bytes (8 MB cap, Files security-scoped copy) and passes it to mpv without any encoding detection; sub-codepage is never set and no legacy or Arabic encoding handling exists on the iOS side, s..."
+      "verdict": "D",
+      "note": "external SRT: legacy encodings are detected and converted to UTF-8 before mpv gets the file, UTF-8 stays byte-identical (8 Nov, written by Haiku, uncompiled; Desktop's Arabic plausibility tie-break is not ported)"
     },
     {
       "index": 197,
       "id": "External ASS / SSA",
       "desktop_source": "src/lib/subtitles",
-      "verdict": "P",
-      "note": "ASS/SSA track detection and the ASS size normalisation are wired (isASSTrack, SubtitleSelectionWiring), and .ass/.ssa files are accepted by the Files import. The same missing Desktop encoding detection applies to A..."
+      "verdict": "D",
+      "note": "external ASS/SSA: same encoding detection and conversion (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 198,
       "id": "External WebVTT",
       "desktop_source": "src/lib/subtitles",
-      "verdict": "P",
-      "note": "iOS downloads VTT addon subtitles (sniffing the WEBVTT header and rejecting HTML responses) and imports .vtt files through mpv, but has no encoding detection on the Desktop model, so non-UTF-8 WebVTT files are not..."
+      "verdict": "D",
+      "note": "external WebVTT: same encoding detection and conversion (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 199,
@@ -1640,8 +1640,8 @@
       "index": 202,
       "id": "SDH / forced flags",
       "desktop_source": "src/lib/subtitles",
-      "verdict": "P",
-      "note": "The flag-driven filters, tags and auto-selection exclusions are implemented, but the hide-SDH setting is sent to mpv as sub-filter-sdh unconditionally: the Desktop gate (sdhFilterAllowed: not forced, not foreignOnl..."
+      "verdict": "D",
+      "note": "SDH and forced flags: the hide-SDH filter now follows Desktop's gate (not forced, not foreign-only, safe language) (8 Nov, written by Haiku, uncompiled; iOS tracks carry no foreign-only flag)"
     },
     {
       "index": 203,
@@ -1746,7 +1746,7 @@
       "id": "M3U import",
       "desktop_source": "src/lib/iptv",
       "verdict": "P",
-      "note": "iOS imports M3U by URL or file with EXTINF, group, VLC/Kodi/pipe options and DRM detection, but it has no decorative-row filter (only a check that the name has alphanumerics) and no EPG derivation from get.php; XML..."
+      "note": "M3U import: the decorative-row filter is in; the EPG address derived from a get.php link is tested but nothing uses it because iOS has no XMLTV guide (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 218,
@@ -1774,7 +1774,7 @@
       "id": "Channel categories",
       "desktop_source": "src/lib/iptv",
       "verdict": "P",
-      "note": "iOS offers a category picker of groups sorted alphabetically (localizedStandardCompare) with no relevance ordering, no group pin, hide or reorder, and no counts. Category filtering itself works."
+      "note": "channel categories: the category picker orders groups by relevance to the person's region and language; channel relevance order, group pins and hidden groups are not ported (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 222,
@@ -1787,8 +1787,8 @@
       "index": 223,
       "id": "Live text search",
       "desktop_source": "src/lib/iptv",
-      "verdict": "P",
-      "note": "The Live TV screen search in LiveTVView uses plain localizedCaseInsensitiveContains without Arabic normalisation; the Arabic-aware LiveTVSearch.channels rule is only called from the global search section, where it..."
+      "verdict": "D",
+      "note": "live text search: uses the Arabic-aware matching as Desktop (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 224,
@@ -2788,8 +2788,8 @@
       "index": 366,
       "id": "Manga Suwayomi connection",
       "desktop_source": "src/lib/manga/sources/suwayomi/api.ts",
-      "verdict": "P",
-      "note": "Every failed probe on iOS collapses into manga-network, manga-authorization or manga-protocol, so a missing Suwayomi endpoint (not_found) is not told apart from an unsupported server, and the server name and version from aboutSer..."
+      "verdict": "D",
+      "note": "Suwayomi connection check tells wrong credentials, no server, unsupported and unreachable apart and shows the server name and version (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 367,
@@ -2830,8 +2830,8 @@
       "index": 372,
       "id": "Manga local CBZ/ZIP",
       "desktop_source": "src/lib/manga/sources/local.ts",
-      "verdict": "P",
-      "note": "iOS imports one archive as one single-chapter book. Archives inside an imported folder are ignored by importFolder(), which accepts only image files, so a folder of CBZ/ZIP chapters cannot be imported as chapters and fails with m..."
+      "verdict": "D",
+      "note": "local CBZ/ZIP: a folder of archives imports one chapter per archive (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 373,
@@ -2872,15 +2872,15 @@
       "index": 378,
       "id": "Manga width/height/original fit",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "The 'original' fit on iOS uses the image's own pixel size times zoom, while Desktop uses container width times zoom, so original-fit pages can be much larger than the screen on iOS."
+      "verdict": "D",
+      "note": "manga original fit uses container width times zoom as Desktop (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 379,
       "id": "Manga zoom",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "The +/-0.1 stepper buttons and the quick preset buttons (50, 100, 150, 200, 300 percent) of the Desktop zoom panel are missing on iOS, which has only the slider, the value label and reset."
+      "verdict": "D",
+      "note": "manga zoom panel has the 0.1 steppers and the 50 to 300 percent presets (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 380,
@@ -2907,29 +2907,29 @@
       "index": 383,
       "id": "Manga double-page gap",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "The iOS slider stops at 40, so gaps of 42 to 48 px available on Desktop cannot be chosen on iOS."
+      "verdict": "D",
+      "note": "manga double-page gap goes up to 48 (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 384,
       "id": "Manga focus mode",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "iOS focus mode hides the page counter, slider, arrows and any progress indicator with no temporary reveal; the Desktop thin ReaderProgressMeter stays visible in focus, and the only way back on iOS is the eye button, which turns t..."
+      "verdict": "D",
+      "note": "manga focus mode keeps a thin progress meter (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 385,
       "id": "Manga automatic next chapter",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "With auto-next off, iOS shows no end-of-chapter card or Next chapter button in paged or strip modes; turn() only sets the hint, so the user must use the chapter list. The iOS long strip also auto-advances, which the Desktop long..."
+      "verdict": "D",
+      "note": "manga automatic next chapter off: a chapter-complete card with a Next chapter button ends paged, double and strip modes (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 386,
       "id": "Manga chapter-end hint",
       "desktop_source": "src/views/manga/manga-reader/reader-prefs.ts",
-      "verdict": "P",
-      "note": "The iOS hint is a plain caption with no next-chapter button, no next-chapter name and no dismiss control; it can only be hidden through the settings toggle."
+      "verdict": "D",
+      "note": "manga chapter-end hint shows the next chapter name, a Next chapter button and a dismiss control (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 387,
@@ -2949,8 +2949,8 @@
       "index": 389,
       "id": "Manga chapter progress sync",
       "desktop_source": "src/lib/manga/sources/suwayomi/sync.ts",
-      "verdict": "P",
-      "note": "iOS has no GraphQL-to-REST fallback at send time (the protocol is fixed per chapter at load), and leaving the active scene does not send the Suwayomi update (sync false), so the last page only reaches the server when the app beco..."
+      "verdict": "D",
+      "note": "manga chapter progress is sent when the app leaves the foreground and a rejected GraphQL update falls back to REST (8 Nov, written by Haiku, uncompiled; the REST fallback is untested against a real server)"
     },
     {
       "index": 390,
@@ -2963,29 +2963,29 @@
       "index": 391,
       "id": "Sports original league catalog",
       "desktop_source": "src/lib/sports/espn-leagues.ts",
-      "verdict": "P",
-      "note": "iOS shows English titles only (no Arabic or Russian labels), and the NCAA soccer leagues read 'NCAA Men's/Women's Football' where Desktop getLeagueLabel shows 'NCAA Men's/Women's Soccer'."
+      "verdict": "D",
+      "note": "sports league catalog: the NCAA soccer leagues read Soccer as Desktop labels them (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 392,
       "id": "Sports calendar and scores",
       "desktop_source": "src/lib/sports/espn-scoreboard.ts",
       "verdict": "P",
-      "note": "The iOS date picker has no live-day markers, so users cannot see which dates contain live games before choosing them."
+      "note": "sports calendar: the native date picker cannot mark live days and iOS does not fetch live state for other days"
     },
     {
       "index": 393,
       "id": "Sports live/upcoming/final filtering",
       "desktop_source": "src/lib/sports/espn-scoreboard.ts",
-      "verdict": "P",
-      "note": "The iOS state filter covers only the selected day and the leagues the user selected, and iOS sorts finished games oldest first where Desktop sorts them newest first."
+      "verdict": "D",
+      "note": "sports filtering: finished games sort newest first and the live scope covers yesterday and today (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 394,
       "id": "Sports live score refresh",
       "desktop_source": "src/lib/sports/espn-scoreboard.ts",
-      "verdict": "P",
-      "note": "iOS refreshes only the selected day's scoreboards, so games that continue past midnight are not covered, and returning to the foreground does not refresh at once because the loop sleeps first."
+      "verdict": "D",
+      "note": "sports live refresh: refreshes at once on returning to the foreground and keeps games that run past midnight (8 Nov, written by Haiku, uncompiled; local calendar days where Desktop uses UTC)"
     },
     {
       "index": 395,
@@ -2999,7 +2999,7 @@
       "id": "Sports event commentary",
       "desktop_source": "src/lib/sports/espn-summary.ts",
       "verdict": "P",
-      "note": "iOS does not read keyEvents or football events, so no typed timeline with clock and participant is shown; it displays unstructured commentary text instead."
+      "note": "sports event commentary: a typed timeline from key events with clock and participant; American football drive plays still fall back to commentary text (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 397,
@@ -3012,22 +3012,22 @@
       "index": 398,
       "id": "Sports external-service consent",
       "desktop_source": "src/lib/sports/usage-notice.ts",
-      "verdict": "P",
-      "note": "The iOS notice has no warning against paywall or DRM bypass and no statement that league names and logos do not imply endorsement (usage-notice.ts SPORTS_USAGE_SECTIONS and SPORTS_USAGE_DETAILS)."
+      "verdict": "D",
+      "note": "sports external-service consent: the notice carries Desktop's permission and endorsement sections and the consent version moved to 2 (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 399,
       "id": "Sports event reminders",
       "desktop_source": "src/lib/sports/reminders.ts",
-      "verdict": "P",
-      "note": "iOS lead options differ (0, 5, 10, 15, 30 minutes, default 10) and stored reminders are never re-synced when the start time moves. Local notifications replacing Discord and Telegram are a platform adaptation, not counted as a gap."
+      "verdict": "D",
+      "note": "sports reminders: Desktop's lead options (5, 15, 60, 1440 minutes, default 15) and reminders re-sync when a start time moves, when the list reloads (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 400,
       "id": "Sports standings",
       "desktop_source": "src/lib/sports/standings.ts",
-      "verdict": "P",
-      "note": "iOS has no standings panel inside the match detail and does not highlight the two teams' rows there; standings are reachable only from the league menu."
+      "verdict": "D",
+      "note": "sports standings: the match detail shows the standings group with both teams highlighted (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 401,
@@ -3103,8 +3103,8 @@
       "index": 411,
       "id": "VOD M3U episode grouping",
       "desktop_source": "src/lib/iptv/vod.ts",
-      "verdict": "P",
-      "note": "iOS sets the series logo only from the first episode, so a show whose first episode has no logo never gets one from later episodes, while Desktop fills it (vod.ts line 113)."
+      "verdict": "D",
+      "note": "VOD M3U episode grouping: the series logo is filled from any episode (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 412,
@@ -3124,8 +3124,8 @@
       "index": 414,
       "id": "Xtream live container selection",
       "desktop_source": "src/lib/iptv/xtream.ts",
-      "verdict": "P",
-      "note": "Container negotiation matches, but when server_protocol is https and neither https_port nor port is given, iOS keeps the typed base (which may be http) while Desktop forces https://host."
+      "verdict": "D",
+      "note": "Xtream live container selection: https stays https with Desktop's port rule (8 Nov, written by Haiku, uncompiled)"
     },
     {
       "index": 415,

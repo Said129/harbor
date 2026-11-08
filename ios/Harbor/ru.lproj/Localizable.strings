@@ -3,6 +3,7 @@
 "#" = "#";
 "%" = "%";
 "+{n} ep" = "+{n} сер.";
+"1 day before" = "За 1 день";
 "1 item" = "1 видео";
 "1 min" = "1 мин";
 "1 source · 0 made it through" = "1 источник · ни один не прошёл отбор";
@@ -308,6 +309,7 @@
 "BAFTA Television Awards" = "Телевизионная премия BAFTA";
 "Back" = "Назад";
 "Back in two weeks" = "Back in two weeks";
+"Back to details" = "Назад к описанию";
 "Back to lists" = "Назад к спискам";
 "Back to threads" = "Назад к темам";
 "Back to top" = "Наверх";
@@ -608,6 +610,7 @@
 "Connected to AniList" = "Подключено к AniList";
 "Connected to MyAnimeList" = "Подключено к MyAnimeList";
 "Connected to Simkl" = "Подключено к Simkl";
+"Connected to {name}" = "Подключено к {name}";
 "Connected. {n} catalogs are available." = "Connected. {n} catalogs are available.";
 "Connecting" = "Подключение";
 "Conservar original" = "Оставить оригинал";
@@ -654,6 +657,7 @@
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Не удалось открыть книгу";
 "Could not reach the server within 1.5 seconds. Check the address and that the server machine is online." = "Сервер не ответил за 1,5 секунды. Проверьте адрес и что сервер включён.";
+"Could not reach this server" = "Не удалось подключиться к серверу";
 "Could not read file" = "Не удалось прочитать файл";
 "Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your lists. Your saved data is preserved." = "Не удалось прочитать ваши списки. Сохранённые данные не потеряны.";
@@ -1559,6 +1563,7 @@
 "No Chromecast, DLNA, or Roku devices found. Make sure your TV is on, woken up, and on the same Wi-Fi." = "Устройства Chromecast, DLNA или Roku не найдены. Убедитесь, что телевизор включён, вышел из сна и подключён к той же сети Wi-Fi.";
 "No Label" = "Без метки";
 "No Simkl premieres this month" = "В этом месяце премьер на Simkl нет";
+"No Suwayomi server at this address" = "По этому адресу нет сервера Suwayomi";
 "No background image" = "Без фонового изображения";
 "No cast information for this title." = "Нет данных об актёрах для этого названия.";
 "No cast photos are available for this title." = "Для этого названия нет фотографий актёров.";
@@ -1681,6 +1686,7 @@
 "Ocultar {name} de la navegación" = "Скрыть {name} из навигации";
 "Oculto" = "Скрыто";
 "Off" = "Выключено";
+"Official links and videos remain subject to the originating service's availability, regional restrictions and terms. Names and logos identify third parties and do not imply endorsement or affiliation." = "Официальные ссылки и видео зависят от доступности, региональных ограничений и условий исходного сервиса. Названия и логотипы обозначают третьих лиц и не означают одобрения или связи с ними.";
 "Oldest" = "Старые";
 "On" = "Вкл.";
 "On Hold" = "Отложено";
@@ -2357,6 +2363,7 @@
 "Smaller" = "Меньше";
 "Smooth on weak PCs" = "Плавно на слабых ПК";
 "Sobre la línea principal" = "Над основной строкой";
+"Soccer" = "Футбол";
 "Soft halo around the text. Cleanest on most content." = "Мягкий ореол вокруг текста. Аккуратнее всего на большинстве видео.";
 "Softer and dimmer, kinder for late-night watching." = "Мягче и темнее, удобнее для ночного просмотра.";
 "Software" = "Software";
@@ -2599,6 +2606,7 @@
 "This month" = "В этом месяце";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This server responded but is not supported" = "Сервер ответил, но не поддерживается";
 "This theme is missing a color ({color})." = "В этой теме отсутствует цвет ({color}).";
 "This theme is missing its colors." = "В этой теме отсутствуют цвета.";
 "This theme's preview colors look invalid." = "Цвета предварительного просмотра этой темы некорректны.";
@@ -2776,6 +2784,7 @@
 "Use model" = "Использовать модель";
 "Use my own server" = "Использовать свой сервер";
 "Use my style" = "Мой стиль";
+"Use only sources and content you have permission to access. Follow the provider's terms and applicable law. Harbor does not supply subscriptions or grant viewing, copying or redistribution rights. Do not use it to bypass paywalls, DRM or access restrictions." = "Используйте только источники и контент, к которым у вас есть разрешение на доступ. Соблюдайте условия поставщика и применимое законодательство. Harbor не предоставляет подписки или права на просмотр, копирование и распространение. Не используйте его для обхода платного доступа, DRM или ограничений доступа.";
 "Use plugins" = "Использовать плагины";
 "Use shared settings" = "Использовать общие настройки";
 "Use the \"personal\" key, not the project one." = "Используйте ключ «personal», а не ключ проекта.";
@@ -2865,6 +2874,7 @@
 "Works without a key at low volume; add a key for higher quotas." = "При небольшом объёме работает без ключа; добавьте ключ для увеличения квот.";
 "Writer" = "Сценарист";
 "Wrong PIN" = "Неверный PIN";
+"Wrong username or password" = "Неверное имя пользователя или пароль";
 "Wyzie" = "Wyzie";
 "X-Ray" = "X-Ray";
 "X-Ray (experimental)" = "X-Ray (экспериментально)";
@@ -2873,6 +2883,7 @@
 "Year" = "Год";
 "You can switch later in Settings under Library & metadata." = "Переключить можно позже в Настройках, раздел «Библиотека и метаданные».";
 "You cast a wide net across everything." = "You cast a wide net across everything.";
+"You have reached the latest chapter available." = "Это последняя доступная глава.";
 "You have reached {max} lists. Remove one to make room." = "Достигнут предел: {max} списков. Удалите один, чтобы освободить место.";
 "You live one episode at a time." = "You live one episode at a time.";
 "You must install this addon in your Stremio account first so Harbor can fetch its works." = "Сначала установите это дополнение в аккаунте Stremio, чтобы Harbor мог получать его материалы.";
@@ -2911,6 +2922,7 @@
 "Your report is sent for review before it ever skips anything for anyone. Nothing about the video is uploaded, just the timestamps you mark. It is off by default and you can turn it off anytime in Settings." = "Отчёт проходит проверку, прежде чем что-то начнёт пропускаться у других. Само видео никуда не загружается, только отмеченные вами метки времени. По умолчанию функция выключена, отключить её можно в любой момент в Настройках.";
 "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar." = "У сохранённых сериалов нет серий в этом месяце. Переключитесь на «Все ожидаемые», чтобы увидеть полный календарь релизов.";
 "Your services are saved locally. Cloud sync will retry." = "Сервисы сохранены на этом устройстве. Синхронизация будет повторена.";
+"Your sources, your permission" = "Ваши источники и разрешение на доступ";
 "Your themes" = "Ваши темы";
 "Your watch year" = "Ваш год просмотров";
 "Your watchlist is empty" = "Список просмотра пуст";
@@ -4128,6 +4140,7 @@
 "{n} items" = "{n} элементов";
 "{n} items need repair." = "Элементов для восстановления: {n}.";
 "{n} min" = "{n} мин";
+"{n} minutes before" = "За {n} мин";
 "{n} month ago" = "{n} месяцев назад";
 "{n} months ago" = "{n} мес. назад";
 "{n} not matched" = "Не сопоставлено: {n}";
