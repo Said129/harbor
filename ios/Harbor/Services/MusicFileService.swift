@@ -63,7 +63,8 @@ actor MusicFileService {
             let tags = try await MusicProbe.inspect(final, filename: input.lastPathComponent, sourceID: filename)
             let local: LocalMusic = try await core.call("musicLocalTrack", ["tags": try .encoded(tags)])
             var record = MusicRecord(local: local, filename: filename, originalName: input.lastPathComponent, size: Int64(size), importedAt: Date())
-            if let artwork = await MusicArtworkLoader.load(final) {
+            let embedded = await MusicArtworkLoader.load(final)
+            if let artwork = embedded ?? MusicArtworkLoader.sidecar(near: input) {
                 let name = String(filename.prefix(64)) + ".jpg"
                 let destination = root.appendingPathComponent(name)
                 do {
@@ -102,15 +103,30 @@ private enum MusicArtworkLoader {
             let asset = AVURLAsset(url: url)
             let metadata = try await asset.load(.commonMetadata)
             guard let item = metadata.first(where: { $0.commonKey == .commonKeyArtwork }),
-                  let data = try await item.load(.dataValue), data.count <= 12 * 1024 * 1024,
-                  let source = CGImageSourceCreateWithData(data as CFData, nil),
-                  let image = CGImageSourceCreateThumbnailAtIndex(source, 0, [kCGImageSourceCreateThumbnailFromImageAlways: true, kCGImageSourceCreateThumbnailWithTransform: true, kCGImageSourceThumbnailMaxPixelSize: 600] as CFDictionary) else { return nil }
-            let output = NSMutableData()
-            guard let destination = CGImageDestinationCreateWithData(output, UTType.jpeg.identifier as CFString, 1, nil) else { return nil }
-            CGImageDestinationAddImage(destination, image, [kCGImageDestinationLossyCompressionQuality: 0.85] as CFDictionary)
-            guard CGImageDestinationFinalize(destination), output.length <= 1024 * 1024 else { return nil }
-            return output as Data
+                  let data = try await item.load(.dataValue), data.count <= 12 * 1024 * 1024 else { return nil }
+            return jpeg(from: data)
         } catch { return nil }
+    }
+    /// Desktop's sidecar image next to the audio file (`cover`, `folder` or `front` with jpg/jpeg/png). It is read only
+    /// when no embedded picture exists, and goes through the same bounded thumbnail as embedded art.
+    static func sidecar(near audio: URL) -> Data? {
+        let folder = audio.deletingLastPathComponent()
+        guard let names = try? FileManager.default.contentsOfDirectory(atPath: folder.path),
+              let name = MusicSidecarCover.choose(names) else { return nil }
+        let url = folder.appendingPathComponent(name)
+        guard let values = try? url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey]),
+              values.isRegularFile == true, values.isSymbolicLink != true, (values.fileSize ?? Int.max) <= 12 * 1024 * 1024,
+              let data = try? Data(contentsOf: url) else { return nil }
+        return jpeg(from: data)
+    }
+    private static func jpeg(from data: Data) -> Data? {
+        guard let source = CGImageSourceCreateWithData(data as CFData, nil),
+              let image = CGImageSourceCreateThumbnailAtIndex(source, 0, [kCGImageSourceCreateThumbnailFromImageAlways: true, kCGImageSourceCreateThumbnailWithTransform: true, kCGImageSourceThumbnailMaxPixelSize: 600] as CFDictionary) else { return nil }
+        let output = NSMutableData()
+        guard let destination = CGImageDestinationCreateWithData(output, UTType.jpeg.identifier as CFString, 1, nil) else { return nil }
+        CGImageDestinationAddImage(destination, image, [kCGImageDestinationLossyCompressionQuality: 0.85] as CFDictionary)
+        guard CGImageDestinationFinalize(destination), output.length <= 1024 * 1024 else { return nil }
+        return output as Data
     }
 }
 

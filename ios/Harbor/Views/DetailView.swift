@@ -288,7 +288,7 @@ struct DetailView: View {
                         // An anime's catalog score is MyAnimeList's: `DetailProviderRatings` shows it under that name instead.
                         if let rating = model.media.imdbRating, InterfacePreferences.shared.showDetailRatings, !CardTagPolicy.isAnimeCardID(model.media.id), !InterfacePreferences.shared.detailRatingsHidden.contains(model.media.ratingSource == "TMDB" ? "tmdb" : "imdb") { ratingBadge(rating) }
                         if let runtime = model.media.runtime { badge(runtime) }
-                        ForEach(model.media.genres ?? [], id: \.self) { badge($0) }
+                        ForEach(DetailGenreRules.visible(model.media.genres ?? []), id: \.self) { DetailGenrePill(genre: $0, isSeries: model.media.type == "series", app: app) }
                     }
                 }.scrollIndicators(.hidden)
                 // The settings screen saves the keys under this same owner.

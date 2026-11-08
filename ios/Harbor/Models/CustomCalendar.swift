@@ -95,10 +95,10 @@ struct CustomCalendar: Codable, Equatable, Hashable, Sendable {
         ("FR", "France"), ("DE", "Germany"), ("ES", "Spain"), ("IT", "Italy"), ("IN", "India"), ("MX", "Mexico"), ("BR", "Brazil")]
 
     /// Desktop's `MOVIE_GENRES` and `TV_GENRES` (`lib/feed/tags.ts`), in its order.
-    private static let movieGenres: [(String, Int)] = [
+    static let movieGenres: [(String, Int)] = [
         ("Action", 28), ("Adventure", 12), ("Animation", 16), ("Comedy", 35), ("Crime", 80), ("Documentary", 99), ("Drama", 18), ("Family", 10751), ("Fantasy", 14),
         ("History", 36), ("Horror", 27), ("Music", 10402), ("Mystery", 9648), ("Romance", 10749), ("Sci-Fi", 878), ("Thriller", 53), ("War", 10752), ("Western", 37)]
-    private static let tvGenres: [(String, Int)] = [
+    static let tvGenres: [(String, Int)] = [
         ("Action & Adventure", 10759), ("Animation", 16), ("Comedy", 35), ("Crime", 80), ("Documentary", 99), ("Drama", 18), ("Mystery", 9648),
         ("Sci-Fi & Fantasy", 10765), ("War", 10768)]
 
