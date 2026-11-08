@@ -21,6 +21,7 @@ use std::collections::HashMap;
     rename_all_fields = "camelCase",
     deny_unknown_fields
 )]
+#[allow(clippy::large_enum_variant)]
 pub(crate) enum Request {
     SignIn {
         address: String,
@@ -40,6 +41,7 @@ pub(crate) enum Request {
     rename_all_fields = "camelCase",
     deny_unknown_fields
 )]
+#[allow(clippy::large_enum_variant)]
 pub(crate) enum Command {
     Home,
     Search {
