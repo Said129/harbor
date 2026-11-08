@@ -364,7 +364,7 @@ struct PlayerView: View {
             guard preferences.options.showSkipIntro || preferences.options.autoSkipsAnySegment, state.loaded, state.duration > 0 else { return }
             let generation = state.mediaGeneration
             do {
-                let segments = try await SkipIntroService.shared.segments(target: session.target, media: media, duration: state.duration)
+                let segments = try await SkipIntroService.shared.segments(target: session.target, media: media, duration: state.duration, stream: session.adSkipStream)
                 try Task.checkCancellation()
                 guard generation == state.mediaGeneration, library.map({ $0.owner == session.owner }) ?? true else { return }
                 skipSegments = segments

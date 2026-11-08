@@ -97,3 +97,20 @@ struct PlayerNextEpisodeSettings: View {
         }
     }
 }
+
+/// Desktop's "Injected ad skip (experimental)" (`views/settings/quality-panel/ad-skip-tab.tsx`). The auto-skip switch
+/// only shows while ad skip is on.
+struct PlayerAdSkipSettings: View {
+    @Bindable private var sources = StreamPreferences.shared
+
+    var body: some View {
+        HarborSettingsSection(DesktopInterfaceText.value("Injected ad skip (experimental)"), note: DesktopInterfaceText.value("Some cam and new-release rips have ads spliced into the video itself. When the community has marked one, a Skip button appears. You can also report ads you spot for review. Off by default.")) {
+            HarborSettingsToggle(DesktopInterfaceText.value("Enable injected ad skip"), note: DesktopInterfaceText.value("Show a Skip button when a known injected ad plays, and a small report button on new releases so you can mark ads for review."), isOn: $sources.adSkipEnabled)
+                .accessibilityIdentifier("settings-ad-skip")
+            if sources.adSkipEnabled {
+                HarborSettingsToggle(DesktopInterfaceText.value("Skip injected ads automatically"), note: DesktopInterfaceText.value("Jump past a known injected ad on its own instead of showing the Skip button."), isOn: $sources.autoSkipAd)
+                    .accessibilityIdentifier("settings-auto-skip-ad")
+            }
+        }
+    }
+}

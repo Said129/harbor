@@ -662,6 +662,7 @@ final class DetailModel {
             playback?.progressStores = progressStores
             playback?.subtitleRequest = SubtitleRequest(media: selected, videoID: episode?.id ?? selected.behaviorHints?.defaultVideoId ?? selected.id, season: episode?.season, episode: episode?.episode, addons: streamAddons, stream: offer.raw)
             playback?.stall = stallHandle(for: offer)
+            playback?.adSkipStream = AdSkipStream(offer: offer.raw, url: source.url)
         }
         catch is CancellationError { return }
         catch { if request == streamRequest, resolution == resolutionRequest, contextRevision() == context { self.error = safeMessage(error) } }
