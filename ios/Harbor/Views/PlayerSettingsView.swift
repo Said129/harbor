@@ -43,6 +43,12 @@ struct PlayerSettingsView: View {
     @AppStorage("resumePlayback") private var resumePlayback = true
     @AppStorage("resumePrompt") private var resumePrompt = false
     @AppStorage("subtitleAutoSync") private var subtitleAutoSync = false
+    @AppStorage("subtitleAutoSyncCrowd") private var subtitleAutoSyncCrowd = true
+    @AppStorage("communitySyncOptOut") private var communitySyncOptOut = false
+    @AppStorage("communitySyncUrl") private var communitySyncUrl = ""
+    @State private var serverEditing = false
+    @State private var serverDraft = ""
+    @State private var serverInvalid = false
 
     var body: some View {
         ScrollView {
@@ -240,11 +246,58 @@ struct PlayerSettingsView: View {
         }
     }
 
+    /// Desktop's community server dialog: blank uses Harbor's server, anything else must be an http or https address.
+    private var communityServerSheet: some View {
+        NavigationStack {
+            VStack(alignment: .leading, spacing: 14) {
+                Text(DesktopInterfaceText.value("Leave this blank to use Harbor's own community server, or enter the address of a server you run yourself.")).font(HarborTheme.font(14)).foregroundStyle(.secondary)
+                TextField(DesktopInterfaceText.value("https://sync.harbor.site"), text: $serverDraft)
+                    .textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL).textFieldStyle(.roundedBorder)
+                    .accessibilityLabel(DesktopInterfaceText.value("Server address"))
+                if serverInvalid {
+                    Text(DesktopInterfaceText.value("Enter a full http:// or https:// address, or leave blank to use Harbor's server.")).font(HarborTheme.font(13)).foregroundStyle(.red)
+                }
+                Text(DesktopInterfaceText.value("Private mode stops all contact with this server in either direction.")).font(HarborTheme.font(12)).foregroundStyle(.secondary)
+                Spacer(minLength: 0)
+            }.padding(20).frame(maxWidth: .infinity, alignment: .leading)
+                .navigationTitle(DesktopInterfaceText.value("Community sync server")).navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) { Button(DesktopInterfaceText.value("Cancel")) { serverEditing = false } }
+                    ToolbarItem(placement: .confirmationAction) { Button(DesktopInterfaceText.value("Save")) { saveCommunityServer() } }
+                }
+        }
+    }
+
+    private func saveCommunityServer() {
+        guard let stored = CommunitySyncRules.storedServer(serverDraft) else { serverInvalid = true; return }
+        communitySyncUrl = stored
+        serverEditing = false
+    }
+
     @ViewBuilder private var subtitlesSettings: some View {
         if state == nil {
             HarborSettingsSection("Sincronización automática", note: "Analiza el audio en segundo plano para ajustar subtítulos externos SRT/VTT en UTF-8 o UTF-16. Si no hay una coincidencia fiable, conserva el original.") {
                 HarborSettingsToggle("Sincronizar subtítulos con el audio", isOn: $subtitleAutoSync)
             }
+        }
+        HarborSettingsSection(DesktopInterfaceText.value("Community sync"), note: DesktopInterfaceText.value("Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions.")) {
+            HarborSettingsToggle(DesktopInterfaceText.value("Use community corrections"), note: DesktopInterfaceText.value("Check the shared database first. When this exact subtitle has already been synced by someone else, yours snaps into place with no analysis."), isOn: $subtitleAutoSyncCrowd)
+                .disabled(communitySyncOptOut)
+            if communitySyncOptOut {
+                Text(DesktopInterfaceText.value("Private mode is on, so nothing is looked up or contributed from this device.")).font(HarborTheme.font(12)).foregroundStyle(.secondary)
+            }
+            VStack(alignment: .leading, spacing: 8) {
+                Text(DesktopInterfaceText.value("Community sync server")).font(HarborTheme.font(14, weight: .semibold))
+                Text(communitySyncUrl.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                     ? DesktopInterfaceText.value("Harbor uses its own community server. You can point it at a server you run yourself.")
+                     : communitySyncUrl.trimmingCharacters(in: .whitespacesAndNewlines))
+                    .font(HarborTheme.font(13)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                Button(communitySyncUrl.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? DesktopInterfaceText.value("Use my own server") : DesktopInterfaceText.value("Change server")) {
+                    serverDraft = communitySyncUrl; serverInvalid = false; serverEditing = true
+                }.frame(minHeight: 44).accessibilityIdentifier("settings-community-sync-server")
+                    .sheet(isPresented: $serverEditing) { communityServerSheet }
+            }
+            HarborSettingsToggle(DesktopInterfaceText.value("Private mode"), note: DesktopInterfaceText.value("Never contact the community server in either direction. Nothing is looked up and nothing is contributed from this device."), isOn: $communitySyncOptOut)
         }
         if let state {
             HarborSettingsSection(DesktopInterfaceText.value("Subtitles")) {
