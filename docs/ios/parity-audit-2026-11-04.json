@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 257,
-      "partial": 119,
+      "ported": 259,
+      "partial": 117,
       "missing": 0,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 84.2,
-      "ported_only_percent": 68.4,
+      "weighted_percent": 84.4,
+      "ported_only_percent": 68.9,
       "ported_or_partial_percent": 100.0
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 500,
-      "partial": 150,
+      "ported": 502,
+      "partial": 148,
       "missing": 2,
       "excluded": 297,
       "counted": 652,
-      "weighted_percent": 88.2,
-      "ported_only_percent": 76.7,
+      "weighted_percent": 88.3,
+      "ported_only_percent": 77.0,
       "ported_or_partial_percent": 99.7
     }
   },
@@ -50,11 +50,11 @@
     {
       "area": "Search",
       "range": "B22-B32",
-      "ported": 7,
-      "partial": 3,
+      "ported": 8,
+      "partial": 2,
       "missing": 0,
       "excluded": 1,
-      "weighted_percent": 85.0
+      "weighted_percent": 90.0
     },
     {
       "area": "Details and episodes",
@@ -212,11 +212,11 @@
     {
       "area": "Music",
       "range": "B422-B437",
-      "ported": 13,
-      "partial": 3,
+      "ported": 14,
+      "partial": 2,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 90.6
+      "weighted_percent": 93.8
     },
     {
       "area": "Subtitle FPS",
@@ -415,8 +415,8 @@
       "index": 27,
       "id": "Search anime",
       "desktop_source": "src/components/search",
-      "verdict": "P",
-      "note": "search anime: the merge rule (source order, repeated ids and names skipped, cap of 8) exists (8 Nov, written by Haiku, uncompiled); iOS has no AniList, Jikan or Kitsu text search client to feed it"
+      "verdict": "D",
+      "note": "Global search queries the native AniList, Jikan and Kitsu providers, applies Desktop source order, caps and deduplication, and opens results in the normal detail route. Apple and live provider verification pending."
     },
     {
       "index": 28,
@@ -3257,8 +3257,8 @@
       "index": 433,
       "id": "Music local folder scanning",
       "desktop_source": "src-tauri/src/music/connectors/local/scan.rs",
-      "verdict": "P",
-      "note": "music local folder scanning: the unchanged-file and removed-file rules exist as tested helpers (8 Nov, written by Haiku, uncompiled); imports are still a one-time copy with no rescan"
+      "verdict": "D",
+      "note": "The local music library tracks a selected iOS Files folder and rescans it by size and modification time. It preserves playlist identities, keeps manually removed paths suppressed and prunes managed copies only after a complete traversal. Unbookmarkable folders keep one-time import. Apple verification pending."
     },
     {
       "index": 434,

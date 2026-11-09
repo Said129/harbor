@@ -585,6 +585,8 @@ BEHAVIORS = expand("""
 64 D Catalog request planning fills required extras from the first offered option when no explicit value is supplied. Search-only catalogs stay out of browse, and selected genres and skip values override their defaults.
 65 D Catalog planning and the native browser preserve legacy extraSupported declarations through the addon bridge and honor search and skip. Existing installations refresh from their configured manifests.
 66 D Metadata and subtitle resource plans inherit absent manifest types and ID prefixes while respecting explicit overrides. Playback stream requests preserve Desktop's separate stream-specific selector.
+27 D Global search queries the native AniList, Jikan and Kitsu providers, applies Desktop source order, caps and deduplication, and opens results in the normal detail route. Apple and live provider verification pending.
+433 D The local music library tracks a selected iOS Files folder and rescans it by size and modification time. It preserves playlist identities, keeps manually removed paths suppressed and prunes managed copies only after a complete traversal. Unbookmarkable folders keep one-time import. Apple verification pending.
 """)
 
 SETTINGS = expand("""

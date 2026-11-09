@@ -1,5 +1,79 @@
 import Foundation
 
+/// The three public search ports from Desktop's `searchAnime`.
+enum AnimeSearchRequest {
+    static let limit = 8
+    static let maximumQueryBytes = 1_024
+    static let aniListQuery = """
+    query ($q: String, $perPage: Int) {
+      Page(perPage: $perPage) {
+        media(search: $q, type: ANIME, sort: SEARCH_MATCH) {
+          id
+          idMal
+          format
+          title { romaji english }
+          coverImage { extraLarge large }
+          bannerImage
+          seasonYear
+          averageScore
+          description
+          countryOfOrigin
+        }
+      }
+    }
+    """
+
+    static func normalizedQuery(_ raw: String) -> String? {
+        let query = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard query.utf16.count >= 2, query.utf8.count <= maximumQueryBytes,
+              !query.unicodeScalars.contains(where: CharacterSet.controlCharacters.contains) else { return nil }
+        return query
+    }
+
+    static func jikanURL(query: String) -> URL? {
+        guard let query = normalizedQuery(query) else { return nil }
+        var components = URLComponents()
+        components.scheme = "https"; components.host = "api.jikan.moe"; components.path = "/v4/anime"
+        components.queryItems = [
+            URLQueryItem(name: "q", value: query), URLQueryItem(name: "order_by", value: "popularity"),
+            URLQueryItem(name: "sort", value: "asc"), URLQueryItem(name: "limit", value: String(limit)),
+            URLQueryItem(name: "sfw", value: "true"),
+        ]
+        return components.url
+    }
+
+    static func kitsuURL(query: String) -> URL? {
+        guard let query = normalizedQuery(query) else { return nil }
+        var components = URLComponents()
+        components.scheme = "https"; components.host = "kitsu.io"; components.path = "/api/edge/anime"
+        components.queryItems = [
+            URLQueryItem(name: "filter[text]", value: query), URLQueryItem(name: "page[limit]", value: String(limit)),
+            URLQueryItem(name: "sort", value: "-userCount"),
+        ]
+        return components.url
+    }
+}
+
+private func animeSearchWithTimeout(
+    _ timeout: Duration,
+    operation: @escaping @Sendable () async throws -> [AnimeSearchCandidate]
+) async -> [AnimeSearchCandidate] {
+    await withTaskGroup(of: [AnimeSearchCandidate].self) { group in
+        group.addTask {
+            do { return try await operation() }
+            catch { return [] }
+        }
+        group.addTask {
+            do { try await Task.sleep(for: timeout) }
+            catch { return [] }
+            return []
+        }
+        let result = await group.next() ?? []
+        group.cancelAll()
+        return result
+    }
+}
+
 actor AnimeService {
     static let shared = AnimeService()
     private let http = HTTPClient()
@@ -13,6 +87,48 @@ actor AnimeService {
         try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("harbor-public-anime-rails.json")
     }
     private static let fallbackAge: TimeInterval = 7 * 24 * 3_600
+
+    /// Desktop's global search order and per-source timeout: AniList, Jikan, then Kitsu.
+    /// Provider failures and timeouts are isolated so the addon and TMDB search results still render.
+    func search(_ rawQuery: String) async -> [Media] {
+        guard let query = AnimeSearchRequest.normalizedQuery(rawQuery) else { return [] }
+        async let anilist = animeSearchWithTimeout(.milliseconds(1_500)) { try await self.searchAniList(query) }
+        async let jikan = animeSearchWithTimeout(.milliseconds(1_200)) { try await self.searchJikan(query) }
+        async let kitsu = animeSearchWithTimeout(.seconds(3)) { try await self.searchKitsu(query) }
+        let anilistResults = await anilist
+        let jikanResults = await jikan
+        let kitsuResults = await kitsu
+        guard !Task.isCancelled else { return [] }
+        return SearchRanking.mergeAnime([anilistResults, jikanResults, kitsuResults], limit: AnimeSearchRequest.limit).compactMap(\.media)
+    }
+
+    private func searchAniList(_ query: String) async throws -> [AnimeSearchCandidate] {
+        let variables: [String: JSONValue] = ["q": .string(query), "perPage": .integer(Int64(AnimeSearchRequest.limit))]
+        let data = try await AniListClient(transport: AniListHTTPTransport()).request(AnimeSearchRequest.aniListQuery, variables: variables, token: nil)
+        let values = data["Page"]["media"].array
+        guard values.count <= AnimeSearchRequest.limit else { throw HarborError(code: "anime-response") }
+        return values.compactMap { value in
+            guard let entry = AnimeFranchiseEntry.anilist(value) else { return nil }
+            var media = entry.media
+            media.poster = Self.safeAnimeImage(value["coverImage"]["large"].string) ?? Self.safeAnimeImage(value["coverImage"]["extraLarge"].string)
+            media.background = Self.safeAnimeImage(value["bannerImage"].string)
+            return AnimeSearchCandidate(malId: value["idMal"].integer ?? 0, name: media.name, media: media)
+        }
+    }
+
+    private func searchJikan(_ query: String) async throws -> [AnimeSearchCandidate] {
+        guard let url = AnimeSearchRequest.jikanURL(query: query) else { return [] }
+        let values = try await fetchJikan(url: url, limit: AnimeSearchRequest.limit)
+        return values.compactMap(Self.jikanSearchCandidate)
+    }
+
+    private func searchKitsu(_ query: String) async throws -> [AnimeSearchCandidate] {
+        guard let url = AnimeSearchRequest.kitsuURL(query: query) else { return [] }
+        let response = try await http.json(url.absoluteString, timeout: 3, accept: "application/vnd.api+json")
+        let values = response["data"].array
+        guard values.count <= AnimeSearchRequest.limit else { throw HarborError(code: "anime-response") }
+        return values.compactMap(Self.kitsuSearchCandidate)
+    }
 
     static func definitions() -> [DiscoveryRail] {
         [DiscoveryRail(id: "anime-picks", title: "Top Picks for You", kind: "anime", path: "anime:picks"),
@@ -182,17 +298,26 @@ actor AnimeService {
         }
         throw HarborError(code: "anime-catalog")
     }
-    private func fetchJikan(path: String, parameters: [String: String]) async throws -> [JSONValue] {
+    private func fetchJikan(path: String, parameters: [String: String], limit: Int = 25) async throws -> [JSONValue] {
+        let boundedLimit = min(max(1, limit), 25)
+        var url = URLComponents(string: "https://api.jikan.moe/v4/" + path)!
+        var params = parameters; params["limit"] = String(boundedLimit); params["sfw"] = "true"
+        url.queryItems = params.sorted { $0.key < $1.key }.map { URLQueryItem(name: $0.key, value: $0.value) }
+        guard let requestURL = url.url else { throw HarborError(code: "invalid-anime-request") }
+        return try await fetchJikan(url: requestURL, limit: boundedLimit)
+    }
+
+    private func fetchJikan(url: URL, limit: Int) async throws -> [JSONValue] {
+        guard url.scheme == "https", url.host == "api.jikan.moe", url.port == nil, url.path.hasPrefix("/v4/") else {
+            throw HarborError(code: "invalid-anime-request")
+        }
         // Reserve before suspension so simultaneous genre/era rows respect provider limits.
         let delay = max(0, nextJikan.timeIntervalSinceNow)
         nextJikan = Date().addingTimeInterval(delay + 0.45)
         if delay > 0 { try await Task.sleep(for: .seconds(delay)) }
         try Task.checkCancellation()
-        var url = URLComponents(string: "https://api.jikan.moe/v4/" + path)!
-        var params = parameters; params["limit"] = "25"; params["sfw"] = "true"
-        url.queryItems = params.sorted { $0.key < $1.key }.map { URLQueryItem(name: $0.key, value: $0.value) }
-        let response = try await http.json(url.url!.absoluteString)
-        guard case .array(let values) = response["data"], values.count <= 25 else { throw HarborError(code: "anime-response") }
+        let response = try await http.json(url.absoluteString)
+        guard case .array(let values) = response["data"], values.count <= limit else { throw HarborError(code: "anime-response") }
         return values
     }
 
@@ -280,6 +405,59 @@ actor AnimeService {
         if let score = value["averageScore"].numericValue, score > 0 { media.imdbRating = String(format: "%.1f", score / 10); media.ratingSource = "AniList" }
         return media
     }
+    static func jikanSearchCandidate(_ value: JSONValue) -> AnimeSearchCandidate? {
+        guard let id = value["mal_id"].integer, id > 0 else { return nil }
+        let name = [value["title_english"].string, value["title"].string]
+            .compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .first { !$0.isEmpty } ?? "Untitled"
+        let format = value["type"].string
+        let lowerFormat = format?.lowercased()
+        var media = Media(id: "mal:\(id)", type: lowerFormat == "movie" || lowerFormat == "film" ? "movie" : "series", name: name)
+        media.animeFormat = format?.uppercased()
+        media.poster = safeAnimeImage(value["images"]["jpg"]["image_url"].string)
+            ?? safeAnimeImage(value["images"]["jpg"]["large_image_url"].string)
+        media.background = safeAnimeImage(value["trailer"]["images"]["maximum_image_url"].string)
+        media.description = plain(value["synopsis"].string)
+        let year = value["year"].integer.map(String.init)
+            ?? value["aired"]["from"].string.map { String($0.prefix(4)) }.flatMap { Int($0) != nil ? $0 : nil }
+        media.releaseInfo = year
+        media.genres = value["genres"].array.compactMap { $0["name"].string }
+        if let score = value["score"].numericValue, score > 0, score <= 10 {
+            media.imdbRating = String(format: "%.1f", score); media.ratingSource = "MAL"
+        }
+        return AnimeSearchCandidate(malId: id, name: media.name, media: media)
+    }
+
+    static func kitsuSearchCandidate(_ value: JSONValue) -> AnimeSearchCandidate? {
+        guard value["type"].string == "anime", let id = AnimeFranchiseEntry.positiveID(value["id"]),
+              case .object = value["attributes"] else { return nil }
+        let attributes = value["attributes"]
+        let title = [attributes["titles"]["en"].string, attributes["canonicalTitle"].string]
+            .compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .first { !$0.isEmpty } ?? "Untitled"
+        let subtype = attributes["subtype"].string?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let normalizedSubtype = subtype?.lowercased()
+        var media = Media(id: "kitsu:\(id)", type: normalizedSubtype == "movie" || normalizedSubtype == "film" ? "movie" : "series", name: title)
+        media.animeFormat = subtype?.uppercased()
+        media.poster = safeAnimeImage(attributes["posterImage"]["medium"].string)
+            ?? safeAnimeImage(attributes["posterImage"]["large"].string)
+        media.background = safeAnimeImage(attributes["coverImage"]["large"].string)
+        media.description = attributes["synopsis"].string ?? ""
+        if let year = attributes["startDate"].string.map({ String($0.prefix(4)) }), Int(year) != nil, year != "0000" {
+            media.releaseInfo = year
+        }
+        if let score = attributes["averageRating"].textValue.flatMap(Double.init), score > 0, score <= 100 {
+            media.imdbRating = String(format: "%.1f", score / 10); media.ratingSource = "Kitsu"
+        }
+        return AnimeSearchCandidate(malId: 0, name: media.name, media: media)
+    }
+
+    private static func safeAnimeImage(_ raw: String?) -> String? {
+        guard let raw, let url = URL(string: raw), url.scheme == "https", url.host != nil,
+              url.user == nil, url.password == nil else { return nil }
+        return raw
+    }
+
     private static func jikanMedia(_ value: JSONValue) -> Media? {
         guard let id = value["mal_id"].integer, let name = value["title_english"].string ?? value["title"].string else { return nil }
         var media = Media(id: "mal:\(id)", type: value["type"].string == "Movie" ? "movie" : "series", name: name)

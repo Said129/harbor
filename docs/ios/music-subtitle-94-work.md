@@ -1962,3 +1962,20 @@ refuses redirects for that request and discards downloads for a replaced
 playback session. Test fixtures cover the archive selection, traversal guard,
 credential boundary and built-in provider fallback. Live services and native
 validation remain pending. The physical subtitle seek defect is still open.
+
+## Public anime search and local music rescans
+
+Run 42534579007 built the corrected Manga reader and passed all three selected
+local-season, XMLTV and bundled-mpv cases. Run 42534875140 passed both catalog
+planning and name-normalization cases. Both result archives matched their
+GitHub SHA-256 digests.
+
+Global anime search now queries AniList, Jikan and Kitsu, combining their hits
+in one Anime row. Existing addon and TMDB results keep their own routes and
+late results are scoped to the current search.
+
+Music can recheck a selected Files folder. New and changed files are staged
+before publishing the index, and managed copies are pruned only after a
+complete scan. Older manually imported tracks are preserved. Folder sources
+that cannot be bookmarked retain the one-time import. Focused tests cover the
+real local-copy rescan transaction as well as source and migration rules.

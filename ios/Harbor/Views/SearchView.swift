@@ -47,7 +47,8 @@ struct SearchView: View {
     private var isTitleQuery: Bool { if case .query = linkInput { true } else { false } }
     /// Desktop shows the sequels and prequels of the best match when that match is an anime (`topMatchIsAnime`).
     private var topAnime: Media? {
-        guard isTitleQuery, completedQuery != nil, let first = SearchPresentation.rows(rows).first, first.isAnimeCatalog else { return nil }
+        guard isTitleQuery, completedQuery != nil, let first = SearchPresentation.rows(rows).first,
+              first.id != SearchAnimeSource.rowID, first.isAnimeCatalog else { return nil }
         return first.metas.first
     }
     /// Desktop's "Ask AI" entry: a screen that finds titles from a plain-language request with the person's own key.
@@ -84,28 +85,55 @@ struct SearchView: View {
     private func search() async {
         let request = UUID(); generation = request
         let requestedQuery = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        let requestContext = app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined()
         rows = []; error = nil; completedQuery = nil; loading = !requestedQuery.isEmpty
         guard !requestedQuery.isEmpty, case .query = SearchInput.classify(requestedQuery) else { loading = false; return }
         do {
             try await Task.sleep(for: .milliseconds(300))
-            let providers = try await app.service.catalogProviders(app.addons)
-            let (result, warnings) = try await app.service.catalogs(providers, search: requestedQuery, onRow: { row in
-                guard generation == request, query.trimmingCharacters(in: .whitespacesAndNewlines) == requestedQuery else { return }
-                if let index = rows.firstIndex(where: { $0.id == row.id }) { rows[index] = row }
-                else { rows.append(row) }
-                completedQuery = requestedQuery
-            })
+            async let animeSearch = AnimeService.shared.search(requestedQuery)
+            var addonRows: [CatalogRow] = []
+            var warnings: [String] = []
+            var addonPlanningFailed = false
+            do {
+                let providers = try await app.service.catalogProviders(app.addons)
+                (addonRows, warnings) = try await app.service.catalogs(providers, search: requestedQuery, onRow: { row in
+                    guard isCurrent(request, query: requestedQuery, context: requestContext) else { return }
+                    if let index = rows.firstIndex(where: { $0.id == row.id }) { rows[index] = row }
+                    else { rows.append(row) }
+                    completedQuery = requestedQuery
+                })
+            } catch is CancellationError { throw CancellationError() }
+            catch {
+                // Keep any rows already streamed into the view while public providers continue independently.
+                addonRows = rows
+                addonPlanningFailed = true
+            }
             try Task.checkCancellation()
-            let tmdbRows = await SearchTMDBSource.rows(query: requestedQuery, addonRows: result, configuration: MetadataPreferences.shared.configuration())
-            guard generation == request, query.trimmingCharacters(in: .whitespacesAndNewlines) == requestedQuery else { return }
-            rows = SearchPresentation.rows(result + tmdbRows)
+            async let tmdbSearch = SearchTMDBSource.rows(query: requestedQuery, addonRows: addonRows, configuration: MetadataPreferences.shared.configuration())
+            let tmdbRows = await tmdbSearch
+            guard isCurrent(request, query: requestedQuery, context: requestContext) else { return }
+            rows = SearchPresentation.rows(addonRows + tmdbRows)
             completedQuery = requestedQuery
-            error = warnings.isEmpty || result.contains(where: { !$0.metas.isEmpty }) ? nil : "No se pudo completar la búsqueda. Reintentar puede recuperar los resultados."
+            let anime = await animeSearch
+            try Task.checkCancellation()
+            guard isCurrent(request, query: requestedQuery, context: requestContext) else { return }
+            let animeRows = SearchAnimeSource.row(metas: anime, excluding: (addonRows + tmdbRows).flatMap(\.metas)).map { [$0] } ?? []
+            rows = SearchPresentation.rows(addonRows + tmdbRows + animeRows)
+            completedQuery = requestedQuery
+            let hasResults = rows.contains(where: { !$0.metas.isEmpty })
+            error = (addonPlanningFailed || !warnings.isEmpty) && !hasResults
+                ? "No se pudo completar la búsqueda. Reintentar puede recuperar los resultados."
+                : nil
             loading = false
         } catch is CancellationError { return }
         catch {
-            guard generation == request, !Task.isCancelled, query.trimmingCharacters(in: .whitespacesAndNewlines) == requestedQuery else { return }
+            guard !Task.isCancelled, isCurrent(request, query: requestedQuery, context: requestContext) else { return }
             self.error = safeMessage(error); loading = false
         }
+    }
+
+    private func isCurrent(_ request: UUID, query requestedQuery: String, context: String) -> Bool {
+        generation == request && query.trimmingCharacters(in: .whitespacesAndNewlines) == requestedQuery
+            && app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined() == context
     }
 }

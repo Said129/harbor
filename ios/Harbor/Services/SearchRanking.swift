@@ -12,6 +12,14 @@ struct AnimeSearchCandidate: Equatable, Sendable {
     /// The MyAnimeList id, or 0 when the source has none (Kitsu).
     let malId: Int
     let name: String
+    /// The provider-native media record to keep when this candidate survives the merge.
+    let media: Media?
+
+    init(malId: Int, name: String, media: Media? = nil) {
+        self.malId = malId
+        self.name = name
+        self.media = media
+    }
 }
 
 /// Desktop's pure search rules from `src/lib/search.ts`: the top match, the query intent, the key that

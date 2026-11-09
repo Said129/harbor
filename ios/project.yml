@@ -238,6 +238,7 @@ targets:
       - path: HarborTests/WireUITests.swift
       - path: HarborTests/R19BadgesTests.swift
       - path: HarborTests/R24SearchTests.swift
+      - path: HarborTests/AnimeSearchTests.swift
       - path: HarborTests/R23TrackersTests.swift
       - path: HarborTests/R21HomeTests.swift
       - path: HarborTests/G2SportsTests.swift
@@ -267,6 +268,7 @@ targets:
       - path: HarborTests/G1MangaTests.swift
       - path: HarborTests/R24SubsTests.swift
       - path: HarborTests/R22MmsTests.swift
+      - path: HarborTests/MusicFolderRescanTests.swift
       - path: HarborTests/R21AddonsTests.swift
       - path: HarborTests/ContentAdvisoryTests.swift
       - path: HarborTests/TogetherPlayerSyncTests.swift

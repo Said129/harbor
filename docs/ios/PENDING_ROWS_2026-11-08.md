@@ -3,7 +3,7 @@
 Cada fila: `lista indice | id | verdicto | hueco`. P = parcial, M = falta. El indice vuelve a empezar en 1 en cada lista (`behaviors`, `settings`).
 El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo de iOS y el fuente de Desktop (`desktop_source` del inventario `desktop-parity-0.9.132.json`).
 
-## behaviors (119 filas)
+## behaviors (117 filas)
 
 - B 1 | Home hero and real catalogs | P | iOS never fetches Desktop's hosted hero pool: the trending feed falls back to the first catalog titles, and the trakt and simkl feeds only pick an already-loaded rail whose name contains that service. The Desktop 4... [Desktop: src/views/home.tsx]
 - B 2 | Continue Watching on Home | P | Continue Watching on Home: the empty-state box and the one-card-per-title pass with the 100-card cap are in (8 Nov, written by Haiku, uncompiled); franchise-root removal is not, and Desktop's signed-out Stremio prompt is replaced by the empty message because iOS has no Stremio sign-in [Desktop: src/views/home.tsx]
@@ -21,7 +21,6 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 20 | Anime award winners | P | DesktopAnimeRows and MAL/AniList public rows [Desktop: src/views/anime.tsx]
 - B 21 | Anime Top Picks | P | DesktopAnimeRows and MAL/AniList public rows [Desktop: src/views/anime.tsx]
 - B 22 | Global search | P | global search: with a TMDB key the search adds Desktop's TMDB movie and series rows after the addon rows, leaving out titles an addon row already shows (8 Nov, written by Haiku, uncompiled); the top-match ranking and the year or genre intent exist as helpers that no screen uses [Desktop: src/lib/search.ts]
-- B 27 | Search anime | P | search anime: the merge rule (source order, repeated ids and names skipped, cap of 8) exists (8 Nov, written by Haiku, uncompiled); iOS has no AniList, Jikan or Kitsu text search client to feed it [Desktop: src/components/search]
 - B 30 | Search magnet links | P | magnet and info-hash card plays through debrid only (5 Nov, uncompiled) [Desktop: src/components/search]
 - B 33 | Real content details | P | real content details: the shared crew rules (three or more shared films, the line text) exist as helpers (8 Nov, written by Haiku, uncompiled); there is no crew query, cache or line on the page and no detail layout editor [Desktop: src/views/detail.tsx]
 - B 34 | Poster / backdrop / logo | P | poster, backdrop and logo: the title page logo now resolves through CardArtworkResolver after the saved choice and the season artwork (8 Nov, written by Haiku, uncompiled); the resolver only accepts TMDB and anime ids, so IMDb titles keep the metadata logo [Desktop: src/views/detail.tsx]
@@ -123,7 +122,6 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 401 | Sports configured broadcast sources | P | iOS has no per-event attached sources, no matching of playlist channels to the game, and no page-URL stream resolver; it only starts a Live TV search for the first broadcast name. [Desktop: src/lib/sports/stream-resolver.ts]
 - B 424 | Music audio cover import | P | music audio cover import: a sidecar cover (cover, folder, front) fills in when there is no embedded art, for folder imports; the front-cover tag preference is not possible with AVFoundation's artwork key (8 Nov, written by Haiku, uncompiled) [Desktop: src-tauri/src/music/connectors/local/tags.rs]
 - B 426 | Music playback queue | P | music playback queue: the queue continuation rule exists as a tested helper (8 Nov, written by Haiku, uncompiled); nothing loads more tracks when the queue ends [Desktop: src-tauri/src/music/commands/playback.rs]
-- B 433 | Music local folder scanning | P | music local folder scanning: the unchanged-file and removed-file rules exist as tested helpers (8 Nov, written by Haiku, uncompiled); imports are still a one-time copy with no rescan [Desktop: src-tauri/src/music/connectors/local/scan.rs]
 
 ## settings (33 filas)
 

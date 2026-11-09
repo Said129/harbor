@@ -92,6 +92,10 @@ struct MusicView: View {
                     Button { spotifySettings = true } label: { Label("Spotify · Free / Premium", systemImage: "music.note") }
                     Button { serverSettings = true } label: { Label(DesktopInterfaceText.value("music.connections.server"), systemImage: "server.rack") }.accessibilityIdentifier("music-server-open")
                     Button { metadataSettings = true } label: { Label(DesktopInterfaceText.value("Metadata"), systemImage: "info.circle") }.accessibilityIdentifier("music-metadata-open")
+                    if library.hasTrackedFolder {
+                        Button { library.rescanFolder() } label: { Label(DesktopInterfaceText.value("Refresh"), systemImage: "arrow.clockwise") }
+                            .disabled(!library.ready || library.importing).accessibilityIdentifier("music-folder-rescan")
+                    }
                     Button { openImport(folder: false) } label: { Label(DesktopInterfaceText.value("Import files"), image: "music-plus") }.disabled(!library.ready || library.importing)
                     Button { openImport(folder: true) } label: { Label(DesktopInterfaceText.value("Import folder"), image: "music-folder-open") }.disabled(!library.ready || library.importing)
                 } label: { MusicGlyph("plus").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("Options")).accessibilityIdentifier("music-actions")

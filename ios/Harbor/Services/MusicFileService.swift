@@ -89,9 +89,15 @@ actor MusicFileService {
     nonisolated private static func validCover(_ name: String) -> Bool {
         name.count == 68 && name.hasSuffix(".jpg") && name.prefix(64).allSatisfy { "0123456789abcdef".contains($0) }
     }
-    func remove(_ record: MusicRecord, owner: String) throws {
+    func remove(_ record: MusicRecord, owner: String, keeping records: [MusicRecord] = []) throws {
+        try remove(record, owner: owner, keepingFilenames: Set(records.map(\.filename)), keepingCovers: Set(records.compactMap(\.cover)))
+    }
+    func remove(_ record: MusicRecord, owner: String, keepingFilenames: Set<String>, keepingCovers: Set<String>) throws {
+        guard !keepingFilenames.contains(record.filename) else { return }
         try FileManager.default.removeItem(at: Self.file(record, owner: owner))
-        if let name = record.cover, Self.validCover(name) { try? FileManager.default.removeItem(at: Self.root(owner: owner).appendingPathComponent(name)) }
+        if let name = record.cover, Self.validCover(name), !keepingCovers.contains(name) {
+            try? FileManager.default.removeItem(at: Self.root(owner: owner).appendingPathComponent(name))
+        }
     }
 }
 
