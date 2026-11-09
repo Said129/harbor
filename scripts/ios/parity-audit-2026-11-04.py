@@ -591,6 +591,7 @@ BEHAVIORS = expand("""
 53 D Installed addon links share via stremio and open the iOS install form when delivered by the OS. The configured manifest path and query are preserved, with a visible host and explicit install action.
 364 P Harbor and Stremio detail links now open the iOS title screen with episode hints, and Stremio manifests open the installer. Desktop list, music and profile routes and browser URL handoffs remain pending.
 1 P Home uses Desktop's public Trending, Trakt and Simkl pools with a three-hour cache, explicit rail priority, catalog fallback, and per-title ranking. Native base catalog composition and some personal rails still differ.
+11 P Movies uses Desktop's five TMDB requests, daily ordering, recent-play exclusion and fallback. The native carousel pauses for horizontal drag, pointer hover, the viewport and backgrounding. Native motion and live catalog validation remain pending.
 """)
 
 SETTINGS = expand("""

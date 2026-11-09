@@ -53,13 +53,27 @@ struct CinemaHero: View {
     var homeRanks: [String: HomeHeroRank]? = nil
     @State private var selected = 0
     @State private var showsRanking = false
+    @State private var nearViewport = true
+    @State private var hovering = false
+    @GestureState private var dragging = false
     @Environment(\.locale) private var locale
+    @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key, language: locale.identifier) }
     private let layout = HeroLayoutPreferences.shared
     private var shadeColors: [Color] {
         [.black.opacity(HeroLayoutPolicy.topStopOpacity), HarborTheme.background.opacity(HeroLayoutPolicy.middleStopOpacity(shadowPercent: layout.shadowPercent)), HarborTheme.background]
     }
     private func heroHeight(_ container: CGFloat) -> CGFloat { HeroLayoutPolicy.heroHeight(full: layout.full, container: container) }
+    private var slideCount: Int { min(5, metas.count) }
+    private var rotatingSlides: Int {
+        CinemaHeroRotation.canAdvance(count: slideCount, visible: nearViewport, foreground: scenePhase == .active,
+                                      interacting: dragging || hovering || showsRanking) ? slideCount : 0
+    }
+
+    private func move(to index: Int) {
+        withAnimation(reduceMotion ? nil : .timingCurve(0.32, 0.72, 0.24, 1, duration: 0.7)) { selected = index }
+    }
     var body: some View {
         VStack(spacing: 14) {
             TabView(selection: $selected) {
@@ -69,7 +83,7 @@ struct CinemaHero: View {
                             CustomListArtwork(media: media, url: TitleArtworkPreferences.shared.value(.backdrop, id: media.artworkID) ?? media.background ?? (media.type == "manga" ? media.poster : nil),
                                 fallback: media.fallbackBackground, fallbacks: [TitleArtworkPreferences.shared.value(.poster, id: media.artworkID), media.poster].compactMap { $0 }, maxPixels: HeroLayoutPolicy.artworkMaxPixels(fullQuality: layout.fullQuality))
                                 .frame(width: geometry.size.width, height: geometry.size.height).accessibilityHidden(true)
-                            HeroTrailerBackdrop(videoID: HeroTrailerPolicy.trailerID(in: media.details?.trailers ?? []), placement: .hero, slideActive: selected == index)
+                            HeroTrailerBackdrop(videoID: HeroTrailerPolicy.trailerID(in: media.details?.trailers ?? []), placement: .hero, slideActive: selected == index && !dragging && nearViewport)
                                 .frame(width: geometry.size.width, height: geometry.size.height)
                             LinearGradient(colors: shadeColors, startPoint: .top, endPoint: .bottom).accessibilityHidden(true)
                             VStack(alignment: .leading, spacing: 14) {
@@ -106,29 +120,36 @@ struct CinemaHero: View {
                     }.tag(index).accessibilityElement(children: .contain).accessibilityIdentifier(index == 0 ? "home-hero" : "hero-page-\(index)")
                 }
             }.tabViewStyle(.page(indexDisplayMode: .never)).containerRelativeFrame(.vertical) { length, _ in heroHeight(length) }
+                .simultaneousGesture(DragGesture(minimumDistance: 6).updating($dragging) { value, state, _ in
+                    state = abs(value.translation.width) >= abs(value.translation.height)
+                }, including: slideCount > 1 ? .all : .none)
             if metas.count > 1 {
                 HStack(spacing: 7) {
-                    ForEach(0..<min(5, metas.count), id: \.self) { index in
-                        Button { withAnimation { selected = index } } label: { Capsule().fill(selected == index ? .white : .white.opacity(0.3)).frame(width: selected == index ? 24 : 7, height: 4).frame(minHeight: 24) }.accessibilityLabel("Destacado \(index + 1)")
+                    ForEach(0..<slideCount, id: \.self) { index in
+                        Button { move(to: index) } label: { Capsule().fill(selected == index ? .white : .white.opacity(0.3)).frame(width: selected == index ? 24 : 7, height: 4).frame(minHeight: 24) }.accessibilityLabel("Destacado \(index + 1)")
                     }
                 }
             }
             if !moreInfo, let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
         }
+        .onHover { hovering = $0 }
+        .onGeometryChange(for: Bool.self) { proxy in
+            guard let bounds = proxy.bounds(of: .scrollView) else { return true }
+            let viewport = CGRect(origin: .zero, size: bounds.size).insetBy(dx: -100, dy: -100)
+            return proxy.frame(in: .scrollView).intersects(viewport)
+        } action: { nearViewport = $0 }
         .onChange(of: metas.map(\.identity)) { _, _ in
             showsRanking = false
-            if selected >= min(5, metas.count) { selected = 0 }
+            if selected >= slideCount { selected = 0 }
         }
         .onChange(of: selected) { _, _ in showsRanking = false }
-        .task(id: min(5, metas.count)) {
-            // Desktop's cinema hero moves on its own every `ROTATE_MS` while it has more than one title.
-            let count = min(5, metas.count)
+        .task(id: rotatingSlides) {
+            let count = rotatingSlides
             guard count > 1 else { return }
             while !Task.isCancelled {
                 try? await Task.sleep(for: CinemaHeroRotation.interval)
-                guard !Task.isCancelled else { return }
-                guard !showsRanking else { continue }
-                withAnimation { selected = CinemaHeroRotation.next(after: selected, count: count) }
+                guard !Task.isCancelled, rotatingSlides == count else { return }
+                move(to: CinemaHeroRotation.next(after: selected, count: count))
             }
         }
     }

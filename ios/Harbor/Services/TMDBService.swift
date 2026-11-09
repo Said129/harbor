@@ -84,6 +84,34 @@ struct TMDBService: Sendable {
         guard case .array(let results) = response["results"] else { throw HarborError(code: "invalid-metadata-response") }
         return results.compactMap { makeMedia($0, kind: rail.kind, configuration: configuration) }
     }
+
+    func movieHeroLists(configuration: MetadataConfiguration) async -> [[Media]] {
+        let prestige = ["vote_average.gte": "8.0", "vote_count.gte": "4000", "sort_by": "vote_average.desc"]
+        let modern = ["primary_release_date.gte": "2016-01-01", "vote_average.gte": "7.8",
+                      "vote_count.gte": "2500", "sort_by": "vote_average.desc"]
+        // Keep Desktop's merge order even when a lower-priority request finishes first.
+        let requests = [
+            ("discover/movie", prestige.merging(["page": "1"]) { _, page in page }),
+            ("movie/top_rated", ["page": "1", "region": "US"]),
+            ("discover/movie", modern.merging(["page": "1"]) { _, page in page }),
+            ("discover/movie", prestige.merging(["page": "2"]) { _, page in page }),
+            ("movie/top_rated", ["page": "2", "region": "US"]),
+        ]
+        return await withTaskGroup(of: (Int, [Media]).self) { group in
+            for (index, request) in requests.enumerated() {
+                group.addTask {
+                    let (path, parameters) = request
+                    let response = try? await self.get(path, parameters: parameters, configuration: configuration)
+                    let results = response?["results"].array ?? []
+                    let media = results.compactMap { self.makeMedia($0, kind: "movie", configuration: configuration) }
+                    return (index, media)
+                }
+            }
+            var lists = Array(repeating: [Media](), count: requests.count)
+            for await (index, media) in group { lists[index] = media }
+            return lists
+        }
+    }
     private func makeMedia(_ value: JSONValue, kind: String, configuration: MetadataConfiguration) -> Media? {
             guard let id = value["id"].integer, let title = value[kind == "movie" ? "title" : "name"].string else { return nil }
             let original = value[kind == "movie" ? "original_title" : "original_name"].string

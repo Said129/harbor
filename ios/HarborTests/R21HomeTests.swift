@@ -80,4 +80,32 @@ final class R21HomeTests: XCTestCase {
         XCTAssertEqual(DailyHeroRotation.pick(["x"], count: 5, day: 3), ["x"])
         XCTAssertEqual(DailyHeroRotation.pick([String](), count: 5, day: 3), [])
     }
+
+    func testMovieHeroFiltersRecentlyPlayedByIdAndTitleOnlyWhenFiveAlternativesRemain() {
+        func movie(_ id: String, name: String? = nil, art: Bool = true) -> Media {
+            Media(id: id, type: "movie", name: name ?? id, background: art ? "https://example.com/backdrop.jpg" : nil)
+        }
+        let recent = DailyHeroRotation.RecentMovies([
+            "watched-id|s1e1": .init(savedAt: 1),
+            "legacy-id": .init(parsedTitle: "Seen Film (2020)", savedAt: 2),
+        ])
+        let watched = movie("watched-id")
+        let alias = movie("new-id", name: "Seen-Film")
+        let candidates = [watched, alias, movie("a"), movie("b"), movie("missing-art", art: false)]
+        let other = [movie("a", name: "Duplicate from a later source"), movie("c"), movie("d"), movie("e")]
+        let filtered = DailyHeroRotation.movies([candidates, other], recent: recent, day: 0)
+        XCTAssertEqual(filtered.map(\.id), ["a", "c", "e", "b", "d"])
+        XCTAssertEqual(filtered.first?.name, "a")
+        let fallback = DailyHeroRotation.movies([candidates, Array(other.dropLast())], recent: recent, day: 0)
+        XCTAssertEqual(fallback.count, 5)
+        XCTAssertTrue(fallback.contains(where: { $0.id == watched.id }))
+    }
+
+    func testCinemaHeroRotationPausesWhileInteractingOutsideViewportOrInBackground() {
+        XCTAssertTrue(CinemaHeroRotation.canAdvance(count: 5, visible: true, foreground: true, interacting: false))
+        XCTAssertFalse(CinemaHeroRotation.canAdvance(count: 1, visible: true, foreground: true, interacting: false))
+        XCTAssertFalse(CinemaHeroRotation.canAdvance(count: 5, visible: false, foreground: true, interacting: false))
+        XCTAssertFalse(CinemaHeroRotation.canAdvance(count: 5, visible: true, foreground: false, interacting: false))
+        XCTAssertFalse(CinemaHeroRotation.canAdvance(count: 5, visible: true, foreground: true, interacting: true))
+    }
 }

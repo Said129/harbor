@@ -304,7 +304,7 @@
       "id": "Cinema hero",
       "desktop_source": "src/views/movies.tsx",
       "verdict": "P",
-      "note": "cinema hero: auto-advance every 11 seconds and the daily pick of titles with artwork for the movie hero (8 Nov, written by Haiku, uncompiled); no pause on drag, no exclusion of recently played titles, and the pool is the iOS rails rather than Desktop's TMDB pool"
+      "note": "Movies uses Desktop's five TMDB requests, daily ordering, recent-play exclusion and fallback. The native carousel pauses for horizontal drag, pointer hover, the viewport and backgrounding. Native motion and live catalog validation remain pending."
     },
     {
       "index": 12,

@@ -2111,3 +2111,13 @@ still takes priority, and Classic uses the local feed. Home's four displayed
 slides determine Top 10 exclusions. The native ranking badge reveals provider
 positions on tap. Tests cover parsing, source priority, cache reuse and the
 offline fallback. Native build and UI verification are pending.
+
+## Cinema hero
+
+Movies fetches the five original TMDB lists in parallel and merges them in
+Desktop's source order. The daily five prefer titles with artwork outside the
+profile's 30-day playback history, with matching by source id or normalized
+title. Cinemeta's top movies supply the no-key path. The SwiftUI carousel
+uses its native page swipe, pauses rotation during interaction and outside
+the visible area or foreground, and respects Reduced Motion on its own
+transitions. The two focused policy cases and simulator UI remain pending.

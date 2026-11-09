@@ -25,6 +25,8 @@ final class ContentPageModel {
         rowPaging = [:]; rowHasMore = [:]
         let previousRows = signature == loadedSignature ? rows : []
         let previousCurated = signature == loadedSignature ? curated : []
+        let recentMovies = DailyHeroRotation.RecentMovies(kind == "movie" ? StreamPlaybackHistory.remembered(owner: app.library.owner) : [:])
+        let day = DailyHeroRotation.currentDay()
         rows = previousRows; curated = previousCurated
         if signature != loadedSignature { heroes = []; heroSources = [:] }
         defer { if generation == current { loading = false } }
@@ -34,6 +36,7 @@ final class ContentPageModel {
             if ["movie", "series"].contains(kind) {
                 if !configuration.tmdbKey.isEmpty {
                     let definitions = TMDBService().definitions(kind)
+                    async let movieHero: Void = loadMovieHero(kind: kind, configuration: configuration, recent: recentMovies, day: day, generation: current)
                     await withTaskGroup(of: (Int, DiscoveryRail?).self) { group in
                         for (index, rail) in definitions.enumerated() {
                             group.addTask {
@@ -48,10 +51,13 @@ final class ContentPageModel {
                             fetched.append((index, rail))
                             curated = CatalogRefresh.merge(order: definitions.map(\.id), received: fetched.map(\.1), previous: previousCurated)
                             if !rail.metas.isEmpty { rows = [] }
-                            if heroes.isEmpty { heroes = Array(rail.metas.prefix(5)) }
+                            if kind != "movie", heroes.isEmpty { heroes = Array(rail.metas.prefix(5)) }
                         }
                     }
+                    await movieHero
                 }
+                try Task.checkCancellation()
+                guard current == generation else { return }
                 if !curated.contains(where: { !$0.metas.isEmpty }) {
                     let addon = try await app.service.install(HarborService.cinemetaManifest)
                     let plans: [RequestPlan] = try await app.service.core.call("catalogs", ["addons": try .encoded([addon])])
@@ -77,7 +83,11 @@ final class ContentPageModel {
                             fetched.append((index, row))
                             let ordered = definitions.indices.map { "native-\(kind)-\($0)" }
                             rows = CatalogRefresh.merge(order: ordered, received: fetched.map(\.1), previous: previousRows)
-                            if heroes.isEmpty { heroes = Array(row.metas.prefix(5)) }
+                            if kind == "movie", index == 0, !row.metas.isEmpty {
+                                heroes = DailyHeroRotation.movies([row.metas], recent: recentMovies, day: day)
+                            } else if kind != "movie", heroes.isEmpty {
+                                heroes = Array(row.metas.prefix(5))
+                            }
                         }
                     }
                 }
@@ -142,9 +152,13 @@ final class ContentPageModel {
                 heroes = await AnimeArtwork.shared.enrich(heroes)
                 guard current == generation else { return }
             } else if kind == "movie" {
-                // Desktop's movie hero is a daily pick from titles with artwork (`rotateDaily`).
-                let pool = (curated.flatMap(\.metas) + rows.flatMap(\.metas)).filter { $0.background != nil && seen.insert($0.identity).inserted }
-                heroes = DailyHeroRotation.pick(pool, count: 5, day: DailyHeroRotation.currentDay())
+                if !curated.contains(where: { !$0.metas.isEmpty }),
+                   let top = rows.first(where: { $0.plan.key == "native-movie-0" }) {
+                    heroes = DailyHeroRotation.movies([top.metas], recent: recentMovies, day: day)
+                }
+                if heroes.isEmpty {
+                    heroes = DailyHeroRotation.movies(curated.map(\.metas) + rows.map(\.metas), recent: recentMovies, day: day)
+                }
             } else {
                 heroes = Array((curated.flatMap(\.metas) + rows.flatMap(\.metas)).filter { seen.insert($0.identity).inserted }.prefix(5))
             }
@@ -173,6 +187,14 @@ final class ContentPageModel {
             if hasTitles { loadedSignature = signature }
         } catch is CancellationError { return }
         catch { if current == generation { self.error = safeMessage(error) } }
+    }
+    private func loadMovieHero(kind: String, configuration: MetadataConfiguration, recent: DailyHeroRotation.RecentMovies,
+                               day: Int, generation requestedGeneration: Int) async {
+        guard kind == "movie" else { return }
+        let lists = await TMDBService().movieHeroLists(configuration: configuration)
+        guard !Task.isCancelled, generation == requestedGeneration else { return }
+        let featured = DailyHeroRotation.movies(lists, recent: recent, day: day)
+        if !featured.isEmpty { heroes = featured }
     }
     /// Desktop's `loadMore` (`movies.tsx`): when a movie or series row reaches its end, request its next catalog page,
     /// skip the titles it has, and stop at Desktop's row cap. Native Cinemeta fallback rows never page, as on Desktop.
