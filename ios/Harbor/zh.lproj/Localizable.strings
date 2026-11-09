@@ -981,6 +981,7 @@
 "Favorites" = "收藏";
 "Favorites only" = "Favorites only";
 "Favoritos" = "收藏";
+"Favour titles from where you are" = "优先显示你所在地区的作品";
 "Feature this catalog in the hero carousel" = "在焦点轮播中推荐此目录";
 "Featured" = "精选";
 "Featured at Anime Expo" = "Anime Expo 精选作品";
@@ -1062,6 +1063,7 @@
 "Get a key at" = "获取密钥：";
 "Get an API key" = "获取 API 密钥";
 "Get yours at" = "获取地址：";
+"Give more weight to titles in your languages and region in Discover." = "在「探索」中优先推荐符合你的语言和地区的作品。";
 "Golden Globes" = "金球奖";
 "Golf" = "高尔夫";
 "Goya Awards" = "戈雅奖";

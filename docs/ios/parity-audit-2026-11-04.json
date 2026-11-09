@@ -17,23 +17,23 @@
     "settings": {
       "total": 511,
       "ported": 246,
-      "partial": 31,
+      "partial": 32,
       "missing": 0,
-      "excluded": 234,
-      "counted": 277,
-      "weighted_percent": 94.4,
-      "ported_only_percent": 88.8,
+      "excluded": 233,
+      "counted": 278,
+      "weighted_percent": 94.2,
+      "ported_only_percent": 88.5,
       "ported_or_partial_percent": 100.0
     },
     "all": {
       "total": 949,
       "ported": 507,
-      "partial": 146,
+      "partial": 147,
       "missing": 0,
-      "excluded": 296,
-      "counted": 653,
+      "excluded": 295,
+      "counted": 654,
       "weighted_percent": 88.8,
-      "ported_only_percent": 77.6,
+      "ported_only_percent": 77.5,
       "ported_or_partial_percent": 100.0
     }
   },
@@ -262,7 +262,7 @@
       "id": "Discover personalized feed",
       "desktop_source": "src/views/discover.tsx",
       "verdict": "P",
-      "note": "Discover personalized feed: Desktop's affinity ranking (genre 4, decade 1.5) orders the Trending and Top Rated shelves, and the featured ranking already matched (8 Nov, written by Haiku, uncompiled); exclusions of downvoted titles, the locale penalty and the extra lanes are not ported"
+      "note": "Discover applies profile-scoped locale affinity to Trending and Top Rated and excludes downvoted titles from suggestion pools. The native featured source pool and personalized daily lanes still differ."
     },
     {
       "index": 6,
@@ -6773,8 +6773,8 @@
       "index": 497,
       "id": "feedLocaleBias",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "X",
-      "note": "feed locale bias: iOS Discover has no locale ranking"
+      "verdict": "P",
+      "note": "The per-profile locale preference controls Discover ranking and defaults to on. Desktop's daily Home catalog bias is pending."
     },
     {
       "index": 498,

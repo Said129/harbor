@@ -1,6 +1,12 @@
 import XCTest
 @testable import Harbor
 
+@MainActor private final class DiscoverProfileSettingsMemory: ProfileSettingsPersistence {
+    var state: ProfileSettingsState?
+    func readProfileSettings() throws -> ProfileSettingsState? { state }
+    func writeProfileSettings(_ value: ProfileSettingsState) throws { state = value }
+}
+
 /// The Discover helpers ported from Desktop 0.9.132 (seeded rows, genre rules, affinity ranking, premiere rail), checked without the network.
 final class R24DiscoverTests: XCTestCase {
     func testMulberryMatchesDesktopKnownValues() {
@@ -142,6 +148,84 @@ final class R24DiscoverTests: XCTestCase {
         XCTAssertEqual(DiscoveryAffinityRules.decadeKey(year: "2008-06-01"), "2000s")
         XCTAssertNil(DiscoveryAffinityRules.decadeKey(year: nil))
         XCTAssertNil(DiscoveryAffinityRules.decadeKey(year: ""))
+    }
+
+    func testLocaleBiasUsesDesktopPreferredLanguageFallbackOrder() {
+        let preferred = DiscoveryAffinityRules.localeBias(preferredLanguages: ["eng", "jpn"], metadataLanguage: "es-ES", region: "MX")
+        XCTAssertEqual(preferred.codes, Set(["en", "ja", "es"]))
+        XCTAssertEqual(preferred.penalty, 3)
+
+        let metadata = DiscoveryAffinityRules.localeBias(preferredLanguages: [], metadataLanguage: "es-ES", region: "US")
+        XCTAssertEqual(metadata.codes, Set(["es"]))
+        let region = DiscoveryAffinityRules.localeBias(preferredLanguages: [], metadataLanguage: "", region: "BR")
+        XCTAssertEqual(region.codes, Set(["pt"]))
+        let variants = DiscoveryAffinityRules.localeBias(preferredLanguages: ["pt-br"], metadataLanguage: "es-419", region: "US")
+        XCTAssertEqual(variants.codes, Set(["pt", "es"]))
+        XCTAssertEqual(DiscoveryAffinityRules.localeBias(preferredLanguages: ["eng"], metadataLanguage: "es", region: "ES", enabled: false), .disabled)
+    }
+
+    func testAffinityRankingAppliesLocalePenaltyAndLanguageAffinity() {
+        var english = Media(id: "tmdb:movie:11", type: "movie", name: "English")
+        english.originalLanguage = "en"
+        var french = Media(id: "tmdb:movie:12", type: "movie", name: "French")
+        french.originalLanguage = "fr"
+        let locale = DiscoveryAffinityRules.localeBias(preferredLanguages: ["en"], metadataLanguage: "", region: "US")
+
+        XCTAssertEqual(DiscoveryAffinityRules.ranked([french, english], affinity: .init(), locale: locale).map(\.name), ["English", "French"])
+        var affinity = DiscoveryPreferences.Affinity()
+        affinity.languages = ["fr": 5]
+        XCTAssertEqual(DiscoveryAffinityRules.ranked([french, english], affinity: affinity, locale: locale).map(\.name), ["French", "English"])
+    }
+
+    func testSuggestionPoolsExcludeDownvotedIDsAndTitleAliases() {
+        let exact = Media(id: "downvoted-id", type: "movie", name: "Another title")
+        let alias = Media(id: "tmdb:movie:13", type: "movie", name: "Dune (2021)")
+        let unaffected = Media(id: "tmdb:movie:14", type: "movie", name: "Dune Part Two")
+        let downvotes = [
+            DiscoveryAffinityRules.Downvote(id: "downvoted-id", titleKey: DiscoveryPreferences.titleKey("Unrelated name")),
+            DiscoveryAffinityRules.Downvote(id: "other-provider-id", titleKey: DiscoveryPreferences.titleKey("Dune")),
+        ]
+
+        let remaining = DiscoveryAffinityRules.excludingDownvoted([exact, alias, unaffected], downvotes: downvotes)
+        XCTAssertEqual(remaining.map(\.id), [unaffected.id])
+    }
+
+    @MainActor func testAffinityStoresOriginalLanguageWithinItsProfileScope() throws {
+        let owner = "discover-affinity-test-" + UUID().uuidString
+        let key = DiscoveryPreferences.key(owner)
+        defer { try? KeychainStore().remove(key) }
+        let now = Date(timeIntervalSince1970: 1_791_417_600)
+        var media = Media(id: "tmdb:movie:15", type: "movie", name: "French")
+        media.originalLanguage = "fr"
+        let preferences = DiscoveryPreferences(owner: owner)
+        XCTAssertTrue(preferences.ready)
+        preferences.track(.open, media: media, now: now)
+        XCTAssertEqual(preferences.affinity(now: now).languages["fr"], 1)
+        XCTAssertNil(DiscoveryPreferences(owner: owner + "-other").affinity(now: now).languages["fr"])
+    }
+
+    @MainActor func testLocaleBiasToggleIsStoredPerProfile() throws {
+        let suite = "discover-locale-bias-" + UUID().uuidString
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let persistence = DiscoverProfileSettingsMemory()
+        let store = ProfileSettingsStore(defaults: defaults, persistence: persistence)
+        XCTAssertTrue(ProfileSettingsStore.keys.contains("feedLocaleBias"))
+
+        try store.activate(owner: "profile-a", sharedOwner: "profile-a", migrateLegacy: false)
+        defaults.set(false, forKey: "feedLocaleBias")
+        XCTAssertTrue(store.saveCurrent())
+
+        try store.activate(owner: "profile-b", sharedOwner: "profile-b", migrateLegacy: false)
+        XCTAssertNil(defaults.object(forKey: "feedLocaleBias"))
+        XCTAssertTrue(defaults.object(forKey: "feedLocaleBias") as? Bool ?? true)
+        defaults.set(true, forKey: "feedLocaleBias")
+        try store.activate(owner: "profile-a", sharedOwner: "profile-a", migrateLegacy: false)
+        XCTAssertFalse(defaults.bool(forKey: "feedLocaleBias"))
+
+        let reopened = ProfileSettingsStore(defaults: defaults, persistence: persistence)
+        try reopened.activate(owner: "profile-b", sharedOwner: "profile-b", migrateLegacy: false)
+        XCTAssertTrue(defaults.bool(forKey: "feedLocaleBias"))
     }
 
     func testPremiereRailAndNetworkRailsMatchDesktopSpecs() {

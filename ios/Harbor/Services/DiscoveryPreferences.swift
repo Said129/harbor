@@ -22,11 +22,13 @@ final class DiscoveryPreferences {
     struct Snapshot: Codable, Sendable {
         let genres: [String]
         let decade: String?
+        let language: String?
         init(_ media: Media) {
             genres = Array((media.genres ?? []).prefix(40))
             decade = Int((media.releaseInfo ?? "").prefix(4)).map { "\($0 / 10 * 10)s" }
+            language = media.originalLanguage
         }
-        var valid: Bool { genres.count <= 40 && genres.allSatisfy { $0.utf8.count <= 128 } && (decade?.utf8.count ?? 0) <= 16 }
+        var valid: Bool { genres.count <= 40 && genres.allSatisfy { $0.utf8.count <= 128 } && (decade?.utf8.count ?? 0) <= 16 && (language?.utf8.count ?? 0) <= 128 }
     }
     struct Entry: Codable, Equatable, Sendable {
         let vote: Vote
@@ -152,6 +154,7 @@ final class DiscoveryPreferences {
     struct Affinity {
         var genres: [String: Double] = [:]
         var decades: [String: Double] = [:]
+        var languages: [String: Double] = [:]
         func score(_ media: Media) -> Double {
             let profile = Snapshot(media)
             let genre = profile.genres.isEmpty ? 0 : profile.genres.reduce(0) { $0 + (genres[$1] ?? 0) } / sqrt(Double(profile.genres.count))
@@ -165,6 +168,9 @@ final class DiscoveryPreferences {
             let weight = event.kind.weight * exp(-log(2) * max(0, timestamp - event.timestamp) / (90 * 86_400_000))
             for genre in event.snapshot.genres where !genre.isEmpty { result.genres[genre, default: 0] += weight }
             if let decade = event.snapshot.decade { result.decades[decade, default: 0] += weight }
+            if let language = event.snapshot.language, let code = DiscoveryAffinityRules.languageCode(language) {
+                result.languages[code, default: 0] += weight
+            }
         }
         return result
     }

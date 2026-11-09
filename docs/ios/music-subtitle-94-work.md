@@ -2121,3 +2121,12 @@ title. Cinemeta's top movies supply the no-key path. The SwiftUI carousel
 uses its native page swipe, pauses rotation during interaction and outside
 the visible area or foreground, and respects Reduced Motion on its own
 transitions. The two focused policy cases and simulator UI remain pending.
+
+## Discover affinity
+
+Discover uses Desktop's genre and decade scores, locale penalty and language
+affinity in Trending and Top Rated. Downvoted IDs and title aliases stay out
+of suggestion pools. The original locale toggle label and a description of its
+current scope are available in all sixteen interface languages. The preference
+and language history are profile scoped. Desktop's daily Home catalog bias
+and the native feature pool's remaining differences stay in the audit.

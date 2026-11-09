@@ -981,6 +981,7 @@
 "Favorites" = "お気に入り";
 "Favorites only" = "Favorites only";
 "Favoritos" = "お気に入り";
+"Favour titles from where you are" = "現在地の地域のタイトルを優先";
 "Feature this catalog in the hero carousel" = "このカタログをヒーローカルーセルに表示";
 "Featured" = "注目";
 "Featured at Anime Expo" = "Anime Expo注目作";
@@ -1062,6 +1063,7 @@
 "Get a key at" = "キーの取得先";
 "Get an API key" = "APIキーを取得";
 "Get yours at" = "次で入手:";
+"Give more weight to titles in your languages and region in Discover." = "「見つける」で、選択した言語や地域に合う作品を優先します。";
 "Golden Globes" = "ゴールデングローブ賞";
 "Golf" = "ゴルフ";
 "Goya Awards" = "ゴヤ賞";

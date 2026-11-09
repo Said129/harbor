@@ -46,6 +46,10 @@ struct InterfaceSettingsView: View {
                             .font(HarborTheme.font(13)).foregroundStyle(.secondary)
                         HarborLanguagesPicker(value: homeLanguagesValue, identifier: "settings-home-languages")
                     }
+                    HarborSettingsToggle(DesktopInterfaceText.value("Favour titles from where you are"),
+                        note: DesktopInterfaceText.value("Give more weight to titles in your languages and region in Discover."),
+                        isOn: $preferences.feedLocaleBias)
+                        .accessibilityIdentifier("settings-feed-locale-bias")
                     HarborSettingsToggle(DesktopInterfaceText.value("Watchlist shows only saved titles"), note: DesktopInterfaceText.value("Keep the Library Watchlist tab limited to titles you added in Stremio. Turn this off to also include anything Stremio auto-added when you pressed play."), isOn: $preferences.libraryBookmarkedOnly).accessibilityIdentifier("settings-library-bookmarked-only")
                     HarborSettingsToggle(DesktopInterfaceText.value("Advance Continue Watching to the next episode"), note: DesktopInterfaceText.value("When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left."), isOn: $preferences.cwAdvanceNext).accessibilityIdentifier("settings-cw-advance-next")
                     HarborSettingsToggle(DesktopInterfaceText.value("Keep anime in the Anime room only"), note: DesktopInterfaceText.value("Hides anime from the Home Continue Watching row. It still appears in the Anime tab's own Continue Watching."), isOn: $preferences.animeOnlyInAnimeRoom).accessibilityIdentifier("settings-anime-only-room")

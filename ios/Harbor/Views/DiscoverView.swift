@@ -106,12 +106,41 @@ struct DiscoverView: View {
     private var catalogs: [CatalogRow] { app.rows.filter { !$0.plan.isPlaybackHistoryCatalog && $0.plan.catalog != nil && (kind == "anime" ? $0.isAnimeCatalog : $0.plan.kind == kind && !$0.isAnimeCatalog) } }
     private var selected: CatalogRow? { catalogs.first { $0.id == catalog } ?? catalogs.first }
     private var genres: [String] { selected?.plan.catalog?.extra.first { $0.name == "genre" }?.options ?? [] }
-    private var pool: [Media] { var seen = Set<String>(); return (model.recommended + model.trending + model.awards + app.rows.filter { !$0.plan.isPlaybackHistoryCatalog }.flatMap(\.metas)).filter { ["movie", "series"].contains($0.type) && !$0.id.isEmpty && seen.insert($0.identity).inserted } }
+    private var downvotes: [DiscoveryAffinityRules.Downvote] {
+        app.library.discovery.votes.compactMap { entry in
+            guard entry.value.vote == .down else { return nil }
+            return DiscoveryAffinityRules.Downvote(id: entry.key, titleKey: DiscoveryPreferences.titleKey(entry.value.name))
+        }
+    }
+    private var pool: [Media] {
+        var seen = Set<String>()
+        let candidates = (model.recommended + model.trending + model.awards + app.rows.filter { !$0.plan.isPlaybackHistoryCatalog }.flatMap(\.metas))
+            .filter { ["movie", "series"].contains($0.type) && !$0.id.isEmpty && seen.insert($0.identity).inserted }
+        return DiscoveryAffinityRules.excludingDownvoted(candidates, downvotes: downvotes)
+    }
+    private var localeBias: DiscoveryAffinityRules.LocaleBias {
+        let metadata = MetadataPreferences.shared
+        return DiscoveryAffinityRules.localeBias(
+            preferredLanguages: SubtitleLanguages.preferredCodes(StreamPreferences.shared.streamLanguages),
+            metadataLanguage: metadata.language,
+            region: metadata.region,
+            enabled: InterfacePreferences.shared.feedLocaleBias
+        )
+    }
+    private var personalizedShelves: (trending: [Media], topRated: [Media], awards: [Media]) {
+        let affinity = app.library.discovery.affinity(now: Date())
+        let locale = localeBias
+        let blocked = downvotes
+        func eligible(_ items: [Media]) -> [Media] { DiscoveryAffinityRules.excludingDownvoted(items, downvotes: blocked) }
+        func ranked(_ items: [Media]) -> [Media] { DiscoveryAffinityRules.ranked(eligible(items), affinity: affinity, locale: locale) }
+        return (ranked(model.trending), ranked(model.topRated), eligible(model.awards))
+    }
     private var queueItems: [Media] {
         let watched = Set(app.library.items.filter { $0.watched || $0.continuing }.map(\.id))
         return pool.filter { ["movie", "series"].contains($0.type) && !watched.contains($0.id) && app.library.discovery.vote(for: $0) == nil && !app.library.discovery.isQueueItemHidden($0.id) }
     }
     var body: some View {
+        let shelves = personalizedShelves
         ScrollView {
             VStack(alignment: .leading, spacing: 30) {
                 if !model.recommended.isEmpty {
@@ -121,12 +150,12 @@ struct DiscoverView: View {
                 catalogBrowser
                 surpriseChooser
                 voyageChooser
-                if !model.trending.isEmpty { shelf(DesktopVoyage.copy("Trending This Week"), items: DiscoveryAffinityRules.ranked(model.trending, affinity: app.library.discovery.affinity(now: Date()))) }
+                if !shelves.trending.isEmpty { shelf(DesktopVoyage.copy("Trending This Week"), items: shelves.trending) }
                 genreTiles
-                if !model.topRated.isEmpty { shelf(DesktopVoyage.copy("Top Rated"), items: DiscoveryAffinityRules.ranked(model.topRated, affinity: app.library.discovery.affinity(now: Date()))) }
+                if !shelves.topRated.isEmpty { shelf(DesktopVoyage.copy("Top Rated"), items: shelves.topRated) }
                 CriticsPickView(app: app, featuredIDs: Set(model.recommended.prefix(10).map(\.id)))
                 if !queueItems.isEmpty { queue }
-                if !model.awards.isEmpty { shelf("Award Winning", items: model.awards) }
+                if !shelves.awards.isEmpty { shelf("Award Winning", items: shelves.awards) }
                 if model.loading { ProgressView().frame(maxWidth: .infinity) }
                 if let error = model.error { Text(error).font(HarborTheme.font(13)).foregroundStyle(.orange).padding(.horizontal); Button(DesktopInterfaceText.value("Retry")) { Task { await model.load(app: app, refresh: true) } }.padding(.horizontal) }
                 if let error = app.library.discovery.error { Text(error).font(HarborTheme.font(13)).foregroundStyle(.orange).padding(.horizontal) }

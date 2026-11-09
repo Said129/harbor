@@ -68,7 +68,7 @@ struct ContinueWatchingPreferences: Sendable {
         "showAnilistComments", "anilistBlurComments", "useAnilistAvatar",
         "contentAdvisoryToast", "contentAdvisoryTheme", "contentAdvisoryShowIgnore",
         "pluginsEnabled", "pluginsGroupByRepo", "blockTrackers", "hideContent.adult",
-        "metadata.region", "metadata.language", "metadata.translateTitles", "metadata.translateDescriptions", "cwPerProfile", "downloadsCellular",
+        "metadata.region", "metadata.language", "metadata.translateTitles", "metadata.translateDescriptions", "feedLocaleBias", "cwPerProfile", "downloadsCellular",
         "profilePromptInterval", "defaultProfileId", "tvdbSeasonType", "tvdbOrderPanel",
         "calendar.monday", "calendar.large", "calendar.source", "calendar.custom", "ebook.fontSize", "ebook.lineHeight", "ebook.margin", "ebook.background", "ebook.font", "ebook.direction",
         "ebook.narrationRate", "ebook.narrationVoice", "ebook.deviceNarrationVoice", "ebook.narrationProvider", "ebook.narrationSpeed", "ebook.shelfSort", "ebook.pdf.horizontal", "ebook.width", "ebook.brightness", "ebook.focusMode", "ebook.customFontID", "ebook.mode", "harbor.ebook.chapterview", "manga.reader.mode", "manga.reader.fit", "manga.reader.background",

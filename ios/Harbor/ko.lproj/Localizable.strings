@@ -981,6 +981,7 @@
 "Favorites" = "즐겨찾기";
 "Favorites only" = "Favorites only";
 "Favoritos" = "즐겨찾기";
+"Favour titles from where you are" = "현재 위치의 작품 우선";
 "Feature this catalog in the hero carousel" = "이 카탈로그를 히어로 캐러셀에 추천";
 "Featured" = "추천";
 "Featured at Anime Expo" = "Anime Expo 소개작";
@@ -1062,6 +1063,7 @@
 "Get a key at" = "키 발급:";
 "Get an API key" = "API 키 받기";
 "Get yours at" = "여기에서 받기";
+"Give more weight to titles in your languages and region in Discover." = "둘러보기에서 내 언어와 지역에 맞는 작품을 우선 표시합니다.";
 "Golden Globes" = "골든 글로브상";
 "Golf" = "골프";
 "Goya Awards" = "고야상";

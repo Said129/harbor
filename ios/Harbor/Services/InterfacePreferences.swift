@@ -50,6 +50,8 @@ final class InterfacePreferences {
     var catalogsHidden = UserDefaults.standard.stringArray(forKey: "catalogsHidden") ?? [] { didSet { persist(catalogsHidden, forKey: "catalogsHidden") } }
     /// Desktop's `homeLanguages`: Home rows keep titles whose original language is in this list. Empty shows every language.
     var homeLanguages = UserDefaults.standard.stringArray(forKey: "homeLanguages") ?? [] { didSet { persist(homeLanguages, forKey: "homeLanguages") } }
+    /// Desktop's `feedLocaleBias` (default on): Discover gives more weight to preferred languages and region.
+    var feedLocaleBias = UserDefaults.standard.object(forKey: "feedLocaleBias") as? Bool ?? true { didSet { persist(feedLocaleBias, forKey: "feedLocaleBias") } }
     /// Desktop's `animeOnlyInAnimeRoom`: Home's Continue Watching leaves out anime, which the Anime page still shows.
     var animeOnlyInAnimeRoom = UserDefaults.standard.object(forKey: "animeOnlyInAnimeRoom") as? Bool ?? true { didSet { persist(animeOnlyInAnimeRoom, forKey: "animeOnlyInAnimeRoom") } }
     /// Desktop's `libraryBookmarkedOnly`: the Watchlist lists only saved titles, not entries Stremio auto-added on play.
@@ -152,6 +154,7 @@ final class InterfacePreferences {
         catalogsPinned = UserDefaults.standard.stringArray(forKey: "catalogsPinned") ?? []
         catalogsHidden = UserDefaults.standard.stringArray(forKey: "catalogsHidden") ?? []
         homeLanguages = UserDefaults.standard.stringArray(forKey: "homeLanguages") ?? []
+        feedLocaleBias = UserDefaults.standard.object(forKey: "feedLocaleBias") as? Bool ?? true
         animeOnlyInAnimeRoom = UserDefaults.standard.object(forKey: "animeOnlyInAnimeRoom") as? Bool ?? true
         libraryBookmarkedOnly = UserDefaults.standard.object(forKey: "libraryBookmarkedOnly") as? Bool ?? true
         cwAdvanceNext = UserDefaults.standard.object(forKey: "cwAdvanceNext") as? Bool ?? true

@@ -1,5 +1,6 @@
 {
   "es": {
+    "Give more weight to titles in your languages and region in Discover.": "Da más peso a los títulos de tus idiomas y tu región en Descubrir.",
     "Auto-sync": "Auto Sync",
     "Syncing subtitles…": "Sincronizando subtítulos…",
     "Subtitles synced": "Subtítulos sincronizados",
@@ -162,6 +163,7 @@
     "Host or address": "Host o dirección"
   },
   "pt": {
+    "Give more weight to titles in your languages and region in Discover.": "Dá mais peso aos títulos nos teus idiomas e da tua região em Descobrir.",
     "Auto-sync": "Sincronização automática",
     "Syncing subtitles…": "Sincronizando legendas…",
     "Subtitles synced": "Legendas sincronizadas",
@@ -252,6 +254,7 @@
     "music.lastfm.viewProfile": "Ver perfil"
   },
   "ru": {
+    "Give more weight to titles in your languages and region in Discover.": "Повышает приоритет произведений на ваших языках и из вашего региона в разделе «Обзор».",
     "Auto-sync": "Автосинхронизация",
     "Syncing subtitles…": "Синхронизация субтитров…",
     "Subtitles synced": "Субтитры синхронизированы",
@@ -341,6 +344,7 @@
     "music.lastfm.viewProfile": "Открыть профиль"
   },
   "ar": {
+    "Give more weight to titles in your languages and region in Discover.": "يعطي أولوية أكبر للأعمال بلغاتك ومن منطقتك في قسم الاستكشاف.",
     "Auto-sync": "مزامنة تلقائية",
     "Syncing subtitles…": "جارٍ مزامنة الترجمة…",
     "Subtitles synced": "تمت مزامنة الترجمة",
@@ -430,6 +434,7 @@
     "music.lastfm.viewProfile": "عرض الملف الشخصي"
   },
   "zh": {
+    "Give more weight to titles in your languages and region in Discover.": "在「探索」中优先推荐符合你的语言和地区的作品。",
     "Couldn't auto-sync": "无法自动同步",
     "Browse services": "浏览服务",
     "Add your TMDB key in Settings to load these catalogs.": "请在设置中添加 TMDB 密钥以加载这些目录。",
@@ -491,6 +496,7 @@
     "music.lastfm.viewProfile": "查看个人资料"
   },
   "fr": {
+    "Give more weight to titles in your languages and region in Discover.": "Donne la priorité aux titres dans vos langues et de votre région dans Découvrir.",
     "Couldn't auto-sync": "Synchronisation automatique impossible",
     "Browse services": "Parcourir les services",
     "Add your TMDB key in Settings to load these catalogs.": "Ajoutez votre clé TMDB dans les paramètres pour charger ces catalogues.",
@@ -552,6 +558,7 @@
     "music.lastfm.viewProfile": "Voir le profil"
   },
   "de": {
+    "Give more weight to titles in your languages and region in Discover.": "Gewichtet Titel in deinen Sprachen und aus deiner Region unter „Entdecken“ stärker.",
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
     "Browse services": "Dienste durchsuchen",
     "Add your TMDB key in Settings to load these catalogs.": "Füge deinen TMDB-Schlüssel in den Einstellungen hinzu, um diese Kataloge zu laden.",
@@ -613,6 +620,7 @@
     "music.lastfm.viewProfile": "Profil ansehen"
   },
   "hi": {
+    "Give more weight to titles in your languages and region in Discover.": "खोजें अनुभाग में अपनी भाषाओं और क्षेत्र के शीर्षकों को अधिक प्राथमिकता दें।",
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
     "Browse services": "सेवाएँ देखें",
     "Add your TMDB key in Settings to load these catalogs.": "इन कैटलॉग को लोड करने के लिए सेटिंग्स में अपनी TMDB कुंजी जोड़ें।",
@@ -674,6 +682,7 @@
     "music.lastfm.viewProfile": "प्रोफ़ाइल देखें"
   },
   "id": {
+    "Give more weight to titles in your languages and region in Discover.": "Beri bobot lebih pada judul dalam bahasa Anda dan dari wilayah Anda di Jelajahi.",
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
     "Browse services": "Jelajahi layanan",
     "Add your TMDB key in Settings to load these catalogs.": "Tambahkan kunci TMDB di Pengaturan untuk memuat katalog ini.",
@@ -735,6 +744,7 @@
     "music.lastfm.viewProfile": "Lihat profil"
   },
   "it": {
+    "Give more weight to titles in your languages and region in Discover.": "Dai più peso ai titoli nelle tue lingue e della tua regione in Scopri.",
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
     "Browse services": "Esplora i servizi",
     "Add your TMDB key in Settings to load these catalogs.": "Aggiungi la tua chiave TMDB nelle Impostazioni per caricare questi cataloghi.",
@@ -796,6 +806,7 @@
     "music.lastfm.viewProfile": "Visualizza profilo"
   },
   "ja": {
+    "Give more weight to titles in your languages and region in Discover.": "「見つける」で、選択した言語や地域に合う作品を優先します。",
     "Couldn't auto-sync": "自動同期できませんでした",
     "Browse services": "サービスを見る",
     "Add your TMDB key in Settings to load these catalogs.": "設定に TMDB キーを追加すると、これらのカタログを読み込めます。",
@@ -857,6 +868,7 @@
     "music.lastfm.viewProfile": "プロフィールを表示"
   },
   "ko": {
+    "Give more weight to titles in your languages and region in Discover.": "둘러보기에서 내 언어와 지역에 맞는 작품을 우선 표시합니다.",
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
     "Browse services": "서비스 둘러보기",
     "Add your TMDB key in Settings to load these catalogs.": "설정에서 TMDB 키를 추가하면 카탈로그를 불러올 수 있습니다.",
@@ -918,6 +930,7 @@
     "music.lastfm.viewProfile": "프로필 보기"
   },
   "pl": {
+    "Give more weight to titles in your languages and region in Discover.": "Daj wyższy priorytet tytułom w Twoich językach i z Twojego regionu w sekcji Odkrywaj.",
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
     "Browse services": "Przeglądaj serwisy",
     "Add your TMDB key in Settings to load these catalogs.": "Dodaj klucz TMDB w ustawieniach, aby wczytać te katalogi.",
@@ -979,6 +992,7 @@
     "music.lastfm.viewProfile": "Zobacz profil"
   },
   "tr": {
+    "Give more weight to titles in your languages and region in Discover.": "Keşfet’te dillerindeki ve bölgendeki yapımlara daha fazla öncelik ver.",
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
     "Browse services": "Hizmetlere göz at",
     "Add your TMDB key in Settings to load these catalogs.": "Bu katalogları yüklemek için Ayarlar'a TMDB anahtarınızı ekleyin.",
@@ -1040,6 +1054,7 @@
     "music.lastfm.viewProfile": "Profili görüntüle"
   },
   "vi": {
+    "Give more weight to titles in your languages and region in Discover.": "Ưu tiên hơn các tựa phim theo ngôn ngữ và khu vực của bạn trong Khám phá.",
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
     "Browse services": "Duyệt dịch vụ",
     "Add your TMDB key in Settings to load these catalogs.": "Thêm khóa TMDB trong Cài đặt để tải các danh mục này.",
@@ -1101,6 +1116,7 @@
     "music.lastfm.viewProfile": "Xem hồ sơ"
   },
   "en": {
+    "Give more weight to titles in your languages and region in Discover.": "Give more weight to titles in your languages and region in Discover.",
     "Browse services": "Browse services",
     "Add your TMDB key in Settings to load these catalogs.": "Add your TMDB key in Settings to load these catalogs.",
     "Could not load this page. Try again.": "Could not load this page. Try again.",

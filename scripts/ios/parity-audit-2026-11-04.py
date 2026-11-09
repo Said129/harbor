@@ -592,6 +592,7 @@ BEHAVIORS = expand("""
 364 P Harbor and Stremio detail links now open the iOS title screen with episode hints, and Stremio manifests open the installer. Desktop list, music and profile routes and browser URL handoffs remain pending.
 1 P Home uses Desktop's public Trending, Trakt and Simkl pools with a three-hour cache, explicit rail priority, catalog fallback, and per-title ranking. Native base catalog composition and some personal rails still differ.
 11 P Movies uses Desktop's five TMDB requests, daily ordering, recent-play exclusion and fallback. The native carousel pauses for horizontal drag, pointer hover, the viewport and backgrounding. Native motion and live catalog validation remain pending.
+5 P Discover applies profile-scoped locale affinity to Trending and Top Rated and excludes downvoted titles from suggestion pools. The native featured source pool and personalized daily lanes still differ.
 """)
 
 SETTINGS = expand("""
@@ -1046,6 +1047,7 @@ SETTINGS = expand("""
 249 P The experimental profile setting can offer a cross-language correction using the pinned Desktop workflow and the selected audio language. iOS measures separate audio windows with mpv. Automatic structural calibration and real-source validation remain pending.
 65 P The original corner ribbon follows the active Home Top 10 and moves a bookmark sharing its corner. Native Home rows still differ from Desktop's data in some configurations.
 66 D The active profile chooses the Top 10 ribbon's leading or trailing corner. The original assets follow Desktop's logical layout direction.
+497 P The per-profile locale preference controls Discover ranking and defaults to on. Desktop's daily Home catalog bias is pending.
 """)
 
 def audit(items, verdicts, label):
