@@ -46,15 +46,26 @@ enum HomeHeroSlides {
         }?.metas ?? []
     }
 
-    /// The actual Home hero slide selection shared by `CustomizedHero` and Home's Top 10 membership.
-    static func displayedHome(rails: [PageRail], defaults: [Media], heroSourceID: String?, feed: HeroLayoutPolicy.HeroFeed) -> [Media] {
+    struct Selection {
+        let slides: [Media]
+        var ranks: [String: HomeHeroRank] = [:]
+        var usesCustomRail = false
+    }
+
+    /// Home's displayed slides also determine which titles are excluded from its Top 10.
+    static func displayedHome(rails: [PageRail], defaults: [Media], heroSourceID: String?, hosted: [HostedHomeHeroPool.Entry]) -> Selection {
         if let heroSourceID, let source = rails.first(where: { $0.id == heroSourceID }) {
             let selected = pick(source.metas)
-            if !selected.isEmpty { return selected }
+            if !selected.isEmpty { return Selection(slides: selected, usesCustomRail: true) }
         }
-        let candidates = rails.map { HeroLayoutPolicy.Candidate(title: $0.title, hasMetas: !$0.metas.isEmpty) }
-        guard let index = HeroLayoutPolicy.featuredRailIndex(feed: feed, candidates: candidates) else { return cap(defaults) }
-        return cap(rails[index].metas)
+        guard hosted.count >= maximum else { return Selection(slides: cap(defaults)) }
+        let slides = cap(hosted.map(\.media))
+        let rankedSlides: [(String, HomeHeroRank)] = slides.compactMap { media in
+            guard let rank = hosted.first(where: { $0.media.id == media.id })?.rank else { return nil }
+            return (media.id, rank)
+        }
+        let ranks = Dictionary(uniqueKeysWithValues: rankedSlides)
+        return Selection(slides: slides, ranks: ranks)
     }
 
     private static func hasText(_ value: String?) -> Bool { !(value ?? "").isEmpty }

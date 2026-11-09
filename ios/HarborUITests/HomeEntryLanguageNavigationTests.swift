@@ -6,7 +6,7 @@ import XCTest
     private func verify(_ device: String) {
         continueAfterFailure = false
         let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone")
-        app.launchArguments = ["-uiLanguage", "en", "-homeMode", "harbor", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
+        app.launchArguments = ["-uiLanguage", "en", "-homeMode", "harbor", "-heroFeed", "classic", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         ReadingUIInteraction.launchPreparedApplication(app)
         defer { if (testRun?.failureCount ?? 0) > 0 { ReadingUIInteraction.recordFailureContext(app) }; app.terminate() }
         let scroll = app.scrollViews["home-scroll"]; XCTAssertTrue(scroll.waitForExistence(timeout: 45))
@@ -20,7 +20,8 @@ import XCTest
         let saved = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label == %@", "In Watchlist"), object: bookmark)
         XCTAssertEqual(XCTWaiter.wait(for: [saved], timeout: 15), .completed)
         XCTAssertEqual(app.buttons["hero-play"].label, "Play")
-        XCTAssertEqual(app.staticTexts["hero-eyebrow"].label, "FEATURED TONIGHT")
+        let ranking = app.descendants(matching: .any).matching(identifier: "hero-eyebrow").firstMatch
+        XCTAssertEqual(ranking.label, "#1 in Movies Today")
         capture(app, "home-labels-movie-" + device)
         let customize = app.buttons["page-customize"]
         ReadingUIInteraction.reveal(customize, in: app, container: scroll); ReadingUIInteraction.tapVisible(customize, in: app)

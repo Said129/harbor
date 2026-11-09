@@ -590,6 +590,7 @@ BEHAVIORS = expand("""
 204 D The built-in OpenSubtitles v3 search is wired into the player, follows its setting and steps aside for an enabled equivalent addon. Its public lookup is independent of account sign-in. Apple execution pending.
 53 D Installed addon links share via stremio and open the iOS install form when delivered by the OS. The configured manifest path and query are preserved, with a visible host and explicit install action.
 364 P Harbor and Stremio detail links now open the iOS title screen with episode hints, and Stremio manifests open the installer. Desktop list, music and profile routes and browser URL handoffs remain pending.
+1 P Home uses Desktop's public Trending, Trakt and Simkl pools with a three-hour cache, explicit rail priority, catalog fallback, and per-title ranking. Native base catalog composition and some personal rails still differ.
 """)
 
 SETTINGS = expand("""

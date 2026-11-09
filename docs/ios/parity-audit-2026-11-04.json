@@ -234,7 +234,7 @@
       "id": "Home hero and real catalogs",
       "desktop_source": "src/views/home.tsx",
       "verdict": "P",
-      "note": "iOS never fetches Desktop's hosted hero pool: the trending feed falls back to the first catalog titles, and the trakt and simkl feeds only pick an already-loaded rail whose name contains that service. The Desktop 4..."
+      "note": "Home uses Desktop's public Trending, Trakt and Simkl pools with a three-hour cache, explicit rail priority, catalog fallback, and per-title ranking. Native base catalog composition and some personal rails still differ."
     },
     {
       "index": 2,

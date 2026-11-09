@@ -50,7 +50,9 @@ struct CinemaHero: View {
     var playSquare = true
     var moreInfo = true
     var customList: CustomList? = nil
+    var homeRanks: [String: HomeHeroRank]? = nil
     @State private var selected = 0
+    @State private var showsRanking = false
     @Environment(\.locale) private var locale
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key, language: locale.identifier) }
     private let layout = HeroLayoutPreferences.shared
@@ -71,8 +73,13 @@ struct CinemaHero: View {
                                 .frame(width: geometry.size.width, height: geometry.size.height)
                             LinearGradient(colors: shadeColors, startPoint: .top, endPoint: .bottom).accessibilityHidden(true)
                             VStack(alignment: .leading, spacing: 14) {
-                                Text(text("Featured tonight").uppercased(with: locale)).font(HarborTheme.font(9, weight: .semibold)).tracking(4).foregroundStyle(.white.opacity(0.5))
-                                    .accessibilityIdentifier("hero-eyebrow")
+                                if let homeRanks {
+                                    HomeHeroRankBadge(rank: homeRanks[media.id] ?? .fallback(for: media, index: index),
+                                                      presented: index == selected ? $showsRanking : .constant(false))
+                                } else {
+                                    Text(text("Featured tonight").uppercased(with: locale)).font(HarborTheme.font(9, weight: .semibold)).tracking(4).foregroundStyle(.white.opacity(0.5))
+                                        .accessibilityIdentifier("hero-eyebrow")
+                                }
                                 HarborHeroTitle(media: media, size: 30, height: 76)
                                 HStack(spacing: 14) {
                                     if let year = media.releaseInfo { Text(year).foregroundStyle(.secondary) }
@@ -108,7 +115,11 @@ struct CinemaHero: View {
             }
             if !moreInfo, let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
         }
-        .onChange(of: metas.map(\.identity)) { _, _ in if selected >= min(5, metas.count) { selected = 0 } }
+        .onChange(of: metas.map(\.identity)) { _, _ in
+            showsRanking = false
+            if selected >= min(5, metas.count) { selected = 0 }
+        }
+        .onChange(of: selected) { _, _ in showsRanking = false }
         .task(id: min(5, metas.count)) {
             // Desktop's cinema hero moves on its own every `ROTATE_MS` while it has more than one title.
             let count = min(5, metas.count)
@@ -116,6 +127,7 @@ struct CinemaHero: View {
             while !Task.isCancelled {
                 try? await Task.sleep(for: CinemaHeroRotation.interval)
                 guard !Task.isCancelled else { return }
+                guard !showsRanking else { continue }
                 withAnimation { selected = CinemaHeroRotation.next(after: selected, count: count) }
             }
         }
@@ -124,5 +136,67 @@ struct CinemaHero: View {
         if media.type == "manga", let customList, let item = customList.items.first(where: { $0.id == media.id }) {
             CustomListItemDestination(app: app, item: item, listID: customList.id, playImmediately: play)
         } else { DetailView(media: media, app: app, playImmediately: play) }
+    }
+}
+
+private struct HomeHeroRankBadge: View {
+    let rank: HomeHeroRank
+    @Binding var presented: Bool
+    @Environment(\.locale) private var locale
+
+    private func text(_ key: String, variables: [String: String] = [:]) -> String {
+        DesktopInterfaceText.value(key, variables: variables, language: locale.identifier)
+    }
+
+    private var title: String {
+        text("#{position} in {label} Today", variables: ["position": String(rank.position), "label": text(rank.label)])
+    }
+
+    private var label: some View {
+        Label(title, systemImage: "chart.line.uptrend.xyaxis")
+            .font(HarborTheme.font(12, weight: .semibold))
+            .padding(.horizontal, 10).padding(.vertical, 5)
+            .foregroundStyle(.white)
+            .background(HarborTheme.background.opacity(0.85), in: .rect(cornerRadius: 6))
+    }
+
+    var body: some View {
+        Group {
+            if rank.sources.isEmpty {
+                label.accessibilityElement(children: .ignore).accessibilityLabel(title)
+            } else {
+                Button { presented = true } label: { label }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(title)
+                    .accessibilityHint(text("Consensus ranking"))
+                    .popover(isPresented: $presented, arrowEdge: .top) {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(text("Consensus ranking")).font(HarborTheme.font(12, weight: .semibold)).foregroundStyle(.secondary)
+                            ForEach(Array(rank.sources.enumerated()), id: \.offset) { _, source in
+                                HStack(spacing: 14) {
+                                    if let icon = icon(for: source.label) {
+                                        Image(icon).resizable().scaledToFit().frame(width: 18, height: 18)
+                                            .accessibilityHidden(true)
+                                    }
+                                    Text(text(source.label))
+                                    Spacer(minLength: 8)
+                                    Text("#\(source.position)").monospacedDigit()
+                                }.font(HarborTheme.font(13, weight: .medium))
+                            }
+                        }.frame(minWidth: 160).padding(14)
+                            .presentationCompactAdaptation(.popover)
+                    }
+            }
+        }.accessibilityIdentifier("hero-eyebrow")
+    }
+
+    private func icon(for source: String) -> String? {
+        switch source {
+        case "Cinemeta": "metadata-cinemeta"
+        case "TMDB": "metadata-tmdb"
+        case "Trakt": "tracker-trakt"
+        case "Simkl": "tracker-simkl"
+        default: nil
+        }
     }
 }

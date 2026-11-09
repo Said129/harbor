@@ -7,6 +7,7 @@ struct HomeView: View {
     @State private var seasonalDate = Date()
     @State private var showSpooktober = false
     @State private var trakt: TraktHomeModel
+    @State private var hostedHero: HostedHomeHeroPool.Pool?
     @AppStorage("uiLanguage") private var uiLanguage = "es"
     @Environment(\.scenePhase) private var scenePhase
     @MainActor init(model: AppModel) {
@@ -42,10 +43,13 @@ struct HomeView: View {
         guard model.storageReady, !classic else { return [] }
         let available = rails
         let firstRow = HomeHeroSlides.topTenFeed(available, builtIDs: Set(model.home.rows.map(\.id)))
-        let heroSlides = HomeHeroSlides.displayedHome(rails: available, defaults: heroes,
-                                                       heroSourceID: customization.layout.heroSource,
-                                                       feed: HeroLayoutPreferences.shared.feed)
-        return HomeHeroSlides.topTen(firstRow: firstRow, heroSlides: heroSlides)
+        return HomeHeroSlides.topTen(firstRow: firstRow, heroSlides: heroSelection(rails: available).slides)
+    }
+    private var heroFeed: HeroLayoutPolicy.HeroFeed { HeroLayoutPreferences.shared.feed }
+    private var loadsHostedHero: Bool { model.storageReady && !classic && heroFeed != .classic && scenePhase == .active }
+    private func heroSelection(rails: [PageRail]) -> HomeHeroSlides.Selection {
+        HomeHeroSlides.displayedHome(rails: rails, defaults: heroes, heroSourceID: customization.layout.heroSource,
+                                    hosted: hostedHero?.entries(for: heroFeed) ?? [])
     }
     private var homeRibbonRevision: [String] { homeRibbonMetas.map { $0.id + "|" + $0.name } }
     private func registerHomeRibbonMetas() {
@@ -72,7 +76,10 @@ struct HomeView: View {
                 if let error = model.accountError { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 if classic || customization.layout.cwTop { ContinueWatching(app: model, excludesAnime: InterfacePreferences.shared.animeOnlyInAnimeRoom); newEpisodesRow }
                 if InterfacePreferences.shared.homeMode == "harbor" {
-                    CustomizedHero(rails: rails, defaults: heroes, app: model, customization: customization)
+                    let available = rails
+                    let selection = heroSelection(rails: available)
+                    CustomizedHero(rails: available, defaults: selection.slides, app: model, customization: customization,
+                                   homeSelection: selection)
                 }
                 if loading && rails.isEmpty { HarborLoader().frame(maxWidth: .infinity).padding(40) }
                 if SpooktoberSeason.available(seasonalDate) {
@@ -111,6 +118,10 @@ struct HomeView: View {
             .onAppear(perform: registerHomeRibbonMetas)
             .onChange(of: homeRibbonRevision) { _, _ in registerHomeRibbonMetas() }
             .onChange(of: AppProfileContext.shared.activationID) { _, _ in registerHomeRibbonMetas() }
+            .task(id: loadsHostedHero) {
+                guard loadsHostedHero else { return }
+                await loadHostedHero()
+            }
             .task(id: contentSignature) {
                 guard model.storageReady, !classic else { return }
                 async let curated: Void = model.home.load(app: model)
@@ -147,8 +158,15 @@ struct HomeView: View {
             async let curated: Void = model.home.load(app: model, refresh: true)
             async let anime: Void = model.home.loadAnime(owner: model.accountOperationScope, refresh: true)
             async let personal: Void = trakt.load(configuration: MetadataPreferences.shared.configuration(), force: true)
-            _ = await (curated, anime, personal)
+            async let featured: Void = loadHostedHero()
+            _ = await (curated, anime, personal, featured)
         }
         await catalogs
+    }
+
+    private func loadHostedHero() async {
+        let updated = await HostedHomeHeroPool.shared.load(for: heroFeed)
+        guard !Task.isCancelled, let updated else { return }
+        hostedHero = updated
     }
 }

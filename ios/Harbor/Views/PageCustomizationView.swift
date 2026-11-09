@@ -129,6 +129,7 @@ struct CustomizedHero: View {
     let app: AppModel
     let customization: PageCustomization
     var animeSources: [String: String] = [:]
+    var homeSelection: HomeHeroSlides.Selection? = nil
     @State private var selected: [Media] = []
     @State private var enrichedSignature = ""
     private var source: PageRail? { rails.first { $0.id == customization.layout.heroSource } }
@@ -151,12 +152,9 @@ struct CustomizedHero: View {
         return Array(source.metas.prefix(customization.page == "anime" ? 6 : 5))
     }
     private var metas: [Media] {
-        if customization.page == "home" {
-            let originals = HomeHeroSlides.displayedHome(rails: rails, defaults: defaults,
-                                                         heroSourceID: customization.layout.heroSource,
-                                                         feed: HeroLayoutPreferences.shared.feed)
-            if enrichedSignature == signature && !selected.isEmpty { return selected }
-            return originals
+        if let homeSelection {
+            if homeSelection.usesCustomRail, enrichedSignature == signature && !selected.isEmpty { return selected }
+            return homeSelection.slides
         }
         guard let source else { return defaults }
         if enrichedSignature == signature && !selected.isEmpty { return selected }
@@ -169,7 +167,8 @@ struct CustomizedHero: View {
             } else if customization.page == "series" {
                 HarborSeriesHero(metas: metas, app: app)
             } else if !metas.isEmpty {
-                CinemaHero(metas: metas, app: app, playSquare: customization.layout.playButtonSquare, moreInfo: customization.layout.secondaryMoreInfo, customList: sourceList)
+                CinemaHero(metas: metas, app: app, playSquare: customization.layout.playButtonSquare,
+                           moreInfo: customization.layout.secondaryMoreInfo, customList: sourceList, homeRanks: homeSelection?.ranks)
             }
         }
             .task(id: signature) {

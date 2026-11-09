@@ -2099,3 +2099,15 @@ Switching profiles retires the previous membership. Poster cards move a
 watchlist bookmark when it shares the ribbon's corner. Native Home still
 uses a different catalog feed in some configurations. Focused tests check
 the source boundary, membership, the name fallback and bookmark spacing.
+
+## Home Featured sources
+
+Home now reads the public Featured pool using Desktop's Trending, Trakt and
+Simkl selection rules. The legacy host returned 404 and the community mirror
+served all three lists, so iOS uses the community endpoint. The first render
+can use the local catalog while the pool loads. A shared three-hour cache
+retains the last usable payload through outages. A custom row with artwork
+still takes priority, and Classic uses the local feed. Home's four displayed
+slides determine Top 10 exclusions. The native ranking badge reveals provider
+positions on tap. Tests cover parsing, source priority, cache reuse and the
+offline fallback. Native build and UI verification are pending.

@@ -94,31 +94,92 @@ final class HeroLayoutPolicyTests: XCTestCase {
         XCTAssertEqual(HeroLayoutPolicy.HeroFeed(stored: nil), .trending)
     }
 
-    func testTrendingKeepsTheAutomaticHero() {
-        let candidates = [HeroLayoutPolicy.Candidate(title: "Top Movies", hasMetas: true)]
-        XCTAssertNil(HeroLayoutPolicy.featuredRailIndex(feed: .trending, candidates: candidates))
+    func testHostedFeedsUseDesktopKeysAndKeepAnExplicitlyEmptySource() throws {
+        let payload: JSONValue = .object(["sources": .object([
+            "now": .array([hostedTitle("now"), hostedTitle("poster-only", background: nil), hostedTitle("bad-art", background: "http://example.com/")]),
+            "trakt": .array([hostedTitle("trakt")]),
+            "simkl": .array([]),
+        ])])
+        let pool = try XCTUnwrap(HostedHomeHeroPool.Pool(payload))
+        let trending = pool.entries(for: .trending)
+        XCTAssertEqual(trending.map { $0.media.id }, ["now"])
+        XCTAssertEqual(trending.first?.rank?.label, "Movies")
+        XCTAssertEqual(trending.first?.rank?.position, 2)
+        XCTAssertEqual(trending.first?.rank?.sources.first?.position, 3)
+        XCTAssertNil(trending.first?.media.addonOrigin)
+        XCTAssertEqual(pool.entries(for: .trakt).map { $0.media.id }, ["trakt"])
+        XCTAssertTrue(pool.entries(for: .simkl).isEmpty)
+        XCTAssertTrue(pool.entries(for: .classic).isEmpty)
+
+        let missing = try XCTUnwrap(HostedHomeHeroPool.Pool(.object(["sources": .object([
+            "now": .array([hostedTitle("now")]), "trakt": .null,
+        ])])))
+        XCTAssertEqual(missing.entries(for: .trakt).map { $0.media.id }, ["now"])
+        XCTAssertEqual(missing.entries(for: .simkl).map { $0.media.id }, ["now"])
+        XCTAssertNil(HostedHomeHeroPool.Pool(.object(["sources": .object(["now": .null])])))
     }
 
-    func testClassicUsesFirstRailWithTitles() {
-        let candidates = [
-            HeroLayoutPolicy.Candidate(title: "Continue Watching", hasMetas: false),
-            HeroLayoutPolicy.Candidate(title: "Top Movies", hasMetas: true),
-            HeroLayoutPolicy.Candidate(title: "Top Drama", hasMetas: true)
-        ]
-        XCTAssertEqual(HeroLayoutPolicy.featuredRailIndex(feed: .classic, candidates: candidates), 1)
-        XCTAssertNil(HeroLayoutPolicy.featuredRailIndex(feed: .classic, candidates: [HeroLayoutPolicy.Candidate(title: "Empty", hasMetas: false)]))
+    func testHomeHeroPrefersExplicitArtThenFourHostedCandidatesThenLocal() throws {
+        let hosted = try XCTUnwrap(HostedHomeHeroPool.Pool(.object(["sources": .object([
+            "now": .array((1...5).map { hostedTitle("hosted\($0)") }),
+        ])]))).entries(for: .trending)
+        let local = [Media(id: "local", type: "movie", name: "Local")]
+        let poster = Media(id: "poster", type: "movie", name: "Poster", poster: "https://example.com/p.jpg")
+        let background = Media(id: "background", type: "movie", name: "Background", background: "https://example.com/b.jpg")
+        let rail = PageRail.discovery(.init(id: "custom", title: "Trakt", kind: "movie", path: "", metas: [poster, background]))
+        let custom = HomeHeroSlides.displayedHome(rails: [rail], defaults: local, heroSourceID: rail.id, hosted: hosted)
+        XCTAssertTrue(custom.usesCustomRail)
+        XCTAssertEqual(custom.slides.map(\.id), ["background", "poster"])
+        XCTAssertTrue(custom.ranks.isEmpty)
+        let featured = HomeHeroSlides.displayedHome(rails: [rail], defaults: local, heroSourceID: nil, hosted: hosted)
+        XCTAssertFalse(featured.usesCustomRail)
+        XCTAssertEqual(featured.slides.map(\.id), (1...4).map { "hosted\($0)" })
+        XCTAssertEqual(featured.ranks["hosted1"]?.position, 2)
+        let incomplete = HomeHeroSlides.displayedHome(rails: [rail], defaults: local, heroSourceID: nil, hosted: Array(hosted.prefix(3)))
+        XCTAssertEqual(incomplete.slides.map(\.id), ["local"])
     }
 
-    func testTraktAndSimklPickTheMatchingRailWithTitles() {
-        let candidates = [
-            HeroLayoutPolicy.Candidate(title: "Top Movies", hasMetas: true),
-            HeroLayoutPolicy.Candidate(title: "Trakt Recommends: Movies", hasMetas: false),
-            HeroLayoutPolicy.Candidate(title: "trakt trending", hasMetas: true),
-            HeroLayoutPolicy.Candidate(title: "Simkl Trending", hasMetas: true)
-        ]
-        XCTAssertEqual(HeroLayoutPolicy.featuredRailIndex(feed: .trakt, candidates: candidates), 2, "empty rail skipped, match is case-insensitive")
-        XCTAssertEqual(HeroLayoutPolicy.featuredRailIndex(feed: .simkl, candidates: candidates), 3)
-        XCTAssertNil(HeroLayoutPolicy.featuredRailIndex(feed: .simkl, candidates: [HeroLayoutPolicy.Candidate(title: "Top Movies", hasMetas: true)]))
+    func testHostedPoolSharesCacheAndKeepsStaleDataWhenFetchFails() async throws {
+        let cache = FileManager.default.temporaryDirectory.appendingPathComponent("\(UUID()).json")
+        defer { try? FileManager.default.removeItem(at: cache) }
+        let initialTime = Date(timeIntervalSinceReferenceDate: 10_000)
+        let payload = JSONValue.object(["sources": .object(["now": .array([hostedTitle("shared")])])])
+        let probe = HostedFetchProbe(payload)
+        let initial = HostedHomeHeroPool(cacheURL: cache, fetch: { try await probe.fetch($0) }, now: { initialTime })
+        let classic = await initial.load(for: .classic)
+        XCTAssertNil(classic)
+        async let trending = initial.load(for: .trending)
+        async let trakt = initial.load(for: .trakt)
+        let (trendingPool, traktPool) = await (trending, trakt)
+        XCTAssertEqual(trendingPool?.entries(for: .trending).first?.media.id, "shared")
+        XCTAssertEqual(traktPool?.entries(for: .trakt).first?.media.id, "shared")
+
+        let offline = HostedFetchProbe(nil)
+        let fresh = HostedHomeHeroPool(cacheURL: cache, fetch: { try await offline.fetch($0) }, now: { initialTime.addingTimeInterval(60) })
+        let cached = await fresh.load(for: .simkl)
+        let freshRequests = await offline.requests
+        XCTAssertEqual(cached?.entries(for: .simkl).first?.media.id, "shared")
+        XCTAssertTrue(freshRequests.isEmpty)
+
+        let expired = HostedHomeHeroPool(cacheURL: cache, fetch: { try await offline.fetch($0) }, now: { initialTime.addingTimeInterval(4 * 3600) })
+        let fallback = await expired.load(for: .trending)
+        _ = await expired.load(for: .simkl)
+        let expiredRequests = await offline.requests
+        let initialRequests = await probe.requests
+        XCTAssertEqual(fallback?.entries(for: .trending).first?.media.id, "shared")
+        XCTAssertEqual(initialRequests, [HostedHomeHeroPool.endpoint])
+        XCTAssertEqual(expiredRequests, [HostedHomeHeroPool.endpoint])
+    }
+
+    private func hostedTitle(_ id: String, background: String? = "https://example.com/backdrop.jpg") -> JSONValue {
+        .object([
+            "id": .string(id), "name": .string(id), "type": .string("movie"),
+            "poster": .string("https://example.com/poster.jpg"),
+            "background": background.map(JSONValue.string) ?? .null,
+            "rank": .integer(2), "rankLabel": .string("Movies"),
+            "sources": .array([.object(["label": .string("TMDB"), "rank": .integer(3)])]),
+            "addonOrigin": .object(["id": .string("untrusted-addon")]),
+        ])
     }
 
     @MainActor func testPreferenceWritesUseDesktopKeysAndAreReadBack() throws {
@@ -134,5 +195,18 @@ final class HeroLayoutPolicyTests: XCTestCase {
         XCTAssertEqual(defaults.string(forKey: "heroFeed"), "classic")
         XCTAssertEqual(preferences.shadowPercent, 37)
         XCTAssertEqual(preferences.feed, .classic)
+    }
+}
+
+private actor HostedFetchProbe {
+    private let payload: JSONValue?
+    private(set) var requests: [String] = []
+
+    init(_ payload: JSONValue?) { self.payload = payload }
+
+    func fetch(_ endpoint: String) throws -> JSONValue {
+        requests.append(endpoint)
+        guard let payload else { throw URLError(.notConnectedToInternet) }
+        return payload
     }
 }

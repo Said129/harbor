@@ -5,7 +5,7 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 
 ## behaviors (115 filas)
 
-- B 1 | Home hero and real catalogs | P | iOS never fetches Desktop's hosted hero pool: the trending feed falls back to the first catalog titles, and the trakt and simkl feeds only pick an already-loaded rail whose name contains that service. The Desktop 4... [Desktop: src/views/home.tsx]
+- B 1 | Home hero and real catalogs | P | Home uses Desktop's public Trending, Trakt and Simkl pools with a three-hour cache, explicit rail priority, catalog fallback, and per-title ranking. Native base catalog composition and some personal rails still differ. [Desktop: src/views/home.tsx]
 - B 2 | Continue Watching on Home | P | Continue Watching on Home: the empty-state box and the one-card-per-title pass with the 100-card cap are in (8 Nov, written by Haiku, uncompiled); franchise-root removal is not, and Desktop's signed-out Stremio prompt is replaced by the empty message because iOS has no Stremio sign-in [Desktop: src/views/home.tsx]
 - B 5 | Discover personalized feed | P | Discover personalized feed: Desktop's affinity ranking (genre 4, decade 1.5) orders the Trending and Top Rated shelves, and the featured ranking already matched (8 Nov, written by Haiku, uncompiled); exclusions of downvoted titles, the locale penalty and the extra lanes are not ported [Desktop: src/views/discover.tsx]
 - B 6 | Daily discovery rails | P | daily discovery rails: the seeded row order with pinned anchors exists as a tested helper (8 Nov, written by Haiku, uncompiled); iOS has no daily row catalog to order [Desktop: src/views/discover.tsx]

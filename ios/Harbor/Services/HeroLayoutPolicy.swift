@@ -13,8 +13,7 @@ enum HeroLayoutPolicy {
     static let defaultFullQuality = true
     static let defaultFeed = HeroFeed.trending
 
-    /// Desktop's `Featured source` values. Trakt and Simkl come from Harbor's hosted pool on Desktop, which iPhone and iPad
-    /// do not fetch, so they only pick a rail already on the page.
+    /// Desktop's `Featured source` values.
     enum HeroFeed: String, CaseIterable, Sendable {
         case trending
         case trakt
@@ -25,12 +24,6 @@ enum HeroLayoutPolicy {
         init(stored: Any?) {
             self = (stored as? String).flatMap(HeroFeed.init(rawValue:)) ?? HeroLayoutPolicy.defaultFeed
         }
-    }
-
-    /// A page rail as the feed choice sees it: its title and whether it currently has any titles to show.
-    struct Candidate: Equatable, Sendable {
-        let title: String
-        let hasMetas: Bool
     }
 
     /// Opacity of the top stop of the hero gradient. This is the part of the gradient that does not depend on the shadow.
@@ -75,21 +68,5 @@ enum HeroLayoutPolicy {
         guard full else { return standardHeight }
         guard container.isFinite, container > 0 else { return fullMinimumHeight }
         return max(fullMinimumHeight, (container * fullFraction).rounded())
-    }
-
-    /// The index of the rail that fills the hero for a feed, or nil when the page's own automatic hero stays.
-    /// `trending` keeps the automatic hero. `classic` uses the first rail with titles, which is the first of the user's own
-    /// rows. `trakt` and `simkl` use the first rail with titles whose name mentions that service.
-    static func featuredRailIndex(feed: HeroFeed, candidates: [Candidate]) -> Int? {
-        switch feed {
-        case .trending:
-            return nil
-        case .classic:
-            return candidates.firstIndex { $0.hasMetas }
-        case .trakt:
-            return candidates.firstIndex { $0.hasMetas && $0.title.localizedCaseInsensitiveContains("Trakt") }
-        case .simkl:
-            return candidates.firstIndex { $0.hasMetas && $0.title.localizedCaseInsensitiveContains("Simkl") }
-        }
     }
 }
