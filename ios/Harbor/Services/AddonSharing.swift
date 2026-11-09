@@ -5,6 +5,26 @@ import Foundation
 /// pasted `stremio://` or `https` link into the manifest URL that gets installed.
 enum AddonSharing {
     enum Scheme: Sendable { case https, stremio }
+    static let incomingLinksKey = "stremioDeeplinkInstall"
+
+    static func acceptsIncomingLinks(defaults: UserDefaults = .standard) -> Bool {
+        defaults.object(forKey: incomingLinksKey) as? Bool ?? true
+    }
+
+    /// An OS-delivered install link opens the existing form. Content and authentication URLs
+    /// are separate routes, and configured paths and queries must survive the scheme change.
+    static func incomingManifest(_ url: URL) -> URL? {
+        guard url.absoluteString.utf8.count <= 16_384,
+              var parts = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              parts.scheme?.lowercased() == "stremio",
+              let host = parts.host, !host.isEmpty, host.lowercased() != "detail",
+              parts.user == nil, parts.password == nil, parts.fragment == nil,
+              parts.port.map({ (1...65_535).contains($0) }) ?? true else { return nil }
+        guard parts.percentEncodedPath.hasSuffix("/manifest.json") ||
+              parts.percentEncodedPath.hasSuffix("/configure") else { return nil }
+        parts.scheme = "https"
+        return parts.url
+    }
 
     /// Desktop `manifestToShareUrl(transportUrl, scheme)`: only the leading http(s) scheme changes.
     static func shareText(transportUrl: String, scheme: Scheme) -> String {

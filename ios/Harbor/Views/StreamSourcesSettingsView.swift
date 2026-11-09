@@ -3,6 +3,7 @@ import SwiftUI
 /// Desktop's "Streaming sources" panel (`streaming-sources-panel.tsx`): Services, Filters,
 /// Sorting and Picker. Home servers (Jellyfin, Emby and Plex video libraries) is not ported yet.
 struct StreamSourcesSettingsView: View {
+    @AppStorage(AddonSharing.incomingLinksKey) private var acceptsInstallLinks = true
     enum Tab: String, CaseIterable, Identifiable {
         case services, filters, sorting, picker
         var id: String { rawValue }
@@ -122,6 +123,10 @@ struct StreamSourcesSettingsView: View {
 
     private var filters: some View {
         VStack(alignment: .leading, spacing: 28) {
+            HarborSettingsSection("Addons") {
+                HarborSettingsToggle("Catch stremio:// install links inside Harbor", isOn: $acceptsInstallLinks)
+                    .accessibilityIdentifier("settings-addon-install-links")
+            }
             HarborSettingsSection("Stream safety filter") {
                 detailText("Choose which addon results appear when you pick a stream.")
                 VStack(alignment: .leading, spacing: 10) {

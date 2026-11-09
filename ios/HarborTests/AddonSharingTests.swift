@@ -45,6 +45,53 @@ final class AddonSharingTests: XCTestCase {
         XCTAssertEqual(AddonSharing.installLink(from: shared), "https://example.org/a/manifest.json")
     }
 
+    func testIncomingAddonManifestPreservesTheConfiguredPathAndQuery() throws {
+        let manifest = try XCTUnwrap(URL(string: "stremio://example.test:8443/config%2Fpath/manifest.json?mode=fast&key=a%2Bb"))
+        XCTAssertEqual(AddonSharing.incomingManifest(manifest)?.absoluteString,
+                       "https://example.test:8443/config%2Fpath/manifest.json?mode=fast&key=a%2Bb")
+        let configure = try XCTUnwrap(URL(string: "stremio://example.test/configure"))
+        XCTAssertEqual(AddonSharing.incomingManifest(configure)?.absoluteString, "https://example.test/configure")
+    }
+
+    func testIncomingAddonLinksRejectContentCredentialsAndUnrelatedSchemes() throws {
+        for raw in [
+            "stremio://detail/series/tt123/manifest.json",
+            "stremio://user:password@example.test/manifest.json",
+            "stremio://example.test/manifest.json#fragment",
+            "stremio://example.test/manifest.json/",
+            "stremio://example.test:0/manifest.json",
+            "stremio://example.test/redirect",
+            "harbor-iphone://spotify-login-callback/manifest.json",
+            "https://example.test/manifest.json",
+        ] {
+            let url = try XCTUnwrap(URL(string: raw))
+            XCTAssertNil(AddonSharing.incomingManifest(url))
+        }
+    }
+
+    func testIncomingTitleLinksRetainAnEpisodeWithoutOpeningAnInstaller() throws {
+        let episode = try XCTUnwrap(URL(string: "stremio://detail/series/tt100%3Ashow/tt100%3Ashow%3A2%3A4"))
+        let link = try XCTUnwrap(HarborTitleLink.parse(episode))
+        XCTAssertEqual(link.media.id, "tt100:show")
+        XCTAssertEqual(link.episodeHint?.season, 2)
+        XCTAssertEqual(link.episodeHint?.episode, 4)
+        XCTAssertNil(AddonSharing.incomingManifest(episode))
+
+        let movie = try XCTUnwrap(URL(string: "harbor://detail/movie/tt100"))
+        XCTAssertEqual(HarborTitleLink.parse(movie)?.media.type, "movie")
+        let traversal = try XCTUnwrap(URL(string: "harbor://detail/movie/abc%2Fxyz"))
+        XCTAssertNil(HarborTitleLink.parse(traversal))
+    }
+
+    func testIncomingAddonLinkPreferenceDefaultsOnAndHonorsOptOut() throws {
+        let name = "AddonIncomingLinkTests-" + UUID().uuidString
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: name))
+        defer { defaults.removePersistentDomain(forName: name) }
+        XCTAssertTrue(AddonSharing.acceptsIncomingLinks(defaults: defaults))
+        defaults.set(false, forKey: AddonSharing.incomingLinksKey)
+        XCTAssertFalse(AddonSharing.acceptsIncomingLinks(defaults: defaults))
+    }
+
     func testNormalizedNameDropsDesktopDecorations() {
         XCTAssertEqual(AddonRecommendations.normalizedName("Torrentio | RD [Debrid]"), "torrentio")
         XCTAssertEqual(AddonRecommendations.normalizedName("Cinemeta Official"), "cinemeta")

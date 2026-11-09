@@ -588,6 +588,8 @@ BEHAVIORS = expand("""
 27 D Global search queries the native AniList, Jikan and Kitsu providers, applies Desktop source order, caps and deduplication, and opens results in the normal detail route. Apple and live provider verification pending.
 433 D The local music library tracks a selected iOS Files folder and rescans it by size and modification time. It preserves playlist identities, keeps manually removed paths suppressed and prunes managed copies only after a complete traversal. Unbookmarkable folders keep one-time import. Apple verification pending.
 204 D The built-in OpenSubtitles v3 search is wired into the player, follows its setting and steps aside for an enabled equivalent addon. Its public lookup is independent of account sign-in. Apple execution pending.
+53 D Installed addon links share via stremio and open the iOS install form when delivered by the OS. The configured manifest path and query are preserved, with a visible host and explicit install action.
+364 P Harbor and Stremio detail links now open the iOS title screen with episode hints, and Stremio manifests open the installer. Desktop list, music and profile routes and browser URL handoffs remain pending.
 """)
 
 SETTINGS = expand("""
@@ -1037,6 +1039,7 @@ SETTINGS = expand("""
 345 D The profile key enables SUBDL lookup, and the player prepares its downloaded subtitles or selects a matching episode and language from the ZIP.
 346 D The profile key enables Subsource lookup and its authenticated download. The player sends the key only to the Subsource HTTPS endpoint, refuses redirects and extracts bounded text subtitles.
 265 D The per-profile native-audio setting automatically selects an eligible forced track in preferred language order, or disables the primary track when no forced choice exists. Manual choices retain priority.
+486 D The active profile controls whether iOS-delivered Stremio install links are routed to Harbor's installer. URL scheme selection belongs to iOS.
 """)
 
 def audit(items, verdicts, label):

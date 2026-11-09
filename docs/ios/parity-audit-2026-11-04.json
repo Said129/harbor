@@ -5,35 +5,35 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 260,
-      "partial": 116,
+      "ported": 261,
+      "partial": 115,
       "missing": 0,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 84.6,
-      "ported_only_percent": 69.1,
+      "weighted_percent": 84.7,
+      "ported_only_percent": 69.4,
       "ported_or_partial_percent": 100.0
     },
     "settings": {
       "total": 511,
-      "ported": 244,
-      "partial": 30,
+      "ported": 245,
+      "partial": 29,
       "missing": 2,
       "excluded": 235,
       "counted": 276,
-      "weighted_percent": 93.8,
-      "ported_only_percent": 88.4,
+      "weighted_percent": 94.0,
+      "ported_only_percent": 88.8,
       "ported_or_partial_percent": 99.3
     },
     "all": {
       "total": 949,
-      "ported": 504,
-      "partial": 146,
+      "ported": 506,
+      "partial": 144,
       "missing": 2,
       "excluded": 297,
       "counted": 652,
-      "weighted_percent": 88.5,
-      "ported_only_percent": 77.3,
+      "weighted_percent": 88.7,
+      "ported_only_percent": 77.6,
       "ported_or_partial_percent": 99.7
     }
   },
@@ -68,11 +68,11 @@
     {
       "area": "Addons and catalogs",
       "range": "B48-B67",
-      "ported": 15,
-      "partial": 4,
+      "ported": 16,
+      "partial": 3,
       "missing": 0,
       "excluded": 1,
-      "weighted_percent": 89.5
+      "weighted_percent": 92.1
     },
     {
       "area": "Stream pipeline, parser, trust and scoring",
@@ -597,8 +597,8 @@
       "index": 53,
       "id": "Addon sharing",
       "desktop_source": "src/lib/addon-store.ts",
-      "verdict": "P",
-      "note": "addon sharing: the stremio:// link is shared from the addon detail; opening an incoming link is not wired (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "verdict": "D",
+      "note": "Installed addon links share via stremio and open the iOS install form when delivered by the OS. The configured manifest path and query are preserved, with a visible host and explicit install action."
     },
     {
       "index": 54,
@@ -2775,7 +2775,7 @@
       "id": "Harbor / Stremio deep links",
       "desktop_source": "src/lib/deep-link.ts",
       "verdict": "P",
-      "note": "deep links partial"
+      "note": "Harbor and Stremio detail links now open the iOS title screen with episode hints, and Stremio manifests open the installer. Desktop list, music and profile routes and browser URL handoffs remain pending."
     },
     {
       "index": 365,
@@ -6696,8 +6696,8 @@
       "index": 486,
       "id": "stremioDeeplinkInstall",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "addon deep-link install"
+      "verdict": "D",
+      "note": "The active profile controls whether iOS-delivered Stremio install links are routed to Harbor's installer. URL scheme selection belongs to iOS."
     },
     {
       "index": 487,

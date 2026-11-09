@@ -1,7 +1,7 @@
 import Foundation
 import Observation
 
-struct PendingProfileDocument: Identifiable {
+struct PendingProfileURL: Identifiable {
     let id = UUID()
     let url: URL
     let profile: String?
@@ -132,7 +132,9 @@ final class AppModel {
             guard try await selectProfile(active.id, recordSelection: recordSelection) else { throw HarborError(code: "profile-locked") }
         } else { showProfiles = true }
     }
-    private(set) var pendingDocument: PendingProfileDocument?
+    private(set) var pendingDocument: PendingProfileURL?
+    private(set) var pendingAddonLink: PendingProfileURL?
+    private(set) var pendingTitleLink: PendingProfileURL?
     var personalOwner: String { profileContext.binding?.personalOwner ?? "guest" }
     var settingsOwner: String { profileContext.binding?.settingsOwner ?? "guest" }
     var customLists: CustomListStore { .forOwner(settingsOwner, inheritedOwner: profileContext.binding?.sharedSettingsOwner) }
@@ -176,14 +178,48 @@ final class AppModel {
             _ = cachedMusicWorkspace?.spotify.accept(url)
             return
         }
+        if HarborTitleLink.parse(url) != nil {
+            pendingAddonLink = nil
+            pendingTitleLink = PendingProfileURL(url: url, profile: documentOwner)
+            return
+        }
+        if let manifest = AddonSharing.incomingManifest(url) {
+            if !storageReady || AddonSharing.acceptsIncomingLinks() {
+                pendingTitleLink = nil
+                pendingAddonLink = PendingProfileURL(url: manifest, profile: documentOwner)
+            }
+            return
+        }
         guard url.isFileURL, ["epub", "pdf"].contains(url.pathExtension.lowercased()) else { return }
-        pendingDocument = PendingProfileDocument(url: url, profile: documentOwner)
+        pendingDocument = PendingProfileURL(url: url, profile: documentOwner)
     }
     func takePendingDocument() -> URL? {
         guard storageReady, profileContext.ready, !choosingProfile, let pendingDocument,
               pendingDocument.profile == nil || pendingDocument.profile == documentOwner else { return nil }
         self.pendingDocument = nil; return pendingDocument.url
     }
+    private var readyForExternalLink: Bool {
+        storageReady && profileContext.ready && !choosingProfile && !profileContext.playback.hasActivePlayback
+    }
+
+    var canPresentAddonLink: Bool {
+        guard readyForExternalLink, let pendingAddonLink, AddonSharing.acceptsIncomingLinks() else { return false }
+        return pendingAddonLink.profile == nil || pendingAddonLink.profile == documentOwner
+    }
+
+    func takePendingAddonLink() -> URL? {
+        guard readyForExternalLink else { return nil }
+        defer { pendingAddonLink = nil }
+        return canPresentAddonLink ? pendingAddonLink?.url : nil
+    }
+
+    func takePendingTitleLink() -> HarborTitleLink? {
+        guard readyForExternalLink, let pendingTitleLink else { return nil }
+        self.pendingTitleLink = nil
+        guard pendingTitleLink.profile == nil || pendingTitleLink.profile == documentOwner else { return nil }
+        return HarborTitleLink.parse(pendingTitleLink.url)
+    }
+
     func continuationMetadata(_ media: Media) async throws -> Media {
         let configuration = MetadataPreferences.shared.configuration()
         let selectedAddons = addons

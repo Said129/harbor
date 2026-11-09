@@ -1999,3 +1999,15 @@ The native test makes HTTP range seeks with embedded and downloaded tracks,
 including relative and playing seeks. The new fixture's 30 cluster timestamps
 and its cue index were checked locally. Apple execution is pending and the
 physical-device report remains open.
+
+## Incoming addon and title links
+
+The app now registers the Harbor title and Stremio link schemes. Delivered
+Stremio addon links prefill the native install form and display the host. The
+user confirms installation through the ordinary button. The profile setting
+controls this handoff. A pending link waits until the profile is ready and
+active video playback has ended. Harbor and Stremio title links preserve a
+supported content ID and an optional episode hint. The four new cases cover
+URL parsing, permission boundaries and opt-out. OS delivery and native
+validation are pending. iOS selects the recipient if multiple apps register
+the same scheme.

@@ -481,6 +481,7 @@
 "Cast to TV or speaker" = "Транслировать на ТВ или колонку";
 "Catalog" = "Каталог";
 "Catalogs" = "Каталоги";
+"Catch stremio:// install links inside Harbor" = "Перехватывать ссылки stremio:// в Harbor";
 "Categories" = "Категории";
 "Category" = "Категория";
 "Categoría" = "Категория";

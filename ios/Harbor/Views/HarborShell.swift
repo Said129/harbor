@@ -94,6 +94,9 @@ struct HarborShell: View {
                 NavigationStack(path: $path) {
                     destination
                         .navigationDestination(for: Media.self) { DetailView(media: $0, app: app) }
+                        .navigationDestination(for: HarborTitleLink.self) { link in
+                            DetailView(media: link.media, app: app, episodeHint: link.episodeHint)
+                        }
                 }.id(navigationID)
             }.onPreferenceChange(EBookImmersiveChromePreference.self) { hidden in
                 withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.3)) { immersiveReading = hidden }
@@ -130,10 +133,13 @@ struct HarborShell: View {
             .environment(\.layoutDirection, InterfaceLanguage.resolve(uiLanguage) == "ar" ? .rightToLeft : .leftToRight)
             .onChange(of: uiLanguage) { _, _ in navigationID = UUID() }
             .onChange(of: app.settingsOwner) { _, _ in path = NavigationPath(); navigationID = UUID() }
-            .onAppear { presentPendingDocument() }
+            .onAppear { presentPendingDocument(); presentPendingExternalLink() }
+            .onChange(of: app.pendingAddonLink?.id) { _, _ in presentPendingExternalLink() }
+            .onChange(of: app.pendingTitleLink?.id) { _, _ in presentPendingExternalLink() }
+            .onChange(of: app.profileContext.playback.hasActivePlayback) { _, active in if !active { presentPendingExternalLink() } }
             .onChange(of: app.pendingDocument?.id) { _, _ in presentPendingDocument() }
-            .onChange(of: app.storageReady) { _, ready in if ready { presentPendingDocument() } }
-            .onChange(of: app.choosingProfile) { _, choosing in if !choosing { presentPendingDocument() } }
+            .onChange(of: app.storageReady) { _, ready in if ready { presentPendingDocument(); presentPendingExternalLink() } }
+            .onChange(of: app.choosingProfile) { _, choosing in if !choosing { presentPendingDocument(); presentPendingExternalLink() } }
             .onChange(of: app.personalOwner) { _, _ in document = nil }
             .sheet(item: $document) { incoming in
                 if incoming.owner == app.personalOwner {
@@ -147,6 +153,22 @@ struct HarborShell: View {
                 app.storageReady && document == nil && !app.showAccount && !app.choosingProfile && AppGuidePreferences.shared.presentationRequested
             }, set: { if !$0 { AppGuidePreferences.shared.finish() } })) { AppWalkthroughView(app: app) }
     }
+    private func presentPendingExternalLink() {
+        if let title = app.takePendingTitleLink() {
+            closeMenu()
+            select(.home)
+            path.append(title)
+            return
+        }
+        guard app.canPresentAddonLink else {
+            _ = app.takePendingAddonLink()
+            return
+        }
+        guard section != .addons else { return }
+        closeMenu()
+        select(.addons)
+    }
+
     private func presentPendingDocument() {
         guard let url = app.takePendingDocument() else { return }
         app.showAccount = false

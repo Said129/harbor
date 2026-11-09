@@ -92,6 +92,12 @@ targets:
         CFBundleURLTypes:
           - CFBundleURLName: site.harbor.iphone.login
             CFBundleURLSchemes: [harbor-iphone]
+          - CFBundleURLName: site.harbor.iphone.addon
+            CFBundleTypeRole: Viewer
+            CFBundleURLSchemes: [stremio]
+          - CFBundleURLName: site.harbor.iphone.title
+            CFBundleTypeRole: Editor
+            CFBundleURLSchemes: [harbor]
         LSApplicationQueriesSchemes: [spotify]
         UILaunchScreen: {}
         UIRequiresFullScreen: NO

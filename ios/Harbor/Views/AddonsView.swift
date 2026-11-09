@@ -77,6 +77,11 @@ struct AddonsView: View {
                 }
             }.padding()
         }.scrollDismissesKeyboard(.interactively).background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
+            .onAppear { prefillPendingAddonLink() }
+            .onChange(of: app.pendingAddonLink?.id) { _, _ in prefillPendingAddonLink() }
+            .onChange(of: app.profileContext.playback.hasActivePlayback) { _, active in if !active { prefillPendingAddonLink() } }
+            .onChange(of: app.choosingProfile) { _, choosing in if !choosing { prefillPendingAddonLink() } }
+            .onChange(of: installing) { _, busy in if !busy { prefillPendingAddonLink() } }
             .task { if !loaded { await loadDirectory() } }
             .refreshable { communityRefresh += 1; await loadDirectory(refresh: true) }
             .sheet(item: $selectedAddon) { addon in NavigationStack { AddonDetailView(app: app, addon: addon) }.font(HarborTheme.font()).tint(HarborTheme.accent) }
@@ -123,6 +128,10 @@ struct AddonsView: View {
                 Image("nav-addons").resizable().scaledToFit().frame(width: 18, height: 18).foregroundStyle(.secondary)
                 SecureField("Manifest URL o enlace stremio://", text: $url).font(HarborTheme.font(13)).textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL).focused($editingURL).accessibilityIdentifier("addon-manifest-url")
             }.padding(.horizontal, 14).frame(minHeight: 44).background(HarborTheme.surface, in: .capsule)
+            if let host = URLComponents(string: url)?.host, !host.isEmpty {
+                Text(host).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                    .accessibilityIdentifier("addon-manifest-host")
+            }
             HStack {
                 Button("Instalar addon") { install() }.buttonStyle(HarborAccountButtonStyle(primary: true))
                     .disabled(installing || app.accountBusy || url.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || !app.storageReady).accessibilityIdentifier("addon-install")
@@ -132,6 +141,15 @@ struct AddonsView: View {
         }
     }
     private func resolved(_ addon: Addon) -> Addon { app.addons.first { $0.id == addon.id } ?? app.addons.first { $0.manifest["id"].string == addon.manifest["id"].string } ?? addon }
+    private func prefillPendingAddonLink() {
+        guard !installing, let manifest = app.takePendingAddonLink() else { return }
+        url = manifest.absoluteString
+        error = nil
+        tab = .installed
+        query = ""
+        category = .all
+    }
+
     private func install() {
         guard !installing else { return }
         editingURL = false

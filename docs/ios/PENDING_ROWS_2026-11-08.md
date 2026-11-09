@@ -3,7 +3,7 @@
 Cada fila: `lista indice | id | verdicto | hueco`. P = parcial, M = falta. El indice vuelve a empezar en 1 en cada lista (`behaviors`, `settings`).
 El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo de iOS y el fuente de Desktop (`desktop_source` del inventario `desktop-parity-0.9.132.json`).
 
-## behaviors (116 filas)
+## behaviors (115 filas)
 
 - B 1 | Home hero and real catalogs | P | iOS never fetches Desktop's hosted hero pool: the trending feed falls back to the first catalog titles, and the trakt and simkl feeds only pick an already-loaded rail whose name contains that service. The Desktop 4... [Desktop: src/views/home.tsx]
 - B 2 | Continue Watching on Home | P | Continue Watching on Home: the empty-state box and the one-card-per-title pass with the 100-card cap are in (8 Nov, written by Haiku, uncompiled); franchise-root removal is not, and Desktop's signed-out Stremio prompt is replaced by the empty message because iOS has no Stremio sign-in [Desktop: src/views/home.tsx]
@@ -30,7 +30,6 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 44 | Episode merge and deduplication | P | AnimeEpisodePool and episode projection [Desktop: src/lib/series-episodes.ts]
 - B 45 | Season episode mapping | P | AnimeEpisodePool and episode projection [Desktop: src/lib/series-episodes.ts]
 - B 48 | Install addon URL | P | install addon URL: an install now replaces the addon with the same manifest id or URL, keeps its place in the list and keeps the disabled state by URL (8 Nov, written by Haiku, uncompiled); the Stremio account write is still absent (see rows 50 to 52) [Desktop: src/lib/addon-store.ts]
-- B 53 | Addon sharing | P | addon sharing: the stremio:// link is shared from the addon detail; opening an incoming link is not wired (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases)) [Desktop: src/lib/addon-store.ts]
 - B 55 | Addon order | P | The order is saved only locally and only for guest profiles (AppModel.move goes through persist, which throws for a signed-in Stremio account); there is no stale check, no account write or verification, and no back... [Desktop: src/lib/addons-store]
 - B 61 | Addon configuration viewport | P | addon configuration viewport: a captured link now installs at once as on Desktop (8 Nov, written by Haiku, uncompiled); there is still no timed fallback to the browser [Desktop: src/views/addons.tsx]
 - B 68 | Real addon stream requests | P | The alternate-type retry and the declared-type lookup for non-standard ids (pickIdByDeclaredTypes) apply only to the origin addon in iOS; other addons are queried only for their resource-declared types, and I found... [Desktop: src/lib/streams/addons.ts]
@@ -113,7 +112,7 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 360 | Profile settings migration | P | migrations and advanced configuration partial [Desktop: src/lib/settings]
 - B 361 | Advanced configuration | P | migrations and advanced configuration partial [Desktop: src/lib/settings]
 - B 363 | Crash diagnostics | P | Diagnostics log export [Desktop: src-tauri/src/crash_report.rs]
-- B 364 | Harbor / Stremio deep links | P | deep links partial [Desktop: src/lib/deep-link.ts]
+- B 364 | Harbor / Stremio deep links | P | Harbor and Stremio title links and Stremio addon links are routed. Desktop list, music and profile links and browser URL handoffs remain pending. [Desktop: src/lib/deep-link.ts]
 - B 392 | Sports calendar and scores | P | sports calendar: the native date picker cannot mark live days and iOS does not fetch live state for other days [Desktop: src/lib/sports/espn-scoreboard.ts]
 - B 395 | Sports score periods and statistics | P | sports score periods: the headings follow Desktop (Set, Period, Quarter, Overtime, Innings) (8 Nov, written by Haiku, uncompiled); cricket partnership and player tables, baseball and football situation panels and volleyball set data are not ported [Desktop: src/lib/sports/espn-summary.ts]
 - B 396 | Sports event commentary | P | sports event commentary: a typed timeline from key events with clock and participant; American football drive plays still fall back to commentary text (8 Nov, written by Haiku, uncompiled) [Desktop: src/lib/sports/espn-summary.ts]
@@ -122,7 +121,7 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 424 | Music audio cover import | P | music audio cover import: a sidecar cover (cover, folder, front) fills in when there is no embedded art, for folder imports; the front-cover tag preference is not possible with AVFoundation's artwork key (8 Nov, written by Haiku, uncompiled) [Desktop: src-tauri/src/music/connectors/local/tags.rs]
 - B 426 | Music playback queue | P | music playback queue: the queue continuation rule exists as a tested helper (8 Nov, written by Haiku, uncompiled); nothing loads more tracks when the queue ends [Desktop: src-tauri/src/music/commands/playback.rs]
 
-## settings (32 filas)
+## settings (31 filas)
 
 - S 11 | tvdbKey | P | TVDB used without a user key setting [Desktop: src/lib/settings/types.ts]
 - S 65 | top10Ribbon | P | Top 10 rail without ribbon options [Desktop: src/lib/settings/types.ts]
@@ -153,6 +152,5 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - S 470 | calendarSource | P | calendarSource kept per profile; six of Desktop's nine sources (7 Nov, uncompiled) [Desktop: src/lib/settings/types.ts]
 - S 475 | simklAnimeTitleLanguage | P | Simkl anime title language: the helpers exist and are tested, no card calls them yet because iOS has one title per Simkl row [Desktop: src/lib/settings/types.ts]
 - S 478 | customCalendar | P | customCalendar: people, genres, providers, countries, media types and Trakt sources with a filter sheet (7 Nov, uncompiled) [Desktop: src/lib/settings/types.ts]
-- S 486 | stremioDeeplinkInstall | P | addon deep-link install [Desktop: src/lib/settings/types.ts]
 - S 487 | iptvPlaylists | P | earlier review Partial [Desktop: src/lib/settings/types.ts]
 - S 488 | iptvLiveContainer | P | earlier review Partial [Desktop: src/lib/settings/types.ts]
