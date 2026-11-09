@@ -124,11 +124,15 @@ enum SubtitleSearchRanking {
                 results.append(subtitle)
             }
         }
-        return results.enumerated().map { index, subtitle in
-            (index, subtitle, SubtitleSelectionPolicy.languageScore(subtitle.lang ?? "", preferred: preferredLanguages))
-        }.sorted { left, right in
-            left.2 == right.2 ? left.0 < right.0 : left.2 > right.2
-        }.map { $0.1 }
+        let ranked = results.enumerated().map { position, subtitle in
+            let score = SubtitleSelectionPolicy.languageScore(subtitle.lang ?? "", preferred: preferredLanguages)
+            return (position: position, subtitle: subtitle, score: score)
+        }
+        let ordered = ranked.sorted { left, right in
+            if left.score != right.score { return left.score > right.score }
+            return left.position < right.position
+        }
+        return ordered.map { $0.subtitle }
     }
 
     static func deduplicateAndRank(_ candidates: [SubtitleProviderCandidate], preferredLanguages: [String]) -> [SubtitleProviderCandidate] {
