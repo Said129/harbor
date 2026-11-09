@@ -55,7 +55,7 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 180 | Stream switcher | P | The iOS picker opened from the player's Change source action has only quality and provider filters plus the Both/Direct-debrid mode toggle; cached-only, preferred-language, source-group and flagged/rejected toggles... [Desktop: src/components/player]
 - B 188 | Player episode panel | P | iOS has the season/order browser, the next-up row and adjacent-episode logic, but choosing an episode always autoplays the best stream: the instant-play off mode that shows a per-episode stream picker, the queue-dr... [Desktop: src/components/player]
 - B 199 | Subtitle encoding detection | P | encoding handling in SubtitleFileService [Desktop: src/lib/subtitles]
-- B 201 | Subtitle ranking / dedupe | P | subtitle ranking and dedupe: Desktop's auto-selection order for the no-hints path exists as a tested helper (8 Nov, written by Haiku, uncompiled); no caller uses it and the duplicate merge is not ported [Desktop: src/lib/subtitles]
+- B 201 | Subtitle ranking / dedupe | P | Provider search deduplicates by language, URL, title and format, interleaves providers and prioritizes language in the native list. Stream-hint ranking and automatic provider selection remain pending. [Desktop: src/lib/subtitles]
 - B 203 | Subtitle text resync | P | External subtitle estimates can be reviewed and applied from the player. Full source matching and structural calibration are pending. [Desktop: src/lib/subtitles]
 - B 206 | Audio correlation subtitle sync | P | SubtitleAutoSync; embedded tracks via mpv [Desktop: src-tauri/src/subsync]
 - B 207 | Subtitle track extraction | P | SubtitleAutoSync; embedded tracks via mpv [Desktop: src-tauri/src/sub_extract.rs]

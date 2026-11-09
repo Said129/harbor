@@ -88,3 +88,257 @@ enum SubtitleCandidateRanking {
 
     private static func desc(_ x: Double, _ y: Double) -> Int { x > y ? 1 : (x < y ? -1 : 0) }
 }
+
+/// Desktop's user-facing result order and duplicate merge from `lib/subtitles/search.ts`.
+/// Keep this separate from auto-selection: search rows retain forced/foreign-only results,
+/// and the display interleaver does not filter candidates.
+enum SubtitleSearchRanking {
+    private struct IndexedCandidate {
+        let index: Int
+        let candidate: SubtitleProviderCandidate
+    }
+
+    /// Composite identity follows Desktop's normalized-language, URL, title and format key.
+    /// The length-prefix encoding avoids collisions when provider text contains a separator.
+    static func listIdentity(language: String?, url: String, title: String?, format: String?) -> String {
+        [SubtitleLanguages.normalize(language ?? ""), url, title ?? "", format ?? ""]
+            .map { "\($0.utf8.count):\($0)" }
+            .joined()
+    }
+
+    static func listIdentity(for candidate: SubtitleProviderCandidate) -> String {
+        duplicateKey(for: candidate)
+    }
+
+    static func mergeResults(_ current: [PlaybackSource.Subtitle], _ additions: [PlaybackSource.Subtitle],
+                             preferredLanguages: [String]) -> [PlaybackSource.Subtitle] {
+        var results = current
+        var positions = Dictionary(current.enumerated().map { ($0.element.selectionIdentity, $0.offset) },
+                                   uniquingKeysWith: { first, _ in first })
+        for subtitle in additions {
+            let key = subtitle.selectionIdentity
+            if let position = positions[key] {
+                if subtitle.providerDownload?.provider != nil { results[position] = subtitle }
+            } else {
+                positions[key] = results.count
+                results.append(subtitle)
+            }
+        }
+        return results.enumerated().map { index, subtitle in
+            (index, subtitle, SubtitleSelectionPolicy.languageScore(subtitle.lang ?? "", preferred: preferredLanguages))
+        }.sorted { left, right in
+            left.2 == right.2 ? left.0 < right.0 : left.2 > right.2
+        }.map { $0.1 }
+    }
+
+    static func deduplicateAndRank(_ candidates: [SubtitleProviderCandidate], preferredLanguages: [String]) -> [SubtitleProviderCandidate] {
+        var groups: [String: [IndexedCandidate]] = [:]
+        var groupOrder: [String] = []
+
+        for (index, candidate) in candidates.enumerated() {
+            guard SubtitleProviderURL.safe(candidate.subtitle.url) != nil else { continue }
+            let key = duplicateKey(for: candidate)
+            if groups[key] == nil { groupOrder.append(key) }
+            groups[key, default: []].append(IndexedCandidate(index: index, candidate: candidate))
+        }
+
+        let filtered = groupOrder.compactMap { key -> IndexedCandidate? in
+            guard let group = groups[key] else { return nil }
+            let ordered = group.sorted { left, right in
+                let comparison = compareDuplicates(left.candidate, right.candidate)
+                return comparison == 0 ? left.index < right.index : comparison < 0
+            }
+            guard var merged = ordered.first?.candidate else { return nil }
+            for item in ordered.dropFirst() {
+                mergeMissingMetadata(from: item.candidate, into: &merged)
+            }
+            return IndexedCandidate(index: ordered[0].index, candidate: merged)
+        }
+        return interleave(filtered, preferredLanguages: preferredLanguages).map(\.candidate)
+    }
+
+    private static func compareDuplicates(_ a: SubtitleProviderCandidate, _ b: SubtitleProviderCandidate) -> Int {
+        let auth = flag(b.requiresKey) - flag(a.requiresKey)
+        if auth != 0 { return auth }
+
+        let confidence = providerConfidenceValue(b) - providerConfidenceValue(a)
+        if confidence != 0 { return confidence }
+
+        let scoreA = SubtitleCandidateRanking.providerScore(a)
+        let scoreB = SubtitleCandidateRanking.providerScore(b)
+        if scoreA != scoreB { return scoreA > scoreB ? -1 : 1 }
+
+        // With no stream-hint input, Desktop's compareSubtitleMatch reaches its download
+        // count and title tie-breakers. Search does not reuse its auto-selection comparator.
+        if a.downloads != b.downloads { return a.downloads > b.downloads ? 1 : -1 }
+
+        let richness = metadataRichness(b) - metadataRichness(a)
+        if richness != 0 { return richness > 0 ? 1 : -1 }
+
+        let source = sourcePriority(b.provider) - sourcePriority(a.provider)
+        if source != 0 { return source > 0 ? 1 : -1 }
+
+        let aKey = stableDuplicateKey(a)
+        let bKey = stableDuplicateKey(b)
+        return textCompare(aKey, bKey)
+    }
+
+    private static func providerConfidenceValue(_ candidate: SubtitleProviderCandidate) -> Int {
+        switch candidate.matchConfidence {
+        case "exact": 5
+        case "high": 4
+        case "medium": 3
+        case "low": 2
+        case "unknown": 1
+        default: 0
+        }
+    }
+
+    private static func metadataRichness(_ candidate: SubtitleProviderCandidate) -> Int {
+        var score = 1 // `source` is always present in Desktop's result.
+        if let title = candidate.searchTitle, !title.isEmpty { score += 1 }
+        if desktopFormat(candidate) != nil { score += 1 }
+        if candidate.archive { score += 1 }
+        if candidate.requiresKey { score += 1 }
+        if candidate.hearingImpaired { score += 1 }
+        if candidate.forced { score += 1 }
+        if candidate.foreignOnly { score += 1 }
+        if candidate.machineTranslated { score += 1 }
+        if candidate.fromTrusted { score += 1 }
+        if let release = candidate.release, !release.isEmpty { score += 1 }
+        if let author = candidate.author, !author.isEmpty { score += 1 }
+        if candidate.downloads > 0 { score += 1 }
+        if candidate.ratingScore != nil { score += 1 }
+        if candidate.ratingTotal != nil { score += 1 }
+        if candidate.fps != nil { score += 1 }
+        if candidate.matchConfidence != nil { score += 1 }
+        if candidate.matchScore != nil { score += 1 }
+        if candidate.idConfirmed { score += 1 }
+        if candidate.episodeConfirmed { score += 1 }
+        if candidate.season != nil { score += 1 }
+        if candidate.episode != nil { score += 1 }
+        return score
+    }
+
+    private static func stableDuplicateKey(_ candidate: SubtitleProviderCandidate) -> String {
+        [candidate.provider.rawValue, candidate.subtitle.id ?? "", "", candidate.release ?? "", "",
+         candidate.matchConfidence ?? "", SubtitleCandidateRanking.providerScore(candidate).description]
+            .joined(separator: "|")
+            .lowercased()
+    }
+
+    private static func duplicateKey(for candidate: SubtitleProviderCandidate) -> String {
+        return listIdentity(language: candidate.subtitle.lang, url: candidate.subtitle.url,
+                            title: candidate.searchTitle, format: desktopFormat(candidate))
+    }
+
+    private static func desktopFormat(_ candidate: SubtitleProviderCandidate) -> String? {
+        if (candidate.provider == .subdl || candidate.provider == .subsource) && candidate.format == "zip" { return nil }
+        return candidate.format
+    }
+
+    private static func sourcePriority(_ provider: SubtitleProviderID) -> Int {
+        switch provider {
+        case .opensubtitles, .wyzie, .subdl, .subsource: 2
+        }
+    }
+
+    private static func mergeMissingMetadata(from source: SubtitleProviderCandidate, into target: inout SubtitleProviderCandidate) {
+        // Keep the primary candidate's providerDownload grant bound to its provider. A same-URL
+        // duplicate is not authority to transfer that in-memory credential context.
+        if target.subtitle.id == nil { target.subtitle.id = source.subtitle.id }
+        if target.subtitle.lang == nil { target.subtitle.lang = source.subtitle.lang }
+        if target.format == nil { target.format = source.format }
+        if target.release == nil { target.release = source.release }
+        if target.author == nil { target.author = source.author }
+        if target.ratingScore == nil { target.ratingScore = source.ratingScore }
+        if target.ratingTotal == nil { target.ratingTotal = source.ratingTotal }
+        if target.fps == nil { target.fps = source.fps }
+        if target.matchConfidence == nil { target.matchConfidence = source.matchConfidence }
+        if target.matchScore == nil { target.matchScore = source.matchScore }
+        if target.season == nil { target.season = source.season }
+        if target.episode == nil { target.episode = source.episode }
+    }
+
+    private static func interleave(_ candidates: [IndexedCandidate], preferredLanguages: [String]) -> [IndexedCandidate] {
+        var buckets: [SubtitleProviderID: [IndexedCandidate]] = [:]
+        var providerOrder: [SubtitleProviderID] = []
+        for item in candidates {
+            let provider = item.candidate.provider
+            if buckets[provider] == nil { providerOrder.append(provider) }
+            buckets[provider, default: []].append(item)
+        }
+
+        for provider in providerOrder {
+            buckets[provider]?.sort { left, right in
+                let leftLanguage = languageScore(left.candidate, preferredLanguages)
+                let rightLanguage = languageScore(right.candidate, preferredLanguages)
+                if leftLanguage != rightLanguage { return leftLanguage > rightLanguage }
+                let match = compareSubtitleMatchWithoutHints(left.candidate, right.candidate)
+                if match != 0 { return match < 0 }
+                let identity = textCompare(listIdentity(for: left.candidate), listIdentity(for: right.candidate))
+                return identity == 0 ? left.index < right.index : identity < 0
+            }
+        }
+
+        let preferred = candidates.filter { languageScore($0.candidate, preferredLanguages) > 0 }
+        let pool = preferred.isEmpty ? candidates : preferred
+        let best = pool.sorted { left, right in
+            let leftLanguage = languageScore(left.candidate, preferredLanguages)
+            let rightLanguage = languageScore(right.candidate, preferredLanguages)
+            if leftLanguage != rightLanguage { return leftLanguage > rightLanguage }
+            let match = compareSubtitleMatchWithoutHints(left.candidate, right.candidate)
+            if match != 0 { return match < 0 }
+            return left.index < right.index
+        }.first
+
+        let orderedProviders = providerOrder.enumerated().sorted { left, right in
+            let priority = sourcePriority(right.element) - sourcePriority(left.element)
+            return priority == 0 ? left.offset < right.offset : priority > 0
+        }.map(\.element)
+
+        var result: [IndexedCandidate] = []
+        var seen = Set<Int>()
+        if let best {
+            result.append(best)
+            seen.insert(best.index)
+        }
+
+        func drain(_ accepts: (IndexedCandidate) -> Bool) {
+            var depth = 0
+            while true {
+                var found = false
+                for provider in orderedProviders {
+                    guard let item = buckets[provider], item.indices.contains(depth) else { continue }
+                    found = true
+                    let candidate = item[depth]
+                    if !seen.contains(candidate.index), accepts(candidate) {
+                        seen.insert(candidate.index)
+                        result.append(candidate)
+                    }
+                }
+                if !found { return }
+                depth += 1
+            }
+        }
+
+        drain { languageScore($0.candidate, preferredLanguages) > 0 }
+        drain { _ in true }
+        return result
+    }
+
+    private static func languageScore(_ candidate: SubtitleProviderCandidate, _ preferredLanguages: [String]) -> Int {
+        SubtitleCandidateRanking.languageScore(candidate, preferredLanguages)
+    }
+
+    private static func compareSubtitleMatchWithoutHints(_ a: SubtitleProviderCandidate, _ b: SubtitleProviderCandidate) -> Int {
+        if a.downloads != b.downloads { return a.downloads > b.downloads ? -1 : 1 }
+        return textCompare(a.searchTitle ?? "", b.searchTitle ?? "")
+    }
+
+    private static func flag(_ value: Bool) -> Int { value ? 1 : 0 }
+    private static func textCompare(_ a: String, _ b: String) -> Int {
+        if a == b { return 0 }
+        return a.utf8.lexicographicallyPrecedes(b.utf8) ? -1 : 1
+    }
+}

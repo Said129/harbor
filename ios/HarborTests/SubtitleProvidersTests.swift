@@ -12,6 +12,18 @@ private struct SubtitleProviderCannedTransport: SubtitleProviderTransport {
     }
 }
 
+private struct SubtitleProviderSlowTransport: SubtitleProviderTransport {
+    let fastReply: Data
+
+    func send(_ request: URLRequest) async throws -> SubtitleProviderReply {
+        if request.url?.host == "sub.wyzie.io" {
+            try await Task.sleep(for: .seconds(30))
+            return SubtitleProviderReply(status: 200, data: Data("[]".utf8))
+        }
+        return SubtitleProviderReply(status: 200, data: fastReply)
+    }
+}
+
 final class SubtitleProvidersTests: XCTestCase {
     private static let wyzieBody = """
     [
@@ -36,6 +48,17 @@ final class SubtitleProvidersTests: XCTestCase {
     private func queryValue(_ url: URL?, _ name: String) -> String? {
         guard let url = url, let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
         return components.queryItems?.first(where: { $0.name == name })?.value
+    }
+
+    private func candidate(_ provider: SubtitleProviderID, _ id: String, _ url: String, _ language: String,
+                           title: String? = nil, searchTitle: String? = nil, format: String? = nil,
+                           downloads: Int = 0, confidence: String? = nil, requiresKey: Bool = false) -> SubtitleProviderCandidate {
+        var result = SubtitleProviderCandidate(
+            subtitle: PlaybackSource.Subtitle(url: url, lang: language, id: id, title: title), provider: provider,
+            format: format, requiresKey: requiresKey, downloads: downloads, matchConfidence: confidence
+        )
+        result.searchTitle = searchTitle
+        return result
     }
 
     func testImdbIdsArePrefixedAndPadded() {
@@ -100,6 +123,89 @@ final class SubtitleProvidersTests: XCTestCase {
         XCTAssertEqual(found[2].subtitle.lang, "es")
         XCTAssertTrue(found[2].forced)
         XCTAssertTrue(found[2].foreignOnly)
+    }
+
+    func testOpenSubtitlesPreservesDistinctRowsWithTheSameURLAndNormalizedLanguage() {
+        let body = #"{"subtitles": [
+          {"id": "same", "url": "https://dl.example.org/same.srt", "lang": "en", "m": "Show.WEB", "SubFormat": "SRT"},
+          {"id": "same", "url": "https://dl.example.org/same.srt", "lang": "eng", "m": "Show.WEB", "SubFormat": "SRT"}
+        ]}"#
+        let found = OpenSubtitlesV3Provider.parse(Data(body.utf8))
+        XCTAssertEqual(found.count, 2)
+        XCTAssertEqual(found.map(\.searchTitle), ["OpenSubtitles V3 #1", "OpenSubtitles V3 #2"])
+        XCTAssertEqual(found.map(\.subtitle.lang), ["en", "en"])
+        XCTAssertNotEqual(SubtitleSearchRanking.listIdentity(for: found[0]), SubtitleSearchRanking.listIdentity(for: found[1]))
+    }
+
+    func testSearchDeduplicatesByDesktopCompositeKeyAndKeepsDistinctSameURLRows() {
+        let url = "https://subs.example.org/shared.srt"
+        let weaker = candidate(.wyzie, "wyzie:weak", url, "en", title: "Wyzie · WEB", searchTitle: "WEB",
+                               downloads: 5, confidence: "low")
+        let stronger = candidate(.subsource, "subsource:strong", url, "eng", title: "Subsource · WEB", searchTitle: "WEB",
+                                 downloads: 1, confidence: "high", requiresKey: true)
+        let alternateTitle = candidate(.wyzie, "wyzie:alt", url, "en", title: "Wyzie · BluRay", searchTitle: "BluRay")
+        let alternateFormat = candidate(.wyzie, "wyzie:ass", url, "en", title: "Wyzie · WEB", searchTitle: "WEB", format: "ass")
+        let alternateLanguage = candidate(.wyzie, "wyzie:es", url, "es", title: "Wyzie · WEB", searchTitle: "WEB")
+
+        let ranked = SubtitleSearchRanking.deduplicateAndRank(
+            [weaker, stronger, alternateTitle, alternateFormat, alternateLanguage], preferredLanguages: ["en"]
+        )
+        XCTAssertEqual(ranked.count, 4)
+        XCTAssertTrue(ranked.contains { $0.subtitle.id == "subsource:strong" }, "The higher confidence keyed duplicate wins")
+        XCTAssertTrue(ranked.contains { $0.subtitle.id == "wyzie:alt" }, "A different title remains a separate row")
+        XCTAssertTrue(ranked.contains { $0.subtitle.id == "wyzie:ass" }, "A different format remains a separate row")
+        XCTAssertTrue(ranked.contains { $0.subtitle.id == "wyzie:es" }, "A different language remains a separate row")
+        XCTAssertNotEqual(SubtitleSearchRanking.listIdentity(for: alternateTitle), SubtitleSearchRanking.listIdentity(for: alternateFormat))
+    }
+
+    func testDuplicateMergeDoesNotTransferAnInMemoryProviderDownloadGrant() {
+        let url = "https://subs.example.org/shared.zip"
+        var fallback = candidate(.wyzie, "addon-row", url, "en", title: "Addon · WEB", searchTitle: "WEB")
+        fallback.subtitle.providerDownload = SubtitleProviderDownload(owner: "profile-a", provider: nil, requiresKey: false,
+                                                                       season: nil, episode: nil, release: nil, filename: nil)
+        let keyed = candidate(.subsource, "subsource-row", url, "en", title: "Subsource · WEB", searchTitle: "WEB",
+                              confidence: "high", requiresKey: true)
+
+        let ranked = SubtitleSearchRanking.deduplicateAndRank([fallback, keyed], preferredLanguages: [])
+        XCTAssertEqual(ranked.count, 1)
+        XCTAssertEqual(ranked[0].subtitle.id, "subsource-row")
+        XCTAssertNil(ranked[0].subtitle.providerDownload, "A duplicate URL cannot inherit another provider's ephemeral grant")
+    }
+
+    func testNativeSubtitleRowsAndDownloadsKeepSameURLLanguagesAndCredentialScopesSeparate() throws {
+        let url = "https://subs.example.org/episode.zip"
+        let response: JSONValue = .object(["subtitles": .array([
+            .object(["url": .string(url), "lang": .string("en"), "label": .string("Release")]),
+            .object(["url": .string(url), "lang": .string("spa"), "label": .string("Release")])
+        ])])
+        let rows = SubtitleAddonService.parse(response, provider: "Community Subtitles")
+        XCTAssertEqual(Set(rows.map(\.selectionIdentity)).count, 2)
+        let original = try XCTUnwrap(rows.first)
+        var direct = original
+        direct.providerDownload = SubtitleProviderDownload(owner: "profile-a", provider: .subsource, requiresKey: true,
+                                                           season: 1, episode: 2, release: "Release", filename: "episode.mkv")
+        XCTAssertNotEqual(direct.downloadIdentity, original.downloadIdentity)
+
+        let merged = SubtitleSearchRanking.mergeResults(rows, [direct], preferredLanguages: ["es"])
+        XCTAssertEqual(merged.map(\.lang), ["spa", "en"])
+        XCTAssertNil(merged[0].providerDownload)
+        XCTAssertEqual(merged[1].providerDownload?.provider, .subsource)
+        let persisted = try JSONDecoder().decode(PlaybackSource.Subtitle.self, from: JSONEncoder().encode(direct))
+        XCTAssertNil(persisted.providerDownload)
+        XCTAssertEqual(persisted.selectionIdentity, url)
+    }
+
+    func testSearchInterleavesProvidersAfterPuttingTheBestPreferredLanguageFirst() {
+        let url = "https://subs.example.org/"
+        let opensubtitlesEnglish = candidate(.opensubtitles, "os-en", url + "os-en.srt", "en", searchTitle: "OS #1", downloads: 5)
+        let opensubtitlesFrench = candidate(.opensubtitles, "os-fr", url + "os-fr.srt", "fr", searchTitle: "OS #1", downloads: 100)
+        let wyzieEnglish = candidate(.wyzie, "wy-en", url + "wy-en.srt", "en", searchTitle: "WEB", downloads: 50)
+        let wyzieFrench = candidate(.wyzie, "wy-fr", url + "wy-fr.srt", "fr", searchTitle: "BluRay", downloads: 2)
+
+        let ranked = SubtitleSearchRanking.deduplicateAndRank(
+            [opensubtitlesEnglish, opensubtitlesFrench, wyzieEnglish, wyzieFrench], preferredLanguages: ["en"]
+        )
+        XCTAssertEqual(ranked.map(\.subtitle.id), ["wy-en", "os-en", "os-fr", "wy-fr"])
     }
 
     func testSubDLRequestCarriesKeyAndLanguageCodes() {
@@ -241,6 +347,17 @@ final class SubtitleProvidersTests: XCTestCase {
         let results = await service.search(query, enabled: [.subdl], keys: SubtitleProviderKeys(subdl: "test-subdl-key"))
         XCTAssertEqual(results.count, 2)
         XCTAssertTrue(results.allSatisfy { $0.provider == .subdl })
+    }
+
+    func testSlowProviderDoesNotDelayAnotherProviderPastItsOwnDeadline() async {
+        let body = #"{"subtitles": [{"id": "fast", "url": "https://dl.example.org/fast.srt", "lang": "en"}]}"#
+        let service = SubtitleProviderService(transport: SubtitleProviderSlowTransport(fastReply: Data(body.utf8)),
+                                              providerTimeout: .milliseconds(40))
+        let started = ContinuousClock.now
+        let results = await service.search(SubtitleProviderQuery(imdbID: "tt0944947"), enabled: [.opensubtitles, .wyzie], keys: SubtitleProviderKeys())
+        let elapsed = started.duration(to: .now)
+        XCTAssertLessThan(elapsed, .seconds(1))
+        XCTAssertEqual(results.map(\.subtitle.id), ["os3:fast"])
     }
 
     func testProviderTogglesFallBackToDesktopDefaults() {

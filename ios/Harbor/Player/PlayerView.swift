@@ -381,13 +381,10 @@ struct PlayerView: View {
             let retry = state.addonSubtitlesRetry
             defer { if generation == state.mediaGeneration, retry == state.addonSubtitlesRetry { state.addonSubtitlesLoading = false } }
             let settingsOwner = MetadataPreferences.shared.settingsOwner ?? "guest"
+            let preferredLanguages = SubtitleLanguages.preferredCodes(preferences.options.subtitleLanguage)
             let addonDownload = SubtitleProviderDownload(owner: settingsOwner, provider: nil, requiresKey: false,
                 season: request.season, episode: request.episode, release: nil, filename: request.filename)
-            state.addonSubtitles = state.addonSubtitles.map { subtitle in
-                var prepared = subtitle
-                if prepared.providerDownload == nil { prepared.providerDownload = addonDownload }
-                return prepared
-            }
+            state.addonSubtitles = []
             let addonsEnabled = SubtitleProviderPreferences.addonsEnabled()
             async let optional = OptionalSubtitleProviders.search(request, owner: settingsOwner, addonsEnabled: addonsEnabled)
             let result: SubtitleAddonService.Result?
@@ -397,12 +394,13 @@ struct PlayerView: View {
                         guard !Task.isCancelled, generation == state.mediaGeneration, retry == state.addonSubtitlesRetry,
                               settingsOwner == (MetadataPreferences.shared.settingsOwner ?? "guest"),
                               library.map({ $0.owner == session.owner }) ?? true else { return }
-                        var urls = Set(state.addonSubtitles.map(\.url))
-                        state.addonSubtitles += batch.filter { urls.insert($0.url).inserted }.map { subtitle in
+                        let prepared = batch.map { subtitle in
                             var prepared = subtitle
                             prepared.providerDownload = addonDownload
                             return prepared
                         }
+                        state.addonSubtitles = SubtitleSearchRanking.mergeResults(state.addonSubtitles, prepared,
+                                                                                  preferredLanguages: preferredLanguages)
                     }
                 } catch is CancellationError { return }
                 catch { result = nil }
@@ -414,16 +412,8 @@ struct PlayerView: View {
                   settingsOwner == (MetadataPreferences.shared.settingsOwner ?? "guest"),
                   library.map({ $0.owner == session.owner }) ?? true else { return }
             if !extra.isEmpty {
-                var subtitles = state.addonSubtitles
-                var positions = Dictionary(subtitles.enumerated().map { ($0.element.url, $0.offset) }, uniquingKeysWith: { first, _ in first })
-                for subtitle in extra {
-                    if let index = positions[subtitle.url] { subtitles[index] = subtitle }
-                    else {
-                        positions[subtitle.url] = subtitles.count
-                        subtitles.append(subtitle)
-                    }
-                }
-                state.addonSubtitles = subtitles
+                state.addonSubtitles = SubtitleSearchRanking.mergeResults(state.addonSubtitles, extra,
+                                                                          preferredLanguages: preferredLanguages)
             }
             if let result {
                 if result.providers == 0 && state.addonSubtitles.isEmpty { state.addonSubtitlesMessage = "No hay addons de subtítulos activados compatibles con este título." }

@@ -53,7 +53,7 @@ final class PlayerState {
     var addonSubtitleTracks: [String: Int] = [:]
     var addonSubtitleDownloading = false
     func addonSubtitleSelected(_ subtitle: PlaybackSource.Subtitle) -> Bool {
-        guard let trackID = addonSubtitleTracks[subtitle.url] else { return false }
+        guard let trackID = addonSubtitleTracks[subtitle.selectionIdentity] else { return false }
         return primarySubtitle?.id == trackID
     }
     var subtitleSyncing = false

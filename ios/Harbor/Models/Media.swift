@@ -279,6 +279,15 @@ struct PlaybackSource: Codable, Identifiable, Sendable {
         var title: String? = nil
         // Only the optional provider search can attach this context. Addon JSON cannot request a profile key.
         var providerDownload: SubtitleProviderDownload? = nil
+        var searchIdentity: String? = nil
+        var selectionIdentity: String { searchIdentity ?? url }
+        var downloadIdentity: String {
+            guard let context = providerDownload else { return selectionIdentity }
+            let scope = [context.owner, context.provider?.rawValue ?? "", context.requiresKey ? "key" : "public",
+                         context.season.map(String.init) ?? "", context.episode.map(String.init) ?? "",
+                         context.release ?? "", context.filename ?? ""]
+            return scope.map { "\($0.utf8.count):\($0)" }.joined() + "|" + selectionIdentity
+        }
 
         private enum CodingKeys: String, CodingKey { case url, lang, id, title }
     }

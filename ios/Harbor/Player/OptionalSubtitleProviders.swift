@@ -48,6 +48,7 @@ enum OptionalSubtitleProviders {
         let found = await SubtitleProviderService().search(lookup, enabled: enabled, keys: setup.keys)
         return found.map { candidate in
             var subtitle = candidate.subtitle
+            subtitle.searchIdentity = SubtitleSearchRanking.listIdentity(for: candidate)
             subtitle.providerDownload = SubtitleProviderDownload(owner: owner, provider: candidate.provider, requiresKey: candidate.requiresKey,
                 season: request.season, episode: request.episode, release: candidate.release, filename: lookup.filename)
             return subtitle

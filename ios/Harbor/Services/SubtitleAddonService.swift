@@ -79,7 +79,7 @@ struct SubtitleAddonService: Sendable {
             var seen = Set<String>()
             for try await (plan, response) in group {
                 if let response, case .array = response["subtitles"] {
-                    let batch = Self.parse(response, provider: plan.title).filter { seen.insert($0.url).inserted }
+                    let batch = Self.parse(response, provider: plan.title).filter { seen.insert($0.selectionIdentity).inserted }
                     result.subtitles += batch
                     if !batch.isEmpty { await onBatch?(batch) }
                 } else { result.failures += 1 }
@@ -105,7 +105,10 @@ struct SubtitleAddonService: Sendable {
                   url.user == nil, url.password == nil, text.rangeOfCharacter(from: .controlCharacters) == nil else { return nil }
             let label = value["label"].string?.trimmingCharacters(in: .whitespacesAndNewlines)
             let title = [provider, label].compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: " · ")
-            return PlaybackSource.Subtitle(url: text, lang: value["lang"].string, id: value["id"].string, title: String(title.prefix(240)))
+            var subtitle = PlaybackSource.Subtitle(url: text, lang: value["lang"].string, id: value["id"].string, title: String(title.prefix(240)))
+            subtitle.searchIdentity = SubtitleSearchRanking.listIdentity(language: subtitle.lang, url: text, title: label,
+                                                                         format: value["format"].string?.lowercased())
+            return subtitle
         }
     }
 }

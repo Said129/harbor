@@ -59,6 +59,8 @@ struct SubtitleProviderKeys: Equatable, Sendable {
 struct SubtitleProviderCandidate: Sendable {
     var subtitle: PlaybackSource.Subtitle
     var provider: SubtitleProviderID
+    /// The result title used by Desktop's duplicate key. The displayed mobile title may add the provider name.
+    var searchTitle: String? = nil
     /// Lower-case Desktop format (`srt`, `vtt`, `ass`, `ssa`, `sub`, `zip`), or nil when unknown.
     var format: String? = nil
     /// A zip archive. The player checks the downloaded bytes before extracting a playable entry.
@@ -342,6 +344,7 @@ enum WyzieProvider {
             let id = SubtitleProviderJSON.text(row["id"]) ?? url
             let subtitle = PlaybackSource.Subtitle(url: url, lang: lang, id: "wyzie:" + id, title: SubtitleProviderID.wyzie.listTitle(release: release))
             var candidate = SubtitleProviderCandidate(subtitle: subtitle, provider: .wyzie)
+            candidate.searchTitle = release
             candidate.format = format
             candidate.archive = format == "zip"
             candidate.hearingImpaired = hearing
@@ -378,17 +381,23 @@ enum OpenSubtitlesV3Provider {
     static func parse(_ data: Data) -> [SubtitleProviderCandidate] {
         guard let root = try? JSONDecoder().decode(JSONValue.self, from: data) else { return [] }
         var seen = Set<String>()
+        var perLanguage: [String: Int] = [:]
         var out: [SubtitleProviderCandidate] = []
         for row in root["subtitles"].array {
             guard let raw = SubtitleProviderJSON.text(row["url"]), let url = SubtitleProviderURL.safe(raw) else { continue }
-            let lang = SubtitleLanguages.normalize(SubtitleProviderJSON.text(row["lang"]) ?? "")
-            guard seen.insert(lang + "|" + url).inserted else { continue }
+            let rawLanguage = SubtitleProviderJSON.text(row["lang"]) ?? ""
+            guard seen.insert(rawLanguage + "|" + url).inserted else { continue }
+            let lang = SubtitleLanguages.normalize(rawLanguage)
+            let ordinal = (perLanguage[lang] ?? 0) + 1
+            perLanguage[lang] = ordinal
+            let searchTitle = "OpenSubtitles V3 #\(ordinal)"
             let release = SubtitleProviderJSON.text(row["m"])
             let rowID = SubtitleProviderJSON.text(row["id"]) ?? url
             let flags = SubtitleProviderClassification.classify(row, labels: [release, SubtitleProviderJSON.text(row["id"]), url])
             let format = SubtitleProviderJSON.text(row["SubFormat"])?.lowercased()
-            let subtitle = PlaybackSource.Subtitle(url: url, lang: lang, id: "os3:" + rowID, title: SubtitleProviderID.opensubtitles.listTitle(release: release))
+            let subtitle = PlaybackSource.Subtitle(url: url, lang: lang, id: "os3:" + rowID, title: searchTitle)
             var candidate = SubtitleProviderCandidate(subtitle: subtitle, provider: .opensubtitles)
+            candidate.searchTitle = searchTitle
             candidate.format = format
             candidate.archive = format == "zip"
             candidate.hearingImpaired = flags.hearingImpaired
@@ -747,31 +756,55 @@ enum SubtitleProviderDLRating {
 
 // MARK: Search
 
-/// Searches the enabled providers at once. A provider that needs a key the person has not saved, or that fails,
-/// contributes nothing. Desktop's per-provider timeouts and rate limits are not ported yet.
+/// Searches the enabled providers at once. A provider that needs a key the person has not saved, fails,
+/// or exceeds its own deadline contributes nothing, without extending another provider's wait.
 struct SubtitleProviderService: Sendable {
     let transport: any SubtitleProviderTransport
+    let providerTimeout: Duration
 
-    init(transport: any SubtitleProviderTransport = SubtitleProviderURLTransport()) {
+    init(transport: any SubtitleProviderTransport = SubtitleProviderURLTransport(), providerTimeout: Duration = .seconds(8)) {
         self.transport = transport
+        self.providerTimeout = providerTimeout
     }
 
-    func search(_ query: SubtitleProviderQuery, enabled: Set<SubtitleProviderID>, keys: SubtitleProviderKeys) async -> [SubtitleProviderCandidate] {
+    func search(_ query: SubtitleProviderQuery, enabled: Set<SubtitleProviderID>, keys: SubtitleProviderKeys,
+                preferredLanguages: [String]? = nil) async -> [SubtitleProviderCandidate] {
         let transport = self.transport
-        let batches: [[SubtitleProviderCandidate]] = await withTaskGroup(of: [SubtitleProviderCandidate].self, returning: [[SubtitleProviderCandidate]].self) { group in
+        let providerTimeout = self.providerTimeout
+        let batches: [(SubtitleProviderID, [SubtitleProviderCandidate])] = await withTaskGroup(of: (SubtitleProviderID, [SubtitleProviderCandidate]).self, returning: [(SubtitleProviderID, [SubtitleProviderCandidate])].self) { group in
             for provider in SubtitleProviderID.allCases where enabled.contains(provider) {
-                group.addTask { await Self.run(provider, query: query, keys: keys, transport: transport) }
+                group.addTask {
+                    let results = await Self.runWithTimeout(provider, query: query, keys: keys, transport: transport, timeout: providerTimeout)
+                    return (provider, results)
+                }
             }
-            var collected: [[SubtitleProviderCandidate]] = []
+            var collected: [(SubtitleProviderID, [SubtitleProviderCandidate])] = []
             for await batch in group { collected.append(batch) }
             return collected
         }
-        return Self.uniqueByURL(batches.flatMap { $0 })
+        let providerOrder = Dictionary(uniqueKeysWithValues: SubtitleProviderID.allCases.enumerated().map { ($0.element, $0.offset) })
+        let ordered = batches.sorted { (providerOrder[$0.0] ?? 0) < (providerOrder[$1.0] ?? 0) }
+        return SubtitleSearchRanking.deduplicateAndRank(ordered.flatMap { $0.1 }, preferredLanguages: preferredLanguages ?? query.languages)
     }
 
-    static func uniqueByURL(_ items: [SubtitleProviderCandidate]) -> [SubtitleProviderCandidate] {
-        var seen = Set<String>()
-        return items.filter { seen.insert($0.subtitle.url).inserted }
+    private static func runWithTimeout(_ provider: SubtitleProviderID, query: SubtitleProviderQuery, keys: SubtitleProviderKeys,
+                                       transport: any SubtitleProviderTransport, timeout: Duration) async -> [SubtitleProviderCandidate] {
+        await withTaskGroup(of: [SubtitleProviderCandidate]?.self, returning: [SubtitleProviderCandidate].self) { group in
+            group.addTask {
+                let results = await Self.run(provider, query: query, keys: keys, transport: transport)
+                return results as [SubtitleProviderCandidate]?
+            }
+            group.addTask {
+                try? await Task.sleep(for: timeout)
+                return nil
+            }
+            guard let first = await group.next() else {
+                group.cancelAll()
+                return []
+            }
+            group.cancelAll()
+            return first ?? []
+        }
     }
 
     private static func run(_ provider: SubtitleProviderID, query: SubtitleProviderQuery, keys: SubtitleProviderKeys, transport: any SubtitleProviderTransport) async -> [SubtitleProviderCandidate] {
@@ -806,12 +839,18 @@ struct SubtitleProviderService: Sendable {
         let envelope = try await SubtitleProviderFetch.fetchJSON(searchURL, headers: headers, transport: transport)
         guard let movie = SubSourceProvider.chosenMovie(envelope, query: query),
               let movieID = SubtitleProviderJSON.text(movie["movieId"]) else { return [] }
-        var out: [SubtitleProviderCandidate] = []
-        for request in SubSourceProvider.listRequests(movieID: movieID, query: query) {
-            guard let listEnvelope = try? await SubtitleProviderFetch.fetchJSON(request.url, headers: headers, transport: transport) else { continue }
-            out += SubSourceProvider.parseSubtitles(listEnvelope, movie: movie, query: query, exactRelease: request.exactRelease)
+        let requests = SubSourceProvider.listRequests(movieID: movieID, query: query)
+        return await withTaskGroup(of: (Int, [SubtitleProviderCandidate]).self, returning: [SubtitleProviderCandidate].self) { group in
+            for (index, request) in requests.enumerated() {
+                group.addTask {
+                    guard let listEnvelope = try? await SubtitleProviderFetch.fetchJSON(request.url, headers: headers, transport: transport) else { return (index, []) }
+                    return (index, SubSourceProvider.parseSubtitles(listEnvelope, movie: movie, query: query, exactRelease: request.exactRelease))
+                }
+            }
+            var batches: [(Int, [SubtitleProviderCandidate])] = []
+            for await batch in group { batches.append(batch) }
+            return batches.sorted { $0.0 < $1.0 }.flatMap { $0.1 }
         }
-        return out
     }
 }
 

@@ -2028,3 +2028,14 @@ profile, keeps the current playback and discards stale requests after queue
 edits. The Discover mode uses the aggregated catalog. Desktop radio, Spotify
 collection paging and artist blocks still need work. A focused playlist test
 covers deduplication, video exclusion, manual edits and playback continuity.
+
+## Subtitle search ordering and selection
+
+Direct subtitle sources deduplicate by the Desktop composite key and interleave
+providers with preferred languages first. The player retains distinct rows
+with the same URL across addons and direct sources and uses the row identity
+for selection. Its download cache also separates provider credentials, archive
+episode and release context. Those fields and the internal row identity stay
+in memory. Subsource's list queries run concurrently and cooperative provider
+requests have independent deadlines. Stream-aware ranking and automatic
+selection of a direct provider result remain pending.

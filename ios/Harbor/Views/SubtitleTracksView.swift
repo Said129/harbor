@@ -177,7 +177,7 @@ struct SubtitleTracksView: View {
                     .textInputAutocapitalization(.never).autocorrectionDisabled().textFieldStyle(.roundedBorder)
                     .accessibilityIdentifier("subtitle-addons-search")
                 LazyVStack(alignment: .leading, spacing: 6) {
-                    ForEach(Array(availableAddonSubtitles.enumerated()), id: \.element.url) { index, subtitle in
+                    ForEach(Array(availableAddonSubtitles.enumerated()), id: \.element.selectionIdentity) { index, subtitle in
                         Button { state.controller?.loadAddonSubtitle(subtitle) } label: {
                             HStack(spacing: 10) {
                                 let code = SubtitleLanguages.normalize(subtitle.lang ?? "")

@@ -561,7 +561,7 @@ BEHAVIORS = expand("""
 284 P Trakt comments: sort, spoilers, replies and paging are in; the post, like and rating request builders exist (8 Nov, written by Haiku, uncompiled) but no screen posts
 310 P OMDB ratings and budget: scores, cache, budget, refused key and now the awards parsing (8 Nov, written by Haiku, uncompiled); no screen shows awards or the budget, as Desktop reads neither
 314 P Wikidata awards and people: titles have awards; the person award kind and collapse rules exist (8 Nov, written by Haiku, uncompiled); iOS fetches no people awards
-201 P subtitle ranking and dedupe: Desktop's auto-selection order for the no-hints path exists as a tested helper (8 Nov, written by Haiku, uncompiled); no caller uses it and the duplicate merge is not ported
+201 P subtitle ranking and dedupe: provider search now deduplicates by language, URL, title and format, interleaves providers and prioritizes language; native rows and download cache preserve distinct results, while Desktop stream-hint ranking and automatic provider selection remain pending
 22 P global search: with a TMDB key the search adds Desktop's TMDB movie and series rows after the addon rows, leaving out titles an addon row already shows (8 Nov, written by Haiku, uncompiled); the top-match ranking and the year or genre intent exist as helpers that no screen uses
 23 D movie search: TMDB movies join the addon rows with the poster filter and the 12-title cap (8 Nov, written by Haiku, uncompiled); the top-match order is a helper only
 24 D series search: TMDB series join the addon rows with the poster filter and the 12-title cap (8 Nov, written by Haiku, uncompiled); the top-match order is a helper only
