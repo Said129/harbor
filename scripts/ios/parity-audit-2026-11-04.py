@@ -1041,6 +1041,9 @@ SETTINGS = expand("""
 265 D The per-profile native-audio setting automatically selects an eligible forced track in preferred language order, or disables the primary track when no forced choice exists. Manual choices retain priority.
 486 D The active profile controls whether iOS-delivered Stremio install links are routed to Harbor's installer. URL scheme selection belongs to iOS.
 247 P The profile can enable the pinned Desktop drift monitor after subtitle alignment. Native mpv speech sampling and explicit confirmation differ from Desktop's audio backend. Native validation is pending.
+249 P The experimental profile setting can offer a cross-language correction using the pinned Desktop workflow and the selected audio language. iOS measures separate audio windows with mpv. Automatic structural calibration and real-source validation remain pending.
+65 P The original corner ribbon follows the active Home Top 10 and moves a bookmark sharing its corner. Native Home rows still differ from Desktop's data in some configurations.
+66 D The active profile chooses the Top 10 ribbon's leading or trailing corner. The original assets follow Desktop's logical layout direction.
 """)
 
 def audit(items, verdicts, label):

@@ -266,6 +266,8 @@ targets:
       - path: HarborTests/CommunitySyncTests.swift
       - path: HarborTests/SubtitleAutoSyncTests.swift
       - path: HarborTests/SubtitleDriftMonitorTests.swift
+      - path: HarborTests/SubtitlePivotNativeTests.swift
+      - path: HarborTests/TopTenRibbonIndexTests.swift
       - path: HarborTests/QualityBadgePolicyTests.swift
       - path: HarborTests/WireAnimeTests.swift
       - path: HarborTests/R22CalendarTests.swift

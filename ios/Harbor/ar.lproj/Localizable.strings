@@ -1458,6 +1458,7 @@
 "Marcadores" = "الإشارات المرجعية";
 "Marcar como leído" = "Mark as read";
 "Margins" = "الهوامش";
+"Mark Top 10 titles with a corner ribbon. Bookmarks move down when they share its corner." = "ميّز أفضل 10 عناوين بشريط في الزاوية. تتحرك الإشارات المرجعية لأسفل عندما تشترك معه في الزاوية.";
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "تحديد كغير مُشاهَد";
 "Mark as watched" = "تحديد كمُشاهَد";
@@ -1465,6 +1466,7 @@
 "Match Dolby Vision, HDR10 and HLG streams." = "مطابقة بث Dolby Vision وHDR10 وHLG.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "زامن الترجمات المنزّلة مع الصوت في مشغّل mpv. تحتفظ مسارات الترجمة المضمّنة بتوقيتها الحالي.";
 "Match streams marked as cached or already in your debrid library." = "مطابقة البث المحدد بأنه مخزّن مؤقتًا أو موجود بالفعل في مكتبة debrid لديك.";
+"Match subtitles across languages (experimental)" = "مطابقة الترجمات بين اللغات (تجريبي)";
 "Max" = "الأقصى";
 "Max {n} GB" = "بحد أقصى {n} GB";
 "Maximum" = "القصوى";
@@ -2178,6 +2180,7 @@
 "Reverse order" = "Reverse order";
 "Revert" = "تراجع";
 "Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "يعيد كتابة كل عنصر مكتبة ليطابق مخطط Stremio الدقيق. شغّله مرة إن بدأ تطبيق Stremio بالتعطّل بعد مزامنة Harbor للتشغيل.";
+"Ribbon corner" = "زاوية الشريط";
 "Rich season and order panel" = "لوحة المواسم والترتيب التفصيلية";
 "Richer, more vivid picture with a touch more contrast." = "صورة أغنى وأكثر حيوية مع القليل من التباين الإضافي.";
 "Right" = "يمين";
@@ -2741,6 +2744,7 @@
 "Top 10 de drama" = "أفضل 10 دراما";
 "Top 10 en Stremio" = "أفضل 10 على Stremio";
 "Top 10 on Stremio" = "أفضل 10 على Stremio";
+"Top 10 ribbon" = "شريط أفضل 10";
 "Top 10 {name}" = "أفضل 10 {name}";
 "Top 100 on AniList" = "أفضل 100 على AniList";
 "Top Airing on MAL" = "الأعلى عرضًا على MAL";
@@ -2955,6 +2959,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "عند بدء التشغيل، يبحث Harbor تلقائيًا عن ترجمة بإحدى هذه اللغات ويحمّلها. تُعتمد أول مطابقة متاحة، لذا ضع لغتك الأساسية أولًا.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "متى يظهر تنبيه الحلقة القادمة قبل انتهاء الحلقة. يتم ضبطه تلقائياً بناءً على طول الحلقة. 'إيقاف' يخفيه تماماً.";
 "When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "عندما يطابق الصوت لغة ترجمتك بالفعل، اختر مسارًا إجباريًا (الحوار الأجنبي واللافتات فقط) بدلًا من الترجمة الكاملة. وإن لم يكن للملف مسار إجباري، تبقى الترجمة معطّلة.";
+"When the audio and subtitle use different languages, Harbor compares a release-matched subtitle in the audio language. It only offers a fix unless every safety check is measured." = "عندما يكون الصوت والترجمة بلغتين مختلفتين، يقارن Harbor ترجمة مطابقة للإصدار بلغة الصوت. ولا يقترح سوى إصلاح، ما لم تُقَس جميع فحوص السلامة.";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "عند انتهائك من حلقة، تنتقل بطاقة متابعة المشاهدة في الرئيسية إلى الحلقة التالية بدلًا من البقاء عند 0 دقيقة متبقية.";
 "When you press Play" = "عند الضغط على «تشغيل»";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "عند استئنافك لشيء كنت تشاهده، أعد تشغيل البثّ نفسه الذي استخدمته آخر مرة (نفس الإضافة والمصدر) بدلًا من فتح الأداة من جديد. عطّله لتختار جديدًا دائمًا.";
@@ -2966,6 +2971,7 @@
 "Which end of the poster the score chip rides on." = "على أي طرف من الملصق تستقر شارة التقييم.";
 "Which order" = "أي ترتيب";
 "Which subtitle Harbor lands on when more than one is available." = "أي ترجمة يختارها Harbor عند توفر أكثر من واحدة.";
+"Which top corner of the poster the ribbon folds over." = "الزاوية العلوية من الملصق التي يلتف حولها الشريط.";
 "Who's watching" = "من يشاهد";
 "Who's watching?" = "من يشاهد؟";
 "Whodunit" = "لغز جريمة";

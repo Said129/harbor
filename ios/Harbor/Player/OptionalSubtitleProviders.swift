@@ -54,4 +54,31 @@ enum OptionalSubtitleProviders {
             return subtitle
         }
     }
+
+    /// The pivot keeps each direct provider record beside its URL so preparation can retain the
+    /// provider's format, archive, release, and episode metadata. Only the candidate projection
+    /// crosses into JavaScriptCore.
+    static func pivotCandidates(_ request: SubtitleRequest, audioLanguage: String, owner: String,
+                                addonsEnabled: Bool) async -> [SubtitleProviderCandidate] {
+        let enabled = directProviders(SubtitleProviderPreferences.enabledProviders(), addons: addonsEnabled ? request.addons : [])
+        guard !enabled.isEmpty else { return [] }
+        let language = SubtitleLanguages.normalize(audioLanguage)
+        guard !language.isEmpty else { return [] }
+        let setup: (keys: SubtitleProviderKeys, languages: [String]) = await MainActor.run {
+            let store = SubtitleProviderKeyStore.forOwner(owner)
+            if !store.ready { try? store.load() }
+            let keys = SubtitleProviderKeys(subdl: store.key(.subdl), subsource: store.key(.subsource))
+            return (keys, [language])
+        }
+        let lookup = query(request, languages: setup.languages)
+        let found = await SubtitleProviderService().search(lookup, enabled: enabled, keys: setup.keys,
+                                                           preferredLanguages: setup.languages)
+        return found.map { provider in
+            var candidate = provider
+            candidate.subtitle.providerDownload = SubtitleProviderDownload(owner: owner, provider: candidate.provider,
+                requiresKey: candidate.requiresKey, season: candidate.season ?? request.season,
+                episode: candidate.episode ?? request.episode, release: candidate.release, filename: lookup.filename)
+            return candidate
+        }
+    }
 }

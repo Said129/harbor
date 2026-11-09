@@ -3,6 +3,7 @@ import UIKit
 
 private struct PlayerSurface: UIViewControllerRepresentable {
     let source: PlaybackSource
+    let subtitleRequest: SubtitleRequest?
     let startMs: Double
     let preservePosition: Bool
     let startPaused: Bool
@@ -11,7 +12,8 @@ private struct PlayerSurface: UIViewControllerRepresentable {
     let generation: UUID
     func makeCoordinator() -> ProfilePlaybackRegistry { playback }
     func makeUIViewController(context: Context) -> MPVController {
-        let controller = MPVController(source: source, state: state, startMs: startMs, preservePosition: preservePosition, startPaused: startPaused)
+        let controller = MPVController(source: source, state: state, startMs: startMs, preservePosition: preservePosition,
+                                       startPaused: startPaused, subtitleRequest: subtitleRequest)
         playback.register(controller, generation: generation)
         return controller
     }
@@ -144,7 +146,10 @@ struct PlayerView: View {
     private var surface: some View {
         ZStack {
             Color.black.ignoresSafeArea()
-            PlayerSurface(source: session.source, startMs: session.promptForResume ? 0 : session.startMs, preservePosition: session.preservePosition, startPaused: session.promptForResume, state: state, playback: AppProfileContext.shared.playback, generation: playbackGeneration).ignoresSafeArea().accessibilityHidden(true)
+            PlayerSurface(source: session.source, subtitleRequest: session.subtitleRequest,
+                          startMs: session.promptForResume ? 0 : session.startMs, preservePosition: session.preservePosition,
+                          startPaused: session.promptForResume, state: state, playback: AppProfileContext.shared.playback,
+                          generation: playbackGeneration).ignoresSafeArea().accessibilityHidden(true)
             // This sibling receives taps only on the video, so a transport
             // button or a slider never also toggles the entire interface.
             Color.clear.ignoresSafeArea().contentShape(Rectangle())

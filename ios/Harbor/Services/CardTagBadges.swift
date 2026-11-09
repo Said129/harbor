@@ -59,11 +59,12 @@ enum CardTagPolicy {
 
     /// Desktop's `WATCHLIST_POS`. A top-start bookmark is pushed down past the tags it shares a column with, as Desktop's
     /// `circleTop` does when the Top 10 ribbon is on; the other corners keep the fixed inset.
-    static func bookmarkPlacement(_ position: CardWatchlistPosition, tagCount: Int) -> CardBookmarkPlacement? {
+    static func bookmarkPlacement(_ position: CardWatchlistPosition, tagCount: Int,
+                                  ribbonAtStart: Bool = false, ribbonAtEnd: Bool = false) -> CardBookmarkPlacement? {
         switch position {
         case .off: return nil
-        case .topStart: return CardBookmarkPlacement(isTop: true, isStart: true, topInset: circleTop(tagCount))
-        case .topEnd: return CardBookmarkPlacement(isTop: true, isStart: false, topInset: 6)
+        case .topStart: return CardBookmarkPlacement(isTop: true, isStart: true, topInset: circleTop(tagCount + (ribbonAtStart ? 1 : 0)))
+        case .topEnd: return CardBookmarkPlacement(isTop: true, isStart: false, topInset: circleTop(ribbonAtEnd ? 1 : 0))
         case .bottomStart: return CardBookmarkPlacement(isTop: false, isStart: true, topInset: 0)
         case .bottomEnd: return CardBookmarkPlacement(isTop: false, isStart: false, topInset: 0)
         }

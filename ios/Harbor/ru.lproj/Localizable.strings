@@ -1438,6 +1438,7 @@
 "Marcadores" = "Закладки";
 "Marcar como leído" = "Mark as read";
 "Margins" = "Поля";
+"Mark Top 10 titles with a corner ribbon. Bookmarks move down when they share its corner." = "Отмечайте произведения из топ-10 лентой в углу. Закладки сдвигаются вниз, если занимают тот же угол.";
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "Отметить непросмотренным";
 "Mark as watched" = "Отметить просмотренным";
@@ -1445,6 +1446,7 @@
 "Match Dolby Vision, HDR10 and HLG streams." = "Выбирать потоки Dolby Vision, HDR10 и HLG.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Синхронизируйте загруженные субтитры со звуком в плеере mpv. Встроенные дорожки субтитров сохраняют своё время показа.";
 "Match streams marked as cached or already in your debrid library." = "Выбирать потоки, отмеченные как кешированные или уже находящиеся в вашей библиотеке debrid.";
+"Match subtitles across languages (experimental)" = "Сопоставлять субтитры на разных языках (экспериментально)";
 "Max" = "Максимум";
 "Max {n} GB" = "Макс. {n} ГБ";
 "Maximum" = "Максимум";
@@ -2158,6 +2160,7 @@
 "Reverse order" = "Reverse order";
 "Revert" = "Вернуть";
 "Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "Перезаписывает все элементы библиотеки по точной схеме Stremio. Запустите один раз, если приложение Stremio стало падать после синхронизации воспроизведения из Harbor.";
+"Ribbon corner" = "Угол ленты";
 "Rich season and order panel" = "Расширенная панель сезонов и порядка";
 "Richer, more vivid picture with a touch more contrast." = "Более сочная картинка с чуть большим контрастом.";
 "Right" = "Справа";
@@ -2718,6 +2721,7 @@
 "Top 10 de drama" = "Топ-10 драм";
 "Top 10 en Stremio" = "Топ-10 в Stremio";
 "Top 10 on Stremio" = "Топ-10 в Stremio";
+"Top 10 ribbon" = "Лента Топ-10";
 "Top 10 {name}" = "Топ-10 {name}";
 "Top 100 on AniList" = "Топ-100 на AniList";
 "Top Airing on MAL" = "Лучшее в эфире на MAL";
@@ -2932,6 +2936,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "При запуске воспроизведения Harbor сам находит и загружает субтитры на одном из этих языков. Побеждает первое совпадение, поэтому ставьте основной язык первым.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Когда плашка «Далее» появляется перед концом серии. «Авто» подстраивается под длину серии, чтобы короткие серии не предлагали переход слишком рано. «Выкл.» скрывает её.";
 "When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "Если звук уже на языке ваших субтитров, выбирать форсированную дорожку (только иностранная речь и надписи) вместо полных субтитров. Если форсированной дорожки нет, субтитры остаются выключенными.";
+"When the audio and subtitle use different languages, Harbor compares a release-matched subtitle in the audio language. It only offers a fix unless every safety check is measured." = "Когда язык звука и субтитров различается, Harbor сравнивает их с субтитрами для того же релиза на языке звука. Исправление лишь предлагается, пока не измерены все проверки безопасности.";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "Когда вы досматриваете серию, карточка «Продолжить просмотр» на Главной переходит к следующей серии, а не остаётся на «осталось 0 минут».";
 "When you press Play" = "Когда вы нажимаете «Воспроизвести»";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "При продолжении просмотра запускать тот же поток, что и в прошлый раз (то же дополнение и источник), не открывая выбор заново. Отключите, чтобы каждый раз выбирать заново.";
@@ -2943,6 +2948,7 @@
 "Which end of the poster the score chip rides on." = "У какого края постера находится плашка с оценкой.";
 "Which order" = "Какой порядок";
 "Which subtitle Harbor lands on when more than one is available." = "Какие субтитры выбирает Harbor, когда доступно несколько.";
+"Which top corner of the poster the ribbon folds over." = "Верхний угол постера, через который перекинута лента.";
 "Who's watching" = "Кто смотрит";
 "Who's watching?" = "Кто смотрит?";
 "Whodunit" = "Детектив";

@@ -30,6 +30,9 @@ final class InterfacePreferences {
     var showDubBadge = UserDefaults.standard.object(forKey: "showDubBadge") as? Bool ?? true { didSet { persist(showDubBadge, forKey: "showDubBadge") } }
     /// Desktop's `showCardBadges` (default on, "Show tags on cards"): the New tag on cards.
     var showCardBadges = UserDefaults.standard.object(forKey: "showCardBadges") as? Bool ?? true { didSet { persist(showCardBadges, forKey: "showCardBadges") } }
+    /// Desktop's `top10Ribbon` (default off) and `top10RibbonSide` (default "right"): the folded corner on Top 10 titles.
+    var top10Ribbon = UserDefaults.standard.object(forKey: "top10Ribbon") as? Bool ?? false { didSet { persist(top10Ribbon, forKey: "top10Ribbon") } }
+    var top10RibbonSide = UserDefaults.standard.string(forKey: "top10RibbonSide") == "left" ? "left" : "right" { didSet { persist(top10RibbonSide, forKey: "top10RibbonSide") } }
     var showWatchedButton = UserDefaults.standard.object(forKey: "showWatchedButton") as? Bool ?? true { didSet { persist(showWatchedButton, forKey: "showWatchedButton") } }
     /// Desktop's `showWatchedBadge` (default on): the watched check on posters and episode rows.
     var showWatchedBadge = UserDefaults.standard.object(forKey: "showWatchedBadge") as? Bool ?? true { didSet { persist(showWatchedBadge, forKey: "showWatchedBadge") } }
@@ -136,6 +139,8 @@ final class InterfacePreferences {
         watchlistBadge = CardWatchlistPosition.restored(UserDefaults.standard.string(forKey: "watchlistBadge")).rawValue
         showDubBadge = UserDefaults.standard.object(forKey: "showDubBadge") as? Bool ?? true
         showCardBadges = UserDefaults.standard.object(forKey: "showCardBadges") as? Bool ?? true
+        top10Ribbon = UserDefaults.standard.object(forKey: "top10Ribbon") as? Bool ?? false
+        top10RibbonSide = UserDefaults.standard.string(forKey: "top10RibbonSide") == "left" ? "left" : "right"
         showWatchedButton = UserDefaults.standard.object(forKey: "showWatchedButton") as? Bool ?? true
         showWatchedBadge = UserDefaults.standard.object(forKey: "showWatchedBadge") as? Bool ?? true
         wrappedButton = UserDefaults.standard.object(forKey: "wrappedButton") as? Bool ?? true

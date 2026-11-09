@@ -2061,6 +2061,9 @@ Run 42551606229 covers those eight cases and the new duplicate tie-break case.
 It stopped at type-checking the native subtitle merge expression. 0f0f55e6
 splits the merge into individually typed steps. Run 42552470884 covers the
 nine affected cases and the three new drift cases on the corrected source.
+Run 42552470884 reached Swift compilation and stopped on a missing return in
+the Music continuation source label. 54f20d65 adds the returns and run
+42606184763 retries the same twelve unexecuted cases.
 
 ## Subtitle drift monitor
 
@@ -2072,3 +2075,26 @@ delay edits and seeks invalidate in-flight samples. Monitoring is disabled
 when Auto Sync is off. A local execution of the generated script checked the
 sample request, seek invalidation and cooldown. Native validation is pending.
 This feature is separate from the physical-device subtitle seek report.
+
+## Cross-language subtitle sync
+
+The profile's opt-in experiment reuses Desktop's pinned cross-language pivot,
+release matching, monotonic alignment and Arabic subtitle checks. Only
+bounded cue text and candidate metadata reach the JavaScript actor. Native
+provider requests and downloads remain scoped to the profile, selected audio
+language and episode. The iOS audio adapter measures fit and validation
+windows separately, using mpv to extract speech. When the Desktop gate offers
+a correction, the player requires confirmation and preserves the original
+subtitle for rollback. Structural auto-application and live-provider and
+device validation remain pending. A local test of the generated workflow
+rejected a retired request and distinguished a matching edition from a
+different episode. An owned synthetic alignment offered a 1.5-second shift.
+
+## Home Top 10 ribbon
+
+The active profile can show the original ribbon and choose its corner. The
+index comes from Home's first visible row after excluding the hero slides.
+Switching profiles retires the previous membership. Poster cards move a
+watchlist bookmark when it shares the ribbon's corner. Native Home content
+still differs from Desktop where a custom source loads its cards separately.
+The focused test checks membership, the name fallback and bookmark spacing.

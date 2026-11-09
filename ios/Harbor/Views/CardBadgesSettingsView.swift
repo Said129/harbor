@@ -48,6 +48,18 @@ struct CardBadgesSettingsView: View {
                     HarborSettingsToggle("Show tags on cards",
                                          note: "The New, In Cinema, Rerun, and Awards chips. Turn off for a cleaner grid. Score chips are separate, below.",
                                          isOn: $interface.showCardBadges)
+                    HarborSettingsToggle("Top 10 ribbon",
+                                         note: "Mark Top 10 titles with a corner ribbon. Bookmarks move down when they share its corner.",
+                                         isOn: $interface.top10Ribbon)
+                        .accessibilityIdentifier("card-top10-ribbon")
+                    if interface.top10Ribbon {
+                        HarborSettingsChoice("Ribbon corner", selection: $interface.top10RibbonSide,
+                                             choices: [("Top left", "left"), ("Top right", "right")],
+                                             identifier: "card-top10-ribbon-side")
+                        Text(text("Which top corner of the poster the ribbon folds over."))
+                            .font(HarborTheme.font(13)).foregroundStyle(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                     HarborSettingsToggle("Watchlist bookmark", note: "Puts a small bookmark on posters you have already saved.", isOn: watchlistOnBinding)
                     if interface.watchlistBadge != "off" {
                         HarborSettingsChoice("Bookmark corner", selection: $interface.watchlistBadge,

@@ -12,6 +12,7 @@ import Libmpv
 final class MPVController: GLKViewController, ProfilePlaybackControlling {
     let state: PlayerState
     private let source: PlaybackSource
+    private let subtitleRequest: SubtitleRequest?
     private let startMs: Double
     private let startPaused: Bool
     private var handle: OpaquePointer?
@@ -91,8 +92,10 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
     var sampleFrame: CVPixelBuffer? { pictureInPicture?.lastFrame }
     var sampleRenderCalls: Int { pictureInPicture?.renderedFrames ?? 0 }
 
-    init(source: PlaybackSource, state: PlayerState, startMs: Double = 0, preservePosition: Bool = false, startPaused: Bool = false) {
+    init(source: PlaybackSource, state: PlayerState, startMs: Double = 0, preservePosition: Bool = false, startPaused: Bool = false,
+         subtitleRequest: SubtitleRequest? = nil) {
         self.source = source; self.state = state
+        self.subtitleRequest = subtitleRequest
         self.startMs = startMs
         self.startPaused = startPaused
         state.paused = startPaused
@@ -708,11 +711,14 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         UserDefaults.standard.bool(forKey: "subtitleAutoSync") && UserDefaults.standard.bool(forKey: "autoSyncDrift")
     }
 
-    private func prepareSubtitleDrift(_ document: SubtitleDocument, timing: SubtitleSyncResult?, trackID: Int, audioID: Int?) {
+    private func prepareSubtitleDrift(_ document: SubtitleDocument, timing: SubtitleSyncResult?, trackID: Int, audioID: Int?,
+                                      pivotTransform: SubtitlePivotTransform? = nil) {
         guard subtitleDriftEnabled, let audioID else { return }
         let ratio = timing?.ratio ?? 1, offset = timing?.offset ?? 0
         let cues = document.cues.compactMap { cue -> SubtitleDriftCue? in
-            let start = max(0, cue.start * ratio + offset), end = max(0, cue.end * ratio + offset)
+            let transformed = pivotTransform?.displayTimes(cue.start, cue.end)
+            let start = transformed?.start ?? max(0, cue.start * ratio + offset)
+            let end = transformed?.end ?? max(0, cue.end * ratio + offset)
             guard end > start else { return nil }
             return SubtitleDriftCue(startSec: start, endSec: end)
         }
@@ -867,14 +873,26 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         }
         stopSubtitleDrift()
         let revision = mediaRevision, request = UUID(), duration = state.duration, source = source
-        let audioID = state.tracks.first { $0.type == "audio" && $0.selected }?.id
+        let audio = state.tracks.first { $0.type == "audio" && $0.selected }
+        let audioID = audio?.id
+        let audioLanguage = audio.flatMap { SubtitlePivotAnalysis.baseLanguage($0.language) }
+        let subtitleLanguage = SubtitlePivotAnalysis.baseLanguage(track.language)
+        let filename = track.externalFilename
+        let subtitleURL: URL? = filename.hasPrefix("/") ? URL(fileURLWithPath: filename) : URL(string: filename)
+        let supportsPivot = ["srt", "vtt"].contains(subtitleURL?.pathExtension.lowercased() ?? "")
+        let pivotEnabled = UserDefaults.standard.bool(forKey: "subtitleAutoSyncPivot")
+        let settingsOwner = MetadataPreferences.shared.settingsOwner ?? "guest"
         let scope = SubtitleSyncScope(request: request, revision: revision, trackID: track.id, audioID: audioID,
                                       delay: state.subtitleDelay, fps: state.subtitleFPS)
         subtitleSyncOffer = nil
         subtitleSyncRequest = request; state.subtitleSyncing = true; state.updateSubtitleSync(.analyzing, message: "Analizando el audio… Puedes seguir viendo.")
         subtitleSyncKey = "\(revision):\(track.id):\(audioID ?? 0)"
         subtitleSyncTask = Task { @MainActor [weak self] in
-            let worker = Task.detached(priority: .utility) { try await SubtitleAutoSync.analyze(source: source, subtitle: track.externalFilename, duration: duration, audioID: audioID) }
+            let worker = Task.detached(priority: .utility) {
+                let document = try await SubtitleAutoSync.load(filename)
+                let base = try await SubtitleAutoSync.analyze(source: source, document: document, duration: duration, audioID: audioID)
+                return (document, base)
+            }
             defer {
                 if let self, self.subtitleSyncRequest == request {
                     self.subtitleSyncTask = nil; self.state.subtitleSyncing = false
@@ -882,12 +900,23 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 }
             }
             do {
-                let correction = try await withTaskCancellationHandler { try await worker.value } onCancel: { worker.cancel() }
+                let (document, base) = try await withTaskCancellationHandler { try await worker.value } onCancel: { worker.cancel() }
                 try Task.checkCancellation()
                 guard let self, subtitleSyncScopeIsCurrent(scope) else { return }
+                var correction = base
+                let baseAligned = base.map { abs($0.timing.offset) < 0.25 && abs($0.timing.ratio - 1) < 0.003 } ?? false
+                if pivotEnabled, supportsPivot, !baseAligned, base?.origin != .verifiedCommunity,
+                   let subtitleRequest, let audioID, let audioLanguage, let subtitleLanguage {
+                    let pivot = try? await SubtitlePivotAnalysis.analyze(
+                        document: document, request: subtitleRequest, source: source, audioID: audioID,
+                        duration: duration, audioLanguage: audioLanguage, subtitleLanguage: subtitleLanguage, owner: settingsOwner)
+                    if let pivot, base.map({ pivot.timing.confidence > $0.timing.confidence + 0.02 }) ?? true { correction = pivot }
+                }
+                try Task.checkCancellation()
+                guard subtitleSyncScopeIsCurrent(scope) else { return }
                 guard let correction else { state.updateSubtitleSync(.declined, message: "No se encontró un ajuste fiable. Se conserva el subtítulo original."); return }
                 let result = correction.timing
-                if abs(result.offset) < 0.25 && abs(result.ratio - 1) < 0.003 {
+                if correction.pivotTransform == nil, abs(result.offset) < 0.25 && abs(result.ratio - 1) < 0.003 {
                     state.updateSubtitleSync(.synced, message: "El subtítulo ya coincide con el audio.")
                     if (scope.fps ?? 0) == 0 {
                         prepareSubtitleDrift(correction.document, timing: nil, trackID: scope.trackID, audioID: scope.audioID)
@@ -897,7 +926,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 switch correction.origin {
                 case .verifiedCommunity:
                     applySubtitleCorrection(correction, scope: scope)
-                case .audioEstimate:
+                case .audioEstimate, .crossLanguage:
                     // Desktop's bundled calibration is provisional: an audio estimate stays an offer.
                     subtitleSyncOffer = (correction, scope)
                     state.updateSubtitleSync(.offered, message: "Apply it, then nudge if it's off.")
@@ -945,7 +974,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
             }
             do {
                 guard controller.subtitleSyncScopeIsCurrent(scope) else { return }
-                let rewrite = await Task.detached(priority: .utility) { correction.document.applying(result) }.value
+                let rewrite = await Task.detached(priority: .utility) { correction.rewrittenSubtitle() }.value
                 guard controller.subtitleSyncScopeIsCurrent(scope) else { return }
                 let synced = try await SubtitleFileService.shared.synchronized(rewrite, vtt: correction.document.vtt, session: controller.subtitleSession)
                 file = synced
@@ -964,8 +993,11 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                         controller.synchronizedTracks.insert(selected.id)
                         controller.state.subtitleSyncOriginal = scope.trackID
                         controller.subtitleSyncOriginalTiming = (scope.delay, scope.fps ?? 0)
-                        controller.prepareSubtitleDrift(correction.document, timing: result, trackID: selected.id, audioID: scope.audioID)
-                        controller.state.updateSubtitleSync(.synced, message: DesktopInterfaceText.value("Subtitles synced") + " · \(result.offset.formatted(.number.precision(.fractionLength(1)))) s · \(result.ratio.formatted(.number.precision(.fractionLength(4))))×")
+                        controller.prepareSubtitleDrift(correction.document, timing: result, trackID: selected.id, audioID: scope.audioID,
+                                                        pivotTransform: correction.pivotTransform)
+                        let message = DesktopInterfaceText.value("Subtitles synced")
+                        let detail = " · \(result.offset.formatted(.number.precision(.fractionLength(1)))) s · \(result.ratio.formatted(.number.precision(.fractionLength(4))))×"
+                        controller.state.updateSubtitleSync(.synced, message: correction.pivotTransform?.piecewise == true ? message : message + detail)
                         return
                     }
                     try await Task.sleep(for: .milliseconds(50))

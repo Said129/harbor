@@ -1434,6 +1434,7 @@
 "Marcadores" = "Yer İmleri";
 "Marcar como leído" = "Mark as read";
 "Margins" = "Kenar boşlukları";
+"Mark Top 10 titles with a corner ribbon. Bookmarks move down when they share its corner." = "İlk 10 yapımlarını köşe şeridiyle işaretleyin. Yer imleri aynı köşedeyse aşağı kayar.";
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "İzlenmedi olarak işaretle";
 "Mark as watched" = "İzlendi olarak işaretle";
@@ -1441,6 +1442,7 @@
 "Match Dolby Vision, HDR10 and HLG streams." = "Dolby Vision, HDR10 ve HLG yayınlarını eşleştirir.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "İndirilen altyazıları mpv oynatıcıdaki sesle eşleştirin. Gömülü altyazı izleri mevcut zamanlamalarını korur.";
 "Match streams marked as cached or already in your debrid library." = "Önbelleğe alınmış veya debrid kitaplığınızda bulunan yayınları eşleştirir.";
+"Match subtitles across languages (experimental)" = "Farklı dillerdeki altyazıları eşleştir (deneysel)";
 "Max" = "Maks.";
 "Max {n} GB" = "Maks. {n} GB";
 "Maximum" = "Maksimum";
@@ -2147,6 +2149,7 @@
 "Reverse order" = "Reverse order";
 "Revert" = "Geri al";
 "Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "Tüm kitaplık öğelerini Stremio'nun tam şemasıyla eşleşecek şekilde yeniden yazar. Harbor oynatma verilerini eşitledikten sonra Stremio uygulamanız çökmeye başladıysa bir kez çalıştırın.";
+"Ribbon corner" = "Şerit köşesi";
 "Rich season and order panel" = "Ayrıntılı sezon ve sıralama paneli";
 "Richer, more vivid picture with a touch more contrast." = "Biraz daha fazla kontrastla daha zengin ve canlı bir görüntü sunar.";
 "Right" = "Sağ";
@@ -2704,6 +2707,7 @@
 "Top 10 de drama" = "En İyi 10 Dram";
 "Top 10 en Stremio" = "Stremio'da İlk 10";
 "Top 10 on Stremio" = "Stremio'da İlk 10";
+"Top 10 ribbon" = "İlk 10 şeridi";
 "Top 10 {name}" = "En İyi 10 {name}";
 "Top 100 on AniList" = "AniList'te ilk 100";
 "Top Airing on MAL" = "MAL'de Yayındaki En İyiler";
@@ -2918,6 +2922,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "Oynatma başladığında Harbor, bu dillerden birinde altyazıyı otomatik olarak bulup yükler. Bulunan ilk uygun altyazı kullanılır; bu nedenle ana dilinizi ilk sıraya koyun.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Bölüm bitmeden önce Sıradaki rozetinin ne zaman görüneceğini belirler. Otomatik seçeneği bölüm uzunluğuna göre ayarlanır, böylece kısa bölümlerde bildirim çok erken gösterilmez. Kapalı seçeneği bildirimi gizler.";
 "When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "Ses dili altyazı dilinizle zaten eşleşiyorsa tam altyazı yerine zorunlu parçayı (yalnızca yabancı dildeki konuşmalar ve yazılar) seçin. Dosyada zorunlu parça yoksa altyazılar kapalı kalır.";
+"When the audio and subtitle use different languages, Harbor compares a release-matched subtitle in the audio language. It only offers a fix unless every safety check is measured." = "Ses ve altyazı farklı dillerde olduğunda Harbor, ses dilindeki aynı sürümle eşleşen bir altyazıyla karşılaştırır. Tüm güvenlik kontrolleri ölçülmedikçe yalnızca bir düzeltme önerir.";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "Bir bölümü bitirdiğinizde Ana Sayfa'daki İzlemeye Devam Et kartı, 0 dakika kalmış hâlde beklemek yerine sonraki bölüme geçer.";
 "When you press Play" = "Oynat'a bastığınızda";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "İzlemeye devam ettiğinizde seçim ekranını yeniden açmak yerine son kullandığınız yayını (aynı eklenti ve kaynak) oynatır. Her zaman yeniden seçim yapmak için kapatın.";
@@ -2929,6 +2934,7 @@
 "Which end of the poster the score chip rides on." = "Puan rozetinin posterin hangi kenarında yer alacağı.";
 "Which order" = "Sıralama";
 "Which subtitle Harbor lands on when more than one is available." = "Birden fazla seçenek olduğunda Harbor'ın hangi altyazıyı seçeceği.";
+"Which top corner of the poster the ribbon folds over." = "Şeridin posterin hangi üst köşesine katlandığı.";
 "Who's watching" = "Kim izliyor?";
 "Who's watching?" = "Kim izliyor?";
 "Whodunit" = "Katil Kim?";

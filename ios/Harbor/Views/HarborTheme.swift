@@ -21,9 +21,11 @@ struct Poster: View {
     var width: CGFloat? = 116
     var artworkFallbacks: [String] = []
     var honorsRowStyle = true
+    var showsTopTenRibbon = true
     var onExpansionWidthChange: ((CGFloat?) -> Void)? = nil
     var body: some View {
-        ProfilePoster(media: media, width: width, artworkFallbacks: artworkFallbacks, honorsRowStyle: honorsRowStyle, onExpansionWidthChange: onExpansionWidthChange)
+        ProfilePoster(media: media, width: width, artworkFallbacks: artworkFallbacks, honorsRowStyle: honorsRowStyle,
+                      showsTopTenRibbon: showsTopTenRibbon, onExpansionWidthChange: onExpansionWidthChange)
     }
 }
 

@@ -27,6 +27,24 @@ enum HomeHeroSlides {
         }
         return slides
     }
+
+    /// Desktop's Home `displayed.top10`: exclude the hero ids from the first row's first twenty metas, then take ten.
+    static func topTen(firstRow: [Media], heroSlides: [Media]) -> [Media] {
+        let heroIDs = Set(heroSlides.map(\.id))
+        return Array(firstRow.prefix(20).filter { !$0.id.isEmpty && !heroIDs.contains($0.id) }.prefix(10))
+    }
+
+    /// The actual Home hero slide selection shared by `CustomizedHero` and Home's Top 10 membership.
+    static func displayedHome(rails: [PageRail], defaults: [Media], heroSourceID: String?, feed: HeroLayoutPolicy.HeroFeed) -> [Media] {
+        if let heroSourceID, let source = rails.first(where: { $0.id == heroSourceID }) {
+            let selected = pick(source.metas)
+            if !selected.isEmpty { return selected }
+        }
+        let candidates = rails.map { HeroLayoutPolicy.Candidate(title: $0.title, hasMetas: !$0.metas.isEmpty) }
+        guard let index = HeroLayoutPolicy.featuredRailIndex(feed: feed, candidates: candidates) else { return cap(defaults) }
+        return cap(rails[index].metas)
+    }
+
     private static func hasText(_ value: String?) -> Bool { !(value ?? "").isEmpty }
 }
 

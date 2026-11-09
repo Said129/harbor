@@ -145,23 +145,20 @@ struct CustomizedHero: View {
         let settings = MetadataPreferences.shared
         return [source?.id ?? "automatic", ids, list, app.accountOperationScope, addons, settings.region, settings.language, String(settings.translateTitles), EBookShelf.hash(settings.tmdbKey)].joined(separator: "|")
     }
-    /// Desktop's Featured source (`home.tsx` 260-263) fills Home when no hero rail is picked. `trending` keeps the automatic list.
-    private var featuredDefaults: [Media] {
-        guard customization.page == "home" else { return defaults }
-        let candidates = rails.map { HeroLayoutPolicy.Candidate(title: $0.title, hasMetas: !$0.metas.isEmpty) }
-        guard let index = HeroLayoutPolicy.featuredRailIndex(feed: HeroLayoutPreferences.shared.feed, candidates: candidates) else { return HomeHeroSlides.cap(defaults) }
-        // Desktop's heroPool is only deduplicated and capped, without the backdrop-first ordering.
-        return HomeHeroSlides.cap(rails[index].metas)
-    }
     /// Desktop's hero source (`home.tsx`): Home uses backdrop-first slides capped at four; anime and series keep their own counts.
     private func heroOriginals(_ source: PageRail) -> [Media] {
         if customization.page == "home" { return HomeHeroSlides.pick(source.metas) }
         return Array(source.metas.prefix(customization.page == "anime" ? 6 : 5))
     }
     private var metas: [Media] {
-        guard let source else { return featuredDefaults }
-        // A hero row without any artwork is ignored, and Home falls back to Featured (Desktop's heroSourceRow).
-        if customization.page == "home" && heroOriginals(source).isEmpty { return featuredDefaults }
+        if customization.page == "home" {
+            let originals = HomeHeroSlides.displayedHome(rails: rails, defaults: defaults,
+                                                         heroSourceID: customization.layout.heroSource,
+                                                         feed: HeroLayoutPreferences.shared.feed)
+            if enrichedSignature == signature && !selected.isEmpty { return selected }
+            return originals
+        }
+        guard let source else { return defaults }
         if enrichedSignature == signature && !selected.isEmpty { return selected }
         return heroOriginals(source)
     }

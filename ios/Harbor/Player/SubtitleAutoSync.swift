@@ -7,10 +7,16 @@ import Libmpv
 enum SubtitleAutoSync {
     struct Window: Sendable { let start: Double; let length: Double }
     struct Correction: Sendable {
-        enum Origin: Sendable { case verifiedCommunity, audioEstimate }
+        enum Origin: Equatable, Sendable { case verifiedCommunity, audioEstimate, crossLanguage }
         let document: SubtitleDocument
         let timing: SubtitleSyncResult
         let origin: Origin
+        var pivotTransform: SubtitlePivotTransform? = nil
+
+        func rewrittenSubtitle() -> String {
+            if let pivotTransform { return document.applying(pivotTransform) }
+            return document.applying(timing)
+        }
     }
     static func windows(_ duration: Double) -> [Window] {
         if duration < 900 {
@@ -24,6 +30,11 @@ enum SubtitleAutoSync {
     static func analyze(source: PlaybackSource, subtitle: String, duration: Double, audioID: Int?) async throws -> Correction? {
         guard duration.isFinite, (60...28_800).contains(duration) else { throw HarborError(code: "subtitle-sync-duration") }
         let document = try await load(subtitle)
+        return try await analyze(source: source, document: document, duration: duration, audioID: audioID)
+    }
+
+    static func analyze(source: PlaybackSource, document: SubtitleDocument, duration: Double, audioID: Int?) async throws -> Correction? {
+        guard duration.isFinite, (60...28_800).contains(duration) else { throw HarborError(code: "subtitle-sync-duration") }
         let cues = document.cues.map { ($0.start, $0.end) }
         // Desktop's community database goes first. Only a tier A answer is applied without analysing the audio.
         if let communityTiming = await CommunitySync.communityTiming(cues: cues, durationSec: duration) {
@@ -40,7 +51,7 @@ enum SubtitleAutoSync {
         return Correction(document: document, timing: result, origin: .audioEstimate)
     }
 
-    private static func load(_ path: String) async throws -> SubtitleDocument {
+    static func load(_ path: String) async throws -> SubtitleDocument {
         let url = path.hasPrefix("/") ? URL(fileURLWithPath: path) : URL(string: path)
         guard let url else { throw HarborError(code: "subtitle-sync-format") }
         let limit = 8 * 1_024 * 1_024
@@ -111,7 +122,9 @@ enum SubtitleAutoSync {
         return result
     }
 
-    static func speech(_ source: PlaybackSource, window: Window, audioID: Int?) throws -> [(Double, Double)] {
+    static func speech(_ source: PlaybackSource, window: Window, audioID: Int?, timeout: TimeInterval = 90) throws -> [(Double, Double)] {
+        guard timeout.isFinite, timeout > 0 else { throw HarborError(code: "subtitle-sync-timeout") }
+        let deadline = Date().addingTimeInterval(timeout)
         let pcm = FileManager.default.temporaryDirectory.appendingPathComponent("harbor-sub-sync-" + UUID().uuidString + ".pcm")
         guard FileManager.default.createFile(atPath: pcm.path, contents: nil, attributes: [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication]) else { throw HarborError(code: "subtitle-sync-file") }
         defer { try? FileManager.default.removeItem(at: pcm) }
@@ -137,7 +150,6 @@ enum SubtitleAutoSync {
         guard arguments.allSatisfy({ $0 != nil }) else { throw HarborError(code: "subtitle-sync-audio") }
         var pointers = arguments.map { $0.map { UnsafePointer<CChar>($0) } } + [nil]
         guard mpv_command_async(handle, 1, &pointers) >= 0 else { throw HarborError(code: "subtitle-sync-audio") }
-        let deadline = Date().addingTimeInterval(90)
         while Date() < deadline {
             try Task.checkCancellation()
             guard let event = mpv_wait_event(handle, 0.1)?.pointee else { continue }

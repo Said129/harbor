@@ -124,7 +124,7 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 ## settings (31 filas)
 
 - S 11 | tvdbKey | P | TVDB used without a user key setting [Desktop: src/lib/settings/types.ts]
-- S 65 | top10Ribbon | P | Top 10 rail without ribbon options [Desktop: src/lib/settings/types.ts]
+- S 65 | top10Ribbon | P | The original ribbon follows the active Home Top 10 and moves bookmarks that share its corner. Native Home row sources still differ in some configurations. [Desktop: src/lib/settings/types.ts]
 - S 128 | episodeArcGroups | P | episode arcs from TMDB story groups on plain series; no TVDB order or anime pool (7 Nov, written by Haiku, CI run 24 green) [Desktop: src/lib/settings/types.ts]
 - S 129 | episodeOrderProvider | P | episode order via TVDB season type [Desktop: src/lib/settings/types.ts]
 - S 195 | stremioServerTranscode | P | stremioServerTranscode is stored; Desktop has no control for it either [Desktop: src/lib/settings/types.ts]
@@ -134,7 +134,7 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - S 244 | subSecondaryScale | P | secondary subtitle scale: stored, nothing draws a second subtitle line yet (7 Nov, written by Haiku, CI runs 37 to 39 green) [Desktop: src/lib/settings/types.ts]
 - S 246 | autoSyncApplyStructural | P | Uncalibrated audio corrections are offered for review in the player. The calibrated auto-apply path and its setting are pending. [Desktop: src/lib/settings/types.ts]
 - S 247 | autoSyncDrift | P | The profile can enable Desktop's drift algorithm with native mpv speech sampling. iOS offers the nudge for confirmation. Simulator and device validation remain pending. [Desktop: src/lib/settings/types.ts]
-- S 249 | subtitleAutoSyncPivot | M | advanced auto-sync options [Desktop: src/lib/settings/types.ts]
+- S 249 | subtitleAutoSyncPivot | P | The experimental setting can compare a subtitle in the audio language and offer a correction using Desktop's workflow and native audio measurements. Calibration and real-source validation remain pending. [Desktop: src/lib/settings/types.ts]
 - S 256 | subtitlePreselect | P | preselect subtitles before playback: not wired, iOS hands the source straight to the player and the tracks only exist once mpv has loaded the file [Desktop: src/lib/settings/types.ts]
 - S 318 | mpvTweaks | P | earlier review Partial [Desktop: src/lib/settings/types.ts]
 - S 342 | opensubtitlesApiKey | P | OpenSubtitles key is stored; auto-sync does not read it yet (7 Nov, written by Haiku, CI run 25 pending) [Desktop: src/lib/settings/types.ts]

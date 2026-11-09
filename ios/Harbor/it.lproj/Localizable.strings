@@ -1434,6 +1434,7 @@
 "Marcadores" = "Segnalibri";
 "Marcar como leído" = "Mark as read";
 "Margins" = "Margini";
+"Mark Top 10 titles with a corner ribbon. Bookmarks move down when they share its corner." = "Segna i titoli della Top 10 con un nastro nell’angolo. I segnalibri scendono se condividono lo stesso angolo.";
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "Segna come non visto";
 "Mark as watched" = "Segna come visto";
@@ -1441,6 +1442,7 @@
 "Match Dolby Vision, HDR10 and HLG streams." = "Seleziona flussi Dolby Vision, HDR10 e HLG.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Sincronizza i sottotitoli scaricati con l’audio in mpv. Le tracce incorporate mantengono la sincronizzazione originale.";
 "Match streams marked as cached or already in your debrid library." = "Seleziona i flussi contrassegnati come in cache o già nella tua libreria debrid.";
+"Match subtitles across languages (experimental)" = "Abbina i sottotitoli tra lingue diverse (sperimentale)";
 "Max" = "Max";
 "Max {n} GB" = "Massimo {n} GB";
 "Maximum" = "Massimo";
@@ -2147,6 +2149,7 @@
 "Reverse order" = "Reverse order";
 "Revert" = "Ripristina";
 "Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "Riscrive ogni elemento della raccolta in modo che corrisponda esattamente allo schema di Stremio. Esegui questa operazione una volta se l'app Stremio ha iniziato a bloccarsi dopo la sincronizzazione della riproduzione con Harbor.";
+"Ribbon corner" = "Angolo del nastro";
 "Rich season and order panel" = "Pannello dettagliato per stagioni e ordine";
 "Richer, more vivid picture with a touch more contrast." = "Immagine più ricca e vivida, con un po' più di contrasto.";
 "Right" = "Destra";
@@ -2704,6 +2707,7 @@
 "Top 10 de drama" = "Top 10 drammi";
 "Top 10 en Stremio" = "Top 10 su Stremio";
 "Top 10 on Stremio" = "Top 10 su Stremio";
+"Top 10 ribbon" = "Fascia Top 10";
 "Top 10 {name}" = "Top 10 {name}";
 "Top 100 on AniList" = "Top 100 su AniList";
 "Top Airing on MAL" = "Migliori anime in onda su MAL";
@@ -2918,6 +2922,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "All'avvio della riproduzione, Harbor trova e carica automaticamente un sottotitolo in una di queste lingue. Viene usata la prima corrispondenza disponibile, quindi metti per prima la lingua principale.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Quando compare il riquadro Prossimo Episodio prima della fine di un Episodio. Auto adatta i tempi alla durata dell'Episodio, così negli episodi brevi non appare troppo presto. Se l'opzione è disattivata, il riquadro viene nascosto.";
 "When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "Quando l'audio è già nella stessa lingua dei Sottotitoli, seleziona una traccia forzata (solo dialoghi in lingua straniera e cartelli) invece dei Sottotitoli completi. Se il file non contiene una traccia forzata, i Sottotitoli restano disattivati.";
+"When the audio and subtitle use different languages, Harbor compares a release-matched subtitle in the audio language. It only offers a fix unless every safety check is measured." = "Quando audio e sottotitoli usano lingue diverse, Harbor confronta un sottotitolo corrispondente alla versione nella lingua dell’audio. Offre soltanto una correzione finché ogni controllo di sicurezza non è stato misurato.";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "Quando finisci un Episodio, la scheda Continua a guardare della Home passa all'Episodio successivo invece di restare su 0 minuti rimanenti.";
 "When you press Play" = "Quando premi Riproduci";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "Quando riprendi qualcosa che stavi guardando, riutilizza esattamente lo stream precedente, con lo stesso Add-on e la stessa fonte, invece di riaprire il selettore. Disattiva l'opzione per scegliere sempre da capo.";
@@ -2929,6 +2934,7 @@
 "Which end of the poster the score chip rides on." = "Su quale lato del poster compare il badge del punteggio.";
 "Which order" = "In quale ordine";
 "Which subtitle Harbor lands on when more than one is available." = "Quale sottotitolo sceglie Harbor quando ne è disponibile più di uno.";
+"Which top corner of the poster the ribbon folds over." = "L’angolo superiore della locandina su cui si ripiega il nastro.";
 "Who's watching" = "Chi sta guardando";
 "Who's watching?" = "Chi sta guardando?";
 "Whodunit" = "Giallo";

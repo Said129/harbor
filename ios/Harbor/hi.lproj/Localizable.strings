@@ -1434,6 +1434,7 @@
 "Marcadores" = "बुकमार्क";
 "Marcar como leído" = "Mark as read";
 "Margins" = "हाशिए";
+"Mark Top 10 titles with a corner ribbon. Bookmarks move down when they share its corner." = "शीर्ष 10 फ़िल्मों या शो पर कोने में रिबन दिखाएँ। उसी कोने के बुकमार्क नीचे खिसकेंगे।";
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "न देखा हुआ मार्क करें";
 "Mark as watched" = "देखा हुआ मार्क करें";
@@ -1441,6 +1442,7 @@
 "Match Dolby Vision, HDR10 and HLG streams." = "Dolby Vision, HDR10 और HLG स्ट्रीम से मिलान करें।";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "mpv प्लेयर में डाउनलोड किए उपशीर्षक को ऑडियो से मिलाएँ। वीडियो में मौजूद उपशीर्षक की टाइमिंग बनी रहती है।";
 "Match streams marked as cached or already in your debrid library." = "कैश की हुई या आपकी debrid लाइब्रेरी में मौजूद चिह्नित स्ट्रीम से मिलान करें।";
+"Match subtitles across languages (experimental)" = "अलग-अलग भाषाओं के उपशीर्षकों का मिलान करें (प्रायोगिक)";
 "Max" = "अधिकतम";
 "Max {n} GB" = "अधिकतम {n} GB";
 "Maximum" = "अधिकतम";
@@ -2147,6 +2149,7 @@
 "Reverse order" = "Reverse order";
 "Revert" = "पहले जैसा करें";
 "Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "हर लाइब्रेरी आइटम को Stremio के सटीक स्कीमा के अनुसार फिर से लिखता है। अगर Harbor से प्लेबैक सिंक होने के बाद आपका Stremio ऐप क्रैश होने लगा है, तो इसे एक बार चलाएँ।";
+"Ribbon corner" = "रिबन का कोना";
 "Rich season and order panel" = "विस्तृत सीज़न और क्रम पैनल";
 "Richer, more vivid picture with a touch more contrast." = "थोड़े अधिक कंट्रास्ट के साथ अधिक समृद्ध और चटख तस्वीर।";
 "Right" = "दायाँ";
@@ -2704,6 +2707,7 @@
 "Top 10 de drama" = "शीर्ष 10 ड्रामा";
 "Top 10 en Stremio" = "Stremio पर शीर्ष 10";
 "Top 10 on Stremio" = "Stremio पर शीर्ष 10";
+"Top 10 ribbon" = "शीर्ष 10 रिबन";
 "Top 10 {name}" = "शीर्ष 10 {name}";
 "Top 100 on AniList" = "AniList पर शीर्ष 100";
 "Top Airing on MAL" = "MAL पर प्रसारित हो रहे शीर्ष एनीमे";
@@ -2918,6 +2922,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "प्लेबैक शुरू होने पर Harbor इनमें से किसी एक भाषा में सबटाइटल अपने-आप ढूँढकर लोड करता है। उपलब्ध पहला मेल चुना जाता है, इसलिए अपनी मुख्य भाषा सबसे पहले रखें।";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "एपिसोड खत्म होने से कितनी देर पहले अगला पिल दिखाई दे। ऑटो इसे एपिसोड की अवधि के अनुसार समायोजित करता है, ताकि छोटे एपिसोड में यह बहुत जल्दी न दिखे। बंद करने पर यह छिप जाता है।";
 "When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "जब ऑडियो पहले से आपकी सबटाइटल भाषा में हो, तो पूरे सबटाइटल के बजाय फ़ोर्स्ड ट्रैक (सिर्फ़ विदेशी संवाद और संकेत) चुनें। फ़ाइल में फ़ोर्स्ड ट्रैक न होने पर सबटाइटल बंद रहते हैं।";
+"When the audio and subtitle use different languages, Harbor compares a release-matched subtitle in the audio language. It only offers a fix unless every safety check is measured." = "जब ऑडियो और उपशीर्षक अलग भाषाओं में हों, Harbor ऑडियो की भाषा में उसी रिलीज़ से मेल खाने वाले उपशीर्षक की तुलना करता है। सभी सुरक्षा जाँच मापे जाने तक यह केवल सुधार का सुझाव देता है।";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "एपिसोड पूरा देखने पर होम का देखना जारी रखें कार्ड 0 मिनट शेष पर रहने के बजाय अगले एपिसोड पर चला जाता है।";
 "When you press Play" = "जब आप चलाएँ दबाएँ";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "जिसे आप देख रहे थे उसे जारी रखने पर पिकर फिर से खोलने के बजाय पिछली बार इस्तेमाल की गई ठीक वही स्ट्रीम (वही ऐडऑन और सोर्स) चलाएँ। हर बार फिर से चुनने के लिए इसे बंद करें।";
@@ -2929,6 +2934,7 @@
 "Which end of the poster the score chip rides on." = "स्कोर चिप पोस्टर के किस किनारे पर रहती है।";
 "Which order" = "किस क्रम में";
 "Which subtitle Harbor lands on when more than one is available." = "एक से ज़्यादा उपलब्ध होने पर Harbor कौन-सा सबटाइटल चुनता है।";
+"Which top corner of the poster the ribbon folds over." = "पोस्टर के ऊपर किस कोने पर रिबन मुड़े।";
 "Who's watching" = "कौन देख रहा है";
 "Who's watching?" = "कौन देख रहा है?";
 "Whodunit" = "मर्डर मिस्ट्री";

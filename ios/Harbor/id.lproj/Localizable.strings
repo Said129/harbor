@@ -1434,6 +1434,7 @@
 "Marcadores" = "Penanda buku";
 "Marcar como leído" = "Mark as read";
 "Margins" = "Margin";
+"Mark Top 10 titles with a corner ribbon. Bookmarks move down when they share its corner." = "Tandai judul Top 10 dengan pita di sudut. Penanda akan bergeser ke bawah jika berada di sudut yang sama.";
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "Tandai sebagai belum ditonton";
 "Mark as watched" = "Tandai sebagai sudah ditonton";
@@ -1441,6 +1442,7 @@
 "Match Dolby Vision, HDR10 and HLG streams." = "Cocokkan stream Dolby Vision, HDR10, dan HLG.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Selaraskan subtitle yang diunduh dengan audio di pemutar mpv. Trek subtitle bawaan tetap menggunakan waktu aslinya.";
 "Match streams marked as cached or already in your debrid library." = "Cocokkan stream yang ditandai sudah di-cache atau sudah ada di pustaka debrid Anda.";
+"Match subtitles across languages (experimental)" = "Cocokkan subtitle lintas bahasa (eksperimental)";
 "Max" = "Maks";
 "Max {n} GB" = "Maks {n} GB";
 "Maximum" = "Maksimum";
@@ -2147,6 +2149,7 @@
 "Reverse order" = "Reverse order";
 "Revert" = "Kembalikan";
 "Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "Menulis ulang setiap item perpustakaan agar sama persis dengan skema Stremio. Jalankan sekali jika aplikasi Stremio Anda mulai mogok setelah Harbor menyinkronkan pemutaran.";
+"Ribbon corner" = "Sudut pita";
 "Rich season and order panel" = "Panel musim dan urutan yang lengkap";
 "Richer, more vivid picture with a touch more contrast." = "Gambar lebih kaya dan hidup dengan sedikit tambahan kontras.";
 "Right" = "Kanan";
@@ -2704,6 +2707,7 @@
 "Top 10 de drama" = "10 Drama Teratas";
 "Top 10 en Stremio" = "10 Teratas di Stremio";
 "Top 10 on Stremio" = "10 Teratas di Stremio";
+"Top 10 ribbon" = "Pita 10 Teratas";
 "Top 10 {name}" = "10 {name} Teratas";
 "Top 100 on AniList" = "100 Teratas di AniList";
 "Top Airing on MAL" = "Tayangan Teratas di MAL";
@@ -2918,6 +2922,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "Saat pemutaran dimulai, Harbor otomatis mencari dan memuat subtitle dalam salah satu bahasa ini. Kecocokan pertama yang tersedia akan digunakan, jadi tempatkan bahasa utama Anda paling awal.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Waktu munculnya label Berikutnya sebelum episode berakhir. Otomatis menyesuaikan dengan durasi episode agar episode pendek tidak memunculkannya terlalu dini. Jika dinonaktifkan, label akan disembunyikan.";
 "When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "Jika audio sudah sesuai dengan bahasa subtitle Anda, pilih trek paksa (hanya dialog asing dan tulisan) alih-alih subtitle lengkap. Jika file tidak memiliki trek paksa, subtitle tetap nonaktif.";
+"When the audio and subtitle use different languages, Harbor compares a release-matched subtitle in the audio language. It only offers a fix unless every safety check is measured." = "Jika audio dan subtitle menggunakan bahasa berbeda, Harbor membandingkan subtitle yang cocok dengan rilis dalam bahasa audio. Harbor hanya menawarkan perbaikan kecuali semua pemeriksaan keamanan telah diukur.";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "Saat Anda selesai menonton episode, kartu Lanjutkan Menonton di Beranda beralih ke episode berikutnya alih-alih tetap menampilkan sisa 0 menit.";
 "When you press Play" = "Saat Anda menekan Putar";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "Saat Anda melanjutkan sesuatu yang sedang ditonton, putar kembali stream persis seperti yang terakhir digunakan (addon dan sumber yang sama), bukan membuka pemilih lagi. Nonaktifkan agar selalu memilih yang baru.";
@@ -2929,6 +2934,7 @@
 "Which end of the poster the score chip rides on." = "Di sisi poster mana label skor ditempatkan.";
 "Which order" = "Urutannya";
 "Which subtitle Harbor lands on when more than one is available." = "Subtitle mana yang dipilih Harbor saat tersedia lebih dari satu.";
+"Which top corner of the poster the ribbon folds over." = "Sudut atas poster tempat pita dilipat.";
 "Who's watching" = "Siapa yang menonton";
 "Who's watching?" = "Siapa yang menonton?";
 "Whodunit" = "Misteri pembunuhan";

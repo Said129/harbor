@@ -1434,6 +1434,7 @@
 "Marcadores" = "しおり";
 "Marcar como leído" = "Mark as read";
 "Margins" = "余白";
+"Mark Top 10 titles with a corner ribbon. Bookmarks move down when they share its corner." = "トップ10の作品を隅のリボンで示します。ブックマークと同じ隅になる場合、ブックマークは下に移動します。";
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "未視聴にする";
 "Mark as watched" = "視聴済みにする";
@@ -1441,6 +1442,7 @@
 "Match Dolby Vision, HDR10 and HLG streams." = "Dolby Vision、HDR10、HLG のストリームに一致します。";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "mpv プレーヤーで、ダウンロードした字幕を音声に合わせます。埋め込み字幕のタイミングは変更しません。";
 "Match streams marked as cached or already in your debrid library." = "キャッシュ済み、または debrid ライブラリ内にあると示されたストリームに一致します。";
+"Match subtitles across languages (experimental)" = "異なる言語間で字幕を照合（試験的）";
 "Max" = "最大";
 "Max {n} GB" = "最大 {n} GB";
 "Maximum" = "最大";
@@ -2147,6 +2149,7 @@
 "Reverse order" = "Reverse order";
 "Revert" = "元に戻す";
 "Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "すべてのライブラリ項目をStremioの正確なスキーマに合わせて書き換えます。Harborが再生状況を同期した後にStremioアプリがクラッシュするようになった場合は、一度実行してください。";
+"Ribbon corner" = "リボンの位置";
 "Rich season and order panel" = "詳細なシーズン／視聴順パネル";
 "Richer, more vivid picture with a touch more contrast." = "コントラストを少し上げ、より深みのある鮮やかな映像にします。";
 "Right" = "右揃え";
@@ -2704,6 +2707,7 @@
 "Top 10 de drama" = "ドラマ トップ10";
 "Top 10 en Stremio" = "Stremioのトップ10";
 "Top 10 on Stremio" = "Stremioのトップ10";
+"Top 10 ribbon" = "トップ10リボン";
 "Top 10 {name}" = "{name}のトップ10";
 "Top 100 on AniList" = "AniListトップ100";
 "Top Airing on MAL" = "MALで放送中の人気作";
@@ -2918,6 +2922,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "再生を開始すると、Harborが選択した言語の字幕を自動で検索して読み込みます。最初に見つかった字幕が使われるため、メインの言語を先頭にしてください。";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "エピソード終了の何秒前に「次のエピソード」を表示するかを設定します。自動ではエピソードの長さに合わせて調整し、短いエピソードで早く表示されすぎないようにします。オフにすると非表示になります。";
 "When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "音声が字幕の言語と一致している場合、完全字幕ではなく強制字幕（外国語の会話と表示のみ）を選びます。ファイルに強制字幕がない場合、字幕はオフのままです。";
+"When the audio and subtitle use different languages, Harbor compares a release-matched subtitle in the audio language. It only offers a fix unless every safety check is measured." = "音声と字幕の言語が異なる場合、Harborは同じリリースに対応する音声言語の字幕と比較します。すべての安全性チェックを測定できない限り、修正は提案のみです。";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "エピソードを最後まで見ると、ホームの「視聴を続ける」カードは「残り0分」のままにならず、次のエピソードに進みます。";
 "When you press Play" = "「再生」を押したとき";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "視聴を再開するとき、選択画面を再度開かず、前回とまったく同じストリーム（同じアドオンとソース）を再生します。毎回新しく選ぶにはオフにしてください。";
@@ -2929,6 +2934,7 @@
 "Which end of the poster the score chip rides on." = "ポスターのどちら側に評価バッジを表示するか。";
 "Which order" = "並び順";
 "Which subtitle Harbor lands on when more than one is available." = "複数ある場合にHarborが選択する字幕。";
+"Which top corner of the poster the ribbon folds over." = "ポスターの上部のどちらの隅にリボンを重ねるかを設定します。";
 "Who's watching" = "視聴する人";
 "Who's watching?" = "どなたが視聴しますか？";
 "Whodunit" = "犯人当て";

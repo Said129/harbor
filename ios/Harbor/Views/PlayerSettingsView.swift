@@ -48,6 +48,7 @@ struct PlayerSettingsView: View {
     @AppStorage("resumePrompt") private var resumePrompt = false
     @AppStorage("subtitleAutoSync") private var subtitleAutoSync = false
     @AppStorage("autoSyncDrift") private var autoSyncDrift = false
+    @AppStorage("subtitleAutoSyncPivot") private var subtitleAutoSyncPivot = false
     @AppStorage("subtitleAutoSyncCrowd") private var subtitleAutoSyncCrowd = true
     @AppStorage("communitySyncOptOut") private var communitySyncOptOut = false
     @AppStorage("communitySyncUrl") private var communitySyncUrl = ""
@@ -300,6 +301,10 @@ struct PlayerSettingsView: View {
                 if subtitleAutoSync {
                     HarborSettingsToggle(DesktopInterfaceText.value("Drift monitor"), note: DesktopInterfaceText.value("Keeps watching through playback and gently re-nudges the timing if the subtitle slips out of sync partway through."), isOn: $autoSyncDrift)
                         .accessibilityIdentifier("subtitle-settings-drift")
+                    HarborSettingsToggle(DesktopInterfaceText.value("Match subtitles across languages (experimental)"),
+                                         note: DesktopInterfaceText.value("When the audio and subtitle use different languages, Harbor compares a release-matched subtitle in the audio language. It only offers a fix unless every safety check is measured."),
+                                         isOn: $subtitleAutoSyncPivot)
+                        .accessibilityIdentifier("subtitle-settings-cross-language")
                 }
             }
         }

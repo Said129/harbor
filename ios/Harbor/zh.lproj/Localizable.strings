@@ -1434,6 +1434,7 @@
 "Marcadores" = "书签";
 "Marcar como leído" = "Mark as read";
 "Margins" = "页边距";
+"Mark Top 10 titles with a corner ribbon. Bookmarks move down when they share its corner." = "为前 10 名作品添加角标丝带。书签与丝带位于同一角时会向下移动。";
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "标记为未观看";
 "Mark as watched" = "标记为已观看";
@@ -1441,6 +1442,7 @@
 "Match Dolby Vision, HDR10 and HLG streams." = "匹配 Dolby Vision、HDR10 和 HLG 播放源。";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "在 mpv 播放器中将下载的字幕与音频对齐。内嵌字幕轨道保持原有时间。";
 "Match streams marked as cached or already in your debrid library." = "匹配标记为已缓存或已在 debrid 媒体库中的播放源。";
+"Match subtitles across languages (experimental)" = "跨语言匹配字幕（实验性）";
 "Max" = "最大";
 "Max {n} GB" = "最多 {n} GB";
 "Maximum" = "最高";
@@ -2147,6 +2149,7 @@
 "Reverse order" = "Reverse order";
 "Revert" = "还原";
 "Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "重写媒体库中的每个项目，使其完全符合 Stremio 的数据结构。如果 Stremio 应用在 Harbor 同步播放状态后开始崩溃，请运行一次。";
+"Ribbon corner" = "角落丝带";
 "Rich season and order panel" = "功能丰富的季与播放顺序面板";
 "Richer, more vivid picture with a touch more contrast." = "画面色彩更饱满、更鲜艳，并略微提高对比度。";
 "Right" = "右对齐";
@@ -2704,6 +2707,7 @@
 "Top 10 de drama" = "十大热门剧情片";
 "Top 10 en Stremio" = "Stremio 热门榜前 10 名";
 "Top 10 on Stremio" = "Stremio 热门榜前 10 名";
+"Top 10 ribbon" = "Top 10 飘带";
 "Top 10 {name}" = "{name}前 10 名";
 "Top 100 on AniList" = "AniList 前 100 名";
 "Top Airing on MAL" = "MAL 在播榜";
@@ -2918,6 +2922,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "开始播放时，Harbor 会自动查找并加载这些语言之一的字幕。系统会使用首个可用匹配项，因此请将主要语言放在首位。";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "设置本集结束前显示“接下来播放”提示的时间。“自动”会根据剧集时长调整，避免短剧集过早提示。“关闭”会隐藏提示。";
 "When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "当音频语言已与字幕语言一致时，选择强制字幕轨（仅包含外语对白和标识），而不是完整字幕。如果文件没有强制字幕轨，则保持字幕关闭。";
+"When the audio and subtitle use different languages, Harbor compares a release-matched subtitle in the audio language. It only offers a fix unless every safety check is measured." = "当音频和字幕使用不同语言时，Harbor 会与音频语言中匹配同一发行版本的字幕进行比较。除非所有安全检查都已完成测量，否则只会提供修正建议。";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "看完一集后，首页的“继续观看”卡片会切换到下一集，而不是停留在剩余 0 分钟。";
 "When you press Play" = "按下播放时";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "继续观看时，直接使用上次的片源（相同插件和片源），不再打开选择器。关闭后每次都重新选择。";
@@ -2929,6 +2934,7 @@
 "Which end of the poster the score chip rides on." = "评分标签位于海报的哪一侧。";
 "Which order" = "排序方式";
 "Which subtitle Harbor lands on when more than one is available." = "有多个字幕可用时 Harbor 默认选中的字幕。";
+"Which top corner of the poster the ribbon folds over." = "丝带折叠覆盖在海报上方的哪个角。";
 "Who's watching" = "谁在观看";
 "Who's watching?" = "谁在看？";
 "Whodunit" = "悬疑推理";

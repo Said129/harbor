@@ -16,25 +16,25 @@
     },
     "settings": {
       "total": 511,
-      "ported": 245,
-      "partial": 30,
-      "missing": 1,
-      "excluded": 235,
-      "counted": 276,
-      "weighted_percent": 94.2,
+      "ported": 246,
+      "partial": 31,
+      "missing": 0,
+      "excluded": 234,
+      "counted": 277,
+      "weighted_percent": 94.4,
       "ported_only_percent": 88.8,
-      "ported_or_partial_percent": 99.6
+      "ported_or_partial_percent": 100.0
     },
     "all": {
       "total": 949,
-      "ported": 506,
-      "partial": 145,
-      "missing": 1,
-      "excluded": 297,
-      "counted": 652,
-      "weighted_percent": 88.7,
+      "ported": 507,
+      "partial": 146,
+      "missing": 0,
+      "excluded": 296,
+      "counted": 653,
+      "weighted_percent": 88.8,
       "ported_only_percent": 77.6,
-      "ported_or_partial_percent": 99.8
+      "ported_or_partial_percent": 100.0
     }
   },
   "behavior_areas": [
@@ -3750,14 +3750,14 @@
       "id": "top10Ribbon",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "Top 10 rail without ribbon options"
+      "note": "The original corner ribbon follows the active Home Top 10 and moves a bookmark sharing its corner. Native Home rows still differ from Desktop's data in some configurations."
     },
     {
       "index": 66,
       "id": "top10RibbonSide",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "X",
-      "note": "Top 10 ribbon side: iOS poster cards have no ribbon, so there is no side to choose"
+      "verdict": "D",
+      "note": "The active profile chooses the Top 10 ribbon's leading or trailing corner. The original assets follow Desktop's logical layout direction."
     },
     {
       "index": 67,
@@ -5037,8 +5037,8 @@
       "index": 249,
       "id": "subtitleAutoSyncPivot",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advanced auto-sync options"
+      "verdict": "P",
+      "note": "The experimental profile setting can offer a cross-language correction using the pinned Desktop workflow and the selected audio language. iOS measures separate audio windows with mpv. Automatic structural calibration and real-source validation remain pending."
     },
     {
       "index": 250,

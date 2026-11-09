@@ -1266,6 +1266,7 @@
 "Marcadores" = "Bookmarks";
 "Marcar como leído" = "Mark as read";
 "Margins" = "Margins";
+"Mark Top 10 titles with a corner ribbon. Bookmarks move down when they share its corner." = "Mark Top 10 titles with a corner ribbon. Bookmarks move down when they share its corner.";
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "Mark as unwatched";
 "Mark as watched" = "Mark as watched";
@@ -1273,6 +1274,7 @@
 "Match Dolby Vision, HDR10 and HLG streams." = "Match Dolby Vision, HDR10 and HLG streams.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing.";
 "Match streams marked as cached or already in your debrid library." = "Match streams marked as cached or already in your debrid library.";
+"Match subtitles across languages (experimental)" = "Match subtitles across languages (experimental)";
 "Max {n} GB" = "Max {n} GB";
 "Maximum" = "Maximum";
 "Maximum quality" = "Maximum quality";
@@ -1898,6 +1900,7 @@
 "Reveal comments" = "Reveal comments";
 "Reverse order" = "Reverse order";
 "Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback.";
+"Ribbon corner" = "Ribbon corner";
 "Rich season and order panel" = "Rich season and order panel";
 "Richer, more vivid picture with a touch more contrast." = "Richer, more vivid picture with a touch more contrast.";
 "Right" = "Right";
@@ -2401,6 +2404,7 @@
 "Top 10 de drama" = "Top 10 Drama";
 "Top 10 en Stremio" = "Top 10 on Stremio";
 "Top 10 on Stremio" = "Top 10 on Stremio";
+"Top 10 ribbon" = "Top 10 ribbon";
 "Top 10 {name}" = "Top 10 {name}";
 "Top Airing on MAL" = "Top Airing on MAL";
 "Top Movies on MAL" = "Top Movies on MAL";
@@ -2594,6 +2598,7 @@
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it.";
 "When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off.";
+"When the audio and subtitle use different languages, Harbor compares a release-matched subtitle in the audio language. It only offers a fix unless every safety check is measured." = "When the audio and subtitle use different languages, Harbor compares a release-matched subtitle in the audio language. It only offers a fix unless every safety check is measured.";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left.";
 "When you press Play" = "When you press Play";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh.";
@@ -2604,6 +2609,7 @@
 "Which end of the poster the score chip rides on." = "Which end of the poster the score chip rides on.";
 "Which order" = "Which order";
 "Which subtitle Harbor lands on when more than one is available." = "Which subtitle Harbor lands on when more than one is available.";
+"Which top corner of the poster the ribbon folds over." = "Which top corner of the poster the ribbon folds over.";
 "Who's watching" = "Who's watching";
 "Whodunit" = "Whodunit";
 "Wide search · still empty" = "Wide search · still empty";

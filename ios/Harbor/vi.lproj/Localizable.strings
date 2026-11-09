@@ -1434,6 +1434,7 @@
 "Marcadores" = "Dấu trang";
 "Marcar como leído" = "Mark as read";
 "Margins" = "Lề";
+"Mark Top 10 titles with a corner ribbon. Bookmarks move down when they share its corner." = "Đánh dấu các phim Top 10 bằng dải băng ở góc. Dấu trang sẽ dịch xuống khi nằm cùng góc.";
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "Đánh dấu là chưa xem";
 "Mark as watched" = "Đánh dấu là đã xem";
@@ -1441,6 +1442,7 @@
 "Match Dolby Vision, HDR10 and HLG streams." = "Lọc luồng Dolby Vision, HDR10 và HLG.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Đồng bộ phụ đề tải xuống với âm thanh trong trình phát mpv. Phụ đề nhúng giữ nguyên thời gian hiện tại.";
 "Match streams marked as cached or already in your debrid library." = "Lọc luồng được đánh dấu đã lưu đệm hoặc đã có trong thư viện debrid của bạn.";
+"Match subtitles across languages (experimental)" = "Khớp phụ đề giữa các ngôn ngữ (thử nghiệm)";
 "Max" = "Tối đa";
 "Max {n} GB" = "Tối đa {n} GB";
 "Maximum" = "Tối đa";
@@ -2147,6 +2149,7 @@
 "Reverse order" = "Reverse order";
 "Revert" = "Hoàn nguyên";
 "Rewrites every library item to match Stremio's exact schema. Run once if your Stremio app started crashing after Harbor synced playback." = "Viết lại mọi mục trong thư viện để khớp chính xác với cấu trúc dữ liệu của Stremio. Chạy một lần nếu ứng dụng Stremio bắt đầu bị lỗi sau khi Harbor đồng bộ trạng thái phát.";
+"Ribbon corner" = "Góc dải băng";
 "Rich season and order panel" = "Bảng mùa và thứ tự chi tiết";
 "Richer, more vivid picture with a touch more contrast." = "Hình ảnh đậm đà, sống động hơn với độ tương phản cao hơn một chút.";
 "Right" = "Phải";
@@ -2704,6 +2707,7 @@
 "Top 10 de drama" = "Top 10 chính kịch";
 "Top 10 en Stremio" = "Top 10 trên Stremio";
 "Top 10 on Stremio" = "Top 10 trên Stremio";
+"Top 10 ribbon" = "Dải băng Top 10";
 "Top 10 {name}" = "Top 10 {name}";
 "Top 100 on AniList" = "Top 100 trên AniList";
 "Top Airing on MAL" = "Phim đang chiếu hàng đầu trên MAL";
@@ -2918,6 +2922,7 @@
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "Khi bắt đầu phát, Harbor sẽ tự động tìm và tải phụ đề bằng một trong các ngôn ngữ này. Kết quả khớp đầu tiên có sẵn sẽ được chọn, vì vậy hãy đặt ngôn ngữ chính lên đầu.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Thời điểm nhãn Tập tiếp theo xuất hiện trước khi tập kết thúc. Tự động điều chỉnh theo độ dài tập để không nhắc quá sớm với các tập ngắn. Tắt để ẩn.";
 "When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "Khi âm thanh đã khớp với ngôn ngữ phụ đề, chọn rãnh bắt buộc (chỉ lời thoại tiếng nước ngoài và biển báo) thay vì phụ đề đầy đủ. Nếu tệp không có rãnh bắt buộc, phụ đề sẽ vẫn tắt.";
+"When the audio and subtitle use different languages, Harbor compares a release-matched subtitle in the audio language. It only offers a fix unless every safety check is measured." = "Khi âm thanh và phụ đề dùng ngôn ngữ khác nhau, Harbor so sánh với phụ đề cùng bản phát hành bằng ngôn ngữ âm thanh. Harbor chỉ đề xuất bản sửa trừ khi mọi kiểm tra an toàn đều đã được đo.";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "Khi bạn xem xong một tập, thẻ Xem tiếp trên Trang chủ sẽ chuyển sang tập tiếp theo thay vì dừng ở mốc còn 0 phút.";
 "When you press Play" = "Khi bạn nhấn Phát";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "Khi tiếp tục nội dung đang xem dở, phát lại đúng luồng đã dùng gần nhất (cùng tiện ích bổ sung và nguồn) thay vì mở lại trình chọn. Tắt để luôn chọn nguồn mới.";
@@ -2929,6 +2934,7 @@
 "Which end of the poster the score chip rides on." = "Huy hiệu điểm nằm ở đầu nào của áp phích.";
 "Which order" = "Thứ tự nào";
 "Which subtitle Harbor lands on when more than one is available." = "Phụ đề Harbor chọn khi có nhiều phụ đề.";
+"Which top corner of the poster the ribbon folds over." = "Góc trên của áp phích mà dải băng vắt qua.";
 "Who's watching" = "Ai đang xem";
 "Who's watching?" = "Ai đang xem?";
 "Whodunit" = "Bí ẩn truy tìm thủ phạm";

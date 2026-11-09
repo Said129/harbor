@@ -7,13 +7,13 @@
   "coverage_note": "This report inventories generated Desktop-derived labels and known mobile-only English fallbacks. It is not a certification of complete translation of every native message or of overall functional parity.",
   "languages": {
     "en": {
-      "entries": 3864,
-      "sha256": "0f7b3af42488dfdb67e01ffc07d17e101a5ac105d464c3546b2627cb78b08a81",
+      "entries": 3870,
+      "sha256": "0ab75026aa719354605145669d22f17d04bb6792edbd112e78867099974ee473",
       "mobile_only_english_fallback": []
     },
     "ar": {
-      "entries": 4280,
-      "sha256": "9187af7f03bdc64cbc98d62488236bedd13e950f519c86e8e0a8a0f3ddabb9ff",
+      "entries": 4286,
+      "sha256": "e903168a6e7bf54193549670cc866051879e72951a2e6bddd009fc3980acc616",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -215,8 +215,8 @@
       ]
     },
     "zh": {
-      "entries": 4239,
-      "sha256": "4e77d5da404b048cfc3d1e47c6052f41b889de984220bc378e56707280cfc2ac",
+      "entries": 4245,
+      "sha256": "216de555f612a7acd3bbc7923b5af873c3642922613934447b418fc949c2f749",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -453,8 +453,8 @@
       ]
     },
     "fr": {
-      "entries": 4239,
-      "sha256": "1b1f49c6d5efc993adad163939e6027bd2f3711ad8a859c527a57a2a2a51bcc7",
+      "entries": 4245,
+      "sha256": "91c3244831b05b077b8c16e7d4f5c257b06cbc79c639f9787fe848bb15c45290",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -691,8 +691,8 @@
       ]
     },
     "de": {
-      "entries": 4239,
-      "sha256": "2fce57bf06515df75743199771d413761e630032ad6849de496cd149ae4b7f63",
+      "entries": 4245,
+      "sha256": "b8260b7b52ce2d2329cd79186b0e4e9cb3ce44a2fee259958a65886c531192a7",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -929,8 +929,8 @@
       ]
     },
     "hi": {
-      "entries": 4239,
-      "sha256": "f9e69b75805d16256dfc933929cfbe8fb480463a025fd17ec6f98b11340668e7",
+      "entries": 4245,
+      "sha256": "12c40f24823a0725748f8bddea09f33bc154ba874db0d38f0edb1a08a9734f85",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -1167,8 +1167,8 @@
       ]
     },
     "id": {
-      "entries": 4239,
-      "sha256": "e2f73c4a808f3557a6d33ccf1295b4d7286b51eea0460738eaf6e0416ab3e078",
+      "entries": 4245,
+      "sha256": "c5de52601b1388fdbcefc32801a596ce59d35ee6bcbdefcca088347ea5908a9c",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -1405,8 +1405,8 @@
       ]
     },
     "it": {
-      "entries": 4239,
-      "sha256": "0c3336fa915201c1fd65ebaa8cb992690177c55e413e0528d071e66e1a0fc130",
+      "entries": 4245,
+      "sha256": "3ae4b464f83ce45a27afa85922b1a77ccaff0f6c6ff8cdd1b238782234d0d5c1",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -1643,8 +1643,8 @@
       ]
     },
     "ja": {
-      "entries": 4239,
-      "sha256": "ee51c3fb5d9ccb3dd5a56d476cf6d2cca2fc63f321bb5bdd4130e53b89dffb46",
+      "entries": 4245,
+      "sha256": "e94031f24203eef895e4a741fc7971a97b04ff560fd31a4c1559c03497feafcf",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -1881,8 +1881,8 @@
       ]
     },
     "ko": {
-      "entries": 4239,
-      "sha256": "b5d0080aa1bee8b1d05ad903efc254fe5b49c92a2db4aa984e4ec2f25dbeb21c",
+      "entries": 4245,
+      "sha256": "5af6e6344302eec5173c54d8ccc077d565a22173cabcf54389b5dcb2a2c71ccd",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -2119,8 +2119,8 @@
       ]
     },
     "pl": {
-      "entries": 4239,
-      "sha256": "aded2d77cfa7496b886c7d811a4e90be93b60298db4661d48695ed087577eda6",
+      "entries": 4245,
+      "sha256": "77cd43b0c74e070f38d091fac209064a0262624a34eb47f446e458833848cdcb",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -2357,8 +2357,8 @@
       ]
     },
     "pt": {
-      "entries": 4266,
-      "sha256": "2595e37da9dd5fa19413c660d954cb786cc69357e707197b94604079dcdefa30",
+      "entries": 4272,
+      "sha256": "04a161f2b0b43c04683863094c0bc07f90e2e6ffb895ac4dbe0227bf03bc5ac6",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -2569,8 +2569,8 @@
       ]
     },
     "ru": {
-      "entries": 4253,
-      "sha256": "0cde37c050336dd1b942cf1466b00eba07a7d13286f7614cbd067759413d624d",
+      "entries": 4259,
+      "sha256": "b24608ff54e9058f31c98a7267013835076f2facb7f1eaa29a61b3d9e3ca6b6e",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -2772,13 +2772,13 @@
       ]
     },
     "es": {
-      "entries": 4239,
-      "sha256": "8db15d34f8e64c4eed18ac16961dfb35bb763cf448138e54875a0d669ac06c03",
+      "entries": 4245,
+      "sha256": "c771a14e0ddc435b35e961d2f2cf156a34acbcb7a47c0c1c784c04350dc3e6b7",
       "mobile_only_english_fallback": []
     },
     "tr": {
-      "entries": 4239,
-      "sha256": "f716a3963252e94a7a843c7adc6776be751c75c9a0d99c4e3d7e209e545ecd89",
+      "entries": 4245,
+      "sha256": "419699d4cdf818421d0febd36290bd868214a7d98c6fa1a87788b4a82f8e5bb6",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
@@ -3015,8 +3015,8 @@
       ]
     },
     "vi": {
-      "entries": 4239,
-      "sha256": "7afb7783fdef4c964b386de3130ffe3921def9dafd6047d937b8eec80a3e9a9e",
+      "entries": 4245,
+      "sha256": "f85f545c7a2be401d3223471bd1a4826c5430d8eb55eb5f7013f4e3920a8368e",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",

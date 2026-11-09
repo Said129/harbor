@@ -38,6 +38,18 @@ struct HomeView: View {
         if !classic && !model.home.heroes.isEmpty { return model.home.heroes }
         return model.heroes.isEmpty ? Array(model.rows.first(where: { !$0.metas.isEmpty })?.metas.prefix(5) ?? []) : model.heroes
     }
+    private var homeRibbonMetas: [Media] {
+        guard model.storageReady, !classic, let firstRow = customization.ordered(rails).first else { return [] }
+        let heroSlides = HomeHeroSlides.displayedHome(rails: rails, defaults: heroes,
+                                                       heroSourceID: customization.layout.heroSource,
+                                                       feed: HeroLayoutPreferences.shared.feed)
+        return HomeHeroSlides.topTen(firstRow: firstRow.metas, heroSlides: heroSlides)
+    }
+    private var homeRibbonRevision: [String] { homeRibbonMetas.map { $0.id + "|" + $0.name } }
+    private func registerHomeRibbonMetas() {
+        TopTenRibbonIndexStore.shared.replaceHomeTopTen(homeRibbonMetas,
+                                                        profileActivationID: AppProfileContext.shared.activationID)
+    }
     private var classic: Bool { InterfacePreferences.shared.homeMode == "classic" }
     private var loading: Bool { model.loading || (!classic && model.home.loading) }
     private var homeError: String? { (!classic ? model.home.error : nil) ?? model.error }
@@ -94,6 +106,9 @@ struct HomeView: View {
             .onChange(of: model.personalOwner) { _, owner in
                 showSpooktober = false; seasonalPreferences = SpooktoberInvitationPreferences(owner: owner)
             }
+            .onAppear(perform: registerHomeRibbonMetas)
+            .onChange(of: homeRibbonRevision) { _, _ in registerHomeRibbonMetas() }
+            .onChange(of: AppProfileContext.shared.activationID) { _, _ in registerHomeRibbonMetas() }
             .task(id: contentSignature) {
                 guard model.storageReady, !classic else { return }
                 async let curated: Void = model.home.load(app: model)

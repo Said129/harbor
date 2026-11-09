@@ -67,7 +67,7 @@ private struct RankedPosterArtwork: View {
                 RankNumeral(rank: rank, size: 195 * configuration.scale * factor)
                     .frame(width: 135 * configuration.scale * factor, height: 177 * configuration.scale * factor)
                     .mask(LinearGradient(stops: [.init(color: .clear, location: 0), .init(color: .black, location: 0.12), .init(color: .black, location: 0.65), .init(color: .clear, location: 1)], startPoint: .leading, endPoint: .trailing))
-                Poster(media: media, width: nil, onExpansionWidthChange: { wideWidth = $0 })
+                Poster(media: media, width: nil, showsTopTenRibbon: false, onExpansionWidthChange: { wideWidth = $0 })
                     .padding(.leading, 76 * configuration.scale * factor)
             }
         }.aspectRatio(aspectRatio, contentMode: .fit)

@@ -4,14 +4,25 @@ import SwiftUI
 /// Which badges show, and where, come from `CardTagPolicy`; this view draws them and loads the dub feed once.
 struct CardTagBadges: View {
     let media: Media
+    var showsTopTenRibbon = true
     @Environment(\.customListApp) private var app
 
-    init(media: Media) { self.media = media }
+    init(media: Media, showsTopTenRibbon: Bool = true) {
+        self.media = media
+        self.showsTopTenRibbon = showsTopTenRibbon
+    }
 
     private var preferences: InterfacePreferences { InterfacePreferences.shared }
     private var dubIndex: AnimeDubIndex? { AnimeDubIndexStore.shared.index }
     private var bookmarked: Bool { app?.library.bookmarked(media) ?? false }
     private var position: CardWatchlistPosition { CardWatchlistPosition.restored(preferences.watchlistBadge) }
+    private var ribbonSide: String? {
+        guard showsTopTenRibbon, preferences.top10Ribbon,
+              TopTenRibbonIndexStore.shared.contains(media, profileActivationID: AppProfileContext.shared.activationID) else { return nil }
+        return preferences.top10RibbonSide
+    }
+    private var ribbonAtStart: Bool { ribbonSide == "left" }
+    private var ribbonAtEnd: Bool { ribbonSide == "right" }
     private var needsDubFeed: Bool { preferences.showDubBadge && CardTagPolicy.isAnimeCardID(media.id) }
     private var tags: [CardTag] {
         CardTagPolicy.tags(id: media.id, releaseInfo: media.releaseInfo, year: Calendar.current.component(.year, from: Date()),
@@ -36,12 +47,14 @@ struct CardTagBadges: View {
                 ForEach(tags, id: \.self) { CardTagLabel(tag: $0) }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .padding(.leading, 8).padding(.top, 8)
+            .padding(.leading, 8).padding(.top, ribbonAtStart ? 34 : 8)
         }
     }
 
     @ViewBuilder private var bookmarkMark: some View {
-        if CardTagPolicy.showsBookmark(position, bookmarked: bookmarked), let placement = CardTagPolicy.bookmarkPlacement(position, tagCount: tags.count) {
+        if CardTagPolicy.showsBookmark(position, bookmarked: bookmarked),
+           let placement = CardTagPolicy.bookmarkPlacement(position, tagCount: tags.count,
+                                                           ribbonAtStart: ribbonAtStart, ribbonAtEnd: ribbonAtEnd) {
             Image(systemName: "bookmark.fill")
                 .font(.system(size: 11, weight: .heavy))
                 .foregroundStyle(HarborTheme.ink)
@@ -57,6 +70,23 @@ struct CardTagBadges: View {
     private func bookmarkAlignment(_ placement: CardBookmarkPlacement) -> Alignment {
         if placement.isTop { return placement.isStart ? .topLeading : .topTrailing }
         return placement.isStart ? .bottomLeading : .bottomTrailing
+    }
+}
+
+/// The ribbon is a shared poster mark. Top-ten ranked cards hide it because their large numeral already shows the rank.
+struct CardTopTenRibbon: View {
+    let media: Media
+    @Bindable private var preferences = InterfacePreferences.shared
+
+    private var shouldShow: Bool {
+        preferences.top10Ribbon
+            && TopTenRibbonIndexStore.shared.contains(media, profileActivationID: AppProfileContext.shared.activationID)
+    }
+
+    var body: some View {
+        Group {
+            if shouldShow { TopTenCornerRibbon(side: preferences.top10RibbonSide) }
+        }
     }
 }
 
