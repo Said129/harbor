@@ -17,11 +17,8 @@ struct SubtitleStylePreview: View {
                 .accessibilityHidden(true)
             LinearGradient(colors: [.clear, HarborTheme.background.opacity(0.6)], startPoint: .center, endPoint: .bottom)
                 .overlay(alignment: alignment) {
-                    SubtitlePreviewLabel(options: options, size: previewSize)
-                        .padding(.vertical, options.subtitleStyle == "box" ? previewSize * 0.18 : 0)
-                        .padding(.horizontal, options.subtitleStyle == "box" ? previewSize * 0.5 : 0)
-                        .background(options.subtitleStyle == "box" ? Color(hex: options.subtitleBoxColor).opacity(options.boxOpacity) : .clear, in: .rect(cornerRadius: previewSize * 0.25))
-                        .opacity(options.subtitleOpacity)
+                    SubtitleStyledText(text: DesktopInterfaceText.value("This is how your subtitles will look."),
+                                       options: options, size: previewSize, styleScale: 0.55)
                         .padding(.horizontal, geometry.size.width * 0.06)
                         .padding(.bottom, geometry.size.height * min(100, max(0, 100 - options.subtitlePosition)) / 100)
                 }
@@ -30,9 +27,26 @@ struct SubtitleStylePreview: View {
     }
 }
 
-private struct SubtitlePreviewLabel: UIViewRepresentable {
+struct SubtitleStyledText: View {
+    let text: String
     let options: PlaybackOptions
     let size: CGFloat
+    let styleScale: CGFloat
+
+    var body: some View {
+        SubtitleStyledLabel(text: text, options: options, size: size, styleScale: styleScale)
+            .padding(.vertical, options.subtitleStyle == "box" ? size * 0.18 : 0)
+            .padding(.horizontal, options.subtitleStyle == "box" ? size * 0.5 : 0)
+            .background(options.subtitleStyle == "box" ? Color(hex: options.subtitleBoxColor).opacity(options.boxOpacity) : .clear, in: .rect(cornerRadius: size * 0.25))
+            .opacity(options.subtitleOpacity)
+    }
+}
+
+private struct SubtitleStyledLabel: UIViewRepresentable {
+    let text: String
+    let options: PlaybackOptions
+    let size: CGFloat
+    let styleScale: CGFloat
     func makeUIView(context: Context) -> UILabel {
         let label = UILabel(); label.numberOfLines = 0
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -46,13 +60,13 @@ private struct SubtitlePreviewLabel: UIViewRepresentable {
         var attributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: UIColor(Color(hex: options.subtitleColor)), .paragraphStyle: paragraph, .kern: options.subtitleSpacing]
         if options.subtitleStyle == "outline" {
             attributes[.strokeColor] = UIColor(Color(hex: options.borderColor))
-            attributes[.strokeWidth] = -max(1, options.borderSize) * 0.55 / Double(size) * 100
+            attributes[.strokeWidth] = -max(1, options.borderSize) * Double(styleScale) / Double(size) * 100
         } else if options.subtitleStyle == "shadow" {
             let shadow = NSShadow(); shadow.shadowColor = UIColor.black.withAlphaComponent(0.95)
             shadow.shadowOffset = CGSize(width: 0, height: 1); shadow.shadowBlurRadius = 2
             attributes[.shadow] = shadow
         }
-        label.attributedText = NSAttributedString(string: DesktopInterfaceText.value("This is how your subtitles will look."), attributes: attributes)
+        label.attributedText = NSAttributedString(string: text, attributes: attributes)
     }
     func sizeThatFits(_ proposal: ProposedViewSize, uiView: UILabel, context: Context) -> CGSize? {
         uiView.sizeThatFits(CGSize(width: proposal.width ?? uiView.intrinsicContentSize.width, height: CGFloat.greatestFiniteMagnitude))

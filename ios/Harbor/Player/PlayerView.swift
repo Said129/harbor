@@ -13,7 +13,7 @@ private struct PlayerSurface: UIViewControllerRepresentable {
     func makeCoordinator() -> ProfilePlaybackRegistry { playback }
     func makeUIViewController(context: Context) -> MPVController {
         let controller = MPVController(source: source, state: state, startMs: startMs, preservePosition: preservePosition,
-                                       startPaused: startPaused, subtitleRequest: subtitleRequest)
+                                       startPaused: startPaused, subtitleRequest: subtitleRequest, usesInlineSecondarySubtitleOverlay: true)
         playback.register(controller, generation: generation)
         return controller
     }
@@ -150,6 +150,7 @@ struct PlayerView: View {
                           startMs: session.promptForResume ? 0 : session.startMs, preservePosition: session.preservePosition,
                           startPaused: session.promptForResume, state: state, playback: AppProfileContext.shared.playback,
                           generation: playbackGeneration).ignoresSafeArea().accessibilityHidden(true)
+            SecondarySubtitleOverlay(state: state, options: preferences.options)
             // This sibling receives taps only on the video, so a transport
             // button or a slider never also toggles the entire interface.
             Color.clear.ignoresSafeArea().contentShape(Rectangle())

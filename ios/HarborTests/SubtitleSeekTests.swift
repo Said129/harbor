@@ -129,6 +129,59 @@ final class SubtitleSeekTests: XCTestCase {
     }
 
     @available(iOS, deprecated: 12.0)
+    @MainActor func testHiddenNativeSecondaryTrackStillPublishesItsOwnCuesAfterSeeks() async throws {
+        let clip = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "owned-subtitle-seek", withExtension: "mkv", subdirectory: "Fixtures"))
+        let captions = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".srt")
+        let text = """
+        1
+        00:00:04,000 --> 00:00:07,500
+        PRIMARY ONE
+
+        2
+        00:00:16,000 --> 00:00:19,500
+        PRIMARY FOUR
+        """
+        try (text + "\n").write(to: captions, atomically: true, encoding: .utf8)
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let previous = scene.windows.first { $0.isKeyWindow }, window = UIWindow(windowScene: scene)
+        window.frame = CGRect(x: 0, y: 0, width: 320, height: 180)
+        let preferences = PlaybackPreferences.shared.options
+        PlaybackPreferences.shared.options = PlaybackOptions()
+        defer {
+            window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible()
+            PlaybackPreferences.shared.options = preferences
+            try? FileManager.default.removeItem(at: captions)
+        }
+
+        let state = PlayerState()
+        let controller = MPVController(source: .init(url: clip.absoluteString, headers: nil, subtitles: nil, via: "test-fixture"), state: state,
+                                       startPaused: true, usesInlineSecondarySubtitleOverlay: true)
+        window.rootViewController = controller; window.makeKeyAndVisible(); controller.view.layoutIfNeeded()
+        defer { controller.close() }
+        let surface = try XCTUnwrap(controller.view as? GLKView)
+        try await wait(surface, state: state, context: "dual tracks initial load") { state.loaded && state.paused && state.tracks.contains { $0.type == "sub" } }
+        let embedded = try XCTUnwrap(state.tracks.first { $0.type == "sub" && !$0.external })
+        controller.importLocalSubtitle(captions)
+        try await wait(surface, state: state, context: "dual tracks external selection") { !state.subtitleChanging && state.primarySubtitle?.external == true }
+        controller.selectSubtitle(String(embedded.id), secondary: true)
+        try await wait(surface, state: state, context: "dual tracks secondary selection") { !state.subtitleChanging && state.secondarySubtitle?.id == embedded.id }
+
+        XCTAssertEqual(controller.stat("sub-visibility"), "yes")
+        XCTAssertEqual(controller.stat("secondary-sub-visibility"), "no")
+        for (target, primary, secondary) in [(17.0, "PRIMARY FOUR", "EMBEDDED CUE 4"), (5.0, "PRIMARY ONE", "EMBEDDED CUE 1")] {
+            controller.run(["seek", String(target), "absolute+exact"])
+            try await wait(surface, state: state, context: "dual tracks seek \(target)") {
+                !state.seeking && abs(state.position - target) < 0.3 &&
+                    state.primarySubtitleText.contains(primary) && state.secondarySubtitleText.contains(secondary)
+            }
+        }
+        controller.selectSubtitle("no", secondary: true)
+        try await wait(surface, state: state, context: "dual tracks secondary cleared") {
+            state.secondarySubtitle == nil && state.secondarySubtitleText.isEmpty && state.primarySubtitleText.contains("PRIMARY ONE")
+        }
+    }
+
+    @available(iOS, deprecated: 12.0)
     @MainActor private func captureSeek(_ controller: MPVController, surface: GLKView, state: PlayerState, prefix: String, target: Double, cue: Int) async throws {
         controller.run(["seek", String(target), "absolute+exact"])
         try await wait(surface, state: state, context: "\(prefix) capture seek \(target)") { abs(state.position - target) < 0.3 && state.primarySubtitleText.contains("\(prefix) CUE \(cue)") }

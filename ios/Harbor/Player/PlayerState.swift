@@ -8,6 +8,7 @@ final class PlayerState {
     var duration: Double = 0
     var paused = false
     var buffering = false
+    var seeking = false
     var loaded = false
     var mediaGeneration = 0
     var renderReady = false

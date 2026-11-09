@@ -105,9 +105,12 @@ final class MPVPictureInPicture: NSObject, @preconcurrency AVPictureInPictureCon
 
     /// Desktop's `subShowInPip`: mpv keeps the subtitle track selected and only hides it from the floating frames.
     private func applySubtitleVisibility(inPictureInPicture: Bool) {
-        let value = PictureInPictureRules.subtitleVisibility(inPictureInPicture: inPictureInPicture, showSubtitlesInPip: PlaybackPreferences.shared.options.subShowInPip)
-        owner?.set("sub-visibility", value)
-        owner?.set("secondary-sub-visibility", value)
+        guard let owner else { return }
+        let showSubtitlesInPip = PlaybackPreferences.shared.options.subShowInPip
+        owner.set("sub-visibility", PictureInPictureRules.subtitleVisibility(inPictureInPicture: inPictureInPicture, showSubtitlesInPip: showSubtitlesInPip))
+        let secondary = PictureInPictureRules.subtitleVisibility(inPictureInPicture: inPictureInPicture, showSubtitlesInPip: showSubtitlesInPip,
+                                                                hasInlineOverlay: owner.usesInlineSecondarySubtitleOverlay)
+        owner.set("secondary-sub-visibility", secondary)
     }
     func pictureInPictureControllerWillStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
         applySubtitleVisibility(inPictureInPicture: true)

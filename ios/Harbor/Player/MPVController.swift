@@ -53,7 +53,8 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
     private var subtitleDriftLastOffer: (residual: Double, step: Double)?
     private var subtitleDriftSeek = 0
     private var subtitleDriftReset = false
-    private var seeking = false
+    private var seeking: Bool { state.seeking }
+    let usesInlineSecondarySubtitleOverlay: Bool
     private var synchronizedTracks = Set<Int>()
     private var subtitleSyncOriginalTiming: (delay: Double, fps: Double)?
     private var subtitleOperations = 0
@@ -93,9 +94,10 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
     var sampleRenderCalls: Int { pictureInPicture?.renderedFrames ?? 0 }
 
     init(source: PlaybackSource, state: PlayerState, startMs: Double = 0, preservePosition: Bool = false, startPaused: Bool = false,
-         subtitleRequest: SubtitleRequest? = nil) {
+         subtitleRequest: SubtitleRequest? = nil, usesInlineSecondarySubtitleOverlay: Bool = false) {
         self.source = source; self.state = state
         self.subtitleRequest = subtitleRequest
+        self.usesInlineSecondarySubtitleOverlay = usesInlineSecondarySubtitleOverlay
         self.startMs = startMs
         self.startPaused = startPaused
         state.paused = startPaused
@@ -155,6 +157,10 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         updateAudioRoute()
         let mpv = try MPVConfiguration.createHandle(startMs: startMs, startPaused: startPaused)
         handle = mpv
+        if usesInlineSecondarySubtitleOverlay {
+            // mpv 0.41 still publishes secondary-sub-text when native drawing is hidden.
+            try check(mpv_set_property_string(mpv, "secondary-sub-visibility", "no"))
+        }
         try check(mpv_request_log_messages(mpv, "no"))
 #if targetEnvironment(simulator)
         if source.via == "test-fixture" {
@@ -1193,7 +1199,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 }
             case MPV_EVENT_START_FILE:
                 cancelSubtitleSync()
-                seeking = false
+                state.seeking = false
                 subtitleSyncKey = nil; synchronizedTracks = []; state.subtitleSyncOriginal = nil; subtitleSyncOriginalTiming = nil; state.updateSubtitleSync(.idle)
                 mediaRevision += 1
                 preferredSecondaryHandled = false
@@ -1261,7 +1267,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 } else if property.format == MPV_FORMAT_FLAG {
                     let flag = value.assumingMemoryBound(to: Int32.self).pointee != 0
                     if key == "pause" { state.paused = flag }
-                    if key == "seeking" { seeking = flag }
+                    if key == "seeking" { state.seeking = flag }
                     if key == "paused-for-cache" {
                         state.buffering = flag
                         if flag { subtitleDriftProbe?.cancel() }
