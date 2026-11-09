@@ -182,7 +182,7 @@ final class DiscoveryPreferences {
         let name = Self.titleKey(media.name)
         return !name.isEmpty && stored.votes.values.contains { $0.vote == .down && Self.titleKey($0.name) == name }
     }
-    static func titleKey(_ name: String) -> String {
+    nonisolated static func titleKey(_ name: String) -> String {
         name.lowercased().replacingOccurrences(of: "\\([0-9]{4}\\)", with: "", options: .regularExpression)
             .replacingOccurrences(of: "[^a-z0-9]+", with: "", options: .regularExpression)
     }

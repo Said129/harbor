@@ -2150,3 +2150,12 @@ addon, TMDB and anime requests start together. Request generations fence the
 result to the active profile, query and metadata preferences. Year and genre
 intents open native paged catalogs with Desktop's standard filters. The
 editorial and spotlight genre sections remain pending.
+
+## Apple validation follow-up
+
+Run 42608269596 built and passed all six selected cases for cross-language
+subtitle sync and the Home Top 10 ribbon. Run 42609852788 built the hosted
+Home changes, then timed out during simulator startup before its four cases.
+Run 42611657339 stopped at Swift type checking before its thirteen cases.
+Discover's shared title normalization is pure and is now declared
+nonisolated so synchronous matching can call it from either actor context.
