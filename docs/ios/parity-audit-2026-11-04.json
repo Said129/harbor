@@ -381,7 +381,7 @@
       "id": "Global search",
       "desktop_source": "src/lib/search.ts",
       "verdict": "P",
-      "note": "Native search surfaces the most popular eligible TMDB result and opens an equivalent installed addon record when available. TMDB and addon queries run in parallel. Year and genre browse routes and remaining Desktop search facets are pending."
+      "note": "Native search surfaces the most popular eligible TMDB result and opens an equivalent addon record when available. Year and genre queries open the standard Desktop browse rails. Editorial genre sections and additional result facets remain pending."
     },
     {
       "index": 23,

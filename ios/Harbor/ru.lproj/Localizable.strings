@@ -1139,6 +1139,7 @@
 "Hidden" = "Скрыто";
 "Hidden Gems" = "Скрытые жемчужины";
 "Hidden Gems on MAL" = "Скрытые жемчужины на MAL";
+"Hidden gems" = "Скрытые жемчужины";
 "Hidden titles" = "Hidden titles";
 "Hide" = "Скрыть";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -2583,6 +2584,7 @@
 "TMDB API key (v3)" = "Ключ API TMDB (v3)";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB подключён. Включено {n} {services}. Добро пожаловать на борт.";
 "TMDB has no notable releases for this month and region." = "В TMDB нет заметных релизов для этого месяца и региона.";
+"TMDB is temporarily unavailable. Try your search again shortly." = "TMDB временно недоступен. Повторите поиск чуть позже.";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB даёт полный поток всех релизов месяца. Бесплатного тарифа хватает. Настройка – около 60 секунд. Переключитесь на «Мою библиотеку», если хотите видеть только сохранённое.";
 "TMDB · catalogs and rails" = "TMDB · каталоги и ряды";
 "TMDB · catálogos y filas" = "TMDB · каталоги и ряды";

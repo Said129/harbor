@@ -2148,4 +2148,5 @@ movie or show in provider order. Its native card uses the same result data
 and opens an equivalent installed addon record when one is present. The
 addon, TMDB and anime requests start together. Request generations fence the
 result to the active profile, query and metadata preferences. Year and genre
-intent routes remain pending.
+intents open native paged catalogs with Desktop's standard filters. The
+editorial and spotlight genre sections remain pending.

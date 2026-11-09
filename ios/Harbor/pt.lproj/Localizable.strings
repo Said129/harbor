@@ -1155,6 +1155,7 @@
 "Hidden" = "Oculto";
 "Hidden Gems" = "Joias Escondidas";
 "Hidden Gems on MAL" = "Joias Escondidas no MAL";
+"Hidden gems" = "Joias escondidas";
 "Hidden titles" = "Hidden titles";
 "Hide" = "Ocultar";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -2593,6 +2594,7 @@
 "TMDB API key (v3)" = "Chave da API TMDB (v3)";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB conectado. {n} {services} de streaming ativados. Bem-vindo a bordo.";
 "TMDB has no notable releases for this month and region." = "O TMDB não tem lançamentos notáveis para este mês e região.";
+"TMDB is temporarily unavailable. Try your search again shortly." = "O TMDB está temporariamente indisponível. Tente sua busca novamente em breve.";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "O TMDB alimenta o fluxo intenso de todos os lançamentos deste mês. O plano gratuito já é suficiente. Cerca de 60 segundos para configurar. Mude para Minha Biblioteca se preferir ver apenas o que você salvou.";
 "TMDB · catalogs and rails" = "TMDB · catálogos e faixas";
 "TMDB · catálogos y filas" = "TMDB · catálogos e faixas";

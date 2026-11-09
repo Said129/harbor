@@ -1135,6 +1135,7 @@
 "Hidden" = "非表示";
 "Hidden Gems" = "隠れた名作";
 "Hidden Gems on MAL" = "MALの隠れた名作";
+"Hidden gems" = "隠れた名作";
 "Hidden titles" = "Hidden titles";
 "Hide" = "非表示";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -2570,6 +2571,7 @@
 "TMDB API key (v3)" = "TMDB APIキー（v3）";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDBに接続しました。ストリーミング{services}を{n}件有効にしました。Harborへようこそ。";
 "TMDB has no notable releases for this month and region." = "今月、この地域で注目の配信作品はTMDBにありません。";
+"TMDB is temporarily unavailable. Try your search again shortly." = "TMDBは一時的に利用できません。しばらくしてからもう一度検索してください。";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "今月の全配信作品はTMDBから取得します。無料プランで利用でき、設定は約60秒で完了します。保存した作品だけを表示する場合は、マイライブラリに切り替えてください。";
 "TMDB · catalogs and rails" = "TMDB・カタログとレール";
 "TMDB · catálogos y filas" = "TMDB・カタログとレール";

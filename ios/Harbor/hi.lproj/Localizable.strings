@@ -1135,6 +1135,7 @@
 "Hidden" = "छिपा हुआ";
 "Hidden Gems" = "छिपे हुए नगीने";
 "Hidden Gems on MAL" = "MAL पर छिपे हुए नगीने";
+"Hidden gems" = "छिपे हुए नगीने";
 "Hidden titles" = "Hidden titles";
 "Hide" = "छिपाएँ";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -2570,6 +2571,7 @@
 "TMDB API key (v3)" = "TMDB API कुंजी (v3)";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB कनेक्ट हो गया। {n} स्ट्रीमिंग {services} चालू हैं। स्वागत है।";
 "TMDB has no notable releases for this month and region." = "TMDB पर इस महीने और क्षेत्र के लिए कोई उल्लेखनीय रिलीज़ नहीं है।";
+"TMDB is temporarily unavailable. Try your search again shortly." = "TMDB अस्थायी रूप से उपलब्ध नहीं है। थोड़ी देर बाद फिर खोजें।";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB इस महीने की हर रिलीज़ की जानकारी उपलब्ध कराता है। इसके लिए मुफ़्त टियर काफ़ी है। सेटअप में लगभग 60 सेकंड लगते हैं। अगर आप केवल सेव किए हुए शीर्षक देखना चाहते हैं, तो मेरी लाइब्रेरी पर जाएँ।";
 "TMDB · catalogs and rails" = "TMDB · कैटलॉग और पंक्तियाँ";
 "TMDB · catálogos y filas" = "TMDB · कैटलॉग और पंक्तियाँ";

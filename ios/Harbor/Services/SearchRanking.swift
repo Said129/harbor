@@ -5,6 +5,21 @@ enum SearchQueryIntent: Equatable, Sendable {
     case year(Int)
     /// `isSeries` is true for a TV genre ("Sci-Fi & Fantasy shows") and false for a movie genre.
     case genre(name: String, isSeries: Bool)
+
+    var symbol: String {
+        switch self {
+        case .year: "calendar"
+        case .genre: "tag"
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .year(let year): "\(DesktopInterfaceText.value("Movies")) · \(year)"
+        case .genre(let name, let isSeries):
+            "\(DesktopInterfaceText.value(name)) · \(DesktopInterfaceText.value(isSeries ? "Shows" : "Movies"))"
+        }
+    }
 }
 
 /// A title that an anime source returned, as Desktop's `AnimeHit` keeps it for the anime merge.
@@ -55,6 +70,51 @@ enum SearchRanking {
             return .genre(name: genre.0, isSeries: true)
         }
         return nil
+    }
+
+    /// Desktop's core standard rails in the year and genre filters.
+    static func browseRails(for intent: SearchQueryIntent, now: Date = Date()) -> [DiscoveryRail] {
+        func rail(_ id: String, _ title: String, kind: String, params: [String: String]) -> DiscoveryRail {
+            .init(id: "search-filter-" + id, title: DesktopInterfaceText.value(title),
+                  kind: kind, path: kind == "movie" ? "discover/movie" : "discover/tv", parameters: params)
+        }
+        switch intent {
+        case .year(let year):
+            let yearValue = String(year)
+            return [
+                rail("popular", "Popular", kind: "movie", params: [
+                    "primary_release_year": yearValue, "sort_by": "popularity.desc", "vote_count.gte": "50",
+                ]),
+                rail("rated", "Top Rated", kind: "movie", params: [
+                    "primary_release_year": yearValue, "sort_by": "vote_average.desc", "vote_count.gte": "300",
+                ]),
+                rail("gems", "Hidden gems", kind: "movie", params: [
+                    "primary_release_year": yearValue, "sort_by": "vote_average.desc", "vote_count.gte": "60",
+                    "vote_count.lte": "1500", "vote_average.gte": "7",
+                ]),
+            ]
+        case .genre(let name, let isSeries):
+            let genres = isSeries ? CustomCalendar.tvGenres : CustomCalendar.movieGenres
+            guard let id = genres.first(where: { $0.0 == name })?.1 else { return [] }
+            let kind = isSeries ? "series" : "movie"
+            let genre = String(id)
+            func votes(_ minimum: Int) -> String { String(id == 99 ? max(10, minimum / 5) : minimum) }
+            let formatter = ISO8601DateFormatter()
+            formatter.formatOptions = [.withFullDate]
+            let lowerDate = formatter.string(from: now.addingTimeInterval(-5 * 365 * 86_400))
+            return [
+                rail("trending", "Trending", kind: kind, params: [
+                    "with_genres": genre, "sort_by": "popularity.desc", "vote_count.gte": votes(50),
+                ]),
+                rail("rated", "Top Rated", kind: kind, params: [
+                    "with_genres": genre, "sort_by": "vote_average.desc", "vote_count.gte": votes(400),
+                ]),
+                rail("recent", "Recent", kind: kind, params: [
+                    "with_genres": genre, "sort_by": "popularity.desc", "vote_count.gte": votes(150),
+                    (isSeries ? "first_air_date.gte" : "primary_release_date.gte"): lowerDate,
+                ]),
+            ]
+        }
     }
 
     /// The keys that identify a title across sources: its IMDb id when it is known, and its normalized name with

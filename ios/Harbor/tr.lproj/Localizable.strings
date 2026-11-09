@@ -1135,6 +1135,7 @@
 "Hidden" = "Gizli";
 "Hidden Gems" = "Gizli Cevherler";
 "Hidden Gems on MAL" = "MAL'deki Gizli Cevherler";
+"Hidden gems" = "Gizli cevherler";
 "Hidden titles" = "Hidden titles";
 "Hide" = "Gizle";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -2570,6 +2571,7 @@
 "TMDB API key (v3)" = "TMDB API anahtarı (v3)";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB bağlandı. {n} yayın {services} etkin. Aramıza hoş geldiniz.";
 "TMDB has no notable releases for this month and region." = "TMDB'de bu ay ve bölge için kayda değer bir yayın yok.";
+"TMDB is temporarily unavailable. Try your search again shortly." = "TMDB geçici olarak kullanılamıyor. Kısa süre sonra tekrar aramayı deneyin.";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB, bu ay yayınlanacak tüm içeriklerin eksiksiz akışını sağlar. Ücretsiz plan yeterlidir ve kurulumu yaklaşık 60 saniye sürer. Yalnızca kaydettiklerinizi görmek isterseniz Kütüphanem'e geçin.";
 "TMDB · catalogs and rails" = "TMDB · kataloglar ve raflar";
 "TMDB · catálogos y filas" = "TMDB · kataloglar ve raflar";

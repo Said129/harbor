@@ -116,4 +116,25 @@ final class R24SearchTests: XCTestCase {
         XCTAssertTrue(SearchTMDBSource.rows(for: [match], addonRows: rows).isEmpty)
         XCTAssertEqual(SearchTMDBSource.destination(for: match, addonRows: []).id, match.id)
     }
+
+    func testSearchBrowseYearBuildsTheThreeDesktopMovieFilters() {
+        let rows = SearchRanking.browseRails(for: .year(2019))
+        XCTAssertEqual(rows.map(\.id), ["search-filter-popular", "search-filter-rated", "search-filter-gems"])
+        XCTAssertEqual(rows.map(\.path), Array(repeating: "discover/movie", count: 3))
+        XCTAssertEqual(rows.compactMap { $0.parameters["primary_release_year"] }, ["2019", "2019", "2019"])
+        XCTAssertEqual(rows.compactMap { $0.parameters["vote_count.gte"] }, ["50", "300", "60"])
+        XCTAssertEqual(rows.last?.parameters["vote_count.lte"], "1500")
+    }
+
+    func testSearchBrowseGenreUsesTVDateAndDocumentaryVoteFloors() throws {
+        let now = Date(timeIntervalSince1970: 1_767_225_600)
+        let series = SearchRanking.browseRails(for: .genre(name: "Sci-Fi & Fantasy", isSeries: true), now: now)
+        let recent = try XCTUnwrap(series.last)
+        XCTAssertEqual(recent.path, "discover/tv")
+        XCTAssertEqual(recent.parameters["with_genres"], "10765")
+        XCTAssertNotNil(recent.parameters["first_air_date.gte"])
+        XCTAssertNil(recent.parameters["primary_release_date.gte"])
+        let documentary = SearchRanking.browseRails(for: .genre(name: "Documentary", isSeries: false), now: now)
+        XCTAssertEqual(documentary.compactMap { $0.parameters["vote_count.gte"] }, ["10", "80", "30"])
+    }
 }

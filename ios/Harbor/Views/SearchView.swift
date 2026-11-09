@@ -26,10 +26,25 @@ struct SearchView: View {
                 recentSearches
                 if history.items.isEmpty { ContentUnavailableView("Busca en tus addons", systemImage: "magnifyingglass", description: Text("Películas, series y catálogos instalados.")) }
             }
-            else if isTitleQuery && rows.isEmpty && topMatch == nil && !loading { ContentUnavailableView.search(text: query) }
+            else if isTitleQuery && rows.isEmpty && topMatch == nil && browseIntent == nil && !loading { ContentUnavailableView.search(text: query) }
             if let completedQuery {
                 Text("Resultados para «\(completedQuery)»").font(.headline).padding()
                     .accessibilityIdentifier("search-results-query")
+            }
+            if let browseIntent {
+                NavigationLink {
+                    SearchBrowseResults(intent: browseIntent, app: app)
+                } label: {
+                    Label {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(DesktopInterfaceText.value("Browse")).font(.caption).foregroundStyle(HarborTheme.accent)
+                            Text(browseIntent.title).font(HarborTheme.font(15, weight: .semibold))
+                        }
+                    } icon: {
+                        Image(systemName: browseIntent.symbol).foregroundStyle(HarborTheme.accent)
+                    }.frame(maxWidth: .infinity, minHeight: 48, alignment: .leading).padding(.horizontal, 14)
+                        .background(HarborTheme.accent.opacity(0.12), in: .rect(cornerRadius: 14))
+                }.buttonStyle(.plain).padding(.horizontal).accessibilityIdentifier("search-browse-intent")
             }
             if isTitleQuery, let topMatch {
                 SearchTopMatchCard(media: topMatch, destination: matchDestination ?? topMatch, app: app).padding(.horizontal)
@@ -50,6 +65,7 @@ struct SearchView: View {
     /// A pasted magnet, info hash or direct video link gets a Play card instead of a catalog search.
     private var linkInput: SearchInput { SearchInput.classify(query) }
     private var isTitleQuery: Bool { if case .query = linkInput { true } else { false } }
+    private var browseIntent: SearchQueryIntent? { isTitleQuery ? SearchRanking.intent(query) : nil }
     private var searchContext: String {
         let configuration = MetadataPreferences.shared.configuration()
         return [app.accountOperationScope, app.addons.filter(\.enabled).map(\.id).joined(separator: "|"),

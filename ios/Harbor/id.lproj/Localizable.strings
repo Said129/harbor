@@ -1135,6 +1135,7 @@
 "Hidden" = "Tersembunyi";
 "Hidden Gems" = "Permata Tersembunyi";
 "Hidden Gems on MAL" = "Permata Tersembunyi di MAL";
+"Hidden gems" = "Permata tersembunyi";
 "Hidden titles" = "Hidden titles";
 "Hide" = "Sembunyikan";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -2570,6 +2571,7 @@
 "TMDB API key (v3)" = "Kunci API TMDB (v3)";
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB terhubung. {n} {services} streaming aktif. Selamat bergabung.";
 "TMDB has no notable releases for this month and region." = "TMDB tidak memiliki rilisan penting untuk bulan dan wilayah ini.";
+"TMDB is temporarily unavailable. Try your search again shortly." = "TMDB untuk sementara tidak tersedia. Coba lakukan pencarian lagi sebentar lagi.";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB menyajikan seluruh rilisan bulan ini. Paket gratis sudah mencukupi. Penyiapan memerlukan waktu sekitar 60 detik. Beralihlah ke Perpustakaan Saya jika Anda hanya ingin melihat yang telah disimpan.";
 "TMDB · catalogs and rails" = "TMDB · katalog dan deretan";
 "TMDB · catálogos y filas" = "TMDB · katalog dan deretan";
