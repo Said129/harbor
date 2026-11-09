@@ -2130,3 +2130,13 @@ of suggestion pools. The original locale toggle label and a description of its
 current scope are available in all sixteen interface languages. The preference
 and language history are profile scoped. Desktop's daily Home catalog bias
 and the native feature pool's remaining differences stay in the audit.
+
+## Focused validation of the drift bridge
+
+Run 42606184763 compiled the app and passed nine of twelve cases. The three
+drift tests reported false acknowledgements from the Swift bridge. The
+JavaScript response is decoded as a `JSONValue` and the bridge had attempted
+to cast the enum to a native Bool. It now checks the actual JSON Boolean
+for both completion and rejection. The three affected cases need to run
+again. The nine passing cases and the physical subtitle seek defect are
+tracked separately.

@@ -117,7 +117,7 @@ struct SubtitleDriftMonitorState: Codable, Sendable {
             snapshot: currentSnapshot,
             fields: ["requestID": requestID, "intervals": values]
         )
-        return response["accepted"] as? Bool ?? false
+        return response["accepted"] == .bool(true)
     }
 
     func rejectSpeech(
@@ -125,7 +125,7 @@ struct SubtitleDriftMonitorState: Codable, Sendable {
         currentSnapshot: SubtitleDriftSnapshot? = nil
     ) throws -> Bool {
         let response = try callRaw("rejectSpeech", snapshot: currentSnapshot, fields: ["requestID": requestID])
-        return response["accepted"] as? Bool ?? false
+        return response["accepted"] == .bool(true)
     }
 
     func drain(_ snapshot: SubtitleDriftSnapshot? = nil) throws -> SubtitleDriftMonitorState {
