@@ -1438,7 +1438,7 @@
       "id": "Dual subtitle tracks",
       "desktop_source": "src/lib/player",
       "verdict": "P",
-      "note": "The second-line size (subSecondaryScale) is saved and shown by SecondLineSizeControl but no mpv property reads it, and the secondary text captured in state.secondarySubtitleText has no view that draws it, so the se..."
+      "note": "The native player draws the second track at the selected size and placement, using mpv cue events. Picture in Picture uses mpv native drawing. Focused Apple validation is pending."
     },
     {
       "index": 174,
@@ -1480,7 +1480,7 @@
       "id": "Touch-equivalent transport controls",
       "desktop_source": "src/components/player",
       "verdict": "P",
-      "note": "iOS offers mute but no volume control, and has no shader (Anime4k) menu, screenshot, draw toggle, in-player download or DVR control; the RTX HDR and RTX VSR toggles are NVIDIA-only and impossible on a phone, while..."
+      "note": "The audio panel has a volume slider. The video panel exports a clean PNG frame through Files, with Apple validation pending. Shader, draw, in-player download and DVR controls still differ."
     },
     {
       "index": 180,
@@ -5003,7 +5003,7 @@
       "id": "subSecondaryScale",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "secondary subtitle scale: stored, nothing draws a second subtitle line yet (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "note": "The per-profile size controls the second subtitle in the inline player. The floating window uses mpv 0.41 native sizing. Focused Apple validation is pending."
     },
     {
       "index": 245,

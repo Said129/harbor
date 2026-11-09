@@ -177,6 +177,7 @@ struct PlayerSettingsView: View {
     }
 
     @ViewBuilder private var videoSettings: some View {
+        if let state { PlayerFrameCaptureButton(state: state) }
         PlayerSeekBarSettings()
         HarborSettingsSection("Reproductor") {
             HarborSettingsChoice("Decodificación de vídeo", selection: $hardwareDecoding, choices: HardwareDecoding.allCases.map { ($0.title, $0) })

@@ -182,6 +182,37 @@ final class SubtitleSeekTests: XCTestCase {
     }
 
     @available(iOS, deprecated: 12.0)
+    @MainActor func testFrameCaptureExportsPNGFromPausedNativeVideo() async throws {
+        let clip = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "owned-subtitle-seek", withExtension: "mkv", subdirectory: "Fixtures"))
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let previous = scene.windows.first { $0.isKeyWindow }, window = UIWindow(windowScene: scene)
+        window.frame = CGRect(x: 0, y: 0, width: 320, height: 180)
+        let state = PlayerState()
+        let controller = MPVController(source: .init(url: clip.absoluteString, headers: nil, subtitles: nil, via: "test-fixture"), state: state, startPaused: true)
+        XCTAssertFalse(controller.canCaptureFrame)
+        window.rootViewController = controller; window.makeKeyAndVisible(); controller.view.layoutIfNeeded()
+        defer { controller.close(); window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
+        let surface = try XCTUnwrap(controller.view as? GLKView)
+        try await wait(surface, state: state, context: "ready to capture video") { controller.canCaptureFrame && state.paused && state.hasPosition }
+
+        let drawing = Task { @MainActor in
+            while !Task.isCancelled {
+                surface.display()
+                try? await Task.sleep(for: .milliseconds(30))
+            }
+        }
+        defer { drawing.cancel() }
+        let position = state.position
+        let png = try await controller.captureFrame()
+        XCTAssertEqual(Array(png.prefix(8)), [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])
+        let image = try XCTUnwrap(UIImage(data: png))
+        XCTAssertGreaterThan(image.size.width, 0)
+        XCTAssertGreaterThan(image.size.height, 0)
+        XCTAssertEqual(state.position, position, accuracy: 0.001)
+        XCTAssertTrue(state.paused)
+    }
+
+    @available(iOS, deprecated: 12.0)
     @MainActor private func captureSeek(_ controller: MPVController, surface: GLKView, state: PlayerState, prefix: String, target: Double, cue: Int) async throws {
         controller.run(["seek", String(target), "absolute+exact"])
         try await wait(surface, state: state, context: "\(prefix) capture seek \(target)") { abs(state.position - target) < 0.3 && state.primarySubtitleText.contains("\(prefix) CUE \(cue)") }

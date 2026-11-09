@@ -441,9 +441,9 @@ BEHAVIORS = expand("""
 109 P The Stremio streaming-server path returns a PlaybackSource with subtitles nil, so addon subtitles are dropped on that path, while the direct path keeps them.
 114 P iOS has no P2P engine fallback or P2P download preference (torrent handling is limited to the Stremio streaming server), and it has no automatic or season download flow that commits uncached picks.
 172 P There are no saved subtitle look presets (Desktop's loadSubPresets, saveSubPresets and snapshotSub) and no custom subtitle font import; the font choice is limited to five fixed families.
-173 P The second-line size (subSecondaryScale) is saved and shown by SecondLineSizeControl but no mpv property reads it, and the secondary text captured in state.secondarySubtitleText has no view that draws it, so the se...
+173 P The native player draws the second track at the selected size and placement, using mpv cue events. Picture in Picture uses mpv native drawing. Focused Apple validation is pending.
 177 P iOS has no automatic single reload of a VOD stream that ends prematurely (Desktop's isTruncatedEnd and use-auto-retry), its natural-end decision uses only mpv's EOF reason rather than the 85 percent rule, and the e...
-179 P iOS offers mute but no volume control, and has no shader (Anime4k) menu, screenshot, draw toggle, in-player download or DVR control; the RTX HDR and RTX VSR toggles are NVIDIA-only and impossible on a phone, while...
+179 P The audio panel has a volume slider. The video panel exports a clean PNG frame through Files, with Apple validation pending. Shader, draw, in-player download and DVR controls still differ.
 180 P The iOS picker opened from the player's Change source action has only quality and provider filters plus the Both/Direct-debrid mode toggle; cached-only, preferred-language, source-group and flagged/rejected toggles...
 186 P HarborSeekBar takes only position and duration: it draws no buffered or downloaded fill (cacheEnd is never passed to it), no skip or ad segment spans, no trickplay thumbnails, and dot size and fill are fixed (only...
 188 P iOS has the season/order browser, the next-up row and adjacent-episode logic, but choosing an episode always autoplays the best stream: the instant-play off mode that shows a per-episode stream picker, the queue-dr...
@@ -933,7 +933,7 @@ SETTINGS = expand("""
 195 P stremioServerTranscode is stored; Desktop has no control for it either
 206 P delete watched downloads: stored, not wired to the download manager (7 Nov, written by Haiku, CI runs 37 to 39 green)
 227 P normalise ASS subtitle size: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
-244 P secondary subtitle scale: stored, nothing draws a second subtitle line yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
+244 P The per-profile size controls the second subtitle in the inline player. The floating window uses mpv 0.41 native sizing. Focused Apple validation is pending.
 254 P prefer embedded subtitles: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
 255 P subtitle auto upgrade: policy and setting exist, the player does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)
 256 P preselect subtitles before playback: policy and setting exist, the picker does not call them yet (7 Nov, written by Haiku, CI runs 37 to 39 green)

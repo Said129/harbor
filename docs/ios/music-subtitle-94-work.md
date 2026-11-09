@@ -2210,3 +2210,18 @@ Matching complete downloads take precedence by profile, torrent and file
 or episode. Files saved by earlier iOS builds remain usable from Downloads.
 The focused tests cover probe policy, redirect headers, direct size
 validation and completed-file matching with a legacy index.
+
+## Secondary subtitle rendering and frame capture
+
+The iOS full player renders mpv's second subtitle cue with the existing
+subtitle style and the profile's second-line scale. It uses Desktop's top
+or above-primary placement. mpv 0.41 stays responsible for both tracks'
+timing and for native captions in Picture in Picture. The floating
+window uses mpv's native size. Run 42703197211 checks independently
+timed tracks across forward and backward seeks and PiP visibility policy.
+
+The in-player Video panel can export an unadorned PNG to Files through
+the native document picker. The controller checks that a video frame is
+available and fences the result to its playback revision. The temporary
+file is removed once the PNG is prepared. A native test captures from a
+paused owned fixture and checks the PNG and unchanged playback position.

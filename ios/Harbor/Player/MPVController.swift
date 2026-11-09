@@ -253,6 +253,28 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         defer { mpv_free(pointer) }
         return String(cString: pointer)
     }
+    var canCaptureFrame: Bool {
+        state.loaded && state.renderReady && !state.ended && !state.seeking && !state.restarting &&
+            !state.pictureInPictureActive && !state.pictureInPictureChanging && state.error == nil &&
+            state.tracks.contains { $0.type == "video" && $0.selected }
+    }
+
+    func captureFrame() async throws -> Data {
+        guard canCaptureFrame else { throw HarborError(code: "player-frame-grab") }
+        let revision = mediaRevision
+        let file = FileManager.default.temporaryDirectory.appendingPathComponent("Harbor-Frame-" + UUID().uuidString + ".png")
+        defer { try? FileManager.default.removeItem(at: file) }
+        // Desktop's frame grab captures the decoded video without controls or subtitles.
+        try await commandChecked(["screenshot-to-file", file.path, "video"])
+        try Task.checkCancellation()
+        let data = try await Task.detached(priority: .utility) {
+            try Data(contentsOf: file, options: .mappedIfSafe)
+        }.value
+        try Task.checkCancellation()
+        guard !didClose, revision == mediaRevision, !data.isEmpty else { throw HarborError(code: "player-frame-grab") }
+        return data
+    }
+
     func replay() {
         restartPlayback(positionMs: nil, autoplay: nil)
     }
