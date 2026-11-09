@@ -27,6 +27,8 @@ final class LibraryModel {
     var presentationError: String? { privatePresentationError ?? sharedPresentationError }
     private(set) var favorites = MediaFavorites(owner: "guest")
     private(set) var discovery = DiscoveryPreferences(owner: "guest")
+    private var animeFranchiseRoots: [String: String] = [:]
+    @ObservationIgnored private let animeRootResolver: @Sendable (String) async -> String?
     let simklPlayback: SimklPlaybackFeed
     let traktPlayback: TraktPlaybackFeed
     let traktWatched: TraktWatchedFeed
@@ -43,10 +45,11 @@ final class LibraryModel {
     private var localReady = false
     @ObservationIgnored private var localActive: @MainActor () -> Bool = { false }
     private(set) var continueSources = ContinueWatchingSources()
-    init(simklPlayback: SimklPlaybackFeed? = nil, localContinue: LocalContinueStore = .shared, privateDismissals: ContinueDismissalStore? = nil, service: (any LibraryServing)? = nil, writeQueue: LibraryWriteQueue? = nil, traktPlayback: TraktPlaybackFeed? = nil, cache: LibraryCache? = nil, traktWatched: TraktWatchedFeed? = nil) {
+    init(simklPlayback: SimklPlaybackFeed? = nil, localContinue: LocalContinueStore = .shared, privateDismissals: ContinueDismissalStore? = nil, service: (any LibraryServing)? = nil, writeQueue: LibraryWriteQueue? = nil, traktPlayback: TraktPlaybackFeed? = nil, cache: LibraryCache? = nil, traktWatched: TraktWatchedFeed? = nil, animeRootResolver: (@Sendable (String) async -> String?)? = nil) {
         self.simklPlayback = simklPlayback ?? SimklPlaybackFeed(); self.localContinue = localContinue
         self.traktPlayback = traktPlayback ?? TraktPlaybackFeed()
         self.traktWatched = traktWatched ?? TraktWatchedFeed()
+        self.animeRootResolver = animeRootResolver ?? { id in await AnimeFranchiseService.shared.franchiseRootID(for: id) }
         self.cache = cache ?? LibraryCache()
         privateDismissalStore = privateDismissals ?? .shared
         let transport = service ?? LibraryService()
@@ -63,6 +66,12 @@ final class LibraryModel {
     var owner: String { session?.user.id ?? guestOwner }
     var items: [LibraryRecord] { snapshot.items }
     var historyRevision: Int { continuationRevision }
+    func continueRootLookupKey(for records: [LibraryRecord], detectedAnime: Set<String>) -> String {
+        let groups = dismissals.keys.compactMap { Self.franchiseRoot(from: $0) }.sorted()
+        guard !groups.isEmpty else { return String(generation) }
+        let ids = records.filter { ContinueWatchingSelection.canResolveAnimeRoot($0, detectedAnime: detectedAnime) }.map(\.id)
+        return String(generation) + "|" + groups.joined(separator: ",") + "|" + ids.sorted().joined(separator: "|")
+    }
     @discardableResult func removeHistory(_ record: LibraryRecord, owner expectedOwner: String, personalOwner expectedPersonalOwner: String) async -> Bool {
         guard owner == expectedOwner, personalOwner == expectedPersonalOwner,
               let saved = items.first(where: { $0.id == record.id }), LibraryHistoryEntry.eligible(saved), let media = saved.media else { return false }
@@ -79,7 +88,7 @@ final class LibraryModel {
         watchlistCache = (continuationRevision, binding.store.revision, binding.id, projection); return projection
     }
     var continuing: [LibraryRecord] {
-        allContinuing.filter { dismissals[$0.id]?.hides($0) != true }
+        allContinuing.filter { dismissal(for: $0) == nil }
     }
     private var dismissals: [String: ContinueDismissal] { continuingPrivate ? privateDismissals : presentation.dismissed }
     private var allContinuing: [LibraryRecord] {
@@ -114,7 +123,7 @@ final class LibraryModel {
         guard enabled else { return }
         do {
             if let scope = privateDismissalScope { try privateDismissalStore.requireMigration(scope: scope) }
-            privateDismissals = try privateDismissalStore.values(owner: personalOwner); privateDismissalsReady = true
+            privateDismissals = try privateDismissalStore.values(owner: personalOwner); seedAnimeFranchiseRoots(from: privateDismissals); privateDismissalsReady = true
         }
         catch { privatePresentationError = "No se pudo recuperar el historial privado. Los datos guardados se conservan."; Diagnostics.shared.recordFailure(error) }
     }
@@ -165,8 +174,167 @@ final class LibraryModel {
         } catch is CancellationError { }
         catch { Diagnostics.shared.recordFailure(error) }
     }
-    var hiddenContinuing: [LibraryRecord] { allContinuing.filter { dismissals[$0.id]?.hides($0) == true } }
-    func isDismissed(_ record: LibraryRecord) -> Bool { dismissals[record.id]?.hides(record) == true }
+    var hiddenContinuing: [LibraryRecord] { allContinuing.filter { dismissal(for: $0) != nil } }
+    func isDismissed(_ record: LibraryRecord) -> Bool { dismissal(for: record) != nil }
+
+    private static func franchiseDismissalKey(_ root: String) -> String { "anime-franchise-root|" + root }
+    private static func franchiseRoot(from key: String) -> String? {
+        let prefix = "anime-franchise-root|"
+        guard key.hasPrefix(prefix) else { return nil }
+        let root = String(key.dropFirst(prefix.count))
+        return root.isEmpty ? nil : root
+    }
+    private static func franchiseMemberKey(_ root: String, _ id: String) -> String { "anime-franchise-member|\(root)|\(id)" }
+    private static func franchiseReleaseKey(_ id: String) -> String { "anime-franchise-release|" + id }
+    private static func franchiseMember(_ key: String) -> (root: String, id: String)? {
+        let parts = key.split(separator: "|", omittingEmptySubsequences: false)
+        guard parts.count == 3, parts[0] == "anime-franchise-member", !parts[1].isEmpty, !parts[2].isEmpty else { return nil }
+        return (String(parts[1]), String(parts[2]))
+    }
+    private func seedAnimeFranchiseRoots(from values: [String: ContinueDismissal]) {
+        for key in values.keys.sorted() {
+            guard let member = Self.franchiseMember(key) else { continue }
+            animeFranchiseRoots[member.id] = member.root
+        }
+    }
+
+    private func dismissal(for record: LibraryRecord) -> ContinueDismissal? {
+        let values = dismissals
+        if let value = values[record.id] { return value.hides(record) ? value : nil }
+        if values[Self.franchiseReleaseKey(record.id)] != nil { return nil }
+        guard let root = animeFranchiseRoots[record.id], let group = values[Self.franchiseDismissalKey(root)],
+              record.activityTimestamp <= group.timestampMs else { return nil }
+        return group
+    }
+
+    private func isFranchiseDismissed(_ record: LibraryRecord) -> Bool {
+        guard dismissal(for: record) != nil, let root = animeFranchiseRoots[record.id] else { return false }
+        return dismissals[Self.franchiseDismissalKey(root)] != nil
+    }
+
+    /// Resolve public anime IDs on Home so a saved root dismissal can cover an
+    /// alias that appears after the original card was removed.
+    func prepareAnimeFranchiseRoots(for records: [LibraryRecord], detectedAnime: Set<String>) async {
+        let ticket = generation, expectedOwner = owner, expectedPerson = personalOwner, privateMode = continuingPrivate
+        let values = dismissals
+        let activeRoots = Set(values.keys.compactMap { Self.franchiseRoot(from: $0) })
+        guard !activeRoots.isEmpty else { return }
+        let candidates = records.filter {
+            animeFranchiseRoots[$0.id] == nil && ContinueWatchingSelection.canResolveAnimeRoot($0, detectedAnime: detectedAnime)
+        }
+        guard !candidates.isEmpty else { return }
+        let resolved = await resolveAnimeRoots(candidates, resolver: animeRootResolver)
+        guard !Task.isCancelled, generation == ticket, owner == expectedOwner, personalOwner == expectedPerson, continuingPrivate == privateMode else { return }
+        let currentValues = dismissals
+        let currentRoots = Set(currentValues.keys.compactMap { Self.franchiseRoot(from: $0) })
+        let currentRecords = Dictionary(allContinuing.map { ($0.id, $0) }, uniquingKeysWith: { _, latest in latest })
+        var learned: [(LibraryRecord, String)] = []
+        for (resolvedRecord, root) in resolved where root?.isEmpty == false {
+            guard let root, activeRoots.contains(root), currentRoots.contains(root),
+                  let record = currentRecords[resolvedRecord.id] else { continue }
+            animeFranchiseRoots[record.id] = root
+            learned.append((record, root))
+        }
+        guard !learned.isEmpty else { return }
+        var aliases: [String: ContinueDismissal] = [:]
+        for (record, root) in learned {
+            guard let group = currentValues[Self.franchiseDismissalKey(root)] else { continue }
+            aliases[Self.franchiseMemberKey(root, record.id)] = ContinueDismissal(record, now: Date(timeIntervalSince1970: group.timestampMs / 1_000))
+            guard (currentValues[Self.franchiseReleaseKey(record.id)]?.timestampMs ?? 0) < group.timestampMs,
+                  record.activityTimestamp <= group.timestampMs else { continue }
+            if (currentValues[record.id]?.timestampMs ?? 0) <= group.timestampMs {
+                aliases[record.id] = ContinueDismissal(record, now: Date(timeIntervalSince1970: group.timestampMs / 1_000))
+            }
+        }
+        guard !aliases.isEmpty, !Task.isCancelled, generation == ticket, owner == expectedOwner,
+              personalOwner == expectedPerson, continuingPrivate == privateMode else { return }
+        let latestValues = dismissals
+        _ = changeDismissals { values in
+            for (id, dismissal) in aliases {
+                if let member = Self.franchiseMember(id) {
+                    guard latestValues[Self.franchiseDismissalKey(member.root)] != nil else { continue }
+                    if (values[id]?.timestampMs ?? 0) <= dismissal.timestampMs { values[id] = dismissal }
+                } else {
+                    guard let root = animeFranchiseRoots[id], latestValues[Self.franchiseDismissalKey(root)] != nil,
+                          (values[id]?.timestampMs ?? 0) <= dismissal.timestampMs,
+                          (values[Self.franchiseReleaseKey(id)]?.timestampMs ?? 0) < dismissal.timestampMs else { continue }
+                    values[id] = dismissal
+                }
+            }
+        }
+    }
+
+    private func resolveAnimeRoots(_ records: [LibraryRecord], resolver: @escaping @Sendable (String) async -> String?) async -> [(LibraryRecord, String?)] {
+        await withTaskGroup(of: (LibraryRecord, String?).self, returning: [(LibraryRecord, String?)].self) { group in
+            var pending = records.makeIterator()
+            for _ in 0..<min(4, records.count) {
+                if let record = pending.next() { group.addTask { (record, await resolver(record.id)) } }
+            }
+            var results: [(LibraryRecord, String?)] = []
+            while let value = await group.next() {
+                guard !Task.isCancelled else { group.cancelAll(); return [] }
+                results.append(value)
+                if let record = pending.next() { group.addTask { (record, await resolver(record.id)) } }
+            }
+            return results
+        }
+    }
+
+    /// Hides every loaded alias that resolves to the tapped anime's franchise
+    /// while keeping cloud library state and local resume checkpoints intact.
+    @discardableResult
+    func hideContinuingAnimeFranchise(_ record: LibraryRecord, owner expectedOwner: String, personalOwner expectedPerson: String? = nil,
+                                     detectedAnime: Set<String> = [], now: Date = Date()) -> Task<Void, Never>? {
+        guard owner == expectedOwner, expectedPerson == nil || personalOwner == expectedPerson,
+              let current = allContinuing.first(where: { $0.id == record.id }), current.continuing,
+              ContinueWatchingSelection.canResolveAnimeRoot(current, detectedAnime: detectedAnime) else { return nil }
+        let firstDismissal = ContinueDismissal(current, now: now)
+        guard changeDismissals({ $0[current.id] = firstDismissal; $0[Self.franchiseReleaseKey(current.id)] = nil }) else { return nil }
+        let ticket = generation, activePerson = personalOwner, privateMode = continuingPrivate, resolver = animeRootResolver
+        return Task { [weak self] in
+            guard !Task.isCancelled, let self, self.generation == ticket, self.owner == expectedOwner,
+                  self.personalOwner == activePerson, self.continuingPrivate == privateMode else { return }
+            guard let root = await resolver(current.id), !Task.isCancelled, !root.isEmpty,
+                  self.generation == ticket, self.owner == expectedOwner,
+                  self.personalOwner == activePerson, self.continuingPrivate == privateMode,
+                  self.directFranchiseDismissalIsCurrent(current.id, timestampMs: firstDismissal.timestampMs) else { return }
+            self.animeFranchiseRoots[current.id] = root
+            let candidates = self.allContinuing.filter { ContinueWatchingSelection.canResolveAnimeRoot($0, detectedAnime: detectedAnime) }
+            guard self.directFranchiseDismissalIsCurrent(current.id, timestampMs: firstDismissal.timestampMs) else { return }
+            let unresolved = candidates.filter { self.animeFranchiseRoots[$0.id] == nil && $0.id != current.id }
+            let mappings = await self.resolveAnimeRoots(unresolved, resolver: resolver)
+            guard !Task.isCancelled, self.generation == ticket, self.owner == expectedOwner,
+                  self.personalOwner == activePerson, self.continuingPrivate == privateMode,
+                  self.directFranchiseDismissalIsCurrent(current.id, timestampMs: firstDismissal.timestampMs) else { return }
+            for (alias, aliasRoot) in mappings where aliasRoot?.isEmpty == false {
+                if let aliasRoot { self.animeFranchiseRoots[alias.id] = aliasRoot }
+            }
+            let groupDismissal = firstDismissal
+            let aliases = self.allContinuing.filter { self.animeFranchiseRoots[$0.id] == root }
+            let rootKey = Self.franchiseDismissalKey(root)
+            let currentValues = self.dismissals
+            if let previous = currentValues[rootKey], previous.timestampMs > groupDismissal.timestampMs { return }
+            _ = self.changeDismissals { values in
+                if let previous = values[rootKey], previous.timestampMs > groupDismissal.timestampMs { return }
+                values[rootKey] = groupDismissal
+                for alias in aliases {
+                    let memberKey = Self.franchiseMemberKey(root, alias.id)
+                    let direct = values[alias.id], release = values[Self.franchiseReleaseKey(alias.id)]
+                    if (values[memberKey]?.timestampMs ?? 0) <= groupDismissal.timestampMs { values[memberKey] = ContinueDismissal(alias, now: now) }
+                    guard alias.activityTimestamp <= groupDismissal.timestampMs,
+                          (direct?.timestampMs ?? 0) <= groupDismissal.timestampMs,
+                          (release?.timestampMs ?? 0) < groupDismissal.timestampMs else { continue }
+                    values[alias.id] = ContinueDismissal(alias, now: now)
+                    values[Self.franchiseReleaseKey(alias.id)] = nil
+                }
+            }
+        }
+    }
+    private func directFranchiseDismissalIsCurrent(_ id: String, timestampMs: Double) -> Bool {
+        guard let current = allContinuing.first(where: { $0.id == id }),
+              let saved = dismissals[id], saved.timestampMs == timestampMs else { return false }
+        return saved.hides(current)
+    }
     func selectedItems(query: String) -> [LibraryRecord] {
         LibraryListing.select(filteredItems(for: presentation.display.filter), display: presentation.display, query: query)
     }
@@ -210,7 +378,7 @@ final class LibraryModel {
         do {
             let saved = try KeychainStore().read(LibraryPresentation.key(owner: owner), as: LibraryPresentation.self) ?? LibraryPresentation()
             guard saved.valid else { throw HarborError(code: "library-presentation") }
-            presentation = saved; presentationReady = true; sharedPresentationError = nil
+            presentation = saved; seedAnimeFranchiseRoots(from: saved.dismissed); presentationReady = true; sharedPresentationError = nil
         } catch { sharedPresentationError = "No se pudieron recuperar las preferencias de biblioteca. Los datos guardados se conservan." }
         if continuingPrivate { setContinuePrivacy(true) }
     }
@@ -219,7 +387,7 @@ final class LibraryModel {
     func hideContinuing(_ record: LibraryRecord, owner expectedOwner: String, now: Date = Date()) -> Task<Void, Never>? {
         guard owner == expectedOwner, let current = allContinuing.first(where: { $0.id == record.id }), current.continuing else { return nil }
         let dismissal = ContinueDismissal(current, now: now)
-        guard changeDismissals({ $0[current.id] = dismissal }) else { return nil }
+        guard changeDismissals({ $0[current.id] = dismissal; $0[Self.franchiseReleaseKey(current.id)] = nil }) else { return nil }
         mutation += 1
         let action = ContinueDismissalAction(current, privateMode: continuingPrivate, authenticated: session != nil, timestampMs: dismissal.timestampMs)
         guard action.clearsResume else { return nil }
@@ -245,11 +413,38 @@ final class LibraryModel {
             catch { if self.generation == ticket { self.error = safeMessage(error) }; Diagnostics.shared.recordFailure(error) }
         }
     }
-    func showContinuing(_ record: LibraryRecord) { changeDismissals { $0.removeValue(forKey: record.id) } }
+    func showContinuing(_ record: LibraryRecord) {
+        let current = dismissals
+        let root = animeFranchiseRoots[record.id] ?? current.keys.sorted().compactMap { key -> String? in
+            guard let member = Self.franchiseMember(key), member.id == record.id else { return nil }
+            return member.root
+        }.first
+        let ids = root.map { value in
+            Set(animeFranchiseRoots.compactMap { $0.value == value ? $0.key : nil } + current.keys.sorted().compactMap { key in
+                guard let member = Self.franchiseMember(key), member.root == value else { return nil }
+                return member.id
+            }).union([record.id])
+        } ?? Set([record.id])
+        changeDismissals { values in
+            for id in ids {
+                values.removeValue(forKey: id); values.removeValue(forKey: Self.franchiseReleaseKey(id))
+                if let root { values.removeValue(forKey: Self.franchiseMemberKey(root, id)) }
+            }
+            if let root { values.removeValue(forKey: Self.franchiseDismissalKey(root)) }
+        }
+    }
     func noteLocalProgress(_ target: ResumeTarget, snapshot: ResumeSnapshot, owner expectedOwner: String, personalOwner expectedPerson: String? = nil) {
-        guard owner == expectedOwner, !continuingPrivate || expectedPerson == personalOwner,
-              let dismissal = dismissals[target.id], dismissal.hasNewPlayback(snapshot) else { return }
-        changeDismissals { $0.removeValue(forKey: target.id) }
+        guard owner == expectedOwner, !continuingPrivate || expectedPerson == personalOwner else { return }
+        let dismissal = dismissals[target.id]
+        let rootMarker = animeFranchiseRoots[target.id].flatMap { dismissals[Self.franchiseDismissalKey($0)] }
+        if let dismissal, dismissal.hasNewPlayback(snapshot) {
+            changeDismissals { values in
+                values.removeValue(forKey: target.id)
+                if rootMarker?.hasNewPlayback(snapshot) == true { values[Self.franchiseReleaseKey(target.id)] = dismissal }
+            }
+        } else if dismissal == nil, let rootMarker, rootMarker.hasNewPlayback(snapshot) {
+            changeDismissals { $0[Self.franchiseReleaseKey(target.id)] = rootMarker }
+        }
     }
     @discardableResult private func changeDismissals(_ edit: (inout [String: ContinueDismissal]) -> Void) -> Bool {
         guard continuingPrivate else { return changePresentation { edit(&$0.dismissed) } }

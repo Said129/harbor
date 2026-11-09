@@ -100,6 +100,20 @@ final class AnimeFranchiseTests: XCTestCase {
         let calls = await transport.requests(); XCTAssertEqual(calls.filter { $0 == .related(3) }.count, 1)
     }
 
+    func testContinueRootResolverMapsPublicAliasWithoutLoadingTheDetailGraph() async throws {
+        let transport = fixture(1)
+        await transport.replace(.relations(source: "myanimelist", id: 202), with: try json(#"{"mal":202,"kitsu":1}"#))
+        await transport.replace(.related(1), with: related([("prequel", resource(2, date: "2000-01-01"))]))
+        await transport.replace(.related(2), with: related([]))
+        let service = AnimeFranchiseService(transport: transport, anilistSpacing: 0)
+
+        let root = await service.franchiseRootID(for: "mal:202")
+        XCTAssertEqual(root, "kitsu:2")
+        let requests = await transport.requests()
+        XCTAssertFalse(requests.contains(.kitsu(1))); XCTAssertFalse(requests.contains(.kitsu(2)))
+        XCTAssertFalse(requests.contains(.anilist(202)), "Home needs only public mapping and ancestry, not the full AniList detail graph")
+    }
+
     func testAniListComplementWalksSixLevelsAndResolvesRealKitsuAliases() async throws {
         let transport = fixture()
         await transport.replace(.relations(source: "kitsu", id: 1), with: try json(#"{"kitsu":1,"anilist":100}"#))

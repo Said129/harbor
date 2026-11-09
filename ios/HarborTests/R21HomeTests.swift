@@ -42,6 +42,18 @@ final class R21HomeTests: XCTestCase {
         XCTAssertEqual(capped.last?.id, "id99")
     }
 
+    func testSeriesContinueWatchingKeepsTheFirstSixteenAndAllowsIMDbAnime() {
+        let imdbAnime = record("tt4644488", name: "Dragon Ball Super", type: "series")
+        let kitsu = record("kitsu:10740", name: "Dragon Ball Super", type: "series")
+        let movie = record("tt15398776", name: "Oppenheimer")
+        let series = (1...20).map { record("series-\($0)", name: "Series \($0)", type: "series") }
+        let rows = ContinueWatchingSelection.roomCards([kitsu, movie, imdbAnime] + series, kind: "series", excludesAnime: false,
+                                                       detectedAnime: [imdbAnime.id])
+        XCTAssertEqual(rows.map(\.id), [imdbAnime.id] + series.prefix(15).map(\.id))
+        XCTAssertTrue(ContinueWatchingSelection.canResolveAnimeRoot(imdbAnime, detectedAnime: [imdbAnime.id]))
+        XCTAssertFalse(ContinueWatchingSelection.canResolveAnimeRoot(movie, detectedAnime: [imdbAnime.id]))
+    }
+
     func testCatalogRowPagingStartsOnlyForAFullFirstPage() {
         XCTAssertFalse(CatalogRowPaging.initialHasMore(count: 13))
         XCTAssertTrue(CatalogRowPaging.initialHasMore(count: 14))

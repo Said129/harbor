@@ -241,7 +241,7 @@
       "id": "Continue Watching on Home",
       "desktop_source": "src/views/home.tsx",
       "verdict": "P",
-      "note": "Continue Watching on Home: the empty-state box and the one-card-per-title pass with the 100-card cap are in (8 Nov, written by Haiku, uncompiled); franchise-root removal is not, and Desktop's signed-out Stremio prompt is replaced by the empty message because iOS has no Stremio sign-in"
+      "note": "The native row removes a resolved anime franchise's known aliases and can restore them without clearing progress. Profile and playback changes fence late lookups. Desktop's default visible franchise dedupe and differing account sources remain."
     },
     {
       "index": 3,
@@ -332,7 +332,7 @@
       "id": "Series Continue Watching",
       "desktop_source": "src/views/shows.tsx",
       "verdict": "P",
-      "note": "generic ContentPageView rooms"
+      "note": "Shows places the native continue row after the hero with Desktop's sixteen-item cap. IMDb anime still appear, while anime-provider IDs are reserved for the Anime room. Desktop's manual-watched resurface rules remain pending."
     },
     {
       "index": 16,

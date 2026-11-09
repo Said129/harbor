@@ -77,7 +77,9 @@ struct LibraryView: View {
                                             }
                                             if display.filter == .continuing { LibraryProgress(record: record) }
                                         }.contentShape(Rectangle())
-                                    }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier("library-media").contextMenu { LibraryActions(app: app, record: record, media: media, owner: app.library.owner) }
+                                    }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier("library-media").contextMenu {
+                                        LibraryActions(app: app, record: record, media: media, owner: app.library.owner, personalOwner: app.library.personalOwner)
+                                    }
                                 }
                             }
                         }
@@ -214,32 +216,36 @@ struct ContinueWatching: View {
         if visible { hiddenIDs.remove(id) } else { hiddenIDs.insert(id) }
     }
     private var items: [LibraryRecord] {
-        let selected = app.library.continuing.filter { ContinueWatchingSelection.includes($0, kind: kind, detectedAnime: app.animeDetection.identifiers) }
-        let visible = HomeCatalogFilter.continueWatching(selected, animeOnlyInAnimeRoom: excludesAnime, detectedAnime: app.animeDetection.identifiers)
-        // Desktop's Home row keeps one card per title and caps it (`home.tsx`). Kind-specific rows keep every card.
-        return kind == nil ? HomeContinueWatchingRules.cards(visible) : visible
+        ContinueWatchingSelection.roomCards(app.library.continuing, kind: kind, excludesAnime: excludesAnime,
+                                            detectedAnime: app.animeDetection.identifiers)
     }
     var body: some View {
-        if !items.isEmpty || app.library.presentationError != nil {
-            VStack(alignment: .leading, spacing: 12) {
-                if anyVisible || app.library.presentationError != nil {
-                    Text(titleIsLiteral ? title : DesktopInterfaceText.value(title)).font(HarborTheme.font(17, weight: .medium)).padding(.horizontal)
-                        .accessibilityAddTraits(.isHeader)
-                        .accessibilityIdentifier(kind == "anime" ? "anime-continue-watching-title" : "continue-watching-title")
-                    LibraryPresentationFeedback(library: app.library).padding(.horizontal)
-                }
-                ScrollView(.horizontal) {
-                    LazyHStack(alignment: .top, spacing: 12) {
-                        ForEach(items) { item in
-                            if let media = item.media {
-                                ContinueWatchingCard(app: app, record: item, media: media, onVisibility: { id, visible in setVisible(id, visible) }).id(app.library.owner + "|" + item.id)
+        Group {
+            if !items.isEmpty || app.library.presentationError != nil {
+                VStack(alignment: .leading, spacing: 12) {
+                    if anyVisible || app.library.presentationError != nil {
+                        Text(titleIsLiteral ? title : DesktopInterfaceText.value(title)).font(HarborTheme.font(17, weight: .medium)).padding(.horizontal)
+                            .accessibilityAddTraits(.isHeader)
+                            .accessibilityIdentifier(kind == "anime" ? "anime-continue-watching-title" : "continue-watching-title")
+                        LibraryPresentationFeedback(library: app.library).padding(.horizontal)
+                    }
+                    ScrollView(.horizontal) {
+                        LazyHStack(alignment: .top, spacing: 12) {
+                            ForEach(items) { item in
+                                if let media = item.media {
+                                    ContinueWatchingCard(app: app, record: item, media: media, personalOwner: app.library.personalOwner,
+                                        onVisibility: { id, visible in setVisible(id, visible) }).id(app.library.owner + "|" + app.library.personalOwner + "|" + item.id)
+                                }
                             }
-                        }
-                    }.padding(.horizontal)
-                }.scrollIndicators(.hidden)
+                        }.padding(.horizontal)
+                    }.scrollIndicators(.hidden)
+                }
+            } else if kind == nil && !app.library.loading {
+                HomeContinueWatchingEmptyState(title: titleIsLiteral ? title : DesktopInterfaceText.value(title))
             }
-        } else if kind == nil && !app.library.loading {
-            HomeContinueWatchingEmptyState(title: titleIsLiteral ? title : DesktopInterfaceText.value(title))
+        }
+        .task(id: app.library.continueRootLookupKey(for: items, detectedAnime: app.animeDetection.identifiers)) {
+            await app.library.prepareAnimeFranchiseRoots(for: items, detectedAnime: app.animeDetection.identifiers)
         }
     }
 }
@@ -248,6 +254,7 @@ private struct ContinueWatchingCard: View {
     let app: AppModel
     let record: LibraryRecord
     let media: Media
+    let personalOwner: String
     /// Reports whether this card is shown, so the row can drop its title when every card is hidden by the caught-up rules.
     var onVisibility: (String, Bool) -> Void = { _, _ in }
     @AppStorage(AnimeEpisodeGrouping.preferenceKey) private var episodeGrouping = AnimeEpisodeGrouping.seasons.rawValue
@@ -279,7 +286,7 @@ private struct ContinueWatchingCard: View {
                 }
                 .accessibilityValue(presentation.upNext ? DesktopInterfaceText.value("Up Next") : "\(presentation.coordinates(record: record, media: detailed)?.caption ?? record.playbackCaption ?? "") · \(Int(presentation.progress * 100)) por ciento")
                 .overlay(alignment: .topTrailing) {
-                    Button { app.library.hideContinuing(record, owner: app.library.owner) } label: {
+                    Button { removeFromContinueWatching() } label: {
                         Image(systemName: "xmark").font(.system(size: 12, weight: .bold))
                             .foregroundStyle(.white).frame(width: 28, height: 28)
                             .background(.black.opacity(0.75), in: .circle)
@@ -294,7 +301,7 @@ private struct ContinueWatchingCard: View {
                     .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading).contentShape(Rectangle())
             }.accessibilityIdentifier("continue-watching-details").accessibilityLabel("Abrir ficha de \(detailed.name)")
         }.frame(width: 260, alignment: .leading).foregroundStyle(HarborTheme.ink).buttonStyle(.plain)
-            .contextMenu { LibraryActions(app: app, record: record, media: detailed, owner: app.library.owner) }
+            .contextMenu { LibraryActions(app: app, record: record, media: detailed, owner: app.library.owner, personalOwner: personalOwner) }
         }
         }
             .onChange(of: record.raw, initial: true) { _, _ in updatePresentation() }
@@ -329,6 +336,15 @@ private struct ContinueWatchingCard: View {
         let watched = (try? WatchedCodec.decode(record.raw["state"]["watched"].string, videos: detailed.videos ?? [])) ?? []
         cardPresentation = ContinueWatchingCard.makePresentation(record: record, media: detailed, watched: watched)
         onVisibility(record.id, !(cardPresentation?.hidden ?? false))
+    }
+    private func removeFromContinueWatching() {
+        guard personalOwner == app.library.personalOwner else { return }
+        let detected = app.animeDetection.identifiers
+        if ContinueWatchingSelection.canResolveAnimeRoot(record, detectedAnime: detected) {
+            _ = app.library.hideContinuingAnimeFranchise(record, owner: app.library.owner, personalOwner: personalOwner, detectedAnime: detected)
+        } else {
+            _ = app.library.hideContinuing(record, owner: app.library.owner)
+        }
     }
 }
 
@@ -471,6 +487,7 @@ private struct LibraryActions: View {
     let record: LibraryRecord
     let media: Media
     let owner: String
+    let personalOwner: String
     @Environment(\.locale) private var locale
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key, language: locale.identifier) }
     var body: some View {
@@ -490,7 +507,13 @@ private struct LibraryActions: View {
             }
         }.disabled(app.library.busy)
         if record.continuing {
-            Button(DesktopInterfaceText.value("Remove from Continue Watching")) { app.library.hideContinuing(record, owner: owner) }.disabled(!app.library.canChangePresentation)
+            Button(DesktopInterfaceText.value("Remove from Continue Watching")) {
+                guard owner == app.library.owner, personalOwner == app.library.personalOwner else { return }
+                let detected = app.animeDetection.identifiers
+                if ContinueWatchingSelection.canResolveAnimeRoot(record, detectedAnime: detected) {
+                    _ = app.library.hideContinuingAnimeFranchise(record, owner: owner, personalOwner: personalOwner, detectedAnime: detected)
+                } else { _ = app.library.hideContinuing(record, owner: owner) }
+            }.disabled(!app.library.canChangePresentation)
         }
     }
 }

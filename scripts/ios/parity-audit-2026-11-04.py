@@ -594,6 +594,8 @@ BEHAVIORS = expand("""
 11 P Movies uses Desktop's five TMDB requests, daily ordering, recent-play exclusion and fallback. The native carousel pauses for horizontal drag, pointer hover, the viewport and backgrounding. Native motion and live catalog validation remain pending.
 5 P Discover applies profile-scoped locale affinity to Trending and Top Rated and excludes downvoted titles from suggestion pools. The native featured source pool and personalized daily lanes still differ.
 22 P Native search surfaces the most popular eligible TMDB result and opens an equivalent addon record when available. Year and genre queries open the standard Desktop browse rails. Editorial genre sections and additional result facets remain pending.
+2 P The native row removes a resolved anime franchise's known aliases and can restore them without clearing progress. Profile and playback changes fence late lookups. Desktop's default visible franchise dedupe and differing account sources remain.
+15 P Shows places the native continue row after the hero with Desktop's sixteen-item cap. IMDb anime still appear, while anime-provider IDs are reserved for the Anime room. Desktop's manual-watched resurface rules remain pending.
 """)
 
 SETTINGS = expand("""

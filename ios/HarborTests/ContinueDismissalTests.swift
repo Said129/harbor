@@ -38,6 +38,27 @@ private actor OwnedLibraryQueueService: LibraryServing {
     func write(_ value: ContinueDismissalState) throws { }
     func legacy(_ owner: String) throws -> [String: ContinueDismissal] { [:] }
 }
+@MainActor private final class OwnedAnimeDismissalPersistence: ContinueDismissalPersistence {
+    var state: ContinueDismissalState?
+    func read() throws -> ContinueDismissalState? { state }
+    func write(_ value: ContinueDismissalState) throws { state = value }
+    func legacy(_ owner: String) throws -> [String: ContinueDismissal] { [:] }
+}
+private actor OwnedAnimeRootGate {
+    private var started = false
+    private var continuation: CheckedContinuation<Void, Never>?
+    func resolve(_ id: String) async -> String? {
+        if id == "kitsu:1101" {
+            started = true
+            await withCheckedContinuation { continuation = $0 }
+        }
+        return id == "kitsu:1101" || id == "mal:1102" ? "kitsu:1100" : nil
+    }
+    func waitUntilStarted() async {
+        while !started { try? await Task.sleep(for: .milliseconds(1)) }
+    }
+    func release() { continuation?.resume(); continuation = nil }
+}
 private actor OwnedDismissalLease {
     private var continuation: CheckedContinuation<Bool, Never>?
     private var released = false
@@ -64,6 +85,11 @@ private actor OwnedDismissalLease {
         .init(authKey: "owned-fixture-credential", user: .init(id: owner, email: nil, fullname: "Owned"))
     }
     private func sorted(_ rows: [JSONValue]) -> [JSONValue] { rows.sorted { ($0["_id"].string ?? "") < ($1["_id"].string ?? "") } }
+    private func animeRecord(_ id: String, name: String, episode: Int, offset: Int64 = 400_000, modified: Int64 = 1_700_000_000_000) -> JSONValue {
+        .object(["_id": .string(id), "type": .string("series"), "name": .string(name), "removed": .bool(false), "temp": .bool(false),
+            "_mtime": .integer(modified), "state": .object(["season": .integer(1), "episode": .integer(Int64(episode)),
+                "video_id": .string("\(id):1:\(episode)"), "timeOffset": .integer(offset), "duration": .integer(1_000_000)])])
+    }
 
     func testElevenExecutedDesktopQueueHistoriesMatchActualRequestsAndProtectedReopenWithoutCredentials() async throws {
         let rows = try fixture()["queueCases"].array; XCTAssertEqual(rows.count, 11)
@@ -241,5 +267,73 @@ private actor OwnedDismissalLease {
         model.setContinuePrivacy(false); XCTAssertNil(model.presentationError)
         model.setContinuePrivacy(true, migratedScope: "owned-retry"); XCTAssertNotNil(model.presentationError)
         memory.failing = false; model.reloadPresentation(); XCTAssertNil(model.presentationError); XCTAssertTrue(model.continuingPrivate)
+    }
+
+    func testAnimeFranchiseDismissalHidesResolvedAliasesWithoutClearingProgressOrCloudState() async throws {
+        let root = try directory(); defer { try? FileManager.default.removeItem(at: root) }
+        let owner = "owned-anime-franchise-" + UUID().uuidString
+        defer { try? KeychainStore().remove(LibraryPresentation.key(owner: owner)) }
+        let records = [animeRecord("kitsu:101", name: "Saga", episode: 4), animeRecord("mal:202", name: "Saga Part 2", episode: 1), animeRecord("kitsu:303", name: "Other anime", episode: 6)]
+        let service = OwnedLibraryQueueService(library: records)
+        let model = LibraryModel(service: service, writeQueue: LibraryWriteQueue(service: service, directory: root.appendingPathComponent("queue")),
+            cache: LibraryCache(directory: root.appendingPathComponent("cache")), animeRootResolver: { id in
+                ["kitsu:101", "mal:202"].contains(id) ? "kitsu:101" : "kitsu:303"
+            })
+        await model.setSession(session(owner))
+        XCTAssertEqual(model.continuing.count, 3)
+        let selected = try XCTUnwrap(model.continuing.first { $0.id == "kitsu:101" })
+        await model.hideContinuingAnimeFranchise(selected, owner: owner)?.value
+
+        XCTAssertEqual(Set(model.continuing.map(\.id)), ["kitsu:303"])
+        XCTAssertEqual(Set(model.hiddenContinuing.map(\.id)), ["kitsu:101", "mal:202"])
+        for record in model.items {
+            XCTAssertEqual(record.raw["state"]["timeOffset"], .integer(400_000))
+        }
+        let writes = await service.calls.filter { $0["method"].string == "datastorePut" }
+        XCTAssertTrue(writes.isEmpty, "Franchise removal is a presentation dismissal and must not write zero progress to the shared library")
+
+        let restored = LibraryModel(service: service, writeQueue: LibraryWriteQueue(service: service, directory: root.appendingPathComponent("queue-restored")),
+            cache: LibraryCache(directory: root.appendingPathComponent("cache")), animeRootResolver: { id in
+                ["kitsu:101", "mal:202"].contains(id) ? "kitsu:101" : "kitsu:303"
+            })
+        await restored.setSession(session(owner))
+        XCTAssertEqual(Set(restored.hiddenContinuing.map(\.id)), ["kitsu:101", "mal:202"], "Alias-to-root membership persists for restore after relaunch")
+        restored.showContinuing(try XCTUnwrap(restored.hiddenContinuing.first { $0.id == "mal:202" }))
+        XCTAssertEqual(Set(restored.continuing.map(\.id)), ["kitsu:101", "mal:202", "kitsu:303"])
+    }
+
+    func testAnimeFranchiseDismissalUsesPrivateProfileScopeAndRejectsLateProfileResults() async throws {
+        let root = try directory(); defer { try? FileManager.default.removeItem(at: root) }
+        let shared = "owned-anime-profile-shared-" + UUID().uuidString
+        let first = shared + "-first", second = shared + "-second", gate = OwnedAnimeRootGate()
+        let local = LocalContinueStore(root: root.appendingPathComponent("local")), persistence = OwnedAnimeDismissalPersistence()
+        let dismissals = ContinueDismissalStore(persistence: persistence)
+        try dismissals.migrate(scope: "anime-franchise-profile-scope", existingOwners: [first: shared, second: shared])
+        for person in [first, second] {
+            for (id, name, episode) in [("kitsu:1101", "Saga", 4), ("mal:1102", "Saga Part 2", 1)] {
+                let entry = LocalContinueEntry(id: id, type: "series", name: name, isAnime: true, source: .library, season: 1, episode: episode,
+                    videoId: "\(id):1:\(episode)", positionMs: 400_000, durationMs: 1_000_000, t: 1_700_000_000_000)
+                _ = try await local.recordPlayback(entry, personalOwner: person, sharedOwner: shared, includeShared: false, current: { true })
+            }
+        }
+        let model = LibraryModel(localContinue: local, privateDismissals: dismissals, animeRootResolver: { id in await gate.resolve(id) })
+        await model.setSession(nil, personalOwner: first, guestOwner: shared, synchronize: false)
+        await model.bindLocalContinuing(sharedOwner: shared, scope: "first", active: { true })
+        model.setContinuePrivacy(true, migratedScope: "anime-franchise-profile-scope")
+        let selected = try XCTUnwrap(model.continuing.first { $0.id == "kitsu:1101" })
+        let pending = try XCTUnwrap(model.hideContinuingAnimeFranchise(selected, owner: shared))
+        await gate.waitUntilStarted()
+
+        await model.setSession(nil, personalOwner: second, guestOwner: shared, synchronize: false)
+        await model.bindLocalContinuing(sharedOwner: shared, scope: "second", active: { true })
+        model.setContinuePrivacy(true, migratedScope: "anime-franchise-profile-scope")
+        await gate.release(); await pending.value
+        XCTAssertEqual(Set(model.continuing.map(\.id)), ["kitsu:1101", "mal:1102"], "A root lookup started for another profile cannot dismiss the active profile's titles")
+
+        await model.setSession(nil, personalOwner: first, guestOwner: shared, synchronize: false)
+        await model.bindLocalContinuing(sharedOwner: shared, scope: "first", active: { true })
+        model.setContinuePrivacy(true, migratedScope: "anime-franchise-profile-scope")
+        XCTAssertEqual(Set(model.hiddenContinuing.map(\.id)), ["kitsu:1101"], "Only the immediate local dismissal may remain after the profile changed during root lookup")
+        XCTAssertEqual(Set(model.continuing.map(\.id)), ["mal:1102"])
     }
 }

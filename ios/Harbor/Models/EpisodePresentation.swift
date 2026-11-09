@@ -40,6 +40,20 @@ enum EpisodePresentation {
 }
 
 enum ContinueWatchingSelection {
+    static func canResolveAnimeRoot(_ record: LibraryRecord, detectedAnime: Set<String>) -> Bool {
+        includes(record, kind: "anime", detectedAnime: detectedAnime) && AnimePublicIdentity(record.id) != nil
+    }
+
+    static func roomCards(_ records: [LibraryRecord], kind: String?, excludesAnime: Bool, detectedAnime: Set<String>) -> [LibraryRecord] {
+        let selected = records.filter { includes($0, kind: kind, detectedAnime: detectedAnime) }
+        let visible = HomeCatalogFilter.continueWatching(selected, animeOnlyInAnimeRoom: excludesAnime, detectedAnime: detectedAnime)
+        switch kind {
+        case nil: return HomeContinueWatchingRules.cards(visible)
+        case "series": return Array(visible.prefix(16))
+        default: return visible
+        }
+    }
+
     static func includes(_ record: LibraryRecord, kind: String?, detectedAnime: Set<String>) -> Bool {
         guard let kind else { return true }
         guard let media = record.media else { return false }

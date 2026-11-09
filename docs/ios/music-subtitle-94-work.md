@@ -2159,3 +2159,15 @@ Home changes, then timed out during simulator startup before its four cases.
 Run 42611657339 stopped at Swift type checking before its thirteen cases.
 Discover's shared title normalization is pure and is now declared
 nonisolated so synchronous matching can call it from either actor context.
+
+## Continue Watching
+
+The Shows row uses Desktop's sixteen-item limit and still accepts IMDb
+series identified as anime. Anime-provider IDs stay in the Anime room.
+On iOS, dismissing a detected anime also hides aliases that resolve to
+the same franchise. Restoring a hidden alias restores its group. This is
+an iOS presentation choice for cards with duplicate provider identities.
+Progress and the library stay intact. The lookup is deferred until
+dismissal or until a saved dismissal might apply to a newly seen alias.
+Tests cover root resolution, restoration after relaunch, profile isolation,
+and the Shows limit.

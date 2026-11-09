@@ -50,6 +50,14 @@ actor AnimeFranchiseService {
         return value
     }
 
+    /// Resolves the canonical Kitsu franchise root used by Desktop's Home
+    /// Continue Watching row without loading the full detail-page graph.
+    func franchiseRootID(for id: String, now: Date = Date()) async -> String? {
+        guard let identity = AnimePublicIdentity(id), let kitsu = try? await kitsuID(identity) else { return nil }
+        let root = await root(of: kitsu, now: now)
+        return "kitsu:\(root.id)"
+    }
+
     func response(_ request: AnimeFranchiseRequest) async throws -> JSONValue {
         if case .anilist(let id) = request {
             guard id > 0, id <= Int(Int32.max) else { throw HarborError(code: "anime-id") }

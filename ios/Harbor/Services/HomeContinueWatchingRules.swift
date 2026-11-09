@@ -1,7 +1,7 @@
 import Foundation
 
 /// Desktop's Home Continue Watching pass (`home.tsx` `continueWatching`): one card per title name and type, where the
-/// most recently watched copy wins, and a 100-card cap. Franchise-root removal is not ported here.
+/// most recently watched copy wins, and a 100-card cap. Root-wide dismissals are applied by `LibraryModel`.
 enum HomeContinueWatchingRules {
     /// Desktop's `byId.size >= 100` cutoff.
     static let maximumCards = 100
