@@ -1990,3 +1990,12 @@ is pending Apple validation.
 
 Apple run 42548515955 covers source 628be167. It compiles the subtitle sources,
 anime search and local music rescan together, with fifteen affected cases.
+
+## Subtitle seek with a non-zero media clock
+
+A new owned Matroska fixture offsets every packet and cue point by seven
+seconds, while the external WebVTT starts on the zero-based playback timeline.
+The native test makes HTTP range seeks with embedded and downloaded tracks,
+including relative and playing seeks. The new fixture's 30 cluster timestamps
+and its cue index were checked locally. Apple execution is pending and the
+physical-device report remains open.

@@ -11,7 +11,10 @@ import struct
 folder = Path(__file__).resolve().parents[2] / "ios/HarborTests/Fixtures"
 parser = argparse.ArgumentParser()
 parser.add_argument("--indexed", action="store_true", help="Create a separate HTTP fixture with one-second closed GOPs and explicit video/subtitle cues")
-indexed = parser.parse_args().indexed
+parser.add_argument("--shifted-clock", action="store_true", help="Start the indexed segment's packet clock seven seconds after zero")
+args = parser.parse_args()
+indexed = args.indexed or args.shifted_clock
+timestamp_origin = 7_000 if args.shifted_clock else 0
 source = (folder / "render-8bit.mp4").read_bytes()
 
 
@@ -74,12 +77,12 @@ for index in range(7):
 clusters = []
 cue_points = []
 for start in range(0, 30_000, 1000 if indexed else 4000):
-    data = uint("E7", start)
+    data = uint("E7", start + timestamp_origin)
     for at, number, value, keyframe, duration in sorted(packets, key=lambda p: (p[0], p[1])):
         if start <= at < start + (1000 if indexed else 4000):
             block = bytes([0x80 | number]) + struct.pack(">hB", at - start, 0x80 if keyframe and duration is None else 0) + value
             if indexed and (number == 1 and keyframe or number == 3):
-                cue_points.append((at, number, len(clusters), len(data), duration))
+                cue_points.append((at + timestamp_origin, number, len(clusters), len(data), duration))
             data += element("A3", block) if duration is None else element("A0", element("A1", block) + uint("9B", duration))
     clusters.append(element("1F43B675", data))
 header = element("1A45DFA3", uint("4286", 1) + uint("42F7", 1) + uint("42F2", 4) + uint("42F3", 8)
@@ -109,6 +112,9 @@ if indexed:
     assert all(payload[offset:offset + 4] == bytes.fromhex("1F43B675") for offset in offsets)
 else:
     payload = info + tracks + b"".join(clusters)
-target = folder / ("owned-indexed-subtitle-seek.mkv" if indexed else "owned-subtitle-seek.mkv")
+if args.shifted_clock:
+    target = folder / "owned-shifted-clock-subtitle-seek.mkv"
+else:
+    target = folder / ("owned-indexed-subtitle-seek.mkv" if indexed else "owned-subtitle-seek.mkv")
 target.write_bytes(header + element("18538067", payload))
 print(f"Generated {target.name}: {target.stat().st_size} bytes")

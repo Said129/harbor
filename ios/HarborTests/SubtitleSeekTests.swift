@@ -31,6 +31,55 @@ final class SubtitleSeekTests: XCTestCase {
     }
 
     @available(iOS, deprecated: 12.0)
+    @MainActor func testHTTPSeeksRebaseAnOffsetMediaClockForEmbeddedAndDownloadedSubtitles() async throws {
+        // All source packets and index points start at seven seconds. The user-facing clock and downloaded
+        // WebVTT cues still start at zero. A failed rebase selects a visibly different cue after a seek.
+        let clip = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "owned-shifted-clock-subtitle-seek", withExtension: "mkv", subdirectory: "Fixtures"))
+        let vtt = "WEBVTT\n\n" + (0..<7).map { index in
+            "00:00:\(String(format: "%02d", index * 4)).000 --> 00:00:\(String(format: "%02d", index * 4 + 3)).500\nSHIFTED CUE \(index)\n"
+        }.joined(separator: "\n")
+        let server = try SubtitleRangeFixture(data: Data(contentsOf: clip), subtitle: Data(vtt.utf8))
+        defer { server.stop() }
+        let url = try await server.start()
+        let captions = url.deletingLastPathComponent().appendingPathComponent("community.vtt")
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let previousWindow = scene.windows.first { $0.isKeyWindow }
+        let window = UIWindow(windowScene: scene)
+        window.frame = CGRect(x: 0, y: 0, width: 640, height: 360)
+
+        let preferences = PlaybackPreferences.shared.options
+        let autoSync = UserDefaults.standard.object(forKey: "subtitleAutoSync")
+        PlaybackPreferences.shared.options = PlaybackOptions()
+        UserDefaults.standard.set(false, forKey: "subtitleAutoSync")
+        defer {
+            window.isHidden = true; window.rootViewController = nil; previousWindow?.makeKeyAndVisible()
+            PlaybackPreferences.shared.options = preferences
+            UserDefaults.standard.set(autoSync, forKey: "subtitleAutoSync")
+        }
+        let state = PlayerState()
+        let controller = MPVController(source: .init(url: url.absoluteString, headers: nil, subtitles: nil, via: "test-fixture"), state: state, startPaused: true)
+        window.rootViewController = controller
+        window.makeKeyAndVisible()
+        controller.view.layoutIfNeeded()
+        defer { controller.close() }
+        let surface = try XCTUnwrap(controller.view as? GLKView)
+        try await wait(surface, state: state, context: "offset media loaded") { state.loaded && state.paused && state.tracks.contains { $0.type == "sub" } }
+        controller.set("demuxer-max-bytes", "64KiB")
+        controller.set("demuxer-max-back-bytes", "32KiB")
+        let embedded = try XCTUnwrap(state.tracks.first { $0.type == "sub" && !$0.external })
+        controller.selectSubtitle(String(embedded.id))
+        try await wait(surface, state: state, context: "offset media embedded selected") { !state.subtitleChanging && state.primarySubtitle?.id == embedded.id }
+        let initialRanges = server.requestedOffsets.count
+        try await exercise(controller, surface: surface, state: state, prefix: "EMBEDDED")
+
+        controller.loadAddonSubtitle(.init(url: captions.absoluteString, lang: "spa", id: "offset-test", title: "Owned offset fixture"))
+        try await wait(surface, state: state, context: "offset media WebVTT selected") { !state.subtitleChanging && state.primarySubtitle?.external == true }
+        try await exercise(controller, surface: surface, state: state, prefix: "SHIFTED")
+        XCTAssertTrue(server.requestedOffsets.dropFirst(initialRanges).contains { $0 > 0 })
+        XCTAssertEqual(state.subtitleDelay, 0, accuracy: 0.001)
+    }
+
+    @available(iOS, deprecated: 12.0)
     @MainActor func testHTTPRangeSeeksRetainEmbeddedAndExternalCuesAndRenderedSubtitles() async throws {
         let clip = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "owned-indexed-subtitle-seek", withExtension: "mkv", subdirectory: "Fixtures"))
         let server = try SubtitleRangeFixture(data: Data(contentsOf: clip), chunkDelay: 0.015); defer { server.stop() }
