@@ -126,10 +126,12 @@ final class SubtitleProvidersTests: XCTestCase {
     }
 
     func testOpenSubtitlesPreservesDistinctRowsWithTheSameURLAndNormalizedLanguage() {
-        let body = #"{"subtitles": [
+        let body = """
+        {"subtitles": [
           {"id": "same", "url": "https://dl.example.org/same.srt", "lang": "en", "m": "Show.WEB", "SubFormat": "SRT"},
           {"id": "same", "url": "https://dl.example.org/same.srt", "lang": "eng", "m": "Show.WEB", "SubFormat": "SRT"}
-        ]}"#
+        ]}
+        """
         let found = OpenSubtitlesV3Provider.parse(Data(body.utf8))
         XCTAssertEqual(found.count, 2)
         XCTAssertEqual(found.map(\.searchTitle), ["OpenSubtitles V3 #1", "OpenSubtitles V3 #2"])
