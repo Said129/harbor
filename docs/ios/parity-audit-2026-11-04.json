@@ -1543,7 +1543,7 @@
       "id": "Player episode panel",
       "desktop_source": "src/components/player",
       "verdict": "P",
-      "note": "iOS has the season/order browser, the next-up row and adjacent-episode logic, but choosing an episode always autoplays the best stream: the instant-play off mode that shows a per-episode stream picker, the queue-dr..."
+      "note": "The episode panel honors Instant Play and opens the selected episode in the native source picker when manual. Transport keeps automatic advance. iOS currently releases the previous player for manual selection. Inline source browsing and queue-driven navigation remain pending."
     },
     {
       "index": 189,

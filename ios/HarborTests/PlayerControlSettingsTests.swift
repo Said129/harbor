@@ -4,6 +4,25 @@ import XCTest
 /// Desktop's short seek steps, "Ask before leaving" and maximum volume boost (`seek-step.ts`, `request-player-close.ts`,
 /// `audio-tab.tsx`).
 final class PlayerControlSettingsTests: XCTestCase {
+    func testPlayerEpisodePanelHonorsInstantPlayWhileTransportKeepsPlaying() {
+        XCTAssertFalse(PlayerEpisodeSelection.panel.playsImmediately(instantPlay: false))
+        XCTAssertTrue(PlayerEpisodeSelection.panel.playsImmediately(instantPlay: true))
+        XCTAssertTrue(PlayerEpisodeSelection.transport.playsImmediately(instantPlay: false))
+        XCTAssertTrue(PlayerEpisodeSelection.transport.playsImmediately(instantPlay: true))
+    }
+
+    @MainActor func testEpisodePickerWaitsForTheRequestedProviderEpisode() {
+        let media = Media(id: "tt4644488", type: "series", name: "Owned fixture")
+        let model = DetailModel(media, service: HarborService())
+        let playing = Episode(id: "tt4644488:5:23", season: 5, episode: 23)
+        let next = Episode(id: "tt4644488:5:24", season: 5, episode: 24)
+        XCTAssertFalse(model.offersBelong(to: playing))
+        model.selectedEpisode = playing
+        XCTAssertFalse(model.offersBelong(to: next))
+        model.selectedEpisode = next
+        XCTAssertTrue(model.offersBelong(to: next))
+    }
+
     func testShortSeekKeysUseTheirOwnStepsAndLeaveTheOthersAlone() {
         XCTAssertEqual(PlayerShortcut.seekBackShort.seekSeconds(back: 15, forward: 20, shortBack: 1, shortForward: 90), -1)
         XCTAssertEqual(PlayerShortcut.seekForwardShort.seekSeconds(back: 15, forward: 20, shortBack: 1, shortForward: 90), 90)

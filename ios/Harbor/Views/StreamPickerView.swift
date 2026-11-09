@@ -20,7 +20,8 @@ struct StreamPickerView: View {
     @State private var stremioAddon: String?
 
     private var contextMedia: Media { selection?.media ?? model.sourceMedia(for: episode) ?? model.playbackContextMedia }
-    private var busy: Bool { model.resolving || model.playback != nil }
+    private var waitingForEpisode: Bool { !model.offersBelong(to: episode) }
+    private var busy: Bool { waitingForEpisode || model.resolving || model.playback != nil }
     private var selected: StreamOffer? {
         model.offers.first { $0.id == selectedID } ?? StreamPreferences.shared.preferred(model.offers) ?? model.offers.first
     }
@@ -131,7 +132,7 @@ struct StreamPickerView: View {
     }
     @ViewBuilder private var content: some View {
         // Desktop lists sources as addons answer; the loader only covers the wait for the first one.
-        if model.loadingStreams && model.offers.isEmpty {
+        if waitingForEpisode || (model.loadingStreams && model.offers.isEmpty) {
             HarborLoader(size: 72).frame(maxWidth: .infinity).padding(.vertical, 48)
         } else if let offer = selected {
             if let error = model.error { Text(error).font(HarborTheme.font(14)).foregroundStyle(.orange) }

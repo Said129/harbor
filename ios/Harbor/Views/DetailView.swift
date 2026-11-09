@@ -9,8 +9,8 @@ struct DetailView: View {
     @State private var pendingExtra: AnimeFranchiseExtra?
     @State private var resolvingExtra = false
     @State private var extraTask: Task<Void, Never>?
-    @State private var pendingEpisode: Episode?
-    @State private var pendingEpisodeOwner: String?
+    @State private var pendingEpisode: (episode: Episode, automatic: Bool, owner: String)?
+    @State private var pendingExtraOwner: String?
     @State private var autoplayEpisode = false
     @State private var continuingEpisode = false
     @State private var resolutionTask: Task<Void, Never>?
@@ -117,14 +117,14 @@ struct DetailView: View {
         }
         .onChange(of: model.franchiseSelectionRevision) { _, _ in
             selectionRevision &+= 1; actionHintRevision &+= 1
-            resolutionTask?.cancel(); selectedEpisode = nil; pendingEpisode = nil; pendingEpisodeOwner = nil
+            resolutionTask?.cancel(); selectedEpisode = nil; pendingEpisode = nil; pendingExtraOwner = nil
             extraTask?.cancel(); streamSelection = nil; pendingExtra = nil; resolvingExtra = false
             artworkSection = nil; artworkSectionOwner = nil
             showStreams = false; autoplayEpisode = false; continuingEpisode = false; showConnecting = false
             downloadMessage = nil; actionHint = nil
         }
         .onDisappear { franchiseSwitchTask?.cancel(); extraTask?.cancel() }
-        .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); extraTask?.cancel(); model.cancelResolution(); pendingEpisode = nil; pendingExtra = nil; pendingEpisodeOwner = nil; streamSelection = nil; resolvingExtra = false; autoplayEpisode = false; showConnecting = false; model.clearSourceChange() }) {
+        .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); extraTask?.cancel(); model.cancelResolution(); pendingEpisode = nil; pendingExtra = nil; pendingExtraOwner = nil; streamSelection = nil; resolvingExtra = false; autoplayEpisode = false; showConnecting = false; model.clearSourceChange() }) {
             NavigationStack {
                 streamPicker
                 .overlay {
@@ -138,10 +138,10 @@ struct DetailView: View {
                         episodeOrder: streamSelection == nil ? model.episodeOrderProjection : nil, episodePool: streamSelection == nil ? model.episodePool : nil,
                         loadingExtraEntries: model.loadingExtraEntries, changeExtra: { extra in
                             guard session.owner == app.library.owner else { return }
-                            pendingExtra = extra; pendingEpisode = nil; pendingEpisodeOwner = session.owner; model.playback = nil
-                        }, toggleExtraWatched: toggleExtraWatched, changeEpisode: { episode in
+                            pendingExtra = extra; pendingEpisode = nil; pendingExtraOwner = session.owner; model.playback = nil
+                        }, toggleExtraWatched: toggleExtraWatched, changeEpisode: { episode, automatic in
                         guard session.owner == app.library.owner else { return }
-                        pendingEpisode = episode; pendingEpisodeOwner = session.owner
+                        pendingEpisode = (episode, automatic, session.owner)
                         model.playback = nil
                     }, changeSource: { snapshot in
                         guard session.owner == app.library.owner else { return }
@@ -208,16 +208,17 @@ struct DetailView: View {
             }
         }
     }
-    private func openExtra(_ extra: AnimeFranchiseExtra, automatic: Bool? = nil) {
+    private func openExtra(_ extra: AnimeFranchiseExtra) {
         extraTask?.cancel(); resolutionTask?.cancel(); model.cancelResolution()
         selectionRevision &+= 1
         let revision = selectionRevision, owner = app.library.owner, scope = app.accountOperationScope
+        let automatic = StreamPreferences.shared.automatic
         resolvingExtra = true; showConnecting = true; showStreams = true
         extraTask = Task {
             let selected = await model.resolveFranchiseExtra(extra, language: MetadataPreferences.shared.language, owner: owner, library: app.library)
             guard !Task.isCancelled, owner == app.library.owner, scope == app.accountOperationScope, revision == selectionRevision else { return }
             resolvingExtra = false
-            if let selected { openStreams(selected.episode, automatic: automatic ?? StreamPreferences.shared.automatic, selection: selected) }
+            if let selected { openStreams(selected.episode, automatic: automatic, selection: selected) }
             else { showConnecting = false; showStreams = false }
         }
     }
@@ -244,11 +245,11 @@ struct DetailView: View {
         return { offer in startDownload(offer) }
     }
     private func playOffer(_ offer: StreamOffer) {
-        guard !model.resolving, model.playback == nil else { return }
+        guard !model.resolving, model.playback == nil, model.offersBelong(to: selectedEpisode) else { return }
         if let url = offer.pickerExternalURL { openURL(url); return }
-        let owner = app.library.owner, scope = app.accountOperationScope
+        let owner = app.library.owner, scope = app.accountOperationScope, revision = selectionRevision
         resolutionTask = Task {
-            guard owner == app.library.owner, scope == app.accountOperationScope else { return }
+            guard owner == app.library.owner, scope == app.accountOperationScope, revision == selectionRevision else { return }
             await model.play(offer, resume: app.resume, library: app.library)
         }
     }
@@ -357,21 +358,20 @@ struct DetailView: View {
         // A source that stalled on its first load was set aside; its replacement opens now that the player has released its surface.
         if model.continueAfterStall() { showConnecting = true; return }
         if let extra = pendingExtra {
-            let owner = pendingEpisodeOwner
-            pendingExtra = nil; pendingEpisodeOwner = nil
+            let owner = pendingExtraOwner
+            pendingExtra = nil; pendingExtraOwner = nil
             guard showStreams, owner == app.library.owner else { return }
-            openExtra(extra, automatic: true); return
+            openExtra(extra); return
         }
-        guard let episode = pendingEpisode else { return }
-        let owner = pendingEpisodeOwner
-        pendingEpisode = nil; pendingEpisodeOwner = nil
+        guard let (episode, automatic, owner) = pendingEpisode else { return }
+        pendingEpisode = nil
         guard showStreams, owner == app.library.owner, episode.available else { return }
         selectionRevision &+= 1
-        // Present the next session only after the old full-screen player has
-        // dismissed and released its native surface.
-        autoplayEpisode = true
-        showConnecting = true
-        continuingEpisode = true
+        // The old surface has been released. The picker can either wait for
+        // a choice or preserve the current source for an automatic advance.
+        autoplayEpisode = automatic
+        showConnecting = automatic
+        continuingEpisode = automatic
         selectedEpisode = episode
         if let selection = streamSelection { streamSelection = MediaPlaybackSelection(media: selection.media, episode: episode) }
     }

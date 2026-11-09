@@ -19,6 +19,10 @@ final class DetailModel {
     var error: String?
     var playback: PlaybackSession?
     var selectedEpisode: Episode?
+    func offersBelong(to episode: Episode?) -> Bool {
+        selectedEpisode?.routingKey == episode?.routingKey
+    }
+
     private var lastPlayedSource: StreamSourceIdentity?
     var continuationOffer: StreamOffer? {
         StreamPreferences.shared.preferredContinuation(automaticOffers, previous: lastPlayedSource)
@@ -608,7 +612,9 @@ final class DetailModel {
             }
             considerAutoplay(done: true)
             _ = await ticking
-        } catch is CancellationError { autoTask?.cancel(); return }
+        } catch is CancellationError {
+            if streamRequest == request { autoTask?.cancel() }
+        }
         catch { if streamRequest == request, contextRevision() == context { self.error = safeMessage(error) } }
         // A source started early keeps this request alive until it has opened or failed.
         if let running = autoTask {

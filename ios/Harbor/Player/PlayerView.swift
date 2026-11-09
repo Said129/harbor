@@ -49,6 +49,14 @@ private struct PlayerSeekGlyph: View {
     }
 }
 
+enum PlayerEpisodeSelection: Equatable {
+    case panel, transport
+
+    func playsImmediately(instantPlay: Bool) -> Bool {
+        self == .transport || instantPlay
+    }
+}
+
 struct PlayerView: View {
     let session: PlaybackSession
     let resume: ResumeStore
@@ -60,7 +68,7 @@ struct PlayerView: View {
     var loadingExtraEntries = Set<String>()
     var changeExtra: ((AnimeFranchiseExtra) -> Void)? = nil
     var toggleExtraWatched: ((AnimeFranchiseExtra) -> Void)? = nil
-    var changeEpisode: ((Episode) -> Void)? = nil
+    var changeEpisode: ((Episode, Bool) -> Void)? = nil
     var changeSource: ((ResumeSnapshot?) -> Void)? = nil
     @State private var state = PlayerState()
     @State private var playbackGeneration = AppProfileContext.shared.playback.generation
@@ -139,7 +147,10 @@ struct PlayerView: View {
             }
             .sheet(isPresented: $showEpisodes, onDismiss: {
                 restartHideTimer()
-                if let episode = pendingEpisode { pendingEpisode = nil; requestEpisode(episode) }
+                if let episode = pendingEpisode {
+                    pendingEpisode = nil
+                    requestEpisode(episode, from: .panel)
+                }
             }) { episodePanel })
     }
 
@@ -543,11 +554,11 @@ struct PlayerView: View {
         let lead = EpisodeSequence.leadSeconds(setting: preferences.options.nextEpisodeLeadSeconds, duration: state.duration)
         return !resumePending && canChangeEpisode && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !pendingSourceChange && !autoNextCancelled && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && scenePhase == .active && lead > 0 && remaining > 0.5 && remaining <= lead && !state.ended
     }
-    private func requestEpisode(_ episode: Episode) {
+    private func requestEpisode(_ episode: Episode, from selection: PlayerEpisodeSelection = .transport) {
         guard active, canChangeEpisode, !episodeChanging, !sourceChanging, !retrying, !state.restarting, episode.available, scenePhase == .active, let changeEpisode else { return }
         episodeChanging = true
         saveCheckpoint(exiting: true)
-        changeEpisode(episode)
+        changeEpisode(episode, selection.playsImmediately(instantPlay: StreamPreferences.shared.automatic))
     }
     private var canRestartEpisode: Bool {
         active && !episodeChanging && !sourceChanging && !retrying && !state.restarting && scenePhase == .active &&
