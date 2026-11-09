@@ -107,7 +107,7 @@ enum SubtitleSearchRanking {
     }
 
     static func listIdentity(for candidate: SubtitleProviderCandidate) -> String {
-        duplicateKey(for: candidate)
+        candidate.subtitle.searchIdentity ?? duplicateKey(for: candidate)
     }
 
     static func mergeResults(_ current: [PlaybackSource.Subtitle], _ additions: [PlaybackSource.Subtitle],
@@ -152,7 +152,8 @@ enum SubtitleSearchRanking {
             for item in ordered.dropFirst() {
                 mergeMissingMetadata(from: item.candidate, into: &merged)
             }
-            return IndexedCandidate(index: ordered[0].index, candidate: merged)
+            merged.subtitle.searchIdentity = key
+            return IndexedCandidate(index: group[0].index, candidate: merged)
         }
         return interleave(filtered, preferredLanguages: preferredLanguages).map(\.candidate)
     }
@@ -170,13 +171,11 @@ enum SubtitleSearchRanking {
 
         // With no stream-hint input, Desktop's compareSubtitleMatch reaches its download
         // count and title tie-breakers. Search does not reuse its auto-selection comparator.
-        if a.downloads != b.downloads { return a.downloads > b.downloads ? 1 : -1 }
+        let localMatch = compareSubtitleMatchWithoutHints(a, b)
+        if localMatch != 0 { return localMatch }
 
         let richness = metadataRichness(b) - metadataRichness(a)
         if richness != 0 { return richness > 0 ? 1 : -1 }
-
-        let source = sourcePriority(b.provider) - sourcePriority(a.provider)
-        if source != 0 { return source > 0 ? 1 : -1 }
 
         let aKey = stableDuplicateKey(a)
         let bKey = stableDuplicateKey(b)
@@ -237,12 +236,6 @@ enum SubtitleSearchRanking {
         return candidate.format
     }
 
-    private static func sourcePriority(_ provider: SubtitleProviderID) -> Int {
-        switch provider {
-        case .opensubtitles, .wyzie, .subdl, .subsource: 2
-        }
-    }
-
     private static func mergeMissingMetadata(from source: SubtitleProviderCandidate, into target: inout SubtitleProviderCandidate) {
         // Keep the primary candidate's providerDownload grant bound to its provider. A same-URL
         // duplicate is not authority to transfer that in-memory credential context.
@@ -276,8 +269,7 @@ enum SubtitleSearchRanking {
                 if leftLanguage != rightLanguage { return leftLanguage > rightLanguage }
                 let match = compareSubtitleMatchWithoutHints(left.candidate, right.candidate)
                 if match != 0 { return match < 0 }
-                let identity = textCompare(listIdentity(for: left.candidate), listIdentity(for: right.candidate))
-                return identity == 0 ? left.index < right.index : identity < 0
+                return left.index < right.index
             }
         }
 
@@ -292,11 +284,6 @@ enum SubtitleSearchRanking {
             return left.index < right.index
         }.first
 
-        let orderedProviders = providerOrder.enumerated().sorted { left, right in
-            let priority = sourcePriority(right.element) - sourcePriority(left.element)
-            return priority == 0 ? left.offset < right.offset : priority > 0
-        }.map(\.element)
-
         var result: [IndexedCandidate] = []
         var seen = Set<Int>()
         if let best {
@@ -308,7 +295,7 @@ enum SubtitleSearchRanking {
             var depth = 0
             while true {
                 var found = false
-                for provider in orderedProviders {
+                for provider in providerOrder {
                     guard let item = buckets[provider], item.indices.contains(depth) else { continue }
                     found = true
                     let candidate = item[depth]

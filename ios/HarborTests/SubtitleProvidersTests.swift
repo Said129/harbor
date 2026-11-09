@@ -172,6 +172,16 @@ final class SubtitleProvidersTests: XCTestCase {
         XCTAssertNil(ranked[0].subtitle.providerDownload, "A duplicate URL cannot inherit another provider's ephemeral grant")
     }
 
+    func testDuplicateTieUsesHigherDesktopDownloadCountAndRetainsTheGroupingKey() {
+        let url = "https://subs.example.org/packed.zip"
+        let popular = candidate(.wyzie, "popular", url, "en", searchTitle: "Release", format: nil, downloads: 30)
+        let alternate = candidate(.subsource, "alternate", url, "en", searchTitle: "Release", format: "zip", downloads: 3)
+        let ranked = SubtitleSearchRanking.deduplicateAndRank([alternate, popular], preferredLanguages: ["en"])
+        XCTAssertEqual(ranked.count, 1)
+        XCTAssertEqual(ranked.first?.subtitle.id, "popular")
+        XCTAssertEqual(ranked.first.map(SubtitleSearchRanking.listIdentity(for:)), SubtitleSearchRanking.listIdentity(for: popular))
+    }
+
     func testNativeSubtitleRowsAndDownloadsKeepSameURLLanguagesAndCredentialScopesSeparate() throws {
         let url = "https://subs.example.org/episode.zip"
         let response: JSONValue = .object(["subtitles": .array([
