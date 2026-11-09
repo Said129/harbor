@@ -10,6 +10,10 @@ final class SubtitleSelectionPreferences {
     var preferEmbeddedSubs = UserDefaults.standard.object(forKey: "preferEmbeddedSubs") as? Bool ?? false {
         didSet { persist(preferEmbeddedSubs, forKey: "preferEmbeddedSubs") }
     }
+    var forcedSubsWhenNativeAudio = UserDefaults.standard.object(forKey: "forcedSubsWhenNativeAudio") as? Bool ?? false {
+        didSet { persist(forcedSubsWhenNativeAudio, forKey: "forcedSubsWhenNativeAudio") }
+    }
+
     /// Desktop default: off.
     var subtitlePreselect = UserDefaults.standard.object(forKey: "subtitlePreselect") as? Bool ?? false {
         didSet { persist(subtitlePreselect, forKey: "subtitlePreselect") }
@@ -42,6 +46,7 @@ final class SubtitleSelectionPreferences {
         reloading = true
         defer { reloading = false }
         preferEmbeddedSubs = UserDefaults.standard.object(forKey: "preferEmbeddedSubs") as? Bool ?? false
+        forcedSubsWhenNativeAudio = UserDefaults.standard.object(forKey: "forcedSubsWhenNativeAudio") as? Bool ?? false
         subtitlePreselect = UserDefaults.standard.object(forKey: "subtitlePreselect") as? Bool ?? false
         subtitleAutoUpgrade = UserDefaults.standard.object(forKey: "subtitleAutoUpgrade") as? Bool ?? false
         trackBlockWords = UserDefaults.standard.stringArray(forKey: "trackBlockWords") ?? ["commentary"]

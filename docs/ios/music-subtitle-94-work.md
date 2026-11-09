@@ -1979,3 +1979,14 @@ before publishing the index, and managed copies are pruned only after a
 complete scan. Older manually imported tracks are preserved. Folder sources
 that cannot be bookmarked retain the one-time import. Focused tests cover the
 real local-copy rescan transaction as well as source and migration rules.
+
+## Native audio and forced subtitles
+
+The Desktop setting now appears on iOS and follows the active settings owner.
+When the selected audio matches the subtitle preferences, the automatic choice
+picks the highest language match among forced tracks or disables the primary
+track when none qualify. A manual choice stays in place. The new policy case
+is pending Apple validation.
+
+Apple run 42548515955 covers source 628be167. It compiles the subtitle sources,
+anime search and local music rescan together, with fifteen affected cases.

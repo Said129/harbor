@@ -1013,6 +1013,7 @@
 "For series and anime, keep playing the rest of the season from the release you first picked. Applies whether Play is instant or manual." = "Dizi ve animelerde sezonun kalanını ilk seçtiğiniz sürümden oynatmaya devam eder. Oynatma ister anında ister elle başlatılsın geçerlidir.";
 "For you" = "Sizin için";
 "Forced" = "Zorunlu";
+"Forced subs with native audio" = "Orijinal sesle zorunlu altyazılar";
 "Forest" = "Orman";
 "Forget" = "Unut";
 "Forget remote streaming server" = "Uzak yayın sunucusunu unut";
@@ -2913,6 +2914,7 @@
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "Sonraki bölüm otomatik oynatılırken Harbor'ın en üst sıradaki yayını yerine az önce izlediğiniz sürümü/kaynağı korur. Bu kaynak kullanılamıyorsa en iyi yayına geçer.";
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "Oynatma başladığında Harbor, bu dillerden birinde altyazıyı otomatik olarak bulup yükler. Bulunan ilk uygun altyazı kullanılır; bu nedenle ana dilinizi ilk sıraya koyun.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Bölüm bitmeden önce Sıradaki rozetinin ne zaman görüneceğini belirler. Otomatik seçeneği bölüm uzunluğuna göre ayarlanır, böylece kısa bölümlerde bildirim çok erken gösterilmez. Kapalı seçeneği bildirimi gizler.";
+"When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "Ses dili altyazı dilinizle zaten eşleşiyorsa tam altyazı yerine zorunlu parçayı (yalnızca yabancı dildeki konuşmalar ve yazılar) seçin. Dosyada zorunlu parça yoksa altyazılar kapalı kalır.";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "Bir bölümü bitirdiğinizde Ana Sayfa'daki İzlemeye Devam Et kartı, 0 dakika kalmış hâlde beklemek yerine sonraki bölüme geçer.";
 "When you press Play" = "Oynat'a bastığınızda";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "İzlemeye devam ettiğinizde seçim ekranını yeniden açmak yerine son kullandığınız yayını (aynı eklenti ve kaynak) oynatır. Her zaman yeniden seçim yapmak için kapatın.";

@@ -1184,14 +1184,21 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
             autoUpgrade: preferences.subtitleAutoUpgrade,
             blockWords: preferences.trackBlockWords,
             suppressed: options.subtitlesOff)
-        if let id = SubtitleSelectionWiring.subtitleChoice(candidates: candidates, previous: knownSubtitleCandidates, currentID: state.primarySubtitle?.id, context: context) {
+        let currentAudio = state.tracks.first { $0.type == "audio" && $0.selected }
+        let wantedAudio = SubtitleSelectionWiring.audioChoice(candidates: state.tracks.audioSelectionCandidates, currentID: currentAudio?.id,
+            languages: SubtitleLanguages.preferredCodes(options.audioLanguage), blockWords: preferences.trackBlockWords, userPicked: audioUserPicked)
+        let audioLanguage = wantedAudio.flatMap { id in state.tracks.first { $0.type == "audio" && $0.id == id }?.language } ?? currentAudio?.language
+        if preferences.forcedSubsWhenNativeAudio,
+           let choice = SubtitleSelectionWiring.forcedChoice(candidates: candidates, audioLanguage: audioLanguage, context: context) {
+            switch choice {
+            case .off: selectAutomaticSubtitle(nil)
+            case .track(let id): selectAutomaticSubtitle(id)
+            }
+        } else if let id = SubtitleSelectionWiring.subtitleChoice(candidates: candidates, previous: knownSubtitleCandidates, currentID: state.primarySubtitle?.id, context: context) {
             selectAutomaticSubtitle(id)
         }
         knownSubtitleCandidates = candidates
-        let currentAudio = state.tracks.first(where: { $0.type == "audio" && $0.selected })?.id
-        if let id = SubtitleSelectionWiring.audioChoice(candidates: state.tracks.audioSelectionCandidates, currentID: currentAudio, languages: SubtitleLanguages.preferredCodes(options.audioLanguage), blockWords: preferences.trackBlockWords, userPicked: audioUserPicked) {
-            selectAutomaticAudio(id)
-        }
+        if let wantedAudio { selectAutomaticAudio(wantedAudio) }
         applyASSNormalization()
         applySubtitleSDHFilter()
     }
@@ -1207,7 +1214,8 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         set("sub-filter-sdh", value)
     }
 
-    private func selectAutomaticSubtitle(_ id: Int) {
+    private func selectAutomaticSubtitle(_ id: Int?) {
+        guard state.primarySubtitle?.id != id else { return }
         let revision = mediaRevision
         subtitleSelectionOrigin = .automatic
         enqueueSubtitleOperation { controller in
@@ -1215,8 +1223,8 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
             guard controller.mediaRevision == revision, controller.subtitleSelectionOrigin == .automatic,
                   controller.state.primarySubtitle?.id != id else { return }
             try? await controller.resetSubtitleFPS()
-            if controller.state.secondarySubtitle?.id == id { try? await controller.setChecked("secondary-sid", "no") }
-            try? await controller.setChecked("sid", String(id))
+            if let id, controller.state.secondarySubtitle?.id == id { try? await controller.setChecked("secondary-sid", "no") }
+            try? await controller.setChecked("sid", id.map(String.init) ?? "no")
         }
     }
 

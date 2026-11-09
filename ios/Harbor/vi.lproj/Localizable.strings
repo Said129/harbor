@@ -1013,6 +1013,7 @@
 "For series and anime, keep playing the rest of the season from the release you first picked. Applies whether Play is instant or manual." = "Với phim bộ và anime, tiếp tục phát các tập còn lại của mùa từ bản phát hành bạn chọn đầu tiên. Áp dụng dù phát ngay hay chọn thủ công.";
 "For you" = "Dành cho bạn";
 "Forced" = "Bắt buộc";
+"Forced subs with native audio" = "Phụ đề bắt buộc khi dùng âm thanh gốc";
 "Forest" = "Rừng xanh";
 "Forget" = "Quên";
 "Forget remote streaming server" = "Quên máy chủ phát trực tuyến từ xa";
@@ -2913,6 +2914,7 @@
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "Khi tự động phát tập tiếp theo, tiếp tục dùng cùng bản phát hành/nguồn bạn vừa xem thay vì luồng được Harbor xếp hạng cao nhất. Nếu nguồn đó không khả dụng, ứng dụng sẽ dùng luồng tốt nhất.";
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "Khi bắt đầu phát, Harbor sẽ tự động tìm và tải phụ đề bằng một trong các ngôn ngữ này. Kết quả khớp đầu tiên có sẵn sẽ được chọn, vì vậy hãy đặt ngôn ngữ chính lên đầu.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Thời điểm nhãn Tập tiếp theo xuất hiện trước khi tập kết thúc. Tự động điều chỉnh theo độ dài tập để không nhắc quá sớm với các tập ngắn. Tắt để ẩn.";
+"When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "Khi âm thanh đã khớp với ngôn ngữ phụ đề, chọn rãnh bắt buộc (chỉ lời thoại tiếng nước ngoài và biển báo) thay vì phụ đề đầy đủ. Nếu tệp không có rãnh bắt buộc, phụ đề sẽ vẫn tắt.";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "Khi bạn xem xong một tập, thẻ Xem tiếp trên Trang chủ sẽ chuyển sang tập tiếp theo thay vì dừng ở mốc còn 0 phút.";
 "When you press Play" = "Khi bạn nhấn Phát";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "Khi tiếp tục nội dung đang xem dở, phát lại đúng luồng đã dùng gần nhất (cùng tiện ích bổ sung và nguồn) thay vì mở lại trình chọn. Tắt để luôn chọn nguồn mới.";

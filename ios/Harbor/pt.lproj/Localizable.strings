@@ -1033,6 +1033,7 @@
 "For series and anime, keep playing the rest of the season from the release you first picked. Applies whether Play is instant or manual." = "Em séries e animes, continua reproduzindo o resto da temporada a partir do lançamento que você escolheu primeiro. Vale tanto para reprodução instantânea quanto manual.";
 "For you" = "Para você";
 "Forced" = "Forçado";
+"Forced subs with native audio" = "Legendas forçadas com áudio original";
 "Forest" = "Floresta";
 "Forget" = "Esquecer";
 "Forget remote streaming server" = "Esquecer servidor remoto de streaming";
@@ -2936,6 +2937,7 @@
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "Ao reproduzir automaticamente o próximo episódio, manter o mesmo release/fonte que você estava assistindo em vez do stream mais bem classificado pelo Harbor. Recorre ao melhor stream se essa fonte não estiver disponível.";
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "Quando a reprodução começa, o Harbor encontra e carrega automaticamente uma legenda em um desses idiomas. A primeira correspondência disponível vence, então coloque seu idioma principal primeiro.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Quando o indicador Próximo aparece antes do episódio terminar. Automático se ajusta à duração do episódio, então episódios curtos param de avisar tão cedo. Desativado o oculta.";
+"When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "Quando o áudio já corresponde ao idioma da sua legenda, escolher uma faixa forçada (apenas diálogos estrangeiros e letreiros) em vez de legendas completas. Se o arquivo não tiver faixa forçada, as legendas permanecem desativadas.";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "Ao terminar um episódio, o cartão Continuar assistindo do Início avança para o próximo em vez de permanecer com 0 minutos restantes.";
 "When you press Play" = "Quando você aperta Reproduzir";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "Ao continuar algo que você estava assistindo, reproduzir exatamente o mesmo stream usado da última vez (mesmo addon e fonte) em vez de abrir o seletor novamente. Desative para sempre escolher do zero.";

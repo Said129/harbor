@@ -1013,6 +1013,7 @@
 "For series and anime, keep playing the rest of the season from the release you first picked. Applies whether Play is instant or manual." = "सीरीज़ और ऐनिमे के लिए, सीज़न के बाकी एपिसोड उसी रिलीज़ से चलाते रहें जिसे आपने पहले चुना था। यह प्ले के तुरंत या मैन्युअल होने, दोनों पर लागू होता है।";
 "For you" = "आपके लिए";
 "Forced" = "फ़ोर्स्ड";
+"Forced subs with native audio" = "मूल ऑडियो के साथ फ़ोर्स्ड सबटाइटल";
 "Forest" = "वन";
 "Forget" = "हटाएँ";
 "Forget remote streaming server" = "सहेजा हुआ रिमोट स्ट्रीमिंग सर्वर हटाएँ";
@@ -2913,6 +2914,7 @@
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "अगला एपिसोड अपने-आप चलाते समय Harbor की सबसे ऊँची रैंक वाली स्ट्रीम के बजाय उसी रिलीज़/स्रोत का इस्तेमाल करें जिसे आप अभी देख रहे थे। वह स्रोत उपलब्ध न होने पर सबसे अच्छी स्ट्रीम इस्तेमाल की जाती है।";
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "प्लेबैक शुरू होने पर Harbor इनमें से किसी एक भाषा में सबटाइटल अपने-आप ढूँढकर लोड करता है। उपलब्ध पहला मेल चुना जाता है, इसलिए अपनी मुख्य भाषा सबसे पहले रखें।";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "एपिसोड खत्म होने से कितनी देर पहले अगला पिल दिखाई दे। ऑटो इसे एपिसोड की अवधि के अनुसार समायोजित करता है, ताकि छोटे एपिसोड में यह बहुत जल्दी न दिखे। बंद करने पर यह छिप जाता है।";
+"When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "जब ऑडियो पहले से आपकी सबटाइटल भाषा में हो, तो पूरे सबटाइटल के बजाय फ़ोर्स्ड ट्रैक (सिर्फ़ विदेशी संवाद और संकेत) चुनें। फ़ाइल में फ़ोर्स्ड ट्रैक न होने पर सबटाइटल बंद रहते हैं।";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "एपिसोड पूरा देखने पर होम का देखना जारी रखें कार्ड 0 मिनट शेष पर रहने के बजाय अगले एपिसोड पर चला जाता है।";
 "When you press Play" = "जब आप चलाएँ दबाएँ";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "जिसे आप देख रहे थे उसे जारी रखने पर पिकर फिर से खोलने के बजाय पिछली बार इस्तेमाल की गई ठीक वही स्ट्रीम (वही ऐडऑन और सोर्स) चलाएँ। हर बार फिर से चुनने के लिए इसे बंद करें।";

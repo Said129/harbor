@@ -1013,6 +1013,7 @@
 "For series and anime, keep playing the rest of the season from the release you first picked. Applies whether Play is instant or manual." = "シリーズやアニメでは、最初に選んだリリースでシーズンの続きを再生します。再生が即時でも手動でも適用されます。";
 "For you" = "あなた向け";
 "Forced" = "強制字幕";
+"Forced subs with native audio" = "オリジナル音声では強制字幕を表示";
 "Forest" = "森";
 "Forget" = "登録解除";
 "Forget remote streaming server" = "保存したリモート配信サーバーを削除";
@@ -2913,6 +2914,7 @@
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "次のエピソードを自動再生するとき、Harborで最上位のストリームではなく、直前まで見ていたものと同じリリースまたはソースを使用します。そのソースが利用できない場合は、最適なストリームを使用します。";
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "再生を開始すると、Harborが選択した言語の字幕を自動で検索して読み込みます。最初に見つかった字幕が使われるため、メインの言語を先頭にしてください。";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "エピソード終了の何秒前に「次のエピソード」を表示するかを設定します。自動ではエピソードの長さに合わせて調整し、短いエピソードで早く表示されすぎないようにします。オフにすると非表示になります。";
+"When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "音声が字幕の言語と一致している場合、完全字幕ではなく強制字幕（外国語の会話と表示のみ）を選びます。ファイルに強制字幕がない場合、字幕はオフのままです。";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "エピソードを最後まで見ると、ホームの「視聴を続ける」カードは「残り0分」のままにならず、次のエピソードに進みます。";
 "When you press Play" = "「再生」を押したとき";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "視聴を再開するとき、選択画面を再度開かず、前回とまったく同じストリーム（同じアドオンとソース）を再生します。毎回新しく選ぶにはオフにしてください。";

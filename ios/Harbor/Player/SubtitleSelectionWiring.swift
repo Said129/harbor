@@ -2,6 +2,30 @@ import Foundation
 
 /// Pure decisions that connect the subtitle selection settings to `MPVController`. They reuse `SubtitleSelectionPolicy` and `AssSizeNormalization` and touch neither mpv nor UserDefaults.
 enum SubtitleSelectionWiring {
+    enum ForcedChoice: Equatable, Sendable {
+        case off
+        case track(Int)
+    }
+
+    static func forcedChoice(candidates: [SubtitleSelectionCandidate], audioLanguage: String?,
+                             context: SubtitleAutoSelectionContext) -> ForcedChoice? {
+        guard !context.suppressed, !context.languages.isEmpty, let audioLanguage,
+              SubtitleSelectionPolicy.languageScore(audioLanguage, preferred: context.languages) >= 0,
+              SubtitleSelectionPolicy.replacementAllowed(origin: context.origin, autoUpgrade: context.autoUpgrade, lateArrival: false) else { return nil }
+
+        var best: SubtitleSelectionCandidate?
+        var bestScore = Int.min
+        for track in candidates where track.forced || SubtitleSelectionPolicy.hasForcedWord(track.title) {
+            guard SubtitleSelectionPolicy.isAutoSelectable(track) else { continue }
+            let score = SubtitleSelectionPolicy.languageScore(track.language, preferred: context.languages)
+            if score > bestScore {
+                best = track
+                bestScore = score
+            }
+        }
+        return best.map { .track($0.id) } ?? .off
+    }
+
     /// The subtitle Harbor should select now, or nil to leave mpv's choice alone. `previous` is the candidate list from the last track update, which tells a late arrival apart from the first list. Desktop `use-track-autoload.ts:838-863` and `autoload-run.ts:36-43`.
     static func subtitleChoice(candidates: [SubtitleSelectionCandidate], previous: [SubtitleSelectionCandidate], currentID: Int?, context: SubtitleAutoSelectionContext) -> Int? {
         guard !context.suppressed, !context.languages.isEmpty else { return nil }

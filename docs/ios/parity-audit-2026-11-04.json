@@ -5,35 +5,35 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 259,
-      "partial": 117,
+      "ported": 260,
+      "partial": 116,
       "missing": 0,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 84.4,
-      "ported_only_percent": 68.9,
+      "weighted_percent": 84.6,
+      "ported_only_percent": 69.1,
       "ported_or_partial_percent": 100.0
     },
     "settings": {
       "total": 511,
-      "ported": 243,
-      "partial": 31,
+      "ported": 244,
+      "partial": 30,
       "missing": 2,
       "excluded": 235,
       "counted": 276,
-      "weighted_percent": 93.7,
-      "ported_only_percent": 88.0,
+      "weighted_percent": 93.8,
+      "ported_only_percent": 88.4,
       "ported_or_partial_percent": 99.3
     },
     "all": {
       "total": 949,
-      "ported": 502,
-      "partial": 148,
+      "ported": 504,
+      "partial": 146,
       "missing": 2,
       "excluded": 297,
       "counted": 652,
-      "weighted_percent": 88.3,
-      "ported_only_percent": 77.0,
+      "weighted_percent": 88.5,
+      "ported_only_percent": 77.3,
       "ported_or_partial_percent": 99.7
     }
   },
@@ -104,11 +104,11 @@
     {
       "area": "Player, subtitles, skip, trailers and downloads",
       "range": "B154-B216",
-      "ported": 37,
-      "partial": 13,
+      "ported": 38,
+      "partial": 12,
       "missing": 0,
       "excluded": 13,
-      "weighted_percent": 87.0
+      "weighted_percent": 88.0
     },
     {
       "area": "Live TV, VOD, DVR and multiview",
@@ -1654,8 +1654,8 @@
       "index": 204,
       "id": "OpenSubtitles v3",
       "desktop_source": "src/lib/subtitles",
-      "verdict": "P",
-      "note": "OpenSubtitles through addons only"
+      "verdict": "D",
+      "note": "The built-in OpenSubtitles v3 search is wired into the player, follows its setting and steps aside for an enabled equivalent addon. Its public lookup is independent of account sign-in. Apple execution pending."
     },
     {
       "index": 205,
@@ -5149,8 +5149,8 @@
       "index": 265,
       "id": "forcedSubsWhenNativeAudio",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "forced subtitles option partial"
+      "verdict": "D",
+      "note": "The per-profile native-audio setting automatically selects an eligible forced track in preferred language order, or disables the primary track when no forced choice exists. Manual choices retain priority."
     },
     {
       "index": 266,

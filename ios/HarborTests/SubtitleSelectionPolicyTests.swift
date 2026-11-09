@@ -33,6 +33,20 @@ final class SubtitleSelectionPolicyTests: XCTestCase {
 
     // MARK: Picking
 
+    func testNativeAudioUsesForcedTrackOrOffWithoutOverridingManualChoice() {
+        let full = SubtitleSelectionCandidate(id: 1, language: "es", title: "Full")
+        let english = SubtitleSelectionCandidate(id: 2, language: "en", forced: true)
+        let spanish = SubtitleSelectionCandidate(id: 3, language: "spa", title: "Signs (Forced)")
+        let context = SubtitleAutoSelectionContext(origin: .playerDefault, languages: ["es"])
+        XCTAssertEqual(SubtitleSelectionWiring.forcedChoice(candidates: [full, english, spanish], audioLanguage: "spa", context: context), .track(3))
+        XCTAssertEqual(SubtitleSelectionWiring.forcedChoice(candidates: [full], audioLanguage: "es", context: context), .off)
+        XCTAssertNil(SubtitleSelectionWiring.forcedChoice(candidates: [spanish], audioLanguage: "ja", context: context))
+
+        var manual = context
+        manual.origin = .manual
+        XCTAssertNil(SubtitleSelectionWiring.forcedChoice(candidates: [spanish], audioLanguage: "es", context: manual))
+    }
+
     func testLanguageOrderBeatsEmbeddedPreference() {
         let tracks = [embedded(1, "en"), external(2, "es", level: .low)]
         XCTAssertEqual(Policy.desiredTrack(among: tracks, languages: ["es", "en"], preferEmbedded: false)?.id, 2)

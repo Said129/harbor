@@ -1016,6 +1016,7 @@
 "For series and anime, keep playing the rest of the season from the release you first picked. Applies whether Play is instant or manual." = "Для сериалов и аниме продолжать воспроизведение сезона из релиза, который вы выбрали первым. Работает и при мгновенном, и при ручном запуске.";
 "For you" = "Для вас";
 "Forced" = "Форсированные";
+"Forced subs with native audio" = "Форсированные субтитры при родном звуке";
 "Forest" = "Лес";
 "Forget" = "Забыть";
 "Forget remote streaming server" = "Забыть удалённый сервер воспроизведения";
@@ -2927,6 +2928,7 @@
 "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available." = "При автозапуске следующей серии сохранять тот же релиз или источник, который вы смотрели, вместо лучшего по рейтингу потока Harbor. Если источник недоступен, берётся лучший поток.";
 "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first." = "При запуске воспроизведения Harbor сам находит и загружает субтитры на одном из этих языков. Побеждает первое совпадение, поэтому ставьте основной язык первым.";
 "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it." = "Когда плашка «Далее» появляется перед концом серии. «Авто» подстраивается под длину серии, чтобы короткие серии не предлагали переход слишком рано. «Выкл.» скрывает её.";
+"When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off." = "Если звук уже на языке ваших субтитров, выбирать форсированную дорожку (только иностранная речь и надписи) вместо полных субтитров. Если форсированной дорожки нет, субтитры остаются выключенными.";
 "When you finish an episode, the Home Continue Watching card moves on to the next episode instead of sitting at 0 minutes left." = "Когда вы досматриваете серию, карточка «Продолжить просмотр» на Главной переходит к следующей серии, а не остаётся на «осталось 0 минут».";
 "When you press Play" = "Когда вы нажимаете «Воспроизвести»";
 "When you resume something you were watching, replay the exact stream you last used (same addon and source) instead of opening the picker again. Turn off to always choose fresh." = "При продолжении просмотра запускать тот же поток, что и в прошлый раз (то же дополнение и источник), не открывая выбор заново. Отключите, чтобы каждый раз выбирать заново.";

@@ -3,7 +3,7 @@
 Cada fila: `lista indice | id | verdicto | hueco`. P = parcial, M = falta. El indice vuelve a empezar en 1 en cada lista (`behaviors`, `settings`).
 El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo de iOS y el fuente de Desktop (`desktop_source` del inventario `desktop-parity-0.9.132.json`).
 
-## behaviors (117 filas)
+## behaviors (116 filas)
 
 - B 1 | Home hero and real catalogs | P | iOS never fetches Desktop's hosted hero pool: the trending feed falls back to the first catalog titles, and the trakt and simkl feeds only pick an already-loaded rail whose name contains that service. The Desktop 4... [Desktop: src/views/home.tsx]
 - B 2 | Continue Watching on Home | P | Continue Watching on Home: the empty-state box and the one-card-per-title pass with the 100-card cap are in (8 Nov, written by Haiku, uncompiled); franchise-root removal is not, and Desktop's signed-out Stremio prompt is replaced by the empty message because iOS has no Stremio sign-in [Desktop: src/views/home.tsx]
@@ -58,7 +58,6 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 199 | Subtitle encoding detection | P | encoding handling in SubtitleFileService [Desktop: src/lib/subtitles]
 - B 201 | Subtitle ranking / dedupe | P | subtitle ranking and dedupe: Desktop's auto-selection order for the no-hints path exists as a tested helper (8 Nov, written by Haiku, uncompiled); no caller uses it and the duplicate merge is not ported [Desktop: src/lib/subtitles]
 - B 203 | Subtitle text resync | P | External subtitle estimates can be reviewed and applied from the player. Full source matching and structural calibration are pending. [Desktop: src/lib/subtitles]
-- B 204 | OpenSubtitles v3 | P | OpenSubtitles through addons only [Desktop: src/lib/subtitles]
 - B 206 | Audio correlation subtitle sync | P | SubtitleAutoSync; embedded tracks via mpv [Desktop: src-tauri/src/subsync]
 - B 207 | Subtitle track extraction | P | SubtitleAutoSync; embedded tracks via mpv [Desktop: src-tauri/src/sub_extract.rs]
 - B 211 | YouTube trailer resolution | P | addon trailers; no YouTube resolution in app [Desktop: src-tauri/src/trailer.rs]
@@ -123,7 +122,7 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 424 | Music audio cover import | P | music audio cover import: a sidecar cover (cover, folder, front) fills in when there is no embedded art, for folder imports; the front-cover tag preference is not possible with AVFoundation's artwork key (8 Nov, written by Haiku, uncompiled) [Desktop: src-tauri/src/music/connectors/local/tags.rs]
 - B 426 | Music playback queue | P | music playback queue: the queue continuation rule exists as a tested helper (8 Nov, written by Haiku, uncompiled); nothing loads more tracks when the queue ends [Desktop: src-tauri/src/music/commands/playback.rs]
 
-## settings (33 filas)
+## settings (32 filas)
 
 - S 11 | tvdbKey | P | TVDB used without a user key setting [Desktop: src/lib/settings/types.ts]
 - S 65 | top10Ribbon | P | Top 10 rail without ribbon options [Desktop: src/lib/settings/types.ts]
@@ -138,7 +137,6 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - S 247 | autoSyncDrift | M | advanced auto-sync options [Desktop: src/lib/settings/types.ts]
 - S 249 | subtitleAutoSyncPivot | M | advanced auto-sync options [Desktop: src/lib/settings/types.ts]
 - S 256 | subtitlePreselect | P | preselect subtitles before playback: not wired, iOS hands the source straight to the player and the tracks only exist once mpv has loaded the file [Desktop: src/lib/settings/types.ts]
-- S 265 | forcedSubsWhenNativeAudio | P | forced subtitles option partial [Desktop: src/lib/settings/types.ts]
 - S 318 | mpvTweaks | P | earlier review Partial [Desktop: src/lib/settings/types.ts]
 - S 342 | opensubtitlesApiKey | P | OpenSubtitles key is stored; auto-sync does not read it yet (7 Nov, written by Haiku, CI run 25 pending) [Desktop: src/lib/settings/types.ts]
 - S 349 | audioDevice | P | route picker instead of a device setting [Desktop: src/lib/settings/types.ts]

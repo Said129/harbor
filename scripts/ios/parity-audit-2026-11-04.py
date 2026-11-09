@@ -587,6 +587,7 @@ BEHAVIORS = expand("""
 66 D Metadata and subtitle resource plans inherit absent manifest types and ID prefixes while respecting explicit overrides. Playback stream requests preserve Desktop's separate stream-specific selector.
 27 D Global search queries the native AniList, Jikan and Kitsu providers, applies Desktop source order, caps and deduplication, and opens results in the normal detail route. Apple and live provider verification pending.
 433 D The local music library tracks a selected iOS Files folder and rescans it by size and modification time. It preserves playlist identities, keeps manually removed paths suppressed and prunes managed copies only after a complete traversal. Unbookmarkable folders keep one-time import. Apple verification pending.
+204 D The built-in OpenSubtitles v3 search is wired into the player, follows its setting and steps aside for an enabled equivalent addon. Its public lookup is independent of account sign-in. Apple execution pending.
 """)
 
 SETTINGS = expand("""
@@ -1035,6 +1036,7 @@ SETTINGS = expand("""
 236 D Per-profile OpenSubtitles, Wyzie, addon, SUBDL and Subsource toggles drive the player search. OpenSubtitles steps aside for an enabled equivalent addon. The player accepts bounded ZIP files and exact-origin Subsource downloads.
 345 D The profile key enables SUBDL lookup, and the player prepares its downloaded subtitles or selects a matching episode and language from the ZIP.
 346 D The profile key enables Subsource lookup and its authenticated download. The player sends the key only to the Subsource HTTPS endpoint, refuses redirects and extracts bounded text subtitles.
+265 D The per-profile native-audio setting automatically selects an eligible forced track in preferred language order, or disables the primary track when no forced choice exists. Manual choices retain priority.
 """)
 
 def audit(items, verdicts, label):

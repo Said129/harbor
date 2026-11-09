@@ -43,6 +43,10 @@ struct SubtitleSelectionSettingsView: View {
                                  note: text("Keep the subtitle track included in the video file instead of switching to a downloaded one."),
                                  isOn: $preferences.preferEmbeddedSubs)
                 .accessibilityIdentifier("settings-prefer-embedded-subs")
+            HarborSettingsToggle(text("Forced subs with native audio"),
+                                 note: text("When the audio already matches your subtitle language, pick a forced track (foreign dialogue and signs only) instead of full subtitles. If the file has no forced track, subtitles stay off."),
+                                 isOn: $preferences.forcedSubsWhenNativeAudio)
+                .accessibilityIdentifier("settings-forced-subs-native-audio")
             HarborSettingsToggle(text("Upgrade subtitles when better ones load"),
                                  note: text("Switch to a better language match if it arrives after playback starts. Leave off to keep the current track."),
                                  isOn: $preferences.subtitleAutoUpgrade)
