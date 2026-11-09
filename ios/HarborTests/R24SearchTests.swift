@@ -83,7 +83,37 @@ final class R24SearchTests: XCTestCase {
 
     func testWithoutATMDBKeyThereAreNoTMDBRows() async {
         let configuration = MetadataConfiguration(tmdbKey: "", region: "US", language: "en-US", translateTitles: false)
-        let rows = await SearchTMDBSource.rows(query: "Dune", addonRows: [], configuration: configuration)
-        XCTAssertTrue(rows.isEmpty)
+        let matches = await SearchTMDBSource.load(query: "Dune", configuration: configuration)
+        XCTAssertTrue(SearchTMDBSource.rows(for: matches.titles, addonRows: []).isEmpty)
+        XCTAssertNil(matches.topMatch)
+    }
+
+    func testTopMatchUsesOriginalTMDBOrderAndIgnoresPeopleAndMissingPosters() {
+        let configuration = MetadataConfiguration(tmdbKey: "fixture", region: "US", language: "en-US", translateTitles: false)
+        func hit(_ id: Int64, _ kind: String, _ popularity: Double, poster: JSONValue = .string("/poster.jpg")) -> JSONValue {
+            .object(["id": .integer(id), "media_type": .string(kind), "title": .string("Film \(id)"),
+                     "name": .string("Show \(id)"), "poster_path": poster, "popularity": .number(popularity)])
+        }
+        let response: JSONValue = .object(["results": .array([
+            hit(1, "person", 500), hit(2, "movie", 200, poster: .null),
+            hit(3, "tv", 70), hit(4, "movie", 70), hit(5, "movie", 15),
+        ])])
+        let matches = CustomListSearchResults.matches(response, configuration: configuration)
+        XCTAssertEqual(matches.topMatch?.id, "tmdb:tv:3")
+        XCTAssertEqual(matches.titles.map(\.id), ["tmdb:movie:4", "tmdb:movie:5", "tmdb:tv:3"])
+    }
+
+    func testMatchingAddonTakesPriorityWhenOpeningTopMatch() {
+        let addon = Addon(manifest: .object(["id": .string("fixture"), "name": .string("Fixture")]),
+                          transportUrl: "https://example.com", enabled: true)
+        let plan = RequestPlan(key: "fixture-search", url: "https://example.com", title: "Search", kind: "movie",
+                               addon: addon, addonPriority: 0, timeoutMs: 1_000, catalog: nil)
+        let correct = media("tt1160419", name: "Dune", year: "2021")
+        let other = media("tt0087182", name: "Dune", year: "1984")
+        let match = media("tmdb:movie:1", name: "Dune", year: "2021")
+        let rows = [CatalogRow(plan: plan, metas: [other, correct])]
+        XCTAssertEqual(SearchTMDBSource.destination(for: match, addonRows: rows).id, correct.id)
+        XCTAssertTrue(SearchTMDBSource.rows(for: [match], addonRows: rows).isEmpty)
+        XCTAssertEqual(SearchTMDBSource.destination(for: match, addonRows: []).id, match.id)
     }
 }

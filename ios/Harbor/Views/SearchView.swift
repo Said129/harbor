@@ -4,6 +4,8 @@ struct SearchView: View {
     let app: AppModel
     @State private var query = ""
     @State private var rows: [CatalogRow] = []
+    @State private var topMatch: Media?
+    @State private var matchDestination: Media?
     @State private var error: String?
     @State private var loading = false
     @State private var completedQuery: String?
@@ -24,10 +26,13 @@ struct SearchView: View {
                 recentSearches
                 if history.items.isEmpty { ContentUnavailableView("Busca en tus addons", systemImage: "magnifyingglass", description: Text("Películas, series y catálogos instalados.")) }
             }
-            else if isTitleQuery && rows.isEmpty && !loading { ContentUnavailableView.search(text: query) }
+            else if isTitleQuery && rows.isEmpty && topMatch == nil && !loading { ContentUnavailableView.search(text: query) }
             if let completedQuery {
                 Text("Resultados para «\(completedQuery)»").font(.headline).padding()
                     .accessibilityIdentifier("search-results-query")
+            }
+            if isTitleQuery, let topMatch {
+                SearchTopMatchCard(media: topMatch, destination: matchDestination ?? topMatch, app: app).padding(.horizontal)
             }
             if let anime = topAnime { AniListRelationsSection(media: anime, app: app).padding(.horizontal).padding(.bottom, 8) }
             if isTitleQuery { SearchLiveTVSection(app: app, query: query) }
@@ -40,11 +45,16 @@ struct SearchView: View {
         .onSubmit(of: .search) { history.record(query) }
         .onDisappear { if completedQuery != nil { history.record(query) } }
         .refreshable { ArtworkRefresh.shared.retryFailedImages(); await search() }
-        .task(id: query + app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined()) { await search() }
+        .task(id: query + "|" + searchContext) { await search() }
     }
     /// A pasted magnet, info hash or direct video link gets a Play card instead of a catalog search.
     private var linkInput: SearchInput { SearchInput.classify(query) }
     private var isTitleQuery: Bool { if case .query = linkInput { true } else { false } }
+    private var searchContext: String {
+        let configuration = MetadataPreferences.shared.configuration()
+        return [app.accountOperationScope, app.addons.filter(\.enabled).map(\.id).joined(separator: "|"),
+                EBookShelf.hash(configuration.tmdbKey), configuration.language, String(configuration.translateTitles)].joined(separator: "|")
+    }
     /// Desktop shows the sequels and prequels of the best match when that match is an anime (`topMatchIsAnime`).
     private var topAnime: Media? {
         guard isTitleQuery, completedQuery != nil, let first = SearchPresentation.rows(rows).first,
@@ -85,12 +95,15 @@ struct SearchView: View {
     private func search() async {
         let request = UUID(); generation = request
         let requestedQuery = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        let requestContext = app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined()
+        let requestContext = searchContext
+        let configuration = MetadataPreferences.shared.configuration()
         rows = []; error = nil; completedQuery = nil; loading = !requestedQuery.isEmpty
+        topMatch = nil; matchDestination = nil
         guard !requestedQuery.isEmpty, case .query = SearchInput.classify(requestedQuery) else { loading = false; return }
         do {
             try await Task.sleep(for: .milliseconds(300))
             async let animeSearch = AnimeService.shared.search(requestedQuery)
+            async let tmdbSearch = SearchTMDBSource.load(query: requestedQuery, configuration: configuration)
             var addonRows: [CatalogRow] = []
             var warnings: [String] = []
             var addonPlanningFailed = false
@@ -109,9 +122,12 @@ struct SearchView: View {
                 addonPlanningFailed = true
             }
             try Task.checkCancellation()
-            async let tmdbSearch = SearchTMDBSource.rows(query: requestedQuery, addonRows: addonRows, configuration: MetadataPreferences.shared.configuration())
-            let tmdbRows = await tmdbSearch
+            let matches = await tmdbSearch
+            try Task.checkCancellation()
             guard isCurrent(request, query: requestedQuery, context: requestContext) else { return }
+            let tmdbRows = SearchTMDBSource.rows(for: matches.titles, addonRows: addonRows)
+            topMatch = matches.topMatch
+            matchDestination = matches.topMatch.map { SearchTMDBSource.destination(for: $0, addonRows: addonRows) }
             rows = SearchPresentation.rows(addonRows + tmdbRows)
             completedQuery = requestedQuery
             let anime = await animeSearch
@@ -120,7 +136,7 @@ struct SearchView: View {
             let animeRows = SearchAnimeSource.row(metas: anime, excluding: (addonRows + tmdbRows).flatMap(\.metas)).map { [$0] } ?? []
             rows = SearchPresentation.rows(addonRows + tmdbRows + animeRows)
             completedQuery = requestedQuery
-            let hasResults = rows.contains(where: { !$0.metas.isEmpty })
+            let hasResults = topMatch != nil || rows.contains(where: { !$0.metas.isEmpty })
             error = (addonPlanningFailed || !warnings.isEmpty) && !hasResults
                 ? "No se pudo completar la búsqueda. Reintentar puede recuperar los resultados."
                 : nil
@@ -134,6 +150,44 @@ struct SearchView: View {
 
     private func isCurrent(_ request: UUID, query requestedQuery: String, context: String) -> Bool {
         generation == request && query.trimmingCharacters(in: .whitespacesAndNewlines) == requestedQuery
-            && app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined() == context
+            && searchContext == context
+    }
+}
+
+private struct SearchTopMatchCard: View {
+    let media: Media
+    let destination: Media
+    let app: AppModel
+    @Environment(\.locale) private var locale
+
+    private func text(_ key: String, variables: [String: String] = [:]) -> String {
+        DesktopInterfaceText.value(key, variables: variables, language: locale.identifier)
+    }
+
+    var body: some View {
+        NavigationLink {
+            DetailView(media: destination, app: app)
+        } label: {
+            HStack(spacing: 14) {
+                Artwork(url: media.poster, maxPixels: 350)
+                    .frame(width: 80, height: 120).clipShape(.rect(cornerRadius: 10)).accessibilityHidden(true)
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(text("Top match").uppercased(with: locale)).font(HarborTheme.font(11, weight: .semibold))
+                        .tracking(2).foregroundStyle(HarborTheme.accent)
+                    Text(media.name).font(HarborTheme.displayFont(24)).lineLimit(2)
+                    HStack(spacing: 7) {
+                        Text(text(media.type == "movie" ? "Movie" : "Series"))
+                        if let year = media.releaseInfo { Text(year) }
+                        if let rating = media.imdbRating { Label(rating, systemImage: "star.fill") }
+                    }.font(HarborTheme.font(12)).foregroundStyle(.secondary)
+                    if let overview = media.description {
+                        Text(overview).font(HarborTheme.font(12)).foregroundStyle(.secondary).lineLimit(2)
+                    }
+                }.frame(maxWidth: .infinity, alignment: .leading)
+                Image(systemName: "chevron.forward").font(.subheadline).foregroundStyle(HarborTheme.accent)
+            }.padding(14).background(HarborTheme.surface, in: .rect(cornerRadius: 16))
+        }.buttonStyle(.plain)
+            .accessibilityLabel(text("Open {name}", variables: ["name": media.name]))
+            .accessibilityIdentifier("search-title-top-match")
     }
 }

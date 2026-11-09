@@ -1,12 +1,23 @@
 import Foundation
 
 enum CustomListSearchResults {
+    struct Matches: Sendable {
+        var titles: [Media] = []
+        var topMatch: Media?
+    }
+
     static func map(_ response: JSONValue, english: JSONValue = .null, configuration: MetadataConfiguration) -> [Media] {
+        matches(response, english: english, configuration: configuration).titles
+    }
+
+    static func matches(_ response: JSONValue, english: JSONValue = .null, configuration: MetadataConfiguration) -> Matches {
         let englishNames = Dictionary(english["results"].array.compactMap { value -> (Int, String)? in
             guard let id = value["id"].integer, let name = value["title"].string ?? value["name"].string, !name.isEmpty else { return nil }
             return (id, name)
         }, uniquingKeysWith: { _, last in last })
         var movies: [Media] = [], series: [Media] = []
+        var candidates: [Media] = []
+        var popularities: [Double] = []
         for value in response["results"].array {
             guard let id = value["id"].integer, let kind = value["media_type"].string, ["movie", "tv"].contains(kind),
                 let poster = value["poster_path"].string, !poster.isEmpty,
@@ -26,8 +37,11 @@ enum CustomListSearchResults {
             media.releaseInfo = media.released.map { String($0.prefix(4)) }
             media.adult = value["adult"] == .bool(true)
             if let rating = value["vote_average"].numericValue, rating > 0 { media.imdbRating = String(format: "%.1f", rating); media.ratingSource = "TMDB" }
+            candidates.append(media)
+            popularities.append(value["popularity"].numericValue ?? 0)
             if kind == "movie" { movies.append(media) } else { series.append(media) }
         }
-        return Array(movies.prefix(12)) + Array(series.prefix(12))
+        let match = SearchRanking.topMatchIndex(popularities: popularities).map { candidates[$0] }
+        return .init(titles: Array(movies.prefix(12)) + Array(series.prefix(12)), topMatch: match)
     }
 }

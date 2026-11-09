@@ -593,6 +593,7 @@ BEHAVIORS = expand("""
 1 P Home uses Desktop's public Trending, Trakt and Simkl pools with a three-hour cache, explicit rail priority, catalog fallback, and per-title ranking. Native base catalog composition and some personal rails still differ.
 11 P Movies uses Desktop's five TMDB requests, daily ordering, recent-play exclusion and fallback. The native carousel pauses for horizontal drag, pointer hover, the viewport and backgrounding. Native motion and live catalog validation remain pending.
 5 P Discover applies profile-scoped locale affinity to Trending and Top Rated and excludes downvoted titles from suggestion pools. The native featured source pool and personalized daily lanes still differ.
+22 P Native search surfaces the most popular eligible TMDB result and opens an equivalent installed addon record when available. TMDB and addon queries run in parallel. Year and genre browse routes and remaining Desktop search facets are pending.
 """)
 
 SETTINGS = expand("""

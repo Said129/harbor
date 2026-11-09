@@ -2140,3 +2140,12 @@ to cast the enum to a native Bool. It now checks the actual JSON Boolean
 for both completion and rejection. The three affected cases need to run
 again. The nine passing cases and the physical subtitle seek defect are
 tracked separately.
+
+## Search top match
+
+The existing TMDB multi-search now selects the most popular poster-bearing
+movie or show in provider order. Its native card uses the same result data
+and opens an equivalent installed addon record when one is present. The
+addon, TMDB and anime requests start together. Request generations fence the
+result to the active profile, query and metadata preferences. Year and genre
+intent routes remain pending.

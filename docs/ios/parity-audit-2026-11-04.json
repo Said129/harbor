@@ -381,7 +381,7 @@
       "id": "Global search",
       "desktop_source": "src/lib/search.ts",
       "verdict": "P",
-      "note": "global search: with a TMDB key the search adds Desktop's TMDB movie and series rows after the addon rows, leaving out titles an addon row already shows (8 Nov, written by Haiku, uncompiled); the top-match ranking and the year or genre intent exist as helpers that no screen uses"
+      "note": "Native search surfaces the most popular eligible TMDB result and opens an equivalent installed addon record when available. TMDB and addon queries run in parallel. Year and genre browse routes and remaining Desktop search facets are pending."
     },
     {
       "index": 23,

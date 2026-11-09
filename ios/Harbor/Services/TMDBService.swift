@@ -19,8 +19,12 @@ struct DiscoveryRail: Identifiable, Sendable {
 struct TMDBService: Sendable {
     private let http = HTTPClient()
     func searchWatchables(_ query: String, configuration: MetadataConfiguration) async throws -> [Media] {
+        try await searchWatchableMatches(query, configuration: configuration).titles
+    }
+
+    func searchWatchableMatches(_ query: String, configuration: MetadataConfiguration) async throws -> CustomListSearchResults.Matches {
         let query = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !query.isEmpty, !configuration.tmdbKey.isEmpty else { return [] }
+        guard !query.isEmpty, !configuration.tmdbKey.isEmpty else { return .init() }
         var requestConfiguration = configuration
         if !configuration.translateTitles { requestConfiguration.language = "en-US" }
         let response = try await get("search/multi", parameters: ["query": query, "include_adult": "false"], configuration: requestConfiguration)
@@ -33,7 +37,7 @@ struct TMDBService: Sendable {
             english = (try? await get("search/multi", parameters: ["query": query, "include_adult": "false"], configuration: englishConfiguration)) ?? .null
         }
         try Task.checkCancellation()
-        return CustomListSearchResults.map(response, english: english, configuration: configuration)
+        return CustomListSearchResults.matches(response, english: english, configuration: configuration)
     }
     func homeDefinitions() -> [DiscoveryRail] {
         [
