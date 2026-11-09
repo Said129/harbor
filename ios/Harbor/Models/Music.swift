@@ -79,9 +79,11 @@ struct MusicLibraryDocument: Codable, Sendable {
             return
         }
         let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.init(
+            records: try values.decode([MusicRecord].self, forKey: .records),
+            trackedFolder: try values.decodeIfPresent(MusicFolderSource.self, forKey: .trackedFolder)
+        )
         version = try values.decode(Int.self, forKey: .version)
-        records = try values.decode([MusicRecord].self, forKey: .records)
-        trackedFolder = try values.decodeIfPresent(MusicFolderSource.self, forKey: .trackedFolder)
     }
 
     func encode(to encoder: Encoder) throws {
