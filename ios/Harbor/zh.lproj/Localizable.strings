@@ -53,6 +53,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "AI 搜索失败。";
 "AI search failed. Tap to retry." = "AI 搜索失败。点按重试。";
+"AM Picks" = "上午精选";
 "AMC" = "AMC";
 "AMC+" = "AMC+";
 "API key" = "API 密钥";
@@ -156,6 +157,10 @@
 "After Dark" = "夜色渐深";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "在幻灯片上停留片刻后，焦点推荐内容的预告片会在背景中静音播放。此功能会占用更多带宽。";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "连续自动播放数集且没有任何操作后，暂停并确认你是否仍在观看，再继续播放。默认关闭。";
+"After the news" = "新闻过后";
+"After-hours picks" = "深夜精选";
+"Afternoon Picks" = "午后精选";
+"Afternoon Roll" = "午后放送";
 "Age ratings and content notes when playback starts." = "在播放开始时显示年龄分级和内容提示。";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "护眼";
@@ -370,6 +375,7 @@
 "Best Suspense" = "最佳悬疑作品";
 "Best VA Performance" = "最佳配音表演";
 "Best of the {decade}" = "{decade}年代精选";
+"Between meetings" = "会议间隙";
 "Beyond the kids' shelf" = "不止是儿童动画";
 "Biblioteca" = "媒体库";
 "Biblioteca de Manga" = "Manga library";
@@ -405,6 +411,7 @@
 "Botón cuadrado de reproducción" = "方形播放按钮";
 "Box color" = "背景框颜色";
 "Brazil" = "巴西";
+"Bright-side series" = "明快剧集";
 "Brighten dark movies" = "提亮昏暗影片";
 "Brightness" = "亮度";
 "Brillo" = "亮度";
@@ -415,6 +422,7 @@
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "恢复已忽略的应用内小提示，无需重新进行欢迎流程。";
 "BritBox" = "BritBox";
 "British Independent Film Awards" = "英国独立电影奖";
+"British Television" = "英国电视节目";
 "Browse" = "浏览";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "浏览插件";
@@ -482,6 +490,7 @@
 "Cards, panels." = "卡片、面板。";
 "Cargar archivo" = "加载文件";
 "Cargar más" = "加载更多";
+"Carry it through the day" = "陪你度过白天";
 "Cast" = "投屏";
 "Cast to TV or speaker" = "投屏到电视或扬声器";
 "Catalog" = "目录";
@@ -567,6 +576,7 @@
 "Clásica" = "经典";
 "Code expired. Try again." = "Code expired. Try again.";
 "Codec" = "编解码器";
+"Coffee-and-couch" = "咖啡与沙发";
 "Colecciones" = "合集";
 "Collections" = "合集";
 "Color de la barra" = "进度条颜色";
@@ -596,6 +606,7 @@
 "Community sync server" = "社区同步服务器";
 "Compact" = "紧凑";
 "Compacta" = "紧凑";
+"Companion series for whatever the afternoon throws at you." = "无论午后如何展开，都有这些剧集相伴。";
 "Compartir" = "分享";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
@@ -666,6 +677,7 @@
 "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "圆角半径";
 "Correo y contraseña" = "Email and password";
+"Couch hours" = "沙发时光";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not cast to {deviceName}." = "无法投屏到 {deviceName}。";
@@ -720,6 +732,7 @@
 "Create your first filter with the stream quality you prefer." = "按偏好的播放源画质创建首个筛选器。";
 "Create your first list" = "创建你的第一个列表";
 "Crime" = "犯罪";
+"Crime & Mystery" = "犯罪与悬疑";
 "Crime Series" = "犯罪剧集";
 "Crisp (anime & cartoons)" = "清晰（动漫和卡通）";
 "Critically Acclaimed" = "广受好评";
@@ -728,6 +741,7 @@
 "Critics' Choice Awards" = "评论家选择奖";
 "Critics' Pick" = "影评人之选";
 "Critics' Picks" = "影评人之选";
+"Crowd-pleasers, prestige picks, and the kind of series people text about." = "大众佳作、品质精选，还有让人忍不住发消息讨论的剧集。";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
 "Crunchyroll Anime Awards" = "Crunchyroll Anime Awards";
@@ -758,9 +772,13 @@
 "Danish" = "丹麦语";
 "Danish Cinema" = "丹麦电影";
 "Dark" = "深色";
+"Dark, immersive, and binge-worthy when the house is quiet." = "夜深人静时，来点暗黑、沉浸又让人停不下来的剧集。";
 "Date" = "日期";
 "Date Night" = "约会之夜";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
+"Daybreak" = "破晓";
+"Daylight Watching" = "日光剧场";
+"Daytime watching" = "日间观看";
 "De dónde viene tu video" = "视频来源";
 "Debrid services" = "Debrid 服务";
 "Debrid-Link API key" = "Debrid-Link API 密钥";
@@ -778,6 +796,7 @@
 "Delete this profile?" = "删除此个人资料？";
 "Delete {name}? Saved filters cannot be brought back." = "删除 {name}？已保存的筛选条件无法恢复。";
 "Dense" = "Dense";
+"Dense plots and rich worlds for when sleep is not happening." = "睡意全无时，就沉浸在错综剧情与丰富世界中。";
 "Deporte" = "Sport";
 "Derecha" = "右对齐";
 "Derecha a izquierda" = "从右到左";
@@ -834,6 +853,7 @@
 "Documentaries" = "纪录片";
 "Documentaries Worth Your Night" = "Documentaries Worth Your Night";
 "Documentary" = "纪录片";
+"Documentary Series" = "纪录片剧集";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
 "Don't ask me again" = "不再询问";
@@ -850,6 +870,7 @@
 "Drift monitor" = "漂移监测";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "在应用背景中添加壁纸。使用调暗滑块可确保文字清晰可读。";
 "Drop shadow" = "投影";
+"Drop-in chapters and long arcs for the post-dinner stretch." = "晚饭后，既有随时能看的单集，也有可沉浸其中的长线剧情。";
 "Dropped" = "已丢弃";
 "Dropped (decode / vo)" = "丢帧（解码 / vo）";
 "Dual subtitles" = "双字幕";
@@ -861,6 +882,8 @@
 "Dónde se emite" = "观看平台";
 "EU-hosted, fast cache check. Same read-only usage as the others." = "服务器位于欧盟，可快速检查缓存。与其他服务一样，仅进行只读操作。";
 "Earth" = "地球";
+"Easing into series" = "轻松开启追剧";
+"Easy half-hours and lighter dramas to ride out the afternoon." = "轻松的半小时剧集和轻快剧情剧，陪你度过午后。";
 "Easy on the eyes" = "护眼";
 "Edición terminada" = "完成编辑";
 "Edit" = "编辑";
@@ -924,6 +947,8 @@
 "Episode ordering" = "单集排序";
 "Episode {n}" = "第 {n} 集";
 "Episodes" = "剧集";
+"Episodes worth the evening" = "值得花一晚追的剧集";
+"Episodes you can drop into without losing the thread." = "随时看一集，也不会跟丢剧情。";
 "Episodio" = "剧集";
 "Episodio {n}" = "第 {n} 集";
 "Episodios" = "剧集";
@@ -941,6 +966,7 @@
 "Estilo de los subtítulos" = "字幕样式";
 "Estimated from your local history. Connect Trakt or Simkl for the full picture." = "根据本地历史记录估算。连接 Trakt 或 Simkl 可查看完整统计。";
 "Estirar" = "拉伸";
+"Evening on the couch" = "沙发上的夜晚";
 "Evens out quiet dialogue and loud action scenes with a dynamic normalizer." = "使用动态标准化器均衡安静的对白和响亮的动作场景。";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "今晚重头戏";
@@ -1016,6 +1042,7 @@
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "看完一集动漫后会更新你的 AniList 进度。只增不减：绝不会降低已有集数。";
 "Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have." = "看完一集动漫后会更新你的 MyAnimeList 进度。只增不减：绝不会降低已有集数。";
 "Finnish" = "芬兰语";
+"First-light picks" = "晨光精选";
 "Fit" = "适应";
 "Flat" = "平直";
 "Flechas" = "箭头";
@@ -1039,6 +1066,7 @@
 "Found {count} streams for {title} in {seconds}s" = "在 {seconds} 秒内为 {title} 找到 {count} 个播放源";
 "Found {count} streams in {seconds}s." = "在 {seconds} 秒内找到 {count} 个播放源。";
 "Foundation Years (90s)" = "奠基年代（90 年代）";
+"Frame grab failed" = "截帧失败";
 "Frame rate" = "帧率";
 "France" = "法国";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "免费注册，仅需两分钟。可解锁“热门趋势”、“正在上映”、“高分内容”和各流媒体平台目录（Netflix、Disney+、Hulu 等）。密钥仅保存在此设备上。";
@@ -1082,6 +1110,7 @@
 "Give more weight to titles in your languages and region in Discover." = "在「探索」中优先推荐符合你的语言和地区的作品。";
 "Golden Globes" = "金球奖";
 "Golf" = "高尔夫";
+"Good Morning" = "早上好";
 "Goya Awards" = "戈雅奖";
 "Grand Prize" = "大奖";
 "Gray" = "Gray";
@@ -1115,6 +1144,7 @@
 "HI" = "HI";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "硬件解码";
+"Half-hours, anthologies, and a few epics for the morning routine." = "半小时短剧、单元剧集，还有几部适合晨间日常的史诗大作。";
 "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido." = "在文字周围添加柔和光晕，适合大多数内容，效果最简洁。";
 "Harbor" = "Harbor";
 "Harbor Relay" = "Harbor Relay";
@@ -1142,6 +1172,7 @@
 "Hard stroke around each letter. High contrast." = "为每个字符添加硬边描边，对比度高。";
 "Harvey Award Winners" = "哈维奖获奖作品";
 "Harvey Winner" = "哈维奖获奖作品";
+"Headphone series" = "戴耳机看的剧";
 "Hearing impaired" = "听障字幕";
 "Hebrew" = "希伯来语";
 "Heists & Cons" = "劫案与骗局";
@@ -1194,6 +1225,7 @@
 "History" = "历史";
 "History Buff" = "历史迷必看";
 "Hockey" = "曲棍球";
+"Holdover Picks" = "续看精选";
 "Holiday Warmth" = "节日暖意";
 "Home" = "首页";
 "Home Rail Settings" = "首页内容栏设置";
@@ -1222,6 +1254,7 @@
 "Hulu" = "Hulu";
 "Hungarian" = "匈牙利语";
 "IMDb" = "IMDb";
+"Iconic Long-Runners" = "长青剧集";
 "Idioma" = "语言";
 "Idioma de la app" = "应用语言";
 "Idioma de los metadatos" = "元数据语言";
@@ -1276,6 +1309,7 @@
 "Iniciar sesión" = "登录";
 "Iniciar sesión con Stremio" = "使用 Stremio 登录";
 "Injected ad skip (experimental)" = "跳过插入广告（实验性）";
+"Insomnia Lineup" = "失眠片单";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "安装 Stremio 插件后，其目录会以海报横栏显示在这里，供你浏览。";
 "Instalar addon" = "安装插件";
 "Install" = "安装";
@@ -1320,6 +1354,7 @@
 "Jump past a known injected ad on its own instead of showing the Skip button." = "自动跳过已知的插入广告，而不显示“跳过”按钮。";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "片头一开始就自动跳过。回退到片头会重新播放，不会再次跳过。跳过按钮遵循上方设置。";
 "Just added" = "最新添加";
+"K-Drama" = "韩剧";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
 "Keep Continue Watching private to each profile" = "让每个个人资料的“继续观看”保持私密";
@@ -1351,6 +1386,8 @@
 "Larger" = "较大";
 "Last 90 days" = "Last 90 days";
 "Late Night" = "深夜";
+"Late Show" = "深夜剧场";
+"Late-night chapters" = "深夜篇章";
 "Laterales" = "双页";
 "Laugh Out Loud" = "爆笑不停";
 "Leave" = "离开";
@@ -1374,6 +1411,7 @@
 "Libros" = "书籍";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "提亮阴影，让漆黑场景也能看清。";
 "Light" = "浅色";
+"Lights Out" = "熄灯时刻";
 "Likes" = "点赞";
 "Limited Series & Miniseries" = "限定剧与迷你剧";
 "Limpiar filtros" = "清除筛选条件";
@@ -1419,6 +1457,7 @@
 "Logo position" = "徽标位置";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "徽标";
+"Long-running comforts and new chapters worth pressing play on." = "经久耐看的舒心剧集，以及值得点开播放的新篇章。";
 "Longest binge" = "最长连续观看";
 "Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "此 libmpv 运行时不支持字幕 FPS。";
@@ -1428,6 +1467,7 @@
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
 "Loved by reviewers today" = "今日获影评人好评";
 "Lower it to let more of the artwork show through." = "调低此项，让更多背景图显示出来。";
+"Lunch-break comedies and slow-cooker dramas, ready when you are." = "午休喜剧与慢火细炖的剧情剧，随时等你开看。";
 "Lyric sync" = "歌词同步";
 "Lyrics" = "歌词";
 "Lyrics earlier" = "歌词提前";
@@ -1493,6 +1533,7 @@
 "Mexico" = "墨西哥";
 "Mezclar sonido envolvente a estéreo" = "将环绕声下混为立体声";
 "Mi biblioteca" = "我的媒体库";
+"Midday Lineup" = "午间片单";
 "Mind Benders" = "烧脑神作";
 "Minimum file size" = "最小文件大小";
 "Minimum seeders" = "最少做种人数";
@@ -1509,6 +1550,7 @@
 "More Movies" = "更多电影";
 "More Series" = "更多剧集";
 "More info" = "更多信息";
+"Morning Lineup" = "晨间片单";
 "Most Popular" = "最受欢迎";
 "Most Popular on MAL" = "MAL 人气榜";
 "Most-anticipated upcoming releases on Trakt" = "Trakt 上最受期待的即将上线作品";
@@ -1619,6 +1661,7 @@
 "Next review" = "下一条评论";
 "Next song" = "Next song";
 "Next:" = "接下来：";
+"Night Owl" = "夜猫子";
 "Night mode" = "夜间模式";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "夜间模式会适度压缩高音量片段，方便深夜观看。音效配置会在下一条音轨加载时生效，并与标准化器叠加使用。";
 "Ninguna fuente coincide con tu filtro" = "没有符合筛选条件的内容源";
@@ -1771,6 +1814,7 @@
 "Onboarding" = "新手引导";
 "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "保存后，每张海报都会重新渲染，并印上 IMDb、Rotten Tomatoes 和 Metacritic 评分。";
 "One list" = "单个列表";
+"One more episode" = "再看一集";
 "Ongoing" = "连载中";
 "Only 1 source after filtering" = "筛选后仅剩 1 个来源";
 "Only 2 sources after filtering" = "筛选后仅剩 2 个来源";
@@ -1800,6 +1844,7 @@
 "Open on Trakt" = "在 Trakt 上打开";
 "Open review source" = "打开评论来源";
 "Open settings" = "打开设置";
+"Open the Day" = "开启一天";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "启动时打开此个人资料。之后仍可能显示定时提示。设置了 PIN 的资料不能设为默认。";
 "Open {name}" = "打开 {name}";
 "OpenRouter API key (sk-or-...)" = "OpenRouter API 密钥（sk-or-...）";
@@ -1834,6 +1879,7 @@
 "PBS" = "PBS";
 "PIN" = "PIN";
 "PINs didn't match. Start over." = "PIN 不一致。请重新开始。";
+"PM Picks" = "晚间精选";
 "Page" = "页面";
 "Page base." = "页面底色。";
 "Page turn sound" = "Page turn sound";
@@ -1846,6 +1892,7 @@
 "Parte superior de la pantalla" = "屏幕顶部";
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "密码";
+"Past Midnight" = "午夜过后";
 "Paste JSON" = "粘贴 JSON";
 "Paste a wss:// URL that a friend or your community shared with you." = "粘贴朋友或社区与你分享的 wss:// URL。";
 "Paste invite link" = "粘贴邀请链接";
@@ -1877,6 +1924,7 @@
 "Pick a profile to continue." = "选择个人资料以继续。";
 "Pick a random title" = "随机选一部";
 "Pick a source" = "选择来源";
+"Pick up an episode" = "接着看一集";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "从保存的位置继续播放未看完的剧集和电影。观看进度超过 80% 的内容始终会从头播放。关闭此项后所有内容都会从头播放，适合重看剧集。";
 "Pick up where you left off" = "从上次停下的位置继续";
 "Pick what you actually use" = "选择你实际使用的服务";
@@ -1893,6 +1941,7 @@
 "Picture in Picture" = "画中画";
 "Picture quality" = "画质";
 "Pill" = "Pill";
+"Pilots that pull you in and finales that earn the season." = "引人入胜的首集，以及不负整季铺垫的终章。";
 "Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "将常用目录置顶，隐藏从不打开的目录，并调整已置顶内容栏的顺序。浏览视图会立即更新。";
 "Pin to top" = "置顶";
 "Pinned" = "已固定";
@@ -1959,7 +2008,10 @@
 "Preguntar si reanudar o empezar de nuevo" = "询问继续播放还是从头开始";
 "Premiered This Month" = "本月首播";
 "Premiumize API key" = "Premiumize API 密钥";
+"Press Play" = "开始播放";
 "Press play on something. It'll show up here once you start watching." = "请播放任意内容。开始观看后，它就会显示在这里。";
+"Prestige Drama" = "精品剧情剧";
+"Prestige drama, weekly chapters, and series worth disappearing into." = "精品剧情剧、每周更新的剧集，以及值得沉浸其中的佳作。";
 "Preview" = "预览";
 "Previous" = "上一个";
 "Previous chapter" = "上一章";
@@ -1969,6 +2021,7 @@
 "Previous review" = "上一条评论";
 "Previous song" = "Previous song";
 "Primary copy." = "主要文字。";
+"Prime Time" = "黄金时段";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "请先选择字幕轨道。";
 "Primetime Emmys" = "黄金时段艾美奖";
@@ -1996,6 +2049,7 @@
 "Public" = "公开";
 "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed." = "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed.";
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
+"Pull-you-under stories for the quietest part of the day." = "在一天最安静的时刻，让这些故事带你沉入其中。";
 "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account." = "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account.";
 "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "更鲜艳的色彩";
@@ -2014,6 +2068,8 @@
 "Queue" = "播放队列";
 "Quick Watches Under 90" = "90 分钟内看完";
 "Quiet" = "安静";
+"Quiet Hours" = "静谧时光";
+"Quiet dramas, sharp thrillers, and series you save for yourself." = "沉静的剧情剧、凌厉的惊悚剧，以及留给自己独享的剧集。";
 "Quietly great, {decade}" = "低调佳作，{decade}年代";
 "Quitar" = "移除";
 "Quitar de Seguir viendo" = "从“继续观看”中移除";
@@ -2239,6 +2295,7 @@
 "Save track" = "收藏歌曲";
 "Saved" = "已保存";
 "Saved app data" = "Saved app data";
+"Saved for Now" = "暂时收藏";
 "Saved stream filters" = "已保存视频流筛选条件";
 "Saving" = "正在保存";
 "Say hi." = "打个招呼吧。";
@@ -2248,6 +2305,7 @@
 "Scores" = "评分";
 "Screen Actors Guild Awards" = "美国演员工会奖";
 "Screener" = "Screener";
+"Screenshot" = "截图";
 "Scrobble to SIMKL" = "将观看记录同步到 SIMKL";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "Se han añadido todos los idiomas." = "已添加所有语言。";
@@ -2307,11 +2365,17 @@
 "Series de comedia" = "喜剧剧集";
 "Series de crimen" = "犯罪剧集";
 "Series en tendencia" = "热门剧集";
+"Series for the part of the day that runs on coffee and snacks." = "适合伴着咖啡和零食度过这段时光的剧集。";
 "Series for the part of the day you actually look forward to." = "献给一天中最令人期待的时光。";
+"Series for the part of the night that won't let you sleep." = "献给让你迟迟不愿入睡的深夜。";
 "Series mejor valoradas" = "高分剧集";
 "Series on {name}" = "{name} 上的剧集";
 "Series para esa parte del día que de verdad esperas con ganas." = "献给一天中最令人期待的时光。";
 "Series populares" = "热门剧集";
+"Series to disappear into" = "值得沉浸的剧集";
+"Series to ease into while the day is still quiet." = "趁一天尚且安静，轻松看几集。";
+"Series with mileage" = "长篇好剧";
+"Series with the patience to match your late-night hours." = "耐心铺陈，正合你的深夜时光。";
 "Serif" = "衬线体";
 "Server URL" = "服务器 URL";
 "Server address" = "服务器地址";
@@ -2340,6 +2404,7 @@
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
+"Sharp comedies, sunny worlds, and the occasional binge bait." = "犀利喜剧、阳光世界，偶尔还有让人停不下来的佳作。";
 "Sharpen" = "锐化";
 "Sharper lines and a little more pop." = "线条更锐利，画面更有活力。";
 "Short of the Year" = "年度短片奖";
@@ -2394,6 +2459,7 @@
 "Shown at the same time as your main subtitle." = "与主字幕同时显示。";
 "Shows" = "剧集";
 "Shows the episode synopsis on the cards. Turn it off to hide it." = "在卡片上显示单集简介。关闭后隐藏。";
+"Showtime" = "Showtime";
 "Shudder" = "Shudder";
 "Shuffle" = "随机搭配";
 "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
@@ -2444,7 +2510,10 @@
 "Slightly lighter than background." = "比背景稍亮。";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "速度较慢的插件和 P2P 播放源通常需要超过 10 秒才能开始播放。如果播放源还没获得充分的连接机会就被跳过，请延长此时间。";
 "Slow or unstable connection" = "网络连接缓慢或不稳定";
+"Slow, strange, and absorbing. Best with the lights down low." = "慢热、奇异又引人入胜。调暗灯光观看更佳。";
 "Slow-Burn Dramas" = "慢热剧情片";
+"Slow-burn starts" = "慢热开场";
+"Slow-burn worlds and bright chapters worth opening with coffee." = "渐入佳境的世界与明快篇章，适合伴着咖啡开启。";
 "Smaller" = "较小";
 "Smooth on weak PCs" = "低性能电脑流畅优先";
 "Sobre la línea principal" = "主字幕上方";
@@ -2522,6 +2591,7 @@
 "Stop showing as second subtitle" = "不再显示为第二字幕";
 "Stopped with: {error}" = "因以下错误停止：{error}";
 "Storage overview" = "存储空间概览";
+"Stories that reward your attention before the day gets loud." = "趁白天还没喧闹起来，专注品味这些值得细看的故事。";
 "Stream" = "播放源";
 "Stream priority" = "播放源优先级";
 "Stream quality in player" = "播放器中的播放画质";
@@ -2570,6 +2640,7 @@
 "Subtítulos duales" = "双字幕";
 "Subtítulos en tu idioma" = "您所选语言的字幕";
 "Summer Blockbusters" = "暑期大片";
+"Sundown" = "日落";
 "Superficie" = "表面";
 "Superficies" = "界面层";
 "Supernatural" = "超自然";
@@ -2657,6 +2728,7 @@
 "The CW" = "The CW";
 "The Explorer" = "The Explorer";
 "The Film Buff" = "The Film Buff";
+"The Long Lunch" = "悠长午餐";
 "The Roku Channel" = "The Roku Channel";
 "The Series Slayer" = "The Series Slayer";
 "The Well-Rounded" = "The Well-Rounded";
@@ -2678,6 +2750,7 @@
 "The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "选择器会为每个片源标注分辨率、HDR 类型、编解码器和音频格式。关闭后将全部隐藏。";
 "The quick brown fox jumps over the lazy dog" = "敏捷的棕狐跃过懒狗";
 "The ratings row on a title's detail page, next to runtime and genre." = "影片详情页中位于时长和类型旁边的评分栏。";
+"The series that make the rest of the night disappear." = "让余下夜晚悄然消逝的剧集。";
 "The server answered with status {status}. Is that a streaming server?" = "服务器返回状态 {status}。这是流媒体服务器吗？";
 "The server could not load that repository" = "服务器无法加载该仓库";
 "The server responded in {ms} ms." = "服务器在 {ms} 毫秒内响应。";
@@ -2727,6 +2800,7 @@
 "Todas las fuentes" = "所有来源";
 "Todas las listas" = "所有播放列表";
 "Today" = "今天";
+"Today's openers" = "今日开场";
 "Todo" = "全部";
 "Todo lo que ofrecen tus complementos, mostrado como pósteres. Desplázate, busca o filtra hasta encontrar lo que quieras." = "插件提供的所有内容都会以海报形式显示。滚动、搜索或筛选即可找到所需内容。";
 "Todos" = "全部";
@@ -2735,7 +2809,11 @@
 "Todos los géneros" = "所有类型";
 "Todos los idiomas" = "所有语言";
 "Tonight" = "今晚";
+"Tonight's Slate" = "今晚片单";
+"Tonight's binge bait" = "今晚一看就停不下来";
+"Tonight's lineup" = "今晚片单";
 "Tonight's main event" = "今晚重头戏";
+"Tonight's marquee" = "今晚主打";
 "Top" = "顶部";
 "Top 10 Comedy" = "十大热门喜剧片";
 "Top 10 Drama" = "十大热门剧情片";
@@ -2955,11 +3033,14 @@
 "Weekend watchlist" = "周末片单";
 "Welcome to Harbor" = "欢迎使用 Harbor";
 "Western" = "西部";
+"What everyone has been quietly binging this week." = "本周大家都在悄悄追看的内容。";
 "What everyone is reading" = "大家都在读";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "决定主视觉区显示的内容。“热门趋势”显示 Harbor 提供的最新热门榜单，并在一天中持续刷新。“经典”则使用你自己的首页横栏。";
 "What is this?" = "这是什么？";
 "What people are watching" = "大家都在看";
+"What to watch tonight" = "今晚看什么";
 "What you watched" = "你看过的内容";
+"What's hot this week, what's prestige forever, what's worth the hours." = "本周热门、历久弥新的品质佳作，以及值得投入时间的好剧。";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "当按 Esc 将关闭播放器时，先显示快速确认提示。你可以在提示中勾选“不再询问”，以后按 Esc 将直接退出。";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "当一个版本包含多个音轨时，Harbor 会选择此列表中第一个匹配的音轨。";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "一集结束后自动播放下一集。关闭后，本集播放完即停止。";
@@ -2980,11 +3061,17 @@
 "Which order" = "排序方式";
 "Which subtitle Harbor lands on when more than one is available." = "有多个字幕可用时 Harbor 默认选中的字幕。";
 "Which top corner of the poster the ribbon folds over." = "丝带折叠覆盖在海报上方的哪个角。";
+"While the world's asleep" = "当世界沉睡时";
 "Who's watching" = "谁在观看";
 "Who's watching?" = "谁在看？";
 "Whodunit" = "悬疑推理";
 "Wide search · still empty" = "扩大搜索范围 · 仍无结果";
+"Witching Hour" = "子夜时分";
 "Works without a key at low volume; add a key for higher quotas." = "低用量时无需密钥即可使用；添加密钥可获得更高配额。";
+"Worlds to step into before the inbox catches up." = "趁收件箱还没被邮件塞满，先走进这些世界。";
+"Worlds wide enough for an hour or a whole free afternoon." = "广阔世界，足以沉浸一小时或整个闲暇午后。";
+"Worth catching up on" = "值得补看";
+"Worth the lost hour" = "值得少睡一小时";
 "Writer" = "编剧";
 "Wrong PIN" = "PIN 错误";
 "Wrong username or password" = "用户名或密码错误";

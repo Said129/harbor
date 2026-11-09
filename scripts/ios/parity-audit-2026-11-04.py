@@ -600,6 +600,9 @@ BEHAVIORS = expand("""
 68 P Installed addons use their declared playback types and prefixes, including alternate requests for nonstandard IDs. Control-only, retired and Stremio Local Files endpoints are excluded. iOS retains both verified anime and IMDb identities when available and uses its native HTTP transport.
 75 D Duplicate addon streams preserve all tracker sources. Explicitly uncached addon replies recover a missing torrent hash from the hosted URL or DHT source before availability checks. The configured remote streaming server consumes those trackers.
 107 D Automatic extensionless direct streams use Desktop's bounded webpage probe, manual streams bypass it, declared stub clips use the shared size check, and matching completed torrent downloads take precedence in the active profile. Older downloads without torrent identity remain available from Downloads.
+14 P The Shows room uses Desktop’s rotating mast, six-slide featured pool, weekly Top 10 and native Continue Watching. Custom collection assignments and parts of Desktop’s presentation remain pending.
+16 D Native Shows uses the pinned network, premiere and editorial filters in their original order, with weekly trending for the Top 10.
+17 P Native Shows uses the curated six-title hero and removes those titles from regular rails. TMDB rows page in the dedicated grid; inline pagination and the live catalog check remain pending.
 """)
 
 SETTINGS = expand("""

@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 263,
-      "partial": 113,
+      "ported": 264,
+      "partial": 112,
       "missing": 0,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 85.0,
-      "ported_only_percent": 69.9,
+      "weighted_percent": 85.1,
+      "ported_only_percent": 70.2,
       "ported_or_partial_percent": 100.0
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 510,
-      "partial": 144,
+      "ported": 511,
+      "partial": 143,
       "missing": 0,
       "excluded": 295,
       "counted": 654,
-      "weighted_percent": 89.0,
-      "ported_only_percent": 78.0,
+      "weighted_percent": 89.1,
+      "ported_only_percent": 78.1,
       "ported_or_partial_percent": 100.0
     }
   },
@@ -41,11 +41,11 @@
     {
       "area": "Home, Discover and rooms",
       "range": "B1-B21",
-      "ported": 6,
-      "partial": 15,
+      "ported": 7,
+      "partial": 14,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 64.3
+      "weighted_percent": 66.7
     },
     {
       "area": "Search",
@@ -325,7 +325,7 @@
       "id": "Shows room",
       "desktop_source": "src/views/shows.tsx",
       "verdict": "P",
-      "note": "generic ContentPageView rooms"
+      "note": "The Shows room uses Desktop’s rotating mast, six-slide featured pool, weekly Top 10 and native Continue Watching. Custom collection assignments and parts of Desktop’s presentation remain pending."
     },
     {
       "index": 15,
@@ -338,15 +338,15 @@
       "index": 16,
       "id": "Network and premiere rails",
       "desktop_source": "src/views/shows.tsx",
-      "verdict": "P",
-      "note": "network and premiere rails: the network list, the premiere parameters and the Quick Watches Under 90 parameters match Desktop (8 Nov, written by Haiku, uncompiled); the series rail order and about fifteen Desktop rails (80s Classics, Prestige Drama and others) are not in iOS"
+      "verdict": "D",
+      "note": "Native Shows uses the pinned network, premiere and editorial filters in their original order, with weekly trending for the Top 10."
     },
     {
       "index": 17,
       "id": "Series catalogs",
       "desktop_source": "src/views/shows.tsx",
       "verdict": "P",
-      "note": "series catalogs: inline paging is in, shared with the movie rows (8 Nov, written by Haiku, uncompiled); the curated 6-title hero pool and the removal of hero titles from the rows are not"
+      "note": "Native Shows uses the curated six-title hero and removes those titles from regular rails. TMDB rows page in the dedicated grid; inline pagination and the live catalog check remain pending."
     },
     {
       "index": 18,

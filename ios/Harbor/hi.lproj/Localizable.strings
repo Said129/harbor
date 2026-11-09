@@ -53,6 +53,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "AI खोज विफल रही।";
 "AI search failed. Tap to retry." = "AI सर्च विफल रही। फिर कोशिश करने के लिए टैप करें।";
+"AM Picks" = "AM की पसंद";
 "AMC" = "AMC";
 "AMC+" = "AMC+";
 "API key" = "API कुंजी";
@@ -156,6 +157,10 @@
 "After Dark" = "देर रात";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "किसी स्लाइड पर कुछ देर रुकने के बाद, फ़ीचर्ड टाइटल का ट्रेलर बैकग्राउंड में बिना आवाज़ के चलता है। इसमें अधिक बैंडविड्थ लगती है।";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "बिना किसी इनपुट के लगातार कई एपिसोड अपने आप चलने के बाद, आगे बढ़ने से पहले रुककर जाँचें कि आप अभी भी मौजूद हैं। डिफ़ॉल्ट रूप से बंद है।";
+"After the news" = "समाचार के बाद";
+"After-hours picks" = "देर रात की पसंद";
+"Afternoon Picks" = "दोपहर की पसंद";
+"Afternoon Roll" = "दोपहर का सिलसिला";
 "Age ratings and content notes when playback starts." = "प्लेबैक शुरू होने पर उम्र की रेटिंग और कॉन्टेंट की जानकारी।";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "आँखों के लिए आरामदायक";
@@ -370,6 +375,7 @@
 "Best Suspense" = "सर्वश्रेष्ठ सस्पेंस";
 "Best VA Performance" = "सर्वश्रेष्ठ VA परफ़ॉर्मेंस";
 "Best of the {decade}" = "{decade} के दशक की बेहतरीन पेशकशें";
+"Between meetings" = "मीटिंग के बीच";
 "Beyond the kids' shelf" = "बच्चों के सेक्शन से आगे";
 "Biblioteca" = "लाइब्रेरी";
 "Biblioteca de Manga" = "Manga library";
@@ -405,6 +411,7 @@
 "Botón cuadrado de reproducción" = "वर्गाकार प्ले बटन";
 "Box color" = "बॉक्स का रंग";
 "Brazil" = "ब्राज़ील";
+"Bright-side series" = "उम्मीद भरी सीरीज़";
 "Brighten dark movies" = "डार्क फ़िल्मों को उजला करें";
 "Brightness" = "ब्राइटनेस";
 "Brillo" = "ब्राइटनेस";
@@ -415,6 +422,7 @@
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "वेलकम फ़्लो दोबारा चलाए बिना, आपके पहले बंद किए गए छोटे इन-ऐप सुझाव वापस लाता है।";
 "BritBox" = "BritBox";
 "British Independent Film Awards" = "ब्रिटिश स्वतंत्र फ़िल्म पुरस्कार";
+"British Television" = "ब्रिटिश टेलीविज़न";
 "Browse" = "ब्राउज़ करें";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "ऐडऑन ब्राउज़ करें";
@@ -482,6 +490,7 @@
 "Cards, panels." = "कार्ड, पैनल।";
 "Cargar archivo" = "फ़ाइल लोड करें";
 "Cargar más" = "और लोड करें";
+"Carry it through the day" = "इसे दिनभर जारी रखें";
 "Cast" = "कलाकार";
 "Cast to TV or speaker" = "TV या स्पीकर पर कास्ट करें";
 "Catalog" = "कैटलॉग";
@@ -567,6 +576,7 @@
 "Clásica" = "क्लासिक";
 "Code expired. Try again." = "Code expired. Try again.";
 "Codec" = "कोडेक";
+"Coffee-and-couch" = "कॉफ़ी और काउच";
 "Colecciones" = "कलेक्शन";
 "Collections" = "कलेक्शन";
 "Color de la barra" = "बार का रंग";
@@ -596,6 +606,7 @@
 "Community sync server" = "कम्युनिटी सिंक सर्वर";
 "Compact" = "कॉम्पैक्ट";
 "Compacta" = "कॉम्पैक्ट";
+"Companion series for whatever the afternoon throws at you." = "दोपहर में जो भी हो, उसके लिए साथ देने वाली सीरीज़।";
 "Compartir" = "साझा करें";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
@@ -666,6 +677,7 @@
 "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "कोने की गोलाई";
 "Correo y contraseña" = "Email and password";
+"Couch hours" = "सोफ़े पर बिताए घंटे";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not cast to {deviceName}." = "{deviceName} पर कास्ट नहीं किया जा सका।";
@@ -720,6 +732,7 @@
 "Create your first filter with the stream quality you prefer." = "अपनी पसंदीदा स्ट्रीम गुणवत्ता के साथ पहला फ़िल्टर बनाएँ।";
 "Create your first list" = "अपनी पहली सूची बनाएँ";
 "Crime" = "अपराध";
+"Crime & Mystery" = "अपराध और रहस्य";
 "Crime Series" = "अपराध सीरीज़";
 "Crisp (anime & cartoons)" = "शार्प (एनीमे और कार्टून)";
 "Critically Acclaimed" = "समीक्षकों द्वारा प्रशंसित";
@@ -728,6 +741,7 @@
 "Critics' Choice Awards" = "क्रिटिक्स चॉइस पुरस्कार";
 "Critics' Pick" = "समीक्षकों की पसंद";
 "Critics' Picks" = "समीक्षकों की चुनी हुई पेशकश";
+"Crowd-pleasers, prestige picks, and the kind of series people text about." = "सबको पसंद आने वाले शो, प्रतिष्ठित चयन और ऐसी सीरीज़ जिनके बारे में लोग मैसेज करते हैं।";
 "Crunchy" = "करारा";
 "Crunchyroll" = "Crunchyroll";
 "Crunchyroll Anime Awards" = "Crunchyroll Anime Awards";
@@ -758,9 +772,13 @@
 "Danish" = "डेनिश";
 "Danish Cinema" = "डेनिश सिनेमा";
 "Dark" = "डार्क";
+"Dark, immersive, and binge-worthy when the house is quiet." = "जब घर शांत हो, तब देखने के लिए गंभीर, तल्लीन कर देने वाली और लगातार देखे जाने लायक सामग्री।";
 "Date" = "तारीख";
 "Date Night" = "डेट नाइट";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
+"Daybreak" = "भोर";
+"Daylight Watching" = "दिन के उजाले में देखना";
+"Daytime watching" = "दिन में देखना";
 "De dónde viene tu video" = "आपका वीडियो कहाँ से आता है";
 "Debrid services" = "Debrid सेवाएँ";
 "Debrid-Link API key" = "Debrid-Link API कुंजी";
@@ -778,6 +796,7 @@
 "Delete this profile?" = "यह प्रोफ़ाइल हटाएँ?";
 "Delete {name}? Saved filters cannot be brought back." = "{name} हटाएँ? सेव किए गए फ़िल्टर वापस नहीं लाए जा सकते।";
 "Dense" = "Dense";
+"Dense plots and rich worlds for when sleep is not happening." = "जब नींद न आ रही हो, तब देखने के लिए जटिल कथानक और समृद्ध दुनिया।";
 "Deporte" = "Sport";
 "Derecha" = "दायाँ";
 "Derecha a izquierda" = "दाएँ से बाएँ";
@@ -834,6 +853,7 @@
 "Documentaries" = "डॉक्यूमेंट्री";
 "Documentaries Worth Your Night" = "Documentaries Worth Your Night";
 "Documentary" = "डॉक्यूमेंट्री";
+"Documentary Series" = "डॉक्यूमेंट्री सीरीज़";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
 "Don't ask me again" = "मुझसे फिर न पूछें";
@@ -850,6 +870,7 @@
 "Drift monitor" = "ड्रिफ्ट मॉनिटर";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "ऐप के पीछे वॉलपेपर डालें। डिम स्लाइडर टेक्स्ट को पढ़ने योग्य बनाए रखता है।";
 "Drop shadow" = "ड्रॉप शैडो";
+"Drop-in chapters and long arcs for the post-dinner stretch." = "रात के खाने के बाद के लंबे वक्त के लिए, कभी भी शुरू किए जा सकने वाले चैप्टर और लंबे आर्क।";
 "Dropped" = "ड्रॉप हुए";
 "Dropped (decode / vo)" = "ड्रॉप हुए (डिकोड / vo)";
 "Dual subtitles" = "दोहरे सबटाइटल";
@@ -861,6 +882,8 @@
 "Dónde se emite" = "कहाँ देखें";
 "EU-hosted, fast cache check. Same read-only usage as the others." = "EU में होस्ट किया गया, तेज़ कैश जाँच। बाकी विकल्पों की तरह इसका इस्तेमाल भी सिर्फ़ रीड-ओनली है।";
 "Earth" = "पृथ्वी";
+"Easing into series" = "धीरे-धीरे सीरीज़ की ओर";
+"Easy half-hours and lighter dramas to ride out the afternoon." = "दोपहर आराम से बिताने के लिए हल्के-फुल्के आधे घंटे के शो और हल्के ड्रामा।";
 "Easy on the eyes" = "आँखों के लिए आरामदायक";
 "Edición terminada" = "संपादन पूरा करें";
 "Edit" = "संपादित करें";
@@ -924,6 +947,8 @@
 "Episode ordering" = "एपिसोड क्रम";
 "Episode {n}" = "एपिसोड {n}";
 "Episodes" = "एपिसोड";
+"Episodes worth the evening" = "शाम को देखने लायक एपिसोड";
+"Episodes you can drop into without losing the thread." = "ऐसे एपिसोड जिन्हें आप कहानी का सिरा खोए बिना कभी भी देख सकते हैं।";
 "Episodio" = "एपिसोड";
 "Episodio {n}" = "एपिसोड {n}";
 "Episodios" = "एपिसोड";
@@ -941,6 +966,7 @@
 "Estilo de los subtítulos" = "सबटाइटल स्टाइल";
 "Estimated from your local history. Connect Trakt or Simkl for the full picture." = "आपके स्थानीय इतिहास से अनुमानित। पूरी जानकारी के लिए Trakt या Simkl कनेक्ट करें।";
 "Estirar" = "फैलाएँ";
+"Evening on the couch" = "सोफ़े पर शाम";
 "Evens out quiet dialogue and loud action scenes with a dynamic normalizer." = "डायनेमिक नॉर्मलाइज़र से कम आवाज़ वाले संवादों और तेज़ एक्शन दृश्यों की आवाज़ को संतुलित करता है।";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "आज रात का मुख्य आकर्षण";
@@ -1016,6 +1042,7 @@
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "एनीमे एपिसोड पूरा करने पर आपकी AniList प्रगति अपडेट होती है। प्रगति केवल आगे बढ़ती है: यह आपकी मौजूदा गिनती कभी कम नहीं करता।";
 "Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have." = "एनीमे एपिसोड पूरा करने पर आपकी MyAnimeList प्रगति अपडेट होती है। प्रगति केवल आगे बढ़ती है: यह आपकी मौजूदा गिनती कभी कम नहीं करता।";
 "Finnish" = "फ़िनिश";
+"First-light picks" = "भोर की पसंद";
 "Fit" = "फ़िट करें";
 "Flat" = "फ़्लैट";
 "Flechas" = "तीर";
@@ -1039,6 +1066,7 @@
 "Found {count} streams for {title} in {seconds}s" = "{title} के लिए {seconds}s में {count} स्ट्रीम मिलीं";
 "Found {count} streams in {seconds}s." = "{seconds}s में {count} स्ट्रीम मिलीं।";
 "Foundation Years (90s)" = "शुरुआती दौर (90 का दशक)";
+"Frame grab failed" = "फ़्रेम कैप्चर विफल रहा";
 "Frame rate" = "फ़्रेम रेट";
 "France" = "फ़्रांस";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "मुफ़्त, दो मिनट का साइनअप। ट्रेंडिंग, अभी सिनेमाघरों में, शीर्ष रेटेड और हर स्ट्रीमिंग सेवा के कैटलॉग (Netflix, Disney+, Hulu, …) अनलॉक करता है। आपकी कुंजी इसी मशीन पर रहती है।";
@@ -1082,6 +1110,7 @@
 "Give more weight to titles in your languages and region in Discover." = "खोजें अनुभाग में अपनी भाषाओं और क्षेत्र के शीर्षकों को अधिक प्राथमिकता दें।";
 "Golden Globes" = "गोल्डन ग्लोब्स";
 "Golf" = "गोल्फ़";
+"Good Morning" = "सुप्रभात";
 "Goya Awards" = "Goya पुरस्कार";
 "Grand Prize" = "महापुरस्कार";
 "Gray" = "Gray";
@@ -1115,6 +1144,7 @@
 "HI" = "HI";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "HW डिकोड";
+"Half-hours, anthologies, and a few epics for the morning routine." = "सुबह की दिनचर्या के लिए आधे घंटे वाले कार्यक्रम, संकलन और कुछ महागाथाएँ।";
 "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido." = "टेक्स्ट के चारों ओर हल्की चमक। ज़्यादातर कॉन्टेंट पर सबसे साफ़ दिखता है।";
 "Harbor" = "Harbor";
 "Harbor Relay" = "Harbor Relay";
@@ -1142,6 +1172,7 @@
 "Hard stroke around each letter. High contrast." = "हर अक्षर के चारों ओर मोटी रेखा। अधिक कंट्रास्ट।";
 "Harvey Award Winners" = "हार्वे पुरस्कार विजेता";
 "Harvey Winner" = "हार्वे विजेता";
+"Headphone series" = "हेडफ़ोन सीरीज़";
 "Hearing impaired" = "श्रवण-बाधित";
 "Hebrew" = "हिब्रू";
 "Heists & Cons" = "डकैतियाँ और ठगी";
@@ -1194,6 +1225,7 @@
 "History" = "इतिहास";
 "History Buff" = "इतिहास प्रेमी";
 "Hockey" = "हॉकी";
+"Holdover Picks" = "पिछले दौर की चुनिंदा पेशकशें";
 "Holiday Warmth" = "छुट्टियों की गर्माहट";
 "Home" = "होम";
 "Home Rail Settings" = "होम रेल सेटिंग्स";
@@ -1222,6 +1254,7 @@
 "Hulu" = "Hulu";
 "Hungarian" = "हंगेरियन";
 "IMDb" = "IMDb";
+"Iconic Long-Runners" = "लंबे समय से चल रहे प्रतिष्ठित शीर्षक";
 "Idioma" = "भाषा";
 "Idioma de la app" = "ऐप की भाषा";
 "Idioma de los metadatos" = "मेटाडेटा भाषा";
@@ -1276,6 +1309,7 @@
 "Iniciar sesión" = "साइन इन करें";
 "Iniciar sesión con Stremio" = "Stremio से साइन इन करें";
 "Injected ad skip (experimental)" = "इंजेक्ट किए गए विज्ञापन को स्किप करना (प्रायोगिक)";
+"Insomnia Lineup" = "नींद न आने पर देखें";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "कोई Stremio ऐडऑन इंस्टॉल करें। उसके कैटलॉग यहाँ ब्राउज़ करने के लिए तैयार पोस्टर रेल्स के रूप में दिखेंगे।";
 "Instalar addon" = "ऐडऑन इंस्टॉल करें";
 "Install" = "इंस्टॉल करें";
@@ -1320,6 +1354,7 @@
 "Jump past a known injected ad on its own instead of showing the Skip button." = "स्किप बटन दिखाने के बजाय, पहचाने गए इंजेक्टेड विज्ञापन को अपने-आप स्किप करें।";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "ओपनिंग शुरू होते ही अपने-आप आगे बढ़ें। इंट्रो पर वापस जाने पर वह दोबारा चलेगा और फिर स्किप नहीं होगा। स्किप बटन ऊपर की सेटिंग का पालन करता है।";
 "Just added" = "हाल ही में जोड़ा गया";
+"K-Drama" = "K-ड्रामा";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
 "Keep Continue Watching private to each profile" = "देखना जारी रखें को हर प्रोफ़ाइल के लिए निजी रखें";
@@ -1351,6 +1386,8 @@
 "Larger" = "और बड़ा";
 "Last 90 days" = "Last 90 days";
 "Late Night" = "देर रात";
+"Late Show" = "देर रात का शो";
+"Late-night chapters" = "देर रात के अध्याय";
 "Laterales" = "किनारे";
 "Laugh Out Loud" = "खुलकर हँसें";
 "Leave" = "छोड़ें";
@@ -1374,6 +1411,7 @@
 "Libros" = "किताबें";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "छायाएँ उजली करता है, ताकि घुप अँधेरे दृश्य भी ठीक से देखे जा सकें।";
 "Light" = "हल्का";
+"Lights Out" = "बत्तियाँ बंद";
 "Likes" = "लाइक";
 "Limited Series & Miniseries" = "सीमित सीरीज़ और मिनीसीरीज़";
 "Limpiar filtros" = "फ़िल्टर हटाएँ";
@@ -1419,6 +1457,7 @@
 "Logo position" = "लोगो की स्थिति";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "लोगो";
+"Long-running comforts and new chapters worth pressing play on." = "लंबे समय से सुकून देने वाले शो और नए चैप्टर, जिन्हें चलाने का मन हो।";
 "Longest binge" = "सबसे लंबा बिंज";
 "Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "इस libmpv रनटाइम में सबटाइटल FPS उपलब्ध नहीं है।";
@@ -1428,6 +1467,7 @@
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
 "Loved by reviewers today" = "आज समीक्षकों की पसंद";
 "Lower it to let more of the artwork show through." = "इसे कम करें, ताकि आर्टवर्क ज़्यादा दिखाई दे।";
+"Lunch-break comedies and slow-cooker dramas, ready when you are." = "लंच-ब्रेक कॉमेडी और धीमी आँच पर पके ड्रामा, जब चाहें चलाएँ।";
 "Lyric sync" = "लिरिक सिंक";
 "Lyrics" = "बोल";
 "Lyrics earlier" = "लिरिक पहले";
@@ -1493,6 +1533,7 @@
 "Mexico" = "मेक्सिको";
 "Mezclar sonido envolvente a estéreo" = "सराउंड साउंड को स्टीरियो में मिक्स करें";
 "Mi biblioteca" = "मेरी लाइब्रेरी";
+"Midday Lineup" = "दोपहर का लाइनअप";
 "Mind Benders" = "दिमाग घुमा देने वाली फ़िल्में";
 "Minimum file size" = "न्यूनतम फ़ाइल आकार";
 "Minimum seeders" = "न्यूनतम सीडर";
@@ -1509,6 +1550,7 @@
 "More Movies" = "और फ़िल्में";
 "More Series" = "और सीरीज़";
 "More info" = "अधिक जानकारी";
+"Morning Lineup" = "सुबह का लाइनअप";
 "Most Popular" = "सबसे लोकप्रिय";
 "Most Popular on MAL" = "MAL पर सबसे लोकप्रिय";
 "Most-anticipated upcoming releases on Trakt" = "Trakt पर आने वाली सबसे बहुप्रतीक्षित रिलीज़";
@@ -1619,6 +1661,7 @@
 "Next review" = "अगली समीक्षा";
 "Next song" = "Next song";
 "Next:" = "अगला:";
+"Night Owl" = "निशाचर";
 "Night mode" = "नाइट मोड";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "नाइट मोड देर रात देखने के लिए तेज़ आवाज़ वाले हिस्सों की तीव्रता हल्की कर देता है। अगला ट्रैक लोड होने पर प्रोफ़ाइल लागू होती हैं और नॉर्मलाइज़र के साथ मिलकर काम करती हैं।";
 "Ninguna fuente coincide con tu filtro" = "आपके फ़िल्टर से मेल खाने वाला कोई स्रोत नहीं";
@@ -1771,6 +1814,7 @@
 "Onboarding" = "शुरुआती सेटअप";
 "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "सेव करने के बाद, हर पोस्टर पर IMDb, Rotten Tomatoes और Metacritic की रेटिंग लगाकर उसे फिर से रेंडर किया जाएगा।";
 "One list" = "एक सूची";
+"One more episode" = "एक और एपिसोड";
 "Ongoing" = "जारी";
 "Only 1 source after filtering" = "फ़िल्टर करने के बाद केवल 1 सोर्स";
 "Only 2 sources after filtering" = "फ़िल्टर करने के बाद केवल 2 सोर्स";
@@ -1800,6 +1844,7 @@
 "Open on Trakt" = "Trakt पर खोलें";
 "Open review source" = "समीक्षा का स्रोत खोलें";
 "Open settings" = "सेटिंग्स खोलें";
+"Open the Day" = "दिन खोलें";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "शुरू होने पर यह प्रोफ़ाइल खोलें। समय पर आने वाले संकेत बाद में भी दिख सकते हैं। PIN वाली प्रोफ़ाइल डिफ़ॉल्ट नहीं बन सकती।";
 "Open {name}" = "{name} खोलें";
 "OpenRouter API key (sk-or-...)" = "OpenRouter API कुंजी (sk-or-...)";
@@ -1834,6 +1879,7 @@
 "PBS" = "PBS";
 "PIN" = "PIN";
 "PINs didn't match. Start over." = "PIN मेल नहीं खाए। फिर से शुरू करें।";
+"PM Picks" = "PM की पसंद";
 "Page" = "पेज";
 "Page base." = "पेज का आधार।";
 "Page turn sound" = "Page turn sound";
@@ -1846,6 +1892,7 @@
 "Parte superior de la pantalla" = "स्क्रीन के ऊपर";
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "पासवर्ड";
+"Past Midnight" = "आधी रात के बाद";
 "Paste JSON" = "JSON पेस्ट करें";
 "Paste a wss:// URL that a friend or your community shared with you." = "आपके किसी दोस्त या समुदाय द्वारा साझा किया गया wss:// URL पेस्ट करें।";
 "Paste invite link" = "आमंत्रण लिंक पेस्ट करें";
@@ -1877,6 +1924,7 @@
 "Pick a profile to continue." = "जारी रखने के लिए प्रोफ़ाइल चुनें।";
 "Pick a random title" = "कोई रैंडम शीर्षक चुनें";
 "Pick a source" = "स्रोत चुनें";
+"Pick up an episode" = "एपिसोड वहीं से जारी रखें";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "अधूरे देखे एपिसोड और फ़िल्में सेव की गई जगह से शुरू करें। 80% से ज़्यादा देखी गई कोई भी चीज़ हमेशा शुरू से चलेगी। हमेशा शुरुआत से चलाने के लिए इसे बंद करें, जो शो दोबारा देखते समय उपयोगी है।";
 "Pick up where you left off" = "वहीं से जारी रखें जहाँ आपने छोड़ा था";
 "Pick what you actually use" = "वही चुनें जिसका आप सच में इस्तेमाल करते हैं";
@@ -1893,6 +1941,7 @@
 "Picture in Picture" = "पिक्चर इन पिक्चर";
 "Picture quality" = "चित्र गुणवत्ता";
 "Pill" = "Pill";
+"Pilots that pull you in and finales that earn the season." = "ऐसे पायलट एपिसोड जो आपको बाँध लें और ऐसे फ़िनाले जो सीज़न को सार्थक बनाएँ।";
 "Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "जिन कैटलॉग को ऊपर रखना चाहते हैं उन्हें पिन करें, जिन्हें कभी नहीं खोलते उन्हें छिपाएँ, और अपनी पिन की गई रेल्स का क्रम बदलें। आपका ब्राउज़ व्यू तुरंत अपडेट हो जाएगा।";
 "Pin to top" = "सबसे ऊपर पिन करें";
 "Pinned" = "पिन किया गया";
@@ -1959,7 +2008,10 @@
 "Preguntar si reanudar o empezar de nuevo" = "वहीं से चलाने या फिर से शुरू करने के लिए पूछें";
 "Premiered This Month" = "इस महीने प्रीमियर हुए";
 "Premiumize API key" = "Premiumize API कुंजी";
+"Press Play" = "प्ले दबाएँ";
 "Press play on something. It'll show up here once you start watching." = "कुछ चलाएँ। देखना शुरू करते ही वह यहाँ दिखाई देगा।";
+"Prestige Drama" = "उच्चस्तरीय ड्रामा";
+"Prestige drama, weekly chapters, and series worth disappearing into." = "उच्चस्तरीय ड्रामा, साप्ताहिक अध्याय और ऐसी सीरीज़ जिनमें आप खो जाएँ।";
 "Preview" = "प्रीव्यू";
 "Previous" = "पिछला";
 "Previous chapter" = "पिछला अध्याय";
@@ -1969,6 +2021,7 @@
 "Previous review" = "पिछली समीक्षा";
 "Previous song" = "Previous song";
 "Primary copy." = "मुख्य टेक्स्ट।";
+"Prime Time" = "प्राइम टाइम";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "पहले एक सबटाइटल ट्रैक चुनें।";
 "Primetime Emmys" = "प्राइमटाइम एमी पुरस्कार";
@@ -1996,6 +2049,7 @@
 "Public" = "सार्वजनिक";
 "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed." = "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed.";
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
+"Pull-you-under stories for the quietest part of the day." = "दिन के सबसे शांत समय के लिए आपको अपने भीतर खींच लेने वाली कहानियाँ।";
 "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account." = "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account.";
 "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "अधिक चटख रंग";
@@ -2014,6 +2068,8 @@
 "Queue" = "क्यू";
 "Quick Watches Under 90" = "90 मिनट से कम में झटपट देखें";
 "Quiet" = "शांत";
+"Quiet Hours" = "शांत समय";
+"Quiet dramas, sharp thrillers, and series you save for yourself." = "शांत ड्रामा, धारदार थ्रिलर और वे सीरीज़ जिन्हें आप सिर्फ़ अपने लिए सहेजते हैं।";
 "Quietly great, {decade}" = "कम चर्चित, मगर शानदार, {decade}";
 "Quitar" = "हटाएँ";
 "Quitar de Seguir viendo" = "देखना जारी रखें से हटाएँ";
@@ -2239,6 +2295,7 @@
 "Save track" = "ट्रैक सहेजें";
 "Saved" = "सेव किया गया";
 "Saved app data" = "Saved app data";
+"Saved for Now" = "अभी के लिए सेव किया गया";
 "Saved stream filters" = "सेव किए गए स्ट्रीम फ़िल्टर";
 "Saving" = "सेव हो रहा है";
 "Say hi." = "नमस्ते कहें।";
@@ -2248,6 +2305,7 @@
 "Scores" = "स्कोर";
 "Screen Actors Guild Awards" = "स्क्रीन एक्टर्स गिल्ड अवॉर्ड्स";
 "Screener" = "Screener";
+"Screenshot" = "स्क्रीनशॉट";
 "Scrobble to SIMKL" = "SIMKL पर स्क्रॉबल करें";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "Se han añadido todos los idiomas." = "सभी भाषाएँ जोड़ दी गई हैं।";
@@ -2307,11 +2365,17 @@
 "Series de comedia" = "कॉमेडी सीरीज़";
 "Series de crimen" = "अपराध सीरीज़";
 "Series en tendencia" = "ट्रेंडिंग सीरीज़";
+"Series for the part of the day that runs on coffee and snacks." = "दिन के उस हिस्से के लिए सीरीज़, जो कॉफ़ी और स्नैक्स के सहारे चलता है।";
 "Series for the part of the day you actually look forward to." = "दिन के उस हिस्से के लिए सीरीज़, जिसका आप सच में इंतज़ार करते हैं।";
+"Series for the part of the night that won't let you sleep." = "रात के उस हिस्से के लिए सीरीज़, जो आपको सोने नहीं देता।";
 "Series mejor valoradas" = "सर्वाधिक रेटिंग वाली सीरीज़";
 "Series on {name}" = "{name} पर सीरीज़";
 "Series para esa parte del día que de verdad esperas con ganas." = "दिन के उस हिस्से के लिए सीरीज़, जिसका आप सच में इंतज़ार करते हैं।";
 "Series populares" = "लोकप्रिय सीरीज़";
+"Series to disappear into" = "जिनमें खो जाएँ, ऐसी सीरीज़";
+"Series to ease into while the day is still quiet." = "दिन की शांति में आराम से शुरू करने के लिए सीरीज़।";
+"Series with mileage" = "लंबा सफ़र तय कर चुकी सीरीज़";
+"Series with the patience to match your late-night hours." = "देर रात तक आपका साथ निभाने वाली सीरीज़।";
 "Serif" = "सेरिफ़";
 "Server URL" = "सर्वर URL";
 "Server address" = "सर्वर पता";
@@ -2340,6 +2404,7 @@
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
+"Sharp comedies, sunny worlds, and the occasional binge bait." = "चुटीली कॉमेडी, खुशनुमा दुनिया और कभी-कभार लगातार देखने को लुभाने वाली सामग्री।";
 "Sharpen" = "शार्प करें";
 "Sharper lines and a little more pop." = "ज़्यादा शार्प लाइनें और थोड़ी ज़्यादा स्पष्टता।";
 "Short of the Year" = "वर्ष की सर्वश्रेष्ठ लघु फ़िल्म";
@@ -2394,6 +2459,7 @@
 "Shown at the same time as your main subtitle." = "आपके मुख्य सबटाइटल के साथ ही दिखाया जाता है।";
 "Shows" = "शो";
 "Shows the episode synopsis on the cards. Turn it off to hide it." = "कार्ड पर एपिसोड का सारांश दिखाता है। इसे छिपाने के लिए बंद कर दें।";
+"Showtime" = "Showtime";
 "Shudder" = "Shudder";
 "Shuffle" = "शफ़ल करें";
 "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
@@ -2444,7 +2510,10 @@
 "Slightly lighter than background." = "बैकग्राउंड से थोड़ा हल्का।";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "धीमे ऐडऑन और P2P स्रोतों को शुरू होने में अक्सर 10 सेकंड से ज़्यादा लगते हैं। अगर स्ट्रीम को पूरा मौका मिलने से पहले ही छोड़ा जा रहा हो, तो इसे बढ़ाएँ।";
 "Slow or unstable connection" = "धीमा या अस्थिर कनेक्शन";
+"Slow, strange, and absorbing. Best with the lights down low." = "धीमा, अजीब और मन को बाँध लेने वाला। कम रोशनी में सबसे अच्छा।";
 "Slow-Burn Dramas" = "धीरे-धीरे असर करने वाले ड्रामा";
+"Slow-burn starts" = "धीरे-धीरे असर करने वाली शुरुआतें";
+"Slow-burn worlds and bright chapters worth opening with coffee." = "धीरे-धीरे खुलती दुनियाएँ और रोशन अध्याय, जिन्हें कॉफ़ी के साथ शुरू करना अच्छा लगे।";
 "Smaller" = "और छोटा";
 "Smooth on weak PCs" = "कम क्षमता वाले PC पर भी स्मूद";
 "Sobre la línea principal" = "मुख्य पंक्ति के ऊपर";
@@ -2522,6 +2591,7 @@
 "Stop showing as second subtitle" = "दूसरे सबटाइटल के रूप में दिखाना बंद करें";
 "Stopped with: {error}" = "इस त्रुटि के साथ रुका: {error}";
 "Storage overview" = "स्टोरेज की जानकारी";
+"Stories that reward your attention before the day gets loud." = "दिन का शोर बढ़ने से पहले ध्यान देने लायक कहानियाँ।";
 "Stream" = "स्ट्रीम";
 "Stream priority" = "स्ट्रीम प्राथमिकता";
 "Stream quality in player" = "प्लेयर में स्ट्रीम क्वालिटी";
@@ -2570,6 +2640,7 @@
 "Subtítulos duales" = "दोहरे सबटाइटल";
 "Subtítulos en tu idioma" = "आपकी भाषा में सबटाइटल";
 "Summer Blockbusters" = "गर्मियों की ब्लॉकबस्टर फ़िल्में";
+"Sundown" = "सूर्यास्त";
 "Superficie" = "सतह";
 "Superficies" = "सरफ़ेस";
 "Supernatural" = "अलौकिक";
@@ -2657,6 +2728,7 @@
 "The CW" = "The CW";
 "The Explorer" = "The Explorer";
 "The Film Buff" = "The Film Buff";
+"The Long Lunch" = "द लॉन्ग लंच";
 "The Roku Channel" = "The Roku Channel";
 "The Series Slayer" = "The Series Slayer";
 "The Well-Rounded" = "The Well-Rounded";
@@ -2678,6 +2750,7 @@
 "The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "पिकर हर स्ट्रीम पर रिज़ॉल्यूशन, HDR प्रकार, कोडेक और ऑडियो फ़ॉर्मैट का टैग लगाता है। बंद करने पर ये सभी छिप जाते हैं।";
 "The quick brown fox jumps over the lazy dog" = "तेज़ भूरी लोमड़ी आलसी कुत्ते के ऊपर से कूदती है";
 "The ratings row on a title's detail page, next to runtime and genre." = "किसी टाइटल के विवरण पेज पर अवधि और शैली के पास दिखाई देने वाली रेटिंग पंक्ति।";
+"The series that make the rest of the night disappear." = "वे सीरीज़ जो बाकी पूरी रात का पता ही नहीं चलने देतीं।";
 "The server answered with status {status}. Is that a streaming server?" = "सर्वर ने {status} स्टेटस के साथ जवाब दिया। क्या यह स्ट्रीमिंग सर्वर है?";
 "The server could not load that repository" = "सर्वर उस रिपॉज़िटरी को लोड नहीं कर सका";
 "The server responded in {ms} ms." = "सर्वर ने {ms} मिलीसेकंड में जवाब दिया।";
@@ -2727,6 +2800,7 @@
 "Todas las fuentes" = "सभी स्रोत";
 "Todas las listas" = "सभी प्लेलिस्ट";
 "Today" = "आज";
+"Today's openers" = "आज के शुरुआती मुकाबले";
 "Todo" = "सभी";
 "Todo lo que ofrecen tus complementos, mostrado como pósteres. Desplázate, busca o filtra hasta encontrar lo que quieras." = "आपके ऐडऑन जो कुछ भी पेश करते हैं, वह पोस्टर के रूप में दिखाया जाता है। जो चाहिए, उस तक पहुँचने के लिए स्क्रॉल करें, खोजें या फ़िल्टर करें।";
 "Todos" = "सभी";
@@ -2735,7 +2809,11 @@
 "Todos los géneros" = "सभी शैलियाँ";
 "Todos los idiomas" = "सभी भाषाएँ";
 "Tonight" = "आज रात";
+"Tonight's Slate" = "आज रात की पेशकश";
+"Tonight's binge bait" = "आज रात लगातार देखने के लिए";
+"Tonight's lineup" = "आज रात की सूची";
 "Tonight's main event" = "आज रात का मुख्य आकर्षण";
+"Tonight's marquee" = "आज रात की खास पेशकश";
 "Top" = "शीर्ष";
 "Top 10 Comedy" = "शीर्ष 10 कॉमेडी";
 "Top 10 Drama" = "शीर्ष 10 ड्रामा";
@@ -2955,11 +3033,14 @@
 "Weekend watchlist" = "वीकेंड वॉचलिस्ट";
 "Welcome to Harbor" = "Harbor में आपका स्वागत है";
 "Western" = "वेस्टर्न";
+"What everyone has been quietly binging this week." = "इस हफ़्ते हर कोई चुपके-चुपके क्या देखे जा रहा है।";
 "What everyone is reading" = "हर कोई क्या पढ़ रहा है";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "हीरो सेक्शन में क्या दिखेगा। ट्रेंडिंग Harbor की नई टॉप लिस्ट है, जो दिन भर रीफ़्रेश होती रहती है। क्लासिक आपकी अपनी होम पंक्तियों का उपयोग करता है।";
 "What is this?" = "यह क्या है?";
 "What people are watching" = "लोग क्या देख रहे हैं";
+"What to watch tonight" = "आज रात क्या देखें";
 "What you watched" = "आपने क्या देखा";
+"What's hot this week, what's prestige forever, what's worth the hours." = "इस हफ़्ते क्या लोकप्रिय है, क्या हमेशा प्रतिष्ठित रहेगा और किस पर समय देना सार्थक है।";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "जब Esc दबाने से प्लेयर बंद होने वाला हो, तो पहले तुरंत पुष्टि करने का विकल्प दिखाएँ। Esc दबाने पर हमेशा बाहर निकलने के लिए उस प्रॉम्प्ट में \"फिर न पूछें\" पर टिक कर सकते हैं।";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "जब किसी रिलीज़ में कई ऑडियो ट्रैक हों, तो Harbor इस सूची से पहला मेल चुनता है।";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "एपिसोड खत्म होने पर अगला एपिसोड अपने-आप शुरू करें। बंद होने पर एपिसोड पूरा होकर रुक जाता है।";
@@ -2980,11 +3061,17 @@
 "Which order" = "किस क्रम में";
 "Which subtitle Harbor lands on when more than one is available." = "एक से ज़्यादा उपलब्ध होने पर Harbor कौन-सा सबटाइटल चुनता है।";
 "Which top corner of the poster the ribbon folds over." = "पोस्टर के ऊपर किस कोने पर रिबन मुड़े।";
+"While the world's asleep" = "जब दुनिया सो रही हो";
 "Who's watching" = "कौन देख रहा है";
 "Who's watching?" = "कौन देख रहा है?";
 "Whodunit" = "मर्डर मिस्ट्री";
 "Wide search · still empty" = "व्यापक खोज · अब भी खाली";
+"Witching Hour" = "जादू-टोने की घड़ी";
 "Works without a key at low volume; add a key for higher quotas." = "कम उपयोग पर बिना कुंजी के काम करता है; ज़्यादा कोटा पाने के लिए कुंजी जोड़ें।";
+"Worlds to step into before the inbox catches up." = "इनबॉक्स आपको आ घेरे, उससे पहले कदम रखने लायक दुनियाएँ।";
+"Worlds wide enough for an hour or a whole free afternoon." = "एक घंटे या पूरी खाली दोपहर के लिए पर्याप्त विशाल दुनियाएँ।";
+"Worth catching up on" = "जो छूट गया, उसे देखना सार्थक है";
+"Worth the lost hour" = "एक घंटा गँवाने लायक";
 "Writer" = "लेखक";
 "Wrong PIN" = "गलत PIN";
 "Wrong username or password" = "गलत यूज़रनेम या पासवर्ड";

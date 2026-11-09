@@ -53,6 +53,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "AI検索に失敗しました。";
 "AI search failed. Tap to retry." = "AI検索に失敗しました。タップして再試行してください。";
+"AM Picks" = "朝のおすすめ";
 "AMC" = "AMC";
 "AMC+" = "AMC+";
 "API key" = "APIキー";
@@ -156,6 +157,10 @@
 "After Dark" = "深夜に観たい作品";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "スライドをしばらく表示すると、注目作品の予告編がバックグラウンドでミュート再生されます。通信量が増加します。";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "操作なしで複数のエピソードが連続自動再生されたら、一時停止して視聴を続けているか確認します。初期設定ではオフです。";
+"After the news" = "ニュースのあとに";
+"After-hours picks" = "夜更けのおすすめ";
+"Afternoon Picks" = "午後のおすすめ";
+"Afternoon Roll" = "午後のラインナップ";
 "Age ratings and content notes when playback starts." = "再生開始時に年齢区分と内容に関する注意を表示します。";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "目にやさしい";
@@ -370,6 +375,7 @@
 "Best Suspense" = "最優秀サスペンス";
 "Best VA Performance" = "最優秀声優パフォーマンス";
 "Best of the {decade}" = "{decade}年代のベスト";
+"Between meetings" = "会議の合間に";
 "Beyond the kids' shelf" = "子ども向けだけじゃない";
 "Biblioteca" = "ライブラリ";
 "Biblioteca de Manga" = "Manga library";
@@ -405,6 +411,7 @@
 "Botón cuadrado de reproducción" = "四角い再生ボタン";
 "Box color" = "ボックスの色";
 "Brazil" = "ブラジル";
+"Bright-side series" = "明るい気分になれる作品";
 "Brighten dark movies" = "暗い映画を明るく";
 "Brightness" = "明るさ";
 "Brillo" = "明るさ";
@@ -415,6 +422,7 @@
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "ウェルカムガイドをやり直さずに、閉じたアプリ内のヒントを再表示します。";
 "BritBox" = "BritBox";
 "British Independent Film Awards" = "英国インディペンデント映画賞";
+"British Television" = "英国テレビ作品";
 "Browse" = "一覧";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "アドオンを見る";
@@ -482,6 +490,7 @@
 "Cards, panels." = "カード、パネル。";
 "Cargar archivo" = "ファイルを読み込む";
 "Cargar más" = "さらに読み込む";
+"Carry it through the day" = "一日のお供に";
 "Cast" = "キャスト";
 "Cast to TV or speaker" = "テレビやスピーカーにキャスト";
 "Catalog" = "カタログ";
@@ -567,6 +576,7 @@
 "Clásica" = "クラシック";
 "Code expired. Try again." = "Code expired. Try again.";
 "Codec" = "コーデック";
+"Coffee-and-couch" = "コーヒーとソファ";
 "Colecciones" = "コレクション";
 "Collections" = "コレクション";
 "Color de la barra" = "バーの色";
@@ -596,6 +606,7 @@
 "Community sync server" = "コミュニティ同期サーバー";
 "Compact" = "コンパクト";
 "Compacta" = "コンパクト";
+"Companion series for whatever the afternoon throws at you." = "午後に何があっても寄り添ってくれる作品。";
 "Compartir" = "共有";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
@@ -666,6 +677,7 @@
 "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "角の丸み";
 "Correo y contraseña" = "Email and password";
+"Couch hours" = "ソファで過ごす時間";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not cast to {deviceName}." = "{deviceName}にキャストできませんでした。";
@@ -720,6 +732,7 @@
 "Create your first filter with the stream quality you prefer." = "好みのストリーム画質で最初のフィルターを作成します。";
 "Create your first list" = "最初のリストを作成";
 "Crime" = "犯罪";
+"Crime & Mystery" = "犯罪＆ミステリー";
 "Crime Series" = "犯罪シリーズ";
 "Crisp (anime & cartoons)" = "くっきり（アニメ・カートゥーン）";
 "Critically Acclaimed" = "批評家絶賛";
@@ -728,6 +741,7 @@
 "Critics' Choice Awards" = "クリティクス・チョイス・アワード";
 "Critics' Pick" = "批評家のおすすめ";
 "Critics' Picks" = "批評家のおすすめ";
+"Crowd-pleasers, prestige picks, and the kind of series people text about." = "みんなで楽しめる人気作、上質な話題作、思わず誰かに語りたくなる作品。";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
 "Crunchyroll Anime Awards" = "Crunchyroll Anime Awards";
@@ -758,9 +772,13 @@
 "Danish" = "デンマーク語";
 "Danish Cinema" = "デンマーク映画";
 "Dark" = "ダーク";
+"Dark, immersive, and binge-worthy when the house is quiet." = "暗く、没入感たっぷりで、静かな夜に一気見したくなる作品。";
 "Date" = "日付";
 "Date Night" = "デートの夜に";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
+"Daybreak" = "夜明け";
+"Daylight Watching" = "明るいうちに観たい";
+"Daytime watching" = "昼下がりに観たい作品";
 "De dónde viene tu video" = "動画の配信元";
 "Debrid services" = "Debridサービス";
 "Debrid-Link API key" = "Debrid-Link APIキー";
@@ -778,6 +796,7 @@
 "Delete this profile?" = "このプロフィールを削除しますか？";
 "Delete {name}? Saved filters cannot be brought back." = "{name}を削除しますか？保存済みフィルターは復元できません。";
 "Dense" = "Dense";
+"Dense plots and rich worlds for when sleep is not happening." = "眠れない夜にぴったりの、緻密な物語と豊かな世界。";
 "Deporte" = "Sport";
 "Derecha" = "右揃え";
 "Derecha a izquierda" = "右から左";
@@ -834,6 +853,7 @@
 "Documentaries" = "ドキュメンタリー";
 "Documentaries Worth Your Night" = "Documentaries Worth Your Night";
 "Documentary" = "ドキュメンタリー";
+"Documentary Series" = "ドキュメンタリーシリーズ";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
 "Don't ask me again" = "今後は確認しない";
@@ -850,6 +870,7 @@
 "Drift monitor" = "同期ずれの監視";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "アプリの背景に壁紙を設定します。暗さスライダーで文字の読みやすさを保てます。";
 "Drop shadow" = "ドロップシャドウ";
+"Drop-in chapters and long arcs for the post-dinner stretch." = "夕食後に楽しむ、気軽なエピソードと長編ストーリー。";
 "Dropped" = "中断";
 "Dropped (decode / vo)" = "ドロップ（デコード / vo）";
 "Dual subtitles" = "2言語字幕";
@@ -861,6 +882,8 @@
 "Dónde se emite" = "視聴方法";
 "EU-hosted, fast cache check. Same read-only usage as the others." = "EUでホストされ、キャッシュを高速に確認します。他と同じく読み取り専用です。";
 "Earth" = "地球";
+"Easing into series" = "作品をゆっくり楽しむ";
+"Easy half-hours and lighter dramas to ride out the afternoon." = "気軽な30分作品と軽めのドラマで、午後をのんびり。";
 "Easy on the eyes" = "目にやさしい";
 "Edición terminada" = "編集を完了";
 "Edit" = "編集";
@@ -924,6 +947,8 @@
 "Episode ordering" = "エピソードの順序";
 "Episode {n}" = "エピソード{n}";
 "Episodes" = "エピソード";
+"Episodes worth the evening" = "夜に観る価値のあるエピソード";
+"Episodes you can drop into without losing the thread." = "途中からでも流れを見失わず楽しめるエピソード。";
 "Episodio" = "エピソード";
 "Episodio {n}" = "エピソード{n}";
 "Episodios" = "エピソード";
@@ -941,6 +966,7 @@
 "Estilo de los subtítulos" = "字幕スタイル";
 "Estimated from your local history. Connect Trakt or Simkl for the full picture." = "ローカル履歴に基づく推定値です。全体を確認するにはTraktまたはSimklに接続してください。";
 "Estirar" = "引き伸ばす";
+"Evening on the couch" = "ソファで過ごす夜";
 "Evens out quiet dialogue and loud action scenes with a dynamic normalizer." = "ダイナミックノーマライザーで、小さな会話音と大きなアクションシーンの音量差を抑えます。";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "今夜のメイン";
@@ -1016,6 +1042,7 @@
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "アニメのエピソードを見終えると、AniListの進捗が更新されます。進捗は増える方向にのみ同期され、すでに登録されている話数が減ることはありません。";
 "Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have." = "アニメのエピソードを最後まで見ると、MyAnimeListの進捗が更新されます。進捗は増えるだけで、現在の話数が減ることはありません。";
 "Finnish" = "フィンランド語";
+"First-light picks" = "朝いちのおすすめ";
 "Fit" = "全体を表示";
 "Flat" = "フラット";
 "Flechas" = "矢印キー";
@@ -1039,6 +1066,7 @@
 "Found {count} streams for {title} in {seconds}s" = "{title}のストリームを{seconds}秒で{count}件見つけました";
 "Found {count} streams in {seconds}s." = "{seconds}秒で{count}件のストリームを見つけました。";
 "Foundation Years (90s)" = "黎明期（90年代）";
+"Frame grab failed" = "フレームの取得に失敗しました";
 "Frame rate" = "フレームレート";
 "France" = "フランス";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "無料で、登録は2分ほどです。トレンド、劇場公開中、高評価、配信サービス別のカタログ（Netflix、Disney+、Hulu、…）を利用できます。キーはこのデバイスにのみ保存されます。";
@@ -1082,6 +1110,7 @@
 "Give more weight to titles in your languages and region in Discover." = "「見つける」で、選択した言語や地域に合う作品を優先します。";
 "Golden Globes" = "ゴールデングローブ賞";
 "Golf" = "ゴルフ";
+"Good Morning" = "おはようございます";
 "Goya Awards" = "ゴヤ賞";
 "Grand Prize" = "大賞";
 "Gray" = "Gray";
@@ -1115,6 +1144,7 @@
 "HI" = "HI";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "ハードウェアデコード";
+"Half-hours, anthologies, and a few epics for the morning routine." = "朝のひとときにぴったりな30分作品、アンソロジー、大作も少し。";
 "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido." = "テキストの周囲に柔らかな光彩を付けます。ほとんどの映像ですっきり表示されます。";
 "Harbor" = "Harbor";
 "Harbor Relay" = "Harbor Relay";
@@ -1142,6 +1172,7 @@
 "Hard stroke around each letter. High contrast." = "各文字をくっきり縁取ります。高コントラストです。";
 "Harvey Award Winners" = "ハーベイ賞受賞作";
 "Harvey Winner" = "ハーベイ賞受賞";
+"Headphone series" = "ヘッドホンで楽しむシリーズ";
 "Hearing impaired" = "聴覚障害者向け";
 "Hebrew" = "ヘブライ語";
 "Heists & Cons" = "強盗＆詐欺";
@@ -1194,6 +1225,7 @@
 "History" = "歴史";
 "History Buff" = "歴史好きにおすすめ";
 "Hockey" = "ホッケー";
+"Holdover Picks" = "引き続き楽しむおすすめ";
 "Holiday Warmth" = "心温まるホリデー";
 "Home" = "ホーム";
 "Home Rail Settings" = "ホームの行設定";
@@ -1222,6 +1254,7 @@
 "Hulu" = "Hulu";
 "Hungarian" = "ハンガリー語";
 "IMDb" = "IMDb";
+"Iconic Long-Runners" = "名作長寿シリーズ";
 "Idioma" = "言語";
 "Idioma de la app" = "アプリの言語";
 "Idioma de los metadatos" = "メタデータの言語";
@@ -1276,6 +1309,7 @@
 "Iniciar sesión" = "サインイン";
 "Iniciar sesión con Stremio" = "Stremioでサインイン";
 "Injected ad skip (experimental)" = "挿入広告のスキップ（試験運用）";
+"Insomnia Lineup" = "眠れない夜のラインナップ";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Stremioアドオンをインストールすると、そのカタログがポスターの一覧としてここに表示され、すぐに閲覧できます。";
 "Instalar addon" = "アドオンをインストール";
 "Install" = "インストール";
@@ -1320,6 +1354,7 @@
 "Jump past a known injected ad on its own instead of showing the Skip button." = "既知の挿入広告では「スキップ」ボタンを表示せず、自動的に広告の末尾まで移動します。";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "オープニングが始まると自動でスキップします。イントロに巻き戻した場合は再度スキップせず再生します。スキップボタンは上の設定に従います。";
 "Just added" = "新着";
+"K-Drama" = "韓国ドラマ";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
 "Keep Continue Watching private to each profile" = "「視聴を続ける」をプロフィールごとに非公開";
@@ -1351,6 +1386,8 @@
 "Larger" = "大きく";
 "Last 90 days" = "Last 90 days";
 "Late Night" = "深夜";
+"Late Show" = "深夜上映";
+"Late-night chapters" = "深夜のチャプター";
 "Laterales" = "見開き";
 "Laugh Out Loud" = "抱腹絶倒";
 "Leave" = "退出";
@@ -1374,6 +1411,7 @@
 "Libros" = "書籍";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "シャドウを持ち上げ、真っ暗なシーンも見やすくします。";
 "Light" = "ライト";
+"Lights Out" = "消灯後";
 "Likes" = "いいね";
 "Limited Series & Miniseries" = "リミテッドシリーズ＆ミニシリーズ";
 "Limpiar filtros" = "フィルターをクリア";
@@ -1419,6 +1457,7 @@
 "Logo position" = "ロゴの位置";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "ロゴ";
+"Long-running comforts and new chapters worth pressing play on." = "長く愛される定番と、今すぐ再生したい最新エピソード。";
 "Longest binge" = "最長連続視聴";
 "Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "このlibmpvランタイムでは字幕FPSを使用できません。";
@@ -1428,6 +1467,7 @@
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
 "Loved by reviewers today" = "本日、批評家に高評価";
 "Lower it to let more of the artwork show through." = "値を下げると、アートワークがより透けて見えます。";
+"Lunch-break comedies and slow-cooker dramas, ready when you are." = "昼休み向けのコメディと、じっくり楽しむドラマ。いつでもどうぞ。";
 "Lyric sync" = "歌詞の同期";
 "Lyrics" = "歌詞";
 "Lyrics earlier" = "歌詞を早める";
@@ -1493,6 +1533,7 @@
 "Mexico" = "メキシコ";
 "Mezclar sonido envolvente a estéreo" = "サラウンド音声をステレオにダウンミックス";
 "Mi biblioteca" = "マイライブラリ";
+"Midday Lineup" = "お昼のラインナップ";
 "Mind Benders" = "予測不能な作品";
 "Minimum file size" = "最小ファイルサイズ";
 "Minimum seeders" = "最小シーダー数";
@@ -1509,6 +1550,7 @@
 "More Movies" = "その他の映画";
 "More Series" = "その他のシリーズ";
 "More info" = "詳細";
+"Morning Lineup" = "朝のラインナップ";
 "Most Popular" = "人気トップ";
 "Most Popular on MAL" = "MALで最も人気";
 "Most-anticipated upcoming releases on Trakt" = "Traktで最も期待されている近日公開作品";
@@ -1619,6 +1661,7 @@
 "Next review" = "次のレビュー";
 "Next song" = "Next song";
 "Next:" = "次:";
+"Night Owl" = "夜ふかし派";
 "Night mode" = "ナイトモード";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "ナイトモードでは、深夜でも視聴しやすいよう大きな音を穏やかに圧縮します。プロファイルは次のトラックの読み込み時に適用され、ノーマライザーと併用されます。";
 "Ninguna fuente coincide con tu filtro" = "フィルターに一致するソースはありません";
@@ -1771,6 +1814,7 @@
 "Onboarding" = "初期ガイド";
 "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "保存すると、すべてのポスターが再描画され、IMDb、Rotten Tomatoes、Metacriticの評価が表示されます。";
 "One list" = "1件のリスト";
+"One more episode" = "もう1話だけ";
 "Ongoing" = "連載中";
 "Only 1 source after filtering" = "絞り込み後のソースは1件のみ";
 "Only 2 sources after filtering" = "絞り込み後のソースは2件のみ";
@@ -1800,6 +1844,7 @@
 "Open on Trakt" = "Traktで開く";
 "Open review source" = "レビュー元を開く";
 "Open settings" = "設定を開く";
+"Open the Day" = "一日を始めよう";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "起動時にこのプロフィールを開きます。その後も時間による確認は表示される場合があります。PIN 付きのプロフィールは既定にできません。";
 "Open {name}" = "{name}を開く";
 "OpenRouter API key (sk-or-...)" = "OpenRouter APIキー（sk-or-...）";
@@ -1834,6 +1879,7 @@
 "PBS" = "PBS";
 "PIN" = "PIN";
 "PINs didn't match. Start over." = "PINが一致しません。最初からやり直してください。";
+"PM Picks" = "午後のおすすめ";
 "Page" = "ページ";
 "Page base." = "ページのベース。";
 "Page turn sound" = "Page turn sound";
@@ -1846,6 +1892,7 @@
 "Parte superior de la pantalla" = "画面上部";
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "パスワード";
+"Past Midnight" = "真夜中過ぎ";
 "Paste JSON" = "JSONを貼り付け";
 "Paste a wss:// URL that a friend or your community shared with you." = "友達やコミュニティから共有された wss:// URL を貼り付けてください。";
 "Paste invite link" = "招待リンクを貼り付け";
@@ -1877,6 +1924,7 @@
 "Pick a profile to continue." = "続行するプロフィールを選択してください。";
 "Pick a random title" = "ランダムに作品を選ぶ";
 "Pick a source" = "ソースを選択";
+"Pick up an episode" = "エピソードを再生";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "途中まで視聴したエピソードや映画を、保存した位置から再開します。80%を超えて視聴した作品は常に最初から再生されます。番組を見直す場合など、常に最初から再生したいときはオフにしてください。";
 "Pick up where you left off" = "続きから見る";
 "Pick what you actually use" = "実際に利用するサービスを選択";
@@ -1893,6 +1941,7 @@
 "Picture in Picture" = "ピクチャ・イン・ピクチャ";
 "Picture quality" = "画質";
 "Pill" = "Pill";
+"Pilots that pull you in and finales that earn the season." = "一気に引き込む第1話と、シーズンを見届けてよかったと思える最終話。";
 "Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "上部に表示したいカタログを固定し、使わないものを非表示にして、固定したレールを並べ替えられます。ブラウズ画面にはすぐに反映されます。";
 "Pin to top" = "一番上に固定";
 "Pinned" = "ピン留め済み";
@@ -1959,7 +2008,10 @@
 "Preguntar si reanudar o empezar de nuevo" = "続きから再生するか最初から再生するか確認";
 "Premiered This Month" = "今月の新作";
 "Premiumize API key" = "Premiumize APIキー";
+"Press Play" = "再生";
 "Press play on something. It'll show up here once you start watching." = "何か再生してみましょう。視聴を始めると、ここに表示されます。";
+"Prestige Drama" = "本格ドラマ";
+"Prestige drama, weekly chapters, and series worth disappearing into." = "上質なドラマ、毎週更新のエピソード、没頭する価値のある作品。";
 "Preview" = "プレビュー";
 "Previous" = "前へ";
 "Previous chapter" = "前のチャプター";
@@ -1969,6 +2021,7 @@
 "Previous review" = "前のレビュー";
 "Previous song" = "Previous song";
 "Primary copy." = "メインテキスト。";
+"Prime Time" = "プライムタイム";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "先に字幕トラックを選択してください。";
 "Primetime Emmys" = "プライムタイム・エミー賞";
@@ -1996,6 +2049,7 @@
 "Public" = "公開";
 "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed." = "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed.";
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
+"Pull-you-under stories for the quietest part of the day." = "一日で最も静かな時間に、深く引き込まれる物語。";
 "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account." = "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account.";
 "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "色を鮮やかに";
@@ -2014,6 +2068,8 @@
 "Queue" = "キュー";
 "Quick Watches Under 90" = "90分未満でサクッと観る";
 "Quiet" = "静音";
+"Quiet Hours" = "静かな時間";
+"Quiet dramas, sharp thrillers, and series you save for yourself." = "静かなドラマ、切れ味鋭いスリラー、自分だけのために取っておきたいシリーズ。";
 "Quietly great, {decade}" = "隠れた名作、{decade}";
 "Quitar" = "削除";
 "Quitar de Seguir viendo" = "「視聴を続ける」から削除";
@@ -2239,6 +2295,7 @@
 "Save track" = "曲を保存";
 "Saved" = "保存済み";
 "Saved app data" = "Saved app data";
+"Saved for Now" = "今夜まで取っておいた作品";
 "Saved stream filters" = "保存済みのストリームフィルター";
 "Saving" = "保存中";
 "Say hi." = "挨拶してみましょう。";
@@ -2248,6 +2305,7 @@
 "Scores" = "スコア";
 "Screen Actors Guild Awards" = "全米映画俳優組合賞";
 "Screener" = "Screener";
+"Screenshot" = "スクリーンショット";
 "Scrobble to SIMKL" = "SIMKLに視聴履歴を送信";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "Se han añadido todos los idiomas." = "すべての言語が追加されています。";
@@ -2307,11 +2365,17 @@
 "Series de comedia" = "コメディシリーズ";
 "Series de crimen" = "犯罪シリーズ";
 "Series en tendencia" = "トレンドのシリーズ";
+"Series for the part of the day that runs on coffee and snacks." = "コーヒーとおやつで乗り切る午後にぴったりの作品。";
 "Series for the part of the day you actually look forward to." = "一日の中でいちばん楽しみな時間に観たい作品。";
+"Series for the part of the night that won't let you sleep." = "眠れない夜に観たいシリーズ。";
 "Series mejor valoradas" = "高評価のシリーズ";
 "Series on {name}" = "{name}のシリーズ";
 "Series para esa parte del día que de verdad esperas con ganas." = "一日の中でいちばん楽しみな時間に観たい作品。";
 "Series populares" = "人気のシリーズ";
+"Series to disappear into" = "没頭できる作品";
+"Series to ease into while the day is still quiet." = "まだ静かな朝に、気軽に楽しめる作品。";
+"Series with mileage" = "見応えたっぷりの作品";
+"Series with the patience to match your late-night hours." = "長い夜に寄り添う、じっくり楽しめるシリーズ。";
 "Serif" = "セリフ体";
 "Server URL" = "サーバーURL";
 "Server address" = "サーバーアドレス";
@@ -2340,6 +2404,7 @@
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
+"Sharp comedies, sunny worlds, and the occasional binge bait." = "切れ味のいいコメディ、明るい世界観、つい一気見したくなる作品。";
 "Sharpen" = "シャープネス";
 "Sharper lines and a little more pop." = "線をよりくっきりさせ、少しメリハリを加えます。";
 "Short of the Year" = "年間最優秀短編";
@@ -2394,6 +2459,7 @@
 "Shown at the same time as your main subtitle." = "メイン字幕と同時に表示されます。";
 "Shows" = "番組";
 "Shows the episode synopsis on the cards. Turn it off to hide it." = "カードにエピソードのあらすじを表示します。非表示にするにはオフにしてください。";
+"Showtime" = "ショータイム";
 "Shudder" = "Shudder";
 "Shuffle" = "シャッフル";
 "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
@@ -2444,7 +2510,10 @@
 "Slightly lighter than background." = "背景よりわずかに明るい色。";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "低速なアドオンやP2Pソースは、開始まで10秒以上かかることがあります。開始する前にストリームがスキップされる場合は、この時間を長くしてください。";
 "Slow or unstable connection" = "低速または不安定な接続";
+"Slow, strange, and absorbing. Best with the lights down low." = "ゆっくりで、奇妙で、引き込まれる。照明を落として観るのがおすすめです。";
 "Slow-Burn Dramas" = "じっくり展開するドラマ";
+"Slow-burn starts" = "じっくり始まる物語";
+"Slow-burn worlds and bright chapters worth opening with coffee." = "コーヒーと一緒に開きたい、じっくり楽しむ世界と鮮やかな物語。";
 "Smaller" = "小さく";
 "Smooth on weak PCs" = "低スペックPCでも滑らか";
 "Sobre la línea principal" = "メイン字幕の上";
@@ -2522,6 +2591,7 @@
 "Stop showing as second subtitle" = "第2字幕の表示を停止";
 "Stopped with: {error}" = "次のエラーで停止: {error}";
 "Storage overview" = "ストレージ概要";
+"Stories that reward your attention before the day gets loud." = "一日が騒がしくなる前に、じっくり向き合いたい物語。";
 "Stream" = "ストリーム";
 "Stream priority" = "ストリームの優先順位";
 "Stream quality in player" = "プレイヤーにストリーム品質を表示";
@@ -2570,6 +2640,7 @@
 "Subtítulos duales" = "2言語字幕";
 "Subtítulos en tu idioma" = "あなたの言語の字幕";
 "Summer Blockbusters" = "夏の超大作";
+"Sundown" = "日没";
 "Superficie" = "サーフェス";
 "Superficies" = "サーフェス";
 "Supernatural" = "超自然";
@@ -2657,6 +2728,7 @@
 "The CW" = "The CW";
 "The Explorer" = "The Explorer";
 "The Film Buff" = "The Film Buff";
+"The Long Lunch" = "長めのランチ";
 "The Roku Channel" = "The Roku Channel";
 "The Series Slayer" = "The Series Slayer";
 "The Well-Rounded" = "The Well-Rounded";
@@ -2678,6 +2750,7 @@
 "The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "選択画面で各ストリームに解像度、HDR形式、コーデック、音声形式のタグを表示します。オフにするとすべて非表示になります。";
 "The quick brown fox jumps over the lazy dog" = "素早い茶色のキツネが、のろまな犬を飛び越える";
 "The ratings row on a title's detail page, next to runtime and genre." = "作品の詳細ページで、再生時間やジャンルの横に表示される評価欄です。";
+"The series that make the rest of the night disappear." = "観ているうちに夜があっという間に過ぎる作品。";
 "The server answered with status {status}. Is that a streaming server?" = "サーバーからステータス {status} が返されました。ストリーミングサーバーのアドレスで間違いありませんか？";
 "The server could not load that repository" = "サーバーでこのリポジトリを読み込めませんでした";
 "The server responded in {ms} ms." = "サーバーは {ms} ミリ秒で応答しました。";
@@ -2727,6 +2800,7 @@
 "Todas las fuentes" = "すべてのソース";
 "Todas las listas" = "すべてのプレイリスト";
 "Today" = "今日";
+"Today's openers" = "今日のスタート";
 "Todo" = "すべて";
 "Todo lo que ofrecen tus complementos, mostrado como pósteres. Desplázate, busca o filtra hasta encontrar lo que quieras." = "アドオンが提供するすべてのコンテンツをポスター形式で表示します。スクロール、検索、フィルターで見たいものを探せます。";
 "Todos" = "すべて";
@@ -2735,7 +2809,11 @@
 "Todos los géneros" = "すべてのジャンル";
 "Todos los idiomas" = "すべての言語";
 "Tonight" = "今夜";
+"Tonight's Slate" = "今夜のラインナップ";
+"Tonight's binge bait" = "今夜の一気見候補";
+"Tonight's lineup" = "今夜のラインナップ";
 "Tonight's main event" = "今夜のメイン";
+"Tonight's marquee" = "今夜の目玉";
 "Top" = "上";
 "Top 10 Comedy" = "コメディ トップ10";
 "Top 10 Drama" = "ドラマ トップ10";
@@ -2955,11 +3033,14 @@
 "Weekend watchlist" = "週末のウォッチリスト";
 "Welcome to Harbor" = "Harborへようこそ";
 "Western" = "西部劇";
+"What everyone has been quietly binging this week." = "今週みんながひそかに一気見している作品。";
 "What everyone is reading" = "みんなが読んでいる作品";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "ヒーローエリアに表示する内容です。「トレンド」はHarborが提供する最新の人気ランキングで、1日に何度も更新されます。「クラシック」は自分のホームの列を使用します。";
 "What is this?" = "これは何ですか？";
 "What people are watching" = "みんなが観ている作品";
+"What to watch tonight" = "今夜観るなら";
 "What you watched" = "視聴した作品";
+"What's hot this week, what's prestige forever, what's worth the hours." = "今週の話題作、不朽の名作、時間をかける価値のある作品。";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Escでプレーヤーを閉じる前に、簡単な確認を表示します。確認画面で「今後は確認しない」にチェックすると、以後はEscですぐに終了できます。";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "リリースに複数の音声トラックがある場合、Harborはこのリストで最初に一致するものを選びます。";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "エピソードの終了後、次のエピソードを自動的に再生します。オフの場合は、そのエピソードの終了時に再生が停止します。";
@@ -2980,11 +3061,17 @@
 "Which order" = "並び順";
 "Which subtitle Harbor lands on when more than one is available." = "複数ある場合にHarborが選択する字幕。";
 "Which top corner of the poster the ribbon folds over." = "ポスターの上部のどちらの隅にリボンを重ねるかを設定します。";
+"While the world's asleep" = "世界が眠るあいだに";
 "Who's watching" = "視聴する人";
 "Who's watching?" = "どなたが視聴しますか？";
 "Whodunit" = "犯人当て";
 "Wide search · still empty" = "広範囲検索・結果なし";
+"Witching Hour" = "丑三つ時";
 "Works without a key at low volume; add a key for higher quotas." = "少量ならキーなしで利用できます。上限を増やすにはキーを追加してください。";
+"Worlds to step into before the inbox catches up." = "メールに追われる前に飛び込みたい世界。";
+"Worlds wide enough for an hour or a whole free afternoon." = "1時間でも、空いた午後いっぱいでも浸れる広大な世界。";
+"Worth catching up on" = "今から追いつきたい";
+"Worth the lost hour" = "睡眠時間を削る価値あり";
 "Writer" = "脚本家";
 "Wrong PIN" = "PINが違います";
 "Wrong username or password" = "ユーザー名またはパスワードが違います";

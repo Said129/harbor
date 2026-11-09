@@ -282,6 +282,65 @@ final class R24DiscoverTests: XCTestCase {
         XCTAssertEqual(filter.eligible(inputs).map(\.id), ["fresh", "watched", "liked"])
     }
 
+    func testShowsCatalogMatchesDesktopRailOrderAndEditorialFilters() throws {
+        let date = try XCTUnwrap(ISO8601DateFormatter().date(from: "2026-11-09T17:30:00Z"))
+        let rails = TMDBService().definitions("series", now: date)
+        XCTAssertEqual(rails.map(\.id), ["tmdb-series-top10", "tmdb-series-current", "tmdb-tv-fresh", "tmdb-tv-network-49", "tmdb-tv-network-213",
+            "tmdb-tv-network-2552", "tmdb-tv-network-174", "tmdb-tv-network-88", "tmdb-tv-network-2739", "tmdb-tv-network-1024",
+            "tmdb-tv-limited", "tmdb-series-genre-18", "tmdb-series-genre-35", "tmdb-series-genre-80", "tmdb-series-genre-10765",
+            "tmdb-series-genre-99", "tmdb-series-rated", "tmdb-series-long-runners", "tmdb-series-korean", "tmdb-series-british"])
+        XCTAssertEqual(rails.first?.path, "trending/tv/week")
+        XCTAssertTrue(rails.allSatisfy { !$0.usesRegion })
+        XCTAssertEqual(rails[2].parameters["first_air_date.gte"], "2026-09-25")
+        XCTAssertEqual(rails[2].parameters["first_air_date.lte"], "2026-11-09")
+        XCTAssertEqual(rails[11].parameters, ["with_genres": "18", "vote_average.gte": "8.0", "vote_count.gte": "1000", "sort_by": "vote_average.desc"])
+        XCTAssertEqual(rails[17].parameters["first_air_date.lte"], "2010-12-31")
+        XCTAssertEqual(rails[18].parameters["with_origin_country"], "KR")
+        XCTAssertEqual(rails[19].parameters["with_origin_country"], "GB")
+        XCTAssertEqual(Array(ShowsCatalog.fallbackGenres.prefix(3)), ["Drama", "Comedy", "Crime"])
+        XCTAssertEqual(ShowsCatalog.fallbackKey(for: "Action"), "native-series-1")
+        XCTAssertEqual(ShowsCatalog.fallbackKey(for: "Crime"), "native-series-10")
+    }
+
+    func testShowsCatalogKeepsTheWeeklyTopTenAndOmitsFeaturedTitlesFromRegularRows() {
+        let definitions = TMDBService().definitions("series")
+        let titles = (0..<12).map { Media(id: "tt\($0)", type: "series", name: "Owned \($0)") }
+        var top = definitions[0], ordinary = definitions[1], tooShort = definitions[2]
+        top.metas = titles
+        ordinary.metas = Array(titles.prefix(6))
+        tooShort.metas = Array(titles.prefix(5))
+        let visible = ShowsCatalog.visible([top, ordinary, tooShort], heroIDs: [titles[0].id, titles[1].id])
+        XCTAssertEqual(visible.map(\.id), [top.id, ordinary.id])
+        XCTAssertEqual(visible.first?.metas.map(\.id), titles.prefix(10).map(\.id))
+        XCTAssertEqual(visible.last?.metas.map(\.id), Array(titles[2..<6]).map(\.id))
+        top.metas = Array(titles.prefix(9))
+        XCTAssertTrue(ShowsCatalog.visible([top], heroIDs: []).isEmpty)
+    }
+
+    func testShowsHeroUsesPinnedRequestsPoolOrderAndRotation() throws {
+        let date = try XCTUnwrap(ISO8601DateFormatter().date(from: "2026-11-09T17:30:00Z"))
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = try XCTUnwrap(TimeZone(secondsFromGMT: 0))
+        let requests = ShowsHero.requests(now: date)
+        XCTAssertEqual(requests.count, 17)
+        XCTAssertEqual(requests.prefix(4).map(\.path), ["trending/tv/week", "tv/popular", "tv/on_the_air", "tv/top_rated"])
+        XCTAssertEqual(requests[11].parameters["first_air_date.gte"], "2026-08-11")
+        XCTAssertEqual(requests[15].parameters["with_networks"], "213")
+        let seed = ShowsHero.rotationSeed(now: date, calendar: calendar)
+        XCTAssertEqual(seed, 1254)
+        XCTAssertEqual(ShowsHero.rotationSeed(now: date.addingTimeInterval(5 * 3600), calendar: calendar), 1255)
+        XCTAssertEqual(ShowsHero.mast(now: date, calendar: calendar).kicker, "Tonight's Slate")
+        let titles = "abcdefghij".map { name -> Media in
+            var media = Media(id: String(name), type: "series", name: String(name))
+            media.background = "https://example.test/backdrop.png"
+            return media
+        }
+        XCTAssertEqual(ShowsHero.slides(titles, seed: seed).map(\.id), ["f", "d", "h", "c", "b", "a"])
+        var noArt = titles[2]; noArt.background = nil
+        XCTAssertEqual(ShowsHero.pool([[titles[0], noArt, titles[3]], [titles[1], titles[0], titles[2]]]).map(\.id), ["a", "b", "d", "c"])
+        XCTAssertEqual(ShowsHero.fallback([noArt] + titles).map(\.id), ["a", "b", "c", "d", "e", "f"])
+    }
+
     func testPremiereRailAndNetworkRailsMatchDesktopSpecs() {
         let rails = TMDBService().definitions("series")
         func parameters(_ id: String) -> [String: String]? { rails.first { $0.id == id }?.parameters }

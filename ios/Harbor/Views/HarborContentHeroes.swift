@@ -107,14 +107,15 @@ struct HarborSeriesHero: View {
     @State private var selected: String?
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    private var slides: [Media] { Array(metas.prefix(5)) }
+    private var slides: [Media] { Array(metas.prefix(ShowsHero.slideCount)) }
     private var index: Int { slides.firstIndex { $0.identity == selected } ?? 0 }
     var body: some View {
+        let copy = ShowsHero.mast(now: Date())
         VStack(alignment: .leading, spacing: 20) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("SHOWTIME").font(HarborTheme.font(10, weight: .semibold)).tracking(4).foregroundStyle(.secondary)
-                Text(DesktopInterfaceText.value("Tonight's main event")).font(HarborTheme.displayFont(30))
-                Text(DesktopInterfaceText.value("Series for the part of the day you actually look forward to.")).font(HarborTheme.font(14)).foregroundStyle(.secondary)
+                Text(DesktopInterfaceText.value(copy.kicker)).textCase(.uppercase).font(HarborTheme.font(10, weight: .semibold)).tracking(4).foregroundStyle(.secondary)
+                Text(DesktopInterfaceText.value(copy.title)).font(HarborTheme.displayFont(30))
+                Text(DesktopInterfaceText.value(copy.subtitle)).font(HarborTheme.font(14)).foregroundStyle(.secondary)
             }.padding(.horizontal, 20)
             if !slides.isEmpty {
                 GeometryReader { bounds in

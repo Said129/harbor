@@ -53,6 +53,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "Échec de la recherche par IA.";
 "AI search failed. Tap to retry." = "Échec de la recherche par IA. Touchez pour réessayer.";
+"AM Picks" = "Sélection du matin";
 "AMC" = "AMC";
 "AMC+" = "AMC+";
 "API key" = "Clé API";
@@ -156,6 +157,10 @@
 "After Dark" = "Après la tombée de la nuit";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Après quelques instants sur une diapositive, la bande-annonce du titre à la une est diffusée sans son en arrière-plan. Utilise davantage de bande passante.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Après la lecture automatique de plusieurs épisodes d’affilée sans aucune interaction, mettre en pause et vérifier que vous êtes toujours là avant de continuer. Désactivé par défaut.";
+"After the news" = "Après les actualités";
+"After-hours picks" = "Sélection de fin de soirée";
+"Afternoon Picks" = "Sélection de l’après-midi";
+"Afternoon Roll" = "Programme de l’après-midi";
 "Age ratings and content notes when playback starts." = "Âge conseillé et avertissements au début de la lecture.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Agréable à regarder";
@@ -370,6 +375,7 @@
 "Best Suspense" = "Meilleur suspense";
 "Best VA Performance" = "Meilleure performance de doublage";
 "Best of the {decade}" = "Le meilleur des années {decade}";
+"Between meetings" = "Entre deux réunions";
 "Beyond the kids' shelf" = "Au-delà du rayon jeunesse";
 "Biblioteca" = "Bibliothèque";
 "Biblioteca de Manga" = "Manga library";
@@ -405,6 +411,7 @@
 "Botón cuadrado de reproducción" = "Bouton de lecture carré";
 "Box color" = "Couleur de l’encadré";
 "Brazil" = "Brésil";
+"Bright-side series" = "Séries pleines d’optimisme";
 "Brighten dark movies" = "Éclaircir les films sombres";
 "Brightness" = "Luminosité";
 "Brillo" = "Luminosité";
@@ -415,6 +422,7 @@
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Rétablit les petites astuces dans l’application que vous avez ignorées, sans relancer le parcours de bienvenue.";
 "BritBox" = "BritBox";
 "British Independent Film Awards" = "British Independent Film Awards";
+"British Television" = "Télévision britannique";
 "Browse" = "Parcourir";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "Parcourir les extensions";
@@ -482,6 +490,7 @@
 "Cards, panels." = "Cartes, panneaux.";
 "Cargar archivo" = "Charger un fichier";
 "Cargar más" = "Charger plus";
+"Carry it through the day" = "Pour toute la journée";
 "Cast" = "Distribution";
 "Cast to TV or speaker" = "Diffuser sur un téléviseur ou une enceinte";
 "Catalog" = "Catalogue";
@@ -567,6 +576,7 @@
 "Clásica" = "Classique";
 "Code expired. Try again." = "Code expired. Try again.";
 "Codec" = "Codec";
+"Coffee-and-couch" = "Café-canapé";
 "Colecciones" = "Collections";
 "Collections" = "Collections";
 "Color de la barra" = "Couleur de la barre";
@@ -596,6 +606,7 @@
 "Community sync server" = "Serveur de synchronisation avec la communauté";
 "Compact" = "Compact";
 "Compacta" = "Compact";
+"Companion series for whatever the afternoon throws at you." = "Des séries complémentaires pour affronter tout ce que l’après-midi vous réserve.";
 "Compartir" = "Partager";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
@@ -666,6 +677,7 @@
 "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "Rayon des coins";
 "Correo y contraseña" = "Email and password";
+"Couch hours" = "Heures sur le canapé";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not cast to {deviceName}." = "Impossible de diffuser sur {deviceName}.";
@@ -720,6 +732,7 @@
 "Create your first filter with the stream quality you prefer." = "Créez votre premier filtre avec la qualité de flux souhaitée.";
 "Create your first list" = "Créez votre première liste";
 "Crime" = "Crime";
+"Crime & Mystery" = "Policier et mystère";
 "Crime Series" = "Séries policières";
 "Crisp (anime & cartoons)" = "Nette (animes et dessins animés)";
 "Critically Acclaimed" = "Plébiscités par la critique";
@@ -728,6 +741,7 @@
 "Critics' Choice Awards" = "Critics' Choice Awards";
 "Critics' Pick" = "Choix de la critique";
 "Critics' Picks" = "Sélection de la critique";
+"Crowd-pleasers, prestige picks, and the kind of series people text about." = "Des succès populaires, des œuvres prestigieuses et le genre de séries dont tout le monde parle par message.";
 "Crunchy" = "Dynamique";
 "Crunchyroll" = "Crunchyroll";
 "Crunchyroll Anime Awards" = "Crunchyroll Anime Awards";
@@ -758,9 +772,13 @@
 "Danish" = "Danois";
 "Danish Cinema" = "Cinéma danois";
 "Dark" = "Sombre";
+"Dark, immersive, and binge-worthy when the house is quiet." = "Une sélection sombre, immersive et parfaite à dévorer quand la maison est calme.";
 "Date" = "Date";
 "Date Night" = "Soirée en amoureux";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
+"Daybreak" = "Aube";
+"Daylight Watching" = "À regarder en plein jour";
+"Daytime watching" = "Visionnage en journée";
 "De dónde viene tu video" = "D’où vient votre vidéo";
 "Debrid services" = "Services de débridage";
 "Debrid-Link API key" = "Clé API Debrid-Link";
@@ -778,6 +796,7 @@
 "Delete this profile?" = "Supprimer ce profil ?";
 "Delete {name}? Saved filters cannot be brought back." = "Supprimer {name} ? Les filtres enregistrés ne peuvent pas être récupérés.";
 "Dense" = "Dense";
+"Dense plots and rich worlds for when sleep is not happening." = "Des intrigues denses et des univers riches pour les nuits sans sommeil.";
 "Deporte" = "Sport";
 "Derecha" = "Droite";
 "Derecha a izquierda" = "De droite à gauche";
@@ -834,6 +853,7 @@
 "Documentaries" = "Documentaires";
 "Documentaries Worth Your Night" = "Documentaries Worth Your Night";
 "Documentary" = "Documentaire";
+"Documentary Series" = "Séries documentaires";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
 "Don't ask me again" = "Ne plus me demander";
@@ -850,6 +870,7 @@
 "Drift monitor" = "Moniteur de dérive";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "Ajoutez un fond d’écran derrière l’application. Le curseur d’assombrissement préserve la lisibilité du texte.";
 "Drop shadow" = "Ombre portée";
+"Drop-in chapters and long arcs for the post-dinner stretch." = "Des chapitres indépendants et de longs arcs narratifs pour prolonger la soirée après le dîner.";
 "Dropped" = "Abandonné";
 "Dropped (decode / vo)" = "Images perdues (décodage / vo)";
 "Dual subtitles" = "Sous-titres doubles";
@@ -861,6 +882,8 @@
 "Dónde se emite" = "Où regarder";
 "EU-hosted, fast cache check. Same read-only usage as the others." = "Hébergé dans l’UE, avec vérification rapide du cache. Même utilisation en lecture seule que les autres.";
 "Earth" = "Terre";
+"Easing into series" = "Se mettre doucement aux séries";
+"Easy half-hours and lighter dramas to ride out the afternoon." = "Des épisodes légers d’une demi-heure et des drames sans prise de tête pour passer l’après-midi.";
 "Easy on the eyes" = "Agréable à regarder";
 "Edición terminada" = "Terminer la modification";
 "Edit" = "Modifier";
@@ -924,6 +947,8 @@
 "Episode ordering" = "Classement des épisodes";
 "Episode {n}" = "Épisode {n}";
 "Episodes" = "Épisodes";
+"Episodes worth the evening" = "Des épisodes qui valent la soirée";
+"Episodes you can drop into without losing the thread." = "Des épisodes à regarder sans perdre le fil.";
 "Episodio" = "Épisode";
 "Episodio {n}" = "Épisode {n}";
 "Episodios" = "Épisodes";
@@ -941,6 +966,7 @@
 "Estilo de los subtítulos" = "Style des sous-titres";
 "Estimated from your local history. Connect Trakt or Simkl for the full picture." = "Estimation basée sur votre historique local. Connectez Trakt ou Simkl pour une vue d’ensemble.";
 "Estirar" = "Étirer";
+"Evening on the couch" = "Soirée canapé";
 "Evens out quiet dialogue and loud action scenes with a dynamic normalizer." = "Équilibre les dialogues peu audibles et les scènes d’action bruyantes grâce à un normaliseur dynamique.";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "L’événement phare de ce soir";
@@ -1016,6 +1042,7 @@
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Terminer un épisode d’anime met à jour votre progression AniList. Uniquement à la hausse : cela ne réduit jamais un nombre déjà enregistré.";
 "Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have." = "Terminer un épisode d’anime met à jour votre progression MyAnimeList. Uniquement à la hausse : cela ne réduit jamais un nombre déjà enregistré.";
 "Finnish" = "Finnois";
+"First-light picks" = "Sélection de l’aube";
 "Fit" = "Adapter";
 "Flat" = "Neutre";
 "Flechas" = "Flèches";
@@ -1039,6 +1066,7 @@
 "Found {count} streams for {title} in {seconds}s" = "{count} flux trouvés pour {title} en {seconds}s";
 "Found {count} streams in {seconds}s." = "{count} flux trouvés en {seconds}s.";
 "Foundation Years (90s)" = "Années fondatrices (années 90)";
+"Frame grab failed" = "Échec de la capture d’image";
 "Frame rate" = "Fréquence d’images";
 "France" = "France";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Inscription gratuite en deux minutes. Débloque les tendances, les films actuellement au cinéma, les mieux notés et les catalogues par service de streaming (Netflix, Disney+, Hulu, …). Votre clé reste sur cet appareil.";
@@ -1082,6 +1110,7 @@
 "Give more weight to titles in your languages and region in Discover." = "Donne la priorité aux titres dans vos langues et de votre région dans Découvrir.";
 "Golden Globes" = "Golden Globes";
 "Golf" = "Golf";
+"Good Morning" = "Bonjour";
 "Goya Awards" = "Prix Goya";
 "Grand Prize" = "Grand Prix";
 "Gray" = "Gray";
@@ -1115,6 +1144,7 @@
 "HI" = "Malentendants";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "Décodage matériel";
+"Half-hours, anthologies, and a few epics for the morning routine." = "Des formats de trente minutes, des anthologies et quelques épopées pour bien commencer la journée.";
 "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido." = "Léger halo autour du texte. Le rendu le plus net sur la plupart des contenus.";
 "Harbor" = "Harbor";
 "Harbor Relay" = "Relais Harbor";
@@ -1142,6 +1172,7 @@
 "Hard stroke around each letter. High contrast." = "Trait net autour de chaque lettre. Contraste élevé.";
 "Harvey Award Winners" = "Lauréats des prix Harvey";
 "Harvey Winner" = "Lauréat d’un prix Harvey";
+"Headphone series" = "Gamme de casques";
 "Hearing impaired" = "Sourds et malentendants";
 "Hebrew" = "Hébreu";
 "Heists & Cons" = "Braquages et arnaques";
@@ -1194,6 +1225,7 @@
 "History" = "Historique";
 "History Buff" = "Passionné d’histoire";
 "Hockey" = "Hockey";
+"Holdover Picks" = "Choix reconduits";
 "Holiday Warmth" = "Chaleur des fêtes";
 "Home" = "Accueil";
 "Home Rail Settings" = "Paramètres des rangées d’accueil";
@@ -1222,6 +1254,7 @@
 "Hulu" = "Hulu";
 "Hungarian" = "Hongrois";
 "IMDb" = "IMDb";
+"Iconic Long-Runners" = "Séries cultes au long cours";
 "Idioma" = "Langue";
 "Idioma de la app" = "Langue de l’application";
 "Idioma de los metadatos" = "Langue des métadonnées";
@@ -1276,6 +1309,7 @@
 "Iniciar sesión" = "Se connecter";
 "Iniciar sesión con Stremio" = "Se connecter avec Stremio";
 "Injected ad skip (experimental)" = "Ignorer les publicités injectées (expérimental)";
+"Insomnia Lineup" = "Programmation Insomnia";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Installez une extension Stremio pour afficher ici ses catalogues sous forme de carrousels d’affiches prêts à parcourir.";
 "Instalar addon" = "Installer l’extension";
 "Install" = "Installer";
@@ -1320,6 +1354,7 @@
 "Jump past a known injected ad on its own instead of showing the Skip button." = "Passer automatiquement une publicité injectée connue au lieu d’afficher le bouton Passer.";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Passez les génériques dès qu’ils commencent. Revenir dans un générique le relit sans le passer à nouveau. Le bouton Passer suit le réglage ci-dessus.";
 "Just added" = "Ajouté récemment";
+"K-Drama" = "K-Drama";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
 "Keep Continue Watching private to each profile" = "Garder Continuer à regarder privé pour chaque profil";
@@ -1351,6 +1386,8 @@
 "Larger" = "Plus grand";
 "Last 90 days" = "Last 90 days";
 "Late Night" = "Deuxième partie de soirée";
+"Late Show" = "Late Show";
+"Late-night chapters" = "Chapitres de fin de soirée";
 "Laterales" = "Côtés";
 "Laugh Out Loud" = "Rire aux éclats";
 "Leave" = "Quitter";
@@ -1374,6 +1411,7 @@
 "Libros" = "Livres";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Éclaircit les ombres pour que les scènes plongées dans le noir soient enfin regardables.";
 "Light" = "Léger";
+"Lights Out" = "Extinction des feux";
 "Likes" = "Mentions J’aime";
 "Limited Series & Miniseries" = "Séries limitées et mini-séries";
 "Limpiar filtros" = "Effacer les filtres";
@@ -1419,6 +1457,7 @@
 "Logo position" = "Position du logo";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "Logos";
+"Long-running comforts and new chapters worth pressing play on." = "Des valeurs sûres au long cours et de nouveaux chapitres qui méritent d’être lancés.";
 "Longest binge" = "Plus long marathon";
 "Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Les FPS des sous-titres ne sont pas disponibles dans cet environnement d’exécution libmpv.";
@@ -1428,6 +1467,7 @@
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
 "Loved by reviewers today" = "Plébiscités aujourd’hui par la critique";
 "Lower it to let more of the artwork show through." = "Réduisez-la pour mieux laisser apparaître l’illustration.";
+"Lunch-break comedies and slow-cooker dramas, ready when you are." = "Des comédies pour la pause déjeuner et des drames mijotés à feu doux, prêts quand vous l’êtes.";
 "Lyric sync" = "Synchronisation des paroles";
 "Lyrics" = "Paroles";
 "Lyrics earlier" = "Paroles plus tôt";
@@ -1493,6 +1533,7 @@
 "Mexico" = "Mexique";
 "Mezclar sonido envolvente a estéreo" = "Réduire le son surround en stéréo";
 "Mi biblioteca" = "Ma bibliothèque";
+"Midday Lineup" = "Programmation de la mi-journée";
 "Mind Benders" = "À vous retourner le cerveau";
 "Minimum file size" = "Taille minimale du fichier";
 "Minimum seeders" = "Nombre minimal de seeders";
@@ -1509,6 +1550,7 @@
 "More Movies" = "Plus de films";
 "More Series" = "Plus de séries";
 "More info" = "Plus d’infos";
+"Morning Lineup" = "Programme du matin";
 "Most Popular" = "Les plus populaires";
 "Most Popular on MAL" = "Les plus populaires sur MAL";
 "Most-anticipated upcoming releases on Trakt" = "Sorties à venir les plus attendues sur Trakt";
@@ -1619,6 +1661,7 @@
 "Next review" = "Avis suivant";
 "Next song" = "Next song";
 "Next:" = "Suivant :";
+"Night Owl" = "Oiseau de nuit";
 "Night mode" = "Mode nuit";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "Le mode nuit atténue en douceur les passages forts pour le visionnage tardif. Les profils s’appliquent au chargement de la piste suivante et se cumulent avec le normaliseur.";
 "Ninguna fuente coincide con tu filtro" = "Aucune source ne correspond à votre filtre";
@@ -1771,6 +1814,7 @@
 "Onboarding" = "Prise en main";
 "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "Une fois le réglage enregistré, chaque affiche est recréée avec les notes IMDb, Rotten Tomatoes et Metacritic incrustées.";
 "One list" = "Une seule liste";
+"One more episode" = "Encore un épisode";
 "Ongoing" = "En cours";
 "Only 1 source after filtering" = "Une seule source après filtrage";
 "Only 2 sources after filtering" = "Seulement 2 sources après filtrage";
@@ -1800,6 +1844,7 @@
 "Open on Trakt" = "Ouvrir sur Trakt";
 "Open review source" = "Ouvrir la source de l’avis";
 "Open settings" = "Ouvrir les paramètres";
+"Open the Day" = "Ouvrir la journée";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Ouvrez ce profil au démarrage. Les demandes programmées peuvent toujours s’afficher plus tard. Les profils protégés par un PIN ne peuvent pas être définis par défaut.";
 "Open {name}" = "Ouvrir {name}";
 "OpenRouter API key (sk-or-...)" = "Clé API OpenRouter (sk-or-...)";
@@ -1834,6 +1879,7 @@
 "PBS" = "PBS";
 "PIN" = "PIN";
 "PINs didn't match. Start over." = "Les PIN ne correspondent pas. Recommencez.";
+"PM Picks" = "Sélection PM";
 "Page" = "Page";
 "Page base." = "Base de la page.";
 "Page turn sound" = "Page turn sound";
@@ -1846,6 +1892,7 @@
 "Parte superior de la pantalla" = "En haut de l’écran";
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Mot de passe";
+"Past Midnight" = "Après minuit";
 "Paste JSON" = "Coller le JSON";
 "Paste a wss:// URL that a friend or your community shared with you." = "Collez une URL wss:// partagée par un ami ou votre communauté.";
 "Paste invite link" = "Coller le lien d’invitation";
@@ -1877,6 +1924,7 @@
 "Pick a profile to continue." = "Choisissez un profil pour continuer.";
 "Pick a random title" = "Choisir un titre au hasard";
 "Pick a source" = "Choisissez une source";
+"Pick up an episode" = "Reprendre un épisode";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "Reprenez les épisodes et les films partiellement visionnés à l’endroit enregistré. Tout contenu visionné à plus de 80% redémarre toujours du début. Désactivez cette option pour toujours commencer au début, ce qui est pratique lorsque vous re regardez une série.";
 "Pick up where you left off" = "Reprendre là où vous vous étiez arrêté";
 "Pick what you actually use" = "Choisissez ce que vous utilisez vraiment";
@@ -1893,6 +1941,7 @@
 "Picture in Picture" = "Incrustation d’image";
 "Picture quality" = "Qualité d’image";
 "Pill" = "Pill";
+"Pilots that pull you in and finales that earn the season." = "Des épisodes pilotes qui vous happent et des finales à la hauteur de la saison.";
 "Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "Épinglez en haut les catalogues de votre choix, masquez ceux que vous n’ouvrez jamais et réorganisez vos rangées épinglées. Votre vue de navigation se met à jour instantanément.";
 "Pin to top" = "Épingler en haut";
 "Pinned" = "Épinglé";
@@ -1959,7 +2008,10 @@
 "Preguntar si reanudar o empezar de nuevo" = "Demander s’il faut reprendre ou recommencer";
 "Premiered This Month" = "Sorties du mois";
 "Premiumize API key" = "Clé API Premiumize";
+"Press Play" = "Appuyez sur Lire";
 "Press play on something. It'll show up here once you start watching." = "Lancez la lecture d’un contenu. Il apparaîtra ici dès que vous commencerez à le regarder.";
+"Prestige Drama" = "Drames de prestige";
+"Prestige drama, weekly chapters, and series worth disappearing into." = "Drames de prestige, chapitres hebdomadaires et séries dans lesquelles s’immerger.";
 "Preview" = "Aperçu";
 "Previous" = "Précédent";
 "Previous chapter" = "Chapitre précédent";
@@ -1969,6 +2021,7 @@
 "Previous review" = "Avis précédent";
 "Previous song" = "Previous song";
 "Primary copy." = "Copie principale.";
+"Prime Time" = "Heure de grande écoute";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "Sélectionnez d’abord une piste de sous-titres.";
 "Primetime Emmys" = "Primetime Emmy Awards";
@@ -1996,6 +2049,7 @@
 "Public" = "Public";
 "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed." = "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed.";
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
+"Pull-you-under stories for the quietest part of the day." = "Des histoires qui vous happent au moment le plus calme de la journée.";
 "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account." = "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account.";
 "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "Couleurs plus percutantes";
@@ -2014,6 +2068,8 @@
 "Queue" = "File d’attente";
 "Quick Watches Under 90" = "À voir en moins de 90 minutes";
 "Quiet" = "Calme";
+"Quiet Hours" = "Heures calmes";
+"Quiet dramas, sharp thrillers, and series you save for yourself." = "Des drames intimistes, des thrillers incisifs et des séries que vous gardez pour vous.";
 "Quietly great, {decade}" = "Excellents en toute discrétion, années {decade}";
 "Quitar" = "Supprimer";
 "Quitar de Seguir viendo" = "Retirer de Continuer à regarder";
@@ -2239,6 +2295,7 @@
 "Save track" = "Enregistrer le titre";
 "Saved" = "Enregistré";
 "Saved app data" = "Saved app data";
+"Saved for Now" = "Enregistré pour le moment";
 "Saved stream filters" = "Filtres de flux enregistrés";
 "Saving" = "Enregistrement";
 "Say hi." = "Dites bonjour.";
@@ -2248,6 +2305,7 @@
 "Scores" = "Notes";
 "Screen Actors Guild Awards" = "Screen Actors Guild Awards";
 "Screener" = "Screener";
+"Screenshot" = "Capture d’écran";
 "Scrobble to SIMKL" = "Scrobbler sur SIMKL";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "Se han añadido todos los idiomas." = "Toutes les langues ont été ajoutées.";
@@ -2307,11 +2365,17 @@
 "Series de comedia" = "Séries comiques";
 "Series de crimen" = "Séries policières";
 "Series en tendencia" = "Séries tendance";
+"Series for the part of the day that runs on coffee and snacks." = "Des séries pour le moment de la journée qui tourne au café et aux en-cas.";
 "Series for the part of the day you actually look forward to." = "Des séries pour le moment de la journée que vous attendez vraiment avec impatience.";
+"Series for the part of the night that won't let you sleep." = "Des séries pour le moment de la nuit qui vous empêche de dormir.";
 "Series mejor valoradas" = "Séries les mieux notées";
 "Series on {name}" = "Séries sur {name}";
 "Series para esa parte del día que de verdad esperas con ganas." = "Des séries pour le moment de la journée que vous attendez vraiment avec impatience.";
 "Series populares" = "Séries populaires";
+"Series to disappear into" = "Des séries dans lesquelles s’évader";
+"Series to ease into while the day is still quiet." = "Des séries à regarder tranquillement tant que la journée est encore calme.";
+"Series with mileage" = "Des séries qui ont du vécu";
+"Series with the patience to match your late-night hours." = "Des séries assez patientes pour vous accompagner tard dans la nuit.";
 "Serif" = "Avec empattements";
 "Server URL" = "URL du serveur";
 "Server address" = "Adresse du serveur";
@@ -2340,6 +2404,7 @@
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
+"Sharp comedies, sunny worlds, and the occasional binge bait." = "Des comédies mordantes, des univers ensoleillés et, parfois, de quoi enchaîner les épisodes.";
 "Sharpen" = "Accentuer la netteté";
 "Sharper lines and a little more pop." = "Des contours plus nets et une image un peu plus éclatante.";
 "Short of the Year" = "Court métrage de l’année";
@@ -2394,6 +2459,7 @@
 "Shown at the same time as your main subtitle." = "Affiché en même temps que votre sous-titre principal.";
 "Shows" = "Séries";
 "Shows the episode synopsis on the cards. Turn it off to hide it." = "Affiche le synopsis de l’épisode sur les fiches. Désactivez cette option pour le masquer.";
+"Showtime" = "Showtime";
 "Shudder" = "Shudder";
 "Shuffle" = "Lecture aléatoire";
 "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
@@ -2444,7 +2510,10 @@
 "Slightly lighter than background." = "Légèrement plus clair que l’arrière-plan.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Les extensions lentes et les sources P2P ont souvent besoin de plus de 10 secondes pour démarrer. Augmentez ce délai si des flux sont ignorés avant d’avoir vraiment eu le temps de démarrer.";
 "Slow or unstable connection" = "Connexion lente ou instable";
+"Slow, strange, and absorbing. Best with the lights down low." = "Lent, étrange et captivant. Idéal dans la pénombre.";
 "Slow-Burn Dramas" = "Drames à développement lent";
+"Slow-burn starts" = "Intrigues qui démarrent lentement";
+"Slow-burn worlds and bright chapters worth opening with coffee." = "Des univers qui se dévoilent lentement et des chapitres lumineux à ouvrir avec un café.";
 "Smaller" = "Plus petit";
 "Smooth on weak PCs" = "Fluide sur les PC peu puissants";
 "Sobre la línea principal" = "Au-dessus de la ligne principale";
@@ -2522,6 +2591,7 @@
 "Stop showing as second subtitle" = "Ne plus afficher comme deuxième sous-titre";
 "Stopped with: {error}" = "Arrêté avec : {error}";
 "Storage overview" = "Vue d’ensemble du stockage";
+"Stories that reward your attention before the day gets loud." = "Des histoires qui méritent votre attention avant que la journée ne s’agite.";
 "Stream" = "Flux";
 "Stream priority" = "Priorité des flux";
 "Stream quality in player" = "Qualité du flux dans le lecteur";
@@ -2570,6 +2640,7 @@
 "Subtítulos duales" = "Sous-titres doubles";
 "Subtítulos en tu idioma" = "Sous-titres dans votre langue";
 "Summer Blockbusters" = "Blockbusters de l’été";
+"Sundown" = "Coucher du soleil";
 "Superficie" = "Surface";
 "Superficies" = "Surfaces";
 "Supernatural" = "Surnaturel";
@@ -2657,6 +2728,7 @@
 "The CW" = "The CW";
 "The Explorer" = "The Explorer";
 "The Film Buff" = "The Film Buff";
+"The Long Lunch" = "Le Long Déjeuner";
 "The Roku Channel" = "The Roku Channel";
 "The Series Slayer" = "The Series Slayer";
 "The Well-Rounded" = "The Well-Rounded";
@@ -2678,6 +2750,7 @@
 "The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "Le sélecteur indique pour chaque flux la résolution, le type de HDR, le codec et le format audio. Désactivé les masque tous.";
 "The quick brown fox jumps over the lazy dog" = "Portez ce vieux whisky au juge blond qui fume";
 "The ratings row on a title's detail page, next to runtime and genre." = "La ligne des notes sur la page de détails d’un titre, à côté de la durée et du genre.";
+"The series that make the rest of the night disappear." = "Les séries qui font disparaître le reste de la soirée.";
 "The server answered with status {status}. Is that a streaming server?" = "Le serveur a répondu avec le statut {status}. S’agit-il bien d’un serveur de streaming ?";
 "The server could not load that repository" = "Le serveur n’a pas pu charger ce dépôt";
 "The server responded in {ms} ms." = "Le serveur a répondu en {ms} ms.";
@@ -2727,6 +2800,7 @@
 "Todas las fuentes" = "Toutes les sources";
 "Todas las listas" = "Toutes les playlists";
 "Today" = "Aujourd’hui";
+"Today's openers" = "Les ouvertures du jour";
 "Todo" = "Tout";
 "Todo lo que ofrecen tus complementos, mostrado como pósteres. Desplázate, busca o filtra hasta encontrar lo que quieras." = "Tout ce que proposent vos extensions, présenté sous forme d’affiches. Parcourez, recherchez ou filtrez pour trouver ce que vous voulez.";
 "Todos" = "Tout";
@@ -2735,7 +2809,11 @@
 "Todos los géneros" = "Tous les genres";
 "Todos los idiomas" = "Toutes les langues";
 "Tonight" = "Ce soir";
+"Tonight's Slate" = "La sélection de ce soir";
+"Tonight's binge bait" = "À dévorer ce soir";
+"Tonight's lineup" = "Le programme de ce soir";
 "Tonight's main event" = "L’événement phare de ce soir";
+"Tonight's marquee" = "La tête d’affiche de ce soir";
 "Top" = "Haut";
 "Top 10 Comedy" = "Top 10 des comédies";
 "Top 10 Drama" = "Top 10 des drames";
@@ -2955,11 +3033,14 @@
 "Weekend watchlist" = "Liste à regarder du week-end";
 "Welcome to Harbor" = "Bienvenue sur Harbor";
 "Western" = "Western";
+"What everyone has been quietly binging this week." = "Ce que tout le monde regarde discrètement en boucle cette semaine.";
 "What everyone is reading" = "Ce que tout le monde lit";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "Ce qui remplit la bannière principale. Tendances affiche un classement récent de Harbor, actualisé tout au long de la journée. Classique utilise vos propres rangées de l’Accueil.";
 "What is this?" = "Qu’est-ce que c’est ?";
 "What people are watching" = "Ce que les gens regardent";
+"What to watch tonight" = "À regarder ce soir";
 "What you watched" = "Ce que vous avez regardé";
+"What's hot this week, what's prestige forever, what's worth the hours." = "Les succès de la semaine, les œuvres prestigieuses à jamais, les contenus qui valent le temps qu’on leur consacre.";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Lorsque la touche Esc doit fermer le lecteur, affiche d’abord une brève demande de confirmation. Vous pouvez cocher « Ne plus me demander » dans cette fenêtre pour toujours quitter avec Esc.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Lorsqu’une version propose plusieurs pistes audio, Harbor sélectionne la première langue correspondante dans cette liste.";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "À la fin d’un épisode, lance automatiquement le suivant. Si l’option est désactivée, la lecture s’arrête à la fin de l’épisode.";
@@ -2980,11 +3061,17 @@
 "Which order" = "Dans quel ordre";
 "Which subtitle Harbor lands on when more than one is available." = "Sous-titre sélectionné par Harbor lorsque plusieurs sont disponibles.";
 "Which top corner of the poster the ribbon folds over." = "Le coin supérieur de l’affiche sur lequel se replie le ruban.";
+"While the world's asleep" = "Pendant que le monde dort";
 "Who's watching" = "Qui regarde";
 "Who's watching?" = "Qui regarde ?";
 "Whodunit" = "Policier à énigme";
 "Wide search · still empty" = "Recherche étendue · toujours vide";
+"Witching Hour" = "L’heure des sorcières";
 "Works without a key at low volume; add a key for higher quotas." = "Fonctionne sans clé pour un faible volume d’utilisation ; ajoutez une clé pour obtenir des quotas plus élevés.";
+"Worlds to step into before the inbox catches up." = "Des mondes où s’évader avant que la boîte de réception ne vous rattrape.";
+"Worlds wide enough for an hour or a whole free afternoon." = "Des mondes assez vastes pour une heure ou tout un après-midi de libre.";
+"Worth catching up on" = "À rattraper absolument";
+"Worth the lost hour" = "Vaut bien une heure de perdue";
 "Writer" = "Scénariste";
 "Wrong PIN" = "Code PIN incorrect";
 "Wrong username or password" = "Nom d’utilisateur ou mot de passe incorrect";

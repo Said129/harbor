@@ -149,6 +149,7 @@ struct CustomizedHero: View {
     /// Desktop's hero source (`home.tsx`): Home uses backdrop-first slides capped at four; anime and series keep their own counts.
     private func heroOriginals(_ source: PageRail) -> [Media] {
         if customization.page == "home" { return HomeHeroSlides.pick(source.metas) }
+        if customization.page == "series" { return Array(source.metas.prefix(ShowsHero.slideCount)) }
         return Array(source.metas.prefix(customization.page == "anime" ? 6 : 5))
     }
     private var metas: [Media] {

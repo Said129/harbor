@@ -3,7 +3,7 @@
 Cada fila: `lista indice | id | verdicto | hueco`. P = parcial, M = falta. El indice vuelve a empezar en 1 en cada lista (`behaviors`, `settings`).
 El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo de iOS y el fuente de Desktop (`desktop_source` del inventario `desktop-parity-0.9.132.json`).
 
-## behaviors (113 filas)
+## behaviors (112 filas)
 
 - B 1 | Home hero and real catalogs | P | Home uses Desktop's public Trending, Trakt and Simkl pools with a three-hour cache, explicit rail priority, catalog fallback, and per-title ranking. Native base catalog composition and some personal rails still differ. [Desktop: src/views/home.tsx]
 - B 2 | Continue Watching on Home | P | The native row removes a resolved anime franchise's known aliases and can restore them without clearing progress. Profile and playback changes fence late lookups. Desktop's default visible franchise dedupe and differing account sources remain. [Desktop: src/views/home.tsx]
@@ -12,10 +12,9 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 8 | Genre discovery | P | All eighteen Desktop tiles now open the TMDB genre or the public Cinemeta genre catalog when no TMDB key is configured. The collage loads lazily. Editorial and spotlight filters remain pending. [Desktop: src/views/discover.tsx]
 - B 10 | Movies room | P | The iOS movie room has no user collection rows assigned to the page, no Top 10 Movies Today row (no movie top-10 rail was found in ContentPageModel or TMDBService), no cross-row de-duplication against the hero and... [Desktop: src/views/movies.tsx]
 - B 11 | Cinema hero | P | Movies uses Desktop's five TMDB requests, daily ordering, recent-play exclusion and fallback. The native carousel pauses for horizontal drag, pointer hover, the viewport and backgrounding. Native motion and live catalog validation remain pending. [Desktop: src/views/movies.tsx]
-- B 14 | Shows room | P | generic ContentPageView rooms [Desktop: src/views/shows.tsx]
+- B 14 | Shows room | P | The Shows room uses Desktop’s rotating mast, six-slide featured pool, weekly Top 10 and native Continue Watching. Custom collection assignments and parts of Desktop’s presentation remain pending. [Desktop: src/views/shows.tsx]
 - B 15 | Series Continue Watching | P | Shows places the native continue row after the hero with Desktop's sixteen-item cap. IMDb anime still appear, while anime-provider IDs are reserved for the Anime room. Desktop's manual-watched resurface rules remain pending. [Desktop: src/views/shows.tsx]
-- B 16 | Network and premiere rails | P | network and premiere rails: the network list, the premiere parameters and the Quick Watches Under 90 parameters match Desktop (8 Nov, written by Haiku, uncompiled); the series rail order and about fifteen Desktop rails (80s Classics, Prestige Drama and others) are not in iOS [Desktop: src/views/shows.tsx]
-- B 17 | Series catalogs | P | series catalogs: inline paging is in, shared with the movie rows (8 Nov, written by Haiku, uncompiled); the curated 6-title hero pool and the removal of hero titles from the rows are not [Desktop: src/views/shows.tsx]
+- B 17 | Series catalogs | P | Native Shows uses the curated six-title hero and removes those titles from regular rails. TMDB rows page in the dedicated grid; inline pagination and the live catalog check remain pending. [Desktop: src/views/shows.tsx]
 - B 18 | Anime room | P | DesktopAnimeRows and MAL/AniList public rows [Desktop: src/views/anime.tsx]
 - B 19 | Anime genres and rankings | P | DesktopAnimeRows and MAL/AniList public rows [Desktop: src/views/anime.tsx]
 - B 20 | Anime award winners | P | DesktopAnimeRows and MAL/AniList public rows [Desktop: src/views/anime.tsx]

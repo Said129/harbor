@@ -2225,3 +2225,25 @@ the native document picker. The controller checks that a video frame is
 available and fences the result to its playback revision. The temporary
 file is removed once the PNG is prepared. A native test captures from a
 paused owned fixture and checks the PNG and unchanged playback position.
+
+## Episode panel and the Shows room
+
+The in-player episode list now respects Instant Play when it opens the
+native picker for a different episode. Transport and automatic advance
+keep their original behavior. On iOS, the previous surface is released
+before the manual picker opens. The picker waits for the selected
+episode's own list and refuses a stale playback tap. Run 42704623941
+covers the changed intent and provider-episode guard.
+
+Shows now mounts Desktop's original TMDB requests in order, with the
+weekly trending list supplying the first ten when enough items answer.
+The Cinemeta fallback preserves the previous native key for each genre.
+The featured pool requests the pinned seventeen sources four at a time
+and caches up to 240 eligible titles for a day. The local time chooses
+the mast and a deterministic six-card lineup. The weekly rail can supply
+an initial featured selection while the complete pool is fetched.
+Ordinary rails omit hero titles and need four remaining items. Inline
+paging of the TMDB shelves is still pending.
+
+Run 42700413672 compiled and passed all five selected daily Discover and
+Critics Pick cases. The downloaded artifact matched the digest from GitHub.

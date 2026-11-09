@@ -13,6 +13,7 @@ struct DiscoveryRail: Identifiable, Sendable {
     var parameters: [String: String] = [:]
     var metas: [Media] = []
     var ranked = false
+    var usesRegion = true
     var personal: PersonalDiscoverySource? = nil
 }
 
@@ -51,7 +52,8 @@ struct TMDBService: Sendable {
             DiscoveryRail(id: "tmdb-top-rated-movies", title: DesktopInterfaceText.value("Top Rated Movies"), kind: "movie", path: "movie/top_rated")
         ]
     }
-    func definitions(_ kind: String) -> [DiscoveryRail] {
+    func definitions(_ kind: String, now: Date = Date()) -> [DiscoveryRail] {
+        if kind == "series" { return ShowsCatalog.definitions(now: now) }
         let providerKind = kind == "movie" ? "movie" : "tv"
         var rows = [
             DiscoveryRail(id: "tmdb-\(kind)-top10", title: kind == "movie" ? "Top 10 Movies Today" : "Top 10 Series Today", kind: kind, path: "trending/\(providerKind)/day"),
@@ -67,13 +69,6 @@ struct TMDBService: Sendable {
             rows.append(DiscoveryRail(id: "tmdb-quick", title: "Quick Watches Under 90", kind: kind, path: "discover/movie", parameters: ["with_runtime.lte": "90", "with_runtime.gte": "70", "vote_average.gte": "7.0", "vote_count.gte": "300", "sort_by": "vote_average.desc"]))
             rows.append(DiscoveryRail(id: "tmdb-decade-2010", title: "Defining the 2010s", kind: kind, path: "discover/movie", parameters: ["primary_release_date.gte": "2010-01-01", "primary_release_date.lte": "2019-12-31", "vote_average.gte": "7.6", "vote_count.gte": "2000", "sort_by": "vote_count.desc"]))
             rows.append(DiscoveryRail(id: "tmdb-decade-90", title: "Essential 90s", kind: kind, path: "discover/movie", parameters: ["primary_release_date.gte": "1990-01-01", "primary_release_date.lte": "1999-12-31", "vote_average.gte": "7.6", "vote_count.gte": "1000", "sort_by": "popularity.desc"]))
-        } else {
-            let formatter = ISO8601DateFormatter(); formatter.formatOptions = [.withFullDate]
-            rows.insert(DiscoveryRail(id: "tmdb-tv-fresh", title: "Premiered This Month", kind: kind, path: "discover/tv", parameters: ["first_air_date.gte": formatter.string(from: Date().addingTimeInterval(-45 * 86_400)), "first_air_date.lte": formatter.string(from: Date()), "vote_count.gte": "20", "sort_by": "popularity.desc"]), at: 3)
-            for (name, network, minimum) in [("From HBO", "49", "200"), ("Netflix Originals", "213", "300"), ("Apple TV+", "2552", "100"), ("AMC", "174", "200"), ("FX", "88", "200"), ("Disney+ Originals", "2739", "100"), ("Prime Video", "1024", "200")] {
-                rows.append(DiscoveryRail(id: "tmdb-tv-network-" + network, title: DesktopInterfaceText.value(name), kind: kind, path: "discover/tv", parameters: ["with_networks": network, "vote_count.gte": minimum, "sort_by": "popularity.desc"]))
-            }
-            rows.append(DiscoveryRail(id: "tmdb-tv-limited", title: "Limited Series & Miniseries", kind: kind, path: "discover/tv", parameters: ["with_type": "2", "vote_average.gte": "7.5", "vote_count.gte": "300", "sort_by": "vote_count.desc"]))
         }
         for (name, id) in [("Action", 28), ("Comedy", 35), ("Drama", 18), ("Sci-Fi", 878), ("Animation", 16), ("Documentary", 99)] {
             let genre = kind == "series" && id == 28 ? 10759 : kind == "series" && id == 878 ? 10765 : id
@@ -81,10 +76,10 @@ struct TMDBService: Sendable {
         }
         return rows
     }
-    func page(_ rail: DiscoveryRail, page: Int, configuration: MetadataConfiguration, includeRegion: Bool = true) async throws -> [Media] {
+    func page(_ rail: DiscoveryRail, page: Int, configuration: MetadataConfiguration, includeRegion: Bool? = nil) async throws -> [Media] {
         var params = rail.parameters
         params["page"] = String(page)
-        if includeRegion { params["region"] = configuration.region }
+        if includeRegion ?? rail.usesRegion { params["region"] = configuration.region }
         let response = try await get(rail.path, parameters: params, configuration: configuration)
         guard case .array(let results) = response["results"] else { throw HarborError(code: "invalid-metadata-response") }
         return results.compactMap { makeMedia($0, kind: rail.kind, configuration: configuration) }

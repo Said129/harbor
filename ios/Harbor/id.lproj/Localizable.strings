@@ -53,6 +53,7 @@
 "AI search failed ({status})." = "AI search failed ({status}).";
 "AI search failed." = "Pencarian AI gagal.";
 "AI search failed. Tap to retry." = "Pencarian AI gagal. Ketuk untuk mencoba lagi.";
+"AM Picks" = "Pilihan AM";
 "AMC" = "AMC";
 "AMC+" = "AMC+";
 "API key" = "Kunci API";
@@ -156,6 +157,10 @@
 "After Dark" = "Selepas Senja";
 "After a moment on a slide, the featured title's trailer plays muted in the background. Uses more bandwidth." = "Setelah beberapa saat di sebuah slide, trailer judul unggulan akan diputar tanpa suara di latar belakang. Menggunakan lebih banyak bandwidth.";
 "After several episodes auto-play in a row with no input, pause and check you're still there before continuing. Off by default." = "Setelah beberapa episode diputar otomatis berturut-turut tanpa interaksi, pemutaran akan dijeda dan Anda akan diminta memastikan bahwa Anda masih menonton sebelum dilanjutkan. Dinonaktifkan secara default.";
+"After the news" = "Setelah berita";
+"After-hours picks" = "Pilihan selepas jam kerja";
+"Afternoon Picks" = "Pilihan Sore";
+"Afternoon Roll" = "Tontonan Sore";
 "Age ratings and content notes when playback starts." = "Batas usia dan keterangan konten saat pemutaran dimulai.";
 "Aggregator addons" = "Aggregator addons";
 "Agradable a la vista" = "Nyaman di mata";
@@ -370,6 +375,7 @@
 "Best Suspense" = "Cerita Menegangkan Terbaik";
 "Best VA Performance" = "Penampilan VA Terbaik";
 "Best of the {decade}" = "Terbaik dari {decade}";
+"Between meetings" = "Di sela rapat";
 "Beyond the kids' shelf" = "Bukan hanya untuk anak-anak";
 "Biblioteca" = "Perpustakaan";
 "Biblioteca de Manga" = "Manga library";
@@ -405,6 +411,7 @@
 "Botón cuadrado de reproducción" = "Tombol putar berbentuk persegi";
 "Box color" = "Warna kotak";
 "Brazil" = "Brasil";
+"Bright-side series" = "Serial penuh optimisme";
 "Brighten dark movies" = "Cerahkan film gelap";
 "Brightness" = "Kecerahan";
 "Brillo" = "Kecerahan";
@@ -415,6 +422,7 @@
 "Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Menampilkan kembali tips singkat dalam aplikasi yang telah Anda tutup tanpa mengulangi alur sambutan.";
 "BritBox" = "BritBox";
 "British Independent Film Awards" = "British Independent Film Awards";
+"British Television" = "Televisi Britania";
 "Browse" = "Jelajahi";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "Jelajahi addon";
@@ -482,6 +490,7 @@
 "Cards, panels." = "Kartu, panel.";
 "Cargar archivo" = "Muat file";
 "Cargar más" = "Muat lebih banyak";
+"Carry it through the day" = "Bawa sepanjang hari";
 "Cast" = "Pemeran";
 "Cast to TV or speaker" = "Transmisikan ke TV atau speaker";
 "Catalog" = "Katalog";
@@ -567,6 +576,7 @@
 "Clásica" = "Klasik";
 "Code expired. Try again." = "Code expired. Try again.";
 "Codec" = "Codec";
+"Coffee-and-couch" = "Santai sambil ngopi";
 "Colecciones" = "Koleksi";
 "Collections" = "Koleksi";
 "Color de la barra" = "Warna bilah";
@@ -596,6 +606,7 @@
 "Community sync server" = "Server sinkronisasi komunitas";
 "Compact" = "Ringkas";
 "Compacta" = "Ringkas";
+"Companion series for whatever the afternoon throws at you." = "Serial pendamping untuk apa pun yang terjadi sore ini.";
 "Compartir" = "Bagikan";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
@@ -666,6 +677,7 @@
 "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "Radius sudut";
 "Correo y contraseña" = "Email and password";
+"Couch hours" = "Waktu bersantai";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not cast to {deviceName}." = "Tidak dapat melakukan casting ke {deviceName}.";
@@ -720,6 +732,7 @@
 "Create your first filter with the stream quality you prefer." = "Buat filter pertama dengan kualitas stream pilihan Anda.";
 "Create your first list" = "Buat daftar pertama Anda";
 "Crime" = "Kriminal";
+"Crime & Mystery" = "Kriminal & Misteri";
 "Crime Series" = "Serial Kriminal";
 "Crisp (anime & cartoons)" = "Tajam (anime & kartun)";
 "Critically Acclaimed" = "Dipuji Kritikus";
@@ -728,6 +741,7 @@
 "Critics' Choice Awards" = "Critics' Choice Awards";
 "Critics' Pick" = "Pilihan Kritikus";
 "Critics' Picks" = "Rekomendasi Kritikus";
+"Crowd-pleasers, prestige picks, and the kind of series people text about." = "Tontonan favorit banyak orang, pilihan bergengsi, dan serial yang ramai dibicarakan.";
 "Crunchy" = "Crunchy";
 "Crunchyroll" = "Crunchyroll";
 "Crunchyroll Anime Awards" = "Crunchyroll Anime Awards";
@@ -758,9 +772,13 @@
 "Danish" = "Denmark";
 "Danish Cinema" = "Sinema Denmark";
 "Dark" = "Gelap";
+"Dark, immersive, and binge-worthy when the house is quiet." = "Gelap, imersif, dan seru ditonton maraton saat rumah sedang sunyi.";
 "Date" = "Tanggal";
 "Date Night" = "Malam Kencan";
 "Date-only releases have no hour, so they alert at 9:00 AM on their day." = "Date-only releases have no hour, so they alert at 9:00 AM on their day.";
+"Daybreak" = "Fajar";
+"Daylight Watching" = "Tontonan Siang Hari";
+"Daytime watching" = "Menonton di siang hari";
 "De dónde viene tu video" = "Sumber video Anda";
 "Debrid services" = "Layanan debrid";
 "Debrid-Link API key" = "Kunci API Debrid-Link";
@@ -778,6 +796,7 @@
 "Delete this profile?" = "Hapus profil ini?";
 "Delete {name}? Saved filters cannot be brought back." = "Hapus {name}? Filter yang disimpan tidak dapat dipulihkan.";
 "Dense" = "Dense";
+"Dense plots and rich worlds for when sleep is not happening." = "Plot yang padat dan dunia yang kaya untuk saat Anda tidak bisa tidur.";
 "Deporte" = "Sport";
 "Derecha" = "Kanan";
 "Derecha a izquierda" = "Kanan ke kiri";
@@ -834,6 +853,7 @@
 "Documentaries" = "Dokumenter";
 "Documentaries Worth Your Night" = "Documentaries Worth Your Night";
 "Documentary" = "Dokumenter";
+"Documentary Series" = "Serial Dokumenter";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
 "Don't ask me again" = "Jangan tanya saya lagi";
@@ -850,6 +870,7 @@
 "Drift monitor" = "Pemantau penyimpangan";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "Pasang wallpaper di belakang aplikasi. Penggeser peredupan menjaga teks tetap mudah dibaca.";
 "Drop shadow" = "Bayangan jatuh";
+"Drop-in chapters and long arcs for the post-dinner stretch." = "Bab lepas dan alur panjang untuk bersantai setelah makan malam.";
 "Dropped" = "Terlewat";
 "Dropped (decode / vo)" = "Terlewat (decode / vo)";
 "Dual subtitles" = "Subtitle ganda";
@@ -861,6 +882,8 @@
 "Dónde se emite" = "Tempat menonton";
 "EU-hosted, fast cache check. Same read-only usage as the others." = "Dihosting di UE, dengan pemeriksaan cache cepat. Penggunaan baca-sajanya sama seperti yang lain.";
 "Earth" = "Bumi";
+"Easing into series" = "Mulai menikmati serial";
+"Easy half-hours and lighter dramas to ride out the afternoon." = "Tontonan setengah jam yang santai dan drama ringan untuk menemani sore.";
 "Easy on the eyes" = "Nyaman di mata";
 "Edición terminada" = "Selesai mengedit";
 "Edit" = "Edit";
@@ -924,6 +947,8 @@
 "Episode ordering" = "Pengurutan episode";
 "Episode {n}" = "Episode {n}";
 "Episodes" = "Episode";
+"Episodes worth the evening" = "Episode yang layak menemani malam Anda";
+"Episodes you can drop into without losing the thread." = "Episode yang bisa langsung ditonton tanpa kehilangan alur.";
 "Episodio" = "Episode";
 "Episodio {n}" = "Episode {n}";
 "Episodios" = "Episode";
@@ -941,6 +966,7 @@
 "Estilo de los subtítulos" = "Gaya subtitle";
 "Estimated from your local history. Connect Trakt or Simkl for the full picture." = "Perkiraan dari riwayat lokal Anda. Hubungkan Trakt atau Simkl untuk gambaran lengkap.";
 "Estirar" = "Bentangkan";
+"Evening on the couch" = "Bersantai di sofa malam ini";
 "Evens out quiet dialogue and loud action scenes with a dynamic normalizer." = "Menyeimbangkan dialog lirih dan adegan aksi yang bersuara keras dengan normalizer dinamis.";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "Acara utama malam ini";
@@ -1016,6 +1042,7 @@
 "Finishing an anime episode updates your AniList progress. Forward only: it never lowers a count you already have." = "Menyelesaikan episode anime akan memperbarui progres AniList Anda. Hanya bertambah: jumlah yang sudah ada tidak akan pernah dikurangi.";
 "Finishing an anime episode updates your MyAnimeList progress. Forward only: it never lowers a count you already have." = "Menyelesaikan episode anime akan memperbarui progres MyAnimeList Anda. Hanya bertambah: jumlah yang sudah ada tidak akan pernah dikurangi.";
 "Finnish" = "Bahasa Finlandia";
+"First-light picks" = "Pilihan saat fajar";
 "Fit" = "Sesuaikan";
 "Flat" = "Datar";
 "Flechas" = "Panah";
@@ -1039,6 +1066,7 @@
 "Found {count} streams for {title} in {seconds}s" = "Ditemukan {count} stream untuk {title} dalam {seconds} dtk";
 "Found {count} streams in {seconds}s." = "Ditemukan {count} stream dalam {seconds} dtk.";
 "Foundation Years (90s)" = "Tahun-Tahun Awal (90-an)";
+"Frame grab failed" = "Pengambilan frame gagal";
 "Frame rate" = "Laju bingkai";
 "France" = "Prancis";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Pendaftaran gratis selama dua menit. Membuka Sedang Tren, Sedang Tayang di Bioskop, Berperingkat Teratas, dan katalog per layanan streaming (Netflix, Disney+, Hulu, …). Kunci Anda tetap tersimpan di perangkat ini.";
@@ -1082,6 +1110,7 @@
 "Give more weight to titles in your languages and region in Discover." = "Beri bobot lebih pada judul dalam bahasa Anda dan dari wilayah Anda di Jelajahi.";
 "Golden Globes" = "Golden Globes";
 "Golf" = "Golf";
+"Good Morning" = "Selamat Pagi";
 "Goya Awards" = "Goya Awards";
 "Grand Prize" = "Hadiah Utama";
 "Gray" = "Gray";
@@ -1115,6 +1144,7 @@
 "HI" = "HI";
 "HIDIVE" = "HIDIVE";
 "HW decode" = "Dekode HW";
+"Half-hours, anthologies, and a few epics for the morning routine." = "Tayangan setengah jam, antologi, dan beberapa kisah epik untuk rutinitas pagi.";
 "Halo suave alrededor del texto. Se ve más limpio en la mayoría del contenido." = "Pendar lembut di sekitar teks. Paling bersih pada sebagian besar konten.";
 "Harbor" = "Harbor";
 "Harbor Relay" = "Harbor Relay";
@@ -1142,6 +1172,7 @@
 "Hard stroke around each letter. High contrast." = "Garis tegas di sekeliling setiap huruf. Kontras tinggi.";
 "Harvey Award Winners" = "Pemenang Harvey Award";
 "Harvey Winner" = "Pemenang Harvey Award";
+"Headphone series" = "Seri headphone";
 "Hearing impaired" = "Untuk gangguan pendengaran";
 "Hebrew" = "Ibrani";
 "Heists & Cons" = "Perampokan & Penipuan";
@@ -1194,6 +1225,7 @@
 "History" = "Sejarah";
 "History Buff" = "Penggemar Sejarah";
 "Hockey" = "Hoki";
+"Holdover Picks" = "Pilihan yang Masih Tayang";
 "Holiday Warmth" = "Kehangatan Liburan";
 "Home" = "Beranda";
 "Home Rail Settings" = "Pengaturan Deretan Beranda";
@@ -1222,6 +1254,7 @@
 "Hulu" = "Hulu";
 "Hungarian" = "Bahasa Hungaria";
 "IMDb" = "IMDb";
+"Iconic Long-Runners" = "Tayangan Ikonis Berumur Panjang";
 "Idioma" = "Bahasa";
 "Idioma de la app" = "Bahasa aplikasi";
 "Idioma de los metadatos" = "Bahasa metadata";
@@ -1276,6 +1309,7 @@
 "Iniciar sesión" = "Masuk";
 "Iniciar sesión con Stremio" = "Masuk dengan Stremio";
 "Injected ad skip (experimental)" = "Pelewatan iklan yang disisipkan (eksperimental)";
+"Insomnia Lineup" = "Insomnia Lineup";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Instal addon Stremio dan katalognya akan muncul di sini sebagai deretan poster yang siap dijelajahi.";
 "Instalar addon" = "Instal addon";
 "Install" = "Instal";
@@ -1320,6 +1354,7 @@
 "Jump past a known injected ad on its own instead of showing the Skip button." = "Lewati otomatis iklan sisipan yang diketahui tanpa menampilkan tombol Lewati.";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Lewati pembuka secara otomatis begitu dimulai. Kembali ke bagian pembuka akan memutarnya tanpa melewati lagi. Tombol Lewati mengikuti pengaturan di atas.";
 "Just added" = "Baru ditambahkan";
+"K-Drama" = "Drama Korea";
 "Kanopy" = "Kanopy";
 "Kawaii" = "Kawaii";
 "Keep Continue Watching private to each profile" = "Pastikan Lanjutkan Menonton tetap bersifat pribadi untuk setiap profil";
@@ -1351,6 +1386,8 @@
 "Larger" = "Lebih besar";
 "Last 90 days" = "Last 90 days";
 "Late Night" = "Larut Malam";
+"Late Show" = "Acara Larut Malam";
+"Late-night chapters" = "Bab larut malam";
 "Laterales" = "Sisi";
 "Laugh Out Loud" = "Tertawa Terbahak-bahak";
 "Leave" = "Keluar";
@@ -1374,6 +1411,7 @@
 "Libros" = "Buku";
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Mencerahkan bayangan agar adegan yang sangat gelap tetap dapat ditonton.";
 "Light" = "Terang";
+"Lights Out" = "Matikan Lampu";
 "Likes" = "Suka";
 "Limited Series & Miniseries" = "Seri Terbatas & Miniseri";
 "Limpiar filtros" = "Hapus filter";
@@ -1419,6 +1457,7 @@
 "Logo position" = "Posisi logo";
 "Logo reset to default" = "Logo reset to default";
 "Logos" = "Logo";
+"Long-running comforts and new chapters worth pressing play on." = "Tontonan penghibur yang sudah lama tayang dan babak baru yang layak diputar.";
 "Longest binge" = "Maraton terpanjang";
 "Looping" = "Looping";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "FPS subtitle tidak tersedia di runtime libmpv ini.";
@@ -1428,6 +1467,7 @@
 "Los libros que abras e importes aparecerán aquí." = "Books you open and import appear here.";
 "Loved by reviewers today" = "Disukai pengulas hari ini";
 "Lower it to let more of the artwork show through." = "Turunkan agar lebih banyak gambar latar terlihat.";
+"Lunch-break comedies and slow-cooker dramas, ready when you are." = "Komedi untuk jam makan siang dan drama yang bisa dinikmati perlahan, siap kapan pun Anda mau.";
 "Lyric sync" = "Sinkron lirik";
 "Lyrics" = "Lirik";
 "Lyrics earlier" = "Lirik lebih awal";
@@ -1493,6 +1533,7 @@
 "Mexico" = "Meksiko";
 "Mezclar sonido envolvente a estéreo" = "Gabungkan suara surround menjadi stereo";
 "Mi biblioteca" = "Perpustakaan Saya";
+"Midday Lineup" = "Tayangan Tengah Hari";
 "Mind Benders" = "Pengasah Pikiran";
 "Minimum file size" = "Ukuran file minimum";
 "Minimum seeders" = "Seeder minimum";
@@ -1509,6 +1550,7 @@
 "More Movies" = "Film Lainnya";
 "More Series" = "Serial Lainnya";
 "More info" = "Info selengkapnya";
+"Morning Lineup" = "Tayangan Pagi";
 "Most Popular" = "Paling Populer";
 "Most Popular on MAL" = "Paling Populer di MAL";
 "Most-anticipated upcoming releases on Trakt" = "Rilisan mendatang yang paling dinantikan di Trakt";
@@ -1619,6 +1661,7 @@
 "Next review" = "Ulasan berikutnya";
 "Next song" = "Next song";
 "Next:" = "Berikutnya:";
+"Night Owl" = "Si Burung Hantu";
 "Night mode" = "Mode malam";
 "Night mode gently compresses loud moments for late-night watching. Profiles take effect when the next track loads and stack with the normalizer." = "Mode malam mengompresi bagian bersuara keras secara halus agar nyaman ditonton larut malam. Profil mulai berlaku saat trek berikutnya dimuat dan digunakan bersama normalizer.";
 "Ninguna fuente coincide con tu filtro" = "Tidak ada sumber yang cocok dengan filter Anda";
@@ -1771,6 +1814,7 @@
 "Onboarding" = "Pengenalan awal";
 "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "Setelah disimpan, setiap poster dirender ulang dengan cap IMDb, Rotten Tomatoes, dan Metacritic.";
 "One list" = "Satu daftar";
+"One more episode" = "Satu episode lagi";
 "Ongoing" = "Berlanjut";
 "Only 1 source after filtering" = "Hanya 1 sumber setelah difilter";
 "Only 2 sources after filtering" = "Hanya 2 sumber setelah difilter";
@@ -1800,6 +1844,7 @@
 "Open on Trakt" = "Buka di Trakt";
 "Open review source" = "Buka sumber ulasan";
 "Open settings" = "Buka pengaturan";
+"Open the Day" = "Buka hari tersebut";
 "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Buka profil ini saat aplikasi dimulai. Permintaan terjadwal tetap dapat muncul nanti. Profil dengan PIN tidak dapat dijadikan default.";
 "Open {name}" = "Buka {name}";
 "OpenRouter API key (sk-or-...)" = "Kunci API OpenRouter (sk-or-...)";
@@ -1834,6 +1879,7 @@
 "PBS" = "PBS";
 "PIN" = "PIN";
 "PINs didn't match. Start over." = "PIN tidak cocok. Mulai lagi.";
+"PM Picks" = "Pilihan PM";
 "Page" = "Halaman";
 "Page base." = "Dasar halaman.";
 "Page turn sound" = "Page turn sound";
@@ -1846,6 +1892,7 @@
 "Parte superior de la pantalla" = "Bagian atas layar";
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Kata Sandi";
+"Past Midnight" = "Lewat Tengah Malam";
 "Paste JSON" = "Tempel JSON";
 "Paste a wss:// URL that a friend or your community shared with you." = "Tempel URL wss:// yang dibagikan teman atau komunitas Anda.";
 "Paste invite link" = "Tempel tautan undangan";
@@ -1877,6 +1924,7 @@
 "Pick a profile to continue." = "Pilih profil untuk melanjutkan.";
 "Pick a random title" = "Pilih judul secara acak";
 "Pick a source" = "Pilih sumber";
+"Pick up an episode" = "Lanjutkan episode";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "Lanjutkan episode dan film yang belum selesai dari posisi tersimpan. Apa pun yang telah ditonton lebih dari 80% akan selalu dimulai ulang. Nonaktifkan ini agar selalu memulai dari awal, cocok jika Anda menonton ulang acara.";
 "Pick up where you left off" = "Lanjutkan dari bagian terakhir yang Anda tonton";
 "Pick what you actually use" = "Pilih yang benar-benar Anda gunakan";
@@ -1893,6 +1941,7 @@
 "Picture in Picture" = "Gambar dalam Gambar";
 "Picture quality" = "Kualitas gambar";
 "Pill" = "Pill";
+"Pilots that pull you in and finales that earn the season." = "Episode perdana yang langsung memikat dan episode akhir yang menuntaskan musim dengan memuaskan.";
 "Pin the catalogs you want up top, hide the ones you never open, and reorder your pinned rails. Your browse view updates instantly." = "Sematkan katalog yang Anda inginkan di bagian atas, sembunyikan yang tidak pernah dibuka, dan atur ulang baris yang disematkan. Tampilan jelajah Anda langsung diperbarui.";
 "Pin to top" = "Sematkan ke atas";
 "Pinned" = "Disematkan";
@@ -1959,7 +2008,10 @@
 "Preguntar si reanudar o empezar de nuevo" = "Tanyakan apakah ingin melanjutkan atau memulai dari awal";
 "Premiered This Month" = "Tayang Perdana Bulan Ini";
 "Premiumize API key" = "Kunci API Premiumize";
+"Press Play" = "Tekan Play";
 "Press play on something. It'll show up here once you start watching." = "Putar sesuatu. Konten akan muncul di sini setelah Anda mulai menonton.";
+"Prestige Drama" = "Drama Bergengsi";
+"Prestige drama, weekly chapters, and series worth disappearing into." = "Drama bergengsi, bab mingguan, dan serial yang membuat Anda larut di dalamnya.";
 "Preview" = "Pratinjau";
 "Previous" = "Sebelumnya";
 "Previous chapter" = "Bab sebelumnya";
@@ -1969,6 +2021,7 @@
 "Previous review" = "Ulasan sebelumnya";
 "Previous song" = "Previous song";
 "Primary copy." = "Salinan utama.";
+"Prime Time" = "Jam tayang utama";
 "Prime Video" = "Prime Video";
 "Primero selecciona una pista de subtítulos." = "Pilih trek subtitle terlebih dahulu.";
 "Primetime Emmys" = "Primetime Emmys";
@@ -1996,6 +2049,7 @@
 "Public" = "Publik";
 "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed." = "Public mode reads your account with nothing but your username. You get your watchlist, liked films, popular this week and the Top 250, and no password is needed.";
 "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
+"Pull-you-under stories for the quietest part of the day." = "Kisah yang menghanyutkan untuk saat paling tenang dalam sehari.";
 "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account." = "Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account.";
 "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account." = "Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account.";
 "Punchier color" = "Warna lebih tegas";
@@ -2014,6 +2068,8 @@
 "Queue" = "Antrean";
 "Quick Watches Under 90" = "Tontonan Singkat di Bawah 90 Menit";
 "Quiet" = "Hening";
+"Quiet Hours" = "Jam Tenang";
+"Quiet dramas, sharp thrillers, and series you save for yourself." = "Drama tenang, thriller tajam, dan serial yang Anda simpan untuk ditonton sendiri.";
 "Quietly great, {decade}" = "Diam-diam hebat, {decade}";
 "Quitar" = "Hapus";
 "Quitar de Seguir viendo" = "Hapus dari Lanjutkan Menonton";
@@ -2239,6 +2295,7 @@
 "Save track" = "Simpan lagu";
 "Saved" = "Tersimpan";
 "Saved app data" = "Saved app data";
+"Saved for Now" = "Disimpan untuk sementara";
 "Saved stream filters" = "Filter stream tersimpan";
 "Saving" = "Menyimpan";
 "Say hi." = "Ucapkan hai.";
@@ -2248,6 +2305,7 @@
 "Scores" = "Skor";
 "Screen Actors Guild Awards" = "Screen Actors Guild Awards";
 "Screener" = "Screener";
+"Screenshot" = "Tangkapan layar";
 "Scrobble to SIMKL" = "Scrobble ke SIMKL";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "Se han añadido todos los idiomas." = "Semua bahasa telah ditambahkan.";
@@ -2307,11 +2365,17 @@
 "Series de comedia" = "Serial Komedi";
 "Series de crimen" = "Serial Kriminal";
 "Series en tendencia" = "Serial yang sedang tren";
+"Series for the part of the day that runs on coffee and snacks." = "Serial untuk waktu saat kopi dan camilan jadi andalan.";
 "Series for the part of the day you actually look forward to." = "Serial untuk waktu yang benar-benar Anda nantikan.";
+"Series for the part of the night that won't let you sleep." = "Serial untuk malam yang membuat Anda tak bisa tidur.";
 "Series mejor valoradas" = "Serial Berperingkat Tertinggi";
 "Series on {name}" = "Serial di {name}";
 "Series para esa parte del día que de verdad esperas con ganas." = "Serial untuk waktu yang benar-benar Anda nantikan.";
 "Series populares" = "Serial Populer";
+"Series to disappear into" = "Serial yang membuat Anda larut di dalamnya";
+"Series to ease into while the day is still quiet." = "Serial untuk dinikmati perlahan saat hari masih tenang.";
+"Series with mileage" = "Serial yang sudah malang melintang";
+"Series with the patience to match your late-night hours." = "Serial bertempo tenang untuk menemani Anda hingga larut malam.";
 "Serif" = "Serif";
 "Server URL" = "URL server";
 "Server address" = "Alamat server";
@@ -2340,6 +2404,7 @@
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
 "Sharp" = "Sharp";
+"Sharp comedies, sunny worlds, and the occasional binge bait." = "Komedi cerdas, dunia cerah, dan sesekali tontonan yang bikin ketagihan.";
 "Sharpen" = "Pertajam";
 "Sharper lines and a little more pop." = "Garis lebih tajam dan tampilan sedikit lebih menonjol.";
 "Short of the Year" = "Film Pendek Terbaik Tahun Ini";
@@ -2394,6 +2459,7 @@
 "Shown at the same time as your main subtitle." = "Ditampilkan bersamaan dengan subtitle utama Anda.";
 "Shows" = "Acara";
 "Shows the episode synopsis on the cards. Turn it off to hide it." = "Menampilkan sinopsis episode pada kartu. Nonaktifkan untuk menyembunyikannya.";
+"Showtime" = "Waktu tayang";
 "Shudder" = "Shudder";
 "Shuffle" = "Acak";
 "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
@@ -2444,7 +2510,10 @@
 "Slightly lighter than background." = "Sedikit lebih terang daripada latar belakang.";
 "Slow addons and P2P sources often need more than 10 seconds to start. Raise this if streams are being skipped before they get a fair chance." = "Addon yang lambat dan sumber P2P sering kali memerlukan waktu lebih dari 10 detik untuk mulai. Naikkan nilai ini jika stream dilewati sebelum diberi cukup waktu untuk dimulai.";
 "Slow or unstable connection" = "Koneksi lambat atau tidak stabil";
+"Slow, strange, and absorbing. Best with the lights down low." = "Lambat, aneh, dan menghanyutkan. Paling pas ditonton dengan lampu redup.";
 "Slow-Burn Dramas" = "Drama yang Perlahan Memikat";
+"Slow-burn starts" = "Awal yang perlahan memikat";
+"Slow-burn worlds and bright chapters worth opening with coffee." = "Dunia yang berkembang perlahan dan bab-bab cerah yang layak dibuka sambil minum kopi.";
 "Smaller" = "Lebih kecil";
 "Smooth on weak PCs" = "Mulus di PC berspesifikasi rendah";
 "Sobre la línea principal" = "Di atas baris utama";
@@ -2522,6 +2591,7 @@
 "Stop showing as second subtitle" = "Hentikan penayangan sebagai subtitle kedua";
 "Stopped with: {error}" = "Berhenti dengan: {error}";
 "Storage overview" = "Ringkasan penyimpanan";
+"Stories that reward your attention before the day gets loud." = "Kisah yang menghargai perhatian Anda sebelum hari mulai riuh.";
 "Stream" = "Stream";
 "Stream priority" = "Prioritas stream";
 "Stream quality in player" = "Kualitas stream di pemutar";
@@ -2570,6 +2640,7 @@
 "Subtítulos duales" = "Subtitle ganda";
 "Subtítulos en tu idioma" = "Subtitle dalam bahasa Anda";
 "Summer Blockbusters" = "Film Laris Musim Panas";
+"Sundown" = "Matahari Terbenam";
 "Superficie" = "Permukaan";
 "Superficies" = "Permukaan";
 "Supernatural" = "Supranatural";
@@ -2657,6 +2728,7 @@
 "The CW" = "The CW";
 "The Explorer" = "The Explorer";
 "The Film Buff" = "The Film Buff";
+"The Long Lunch" = "The Long Lunch";
 "The Roku Channel" = "The Roku Channel";
 "The Series Slayer" = "The Series Slayer";
 "The Well-Rounded" = "The Well-Rounded";
@@ -2678,6 +2750,7 @@
 "The picker tags each stream with resolution, HDR flavor, codec, and audio format. Off hides them all." = "Pemilih menandai setiap stream dengan resolusi, jenis HDR, codec, dan format audio. Nonaktif akan menyembunyikan semuanya.";
 "The quick brown fox jumps over the lazy dog" = "Rubah cokelat yang gesit melompati anjing malas";
 "The ratings row on a title's detail page, next to runtime and genre." = "Baris rating di halaman detail judul, di sebelah durasi dan genre.";
+"The series that make the rest of the night disappear." = "Serial yang membuat sisa malam berlalu tanpa terasa.";
 "The server answered with status {status}. Is that a streaming server?" = "Server merespons dengan status {status}. Apakah itu server streaming?";
 "The server could not load that repository" = "Server tidak dapat memuat repositori tersebut";
 "The server responded in {ms} ms." = "Server merespons dalam {ms} ms.";
@@ -2727,6 +2800,7 @@
 "Todas las fuentes" = "Semua sumber";
 "Todas las listas" = "Semua daftar putar";
 "Today" = "Hari ini";
+"Today's openers" = "Pembuka hari ini";
 "Todo" = "Semua";
 "Todo lo que ofrecen tus complementos, mostrado como pósteres. Desplázate, busca o filtra hasta encontrar lo que quieras." = "Semua yang ditawarkan addon Anda, ditampilkan sebagai poster. Gulir, cari, atau filter untuk menemukan yang Anda inginkan.";
 "Todos" = "Semua";
@@ -2735,7 +2809,11 @@
 "Todos los géneros" = "Semua genre";
 "Todos los idiomas" = "Semua bahasa";
 "Tonight" = "Malam ini";
+"Tonight's Slate" = "Sajian Malam Ini";
+"Tonight's binge bait" = "Tontonan maraton malam ini";
+"Tonight's lineup" = "Jajaran acara malam ini";
 "Tonight's main event" = "Acara utama malam ini";
+"Tonight's marquee" = "Acara unggulan malam ini";
 "Top" = "Teratas";
 "Top 10 Comedy" = "10 Komedi Teratas";
 "Top 10 Drama" = "10 Drama Teratas";
@@ -2955,11 +3033,14 @@
 "Weekend watchlist" = "Daftar tontonan akhir pekan";
 "Welcome to Harbor" = "Selamat datang di Harbor";
 "Western" = "Western";
+"What everyone has been quietly binging this week." = "Yang diam-diam ditonton secara maraton oleh semua orang minggu ini.";
 "What everyone is reading" = "Yang sedang dibaca semua orang";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "Yang mengisi bagian hero. Trending adalah daftar teratas terbaru dari Harbor, diperbarui sepanjang hari. Klasik menggunakan baris Beranda Anda sendiri.";
 "What is this?" = "Apa ini?";
 "What people are watching" = "Yang sedang ditonton orang-orang";
+"What to watch tonight" = "Yang bisa ditonton malam ini";
 "What you watched" = "Yang Anda tonton";
+"What's hot this week, what's prestige forever, what's worth the hours." = "Yang populer minggu ini, yang bergengsi sepanjang masa, dan yang sepadan dengan waktunya.";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Saat Esc akan menutup pemutar, tampilkan konfirmasi singkat terlebih dahulu. Anda dapat mencentang \"Jangan tanya lagi\" pada dialog tersebut agar Esc selalu langsung keluar.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Jika suatu rilis memiliki beberapa trek audio, Harbor memilih kecocokan pertama dari daftar ini.";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "Saat episode berakhir, mulai episode berikutnya secara otomatis. Jika dinonaktifkan, episode akan selesai lalu berhenti.";
@@ -2980,11 +3061,17 @@
 "Which order" = "Urutannya";
 "Which subtitle Harbor lands on when more than one is available." = "Subtitle mana yang dipilih Harbor saat tersedia lebih dari satu.";
 "Which top corner of the poster the ribbon folds over." = "Sudut atas poster tempat pita dilipat.";
+"While the world's asleep" = "Saat dunia terlelap";
 "Who's watching" = "Siapa yang menonton";
 "Who's watching?" = "Siapa yang menonton?";
 "Whodunit" = "Misteri pembunuhan";
 "Wide search · still empty" = "Pencarian lebih luas · masih kosong";
+"Witching Hour" = "Jam Sihir";
 "Works without a key at low volume; add a key for higher quotas." = "Berfungsi tanpa kunci untuk volume rendah; tambahkan kunci untuk kuota lebih tinggi.";
+"Worlds to step into before the inbox catches up." = "Dunia untuk dijelajahi sebelum kotak masuk kembali menyita perhatian.";
+"Worlds wide enough for an hour or a whole free afternoon." = "Dunia yang cukup luas untuk satu jam atau sepanjang sore senggang.";
+"Worth catching up on" = "Layak ditonton untuk mengejar ketertinggalan";
+"Worth the lost hour" = "Sepadan dengan satu jam yang hilang";
 "Writer" = "Penulis";
 "Wrong PIN" = "PIN salah";
 "Wrong username or password" = "Nama pengguna atau kata sandi salah";

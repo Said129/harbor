@@ -6,6 +6,7 @@ final class ContentPageModel {
     var rows: [CatalogRow] = []
     var heroes: [Media] = []
     var heroSources: [String: String] = [:]
+    private(set) var seriesHeroIDs = Set<String>()
     var curated: [DiscoveryRail] = []
     var loading = false
     var error: String?
@@ -26,17 +27,18 @@ final class ContentPageModel {
         let previousRows = signature == loadedSignature ? rows : []
         let previousCurated = signature == loadedSignature ? curated : []
         let recentMovies = DailyHeroRotation.RecentMovies(kind == "movie" ? StreamPlaybackHistory.remembered(owner: app.library.owner) : [:])
-        let day = DailyHeroRotation.currentDay()
+        let now = Date()
+        let day = DailyHeroRotation.currentDay(now: now)
         rows = previousRows; curated = previousCurated
-        if signature != loadedSignature { heroes = []; heroSources = [:] }
+        if signature != loadedSignature { heroes = []; heroSources = [:]; seriesHeroIDs = [] }
         defer { if generation == current { loading = false } }
         // Desktop's Movies/Shows fallback is Cinemeta top plus genre rails.
         // It is a content provider, independent of the installed stream addons.
         do {
             if ["movie", "series"].contains(kind) {
                 if !configuration.tmdbKey.isEmpty {
-                    let definitions = TMDBService().definitions(kind)
-                    async let movieHero: Void = loadMovieHero(kind: kind, configuration: configuration, recent: recentMovies, day: day, generation: current)
+                    let definitions = TMDBService().definitions(kind, now: now)
+                    async let feature: Void = loadFeaturedHero(kind: kind, configuration: configuration, recent: recentMovies, day: day, now: now, generation: current)
                     await withTaskGroup(of: (Int, DiscoveryRail?).self) { group in
                         for (index, rail) in definitions.enumerated() {
                             group.addTask {
@@ -51,10 +53,10 @@ final class ContentPageModel {
                             fetched.append((index, rail))
                             curated = CatalogRefresh.merge(order: definitions.map(\.id), received: fetched.map(\.1), previous: previousCurated)
                             if !rail.metas.isEmpty { rows = [] }
-                            if kind != "movie", heroes.isEmpty { heroes = Array(rail.metas.prefix(5)) }
+                            if kind == "series", rail.ranked, heroes.isEmpty { setSeriesHero(ShowsHero.fallback(rail.metas)) }
                         }
                     }
-                    await movieHero
+                    await feature
                 }
                 try Task.checkCancellation()
                 guard current == generation else { return }
@@ -63,15 +65,18 @@ final class ContentPageModel {
                     let plans: [RequestPlan] = try await app.service.core.call("catalogs", ["addons": try .encoded([addon])])
                     let providerKind = kind
                     guard let top = plans.first(where: { $0.kind == providerKind && $0.catalog?.id == "top" }) else { throw HarborError(code: "catalog-unavailable") }
-                    let genres = ["Action", "Drama", "Comedy", "Sci-Fi", "Thriller", "Horror", "Romance", "Animation", "Adventure", "Crime", "Mystery", "Fantasy", "Documentary"]
+                    let genres = kind == "series" ? ShowsCatalog.fallbackGenres : ["Action", "Drama", "Comedy", "Sci-Fi", "Thriller", "Horror", "Romance", "Animation", "Adventure", "Crime", "Mystery", "Fantasy", "Documentary"]
                     let definitions: [(String, String?)] = [(kind == "movie" ? "Top Movies" : "Top Series", nil)] + genres.map { ("Top " + $0, Optional($0)) }
+                    let ordered = definitions.enumerated().map { index, definition in
+                        kind == "series" ? ShowsCatalog.fallbackKey(for: definition.1) : "native-\(kind)-\(index)"
+                    }
                     await withTaskGroup(of: (Int, CatalogRow?).self) { group in
                         for (index, definition) in definitions.enumerated() {
                             let service = app.service
                             group.addTask {
                                 do {
                                     let fetched = try await service.catalog(top, genre: definition.1, skip: 0)
-                                    let plan = RequestPlan(key: "native-\(kind)-\(index)", url: top.url, title: definition.0, kind: providerKind, addon: top.addon, addonPriority: 0, timeoutMs: top.timeoutMs, catalog: top.catalog)
+                                    let plan = RequestPlan(key: ordered[index], url: top.url, title: definition.0, kind: providerKind, addon: top.addon, addonPriority: 0, timeoutMs: top.timeoutMs, catalog: top.catalog)
                                     return (index, CatalogRow(plan: plan, metas: fetched.metas, selectedGenre: definition.1, receivedCount: fetched.receivedCount))
                                 } catch { return (index, nil) }
                             }
@@ -81,12 +86,11 @@ final class ContentPageModel {
                             guard current == generation else { continue }
                             guard let row else { continue }
                             fetched.append((index, row))
-                            let ordered = definitions.indices.map { "native-\(kind)-\($0)" }
                             rows = CatalogRefresh.merge(order: ordered, received: fetched.map(\.1), previous: previousRows)
                             if kind == "movie", index == 0, !row.metas.isEmpty {
                                 heroes = DailyHeroRotation.movies([row.metas], recent: recentMovies, day: day)
-                            } else if kind != "movie", heroes.isEmpty {
-                                heroes = Array(row.metas.prefix(5))
+                            } else if kind == "series", index == 0 {
+                                setSeriesHero(ShowsHero.fallback(row.metas))
                             }
                         }
                     }
@@ -159,6 +163,10 @@ final class ContentPageModel {
                 if heroes.isEmpty {
                     heroes = DailyHeroRotation.movies(curated.map(\.metas) + rows.map(\.metas), recent: recentMovies, day: day)
                 }
+            } else if kind == "series" {
+                if heroes.isEmpty {
+                    setSeriesHero(ShowsHero.fallback(curated.first(where: \.ranked)?.metas ?? rows.flatMap(\.metas)))
+                }
             } else {
                 heroes = Array((curated.flatMap(\.metas) + rows.flatMap(\.metas)).filter { seen.insert($0.identity).inserted }.prefix(5))
             }
@@ -188,13 +196,24 @@ final class ContentPageModel {
         } catch is CancellationError { return }
         catch { if current == generation { self.error = safeMessage(error) } }
     }
-    private func loadMovieHero(kind: String, configuration: MetadataConfiguration, recent: DailyHeroRotation.RecentMovies,
-                               day: Int, generation requestedGeneration: Int) async {
-        guard kind == "movie" else { return }
-        let lists = await TMDBService().movieHeroLists(configuration: configuration)
+    private func loadFeaturedHero(kind: String, configuration: MetadataConfiguration, recent: DailyHeroRotation.RecentMovies,
+                                  day: Int, now: Date, generation requestedGeneration: Int) async {
+        let featured: [Media]
+        if kind == "series" {
+            featured = await ShowsHeroPool.shared.slides(configuration: configuration, now: now)
+        } else {
+            let lists = await TMDBService().movieHeroLists(configuration: configuration)
+            featured = DailyHeroRotation.movies(lists, recent: recent, day: day)
+        }
         guard !Task.isCancelled, generation == requestedGeneration else { return }
-        let featured = DailyHeroRotation.movies(lists, recent: recent, day: day)
-        if !featured.isEmpty { heroes = featured }
+        guard !featured.isEmpty else { return }
+        if kind == "series" { setSeriesHero(featured) }
+        else { heroes = featured }
+    }
+
+    private func setSeriesHero(_ titles: [Media]) {
+        heroes = titles
+        seriesHeroIDs = Set(titles.map(\.id))
     }
     /// Desktop's `loadMore` (`movies.tsx`): when a movie or series row reaches its end, request its next catalog page,
     /// skip the titles it has, and stop at Desktop's row cap. Native Cinemeta fallback rows never page, as on Desktop.
