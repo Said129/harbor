@@ -54,6 +54,9 @@ struct DiscoveryGrid: View {
                 if !items.isEmpty && !finished && !loading && error == nil { ProgressView().task { await load() } }
             }.padding()
         }.background(HarborTheme.background).navigationTitle(titleOverride ?? rail.title).navigationBarTitleDisplayMode(.inline)
+            .accessibilityIdentifier(rail.id.hasPrefix("discover-genre-")
+                ? "discover-genre-grid-\(rail.id.dropFirst("discover-genre-".count))"
+                : "discovery-grid-\(rail.id)")
             .task { if items.isEmpty { await load() } }
             .onChange(of: rail.personal?.available()) { _, available in
                 if available == false { items = []; finished = true; error = nil }

@@ -2039,3 +2039,11 @@ episode and release context. Those fields and the internal row identity stay
 in memory. Subsource's list queries run concurrently and cooperative provider
 requests have independent deadlines. Stream-aware ranking and automatic
 selection of a direct provider result remain pending.
+
+## Discover genre tiles
+
+Discover always displays the eighteen Desktop genre tiles in a horizontal
+row. Artwork loads as tiles appear. Each tile opens the native movie grid
+with the Desktop TMDB genre ID. Without a key it opens the public Cinemeta
+movie catalog filtered by genre. This port uses native gradient colors and
+does not include the Desktop editorial and spotlight filters yet.

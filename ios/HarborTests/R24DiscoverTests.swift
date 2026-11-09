@@ -77,6 +77,17 @@ final class R24DiscoverTests: XCTestCase {
         XCTAssertEqual(Set(names).count, names.count)
     }
 
+    func testEveryGenreTileHasAFilteredTMDBRouteAndCollagePalette() throws {
+        for (name, id) in CustomCalendar.movieGenres {
+            let rail = try XCTUnwrap(DiscoveryGenreRules.tmdbGenreRail(name))
+            XCTAssertEqual(rail.path, "discover/movie")
+            XCTAssertEqual(rail.kind, "movie")
+            XCTAssertEqual(rail.parameters["with_genres"], String(id))
+            XCTAssertNotNil(DiscoveryGenreRules.tilePalette[name])
+        }
+        XCTAssertNil(DiscoveryGenreRules.tmdbGenreRail("Unknown"))
+    }
+
     func testMovieFloorKeepsRuntimeFloorUnlessOverridden() {
         let plain = DiscoveryGenreRules.movieFloor(genreID: 28, floor: ["sort_by": "popularity.desc"])
         XCTAssertEqual(plain["with_genres"], "28")

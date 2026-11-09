@@ -283,7 +283,7 @@
       "id": "Genre discovery",
       "desktop_source": "src/views/discover.tsx",
       "verdict": "P",
-      "note": "genre discovery: the genre tiles are Desktop's 18 in order (8 Nov, written by Haiku, uncompiled); Desktop opens a TMDB genre filter while iOS still routes to the add-on catalog, and tiles with no matching catalog stay hidden"
+      "note": "genre discovery: all eighteen Desktop tiles now open the correct TMDB filter or the public Cinemeta genre catalog without a TMDB key; artwork loads lazily and the richer editorial genre screen remains pending"
     },
     {
       "index": 9,

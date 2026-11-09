@@ -220,17 +220,28 @@ struct DiscoverView: View {
     }
     private var genreTiles: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text(DesktopVoyage.copy("Browse by Genre")).font(HarborTheme.font(19, weight: .semibold))
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                ForEach(DiscoveryGenreRules.tileNames, id: \.self) { name in
-                    if let row = app.rows.first(where: { !$0.plan.isPlaybackHistoryCatalog && $0.plan.kind == "movie" && $0.plan.catalog?.extra.contains(where: { $0.name == "genre" && $0.options.contains(name) }) == true }) {
-                        NavigationLink { CatalogBrowserView(app: app, initial: CatalogRow(plan: row.plan, metas: [], selectedGenre: name, receivedCount: 0)) } label: {
-                            ZStack(alignment: .bottomLeading) { Artwork(url: row.metas.first(where: { $0.genres?.contains(name) == true })?.background, maxPixels: 500); LinearGradient(colors: [.black.opacity(0.3), .black.opacity(0.7)], startPoint: .top, endPoint: .bottom); Text(DiscoveryGenreRules.tileLabel(name)).font(HarborTheme.displayFont(22)).padding(14) }.frame(height: 90).clipShape(.rect(cornerRadius: 10))
+            Text(DesktopInterfaceText.value("Browse by Genre")).font(HarborTheme.font(19, weight: .semibold))
+            ScrollView(.horizontal) {
+                LazyHStack(spacing: 12) {
+                    ForEach(DiscoveryGenreRules.tileNames, id: \.self) { name in
+                        NavigationLink { genreDestination(name) } label: {
+                            DiscoverGenreTile(name: name)
                         }.buttonStyle(.plain)
+                            .accessibilityLabel(DiscoveryGenreRules.tileLabel(name))
+                            .accessibilityIdentifier("discover-genre-tile-\(DiscoveryGenreRules.tileID(name))")
                     }
-                }
+                }.padding(.trailing)
             }
+            .scrollIndicators(.hidden)
+            .accessibilityIdentifier("discover-genre-tiles")
         }.padding(.horizontal)
+    }
+    @ViewBuilder private func genreDestination(_ name: String) -> some View {
+        if MetadataPreferences.shared.tmdbKey.isEmpty {
+            CinemetaGenreCatalogDestination(name: name, app: app)
+        } else if let rail = DiscoveryGenreRules.tmdbGenreRail(name) {
+            DiscoveryGrid(rail: rail, app: app)
+        }
     }
     private var queue: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -270,6 +281,132 @@ struct DiscoverView: View {
             Text(title).font(HarborTheme.font(18, weight: .semibold)).padding(.horizontal)
             ScrollView(.horizontal) { LazyHStack(alignment: .top, spacing: 12) { ForEach(items, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain) } }.padding(.horizontal) }.scrollIndicators(.hidden).posterRowBehavior()
         }
+    }
+}
+
+private struct DiscoverGenreTile: View {
+    let name: String
+    @State private var samples: [Media] = []
+
+    private var sampleSignature: String {
+        let preferences = MetadataPreferences.shared
+        return "\(name)|\(preferences.tmdbKey)|\(preferences.language)"
+    }
+
+    private var colors: (Color, Color, Color) {
+        let values = DiscoveryGenreRules.tilePalette[name] ?? (0x405676, 0x1D293B, 0xE9EEF5)
+        return (Self.color(values.0), Self.color(values.1), Self.color(values.2))
+    }
+
+    var body: some View {
+        let palette = colors
+        GeometryReader { geometry in
+            ZStack(alignment: .bottomLeading) {
+                LinearGradient(colors: [palette.0, palette.1], startPoint: .topLeading, endPoint: .bottomTrailing)
+                if !samples.isEmpty {
+                    HStack(spacing: -18) {
+                        ForEach(Array(samples.prefix(3).enumerated()), id: \.element.identity) { index, media in
+                            Artwork(url: media.background ?? media.poster, fallbacks: [media.poster].compactMap { $0 }, maxPixels: 500)
+                                .frame(width: geometry.size.width * 0.47, height: geometry.size.height * 1.2)
+                                .clipped()
+                                .rotationEffect(.degrees(index == 0 ? -8 : index == 2 ? 8 : 0))
+                                .offset(y: index == 1 ? -5 : 5)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .accessibilityHidden(true)
+                }
+                LinearGradient(colors: [palette.0.opacity(0.58), palette.1.opacity(0.8)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                    .blendMode(.multiply)
+                LinearGradient(colors: [.clear, palette.1.opacity(0.95)], startPoint: .center, endPoint: .bottom)
+                HStack(alignment: .bottom) {
+                    Text(DiscoveryGenreRules.tileLabel(name))
+                        .font(HarborTheme.displayFont(25))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
+                    Spacer(minLength: 8)
+                    Text("›").font(HarborTheme.font(24, weight: .medium)).accessibilityHidden(true)
+                }
+                .foregroundStyle(palette.2)
+                .shadow(color: .black.opacity(0.4), radius: 9, y: 2)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 15)
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .clipShape(.rect(cornerRadius: 15))
+            .overlay { RoundedRectangle(cornerRadius: 15).stroke(ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
+        }
+        .frame(width: 210, height: 168)
+        .task(id: sampleSignature) { await loadSamples() }
+    }
+
+    private func loadSamples() async {
+        let signature = sampleSignature
+        let configuration = MetadataPreferences.shared.configuration()
+        samples = []
+        do {
+            let fetched: [Media]
+            if !configuration.tmdbKey.isEmpty, var rail = DiscoveryGenreRules.tmdbGenreRail(name) {
+                rail.parameters["vote_average.gte"] = "7.0"
+                rail.parameters["vote_count.gte"] = "500"
+                fetched = try await TMDBService().page(rail, page: 1, configuration: configuration)
+            } else {
+                let genre = name.replacingOccurrences(of: " ", with: "%20")
+                let response = try await HTTPClient().json("https://v3-cinemeta.strem.io/catalog/movie/top/genre=\(genre).json", timeout: 12)
+                fetched = response["metas"].array.compactMap { Media.parse($0, kind: "movie") }
+            }
+            try Task.checkCancellation()
+            guard sampleSignature == signature else { return }
+            var seen = Set<String>()
+            samples = fetched.filter { ($0.background != nil || $0.poster != nil) && seen.insert($0.identity).inserted }.prefix(3).map { $0 }
+        } catch is CancellationError { return }
+        catch { return }
+    }
+
+    private static func color(_ value: UInt32) -> Color {
+        Color(red: Double((value >> 16) & 0xFF) / 255, green: Double((value >> 8) & 0xFF) / 255, blue: Double(value & 0xFF) / 255)
+    }
+}
+
+private struct CinemetaGenreCatalogDestination: View {
+    let name: String
+    let app: AppModel
+    @State private var plan: RequestPlan?
+    @State private var loading = false
+    @State private var error: String?
+
+    var body: some View {
+        Group {
+            if let plan {
+                CatalogBrowserView(app: app, initial: CatalogRow(plan: plan, metas: [], selectedGenre: name, receivedCount: 0), titleOverride: DiscoveryGenreRules.tileLabel(name))
+            } else if loading {
+                ProgressView().frame(maxWidth: .infinity, maxHeight: .infinity)
+            } else if let error {
+                VStack(spacing: 12) {
+                    Text(error).font(HarborTheme.font(13)).foregroundStyle(.orange)
+                    Button(DesktopInterfaceText.value("Retry")) { Task { await resolve() } }
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+        }
+        .background(HarborTheme.background)
+        .navigationTitle(DiscoveryGenreRules.tileLabel(name))
+        .navigationBarTitleDisplayMode(.inline)
+        .accessibilityIdentifier("discover-genre-cinemeta")
+        .task { if plan == nil && !loading { await resolve() } }
+    }
+
+    private func resolve() async {
+        guard !loading else { return }
+        loading = true; error = nil
+        defer { loading = false }
+        do {
+            let addon = try await app.service.install(HarborService.cinemetaManifest)
+            let plans: [RequestPlan] = try await app.service.core.call("catalogs", ["addons": try .encoded([addon])])
+            try Task.checkCancellation()
+            guard let top = plans.first(where: { $0.kind == "movie" && $0.catalog?.id == "top" }) else { throw HarborError(code: "catalog-unavailable") }
+            plan = top
+        } catch is CancellationError { return }
+        catch { self.error = safeMessage(error) }
     }
 }
 
