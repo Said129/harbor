@@ -210,13 +210,13 @@ extension EnvironmentValues {
     private var sourceName: String {
         if let name = player.origin?.name.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty { return name }
         switch player.currentTrack?.connectorId {
-        case .some("subsonic"): "Subsonic"
-        case .some("soundcloud"): "SoundCloud"
-        case .some("jellyfin"): "Jellyfin"
-        case .some("plex"): "Plex"
-        case .some("local"): DesktopInterfaceText.value("music.library.permanent")
-        case .some(let value): value.capitalized
-        case .none: DesktopInterfaceText.value("Music")
+        case .some("subsonic"): return "Subsonic"
+        case .some("soundcloud"): return "SoundCloud"
+        case .some("jellyfin"): return "Jellyfin"
+        case .some("plex"): return "Plex"
+        case .some("local"): return DesktopInterfaceText.value("music.library.permanent")
+        case .some(let value): return value.capitalized
+        case .none: return DesktopInterfaceText.value("Music")
         }
     }
     var body: some View {
