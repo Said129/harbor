@@ -2019,6 +2019,11 @@ initializer before executing tests. Both result archives matched their GitHub
 SHA-256 digests. abaf0564 delegates initialization in both decoding paths and
 keeps the decoded version. Run 42550021750 combines the 17 cases that could not
 execute with the four new incoming-link cases, without packaging an IPA.
+It built abaf0564, installed the simulator app and passed all 21 selected
+cases. Its result archive matched GitHub's SHA-256. This includes the
+non-zero-clock HTTP seek fixture, alongside independent anime search,
+music-folder rescan, provider archive, forced-track and incoming-link cases.
+The physical iPhone subtitle report remains open.
 
 ## Music queue continuation
 
@@ -2053,6 +2058,9 @@ does not include the Desktop editorial and spotlight filters yet.
 Run 42551358109 stopped at Swift parsing because an added JSON fixture used a
 single-line string delimiter across multiple lines. af8bc73d fixes the fixture.
 Run 42551606229 covers those eight cases and the new duplicate tie-break case.
+It stopped at type-checking the native subtitle merge expression. 0f0f55e6
+splits the merge into individually typed steps. Run 42552470884 covers the
+nine affected cases and the three new drift cases on the corrected source.
 
 ## Subtitle drift monitor
 
