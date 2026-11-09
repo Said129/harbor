@@ -410,10 +410,30 @@ struct HarborService: Sendable {
 
     /// A stream with a URL plays directly. One that is only a torrent hash is
     /// resolved through the profile's debrid services, as Desktop does.
-    func resolve(_ offer: StreamOffer, debrid: DebridClient? = nil, season: Int? = nil, episode: Int? = nil) async throws -> PlaybackSource {
-        let hasURL = offer.raw["url"].string?.isEmpty == false, hasHash = offer.raw["infoHash"].string?.isEmpty == false
-        if hasURL || !hasHash { return try await core.call("resolveDirect", ["stream": offer.raw]) }
-        return try await resolveTorrent(offer.raw, debrid: debrid, season: season, episode: episode)
+    func resolve(_ offer: StreamOffer, debrid: DebridClient? = nil, season: Int? = nil, episode: Int? = nil,
+                 userCommitted: Bool = true, downloadsOwner: String? = nil) async throws -> PlaybackSource {
+        try Task.checkCancellation()
+        let raw = offer.raw
+        let hasHash = raw["infoHash"].string?.isEmpty == false
+        if hasHash, let downloadsOwner,
+           let completed = await DownloadManager.shared.completedSource(raw, owner: downloadsOwner, season: season, episode: episode) {
+            try Task.checkCancellation()
+            return completed
+        }
+        let hasURL = raw["url"].string?.isEmpty == false
+        if hasURL || !hasHash {
+            let source: PlaybackSource = try await core.call("resolveDirect", ["stream": raw])
+            if let request = DirectStreamPolicy.probeRequest(url: source.url, headers: source.headers,
+                                                             userCommitted: userCommitted, hasHash: hasHash) {
+                let webpage = await DirectStreamPolicy.isWebPage(request)
+                try Task.checkCancellation()
+                if webpage { throw HarborError(code: "stream-web-page") }
+            }
+            let declaredSize = raw["behaviorHints"]["videoSize"].numericValue
+            if DebridStreamResolver.validSize(declaredSize, expectedSize: raw["size"].numericValue) { return source }
+            guard hasHash, let debrid, !(await debrid.providers).isEmpty else { throw HarborError(code: "stub-or-error-video") }
+        }
+        return try await resolveTorrent(raw, debrid: debrid, season: season, episode: episode)
     }
 
     /// Desktop's order for a torrent hash (`resolve.ts`): the debrid services first when the profile has any, and the remote

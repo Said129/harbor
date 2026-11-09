@@ -28,7 +28,32 @@ struct DownloadItem: Identifiable, Codable, Sendable {
     var received: Int64 = 0
     var expected: Int64 = 0
     var message: String?
+    var torrent: DownloadTorrentIdentity? = nil
     var fraction: Double? { expected > 0 ? min(1, max(0, Double(received) / Double(expected))) : nil }
+}
+
+struct DownloadTorrentIdentity: Codable, Equatable, Sendable {
+    let hash: String
+    let fileIndex: Int?
+
+    init?(_ raw: JSONValue) {
+        guard let value = raw["infoHash"].string, let parsed = TorrentLink.parseMagnet(value),
+              !value.trimmingCharacters(in: .whitespacesAndNewlines).lowercased().hasPrefix("magnet:") else { return nil }
+        hash = parsed.infoHash
+        fileIndex = raw["fileIdx"].integer.flatMap { $0 >= 0 ? $0 : nil }
+    }
+
+    func completed(in items: [DownloadItem], owner: String, season: Int?, episode: Int?) -> DownloadItem? {
+        let candidates = items.filter {
+            $0.owner == owner && $0.status == .complete && $0.torrent?.hash == hash
+                && (fileIndex == nil || $0.torrent?.fileIndex == fileIndex)
+        }.sorted { $0.started != $1.started ? $0.started > $1.started : $0.id.uuidString < $1.id.uuidString }
+        if fileIndex != nil { return candidates.first }
+        if let season, let episode {
+            return candidates.first { $0.target.season == season && $0.target.episode == episode }
+        }
+        return candidates.count == 1 ? candidates.first : nil
+    }
 }
 
 @MainActor @Observable
@@ -95,7 +120,8 @@ final class DownloadManager: NSObject, URLSessionDownloadDelegate {
         }
     }
 
-    func start(source: PlaybackSource, media: Media, episode: Episode?, owner: String, cellular: Bool) throws {
+    func start(source: PlaybackSource, media: Media, episode: Episode?, owner: String, cellular: Bool,
+               torrent: DownloadTorrentIdentity? = nil) throws {
         guard ready else { throw HarborError(code: "download-index") }
         guard let url = URL(string: source.url), ["http", "https"].contains(url.scheme?.lowercased() ?? ""), !["m3u8", "mpd"].contains(url.pathExtension.lowercased()) else { throw HarborError(code: "download-source") }
         let extensions = ["mp4", "mkv", "m4v", "mov", "webm", "mp3", "m4a", "flac", "aac", "ogg", "wav"]
@@ -103,13 +129,21 @@ final class DownloadManager: NSObject, URLSessionDownloadDelegate {
         let target = ResumeTarget(id: media.id, season: episode?.season, episode: episode?.episode, videoId: episode?.id)
         guard !items.contains(where: { $0.owner == Self.ownerHash(owner) && $0.media.id == media.id && $0.target.videoId == target.videoId && ($0.status == .downloading || $0.status == .paused) }) else { throw HarborError(code: "download-active") }
         let title = episode.map { "\(media.name) · T\($0.season ?? 0) E\($0.episode ?? 0)" } ?? media.name
-        let item = DownloadItem(id: UUID(), owner: Self.ownerHash(owner), media: media, target: target, title: title, fileExtension: suffix, started: Date(), status: .downloading)
+        let item = DownloadItem(id: UUID(), owner: Self.ownerHash(owner), media: media, target: target, title: title, fileExtension: suffix,
+                                started: Date(), status: .downloading, torrent: torrent)
         var request = URLRequest(url: url); request.allHTTPHeaderFields = source.headers
         request.allowsCellularAccess = cellular
         try commit(items + [item])
         let transport = source.headers?.isEmpty == false ? foregroundSession : session
         let task = transport!.downloadTask(with: request)
         task.taskDescription = item.id.uuidString; tasks[item.id] = task; task.resume()
+    }
+
+    func completedSource(_ raw: JSONValue, owner: String, season: Int?, episode: Int?) -> PlaybackSource? {
+        guard ready, let torrent = DownloadTorrentIdentity(raw),
+              let item = torrent.completed(in: items, owner: Self.ownerHash(owner), season: season, episode: episode),
+              let path = try? file(item), (try? path.resourceValues(forKeys: [.isRegularFileKey]).isRegularFile) == true else { return nil }
+        return PlaybackSource(url: path.path, headers: nil, subtitles: try? raw["subtitles"].decoded([PlaybackSource.Subtitle].self), via: "local-download")
     }
 
     func toggle(_ item: DownloadItem, owner: String) {

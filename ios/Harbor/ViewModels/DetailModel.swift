@@ -616,7 +616,7 @@ final class DetailModel {
         }
     }
 
-    func play(_ offer: StreamOffer, resume: ResumeStore, library: LibraryModel) async {
+    func play(_ offer: StreamOffer, resume: ResumeStore, library: LibraryModel, userCommitted: Bool = true) async {
         guard !resolving else { return }
         resolving = true
         let resolution = UUID()
@@ -628,7 +628,8 @@ final class DetailModel {
         let continuation = sourceContinuation
         defer { if resolutionRequest == resolution { resolving = false } }
         do {
-            let source = try await service.resolve(offer, debrid: debrid(), season: episode?.season, episode: episode?.episode)
+            let source = try await service.resolve(offer, debrid: debrid(), season: episode?.season, episode: episode?.episode,
+                                                   userCommitted: userCommitted, downloadsOwner: personalOwner)
             try Task.checkCancellation()
             guard owner == library.owner, personalOwner == library.personalOwner, contextRevision() == context, request == streamRequest, resolution == resolutionRequest else { return }
             let target = ResumeTarget(id: selected.id, season: episode?.season, episode: episode?.episode, videoId: episode?.id)

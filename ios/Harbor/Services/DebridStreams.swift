@@ -130,7 +130,11 @@ enum DebridStreamResolver {
     /// Desktop's validateLink: a tiny file, or one far smaller than the release it
     /// should be, is the provider's error clip rather than the requested video.
     static func validLink(_ link: DebridLink, expectedSize: Double?) -> Bool {
-        guard let size = link.filesize, size > 0 else { return true }
+        validSize(link.filesize, expectedSize: expectedSize)
+    }
+
+    static func validSize(_ filesize: Double?, expectedSize: Double?) -> Bool {
+        guard let size = filesize, size > 0 else { return true }
         if size < errorVideoMaxBytes, expectedSize == nil || (expectedSize ?? 0) > errorVideoMaxBytes { return false }
         if let expected = expectedSize, size < expected * 0.4, expected > 100 * 1_048_576 { return false }
         return true

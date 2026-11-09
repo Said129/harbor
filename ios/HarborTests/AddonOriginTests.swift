@@ -218,6 +218,87 @@ private actor OriginHeldReply {
         XCTAssertEqual(StreamRequestPolicy.recoveringUncachedIdentity(ordinary), ordinary)
     }
 
+    func testDirectWebPageProbeOnlyChecksAutomaticExtensionlessSources() throws {
+        let target = "https://stream.example.org/token"
+        let request = try XCTUnwrap(DirectStreamPolicy.probeRequest(url: target, headers: ["Authorization": "fixture"],
+                                                                  userCommitted: false, hasHash: false))
+        XCTAssertEqual(request.httpMethod, "HEAD")
+        XCTAssertEqual(request.timeoutInterval, 3.5)
+        XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "fixture")
+        XCTAssertNil(DirectStreamPolicy.probeRequest(url: target, headers: nil, userCommitted: true, hasHash: false))
+        XCTAssertNil(DirectStreamPolicy.probeRequest(url: target, headers: nil, userCommitted: false, hasHash: true))
+        XCTAssertNil(DirectStreamPolicy.probeRequest(url: target + ".MKV?token=fixture", headers: nil, userCommitted: false, hasHash: false))
+
+        let url = try XCTUnwrap(request.url)
+        func response(_ type: String, _ code: Int = 200) throws -> HTTPURLResponse {
+            try XCTUnwrap(HTTPURLResponse(url: url, statusCode: code, httpVersion: "HTTP/1.1", headerFields: ["Content-Type": type]))
+        }
+        XCTAssertTrue(try DirectStreamPolicy.isWebPage(response("Text/HTML; charset=utf-8")))
+        XCTAssertTrue(try DirectStreamPolicy.isWebPage(response("application/xhtml+xml")))
+        XCTAssertFalse(try DirectStreamPolicy.isWebPage(response("text/html", 404)))
+        XCTAssertFalse(try DirectStreamPolicy.isWebPage(response("video/mp4")))
+    }
+
+    func testDirectProbeRedirectCannotForwardPrivateHeadersToAnotherOrigin() throws {
+        let original = try XCTUnwrap(URL(string: "https://stream.example.org/start"))
+        var redirect = URLRequest(url: try XCTUnwrap(URL(string: "https://cdn.example.org/media")))
+        redirect.setValue("fixture", forHTTPHeaderField: "Authorization")
+        redirect.setValue("fixture", forHTTPHeaderField: "X-Private")
+        let crossOrigin = try XCTUnwrap(DirectStreamPolicy.redirect(from: original, response: original, to: redirect))
+        XCTAssertEqual(crossOrigin.httpMethod, "HEAD")
+        XCTAssertTrue(crossOrigin.allHTTPHeaderFields?.isEmpty != false)
+        redirect.url = try XCTUnwrap(URL(string: "https://stream.example.org/media"))
+        XCTAssertEqual(DirectStreamPolicy.redirect(from: original, response: original, to: redirect)?.value(forHTTPHeaderField: "X-Private"), "fixture")
+        redirect.url = try XCTUnwrap(URL(string: "http://stream.example.org/media"))
+        XCTAssertNil(DirectStreamPolicy.redirect(from: original, response: original, to: redirect))
+    }
+
+    func testDirectResolutionRejectsDeclaredErrorClipsAndKeepsKnownSmallFiles() async throws {
+        func offer(_ actual: Int64, expected: Int64?) -> StreamOffer {
+            .init(id: 0, raw: .object(["addonId": .string("fixture"), "addonName": .string("Fixture"),
+                "url": .string("https://example.org/video.mp4"), "size": expected.map(JSONValue.integer) ?? .null,
+                "behaviorHints": .object(["videoSize": .integer(actual)])]))
+        }
+        let service = HarborService()
+        do {
+            _ = try await service.resolve(offer(4 * 1_048_576, expected: 300 * 1_048_576))
+            XCTFail("The source is far smaller than its declared release")
+        } catch let error as HarborError {
+            XCTAssertEqual(error.code, "stub-or-error-video")
+        }
+        let small = try await service.resolve(offer(32 * 1_048_576, expected: 32 * 1_048_576))
+        XCTAssertEqual(small.url, "https://example.org/video.mp4")
+        XCTAssertEqual(small.via, "direct")
+    }
+
+    func testCompletedTorrentDownloadMatchesProfileFileOrEpisodeAndReadsLegacyIndex() throws {
+        let hash = String(repeating: "a", count: 40)
+        func identity(_ file: Int64? = nil) throws -> DownloadTorrentIdentity {
+            try XCTUnwrap(DownloadTorrentIdentity(.object(["infoHash": .string(hash.uppercased()),
+                "fileIdx": file.map(JSONValue.integer) ?? .null])))
+        }
+        func item(_ profile: String, episode: Int, file: Int64?, status: DownloadStatus = .complete) throws -> DownloadItem {
+            let media = Media(id: "tt4728568", type: "series", name: "Fixture")
+            return DownloadItem(id: UUID(), owner: profile, media: media,
+                target: .init(id: media.id, season: 1, episode: episode, videoId: nil), title: "Fixture",
+                fileExtension: "mkv", started: Date(timeIntervalSince1970: Double(episode)), status: status,
+                torrent: try file.map { try identity($0) })
+        }
+        let episode7 = try item("one", episode: 7, file: 9)
+        let episode8 = try item("one", episode: 8, file: 10)
+        let other = try item("two", episode: 7, file: 9)
+        let downloading = try item("one", episode: 99, file: 9, status: .downloading)
+        let legacy = try item("one", episode: 10, file: nil)
+        let items = [episode7, episode8, other, downloading, legacy]
+        XCTAssertEqual(try identity(9).completed(in: items, owner: "one", season: nil, episode: nil)?.id, episode7.id)
+        XCTAssertEqual(try identity().completed(in: items, owner: "one", season: 1, episode: 8)?.id, episode8.id)
+        XCTAssertEqual(try identity(9).completed(in: items, owner: "two", season: 1, episode: 7)?.id, other.id)
+        XCTAssertNil(try identity().completed(in: items, owner: "one", season: nil, episode: nil))
+        XCTAssertNil(try identity(9).completed(in: items, owner: "three", season: nil, episode: nil))
+        let saved = try JSONEncoder().encode(legacy)
+        XCTAssertNil(try JSONDecoder().decode(DownloadItem.self, from: saved).torrent)
+    }
+
     func testActualNativeRankingAppliesOnlyTheExecutedDesktopOriginBoostAndKeepsEverySource() async throws {
         let streams: JSONValue = .array(["owned", "other"].enumerated().map { index, id in
             .object(["addonId": .string(id), "addonName": .string(id), "title": .string("Owned.2020.1080p.WEB-DL.H264.AAC"),

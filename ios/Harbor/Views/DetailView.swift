@@ -164,7 +164,7 @@ struct DetailView: View {
                         let autoplay: DetailModel.StreamAutoplay? = shouldAutoplay ? .init(continuation: isContinuation, wanted: {
                             !Task.isCancelled && owner == app.library.owner && scope == app.accountOperationScope && revision == selectionRevision
                         }, start: { offer in
-                            await model.play(offer, resume: app.resume, library: app.library)
+                            await model.play(offer, resume: app.resume, library: app.library, userCommitted: false)
                             // A source that fails while other addons still answer shows the
                             // picker and its error instead of the connecting screen.
                             if model.playback == nil, revision == selectionRevision { showConnecting = false }
@@ -396,7 +396,8 @@ struct DetailView: View {
         do {
             let source = try await app.service.resolve(offer, debrid: app.debridClient(), season: episode?.season, episode: episode?.episode)
             guard owner == app.personalOwner, scope == app.accountOperationScope else { return }
-            try DownloadManager.shared.start(source: source, media: media, episode: episode, owner: owner, cellular: cellularDownloads)
+            try DownloadManager.shared.start(source: source, media: media, episode: episode, owner: owner, cellular: cellularDownloads,
+                                             torrent: DownloadTorrentIdentity(offer.raw))
             if media.identity == model.playbackContextMedia.identity { downloadMessage = DesktopInterfaceText.value("Download started") }
         } catch { if owner == app.personalOwner, scope == app.accountOperationScope, media.identity == model.playbackContextMedia.identity { downloadMessage = safeMessage(error) } }
     }

@@ -3,7 +3,7 @@
 Cada fila: `lista indice | id | verdicto | hueco`. P = parcial, M = falta. El indice vuelve a empezar en 1 en cada lista (`behaviors`, `settings`).
 El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo de iOS y el fuente de Desktop (`desktop_source` del inventario `desktop-parity-0.9.132.json`).
 
-## behaviors (114 filas)
+## behaviors (113 filas)
 
 - B 1 | Home hero and real catalogs | P | Home uses Desktop's public Trending, Trakt and Simkl pools with a three-hour cache, explicit rail priority, catalog fallback, and per-title ranking. Native base catalog composition and some personal rails still differ. [Desktop: src/views/home.tsx]
 - B 2 | Continue Watching on Home | P | The native row removes a resolved anime franchise's known aliases and can restore them without clearing progress. Profile and playback changes fence late lookups. Desktop's default visible franchise dedupe and differing account sources remain. [Desktop: src/views/home.tsx]
@@ -38,7 +38,6 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 104 | Corroborated early leak rescue | P | corroborated early-leak rescue: pure rules and tests exist; the Rust ranking does not call them yet (7 Nov, written by Haiku, CI run 42 green, 103 cases) [Desktop: src/lib/streams/pipeline.ts]
 - B 105 | Anime stream enrichment | P | anime stream enrichment: Desktop's anime parsing as pure functions; the Rust ranking parses before it can use them (7 Nov, written by Haiku, CI run 42 green, 103 cases) [Desktop: src/lib/streams/pipeline.ts]
 - B 106 | Debrid library merge | P | debrid library merge: matching and merge as pure functions; the pipeline does not list the library yet (7 Nov, written by Haiku, CI run 42 green, 103 cases) [Desktop: src/lib/streams/pipeline.ts]
-- B 107 | Direct stream resolution | P | The iOS direct-URL path has no HEAD web-page probe, no error-clip size check on direct links (the check runs only on debrid links), and no completed-download precedence in resolve. [Desktop: src/lib/streams/resolve.ts]
 - B 114 | User committed uncached downloads | P | iOS has no P2P engine fallback or P2P download preference (torrent handling is limited to the Stremio streaming server), and it has no automatic or season download flow that commits uncached picks. [Desktop: src/lib/streams/resolve.ts]
 - B 115 | External / YouTube / NZB error handling | P | external links open; YouTube/NZB handling incomplete [Desktop: src/lib/streams/resolve.ts]
 - B 119 | Real-Debrid library | P | library used for verification only [Desktop: src/lib/debrid/realdebrid.ts]

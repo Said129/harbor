@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 262,
-      "partial": 114,
+      "ported": 263,
+      "partial": 113,
       "missing": 0,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 84.8,
-      "ported_only_percent": 69.7,
+      "weighted_percent": 85.0,
+      "ported_only_percent": 69.9,
       "ported_or_partial_percent": 100.0
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 509,
-      "partial": 145,
+      "ported": 510,
+      "partial": 144,
       "missing": 0,
       "excluded": 295,
       "counted": 654,
-      "weighted_percent": 88.9,
-      "ported_only_percent": 77.8,
+      "weighted_percent": 89.0,
+      "ported_only_percent": 78.0,
       "ported_or_partial_percent": 100.0
     }
   },
@@ -86,11 +86,11 @@
     {
       "area": "Resolution and Debrid",
       "range": "B107-B135",
-      "ported": 20,
-      "partial": 8,
+      "ported": 21,
+      "partial": 7,
       "missing": 0,
       "excluded": 1,
-      "weighted_percent": 85.7
+      "weighted_percent": 87.5
     },
     {
       "area": "Torrent engine and streaming server",
@@ -975,8 +975,8 @@
       "index": 107,
       "id": "Direct stream resolution",
       "desktop_source": "src/lib/streams/resolve.ts",
-      "verdict": "P",
-      "note": "The iOS direct-URL path has no HEAD web-page probe, no error-clip size check on direct links (the check runs only on debrid links), and no completed-download precedence in resolve."
+      "verdict": "D",
+      "note": "Automatic extensionless direct streams use Desktop's bounded webpage probe, manual streams bypass it, declared stub clips use the shared size check, and matching completed torrent downloads take precedence in the active profile. Older downloads without torrent identity remain available from Downloads."
     },
     {
       "index": 108,

@@ -599,6 +599,7 @@ BEHAVIORS = expand("""
 6 P Discover runs Desktop's seeded genre, decade, language, country, TV, streaming and anchor rails with lazy paging, locale floors, relaxed fallbacks and a Cinemeta fallback. People and keyword lanes, custom row ordering and full awards pagination remain.
 68 P Installed addons use their declared playback types and prefixes, including alternate requests for nonstandard IDs. Control-only, retired and Stremio Local Files endpoints are excluded. iOS retains both verified anime and IMDb identities when available and uses its native HTTP transport.
 75 D Duplicate addon streams preserve all tracker sources. Explicitly uncached addon replies recover a missing torrent hash from the hosted URL or DHT source before availability checks. The configured remote streaming server consumes those trackers.
+107 D Automatic extensionless direct streams use Desktop's bounded webpage probe, manual streams bypass it, declared stub clips use the shared size check, and matching completed torrent downloads take precedence in the active profile. Older downloads without torrent identity remain available from Downloads.
 """)
 
 SETTINGS = expand("""

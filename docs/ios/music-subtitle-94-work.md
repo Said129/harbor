@@ -2199,3 +2199,14 @@ verified Kitsu and IMDb routes remain available. Explicitly uncached
 streams recover their hash before availability checks, and duplicate
 responses union tracker sources for the configured remote server. Focused
 fixtures use owned replies and test both request selection and tracker flow.
+
+## Direct stream resolution
+
+Only automatic extensionless URLs without a torrent identity get the
+3.5-second HEAD probe. It rejects confirmed HTML, allows inconclusive
+responses, and strips request headers on redirects to another origin.
+Direct and debrid streams share Desktop's declared error-clip size rule.
+Matching complete downloads take precedence by profile, torrent and file
+or episode. Files saved by earlier iOS builds remain usable from Downloads.
+The focused tests cover probe policy, redirect headers, direct size
+validation and completed-file matching with a legacy index.
