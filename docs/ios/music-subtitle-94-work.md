@@ -2171,3 +2171,19 @@ Progress and the library stay intact. The lookup is deferred until
 dismissal or until a saved dismissal might apply to a newly seen alias.
 Tests cover root resolution, restoration after relaunch, profile isolation,
 and the Shows limit.
+
+## Daily Discover shelves
+
+The native Discover view now mounts the original daily genre, decade,
+language, country, TV, streaming and anchor definitions in seed order. It
+uses the local profile's recent rows and loads cards as each shelf nears
+the screen. TMDB shelves use Desktop's locale floors, relaxed retry,
+affinity ranking, poster deduplication and ten-page limit. Without a key,
+Cinemeta supplies the original seven shelves and the existing native
+awards shelf remains available. Desktop's people and keyword lanes, custom
+row order and full awards paging remain pending. Four focused tests cover
+selection, locale floors, priority deduplication and exclusions.
+
+The locale preference also drives the original four Critics Pick queries.
+Daily Discover and Critics Pick share the same regional floor rule. The
+pinned Desktop Home view has no active consumer of the toggle.

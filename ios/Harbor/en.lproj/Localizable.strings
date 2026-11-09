@@ -18,6 +18,7 @@
 "30 seconds (default)" = "30 seconds (default)";
 "8-character key" = "8-character key";
 "A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
+"A Short Tonight: {genre} Under 90" = "A Short Tonight: {genre} Under 90";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below.";
 "A continuación" = "Up Next";
@@ -190,6 +191,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "Animated Movies";
 "Animated sidebar icons" = "Animated sidebar icons";
+"Animated, For Grown-Ups" = "Animated, For Grown-Ups";
 "Animation" = "Animation";
 "Animation Night" = "Animation Night";
 "Animation speed" = "Animation speed";
@@ -274,6 +276,7 @@
 "Aventura" = "Adventure";
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "Next episode prompt";
+"Award Winning" = "Award Winning";
 "Awards & Recognition" = "Awards & Recognition";
 "Awards Contenders" = "Awards Contenders";
 "Ayuda e información" = "Help & about";
@@ -307,7 +310,11 @@
 "Bass boost" = "Bass boost";
 "Be My Valentine" = "Be My Valentine";
 "Be the first to start a discussion." = "Be the first to start a discussion.";
+"Beloved, slightly forgotten" = "Beloved, slightly forgotten";
 "Berlin Film Festival" = "Berlin Film Festival";
+"Best Picture winners" = "Best Picture winners";
+"Best of the {decade}" = "Best of the {decade}";
+"Beyond the kids' shelf" = "Beyond the kids' shelf";
 "Biblioteca" = "Library";
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "Black bar";
@@ -438,6 +445,7 @@
 "Checking with MyAnimeList..." = "Checking with MyAnimeList...";
 "Checks the username against Stremboxd and turns on the catalogs it finds." = "Checks the username against Stremboxd and turns on the catalogs it finds.";
 "China" = "China";
+"Chinese Cinema" = "Chinese Cinema";
 "Chips" = "Chips";
 "Choose" = "Choose";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Choose a name, then select the resolutions, sources, codecs and audio you prefer.";
@@ -631,6 +639,8 @@
 "Crime" = "Crime";
 "Crime Series" = "Crime Series";
 "Crisp (anime & cartoons)" = "Crisp (anime & cartoons)";
+"Critically acclaimed TV" = "Critically acclaimed TV";
+"Critically acclaimed, all time" = "Critically acclaimed, all time";
 "Critics' Choice Awards" = "Critics' Choice Awards";
 "Critics' Pick" = "Critics' Pick";
 "Cuando presionas Reproducir" = "When you press Play";
@@ -654,6 +664,7 @@
 "DLNA TV" = "DLNA TV";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Colors your name, your cursor in Watch Together, and the ring around your avatar.";
 "Danger" = "Danger";
+"Danish Cinema" = "Danish Cinema";
 "Dark" = "Dark";
 "Date" = "Date";
 "Date Night" = "Date Night";
@@ -723,6 +734,7 @@
 "Distancia desde la parte inferior" = "Distance from bottom";
 "Documentales" = "Documentaries";
 "Documentaries" = "Documentaries";
+"Documentaries Worth Your Night" = "Documentaries Worth Your Night";
 "Documentary" = "Documentary";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
@@ -909,7 +921,10 @@
 "Foundation Years (90s)" = "Foundation Years (90s)";
 "Frame rate" = "Frame rate";
 "France" = "France";
+"French Cinema" = "French Cinema";
+"Fresh on TV" = "Fresh on TV";
 "From" = "From";
+"From the region" = "From the region";
 "From your addons" = "From your addons";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fuente" = "Font";
@@ -932,6 +947,7 @@
 "Genres" = "Genres";
 "Genres you want more of" = "Genres you want more of";
 "Gently magnify nearby posters as you move across a poster row." = "Gently magnify nearby posters as you move across a poster row.";
+"German Cinema" = "German Cinema";
 "Germany" = "Germany";
 "Get a key at" = "Get a key at";
 "Get an API key" = "Get an API key";
@@ -995,6 +1011,7 @@
 "Help & about" = "Help & about";
 "Hero trailers" = "Hero trailers";
 "Hidden" = "Hidden";
+"Hidden Gems from the {decade}" = "Hidden Gems from the {decade}";
 "Hidden Gems on MAL" = "Hidden Gems on MAL";
 "Hidden gems" = "Hidden gems";
 "Hidden titles" = "Hidden titles";
@@ -1028,9 +1045,12 @@
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "High";
 "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution.";
+"High score, low fanfare" = "High score, low fanfare";
 "Highlight, progress." = "Highlight, progress.";
 "Highlighted blocks." = "Highlighted blocks.";
 "Highlights" = "Highlights";
+"Highly Rated, Quietly Loved" = "Highly Rated, Quietly Loved";
+"Highly rated, real life" = "Highly rated, real life";
 "History" = "History";
 "History Buff" = "History Buff";
 "Holiday Warmth" = "Holiday Warmth";
@@ -1102,6 +1122,7 @@
 "In watchlist" = "In watchlist";
 "Independent Spirit Awards" = "Independent Spirit Awards";
 "India" = "India";
+"Indian Cinema" = "Indian Cinema";
 "Información" = "Information";
 "Information" = "Information";
 "Ingresa una cantidad de FPS entre 1 y 240." = "Enter an FPS from 1 to 240.";
@@ -1130,6 +1151,7 @@
 "Into the Stars" = "Into the Stars";
 "Invalid SourceRow JSON format" = "Invalid SourceRow JSON format";
 "Invite link" = "Invite link";
+"Italian Cinema" = "Italian Cinema";
 "Italy" = "Italy";
 "Izquierda" = "Left";
 "Izquierda a derecha" = "Left to right";
@@ -1137,6 +1159,7 @@
 "JSON URL" = "JSON URL";
 "JSON cannot be empty" = "JSON cannot be empty";
 "Japan" = "Japan";
+"Japanese Cinema" = "Japanese Cinema";
 "Jina API key (optional)" = "Jina API key (optional)";
 "Jina Reader" = "Jina Reader";
 "Join" = "Join";
@@ -1159,6 +1182,7 @@
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, season-aware";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, season-aware";
 "Known For" = "Known For";
+"Korean Cinema" = "Korean Cinema";
 "La conversión de FPS solo está disponible para subtítulos de texto." = "Subtitle FPS conversion is only available for text-based subtitles.";
 "La estructura de toda la página de Inicio. Las opciones siguientes ajustan las filas que contiene." = "The shape of the whole Home page. Everything below tunes the rows inside it.";
 "La reproducción ha terminado." = "Playback has ended.";
@@ -1168,6 +1192,7 @@
 "Languages & subtitles" = "Languages & subtitles";
 "Large" = "Large";
 "Larger" = "Larger";
+"Last 90 days" = "Last 90 days";
 "Late Night" = "Late Night";
 "Laterales" = "Sides";
 "Laugh Out Loud" = "Laugh Out Loud";
@@ -1391,10 +1416,12 @@
 "New Episodes row" = "New Episodes row";
 "New Year, New Stories" = "New Year, New Stories";
 "New filter" = "New filter";
+"New in {genre}" = "New in {genre}";
 "New list" = "New list";
 "New look name" = "New look name";
 "New profile" = "New profile";
 "New shows and anime premiering this month, from Simkl" = "New shows and anime premiering this month, from Simkl";
+"New {genre} Series" = "New {genre} Series";
 "Newest" = "Newest";
 "Next" = "Next";
 "Next chapter" = "Next chapter";
@@ -1539,6 +1566,7 @@
 "On start" = "On start";
 "On your Roku remote, press Home." = "On your Roku remote, press Home.";
 "On your Roku, open Streaming Channels from the home screen." = "On your Roku, open Streaming Channels from the home screen.";
+"On {service}, picked for you" = "On {service}, picked for you";
 "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it.";
 "One list" = "One list";
 "Only 1 source after filtering" = "Only 1 source after filtering";
@@ -1679,6 +1707,7 @@
 "Popular Series" = "Popular Series";
 "Popular manga" = "Popular manga";
 "Popular reads" = "Popular reads";
+"Portuguese-Language" = "Portuguese-Language";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position" = "Position";
@@ -1748,6 +1777,7 @@
 "Quedan {h} h {m} min" = "{h}h {m}m left";
 "Quedan {m} min" = "{m}m left";
 "Queue" = "Queue";
+"Quietly great, {decade}" = "Quietly great, {decade}";
 "Quitar" = "Remove";
 "Quitar de Seguir viendo" = "Remove from Continue Watching";
 "Quitar de biblioteca Suwayomi" = "Remove from Suwayomi library";
@@ -1782,6 +1812,7 @@
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
 "Recent" = "Recent";
 "Recent searches" = "Recent searches";
+"Recently Released" = "Recently Released";
 "Recently played" = "Recently played";
 "Recién agregado" = "Just added";
 "Recognized at the {award}." = "Recognized at the {award}.";
@@ -1923,6 +1954,7 @@
 "Rounded background panel behind the text. Most readable." = "Rounded background panel behind the text. Most readable.";
 "Row card style" = "Row card style";
 "Rows" = "Rows";
+"Russian Cinema" = "Russian Cinema";
 "SIMKL" = "SIMKL";
 "SUBDL" = "SUBDL";
 "Saddle Up" = "Saddle Up";
@@ -2171,6 +2203,7 @@
 "South Korea" = "South Korea";
 "Space" = "Space";
 "Spain" = "Spain";
+"Spanish-Language" = "Spanish-Language";
 "Specials" = "Specials";
 "Speed" = "Speed";
 "Spoiler — Click" = "Spoiler — Click";
@@ -2263,6 +2296,7 @@
 "Surprise me" = "Surprise me";
 "Suspenso" = "Thrillers";
 "Suwayomi connection" = "Suwayomi connection";
+"Swedish Cinema" = "Swedish Cinema";
 "Switch quality" = "Switch quality";
 "Switch stream" = "Switch stream";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track.";
@@ -2417,17 +2451,21 @@
 "Top Rated Movies" = "Top Rated Movies";
 "Top Rated Series" = "Top Rated Series";
 "Top Rated on MAL" = "Top Rated on MAL";
+"Top Rated {genre}" = "Top Rated {genre}";
+"Top Rated {genre} Series" = "Top Rated {genre} Series";
 "Top Series on MAL" = "Top Series on MAL";
 "Top left" = "Top left";
 "Top match" = "Top match";
 "Top of the screen" = "Top of the screen";
 "Top rated" = "Top rated";
+"Top rated abroad" = "Top rated abroad";
 "Top rated on {site}" = "Top rated on {site}";
 "Top result" = "Top result";
 "Top right" = "Top right";
 "Top rising" = "Top rising";
 "Top titles" = "Top titles";
 "Top tracks" = "Top tracks";
+"Top {genre}" = "Top {genre}";
 "TorBox API key" = "TorBox API key";
 "Torrent link" = "Torrent link";
 "Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
@@ -2597,6 +2635,7 @@
 "Western" = "Western";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows.";
 "What is this?" = "What is this?";
+"What people are watching" = "What people are watching";
 "What you watched" = "What you watched";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "When a release ships multiple audio tracks, Harbor selects the first match from this list.";
@@ -3817,10 +3856,12 @@
 "year mismatch" = "year mismatch";
 "yesterday" = "yesterday";
 "your-name" = "your-name";
+"{country} Films" = "{country} Films";
 "{count} results" = "{count} results";
 "{count} selected" = "{count} selected";
 "{count} titles will never show the content advisory again." = "{count} titles will never show the content advisory again.";
 "{count} tracks" = "{count} tracks";
+"{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "{h}h left";
 "{h}h {m}m left" = "{h}h {m}m left";
 "{ms} ms" = "{ms} ms";

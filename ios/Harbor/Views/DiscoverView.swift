@@ -101,6 +101,7 @@ struct DiscoverView: View {
     @State private var length = 5
     @State private var surprise: Media?
     @State private var lastSurprise: String?
+    @State private var dailyRefreshRevision = 0
     @State private var voteUndo: VoteUndo?
     @Environment(\.scenePhase) private var scenePhase
     private var catalogs: [CatalogRow] { app.rows.filter { !$0.plan.isPlaybackHistoryCatalog && $0.plan.catalog != nil && (kind == "anime" ? $0.isAnimeCatalog : $0.plan.kind == kind && !$0.isAnimeCatalog) } }
@@ -118,31 +119,13 @@ struct DiscoverView: View {
             .filter { ["movie", "series"].contains($0.type) && !$0.id.isEmpty && seen.insert($0.identity).inserted }
         return DiscoveryAffinityRules.excludingDownvoted(candidates, downvotes: downvotes)
     }
-    private var localeBias: DiscoveryAffinityRules.LocaleBias {
-        let metadata = MetadataPreferences.shared
-        return DiscoveryAffinityRules.localeBias(
-            preferredLanguages: SubtitleLanguages.preferredCodes(StreamPreferences.shared.streamLanguages),
-            metadataLanguage: metadata.language,
-            region: metadata.region,
-            enabled: InterfacePreferences.shared.feedLocaleBias
-        )
-    }
-    private var personalizedShelves: (trending: [Media], topRated: [Media], awards: [Media]) {
-        let affinity = app.library.discovery.affinity(now: Date())
-        let locale = localeBias
-        let blocked = downvotes
-        func eligible(_ items: [Media]) -> [Media] { DiscoveryAffinityRules.excludingDownvoted(items, downvotes: blocked) }
-        func ranked(_ items: [Media]) -> [Media] { DiscoveryAffinityRules.ranked(eligible(items), affinity: affinity, locale: locale) }
-        return (ranked(model.trending), ranked(model.topRated), eligible(model.awards))
-    }
     private var queueItems: [Media] {
         let watched = Set(app.library.items.filter { $0.watched || $0.continuing }.map(\.id))
         return pool.filter { ["movie", "series"].contains($0.type) && !watched.contains($0.id) && app.library.discovery.vote(for: $0) == nil && !app.library.discovery.isQueueItemHidden($0.id) }
     }
     var body: some View {
-        let shelves = personalizedShelves
         ScrollView {
-            VStack(alignment: .leading, spacing: 30) {
+            LazyVStack(alignment: .leading, spacing: 30) {
                 if !model.recommended.isEmpty {
                     Text(DesktopVoyage.copy("Recommended")).font(HarborTheme.displayFont(28)).padding(.horizontal)
                     DiscoverFeatured(items: model.recommended, app: app) { media, previous, expected in voteUndo = VoteUndo(media: media, previous: previous, expected: expected) }
@@ -150,12 +133,11 @@ struct DiscoverView: View {
                 catalogBrowser
                 surpriseChooser
                 voyageChooser
-                if !shelves.trending.isEmpty { shelf(DesktopVoyage.copy("Trending This Week"), items: shelves.trending) }
                 genreTiles
-                if !shelves.topRated.isEmpty { shelf(DesktopVoyage.copy("Top Rated"), items: shelves.topRated) }
                 CriticsPickView(app: app, featuredIDs: Set(model.recommended.prefix(10).map(\.id)))
                 if !queueItems.isEmpty { queue }
-                if !shelves.awards.isEmpty { shelf("Award Winning", items: shelves.awards) }
+                DiscoveryDailyShelves(app: app, awards: model.awards, featuredIDs: Set(model.recommended.prefix(10).map(\.id)),
+                                      refreshRevision: dailyRefreshRevision)
                 if model.loading { ProgressView().frame(maxWidth: .infinity) }
                 if let error = model.error { Text(error).font(HarborTheme.font(13)).foregroundStyle(.orange).padding(.horizontal); Button(DesktopInterfaceText.value("Retry")) { Task { await model.load(app: app, refresh: true) } }.padding(.horizontal) }
                 if let error = app.library.discovery.error { Text(error).font(HarborTheme.font(13)).foregroundStyle(.orange).padding(.horizontal) }
@@ -163,7 +145,10 @@ struct DiscoverView: View {
         }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .accessibilityIdentifier("discover-original")
             .task(id: "\(app.storageReady)|\(app.personalOwner)") { if app.storageReady { await model.load(app: app) } }
-            .refreshable { await model.load(app: app, refresh: true) }
+            .refreshable {
+                dailyRefreshRevision &+= 1
+                await model.load(app: app, refresh: true)
+            }
             .onChange(of: kind) { _, _ in catalog = ""; genre = "" }
             .onChange(of: catalog) { _, _ in genre = "" }
             .onChange(of: app.rows.flatMap(\.metas).map(\.identity)) { _, _ in model.refreshRecommendations(app: app) }
@@ -304,12 +289,6 @@ struct DiscoverView: View {
     private var queueCount: some View {
         Text(DesktopVoyage.copy("{count} picks ready").replacingOccurrences(of: "{count}", with: String(queueItems.count)).uppercased())
             .font(HarborTheme.font(12.5)).tracking(2.5).foregroundStyle(ThemePreferences.shared.color("ink-subtle")).fixedSize()
-    }
-    private func shelf(_ title: String, items: [Media]) -> some View {
-        VStack(alignment: .leading, spacing: 14) {
-            Text(title).font(HarborTheme.font(18, weight: .semibold)).padding(.horizontal)
-            ScrollView(.horizontal) { LazyHStack(alignment: .top, spacing: 12) { ForEach(items, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain) } }.padding(.horizontal) }.scrollIndicators(.hidden).posterRowBehavior()
-        }
     }
 }
 

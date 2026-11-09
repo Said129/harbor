@@ -8,7 +8,7 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 1 | Home hero and real catalogs | P | Home uses Desktop's public Trending, Trakt and Simkl pools with a three-hour cache, explicit rail priority, catalog fallback, and per-title ranking. Native base catalog composition and some personal rails still differ. [Desktop: src/views/home.tsx]
 - B 2 | Continue Watching on Home | P | The native row removes a resolved anime franchise's known aliases and can restore them without clearing progress. Profile and playback changes fence late lookups. Desktop's default visible franchise dedupe and differing account sources remain. [Desktop: src/views/home.tsx]
 - B 5 | Discover personalized feed | P | Discover applies profile-scoped locale affinity to Trending and Top Rated and excludes downvoted titles from suggestion pools. The native featured source pool and personalized daily lanes still differ. [Desktop: src/views/discover.tsx]
-- B 6 | Daily discovery rails | P | daily discovery rails: the seeded row order with pinned anchors exists as a tested helper (8 Nov, written by Haiku, uncompiled); iOS has no daily row catalog to order [Desktop: src/views/discover.tsx]
+- B 6 | Daily discovery rails | P | Discover runs Desktop's seeded genre, decade, language, country, TV, streaming and anchor rails with lazy paging, locale floors, relaxed fallbacks and a Cinemeta fallback. People and keyword lanes, custom row ordering and full awards pagination remain. [Desktop: src/views/discover.tsx]
 - B 8 | Genre discovery | P | All eighteen Desktop tiles now open the TMDB genre or the public Cinemeta genre catalog when no TMDB key is configured. The collage loads lazily. Editorial and spotlight filters remain pending. [Desktop: src/views/discover.tsx]
 - B 10 | Movies room | P | The iOS movie room has no user collection rows assigned to the page, no Top 10 Movies Today row (no movie top-10 rail was found in ContentPageModel or TMDBService), no cross-row de-duplication against the hero and... [Desktop: src/views/movies.tsx]
 - B 11 | Cinema hero | P | Movies uses Desktop's five TMDB requests, daily ordering, recent-play exclusion and fallback. The native carousel pauses for horizontal drag, pointer hover, the viewport and backgrounding. Native motion and live catalog validation remain pending. [Desktop: src/views/movies.tsx]
@@ -121,7 +121,7 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 424 | Music audio cover import | P | music audio cover import: a sidecar cover (cover, folder, front) fills in when there is no embedded art, for folder imports; the front-cover tag preference is not possible with AVFoundation's artwork key (8 Nov, written by Haiku, uncompiled) [Desktop: src-tauri/src/music/connectors/local/tags.rs]
 - B 426 | Music playback queue | P | The expanded player can append fresh tracks from the queue context without interrupting playback. Discover uses the profile catalog. Desktop radio, Spotify paging and artist blocks remain pending. [Desktop: src-tauri/src/music/commands/playback.rs]
 
-## settings (32 filas)
+## settings (31 filas)
 
 - S 11 | tvdbKey | P | TVDB used without a user key setting [Desktop: src/lib/settings/types.ts]
 - S 65 | top10Ribbon | P | The original ribbon follows the active Home Top 10 and moves bookmarks that share its corner. Native Home row sources still differ in some configurations. [Desktop: src/lib/settings/types.ts]
@@ -154,4 +154,3 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - S 478 | customCalendar | P | customCalendar: people, genres, providers, countries, media types and Trakt sources with a filter sheet (7 Nov, uncompiled) [Desktop: src/lib/settings/types.ts]
 - S 487 | iptvPlaylists | P | earlier review Partial [Desktop: src/lib/settings/types.ts]
 - S 488 | iptvLiveContainer | P | earlier review Partial [Desktop: src/lib/settings/types.ts]
-- S 497 | feedLocaleBias | P | The per-profile locale preference controls Discover ranking and defaults to on. Desktop's daily Home catalog bias is pending. [Desktop: src/lib/settings/types.ts]

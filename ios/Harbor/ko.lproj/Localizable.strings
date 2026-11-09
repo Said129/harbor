@@ -27,6 +27,7 @@
 "4:3" = "4:3";
 "8-character key" = "8자 키";
 "A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
+"A Short Tonight: {genre} Under 90" = "오늘 밤의 짧은 영화: 90분 미만 {genre}";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "브라우저의 새 탭에서 AniList가 열렸습니다. 그곳에서 Harbor를 승인한 다음, 표시되는 텍스트를 복사하여 아래에 붙여넣으세요.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "브라우저의 새 탭에서 MyAnimeList가 열렸습니다. 그곳에서 Harbor를 승인한 다음, 코드 또는 페이지 URL을 복사하여 아래에 붙여넣으세요.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 프로토콜용 클라이언트입니다. 설정에는 2분이면 충분하며 대부분은 선택 사항입니다. 모든 키는 사용자가 직접 관리합니다.";
@@ -213,6 +214,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "애니메이션 영화";
 "Animated sidebar icons" = "Animated sidebar icons";
+"Animated, For Grown-Ups" = "성인을 위한 애니메이션";
 "Animation" = "애니메이션";
 "Animation Night" = "애니메이션 나이트";
 "Animation speed" = "애니메이션 속도";
@@ -301,6 +303,7 @@
 "Aventura" = "어드벤처";
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "다음 에피소드 알림";
+"Award Winning" = "Award Winning";
 "Award Winning Anime" = "수상 애니메이션";
 "Awards & Recognition" = "수상 및 선정";
 "Awards Contenders" = "수상 유력작";
@@ -336,6 +339,7 @@
 "Be My Valentine" = "내 발렌타인이 되어 주세요";
 "Be the first to start a discussion." = "첫 토론을 시작해 보세요.";
 "Beloved by readers and critics" = "독자와 평단 모두가 사랑한 작품";
+"Beloved, slightly forgotten" = "사랑받았지만 조금은 잊힌 작품";
 "Berlin Film Festival" = "베를린 영화제";
 "Best Action" = "최우수 액션";
 "Best Adventure" = "최우수 어드벤처";
@@ -359,11 +363,14 @@
 "Best New Series" = "최우수 신작";
 "Best Opening" = "최우수 오프닝";
 "Best Original Anime" = "최우수 오리지널 애니메이션";
+"Best Picture winners" = "Best Picture winners";
 "Best Protagonist" = "최우수 주역";
 "Best Romance" = "최우수 로맨스";
 "Best Slice of Life" = "최우수 일상물";
 "Best Suspense" = "최우수 서스펜스";
 "Best VA Performance" = "최우수 성우 연기";
+"Best of the {decade}" = "{decade}년대 최고의 작품";
+"Beyond the kids' shelf" = "어린이 코너 너머";
 "Biblioteca" = "라이브러리";
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "검은색 바";
@@ -510,6 +517,7 @@
 "China" = "중국";
 "Chinese" = "중국어";
 "Chinese (Simplified)" = "중국어(간체)";
+"Chinese Cinema" = "중국 영화";
 "Chips" = "칩";
 "Choose" = "선택";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "이름을 지정한 다음 선호하는 해상도, 소스, 코덱, 오디오를 선택하세요.";
@@ -715,6 +723,8 @@
 "Crime Series" = "범죄 시리즈";
 "Crisp (anime & cartoons)" = "또렷하게(애니메이션 및 만화)";
 "Critically Acclaimed" = "평단의 찬사를 받은 작품";
+"Critically acclaimed TV" = "평단의 찬사를 받은 TV 프로그램";
+"Critically acclaimed, all time" = "Critically acclaimed, all time";
 "Critics' Choice Awards" = "크리틱스 초이스상";
 "Critics' Pick" = "평론가 추천작";
 "Critics' Picks" = "평론가 추천작";
@@ -746,6 +756,7 @@
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "이름, 같이 보기의 커서, 아바타 주변 테두리에 색을 적용합니다.";
 "Danger" = "위험";
 "Danish" = "덴마크어";
+"Danish Cinema" = "덴마크 영화";
 "Dark" = "어둡게";
 "Date" = "날짜";
 "Date Night" = "데이트 나이트";
@@ -821,6 +832,7 @@
 "Distancia desde la parte inferior" = "하단에서의 거리";
 "Documentales" = "다큐멘터리";
 "Documentaries" = "다큐멘터리";
+"Documentaries Worth Your Night" = "Documentaries Worth Your Night";
 "Documentary" = "다큐멘터리";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
@@ -1031,8 +1043,11 @@
 "France" = "프랑스";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "무료이며 가입에는 2분 정도 걸립니다. 인기 콘텐츠, 현재 극장 상영작, 높은 평점, 스트리밍 서비스별 카탈로그(Netflix, Disney+, Hulu, …)를 이용할 수 있습니다. 키는 이 기기에만 저장됩니다.";
 "French" = "프랑스어";
+"French Cinema" = "프랑스 영화";
+"Fresh on TV" = "TV 신작";
 "From" = "출처";
 "From HBO" = "HBO 작품";
+"From the region" = "해당 지역 출신";
 "From your addons" = "내 애드온에서";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
@@ -1057,6 +1072,7 @@
 "Genres you want more of" = "더 보고 싶은 장르";
 "Gently magnify nearby posters as you move across a poster row." = "포스터 행을 이동할 때 주변 포스터를 부드럽게 확대합니다.";
 "German" = "독일어";
+"German Cinema" = "독일 영화";
 "Germany" = "독일";
 "Get Started" = "시작하기";
 "Get a free key at themoviedb.org" = "themoviedb.org에서 무료 키 받기";
@@ -1134,6 +1150,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "히어로, Top 10, 인기 콘텐츠, 극장 상영작과 서비스별 콘텐츠 줄이 표시됩니다. 그 아래에 애드온 콘텐츠가 추가됩니다.";
 "Hidden" = "숨김";
 "Hidden Gems" = "숨은 명작";
+"Hidden Gems from the {decade}" = "{decade}년대의 숨은 명작";
 "Hidden Gems on MAL" = "MAL 숨은 명작";
 "Hidden gems" = "숨은 명작";
 "Hidden titles" = "Hidden titles";
@@ -1167,9 +1184,12 @@
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "높음";
 "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "높음은 화면 크기에 맞춰 조정되어 훨씬 적은 메모리로도 전체 해상도와 동일하게 보입니다. 균형은 메모리를 가장 많이 절약합니다. 최대는 원본 해상도를 유지합니다.";
+"High score, low fanfare" = "높은 점수, 낮은 화제성";
 "Highlight, progress." = "강조, 진행률.";
 "Highlighted blocks." = "강조된 블록.";
 "Highlights" = "하이라이트";
+"Highly Rated, Quietly Loved" = "높은 평점, 조용한 사랑";
+"Highly rated, real life" = "Highly rated, real life";
 "Hindi" = "힌디어";
 "History" = "역사";
 "History Buff" = "역사 애호가";
@@ -1248,6 +1268,7 @@
 "In watchlist" = "시청 목록에 있음";
 "Independent Spirit Awards" = "인디펜던트 스피릿상";
 "India" = "인도";
+"Indian Cinema" = "인도 영화";
 "Indonesian" = "인도네시아어";
 "Información" = "정보";
 "Information" = "정보";
@@ -1282,6 +1303,7 @@
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "{product} 제작사 또는 앱 내에서 언급된 회사, 애드온 제작자, 상표권자와 제휴 관계가 없습니다.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "{company}와 제휴하거나, 보증 또는 후원을 받거나, 어떠한 방식으로도 관련되어 있지 않습니다.";
 "Italian" = "이탈리아어";
+"Italian Cinema" = "이탈리아 영화";
 "Italy" = "이탈리아";
 "Izquierda" = "왼쪽";
 "Izquierda a derecha" = "왼쪽에서 오른쪽";
@@ -1291,6 +1313,7 @@
 "Japan" = "일본";
 "Japan's top science-fiction comic honor" = "일본 최고 권위의 SF 만화상";
 "Japanese" = "일본어";
+"Japanese Cinema" = "일본 영화";
 "Jina API key (optional)" = "Jina API 키(선택 사항)";
 "Jina Reader" = "Jina Reader";
 "Join" = "참여";
@@ -1316,6 +1339,7 @@
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, 시즌 인식";
 "Known For" = "대표작";
 "Korean" = "한국어";
+"Korean Cinema" = "한국 영화";
 "La conversión de FPS solo está disponible para subtítulos de texto." = "자막 FPS 변환은 텍스트 기반 자막에서만 사용할 수 있습니다.";
 "La estructura de toda la página de Inicio. Las opciones siguientes ajustan las filas que contiene." = "홈 페이지 전체의 구성입니다. 아래의 모든 설정은 그 안의 행을 조정합니다.";
 "La reproducción ha terminado." = "Playback has ended.";
@@ -1325,6 +1349,7 @@
 "Languages & subtitles" = "언어 및 자막";
 "Large" = "크게";
 "Larger" = "더 크게";
+"Last 90 days" = "Last 90 days";
 "Late Night" = "심야";
 "Laterales" = "양면";
 "Laugh Out Loud" = "포복절도 코미디";
@@ -1574,11 +1599,13 @@
 "New Face Award" = "신인상";
 "New Year, New Stories" = "새해, 새로운 이야기";
 "New filter" = "새 필터";
+"New in {genre}" = "새로운 {genre}";
 "New list" = "새 목록";
 "New look name" = "새 스타일 이름";
 "New profile" = "새 프로필";
 "New shows and anime premiering this month, from Simkl" = "Simkl에서 이번 달 첫 공개되는 새 시리즈와 애니메이션";
 "New voyage" = "새 여정";
+"New {genre} Series" = "새로운 {genre} 시리즈";
 "Newest" = "최신순";
 "Next" = "다음";
 "Next chapter" = "다음 챕터";
@@ -1740,6 +1767,7 @@
 "On start" = "On start";
 "On your Roku remote, press Home." = "Roku 리모컨에서 홈 버튼을 누르세요.";
 "On your Roku, open Streaming Channels from the home screen." = "Roku 홈 화면에서 스트리밍 채널을 여세요.";
+"On {service}, picked for you" = "{service}에서 회원님을 위해 고른 작품";
 "Onboarding" = "시작 안내";
 "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "저장하면 모든 포스터가 IMDb, Rotten Tomatoes 및 Metacritic 표시와 함께 다시 렌더링됩니다.";
 "One list" = "목록 하나";
@@ -1909,6 +1937,7 @@
 "Popular reads" = "Popular reads";
 "Portuguese" = "포르투갈어";
 "Portuguese (Brazil)" = "포르투갈어(브라질)";
+"Portuguese-Language" = "포르투갈어권";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position" = "순위";
@@ -1985,6 +2014,7 @@
 "Queue" = "대기열";
 "Quick Watches Under 90" = "90분 미만 가볍게 보기";
 "Quiet" = "조용히";
+"Quietly great, {decade}" = "조용히 빛난 {decade}년대 명작";
 "Quitar" = "제거";
 "Quitar de Seguir viendo" = "이어보기에서 삭제";
 "Quitar de biblioteca Suwayomi" = "Remove from Suwayomi library";
@@ -2024,6 +2054,7 @@
 "Recent" = "최근 항목";
 "Recent activity" = "최근 활동";
 "Recent searches" = "최근 검색어";
+"Recently Released" = "Recently Released";
 "Recently played" = "최근 플레이";
 "Recién agregado" = "최근 추가순";
 "Recognized at the {award}." = "{award}에서 인정받았습니다.";
@@ -2178,6 +2209,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "현재는 Cinemeta로 실행됩니다. 준비되면 언제든 설정에서 TMDB 키를 추가하세요.";
 "Runs this plugin on a real title and shows what came back." = "실제 제목으로 이 플러그인을 실행하고 반환된 결과를 보여 줍니다.";
 "Russian" = "러시아어";
+"Russian Cinema" = "러시아 영화";
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
@@ -2444,6 +2476,7 @@
 "Spain" = "스페인";
 "Spanish" = "스페인어";
 "Spanish (Latin America)" = "스페인어(라틴 아메리카)";
+"Spanish-Language" = "스페인어권";
 "Specials" = "스페셜";
 "Speed" = "속도";
 "Spoiler — Click" = "스포일러 · 클릭";
@@ -2547,6 +2580,7 @@
 "Suspenso" = "스릴러";
 "Suwayomi connection" = "Suwayomi connection";
 "Swedish" = "스웨덴어";
+"Swedish Cinema" = "스웨덴 영화";
 "Switch quality" = "Switch quality";
 "Switch stream" = "스트림 전환";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "재생 시작 후 더 선호하는 언어의 자막이 도착하면 전환합니다. 현재 트랙을 유지하려면 끄세요.";
@@ -2724,18 +2758,22 @@
 "Top Rated Movies" = "평점 높은 영화";
 "Top Rated Series" = "평점 높은 시리즈";
 "Top Rated on MAL" = "MAL 최고 평점작";
+"Top Rated {genre}" = "평점이 높은 {genre}";
+"Top Rated {genre} Series" = "평점이 높은 {genre} 시리즈";
 "Top Series" = "최고의 시리즈";
 "Top Series on MAL" = "MAL 시리즈 인기 순위";
 "Top left" = "왼쪽 상단";
 "Top match" = "가장 일치하는 결과";
 "Top of the screen" = "화면 상단";
 "Top rated" = "평점순";
+"Top rated abroad" = "해외 최고 평점작";
 "Top rated on {site}" = "{site} 최고 평점 콘텐츠";
 "Top result" = "최상위 결과";
 "Top right" = "오른쪽 상단";
 "Top rising" = "급상승";
 "Top titles" = "가장 많이 본 작품";
 "Top tracks" = "Top tracks";
+"Top {genre}" = "Top {genre}";
 "TorBox API key" = "TorBox API 키";
 "Torrent link" = "토렌트 링크";
 "Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
@@ -2920,6 +2958,7 @@
 "What everyone is reading" = "지금 모두가 읽는 작품";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "히어로 영역에 표시할 콘텐츠를 설정합니다. 인기 콘텐츠는 Harbor에서 제공하는 최신 인기 목록으로 하루 중 수시로 갱신됩니다. 클래식은 사용자의 홈 행을 사용합니다.";
 "What is this?" = "이게 무엇인가요?";
+"What people are watching" = "사람들이 시청 중인 작품";
 "What you watched" = "시청한 콘텐츠";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Esc를 누르면 플레이어가 닫히는 경우 먼저 간단한 확인 창을 표시합니다. 확인 창에서 \"다시 묻지 않기\"를 선택하면 Esc를 누를 때 항상 바로 나갑니다.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "릴리스에 오디오 트랙이 여러 개 있으면 Harbor가 이 목록에서 처음 일치하는 트랙을 선택합니다.";
@@ -4187,11 +4226,13 @@
 "yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} 자체는 어떠한 미디어도 호스팅, 배포 또는 색인하지 않습니다. 모든 스트림은 서드 파티 애드온, Debrid 서비스 또는 사용자가 직접 구성한 {service} 계정에서 제공됩니다. 재생할 콘텐츠를 선택하고 관할 지역의 법률을 준수할 책임은 사용자에게 있습니다.";
+"{country} Films" = "{country} 영화";
 "{count} picks ready" = "추천 {count}개 준비됨";
 "{count} results" = "결과 {count}개";
 "{count} selected" = "{count}개 선택됨";
 "{count} titles will never show the content advisory again." = "작품 {count}개에 콘텐츠 주의 사항이 다시 표시되지 않습니다.";
 "{count} tracks" = "{count}곡";
+"{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "{h}시간 남음";
 "{h}h {m}m left" = "{h}시간 {m}분 남음";
 "{ms} ms" = "{ms}밀리초";

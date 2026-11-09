@@ -228,6 +228,60 @@ final class R24DiscoverTests: XCTestCase {
         XCTAssertTrue(defaults.bool(forKey: "feedLocaleBias"))
     }
 
+    func testDailyCatalogBuildsStableDefinitionsAndOriginalCinemetaFallback() throws {
+        let now = try XCTUnwrap(Calendar.current.date(from: DateComponents(year: 2026, month: 11, day: 9, hour: 12)))
+        let fallback = DiscoveryDailyFeed.rows(tmdbKey: "", affinity: .init(), region: "ES", enabledServices: [], now: now)
+        XCTAssertEqual(fallback.map(\.id), [
+            "fallback_cinemeta_movies", "fallback_cinemeta_series", "fallback_cinemeta_Thriller", "fallback_cinemeta_Crime",
+            "fallback_cinemeta_Comedy", "fallback_cinemeta_Romance", "fallback_cinemeta_Sci-Fi",
+        ])
+        XCTAssertEqual(fallback.first?.endpoint, .cinemeta(kind: "movie", genre: nil))
+
+        let rows = DiscoveryDailyFeed.rows(tmdbKey: "fixture", affinity: .init(), region: "ES", enabledServices: [], now: now)
+        XCTAssertEqual(rows.prefix(3).map(\.id), ["trending:_", "critically_loved:_", "award_winning:_"])
+        XCTAssertEqual(rows.prefix(3).map(\.pageBase), [1, 1, 1])
+        XCTAssertEqual(Set(rows.map(\.id)).count, rows.count)
+        XCTAssertTrue(rows.allSatisfy { (1...3).contains($0.pageBase) })
+        let closing = try XCTUnwrap(rows.last)
+        XCTAssertTrue(DiscoveryDailyRows.rotatingAnchors.contains { closing.id.hasPrefix($0 + ":") })
+        let again = DiscoveryDailyFeed.rows(tmdbKey: "fixture", affinity: .init(), region: "ES", enabledServices: [], now: now)
+        XCTAssertEqual(rows.map(\.id), again.map(\.id))
+    }
+
+    func testDailyCatalogLocalizesOnlyUnrestrictedMovieFloorsWhenEnabled() {
+        let floor = ["vote_count.gte": "200"]
+        XCTAssertEqual(DiscoveryDailyFeed.localizeFloor(floor, kind: "movie", enabled: true, localeCodes: ["es"], region: "ES")["region"], "ES")
+        XCTAssertEqual(DiscoveryDailyFeed.localizeFloor(floor, kind: "movie", enabled: false, localeCodes: ["es"], region: "ES"), floor)
+        XCTAssertEqual(DiscoveryDailyFeed.localizeFloor(floor, kind: "series", enabled: true, localeCodes: ["es"], region: "ES"), floor)
+        let language = ["with_original_language": "ko"]
+        XCTAssertEqual(DiscoveryDailyFeed.localizeFloor(language, kind: "movie", enabled: true, localeCodes: ["es"], region: "ES"), language)
+    }
+
+    func testDailyCatalogReservesPriorityRowsAndOnlyReusesProtectedTitlesLast() {
+        func title(_ id: String) -> Media { Media(id: id, type: "movie", name: id, poster: "https://example.com/poster.jpg") }
+        let featured = title("hero"), common = title("shared"), trend = title("trend")
+        let rows = DiscoveryDailyFeed.rows(tmdbKey: "fixture", affinity: .init(), region: "US", enabledServices: [])
+        let loaded = ["trending:_": [featured, common, trend], "critically_loved:_": [common, title("critics")],
+                      "award_winning:_": [common, title("award")]]
+        let first = DiscoveryDailyFeed.deduplicatedRows(rows: rows, loaded: loaded, featuredIDs: [featured.id], minimum: 1)
+        XCTAssertEqual(first["trending:_"]?.map(\.id), ["trend"])
+        XCTAssertEqual(first["critically_loved:_"]?.map(\.id), ["shared", "critics"])
+        XCTAssertEqual(first["award_winning:_"]?.map(\.id), ["award"])
+        let filled = DiscoveryDailyFeed.deduplicatedRows(rows: rows, loaded: loaded, featuredIDs: [featured.id], minimum: 3)
+        XCTAssertEqual(filled["trending:_"]?.map(\.id), ["trend", "shared", "hero"])
+    }
+
+    func testDailyCatalogKeepsEligibleUnseenTitlesBeforeWatchedAndVotedOnes() {
+        func title(_ id: String, _ name: String, poster: String? = "https://example.com/poster.jpg") -> Media {
+            Media(id: id, type: "movie", name: name, poster: poster)
+        }
+        let filter = DiscoveryDailyFeed.Filter(downvotes: [.init(id: "blocked", titleKey: "disliked")], upvoted: ["liked"],
+            history: .init(["legacy": .init(parsedTitle: "Watched (2021)", savedAt: 1)]), affinity: .init(), locale: .disabled)
+        let inputs = [title("watched", "Watched"), title("liked", "Liked"), title("missing", "Missing", poster: ""),
+                      title("blocked", "Hidden"), title("alias", "Disliked"), title("fresh", "Fresh"), title("fresh", "Duplicate")]
+        XCTAssertEqual(filter.eligible(inputs).map(\.id), ["fresh", "watched", "liked"])
+    }
+
     func testPremiereRailAndNetworkRailsMatchDesktopSpecs() {
         let rails = TMDBService().definitions("series")
         func parameters(_ id: String) -> [String: String]? { rails.first { $0.id == id }?.parameters }

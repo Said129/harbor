@@ -27,6 +27,7 @@
 "4:3" = "4:3";
 "8-character key" = "8 位密钥";
 "A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
+"A Short Tonight: {genre} Under 90" = "今晚看部短片：90 分钟以内的{genre}";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "已在浏览器标签页中打开 AniList。请在那里授权 Harbor，然后复制显示的文本并粘贴到下方。";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "已在浏览器标签页中打开 MyAnimeList。请在那里授权 Harbor，然后复制代码或页面 URL 并粘贴到下方。";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 协议客户端。两分钟即可完成设置，其中大部分为可选项。所有密钥均由你掌控。";
@@ -213,6 +214,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "动画电影";
 "Animated sidebar icons" = "Animated sidebar icons";
+"Animated, For Grown-Ups" = "成人动画";
 "Animation" = "动画";
 "Animation Night" = "动画之夜";
 "Animation speed" = "动画速度";
@@ -301,6 +303,7 @@
 "Aventura" = "冒险";
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "下一集提示";
+"Award Winning" = "Award Winning";
 "Award Winning Anime" = "获奖动漫";
 "Awards & Recognition" = "奖项与荣誉";
 "Awards Contenders" = "奖季热门";
@@ -336,6 +339,7 @@
 "Be My Valentine" = "做我的心上人";
 "Be the first to start a discussion." = "来发起第一个讨论吧。";
 "Beloved by readers and critics" = "深受读者和评论家喜爱";
+"Beloved, slightly forgotten" = "备受喜爱，略被遗忘";
 "Berlin Film Festival" = "柏林电影节";
 "Best Action" = "最佳动作";
 "Best Adventure" = "最佳冒险";
@@ -359,11 +363,14 @@
 "Best New Series" = "最佳新作";
 "Best Opening" = "最佳片头曲";
 "Best Original Anime" = "最佳原创动画";
+"Best Picture winners" = "Best Picture winners";
 "Best Protagonist" = "最佳主人公";
 "Best Romance" = "最佳爱情作品";
 "Best Slice of Life" = "最佳日常作品";
 "Best Suspense" = "最佳悬疑作品";
 "Best VA Performance" = "最佳配音表演";
+"Best of the {decade}" = "{decade}年代精选";
+"Beyond the kids' shelf" = "不止是儿童动画";
 "Biblioteca" = "媒体库";
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "黑色条幅";
@@ -510,6 +517,7 @@
 "China" = "中国";
 "Chinese" = "中文";
 "Chinese (Simplified)" = "简体中文";
+"Chinese Cinema" = "华语电影";
 "Chips" = "标签";
 "Choose" = "选择";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "先取一个名字，再选择偏好的分辨率、来源、编解码器和音频。";
@@ -715,6 +723,8 @@
 "Crime Series" = "犯罪剧集";
 "Crisp (anime & cartoons)" = "清晰（动漫和卡通）";
 "Critically Acclaimed" = "广受好评";
+"Critically acclaimed TV" = "广受好评的电视剧";
+"Critically acclaimed, all time" = "Critically acclaimed, all time";
 "Critics' Choice Awards" = "评论家选择奖";
 "Critics' Pick" = "影评人之选";
 "Critics' Picks" = "影评人之选";
@@ -746,6 +756,7 @@
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "为你的名字、一起看中的光标和头像周围的圆环设置颜色。";
 "Danger" = "危险";
 "Danish" = "丹麦语";
+"Danish Cinema" = "丹麦电影";
 "Dark" = "深色";
 "Date" = "日期";
 "Date Night" = "约会之夜";
@@ -821,6 +832,7 @@
 "Distancia desde la parte inferior" = "距底部距离";
 "Documentales" = "纪录片";
 "Documentaries" = "纪录片";
+"Documentaries Worth Your Night" = "Documentaries Worth Your Night";
 "Documentary" = "纪录片";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
@@ -1031,8 +1043,11 @@
 "France" = "法国";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "免费注册，仅需两分钟。可解锁“热门趋势”、“正在上映”、“高分内容”和各流媒体平台目录（Netflix、Disney+、Hulu 等）。密钥仅保存在此设备上。";
 "French" = "法语";
+"French Cinema" = "法国电影";
+"Fresh on TV" = "电视新作";
 "From" = "来源";
 "From HBO" = "HBO 出品";
+"From the region" = "来自该地区";
 "From your addons" = "来自你的插件";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
@@ -1057,6 +1072,7 @@
 "Genres you want more of" = "希望多推荐的类型";
 "Gently magnify nearby posters as you move across a poster row." = "在海报行中移动时，轻微放大附近的海报。";
 "German" = "德语";
+"German Cinema" = "德国电影";
 "Germany" = "德国";
 "Get Started" = "开始使用";
 "Get a free key at themoviedb.org" = "前往 themoviedb.org 获取免费密钥";
@@ -1134,6 +1150,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "焦点推荐、热门前 10、热门趋势、正在上映及各流媒体服务内容栏。你的插件内容栏将依次显示在下方。";
 "Hidden" = "已隐藏";
 "Hidden Gems" = "冷门佳作";
+"Hidden Gems from the {decade}" = "{decade}年代的冷门佳作";
 "Hidden Gems on MAL" = "MAL 冷门佳作";
 "Hidden gems" = "冷门佳作";
 "Hidden titles" = "Hidden titles";
@@ -1167,9 +1184,12 @@
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "高";
 "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "“高”会根据屏幕调整尺寸，显示效果与全分辨率相同，但内存占用低得多。“均衡”最节省内存。“最高”则保留原始分辨率。";
+"High score, low fanfare" = "高分，低热度";
 "Highlight, progress." = "高亮、进度。";
 "Highlighted blocks." = "高亮区块。";
 "Highlights" = "精彩回顾";
+"Highly Rated, Quietly Loved" = "高分佳作，低调受宠";
+"Highly rated, real life" = "Highly rated, real life";
 "Hindi" = "印地语";
 "History" = "历史";
 "History Buff" = "历史迷必看";
@@ -1248,6 +1268,7 @@
 "In watchlist" = "已在片单中";
 "Independent Spirit Awards" = "独立精神奖";
 "India" = "印度";
+"Indian Cinema" = "印度电影";
 "Indonesian" = "印度尼西亚语";
 "Información" = "信息";
 "Information" = "信息";
@@ -1282,6 +1303,7 @@
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "它与 {product} 的制作者，以及应用内提及的任何公司、插件作者或商标持有人均无关联。";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "它不隶属于 {company}，也未获得其认可或赞助，与其不存在任何形式的关联。";
 "Italian" = "意大利语";
+"Italian Cinema" = "意大利电影";
 "Italy" = "意大利";
 "Izquierda" = "左对齐";
 "Izquierda a derecha" = "从左到右";
@@ -1291,6 +1313,7 @@
 "Japan" = "日本";
 "Japan's top science-fiction comic honor" = "日本顶级科幻漫画奖项";
 "Japanese" = "日语";
+"Japanese Cinema" = "日本电影";
 "Jina API key (optional)" = "Jina API 密钥（可选）";
 "Jina Reader" = "Jina Reader";
 "Join" = "加入";
@@ -1316,6 +1339,7 @@
 "Kitsu, MAL, season-aware" = "Kitsu、MAL、支持按季匹配";
 "Known For" = "代表作";
 "Korean" = "韩语";
+"Korean Cinema" = "韩国电影";
 "La conversión de FPS solo está disponible para subtítulos de texto." = "字幕 FPS 转换仅适用于文本字幕。";
 "La estructura de toda la página de Inicio. Las opciones siguientes ajustan las filas que contiene." = "整个首页的布局。下方各项用于调整其中的内容行。";
 "La reproducción ha terminado." = "Playback has ended.";
@@ -1325,6 +1349,7 @@
 "Languages & subtitles" = "语言与字幕";
 "Large" = "大号";
 "Larger" = "较大";
+"Last 90 days" = "Last 90 days";
 "Late Night" = "深夜";
 "Laterales" = "双页";
 "Laugh Out Loud" = "爆笑不停";
@@ -1574,11 +1599,13 @@
 "New Face Award" = "新人奖";
 "New Year, New Stories" = "新年新故事";
 "New filter" = "新建筛选器";
+"New in {genre}" = "{genre}新作";
 "New list" = "新建片单";
 "New look name" = "新外观名称";
 "New profile" = "新建个人资料";
 "New shows and anime premiering this month, from Simkl" = "Simkl 中本月首播的新节目和动漫";
 "New voyage" = "新航程";
+"New {genre} Series" = "{genre}新剧";
 "Newest" = "最新";
 "Next" = "下一个";
 "Next chapter" = "下一章";
@@ -1740,6 +1767,7 @@
 "On start" = "On start";
 "On your Roku remote, press Home." = "按 Roku 遥控器上的 Home 键。";
 "On your Roku, open Streaming Channels from the home screen." = "在 Roku 主屏幕上打开“流媒体频道”。";
+"On {service}, picked for you" = "在 {service} 上，为你精选";
 "Onboarding" = "新手引导";
 "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "保存后，每张海报都会重新渲染，并印上 IMDb、Rotten Tomatoes 和 Metacritic 评分。";
 "One list" = "单个列表";
@@ -1909,6 +1937,7 @@
 "Popular reads" = "Popular reads";
 "Portuguese" = "葡萄牙语";
 "Portuguese (Brazil)" = "葡萄牙语（巴西）";
+"Portuguese-Language" = "葡萄牙语作品";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position" = "排名";
@@ -1985,6 +2014,7 @@
 "Queue" = "播放队列";
 "Quick Watches Under 90" = "90 分钟内看完";
 "Quiet" = "安静";
+"Quietly great, {decade}" = "低调佳作，{decade}年代";
 "Quitar" = "移除";
 "Quitar de Seguir viendo" = "从“继续观看”中移除";
 "Quitar de biblioteca Suwayomi" = "Remove from Suwayomi library";
@@ -2024,6 +2054,7 @@
 "Recent" = "最近";
 "Recent activity" = "近期活动";
 "Recent searches" = "最近搜索";
+"Recently Released" = "Recently Released";
 "Recently played" = "最近游玩";
 "Recién agregado" = "最新添加";
 "Recognized at the {award}." = "获得 {award} 认可。";
@@ -2178,6 +2209,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "目前使用 Cinemeta。准备好后，可随时在“设置”中添加 TMDB 密钥。";
 "Runs this plugin on a real title and shows what came back." = "用一个真实标题运行此脚本插件，并显示返回的结果。";
 "Russian" = "俄语";
+"Russian Cinema" = "俄罗斯电影";
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
@@ -2444,6 +2476,7 @@
 "Spain" = "西班牙";
 "Spanish" = "西班牙语";
 "Spanish (Latin America)" = "拉丁美洲西班牙语";
+"Spanish-Language" = "西班牙语作品";
 "Specials" = "特别篇";
 "Speed" = "速度";
 "Spoiler — Click" = "剧透，点击";
@@ -2547,6 +2580,7 @@
 "Suspenso" = "惊悚片";
 "Suwayomi connection" = "Suwayomi connection";
 "Swedish" = "瑞典语";
+"Swedish Cinema" = "瑞典电影";
 "Switch quality" = "Switch quality";
 "Switch stream" = "切换视频流";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "播放开始后，如有更符合语言偏好的字幕到达，则切换到该字幕。关闭可保留当前轨道。";
@@ -2724,18 +2758,22 @@
 "Top Rated Movies" = "高分电影";
 "Top Rated Series" = "高分剧集";
 "Top Rated on MAL" = "MAL 评分榜";
+"Top Rated {genre}" = "高分{genre}";
+"Top Rated {genre} Series" = "高分{genre}剧集";
 "Top Series" = "剧集榜单";
 "Top Series on MAL" = "MAL 剧集榜";
 "Top left" = "左上角";
 "Top match" = "最佳匹配";
 "Top of the screen" = "屏幕顶部";
 "Top rated" = "评分最高";
+"Top rated abroad" = "海外高分佳作";
 "Top rated on {site}" = "{site} 评分最高";
 "Top result" = "最佳结果";
 "Top right" = "右上角";
 "Top rising" = "飙升榜";
 "Top titles" = "热门片名";
 "Top tracks" = "Top tracks";
+"Top {genre}" = "Top {genre}";
 "TorBox API key" = "TorBox API 密钥";
 "Torrent link" = "Torrent 链接";
 "Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
@@ -2920,6 +2958,7 @@
 "What everyone is reading" = "大家都在读";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "决定主视觉区显示的内容。“热门趋势”显示 Harbor 提供的最新热门榜单，并在一天中持续刷新。“经典”则使用你自己的首页横栏。";
 "What is this?" = "这是什么？";
+"What people are watching" = "大家都在看";
 "What you watched" = "你看过的内容";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "当按 Esc 将关闭播放器时，先显示快速确认提示。你可以在提示中勾选“不再询问”，以后按 Esc 将直接退出。";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "当一个版本包含多个音轨时，Harbor 会选择此列表中第一个匹配的音轨。";
@@ -4187,11 +4226,13 @@
 "yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} 本身不托管、分发或索引任何媒体。所有流均来自第三方插件、Debrid 服务或您自行配置的 {service} 账户。您须对自己选择播放的内容以及遵守所在司法管辖区的法律负责。";
+"{country} Films" = "{country}电影";
 "{count} picks ready" = "有 {count} 个推荐待探索";
 "{count} results" = "{count} 个结果";
 "{count} selected" = "已选择 {count} 个";
 "{count} titles will never show the content advisory again." = "有 {count} 部作品将不再显示内容警告。";
 "{count} tracks" = "{count} 首歌曲";
+"{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "剩余 {h} 小时";
 "{h}h {m}m left" = "剩余 {h} 小时 {m} 分钟";
 "{ms} ms" = "{ms} 毫秒";

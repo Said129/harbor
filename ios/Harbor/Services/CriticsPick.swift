@@ -93,8 +93,10 @@ enum CriticsPickRules {
         ((dayOfYear + source.offset) % 5) + 1
     }
 
-    static func rail(_ source: Source) -> DiscoveryRail {
-        DiscoveryRail(id: source.id, title: "Critics' Pick", kind: "movie", path: "discover/movie", parameters: source.parameters)
+    static func rail(_ source: Source, locale: DiscoveryAffinityRules.LocaleBias = .disabled, region: String = "") -> DiscoveryRail {
+        let floor = DiscoveryDailyFeed.localizeFloor(source.parameters, kind: "movie", enabled: locale.penalty > 0,
+                                                      localeCodes: locale.codes, region: region)
+        return DiscoveryRail(id: source.id, title: "Critics' Pick", kind: "movie", path: "discover/movie", parameters: floor)
     }
 
     /// Desktop's merge: the lists are read in turn, a title once, in the order it first appears.
@@ -203,7 +205,7 @@ struct CriticsPickService: Sendable {
     let scores: Scores
 
     init(discover: @escaping Discover = { rail, page, configuration in
-            try await TMDBService().page(rail, page: page, configuration: configuration)
+            try await TMDBService().page(rail, page: page, configuration: configuration, includeRegion: false)
          },
          json: @escaping JSONLoader = { url in
             try await HTTPClient().json(url, timeout: 15, credentialed: true)
@@ -217,14 +219,14 @@ struct CriticsPickService: Sendable {
     }
 
     /// The four Desktop queries, read at once. A query that fails contributes nothing (Desktop would drop the whole list).
-    func candidates(dayOfYear: Int, configuration: MetadataConfiguration) async -> [Media] {
+    func candidates(dayOfYear: Int, configuration: MetadataConfiguration, locale: DiscoveryAffinityRules.LocaleBias = .disabled) async -> [Media] {
         guard !configuration.tmdbKey.isEmpty else { return [] }
         let sources = CriticsPickRules.sources
         let discover = self.discover
         var lists = [[Media]](repeating: [], count: sources.count)
         await withTaskGroup(of: (Int, [Media]).self) { group in
             for (index, source) in sources.enumerated() {
-                let rail = CriticsPickRules.rail(source)
+                let rail = CriticsPickRules.rail(source, locale: locale, region: configuration.region)
                 let page = CriticsPickRules.page(source, dayOfYear: dayOfYear)
                 group.addTask {
                     let found = (try? await discover(rail, page, configuration)) ?? []

@@ -10,9 +10,11 @@ struct CriticsPickInput: Sendable {
     let excludedIDs: Set<String>
     let excludedTitleKeys: Set<String>
     let featuredIDs: Set<String>
+    let locale: DiscoveryAffinityRules.LocaleBias
 
     var listSignature: String {
-        [configuration.tmdbKey, configuration.language, configuration.region, String(dayOfYear)].joined(separator: "|")
+        [EBookShelf.hash(configuration.tmdbKey), configuration.language, configuration.region, String(configuration.translateTitles),
+         String(dayOfYear), locale.codes.sorted().joined(separator: ","), String(locale.penalty)].joined(separator: "|")
     }
 }
 
@@ -32,7 +34,7 @@ final class CriticsPickModel {
     /// Fetches the day's list when it is not held yet, then chooses the title and loads its details and OMDb scores.
     func refresh(_ input: CriticsPickInput) async {
         if listSignature != input.listSignature {
-            let fetched = await service.candidates(dayOfYear: input.dayOfYear, configuration: input.configuration)
+            let fetched = await service.candidates(dayOfYear: input.dayOfYear, configuration: input.configuration, locale: input.locale)
             guard !Task.isCancelled else { return }
             list = fetched
             // An empty answer is asked again the next time, so a failed network call does not hide the card for a day.
@@ -80,14 +82,17 @@ struct CriticsPickView: View {
     }
     private var excludedTitleKeys: Set<String> { Set(watchedItems.map { CriticsPickRules.titleKey($0.name) }) }
     private var input: CriticsPickInput {
-        CriticsPickInput(configuration: MetadataPreferences.shared.configuration(), omdbKey: store.key(.omdb), dayOfYear: dayOfYear,
-                         excludedIDs: excludedIDs, excludedTitleKeys: excludedTitleKeys, featuredIDs: featuredIDs)
+        let configuration = MetadataPreferences.shared.configuration()
+        let locale = DiscoveryAffinityRules.localeBias(preferredLanguages: SubtitleLanguages.preferredCodes(StreamPreferences.shared.streamLanguages),
+            metadataLanguage: configuration.language, region: configuration.region, enabled: InterfacePreferences.shared.feedLocaleBias)
+        return CriticsPickInput(configuration: configuration, omdbKey: store.key(.omdb), dayOfYear: dayOfYear,
+                                excludedIDs: excludedIDs, excludedTitleKeys: excludedTitleKeys, featuredIDs: featuredIDs, locale: locale)
     }
     /// Changes when the key, the day, the region or the excluded titles change, so the task runs again.
     private var taskID: String {
-        let configuration = MetadataPreferences.shared.configuration()
-        return [configuration.tmdbKey, configuration.language, configuration.region, store.key(.omdb), String(dayOfYear),
-                String(excludedIDs.hashValue), String(excludedTitleKeys.hashValue), String(featuredIDs.hashValue)].joined(separator: "|")
+        let input = input
+        return [app.accountOperationScope, input.listSignature, EBookShelf.hash(input.omdbKey),
+                String(input.excludedIDs.hashValue), String(input.excludedTitleKeys.hashValue), String(input.featuredIDs.hashValue)].joined(separator: "|")
     }
     private var reviews: [CriticsPickReview] { model.details?.reviews ?? [] }
     private var currentReview: CriticsPickReview? { reviews.indices.contains(reviewIndex) ? reviews[reviewIndex] : nil }

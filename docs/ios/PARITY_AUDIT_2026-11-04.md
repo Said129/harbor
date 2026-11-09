@@ -21,11 +21,12 @@ in `parity-audit-2026-11-04.json`, produced by
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
 | Behaviors |   438 |    261 |     115 |       0 |       62 |           84.7 % |      69.4 % |           100.0 % |
-| Settings  |   511 |    246 |      32 |       0 |      233 |           94.2 % |      88.5 % |           100.0 % |
-| All       |   949 |    507 |     147 |       0 |      295 |           88.8 % |      77.5 % |           100.0 % |
+| Settings  |   511 |    247 |      31 |       0 |      233 |           94.4 % |      88.8 % |           100.0 % |
+| All       |   949 |    508 |     146 |       0 |      295 |           88.8 % |      77.7 % |           100.0 % |
 
-The Discover locale setting (S497) now counts toward the applicable scope.
-It controls native Discover ranking. The daily Home catalog use remains pending.
+The Discover locale setting (S497) controls native ranking, daily catalog
+queries and Critics Pick. Its active consumers in the pinned Desktop build
+are in Discover.
 
 The 8 November follow-up connects Suwayomi categories to the manga shelf (B369)
 and adds extension repository management (B371). Focused Apple validation

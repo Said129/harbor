@@ -27,6 +27,7 @@
 "4:3" = "4:3";
 "8-character key" = "8文字のキー";
 "A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
+"A Short Tonight: {genre} Under 90" = "今夜の短編：90分未満の{genre}";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "ブラウザでAniListのタブが開きました。そこでHarborを承認し、表示されたテキストをコピーして下に貼り付けてください。";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "ブラウザでMyAnimeListのタブが開きました。そこでHarborを承認し、コードまたはページのURLをコピーして下に貼り付けてください。";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremioプロトコル対応クライアント。設定は2分ほどで、ほとんどの項目は任意です。すべてのキーをご自身で管理できます。";
@@ -213,6 +214,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "アニメ映画";
 "Animated sidebar icons" = "Animated sidebar icons";
+"Animated, For Grown-Ups" = "大人向けアニメ";
 "Animation" = "アニメーション";
 "Animation Night" = "アニメーションナイト";
 "Animation speed" = "アニメーション速度";
@@ -301,6 +303,7 @@
 "Aventura" = "アドベンチャー";
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "次のエピソードの案内";
+"Award Winning" = "Award Winning";
 "Award Winning Anime" = "受賞アニメ";
 "Awards & Recognition" = "受賞歴";
 "Awards Contenders" = "賞レース有力作";
@@ -336,6 +339,7 @@
 "Be My Valentine" = "バレンタインに";
 "Be the first to start a discussion." = "最初にディスカッションを始めましょう。";
 "Beloved by readers and critics" = "読者と批評家に愛される作品";
+"Beloved, slightly forgotten" = "愛されながらも少し忘れられた作品";
 "Berlin Film Festival" = "ベルリン国際映画祭";
 "Best Action" = "最優秀アクション";
 "Best Adventure" = "最優秀アドベンチャー";
@@ -359,11 +363,14 @@
 "Best New Series" = "最優秀新シリーズ";
 "Best Opening" = "最優秀オープニング";
 "Best Original Anime" = "最優秀オリジナルアニメ";
+"Best Picture winners" = "Best Picture winners";
 "Best Protagonist" = "最優秀主人公";
 "Best Romance" = "最優秀ロマンス";
 "Best Slice of Life" = "最優秀日常系";
 "Best Suspense" = "最優秀サスペンス";
 "Best VA Performance" = "最優秀声優パフォーマンス";
+"Best of the {decade}" = "{decade}年代のベスト";
+"Beyond the kids' shelf" = "子ども向けだけじゃない";
 "Biblioteca" = "ライブラリ";
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "黒い帯";
@@ -510,6 +517,7 @@
 "China" = "中国";
 "Chinese" = "中国語";
 "Chinese (Simplified)" = "中国語（簡体字）";
+"Chinese Cinema" = "中国映画";
 "Chips" = "チップ";
 "Choose" = "選択";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "名前を付けてから、希望する解像度、ソース、コーデック、音声を選んでください。";
@@ -715,6 +723,8 @@
 "Crime Series" = "犯罪シリーズ";
 "Crisp (anime & cartoons)" = "くっきり（アニメ・カートゥーン）";
 "Critically Acclaimed" = "批評家絶賛";
+"Critically acclaimed TV" = "批評家絶賛のTV作品";
+"Critically acclaimed, all time" = "Critically acclaimed, all time";
 "Critics' Choice Awards" = "クリティクス・チョイス・アワード";
 "Critics' Pick" = "批評家のおすすめ";
 "Critics' Picks" = "批評家のおすすめ";
@@ -746,6 +756,7 @@
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "名前、同時視聴中のカーソル、アバターの周囲のリングの色を設定します。";
 "Danger" = "危険";
 "Danish" = "デンマーク語";
+"Danish Cinema" = "デンマーク映画";
 "Dark" = "ダーク";
 "Date" = "日付";
 "Date Night" = "デートの夜に";
@@ -821,6 +832,7 @@
 "Distancia desde la parte inferior" = "下端からの距離";
 "Documentales" = "ドキュメンタリー";
 "Documentaries" = "ドキュメンタリー";
+"Documentaries Worth Your Night" = "Documentaries Worth Your Night";
 "Documentary" = "ドキュメンタリー";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
@@ -1031,8 +1043,11 @@
 "France" = "フランス";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "無料で、登録は2分ほどです。トレンド、劇場公開中、高評価、配信サービス別のカタログ（Netflix、Disney+、Hulu、…）を利用できます。キーはこのデバイスにのみ保存されます。";
 "French" = "フランス語";
+"French Cinema" = "フランス映画";
+"Fresh on TV" = "TVの新着";
 "From" = "提供元";
 "From HBO" = "HBO作品";
+"From the region" = "この地域の作品";
 "From your addons" = "アドオンから";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
@@ -1057,6 +1072,7 @@
 "Genres you want more of" = "もっと見たいジャンル";
 "Gently magnify nearby posters as you move across a poster row." = "ポスターの列を移動すると、近くのポスターが滑らかに拡大します。";
 "German" = "ドイツ語";
+"German Cinema" = "ドイツ映画";
 "Germany" = "ドイツ";
 "Get Started" = "はじめる";
 "Get a free key at themoviedb.org" = "themoviedb.orgで無料キーを取得";
@@ -1134,6 +1150,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "ヒーロー、トップ10、トレンド、劇場公開中、配信サービス別レールを表示します。その下にアドオンのカタログが追加されます。";
 "Hidden" = "非表示";
 "Hidden Gems" = "隠れた名作";
+"Hidden Gems from the {decade}" = "{decade}年代の隠れた名作";
 "Hidden Gems on MAL" = "MALの隠れた名作";
 "Hidden gems" = "隠れた名作";
 "Hidden titles" = "Hidden titles";
@@ -1167,9 +1184,12 @@
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "高";
 "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "「高」は画面に合わせたサイズになり、大幅に少ないメモリでフル解像度と同等に見えます。「バランス」はメモリを最も節約します。「最大」は元の解像度を維持します。";
+"High score, low fanfare" = "高スコアながら話題控えめ";
 "Highlight, progress." = "ハイライト、進捗。";
 "Highlighted blocks." = "ハイライトされたブロック。";
 "Highlights" = "ハイライト";
+"Highly Rated, Quietly Loved" = "高評価の隠れた名作";
+"Highly rated, real life" = "Highly rated, real life";
 "Hindi" = "ヒンディー語";
 "History" = "歴史";
 "History Buff" = "歴史好きにおすすめ";
@@ -1248,6 +1268,7 @@
 "In watchlist" = "ウォッチリスト内";
 "Independent Spirit Awards" = "インディペンデント・スピリット賞";
 "India" = "インド";
+"Indian Cinema" = "インド映画";
 "Indonesian" = "インドネシア語";
 "Información" = "情報";
 "Information" = "情報";
@@ -1282,6 +1303,7 @@
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "本アプリは、{product}の開発元、およびアプリ内で言及される企業、アドオン作者、商標権者とは提携していません。";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "本アプリは{company}との提携、承認、スポンサー関係など、一切の関係がありません。";
 "Italian" = "イタリア語";
+"Italian Cinema" = "イタリア映画";
 "Italy" = "イタリア";
 "Izquierda" = "左揃え";
 "Izquierda a derecha" = "左から右";
@@ -1291,6 +1313,7 @@
 "Japan" = "日本";
 "Japan's top science-fiction comic honor" = "日本最高峰のSFコミック賞";
 "Japanese" = "日本語";
+"Japanese Cinema" = "日本映画";
 "Jina API key (optional)" = "Jina APIキー（任意）";
 "Jina Reader" = "Jina Reader";
 "Join" = "参加";
@@ -1316,6 +1339,7 @@
 "Kitsu, MAL, season-aware" = "Kitsu、MAL、シーズン対応";
 "Known For" = "代表作";
 "Korean" = "韓国語";
+"Korean Cinema" = "韓国映画";
 "La conversión de FPS solo está disponible para subtítulos de texto." = "字幕FPSの変換はテキスト形式の字幕でのみ使用できます。";
 "La estructura de toda la página de Inicio. Las opciones siguientes ajustan las filas que contiene." = "ホームページ全体のレイアウトです。以下の項目では、その中の各行を調整します。";
 "La reproducción ha terminado." = "Playback has ended.";
@@ -1325,6 +1349,7 @@
 "Languages & subtitles" = "言語と字幕";
 "Large" = "大";
 "Larger" = "大きく";
+"Last 90 days" = "Last 90 days";
 "Late Night" = "深夜";
 "Laterales" = "見開き";
 "Laugh Out Loud" = "抱腹絶倒";
@@ -1574,11 +1599,13 @@
 "New Face Award" = "新人賞";
 "New Year, New Stories" = "新年、新しい物語";
 "New filter" = "新しいフィルター";
+"New in {genre}" = "{genre}の新着";
 "New list" = "新しいリスト";
 "New look name" = "新しいスタイル名";
 "New profile" = "新しいプロフィール";
 "New shows and anime premiering this month, from Simkl" = "Simkl掲載の今月初公開の新作番組とアニメ";
 "New voyage" = "新しい航海";
+"New {genre} Series" = "新作{genre}シリーズ";
 "Newest" = "新しい順";
 "Next" = "次へ";
 "Next chapter" = "次の話";
@@ -1740,6 +1767,7 @@
 "On start" = "On start";
 "On your Roku remote, press Home." = "Rokuリモコンのホームボタンを押します。";
 "On your Roku, open Streaming Channels from the home screen." = "Rokuのホーム画面から「ストリーミングチャンネル」を開きます。";
+"On {service}, picked for you" = "{service}からあなたへのおすすめ";
 "Onboarding" = "初期ガイド";
 "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "保存すると、すべてのポスターが再描画され、IMDb、Rotten Tomatoes、Metacriticの評価が表示されます。";
 "One list" = "1件のリスト";
@@ -1909,6 +1937,7 @@
 "Popular reads" = "Popular reads";
 "Portuguese" = "ポルトガル語";
 "Portuguese (Brazil)" = "ポルトガル語（ブラジル）";
+"Portuguese-Language" = "ポルトガル語作品";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position" = "順位";
@@ -1985,6 +2014,7 @@
 "Queue" = "キュー";
 "Quick Watches Under 90" = "90分未満でサクッと観る";
 "Quiet" = "静音";
+"Quietly great, {decade}" = "隠れた名作、{decade}";
 "Quitar" = "削除";
 "Quitar de Seguir viendo" = "「視聴を続ける」から削除";
 "Quitar de biblioteca Suwayomi" = "Remove from Suwayomi library";
@@ -2024,6 +2054,7 @@
 "Recent" = "最近";
 "Recent activity" = "最近のアクティビティ";
 "Recent searches" = "最近の検索";
+"Recently Released" = "Recently Released";
 "Recently played" = "最近プレイ";
 "Recién agregado" = "新着";
 "Recognized at the {award}." = "{award}で評価されました。";
@@ -2178,6 +2209,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "現在はCinemetaを使用しています。準備ができたら、いつでも「設定」からTMDBキーを追加できます。";
 "Runs this plugin on a real title and shows what came back." = "実際のタイトルでこのプラグインを実行し、返ってきた結果を表示します。";
 "Russian" = "ロシア語";
+"Russian Cinema" = "ロシア映画";
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
@@ -2444,6 +2476,7 @@
 "Spain" = "スペイン";
 "Spanish" = "スペイン語";
 "Spanish (Latin America)" = "スペイン語（ラテンアメリカ）";
+"Spanish-Language" = "スペイン語作品";
 "Specials" = "スペシャル";
 "Speed" = "再生速度";
 "Spoiler — Click" = "ネタバレ：クリック";
@@ -2547,6 +2580,7 @@
 "Suspenso" = "スリラー";
 "Suwayomi connection" = "Suwayomi connection";
 "Swedish" = "スウェーデン語";
+"Swedish Cinema" = "スウェーデン映画";
 "Switch quality" = "Switch quality";
 "Switch stream" = "ストリームを切り替え";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "再生開始後に言語の優先順位が高い字幕が見つかった場合は切り替えます。現在のトラックを維持する場合はオフにしてください。";
@@ -2724,18 +2758,22 @@
 "Top Rated Movies" = "高評価の映画";
 "Top Rated Series" = "高評価のシリーズ";
 "Top Rated on MAL" = "MALで最高評価";
+"Top Rated {genre}" = "高評価の{genre}";
+"Top Rated {genre} Series" = "高評価の{genre}シリーズ";
 "Top Series" = "人気シリーズ";
 "Top Series on MAL" = "MALの人気シリーズ";
 "Top left" = "左上";
 "Top match" = "最も一致";
 "Top of the screen" = "画面上部";
 "Top rated" = "評価が高い順";
+"Top rated abroad" = "海外の高評価作品";
 "Top rated on {site}" = "{site}で高評価";
 "Top result" = "最上位の結果";
 "Top right" = "右上";
 "Top rising" = "人気急上昇";
 "Top titles" = "人気作品";
 "Top tracks" = "Top tracks";
+"Top {genre}" = "Top {genre}";
 "TorBox API key" = "TorBox APIキー";
 "Torrent link" = "Torrentリンク";
 "Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
@@ -2920,6 +2958,7 @@
 "What everyone is reading" = "みんなが読んでいる作品";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "ヒーローエリアに表示する内容です。「トレンド」はHarborが提供する最新の人気ランキングで、1日に何度も更新されます。「クラシック」は自分のホームの列を使用します。";
 "What is this?" = "これは何ですか？";
+"What people are watching" = "みんなが観ている作品";
 "What you watched" = "視聴した作品";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Escでプレーヤーを閉じる前に、簡単な確認を表示します。確認画面で「今後は確認しない」にチェックすると、以後はEscですぐに終了できます。";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "リリースに複数の音声トラックがある場合、Harborはこのリストで最初に一致するものを選びます。";
@@ -4187,11 +4226,13 @@
 "yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app}自体がメディアをホスト、配信、インデックス化することはありません。すべてのストリームは、サードパーティー製アドオン、デブリッドサービス、またはご自身で設定した{service}アカウントから提供されます。何を再生するかを判断し、お住まいの地域の法律を順守する責任はお客様にあります。";
+"{country} Films" = "{country}映画";
 "{count} picks ready" = "おすすめ{count}件を用意しました";
 "{count} results" = "{count}件の結果";
 "{count} selected" = "{count}件選択中";
 "{count} titles will never show the content advisory again." = "{count}件の作品では、今後コンテンツに関する注意が表示されません。";
 "{count} tracks" = "{count}曲";
+"{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "残り{h}時間";
 "{h}h {m}m left" = "残り{h}時間{m}分";
 "{ms} ms" = "{ms} ミリ秒";

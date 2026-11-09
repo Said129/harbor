@@ -27,6 +27,7 @@
 "4:3" = "4:3";
 "8-character key" = "8 karakterli anahtar";
 "A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
+"A Short Tonight: {genre} Under 90" = "Bu Akşam Kısa Bir Film: 90 Dakikanın Altında {genre}";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "AniList'te bir tarayıcı sekmesi açıldı. Harbor'a orada izin verin, ardından gösterilen metni kopyalayıp aşağıya yapıştırın.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "MyAnimeList'te bir tarayıcı sekmesi açıldı. Harbor'a orada izin verin, ardından kodu veya sayfa URL'sini kopyalayıp aşağıya yapıştırın.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio protokolü için bir istemci. Kurulumu iki dakika sürer ve çoğu adım isteğe bağlıdır. Her anahtarın kontrolü sizde kalır.";
@@ -213,6 +214,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "Animasyon Filmleri";
 "Animated sidebar icons" = "Animated sidebar icons";
+"Animated, For Grown-Ups" = "Yetişkinler İçin Animasyon";
 "Animation" = "Animasyon";
 "Animation Night" = "Animasyon Gecesi";
 "Animation speed" = "Animasyon hızı";
@@ -301,6 +303,7 @@
 "Aventura" = "Macera";
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "Sonraki bölüm bildirimi";
+"Award Winning" = "Award Winning";
 "Award Winning Anime" = "Ödüllü animeler";
 "Awards & Recognition" = "Ödüller ve Başarılar";
 "Awards Contenders" = "Ödül Yarışındakiler";
@@ -336,6 +339,7 @@
 "Be My Valentine" = "Sevgilim Ol";
 "Be the first to start a discussion." = "İlk tartışmayı siz başlatın.";
 "Beloved by readers and critics" = "Okurların ve eleştirmenlerin gözdesi";
+"Beloved, slightly forgotten" = "Sevilen ama biraz unutulmuş";
 "Berlin Film Festival" = "Berlin Film Festivali";
 "Best Action" = "En İyi Aksiyon";
 "Best Adventure" = "En İyi Macera";
@@ -359,11 +363,14 @@
 "Best New Series" = "En İyi Yeni Dizi";
 "Best Opening" = "En İyi Açılış";
 "Best Original Anime" = "En İyi Orijinal Anime";
+"Best Picture winners" = "Best Picture winners";
 "Best Protagonist" = "En İyi Protagonist";
 "Best Romance" = "En İyi Romantik Yapım";
 "Best Slice of Life" = "En İyi Yaşamdan Kesitler";
 "Best Suspense" = "En İyi Gerilim";
 "Best VA Performance" = "En İyi Seslendirme Performansı";
+"Best of the {decade}" = "{decade} Döneminin En İyileri";
+"Beyond the kids' shelf" = "Çocuk rafının ötesinde";
 "Biblioteca" = "Kütüphane";
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "Siyah şerit";
@@ -510,6 +517,7 @@
 "China" = "Çin";
 "Chinese" = "Çince";
 "Chinese (Simplified)" = "Basitleştirilmiş Çince";
+"Chinese Cinema" = "Çin Sineması";
 "Chips" = "Etiketler";
 "Choose" = "Seç";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Bir ad seçin, ardından tercih ettiğiniz çözünürlükleri, kaynakları, kodekleri ve sesi seçin.";
@@ -715,6 +723,8 @@
 "Crime Series" = "Suç Dizileri";
 "Crisp (anime & cartoons)" = "Net (anime ve çizgi film)";
 "Critically Acclaimed" = "Eleştirmenlerin Beğenisini Kazananlar";
+"Critically acclaimed TV" = "Eleştirmenlerin Beğenisini Kazanan Diziler";
+"Critically acclaimed, all time" = "Critically acclaimed, all time";
 "Critics' Choice Awards" = "Eleştirmenlerin Seçimi Ödülleri";
 "Critics' Pick" = "Eleştirmenlerin Seçimi";
 "Critics' Picks" = "Eleştirmenlerin Seçtikleri";
@@ -746,6 +756,7 @@
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Adını, Birlikte İzle içindeki imlecini ve avatarının çevresindeki halkayı renklendirir.";
 "Danger" = "Tehlike";
 "Danish" = "Danca";
+"Danish Cinema" = "Danimarka Sineması";
 "Dark" = "Koyu";
 "Date" = "Tarih";
 "Date Night" = "Romantik Bir Gece";
@@ -821,6 +832,7 @@
 "Distancia desde la parte inferior" = "Alttan uzaklık";
 "Documentales" = "Belgeseller";
 "Documentaries" = "Belgeseller";
+"Documentaries Worth Your Night" = "Documentaries Worth Your Night";
 "Documentary" = "Belgesel";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
@@ -1031,8 +1043,11 @@
 "France" = "Fransa";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Ücretsizdir, kaydolmak iki dakika sürer. Gündemdekiler, Şimdi Vizyonda, En Yüksek Puanlılar ve yayın hizmetine özel katalogların (Netflix, Disney+, Hulu, …) kilidini açar. Anahtarınız bu cihazda kalır.";
 "French" = "Fransızca";
+"French Cinema" = "Fransız Sineması";
+"Fresh on TV" = "TV'de Yeni";
 "From" = "Kaynak";
 "From HBO" = "HBO Yapımları";
+"From the region" = "Bölgeden";
 "From your addons" = "Eklentilerinizden";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
@@ -1057,6 +1072,7 @@
 "Genres you want more of" = "Daha çok görmek istediğiniz türler";
 "Gently magnify nearby posters as you move across a poster row." = "Bir afiş sırasında gezinirken yakındaki afişleri hafifçe büyütün.";
 "German" = "Almanca";
+"German Cinema" = "Alman Sineması";
 "Germany" = "Almanya";
 "Get Started" = "Başlayın";
 "Get a free key at themoviedb.org" = "themoviedb.org adresinden ücretsiz anahtar alın";
@@ -1134,6 +1150,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Öne Çıkanlar, İlk 10, Gündemdekiler, Vizyondakiler ve hizmete özel satırlar. Eklentileriniz bunların altına eklenir.";
 "Hidden" = "Gizli";
 "Hidden Gems" = "Gizli Cevherler";
+"Hidden Gems from the {decade}" = "{decade} Döneminden Gizli Cevherler";
 "Hidden Gems on MAL" = "MAL'deki Gizli Cevherler";
 "Hidden gems" = "Gizli cevherler";
 "Hidden titles" = "Hidden titles";
@@ -1167,9 +1184,12 @@
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "Yüksek";
 "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "Yüksek, ekranınıza göre boyutlandırılır ve çok daha az bellek kullanarak tam çözünürlükle aynı görünür. Dengeli en fazla tasarrufu sağlar. Maksimum, özgün çözünürlüğü korur.";
+"High score, low fanfare" = "Yüksek puan, az tantana";
 "Highlight, progress." = "Vurgu, ilerleme.";
 "Highlighted blocks." = "Vurgulanan bloklar.";
 "Highlights" = "Öne çıkanlar";
+"Highly Rated, Quietly Loved" = "Yüksek Puanlı, Sessiz Sedasız Sevilen";
+"Highly rated, real life" = "Highly rated, real life";
 "Hindi" = "Hintçe";
 "History" = "Tarih";
 "History Buff" = "Tarih Meraklılarına";
@@ -1248,6 +1268,7 @@
 "In watchlist" = "İzleme listesinde";
 "Independent Spirit Awards" = "Bağımsız Ruh Ödülleri";
 "India" = "Hindistan";
+"Indian Cinema" = "Hint Sineması";
 "Indonesian" = "Endonezce";
 "Información" = "Bilgiler";
 "Information" = "Bilgiler";
@@ -1282,6 +1303,7 @@
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "{product} geliştiricisiyle veya uygulamada adı geçen herhangi bir şirket, eklenti geliştiricisi ya da ticari marka sahibiyle bağlantılı değildir.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "{company} ile bağlantılı değildir; bu şirket tarafından onaylanmaz, desteklenmez veya hiçbir şekilde bu şirketle ilişkili değildir.";
 "Italian" = "İtalyanca";
+"Italian Cinema" = "İtalyan Sineması";
 "Italy" = "İtalya";
 "Izquierda" = "Sol";
 "Izquierda a derecha" = "Soldan sağa";
@@ -1291,6 +1313,7 @@
 "Japan" = "Japonya";
 "Japan's top science-fiction comic honor" = "Japonya'nın en prestijli bilim kurgu çizgi roman ödülü";
 "Japanese" = "Japonca";
+"Japanese Cinema" = "Japon Sineması";
 "Jina API key (optional)" = "Jina API anahtarı (isteğe bağlı)";
 "Jina Reader" = "Jina Reader";
 "Join" = "Katıl";
@@ -1316,6 +1339,7 @@
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, sezon uyumlu";
 "Known For" = "Tanındığı yapımlar";
 "Korean" = "Korece";
+"Korean Cinema" = "Kore Sineması";
 "La conversión de FPS solo está disponible para subtítulos de texto." = "Altyazı FPS'si dönüşümü yalnızca metin tabanlı altyazılarda kullanılabilir.";
 "La estructura de toda la página de Inicio. Las opciones siguientes ajustan las filas que contiene." = "Ana Sayfanın genel düzeni. Aşağıdaki seçeneklerin tümü içindeki satırları ayarlar.";
 "La reproducción ha terminado." = "Playback has ended.";
@@ -1325,6 +1349,7 @@
 "Languages & subtitles" = "Diller ve altyazılar";
 "Large" = "Büyük";
 "Larger" = "Daha büyük";
+"Last 90 days" = "Last 90 days";
 "Late Night" = "Gece Kuşağı";
 "Laterales" = "Kenarlar";
 "Laugh Out Loud" = "Kahkahaya Boğanlar";
@@ -1574,11 +1599,13 @@
 "New Face Award" = "Yeni Yüz Ödülü";
 "New Year, New Stories" = "Yeni Yıl, Yeni Hikâyeler";
 "New filter" = "Yeni filtre";
+"New in {genre}" = "Yeni {genre} Yapımları";
 "New list" = "Yeni liste";
 "New look name" = "Yeni görünüm adı";
 "New profile" = "Yeni profil";
 "New shows and anime premiering this month, from Simkl" = "Simkl'den bu ay prömiyer yapacak yeni diziler ve animeler";
 "New voyage" = "Yeni yolculuk";
+"New {genre} Series" = "Yeni {genre} Dizileri";
 "Newest" = "En yeni";
 "Next" = "Sonraki";
 "Next chapter" = "Sonraki bölüm";
@@ -1740,6 +1767,7 @@
 "On start" = "On start";
 "On your Roku remote, press Home." = "Roku kumandanızda Ana Sayfa düğmesine basın.";
 "On your Roku, open Streaming Channels from the home screen." = "Roku'nuzun ana ekranından Yayın Kanalları'nı açın.";
+"On {service}, picked for you" = "{service} platformunda sizin için seçilenler";
 "Onboarding" = "Başlangıç rehberi";
 "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "Kaydettikten sonra tüm posterler IMDb, Rotten Tomatoes ve Metacritic puanları eklenerek yeniden oluşturulur.";
 "One list" = "Tek liste";
@@ -1909,6 +1937,7 @@
 "Popular reads" = "Popular reads";
 "Portuguese" = "Portekizce";
 "Portuguese (Brazil)" = "Portekizce (Brezilya)";
+"Portuguese-Language" = "Portekizce Yapımlar";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position" = "Sıralama";
@@ -1985,6 +2014,7 @@
 "Queue" = "Kuyruk";
 "Quick Watches Under 90" = "90 Dakikadan Kısa Filmler";
 "Quiet" = "Sakin";
+"Quietly great, {decade}" = "Sessiz Sedasız Harika: {decade}";
 "Quitar" = "Kaldır";
 "Quitar de Seguir viendo" = "İzlemeye Devam Et listesinden kaldır";
 "Quitar de biblioteca Suwayomi" = "Remove from Suwayomi library";
@@ -2024,6 +2054,7 @@
 "Recent" = "Son kullanılanlar";
 "Recent activity" = "Son etkinlik";
 "Recent searches" = "Son aramalar";
+"Recently Released" = "Recently Released";
 "Recently played" = "Son oynanan";
 "Recién agregado" = "Yeni eklenenler";
 "Recognized at the {award}." = "{award} kapsamında takdir gördü.";
@@ -2178,6 +2209,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Şimdilik Cinemeta kullanılıyor. Hazır olduğunuzda Ayarlar'dan bir TMDB anahtarı ekleyebilirsiniz.";
 "Runs this plugin on a real title and shows what came back." = "Bu uzantıyı gerçek bir başlıkta çalıştırır ve dönen sonucu gösterir.";
 "Russian" = "Rusça";
+"Russian Cinema" = "Rus Sineması";
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
@@ -2444,6 +2476,7 @@
 "Spain" = "İspanya";
 "Spanish" = "İspanyolca";
 "Spanish (Latin America)" = "İspanyolca (Latin Amerika)";
+"Spanish-Language" = "İspanyolca Yapımlar";
 "Specials" = "Özel Bölümler";
 "Speed" = "Hız";
 "Spoiler — Click" = "Spoiler. Tıklayın";
@@ -2547,6 +2580,7 @@
 "Suspenso" = "Gerilim Filmleri";
 "Suwayomi connection" = "Suwayomi connection";
 "Swedish" = "İsveççe";
+"Swedish Cinema" = "İsveç Sineması";
 "Switch quality" = "Switch quality";
 "Switch stream" = "Yayını değiştir";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "Oynatma başladıktan sonra daha uygun bir dil gelirse ona geçin. Mevcut izi korumak için kapalı bırakın.";
@@ -2724,18 +2758,22 @@
 "Top Rated Movies" = "En Yüksek Puanlı Filmler";
 "Top Rated Series" = "En Yüksek Puanlı Diziler";
 "Top Rated on MAL" = "MAL'de En Yüksek Puanlılar";
+"Top Rated {genre}" = "En Yüksek Puanlı {genre}";
+"Top Rated {genre} Series" = "En Yüksek Puanlı {genre} Dizileri";
 "Top Series" = "En İyi Diziler";
 "Top Series on MAL" = "MAL'deki En İyi Diziler";
 "Top left" = "Sol üst";
 "Top match" = "En iyi eşleşme";
 "Top of the screen" = "Ekranın üstü";
 "Top rated" = "En yüksek puanlı";
+"Top rated abroad" = "Yurt dışında en yüksek puanlılar";
 "Top rated on {site}" = "{site} üzerinde en yüksek puan alanlar";
 "Top result" = "En iyi sonuç";
 "Top right" = "Sağ üst";
 "Top rising" = "En hızlı yükselenler";
 "Top titles" = "En çok izlenen yapımlar";
 "Top tracks" = "Top tracks";
+"Top {genre}" = "Top {genre}";
 "TorBox API key" = "TorBox API anahtarı";
 "Torrent link" = "Torrent bağlantısı";
 "Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
@@ -2920,6 +2958,7 @@
 "What everyone is reading" = "Herkesin okudukları";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "Öne çıkan alanı neyin dolduracağını belirler. Gündem, Harbor'ın gün boyunca yenilenen güncel popüler içerikler listesini kullanır. Klasik ise kendi Ana Sayfa satırlarınızı kullanır.";
 "What is this?" = "Bu nedir?";
+"What people are watching" = "İnsanlar ne izliyor?";
 "What you watched" = "İzledikleriniz";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Esc oynatıcıyı kapatacaksa önce hızlı bir onay gösterir. Esc ile her zaman çıkmak için bu istemde \"Bir daha sorma\" seçeneğini işaretleyebilirsiniz.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Bir sürüm birden fazla ses parçasıyla geldiğinde Harbor bu listedeki ilk eşleşmeyi seçer.";
@@ -4187,11 +4226,13 @@
 "yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} hiçbir medyayı barındırmaz, dağıtmaz veya dizine eklemez. Tüm yayınlar üçüncü taraf eklentilerden, debrid hizmetlerinden veya kendi yapılandırdığınız {service} hesabınızdan gelir. Oynatmayı seçtiğiniz içeriklerden ve bulunduğunuz yargı alanındaki yasalara uymaktan siz sorumlusunuz.";
+"{country} Films" = "{country} Filmleri";
 "{count} picks ready" = "{count} öneri hazır";
 "{count} results" = "{count} sonuç";
 "{count} selected" = "{count} seçildi";
 "{count} titles will never show the content advisory again." = "{count} içerik için içerik uyarısı bir daha gösterilmeyecek.";
 "{count} tracks" = "{count} parça";
+"{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "{h} sa kaldı";
 "{h}h {m}m left" = "{h} sa {m} dk kaldı";
 "{ms} ms" = "{ms} ms";

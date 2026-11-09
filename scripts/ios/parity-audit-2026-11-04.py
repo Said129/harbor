@@ -596,6 +596,7 @@ BEHAVIORS = expand("""
 22 P Native search surfaces the most popular eligible TMDB result and opens an equivalent addon record when available. Year and genre queries open the standard Desktop browse rails. Editorial genre sections and additional result facets remain pending.
 2 P The native row removes a resolved anime franchise's known aliases and can restore them without clearing progress. Profile and playback changes fence late lookups. Desktop's default visible franchise dedupe and differing account sources remain.
 15 P Shows places the native continue row after the hero with Desktop's sixteen-item cap. IMDb anime still appear, while anime-provider IDs are reserved for the Anime room. Desktop's manual-watched resurface rules remain pending.
+6 P Discover runs Desktop's seeded genre, decade, language, country, TV, streaming and anchor rails with lazy paging, locale floors, relaxed fallbacks and a Cinemeta fallback. People and keyword lanes, custom row ordering and full awards pagination remain.
 """)
 
 SETTINGS = expand("""
@@ -1050,7 +1051,7 @@ SETTINGS = expand("""
 249 P The experimental profile setting can offer a cross-language correction using the pinned Desktop workflow and the selected audio language. iOS measures separate audio windows with mpv. Automatic structural calibration and real-source validation remain pending.
 65 P The original corner ribbon follows the active Home Top 10 and moves a bookmark sharing its corner. Native Home rows still differ from Desktop's data in some configurations.
 66 D The active profile chooses the Top 10 ribbon's leading or trailing corner. The original assets follow Desktop's logical layout direction.
-497 P The per-profile locale preference controls Discover ranking and defaults to on. Desktop's daily Home catalog bias is pending.
+497 D The per-profile locale preference defaults to on and controls native Discover ranking, daily catalog floors and Critics Pick. Desktop's regular Home view does not consume this preference.
 """)
 
 def audit(items, verdicts, label):

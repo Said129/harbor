@@ -27,6 +27,7 @@
 "4:3" = "4:3";
 "8-character key" = "Kunci 8 karakter";
 "A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
+"A Short Tonight: {genre} Under 90" = "Film Pendek Malam Ini: {genre} di Bawah 90 Menit";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Tab browser dibuka di AniList. Setujui Harbor di sana, lalu salin teks yang ditampilkan dan tempelkan di bawah.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Tab browser dibuka di MyAnimeList. Setujui Harbor di sana, lalu salin kode atau URL halaman dan tempelkan di bawah.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Klien untuk protokol Stremio. Hanya perlu dua menit untuk disiapkan; sebagian besar bersifat opsional. Anda tetap memegang kendali atas setiap kunci.";
@@ -213,6 +214,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "Film Animasi";
 "Animated sidebar icons" = "Animated sidebar icons";
+"Animated, For Grown-Ups" = "Animasi, Untuk Orang Dewasa";
 "Animation" = "Animasi";
 "Animation Night" = "Malam Animasi";
 "Animation speed" = "Kecepatan animasi";
@@ -301,6 +303,7 @@
 "Aventura" = "Petualangan";
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "Pemberitahuan episode berikutnya";
+"Award Winning" = "Award Winning";
 "Award Winning Anime" = "Anime Pemenang Penghargaan";
 "Awards & Recognition" = "Penghargaan & Pengakuan";
 "Awards Contenders" = "Kandidat Peraih Penghargaan";
@@ -336,6 +339,7 @@
 "Be My Valentine" = "Jadilah Valentine-ku";
 "Be the first to start a discussion." = "Jadilah yang pertama memulai diskusi.";
 "Beloved by readers and critics" = "Disukai pembaca dan kritikus";
+"Beloved, slightly forgotten" = "Disukai, agak terlupakan";
 "Berlin Film Festival" = "Festival Film Berlin";
 "Best Action" = "Aksi Terbaik";
 "Best Adventure" = "Petualangan Terbaik";
@@ -359,11 +363,14 @@
 "Best New Series" = "Serial Baru Terbaik";
 "Best Opening" = "Lagu Pembuka Terbaik";
 "Best Original Anime" = "Anime Orisinal Terbaik";
+"Best Picture winners" = "Best Picture winners";
 "Best Protagonist" = "Protagonis Terbaik";
 "Best Romance" = "Kisah Romantis Terbaik";
 "Best Slice of Life" = "Slice of Life Terbaik";
 "Best Suspense" = "Cerita Menegangkan Terbaik";
 "Best VA Performance" = "Penampilan VA Terbaik";
+"Best of the {decade}" = "Terbaik dari {decade}";
+"Beyond the kids' shelf" = "Bukan hanya untuk anak-anak";
 "Biblioteca" = "Perpustakaan";
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "Bilah hitam";
@@ -510,6 +517,7 @@
 "China" = "Tiongkok";
 "Chinese" = "Bahasa Tionghoa";
 "Chinese (Simplified)" = "Bahasa Tionghoa (Sederhana)";
+"Chinese Cinema" = "Sinema Tiongkok";
 "Chips" = "Chip";
 "Choose" = "Pilih";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Pilih nama, lalu tentukan resolusi, sumber, codec, dan audio yang Anda sukai.";
@@ -715,6 +723,8 @@
 "Crime Series" = "Serial Kriminal";
 "Crisp (anime & cartoons)" = "Tajam (anime & kartun)";
 "Critically Acclaimed" = "Dipuji Kritikus";
+"Critically acclaimed TV" = "Tayangan TV yang dipuji kritikus";
+"Critically acclaimed, all time" = "Critically acclaimed, all time";
 "Critics' Choice Awards" = "Critics' Choice Awards";
 "Critics' Pick" = "Pilihan Kritikus";
 "Critics' Picks" = "Rekomendasi Kritikus";
@@ -746,6 +756,7 @@
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Mewarnai nama, kursor di Nonton Bersama, dan lingkaran di sekeliling avatar Anda.";
 "Danger" = "Bahaya";
 "Danish" = "Denmark";
+"Danish Cinema" = "Sinema Denmark";
 "Dark" = "Gelap";
 "Date" = "Tanggal";
 "Date Night" = "Malam Kencan";
@@ -821,6 +832,7 @@
 "Distancia desde la parte inferior" = "Jarak dari bawah";
 "Documentales" = "Dokumenter";
 "Documentaries" = "Dokumenter";
+"Documentaries Worth Your Night" = "Documentaries Worth Your Night";
 "Documentary" = "Dokumenter";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
@@ -1031,8 +1043,11 @@
 "France" = "Prancis";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Pendaftaran gratis selama dua menit. Membuka Sedang Tren, Sedang Tayang di Bioskop, Berperingkat Teratas, dan katalog per layanan streaming (Netflix, Disney+, Hulu, …). Kunci Anda tetap tersimpan di perangkat ini.";
 "French" = "Bahasa Prancis";
+"French Cinema" = "Sinema Prancis";
+"Fresh on TV" = "Terbaru di TV";
 "From" = "Dari";
 "From HBO" = "Dari HBO";
+"From the region" = "Dari wilayah";
 "From your addons" = "Dari addon Anda";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
@@ -1057,6 +1072,7 @@
 "Genres you want more of" = "Genre yang ingin lebih sering Anda lihat";
 "Gently magnify nearby posters as you move across a poster row." = "Perbesar secara halus poster di sekitarnya saat Anda bergerak di sepanjang baris poster.";
 "German" = "Jerman";
+"German Cinema" = "Sinema Jerman";
 "Germany" = "Jerman";
 "Get Started" = "Mulai";
 "Get a free key at themoviedb.org" = "Dapatkan kunci gratis di themoviedb.org";
@@ -1134,6 +1150,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Sorotan utama, 10 Teratas, Sedang Tren, Sedang Tayang di Bioskop, deretan per layanan. Addon Anda ditambahkan di bawahnya.";
 "Hidden" = "Tersembunyi";
 "Hidden Gems" = "Permata Tersembunyi";
+"Hidden Gems from the {decade}" = "Permata Tersembunyi dari dekade {decade}";
 "Hidden Gems on MAL" = "Permata Tersembunyi di MAL";
 "Hidden gems" = "Permata tersembunyi";
 "Hidden titles" = "Hidden titles";
@@ -1167,9 +1184,12 @@
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "Tinggi";
 "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "Tinggi disesuaikan dengan layar Anda dan tampak sama dengan resolusi penuh, tetapi menggunakan jauh lebih sedikit memori. Seimbang paling menghemat. Maksimum mempertahankan resolusi asli.";
+"High score, low fanfare" = "Skor tinggi, minim sorotan";
 "Highlight, progress." = "Sorotan, progres.";
 "Highlighted blocks." = "Blok yang disorot.";
 "Highlights" = "Sorotan";
+"Highly Rated, Quietly Loved" = "Berperingkat Tinggi, Disukai Tanpa Banyak Sorotan";
+"Highly rated, real life" = "Highly rated, real life";
 "Hindi" = "Hindi";
 "History" = "Sejarah";
 "History Buff" = "Penggemar Sejarah";
@@ -1248,6 +1268,7 @@
 "In watchlist" = "Di daftar tontonan";
 "Independent Spirit Awards" = "Independent Spirit Awards";
 "India" = "India";
+"Indian Cinema" = "Sinema India";
 "Indonesian" = "Bahasa Indonesia";
 "Información" = "Informasi";
 "Information" = "Informasi";
@@ -1282,6 +1303,7 @@
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Aplikasi ini tidak berafiliasi dengan pembuat {product}, maupun dengan perusahaan, pembuat addon, atau pemegang merek dagang apa pun yang disebutkan di dalam aplikasi.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "Aplikasi ini tidak berafiliasi, didukung, disponsori, atau terkait dengan {company} dengan cara apa pun.";
 "Italian" = "Bahasa Italia";
+"Italian Cinema" = "Sinema Italia";
 "Italy" = "Italia";
 "Izquierda" = "Kiri";
 "Izquierda a derecha" = "Kiri ke kanan";
@@ -1291,6 +1313,7 @@
 "Japan" = "Jepang";
 "Japan's top science-fiction comic honor" = "Penghargaan komik fiksi ilmiah tertinggi di Jepang";
 "Japanese" = "Bahasa Jepang";
+"Japanese Cinema" = "Sinema Jepang";
 "Jina API key (optional)" = "Kunci API Jina (opsional)";
 "Jina Reader" = "Jina Reader";
 "Join" = "Bergabung";
@@ -1316,6 +1339,7 @@
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, mengenali musim";
 "Known For" = "Dikenal Karena";
 "Korean" = "Bahasa Korea";
+"Korean Cinema" = "Sinema Korea";
 "La conversión de FPS solo está disponible para subtítulos de texto." = "Konversi FPS subtitle hanya tersedia untuk subtitle berbasis teks.";
 "La estructura de toda la página de Inicio. Las opciones siguientes ajustan las filas que contiene." = "Bentuk keseluruhan halaman Beranda. Semua pengaturan di bawah menyesuaikan baris di dalamnya.";
 "La reproducción ha terminado." = "Playback has ended.";
@@ -1325,6 +1349,7 @@
 "Languages & subtitles" = "Bahasa & subtitle";
 "Large" = "Besar";
 "Larger" = "Lebih besar";
+"Last 90 days" = "Last 90 days";
 "Late Night" = "Larut Malam";
 "Laterales" = "Sisi";
 "Laugh Out Loud" = "Tertawa Terbahak-bahak";
@@ -1574,11 +1599,13 @@
 "New Face Award" = "Penghargaan Wajah Baru";
 "New Year, New Stories" = "Tahun Baru, Cerita Baru";
 "New filter" = "Filter baru";
+"New in {genre}" = "Baru di {genre}";
 "New list" = "Daftar baru";
 "New look name" = "Nama tampilan baru";
 "New profile" = "Profil baru";
 "New shows and anime premiering this month, from Simkl" = "Acara dan anime baru yang tayang perdana bulan ini, dari Simkl";
 "New voyage" = "Pelayaran baru";
+"New {genre} Series" = "Serial {genre} Baru";
 "Newest" = "Terbaru";
 "Next" = "Berikutnya";
 "Next chapter" = "Bab berikutnya";
@@ -1740,6 +1767,7 @@
 "On start" = "On start";
 "On your Roku remote, press Home." = "Di remote Roku Anda, tekan Home.";
 "On your Roku, open Streaming Channels from the home screen." = "Di Roku Anda, buka Streaming Channels dari layar utama.";
+"On {service}, picked for you" = "Di {service}, pilihan untuk Anda";
 "Onboarding" = "Pengenalan awal";
 "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "Setelah disimpan, setiap poster dirender ulang dengan cap IMDb, Rotten Tomatoes, dan Metacritic.";
 "One list" = "Satu daftar";
@@ -1909,6 +1937,7 @@
 "Popular reads" = "Popular reads";
 "Portuguese" = "Portugis";
 "Portuguese (Brazil)" = "Portugis (Brasil)";
+"Portuguese-Language" = "Berbahasa Portugis";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position" = "Posisi";
@@ -1985,6 +2014,7 @@
 "Queue" = "Antrean";
 "Quick Watches Under 90" = "Tontonan Singkat di Bawah 90 Menit";
 "Quiet" = "Hening";
+"Quietly great, {decade}" = "Diam-diam hebat, {decade}";
 "Quitar" = "Hapus";
 "Quitar de Seguir viendo" = "Hapus dari Lanjutkan Menonton";
 "Quitar de biblioteca Suwayomi" = "Remove from Suwayomi library";
@@ -2024,6 +2054,7 @@
 "Recent" = "Terbaru";
 "Recent activity" = "Aktivitas terbaru";
 "Recent searches" = "Pencarian terbaru";
+"Recently Released" = "Recently Released";
 "Recently played" = "Baru dimainkan";
 "Recién agregado" = "Baru ditambahkan";
 "Recognized at the {award}." = "Mendapat pengakuan di {award}.";
@@ -2178,6 +2209,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Untuk saat ini menggunakan Cinemeta. Tambahkan kunci TMDB dari Pengaturan kapan pun Anda siap.";
 "Runs this plugin on a real title and shows what came back." = "Menjalankan plugin ini pada judul sungguhan dan menampilkan hasilnya.";
 "Russian" = "Rusia";
+"Russian Cinema" = "Sinema Rusia";
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
@@ -2444,6 +2476,7 @@
 "Spain" = "Spanyol";
 "Spanish" = "Bahasa Spanyol";
 "Spanish (Latin America)" = "Bahasa Spanyol (Amerika Latin)";
+"Spanish-Language" = "Berbahasa Spanyol";
 "Specials" = "Acara spesial";
 "Speed" = "Kecepatan";
 "Spoiler — Click" = "Spoiler - Klik";
@@ -2547,6 +2580,7 @@
 "Suspenso" = "Thriller";
 "Suwayomi connection" = "Suwayomi connection";
 "Swedish" = "Swedia";
+"Swedish Cinema" = "Sinema Swedia";
 "Switch quality" = "Switch quality";
 "Switch stream" = "Ganti stream";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "Beralih ke bahasa yang lebih cocok jika tersedia setelah pemutaran dimulai. Biarkan nonaktif untuk mempertahankan trek saat ini.";
@@ -2724,18 +2758,22 @@
 "Top Rated Movies" = "Film Berperingkat Tertinggi";
 "Top Rated Series" = "Serial Berperingkat Tertinggi";
 "Top Rated on MAL" = "Peringkat Teratas di MAL";
+"Top Rated {genre}" = "{genre} dengan peringkat teratas";
+"Top Rated {genre} Series" = "Serial {genre} dengan peringkat teratas";
 "Top Series" = "Serial Teratas";
 "Top Series on MAL" = "Serial Teratas di MAL";
 "Top left" = "Kiri atas";
 "Top match" = "Kecocokan teratas";
 "Top of the screen" = "Bagian atas layar";
 "Top rated" = "Peringkat teratas";
+"Top rated abroad" = "Peringkat teratas di luar negeri";
 "Top rated on {site}" = "Peringkat teratas di {site}";
 "Top result" = "Hasil teratas";
 "Top right" = "Kanan atas";
 "Top rising" = "Paling melejit";
 "Top titles" = "Judul teratas";
 "Top tracks" = "Top tracks";
+"Top {genre}" = "Top {genre}";
 "TorBox API key" = "Kunci API TorBox";
 "Torrent link" = "Tautan torrent";
 "Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
@@ -2920,6 +2958,7 @@
 "What everyone is reading" = "Yang sedang dibaca semua orang";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "Yang mengisi bagian hero. Trending adalah daftar teratas terbaru dari Harbor, diperbarui sepanjang hari. Klasik menggunakan baris Beranda Anda sendiri.";
 "What is this?" = "Apa ini?";
+"What people are watching" = "Yang sedang ditonton orang-orang";
 "What you watched" = "Yang Anda tonton";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Saat Esc akan menutup pemutar, tampilkan konfirmasi singkat terlebih dahulu. Anda dapat mencentang \"Jangan tanya lagi\" pada dialog tersebut agar Esc selalu langsung keluar.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Jika suatu rilis memiliki beberapa trek audio, Harbor memilih kecocokan pertama dari daftar ini.";
@@ -4187,11 +4226,13 @@
 "yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} sendiri tidak menghosting, mendistribusikan, atau mengindeks media apa pun. Semua stream berasal dari addon pihak ketiga, layanan debrid, atau akun {service} milik Anda yang Anda konfigurasi sendiri. Anda bertanggung jawab atas apa yang Anda pilih untuk diputar dan atas kepatuhan terhadap hukum di yurisdiksi Anda.";
+"{country} Films" = "Film {country}";
 "{count} picks ready" = "{count} pilihan sudah siap";
 "{count} results" = "{count} hasil";
 "{count} selected" = "{count} dipilih";
 "{count} titles will never show the content advisory again." = "{count} judul tidak akan pernah menampilkan peringatan konten lagi.";
 "{count} tracks" = "{count} lagu";
+"{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "tersisa {h}j";
 "{h}h {m}m left" = "tersisa {h}j {m}m";
 "{ms} ms" = "{ms} md";

@@ -81,9 +81,10 @@ struct TMDBService: Sendable {
         }
         return rows
     }
-    func page(_ rail: DiscoveryRail, page: Int, configuration: MetadataConfiguration) async throws -> [Media] {
+    func page(_ rail: DiscoveryRail, page: Int, configuration: MetadataConfiguration, includeRegion: Bool = true) async throws -> [Media] {
         var params = rail.parameters
-        params["page"] = String(page); params["region"] = configuration.region
+        params["page"] = String(page)
+        if includeRegion { params["region"] = configuration.region }
         let response = try await get(rail.path, parameters: params, configuration: configuration)
         guard case .array(let results) = response["results"] else { throw HarborError(code: "invalid-metadata-response") }
         return results.compactMap { makeMedia($0, kind: rail.kind, configuration: configuration) }
@@ -121,6 +122,11 @@ struct TMDBService: Sendable {
             let original = value[kind == "movie" ? "original_title" : "original_name"].string
             var media = Media(id: "tmdb:\(kind == "movie" ? "movie" : "tv"):\(id)", type: kind, name: configuration.translateTitles ? title : original ?? title)
             media.originalLanguage = value["original_language"].string
+            let genres = kind == "movie" ? CustomCalendar.movieGenres : CustomCalendar.tvGenres
+            media.genres = value["genre_ids"].array.compactMap { entry in
+                guard let id = entry.integer else { return nil }
+                return genres.first { $0.1 == id }?.0
+            }
             media.poster = image(value["poster_path"].string, size: "w342")
             media.background = image(value["backdrop_path"].string, size: "w1280")
             media.description = value["overview"].string

@@ -49,6 +49,15 @@ final class CriticsPickTests: XCTestCase {
         XCTAssertEqual(rail.kind, "movie")
     }
 
+    func testCriticsPickAddsTheRegionOnlyWhenTheLocalePreferenceIsEnabled() {
+        let source = CriticsPickRules.sources[0]
+        let locale = DiscoveryAffinityRules.localeBias(preferredLanguages: ["es"], metadataLanguage: "en-US", region: "ES")
+        let weighted = CriticsPickRules.rail(source, locale: locale, region: "ES")
+        XCTAssertEqual(weighted.parameters["region"], "ES")
+        XCTAssertEqual(weighted.parameters["vote_count.gte"], source.parameters["vote_count.gte"])
+        XCTAssertEqual(CriticsPickRules.rail(source, region: "ES").parameters, source.parameters)
+    }
+
     // MARK: Merge and pick
 
     func testMergeInterleavesListsAndDropsDuplicates() {

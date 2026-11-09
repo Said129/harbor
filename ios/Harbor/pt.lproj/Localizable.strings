@@ -27,6 +27,7 @@
 "4:3" = "4:3";
 "8-character key" = "chave de 8 caracteres";
 "A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
+"A Short Tonight: {genre} Under 90" = "Um filme curto para hoje: {genre} com menos de 90 minutos";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Uma aba do navegador foi aberta no AniList. Aprove o Harbor lá, depois copie o texto exibido e cole abaixo.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Uma aba do navegador foi aberta no MyAnimeList. Aprove o Harbor lá, depois copie o código ou a URL da página e cole abaixo.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Um cliente para o protocolo Stremio. Dois minutos para configurar; a maior parte é opcional. Você mantém o controle total de cada chave.";
@@ -220,6 +221,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "Filmes de Animação";
 "Animated sidebar icons" = "Animated sidebar icons";
+"Animated, For Grown-Ups" = "Animados, Para Adultos";
 "Animation" = "Animação";
 "Animation Night" = "Noite de Animação";
 "Animation speed" = "Velocidade da animação";
@@ -309,6 +311,7 @@
 "Aventura" = "Aventura";
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "Aviso de próximo episódio";
+"Award Winning" = "Award Winning";
 "Award Winning Anime" = "Anime premiado";
 "Awards & Recognition" = "Prêmios e reconhecimento";
 "Awards Contenders" = "Candidatos a Prêmios";
@@ -344,6 +347,7 @@
 "Be My Valentine" = "Seja Meu Valentine";
 "Be the first to start a discussion." = "Seja o primeiro a iniciar uma discussão.";
 "Beloved by readers and critics" = "Adorados por leitores e críticos";
+"Beloved, slightly forgotten" = "Queridos, um pouco esquecidos";
 "Berlin Film Festival" = "Festival de Cinema de Berlim";
 "Best Action" = "Melhor ação";
 "Best Adventure" = "Melhor aventura";
@@ -367,11 +371,14 @@
 "Best New Series" = "Melhor nova série";
 "Best Opening" = "Melhor abertura";
 "Best Original Anime" = "Melhor anime original";
+"Best Picture winners" = "Best Picture winners";
 "Best Protagonist" = "Melhor protagonista";
 "Best Romance" = "Melhor romance";
 "Best Slice of Life" = "Melhor slice of life";
 "Best Suspense" = "Melhor suspense";
 "Best VA Performance" = "Melhor atuação de voz";
+"Best of the {decade}" = "O melhor de {decade}";
+"Beyond the kids' shelf" = "Além da prateleira infantil";
 "Biblioteca" = "Biblioteca";
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "Barra preta";
@@ -526,6 +533,7 @@
 "China" = "China";
 "Chinese" = "Chinês";
 "Chinese (Simplified)" = "Chinês (simplificado)";
+"Chinese Cinema" = "Cinema Chinês";
 "Chips" = "Chips";
 "Choose" = "Escolher";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Escolha um nome e selecione as resoluções, fontes, codecs e áudios que prefere.";
@@ -735,6 +743,8 @@
 "Crime Series" = "Séries de Crime";
 "Crisp (anime & cartoons)" = "Nítido (anime e desenhos)";
 "Critically Acclaimed" = "Aclamados pela crítica";
+"Critically acclaimed TV" = "Aclamados pela crítica na TV";
+"Critically acclaimed, all time" = "Critically acclaimed, all time";
 "Critics' Choice Awards" = "Critics' Choice Awards";
 "Critics' Pick" = "Escolha da crítica";
 "Critics' Picks" = "Escolhas dos Críticos";
@@ -766,6 +776,7 @@
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Dá cor ao seu nome, ao cursor em Assistir Juntos e ao anel ao redor do seu avatar.";
 "Danger" = "Perigo";
 "Danish" = "Dinamarquês";
+"Danish Cinema" = "Cinema Dinamarquês";
 "Dark" = "Escuro";
 "Date" = "Data";
 "Date Night" = "Noite a Dois";
@@ -841,6 +852,7 @@
 "Distancia desde la parte inferior" = "Distância da parte inferior";
 "Documentales" = "Documentários";
 "Documentaries" = "Documentários";
+"Documentaries Worth Your Night" = "Documentaries Worth Your Night";
 "Documentary" = "Documentário";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
@@ -1051,8 +1063,11 @@
 "France" = "França";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Cadastro gratuito de dois minutos. Libera Em Alta, Nos Cinemas Agora, Mais Bem Avaliados e catálogos por serviço de streaming (Netflix, Disney+, Hulu, …). Sua chave fica somente nesta máquina.";
 "French" = "Francês";
+"French Cinema" = "Cinema Francês";
+"Fresh on TV" = "Novidades na TV";
 "From" = "De";
 "From HBO" = "Da HBO";
+"From the region" = "Da região";
 "From your addons" = "Dos seus complementos";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
@@ -1077,6 +1092,7 @@
 "Genres you want more of" = "Gêneros que você quer ver mais";
 "Gently magnify nearby posters as you move across a poster row." = "Amplia suavemente os pôsteres próximos conforme você percorre uma linha de pôsteres.";
 "German" = "Alemão";
+"German Cinema" = "Cinema Alemão";
 "Germany" = "Alemanha";
 "Get Started" = "Começar";
 "Get a free key at themoviedb.org" = "Obtenha uma chave gratuita em themoviedb.org";
@@ -1154,6 +1170,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Destaque, Top 10, Em alta, Nos cinemas, faixas por serviço. Seus addons aparecem abaixo.";
 "Hidden" = "Oculto";
 "Hidden Gems" = "Joias Escondidas";
+"Hidden Gems from the {decade}" = "Joias escondidas de {decade}";
 "Hidden Gems on MAL" = "Joias Escondidas no MAL";
 "Hidden gems" = "Joias escondidas";
 "Hidden titles" = "Hidden titles";
@@ -1187,9 +1204,12 @@
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "Alta";
 "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "Alta é dimensionada para a sua tela e parece idêntica à resolução total usando muito menos memória. Equilibrada é a que mais economiza. Máxima mantém a resolução original.";
+"High score, low fanfare" = "Nota alta, pouco alarde";
 "Highlight, progress." = "Destaque, progresso.";
 "Highlighted blocks." = "Blocos destacados.";
 "Highlights" = "Destaques";
+"Highly Rated, Quietly Loved" = "Bem Avaliados, Amados em Silêncio";
+"Highly rated, real life" = "Highly rated, real life";
 "Hindi" = "Híndi";
 "History" = "Histórico";
 "History Buff" = "Fã de História";
@@ -1268,6 +1288,7 @@
 "In watchlist" = "Na watchlist";
 "Independent Spirit Awards" = "Independent Spirit Awards";
 "India" = "Índia";
+"Indian Cinema" = "Cinema Indiano";
 "Indonesian" = "Indonésio";
 "Información" = "Informação";
 "Information" = "Informação";
@@ -1302,6 +1323,7 @@
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Não é afiliado ao criador de {product} nem a qualquer empresa, autor de complemento ou titular de marca comercial mencionado no aplicativo.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "Não é afiliado, endossado, patrocinado nem associado de qualquer forma à {company}.";
 "Italian" = "Italiano";
+"Italian Cinema" = "Cinema Italiano";
 "Italy" = "Itália";
 "Izquierda" = "Esquerda";
 "Izquierda a derecha" = "Da esquerda para a direita";
@@ -1311,6 +1333,7 @@
 "Japan" = "Japão";
 "Japan's top science-fiction comic honor" = "A maior honraria japonesa dos quadrinhos de ficção científica";
 "Japanese" = "Japonês";
+"Japanese Cinema" = "Cinema Japonês";
 "Jina API key (optional)" = "Chave de API do Jina (opcional)";
 "Jina Reader" = "Jina Reader";
 "Join" = "Entrar";
@@ -1336,6 +1359,7 @@
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, reconhece temporadas";
 "Known For" = "Conhecido por";
 "Korean" = "Coreano";
+"Korean Cinema" = "Cinema Coreano";
 "La conversión de FPS solo está disponible para subtítulos de texto." = "A conversão de FPS só está disponível para legendas de texto.";
 "La estructura de toda la página de Inicio. Las opciones siguientes ajustan las filas que contiene." = "O formato de toda a página Início. Tudo abaixo ajusta as fileiras dentro dela.";
 "La reproducción ha terminado." = "Playback has ended.";
@@ -1345,6 +1369,7 @@
 "Languages & subtitles" = "Idiomas e legendas";
 "Large" = "Grande";
 "Larger" = "Maior";
+"Last 90 days" = "Last 90 days";
 "Late Night" = "Madrugada";
 "Laterales" = "Laterais";
 "Laugh Out Loud" = "Gargalhadas Garantidas";
@@ -1594,11 +1619,13 @@
 "New Face Award" = "Prêmio Novo Talento";
 "New Year, New Stories" = "Ano Novo, Novas Histórias";
 "New filter" = "Novo filtro";
+"New in {genre}" = "Novidades em {genre}";
 "New list" = "Nova lista";
 "New look name" = "Novo nome do visual";
 "New profile" = "Novo perfil";
 "New shows and anime premiering this month, from Simkl" = "Novas séries e animes estreando este mês, via Simkl";
 "New voyage" = "Nova viagem";
+"New {genre} Series" = "Novas séries de {genre}";
 "Newest" = "Mais recentes";
 "Next" = "Próximo";
 "Next chapter" = "Próximo capítulo";
@@ -1760,6 +1787,7 @@
 "On start" = "On start";
 "On your Roku remote, press Home." = "No controle do Roku, pressione Início.";
 "On your Roku, open Streaming Channels from the home screen." = "No Roku, abra Canais de streaming na tela inicial.";
+"On {service}, picked for you" = "Escolhas para você no {service}";
 "Onboarding" = "Introdução";
 "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "Depois de salvar, todos os pôsteres serão renderizados novamente com as notas do IMDb, Rotten Tomatoes e Metacritic estampadas neles.";
 "One list" = "Uma lista";
@@ -1929,6 +1957,7 @@
 "Popular reads" = "Popular reads";
 "Portuguese" = "Português";
 "Portuguese (Brazil)" = "Português (Brasil)";
+"Portuguese-Language" = "Em Português";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position" = "Posição";
@@ -2005,6 +2034,7 @@
 "Queue" = "Fila";
 "Quick Watches Under 90" = "Sessões Rápidas Abaixo de 90 Minutos";
 "Quiet" = "Silencioso";
+"Quietly great, {decade}" = "Excelentes sem alarde, {decade}";
 "Quitar" = "Remover";
 "Quitar de Seguir viendo" = "Remover de Continuar Assistindo";
 "Quitar de biblioteca Suwayomi" = "Remove from Suwayomi library";
@@ -2044,6 +2074,7 @@
 "Recent" = "Recente";
 "Recent activity" = "Atividade recente";
 "Recent searches" = "Buscas recentes";
+"Recently Released" = "Recently Released";
 "Recently played" = "Jogado recentemente";
 "Recién agregado" = "Recém-adicionado";
 "Recognized at the {award}." = "Recebeu reconhecimento no {award}.";
@@ -2198,6 +2229,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Usando o Cinemeta por enquanto. Adicione uma chave do TMDB nas Configurações quando quiser.";
 "Runs this plugin on a real title and shows what came back." = "Executa este plugin com um título real e mostra o que voltou.";
 "Russian" = "Russo";
+"Russian Cinema" = "Cinema Russo";
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
@@ -2466,6 +2498,7 @@
 "Spain" = "Espanha";
 "Spanish" = "Espanhol";
 "Spanish (Latin America)" = "Espanhol (América Latina)";
+"Spanish-Language" = "Em Espanhol";
 "Specials" = "Especiais";
 "Speed" = "Velocidade";
 "Spoiler — Click" = "Spoiler · Clique";
@@ -2570,6 +2603,7 @@
 "Suspenso" = "Suspenses";
 "Suwayomi connection" = "Suwayomi connection";
 "Swedish" = "Sueco";
+"Swedish Cinema" = "Cinema Sueco";
 "Switch quality" = "Switch quality";
 "Switch stream" = "Trocar stream";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "Troque para uma faixa mais adequada ao idioma se ela chegar após o início da reprodução. Desative para manter a faixa atual.";
@@ -2747,18 +2781,22 @@
 "Top Rated Movies" = "Filmes Mais Bem Avaliados";
 "Top Rated Series" = "Séries Mais Bem Avaliadas";
 "Top Rated on MAL" = "Mais Bem Avaliados no MAL";
+"Top Rated {genre}" = "Os mais bem avaliados de {genre}";
+"Top Rated {genre} Series" = "Séries de {genre} mais bem avaliadas";
 "Top Series" = "Top Séries";
 "Top Series on MAL" = "Top Séries no MAL";
 "Top left" = "Superior esquerdo";
 "Top match" = "Melhor resultado";
 "Top of the screen" = "No topo da tela";
 "Top rated" = "Mais bem avaliados";
+"Top rated abroad" = "Mais bem avaliados no exterior";
 "Top rated on {site}" = "Mais bem avaliados em {site}";
 "Top result" = "Melhor resultado";
 "Top right" = "Superior direito";
 "Top rising" = "Em ascensão";
 "Top titles" = "Principais títulos";
 "Top tracks" = "Top tracks";
+"Top {genre}" = "Top {genre}";
 "TorBox API key" = "Chave de API do TorBox";
 "Torrent link" = "Link de torrent";
 "Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
@@ -2943,6 +2981,7 @@
 "What everyone is reading" = "O que todos estão lendo";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "O que preenche o destaque. Em alta é uma nova lista dos mais populares do Harbor, atualizada ao longo do dia. Clássico usa as suas próprias linhas da tela Início.";
 "What is this?" = "O que é isso?";
+"What people are watching" = "O que as pessoas estão assistindo";
 "What you watched" = "O que você assistiu";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Quando o Esc for fechar o player, mostra primeiro uma confirmação rápida. Você pode marcar \"Não perguntar novamente\" nesse aviso para sempre sair com o Esc.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Quando um release traz várias faixas de áudio, o Harbor seleciona a primeira correspondência desta lista.";
@@ -4214,11 +4253,13 @@
 "yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "O próprio {app} não hospeda, distribui nem indexa nenhuma mídia. Todas as transmissões vêm de complementos de terceiros, serviços de debrid ou da sua própria conta do {service}, configurada por você. Você é responsável pelo que escolhe reproduzir e por cumprir a legislação da sua jurisdição.";
+"{country} Films" = "Filmes de {country}";
 "{count} picks ready" = "{count} escolhas prontas";
 "{count} results" = "{count} resultados";
 "{count} selected" = "{count} selecionados";
 "{count} titles will never show the content advisory again." = "{count} títulos nunca mais mostrarão o aviso de conteúdo.";
 "{count} tracks" = "{count} faixas";
+"{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "faltam {h}h";
 "{h}h {m}m left" = "faltam {h}h {m}m";
 "{ms} ms" = "{ms} ms";

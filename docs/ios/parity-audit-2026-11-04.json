@@ -16,24 +16,24 @@
     },
     "settings": {
       "total": 511,
-      "ported": 246,
-      "partial": 32,
+      "ported": 247,
+      "partial": 31,
       "missing": 0,
       "excluded": 233,
       "counted": 278,
-      "weighted_percent": 94.2,
-      "ported_only_percent": 88.5,
+      "weighted_percent": 94.4,
+      "ported_only_percent": 88.8,
       "ported_or_partial_percent": 100.0
     },
     "all": {
       "total": 949,
-      "ported": 507,
-      "partial": 147,
+      "ported": 508,
+      "partial": 146,
       "missing": 0,
       "excluded": 295,
       "counted": 654,
       "weighted_percent": 88.8,
-      "ported_only_percent": 77.5,
+      "ported_only_percent": 77.7,
       "ported_or_partial_percent": 100.0
     }
   },
@@ -269,7 +269,7 @@
       "id": "Daily discovery rails",
       "desktop_source": "src/views/discover.tsx",
       "verdict": "P",
-      "note": "daily discovery rails: the seeded row order with pinned anchors exists as a tested helper (8 Nov, written by Haiku, uncompiled); iOS has no daily row catalog to order"
+      "note": "Discover runs Desktop's seeded genre, decade, language, country, TV, streaming and anchor rails with lazy paging, locale floors, relaxed fallbacks and a Cinemeta fallback. People and keyword lanes, custom row ordering and full awards pagination remain."
     },
     {
       "index": 7,
@@ -6773,8 +6773,8 @@
       "index": 497,
       "id": "feedLocaleBias",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "The per-profile locale preference controls Discover ranking and defaults to on. Desktop's daily Home catalog bias is pending."
+      "verdict": "D",
+      "note": "The per-profile locale preference defaults to on and controls native Discover ranking, daily catalog floors and Critics Pick. Desktop's regular Home view does not consume this preference."
     },
     {
       "index": 498,

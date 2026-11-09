@@ -8,14 +8,14 @@ enum DiscoveryAffinityRules {
     static let decadeWeight = 1.5
     static let localePenalty = 3.0
 
-    struct LocaleBias: Equatable {
+    struct LocaleBias: Equatable, Sendable {
         let codes: Set<String>
         let penalty: Double
 
         static let disabled = LocaleBias(codes: [], penalty: 0)
     }
 
-    struct Downvote {
+    struct Downvote: Sendable {
         let id: String
         let titleKey: String
     }

@@ -1,5 +1,13 @@
 {
   "es": {
+    "Award Winning": "Películas premiadas",
+    "Best Picture winners": "Ganadoras del Óscar a mejor película",
+    "Critically acclaimed, all time": "Aclamadas por la crítica de todos los tiempos",
+    "Documentaries Worth Your Night": "Documentales para esta noche",
+    "Highly rated, real life": "Historias reales muy valoradas",
+    "Last 90 days": "Últimos 90 días",
+    "Recently Released": "Estrenos recientes",
+    "Top {genre}": "Lo mejor de {genre}",
     "Give more weight to titles in your languages and region in Discover.": "Da más peso a los títulos de tus idiomas y tu región en Descubrir.",
     "Auto-sync": "Auto Sync",
     "Syncing subtitles…": "Sincronizando subtítulos…",

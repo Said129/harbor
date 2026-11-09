@@ -151,7 +151,7 @@ final class DiscoveryPreferences {
             stored = value; error = nil; revision &+= 1; return true
         } catch { self.error = "No se pudo guardar esta preferencia. Los datos anteriores se conservan."; return false }
     }
-    struct Affinity {
+    struct Affinity: Sendable {
         var genres: [String: Double] = [:]
         var decades: [String: Double] = [:]
         var languages: [String: Double] = [:]

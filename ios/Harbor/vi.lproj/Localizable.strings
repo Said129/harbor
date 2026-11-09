@@ -27,6 +27,7 @@
 "4:3" = "4:3";
 "8-character key" = "Khóa 8 ký tự";
 "A Letterboxd list you added by address." = "A Letterboxd list you added by address.";
+"A Short Tonight: {genre} Under 90" = "Phim ngắn tối nay: {genre} dưới 90 phút";
 "A browser tab opened on AniList. Approve Harbor there, then copy the text it shows and paste it below." = "Một thẻ trình duyệt đã mở trên AniList. Hãy phê duyệt Harbor tại đó, rồi sao chép nội dung hiển thị và dán vào bên dưới.";
 "A browser tab opened on MyAnimeList. Approve Harbor there, then copy the code or the page URL and paste it below." = "Một thẻ trình duyệt đã mở trên MyAnimeList. Hãy phê duyệt Harbor tại đó, rồi sao chép mã hoặc URL của trang và dán vào bên dưới.";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Ứng dụng khách cho giao thức Stremio. Chỉ mất hai phút để thiết lập; hầu hết đều không bắt buộc. Bạn luôn toàn quyền kiểm soát mọi khóa.";
@@ -213,6 +214,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "Phim hoạt hình";
 "Animated sidebar icons" = "Animated sidebar icons";
+"Animated, For Grown-Ups" = "Hoạt hình dành cho người lớn";
 "Animation" = "Hoạt hình";
 "Animation Night" = "Đêm phim hoạt hình";
 "Animation speed" = "Tốc độ hiệu ứng";
@@ -301,6 +303,7 @@
 "Aventura" = "Phiêu lưu";
 "Avisarme" = "Notify me";
 "Aviso del siguiente episodio" = "Nhắc tập tiếp theo";
+"Award Winning" = "Award Winning";
 "Award Winning Anime" = "Anime đoạt giải";
 "Awards & Recognition" = "Giải thưởng & Vinh danh";
 "Awards Contenders" = "Ứng viên giải thưởng";
@@ -336,6 +339,7 @@
 "Be My Valentine" = "Hẹn hò Valentine";
 "Be the first to start a discussion." = "Hãy là người đầu tiên bắt đầu thảo luận.";
 "Beloved by readers and critics" = "Được độc giả và giới phê bình yêu thích";
+"Beloved, slightly forgotten" = "Từng được yêu thích, nay hơi bị lãng quên";
 "Berlin Film Festival" = "Liên hoan phim Berlin";
 "Best Action" = "Hành động xuất sắc nhất";
 "Best Adventure" = "Phiêu lưu xuất sắc nhất";
@@ -359,11 +363,14 @@
 "Best New Series" = "Phim bộ mới xuất sắc nhất";
 "Best Opening" = "Phần mở đầu xuất sắc nhất";
 "Best Original Anime" = "Anime nguyên tác xuất sắc nhất";
+"Best Picture winners" = "Best Picture winners";
 "Best Protagonist" = "Nhân vật chính diện xuất sắc nhất";
 "Best Romance" = "Phim lãng mạn xuất sắc nhất";
 "Best Slice of Life" = "Phim đời thường xuất sắc nhất";
 "Best Suspense" = "Phim giật gân xuất sắc nhất";
 "Best VA Performance" = "Màn lồng tiếng xuất sắc nhất";
+"Best of the {decade}" = "Hay nhất thập niên {decade}";
+"Beyond the kids' shelf" = "Không chỉ dành cho trẻ em";
 "Biblioteca" = "Thư viện";
 "Biblioteca de Manga" = "Manga library";
 "Black bar" = "Nền đen";
@@ -510,6 +517,7 @@
 "China" = "Trung Quốc";
 "Chinese" = "Tiếng Trung";
 "Chinese (Simplified)" = "Tiếng Trung (Giản thể)";
+"Chinese Cinema" = "Điện ảnh Trung Quốc";
 "Chips" = "Thẻ chọn";
 "Choose" = "Chọn";
 "Choose a name, then select the resolutions, sources, codecs and audio you prefer." = "Chọn tên, rồi chọn độ phân giải, nguồn, codec và âm thanh bạn muốn.";
@@ -715,6 +723,8 @@
 "Crime Series" = "Phim bộ tội phạm";
 "Crisp (anime & cartoons)" = "Sắc nét (anime & hoạt hình)";
 "Critically Acclaimed" = "Được giới phê bình đánh giá cao";
+"Critically acclaimed TV" = "Phim truyền hình được giới phê bình ca ngợi";
+"Critically acclaimed, all time" = "Critically acclaimed, all time";
 "Critics' Choice Awards" = "Giải Critics' Choice";
 "Critics' Pick" = "Lựa chọn của giới phê bình";
 "Critics' Picks" = "Lựa chọn của giới phê bình";
@@ -746,6 +756,7 @@
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Tô màu tên, con trỏ trong Xem cùng nhau và vòng quanh ảnh đại diện của bạn.";
 "Danger" = "Nguy hiểm";
 "Danish" = "Tiếng Đan Mạch";
+"Danish Cinema" = "Điện ảnh Đan Mạch";
 "Dark" = "Tối";
 "Date" = "Ngày";
 "Date Night" = "Đêm hẹn hò";
@@ -821,6 +832,7 @@
 "Distancia desde la parte inferior" = "Khoảng cách từ cạnh dưới";
 "Documentales" = "Phim tài liệu";
 "Documentaries" = "Phim tài liệu";
+"Documentaries Worth Your Night" = "Documentaries Worth Your Night";
 "Documentary" = "Phim tài liệu";
 "Documents" = "Documents";
 "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
@@ -1031,8 +1043,11 @@
 "France" = "Pháp";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Đăng ký miễn phí trong hai phút. Mở khóa Thịnh hành, Đang chiếu rạp, Được đánh giá cao nhất và danh mục theo từng dịch vụ phát trực tuyến (Netflix, Disney+, Hulu, …). Khóa của bạn chỉ được lưu trên thiết bị này.";
 "French" = "Tiếng Pháp";
+"French Cinema" = "Điện ảnh Pháp";
+"Fresh on TV" = "Mới lên sóng truyền hình";
 "From" = "Từ";
 "From HBO" = "Từ HBO";
+"From the region" = "Từ khu vực này";
 "From your addons" = "Từ các tiện ích bổ sung của bạn";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fubo" = "Fubo";
@@ -1057,6 +1072,7 @@
 "Genres you want more of" = "Thể loại bạn muốn xem thêm";
 "Gently magnify nearby posters as you move across a poster row." = "Phóng to nhẹ các áp phích lân cận khi bạn di chuyển qua một hàng áp phích.";
 "German" = "Tiếng Đức";
+"German Cinema" = "Điện ảnh Đức";
 "Germany" = "Đức";
 "Get Started" = "Bắt đầu";
 "Get a free key at themoviedb.org" = "Nhận khóa miễn phí tại themoviedb.org";
@@ -1134,6 +1150,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Nổi bật, Top 10, Thịnh hành, Đang chiếu rạp và các hàng theo từng dịch vụ. Tiện ích bổ sung của bạn sẽ được thêm bên dưới.";
 "Hidden" = "Đã ẩn";
 "Hidden Gems" = "Những viên ngọc ẩn";
+"Hidden Gems from the {decade}" = "Những viên ngọc ẩn của thập niên {decade}";
 "Hidden Gems on MAL" = "Những viên ngọc ẩn trên MAL";
 "Hidden gems" = "Phim hay ít người biết";
 "Hidden titles" = "Hidden titles";
@@ -1167,9 +1184,12 @@
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
 "High" = "Cao";
 "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "Cao được điều chỉnh theo màn hình và trông giống hệt độ phân giải đầy đủ nhưng dùng ít bộ nhớ hơn nhiều. Cân bằng tiết kiệm bộ nhớ nhất. Tối đa giữ nguyên độ phân giải gốc.";
+"High score, low fanfare" = "Điểm cao, ít tiếng vang";
 "Highlight, progress." = "Tô sáng, tiến trình.";
 "Highlighted blocks." = "Các khối được tô sáng.";
 "Highlights" = "Nổi bật";
+"Highly Rated, Quietly Loved" = "Đánh giá cao, âm thầm được yêu thích";
+"Highly rated, real life" = "Highly rated, real life";
 "Hindi" = "Tiếng Hindi";
 "History" = "Lịch sử";
 "History Buff" = "Mê lịch sử";
@@ -1248,6 +1268,7 @@
 "In watchlist" = "Trong danh sách xem";
 "Independent Spirit Awards" = "Giải Tinh thần Độc lập";
 "India" = "Ấn Độ";
+"Indian Cinema" = "Điện ảnh Ấn Độ";
 "Indonesian" = "Tiếng Indonesia";
 "Información" = "Thông tin";
 "Information" = "Thông tin";
@@ -1282,6 +1303,7 @@
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Ứng dụng này không liên kết với nhà sản xuất {product}, hay bất kỳ công ty, tác giả tiện ích bổ sung hoặc chủ sở hữu nhãn hiệu nào được đề cập trong ứng dụng.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "Ứng dụng này không liên kết, được chứng thực, tài trợ hay có bất kỳ quan hệ nào với {company}.";
 "Italian" = "Tiếng Ý";
+"Italian Cinema" = "Điện ảnh Ý";
 "Italy" = "Ý";
 "Izquierda" = "Trái";
 "Izquierda a derecha" = "Từ trái sang phải";
@@ -1291,6 +1313,7 @@
 "Japan" = "Nhật Bản";
 "Japan's top science-fiction comic honor" = "Giải thưởng truyện tranh khoa học viễn tưởng hàng đầu Nhật Bản";
 "Japanese" = "Tiếng Nhật";
+"Japanese Cinema" = "Điện ảnh Nhật Bản";
 "Jina API key (optional)" = "Khóa API Jina (không bắt buộc)";
 "Jina Reader" = "Jina Reader";
 "Join" = "Tham gia";
@@ -1316,6 +1339,7 @@
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, nhận biết mùa";
 "Known For" = "Nổi tiếng với";
 "Korean" = "Tiếng Hàn";
+"Korean Cinema" = "Điện ảnh Hàn Quốc";
 "La conversión de FPS solo está disponible para subtítulos de texto." = "Chuyển đổi FPS phụ đề chỉ khả dụng cho phụ đề dạng văn bản.";
 "La estructura de toda la página de Inicio. Las opciones siguientes ajustan las filas que contiene." = "Bố cục tổng thể của trang chủ. Mọi tùy chọn bên dưới điều chỉnh các hàng trong trang.";
 "La reproducción ha terminado." = "Playback has ended.";
@@ -1325,6 +1349,7 @@
 "Languages & subtitles" = "Ngôn ngữ & phụ đề";
 "Large" = "Lớn";
 "Larger" = "Lớn hơn";
+"Last 90 days" = "Last 90 days";
 "Late Night" = "Đêm khuya";
 "Laterales" = "Hai bên";
 "Laugh Out Loud" = "Cười thả ga";
@@ -1574,11 +1599,13 @@
 "New Face Award" = "Giải Gương mặt mới";
 "New Year, New Stories" = "Năm mới, chuyện mới";
 "New filter" = "Bộ lọc mới";
+"New in {genre}" = "Mới trong {genre}";
 "New list" = "Danh sách mới";
 "New look name" = "Tên giao diện mới";
 "New profile" = "Hồ sơ mới";
 "New shows and anime premiering this month, from Simkl" = "Phim bộ và anime mới ra mắt trong tháng này, từ Simkl";
 "New voyage" = "Hải trình mới";
+"New {genre} Series" = "Phim bộ {genre} mới";
 "Newest" = "Mới nhất";
 "Next" = "Tiếp theo";
 "Next chapter" = "Chương tiếp theo";
@@ -1740,6 +1767,7 @@
 "On start" = "On start";
 "On your Roku remote, press Home." = "Trên điều khiển Roku, nhấn Home.";
 "On your Roku, open Streaming Channels from the home screen." = "Trên Roku, mở Kênh truyền phát từ màn hình chính.";
+"On {service}, picked for you" = "Trên {service}, dành riêng cho bạn";
 "Onboarding" = "Hướng dẫn ban đầu";
 "Once saved, every poster gets re-rendered with IMDb, Rotten Tomatoes, and Metacritic stamped on it." = "Sau khi lưu, mọi áp phích sẽ được kết xuất lại với điểm IMDb, Rotten Tomatoes và Metacritic in trên đó.";
 "One list" = "Một danh sách";
@@ -1909,6 +1937,7 @@
 "Popular reads" = "Popular reads";
 "Portuguese" = "Tiếng Bồ Đào Nha";
 "Portuguese (Brazil)" = "Tiếng Bồ Đào Nha (Brazil)";
+"Portuguese-Language" = "Tiếng Bồ Đào Nha";
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position" = "Vị trí";
@@ -1985,6 +2014,7 @@
 "Queue" = "Hàng đợi";
 "Quick Watches Under 90" = "Phim ngắn dưới 90 phút";
 "Quiet" = "Yên lặng";
+"Quietly great, {decade}" = "Âm thầm xuất sắc, thập niên {decade}";
 "Quitar" = "Gỡ";
 "Quitar de Seguir viendo" = "Xóa khỏi Xem tiếp";
 "Quitar de biblioteca Suwayomi" = "Remove from Suwayomi library";
@@ -2024,6 +2054,7 @@
 "Recent" = "Gần đây";
 "Recent activity" = "Hoạt động gần đây";
 "Recent searches" = "Tìm kiếm gần đây";
+"Recently Released" = "Recently Released";
 "Recently played" = "Chơi gần đây";
 "Recién agregado" = "Mới thêm";
 "Recognized at the {award}." = "Được vinh danh tại {award}.";
@@ -2178,6 +2209,7 @@
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Hiện đang dùng Cinemeta. Bạn có thể thêm khóa TMDB trong Cài đặt bất cứ khi nào sẵn sàng.";
 "Runs this plugin on a real title and shows what came back." = "Chạy plugin này với một tiêu đề thật và hiển thị kết quả trả về.";
 "Russian" = "Tiếng Nga";
+"Russian Cinema" = "Điện ảnh Nga";
 "SIMKL" = "SIMKL";
 "STARZ" = "STARZ";
 "SUBDL" = "SUBDL";
@@ -2444,6 +2476,7 @@
 "Spain" = "Tây Ban Nha";
 "Spanish" = "Tiếng Tây Ban Nha";
 "Spanish (Latin America)" = "Tiếng Tây Ban Nha (Mỹ Latinh)";
+"Spanish-Language" = "Tiếng Tây Ban Nha";
 "Specials" = "Tập đặc biệt";
 "Speed" = "Tốc độ";
 "Spoiler — Click" = "Nội dung tiết lộ - Nhấp";
@@ -2547,6 +2580,7 @@
 "Suspenso" = "Phim giật gân";
 "Suwayomi connection" = "Suwayomi connection";
 "Swedish" = "Tiếng Thụy Điển";
+"Swedish Cinema" = "Điện ảnh Thụy Điển";
 "Switch quality" = "Switch quality";
 "Switch stream" = "Đổi luồng phát";
 "Switch to a better language match if it arrives after playback starts. Leave off to keep the current track." = "Chuyển sang ngôn ngữ phù hợp hơn nếu có sau khi bắt đầu phát. Để tắt để giữ bản hiện tại.";
@@ -2724,18 +2758,22 @@
 "Top Rated Movies" = "Phim điện ảnh được đánh giá cao nhất";
 "Top Rated Series" = "Phim bộ được đánh giá cao nhất";
 "Top Rated on MAL" = "Được đánh giá cao nhất trên MAL";
+"Top Rated {genre}" = "{genre} được đánh giá cao nhất";
+"Top Rated {genre} Series" = "Phim bộ {genre} được đánh giá cao nhất";
 "Top Series" = "Phim bộ hàng đầu";
 "Top Series on MAL" = "Phim bộ hàng đầu trên MAL";
 "Top left" = "Trên cùng bên trái";
 "Top match" = "Kết quả phù hợp nhất";
 "Top of the screen" = "Đầu màn hình";
 "Top rated" = "Được đánh giá cao nhất";
+"Top rated abroad" = "Phim nước ngoài được đánh giá cao nhất";
 "Top rated on {site}" = "Được đánh giá cao nhất trên {site}";
 "Top result" = "Kết quả hàng đầu";
 "Top right" = "Trên cùng bên phải";
 "Top rising" = "Đang lên";
 "Top titles" = "Tựa phim hàng đầu";
 "Top tracks" = "Top tracks";
+"Top {genre}" = "Top {genre}";
 "TorBox API key" = "Khóa API TorBox";
 "Torrent link" = "Liên kết torrent";
 "Torrent links play through a debrid service. Add one in Settings › Streaming sources." = "Torrent links play through a debrid service. Add one in Settings › Streaming sources.";
@@ -2920,6 +2958,7 @@
 "What everyone is reading" = "Mọi người đang đọc gì";
 "What fills the hero. Trending is a fresh top list from Harbor, refreshed through the day. Classic uses your own Home rows." = "Nội dung hiển thị trong vùng nổi bật. Thịnh hành là danh sách hàng đầu mới nhất từ Harbor, được cập nhật trong ngày. Cổ điển dùng các hàng Trang chủ của riêng bạn.";
 "What is this?" = "Đây là gì?";
+"What people are watching" = "Mọi người đang xem gì";
 "What you watched" = "Nội dung đã xem";
 "When Esc would close the player, show a quick confirm first. You can tick \"Don't ask me again\" in that prompt to always leave on Esc." = "Khi Esc sắp đóng trình phát, trước tiên hãy hiện xác nhận nhanh. Bạn có thể chọn \"Đừng hỏi lại\" trong lời nhắc đó để Esc luôn thoát ngay.";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Khi một bản phát hành có nhiều rãnh âm thanh, Harbor sẽ chọn kết quả khớp đầu tiên trong danh sách này.";
@@ -4187,11 +4226,13 @@
 "yesterday" = "yesterday";
 "your-name" = "your-name";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "Bản thân {app} không lưu trữ, phân phối hay lập chỉ mục bất kỳ nội dung nghe nhìn nào. Mọi luồng phát đều đến từ tiện ích bổ sung của bên thứ ba, dịch vụ debrid hoặc tài khoản {service} do chính bạn cấu hình. Bạn chịu trách nhiệm về nội dung mình chọn phát và việc tuân thủ luật pháp tại nơi mình sinh sống.";
+"{country} Films" = "Phim {country}";
 "{count} picks ready" = "{count} lựa chọn đã sẵn sàng";
 "{count} results" = "{count} kết quả";
 "{count} selected" = "Đã chọn {count}";
 "{count} titles will never show the content advisory again." = "{count} tựa phim sẽ không bao giờ hiện lại cảnh báo nội dung.";
 "{count} tracks" = "{count} bài hát";
+"{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "còn {h} giờ";
 "{h}h {m}m left" = "còn {h} giờ {m} phút";
 "{ms} ms" = "{ms} ms";
