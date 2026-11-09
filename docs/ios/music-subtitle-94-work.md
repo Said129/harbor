@@ -2011,3 +2011,20 @@ supported content ID and an optional episode hint. The four new cases cover
 URL parsing, permission boundaries and opt-out. OS delivery and native
 validation are pending. iOS selects the recipient if multiple apps register
 the same scheme.
+
+## Focused Apple rebuild
+
+Runs 42548515955 and 42549103800 stopped at the same `MusicLibraryDocument`
+initializer before executing tests. Both result archives matched their GitHub
+SHA-256 digests. abaf0564 delegates initialization in both decoding paths and
+keeps the decoded version. Run 42550021750 combines the 17 cases that could not
+execute with the four new incoming-link cases, without packaging an IPA.
+
+## Music queue continuation
+
+The expanded Music player can append from a local playlist, catalog context,
+recent or liked collection, or supported server. Continuation uses the active
+profile, keeps the current playback and discards stale requests after queue
+edits. The Discover mode uses the aggregated catalog. Desktop radio, Spotify
+collection paging and artist blocks still need work. A focused playlist test
+covers deduplication, video exclusion, manual edits and playback continuity.

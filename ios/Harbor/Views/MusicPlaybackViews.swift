@@ -165,6 +165,7 @@ extension EnvironmentValues {
     @State private var panel = Panel.queue
     private var panels: [Panel] { Panel.allCases.filter { $0 != .about || player.playbackSession != nil } }
     var body: some View {
+        let remaining = player.upcomingItems.count
         VStack(alignment: .leading, spacing: 14) {
             HStack(spacing: 8) {
                 Picker(DesktopInterfaceText.value("music.now.details"), selection: $panel) {
@@ -177,9 +178,13 @@ extension EnvironmentValues {
             switch panel {
             case .queue:
                 VStack(alignment: .leading, spacing: 12) {
+                    MusicQueueContinuationControls(player: player)
                     ForEach(player.upcomingItems) { entry in row(entry) }
                     DisclosureGroup(DesktopInterfaceText.value("music.search.tracks")) {
                         ForEach(player.items) { entry in row(entry) }
+                    }
+                    if remaining < 5 {
+                        MusicQueueContinuationPlaceholders(count: 5 - remaining)
                     }
                 }.accessibilityIdentifier("music-shared-queue")
             case .about:
@@ -197,6 +202,84 @@ extension EnvironmentValues {
                 Button(DesktopInterfaceText.value("music.queue.playNext")) { player.moveAfterCurrent(item) }
                 Button(DesktopInterfaceText.value("music.queue.remove", variables: ["title": item.track.title]), role: .destructive) { player.removeFromQueue(item) }
             }
+    }
+}
+
+@MainActor private struct MusicQueueContinuationControls: View {
+    @Bindable var player: MusicPlayback
+    private var sourceName: String {
+        if let name = player.origin?.name.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty { return name }
+        switch player.currentTrack?.connectorId {
+        case .some("subsonic"): "Subsonic"
+        case .some("soundcloud"): "SoundCloud"
+        case .some("jellyfin"): "Jellyfin"
+        case .some("plex"): "Plex"
+        case .some("local"): DesktopInterfaceText.value("music.library.permanent")
+        case .some(let value): value.capitalized
+        case .none: DesktopInterfaceText.value("Music")
+        }
+    }
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(spacing: 10) {
+                Button {
+                    player.loadMoreMusic()
+                } label: {
+                    HStack(spacing: 7) {
+                        if player.queueContinuationLoading { ProgressView().controlSize(.small) }
+                        else { Image(systemName: "plus") }
+                        Text(DesktopInterfaceText.value(player.queueContinuationLoading ? "music.loading" : "music.library.loadMore"))
+                    }
+                }
+                .buttonStyle(.bordered)
+                .disabled(player.queueContinuationLoading || player.playbackSession == nil || player.currentTrack == nil)
+                .accessibilityIdentifier("music-now-load-more")
+
+                Picker(selection: Binding(
+                    get: { player.queueContinuationMode },
+                    set: { player.setQueueContinuationMode($0) }
+                )) {
+                    Text(DesktopInterfaceText.value("music.now.sameContext")).tag(MusicQueueContinuationMode.context)
+                    Text(DesktopInterfaceText.value("music.now.discoverNew")).tag(MusicQueueContinuationMode.discover)
+                } label: {
+                    Label(DesktopInterfaceText.value(player.queueContinuationMode == .context
+                        ? "music.now.sameContext" : "music.now.discoverNew"), systemImage: "chevron.down")
+                }
+                .pickerStyle(.menu)
+                .accessibilityLabel(DesktopInterfaceText.value("music.now.moreMode"))
+                .accessibilityHint(DesktopInterfaceText.value(player.queueContinuationMode == .context
+                    ? "music.now.continueFrom" : "music.now.discoverHint", variables: ["name": sourceName]))
+                .accessibilityIdentifier("music-now-more-mode")
+            }
+            .accessibilityIdentifier("music-now-more-controls")
+            if let notice = player.queueContinuationNotice {
+                Text(notice).font(.caption).foregroundStyle(.secondary)
+                    .accessibilityElement().accessibilityIdentifier("music-now-more-notice")
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityIdentifier("music-now-continuation")
+    }
+}
+
+private struct MusicQueueContinuationPlaceholders: View {
+    let count: Int
+    var body: some View {
+        VStack(spacing: 10) {
+            ForEach(0..<count, id: \.self) { _ in
+                HStack(spacing: 12) {
+                    RoundedRectangle(cornerRadius: 7).fill(.quaternary).frame(width: 42, height: 42)
+                    VStack(alignment: .leading, spacing: 7) {
+                        Capsule().fill(.quaternary).frame(width: 132, height: 8)
+                        Capsule().fill(.quaternary).frame(width: 86, height: 7)
+                    }
+                    Spacer()
+                    Capsule().fill(.quaternary).frame(width: 28, height: 7)
+                }.padding(.vertical, 3)
+            }
+        }
+        .accessibilityHidden(true)
+        .accessibilityIdentifier("music-now-queue-placeholders")
     }
 }
 

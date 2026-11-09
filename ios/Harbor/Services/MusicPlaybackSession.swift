@@ -10,6 +10,7 @@ import Foundation
     let soundcloud: SoundCloudMusicService?
     let audio: MusicAudioPreferences?
     let lastfm: LastFmMusicService?
+    let catalog: any MusicCatalogCalling
     private let policy = MusicSourcePolicy()
     private let localRecords: @MainActor () -> [MusicRecord]
     private let localRevision: (@MainActor () -> UInt64)?
@@ -18,13 +19,14 @@ import Foundation
     private let currentScope: @MainActor () -> PluginExecutionScope
     init(server: SubsonicMusicService, playlists: MusicPlaylistStore,
          localRecords: @escaping @MainActor () -> [MusicRecord], localRevision: (@MainActor () -> UInt64)? = nil,
-         lyrics: MusicLyricsClient? = nil, soundcloud: SoundCloudMusicService? = nil, jellyfin: JellyfinMusicService? = nil, plex: PlexMusicService? = nil, audio: MusicAudioPreferences? = nil, lastfm: LastFmMusicService? = nil, currentScope: @escaping @MainActor () -> PluginExecutionScope) {
+         lyrics: MusicLyricsClient? = nil, soundcloud: SoundCloudMusicService? = nil, jellyfin: JellyfinMusicService? = nil, plex: PlexMusicService? = nil, audio: MusicAudioPreferences? = nil, lastfm: LastFmMusicService? = nil, catalog: (any MusicCatalogCalling)? = nil, currentScope: @escaping @MainActor () -> PluginExecutionScope) {
         self.server = server; scope = server.scope; self.playlists = playlists
         self.localRecords = localRecords; self.localRevision = localRevision; self.currentScope = currentScope
         self.lyrics = lyrics
         self.soundcloud = soundcloud; self.jellyfin = jellyfin; self.plex = plex
         self.audio = audio
         self.lastfm = lastfm
+        self.catalog = catalog ?? MusicCatalogClient()
     }
     /// A fresh artist-metadata client bound to this session's profile scope. The
     /// expanded player sits outside the music screen, so it cannot inherit one.
@@ -93,6 +95,90 @@ import Foundation
         try validate()
         return try policy.replace(queue, at: index, with: selected)
     }
+
+    func continuationHistory() -> [MusicTrack] {
+        guard (try? validate()) != nil else { return [] }
+        let collections = MusicCollections.shared
+        collections.prepare(owner: scope.owner)
+        let library = localRecords()
+        return collections.tracks(.recent, store: playlists, library: library, owner: scope.owner) +
+            collections.tracks(.liked, store: playlists, library: library, owner: scope.owner)
+    }
+
+    func loadContinuation(mode: MusicQueueContinuationMode, origin: MusicQueueOrigin?, current: MusicTrack,
+                          queue: [MusicTrack], history: [MusicTrack]) async throws -> MusicQueueContinuationResult {
+        try validate()
+        let excluded = MusicQueueContinuationRules.excluded(current: current, queue: queue, history: history,
+                                                              discover: mode == .discover)
+        let allowVideo = current.mediaKind == "video"
+        if mode == .discover || origin?.kind == "similar" {
+            let candidates = try await catalog.search(current.artist, limit: 40).tracks
+            try validate()
+            let tracks = MusicQueueContinuationRules.fresh(candidates, excluded: excluded, allowVideo: allowVideo)
+            return .init(tracks: tracks, origin: origin, exhausted: tracks.isEmpty)
+        }
+
+        let candidates: [MusicTrack]
+        if let origin {
+            switch origin.kind {
+            case "playlist":
+                candidates = playlists.recordings(in: origin.id, local: localRecords())
+            case "catalog":
+                candidates = try await catalogTracks(from: origin, current: current)
+            case "liked", "recent":
+                let collection = MusicPersonalCollection(rawValue: origin.kind) ?? .liked
+                let collections = MusicCollections.shared
+                collections.prepare(owner: scope.owner)
+                candidates = collections.tracks(collection, store: playlists, library: localRecords(), owner: scope.owner)
+            default:
+                candidates = []
+            }
+        } else {
+            candidates = try await sourceTracks(for: current)
+        }
+        try validate()
+        let tracks = MusicQueueContinuationRules.fresh(candidates, excluded: excluded, allowVideo: allowVideo)
+        return .init(tracks: tracks, origin: origin, exhausted: tracks.isEmpty)
+    }
+
+    private func catalogTracks(from origin: MusicQueueOrigin, current: MusicTrack) async throws -> [MusicTrack] {
+        let parts = origin.id.split(separator: ":", maxSplits: 2, omittingEmptySubsequences: false)
+        guard parts.count == 3, !parts[0].isEmpty, !parts[2].isEmpty else { return [] }
+        let connector = String(parts[0]), itemID = String(parts[2])
+        switch parts[1] {
+        case "album":
+            return try await catalog.albumTracks(.init(id: itemID, connectorId: connector, title: origin.name,
+                                                        artist: current.artist, artwork: current.artwork,
+                                                        year: nil, trackCount: nil, explicit: nil))
+        case "artist":
+            return try await catalog.artistTop(.init(id: itemID, connectorId: connector, name: origin.name,
+                                                      artwork: current.artwork, subtitle: nil))
+        case "playlist":
+            return try await catalog.playlistTracks(.init(id: itemID, connectorId: connector, name: origin.name,
+                                                            artwork: [], trackCount: nil, subtitle: nil))
+        case "station":
+            return try await catalog.stationTracks(.init(id: itemID, connectorId: connector, name: origin.name,
+                                                           artwork: current.artwork, subtitle: nil))
+        default:
+            return []
+        }
+    }
+
+    private func sourceTracks(for current: MusicTrack) async throws -> [MusicTrack] {
+        let connector = current.collectionOrigin?.connectorId ?? current.connectorId ?? ""
+        if connector == "local" { return localRecords().map(\.local.track) }
+        let source: (any MusicCatalogCalling)?
+        switch connector {
+        case "subsonic": source = server
+        case "soundcloud": source = soundcloud?.enabled == true ? soundcloud : nil
+        case "jellyfin": source = jellyfin?.configured == true ? jellyfin : nil
+        case "plex": source = plex?.configured == true ? plex : nil
+        default: source = nil
+        }
+        guard let source else { return [] }
+        return try await source.search(current.artist, limit: 40).tracks
+    }
+
     private func resolveSelected(_ track: MusicTrack) async throws -> MusicPlaybackResolution {
         try validate(); let version = server.credentialVersion
         let cloudVersion = soundcloud?.connectionRevision

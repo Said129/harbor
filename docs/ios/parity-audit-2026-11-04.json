@@ -3209,7 +3209,7 @@
       "id": "Music playback queue",
       "desktop_source": "src-tauri/src/music/commands/playback.rs",
       "verdict": "P",
-      "note": "music playback queue: the queue continuation rule exists as a tested helper (8 Nov, written by Haiku, uncompiled); nothing loads more tracks when the queue ends"
+      "note": "music playback queue: the expanded player can request and append fresh tracks from the queue context without interrupting playback; Discover currently uses the profile catalog rather than Desktop radio, and Spotify paging and artist blocks remain pending"
     },
     {
       "index": 427,

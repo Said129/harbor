@@ -6,6 +6,46 @@ import XCTest
 @MainActor private final class LookupProbe { var count: Int? }
 
 @MainActor final class MusicQueueEditingTests: XCTestCase {
+    func testPlaylistContinuationAppendsFreshAudioWithoutRestartingOrOverwritingManualEdits() async throws {
+        let scope = SharedMusicScope()
+        let owner = scope.scope.owner
+        let server = SubsonicMusicService(scope: scope.scope, currentScope: { scope.scope }, persistence: SharedMusicPairingDisk())
+        let playlists = MusicPlaylistStore(owner: owner, persistence: SharedMusicDisk())
+        let session = MusicPlaybackSession(server: server, playlists: playlists, localRecords: { [] }, currentScope: { scope.scope })
+        let engine = SharedMusicControlledEngine()
+        let player = MusicPlayback(engine: engine, systemIntegration: false, recordPlayed: { _, _ in })
+        let shuffle = player.shuffle, repeatMode = player.repeatMode
+        player.shuffle = false; player.repeatMode = .off
+        defer { player.stop(); server.dispose(); player.shuffle = shuffle; player.repeatMode = repeatMode }
+
+        let current = track(0), manual = track(1), fresh = track(2)
+        let duplicate = MusicTrack(id: "another-provider", connectorId: "catalog", sourceId: nil, playbackUrl: nil,
+                                   title: manual.title, artist: manual.artist, album: nil, artwork: "", durationSeconds: 180, durationLabel: "3:00")
+        var video = track(3); video.mediaKind = "video"
+        let playlist = try XCTUnwrap(playlists.create("Owned continuation", recordings: [current, duplicate, video, fresh]))
+        let origin = MusicQueueOrigin(kind: "playlist", id: playlist.id, name: playlist.name)
+        player.play(current, queue: [current, manual], using: session, origin: origin)
+        try await wait { player.loaded }
+        player.setPaused(true); try await wait { player.paused }
+        let before = await engine.opened
+        let position = player.position
+        XCTAssertEqual(player.items.map(\.track.id), [current.id, manual.id])
+
+        player.loadMoreMusic()
+        player.clearUpcoming(in: player.queueSnapshot)
+        XCTAssertFalse(player.queueContinuationLoading)
+        XCTAssertEqual(player.items.map(\.track.id), [current.id])
+        player.enqueue(manual, using: session, next: false)
+        player.loadMoreMusic()
+        try await wait { !player.queueContinuationLoading }
+        XCTAssertEqual(player.items.map(\.track.id), [current.id, manual.id, fresh.id])
+        XCTAssertEqual(player.origin, origin)
+        XCTAssertEqual(player.position, position)
+        XCTAssertTrue(player.paused)
+        let after = await engine.opened
+        XCTAssertEqual(after, before)
+    }
+
     func testUpcomingReorderingAndClearingPreserveCurrentClockHistoryAndRejectRetiredSnapshots() async throws {
         let engine = SharedMusicControlledEngine(), resolver = SharedMusicResolver()
         let player = MusicPlayback(engine: engine, systemIntegration: false, recordPlayed: { _, _ in })

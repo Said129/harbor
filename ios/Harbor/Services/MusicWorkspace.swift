@@ -31,8 +31,9 @@ import Foundation
         let audio = MusicAudioPreferences(owner: scope.owner); self.audio = audio
         let lastfm = LastFmMusicService(scope: scope, currentScope: currentScope); self.lastfm = lastfm
         spotify.configureScrobbling(lastfm)
-        catalog = MusicCatalogModel(client: MusicServerCatalogClient(server: server, soundcloud: soundcloud, jellyfin: jellyfin, plex: plex, currentScope: currentScope))
-        playback = MusicPlaybackSession(server: server, playlists: playlists, localRecords: { library.records }, localRevision: { library.revision }, lyrics: lyrics, soundcloud: soundcloud, jellyfin: jellyfin, plex: plex, audio: audio, lastfm: lastfm, currentScope: currentScope)
+        let catalogClient = MusicServerCatalogClient(server: server, soundcloud: soundcloud, jellyfin: jellyfin, plex: plex, currentScope: currentScope)
+        catalog = MusicCatalogModel(client: catalogClient)
+        playback = MusicPlaybackSession(server: server, playlists: playlists, localRecords: { library.records }, localRevision: { library.revision }, lyrics: lyrics, soundcloud: soundcloud, jellyfin: jellyfin, plex: plex, audio: audio, lastfm: lastfm, catalog: catalogClient, currentScope: currentScope)
     }
     func dispose() { disposed = true; lastfm.dispose(); plex.dispose(); jellyfin.dispose(); soundcloud.dispose(); lyrics.dispose(); spotify.dispose(); server.dispose(); library.cancelImport(); catalog.invalidatePrivateServer() }
 }

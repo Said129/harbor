@@ -119,7 +119,7 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 397 | Sports favorite leagues and teams | P | sports favorite leagues and teams: a home team per league group can be set from the match detail and is kept in the Keychain, and the form, last result and next fixture rules exist (8 Nov, written by Haiku, uncompiled); no team browser, no followed-team schedule view [Desktop: src/lib/sports/favourites.ts]
 - B 401 | Sports configured broadcast sources | P | iOS has no per-event attached sources, no matching of playlist channels to the game, and no page-URL stream resolver; it only starts a Live TV search for the first broadcast name. [Desktop: src/lib/sports/stream-resolver.ts]
 - B 424 | Music audio cover import | P | music audio cover import: a sidecar cover (cover, folder, front) fills in when there is no embedded art, for folder imports; the front-cover tag preference is not possible with AVFoundation's artwork key (8 Nov, written by Haiku, uncompiled) [Desktop: src-tauri/src/music/connectors/local/tags.rs]
-- B 426 | Music playback queue | P | music playback queue: the queue continuation rule exists as a tested helper (8 Nov, written by Haiku, uncompiled); nothing loads more tracks when the queue ends [Desktop: src-tauri/src/music/commands/playback.rs]
+- B 426 | Music playback queue | P | The expanded player can append fresh tracks from the queue context without interrupting playback. Discover uses the profile catalog. Desktop radio, Spotify paging and artist blocks remain pending. [Desktop: src-tauri/src/music/commands/playback.rs]
 
 ## settings (31 filas)
 

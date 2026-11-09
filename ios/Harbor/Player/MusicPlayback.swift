@@ -17,10 +17,15 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
 @MainActor @Observable final class MusicPlayback {
     static let shared = MusicPlayback(checkpoints: MusicSessionFileStore.shared)
     private(set) var owner = "guest"
-    private(set) var items: [MusicPlaybackItem] = [] { didSet { queueRevision = UUID() } }
+    private(set) var items: [MusicPlaybackItem] = [] {
+        didSet { queueRevision = UUID(); cancelQueueContinuation() }
+    }
     private(set) var currentItem: MusicPlaybackItem?
     private(set) var upcomingItems: [MusicPlaybackItem] = []
     private(set) var origin: MusicQueueOrigin?
+    private(set) var queueContinuationMode = MusicQueueContinuationMode.context
+    private(set) var queueContinuationLoading = false
+    private(set) var queueContinuationNotice: String?
     // Retain the original local callers without inventing local records for a stream.
     var queue: [MusicRecord] { items.compactMap(\.localRecord) }
     var current: MusicRecord? { currentItem?.localRecord }
@@ -60,6 +65,8 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
     @ObservationIgnored private let recordPlayed: @MainActor (MusicTrack, String) -> Void
     @ObservationIgnored private var resolver: (any MusicPlaybackResolving)?
     @ObservationIgnored private let order = MusicQueueOrder()
+    @ObservationIgnored private var queueContinuationTask: Task<Void, Never>?
+    @ObservationIgnored private var queueContinuationRun: UUID?
     @ObservationIgnored private var resolution: MusicPlaybackResolution?
     @ObservationIgnored private var resolutionTask: Task<Void, Never>?
     @ObservationIgnored private var poller: Task<Void, Never>?
@@ -95,6 +102,7 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
         self.engine = engine; self.systemIntegration = systemIntegration
         self.checkpoints = checkpoints
         self.recordPlayed = recordPlayed ?? { track, owner in _ = MusicCollections.shared.recordPlayed(track.id, owner: owner) }
+        queueContinuationMode = Self.savedContinuationMode(owner: owner)
         if systemIntegration {
             tokens.append(NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [weak self] _ in
                 Task { @MainActor in self?.saveCheckpoint(force: true) }
@@ -104,17 +112,34 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
     private static func savedVolume() -> Double {
         guard let value = UserDefaults.standard.object(forKey: "music.volume") as? Double, value.isFinite, (0...500).contains(value) else { return 82 }; return value
     }
+    private static func savedContinuationMode(owner: String) -> MusicQueueContinuationMode {
+        MusicQueueContinuationMode(rawValue: UserDefaults.standard.string(forKey: MusicQueueContinuationRules.preferenceKey(owner: owner)) ?? "context") ?? .context
+    }
+    private func loadContinuationMode(owner: String) {
+        queueContinuationMode = Self.savedContinuationMode(owner: owner)
+        queueContinuationNotice = nil
+    }
+    private func cancelQueueContinuation() {
+        queueContinuationRun = nil
+        queueContinuationTask?.cancel(); queueContinuationTask = nil
+        queueContinuationLoading = false
+        queueContinuationNotice = nil
+    }
     func attach(_ session: any MusicPlaybackResolving, restoring saved: MusicSessionSnapshot? = nil) {
         guard (try? session.validate()) != nil else { return }
+        let previousOwner = owner
         if owner != session.scope.owner || resolver.map({ $0.scope != session.scope || ObjectIdentifier($0) != ObjectIdentifier(session) }) == true { stop() }
         owner = session.scope.owner; resolver = session
+        if previousOwner != owner { loadContinuationMode(owner: owner) }
         restoreCheckpoint(using: session, saved: saved)
     }
     func play(_ record: MusicRecord, queue: [MusicRecord], owner: String, continuingQueue: Bool = false) {
         do {
             _ = try MusicFileService.file(record, owner: owner)
+            let previousOwner = self.owner
             if self.owner != owner { stop(); resolver = nil }
             self.owner = owner
+            if previousOwner != owner { loadContinuationMode(owner: owner) }
             admit(MusicPlaybackItem(record), queue: queue.map(MusicPlaybackItem.init), continuing: continuingQueue, origin: continuingQueue ? origin : nil)
         } catch { self.error = safeMessage(error) }
     }
@@ -135,6 +160,7 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
         self.origin = origin; start(item)
     }
     private func start(_ item: MusicPlaybackItem, resuming resumeAt: Double = 0, paused startPaused: Bool = false) {
+        cancelQueueContinuation()
         submitScrobbleIfEligible()
         restoreTask?.cancel(); restoreTask = nil; restored = false
         request &+= 1; let token = request, loadedOwner = owner, session = resolver
@@ -366,6 +392,91 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
         guard (try? session.validate()) != nil else { return }; resolver = session
         enqueue(.init(track: track, localRecord: session.localRecord(track)), next: next)
     }
+    func setQueueContinuationMode(_ mode: MusicQueueContinuationMode) {
+        guard mode != queueContinuationMode else { return }
+        cancelQueueContinuation()
+        queueContinuationMode = mode
+        UserDefaults.standard.set(mode.rawValue, forKey: MusicQueueContinuationRules.preferenceKey(owner: owner))
+    }
+    func loadMoreMusic() {
+        guard !queueContinuationLoading, let currentItem, let session = playbackSession,
+              owner == session.scope.owner, resolver.map({ ObjectIdentifier($0) == ObjectIdentifier(session) }) == true,
+              (try? session.validate()) != nil else { return }
+
+        let run = UUID(), expectedRevision = queueRevision, expectedOwner = owner
+        let expectedCurrent = currentItem.id, mode = queueContinuationMode, playbackOrigin = origin
+        let current = currentItem.track, queue = items.map(\.track), history = session.continuationHistory()
+        queueContinuationRun = run; queueContinuationLoading = true; queueContinuationNotice = nil
+        queueContinuationTask = Task { @MainActor [weak self, weak session] in
+            guard let self else { return }
+            defer {
+                if self.queueContinuationRun == run {
+                    self.queueContinuationRun = nil; self.queueContinuationTask = nil; self.queueContinuationLoading = false
+                }
+            }
+            guard let session else { return }
+            do {
+                try Task.checkCancellation()
+                var result = try await Self.continuationRequest(session, mode: mode, origin: playbackOrigin,
+                    current: current, queue: queue, history: history)
+                try Task.checkCancellation(); try session.validate()
+                guard self.queueContinuationRun == run, self.queueRevision == expectedRevision,
+                      self.owner == expectedOwner, self.currentItem?.id == expectedCurrent,
+                      self.resolver.map({ ObjectIdentifier($0) == ObjectIdentifier(session) }) == true else { return }
+
+                let contextExhausted = result.exhausted
+                if mode == .context { self.origin = result.origin }
+                var tracks = MusicQueueContinuationRules.fresh(result.tracks,
+                    excluded: MusicQueueContinuationRules.excluded(current: current, queue: queue,
+                        history: history, discover: mode == .discover), allowVideo: current.mediaKind == "video")
+                if tracks.isEmpty, mode == .context {
+                    result = try await Self.continuationRequest(session, mode: .discover, origin: self.origin,
+                        current: current, queue: queue, history: history)
+                    try Task.checkCancellation(); try session.validate()
+                    guard self.queueContinuationRun == run, self.queueRevision == expectedRevision,
+                          self.owner == expectedOwner, self.currentItem?.id == expectedCurrent,
+                          self.resolver.map({ ObjectIdentifier($0) == ObjectIdentifier(session) }) == true else { return }
+                    tracks = MusicQueueContinuationRules.fresh(result.tracks,
+                        excluded: MusicQueueContinuationRules.excluded(current: current, queue: queue,
+                            history: history, discover: true), allowVideo: current.mediaKind == "video")
+                }
+
+                let remainingCapacity = max(0, 100_000 - self.items.count)
+                let appendable = Array(tracks.prefix(remainingCapacity))
+                self.queueContinuationRun = nil; self.queueContinuationTask = nil; self.queueContinuationLoading = false
+                if !appendable.isEmpty {
+                    self.items.append(contentsOf: appendable.map {
+                        MusicPlaybackItem(track: $0, localRecord: session.localRecord($0))
+                    })
+                    self.refreshUpcoming()
+                }
+                self.queueContinuationNotice = appendable.isEmpty
+                    ? DesktopInterfaceText.value(mode == .context && contextExhausted ? "music.now.contextEnd" : "music.now.noNewSongs")
+                    : DesktopInterfaceText.value("music.now.moreAdded", variables: ["count": String(appendable.count)])
+                self.saveCheckpoint(force: true)
+            } catch is CancellationError { return }
+            catch {
+                guard self.queueContinuationRun == run, self.queueRevision == expectedRevision,
+                      self.owner == expectedOwner, self.currentItem?.id == expectedCurrent,
+                      self.resolver.map({ ObjectIdentifier($0) == ObjectIdentifier(session) }) == true,
+                      (try? session.validate()) != nil else { return }
+                self.queueContinuationNotice = DesktopInterfaceText.value("music.now.moreError")
+            }
+        }
+    }
+    private static func continuationRequest(_ session: MusicPlaybackSession, mode: MusicQueueContinuationMode,
+        origin: MusicQueueOrigin?, current: MusicTrack, queue: [MusicTrack], history: [MusicTrack]) async throws -> MusicQueueContinuationResult {
+        try await withThrowingTaskGroup(of: MusicQueueContinuationResult.self) { group in
+            group.addTask { try await session.loadContinuation(mode: mode, origin: origin, current: current, queue: queue, history: history) }
+            group.addTask {
+                try await Task.sleep(for: .seconds(30))
+                throw HarborError(code: "music-continuation-timeout")
+            }
+            defer { group.cancelAll() }
+            guard let value = try await group.next() else { throw CancellationError() }
+            return value
+        }
+    }
     private func enqueue(_ item: MusicPlaybackItem, next: Bool) {
         guard let currentItem, currentItem.id != item.id else { return }
         items.removeAll { $0.id == item.id }
@@ -444,13 +555,14 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
             upcomingItems = tracks.compactMap { byKey[MusicQueueOrder.key($0)] }
         } catch { upcomingItems = []; self.error = message(error) }
     }
-    func stopForAccount(_ owner: String) { if self.owner != owner { stop(); resolver = nil; self.owner = owner } }
+    func stopForAccount(_ owner: String) { if self.owner != owner { stop(); resolver = nil; self.owner = owner; loadContinuationMode(owner: owner) } }
     func reloadPreferences() {
         shuffle = UserDefaults.standard.bool(forKey: "music.shuffle")
         repeatMode = MusicRepeat(rawValue: UserDefaults.standard.string(forKey: "music.repeat") ?? "off") ?? .off
         changeVolume(Self.savedVolume())
     }
     func stop() {
+        cancelQueueContinuation()
         saveCheckpoint(force: true)
         restoreTask?.cancel(); restoreTask = nil; restored = false
         effectLease = nil; audioEffects = .init(); effectRevision = UUID()
