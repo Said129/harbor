@@ -38,6 +38,21 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         let fps: Double?
     }
     private var subtitleSyncOffer: (SubtitleAutoSync.Correction, SubtitleSyncScope)?
+    private struct SubtitleDriftScope {
+        let revision: Int
+        let trackID: Int
+        let audioID: Int
+        let cues: [SubtitleDriftCue]
+    }
+    private var subtitleDriftScope: SubtitleDriftScope?
+    private var subtitleDriftMonitor: SubtitleDriftMonitor?
+    private var subtitleDriftTask: Task<Void, Never>?
+    private var subtitleDriftProbe: Task<[(Double, Double)], Error>?
+    private var subtitleDriftOffer: (delay: Double, seek: Int)?
+    private var subtitleDriftLastOffer: (residual: Double, step: Double)?
+    private var subtitleDriftSeek = 0
+    private var subtitleDriftReset = false
+    private var seeking = false
     private var synchronizedTracks = Set<Int>()
     private var subtitleSyncOriginalTiming: (delay: Double, fps: Double)?
     private var subtitleOperations = 0
@@ -158,6 +173,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         _ = mpv_observe_property(mpv, 0, "current-vo", MPV_FORMAT_STRING)
         for name in ["time-pos", "duration", "speed", "volume", "audio-delay", "sub-delay"] { try check(mpv_observe_property(mpv, 0, name, MPV_FORMAT_DOUBLE)) }
         for name in ["pause", "paused-for-cache", "mute"] { try check(mpv_observe_property(mpv, 0, name, MPV_FORMAT_FLAG)) }
+        _ = mpv_observe_property(mpv, 0, "seeking", MPV_FORMAT_FLAG)
         try check(mpv_observe_property(mpv, 0, "track-list", MPV_FORMAT_NODE))
         try check(mpv_observe_property(mpv, 0, "chapter-list", MPV_FORMAT_NODE))
         // Optional timing properties must not prevent ordinary playback on an
@@ -198,6 +214,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
 
     func command(_ values: [String]) throws {
         guard let handle else { throw HarborError(code: "player-not-ready") }
+        if values.first == "seek" { resetSubtitleDriftAfterSeek() }
         let allocations = values.map { strdup($0) }
         defer { for allocation in allocations { free(allocation) } }
         guard allocations.allSatisfy({ $0 != nil }) else { throw HarborError(code: "player-allocation") }
@@ -207,7 +224,8 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
 
     func set(_ name: String, _ value: String) {
         if name == "sid" || name == "secondary-sid" { selectSubtitle(value, secondary: name == "secondary-sid"); return }
-        if name == "aid" { audioUserPicked = true }
+        if name == "aid" { audioUserPicked = true; stopSubtitleDrift() }
+        if name == "sub-delay" { resetSubtitleDriftAfterSeek() }
         guard let handle else { return }
         do {
             let result = value.withCString { pointer in
@@ -482,7 +500,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
     }
 
     private func suspendForApp() {
-        cancelSubtitleSync()
+        cancelSubtitleSync(clearDriftScope: false)
         if !didClose, sampleOutput != nil {
             if pictureInPicture?.active != true {
                 foregroundResumeWanted = !interrupted && state.loaded && !state.paused && !state.ended
@@ -509,6 +527,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
 
     private func restoreForApp() {
         guard !didClose else { return }
+        resumeSubtitleDrift()
         if sampleOutput != nil || inlineRestorePending || renderer == nil {
             if let handle { drainEvents(handle) }
             if inlineRestorePending || pictureInPicture?.active != true { restoreAfterPictureInPicture() }
@@ -673,7 +692,8 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         }
     }
 
-    func cancelSubtitleSync() {
+    func cancelSubtitleSync(clearDriftScope: Bool = true) {
+        stopSubtitleDrift(clearScope: clearDriftScope)
         subtitleSyncRequest = UUID(); subtitleSyncTask?.cancel(); subtitleSyncTask = nil; state.subtitleSyncing = false
         subtitleSyncOffer = nil
         if state.subtitleSyncPhase.working || state.subtitleSyncPhase == .offered { state.updateSubtitleSync(.idle) }
@@ -682,6 +702,151 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
     func subtitleAutoSyncPreferenceChanged() {
         cancelSubtitleSync(); subtitleSyncKey = nil
         considerSubtitleAutoSync()
+    }
+
+    private var subtitleDriftEnabled: Bool {
+        UserDefaults.standard.bool(forKey: "subtitleAutoSync") && UserDefaults.standard.bool(forKey: "autoSyncDrift")
+    }
+
+    private func prepareSubtitleDrift(_ document: SubtitleDocument, timing: SubtitleSyncResult?, trackID: Int, audioID: Int?) {
+        guard subtitleDriftEnabled, let audioID else { return }
+        let ratio = timing?.ratio ?? 1, offset = timing?.offset ?? 0
+        let cues = document.cues.compactMap { cue -> SubtitleDriftCue? in
+            let start = max(0, cue.start * ratio + offset), end = max(0, cue.end * ratio + offset)
+            guard end > start else { return nil }
+            return SubtitleDriftCue(startSec: start, endSec: end)
+        }
+        guard cues.count >= 4 else { return }
+        subtitleDriftScope = SubtitleDriftScope(revision: mediaRevision, trackID: trackID, audioID: audioID, cues: cues)
+        resumeSubtitleDrift()
+    }
+
+    private func subtitleDriftScopeIsCurrent(_ scope: SubtitleDriftScope) -> Bool {
+        subtitleDriftEnabled && !didClose && state.loaded && !state.ended && scope.revision == mediaRevision
+            && state.primarySubtitle?.id == scope.trackID && state.secondarySubtitle == nil
+            && (state.subtitleFPS ?? 0) == 0
+            && state.tracks.first(where: { $0.type == "audio" && $0.selected })?.id == scope.audioID
+    }
+
+    private func subtitleDriftSnapshot(_ scope: SubtitleDriftScope, includeCues: Bool = false) -> SubtitleDriftSnapshot {
+        SubtitleDriftSnapshot(trackKey: "\(scope.revision):\(scope.trackID):\(scope.audioID)",
+                              positionSec: state.position, durationSec: state.duration, subDelaySec: state.subtitleDelay,
+                              playing: !state.paused && !seeking, buffering: state.buffering || state.subtitleChanging || state.restarting,
+                              rate: state.speed, cues: includeCues ? scope.cues : nil)
+    }
+
+    private func resumeSubtitleDrift() {
+        guard subtitleDriftTask == nil, let scope = subtitleDriftScope, subtitleDriftEnabled,
+              UIApplication.shared.applicationState == .active else { return }
+        do {
+            let monitor: SubtitleDriftMonitor
+            if let existing = subtitleDriftMonitor { monitor = existing }
+            else {
+                monitor = try SubtitleDriftMonitor()
+                _ = try monitor.reset(subtitleDriftSnapshot(scope, includeCues: true))
+                subtitleDriftMonitor = monitor
+            }
+            subtitleDriftTask = Task { @MainActor [weak self] in
+                while !Task.isCancelled {
+                    do { try await Task.sleep(for: .seconds(4)) } catch { return }
+                    guard let self, subtitleDriftMonitor === monitor else { return }
+                    guard subtitleDriftScopeIsCurrent(scope) else { stopSubtitleDrift(); return }
+                    await sampleSubtitleDrift(scope, monitor: monitor)
+                }
+            }
+        } catch { stopSubtitleDrift() }
+    }
+
+    private func sampleSubtitleDrift(_ scope: SubtitleDriftScope, monitor: SubtitleDriftMonitor) async {
+        guard !seeking, UIApplication.shared.applicationState == .active else { return }
+        let snapshot = subtitleDriftSnapshot(scope)
+        do {
+            if subtitleDriftReset {
+                _ = try monitor.reset(snapshot, reason: .seek)
+                subtitleDriftReset = false
+            }
+            let result = try monitor.observe(snapshot)
+            showSubtitleDriftOffer(result)
+            guard let request = result.sampleRequest else { return }
+            let source = source, seek = subtitleDriftSeek, audioID = scope.audioID
+            let probe = Task.detached(priority: .utility) {
+                try SubtitleAutoSync.speech(source, window: .init(start: request.startSec, length: request.lenSec), audioID: audioID)
+            }
+            subtitleDriftProbe = probe
+            let intervals = try? await probe.value
+            guard !Task.isCancelled, subtitleDriftMonitor === monitor, subtitleDriftScopeIsCurrent(scope), seek == subtitleDriftSeek else { return }
+            subtitleDriftProbe = nil
+            let current = subtitleDriftSnapshot(scope)
+            if let intervals, current.playing, !current.buffering, abs(current.rate - 1) <= 0.05,
+               abs(current.subDelaySec - snapshot.subDelaySec) <= 0.02 {
+                _ = try monitor.completeSpeech(requestID: request.id,
+                    intervals: intervals.map { SubtitleDriftInterval(startSec: $0.0, endSec: $0.1) }, currentSnapshot: current)
+            } else {
+                _ = try monitor.rejectSpeech(requestID: request.id, currentSnapshot: current)
+            }
+            showSubtitleDriftOffer(try monitor.drain(current))
+        } catch { stopSubtitleDrift() }
+    }
+
+    private func showSubtitleDriftOffer(_ result: SubtitleDriftMonitorState) {
+        guard let correction = result.correction else {
+            subtitleDriftLastOffer = nil
+            clearSubtitleDriftOffer()
+            return
+        }
+        guard subtitleSyncTask == nil, subtitleSyncOffer == nil, !seeking, !state.buffering, !state.subtitleChanging,
+              subtitleDriftLastOffer?.residual != correction.residualSec || subtitleDriftLastOffer?.step != correction.stepSec else { return }
+        subtitleDriftLastOffer = (correction.residualSec, correction.stepSec)
+        subtitleDriftOffer = (state.subtitleDelay, subtitleDriftSeek)
+        state.updateSubtitleSync(.offered, message: DesktopInterfaceText.value("Drift monitor") + " · " + SubtitleOffset.format(correction.stepSec))
+    }
+
+    private func applySubtitleDriftOffer() {
+        guard let offer = subtitleDriftOffer, let scope = subtitleDriftScope, let monitor = subtitleDriftMonitor,
+              subtitleDriftScopeIsCurrent(scope), !seeking, !state.buffering, !state.subtitleChanging,
+              offer.seek == subtitleDriftSeek, abs(offer.delay - state.subtitleDelay) <= 0.02 else {
+            clearSubtitleDriftOffer(); return
+        }
+        do {
+            guard let delay = try monitor.applyPending(subtitleDriftSnapshot(scope)).appliedDelaySec else {
+                clearSubtitleDriftOffer(); return
+            }
+            clearSubtitleDriftOffer()
+            enqueueSubtitleOperation { controller in
+                guard controller.subtitleDriftMonitor === monitor, controller.subtitleDriftScopeIsCurrent(scope),
+                      offer.seek == controller.subtitleDriftSeek, !controller.seeking,
+                      abs(offer.delay - controller.state.subtitleDelay) <= 0.02 else { return }
+                try await controller.setChecked("sub-delay", String(delay))
+                if controller.subtitleDriftMonitor === monitor, offer.seek == controller.subtitleDriftSeek {
+                    controller.state.updateSubtitleSync(.synced, message: DesktopInterfaceText.value("Drift monitor") + " · " + SubtitleOffset.format(delay))
+                }
+            }
+        } catch { stopSubtitleDrift() }
+    }
+
+    func dismissSubtitleSyncOffer() {
+        if subtitleDriftOffer != nil { clearSubtitleDriftOffer() }
+        else { cancelSubtitleSync() }
+    }
+
+    private func clearSubtitleDriftOffer() {
+        guard subtitleDriftOffer != nil else { return }
+        subtitleDriftOffer = nil
+        if subtitleSyncOffer == nil, state.subtitleSyncPhase == .offered { state.updateSubtitleSync(.idle) }
+    }
+
+    private func resetSubtitleDriftAfterSeek() {
+        guard subtitleDriftMonitor != nil else { return }
+        subtitleDriftSeek &+= 1; subtitleDriftReset = true
+        subtitleDriftProbe?.cancel(); subtitleDriftProbe = nil
+        subtitleDriftLastOffer = nil
+        clearSubtitleDriftOffer()
+    }
+
+    private func stopSubtitleDrift(clearScope: Bool = true) {
+        subtitleDriftTask?.cancel(); subtitleDriftTask = nil
+        resetSubtitleDriftAfterSeek()
+        if clearScope { subtitleDriftScope = nil; subtitleDriftMonitor = nil; subtitleDriftReset = false }
     }
 
     private func considerSubtitleAutoSync() {
@@ -700,6 +865,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
             state.updateSubtitleSync(.declined, message: "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto.")
             return
         }
+        stopSubtitleDrift()
         let revision = mediaRevision, request = UUID(), duration = state.duration, source = source
         let audioID = state.tracks.first { $0.type == "audio" && $0.selected }?.id
         let scope = SubtitleSyncScope(request: request, revision: revision, trackID: track.id, audioID: audioID,
@@ -721,7 +887,13 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 guard let self, subtitleSyncScopeIsCurrent(scope) else { return }
                 guard let correction else { state.updateSubtitleSync(.declined, message: "No se encontró un ajuste fiable. Se conserva el subtítulo original."); return }
                 let result = correction.timing
-                if abs(result.offset) < 0.25 && abs(result.ratio - 1) < 0.003 { state.updateSubtitleSync(.synced, message: "El subtítulo ya coincide con el audio."); return }
+                if abs(result.offset) < 0.25 && abs(result.ratio - 1) < 0.003 {
+                    state.updateSubtitleSync(.synced, message: "El subtítulo ya coincide con el audio.")
+                    if (scope.fps ?? 0) == 0 {
+                        prepareSubtitleDrift(correction.document, timing: nil, trackID: scope.trackID, audioID: scope.audioID)
+                    }
+                    return
+                }
                 switch correction.origin {
                 case .verifiedCommunity:
                     applySubtitleCorrection(correction, scope: scope)
@@ -750,6 +922,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
     }
 
     func applySubtitleSyncOffer() {
+        if subtitleDriftOffer != nil { applySubtitleDriftOffer(); return }
         guard let (correction, scope) = subtitleSyncOffer else { return }
         guard !state.subtitleChanging, subtitleSyncScopeIsCurrent(scope) else {
             cancelSubtitleSync()
@@ -791,6 +964,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                         controller.synchronizedTracks.insert(selected.id)
                         controller.state.subtitleSyncOriginal = scope.trackID
                         controller.subtitleSyncOriginalTiming = (scope.delay, scope.fps ?? 0)
+                        controller.prepareSubtitleDrift(correction.document, timing: result, trackID: selected.id, audioID: scope.audioID)
                         controller.state.updateSubtitleSync(.synced, message: DesktopInterfaceText.value("Subtitles synced") + " · \(result.offset.formatted(.number.precision(.fractionLength(1)))) s · \(result.ratio.formatted(.number.precision(.fractionLength(4))))×")
                         return
                     }
@@ -885,6 +1059,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
     }
 
     private func commandChecked(_ values: [String], startsMedia: Bool = false) async throws {
+        if values.first == "seek" { resetSubtitleDriftAfterSeek() }
         let allocations = values.map { strdup($0) }
         defer { for allocation in allocations { free(allocation) } }
         guard allocations.allSatisfy({ $0 != nil }) else { throw HarborError(code: "player-allocation") }
@@ -986,6 +1161,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 }
             case MPV_EVENT_START_FILE:
                 cancelSubtitleSync()
+                seeking = false
                 subtitleSyncKey = nil; synchronizedTracks = []; state.subtitleSyncOriginal = nil; subtitleSyncOriginalTiming = nil; state.updateSubtitleSync(.idle)
                 mediaRevision += 1
                 preferredSecondaryHandled = false
@@ -1008,6 +1184,8 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 state.hasPosition = false
                 state.position = 0
                 state.duration = 0
+            case MPV_EVENT_SEEK:
+                resetSubtitleDriftAfterSeek()
             case MPV_EVENT_FILE_LOADED:
                 state.loaded = true
                 for subtitle in source.subtitles ?? [] {
@@ -1051,8 +1229,10 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 } else if property.format == MPV_FORMAT_FLAG {
                     let flag = value.assumingMemoryBound(to: Int32.self).pointee != 0
                     if key == "pause" { state.paused = flag }
+                    if key == "seeking" { seeking = flag }
                     if key == "paused-for-cache" {
                         state.buffering = flag
+                        if flag { subtitleDriftProbe?.cancel() }
                         if flag && state.subtitleSyncing {
                             cancelSubtitleSync()
                             state.updateSubtitleSync(.declined, message: "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar.")
@@ -1083,6 +1263,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
 #endif
                 }
             case MPV_EVENT_END_FILE:
+                stopSubtitleDrift()
                 state.endedNaturally = false
                 var reloadTruncated = false
                 if let data = event.data {

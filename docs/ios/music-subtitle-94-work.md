@@ -2047,3 +2047,20 @@ row. Artwork loads as tiles appear. Each tile opens the native movie grid
 with the Desktop TMDB genre ID. Without a key it opens the public Cinemeta
 movie catalog filtered by genre. This port uses native gradient colors and
 does not include the Desktop editorial and spotlight filters yet.
+
+## Focused queue, subtitle and genre checks
+
+Run 42551358109 stopped at Swift parsing because an added JSON fixture used a
+single-line string delimiter across multiple lines. af8bc73d fixes the fixture.
+Run 42551606229 covers those eight cases and the new duplicate tie-break case.
+
+## Subtitle drift monitor
+
+The opt-in profile setting uses the four pinned Desktop drift modules through
+JavaScriptCore. iOS samples speech with the separate mpv handle already used
+for subtitle alignment. After alignment, the foreground player can offer a
+bounded correction for confirmation. Backgrounding, track changes, manual
+delay edits and seeks invalidate in-flight samples. Monitoring is disabled
+when Auto Sync is off. A local execution of the generated script checked the
+sample request, seek invalidation and cooldown. Native validation is pending.
+This feature is separate from the physical-device subtitle seek report.

@@ -47,6 +47,7 @@ struct PlayerSettingsView: View {
     @AppStorage("resumePlayback") private var resumePlayback = true
     @AppStorage("resumePrompt") private var resumePrompt = false
     @AppStorage("subtitleAutoSync") private var subtitleAutoSync = false
+    @AppStorage("autoSyncDrift") private var autoSyncDrift = false
     @AppStorage("subtitleAutoSyncCrowd") private var subtitleAutoSyncCrowd = true
     @AppStorage("communitySyncOptOut") private var communitySyncOptOut = false
     @AppStorage("communitySyncUrl") private var communitySyncUrl = ""
@@ -296,6 +297,10 @@ struct PlayerSettingsView: View {
         if state == nil {
             HarborSettingsSection("Sincronización automática", note: "Analiza el audio en segundo plano para ajustar subtítulos externos SRT/VTT en UTF-8 o UTF-16. Si no hay una coincidencia fiable, conserva el original.") {
                 HarborSettingsToggle("Sincronizar subtítulos con el audio", isOn: $subtitleAutoSync)
+                if subtitleAutoSync {
+                    HarborSettingsToggle(DesktopInterfaceText.value("Drift monitor"), note: DesktopInterfaceText.value("Keeps watching through playback and gently re-nudges the timing if the subtitle slips out of sync partway through."), isOn: $autoSyncDrift)
+                        .accessibilityIdentifier("subtitle-settings-drift")
+                }
             }
         }
         HarborSettingsSection(DesktopInterfaceText.value("Community sync"), note: DesktopInterfaceText.value("Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions.")) {

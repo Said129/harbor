@@ -833,6 +833,7 @@
 "Dracula" = "ड्रैकुला";
 "Drama" = "ड्रामा";
 "Drama Series" = "ड्रामा सीरीज़";
+"Drift monitor" = "ड्रिफ्ट मॉनिटर";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "ऐप के पीछे वॉलपेपर डालें। डिम स्लाइडर टेक्स्ट को पढ़ने योग्य बनाए रखता है।";
 "Drop shadow" = "ड्रॉप शैडो";
 "Dropped" = "ड्रॉप हुए";
@@ -1304,6 +1305,7 @@
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "संदिग्ध फ़ाइल और रिलीज़ की जाँच जारी रखें, लेकिन बड़ी फ़ाइलों और सीज़न पैक समेत अधिक नतीजे आने दें।";
 "Keep watching" = "देखते रहें";
 "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
+"Keeps watching through playback and gently re-nudges the timing if the subtitle slips out of sync partway through." = "प्लेबैक के दौरान निगरानी जारी रखता है और अगर सबटाइटल बीच में सिंक से हट जाए, तो धीरे से उसकी टाइमिंग फिर ठीक करता है।";
 "Kids & Family" = "बच्चे और परिवार";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, सीज़न के हिसाब से";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, सीज़न के हिसाब से";

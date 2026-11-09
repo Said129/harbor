@@ -17,24 +17,24 @@
     "settings": {
       "total": 511,
       "ported": 245,
-      "partial": 29,
-      "missing": 2,
+      "partial": 30,
+      "missing": 1,
       "excluded": 235,
       "counted": 276,
-      "weighted_percent": 94.0,
+      "weighted_percent": 94.2,
       "ported_only_percent": 88.8,
-      "ported_or_partial_percent": 99.3
+      "ported_or_partial_percent": 99.6
     },
     "all": {
       "total": 949,
       "ported": 506,
-      "partial": 144,
-      "missing": 2,
+      "partial": 145,
+      "missing": 1,
       "excluded": 297,
       "counted": 652,
       "weighted_percent": 88.7,
       "ported_only_percent": 77.6,
-      "ported_or_partial_percent": 99.7
+      "ported_or_partial_percent": 99.8
     }
   },
   "behavior_areas": [
@@ -5023,8 +5023,8 @@
       "index": 247,
       "id": "autoSyncDrift",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "M",
-      "note": "advanced auto-sync options"
+      "verdict": "P",
+      "note": "The profile can enable the pinned Desktop drift monitor after subtitle alignment. Native mpv speech sampling and explicit confirmation differ from Desktop's audio backend. Native validation is pending."
     },
     {
       "index": 248,

@@ -833,6 +833,7 @@
 "Dracula" = "Dracula";
 "Drama" = "Drame";
 "Drama Series" = "Séries dramatiques";
+"Drift monitor" = "Moniteur de dérive";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "Ajoutez un fond d’écran derrière l’application. Le curseur d’assombrissement préserve la lisibilité du texte.";
 "Drop shadow" = "Ombre portée";
 "Dropped" = "Abandonné";
@@ -1304,6 +1305,7 @@
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Conservez les vérifications des fichiers suspects et des versions, mais autorisez plus de résultats, dont les gros fichiers et packs de saisons.";
 "Keep watching" = "Continuer à regarder";
 "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
+"Keeps watching through playback and gently re-nudges the timing if the subtitle slips out of sync partway through." = "Poursuit la surveillance pendant la lecture et réajuste doucement la synchronisation si les sous-titres se décalent en cours de route.";
 "Kids & Family" = "Enfants et famille";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, prise en compte des saisons";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, prise en compte des saisons";

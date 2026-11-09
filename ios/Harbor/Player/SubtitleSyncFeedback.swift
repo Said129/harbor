@@ -29,7 +29,7 @@ struct SubtitleSyncFeedback: View {
                         Button(DesktopInterfaceText.value("Sync")) { state.controller?.applySubtitleSyncOffer() }
                             .buttonStyle(.borderedProminent).frame(minHeight: 44)
                             .accessibilityIdentifier("subtitle-sync-apply-offer")
-                        Button { state.controller?.cancelSubtitleSync() } label: {
+                        Button { state.controller?.dismissSubtitleSyncOffer() } label: {
                             Image(systemName: "xmark").frame(minWidth: 44, minHeight: 44)
                         }.accessibilityLabel(DesktopInterfaceText.value("Dismiss"))
                     }

@@ -1040,6 +1040,7 @@ SETTINGS = expand("""
 346 D The profile key enables Subsource lookup and its authenticated download. The player sends the key only to the Subsource HTTPS endpoint, refuses redirects and extracts bounded text subtitles.
 265 D The per-profile native-audio setting automatically selects an eligible forced track in preferred language order, or disables the primary track when no forced choice exists. Manual choices retain priority.
 486 D The active profile controls whether iOS-delivered Stremio install links are routed to Harbor's installer. URL scheme selection belongs to iOS.
+247 P The profile can enable the pinned Desktop drift monitor after subtitle alignment. Native mpv speech sampling and explicit confirmation differ from Desktop's audio backend. Native validation is pending.
 """)
 
 def audit(items, verdicts, label):

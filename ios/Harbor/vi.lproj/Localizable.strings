@@ -833,6 +833,7 @@
 "Dracula" = "Dracula";
 "Drama" = "Chính kịch";
 "Drama Series" = "Phim bộ chính kịch";
+"Drift monitor" = "Theo dõi độ lệch";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "Đặt hình nền phía sau ứng dụng. Thanh trượt làm tối giúp văn bản dễ đọc.";
 "Drop shadow" = "Bóng đổ";
 "Dropped" = "Đã ngừng";
@@ -1304,6 +1305,7 @@
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Vẫn kiểm tra tệp và bản phát hành đáng ngờ, nhưng cho phép thêm kết quả, gồm cả tệp lớn và gói trọn mùa.";
 "Keep watching" = "Xem tiếp";
 "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
+"Keeps watching through playback and gently re-nudges the timing if the subtitle slips out of sync partway through." = "Liên tục theo dõi trong khi phát và nhẹ nhàng căn lại thời gian nếu phụ đề bị lệch đồng bộ giữa chừng.";
 "Kids & Family" = "Trẻ em & Gia đình";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, nhận biết mùa";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, nhận biết mùa";

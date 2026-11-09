@@ -21,8 +21,8 @@ in `parity-audit-2026-11-04.json`, produced by
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
 | Behaviors |   438 |    261 |     115 |       0 |       62 |           84.7 % |      69.4 % |           100.0 % |
-| Settings  |   511 |    245 |      29 |       2 |      235 |           94.0 % |      88.8 % |            99.3 % |
-| All       |   949 |    506 |     144 |       2 |      297 |           88.7 % |      77.6 % |            99.7 % |
+| Settings  |   511 |    245 |      30 |       1 |      235 |           94.2 % |      88.8 % |            99.6 % |
+| All       |   949 |    506 |     145 |       1 |      297 |           88.7 % |      77.6 % |            99.8 % |
 
 The 8 November follow-up connects Suwayomi categories to the manga shelf (B369)
 and adds extension repository management (B371). Focused Apple validation

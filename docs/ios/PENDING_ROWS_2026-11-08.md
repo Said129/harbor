@@ -133,7 +133,7 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - S 231 | customFonts | P | reading fonts only [Desktop: src/lib/settings/types.ts]
 - S 244 | subSecondaryScale | P | secondary subtitle scale: stored, nothing draws a second subtitle line yet (7 Nov, written by Haiku, CI runs 37 to 39 green) [Desktop: src/lib/settings/types.ts]
 - S 246 | autoSyncApplyStructural | P | Uncalibrated audio corrections are offered for review in the player. The calibrated auto-apply path and its setting are pending. [Desktop: src/lib/settings/types.ts]
-- S 247 | autoSyncDrift | M | advanced auto-sync options [Desktop: src/lib/settings/types.ts]
+- S 247 | autoSyncDrift | P | The profile can enable Desktop's drift algorithm with native mpv speech sampling. iOS offers the nudge for confirmation. Simulator and device validation remain pending. [Desktop: src/lib/settings/types.ts]
 - S 249 | subtitleAutoSyncPivot | M | advanced auto-sync options [Desktop: src/lib/settings/types.ts]
 - S 256 | subtitlePreselect | P | preselect subtitles before playback: not wired, iOS hands the source straight to the player and the tracks only exist once mpv has loaded the file [Desktop: src/lib/settings/types.ts]
 - S 318 | mpvTweaks | P | earlier review Partial [Desktop: src/lib/settings/types.ts]

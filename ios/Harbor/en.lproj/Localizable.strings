@@ -734,6 +734,7 @@
 "Downloads" = "Downloads";
 "Drama" = "Drama";
 "Drama Series" = "Drama Series";
+"Drift monitor" = "Drift monitor";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "Drop a wallpaper behind the app. The dim slider keeps text readable.";
 "Drop shadow" = "Drop shadow";
 "Dropped" = "Dropped";
@@ -1149,6 +1150,7 @@
 "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs." = "Keep the suspicious-file and release checks, but allow more results, including larger files and season packs.";
 "Keep watching" = "Keep watching";
 "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there." = "Keeps subtitles visible when the player shrinks into the small floating window. Turn off to hide them there.";
+"Keeps watching through playback and gently re-nudges the timing if the subtitle slips out of sync partway through." = "Keeps watching through playback and gently re-nudges the timing if the subtitle slips out of sync partway through.";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, season-aware";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, season-aware";
 "Known For" = "Known For";

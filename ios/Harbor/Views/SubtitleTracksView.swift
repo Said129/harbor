@@ -123,7 +123,7 @@ struct SubtitleTracksView: View {
             } else if state.subtitleSyncPhase == .offered {
                 Button(DesktopInterfaceText.value("Sync")) { state.controller?.applySubtitleSyncOffer() }
                     .disabled(disabled).frame(minHeight: 44)
-                Button(DesktopInterfaceText.value("Dismiss")) { state.controller?.cancelSubtitleSync() }
+                Button(DesktopInterfaceText.value("Dismiss")) { state.controller?.dismissSubtitleSyncOffer() }
                     .frame(minHeight: 44)
             } else {
                 Button(DesktopInterfaceText.value("Auto-sync")) { state.controller?.synchronizeSubtitle() }
