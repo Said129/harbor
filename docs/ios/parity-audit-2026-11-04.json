@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 261,
-      "partial": 115,
+      "ported": 262,
+      "partial": 114,
       "missing": 0,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 84.7,
-      "ported_only_percent": 69.4,
+      "weighted_percent": 84.8,
+      "ported_only_percent": 69.7,
       "ported_or_partial_percent": 100.0
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 508,
-      "partial": 146,
+      "ported": 509,
+      "partial": 145,
       "missing": 0,
       "excluded": 295,
       "counted": 654,
-      "weighted_percent": 88.8,
-      "ported_only_percent": 77.7,
+      "weighted_percent": 88.9,
+      "ported_only_percent": 77.8,
       "ported_or_partial_percent": 100.0
     }
   },
@@ -77,11 +77,11 @@
     {
       "area": "Stream pipeline, parser, trust and scoring",
       "range": "B68-B106",
-      "ported": 32,
-      "partial": 7,
+      "ported": 33,
+      "partial": 6,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 91.0
+      "weighted_percent": 92.3
     },
     {
       "area": "Resolution and Debrid",
@@ -703,7 +703,7 @@
       "id": "Real addon stream requests",
       "desktop_source": "src/lib/streams/addons.ts",
       "verdict": "P",
-      "note": "The alternate-type retry and the declared-type lookup for non-standard ids (pickIdByDeclaredTypes) apply only to the origin addon in iOS; other addons are queried only for their resource-declared types, and I found..."
+      "note": "Installed addons use their declared playback types and prefixes, including alternate requests for nonstandard IDs. Control-only, retired and Stremio Local Files endpoints are excluded. iOS retains both verified anime and IMDb identities when available and uses its native HTTP transport."
     },
     {
       "index": 69,
@@ -751,8 +751,8 @@
       "index": 75,
       "id": "Tracker preservation",
       "desktop_source": "src/lib/streams/addons.ts",
-      "verdict": "P",
-      "note": "StreamRequestPolicy.deduplicated drops later duplicates without uniting their sources, no iOS path passes tracker sources to a torrent or streaming-server request, and no iOS code recovers a missing infoHash from t..."
+      "verdict": "D",
+      "note": "Duplicate addon streams preserve all tracker sources. Explicitly uncached addon replies recover a missing torrent hash from the hosted URL or DHT source before availability checks. The configured remote streaming server consumes those trackers."
     },
     {
       "index": 76,

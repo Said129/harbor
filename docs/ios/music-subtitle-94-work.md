@@ -2187,3 +2187,15 @@ selection, locale floors, priority deduplication and exclusions.
 The locale preference also drives the original four Critics Pick queries.
 Daily Discover and Critics Pick share the same regional floor rule. The
 pinned Desktop Home view has no active consumer of the toggle.
+
+## Addon playback identities and trackers
+
+An installed addon can answer for an episode under another manifest type.
+Native planning respects its stream resource prefixes, uses declared types
+when the primary type is absent, and runs declared alternate requests after
+an empty response. Alternate replies retain declaration priority. Known
+status, retired TorBox and Stremio Local Files endpoints are skipped. The
+verified Kitsu and IMDb routes remain available. Explicitly uncached
+streams recover their hash before availability checks, and duplicate
+responses union tracker sources for the configured remote server. Focused
+fixtures use owned replies and test both request selection and tracker flow.

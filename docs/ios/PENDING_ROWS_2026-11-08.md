@@ -3,7 +3,7 @@
 Cada fila: `lista indice | id | verdicto | hueco`. P = parcial, M = falta. El indice vuelve a empezar en 1 en cada lista (`behaviors`, `settings`).
 El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo de iOS y el fuente de Desktop (`desktop_source` del inventario `desktop-parity-0.9.132.json`).
 
-## behaviors (115 filas)
+## behaviors (114 filas)
 
 - B 1 | Home hero and real catalogs | P | Home uses Desktop's public Trending, Trakt and Simkl pools with a three-hour cache, explicit rail priority, catalog fallback, and per-title ranking. Native base catalog composition and some personal rails still differ. [Desktop: src/views/home.tsx]
 - B 2 | Continue Watching on Home | P | The native row removes a resolved anime franchise's known aliases and can restore them without clearing progress. Profile and playback changes fence late lookups. Desktop's default visible franchise dedupe and differing account sources remain. [Desktop: src/views/home.tsx]
@@ -32,8 +32,7 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 48 | Install addon URL | P | install addon URL: an install now replaces the addon with the same manifest id or URL, keeps its place in the list and keeps the disabled state by URL (8 Nov, written by Haiku, uncompiled); the Stremio account write is still absent (see rows 50 to 52) [Desktop: src/lib/addon-store.ts]
 - B 55 | Addon order | P | The order is saved only locally and only for guest profiles (AppModel.move goes through persist, which throws for a signed-in Stremio account); there is no stale check, no account write or verification, and no back... [Desktop: src/lib/addons-store]
 - B 61 | Addon configuration viewport | P | addon configuration viewport: a captured link now installs at once as on Desktop (8 Nov, written by Haiku, uncompiled); there is still no timed fallback to the browser [Desktop: src/views/addons.tsx]
-- B 68 | Real addon stream requests | P | The alternate-type retry and the declared-type lookup for non-standard ids (pickIdByDeclaredTypes) apply only to the origin addon in iOS; other addons are queried only for their resource-declared types, and I found... [Desktop: src/lib/streams/addons.ts]
-- B 75 | Tracker preservation | P | StreamRequestPolicy.deduplicated drops later duplicates without uniting their sources, no iOS path passes tracker sources to a torrent or streaming-server request, and no iOS code recovers a missing infoHash from t... [Desktop: src/lib/streams/addons.ts]
+- B 68 | Real addon stream requests | P | Installed addons use their declared playback types and prefixes, including alternate requests for nonstandard IDs. Control-only, retired and Stremio Local Files endpoints are excluded. iOS retains both verified anime and IMDb identities when available and uses its native HTTP transport. [Desktop: src/lib/streams/addons.ts]
 - B 85 | Anime filename parsing | P | anitomy enrichment of anime names not ported [Desktop: harbor-core/src/parser.rs]
 - B 90 | Title / year mismatch rejection | P | title gate synced, but the anime alias titles are not passed yet [Desktop: harbor-core/src/trust.rs]
 - B 104 | Corroborated early leak rescue | P | corroborated early-leak rescue: pure rules and tests exist; the Rust ranking does not call them yet (7 Nov, written by Haiku, CI run 42 green, 103 cases) [Desktop: src/lib/streams/pipeline.ts]

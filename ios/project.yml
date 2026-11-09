@@ -249,6 +249,7 @@ targets:
       - path: HarborTests/R21HomeTests.swift
       - path: HarborTests/ContinueDismissalTests.swift
       - path: HarborTests/AnimeFranchiseTests.swift
+      - path: HarborTests/AddonOriginTests.swift
       - path: HarborTests/G2SportsTests.swift
       - path: HarborTests/TogetherToastRulesTests.swift
       - path: HarborTests/AdSkipTests.swift

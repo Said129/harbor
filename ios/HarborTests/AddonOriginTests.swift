@@ -135,6 +135,89 @@ private actor OriginHeldReply {
         XCTAssertTrue(episodeRequests.plans.allSatisfy { $0.url.contains("owned%3Ashow%3A5%3A23") })
         XCTAssertFalse(episodeRequests.plans.contains { $0.url.contains("99") })
     }
+    func testOtherAddonsUseDeclaredTypesAndKeepOnlyMatchingPrefixes() async throws {
+        func declared(_ id: String, _ types: [String], prefix: String = "owned:", enabled: Bool = true) -> Addon {
+            Addon(manifest: .object(["id": .string(id), "name": .string(id), "resources": .array([
+                .object(["name": .string("stream"), "types": .array(types.map(JSONValue.string)), "idPrefixes": .array([.string(prefix)])]),
+            ])]), transportUrl: "https://example.org/\(id)/manifest.json", enabled: enabled)
+        }
+        let addons = [
+            declared("alternate-only", ["tv", "series", "series"]), declared("aio-status", ["movie"]),
+            declared("has-primary", ["movie", "tv"]),
+            declared("wrong-prefix", ["tv"], prefix: "different:"), declared("disabled", ["tv"], enabled: false),
+            declared("org.stremio.local", ["movie"]), declared("app.torbox.stremio", ["movie"]),
+        ]
+        let media = Media(id: "owned:1", type: "movie", name: "Saved")
+        let service = HarborService()
+        let requests = try await service.streamRequests(media, videoID: media.id, addons: addons)
+        XCTAssertEqual(Set(requests.plans.compactMap { $0.addon.manifest["id"].string }), ["alternate-only", "has-primary"])
+        let alternate = try XCTUnwrap(requests.plans.first { $0.addon.manifest["id"].string == "alternate-only" })
+        let supported = try XCTUnwrap(requests.plans.first { $0.addon.manifest["id"].string == "has-primary" })
+        XCTAssertEqual(alternate.kind, "tv")
+        XCTAssertEqual(requests.fallbacks[alternate.key]?.map(\.kind), ["series"])
+        XCTAssertEqual(supported.kind, "movie")
+        XCTAssertEqual(supported.addonPriority, 2)
+        XCTAssertEqual(requests.fallbacks[supported.key]?.map(\.kind), ["tv"])
+        XCTAssertTrue(requests.originFallbacks.isEmpty)
+        XCTAssertTrue(alternate.url.contains("owned%3A1"))
+
+        let imdb = Media(id: "tt4728568", type: "movie", name: "IMDb")
+        let standard = try await service.streamRequests(imdb, videoID: imdb.id, addons: [
+            declared("standard", ["movie", "series"], prefix: "tt"),
+        ])
+        let primary = try XCTUnwrap(standard.plans.first)
+        XCTAssertEqual(primary.kind, "movie")
+        XCTAssertNil(standard.fallbacks[primary.key])
+    }
+
+    func testOtherAddonRetriesEmptyResponseInDeclaredOrderAndStopsOnPrimaryFailure() async throws {
+        let addon = addon("owned", url: "https://example.org/manifest.json")
+        func plan(_ kind: String) -> RequestPlan {
+            RequestPlan(key: kind, url: "https://example.org/\(kind).json", title: "Fixture", kind: kind,
+                        addon: addon, addonPriority: 0, timeoutMs: 8_000, catalog: nil)
+        }
+        let primary = plan("movie"), first = plan("tv"), second = plan("series")
+        let populated = JSONValue.object(["streams": .array([.object(["url": .string("https://example.org/video.mp4")])])])
+        let requests = OriginRequests([primary.url: .object(["streams": .array([])]), first.url: populated, second.url: populated])
+        let reply = try await AddonOriginReplies.fetch(primary, fallbacks: [first, second], retryPrimaryFailure: false) { candidate in
+            if candidate.kind == "tv" { try await Task.sleep(for: .milliseconds(30)) }
+            return try await requests.load(candidate.url)
+        }
+        XCTAssertEqual(reply.0.kind, "tv")
+        let attempted = await requests.requested
+        XCTAssertEqual(attempted.first, primary.url)
+        XCTAssertEqual(Set(attempted.dropFirst()), [first.url, second.url])
+
+        let failed = OriginRequests([first.url: populated])
+        let failure = try await AddonOriginReplies.fetch(primary, fallbacks: [first], retryPrimaryFailure: false) {
+            try await failed.load($0.url)
+        }
+        XCTAssertEqual(failure.2, "http-404")
+        let failedCalls = await failed.requested
+        XCTAssertEqual(failedCalls, [primary.url])
+    }
+
+    func testDuplicateStreamsMergeTrackersAndRecoverOnlyExplicitUncachedHashes() {
+        let hash = String(repeating: "a", count: 40)
+        let a = "udp://tracker.example.org:80/announce", b = "https://tracker2.example.org/announce"
+        let original: JSONValue = .object(["addonId": .string("fixture"), "title": .string("Uncached"), "url": .string("https://example.org/\(hash.uppercased())/7?x=1"),
+            "sources": .array([.string("tracker:" + a)])])
+        let duplicate: JSONValue = .object(["addonId": .string("fixture"), "title": .string("Different label"), "infoHash": .string(hash), "fileIdx": .integer(7),
+            "sources": .array([.string("tracker:" + a), .string(b)])])
+        let recovered = StreamRequestPolicy.recoveringUncachedIdentity(original)
+        XCTAssertEqual(recovered["infoHash"].string, hash)
+        XCTAssertEqual(recovered["fileIdx"].integer, 7)
+        let merged = StreamRequestPolicy.deduplicated([recovered, duplicate])
+        XCTAssertEqual(merged.count, 1)
+        XCTAssertEqual(merged.first?["title"].string, "Uncached")
+        XCTAssertEqual(StremioServerPolicy.trackers(fromSources: merged.first?["sources"].array.compactMap(\.string) ?? []), [a, b])
+
+        let dht: JSONValue = .object(["description": .string("RD download"), "sources": .array([.string("DHT:" + hash.uppercased())])])
+        XCTAssertEqual(StreamRequestPolicy.recoveringUncachedIdentity(dht)["infoHash"].string, hash)
+        let ordinary: JSONValue = .object(["title": .string("Ordinary video"), "url": original["url"], "sources": dht["sources"]])
+        XCTAssertEqual(StreamRequestPolicy.recoveringUncachedIdentity(ordinary), ordinary)
+    }
+
     func testActualNativeRankingAppliesOnlyTheExecutedDesktopOriginBoostAndKeepsEverySource() async throws {
         let streams: JSONValue = .array(["owned", "other"].enumerated().map { index, id in
             .object(["addonId": .string(id), "addonName": .string(id), "title": .string("Owned.2020.1080p.WEB-DL.H264.AAC"),

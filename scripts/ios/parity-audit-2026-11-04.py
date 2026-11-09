@@ -597,6 +597,8 @@ BEHAVIORS = expand("""
 2 P The native row removes a resolved anime franchise's known aliases and can restore them without clearing progress. Profile and playback changes fence late lookups. Desktop's default visible franchise dedupe and differing account sources remain.
 15 P Shows places the native continue row after the hero with Desktop's sixteen-item cap. IMDb anime still appear, while anime-provider IDs are reserved for the Anime room. Desktop's manual-watched resurface rules remain pending.
 6 P Discover runs Desktop's seeded genre, decade, language, country, TV, streaming and anchor rails with lazy paging, locale floors, relaxed fallbacks and a Cinemeta fallback. People and keyword lanes, custom row ordering and full awards pagination remain.
+68 P Installed addons use their declared playback types and prefixes, including alternate requests for nonstandard IDs. Control-only, retired and Stremio Local Files endpoints are excluded. iOS retains both verified anime and IMDb identities when available and uses its native HTTP transport.
+75 D Duplicate addon streams preserve all tracker sources. Explicitly uncached addon replies recover a missing torrent hash from the hosted URL or DHT source before availability checks. The configured remote streaming server consumes those trackers.
 """)
 
 SETTINGS = expand("""

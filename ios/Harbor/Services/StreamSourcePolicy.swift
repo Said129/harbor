@@ -375,6 +375,7 @@ enum StreamAddonPriority {
                         addonPriority: chosen?.rank(index: plan.addonPriority, addon: plan.addon) ?? plan.addonPriority,
                         timeoutMs: max(plan.timeoutMs, ceiling), catalog: plan.catalog)
         }
-        return .init(plans: requests.plans.map(tuned), fallbacks: requests.fallbacks.mapValues { $0.map(tuned) })
+        return .init(plans: requests.plans.map(tuned), fallbacks: requests.fallbacks.mapValues { $0.map(tuned) },
+                     originFallbacks: requests.originFallbacks)
     }
 }

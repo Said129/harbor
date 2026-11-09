@@ -271,8 +271,9 @@ struct HarborService: Sendable {
         return try await withThrowingTaskGroup(of: StreamEvent.self) { group in
             for plan in selection.plans {
                 let fallbacks = selection.fallbacks[plan.key] ?? []
+                let retryPrimaryFailure = selection.originFallbacks.contains(plan.key)
                 group.addTask {
-                    let (answered, data, error) = try await AddonOriginReplies.fetch(plan, fallbacks: fallbacks)
+                    let (answered, data, error) = try await AddonOriginReplies.fetch(plan, fallbacks: fallbacks, retryPrimaryFailure: retryPrimaryFailure)
                     return .reply(answered, data, error)
                 }
             }
@@ -296,7 +297,7 @@ struct HarborService: Sendable {
                     if let data {
                         do {
                             let streams: [JSONValue] = try await core.call("mapStreams", ["plan": try .encoded(plan), "response": data])
-                            raw += streams
+                            raw += streams.map(StreamRequestPolicy.recoveringUncachedIdentity)
                         } catch { errors.append("stream-response") }
                     }
                 case .plugin(let batch):
@@ -345,33 +346,59 @@ struct HarborService: Sendable {
     struct StreamRequests: Sendable {
         let plans: [RequestPlan]
         let fallbacks: [String: [RequestPlan]]
+        var originFallbacks: Set<String> = []
     }
     func streamRequests(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil) async throws -> StreamRequests {
         var requested: [RequestPlan] = []
         let kind = media.type == "anime" ? "series" : media.type
-        for id in StreamRequestPolicy.ids(media, videoID: videoID, season: season, episode: episode) {
-            requested += try await resources(addons, "stream", kind, id)
+        let ids = StreamRequestPolicy.ids(media, videoID: videoID, season: season, episode: episode)
+        var eligible = addons
+        // Keep the original indexes as addon priority while excluding control-only endpoints.
+        for index in eligible.indices where eligible[index].enabled && AddonOriginPolicy.skipsPlaybackRequests(eligible[index]) {
+            eligible[index].enabled = false
         }
-        let originBases = AddonOriginPolicy.bases(addons, origin: media.addonOrigin)
+        for id in ids {
+            requested += try await resources(eligible, "stream", kind, id)
+        }
+        let originBases = AddonOriginPolicy.bases(eligible, origin: media.addonOrigin)
+        let accepted = Set(requested.map(\.key))
         var fallbacks: [String: [RequestPlan]] = [:]
-        for (index, addon) in addons.enumerated() where addon.enabled && AddonOriginPolicy.declaresStreams(addon) && originBases.contains(AddonOriginPolicy.base(addon.transportUrl)) {
-            // A saved series must retain its selected provider episode ID.
-            // Desktop also forces the catalogue's ID for its own addon; retain
-            // other canonical requests rather than losing those episode sources.
-            let id = media.episodic ? videoID : media.id
-            let types = AddonOriginPolicy.streamTypes(addon, primary: kind, id: id)
-            var seen = Set<String>()
-            let candidates = types.compactMap { type -> RequestPlan? in
-                guard let url = AddonOriginPolicy.resourceURL(addon.transportUrl, resource: "stream", kind: type, id: id),
-                      seen.insert(url).inserted else { return nil }
-                return RequestPlan(key: "\(index):stream:\(type):\(id)", url: url, title: addon.name, kind: type, addon: addon,
-                    addonPriority: index, timeoutMs: AddonOriginPolicy.timeout(addon), catalog: nil)
+        var originFallbacks = Set<String>()
+        for (index, addon) in eligible.enumerated() where addon.enabled && AddonOriginPolicy.declaresStreams(addon) {
+            func plans(id: String, types: [String]) -> [RequestPlan] {
+                var seen = Set<String>()
+                let timeout = AddonOriginPolicy.timeout(addon)
+                return types.compactMap { type in
+                    guard let url = AddonOriginPolicy.resourceURL(addon.transportUrl, resource: "stream", kind: type, id: id),
+                          seen.insert(url).inserted else { return nil }
+                    return RequestPlan(key: "\(index):stream:\(type):\(id)", url: url, title: addon.name, kind: type, addon: addon,
+                                       addonPriority: index, timeoutMs: timeout, catalog: nil)
+                }
             }
-            guard let primary = candidates.first else { continue }
-            if !requested.contains(where: { $0.key == primary.key }) { requested.append(primary) }
-            fallbacks[primary.key] = Array(candidates.dropFirst())
+            if originBases.contains(AddonOriginPolicy.base(addon.transportUrl)) {
+                let id = media.episodic ? videoID : media.id
+                let candidates = plans(id: id, types: AddonOriginPolicy.streamTypes(addon, primary: kind, id: id))
+                guard let primary = candidates.first else { continue }
+                if !accepted.contains(primary.key) { requested.append(primary) }
+                fallbacks[primary.key] = Array(candidates.dropFirst())
+                originFallbacks.insert(primary.key)
+                continue
+            }
+            let matches = ids.filter { accepted.contains("\(index):stream:\(kind):\($0)") }
+            if matches.isEmpty {
+                guard let match = StreamRequestPolicy.declaredTypeID(ids, addon: addon) else { continue }
+                let candidates = plans(id: match.id, types: match.types)
+                guard let primary = candidates.first else { continue }
+                requested.append(primary)
+                fallbacks[primary.key] = Array(candidates.dropFirst())
+            } else {
+                for id in matches where !StreamRequestPolicy.hasStandardScheme(id) {
+                    let alternatives = AddonOriginPolicy.declaredStreamTypes(addon, id: id).filter { $0 != kind }
+                    fallbacks["\(index):stream:\(kind):\(id)"] = plans(id: id, types: alternatives)
+                }
+            }
         }
-        return .init(plans: StreamRequestPolicy.plans(requested), fallbacks: fallbacks)
+        return .init(plans: StreamRequestPolicy.plans(requested), fallbacks: fallbacks, originFallbacks: originFallbacks)
     }
 
     private static func pluginResponse(_ provider: (@Sendable () async throws -> HarborPluginStreamBatch)?) async throws -> HarborPluginStreamBatch {

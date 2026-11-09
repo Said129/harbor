@@ -44,22 +44,22 @@ enum AddonOriginPolicy {
         }.filter { seen.insert($0).inserted }
     }
     static func streamTypes(_ addon: Addon, primary: String, id: String) -> [String] {
-        var result = [primary]
+        [primary] + declaredStreamTypes(addon, id: id).filter { $0 != primary }
+    }
+    static func declaredStreamTypes(_ addon: Addon, id: String) -> [String] {
         let specific = addon.manifest["resources"].array.filter { $0["name"].string == "stream" }
         func accepts(_ values: JSONValue) -> Bool {
             let prefixes = values.array.compactMap(\.string)
             return prefixes.isEmpty || prefixes.contains(where: id.hasPrefix)
         }
-        let declared: [JSONValue]
-        if !specific.isEmpty { declared = specific.filter { accepts($0["idPrefixes"]) }.flatMap { $0["types"].array } }
-        else if declaresStreams(addon), accepts(addon.manifest["idPrefixes"]) {
-            // Desktop's generic manifest branch preserves declaration order,
-            // including repeated alternate types. Request planning deduplicates URLs.
-            return [primary] + addon.manifest["types"].array.compactMap(\.string).filter { !$0.isEmpty && $0 != primary }
+        if specific.isEmpty {
+            guard declaresStreams(addon), accepts(addon.manifest["idPrefixes"]) else { return [] }
+            // A generic manifest may repeat a type. Request planning deduplicates URLs.
+            return addon.manifest["types"].array.compactMap(\.string).filter { !$0.isEmpty }
         }
-        else { declared = [] }
-        for value in declared.compactMap(\.string) where !value.isEmpty && !result.contains(value) { result.append(value) }
-        return result
+        var seen = Set<String>()
+        return specific.filter { accepts($0["idPrefixes"]) }.flatMap { $0["types"].array }
+            .compactMap(\.string).filter { !$0.isEmpty && seen.insert($0).inserted }
     }
     static func pluginID(_ base: String) -> String? {
         let prefix = "harbor-plugin://"
@@ -71,6 +71,13 @@ enum AddonOriginPolicy {
     }
     static func declaresStreams(_ addon: Addon) -> Bool {
         addon.manifest["resources"].array.contains { $0 == .string("stream") || $0["name"].string == "stream" }
+    }
+    static func skipsPlaybackRequests(_ addon: Addon) -> Bool {
+        let id = addon.manifest["id"].string?.lowercased() ?? ""
+        let url = addon.transportUrl.lowercased()
+        if ["org.stremio.local", "app.torbox.stremio"].contains(id) || url.contains("/local-addon/") || url.contains("stremio.torbox.app") { return true }
+        let label = [id, addon.name.lowercased(), url].joined(separator: " ")
+        return label.range(of: #"aiostatus|aio[\s-]?status|--status--|stremio[\s-]?status"#, options: .regularExpression) != nil
     }
     static func timeout(_ addon: Addon) -> Int {
         let value = [addon.name, addon.manifest["id"].string ?? "", addon.transportUrl].joined(separator: " ").lowercased()
@@ -97,22 +104,38 @@ struct AddonOriginMetadata: Sendable {
 }
 
 enum AddonOriginReplies {
-    static func fetch(_ plan: RequestPlan, fallbacks: [RequestPlan],
+    typealias Reply = (RequestPlan, JSONValue?, String?)
+
+    static func fetch(_ plan: RequestPlan, fallbacks: [RequestPlan], retryPrimaryFailure: Bool = true,
         load: @escaping @Sendable (RequestPlan) async throws -> JSONValue = {
             try await HTTPClient().json($0.url, timeout: Double($0.timeoutMs) / 1_000)
-        }) async throws -> (RequestPlan, JSONValue?, String?) {
-        let candidates = [plan] + fallbacks
-        var last: String?
-        for (index, candidate) in candidates.enumerated() {
+        }) async throws -> Reply {
+        @Sendable func query(_ candidate: RequestPlan) async throws -> Reply {
             try Task.checkCancellation()
             do {
                 let value = try await load(candidate); try Task.checkCancellation()
-                if index < candidates.count - 1, value["streams"].array.isEmpty { continue }
                 return (candidate, value, nil)
             } catch is CancellationError { throw CancellationError() }
-            catch let error as HarborError { last = error.code }
-            catch { last = "invalid-response" }
+            catch let error as HarborError { return (candidate, nil, error.code) }
+            catch { return (candidate, nil, "invalid-response") }
         }
-        return (plan, nil, last)
+        let primary = try await query(plan)
+        guard !fallbacks.isEmpty, primary.1?["streams"].array.isEmpty != false,
+              primary.1 != nil || retryPrimaryFailure else { return primary }
+        // A provider can declare several alternatives. Run them together, then
+        // prefer the first populated response in declaration order.
+        return try await withThrowingTaskGroup(of: (Int, Reply).self) { group in
+            for (index, candidate) in fallbacks.enumerated() {
+                group.addTask { (index, try await query(candidate)) }
+            }
+            var replies: [Int: Reply] = [:]
+            for try await (index, reply) in group { replies[index] = reply }
+            try Task.checkCancellation()
+            let ordered = fallbacks.indices.compactMap { replies[$0] }
+            if let match = ordered.first(where: { $0.1?["streams"].array.isEmpty == false }) { return match }
+            if let last = ordered.last, last.1 != nil { return last }
+            let failure = ordered.reversed().compactMap { $0.2 }.first ?? primary.2
+            return (plan, nil, failure)
+        }
     }
 }
