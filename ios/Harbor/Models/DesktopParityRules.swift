@@ -34,6 +34,18 @@ enum HomeHeroSlides {
         return Array(firstRow.prefix(20).filter { !$0.id.isEmpty && !heroIDs.contains($0.id) }.prefix(10))
     }
 
+    /// Desktop derives the ranked set from the base Home feed before it adds
+    /// custom folders, saved lists and personal rails to the page layout.
+    static func topTenFeed(_ rails: [PageRail], builtIDs: Set<String>) -> [Media] {
+        rails.first { rail in
+            switch rail {
+            case .catalog(let row): return !row.plan.isPlaybackHistoryCatalog && !row.metas.isEmpty
+            case .discovery(let row): return builtIDs.contains(row.id) && !row.metas.isEmpty
+            case .continuing, .sources, .list: return false
+            }
+        }?.metas ?? []
+    }
+
     /// The actual Home hero slide selection shared by `CustomizedHero` and Home's Top 10 membership.
     static func displayedHome(rails: [PageRail], defaults: [Media], heroSourceID: String?, feed: HeroLayoutPolicy.HeroFeed) -> [Media] {
         if let heroSourceID, let source = rails.first(where: { $0.id == heroSourceID }) {

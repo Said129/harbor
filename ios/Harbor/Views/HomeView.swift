@@ -39,11 +39,13 @@ struct HomeView: View {
         return model.heroes.isEmpty ? Array(model.rows.first(where: { !$0.metas.isEmpty })?.metas.prefix(5) ?? []) : model.heroes
     }
     private var homeRibbonMetas: [Media] {
-        guard model.storageReady, !classic, let firstRow = customization.ordered(rails).first else { return [] }
-        let heroSlides = HomeHeroSlides.displayedHome(rails: rails, defaults: heroes,
+        guard model.storageReady, !classic else { return [] }
+        let available = rails
+        let firstRow = HomeHeroSlides.topTenFeed(available, builtIDs: Set(model.home.rows.map(\.id)))
+        let heroSlides = HomeHeroSlides.displayedHome(rails: available, defaults: heroes,
                                                        heroSourceID: customization.layout.heroSource,
                                                        feed: HeroLayoutPreferences.shared.feed)
-        return HomeHeroSlides.topTen(firstRow: firstRow.metas, heroSlides: heroSlides)
+        return HomeHeroSlides.topTen(firstRow: firstRow, heroSlides: heroSlides)
     }
     private var homeRibbonRevision: [String] { homeRibbonMetas.map { $0.id + "|" + $0.name } }
     private func registerHomeRibbonMetas() {

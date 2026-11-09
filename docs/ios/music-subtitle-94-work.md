@@ -2093,8 +2093,9 @@ different episode. An owned synthetic alignment offered a 1.5-second shift.
 ## Home Top 10 ribbon
 
 The active profile can show the original ribbon and choose its corner. The
-index comes from Home's first visible row after excluding the hero slides.
+index comes from the first row in the base Home feed after excluding hero
+slides, before adding personal rails, custom folders or saved lists.
 Switching profiles retires the previous membership. Poster cards move a
-watchlist bookmark when it shares the ribbon's corner. Native Home content
-still differs from Desktop where a custom source loads its cards separately.
-The focused test checks membership, the name fallback and bookmark spacing.
+watchlist bookmark when it shares the ribbon's corner. Native Home still
+uses a different catalog feed in some configurations. Focused tests check
+the source boundary, membership, the name fallback and bookmark spacing.

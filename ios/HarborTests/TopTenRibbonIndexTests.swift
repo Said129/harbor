@@ -3,6 +3,16 @@ import XCTest
 
 /// The poster ribbon follows Home's Top 10 membership, with Desktop's id-first/name-fallback lookup.
 final class TopTenRibbonIndexTests: XCTestCase {
+    func testHomeTopTenUsesTheBaseFeedBeforePersonalAndCustomizedRows() {
+        let title = Media(id: "tt1", type: "movie", name: "Owned base title")
+        let personalized = DiscoveryRail(id: "personal", title: "Personal", kind: "movie", path: "", metas: [
+            Media(id: "tt2", type: "movie", name: "Owned personal title"),
+        ])
+        let base = DiscoveryRail(id: "base", title: "Base", kind: "movie", path: "", metas: [title])
+        XCTAssertEqual(HomeHeroSlides.topTenFeed([.continuing(kind: "series"), .discovery(personalized), .discovery(base)],
+                                                  builtIDs: ["base"]).map(\.id), [title.id])
+    }
+
     @MainActor
     func testHomeTopTenExcludesHeroCapsAndResetsOnProfileActivation() {
         let index = TopTenRibbonIndexStore.shared
