@@ -5,13 +5,13 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 264,
-      "partial": 112,
+      "ported": 265,
+      "partial": 111,
       "missing": 0,
       "excluded": 62,
       "counted": 376,
-      "weighted_percent": 85.1,
-      "ported_only_percent": 70.2,
+      "weighted_percent": 85.2,
+      "ported_only_percent": 70.5,
       "ported_or_partial_percent": 100.0
     },
     "settings": {
@@ -27,13 +27,13 @@
     },
     "all": {
       "total": 949,
-      "ported": 511,
-      "partial": 143,
+      "ported": 512,
+      "partial": 142,
       "missing": 0,
       "excluded": 295,
       "counted": 654,
       "weighted_percent": 89.1,
-      "ported_only_percent": 78.1,
+      "ported_only_percent": 78.3,
       "ported_or_partial_percent": 100.0
     }
   },
@@ -41,11 +41,11 @@
     {
       "area": "Home, Discover and rooms",
       "range": "B1-B21",
-      "ported": 7,
-      "partial": 14,
+      "ported": 8,
+      "partial": 13,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 66.7
+      "weighted_percent": 69.0
     },
     {
       "area": "Search",
@@ -345,8 +345,8 @@
       "index": 17,
       "id": "Series catalogs",
       "desktop_source": "src/views/shows.tsx",
-      "verdict": "P",
-      "note": "Native Shows uses the curated six-title hero and removes those titles from regular rails. TMDB rows page in the dedicated grid; inline pagination and the live catalog check remain pending."
+      "verdict": "D",
+      "note": "Shows uses the curated six-title hero, removes it from regular rails and loads subsequent TMDB pages at the row end. Paging follows the first-page threshold, deduplicates provider results and stops at 30 titles."
     },
     {
       "index": 18,

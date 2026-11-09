@@ -5,6 +5,7 @@ struct DiscoveryRails: View {
     let app: AppModel
     var titleOverrides: [String: String] = [:]
     var disableDefaultRanking = false
+    var seriesPagination: ContentPageModel? = nil
     var body: some View {
         let preferences = InterfacePreferences.shared
         let hideWatched = preferences.hideWatchedInCatalogs
@@ -18,7 +19,18 @@ struct DiscoveryRails: View {
                     if row.id.hasSuffix("-top10") && !disableDefaultRanking { TopTenRail(metas: row.metas) }
                     else { ScrollView(.horizontal) {
                         LazyHStack(alignment: .top, spacing: 12) {
-                                ForEach(row.metas, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier(row.kind == "anime" ? "anime-media" : row.kind == "movie" ? "catalog-movie" : "catalog-media") }
+                            ForEach(row.metas, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier(row.kind == "anime" ? "anime-media" : row.kind == "movie" ? "catalog-movie" : "catalog-media") }
+                            if let seriesPagination, let page = seriesPagination.nextSeriesPage(id: row.id) {
+                                if seriesPagination.seriesPagingFailures.contains(row.id) {
+                                    Button(DesktopInterfaceText.value("Retry")) {
+                                        Task { await seriesPagination.loadMoreSeriesRow(id: row.id, page: page, app: app) }
+                                    }.frame(minWidth: 70, minHeight: 44)
+                                        .accessibilityIdentifier("series-rail-retry-" + row.id)
+                                } else {
+                                    Color.clear.frame(width: 10, height: 1)
+                                        .task(id: page) { await seriesPagination.loadMoreSeriesRow(id: row.id, page: page, app: app) }
+                                }
+                            }
                         }.padding(.horizontal)
                     }.scrollIndicators(.hidden).posterRowBehavior() }
                 }

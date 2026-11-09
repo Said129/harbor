@@ -2247,3 +2247,18 @@ paging of the TMDB shelves is still pending.
 
 Run 42700413672 compiled and passed all five selected daily Discover and
 Critics Pick cases. The downloaded artifact matched the digest from GitHub.
+
+## Inline Shows paging
+
+The end of an ordinary TMDB shelf loads the next page while the first
+batch and featured pool may still be in flight. The eligibility threshold
+is based on the provider page, before the hero and library filters. The
+row caps at 30 titles, skips repeated titles and has a retry at the end
+of the affected shelf. An unchanged provider page ends the request
+chain. A refresh or change to the active profile or metadata settings
+invalidates an old reply. The ranked weekly row remains a fixed Top 10.
+
+Digest-verified evidence for run 42698823556 reports 23 of 23 passed,
+including the hosted Home, search, continuation and corrected drift
+bridge cases. Run 42701405964 reports four of four for addon stream type
+fallback and trackers. These are simulator and fixture checks.

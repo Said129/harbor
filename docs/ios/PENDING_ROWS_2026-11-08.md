@@ -3,7 +3,7 @@
 Cada fila: `lista indice | id | verdicto | hueco`. P = parcial, M = falta. El indice vuelve a empezar en 1 en cada lista (`behaviors`, `settings`).
 El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo de iOS y el fuente de Desktop (`desktop_source` del inventario `desktop-parity-0.9.132.json`).
 
-## behaviors (112 filas)
+## behaviors (111 filas)
 
 - B 1 | Home hero and real catalogs | P | Home uses Desktop's public Trending, Trakt and Simkl pools with a three-hour cache, explicit rail priority, catalog fallback, and per-title ranking. Native base catalog composition and some personal rails still differ. [Desktop: src/views/home.tsx]
 - B 2 | Continue Watching on Home | P | The native row removes a resolved anime franchise's known aliases and can restore them without clearing progress. Profile and playback changes fence late lookups. Desktop's default visible franchise dedupe and differing account sources remain. [Desktop: src/views/home.tsx]
@@ -14,7 +14,6 @@ El texto del hueco esta cortado por la auditoria: para el detalle lee el codigo 
 - B 11 | Cinema hero | P | Movies uses Desktop's five TMDB requests, daily ordering, recent-play exclusion and fallback. The native carousel pauses for horizontal drag, pointer hover, the viewport and backgrounding. Native motion and live catalog validation remain pending. [Desktop: src/views/movies.tsx]
 - B 14 | Shows room | P | The Shows room uses Desktop’s rotating mast, six-slide featured pool, weekly Top 10 and native Continue Watching. Custom collection assignments and parts of Desktop’s presentation remain pending. [Desktop: src/views/shows.tsx]
 - B 15 | Series Continue Watching | P | Shows places the native continue row after the hero with Desktop's sixteen-item cap. IMDb anime still appear, while anime-provider IDs are reserved for the Anime room. Desktop's manual-watched resurface rules remain pending. [Desktop: src/views/shows.tsx]
-- B 17 | Series catalogs | P | Native Shows uses the curated six-title hero and removes those titles from regular rails. TMDB rows page in the dedicated grid; inline pagination and the live catalog check remain pending. [Desktop: src/views/shows.tsx]
 - B 18 | Anime room | P | DesktopAnimeRows and MAL/AniList public rows [Desktop: src/views/anime.tsx]
 - B 19 | Anime genres and rankings | P | DesktopAnimeRows and MAL/AniList public rows [Desktop: src/views/anime.tsx]
 - B 20 | Anime award winners | P | DesktopAnimeRows and MAL/AniList public rows [Desktop: src/views/anime.tsx]

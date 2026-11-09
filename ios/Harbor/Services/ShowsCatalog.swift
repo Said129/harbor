@@ -57,6 +57,32 @@ enum ShowsCatalog {
         return rails
     }
 
+    struct Paging {
+        private var cursor: DesktopGridPaging
+        private(set) var hasMore: Bool
+        private var lastPageIDs: [String]
+        var nextPage: Int { cursor.nextPage }
+
+        init(firstPage: [Media]) {
+            cursor = DesktopGridPaging(initialCount: firstPage.count)
+            hasMore = CatalogRowPaging.initialHasMore(count: firstPage.count)
+            lastPageIDs = firstPage.map(\.identity)
+        }
+
+        mutating func append(_ incoming: [Media], to current: [Media]) -> [Media] {
+            var known = Set(current.map(\.identity))
+            let fresh = incoming.filter { known.insert($0.identity).inserted }
+            let merged = CatalogRowPaging.merge(current: current, more: fresh, received: incoming.count)
+            let pageIDs = incoming.map(\.identity)
+            cursor.received(incoming.count)
+            // A provider returning the preceding page again must not keep
+            // the visible tail requesting the same results.
+            hasMore = merged.hasMore && !cursor.finished && pageIDs != lastPageIDs
+            lastPageIDs = pageIDs
+            return merged.metas
+        }
+    }
+
     static func visibleFallback(_ rows: [CatalogRow], heroIDs: Set<String>) -> [CatalogRow] {
         rows.compactMap { row in
             guard row.plan.key.hasPrefix("native-series-") else { return row }

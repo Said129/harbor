@@ -32,13 +32,14 @@ struct ContentPageView: View {
                 PageCustomizeButton(rails: remainingRails, customization: customization, cloud: kind == "anime" && app.harborIdentity.signedIn ? app.harborIdentity.page("anime") : nil)
                 if let error = customization.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 if kind == "series" { ContinueWatching(app: app, kind: kind, title: "Pick up where you left off") }
-                CustomizedRails(rails: remainingRails, app: app, customization: customization)
+                CustomizedRails(rails: remainingRails, app: app, customization: customization,
+                                seriesPagination: kind == "series" ? model : nil)
             }.padding(.bottom, 24)
         }.accessibilityIdentifier("content-\(kind)")
             .background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .safeAreaInset(edge: .bottom) { PageEditingFooter(customization: customization) }
             .task(id: app.continuingDetectionSignature) { await app.detectContinuingAnime() }
-            .task(id: "\(app.storageReady)|\(app.addons.filter(\.enabled).map(\.id).joined())|\(MetadataPreferences.shared.tmdbKey)|\(MetadataPreferences.shared.region)|\(MetadataPreferences.shared.language)|\(MetadataPreferences.shared.translateTitles)") { if app.storageReady { await model.load(kind: kind, app: app) } }
+            .task(id: "\(app.storageReady)|\(app.accountOperationScope)|\(app.addons.filter(\.enabled).map(\.id).joined())|\(MetadataPreferences.shared.tmdbKey)|\(MetadataPreferences.shared.region)|\(MetadataPreferences.shared.language)|\(MetadataPreferences.shared.translateTitles)") { if app.storageReady { await model.load(kind: kind, app: app) } }
             .onChange(of: app.rows.count) { _, _ in if !["movie", "series"].contains(kind) { Task { await model.load(kind: kind, app: app, refresh: true) } } }
             .onChange(of: app.library.items.map { $0.id + $0.modified }) { _, _ in if kind == "anime" { Task { await model.refreshAnimePicks(app: app) } } }
             .onChange(of: AnimePicksPreferences.shared.options) { _, _ in if kind == "anime" { Task { await model.refreshAnimePicks(app: app) } } }

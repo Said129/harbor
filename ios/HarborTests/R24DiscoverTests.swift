@@ -317,6 +317,36 @@ final class R24DiscoverTests: XCTestCase {
         XCTAssertTrue(ShowsCatalog.visible([top], heroIDs: []).isEmpty)
     }
 
+    func testShowsShelfPagingUsesProviderCountAndCapsDeduplicatedResults() {
+        let titles = (0..<40).map { Media(id: "tmdb:tv:\($0)", type: "series", name: "Owned \($0)") }
+        let short = ShowsCatalog.Paging(firstPage: Array(titles.prefix(13)))
+        XCTAssertFalse(short.hasMore)
+        let first = Array(titles.prefix(20))
+        var paging = ShowsCatalog.Paging(firstPage: first)
+        XCTAssertTrue(paging.hasMore)
+        XCTAssertEqual(paging.nextPage, 2)
+
+        let second = [titles[18], titles[19], titles[20], titles[20], titles[21]]
+        let merged = paging.append(second, to: first)
+        XCTAssertEqual(merged.map(\.id), titles.prefix(22).map(\.id))
+        XCTAssertEqual(paging.nextPage, 3)
+        XCTAssertTrue(paging.hasMore)
+
+        let capped = paging.append(Array(titles[22...]), to: merged)
+        XCTAssertEqual(capped.map(\.id), titles.prefix(30).map(\.id))
+        XCTAssertFalse(paging.hasMore)
+    }
+
+    func testShowsShelfPagingStopsAtEmptyOrRepeatedProviderPage() {
+        let first = (0..<14).map { Media(id: "tmdb:tv:\($0)", type: "series", name: "Owned \($0)") }
+        var repeated = ShowsCatalog.Paging(firstPage: first)
+        XCTAssertEqual(repeated.append(first, to: first).map(\.id), first.map(\.id))
+        XCTAssertFalse(repeated.hasMore)
+        var empty = ShowsCatalog.Paging(firstPage: first)
+        XCTAssertEqual(empty.append([], to: first).map(\.id), first.map(\.id))
+        XCTAssertFalse(empty.hasMore)
+    }
+
     func testShowsHeroUsesPinnedRequestsPoolOrderAndRotation() throws {
         let date = try XCTUnwrap(ISO8601DateFormatter().date(from: "2026-11-09T17:30:00Z"))
         var calendar = Calendar(identifier: .gregorian)

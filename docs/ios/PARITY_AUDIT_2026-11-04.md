@@ -20,9 +20,9 @@ in `parity-audit-2026-11-04.json`, produced by
 
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
-| Behaviors |   438 |    264 |     112 |       0 |       62 |           85.1 % |      70.2 % |           100.0 % |
+| Behaviors |   438 |    265 |     111 |       0 |       62 |           85.2 % |      70.5 % |           100.0 % |
 | Settings  |   511 |    247 |      31 |       0 |      233 |           94.4 % |      88.8 % |           100.0 % |
-| All       |   949 |    511 |     143 |       0 |      295 |           89.1 % |      78.1 % |           100.0 % |
+| All       |   949 |    512 |     142 |       0 |      295 |           89.1 % |      78.3 % |           100.0 % |
 
 The Discover locale setting (S497) controls native ranking, daily catalog
 queries and Critics Pick. Its active consumers in the pinned Desktop build

@@ -16,14 +16,31 @@ final class ContentPageModel {
     private var rowPaging: [String: DesktopGridPaging] = [:]
     private var rowHasMore: [String: Bool] = [:]
     private var rowPagingLoading: Set<String> = []
+
+    struct SeriesPage: Hashable {
+        let generation: Int
+        let number: Int
+    }
+
+    private var seriesPaging: [String: ShowsCatalog.Paging] = [:]
+    private var seriesPageRequests: [String: UUID] = [:]
+    private(set) var seriesPagingFailures = Set<String>()
+    private var seriesScope: String?
+
+    private func catalogSignature(kind: String, app: AppModel, configuration: MetadataConfiguration) -> String {
+        [kind, app.accountOperationScope, app.addons.filter(\.enabled).map(\.id).joined(), configuration.tmdbKey,
+         configuration.region, configuration.language, String(configuration.translateTitles)].joined(separator: "|")
+    }
     func load(kind: String, app: AppModel, refresh: Bool = false) async {
         let configuration = MetadataPreferences.shared.configuration()
-        let signature = kind + app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined() + configuration.tmdbKey + configuration.region + configuration.language + String(configuration.translateTitles)
+        let signature = catalogSignature(kind: kind, app: app, configuration: configuration)
         guard refresh || signature != loadedSignature else { return }
         generation += 1
         let current = generation
         loading = true; error = nil
         rowPaging = [:]; rowHasMore = [:]
+        seriesPaging = [:]; seriesPageRequests = [:]; seriesPagingFailures = []
+        seriesScope = kind == "series" ? signature : nil
         let previousRows = signature == loadedSignature ? rows : []
         let previousCurated = signature == loadedSignature ? curated : []
         let recentMovies = DailyHeroRotation.RecentMovies(kind == "movie" ? StreamPlaybackHistory.remembered(owner: app.library.owner) : [:])
@@ -46,12 +63,14 @@ final class ContentPageModel {
                                 catch { return (index, nil) }
                             }
                         }
-                        var fetched: [(Int, DiscoveryRail)] = []
-                        for await (index, rail) in group {
-                            guard current == generation else { continue }
-                            guard let rail else { continue }
-                            fetched.append((index, rail))
-                            curated = CatalogRefresh.merge(order: definitions.map(\.id), received: fetched.map(\.1), previous: previousCurated)
+                        let order = definitions.map(\.id)
+                        for await (_, rail) in group {
+                            guard current == generation, let rail else { continue }
+                            // Retain any later pages another visible row has already appended.
+                            curated = CatalogRefresh.merge(order: order, received: [rail], previous: curated)
+                            if kind == "series", !rail.ranked {
+                                seriesPaging[rail.id] = ShowsCatalog.Paging(firstPage: rail.metas)
+                            }
                             if !rail.metas.isEmpty { rows = [] }
                             if kind == "series", rail.ranked, heroes.isEmpty { setSeriesHero(ShowsHero.fallback(rail.metas)) }
                         }
@@ -235,6 +254,41 @@ final class ContentPageModel {
         rows[current].metas = merged.metas
         rowHasMore[id] = merged.hasMore
     }
+    func nextSeriesPage(id: String) -> SeriesPage? {
+        guard let paging = seriesPaging[id], paging.hasMore else { return nil }
+        return SeriesPage(generation: generation, number: paging.nextPage)
+    }
+
+    func loadMoreSeriesRow(id: String, page: SeriesPage, app: AppModel) async {
+        let configuration = MetadataPreferences.shared.configuration()
+        let scope = catalogSignature(kind: "series", app: app, configuration: configuration)
+        guard scope == seriesScope, nextSeriesPage(id: id) == page, seriesPageRequests[id] == nil,
+              let rail = curated.first(where: { $0.id == id && !$0.ranked }) else { return }
+        let request = UUID()
+        func isCurrent() -> Bool {
+            seriesPageRequests[id] == request &&
+                catalogSignature(kind: "series", app: app, configuration: MetadataPreferences.shared.configuration()) == scope
+        }
+        seriesPageRequests[id] = request
+        // Keep the retry button mounted during its own request. A success
+        // replaces it with the next page trigger, and a failure leaves it available.
+        defer { if seriesPageRequests[id] == request { seriesPageRequests[id] = nil } }
+        do {
+            let incoming = try await TMDBService().page(rail, page: page.number, configuration: configuration)
+            try Task.checkCancellation()
+            guard isCurrent(), nextSeriesPage(id: id) == page, var paging = seriesPaging[id],
+                  let index = curated.firstIndex(where: { $0.id == id }) else { return }
+            let merged = paging.append(incoming, to: curated[index].metas)
+            curated[index].metas = merged
+            seriesPaging[id] = paging
+            seriesPagingFailures.remove(id)
+        } catch {
+            if !Task.isCancelled, isCurrent() {
+                seriesPagingFailures.insert(id)
+            }
+        }
+    }
+
     /// The anime library titles the viewer has watched, read on the main actor for the picks filter.
     private static func watchedAnimeIDs(_ records: [LibraryRecord], app: AppModel) -> Set<String> {
         Set(records.compactMap(\.media).filter { AnimeService.isAnime($0.id) && app.library.watched($0) }.map(\.id))

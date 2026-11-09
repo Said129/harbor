@@ -83,6 +83,7 @@ struct CustomizedRails: View {
     let rails: [PageRail]
     let app: AppModel
     let customization: PageCustomization
+    var seriesPagination: ContentPageModel? = nil
     var body: some View {
         LazyVStack(spacing: 24) {
             ForEach(customization.ordered(rails, includeHidden: customization.editing)) { rail in
@@ -105,7 +106,8 @@ struct CustomizedRails: View {
                                 ContinueWatching(app: app, kind: kind, title: title, titleIsLiteral: true)
                             case .catalog(let row): CatalogRails(rows: [row], app: app, titleOverrides: [row.id: title])
                             case .discovery(let row):
-                                DiscoveryRails(rows: [row], app: app, titleOverrides: [row.id: title], disableDefaultRanking: true)
+                                DiscoveryRails(rows: [row], app: app, titleOverrides: [row.id: title], disableDefaultRanking: true,
+                                               seriesPagination: seriesPagination)
                             }
                         }
                     }
