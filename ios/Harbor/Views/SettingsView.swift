@@ -121,9 +121,7 @@ struct SettingsView: View {
                             NavigationLink { InterfaceSettingsView(identity: app.harborIdentity).toolbar(.visible, for: .navigationBar) } label: {
                                 SettingsRow(title: DesktopInterfaceText.value("Library"), icon: "nav-library")
                             }.accessibilityIdentifier("settings-interface")
-                            NavigationLink { LibraryRepairView(app: app).toolbar(.visible, for: .navigationBar) } label: {
-                                SettingsRow(title: DesktopInterfaceText.value("Repair library"), icon: "nav-library")
-                            }.accessibilityIdentifier("settings-library-repair")
+                            // "Repair library" is not offered: it needs the Stremio sign-in, which this app does not have.
                         }
                     }
                 }

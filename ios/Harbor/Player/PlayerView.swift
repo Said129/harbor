@@ -111,7 +111,7 @@ struct PlayerView: View {
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     @Environment(\.accessibilityVoiceOverEnabled) private var voiceOver
     var body: some View {
-        withLifecycle(surface
+        withLifecycle(AnyView(surface
             .foregroundStyle(.white)
             .onChange(of: state.subtitleSyncRevision) { _, _ in
                 if state.subtitleSyncPhase == .analyzing { settingsPage = nil }
@@ -151,7 +151,7 @@ struct PlayerView: View {
                     pendingEpisode = nil
                     requestEpisode(episode, from: .panel)
                 }
-            }) { episodePanel })
+            }) { episodePanel }))
     }
 
     private var surface: some View {
@@ -365,7 +365,7 @@ struct PlayerView: View {
             })
     }
 
-    private func withSkipIntro<V: View>(_ content: V) -> some View {
+    private func skipIntroLayer<V: View>(_ content: V) -> some View {
         content
         .onChange(of: state.chapters) { _, chapters in chapterSkipSegments = SkipSegment.chapters(chapters, duration: state.duration) }
         .onChange(of: state.duration) { _, duration in chapterSkipSegments = SkipSegment.chapters(state.chapters, duration: duration) }
@@ -389,7 +389,7 @@ struct PlayerView: View {
         }
     }
 
-    private func withAddonSubtitles<V: View>(_ content: V) -> some View {
+    private func addonSubtitlesLayer<V: View>(_ content: V) -> some View {
         content.task(id: "\(state.mediaGeneration):\(state.loaded):\(state.addonSubtitlesRetry)") {
             guard state.loaded, let request = session.subtitleRequest, library.map({ $0.owner == session.owner }) ?? true else { return }
             state.canSearchAddonSubtitles = true
@@ -443,7 +443,7 @@ struct PlayerView: View {
     }
 
     /// The trackers that report playback, kept in a function of their own so the lifecycle chain below stays quick to type-check.
-    private func withTrackers<V: View>(_ content: V) -> some View {
+    private func trackersLayer<V: View>(_ content: V) -> some View {
         content
             .modifier(SimklPlaybackTracking(state: state, session: session, media: media, library: library, resumePending: resumePending))
             .modifier(TraktPlaybackTracking(state: state, session: session, media: media, library: library, resumePending: resumePending))
@@ -458,7 +458,7 @@ struct PlayerView: View {
     }
 
     /// Reactions to playback state and settings, kept in a function of their own so the lifecycle chain stays quick to type-check.
-    private func withStateObservers<V: View>(_ content: V) -> some View {
+    private func stateObserversLayer<V: View>(_ content: V) -> some View {
         content
         .onChange(of: state.paused) { _, paused in
             if paused { controlsVisible = true; saveCheckpoint(exiting: false) }
@@ -481,6 +481,13 @@ struct PlayerView: View {
         .onChange(of: voiceOver) { _, enabled in if enabled { controlsVisible = true }; restartHideTimer() }
         .onChange(of: hardwareDecoding) { _, mode in state.controller?.set("hwdec", mode.mpvValue) }
     }
+
+    // Each layer below is type-erased. The player stacks dozens of modifiers, and a single concrete type that deep makes the Swift runtime
+    // recurse until the main thread's stack is exhausted when it builds the type's metadata (the crash on pressing play in build 93).
+    private func withSkipIntro<V: View>(_ content: V) -> AnyView { AnyView(skipIntroLayer(content)) }
+    private func withAddonSubtitles<V: View>(_ content: V) -> AnyView { AnyView(addonSubtitlesLayer(content)) }
+    private func withTrackers<V: View>(_ content: V) -> AnyView { AnyView(trackersLayer(content)) }
+    private func withStateObservers<V: View>(_ content: V) -> AnyView { AnyView(stateObserversLayer(content)) }
 
     private func withLifecycle<V: View>(_ content: V) -> some View {
         withStateObservers(withTrackers(withAddonSubtitles(withSkipIntro(content.background { PlayerOrientationAnchor().allowsHitTesting(false) }))))
