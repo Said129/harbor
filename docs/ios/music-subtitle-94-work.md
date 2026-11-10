@@ -2262,3 +2262,12 @@ Digest-verified evidence for run 42698823556 reports 23 of 23 passed,
 including the hosted Home, search, continuation and corrected drift
 bridge cases. Run 42701405964 reports four of four for addon stream type
 fallback and trackers. These are simulator and fixture checks.
+
+## Crash when pressing play, build 93 (10 November)
+
+A crash report from the intermediate IPA (iPhone 14, iOS 27.0.1) showed a stack overflow on the main thread inside the Swift runtime, in `swift_getTypeByMangledName`
+called from `PlayerView.withLifecycle`: the player stacked dozens of modifiers into one deeply nested generic type and the runtime recursed until the stack ran out when
+it built that type's metadata. CI never mounts the full PlayerView, so no test saw it. Fix: each lifecycle layer (`withSkipIntro`, `withAddonSubtitles`, `withTrackers`,
+`withStateObservers`) now returns `AnyView`, and the body's own chain is wrapped in `AnyView` before it enters `withLifecycle`. Rule for the future: do not add modifiers to
+`PlayerView` without keeping the layers type-erased. Also removed the Settings entry "Repair library" (it asked for a Stremio sign-in the app does not have), and the
+focused workflow job limit is now 350 minutes because a cold Release device build needs more than the old two hours.
