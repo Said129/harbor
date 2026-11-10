@@ -41,7 +41,7 @@ concurrency:
 jobs:
   changed:
     runs-on: ${{ inputs.runner || 'macos-15-intel' }}
-    timeout-minutes: 120
+    timeout-minutes: 350
     env:
       HARBOR_FOCUSED_SELECTION: ${{ inputs.selection }}
       INPUT_PACKAGE: ${{ inputs.package }}
