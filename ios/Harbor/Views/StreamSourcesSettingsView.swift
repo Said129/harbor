@@ -4,6 +4,7 @@ import SwiftUI
 /// Sorting and Picker. Home servers (Jellyfin, Emby and Plex video libraries) is not ported yet.
 struct StreamSourcesSettingsView: View {
     @AppStorage(AddonSharing.incomingLinksKey) private var acceptsInstallLinks = true
+    @AppStorage("hideContent.adult") private var hidesAdultStreams = true
     enum Tab: String, CaseIterable, Identifiable {
         case services, filters, sorting, picker
         var id: String { rawValue }
@@ -137,6 +138,8 @@ struct StreamSourcesSettingsView: View {
                     option("Off", detail: "Show all results returned by addons, including releases that do not match or may be suspicious.",
                            selected: sources.filterLevel == "off", identifier: "settings-stream-filter-off") { sources.filterLevel = "off" }
                 }
+                HarborSettingsToggle("Hide adult content", note: "Filters out streams from adult catalogs and addons. On by default.",
+                                     isOn: $hidesAdultStreams).accessibilityIdentifier("settings-hide-adult-streams")
             }
             HarborSettingsSection("Stream ranking", note: "Sources in these languages sort to the top of the picker.") {
                 HarborLanguagesPicker(value: $sources.streamLanguages, identifier: "settings-stream-languages")
