@@ -30,7 +30,7 @@ import Foundation
         let lyrics = MusicLyricsClient(scope: scope, currentScope: currentScope); self.lyrics = lyrics
         let soundcloud = SoundCloudMusicService(scope: scope, currentScope: currentScope); self.soundcloud = soundcloud
         let youtube = YouTubeMusicService(scope: scope, currentScope: currentScope); self.youtube = youtube
-        let audio =MusicAudioPreferences(owner: scope.owner); self.audio = audio
+        let audio = MusicAudioPreferences(owner: scope.owner); self.audio = audio
         let lastfm = LastFmMusicService(scope: scope, currentScope: currentScope); self.lastfm = lastfm
         spotify.configureScrobbling(lastfm)
         let catalogClient = MusicServerCatalogClient(server: server, soundcloud: soundcloud, youtube: youtube, jellyfin: jellyfin, plex: plex, currentScope: currentScope)

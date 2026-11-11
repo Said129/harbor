@@ -4379,3 +4379,5 @@
 "Índice de la comunidad" = "Bảng xếp hạng cộng đồng";
 "العربية" = "Tiếng Ả Rập";
 "music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
+"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
+"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";

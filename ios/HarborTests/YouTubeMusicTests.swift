@@ -128,6 +128,15 @@ private actor OwnedYouTubeNetwork: HarborNativeNetworkCalling {
         if case .stream = YouTubeMusicService.verdict(try response(aac)) { } else { XCTFail("A playable response gives a stream") }
     }
 
+    func testSpotifyWebPlayerFollowsOnlyHttpsPages() {
+        XCTAssertTrue(SpotifyWebSession.allows(URL(string: "https://open.spotify.com/track/abc")))
+        XCTAssertTrue(SpotifyWebSession.allows(URL(string: "https://accounts.spotify.com/login")))
+        XCTAssertTrue(SpotifyWebSession.allows(URL(string: "about:blank")))
+        XCTAssertFalse(SpotifyWebSession.allows(URL(string: "spotify:track:abc")), "deep links that open the app are not followed")
+        XCTAssertFalse(SpotifyWebSession.allows(URL(string: "http://open.spotify.com/")))
+        XCTAssertFalse(SpotifyWebSession.allows(nil))
+    }
+
     func testSmallParsingRules() {
         XCTAssertEqual(YouTubeMusicService.seconds("5:06"), 306); XCTAssertEqual(YouTubeMusicService.seconds("1:02:03"), 3723)
         XCTAssertNil(YouTubeMusicService.seconds("Norman Fucking Rockwell!")); XCTAssertNil(YouTubeMusicService.seconds("5:"))

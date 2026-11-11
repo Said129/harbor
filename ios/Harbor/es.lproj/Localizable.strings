@@ -4379,3 +4379,5 @@
 "Índice de la comunidad" = "Índice de la comunidad";
 "العربية" = "العربية";
 "music.mobile.youtube.consent" = "La búsqueda y la reproducción consultan YouTube Music y los servidores de Google. No se usa ninguna cuenta; Harbor reproduce el audio que YouTube ofrece a cualquier visitante.";
+"music.mobile.spotify.web" = "Abre el reproductor web oficial de Spotify dentro de Harbor. Inicias sesión en la página de Spotify, así que Harbor nunca ve tu contraseña. Una cuenta Free reproduce lo que Spotify permite en la web.";
+"music.mobile.spotify.webError" = "Spotify no se cargó. Revisa la conexión y vuelve a intentarlo.";

@@ -24,7 +24,7 @@ import Observation
     nonisolated static let visionAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 15_7_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15"
     private static let searchURL = "https://music.youtube.com/youtubei/v1/search?alt=json"
     private static let playerURL = "https://www.youtube.com/youtubei/v1/player?prettyPrint=false"
-    nonisolated private static let terminalReasons =["private video", "has been removed", "no longer available", "terminated", "copyright", "not available in your country", "video unavailable"]
+    nonisolated private static let terminalReasons = ["private video", "has been removed", "no longer available", "terminated", "copyright", "not available in your country", "video unavailable"]
     nonisolated static func enabledKey(_ owner: String) -> String { "music.youtube.enabled." + EBookShelf.hash(owner) }
 
     init(scope: PluginExecutionScope, currentScope: @escaping @MainActor () -> PluginExecutionScope,
@@ -134,11 +134,13 @@ import Observation
         .object(["client": .object(["clientName": .string("WEB_REMIX"), "clientVersion": .string(clientVersion(date)), "hl": .string("en"), "gl": .string("US")]), "user": .object([:])])
     }
     nonisolated static func playerBody(_ video: String) -> JSONValue {
-        .object(["videoId": .string(video), "contentCheckOk": .bool(true), "racyCheckOk": .bool(true),
-                 "context": .object(["client": .object(["clientName": .string("VISIONOS"), "clientVersion": .string("1.02"), "deviceMake": .string("Apple"),
-                                                         "deviceModel": .string("RealityDevice17,1"), "userAgent": .string(visionAgent), "osName": .string("visionOS"),
-                                                         "osVersion": .string("26.5.23O471"), "hl": .string("en"), "timeZone": .string("UTC"), "utcOffsetMinutes": .integer(0)]),
-                                      "user": .object([:])])])
+        let client: [String: JSONValue] = [
+            "clientName": .string("VISIONOS"), "clientVersion": .string("1.02"), "deviceMake": .string("Apple"),
+            "deviceModel": .string("RealityDevice17,1"), "userAgent": .string(visionAgent), "osName": .string("visionOS"),
+            "osVersion": .string("26.5.23O471"), "hl": .string("en"), "timeZone": .string("UTC"), "utcOffsetMinutes": .integer(0),
+        ]
+        let context: [String: JSONValue] = ["client": .object(client), "user": .object([:])]
+        return .object(["videoId": .string(video), "contentCheckOk": .bool(true), "racyCheckOk": .bool(true), "context": .object(context)])
     }
     nonisolated static func videoID(_ track: MusicTrack) -> String? {
         var raw = track.sourceId ?? track.id
@@ -150,7 +152,7 @@ import Observation
         let status = response["playabilityStatus"]["status"].string ?? "OK"
         if status != "OK" {
             let reason = (response["playabilityStatus"]["reason"].string ?? "").lowercased()
-            if status == "ERROR" || terminalReasons.contains(where: reason.contains) { return .unavailable }
+            if status == "ERROR" || terminalReasons.contains(where: { reason.contains($0) }) { return .unavailable }
             return .challenge
         }
         return stream(response).map(Verdict.stream) ?? .challenge
@@ -163,18 +165,22 @@ import Observation
             guard let raw = format["url"].string, let url = URL(string: raw), url.scheme == "https", let host = url.host, host.hasSuffix(".googlevideo.com") else { return nil }
             return url
         }
-        let chosen = [140, 251].lazy.compactMap { itag in formats.first { $0["itag"].integer == itag && usable($0) != nil } }.first
-            ?? formats.filter { usable($0) != nil }.max { ($0["bitrate"].integer ?? 0) < ($1["bitrate"].integer ?? 0) }
+        let playable = formats.filter { usable($0) != nil }
+        var chosen: JSONValue?
+        for itag in [140, 251] where chosen == nil { chosen = playable.first { $0["itag"].integer == itag } }
+        if chosen == nil { chosen = playable.max { ($0["bitrate"].integer ?? 0) < ($1["bitrate"].integer ?? 0) } }
         guard let chosen, let url = usable(chosen) else { return nil }
-        let mime = chosen["mimeType"].string?.split(separator: ";").first.map { $0.trimmingCharacters(in: .whitespaces) } ?? "audio/mp4"
-        return .init(url: url, httpHeaders: ["User-Agent": visionAgent], mimeType: mime, bitrate: UInt64(max(0, chosen["bitrate"].integer ?? 0)))
+        let declared = chosen["mimeType"].string ?? "audio/mp4"
+        let mime = declared.split(separator: ";").first.map { String($0).trimmingCharacters(in: .whitespaces) } ?? "audio/mp4"
+        let bitrate = UInt64(max(0, chosen["bitrate"].integer ?? 0))
+        return MusicAudioStream(url: url, httpHeaders: ["User-Agent": visionAgent], mimeType: mime, bitrate: bitrate)
     }
     nonisolated static func tracks(from response: JSONValue) -> [MusicTrack] {
         let tab = response["contents"]["tabbedSearchResultsRenderer"]["tabs"].array.first ?? .null
         var output: [MusicTrack] = [], seen = Set<String>()
         for section in tab["tabRenderer"]["content"]["sectionListRenderer"]["contents"].array {
             for item in section["musicShelfRenderer"]["contents"].array {
-                if let track = track(item["musicResponsiveListItemRenderer"]), seen.insert(track.id).inserted { output.append(track) }
+                if let parsed = track(item["musicResponsiveListItemRenderer"]), seen.insert(parsed.id).inserted { output.append(parsed) }
             }
         }
         return output
@@ -200,10 +206,11 @@ import Observation
         let album = groups.count > 1 ? groups[1] : nil
         let total = duration.flatMap(seconds) ?? 0
         let art = row["thumbnail"]["musicThumbnailRenderer"]["thumbnail"]["thumbnails"].array.last?["url"].string ?? ""
-        var track = MusicTrack(id: "youtube:" + video, connectorId: "youtube", sourceId: video, playbackUrl: nil, title: title, artist: artist, album: album,
-                               artwork: artwork(art), durationSeconds: total, durationLabel: duration ?? "")
-        if row["badges"].array.contains(where: { $0["musicInlineBadgeRenderer"]["icon"]["iconType"].string == "MUSIC_EXPLICIT_BADGE" }) { track.explicit = true }
-        return track
+        let cover = artwork(art)
+        var built = MusicTrack(id: "youtube:" + video, connectorId: "youtube", sourceId: video, playbackUrl: nil, title: title, artist: artist, album: album,
+                               artwork: cover, durationSeconds: total, durationLabel: duration ?? "")
+        if row["badges"].array.contains(where: { $0["musicInlineBadgeRenderer"]["icon"]["iconType"].string == "MUSIC_EXPLICIT_BADGE" }) { built.explicit = true }
+        return built
     }
     nonisolated static func seconds(_ label: String) -> UInt64? {
         let parts = label.split(separator: ":", omittingEmptySubsequences: false)

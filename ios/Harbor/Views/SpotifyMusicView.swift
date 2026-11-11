@@ -9,6 +9,10 @@ import UIKit
     @State private var seeking = false
     var body: some View {
         Form {
+            Section("Spotify Web") {
+                NavigationLink("Spotify Web Player") { SpotifyWebView(owner: service.scope.owner) }.accessibilityIdentifier("music-spotify-web-link")
+                Text(DesktopInterfaceText.value("music.mobile.spotify.web")).font(.footnote).foregroundStyle(.secondary)
+            }
             Section("Spotify · iPhone / iPad") {
                 Text(DesktopInterfaceText.value("music.mobile.spotify.remote")).font(.footnote)
                 Label(DesktopInterfaceText.value(service.connected ? "music.connections.statusConnected" : "music.connections.statusDisconnected"), systemImage: service.connected ? "checkmark.circle.fill" : "link")
