@@ -212,6 +212,7 @@ extension EnvironmentValues {
         switch player.currentTrack?.connectorId {
         case .some("subsonic"): return "Subsonic"
         case .some("soundcloud"): return "SoundCloud"
+        case .some("youtube"): return "YouTube Music"
         case .some("jellyfin"): return "Jellyfin"
         case .some("plex"): return "Plex"
         case .some("local"): return DesktopInterfaceText.value("music.library.permanent")

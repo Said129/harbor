@@ -12,6 +12,7 @@ import Foundation
     let spotify: SpotifyMusicService
     let lyrics: MusicLyricsClient
     let soundcloud: SoundCloudMusicService
+    let youtube: YouTubeMusicService
     let audio: MusicAudioPreferences
     let lastfm: LastFmMusicService
     let catalog: MusicCatalogModel
@@ -28,12 +29,13 @@ import Foundation
         spotify = SpotifyMusicService(scope: scope, currentScope: currentScope)
         let lyrics = MusicLyricsClient(scope: scope, currentScope: currentScope); self.lyrics = lyrics
         let soundcloud = SoundCloudMusicService(scope: scope, currentScope: currentScope); self.soundcloud = soundcloud
-        let audio = MusicAudioPreferences(owner: scope.owner); self.audio = audio
+        let youtube = YouTubeMusicService(scope: scope, currentScope: currentScope); self.youtube = youtube
+        let audio =MusicAudioPreferences(owner: scope.owner); self.audio = audio
         let lastfm = LastFmMusicService(scope: scope, currentScope: currentScope); self.lastfm = lastfm
         spotify.configureScrobbling(lastfm)
-        let catalogClient = MusicServerCatalogClient(server: server, soundcloud: soundcloud, jellyfin: jellyfin, plex: plex, currentScope: currentScope)
+        let catalogClient = MusicServerCatalogClient(server: server, soundcloud: soundcloud, youtube: youtube, jellyfin: jellyfin, plex: plex, currentScope: currentScope)
         catalog = MusicCatalogModel(client: catalogClient)
-        playback = MusicPlaybackSession(server: server, playlists: playlists, localRecords: { library.records }, localRevision: { library.revision }, lyrics: lyrics, soundcloud: soundcloud, jellyfin: jellyfin, plex: plex, audio: audio, lastfm: lastfm, catalog: catalogClient, currentScope: currentScope)
+        playback = MusicPlaybackSession(server: server, playlists: playlists, localRecords: { library.records }, localRevision: { library.revision }, lyrics: lyrics, soundcloud: soundcloud, youtube: youtube, jellyfin: jellyfin, plex: plex, audio: audio, lastfm: lastfm, catalog: catalogClient, currentScope: currentScope)
     }
-    func dispose() { disposed = true; lastfm.dispose(); plex.dispose(); jellyfin.dispose(); soundcloud.dispose(); lyrics.dispose(); spotify.dispose(); server.dispose(); library.cancelImport(); catalog.invalidatePrivateServer() }
+    func dispose() { disposed = true; lastfm.dispose(); plex.dispose(); jellyfin.dispose(); soundcloud.dispose(); youtube.dispose(); lyrics.dispose(); spotify.dispose(); server.dispose(); library.cancelImport(); catalog.invalidatePrivateServer() }
 }

@@ -8,6 +8,7 @@ import Foundation
     let plex: PlexMusicService?
     let jellyfin: JellyfinMusicService?
     let soundcloud: SoundCloudMusicService?
+    let youtube: YouTubeMusicService?
     let audio: MusicAudioPreferences?
     let lastfm: LastFmMusicService?
     let catalog: any MusicCatalogCalling
@@ -19,11 +20,11 @@ import Foundation
     private let currentScope: @MainActor () -> PluginExecutionScope
     init(server: SubsonicMusicService, playlists: MusicPlaylistStore,
          localRecords: @escaping @MainActor () -> [MusicRecord], localRevision: (@MainActor () -> UInt64)? = nil,
-         lyrics: MusicLyricsClient? = nil, soundcloud: SoundCloudMusicService? = nil, jellyfin: JellyfinMusicService? = nil, plex: PlexMusicService? = nil, audio: MusicAudioPreferences? = nil, lastfm: LastFmMusicService? = nil, catalog: (any MusicCatalogCalling)? = nil, currentScope: @escaping @MainActor () -> PluginExecutionScope) {
+         lyrics: MusicLyricsClient? = nil, soundcloud: SoundCloudMusicService? = nil, youtube: YouTubeMusicService? = nil, jellyfin: JellyfinMusicService? = nil, plex: PlexMusicService? = nil, audio: MusicAudioPreferences? = nil, lastfm: LastFmMusicService? = nil, catalog: (any MusicCatalogCalling)? = nil, currentScope: @escaping @MainActor () -> PluginExecutionScope) {
         self.server = server; scope = server.scope; self.playlists = playlists
         self.localRecords = localRecords; self.localRevision = localRevision; self.currentScope = currentScope
         self.lyrics = lyrics
-        self.soundcloud = soundcloud; self.jellyfin = jellyfin; self.plex = plex
+        self.soundcloud = soundcloud; self.youtube = youtube; self.jellyfin = jellyfin; self.plex = plex
         self.audio = audio
         self.lastfm = lastfm
         self.catalog = catalog ?? MusicCatalogClient()
@@ -55,16 +56,17 @@ import Foundation
     }
     func sources(for track: MusicTrack) async throws -> [MusicSourceCandidate] {
         try validate()
-        let version = server.credentialVersion, cloudVersion = soundcloud?.connectionRevision, jellyfinVersion = jellyfin?.credentialVersion, plexVersion = plex?.credentialVersion
+        let version = server.credentialVersion, cloudVersion = soundcloud?.connectionRevision, youtubeVersion = youtube?.connectionRevision, jellyfinVersion = jellyfin?.credentialVersion, plexVersion = plex?.credentialVersion
         let locals = localRecords().map(\.local.track)
         async let localMatches = MusicRecordingMatching.ranked(locals, for: track)
         async let serverMatches = matching(server.configured ? server : nil, track: track)
         async let cloudMatches = matching(soundcloud?.enabled == true ? soundcloud : nil, track: track)
         async let jellyfinMatches = matching(jellyfin?.configured == true ? jellyfin : nil, track: track)
         async let plexMatches = matching(plex?.configured == true ? plex : nil, track: track)
-        let replies = try await (localMatches, serverMatches, cloudMatches, jellyfinMatches, plexMatches)
+        async let youtubeMatches = matching(youtube?.enabled == true ? youtube : nil, track: track)
+        let replies = try await (localMatches, serverMatches, cloudMatches, jellyfinMatches, plexMatches, youtubeMatches)
         try validate()
-        guard version == server.credentialVersion, cloudVersion == soundcloud?.connectionRevision, jellyfinVersion == jellyfin?.credentialVersion, plexVersion == plex?.credentialVersion else { throw CancellationError() }
+        guard version == server.credentialVersion, cloudVersion == soundcloud?.connectionRevision, youtubeVersion == youtube?.connectionRevision, jellyfinVersion == jellyfin?.credentialVersion, plexVersion == plex?.credentialVersion else { throw CancellationError() }
         var values: [MusicSourceCandidate] = []
         if track.playbackUrl != nil || localRecord(track) != nil {
             values.append(.init(connectorId: track.connectorId ?? "direct", connectorName: track.connectorId ?? "Direct stream", health: .healthy, track: track))
@@ -74,6 +76,7 @@ import Foundation
         values += replies.2.prefix(3).map { .init(connectorId: "soundcloud", connectorName: "SoundCloud", health: soundcloud?.health ?? .unknown, track: $0) }
         values += replies.3.prefix(3).map { .init(connectorId: "jellyfin", connectorName: "Jellyfin", health: jellyfin?.health ?? .unknown, track: $0) }
         values += replies.4.prefix(3).map { .init(connectorId: "plex", connectorName: "Plex", health: plex?.health ?? .unknown, track: $0) }
+        values += replies.5.prefix(3).map { .init(connectorId: "youtube", connectorName: "YouTube Music", health: youtube?.health ?? .unknown, track: $0) }
         var seen = Set<String>()
         return values.filter { seen.insert($0.id).inserted }
     }
@@ -171,6 +174,7 @@ import Foundation
         switch connector {
         case "subsonic": source = server
         case "soundcloud": source = soundcloud?.enabled == true ? soundcloud : nil
+        case "youtube": source = youtube?.enabled == true ? youtube : nil
         case "jellyfin": source = jellyfin?.configured == true ? jellyfin : nil
         case "plex": source = plex?.configured == true ? plex : nil
         default: source = nil
@@ -181,7 +185,7 @@ import Foundation
 
     private func resolveSelected(_ track: MusicTrack) async throws -> MusicPlaybackResolution {
         try validate(); let version = server.credentialVersion
-        let cloudVersion = soundcloud?.connectionRevision
+        let cloudVersion = soundcloud?.connectionRevision, youtubeVersion = youtube?.connectionRevision
         guard playlists.remember([track]) else { throw HarborError(code: "music-store") }
         if track.connectorId == "plex" {
             guard let plex else { throw HarborError(code: "music-source-required") }
@@ -201,13 +205,17 @@ import Foundation
             stream = try await server.resolve(track)
         } else if track.connectorId == "soundcloud", let soundcloud {
             stream = try await soundcloud.resolve(track)
+        } else if track.connectorId == "youtube", let youtube {
+            stream = try await youtube.resolve(track)
         } else { throw HarborError(code: "music-source-required") }
         try validate()
         guard track.connectorId != "subsonic" || version == server.credentialVersion else { throw CancellationError() }
         return .init(stream: stream, valid: { [weak self] in
             guard let self, (try? self.validate()) != nil else { return false }
-            return (track.connectorId != "subsonic" || version == self.server.credentialVersion) &&
-                (track.connectorId != "soundcloud" || cloudVersion == self.soundcloud?.connectionRevision && self.soundcloud?.enabled == true)
+            if track.connectorId == "subsonic", version != self.server.credentialVersion { return false }
+            if track.connectorId == "soundcloud", cloudVersion != self.soundcloud?.connectionRevision || self.soundcloud?.enabled != true { return false }
+            if track.connectorId == "youtube", youtubeVersion != self.youtube?.connectionRevision || self.youtube?.enabled != true { return false }
+            return true
         })
     }
     func scrobble(_ track: MusicTrack, startedAt: UInt64) async throws {

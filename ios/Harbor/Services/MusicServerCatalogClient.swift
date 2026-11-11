@@ -7,12 +7,13 @@ import Foundation
     let plex: PlexMusicService?
     let jellyfin: JellyfinMusicService?
     let soundcloud: SoundCloudMusicService?
+    let youtube: YouTubeMusicService?
     private let catalog: any MusicCatalogCalling
     private let currentScope: @MainActor () -> PluginExecutionScope
     private let browseTimeout: Duration
-    init(server: SubsonicMusicService, catalog: any MusicCatalogCalling = MusicCatalogClient(), soundcloud: SoundCloudMusicService? = nil, jellyfin: JellyfinMusicService? = nil, plex: PlexMusicService? = nil,
+    init(server: SubsonicMusicService, catalog: any MusicCatalogCalling = MusicCatalogClient(), soundcloud: SoundCloudMusicService? = nil, youtube: YouTubeMusicService? = nil, jellyfin: JellyfinMusicService? = nil, plex: PlexMusicService? = nil,
          browseTimeout: Duration = .seconds(12), currentScope: @escaping @MainActor () -> PluginExecutionScope) {
-        self.server = server; self.catalog = catalog; self.jellyfin = jellyfin; self.plex = plex; self.soundcloud = soundcloud; self.browseTimeout = browseTimeout; self.currentScope = currentScope
+        self.server = server; self.catalog = catalog; self.jellyfin = jellyfin; self.plex = plex; self.soundcloud = soundcloud; self.youtube = youtube; self.browseTimeout = browseTimeout; self.currentScope = currentScope
     }
     private func validate(_ version: UUID, jellyfinVersion: UUID?, plexVersion: UUID?) throws {
         try server.validateCatalogScope(); try jellyfin?.validate(); try plex?.validate()
@@ -33,6 +34,7 @@ import Foundation
         }
         if id == "subsonic" { return server }
         if id == "soundcloud", let soundcloud { return soundcloud }
+        if id == "youtube", let youtube { return youtube }
         return catalog
     }
     func home() async throws -> [MusicCatalogRow] {
@@ -67,9 +69,14 @@ import Foundation
             async let jellyfinResult = configuredJellyfinSearch(query, limit: limit)
             async let cloudResult = configuredCloudSearch(query, limit: limit)
             async let plexResult = configuredPlexSearch(query, limit: limit)
-            let replies = await (publicResult, jellyfinResult, cloudResult, privateResult, plexResult)
-            return try MusicCatalogMerge.search([replies.0, replies.1, replies.4, replies.2, replies.3], limit: limit)
+            async let youtubeResult = configuredYouTubeSearch(query, limit: limit)
+            let replies = await (publicResult, jellyfinResult, cloudResult, privateResult, plexResult, youtubeResult)
+            return try MusicCatalogMerge.search([replies.0, replies.5, replies.1, replies.4, replies.2, replies.3], limit: limit)
         }
+    }
+    private func configuredYouTubeSearch(_ query: String, limit: Int) async -> MusicCatalogReply {
+        guard let youtube, youtube.enabled else { return .failure }
+        return await Self.search(youtube, query: query, limit: limit)
     }
     private func configuredPlexRows() async -> [MusicCatalogRow] {
         guard let plex, plex.configured else { return [] }

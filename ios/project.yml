@@ -294,6 +294,7 @@ targets:
       - path: HarborTests/SharedMusicTestSupport.swift
       - path: HarborTests/SpotifyMusicTests.swift
       - path: HarborTests/SoundCloudMusicTests.swift
+      - path: HarborTests/YouTubeMusicTests.swift
       - path: HarborTests/Fixtures
         type: folder
         buildPhase: resources

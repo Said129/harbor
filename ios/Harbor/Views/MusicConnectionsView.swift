@@ -14,6 +14,15 @@ import SwiftUI
                 }
                 Section(DesktopInterfaceText.value("music.connections.streaming")) {
                     NavigationLink("Spotify · Free / Premium") { SpotifyMusicView(service: workspace.spotify) }
+                    NavigationLink("YouTube Music") {
+                        Form {
+                            Section("YouTube Music") {
+                                Text(DesktopInterfaceText.value("music.mobile.youtube.consent")).font(.footnote)
+                                Link(DesktopInterfaceText.value("Terms"), destination: URL(string: "https://www.youtube.com/t/terms")!)
+                                Toggle(DesktopInterfaceText.value("Enabled"), isOn: Binding(get: { workspace.youtube.enabled }, set: { workspace.youtube.setEnabled($0); changed() }))
+                            }
+                        }.navigationTitle("YouTube Music")
+                    }
                     NavigationLink("SoundCloud") {
                         Form {
                             Section("SoundCloud") {
@@ -40,6 +49,7 @@ import SwiftUI
                         Text("Subsonic").tag("subsonic")
                         if workspace.plex.configured { Text("Plex").tag("plex") }
                         if workspace.jellyfin.configured { Text("Jellyfin").tag("jellyfin") }
+                        if workspace.youtube.enabled { Text("YouTube Music").tag("youtube") }
                         if workspace.soundcloud.enabled { Text("SoundCloud").tag("soundcloud") }
                     }
                 }
