@@ -2271,3 +2271,29 @@ it built that type's metadata. CI never mounts the full PlayerView, so no test s
 `withStateObservers`) now returns `AnyView`, and the body's own chain is wrapped in `AnyView` before it enters `withLifecycle`. Rule for the future: do not add modifiers to
 `PlayerView` without keeping the layers type-erased. Also removed the Settings entry "Repair library" (it asked for a Stremio sign-in the app does not have), and the
 focused workflow job limit is now 350 minutes because a cold Release device build needs more than the old two hours.
+
+## Music from YouTube without an account, and Spotify web (12 November)
+
+Report from the owner: Desktop plays "California" by Lana Del Rey with no setup, while the iPhone said the source could not play it. Cause: Desktop resolves
+songs through yt-dlp and its default playback source is YouTube Music; the iPhone only had SoundCloud, which serves 30-second previews for commercial music, so
+the catalogue song had no playable source. The earlier probe from this PC concluded the player endpoint was bot-blocked. That was wrong: it sent no visitor id.
+
+What the real yt-dlp does (read with `--print-traffic` on this PC): it asks the `VISIONOS` player client (client name 101, version 1.02, Safari user agent) with an
+`X-Goog-Visitor-Id` header and no PO token and no JavaScript challenge; the answer carries direct URLs for itag 140 (AAC) and 251 (Opus), including `Range: bytes=0-`
+and any user agent. Without the visitor id the answer is `LOGIN_REQUIRED` ("Sign in to confirm you're not a bot"). The id comes from the `responseContext.visitorData` of any
+YouTube Music search response (checked on four tracks, alone and with the music page's own id).
+
+`YouTubeMusicService` searches YouTube Music (WEB_REMIX, songs filter, the pinned Desktop request), keeps the visitor id in the defaults, and resolves a song through that
+player request. AAC first, Opus second, only `googlevideo.com` URLs. A challenge gets one fresh visitor, then the track is given up. The pinned source policy already ranks
+`youtube` before `soundcloud`, so a catalogue song now plays from YouTube first. The source starts on (Desktop needs no setup), has its own switch under Music connections
+and an entry in the preferred-source picker. New text `music.mobile.youtube.consent` is in all 16 locale files.
+
+`MusicPlaybackSession.resolve` now tries the next candidate when the chosen source cannot play (a preview-only SoundCloud match, a bot check) instead of failing the song.
+
+Not done and not verified on a device: the YouTube path was only exercised from this PC with Python, and the Swift code only by fixture tests in CI. YouTube can change the
+client it accepts; Desktop keeps yt-dlp updated for that reason. Albums, artists, playlists and home shelves of YouTube Music are not ported; only songs.
+
+Spotify web: the Spotify connection screen has a "Spotify Web Player" entry that loads `open.spotify.com` in a web view with a data store of its own (login persists, not shared
+with other pages) and a desktop user agent. The person signs in on Spotify's page; the app never sees the password and does not script or read the page. Only https pages are
+followed. Harbor's own interface over Spotify (native lists, Harbor controls) is not built: it would need Spotify's private web endpoints or its Premium-only developer API.
+Whether the web view plays full songs on an iPhone is unverified; Spotify lists Safari on iPhone as supported but embeds in web views are known to fall back to previews.

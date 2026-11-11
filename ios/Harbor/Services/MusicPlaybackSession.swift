@@ -47,10 +47,23 @@ import Foundation
     func resolve(_ track: MusicTrack) async throws -> MusicPlaybackResolution {
         try validate()
         if track.connectorId == "catalog" || track.connectorId == nil && track.playbackUrl == nil {
-            let candidates = try await sources(for: track)
-            guard let choice = try policy.choose(track, candidates: candidates, preferred: UserDefaults.standard.string(forKey: "harbor.music.preferredSource")) else { throw HarborError(code: "music-source-required") }
-            var resolution = try await resolveSelected(choice.track)
-            resolution.recording = choice.track; return resolution
+            var candidates = try await sources(for: track)
+            let preferred = UserDefaults.standard.string(forKey: "harbor.music.preferredSource")
+            var lastFailure: Error?
+            // A source that cannot play the song (a preview-only match, a bot check) hands over to the next one.
+            while let choice = try policy.choose(track, candidates: candidates, preferred: preferred) {
+                do {
+                    var resolution = try await resolveSelected(choice.track)
+                    resolution.recording = choice.track; return resolution
+                } catch is CancellationError { throw CancellationError() }
+                catch {
+                    lastFailure = error
+                    let before = candidates.count
+                    candidates.removeAll { $0.track.id == choice.track.id && $0.track.connectorId == choice.track.connectorId }
+                    if candidates.count == before { break }
+                }
+            }
+            throw lastFailure ?? HarborError(code: "music-source-required")
         }
         return try await resolveSelected(track)
     }
