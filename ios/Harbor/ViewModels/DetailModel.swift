@@ -580,6 +580,11 @@ final class DetailModel {
             let aligned = !anime || episode?.imdbEpisode == nil || episode?.episode == episode?.imdbEpisode
             let expected = (season: aligned ? (episode?.imdbSeason ?? episode?.season) : episode?.season,
                             episode: aligned ? (episode?.imdbEpisode ?? episode?.episode) : episode?.episode)
+            // Desktop's animeEpisodeAliases: the IMDb episode also counts when it differs from the requested one.
+            let animeAliases: [Int] = {
+                guard let imdb = episode?.imdbEpisode, let own = episode?.episode, imdb != own else { return [] }
+                return [imdb]
+            }()
             // Desktop's automatic start does not check episode numbers for anime ids.
             if selected.id.range(of: "^(kitsu|mal|anilist|anidb):", options: .regularExpression) != nil {
                 autoSettle.season = nil; autoSettle.episode = nil
@@ -594,7 +599,7 @@ final class DetailModel {
                 self.considerAutoplay(done: false)
             }
             let result = try await service.streamResults(selected, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode,
-                filterLevel: level, trustEpisode: episode == nil ? nil : expected, pluginSource: plugins, debrid: debridClient, progress: progress)
+                filterLevel: level, trustEpisode: episode == nil ? nil : expected, animeAliases: animeAliases, pluginSource: plugins, debrid: debridClient, progress: progress)
             try Task.checkCancellation()
             guard streamRequest == request, contextRevision() == context else { return }
             rankedOffers = stable(result.offers)

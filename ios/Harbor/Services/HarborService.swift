@@ -246,7 +246,7 @@ struct HarborService: Sendable {
     /// `trustEpisode` is the episode the safety filter expects when it differs from the requested
     /// coordinates (Desktop's IMDb-aligned `effSeason`/`effEpisode`).
     func streamResults(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil, filterLevel: String? = nil,
-        trustEpisode: (season: Int?, episode: Int?)? = nil,
+        trustEpisode: (season: Int?, episode: Int?)? = nil, animeAliases: [Int] = [],
         pluginSource: (@Sendable () async throws -> HarborPluginStreamBatch)? = nil, debrid: DebridClient? = nil,
         progress: (@MainActor @Sendable (StreamBatch) async -> Void)? = nil) async throws -> StreamResults {
         let preferences = await StreamPreferences.shared.configuration()
@@ -259,8 +259,14 @@ struct HarborService: Sendable {
         let trust = StreamFilterConfiguration(level: level, addonOrder: preferences.addonOrder, sources: preferences.sources).trust(media, season: expected.season, episode: expected.episode)
         let active = await debrid?.providers ?? []
         let score = Self.scoring(media, addonOrder: preferences.addonOrder, active: active, sources: preferences.sources)
+        // Desktop's anime inputs: the absolute episode of a kitsu or mal id, its accepted aliases, and each stream's filename fields.
+        let absolute = AnimeStreamEnrichment.absoluteEpisode(videoID)
+        let animeOptions: JSONValue = .object(["absoluteEpisode": absolute.map { JSONValue.integer(Int64($0)) } ?? .null,
+                                               "aliases": .array(animeAliases.map { JSONValue.integer(Int64($0)) })])
         func ranked(_ raw: [JSONValue], _ verification: DebridVerification) async throws -> (offers: [StreamOffer], rejected: [String]) {
-            let result: JSONValue = try await core.call("rank", ["streams": .array(StreamRequestPolicy.deduplicated(raw)), "trust": trust, "score": score, "debrid": verification.flags])
+            var streams = StreamRequestPolicy.deduplicated(raw)
+            if absolute != nil { streams = streams.map(AnimeStreamEnrichment.withFields) }
+            let result: JSONValue = try await core.call("rank", ["streams": .array(streams), "trust": trust, "score": score, "debrid": verification.flags, "anime": animeOptions])
             return (Self.ordered(result, addons: addons, preferences: preferences), result["rejected"].array.compactMap { $0["reason"].string })
         }
         func rank(_ raw: [JSONValue], _ verification: DebridVerification) async throws -> [StreamOffer] { try await ranked(raw, verification).offers }

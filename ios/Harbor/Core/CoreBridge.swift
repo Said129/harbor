@@ -37,6 +37,7 @@ struct HarborError: Error, LocalizedError, Sendable {
         case "no-video-file": "El torrent no contiene un archivo de vídeo que el servicio de debrid pueda abrir."
         case "all-debrids-failed", "magnet-error", "timeout", "no-link", "network-error", "invalid-playback-url", "dead", "virus": "No se pudo obtener el enlace de reproducción del servicio de debrid. Prueba con otra fuente."
         case "youtube-resolver-pending": "La resolución de YouTube todavía está pendiente."
+        case "nzb-resolver-pending": "Este enlace es un NZB sin procesar. Necesita SABnzbd o NZBGet para descargarlo antes de reproducirlo."
         case "addon-not-configured": "Configura este addon antes de reproducir."
         case "addon-not-installed": "Este addon ya no está instalado."
         case "addon-reconfigure-mismatch": "El enlace pertenece a otro addon. La configuración anterior se ha conservado."
