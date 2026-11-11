@@ -80,7 +80,7 @@ enum DebridStreamVerifier {
         return (provider, cached, library)
     }
 
-    private static func bounded<T: Sendable>(_ work: @escaping @Sendable () async throws -> T) async -> T? {
+    static func bounded<T: Sendable>(_ work: @escaping @Sendable () async throws -> T) async -> T? {
         await withTaskGroup(of: T?.self) { group in
             group.addTask { try? await work() }
             group.addTask { try? await Task.sleep(for: .seconds(timeoutSeconds)); return nil }

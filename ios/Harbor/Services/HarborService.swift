@@ -219,6 +219,7 @@ struct HarborService: Sendable {
         case reply(RequestPlan, JSONValue?, String?)
         case plugin(HarborPluginStreamBatch)
         case verified([String], DebridVerification)
+        case library([JSONValue])
     }
 
     /// The final list with what Desktop's picker needs to explain an empty one: how many
@@ -259,8 +260,11 @@ struct HarborService: Sendable {
         let trust = StreamFilterConfiguration(level: level, addonOrder: preferences.addonOrder, sources: preferences.sources).trust(media, season: expected.season, episode: expected.episode)
         let active = await debrid?.providers ?? []
         let score = Self.scoring(media, addonOrder: preferences.addonOrder, active: active, sources: preferences.sources)
+        // Desktop's fetchLibraryStreams: the title's matches in the provider libraries, merged ahead of the addon streams.
+        var libraryStreams: [JSONValue] = []
         func ranked(_ raw: [JSONValue], _ verification: DebridVerification) async throws -> (offers: [StreamOffer], rejected: [String]) {
-            let result: JSONValue = try await core.call("rank", ["streams": .array(StreamRequestPolicy.deduplicated(raw)), "trust": trust, "score": score, "debrid": verification.flags])
+            let merged = libraryStreams.isEmpty ? raw : DebridLibraryMerge.mergeAndDedupe(library: libraryStreams, addons: raw)
+            let result: JSONValue = try await core.call("rank", ["streams": .array(StreamRequestPolicy.deduplicated(merged)), "trust": trust, "score": score, "debrid": verification.flags])
             return (Self.ordered(result, addons: addons, preferences: preferences), result["rejected"].array.compactMap { $0["reason"].string })
         }
         func rank(_ raw: [JSONValue], _ verification: DebridVerification) async throws -> [StreamOffer] { try await ranked(raw, verification).offers }
@@ -268,6 +272,8 @@ struct HarborService: Sendable {
             raw.filter { stream in stream["infoHash"].string.map { !checked.contains($0.lowercased()) } ?? false }
         }
         let total = selection.plans.count, clock = ContinuousClock()
+        let librarySearch = debrid != nil && !active.isEmpty
+        let libraryQuery = DebridLibraryMerge.query(type: media.type, title: media.name, releaseInfo: media.releaseInfo, season: expected.season, episode: expected.episode)
         return try await withThrowingTaskGroup(of: StreamEvent.self) { group in
             for plan in selection.plans {
                 let fallbacks = selection.fallbacks[plan.key] ?? []
@@ -283,8 +289,14 @@ struct HarborService: Sendable {
                     return .plugin(batch)
                 }
             }
+            if let debrid, librarySearch {
+                group.addTask {
+                    let found = await DebridStreamVerifier.bounded({ await DebridLibraryMerge.libraryStreams(providers: active, query: libraryQuery, list: DebridLibraryMerge.lister(debrid)) })
+                    return .library(found ?? [])
+                }
+            }
             var raw: [JSONValue] = [], errors: [String] = [], answered = 0
-            var outstanding = selection.plans.count + (pluginSource == nil ? 0 : 1)
+            var outstanding = selection.plans.count + (pluginSource == nil ? 0 : 1) + (librarySearch ? 1 : 0)
             var verification = DebridVerification(), checked = Set<String>(), verifying = false
             var lastCheck: ContinuousClock.Instant?, lastPartial: ContinuousClock.Instant?
             while let event = try await group.next() {
@@ -305,6 +317,10 @@ struct HarborService: Sendable {
                 case .verified(let hashes, let result):
                     checked.formUnion(hashes); verification.merge(result); verifying = false; lastCheck = clock.now
                     forcePartial = !result.isEmpty
+                case .library(let found):
+                    libraryStreams = found
+                    verification.merge(DebridLibraryMerge.verification(of: found))
+                    forcePartial = !found.isEmpty
                 }
                 try Task.checkCancellation()
                 // Providers confirm the new hashes while the other addons keep answering.
@@ -319,7 +335,7 @@ struct HarborService: Sendable {
                     }
                 }
                 // The last answer goes straight to the final list instead of a partial.
-                guard let progress, !raw.isEmpty, outstanding > 0,
+                guard let progress, !raw.isEmpty || !libraryStreams.isEmpty, outstanding > 0,
                       forcePartial || lastPartial.map({ clock.now - $0 >= Self.partialInterval }) ?? true else { continue }
                 lastPartial = clock.now
                 if let offers = try? await rank(raw, verification), !offers.isEmpty {

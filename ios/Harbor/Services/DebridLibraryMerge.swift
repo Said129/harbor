@@ -133,6 +133,71 @@ enum DebridLibraryMerge {
             .replacingOccurrences(of: #"[\s.\-_()\[\]:;,!?'"‘’“”–—]+"#, with: "", options: .regularExpression)
     }
 
+    /// Desktop's LibraryQuery for the title being opened (`buildPipelineInput` in `episode-pipeline-input.ts`).
+    /// A series when an episode is set or the title is a series, and the year is the first year of the release
+    /// range. `season` and `episode` are the coordinates the stream pipeline already uses for this title.
+    static func query(type: String, title: String, releaseInfo: String?, season: Int?, episode: Int?) -> Query {
+        let isSeries = episode != nil || type == "series"
+        var year: Int?
+        if let info = releaseInfo {
+            year = Int(String(info.prefix(while: { $0.isNumber })))
+        }
+        return Query(type: isSeries ? .series : .movie, title: title, year: year, season: season, episode: episode)
+    }
+
+    /// Desktop's fetchLibraryStreams for one title: every provider listing is matched and the matches become
+    /// library streams. Nothing is listed for a provider that fails, as in `listings`.
+    static func libraryStreams(providers: [DebridProvider], query: Query, list: @escaping Lister) async -> [JSONValue] {
+        let items = await listings(providers: providers, list: list)
+        return streams(items: items, query: query, parse: parseTitle)
+    }
+
+    /// The debrid flags the library streams confirm: their hashes per provider, as Desktop's applyDebridFlags reads
+    /// them. A library stream is marked in library on its own provider, and no other check is needed for it.
+    static func verification(of streams: [JSONValue]) -> DebridVerification {
+        var value = DebridVerification()
+        for stream in streams {
+            guard let hash = stream["infoHash"].string?.lowercased(), !hash.isEmpty,
+                  let addon = stream["addonId"].string, addon.hasSuffix("-library") else { continue }
+            let slug = String(addon.dropLast("-library".count))
+            if !(value.library[slug] ?? []).contains(hash) { value.library[slug, default: []].append(hash) }
+        }
+        return value
+    }
+
+    /// The title fields for one release name: a small stand-in for parse-torrent-title that reads the fields the
+    /// matcher uses (title, year, season, episode and resolution). The title is the text before the first marker.
+    static func parseTitle(_ text: String) -> Title {
+        let name = text.replacingOccurrences(of: "_", with: ".")
+        var result = Title()
+        var cut = name.endIndex
+        func first(_ pattern: String) -> String? {
+            guard let range = name.range(of: pattern, options: [.regularExpression, .caseInsensitive]) else { return nil }
+            if range.lowerBound < cut { cut = range.lowerBound }
+            return String(name[range])
+        }
+        if let episodeText = first(#"(?<![a-z0-9])s\d{1,3}\s?e\d{1,4}(?![a-z0-9])"#) {
+            let parts = numbers(in: episodeText)
+            if parts.count == 2 { result.season = parts[0]; result.episode = parts[1] }
+        }
+        if let crossText = first(#"(?<![a-z0-9])\d{1,2}x\d{2,3}(?![a-z0-9])"#), result.episode == nil {
+            let parts = numbers(in: crossText)
+            if parts.count == 2 { result.season = parts[0]; result.episode = parts[1] }
+        }
+        if let seasonText = first(#"(?<![a-z0-9])s\d{1,3}(?![a-z0-9])"#), result.season == nil {
+            result.season = numbers(in: seasonText).first
+        }
+        if let yearText = first(#"(?<=[.\s(\[-])(19|20)\d{2}(?![0-9])"#) { result.year = Int(yearText) }
+        if let resolution = first(#"(?<![a-z0-9])(2160|1080|720|480)p(?![a-z0-9])"#) { result.resolution = resolution.lowercased() }
+        let head = String(name[..<cut]).replacingOccurrences(of: ".", with: " ").trimmingCharacters(in: CharacterSet(charactersIn: " -"))
+        result.title = head.isEmpty ? nil : head
+        return result
+    }
+
+    private static func numbers(in text: String) -> [Int] {
+        text.components(separatedBy: CharacterSet.decimalDigits.inverted).compactMap { Int($0) }
+    }
+
     /// Desktop's buildLibraryStream. Desktop builds this label as a plain template literal, not through its
     /// translation table, so the English "Library" is kept as written there.
     static func stream(_ item: Item, _ found: Match) -> JSONValue {
@@ -144,7 +209,7 @@ enum DebridLibraryMerge {
         var fields: [String: JSONValue] = [
             "name": .string(filename),
             "title": .string(cacheTag + " " + addonName),
-            "infoHash": .string(item.hash),
+            "infoHash": .string(item.hash.lowercased()),
             "addonId": .string(item.provider.rawValue + "-library"),
             "addonName": .string(addonName),
         ]
