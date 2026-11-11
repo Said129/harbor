@@ -106,3 +106,50 @@ enum ShowsCatalog {
         }
     }
 }
+
+/// Desktop 0.9.132 Movies rows (`views/movies.tsx`: `restRows` and `catalogRows`). When the trending list gives ten
+/// titles, the Top 10 row takes them and the separate trending row is hidden. Every other row then skips titles that the
+/// hero, the Top 10 row or an earlier row already shows, and a row left with fewer than four titles is dropped.
+enum MoviesCatalog {
+    static let topTenID = "discovery-tmdb-movie-top10"
+    static let trendingID = "discovery-tmdb-movie-trending"
+
+    static func visible(_ rails: [PageRail], heroIDs: Set<String>) -> [PageRail] {
+        let topTenRail = rails.first(where: { $0.id == topTenID })
+        let topTenMetas = Array((topTenRail?.metas ?? []).prefix(TopTenGate.minimumTitles))
+        let rendersTopTen = TopTenGate.renders(active: true, count: topTenMetas.count)
+        var seen = heroIDs
+        if rendersTopTen {
+            for media in topTenMetas { seen.insert(media.id) }
+        }
+        var result: [PageRail] = []
+        for rail in rails {
+            if rail.id == topTenID {
+                if rendersTopTen { result.append(rail.withMetas(topTenMetas)) }
+                continue
+            }
+            if rendersTopTen && rail.id == trendingID { continue }
+            var fresh: [Media] = []
+            for media in rail.metas where seen.insert(media.id).inserted {
+                fresh.append(media)
+            }
+            if fresh.count >= 4 { result.append(rail.withMetas(fresh)) }
+        }
+        return result
+    }
+}
+
+private extension PageRail {
+    func withMetas(_ metas: [Media]) -> PageRail {
+        switch self {
+        case .catalog(var row):
+            row.metas = metas
+            return .catalog(row)
+        case .discovery(var row):
+            row.metas = metas
+            return .discovery(row)
+        default:
+            return self
+        }
+    }
+}

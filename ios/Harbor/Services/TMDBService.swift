@@ -56,7 +56,7 @@ struct TMDBService: Sendable {
         if kind == "series" { return ShowsCatalog.definitions(now: now) }
         let providerKind = kind == "movie" ? "movie" : "tv"
         var rows = [
-            DiscoveryRail(id: "tmdb-\(kind)-top10", title: kind == "movie" ? "Top 10 Movies Today" : "Top 10 Series Today", kind: kind, path: "trending/\(providerKind)/day"),
+            DiscoveryRail(id: "tmdb-\(kind)-top10", title: kind == "movie" ? "Top 10 Movies Today" : "Top 10 Series Today", kind: kind, path: "trending/\(providerKind)/week"),
             DiscoveryRail(id: "tmdb-\(kind)-trending", title: "Trending This Week", kind: kind, path: "trending/\(providerKind)/week"),
             DiscoveryRail(id: "tmdb-\(kind)-current", title: kind == "movie" ? "In Theaters Now" : "On Tonight", kind: kind, path: "\(providerKind)/\(kind == "movie" ? "now_playing" : "on_the_air")"),
             DiscoveryRail(id: "tmdb-\(kind)-rated", title: kind == "movie" ? "All-Time Greats" : "All-Time Great Series", kind: kind, path: "\(providerKind)/top_rated")
