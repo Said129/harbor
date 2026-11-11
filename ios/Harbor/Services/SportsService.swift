@@ -40,12 +40,14 @@ actor SportsService {
             }
         }
         let comments = data["commentary"].array.isEmpty ? data["plays"].array : data["commentary"].array
-        summary.timeline = data["keyEvents"].array.enumerated().compactMap { index, event -> SportsTimelineEntry? in
+        let footballPlays = event.league.group == "football" ? SportsFootballPlays.timeline(data) : []
+        let keyEventTimeline = data["keyEvents"].array.enumerated().compactMap { index, event -> SportsTimelineEntry? in
             let text = event["shortText"].string ?? event["text"].string ?? ""
             let clock = event["clock"]["displayValue"].string ?? ""
             guard !text.isEmpty || !clock.isEmpty else { return nil }
             return SportsTimelineEntry(id: event["id"].textValue ?? String(index), clock: clock, kind: SportsTimelineKind.classify(event["type"]["text"].string ?? ""), text: text, participant: event["participants"].array.first?["athlete"]["displayName"].string)
         }
+        summary.timeline = footballPlays.isEmpty ? keyEventTimeline : footballPlays
         summary.commentary = comments.suffix(100).compactMap { $0["text"].string ?? $0["comment"].string }
         return summary
     }
