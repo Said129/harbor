@@ -5,6 +5,7 @@ struct InterfaceSettingsView: View {
     @Bindable var preferences = InterfacePreferences.shared
     @AppStorage("tvdbOrderPanel") private var richEpisodeOrderPanel = true
     @AppStorage("tvdbSeasonType") private var episodeOrder = "aired"
+    @AppStorage("episodeOrderProvider") private var episodeOrderProvider = "tvdb"
     private var homeLanguagesValue: Binding<String> {
         Binding(get: { preferences.homeLanguages.joined(separator: ",") }, set: { (value: String) in preferences.homeLanguages = SubtitleLanguages.preferredCodes(value) })
     }
@@ -65,6 +66,10 @@ struct InterfaceSettingsView: View {
                     HarborSettingsToggle(DesktopInterfaceText.value("Mark watched button"), isOn: $preferences.showWatchedButton)
                 }
                 HarborSettingsSection(DesktopInterfaceText.value("Episode ordering")) {
+                    HarborSettingsChoice(DesktopInterfaceText.value("Episode order source"),
+                        selection: $episodeOrderProvider,
+                        choices: [(DesktopInterfaceText.value("TVDB order"), "tvdb"), (DesktopInterfaceText.value("TMDB order"), "tmdb")],
+                        identifier: "settings-episode-order-provider")
                     HarborSettingsToggle(DesktopInterfaceText.value("Rich season and order panel"), isOn: $richEpisodeOrderPanel)
                         .accessibilityIdentifier("settings-rich-episode-order")
                     if !richEpisodeOrderPanel {

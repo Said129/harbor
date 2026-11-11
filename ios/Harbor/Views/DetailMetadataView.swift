@@ -6,7 +6,15 @@ struct DetailMetadataView: View {
     @Environment(\.openURL) private var openURL
     @State private var gallery = "videos"
     @State private var imageURL: String?
+    @State private var crewFilms: [SharedCrewFilm] = []
+    @State private var showCrew = false
     private var details: MediaDetails? { media.details }
+    /// The IMDb id the crew query uses. A title without one has no crew line.
+    private var crewIMDb: String { media.imdbID ?? media.id }
+    /// Desktop's shared-crew line, shown when at least one other film shares three or more crew members.
+    private var crewLine: String? {
+        SharedCrewRules.line(count: crewFilms.count) { key, values in DesktopInterfaceText.value(key, variables: values) }
+    }
     private var crewInformation: [(String, String)] {
         var fields: [(String, String)] = []
         if let directors = media.director, !directors.isEmpty { fields.append(("Dirección", directors.joined(separator: ", "))) }
@@ -55,6 +63,7 @@ struct DetailMetadataView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 30) {
             if let providers = details?.watchProviders, !providers.isEmpty { watchOn(providers) }
+            if let line = crewLine { crewButton(line) }
             if !crewInformation.isEmpty { informationGrid(crewInformation) }
             if let credits = details?.cast, !credits.isEmpty {
                 VStack(alignment: .leading, spacing: 14) {
@@ -88,6 +97,12 @@ struct DetailMetadataView: View {
                 }
             }
         }.font(HarborTheme.font(14.5)).foregroundStyle(HarborTheme.ink).padding(.horizontal, 20).padding(.bottom, 32)
+            .task(id: crewIMDb) {
+                crewFilms = []
+                // Desktop's graph query runs for every title except anime.
+                guard !AnimeService.isAnime(media.id) else { return }
+                crewFilms = await SharedCrewStore.shared.films(imdbID: crewIMDb)
+            }
             .sheet(isPresented: Binding(get: { imageURL != nil }, set: { if !$0 { imageURL = nil } })) {
                 NavigationStack {
                     if let imageURL {
@@ -97,6 +112,34 @@ struct DetailMetadataView: View {
                     }
                 }
             }
+    }
+    /// The crew line opens the films that share crew with this title. Desktop's graph panel is a popover; this is a list sheet.
+    private func crewButton(_ line: String) -> some View {
+        Button { showCrew = true } label: {
+            Text(line).font(HarborTheme.font(13)).underline().foregroundStyle(HarborTheme.ink.opacity(0.7))
+                .frame(minHeight: 44, alignment: .leading)
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("detail-shared-crew")
+        .sheet(isPresented: $showCrew) { crewSheet }
+    }
+    private var crewSheet: some View {
+        NavigationStack {
+            List(crewFilms, id: \.metaId) { film in
+                NavigationLink {
+                    DetailView(media: Media(id: film.metaId, type: "movie", name: film.name), app: app)
+                } label: {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(film.name).font(.headline)
+                        Text(SharedCrewRules.reasonLabel(shared: film.shared) { key, values in DesktopInterfaceText.value(key, variables: values) })
+                            .font(.caption).foregroundStyle(.secondary)
+                        if !film.who.isEmpty { Text(film.who.joined(separator: ", ")).font(.caption2).foregroundStyle(.secondary) }
+                    }
+                }
+            }
+            .navigationTitle(DesktopInterfaceText.value("Shares crew with"))
+            .toolbar { Button("Cerrar") { showCrew = false } }
+        }
     }
     private func informationGrid(_ fields: [(String, String)]) -> some View {
         LazyVGrid(columns: [GridItem(.flexible(), alignment: .topLeading), GridItem(.flexible(), alignment: .topLeading)], alignment: .leading, spacing: 24) {

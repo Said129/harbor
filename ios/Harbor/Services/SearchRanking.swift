@@ -72,6 +72,9 @@ enum SearchRanking {
         return nil
     }
 
+    /// Desktop's "Try a genre" tiles on the empty search page: each name is a movie genre that `intent` recognizes.
+    static var genreSuggestions: [String] { CustomCalendar.movieGenres.map(\.0) }
+
     /// Desktop's core standard rails in the year and genre filters.
     static func browseRails(for intent: SearchQueryIntent, now: Date = Date()) -> [DiscoveryRail] {
         func rail(_ id: String, _ title: String, kind: String, params: [String: String]) -> DiscoveryRail {

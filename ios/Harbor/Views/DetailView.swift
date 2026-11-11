@@ -29,6 +29,7 @@ struct DetailView: View {
     @AppStorage("downloadsCellular") private var cellularDownloads = false
     @AppStorage("tvdbSeasonType") private var episodeOrderSetting = "aired"
     @AppStorage("tvdbOrderPanel") private var richEpisodeOrderPanel = true
+    @AppStorage("episodeOrderProvider") private var episodeOrderProvider = "tvdb"
     private let playImmediately: Bool
     private let episodeHint: Episode?
     init(media: Media, app: AppModel, playImmediately: Bool = false, metadataLoaded: Bool = false, episodeHint: Episode? = nil) {
@@ -95,8 +96,8 @@ struct DetailView: View {
         .task(id: "\(model.media.identity):\(model.loadingMetadata):\(model.media.videos?.count ?? 0)") {
             await model.loadAnimeEpisodes(owner: app.library.owner, library: app.library)
         }
-        .task(id: "\(model.media.identity):\(model.canLoadEpisodeOrder):\(model.episodeOrderScope):\(episodeOrderSetting):\(MetadataPreferences.shared.language)") {
-            await model.loadEpisodeOrder(setting: episodeOrderSetting, language: MetadataPreferences.shared.language, owner: app.library.owner, library: app.library)
+        .task(id: "\(model.media.identity):\(model.canLoadEpisodeOrder):\(model.episodeOrderScope):\(episodeOrderSetting):\(episodeOrderProvider):\(MetadataPreferences.shared.language)") {
+            await model.loadEpisodeOrder(setting: episodeOrderProvider == "tmdb" ? "tmdb" : episodeOrderSetting, language: MetadataPreferences.shared.language, owner: app.library.owner, library: app.library)
         }
         .task(id: episodePoolTaskID) {
             await model.loadFranchiseEpisodes(language: MetadataPreferences.shared.language, owner: app.library.owner, library: app.library)
@@ -110,7 +111,7 @@ struct DetailView: View {
         .task(id: "logo:\(model.media.identity):\(model.metadataReady)") {
             // Desktop's detail page logo comes from the same artwork resolution the cards use (`CardArtworkResolver`).
             resolvedLogo = nil
-            resolvedLogo = await CardArtworkResolver.shared.resolve(model.media, configuration: MetadataPreferences.shared.configuration()).logo
+            resolvedLogo = await CardArtworkResolver.shared.resolve(model.media, configuration: MetadataPreferences.shared.configuration(), imdbLogo: true).logo
         }
         .onChange(of: model.playback?.id) { _, _ in
             if let session = model.playback, session.owner == app.library.owner { app.library.discovery.track(.play, media: session.media ?? model.media) }

@@ -130,11 +130,12 @@ actor CardArtworkResolver {
         return policy.poster(images?["posters"].array ?? [])
     }
 
-    func resolve(_ media: Media, configuration: MetadataConfiguration, pinnedLogo: String? = nil) async -> ResolvedCardArtwork {
+    /// `imdbLogo` is set only by the title page, so IMDb cards keep their metadata logo and make no extra requests.
+    func resolve(_ media: Media, configuration: MetadataConfiguration, pinnedLogo: String? = nil, imdbLogo: Bool = false) async -> ResolvedCardArtwork {
         let original = ResolvedCardArtwork(logo: CardArtworkPolicy.image(pinnedLogo) ?? CardArtworkPolicy.image(media.logo), backdrop: media.background != media.poster ? CardArtworkPolicy.image(media.background) : nil)
-        guard !Task.isCancelled, ["movie", "series", "anime"].contains(media.type), AnimePublicIdentity(media.id) != nil || Self.tmdb(media.id) != nil else { return original }
+        guard !Task.isCancelled, Self.canResolve(media, imdbLogo: imdbLogo) else { return original }
         let pin = CardArtworkPolicy.image(pinnedLogo)
-        let key = Self.cacheKey(media, configuration, pinnedLogo: pin)
+        let key = Self.cacheKey(media, configuration, pinnedLogo: pin, imdbLogo: imdbLogo)
         if let saved = cached[key], Date().timeIntervalSince(saved.at) < (saved.artwork.logo == nil ? 300 : 3_600) { return saved.artwork }
         if let task = pending[key] { return await task.value }
         let task = Task { await self.perform(media, configuration: configuration, pinnedLogo: pin) }
@@ -144,9 +145,17 @@ actor CardArtworkResolver {
         if cached.count >= 1_200, let oldest = cached.min(by: { $0.value.at < $1.value.at })?.key { cached[oldest] = nil }
         cached[key] = Cached(artwork: value, at: Date()); return value
     }
-    nonisolated static func cacheKey(_ media: Media, _ configuration: MetadataConfiguration, pinnedLogo: String? = nil) -> String {
+    /// Desktop resolves a title's logo for movies, series and anime with a TMDB or anime id. An IMDb id resolves only when
+    /// `imdbLogo` asks for it (the title page). Other ids keep the metadata logo.
+    nonisolated static func canResolve(_ media: Media, imdbLogo: Bool = false) -> Bool {
+        guard ["movie", "series", "anime"].contains(media.type) else { return false }
+        if AnimePublicIdentity(media.id) != nil || tmdb(media.id) != nil { return true }
+        guard imdbLogo else { return false }
+        return media.id.range(of: "^tt[0-9]{7,12}$", options: .regularExpression) != nil
+    }
+    nonisolated static func cacheKey(_ media: Media, _ configuration: MetadataConfiguration, pinnedLogo: String? = nil, imdbLogo: Bool = false) -> String {
         // Only a digest of configuration enters the cache key; no key is logged or persisted.
-        let parts = [media.identity, media.artworkID, media.logo ?? "", media.poster ?? "", media.background ?? "", media.originalLanguage ?? "", media.animeFormat ?? "", media.name, media.releaseInfo ?? "", configuration.tmdbKey, configuration.rpdbKey, configuration.language, configuration.imageLanguages.joined(separator: ","), pinnedLogo ?? ""]
+        let parts = [media.identity, media.artworkID, media.logo ?? "", media.poster ?? "", media.background ?? "", media.originalLanguage ?? "", media.animeFormat ?? "", media.name, media.releaseInfo ?? "", configuration.tmdbKey, configuration.rpdbKey, configuration.language, configuration.imageLanguages.joined(separator: ","), pinnedLogo ?? "", imdbLogo ? "imdb-logo" : ""]
         return SHA256.hash(data: Data(parts.joined(separator: "\u{0}").utf8)).map { String(format: "%02x", $0) }.joined()
     }
     private func request(_ request: CardArtworkRequest, _ configuration: MetadataConfiguration) async -> JSONValue? {
