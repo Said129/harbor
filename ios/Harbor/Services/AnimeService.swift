@@ -82,7 +82,7 @@ actor AnimeService {
     private var cacheLoaded = false
     private var pending: [String: Task<[Media], Error>] = [:]
     private var nextJikan = Date.distantPast
-    private var genreCache: [Int: (at: Date, items: [Media])] = [:]
+    private var genreCache: [String: (at: Date, items: [Media])] = [:]
     private var cacheURL: URL? {
         try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("harbor-public-anime-rails.json")
     }
@@ -261,13 +261,19 @@ actor AnimeService {
             return Self.unique(values.compactMap(Self.anilistMedia))
         }
         if rail.path == "anime:awards" {
-            struct Catalog: Decodable { struct Entry: Decodable { let id: String }; let winners: [Entry] }
+            struct Catalog: Decodable { struct Entry: Decodable { let id: String; let year: Int? }; let winners: [Entry] }
             guard let url = Bundle.main.url(forResource: "DesktopAnimeAwards", withExtension: "json"),
                   let catalog = try? JSONDecoder().decode(Catalog.self, from: Data(contentsOf: url)) else { throw HarborError(code: "anime-awards") }
+            // Desktop sorts award winners newest first; ties keep the catalog order.
+            let ordered = catalog.winners.enumerated().sorted { first, second in
+                let a = first.element.year ?? 0
+                let b = second.element.year ?? 0
+                return a == b ? first.offset < second.offset : a > b
+            }.map(\.element)
             // Small batches keep the public metadata provider responsive.
             let offset = (page - 1) * 24
-            guard offset < catalog.winners.count else { return [] }
-            let winners = Array(catalog.winners[offset..<min(offset + 24, catalog.winners.count)])
+            guard offset < ordered.count else { return [] }
+            let winners = Array(ordered[offset..<min(offset + 24, ordered.count)])
             var result: [Media] = []
             for start in stride(from: 0, to: winners.count, by: 4) {
                 try Task.checkCancellation()
@@ -323,7 +329,7 @@ actor AnimeService {
 
     /// Desktop's Top Picks candidates: the airing and popular rails, then page 1 of Jikan's score-sorted list for each
     /// favourite genre (`jikanByGenre`, seeded by `animeSeedGenres`). Empty favourites add no requests.
-    func picks(records: [LibraryRecord], options: AnimePicksPolicy.Options, watchedIDs: Set<String>) async throws -> [Media] {
+    func picks(records: [LibraryRecord], options: AnimePicksPolicy.Options, watchedIDs: Set<String>, tasteGenres: [String] = []) async throws -> [Media] {
         let active = records.compactMap(\.media).filter { Self.isAnime($0.id) }
         var candidates: [Media] = []
         for title in ["anime-airing", "anime-popular"] {
@@ -335,28 +341,59 @@ actor AnimeService {
             // results as MAL during a Jikan outage.
             candidates = try await page(rail, page: 1)
         }
-        // Desktop fetches a random page per day; page 1 is used here. Like `page`, a genre list is kept for an hour
+        // Desktop reads a page chosen per day and genre (`pageFor`). Like `page`, a genre list is kept for an hour
         // and an empty result is not kept.
-        for genre in Self.favouriteSeedIDs(options) {
+        let day = DiscoveryFeedRandom.dayIndex(Date())
+        for genre in Self.favouriteSeedIDs(options, tasteGenres: tasteGenres) {
             try Task.checkCancellation()
-            if let hit = genreCache[genre], Date().timeIntervalSince(hit.at) < 3_600 {
+            let page = AnimePicksPolicy.dailyPage(seedKey: "g" + String(genre), day: day)
+            let key = String(genre) + ":" + String(page)
+            if let hit = genreCache[key], Date().timeIntervalSince(hit.at) < 3_600 {
                 candidates.append(contentsOf: hit.items)
                 continue
             }
-            if let values = try? await fetchJikan(path: "anime", parameters: ["genres": String(genre), "order_by": "score", "sort": "desc", "min_score": "7"]) {
+            if let values = try? await fetchJikan(path: "anime", parameters: ["genres": String(genre), "order_by": "score", "sort": "desc", "min_score": "7", "page": String(page)]) {
                 let items = values.compactMap(Self.jikanMedia)
-                if !items.isEmpty { genreCache[genre] = (at: Date(), items: items) }
+                if !items.isEmpty { genreCache[key] = (at: Date(), items: items) }
                 candidates.append(contentsOf: items)
             }
         }
         try Task.checkCancellation()
         guard !candidates.isEmpty else { throw HarborError(code: "anime-picks") }
+        // Desktop's `enrichAnimeCountry`: Jikan does not return a country, so the origin setting needs AniList.
+        let countries = await countryLookup(candidates)
+        candidates = AnimePicksPolicy.withCountries(candidates, countries: countries)
         return Self.rankedPicks(candidates, library: active, options: options, watchedIDs: watchedIDs)
     }
 
-    /// Desktop's `animeSeedGenres` without taste: the favourite genres, at most three, with no repeats.
-    static func favouriteSeedIDs(_ options: AnimePicksPolicy.Options) -> [Int] {
-        AnimePicksPolicy.seedGenreIDs(favorites: options.favoriteGenres, tasteGenres: [])
+    /// Desktop's `animeSeedGenres`: the viewer's taste genres first, then the favourites, at most three, with no repeats.
+    static func favouriteSeedIDs(_ options: AnimePicksPolicy.Options, tasteGenres: [String] = []) -> [Int] {
+        AnimePicksPolicy.seedGenreIDs(favorites: options.favoriteGenres, tasteGenres: tasteGenres)
+    }
+
+    /// The countries of the picks that have a MAL id and no country yet: one AniList request of at most 50 ids.
+    /// Desktop caps this lookup at 4 seconds; a failed or slow lookup leaves the picks without a country.
+    private func countryLookup(_ items: [Media]) async -> [Int: String] {
+        let ids = Array(Set(items.filter { $0.country == nil }.compactMap { AnimePicksPolicy.malID($0.id) })).sorted()
+        guard !ids.isEmpty else { return [:] }
+        let batch = Array(ids.prefix(50))
+        return await withTaskGroup(of: [Int: String].self) { group in
+            group.addTask { (try? await self.lookupCountries(batch)) ?? [:] }
+            group.addTask {
+                _ = try? await Task.sleep(for: .seconds(4))
+                return [:]
+            }
+            let first = await group.next() ?? [:]
+            group.cancelAll()
+            return first
+        }
+    }
+
+    private func lookupCountries(_ ids: [Int]) async throws -> [Int: String] {
+        let query = "query ($ids: [Int]) { Page(perPage: 50) { media(idMal_in: $ids, type: ANIME) { idMal countryOfOrigin } } }"
+        let variables: [String: JSONValue] = ["ids": .array(ids.map { JSONValue.integer(Int64($0)) })]
+        let data = try await AniListClient(transport: AniListHTTPTransport()).request(query, variables: variables, token: nil)
+        return AnimePicksPolicy.countries(from: data["Page"]["media"].array)
     }
 
     /// Removes the library's titles, then the hidden origins and watched titles (`AnimePicksPolicy`), then sorts by the
@@ -365,7 +402,13 @@ actor AnimeService {
         let excluded = Set(active.map { Self.nameKey($0.name) })
         let excludedIDs = Set(active.map(\.id))
         let genres = Array(Set(active.flatMap { $0.genres ?? [] })).sorted()
-        let open = Self.unique(candidates).filter { !excludedIDs.contains($0.id) && !excluded.contains(Self.nameKey($0.name)) }
+        // Desktop's franchise merge: one title per franchise, and no franchise the library already holds.
+        let libraryFranchises = Set(active.map { AnimePicksPolicy.franchiseKey($0.name) })
+        var franchises = Set<String>()
+        let open = Self.unique(candidates)
+            .filter { !excludedIDs.contains($0.id) && !excluded.contains(Self.nameKey($0.name)) }
+            .filter { !libraryFranchises.contains(AnimePicksPolicy.franchiseKey($0.name)) }
+            .filter { franchises.insert(AnimePicksPolicy.franchiseKey($0.name)).inserted }
         return Array(AnimePicksPolicy.filtered(open, options: options, isWatched: { watchedIDs.contains($0) })
             .sorted { first, second in
                 let a = (first.genres ?? []).filter { genres.contains($0) }.count

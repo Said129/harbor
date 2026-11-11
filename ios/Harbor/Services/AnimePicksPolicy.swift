@@ -90,4 +90,93 @@ enum AnimePicksPolicy {
         guard options.hideWatched, items.contains(where: { !isWatched($0.id) }) else { return items }
         return items.filter { !isWatched($0.id) }
     }
+
+    /// Desktop's `pageFor`: a page from 1 to 3, fixed for the UTC day and the seed key.
+    static func dailyPage(seedKey: String, day: Int) -> Int {
+        var generator = DiscoveryFeedRandom.generator(base: day, salt: seedKey)
+        return 1 + Int(generator.next() * 3)
+    }
+
+    /// Desktop's taste input to `animeSeedGenres`: the genres with a positive weight, heaviest first, at most eight.
+    static func tasteGenreNames(_ weights: [String: Double]) -> [String] {
+        let positive = weights.filter { $0.value > 0 }
+        let ranked = positive.sorted { first, second in
+            first.value == second.value ? first.key < second.key : first.value > second.value
+        }
+        return ranked.prefix(8).map { $0.key }
+    }
+
+    /// The MAL id of a `mal:` title, or nil for any other provider.
+    static func malID(_ id: String) -> Int? {
+        guard id.hasPrefix("mal:") else { return nil }
+        return Int(id.dropFirst(4))
+    }
+
+    /// Desktop's `anilistCountriesByMalIds` response: the two-letter country of each MAL id that AniList knows.
+    static func countries(from media: [JSONValue]) -> [Int: String] {
+        var out: [Int: String] = [:]
+        for value in media {
+            guard let mal = value["idMal"].integer, mal > 0, let code = value["countryOfOrigin"].string, code.count == 2 else { continue }
+            out[mal] = code
+        }
+        return out
+    }
+
+    /// Sets the country of picks that lack one (Desktop's `enrichAnimeCountry`), so the origin setting can hide them.
+    static func withCountries(_ items: [Media], countries: [Int: String]) -> [Media] {
+        items.map { item in
+            guard item.country == nil, let mal = malID(item.id), let code = countries[mal] else { return item }
+            var copy = item
+            copy.country = code
+            return copy
+        }
+    }
+
+    /// Desktop's `FRANCHISE_STRIP_RX`: each pattern removes the first match, in order (the last one is a year).
+    private static let franchisePatterns: [(pattern: String, caseless: Bool)] = [
+        (#"\s*[-:(]?\s*(?:1st|2nd|3rd|4th|5th|6th|7th|8th|9th|10th|11th|12th|First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth|Final|Last)\s+(?:Season|Cour|Part|Chapter)\b.*$"#, true),
+        (#"\s*[-:(]?\s*Season\s+\d+\b.*$"#, true),
+        (#"\s*[-:(]?\s*S\d+(?:\s|\)|:|$).*"#, true),
+        (#"\s*[-:(]?\s*(?:Part|Cour|Chapter)\s+\d+\b.*$"#, true),
+        (#"\s*[-:(]?\s*(?:II|III|IV|V|VI|VII|VIII|IX|X)\b[)\s:-]*$"#, true),
+        (#"\s+[-:(]*\s*(?:19|20)\d{2}[)\s:]*$"#, false),
+    ]
+
+    /// Desktop's `stripFranchiseSuffix`: the title without its season, part, numeral or year suffix.
+    static func strippedName(_ name: String) -> String {
+        var text = name
+        for entry in franchisePatterns {
+            var options: String.CompareOptions = .regularExpression
+            if entry.caseless { options.insert(.caseInsensitive) }
+            if let range = text.range(of: entry.pattern, options: options) { text.removeSubrange(range) }
+        }
+        if let range = text.range(of: #"[\s°'."’˚_:-]+$"#, options: .regularExpression) { text.removeSubrange(range) }
+        return text.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    /// Desktop's `animeFranchiseKey`: the lowercased stripped name. Titles with the same key are one franchise.
+    static func franchiseKey(_ name: String) -> String {
+        strippedName(name).lowercased()
+    }
+
+    /// Desktop's `filteredRowsByKey`: a franchise is shown once per pool, and the hero and Top Picks claim theirs first.
+    /// Each row is a pool name and its titles, in Desktop row order. Kept titles get the stripped name, as Desktop's `cleanMeta` does.
+    static func pooledRows(_ rows: [(pool: String, metas: [Media])], seeds: [Media]) -> [[Media]] {
+        let base = Set(seeds.map { franchiseKey($0.name) })
+        var claimedByPool: [String: Set<String>] = [:]
+        var out: [[Media]] = []
+        for row in rows {
+            var claimed = claimedByPool[row.pool] ?? base
+            var kept: [Media] = []
+            for media in row.metas {
+                guard claimed.insert(franchiseKey(media.name)).inserted else { continue }
+                var copy = media
+                copy.name = strippedName(media.name)
+                kept.append(copy)
+            }
+            claimedByPool[row.pool] = claimed
+            out.append(kept)
+        }
+        return out
+    }
 }
