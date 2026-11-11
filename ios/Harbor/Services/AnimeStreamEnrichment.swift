@@ -39,6 +39,40 @@ enum AnimeStreamEnrichment {
         return .object(fields)
     }
 
+    /// Key under which a raw stream carries its filename fields to the ranker (`harbor-core` lib.rs `ANIME_FIELDS_KEY`).
+    static let fieldsKey = "harborAnimeFields"
+
+    /// Desktop's `animeAbsoluteFromScopedId`: the episode of a `kitsu:ID:EP` or `mal:ID:EP` id, otherwise nil.
+    static func absoluteEpisode(_ videoID: String) -> Int? {
+        let parts = videoID.split(separator: ":", omittingEmptySubsequences: false).map(String.init)
+        guard parts.count == 3, parts[0] == "kitsu" || parts[0] == "mal" else { return nil }
+        guard isAllDigits(parts[1]), isAllDigits(parts[2]) else { return nil }
+        return Int(parts[2])
+    }
+
+    /// The fields `parse` finds, as the object the ranker reads. Only recognised fields are written.
+    static func fieldsJSON(_ found: Fields) -> JSONValue {
+        var out: [String: JSONValue] = ["isBatch": .bool(found.isBatch)]
+        if let title = found.animeTitle { out["animeTitle"] = .string(title) }
+        if let episode = found.episodeNumber { out["episodeNumber"] = .integer(Int64(episode)) }
+        if let title = found.episodeTitle { out["episodeTitle"] = .string(title) }
+        if let season = found.season { out["season"] = .integer(Int64(season)) }
+        if let year = found.year { out["year"] = .integer(Int64(year)) }
+        if let group = found.releaseGroup { out["releaseGroup"] = .string(group) }
+        if let resolution = found.resolution { out["resolution"] = .string(resolution) }
+        if let checksum = found.fileChecksum { out["fileChecksum"] = .string(checksum) }
+        return .object(out)
+    }
+
+    /// A raw stream with its filename fields added under `fieldsKey`. Streams without a filename are unchanged.
+    static func withFields(_ stream: JSONValue) -> JSONValue {
+        guard case .object(var fields) = stream else { return stream }
+        let filename = primaryFilename(stream)
+        guard !filename.isEmpty else { return stream }
+        fields[fieldsKey] = fieldsJSON(parse(filename))
+        return .object(fields)
+    }
+
     /// Desktop's `primaryFilename`: the behaviour hint's filename, else a filename line in the
     /// title, description or name, else the title or name.
     static func primaryFilename(_ stream: JSONValue) -> String {

@@ -8,10 +8,20 @@ struct AddonConfigurationView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var loading = true
     @State private var error: String?
+    /// Desktop's installer viewport: a page still loading after 7.5 seconds is offered for the browser.
+    @State private var blocked = false
     var body: some View {
         VStack(spacing: 0) {
             if loading { ProgressView().padding(8) }
             if let error { Text(error).font(.caption).foregroundStyle(.orange).padding() }
+            if loading && blocked {
+                VStack(spacing: 10) {
+                    Text(DesktopInterfaceText.value("Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field."))
+                        .font(.callout).multilineTextAlignment(.center)
+                    Button(DesktopInterfaceText.value("Abrir en Safari")) { UIApplication.shared.open(url) }
+                        .buttonStyle(.borderedProminent)
+                }.padding()
+            }
             AddonConfigurationSurface(url: url, loading: $loading, error: $error) { candidate in
                 receive(candidate)
                 dismiss()
@@ -20,6 +30,10 @@ struct AddonConfigurationView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("Cerrar") { dismiss() } }
                 ToolbarItem(placement: .topBarTrailing) { Button("Abrir en Safari") { UIApplication.shared.open(url) } }
+            }
+            .task {
+                try? await Task.sleep(nanoseconds: 7_500_000_000)
+                if loading { blocked = true }
             }
     }
 }

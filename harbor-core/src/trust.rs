@@ -643,7 +643,7 @@ fn tokenize(text: &str) -> Vec<String> {
         .collect()
 }
 
-fn parse_iso_date_to_unix_ms(s: &str) -> Option<i64> {
+pub(crate) fn parse_iso_date_to_unix_ms(s: &str) -> Option<i64> {
     let trimmed = s.trim();
     if trimmed.is_empty() {
         return None;
@@ -669,7 +669,7 @@ fn days_from_civil(y: i64, m: i64, d: i64) -> i64 {
     era * 146_097 + doe - 719_468
 }
 
-fn now_unix_ms() -> i64 {
+pub(crate) fn now_unix_ms() -> i64 {
     SystemTime::now()
         .duration_since(UNIX_EPOCH)
         .map(|d| d.as_millis() as i64)

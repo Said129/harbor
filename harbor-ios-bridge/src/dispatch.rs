@@ -47,6 +47,8 @@ enum Request {
         score: ScoreOptions,
         #[serde(default)]
         debrid: harbor_core::DebridFlags,
+        #[serde(default)]
+        anime: harbor_core::AnimeOptions,
     },
     ResolveDirect {
         stream: Stream,
@@ -155,8 +157,9 @@ pub fn dispatch(bytes: &[u8]) -> Result<Value, &'static str> {
             trust,
             score,
             debrid,
-        } => Ok(json!(harbor_core::run_pipeline_with_debrid(
-            streams, &trust, &score, &debrid
+            anime,
+        } => Ok(json!(harbor_core::run_pipeline_full(
+            streams, &trust, &score, &debrid, &anime
         ))),
         Request::ResolveDirect { stream } => resolve_direct(stream),
         Request::MusicLocalTrack { tags } => Ok(json!(harbor_core::music::local_track(tags)?)),
