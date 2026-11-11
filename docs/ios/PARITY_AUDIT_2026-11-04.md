@@ -20,9 +20,16 @@ in `parity-audit-2026-11-04.json`, produced by
 
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
-| Behaviors |   438 |    265 |     111 |       0 |       62 |           85.2 % |      70.5 % |           100.0 % |
-| Settings  |   511 |    247 |      31 |       0 |      233 |           94.4 % |      88.8 % |           100.0 % |
-| All       |   949 |    512 |     142 |       0 |      295 |           89.1 % |      78.3 % |           100.0 % |
+| Behaviors |   438 |    266 |     107 |       0 |       65 |           85.7 % |      71.3 % |           100.0 % |
+| Settings  |   511 |    247 |      29 |       0 |      235 |           94.7 % |      89.5 % |           100.0 % |
+| All       |   949 |    513 |     136 |       0 |      300 |           89.5 % |      79.0 % |           100.0 % |
+
+The 12 November pass moved six rows without changing any code: five became exclusions with a
+recorded reason (B114 committing uncached picks to a local torrent engine, B245 legacy AirPlay,
+B342 hotkey remapping, S195 and S349 below) and B258 (self-hosted relay) became ported because
+the only thing left was Desktop's excluded Cloudflare deploy. S195 is a setting Desktop has no
+control for and S349 an output-device list iOS does not expose. B242 stays partial with a
+sharper note: automatic DLNA discovery needs a multicast entitlement a sideloaded app cannot hold.
 
 The Discover locale setting (S497) controls native ranking, daily catalog
 queries and Critics Pick. Its active consumers in the pinned Desktop build

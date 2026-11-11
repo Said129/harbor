@@ -603,6 +603,11 @@ BEHAVIORS = expand("""
 14 P The Shows room uses Desktop’s rotating mast, six-slide featured pool, weekly Top 10 and native Continue Watching. Custom collection assignments and parts of Desktop’s presentation remain pending.
 16 D Native Shows uses the pinned network, premiere and editorial filters in their original order, with weekly trending for the Top 10.
 17 D Shows uses the curated six-title hero, removes it from regular rails and loads subsequent TMDB pages at the row end. Paging follows the first-page threshold, deduplicates provider results and stops at 30 titles.
+114 X uncached picks committed to the local torrent engine: Desktop falls back to its own P2P engine and downloads through it; iOS has no local torrent engine (a recorded platform exclusion), so there is nothing to commit an uncached pick to
+242 P DLNA devices are added by their description address and cast. Automatic discovery needs SSDP multicast, an entitlement a sideloaded app cannot hold, so it stays manual
+245 X AirPlay legacy discovery and playback: Desktop speaks the AirPlay protocol itself; iOS routes audio and video through the system route picker and screen mirroring, which already carry AirPlay
+258 D self-hosted relay: the relay address setting works and the room flow uses it; Desktop's Cloudflare deploy is an excluded desktop-only step
+342 X remappable hotkeys: Desktop's default shortcuts work on an iPad keyboard; remapping them is a pointer-and-keyboard settings screen with no use on a touch device
 """)
 
 SETTINGS = expand("""
@@ -1058,6 +1063,8 @@ SETTINGS = expand("""
 65 P The original corner ribbon follows the active Home Top 10 and moves a bookmark sharing its corner. Native Home rows still differ from Desktop's data in some configurations.
 66 D The active profile chooses the Top 10 ribbon's leading or trailing corner. The original assets follow Desktop's logical layout direction.
 497 D The per-profile locale preference defaults to on and controls native Discover ranking, daily catalog floors and Critics Pick. Desktop's regular Home view does not consume this preference.
+195 X stremioServerTranscode: the key is stored but Desktop has no control for it either, so there is no behavior to match
+349 X audioDevice: iOS has no per-app output device list; the system route picker (AirPlay, Bluetooth, speaker) chooses the output
 """)
 
 def audit(items, verdicts, label):

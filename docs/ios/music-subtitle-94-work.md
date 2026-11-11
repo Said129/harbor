@@ -2288,6 +2288,9 @@ player request. AAC first, Opus second, only `googlevideo.com` URLs. A challenge
 `youtube` before `soundcloud`, so a catalogue song now plays from YouTube first. The source starts on (Desktop needs no setup), has its own switch under Music connections
 and an entry in the preferred-source picker. New text `music.mobile.youtube.consent` is in all 16 locale files.
 
+The other Desktop client, `ANDROID_VR` 1.65.10, answers `OK` with the same visitor id but every one of its media URLs returns 403 (open-ended, ranged and tail requests, two
+user agents), which is what Desktop's own comment about hand-rolled URLs describes. It is therefore not a second rung; `VISIONOS` is the only hand-rolled client that plays.
+
 `MusicPlaybackSession.resolve` now tries the next candidate when the chosen source cannot play (a preview-only SoundCloud match, a bot check) instead of failing the song.
 
 Not done and not verified on a device: the YouTube path was only exercised from this PC with Python, and the Swift code only by fixture tests in CI. YouTube can change the

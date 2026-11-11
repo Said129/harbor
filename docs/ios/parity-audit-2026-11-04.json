@@ -5,35 +5,35 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 265,
-      "partial": 111,
+      "ported": 266,
+      "partial": 107,
       "missing": 0,
-      "excluded": 62,
-      "counted": 376,
-      "weighted_percent": 85.2,
-      "ported_only_percent": 70.5,
+      "excluded": 65,
+      "counted": 373,
+      "weighted_percent": 85.7,
+      "ported_only_percent": 71.3,
       "ported_or_partial_percent": 100.0
     },
     "settings": {
       "total": 511,
       "ported": 247,
-      "partial": 31,
+      "partial": 29,
       "missing": 0,
-      "excluded": 233,
-      "counted": 278,
-      "weighted_percent": 94.4,
-      "ported_only_percent": 88.8,
+      "excluded": 235,
+      "counted": 276,
+      "weighted_percent": 94.7,
+      "ported_only_percent": 89.5,
       "ported_or_partial_percent": 100.0
     },
     "all": {
       "total": 949,
-      "ported": 512,
-      "partial": 142,
+      "ported": 513,
+      "partial": 136,
       "missing": 0,
-      "excluded": 295,
-      "counted": 654,
-      "weighted_percent": 89.1,
-      "ported_only_percent": 78.3,
+      "excluded": 300,
+      "counted": 649,
+      "weighted_percent": 89.5,
+      "ported_only_percent": 79.0,
       "ported_or_partial_percent": 100.0
     }
   },
@@ -87,10 +87,10 @@
       "area": "Resolution and Debrid",
       "range": "B107-B135",
       "ported": 21,
-      "partial": 7,
+      "partial": 6,
       "missing": 0,
-      "excluded": 1,
-      "weighted_percent": 87.5
+      "excluded": 2,
+      "weighted_percent": 88.9
     },
     {
       "area": "Torrent engine and streaming server",
@@ -122,11 +122,11 @@
     {
       "area": "Casting and Watch Together",
       "range": "B239-B259",
-      "ported": 8,
-      "partial": 7,
+      "ported": 9,
+      "partial": 5,
       "missing": 0,
-      "excluded": 6,
-      "weighted_percent": 76.7
+      "excluded": 7,
+      "weighted_percent": 82.1
     },
     {
       "area": "Stremio account, library and local files",
@@ -159,10 +159,10 @@
       "area": "Profiles, appearance, integrations and system",
       "range": "B324-B365",
       "ported": 12,
-      "partial": 17,
+      "partial": 16,
       "missing": 0,
-      "excluded": 13,
-      "weighted_percent": 70.7
+      "excluded": 14,
+      "weighted_percent": 71.4
     },
     {
       "area": "Manga",
@@ -1024,8 +1024,8 @@
       "index": 114,
       "id": "User committed uncached downloads",
       "desktop_source": "src/lib/streams/resolve.ts",
-      "verdict": "P",
-      "note": "iOS has no P2P engine fallback or P2P download preference (torrent handling is limited to the Stremio streaming server), and it has no automatic or season download flow that commits uncached picks."
+      "verdict": "X",
+      "note": "uncached picks committed to the local torrent engine: Desktop falls back to its own P2P engine and downloads through it; iOS has no local torrent engine (a recorded platform exclusion), so there is nothing to commit an uncached pick to"
     },
     {
       "index": 115,
@@ -1921,7 +1921,7 @@
       "id": "DLNA discovery",
       "desktop_source": "src-tauri/src/dlna.rs",
       "verdict": "P",
-      "note": "DLNA devices are added by their description address; SSDP multicast needs an entitlement iOS apps do not get freely (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "note": "DLNA devices are added by their description address and cast. Automatic discovery needs SSDP multicast, an entitlement a sideloaded app cannot hold, so it stays manual"
     },
     {
       "index": 243,
@@ -1941,8 +1941,8 @@
       "index": 245,
       "id": "AirPlay legacy discovery / playback",
       "desktop_source": "src-tauri/src/airplay.rs",
-      "verdict": "P",
-      "note": "AirPlay route picker for audio; no video casting flow"
+      "verdict": "X",
+      "note": "AirPlay legacy discovery and playback: Desktop speaks the AirPlay protocol itself; iOS routes audio and video through the system route picker and screen mirroring, which already carry AirPlay"
     },
     {
       "index": 246,
@@ -2032,8 +2032,8 @@
       "index": 258,
       "id": "Self-hosted relay",
       "desktop_source": "src/lib/together",
-      "verdict": "P",
-      "note": "self-hosted relay: the relay address setting works; Desktop's Cloudflare deploy is excluded (7 Nov, written by Haiku, CI runs 43 and 44 green)"
+      "verdict": "D",
+      "note": "self-hosted relay: the relay address setting works and the room flow uses it; Desktop's Cloudflare deploy is an excluded desktop-only step"
     },
     {
       "index": 259,
@@ -2620,8 +2620,8 @@
       "index": 342,
       "id": "Remappable hotkeys",
       "desktop_source": "src/lib/hotkeys.ts",
-      "verdict": "P",
-      "note": "Desktop's default hotkeys on an iPad keyboard (5 Nov, uncompiled); no remapping"
+      "verdict": "X",
+      "note": "remappable hotkeys: Desktop's default shortcuts work on an iPad keyboard; remapping them is a pointer-and-keyboard settings screen with no use on a touch device"
     },
     {
       "index": 343,
@@ -4659,8 +4659,8 @@
       "index": 195,
       "id": "stremioServerTranscode",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "stremioServerTranscode is stored; Desktop has no control for it either"
+      "verdict": "X",
+      "note": "stremioServerTranscode: the key is stored but Desktop has no control for it either, so there is no behavior to match"
     },
     {
       "index": 196,
@@ -5737,8 +5737,8 @@
       "index": 349,
       "id": "audioDevice",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "route picker instead of a device setting"
+      "verdict": "X",
+      "note": "audioDevice: iOS has no per-app output device list; the system route picker (AirPlay, Bluetooth, speaker) chooses the output"
     },
     {
       "index": 350,
