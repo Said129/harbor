@@ -34,12 +34,18 @@ struct EpisodeList: View {
     @State private var arcMode = false
     @State private var arcID = ""
     @State private var arcs: [EpisodeArc] = []
+    @State private var episodeQuery = ""
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private var videos: [Episode] { ordering?.videos ?? WatchedCodec.ordered(media.videos ?? []) }
     private var seasons: [Int] { Array(Set(videos.compactMap(\.listedSeason))).sorted() }
     private var sections: [EpisodeOrderSection] { ordering?.sections ?? [] }
     private var currentSection: EpisodeOrderSection? { sections.first { $0.id == orderSection } ?? sections.first }
-    private var visible: [Episode] { currentSection?.episodes ?? videos.filter { ($0.listedSeason ?? season) == season } }
+    /// A search on a plain season list looks through every season, as Desktop's cross-season results do.
+    private var episodeSearching: Bool { ordering == nil && pool == nil && !EpisodeSearchRules.normalized(episodeQuery).isEmpty }
+    private var visible: [Episode] {
+        if episodeSearching { return videos.filter { EpisodeSearchRules.matches($0, query: episodeQuery) } }
+        return currentSection?.episodes ?? videos.filter { ($0.listedSeason ?? season) == season }
+    }
     private var orderedRows: [EpisodeOrderRow] {
         let rows = arcActive ? arcRows : (currentSection?.rows ?? visible.map(EpisodeOrderRow.episode))
         return InterfacePreferences.shared.episodeSort == "newest" ? rows.reversed() : rows
@@ -111,8 +117,9 @@ struct EpisodeList: View {
         return false
     }
     /// Desktop's story arcs (`use-arc-groups.ts`): available on a plain series when the setting is on and TMDB lists arcs.
-    private var arcsAvailable: Bool { InterfacePreferences.shared.episodeArcGroups && !arcs.isEmpty && ordering == nil && pool == nil }
-    private var arcActive: Bool { arcMode && arcsAvailable }
+    /// Arcs win over a TVDB order, as Desktop's `arcActive` does; an anime pool still shows its own list.
+    private var arcsAvailable: Bool { InterfacePreferences.shared.episodeArcGroups && !arcs.isEmpty && pool == nil }
+    private var arcActive: Bool { arcMode && arcsAvailable && !episodeSearching }
     /// The active arc's episodes in arc order, as list rows.
     private var arcRows: [EpisodeOrderRow] {
         guard let arc = arcs.first(where: { $0.id == arcID }) ?? arcs.first else { return [] }
@@ -126,7 +133,7 @@ struct EpisodeList: View {
         arcs = []
         let configuration = MetadataPreferences.shared.configuration()
         let key = configuration.tmdbKey
-        guard InterfacePreferences.shared.episodeArcGroups, ordering == nil, pool == nil, !key.isEmpty else { return }
+        guard InterfacePreferences.shared.episodeArcGroups, pool == nil, !key.isEmpty else { return }
         let service = TMDBService()
         var resolved = EpisodeArcPolicy.tvID(forMediaID: media.id)
         if resolved == nil, let imdb = seriesIMDb, let reference = try? await service.pluginReference(imdb: imdb, type: "series", key: key), reference.kind == "tv" {
@@ -190,7 +197,7 @@ struct EpisodeList: View {
                     Task { await library.setEpisodesWatched(media, episodes: SeasonWatchPolicy.targets(visible, marking: !seasonWatched), watched: !seasonWatched) }
                 } label: {
                     Text(DesktopInterfaceText.value(seasonWatched ? "Mark season as unwatched" : "Mark season as watched"))
-                }.disabled(library.busy || visible.isEmpty).accessibilityIdentifier("episode-mark-season")
+                }.disabled(library.busy || visible.isEmpty || episodeSearching).accessibilityIdentifier("episode-mark-season")
             }
         } label: {
             Image(systemName: "arrow.up.arrow.down").frame(width: 40, height: 40).background(.white.opacity(0.06), in: .circle)
@@ -241,6 +248,12 @@ struct EpisodeList: View {
             }
         }
     }
+    /// Desktop's episode search bar: a title, or "2x5" for one episode across every season.
+    private var episodeSearchField: some View {
+        TextField(DesktopInterfaceText.value("Search episodes"), text: $episodeQuery)
+            .textFieldStyle(.roundedBorder).autocorrectionDisabled()
+            .accessibilityIdentifier("episode-search")
+    }
     private func layoutTitle(_ value: EpisodeLayoutPolicy.Layout) -> String {
         switch value {
         case .list: return DesktopInterfaceText.value("List view")
@@ -269,6 +282,7 @@ struct EpisodeList: View {
                     Text(DesktopInterfaceText.value("All")).tag(AnimeEpisodeGrouping.continuous)
                 }.pickerStyle(.segmented).accessibilityIdentifier("anime-episode-grouping")
             }
+            if ordering == nil && pool == nil { episodeSearchField }
             HStack {
                 Text("Episodios").font(.title2.bold()).accessibilityIdentifier("detail-episode-summary")
                     .accessibilityValue(episodeSummary)
@@ -277,10 +291,10 @@ struct EpisodeList: View {
                 if pool == nil { randomButton }
                 layoutMenu
                 sortMenu
-                if let ordering, richOrderPanel {
+                if let ordering, richOrderPanel, !arcActive {
                     TVDBOrderPanel(sections: sections, options: orderOptions, activeKind: ordering.kind,
                         selection: Binding(get: { currentSection?.id ?? "" }, set: { orderSection = $0 }), selectOrder: selectOrder, loading: orderLoading)
-                } else if ordering != nil {
+                } else if ordering != nil, !arcActive {
                     Picker(DesktopInterfaceText.value("Seasons"), selection: Binding(get: { currentSection?.id ?? "" }, set: { orderSection = $0 })) {
                         ForEach(sections) { Text($0.label).tag($0.id) }
                     }.pickerStyle(.menu).accessibilityIdentifier("episode-season")

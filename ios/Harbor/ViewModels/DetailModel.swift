@@ -295,7 +295,8 @@ final class DetailModel {
 
     func loadEpisodeOrder(setting: String, language: String, owner: String, library: LibraryModel, tvdb: TVDBService = .shared) async {
         guard canLoadEpisodeOrder, library.owner == owner else { return }
-        if soloFranchiseEntry {
+        // Desktop's "tmdb" episode order provider keeps the TMDB order and never asks TVDB for one.
+        if soloFranchiseEntry || setting == "tmdb" {
             orderRequest = UUID(); tvdbOrder = nil; episodeOrderProjection = nil; episodeOrderOptions = []; episodeOrderLoading = false
             applyEpisodeOrder(); return
         }

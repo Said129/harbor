@@ -24,6 +24,7 @@ struct SearchView: View {
             if !isTitleQuery { SearchLinkCard(app: app, input: linkInput).padding().id(linkInput) }
             if query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 recentSearches
+                genreTiles
                 if history.items.isEmpty { ContentUnavailableView("Busca en tus addons", systemImage: "magnifyingglass", description: Text("Películas, series y catálogos instalados.")) }
             }
             else if isTitleQuery && rows.isEmpty && topMatch == nil && browseIntent == nil && !loading { ContentUnavailableView.search(text: query) }
@@ -85,6 +86,23 @@ struct SearchView: View {
     }
     private var searchTitles: [String: String] {
         Dictionary(rows.map { ($0.id, $0.isAnimeCatalog ? "Anime" : ["movie": "Películas", "series": "Series", "tv": "TV", "channel": "TV"][$0.plan.kind] ?? "Resultados") }, uniquingKeysWith: { first, _ in first })
+    }
+    /// Desktop's "Try a genre" tiles: a tap searches the genre name, which opens the genre browse rails.
+    private var genreTiles: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(DesktopInterfaceText.value("Try a genre")).font(.headline)
+            ScrollView(.horizontal) {
+                HStack(spacing: 8) {
+                    ForEach(SearchRanking.genreSuggestions, id: \.self) { name in
+                        Button { query = name } label: {
+                            Text(DesktopInterfaceText.value(name)).font(HarborTheme.font(14, weight: .medium))
+                                .padding(.horizontal, 14).frame(minHeight: 44)
+                                .background(HarborTheme.surface, in: .capsule)
+                        }.buttonStyle(.plain).accessibilityIdentifier("search-genre-tile")
+                    }
+                }
+            }.scrollIndicators(.hidden)
+        }.padding(.horizontal)
     }
     private var recentSearches: some View {
         VStack(alignment: .leading, spacing: 8) {
