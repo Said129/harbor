@@ -121,12 +121,13 @@ final class ContentPageModel {
                 let records = app.library.items
                 let picksOptions = AnimePicksPreferences.shared.options
                 let watchedIDs: Set<String> = picksOptions.hideWatched ? Self.watchedAnimeIDs(records, app: app) : []
+                let tasteGenres = Self.tasteGenres(app: app)
                 await withTaskGroup(of: (Int, DiscoveryRail?).self) { group in
                     for (index, rail) in definitions.enumerated() {
                         group.addTask {
                             do {
                                 var result = rail
-                                if rail.path == "anime:picks" { result.metas = try await AnimeService.shared.picks(records: records, options: picksOptions, watchedIDs: watchedIDs) }
+                                if rail.path == "anime:picks" { result.metas = try await AnimeService.shared.picks(records: records, options: picksOptions, watchedIDs: watchedIDs, tasteGenres: tasteGenres) }
                                 else if rail.id == "anilist-top100" {
                                     let first = try await AnimeService.shared.page(rail, page: 1)
                                     let second = try await AnimeService.shared.page(rail, page: 2)
@@ -144,6 +145,7 @@ final class ContentPageModel {
                         curated = CatalogRefresh.merge(order: definitions.map(\.id), received: fetched.map(\.1), previous: previousCurated)
                     }
                 }
+                curated = Self.animeRowsAfterPools(curated)
             } else {
                 rows = app.rows.filter { row in
                     if kind == "anime" { return row.plan.kind == "anime" || row.plan.addon.manifest["id"].string?.localizedCaseInsensitiveContains("kitsu") == true || row.plan.title.localizedCaseInsensitiveContains("anime") }
@@ -294,12 +296,33 @@ final class ContentPageModel {
         Set(records.compactMap(\.media).filter { AnimeService.isAnime($0.id) && app.library.watched($0) }.map(\.id))
     }
 
+    /// The viewer's taste genres for the picks seed (Desktop's `animeSeedGenres`), read on the main actor.
+    private static func tasteGenres(app: AppModel) -> [String] {
+        AnimePicksPolicy.tasteGenreNames(app.library.discovery.affinity(now: Date()).genres)
+    }
+
+    /// Desktop's per-pool franchise dedupe, seeded by the Top Picks. The Top Airing row is claimed like Desktop's
+    /// `TOP_PICKS_KEY` row but is not shown, because Desktop's row list skips it.
+    private static func animeRowsAfterPools(_ rails: [DiscoveryRail]) -> [DiscoveryRail] {
+        let rows = (try? DesktopAnimeRows.read().rows) ?? []
+        var pools: [String: String] = [:]
+        for row in rows where row.key != "upcoming" { pools[row.id] = row.pool }
+        let seeds = rails.first { $0.id == "anime-picks" }?.metas ?? []
+        let indexes = rails.indices.filter { pools[rails[$0].id] != nil }
+        let input: [(pool: String, metas: [Media])] = indexes.map { index in (pool: pools[rails[index].id] ?? "general", metas: rails[index].metas) }
+        let deduped = AnimePicksPolicy.pooledRows(input, seeds: seeds)
+        var out = rails
+        for (position, index) in indexes.enumerated() { out[index].metas = deduped[position] }
+        return out.filter { $0.id != "anime-top-airing" }
+    }
+
     func refreshAnimePicks(app: AppModel) async {
         guard !loading, let index = curated.firstIndex(where: { $0.id == "anime-picks" }) else { return }
         let current = generation, owner = app.accountOperationScope
         let picksOptions = AnimePicksPreferences.shared.options
         let watchedIDs: Set<String> = picksOptions.hideWatched ? Self.watchedAnimeIDs(app.library.items, app: app) : []
-        guard let picks = try? await AnimeService.shared.picks(records: app.library.items, options: picksOptions, watchedIDs: watchedIDs), !Task.isCancelled,
+        let tasteGenres = Self.tasteGenres(app: app)
+        guard let picks = try? await AnimeService.shared.picks(records: app.library.items, options: picksOptions, watchedIDs: watchedIDs, tasteGenres: tasteGenres), !Task.isCancelled,
               current == generation, owner == app.accountOperationScope, curated.indices.contains(index), curated[index].id == "anime-picks" else { return }
         curated[index].metas = picks
     }
