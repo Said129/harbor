@@ -44,11 +44,14 @@ enum ContinueWatchingSelection {
         includes(record, kind: "anime", detectedAnime: detectedAnime) && AnimePublicIdentity(record.id) != nil
     }
 
-    static func roomCards(_ records: [LibraryRecord], kind: String?, excludesAnime: Bool, detectedAnime: Set<String>) -> [LibraryRecord] {
+    static func roomCards(_ records: [LibraryRecord], kind: String?, excludesAnime: Bool, detectedAnime: Set<String>,
+                          franchiseRoot: (String) -> String? = { _ in nil }) -> [LibraryRecord] {
         let selected = records.filter { includes($0, kind: kind, detectedAnime: detectedAnime) }
         let visible = HomeCatalogFilter.continueWatching(selected, animeOnlyInAnimeRoom: excludesAnime, detectedAnime: detectedAnime)
         switch kind {
-        case nil: return HomeContinueWatchingRules.cards(visible)
+        case nil:
+            let cards = HomeContinueWatchingRules.cards(visible)
+            return HomeContinueWatchingRules.onePerFranchise(cards, root: { franchiseRoot($0.id) }, watched: HomeContinueWatchingRules.lastWatched)
         case "series": return Array(visible.prefix(16))
         default: return visible
         }

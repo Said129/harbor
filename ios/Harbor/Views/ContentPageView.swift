@@ -14,6 +14,7 @@ struct ContentPageView: View {
         let curated = kind == "series" ? ShowsCatalog.visible(model.curated, heroIDs: model.seriesHeroIDs) : model.curated
         let catalogs = kind == "series" ? ShowsCatalog.visibleFallback(model.rows, heroIDs: model.seriesHeroIDs) : model.rows
         let rows = curated.map(PageRail.discovery) + catalogs.map(PageRail.catalog)
+        if kind == "movie" { return MoviesCatalog.visible(rows, heroIDs: Set(model.heroes.map(\.id))) }
         guard kind == "anime" else { return rows }
         return PageRail.addingContinuation(to: rows, kind: kind, records: app.library.continuing,
             detectedAnime: app.animeDetection.identifiers, presentationError: app.library.presentationError != nil)

@@ -217,7 +217,8 @@ struct ContinueWatching: View {
     }
     private var items: [LibraryRecord] {
         ContinueWatchingSelection.roomCards(app.library.continuing, kind: kind, excludesAnime: excludesAnime,
-                                            detectedAnime: app.animeDetection.identifiers)
+                                            detectedAnime: app.animeDetection.identifiers,
+                                            franchiseRoot: { app.library.franchiseRootID(for: $0) })
     }
     var body: some View {
         Group {

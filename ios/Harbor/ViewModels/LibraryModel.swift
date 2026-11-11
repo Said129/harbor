@@ -28,6 +28,8 @@ final class LibraryModel {
     private(set) var favorites = MediaFavorites(owner: "guest")
     private(set) var discovery = DiscoveryPreferences(owner: "guest")
     private var animeFranchiseRoots: [String: String] = [:]
+    /// The resolved anime franchise root of a record, read by Home's one-card-per-franchise pass.
+    func franchiseRootID(for id: String) -> String? { animeFranchiseRoots[id] }
     @ObservationIgnored private let animeRootResolver: @Sendable (String) async -> String?
     let simklPlayback: SimklPlaybackFeed
     let traktPlayback: TraktPlaybackFeed

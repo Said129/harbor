@@ -45,4 +45,23 @@ enum HomeContinueWatchingRules {
         var emitted = Set<String>()
         return ordered.filter { byID[$0.id] != nil && emitted.insert($0.id).inserted }
     }
+
+    /// Desktop's second Home pass: one card per resolved anime franchise root. Cards are visited most recently watched
+    /// first, and a later card from the same root is removed. Cards without a root are never removed, and the result
+    /// keeps the order of `ordered`.
+    static func onePerFranchise<Item>(_ ordered: [Item], root: (Item) -> String?, watched: (Item) -> Double) -> [Item] {
+        let byRecency = ordered.indices.sorted { (first: Int, second: Int) -> Bool in
+            let firstWatched = watched(ordered[first])
+            let secondWatched = watched(ordered[second])
+            if firstWatched != secondWatched { return firstWatched > secondWatched }
+            return first < second
+        }
+        var seenRoots = Set<String>()
+        var removed = Set<Int>()
+        for index in byRecency {
+            guard let franchise = root(ordered[index]) else { continue }
+            if !seenRoots.insert(franchise).inserted { removed.insert(index) }
+        }
+        return ordered.indices.filter { !removed.contains($0) }.map { ordered[$0] }
+    }
 }
