@@ -67,6 +67,9 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
     private var audioUserPicked = false
     private var assNormalizationKey: String?
     private var assScaleApplied = false
+    /// The search result count the automatic provider choice last looked at, and when this file finished loading.
+    private var providerAutoloadKey: String?
+    private var fileLoadedAt: Date?
     private let subtitleSession = UUID()
     /// Desktop's `truncatedReloadedRef`: a stream that ends early gets one fresh session of the same source.
     private var truncatedReloadUsed = false
@@ -633,7 +636,12 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
 
     func loadAddonSubtitle(_ subtitle: PlaybackSource.Subtitle) {
         cancelSubtitleSync()
-        enqueueSubtitleOperation { controller in
+        enqueueSubtitleOperation(addonSubtitleLoad(subtitle, origin: .manual))
+    }
+
+    /// The download, add and select steps for one addon or provider subtitle. `origin` records who chose it (`.automatic` for the automatic provider choice).
+    private func addonSubtitleLoad(_ subtitle: PlaybackSource.Subtitle, origin: SubtitleSelectionOrigin) -> @MainActor (MPVController) async throws -> Void {
+        return { controller in
             guard controller.state.loaded else { throw HarborError(code: "subtitle-context") }
             let revision = controller.mediaRevision
             controller.state.addonSubtitleDownloading = true
@@ -653,7 +661,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
             guard !controller.didClose, controller.mediaRevision == revision, controller.state.loaded else { throw HarborError(code: "subtitle-context") }
             try await controller.resetSubtitleFPS()
             let local = PlaybackSource.Subtitle(url: file.url.absoluteString, lang: subtitle.lang, id: subtitle.id)
-            controller.subtitleSelectionOrigin = .manual
+            controller.subtitleSelectionOrigin = origin
             if let track = controller.state.tracks.first(where: { $0.type == "sub" && local.matchesFilename($0.externalFilename) }) {
                 if controller.state.secondarySubtitle?.id == track.id { try await controller.setChecked("secondary-sid", "no") }
                 try await controller.setChecked("sid", String(track.id))
@@ -686,6 +694,35 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 await SubtitleFileService.shared.discard(file, session: controller.subtitleSession)
                 throw error
             }
+        }
+    }
+
+    /// How many stream subtitles are downloaded and converted to UTF-8 per video. The session folder holds 24 files in all.
+    private static let streamSubtitleCopyLimit = 6
+
+    /// A subtitle that came with the stream. Desktop decodes every subtitle through `encoding.ts`, so remote text in the person's
+    /// language is downloaded and converted to UTF-8 first (`SubtitleFileService`), which also keeps the video's HTTP headers away
+    /// from the subtitle host. Any other subtitle, and any failure, hands mpv the original address, as before.
+    private func addStreamSubtitle(_ subtitle: PlaybackSource.Subtitle, convert: Bool) {
+        let language = subtitle.lang ?? ""
+        let arguments: (String) -> [String] = { target in ["sub-add", target, "auto", language, language] }
+        guard convert, let remote = SubtitleAssHeaderSource.remoteURL(subtitle.url) else {
+            run(arguments(subtitle.url))
+            return
+        }
+        let revision = mediaRevision
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            var target = remote.absoluteString
+            let identity = subtitle.downloadIdentity
+            if let cached = self.addonSubtitleFiles[identity] {
+                target = cached.url.absoluteString
+            } else if let file = try? await SubtitleFileService.shared.download(subtitle, session: self.subtitleSession) {
+                if !self.didClose, self.mediaRevision == revision { self.addonSubtitleFiles[identity] = file }
+                target = file.url.absoluteString
+            }
+            guard !self.didClose, self.mediaRevision == revision else { return }
+            self.run(arguments(target))
         }
     }
 
@@ -892,6 +929,47 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         synchronizeSubtitle()
     }
 
+    /// Desktop's automatic provider choice (`use-track-autoload.ts`, `loadFirstWorkingSubtitle`): once the search has finished and the file
+    /// has no subtitle in the person's language, the best-ranked result, judged against the stream's own release name, is loaded for them.
+    /// It never overrides a track the person picked, and it waits a moment for subtitles that came with the stream.
+    private func considerProviderSubtitleAutoload() {
+        guard UIApplication.shared.applicationState == .active, state.loaded, !state.addonSubtitlesLoading, !state.subtitleChanging,
+              !state.addonSubtitles.isEmpty, subtitleSelectionOrigin != .manual,
+              state.tracks.contains(where: { $0.type == "video" || $0.type == "audio" }),
+              let loadedAt = fileLoadedAt, Date().timeIntervalSince(loadedAt) >= ((source.subtitles ?? []).isEmpty ? 2 : 6) else { return }
+        let key = "\(mediaRevision):\(state.addonSubtitles.count)"
+        guard providerAutoloadKey != key else { return }
+        providerAutoloadKey = key
+        let options = PlaybackPreferences.shared.options
+        let languages = SubtitleLanguages.preferredCodes(options.subtitleLanguage)
+        guard !options.subtitlesOff, !languages.isEmpty,
+              SubtitleAutoProviderChoice.playerNeedsOne(tracks: state.tracks.subtitleSelectionCandidates, languages: languages) else { return }
+        // "Forced subs with native audio" leaves subtitles off when the audio already speaks the person's language and the file has no forced track.
+        if SubtitleSelectionPreferences.shared.forcedSubsWhenNativeAudio,
+           let audio = state.tracks.first(where: { $0.type == "audio" && $0.selected }),
+           SubtitleSelectionPolicy.languageScore(audio.language, preferred: languages) >= 0 { return }
+        let hints = subtitleRequest.map { SubtitleStreamHints.from($0) }
+        let picks = SubtitleAutoProviderChoice.picks(state.addonSubtitles, preferredLanguages: languages, hints: hints)
+        guard !picks.isEmpty else { return }
+        let revision = mediaRevision
+        enqueueSubtitleOperation { controller in
+            for pick in picks {
+                // Stop as soon as the person chose something, or the selected track already speaks their language.
+                guard controller.mediaRevision == revision, !controller.didClose, controller.subtitleSelectionOrigin != .manual else { return }
+                if let current = controller.state.primarySubtitle,
+                   SubtitleSelectionPolicy.languageScore(current.language, preferred: languages) >= 0 { return }
+                do {
+                    try await controller.addonSubtitleLoad(pick, origin: .automatic)(controller)
+                    return
+                } catch is CancellationError {
+                    return
+                } catch {
+                    continue
+                }
+            }
+        }
+    }
+
     func synchronizeSubtitle() {
         guard !didClose, subtitleSyncTask == nil, !state.subtitleChanging, state.loaded, state.duration >= 60,
               state.secondarySubtitle == nil, let track = state.primarySubtitle, track.external, track.isTextSubtitle,
@@ -910,6 +988,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         let supportsPivot = ["srt", "vtt"].contains(subtitleURL?.pathExtension.lowercased() ?? "")
         let pivotEnabled = UserDefaults.standard.bool(forKey: "subtitleAutoSyncPivot")
         let settingsOwner = MetadataPreferences.shared.settingsOwner ?? "guest"
+        let hashSwap = OpenSubtitlesHashSwap.context(request: subtitleRequest, trackLanguage: track.language, owner: settingsOwner)
         let scope = SubtitleSyncScope(request: request, revision: revision, trackID: track.id, audioID: audioID,
                                       delay: state.subtitleDelay, fps: state.subtitleFPS)
         subtitleSyncOffer = nil
@@ -918,7 +997,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         subtitleSyncTask = Task { @MainActor [weak self] in
             let worker = Task.detached(priority: .utility) {
                 let document = try await SubtitleAutoSync.load(filename)
-                let base = try await SubtitleAutoSync.analyze(source: source, document: document, duration: duration, audioID: audioID)
+                let base = try await SubtitleAutoSync.analyze(source: source, document: document, duration: duration, audioID: audioID, hashSwap: hashSwap)
                 return (document, base)
             }
             defer {
@@ -944,7 +1023,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 guard subtitleSyncScopeIsCurrent(scope) else { return }
                 guard let correction else { state.updateSubtitleSync(.declined, message: "No se encontró un ajuste fiable. Se conserva el subtítulo original."); return }
                 let result = correction.timing
-                if correction.pivotTransform == nil, abs(result.offset) < 0.25 && abs(result.ratio - 1) < 0.003 {
+                if correction.pivotTransform == nil, correction.origin != .hashExact, abs(result.offset) < 0.25 && abs(result.ratio - 1) < 0.003 {
                     state.updateSubtitleSync(.synced, message: "El subtítulo ya coincide con el audio.")
                     if (scope.fps ?? 0) == 0 {
                         prepareSubtitleDrift(correction.document, timing: nil, trackID: scope.trackID, audioID: scope.audioID)
@@ -958,6 +1037,10 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                     // Desktop's bundled calibration is provisional: an audio estimate stays an offer.
                     subtitleSyncOffer = (correction, scope)
                     state.updateSubtitleSync(.offered, message: "Apply it, then nudge if it's off.")
+                case .hashExact:
+                    // A hash-matched subtitle from the person's OpenSubtitles key replaces the selected one only when they accept (Desktop's swap offer).
+                    subtitleSyncOffer = (correction, scope)
+                    state.updateSubtitleSync(.offered, message: "This subtitle looks like a different version of the video.")
                 }
             } catch is CancellationError { return }
             catch {
@@ -1025,7 +1108,8 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                                                         pivotTransform: correction.pivotTransform)
                         let message = DesktopInterfaceText.value("Subtitles synced")
                         let detail = " · \(result.offset.formatted(.number.precision(.fractionLength(1)))) s · \(result.ratio.formatted(.number.precision(.fractionLength(4))))×"
-                        controller.state.updateSubtitleSync(.synced, message: correction.pivotTransform?.piecewise == true ? message : message + detail)
+                        let plain = correction.pivotTransform?.piecewise == true || !correction.reportsTiming
+                        controller.state.updateSubtitleSync(.synced, message: plain ? message : message + detail)
                         return
                     }
                     try await Task.sleep(for: .milliseconds(50))
@@ -1050,6 +1134,25 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 }
             }
         }
+    }
+
+    /// Desktop's "Live sync" save (`use-text-sync.ts`): the corrected text of the selected external subtitle becomes a new track,
+    /// the player's delay goes back to zero, and "Restore the original subtitle" brings the previous track back.
+    func applyManualTextSync(_ document: SubtitleDocument) {
+        guard !didClose, state.loaded, !state.subtitleChanging, state.secondarySubtitle == nil,
+              let track = state.primarySubtitle, track.external, track.isTextSubtitle, SubtitleTextSync.supportsFile(named: track.externalFilename) else {
+            state.updateSubtitleSync(.declined, message: "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto.")
+            return
+        }
+        cancelSubtitleSync()
+        let request = UUID()
+        subtitleSyncRequest = request
+        let audioID = state.tracks.first { $0.type == "audio" && $0.selected }?.id
+        let scope = SubtitleSyncScope(request: request, revision: mediaRevision, trackID: track.id, audioID: audioID,
+                                      delay: state.subtitleDelay, fps: state.subtitleFPS)
+        let identity = SubtitleSyncResult(offset: 0, ratio: 1, confidence: 1)
+        let correction = SubtitleAutoSync.Correction(document: document, timing: identity, origin: .verifiedCommunity, reportsTiming: false)
+        applySubtitleCorrection(correction, scope: scope)
     }
 
     func restoreSubtitleBeforeSync() {
@@ -1206,6 +1309,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         defer {
             if let (_, scope) = subtitleSyncOffer, !subtitleSyncScopeIsCurrent(scope) { cancelSubtitleSync() }
             considerSubtitleAutoSync()
+            considerProviderSubtitleAutoload()
         }
         for _ in 0..<64 {
             guard let event = mpv_wait_event(handle, 0)?.pointee, event.event_id != MPV_EVENT_NONE else { return }
@@ -1226,6 +1330,7 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 mediaRevision += 1
                 preferredSecondaryHandled = false
                 subtitleSelectionOrigin = .none; knownSubtitleCandidates = []; audioUserPicked = false
+                providerAutoloadKey = nil; fileLoadedAt = nil
                 resetASSScale()
                 state.mediaGeneration = mediaRevision
                 state.tracks = []
@@ -1248,8 +1353,16 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 resetSubtitleDriftAfterSeek()
             case MPV_EVENT_FILE_LOADED:
                 state.loaded = true
+                fileLoadedAt = Date()
+                // Only a few stream subtitles in the person's language are copied, so they cannot fill the session folder that
+                // addon downloads, imports and synced files share. The rest go to mpv as before.
+                let streamLanguages = SubtitleLanguages.preferredCodes(PlaybackPreferences.shared.options.subtitleLanguage)
+                var streamCopies = 0
                 for subtitle in source.subtitles ?? [] {
-                    run(["sub-add", subtitle.url, "auto", subtitle.lang ?? "", subtitle.lang ?? ""])
+                    let inLanguage = streamLanguages.isEmpty || SubtitleSelectionPolicy.languageScore(subtitle.lang ?? "", preferred: streamLanguages) >= 0
+                    let convert = inLanguage && streamCopies < Self.streamSubtitleCopyLimit
+                    if convert { streamCopies += 1 }
+                    addStreamSubtitle(subtitle, convert: convert)
                 }
             case MPV_EVENT_PROPERTY_CHANGE:
                 guard let data = event.data else { continue }
@@ -1478,25 +1591,38 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
         }
     }
 
-    /// Desktop `use-ass-normalize.ts` with `sub-style.ts:79-95`: sizes an external ASS file from its own header. Desktop reads embedded ASS through the Tauri-only `subtitle_extract_ass` command, which iOS does not have, so embedded tracks keep mpv's sizing. Remote files are not fetched here.
+    /// Desktop `use-ass-normalize.ts` with `sub-style.ts:79-95`: sizes an ASS track from its own header. An external file is read from its path or
+    /// address (`SubtitleAssHeaderSource`). Desktop asks ffmpeg for an embedded track, which iOS does not have, so an embedded track, or an external
+    /// one that cannot be read, uses the header mpv holds for the selected track (`sub-ass-extradata`). Without any header mpv keeps its own sizing.
     private func applyASSNormalization() {
         let normalize = SubtitleSelectionPreferences.shared.subAssNormalizeSize
         let assOverride = PlaybackPreferences.shared.options.subtitleASS
         let fontSize = PlaybackPreferences.shared.options.subtitleSize
-        guard normalize, let track = state.primarySubtitle, track.external, !track.externalFilename.isEmpty,
+        guard normalize, let track = state.primarySubtitle,
               AssSizeNormalization.isActive(normalizeSize: normalize, assOverride: assOverride, selectedIsASS: SubtitleSelectionWiring.isASSSelection(track)) else {
             resetASSScale()
             return
         }
         let key = "\(mediaRevision):\(track.id)"
-        guard assNormalizationKey != key, let url = SubtitleSelectionWiring.localFileURL(track.externalFilename) else { return }
+        guard assNormalizationKey != key else { return }
         assNormalizationKey = key
+        let source = SubtitleAssHeaderSource.choose(for: track)
         let revision = mediaRevision, trackID = track.id
         Task { @MainActor [weak self] in
-            let text = await Task.detached(priority: .utility) { () -> String? in
-                try? String(contentsOf: url, encoding: .utf8)
-            }.value
-            guard let self, self.mediaRevision == revision, self.state.primarySubtitle?.id == trackID else { return }
+            var text: String? = nil
+            switch source {
+            case .localFile(let url):
+                text = await Task.detached(priority: .utility) { () -> String? in
+                    SubtitleAssHeaderLoader.text(forFileAt: url)
+                }.value
+            case .remoteFile(let url):
+                text = await SubtitleAssHeaderLoader.fetch(url)
+            case .mpvHeader:
+                text = nil
+            }
+            guard let self else { return }
+            if text == nil { text = await self.mpvAssHeader(revision: revision, trackID: trackID) }
+            guard self.mediaRevision == revision, self.state.primarySubtitle?.id == trackID else { return }
             if let scale = SubtitleSelectionWiring.assSubScale(normalizeSize: normalize, assOverride: assOverride, selectedIsASS: true, assText: text, targetFontSize: fontSize) {
                 // Desktop `sub-style.ts:81`: a normalised scale switches the override to "scale".
                 self.set("sub-ass-override", SubtitleSelectionWiring.assOverride(scaled: true, userOverride: assOverride))
@@ -1504,8 +1630,20 @@ final class MPVController: GLKViewController, ProfilePlaybackControlling {
                 self.assScaleApplied = true
             } else {
                 self.resetASSScale()
+                // This track has been measured, so a later track-list update does not measure it again.
+                self.assNormalizationKey = key
             }
         }
+    }
+
+    /// The ASS header mpv holds for the selected subtitle track. The decoder needs a moment after a track change, so it is asked a few times.
+    private func mpvAssHeader(revision: Int, trackID: Int) async -> String? {
+        for attempt in 0..<8 {
+            guard !didClose, mediaRevision == revision, state.primarySubtitle?.id == trackID else { return nil }
+            if let header = stat("sub-ass-extradata"), !header.isEmpty { return header }
+            if attempt < 7 { try? await Task.sleep(for: .milliseconds(250)) }
+        }
+        return nil
     }
 
     /// Undoes the normalised scale and restores the person's override, only when Harbor changed them, so the default path sends nothing. iOS sends the font size as `sub-font-size`, so mpv's base `sub-scale` is 1.

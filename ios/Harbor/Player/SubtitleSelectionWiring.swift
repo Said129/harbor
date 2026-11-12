@@ -81,7 +81,7 @@ enum SubtitleSelectionWiring {
         scaled ? "scale" : userOverride
     }
 
-    /// A local file for an mpv external track name, which is a path or a `file://` URL. Remote URLs (for example addon sources) return nil: Desktop fetches them, iOS does not yet.
+    /// A local file for an mpv external track name, which is a path or a `file://` URL. Remote URLs (for example addon sources) return nil here; `SubtitleAssHeaderSource` fetches them.
     static func localFileURL(_ filename: String) -> URL? {
         guard !filename.isEmpty else { return nil }
         if filename.hasPrefix("file://") { return URL(string: filename) }

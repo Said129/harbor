@@ -53,7 +53,8 @@ private struct SubtitleStyledLabel: UIViewRepresentable {
         return label
     }
     func updateUIView(_ label: UILabel, context: Context) {
-        var font = UIFont(name: SubtitleStyleFont(rawValue: options.subtitleFont)?.family ?? "Inter-Regular", size: size) ?? .systemFont(ofSize: size)
+        let fontName = SubtitleFontSelection.uiFontName(for: options.subtitleFont, owner: MetadataPreferences.shared.settingsOwner ?? "guest")
+        var font = UIFont(name: fontName, size: size) ?? .systemFont(ofSize: size)
         if options.subtitleBold, let descriptor = font.fontDescriptor.withSymbolicTraits(.traitBold) { font = UIFont(descriptor: descriptor, size: size) }
         let paragraph = NSMutableParagraphStyle(); paragraph.lineHeightMultiple = 1.2
         paragraph.alignment = options.subtitleAlignment == "left" ? .left : options.subtitleAlignment == "right" ? .right : .center
@@ -111,14 +112,17 @@ struct SubtitleBackgroundChoices: View {
 struct SubtitleFontChoices: View {
     @Binding var selection: String
     var body: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)], spacing: 10) {
-            ForEach(SubtitleStyleFont.allCases) { font in
-                Button { selection = font.rawValue } label: {
-                    Text(font.title).font(.custom(font.family, size: 16.5).weight(.semibold)).frame(maxWidth: .infinity, minHeight: 56)
-                        .background(HarborTheme.surface, in: .rect(cornerRadius: 10))
-                        .overlay { RoundedRectangle(cornerRadius: 10).stroke(selection == font.rawValue ? HarborTheme.accent : HarborTheme.ink.opacity(0.1), lineWidth: 1) }
-                }.buttonStyle(.plain).accessibilityAddTraits(selection == font.rawValue ? .isSelected : [])
+        VStack(alignment: .leading, spacing: 10) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)], spacing: 10) {
+                ForEach(SubtitleStyleFont.allCases) { font in
+                    Button { selection = font.rawValue } label: {
+                        Text(font.title).font(.custom(font.family, size: 16.5).weight(.semibold)).frame(maxWidth: .infinity, minHeight: 56)
+                            .background(HarborTheme.surface, in: .rect(cornerRadius: 10))
+                            .overlay { RoundedRectangle(cornerRadius: 10).stroke(selection == font.rawValue ? HarborTheme.accent : HarborTheme.ink.opacity(0.1), lineWidth: 1) }
+                    }.buttonStyle(.plain).accessibilityAddTraits(selection == font.rawValue ? .isSelected : [])
+                }
             }
+            SubtitleCustomFontChoices(selection: $selection)
         }
     }
 }
