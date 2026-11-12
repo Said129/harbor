@@ -60,10 +60,6 @@ enum MPVConfiguration {
             for (name, value) in UISettingsPolicy.mpvQualityOptions(UserDefaults.standard.string(forKey: UISettingsPolicy.mpvQualityKey)) {
                 _ = mpv_set_option_string(handle, name, value)
             }
-            // Desktop's `tone-mapping` tweak (`mpvTweaks`) is applied after the quality lines, so it overrides the spline curve of the HDR block.
-            for (name, value) in PlayerToneMapping.mpvOptions(stored: UserDefaults.standard.string(forKey: PlayerToneMapping.curveKey)) {
-                _ = mpv_set_option_string(handle, name, value)
-            }
             let settings = playback ?? PlaybackPreferences.shared.options
             // Xcode copies registered fonts into the bundle resource root.
             if let fonts = Bundle.main.url(forResource: "Inter", withExtension: "ttf") {
