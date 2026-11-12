@@ -1,13 +1,14 @@
 import SwiftUI
 
 /// Desktop's MyAnimeList panel (`settings/mal-panel.tsx`): connect with a pasted code, sync watch progress.
-/// The lists open from here (`MyAnimeListListsView`, read-only); the avatar option of that panel is not ported.
+/// The lists open from here (`MyAnimeListListsView`); the account picture comes from `/users/@me`, as Desktop's `fetchMalAvatar`.
 struct MyAnimeListSettingsView: View {
     @State private var account: MALAccount
     @State private var connectModel: MALConnectModel
     @State private var connecting = false
     @State private var disconnecting = false
     @State private var loadFailed = false
+    @State private var avatarURL: URL?
     @AppStorage("malAutoSync") private var autoSync = true
     private let app: AppModel
     @MainActor init(app: AppModel) {
@@ -37,6 +38,7 @@ struct MyAnimeListSettingsView: View {
                 }
                 if let session = account.session {
                     VStack(alignment: .leading, spacing: 2) {
+                        avatar
                         Text(session.userName).font(HarborTheme.font(18, weight: .medium)).accessibilityIdentifier("mal-account-name")
                         Text(text("Authorized {when}", ["when": AniListSettingsView.age(since: session.createdAt)])).font(.caption).foregroundStyle(.secondary)
                     }
@@ -65,7 +67,7 @@ struct MyAnimeListSettingsView: View {
             }.padding(20).frame(maxWidth: 680, alignment: .leading).frame(maxWidth: .infinity, alignment: .leading)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
             .navigationTitle("MyAnimeList").navigationBarTitleDisplayMode(.inline).accessibilityIdentifier("mal-settings-scroll")
-            .task { load(); await account.validate() }
+            .task { load(); await account.validate(); await loadAvatar() }
             .sheet(isPresented: $connecting) {
                 MALConnectView(model: connectModel).presentationDetents([.medium, .large]).presentationDragIndicator(.visible)
             }
@@ -79,6 +81,21 @@ struct MyAnimeListSettingsView: View {
 
     private func load() {
         do { if !account.ready { try account.load() }; loadFailed = false } catch { loadFailed = true }
+    }
+
+    @ViewBuilder private var avatar: some View {
+        if let avatarURL {
+            AsyncImage(url: avatarURL) { image in image.resizable().scaledToFill() } placeholder: { Color.clear }
+                .frame(width: 56, height: 56).clipShape(Circle()).accessibilityIdentifier("mal-avatar")
+        }
+    }
+
+    /// Desktop's `fetchMalAvatar`: the picture MyAnimeList returns for the signed-in account. Only https pictures are shown.
+    private func loadAvatar() async {
+        guard let session = account.session else { avatarURL = nil; return }
+        let profile = try? await MALClient(transport: MALHTTPTransport()).request("/users/@me", token: session.accessToken)
+        let picture = profile?["picture"].string ?? ""
+        avatarURL = URL(string: picture).flatMap { $0.scheme == "https" ? $0 : nil }
     }
 
     static func summary(_ event: AniListSyncEvent) -> String {

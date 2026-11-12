@@ -89,6 +89,9 @@ struct DetailView: View {
         .task(id: "related:\(model.media.identity):\(model.metadataReady)") {
             if model.metadataReady { await model.loadRelated(app.addons, owner: app.library.owner, library: app.library) }
         }
+        .task(id: "tracker-progress:\(model.media.identity):\(app.personalOwner)") {
+            await TrackerListProgressLoader.prepare(harborID: model.media.id, owner: app.personalOwner)
+        }
         .task(id: "franchise:\(model.media.identity):\(model.canLoadFranchise)") {
             await model.loadFranchise(owner: app.library.owner, library: app.library)
         }

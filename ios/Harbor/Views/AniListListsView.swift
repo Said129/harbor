@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Desktop's AniList lists (`views/library/anilist-tab.tsx`) and its recommended rail (`lib/use-anilist-anime-rails.ts`).
-/// Read-only: status, progress and removal edits (`lib/anilist/mutations.ts`) are not ported yet.
+/// Each card's menu changes the status, moves the episode count on or removes the entry (`TrackerListEdit`).
 struct AniListListsView: View {
     let app: AppModel
     @State private var account: AniListAccount
@@ -9,6 +9,7 @@ struct AniListListsView: View {
     @State private var recommended: [Media] = []
     @State private var loading = true
     @State private var loadFailed = false
+    @State private var actionFailed = false
     @State private var kind = AniListListKind.all
     @State private var query = ""
     @Environment(\.locale) private var locale
@@ -27,6 +28,10 @@ struct AniListListsView: View {
                     Text(text("Browse your anime lists in Harbor and update your episode progress as you watch. Sign in to AniList to connect."))
                         .foregroundStyle(.secondary)
                 } else {
+                    if actionFailed {
+                        Text(text("Couldn't reach AniList. Try refreshing.")).font(.callout).foregroundStyle(.orange)
+                            .accessibilityIdentifier("anilist-list-action-error")
+                    }
                     content
                 }
             }
@@ -143,7 +148,39 @@ struct AniListListsView: View {
             }
         }
         .buttonStyle(.plain)
+        .contextMenu { entryMenu(entry) }
         .accessibilityIdentifier("anilist-list-entry")
+    }
+
+    /// Desktop's entry menu: each status, the next episode, and removal from the list.
+    @ViewBuilder private func entryMenu(_ entry: AniListListEntry) -> some View {
+        ForEach(TrackerListEdit.aniListChoices, id: \.status) { choice in
+            Button(text(choice.label)) {
+                Task { await perform { token, client in try await TrackerListEdit.aniListSave(mediaID: entry.media.id, status: choice.status, token: token, client: client) } }
+            }
+        }
+        if let next = TrackerListEdit.nextProgress(entry.progress, total: entry.media.episodes) {
+            Button(text("Mark next episode")) {
+                Task { await perform { token, client in try await TrackerListEdit.aniListProgress(mediaID: entry.media.id, progress: next, token: token, client: client) } }
+            }
+        }
+        Button(text("Remove from list"), role: .destructive) {
+            Task { await perform { token, client in try await TrackerListEdit.aniListRemove(mediaID: entry.media.id, token: token, client: client) } }
+        }
+    }
+
+    /// Runs one list edit with the stored token, then reloads the lists. A rejected token is validated, as on load.
+    private func perform(_ operation: (String, AniListClient) async throws -> Void) async {
+        guard let session = account.session else { return }
+        let client = AniListClient(transport: AniListHTTPTransport())
+        do {
+            try await operation(session.accessToken, client)
+            actionFailed = false
+            await load()
+        } catch {
+            if let apiError = error as? AniListAPIError, apiError.isAuthenticationError { await account.validate() }
+            actionFailed = true
+        }
     }
 
     /// Loads the lists first, then the recommended rail, as Desktop's rails hook does: the lists never wait for it.

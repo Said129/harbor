@@ -127,6 +127,7 @@ struct HarborApp: App {
                 .modifier(LibraryPendingRecovery(app: model))
                 .modifier(TraktPlaybackRecovery(app: model))
                 .modifier(TraktWatchlistRecovery(app: model))
+                .modifier(TrackerListProgressRecovery(app: model))
                 .modifier(TraktWatchedRecovery(app: model))
                 .modifier(TraktPendingRecovery(app: model))
     }

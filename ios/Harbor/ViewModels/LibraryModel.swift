@@ -595,7 +595,11 @@ final class LibraryModel {
             }
             if fields["_id"]?.string == media.id, let imdb = media.imdbID { fields["imdb_id"] = .string(imdb) }
         }
-        if success, current == generation { binding?.enqueue(media, saved: !wasSaved) }
+        if success, current == generation {
+            binding?.enqueue(media, saved: !wasSaved)
+            // Desktop's `syncWithSimkl`: the Simkl Plan to Watch list follows the bookmark too.
+            SimklWatchlistWrite.enqueue(media, saved: !wasSaved, owner: personalOwner)
+        }
         if success, taste.owner == personalOwner, bookmarked(media) { taste.track(.watchlist, media: media) }
     }
     private func bookmarkAliases(_ media: Media, binding: TraktWatchlistSync?) -> Set<String> {
