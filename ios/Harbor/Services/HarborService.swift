@@ -230,6 +230,20 @@ struct HarborService: Sendable {
         let rejected: [String]
         /// Requests sent to addons; none means no addon accepts this title's IDs.
         let requests: Int
+        /// The streams the safety filter set aside, shaped like ranked ones, for the switcher's "Show flagged".
+        var flagged: [JSONValue] = []
+    }
+
+    /// Desktop's switcher lists a rejected stream with a zero score, a `filtered:` reason and the ROUGH tier.
+    /// A rejection without a stream is dropped.
+    static func flaggedStream(_ rejection: JSONValue) -> JSONValue? {
+        var fields = rejection["stream"].objectValue
+        if fields.isEmpty { return nil }
+        let reason = rejection["reason"].string ?? ""
+        fields["tier"] = .string("ROUGH")
+        fields["score"] = .integer(0)
+        fields["reasons"] = .array([.object(["signal": .string("filtered:" + reason), "delta": .integer(0)])])
+        return .object(fields)
     }
 
     func streams(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil, unfiltered: Bool = false,
@@ -259,9 +273,10 @@ struct HarborService: Sendable {
         let trust = StreamFilterConfiguration(level: level, addonOrder: preferences.addonOrder, sources: preferences.sources).trust(media, season: expected.season, episode: expected.episode)
         let active = await debrid?.providers ?? []
         let score = Self.scoring(media, addonOrder: preferences.addonOrder, active: active, sources: preferences.sources)
-        func ranked(_ raw: [JSONValue], _ verification: DebridVerification) async throws -> (offers: [StreamOffer], rejected: [String]) {
+        func ranked(_ raw: [JSONValue], _ verification: DebridVerification) async throws -> (offers: [StreamOffer], rejected: [String], flagged: [JSONValue]) {
             let result: JSONValue = try await core.call("rank", ["streams": .array(StreamRequestPolicy.deduplicated(raw)), "trust": trust, "score": score, "debrid": verification.flags])
-            return (Self.ordered(result, addons: addons, preferences: preferences), result["rejected"].array.compactMap { $0["reason"].string })
+            let flagged: [JSONValue] = result["rejected"].array.compactMap { Self.flaggedStream($0) }
+            return (Self.ordered(result, addons: addons, preferences: preferences), result["rejected"].array.compactMap { $0["reason"].string }, flagged)
         }
         func rank(_ raw: [JSONValue], _ verification: DebridVerification) async throws -> [StreamOffer] { try await ranked(raw, verification).offers }
         func fresh(_ raw: [JSONValue], checked: Set<String>) -> [JSONValue] {
@@ -332,7 +347,7 @@ struct HarborService: Sendable {
             if !unchecked.isEmpty { verification.merge(await DebridStreamVerifier.verify(unchecked, client: debrid)) }
             try Task.checkCancellation()
             let final = try await ranked(raw, verification)
-            return StreamResults(offers: final.offers, errors: errors, received: StreamRequestPolicy.deduplicated(raw).count, rejected: final.rejected, requests: total)
+            return StreamResults(offers: final.offers, errors: errors, received: StreamRequestPolicy.deduplicated(raw).count, rejected: final.rejected, requests: total, flagged: final.flagged)
         }
     }
 

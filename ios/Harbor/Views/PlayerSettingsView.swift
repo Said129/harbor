@@ -29,6 +29,9 @@ struct PlayerSettingsView: View {
     let page: PlayerSettingsPage
     var state: PlayerState? = nil
     var changeSource: (() -> Void)? = nil
+    /// The playing session, which the Options page needs to offer saving the video that is playing.
+    var session: PlaybackSession? = nil
+    var media: Media? = nil
     @Bindable var preferences = PlaybackPreferences.shared
     @Bindable private var sources = StreamPreferences.shared
     @Bindable private var advisory = ContentAdvisoryPreferences.shared
@@ -77,6 +80,7 @@ struct PlayerSettingsView: View {
         if let changeSource {
             HarborSettingsSection("Fuente") { Button("Cambiar fuente", action: changeSource).accessibilityIdentifier("player-options-change-source") }
         }
+        if let session { PlayerDownloadSection(session: session, media: media) }
         HarborSettingsSection("Reproducción") {
             ForEach([PlayerSettingsPage.playback, .video, .audio, .subtitles]) { destination in
                 NavigationLink { PlayerSettingsView(page: destination, state: state) } label: {
@@ -188,6 +192,7 @@ struct PlayerSettingsView: View {
             HarborSettingsToggle(DesktopInterfaceText.value("HDR-to-SDR tonemapping"),
                                  note: DesktopInterfaceText.value("Maps HDR sources to SDR using bt.2446a. Recommended on SDR displays."),
                                  isOn: $playerHdrToSdr).accessibilityIdentifier("settings-hdr-to-sdr")
+            PlayerColorHdrSettings()
         }
         HarborSettingsSection(DesktopInterfaceText.value("Stream quality in player")) {
             HarborSettingsToggle(DesktopInterfaceText.value("Show stream quality under the title"),
