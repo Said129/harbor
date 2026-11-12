@@ -2,7 +2,7 @@ import Foundation
 
 /// Desktop's XMLTV reader (`src/lib/iptv/xmltv.ts`): channel display names and programmes, the same 200 MB cap,
 /// the same XMLTV time rules, and the same rule that drops a programme without a usable channel and window.
-/// A gzip-compressed guide is refused: Foundation does not inflate a raw .gz body (URLSession only decodes Content-Encoding).
+/// A gzip-compressed guide is inflated with zlib (Desktop's `DecompressionStream("gzip")`).
 enum LiveTVXMLTV {
     /// Desktop's `MAX_BYTES`.
     static let maximumBytes = 200 * 1024 * 1024
@@ -11,16 +11,57 @@ enum LiveTVXMLTV {
     /// big guide does not fill the phone's memory with unbounded history; nil keeps every programme, as Desktop does.
     static func parse(_ data: Data, window: ClosedRange<Date>? = nil) throws -> LiveTVGuide {
         guard data.count <= maximumBytes else { throw HarborError(code: "iptv-size") }
-        if data.count >= 2, data[data.startIndex] == 0x1f, data[data.startIndex + 1] == 0x8b { throw HarborError(code: "iptv-format") }
+        var xml = data
+        if isGzip(data) { xml = try gunzip(data) }
         let delegate = LiveTVXMLTVDelegate()
         delegate.window = window.map { $0.lowerBound.timeIntervalSince1970...$0.upperBound.timeIntervalSince1970 }
-        let parser = XMLParser(data: data)
+        let parser = XMLParser(data: xml)
         parser.shouldProcessNamespaces = false
         parser.delegate = delegate
         let finished = parser.parse()
         // Desktop tolerates broken markup; XMLParser stops at the first error, so keep what was read before it.
         if !finished, delegate.programs.isEmpty, delegate.channelOrder.isEmpty { throw HarborError(code: "iptv-format") }
         return LiveTVGuide(programs: delegate.programs, displayNames: delegate.displayNames, channelOrder: delegate.channelOrder, programOrder: delegate.programOrder)
+    }
+
+    static func isGzip(_ data: Data) -> Bool {
+        data.count >= 2 && data[data.startIndex] == 0x1f && data[data.startIndex + 1] == 0x8b
+    }
+
+    /// Inflates a gzip body with zlib (`Harbor-Bridging-Header.h` imports zlib.h and project.yml links libz).
+    /// windowBits 15 + 32 reads the gzip header itself. The output stops at `maximumBytes`, like Desktop's cap.
+    static func gunzip(_ data: Data) throws -> Data {
+        var stream = z_stream()
+        guard inflateInit2_(&stream, 15 + 32, zlibVersion(), Int32(MemoryLayout<z_stream>.size)) == Z_OK else {
+            throw HarborError(code: "iptv-format")
+        }
+        defer { _ = inflateEnd(&stream) }
+        var input = [UInt8](data)
+        var output = Data()
+        var finished = false
+        var failed = false
+        input.withUnsafeMutableBufferPointer { inputBuffer in
+            stream.next_in = inputBuffer.baseAddress
+            stream.avail_in = uInt(inputBuffer.count)
+            var chunk = [UInt8](repeating: 0, count: 256 * 1024)
+            while !finished && !failed {
+                chunk.withUnsafeMutableBufferPointer { outputBuffer in
+                    stream.next_out = outputBuffer.baseAddress
+                    stream.avail_out = uInt(outputBuffer.count)
+                    let code = inflate(&stream, Z_NO_FLUSH)
+                    let produced = outputBuffer.count - Int(stream.avail_out)
+                    if produced > 0, let base = outputBuffer.baseAddress { output.append(base, count: produced) }
+                    if code == Z_STREAM_END {
+                        finished = true
+                    } else if code != Z_OK || (produced == 0 && stream.avail_in == 0) {
+                        failed = true
+                    }
+                }
+                if output.count > maximumBytes { failed = true }
+            }
+        }
+        guard finished, !failed else { throw HarborError(code: output.count > maximumBytes ? "iptv-size" : "iptv-format") }
+        return output
     }
 
     private static let timePattern = try! NSRegularExpression(pattern: #"^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})\s*([+-]\d{4})?"#)

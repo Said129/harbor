@@ -5,6 +5,8 @@ struct LiveCategoryManageView: View {
     let preferences: LiveTVPreferences
     let sourceID: String
     let groups: [String]
+    /// Channels per category in this list, shown as Desktop's sidebar counts.
+    var counts: [String: Int] = [:]
     @Environment(\.dismiss) private var dismiss
     @State private var error: String?
     var body: some View {
@@ -16,6 +18,7 @@ struct LiveCategoryManageView: View {
                         HStack(spacing: 12) {
                             Text(group).lineLimit(2)
                             Spacer()
+                            Text("\(counts[group] ?? 0)").font(.caption).foregroundStyle(.secondary).monospacedDigit()
                             Button { act { try preferences.toggleGroupPin(source: sourceID, group: group) } } label: { Image(systemName: prefs.pinned.contains(group) ? "pin.fill" : "pin") }
                                 .accessibilityLabel(DesktopInterfaceText.value(prefs.pinned.contains(group) ? "Unpin category" : "Pin category to top"))
                             Button { act { try preferences.toggleGroupHidden(source: sourceID, group: group) } } label: { Image(systemName: "eye.slash") }

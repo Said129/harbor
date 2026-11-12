@@ -36,6 +36,16 @@ enum TogetherSummonDestination: Equatable {
 
 /// What the invite and summon toasts show and open. Desktop's rules, without the screens.
 enum TogetherToastRules {
+    /// The screens a host can call guests to (`SummonView` in protocol.ts). The label is the sender label Desktop
+    /// sends with the summon (`VIEW_LABELS` in context-menu.tsx), which the guest's toast shows as its headline.
+    static let summonViews: [(view: String, label: String)] = [
+        (view: "home", label: "Home"),
+        (view: "discover", label: "Discover"),
+        (view: "anime", label: "Anime"),
+        (view: "queue", label: "My Library"),
+        (view: "addons", label: "Addons"),
+    ]
+
     /// The `Meta` the invite toast opens.
     static func media(from invite: TogetherPlayInvite) -> Media {
         var media = Media(id: invite.mediaId, type: invite.mediaType, name: invite.mediaTitle)

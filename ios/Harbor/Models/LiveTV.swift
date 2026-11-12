@@ -7,6 +7,8 @@ struct LivePlaylistSource: Codable, Identifiable, Hashable, Sendable {
     var url: String?
     var xtream: XtreamAccount?
     var xtreamContainer: String?
+    /// Desktop's `epgUrl`: the guide address the user typed. It comes before any address derived from the playlist.
+    var epgURL: String?
 }
 struct LiveChannel: Codable, Identifiable, Hashable, Sendable {
     let id: String
@@ -37,6 +39,8 @@ private struct LiveTVDocument: Codable {
     var favoriteItems: [LiveChannel]?
     var pinnedChannels: [String]?
     var groupPrefs: [String: LiveGroupPrefs]?
+    /// Desktop's `channel-stats.ts` play counts, keyed by channel id. Optional so older documents still decode.
+    var channelPlays: [String: Int]?
 }
 
 @MainActor @Observable
@@ -51,6 +55,8 @@ final class LiveTVPreferences {
     var favoriteItems: [LiveChannel] { stored.favoriteItems ?? [] }
     var pinnedChannels: [String] { stored.pinnedChannels ?? [] }
     func groupPrefs(for sourceID: String) -> LiveGroupPrefs { stored.groupPrefs?[sourceID] ?? LiveGroupPrefs() }
+    /// How often each channel was started from this list, for Desktop's most-watched order.
+    var channelPlayCounts: [String: Int] { stored.channelPlays ?? [:] }
     private var key: String { "live-tv-" + EBookShelf.hash(owner) }
     init(owner: String) {
         self.owner = owner
@@ -70,6 +76,19 @@ final class LiveTVPreferences {
         next.favoriteItems = next.favoriteItems?.filter { $0.source != source.id }
         next.pinnedChannels = next.pinnedChannels?.filter { !$0.hasPrefix(source.id + "::") }
         next.groupPrefs?[source.id] = nil
+        next.channelPlays = next.channelPlays?.filter { !$0.key.hasPrefix(source.id + "::") }
+        try save(next)
+    }
+    /// Desktop's `recordChannelPlay`: one more start for the channel. The 600 most-played channels are kept.
+    func recordPlay(_ channel: LiveChannel) throws {
+        var next = stored
+        var plays: [String: Int] = next.channelPlays ?? [:]
+        plays[channel.id, default: 0] += 1
+        if plays.count > 600 {
+            let kept: [(String, Int)] = plays.sorted { $0.value > $1.value }.prefix(600).map { ($0.key, $0.value) }
+            plays = Dictionary(uniqueKeysWithValues: kept)
+        }
+        next.channelPlays = plays
         try save(next)
     }
     func toggle(_ channel: LiveChannel) throws {
