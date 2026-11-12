@@ -209,7 +209,7 @@ final class DetailModel {
             guard !selected.name.isEmpty, selected.id == entry.id || (entry.id.hasPrefix("anilist:") && selected.id.hasPrefix("mal:") && AnimeService.isAnime(selected.id)) else { throw HarborError(code: "no-metadata") }
             streamRequest = UUID(); resolutionRequest = UUID(); orderRequest = UUID()
             resolving = false; loadingStreams = false; episodeOrderLoading = false
-            offers = []; automaticOffers = []; rankedOffers = []; rankedAutomatic = []; warnings = []; filteredSources = false; error = nil
+            offers = []; automaticOffers = []; rankedOffers = []; rankedAutomatic = []; flaggedOffers = []; warnings = []; filteredSources = false; error = nil
             playback = nil; selectedEpisode = nil; lastPlayedSource = nil; sourceContinuation = nil; streamAddons = []
             selectedPlaybackMedia = nil; episodePool = nil; loadedEpisodePoolKey = nil; episodePoolRequest = UUID(); loadingEpisodePool = false
             extraSources = [:]; extraRequests = [:]; loadingExtraEntries = []
@@ -392,6 +392,8 @@ final class DetailModel {
     /// the safety filter's rejection reasons and how many debrid services are configured.
     private(set) var receivedStreams = 0
     private(set) var rejectedReasons: [String] = []
+    /// Desktop's "Show flagged": the streams the safety filter set aside. They never enter the ranked or automatic lists.
+    private(set) var flaggedOffers: [StreamOffer] = []
     private(set) var debridProviders = 0
     private(set) var pickerFilter = StreamSafetyOverride()
     private var pickerFilterKey: String?
@@ -414,6 +416,13 @@ final class DetailModel {
         else if let url = raw["url"].string, !url.isEmpty { source = "url:" + url }
         else { source = "name:" + (raw["name"].string ?? "") + ":" + (raw["title"].string ?? "") + ":" + (raw["externalUrl"].string ?? raw["ytId"].string ?? "") }
         return (raw["addonId"].string ?? "") + "|" + source
+    }
+    /// The flagged streams as offers numbered from the same counter as the ranked ones, so no two rows share an id.
+    /// A flagged stream that also appears in the ranked list is left out.
+    private func flaggedList(_ streams: [JSONValue]) -> [StreamOffer] {
+        let kept = Set(rankedOffers.map { Self.identity($0.raw) })
+        let fresh = streams.filter { !kept.contains(Self.identity($0)) }
+        return stable(fresh.map { StreamOffer(id: 0, raw: $0) })
     }
     private func stable(_ list: [StreamOffer]) -> [StreamOffer] {
         var used = Set<Int>()
@@ -552,7 +561,7 @@ final class DetailModel {
         rankedOffers = []
         rankedAutomatic = []
         offerIDs = [:]; nextOfferID = 0
-        answeredRequests = 0; totalRequests = 0; receivedStreams = 0; rejectedReasons = []
+        answeredRequests = 0; totalRequests = 0; receivedStreams = 0; rejectedReasons = []; flaggedOffers = []
         self.autoplay = autoplay; autoTask = nil
         stallContext = nil; stallNext = nil; autoOfferID = nil
         streamAddons = addons
@@ -626,6 +635,7 @@ final class DetailModel {
             totalRequests = result.requests; answeredRequests = result.requests
             receivedStreams = result.received
             rejectedReasons = result.rejected
+            flaggedOffers = flaggedList(result.flagged)
             applyStreamMode()
             warnings = result.errors
             Diagnostics.shared.record(.streamsLoaded, count: offers.count)

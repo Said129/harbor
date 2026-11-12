@@ -140,7 +140,7 @@ struct PlayerView: View {
                         else { PlayerSettingsView(page: page, state: state, changeSource: changeSource == nil ? nil : {
                             pendingSourceChange = true
                             settingsPage = nil
-                        }) }
+                        }, session: session, media: media) }
                     }
                         .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Listo") { settingsPage = nil } } }
                 }.tint(HarborTheme.accent).preferredColorScheme(.dark).presentationDetents([.medium, .large])

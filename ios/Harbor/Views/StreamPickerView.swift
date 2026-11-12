@@ -18,16 +18,33 @@ struct StreamPickerView: View {
     @State private var provider: String?
     @State private var overviewExpanded = false
     @State private var stremioAddon: String?
+    /// Desktop's switcher filters the native picker lacked: format, cached only, my languages only and flagged streams.
+    @State private var switcher = StreamSwitcherFilters()
 
     private var contextMedia: Media { selection?.media ?? model.sourceMedia(for: episode) ?? model.playbackContextMedia }
     private var waitingForEpisode: Bool { !model.offersBelong(to: episode) }
     private var busy: Bool { waitingForEpisode || model.resolving || model.playback != nil }
+    /// Desktop's preferred languages: the stream-ranking and audio languages, with Japanese added for anime.
+    private var preferredLanguages: [String] {
+        let settings = StreamPreferences.shared.sourceSettings
+        let anime = contextMedia.id.hasPrefix("kitsu:") || contextMedia.id.hasPrefix("mal:")
+        return StreamSwitcherFilters.preferredLanguages(ranking: settings.languages, audio: settings.audioLanguages, isAnime: anime)
+    }
+    /// What the switcher filters start from: the kept streams, plus the flagged ones while they are shown.
+    private var switcherPool: [StreamOffer] { switcher.pool(kept: model.offers, flagged: model.flaggedOffers) }
+    /// The list every control below works on: the kept streams after the switcher filters. With none on it is `model.offers`.
+    private var listed: [StreamOffer] {
+        switcher.apply(kept: model.offers, flagged: model.flaggedOffers, hasDebrid: model.debridProviders > 0, preferred: preferredLanguages)
+    }
     private var selected: StreamOffer? {
-        model.offers.first { $0.id == selectedID } ?? StreamPreferences.shared.preferred(model.offers) ?? model.offers.first
+        // A flagged stream never becomes the top pick; it is only listed and played from its own row.
+        let unflagged = listed.filter { !$0.isFlagged }
+        let pool = unflagged.isEmpty ? model.offers : unflagged
+        return pool.first { $0.id == selectedID } ?? StreamPreferences.shared.preferred(pool) ?? pool.first
     }
     private var tiers: [StreamOffer] {
         var seen = Set<String>()
-        let representatives = model.offers.filter { seen.insert($0.pickerQualityGroup).inserted }
+        let representatives = listed.filter { seen.insert($0.pickerQualityGroup).inserted }
         let order = ["4K", "1080p", "720p", "SD", "ROUGH"]
         return representatives.sorted { (order.firstIndex(of: $0.pickerQualityGroup) ?? 5) < (order.firstIndex(of: $1.pickerQualityGroup) ?? 5) }
     }
@@ -35,8 +52,14 @@ struct StreamPickerView: View {
         var seen = Set<String>()
         return qualitySources.filter { seen.insert($0.pickerInstance).inserted }
     }
-    private var qualitySources: [StreamOffer] { StreamPickerFilter.sources(model.offers, quality: quality, provider: nil) }
-    private var sources: [StreamOffer] { StreamPickerFilter.sources(model.offers, quality: quality, provider: provider) }
+    private var qualitySources: [StreamOffer] { StreamPickerFilter.sources(listed, quality: quality, provider: nil) }
+    private var sources: [StreamOffer] { StreamPickerFilter.sources(listed, quality: quality, provider: provider) }
+    /// How many streams the language filter hides from what the cached and format filters left (Desktop's `langHidden`).
+    private var languageHidden: Int {
+        let cached = StreamSwitcherFilters.applyCached(switcherPool, cachedOnly: switcher.cachedOnly, hasDebrid: model.debridProviders > 0)
+        let grouped = StreamSwitcherFilters.applyGroup(cached, group: switcher.sourceGroup)
+        return StreamSwitcherFilters.languageHiddenCount(in: grouped, preferred: preferredLanguages)
+    }
 
     var body: some View {
         ScrollView {
@@ -47,13 +70,20 @@ struct StreamPickerView: View {
             }.padding(20).frame(maxWidth: 760, alignment: .leading).frame(maxWidth: .infinity)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
             .toolbar(.hidden, for: .navigationBar).accessibilityIdentifier("stream-picker-scroll")
-            .onChange(of: model.offers.map(\.id)) { _, _ in
-                if !model.offers.contains(where: { $0.id == selectedID }) { selectedID = nil }
-                if !model.offers.contains(where: { $0.pickerQualityGroup == quality }) { quality = nil }
+            .onChange(of: listed.map(\.id)) { _, _ in
+                if !listed.contains(where: { $0.id == selectedID }) { selectedID = nil }
+                if !listed.contains(where: { $0.pickerQualityGroup == quality }) { quality = nil }
                 if !providers.contains(where: { $0.pickerInstance == provider }) { provider = nil }
-                if let stremioAddon, !model.offers.contains(where: { $0.pickerInstance == stremioAddon }) { self.stremioAddon = nil }
+                if let stremioAddon, !listed.contains(where: { $0.pickerInstance == stremioAddon }) { self.stremioAddon = nil }
+                // Desktop drops a format that no stream holds any more.
+                if let group = switcher.sourceGroup, !StreamSwitcherFilters.sourceGroups(in: switcherPool).contains(where: { $0.name == group }) { switcher.sourceGroup = nil }
             }
-            .onChange(of: selection?.key ?? episode?.routingKey ?? model.media.identity) { _, _ in selectedID = nil; overviewExpanded = false; provider = nil; quality = nil; stremioAddon = nil }
+            // `initial` also runs it when the picker first opens, where Desktop starts the language filter from its setting.
+            .onChange(of: selection?.key ?? episode?.routingKey ?? model.media.identity, initial: true) { _, _ in
+                selectedID = nil; overviewExpanded = false; provider = nil; quality = nil; stremioAddon = nil
+                switcher = StreamSwitcherFilters()
+                switcher.preferredLanguageOnly = StreamPreferences.shared.requireStreamLanguage && !preferredLanguages.isEmpty
+            }
     }
     /// "Move Refresh next to Back" groups both at the start; otherwise Refresh sits across from Back.
     private var navigation: some View {
@@ -140,7 +170,10 @@ struct StreamPickerView: View {
             if model.loadingStreams { pendingSources }
             fewSources
             modeToggle
-            if StreamPreferences.shared.pickerLayout == "stremio" {
+            filterBar
+            if listed.isEmpty {
+                noMatchState
+            } else if StreamPreferences.shared.pickerLayout == "stremio" {
                 stremioList
             } else {
                 StreamPrimaryCard(media: contextMedia, episode: episode, offer: offer, addonLogo: logo(offer), busy: busy, downloading: downloading,
@@ -177,18 +210,37 @@ struct StreamPickerView: View {
                 .accessibilityLabel(DesktopInterfaceText.value("Source mode")).accessibilityIdentifier("stream-source-mode")
         }
     }
+    /// Desktop's switcher "Filters" button and its panel: format, cached only, my languages only and flagged streams.
+    private var filterBar: some View {
+        let pool = switcherPool
+        return StreamSwitcherFiltersView(filters: $switcher, groups: StreamSwitcherFilters.sourceGroups(in: pool), hasDebrid: model.debridProviders > 0,
+                                         uncachedHidden: StreamSwitcherFilters.uncachedCount(in: pool),
+                                         languages: StreamSwitcherFilters.abbreviated(preferredLanguages), languageHidden: languageHidden,
+                                         flaggedCount: model.flaggedOffers.count, busy: busy)
+    }
+    /// The filters left nothing to list; the way back is the Filters panel above.
+    private var noMatchState: some View {
+        VStack(spacing: 14) {
+            Text(DesktopInterfaceText.value("No sources")).font(HarborTheme.font(14)).foregroundStyle(ThemePreferences.shared.color("ink-muted"))
+            Button { switcher = StreamSwitcherFilters() } label: {
+                Text(DesktopInterfaceText.value("Reset filters")).font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 24).frame(minHeight: 44)
+                    .foregroundStyle(HarborTheme.background).background(HarborTheme.ink, in: .capsule)
+            }.buttonStyle(.plain).accessibilityIdentifier("stream-switcher-no-match-reset")
+        }.padding(24).frame(maxWidth: .infinity).background(HarborTheme.background.opacity(0.7), in: .rect(cornerRadius: 16))
+            .overlay { RoundedRectangle(cornerRadius: 16).stroke(ThemePreferences.shared.color("edge-soft"), style: StrokeStyle(lineWidth: 1, dash: [5, 4])) }
+    }
     private var stremioOffers: [StreamOffer] {
-        let ordered = StremioPickerPresentation.ordered(model.offers, addons: addons, preserveOrder: StreamPreferences.shared.addonOrder)
+        let ordered = StremioPickerPresentation.ordered(listed, addons: addons, preserveOrder: StreamPreferences.shared.addonOrder)
         guard let stremioAddon else { return ordered }
         return ordered.filter { $0.pickerInstance == stremioAddon }
     }
     /// The Stremio layout: one addon filter and a flat list, with each addon's own text.
     private var stremioList: some View {
-        let options = StremioPickerPresentation.addonOptions(model.offers, addons: addons)
+        let options = StremioPickerPresentation.addonOptions(listed, addons: addons)
         let current = options.first { $0.id == stremioAddon }
         return VStack(alignment: .leading, spacing: 12) {
             Menu {
-                Button { stremioAddon = nil } label: { Text("\(DesktopInterfaceText.value("All sources")) · \(model.offers.count)") }
+                Button { stremioAddon = nil } label: { Text("\(DesktopInterfaceText.value("All sources")) · \(listed.count)") }
                 ForEach(options) { option in
                     Button { stremioAddon = option.id } label: { Text("\(option.name) · \(option.count)") }
                 }
@@ -205,6 +257,7 @@ struct StreamPickerView: View {
                 ForEach(stremioOffers) { offer in
                     StreamStremioRow(offer: offer, addonLogo: logo(offer), full: StreamPreferences.shared.fullStreamDescription, busy: busy,
                                      downloading: downloading, play: { play(offer) }, download: download.map { action in { action(offer) } })
+                        .modifier(StreamFlaggedMark(flagged: offer.isFlagged))
                 }
             }
         }
@@ -215,7 +268,7 @@ struct StreamPickerView: View {
                 .foregroundStyle(ThemePreferences.shared.color("ink-subtle"))
             StreamChipLayout(spacing: 10) {
                 Button { quality = nil; provider = nil } label: {
-                    Text("Todas · \(model.offers.count)").font(HarborTheme.font(13, weight: .semibold)).padding(.horizontal, 16).frame(minHeight: 56)
+                    Text("Todas · \(listed.count)").font(HarborTheme.font(13, weight: .semibold)).padding(.horizontal, 16).frame(minHeight: 56)
                         .background(quality == nil ? HarborTheme.surface : .clear, in: .rect(cornerRadius: 8))
                 }.buttonStyle(.plain).disabled(busy).accessibilityIdentifier("stream-quality-all")
                     .accessibilityAddTraits(quality == nil ? [.isSelected] : [])
@@ -225,7 +278,7 @@ struct StreamPickerView: View {
     }
     private func qualityButton(_ offer: StreamOffer) -> some View {
         let active = offer.pickerQualityGroup == quality
-        let count = model.offers.filter { $0.pickerQualityGroup == offer.pickerQualityGroup }.count
+        let count = listed.filter { $0.pickerQualityGroup == offer.pickerQualityGroup }.count
         return Button { quality = offer.pickerQualityGroup; provider = nil; selectedID = offer.id } label: {
             HStack(spacing: 10) {
                 StreamFormatBadges(kinds: [offer.pickerLeadBadge], large: true)
@@ -252,6 +305,7 @@ struct StreamPickerView: View {
                     if index > 0 { Divider().overlay(ThemePreferences.shared.color("edge-soft").opacity(0.3)) }
                     StreamSourceRow(media: contextMedia, episode: episode, offer: offer, addonLogo: logo(offer), busy: busy, downloading: downloading,
                                     play: { play(offer) }, download: download.map { action in { action(offer) } })
+                        .modifier(StreamFlaggedMark(flagged: offer.isFlagged))
                 }
             }.background(HarborTheme.background.opacity(0.8), in: .rect(cornerRadius: 16))
                 .overlay { RoundedRectangle(cornerRadius: 16).stroke(ThemePreferences.shared.color("edge-soft").opacity(0.6), lineWidth: 1) }
