@@ -457,6 +457,7 @@
 "Caches" = "Cache";
 "Calendar" = "Kalender";
 "Calendario" = "Kalender";
+"Call guests" = "Call guests";
 "Cam Recording" = "Cam Recording";
 "Cambiar fuente" = "Ganti stream";
 "Cambiar nombre de la fila" = "Ubah nama baris";
@@ -1301,6 +1302,7 @@
 "In Theaters Now" = "Sedang Tayang di Bioskop";
 "In Watchlist" = "Di Daftar Tontonan";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In this room: {title}" = "In this room: {title}";
 "In watchlist" = "Di daftar tontonan";
 "Independent Spirit Awards" = "Independent Spirit Awards";
 "India" = "India";
@@ -1511,6 +1513,7 @@
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "Tandai sebagai belum ditonton";
 "Mark as watched" = "Tandai sebagai sudah ditonton";
+"Mark next episode" = "Mark next episode";
 "Mark watched button" = "Tombol tandai sudah ditonton";
 "Match Dolby Vision, HDR10 and HLG streams." = "Cocokkan stream Dolby Vision, HDR10, dan HLG.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Selaraskan subtitle yang diunduh dengan audio di pemutar mpv. Trek subtitle bawaan tetap menggunakan waktu aslinya.";
@@ -1603,6 +1606,7 @@
 "Mute" = "Bisukan";
 "Muted text" = "Teks redup";
 "My Library" = "Perpustakaan Saya";
+"My Simkl" = "Simkl Saya";
 "My Trakt" = "Trakt Saya";
 "My Trakt watchlist" = "Daftar tontonan Trakt saya";
 "My channels" = "My channels";
@@ -1759,6 +1763,7 @@
 "Not installed" = "Belum terinstal";
 "Not interested" = "Tidak tertarik";
 "Not now" = "Jangan sekarang";
+"Not ready yet" = "Not ready yet";
 "Not set" = "Belum diatur";
 "Nothing airing this month" = "Nothing airing this month";
 "Nothing anticipated this month" = "Tidak ada yang dinantikan bulan ini";
@@ -1768,6 +1773,7 @@
 "Nothing in progress yet. Press Play on something." = "Belum ada yang sedang ditonton. Tekan Putar pada sesuatu.";
 "Nothing installed yet" = "Belum ada yang terpasang";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Tidak ada yang cocok dengan filter ini. Coba kategori lain atau ubah wilayah Anda di Pengaturan.";
+"Nothing on Simkl this month" = "Tidak ada apa pun di Simkl bulan ini";
 "Nothing on Trakt this month" = "Tidak ada apa pun di Trakt bulan ini";
 "Nothing saved on Trakt yet." = "Belum ada yang disimpan di Trakt.";
 "Nothing this month" = "Tidak ada apa pun bulan ini";
@@ -1905,6 +1911,7 @@
 "Paste the manifest URL the configure page gave you" = "Tempel URL manifes yang diberikan halaman konfigurasi";
 "Paste the text from AniList" = "Tempel teks dari AniList";
 "Paste your TheIntroDB API key" = "Tempel kunci API TheIntroDB Anda";
+"Paused" = "Dijeda";
 "Peacock" = "Peacock";
 "Peligro" = "Bahaya";
 "Películas" = "Film";
@@ -1953,6 +1960,7 @@
 "Plan to Watch" = "Akan Ditonton";
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
+"Planning" = "Planning";
 "Play" = "Putar";
 "Play a random episode" = "Putar episode acak";
 "Play movie" = "Putar film";
@@ -2014,6 +2022,7 @@
 "Premiumize API key" = "Kunci API Premiumize";
 "Press Play" = "Tekan Play";
 "Press play on something. It'll show up here once you start watching." = "Putar sesuatu. Konten akan muncul di sini setelah Anda mulai menonton.";
+"Press play to start the room for everyone" = "Press play to start the room for everyone";
 "Prestige Drama" = "Drama Bergengsi";
 "Prestige drama, weekly chapters, and series worth disappearing into." = "Drama bergengsi, bab mingguan, dan serial yang membuat Anda larut di dalamnya.";
 "Preview" = "Pratinjau";
@@ -2102,6 +2111,7 @@
 "Reading options" = "Reading options";
 "Reading your search" = "Membaca pencarian Anda";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
+"Ready" = "Siap";
 "Real IMDb and Rotten Tomatoes scores." = "Skor IMDb dan Rotten Tomatoes yang sebenarnya.";
 "Real-Debrid API token" = "Token API Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Stream yang di-cache diputar langsung. Kunci tetap tersimpan secara lokal.";
@@ -2178,6 +2188,7 @@
 "Renombrar" = "Ubah nama";
 "Repair library" = "Perbaiki perpustakaan";
 "Repeat" = "Ulangi";
+"Repeating" = "Repeating";
 "Repetición" = "Ulangi";
 "Replace image" = "Ganti gambar";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Putar ulang panduan atau tampilkan kembali semua kiat yang telah ditutup di aplikasi.";
@@ -2362,6 +2373,7 @@
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Mengirim ke Trakt…";
 "Sending..." = "Mengirim...";
+"Sends guests a pointer to this screen in their app" = "Sends guests a pointer to this screen in their app";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n} dikirim ke Trakt";
 "Sequels & Prequels" = "Sekuel & Prekuel";
@@ -2957,6 +2969,7 @@
 "Upcoming" = "Mendatang";
 "Upcoming Anime" = "Anime Mendatang";
 "Upcoming Season" = "Musim Mendatang";
+"Upcoming episodes and movies from your Simkl watching and plan-to-watch lists" = "Episode dan film mendatang dari daftar sedang ditonton dan daftar rencana tontonan Simkl Anda";
 "Upcoming episodes and movies from your Trakt watchlist" = "Episode dan film mendatang dari daftar tontonan Trakt Anda";
 "Upcoming episodes and movies from your saved shows" = "Episode dan film mendatang dari acara yang Anda simpan";
 "Upcoming items from your watchlist" = "Item mendatang dari daftar tontonan Anda";
@@ -3109,6 +3122,7 @@
 "Your Letterboxd password" = "Kata sandi Letterboxd Anda";
 "Your MyAnimeList is empty" = "MyAnimeList Anda kosong";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Roku Anda diatur untuk memblokir permintaan kontrol dari aplikasi di jaringan Anda, sehingga Harbor tidak dapat menjangkaunya. Pengaturan ini hanya perlu diubah sekali di Roku.";
+"Your Simkl plan-to-watch list has no episodes airing this month. Switch to All upcoming to browse everything." = "Daftar rencana tontonan Simkl Anda tidak memiliki episode yang tayang bulan ini. Beralih ke Semua yang akan datang untuk melihat semuanya.";
 "Your Stremio library + addons sync in untouched." = "Perpustakaan Stremio + addon Anda disinkronkan tanpa perubahan.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Daftar tontonan Trakt Anda kosong, tidak ada yang dapat diimpor.";

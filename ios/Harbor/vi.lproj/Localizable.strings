@@ -457,6 +457,7 @@
 "Caches" = "Bộ nhớ đệm";
 "Calendar" = "Lịch";
 "Calendario" = "Lịch";
+"Call guests" = "Call guests";
 "Cam Recording" = "Cam Recording";
 "Cambiar fuente" = "Đổi luồng phát";
 "Cambiar nombre de la fila" = "Đổi tên hàng";
@@ -1301,6 +1302,7 @@
 "In Theaters Now" = "Đang chiếu tại rạp";
 "In Watchlist" = "Trong danh sách xem";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In this room: {title}" = "In this room: {title}";
 "In watchlist" = "Trong danh sách xem";
 "Independent Spirit Awards" = "Giải Tinh thần Độc lập";
 "India" = "Ấn Độ";
@@ -1511,6 +1513,7 @@
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "Đánh dấu là chưa xem";
 "Mark as watched" = "Đánh dấu là đã xem";
+"Mark next episode" = "Mark next episode";
 "Mark watched button" = "Nút đánh dấu đã xem";
 "Match Dolby Vision, HDR10 and HLG streams." = "Lọc luồng Dolby Vision, HDR10 và HLG.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Đồng bộ phụ đề tải xuống với âm thanh trong trình phát mpv. Phụ đề nhúng giữ nguyên thời gian hiện tại.";
@@ -1603,6 +1606,7 @@
 "Mute" = "Tắt tiếng";
 "Muted text" = "Văn bản giảm nổi bật";
 "My Library" = "Thư viện của tôi";
+"My Simkl" = "Simkl của tôi";
 "My Trakt" = "Trakt của tôi";
 "My Trakt watchlist" = "Danh sách xem Trakt của tôi";
 "My channels" = "My channels";
@@ -1759,6 +1763,7 @@
 "Not installed" = "Chưa cài đặt";
 "Not interested" = "Không quan tâm";
 "Not now" = "Để sau";
+"Not ready yet" = "Not ready yet";
 "Not set" = "Chưa đặt";
 "Nothing airing this month" = "Nothing airing this month";
 "Nothing anticipated this month" = "Tháng này không có nội dung đáng mong đợi";
@@ -1768,6 +1773,7 @@
 "Nothing in progress yet. Press Play on something." = "Chưa có nội dung đang xem. Hãy nhấn Phát trên một nội dung.";
 "Nothing installed yet" = "Chưa cài gì";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Không có nội dung nào khớp với bộ lọc này. Hãy thử danh mục khác hoặc đổi khu vực trong Cài đặt.";
+"Nothing on Simkl this month" = "Tháng này không có nội dung nào trên Simkl";
 "Nothing on Trakt this month" = "Tháng này không có nội dung nào trên Trakt";
 "Nothing saved on Trakt yet." = "Chưa lưu nội dung nào trên Trakt.";
 "Nothing this month" = "Tháng này không có nội dung";
@@ -1905,6 +1911,7 @@
 "Paste the manifest URL the configure page gave you" = "Dán URL manifest do trang cấu hình cung cấp";
 "Paste the text from AniList" = "Dán văn bản từ AniList";
 "Paste your TheIntroDB API key" = "Dán khóa API TheIntroDB của bạn";
+"Paused" = "Đã tạm dừng";
 "Peacock" = "Peacock";
 "Peligro" = "Nguy hiểm";
 "Películas" = "Phim điện ảnh";
@@ -1953,6 +1960,7 @@
 "Plan to Watch" = "Dự định xem";
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
+"Planning" = "Planning";
 "Play" = "Phát";
 "Play a random episode" = "Phát một tập ngẫu nhiên";
 "Play movie" = "Phát phim";
@@ -2014,6 +2022,7 @@
 "Premiumize API key" = "Khóa API Premiumize";
 "Press Play" = "Nhấn phát";
 "Press play on something. It'll show up here once you start watching." = "Hãy nhấn phát trên một nội dung. Nội dung đó sẽ xuất hiện ở đây khi bạn bắt đầu xem.";
+"Press play to start the room for everyone" = "Press play to start the room for everyone";
 "Prestige Drama" = "Chính kịch danh tiếng";
 "Prestige drama, weekly chapters, and series worth disappearing into." = "Chính kịch danh giá, tập mới hằng tuần và những phim bộ đáng để đắm chìm.";
 "Preview" = "Xem trước";
@@ -2102,6 +2111,7 @@
 "Reading options" = "Reading options";
 "Reading your search" = "Đang đọc nội dung tìm kiếm";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
+"Ready" = "Sẵn sàng";
 "Real IMDb and Rotten Tomatoes scores." = "Điểm IMDb và Rotten Tomatoes thực.";
 "Real-Debrid API token" = "Token API Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Luồng đã lưu đệm được phát trực tiếp. Các khóa chỉ được lưu cục bộ.";
@@ -2178,6 +2188,7 @@
 "Renombrar" = "Đổi tên";
 "Repair library" = "Sửa chữa thư viện";
 "Repeat" = "Lặp lại";
+"Repeating" = "Repeating";
 "Repetición" = "Lặp lại";
 "Replace image" = "Thay ảnh";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Xem lại hướng dẫn hoặc hiện lại mọi mẹo đã ẩn trong ứng dụng.";
@@ -2362,6 +2373,7 @@
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Đang gửi đến Trakt…";
 "Sending..." = "Đang gửi...";
+"Sends guests a pointer to this screen in their app" = "Sends guests a pointer to this screen in their app";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "Đã gửi {n} mục đến Trakt";
 "Sequels & Prequels" = "Phần tiếp theo và phần tiền truyện";
@@ -2957,6 +2969,7 @@
 "Upcoming" = "Sắp tới";
 "Upcoming Anime" = "Anime sắp ra mắt";
 "Upcoming Season" = "Mùa sắp tới";
+"Upcoming episodes and movies from your Simkl watching and plan-to-watch lists" = "Các tập và phim sắp ra mắt trong danh sách đang xem và dự định xem trên Simkl";
 "Upcoming episodes and movies from your Trakt watchlist" = "Các tập và phim điện ảnh sắp phát trong danh sách xem Trakt";
 "Upcoming episodes and movies from your saved shows" = "Các tập và phim điện ảnh sắp phát từ những phim bộ đã lưu";
 "Upcoming items from your watchlist" = "Nội dung sắp phát trong danh sách xem";
@@ -3109,6 +3122,7 @@
 "Your Letterboxd password" = "Mật khẩu Letterboxd của bạn";
 "Your MyAnimeList is empty" = "MyAnimeList của bạn đang trống";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Roku của bạn đang chặn yêu cầu điều khiển từ các ứng dụng trong mạng, nên Harbor không thể kết nối với thiết bị. Đây là cài đặt chỉ cần thực hiện một lần trên Roku.";
+"Your Simkl plan-to-watch list has no episodes airing this month. Switch to All upcoming to browse everything." = "Danh sách dự định xem trên Simkl của bạn không có tập nào phát sóng trong tháng này. Chuyển sang Tất cả sắp phát hành để duyệt mọi nội dung.";
 "Your Stremio library + addons sync in untouched." = "Thư viện Stremio và tiện ích bổ sung của bạn được đồng bộ nguyên vẹn.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Danh sách xem Trakt của bạn đang trống, không có gì để nhập.";

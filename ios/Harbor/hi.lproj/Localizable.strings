@@ -457,6 +457,7 @@
 "Caches" = "कैश";
 "Calendar" = "कैलेंडर";
 "Calendario" = "कैलेंडर";
+"Call guests" = "Call guests";
 "Cam Recording" = "Cam Recording";
 "Cambiar fuente" = "स्ट्रीम बदलें";
 "Cambiar nombre de la fila" = "पंक्ति का नाम बदलें";
@@ -1301,6 +1302,7 @@
 "In Theaters Now" = "अभी सिनेमाघरों में";
 "In Watchlist" = "वॉचलिस्ट में";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In this room: {title}" = "In this room: {title}";
 "In watchlist" = "वॉचलिस्ट में";
 "Independent Spirit Awards" = "इंडिपेंडेंट स्पिरिट पुरस्कार";
 "India" = "भारत";
@@ -1511,6 +1513,7 @@
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "न देखा हुआ मार्क करें";
 "Mark as watched" = "देखा हुआ मार्क करें";
+"Mark next episode" = "Mark next episode";
 "Mark watched button" = "देखा हुआ चिह्नित करने का बटन";
 "Match Dolby Vision, HDR10 and HLG streams." = "Dolby Vision, HDR10 और HLG स्ट्रीम से मिलान करें।";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "mpv प्लेयर में डाउनलोड किए उपशीर्षक को ऑडियो से मिलाएँ। वीडियो में मौजूद उपशीर्षक की टाइमिंग बनी रहती है।";
@@ -1603,6 +1606,7 @@
 "Mute" = "म्यूट करें";
 "Muted text" = "मद्धम टेक्स्ट";
 "My Library" = "मेरी लाइब्रेरी";
+"My Simkl" = "मेरा Simkl";
 "My Trakt" = "मेरा Trakt";
 "My Trakt watchlist" = "मेरी Trakt वॉचलिस्ट";
 "My channels" = "My channels";
@@ -1759,6 +1763,7 @@
 "Not installed" = "इंस्टॉल नहीं है";
 "Not interested" = "दिलचस्पी नहीं है";
 "Not now" = "अभी नहीं";
+"Not ready yet" = "Not ready yet";
 "Not set" = "सेट नहीं है";
 "Nothing airing this month" = "Nothing airing this month";
 "Nothing anticipated this month" = "इस महीने कोई प्रतीक्षित रिलीज़ नहीं है";
@@ -1768,6 +1773,7 @@
 "Nothing in progress yet. Press Play on something." = "अभी तक कुछ भी चल नहीं रहा है। कुछ चलाने के लिए प्ले दबाएँ।";
 "Nothing installed yet" = "अभी तक कुछ इंस्टॉल नहीं है";
 "Nothing matched this filter. Try another category or change your region in Settings." = "इस फ़िल्टर से कुछ भी मेल नहीं खाया। कोई दूसरी कैटेगरी आज़माएँ या सेटिंग्स में अपना क्षेत्र बदलें।";
+"Nothing on Simkl this month" = "इस महीने Simkl पर कुछ नहीं है";
 "Nothing on Trakt this month" = "इस महीने Trakt पर कुछ नहीं है";
 "Nothing saved on Trakt yet." = "Trakt पर अभी तक कुछ सेव नहीं है।";
 "Nothing this month" = "इस महीने कुछ नहीं है";
@@ -1905,6 +1911,7 @@
 "Paste the manifest URL the configure page gave you" = "कॉन्फ़िगर पेज से मिला मैनिफ़ेस्ट URL पेस्ट करें";
 "Paste the text from AniList" = "AniList से टेक्स्ट पेस्ट करें";
 "Paste your TheIntroDB API key" = "अपनी TheIntroDB API की पेस्ट करें";
+"Paused" = "पॉज़ किया गया";
 "Peacock" = "Peacock";
 "Peligro" = "खतरा";
 "Películas" = "फ़िल्में";
@@ -1953,6 +1960,7 @@
 "Plan to Watch" = "देखने की योजना";
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
+"Planning" = "Planning";
 "Play" = "चलाएँ";
 "Play a random episode" = "कोई रैंडम एपिसोड चलाएँ";
 "Play movie" = "फ़िल्म चलाएँ";
@@ -2014,6 +2022,7 @@
 "Premiumize API key" = "Premiumize API कुंजी";
 "Press Play" = "प्ले दबाएँ";
 "Press play on something. It'll show up here once you start watching." = "कुछ चलाएँ। देखना शुरू करते ही वह यहाँ दिखाई देगा।";
+"Press play to start the room for everyone" = "Press play to start the room for everyone";
 "Prestige Drama" = "उच्चस्तरीय ड्रामा";
 "Prestige drama, weekly chapters, and series worth disappearing into." = "उच्चस्तरीय ड्रामा, साप्ताहिक अध्याय और ऐसी सीरीज़ जिनमें आप खो जाएँ।";
 "Preview" = "प्रीव्यू";
@@ -2102,6 +2111,7 @@
 "Reading options" = "Reading options";
 "Reading your search" = "आपकी खोज पढ़ी जा रही है";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
+"Ready" = "तैयार";
 "Real IMDb and Rotten Tomatoes scores." = "असली IMDb और Rotten Tomatoes स्कोर।";
 "Real-Debrid API token" = "Real-Debrid API टोकन";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link। कैश की गई स्ट्रीम सीधे चलती हैं। कीज़ आपके डिवाइस पर ही रहती हैं।";
@@ -2178,6 +2188,7 @@
 "Renombrar" = "नाम बदलें";
 "Repair library" = "लाइब्रेरी रिपेयर करें";
 "Repeat" = "दोहराएँ";
+"Repeating" = "Repeating";
 "Repetición" = "दोहराएँ";
 "Replace image" = "इमेज बदलें";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "वॉकथ्रू फिर चलाएँ या ऐप में हटाए गए सभी सुझाव फिर दिखाएँ।";
@@ -2362,6 +2373,7 @@
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Trakt को भेजा जा रहा है…";
 "Sending..." = "भेजा जा रहा है...";
+"Sends guests a pointer to this screen in their app" = "Sends guests a pointer to this screen in their app";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n} को Trakt पर भेजा गया";
 "Sequels & Prequels" = "सीक्वल और प्रीक्वल";
@@ -2957,6 +2969,7 @@
 "Upcoming" = "आगामी";
 "Upcoming Anime" = "आगामी ऐनिमे";
 "Upcoming Season" = "आगामी सीज़न";
+"Upcoming episodes and movies from your Simkl watching and plan-to-watch lists" = "आपकी Simkl देख रहे हैं और बाद में देखने की सूचियों के आगामी एपिसोड और फ़िल्में";
 "Upcoming episodes and movies from your Trakt watchlist" = "आपकी Trakt वॉचलिस्ट के आगामी एपिसोड और फ़िल्में";
 "Upcoming episodes and movies from your saved shows" = "आपके सेव किए गए शो के आगामी एपिसोड और फ़िल्में";
 "Upcoming items from your watchlist" = "आपकी वॉचलिस्ट के आगामी टाइटल";
@@ -3109,6 +3122,7 @@
 "Your Letterboxd password" = "आपका Letterboxd पासवर्ड";
 "Your MyAnimeList is empty" = "आपका MyAnimeList खाली है";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "आपका Roku आपके नेटवर्क के ऐप्स से आने वाले कंट्रोल अनुरोधों को ब्लॉक करने के लिए सेट किया गया है, इसलिए Harbor उस तक नहीं पहुँच सकता। Roku पर यह सेटिंग सिर्फ़ एक बार बदलनी होगी।";
+"Your Simkl plan-to-watch list has no episodes airing this month. Switch to All upcoming to browse everything." = "आपकी Simkl में बाद में देखने की सूची का कोई एपिसोड इस महीने प्रसारित नहीं हो रहा है। सब कुछ ब्राउज़ करने के लिए आने वाले सभी पर जाएँ।";
 "Your Stremio library + addons sync in untouched." = "आपकी Stremio लाइब्रेरी + ऐडऑन बिना किसी बदलाव के सिंक हो जाते हैं।";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "आपकी Trakt वॉचलिस्ट खाली है, इंपोर्ट करने के लिए कुछ नहीं है।";

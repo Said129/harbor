@@ -472,6 +472,7 @@
 "Caches" = "الذواكر المؤقتة";
 "Calendar" = "التقويم";
 "Calendario" = "التقويم";
+"Call guests" = "Call guests";
 "Cam Recording" = "Cam Recording";
 "Cambiar fuente" = "تبديل البث";
 "Cambiar nombre de la fila" = "إعادة تسمية الصف";
@@ -1325,6 +1326,7 @@
 "In Theaters Now" = "في دور العرض الآن";
 "In Watchlist" = "في قائمة المشاهدة";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In this room: {title}" = "In this room: {title}";
 "In watchlist" = "في قائمة المشاهدة";
 "Independent Spirit Awards" = "جوائز الروح المستقلة";
 "India" = "الهند";
@@ -1535,6 +1537,7 @@
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "تحديد كغير مُشاهَد";
 "Mark as watched" = "تحديد كمُشاهَد";
+"Mark next episode" = "Mark next episode";
 "Mark watched button" = "زر التحديد كمُشاهَد";
 "Match Dolby Vision, HDR10 and HLG streams." = "مطابقة بث Dolby Vision وHDR10 وHLG.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "زامن الترجمات المنزّلة مع الصوت في مشغّل mpv. تحتفظ مسارات الترجمة المضمّنة بتوقيتها الحالي.";
@@ -1627,6 +1630,7 @@
 "Mute" = "كتم الصوت";
 "Muted text" = "نص باهت";
 "My Library" = "مكتبتي";
+"My Simkl" = "Simkl الخاص بي";
 "My Trakt" = "Trakt الخاص بي";
 "My Trakt watchlist" = "قائمة مشاهدتي على Trakt";
 "My channels" = "My channels";
@@ -1786,6 +1790,7 @@
 "Not installed" = "غير مثبّتة";
 "Not interested" = "غير مهتم";
 "Not now" = "ليس الآن";
+"Not ready yet" = "Not ready yet";
 "Not set" = "غير محدد";
 "Nothing airing this month" = "Nothing airing this month";
 "Nothing anticipated this month" = "لا شيء منتظَر هذا الشهر";
@@ -1795,6 +1800,7 @@
 "Nothing in progress yet. Press Play on something." = "لا شيء قيد التقدم بعد. اضغط تشغيل على شيء ما.";
 "Nothing installed yet" = "لم يُثبَّت شيء بعد";
 "Nothing matched this filter. Try another category or change your region in Settings." = "لا شيء يطابق هذا الفلتر. جرّب فئة أخرى أو غيّر منطقتك من الإعدادات.";
+"Nothing on Simkl this month" = "لا شيء على Simkl هذا الشهر";
 "Nothing on Trakt this month" = "لا شيء على Trakt هذا الشهر";
 "Nothing saved on Trakt yet." = "لا شيء محفوظ على Trakt بعد.";
 "Nothing this month" = "لا شيء هذا الشهر";
@@ -1935,6 +1941,7 @@
 "Paste the manifest URL the configure page gave you" = "الصق رابط البيان الذي أعطته إياك صفحة الإعداد";
 "Paste the text from AniList" = "الصق النص من AniList";
 "Paste your TheIntroDB API key" = "الصق مفتاح API الخاص بـ TheIntroDB";
+"Paused" = "مُوقف";
 "Peacock" = "Peacock";
 "Peligro" = "خطر";
 "Películas" = "الأفلام";
@@ -1983,6 +1990,7 @@
 "Plan to Watch" = "خطة للمشاهدة";
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
+"Planning" = "Planning";
 "Play" = "تشغيل";
 "Play a random episode" = "تشغيل حلقة عشوائية";
 "Play movie" = "تشغيل الفيلم";
@@ -2044,6 +2052,7 @@
 "Premiumize API key" = "مفتاح API لـ Premiumize";
 "Press Play" = "اضغط تشغيل";
 "Press play on something. It'll show up here once you start watching." = "اضغط تشغيل على شيء ما. سيظهر هنا بمجرد أن تبدأ المشاهدة.";
+"Press play to start the room for everyone" = "Press play to start the room for everyone";
 "Prestige Drama" = "دراما راقية";
 "Prestige drama, weekly chapters, and series worth disappearing into." = "دراما راقية، حلقات أسبوعية، ومسلسلات تستحق الغوص فيها.";
 "Preview" = "معاينة";
@@ -2132,6 +2141,7 @@
 "Reading options" = "Reading options";
 "Reading your search" = "جارٍ قراءة بحثك";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
+"Ready" = "جاهز";
 "Real IMDb and Rotten Tomatoes scores." = "تقييمات IMDb وRotten Tomatoes الحقيقية.";
 "Real-Debrid API token" = "رمز API لـ Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid و TorBox و AllDebrid و Premiumize و Debrid-Link. البث المؤقت يعمل مباشرة. المفاتيح تبقى محلية.";
@@ -2209,6 +2219,7 @@
 "Renombrar" = "إعادة تسمية";
 "Repair library" = "إصلاح المكتبة";
 "Repeat" = "تكرار";
+"Repeating" = "Repeating";
 "Repetición" = "تكرار";
 "Replace image" = "استبدل الصورة";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "أعِد تشغيل الجولة التعريفية أو أظهر كل تلميح رفضته.";
@@ -2395,6 +2406,7 @@
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "جارٍ الإرسال إلى Trakt…";
 "Sending..." = "جارٍ الإرسال...";
+"Sends guests a pointer to this screen in their app" = "Sends guests a pointer to this screen in their app";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "تم إرسال {n} إلى Trakt";
 "Sequels & Prequels" = "الأجزاء اللاحقة والسابقة";
@@ -2994,6 +3006,7 @@
 "Upcoming" = "قادم";
 "Upcoming Anime" = "أنمي قادم";
 "Upcoming Season" = "الموسم القادم";
+"Upcoming episodes and movies from your Simkl watching and plan-to-watch lists" = "الحلقات والأفلام القادمة من قائمتي «أشاهد» و«أنوي المشاهدة» في Simkl";
 "Upcoming episodes and movies from your Trakt watchlist" = "الحلقات والأفلام القادمة من قائمة مشاهدة Trakt لديك";
 "Upcoming episodes and movies from your saved shows" = "الحلقات والأفلام القادمة من مسلسلاتك المحفوظة";
 "Upcoming items from your watchlist" = "العناصر القادمة من قائمة مشاهدتك";
@@ -3150,6 +3163,7 @@
 "Your Letterboxd password" = "كلمة مرور ليتربوكسد الخاصة بك";
 "Your MyAnimeList is empty" = "MyAnimeList الخاص بك فارغ";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "جهاز Roku مضبوط على حظر طلبات التحكم من التطبيقات على شبكتك، لذا لا يستطيع Harbor الوصول إليه. ما عليك سوى تغيير هذا الإعداد مرة واحدة على Roku.";
+"Your Simkl plan-to-watch list has no episodes airing this month. Switch to All upcoming to browse everything." = "لا تحتوي قائمة \"أنوي مشاهدتها\" على Simkl على حلقات تُبثّ هذا الشهر. بدّل إلى \"كل القادم\" لتصفّح كل شيء.";
 "Your Stremio library + addons sync in untouched." = "تتزامن مكتبة Stremio وإضافاتك كما هي دون تغيير.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "قائمة المشاهدة في Trakt فارغة، لا شيء لاستيراده.";

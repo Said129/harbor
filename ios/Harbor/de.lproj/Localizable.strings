@@ -457,6 +457,7 @@
 "Caches" = "Zwischenspeicher";
 "Calendar" = "Kalender";
 "Calendario" = "Kalender";
+"Call guests" = "Call guests";
 "Cam Recording" = "Cam Recording";
 "Cambiar fuente" = "Stream wechseln";
 "Cambiar nombre de la fila" = "Zeile umbenennen";
@@ -1301,6 +1302,7 @@
 "In Theaters Now" = "Jetzt im Kino";
 "In Watchlist" = "Auf der Merkliste";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In this room: {title}" = "In this room: {title}";
 "In watchlist" = "Auf der Merkliste";
 "Independent Spirit Awards" = "Independent Spirit Awards";
 "India" = "Indien";
@@ -1511,6 +1513,7 @@
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "Als ungesehen markieren";
 "Mark as watched" = "Als angesehen markieren";
+"Mark next episode" = "Mark next episode";
 "Mark watched button" = "Schaltfläche „Als gesehen markieren“";
 "Match Dolby Vision, HDR10 and HLG streams." = "Erfasst Streams mit Dolby Vision, HDR10 und HLG.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Passe heruntergeladene Untertitel im mpv-Player an den Ton an. Eingebettete Untertitel behalten ihr bisheriges Timing.";
@@ -1603,6 +1606,7 @@
 "Mute" = "Stummschalten";
 "Muted text" = "Gedämpfter Text";
 "My Library" = "Meine Mediathek";
+"My Simkl" = "Mein Simkl";
 "My Trakt" = "Mein Trakt";
 "My Trakt watchlist" = "Meine Trakt-Merkliste";
 "My channels" = "My channels";
@@ -1759,6 +1763,7 @@
 "Not installed" = "Nicht installiert";
 "Not interested" = "Nicht interessiert";
 "Not now" = "Nicht jetzt";
+"Not ready yet" = "Not ready yet";
 "Not set" = "Nicht festgelegt";
 "Nothing airing this month" = "Nothing airing this month";
 "Nothing anticipated this month" = "Diesen Monat wird nichts erwartet";
@@ -1768,6 +1773,7 @@
 "Nothing in progress yet. Press Play on something." = "Noch nichts angefangen. Drücke bei einem Titel auf „Wiedergabe“.";
 "Nothing installed yet" = "Noch nichts installiert";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Für diesen Filter wurden keine Treffer gefunden. Probiere eine andere Kategorie aus oder ändere deine Region in den Einstellungen.";
+"Nothing on Simkl this month" = "Diesen Monat nichts auf Simkl";
 "Nothing on Trakt this month" = "Diesen Monat nichts auf Trakt";
 "Nothing saved on Trakt yet." = "Noch nichts auf Trakt gespeichert.";
 "Nothing this month" = "Diesen Monat nichts";
@@ -1905,6 +1911,7 @@
 "Paste the manifest URL the configure page gave you" = "Füge die Manifest-URL ein, die dir die Konfigurationsseite angezeigt hat";
 "Paste the text from AniList" = "Text aus AniList einfügen";
 "Paste your TheIntroDB API key" = "TheIntroDB-API-Schlüssel einfügen";
+"Paused" = "Pausiert";
 "Peacock" = "Peacock";
 "Peligro" = "Gefahr";
 "Películas" = "Filme";
@@ -1953,6 +1960,7 @@
 "Plan to Watch" = "Möchte ich sehen";
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
+"Planning" = "Planning";
 "Play" = "Abspielen";
 "Play a random episode" = "Zufällige Episode abspielen";
 "Play movie" = "Film abspielen";
@@ -2014,6 +2022,7 @@
 "Premiumize API key" = "Premiumize-API-Schlüssel";
 "Press Play" = "Wiedergabetaste drücken";
 "Press play on something. It'll show up here once you start watching." = "Starte die Wiedergabe eines Titels. Sobald du mit dem Ansehen beginnst, wird er hier angezeigt.";
+"Press play to start the room for everyone" = "Press play to start the room for everyone";
 "Prestige Drama" = "Prestige-Dramen";
 "Prestige drama, weekly chapters, and series worth disappearing into." = "Anspruchsvolle Dramen, wöchentliche Kapitel und Serien, in denen du versinken kannst.";
 "Preview" = "Vorschau";
@@ -2102,6 +2111,7 @@
 "Reading options" = "Reading options";
 "Reading your search" = "Deine Suche wird eingelesen";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
+"Ready" = "Bereit";
 "Real IMDb and Rotten Tomatoes scores." = "Echte Bewertungen von IMDb und Rotten Tomatoes.";
 "Real-Debrid API token" = "Real-Debrid-API-Token";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Zwischengespeicherte Streams werden direkt abgespielt. API-Schlüssel bleiben lokal.";
@@ -2178,6 +2188,7 @@
 "Renombrar" = "Umbenennen";
 "Repair library" = "Mediathek reparieren";
 "Repeat" = "Wiederholen";
+"Repeating" = "Repeating";
 "Repetición" = "Wiederholen";
 "Replace image" = "Bild ersetzen";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Einführung wiederholen oder alle ausgeblendeten Tipps in der App wieder einblenden.";
@@ -2362,6 +2373,7 @@
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Wird an Trakt gesendet…";
 "Sending..." = "Wird gesendet...";
+"Sends guests a pointer to this screen in their app" = "Sends guests a pointer to this screen in their app";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n} an Trakt gesendet";
 "Sequels & Prequels" = "Fortsetzungen und Vorgeschichten";
@@ -2957,6 +2969,7 @@
 "Upcoming" = "Demnächst";
 "Upcoming Anime" = "Demnächst erscheinende Anime";
 "Upcoming Season" = "Kommende Staffel";
+"Upcoming episodes and movies from your Simkl watching and plan-to-watch lists" = "Bevorstehende Folgen und Filme aus deinen Simkl-Listen „Wird angesehen“ und „Demnächst ansehen“";
 "Upcoming episodes and movies from your Trakt watchlist" = "Bevorstehende Episoden und Filme aus deiner Trakt-Merkliste";
 "Upcoming episodes and movies from your saved shows" = "Bevorstehende Episoden und Filme aus deinen gespeicherten Serien";
 "Upcoming items from your watchlist" = "Bevorstehende Titel aus deiner Merkliste";
@@ -3109,6 +3122,7 @@
 "Your Letterboxd password" = "Dein Letterboxd-Passwort";
 "Your MyAnimeList is empty" = "Dein MyAnimeList ist leer";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Dein Roku blockiert Steuerungsanfragen von Apps in deinem Netzwerk, daher kann Harbor ihn nicht erreichen. Diese Einstellung muss auf dem Roku nur einmal geändert werden.";
+"Your Simkl plan-to-watch list has no episodes airing this month. Switch to All upcoming to browse everything." = "Deine „Später ansehen“-Liste bei Simkl enthält keine Folgen, die diesen Monat ausgestrahlt werden. Wechsle zu „Alle anstehenden“, um alles zu durchsuchen.";
 "Your Stremio library + addons sync in untouched." = "Deine Stremio-Mediathek und Add-ons werden unverändert synchronisiert.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Deine Trakt-Merkliste ist leer. Es gibt nichts zu importieren.";

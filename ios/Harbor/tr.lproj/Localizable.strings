@@ -457,6 +457,7 @@
 "Caches" = "Önbellekler";
 "Calendar" = "Takvim";
 "Calendario" = "Takvim";
+"Call guests" = "Call guests";
 "Cam Recording" = "Cam Recording";
 "Cambiar fuente" = "Yayını değiştir";
 "Cambiar nombre de la fila" = "Satırı yeniden adlandır";
@@ -1301,6 +1302,7 @@
 "In Theaters Now" = "Şu Anda Sinemalarda";
 "In Watchlist" = "İzleme Listesinde";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In this room: {title}" = "In this room: {title}";
 "In watchlist" = "İzleme listesinde";
 "Independent Spirit Awards" = "Bağımsız Ruh Ödülleri";
 "India" = "Hindistan";
@@ -1511,6 +1513,7 @@
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "İzlenmedi olarak işaretle";
 "Mark as watched" = "İzlendi olarak işaretle";
+"Mark next episode" = "Mark next episode";
 "Mark watched button" = "İzlendi olarak işaretle düğmesi";
 "Match Dolby Vision, HDR10 and HLG streams." = "Dolby Vision, HDR10 ve HLG yayınlarını eşleştirir.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "İndirilen altyazıları mpv oynatıcıdaki sesle eşleştirin. Gömülü altyazı izleri mevcut zamanlamalarını korur.";
@@ -1603,6 +1606,7 @@
 "Mute" = "Sesi kapat";
 "Muted text" = "Soluk metin";
 "My Library" = "Kütüphanem";
+"My Simkl" = "Simkl'ım";
 "My Trakt" = "Trakt'ım";
 "My Trakt watchlist" = "Trakt izleme listem";
 "My channels" = "My channels";
@@ -1759,6 +1763,7 @@
 "Not installed" = "Yüklü değil";
 "Not interested" = "İlgilenmiyorum";
 "Not now" = "Şimdi değil";
+"Not ready yet" = "Not ready yet";
 "Not set" = "Ayarlanmadı";
 "Nothing airing this month" = "Nothing airing this month";
 "Nothing anticipated this month" = "Bu ay beklenen bir içerik yok";
@@ -1768,6 +1773,7 @@
 "Nothing in progress yet. Press Play on something." = "Henüz devam eden bir izleme yok. Bir içerikte Oynat'a basın.";
 "Nothing installed yet" = "Henüz bir şey yüklenmedi";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Bu filtreyle eşleşen bir şey yok. Başka bir kategori deneyin veya Ayarlar'dan bölgenizi değiştirin.";
+"Nothing on Simkl this month" = "Bu ay Simkl'da bir şey yok";
 "Nothing on Trakt this month" = "Bu ay Trakt'ta bir şey yok";
 "Nothing saved on Trakt yet." = "Trakt'a henüz bir şey kaydedilmedi.";
 "Nothing this month" = "Bu ay hiçbir şey yok";
@@ -1905,6 +1911,7 @@
 "Paste the manifest URL the configure page gave you" = "Yapılandırma sayfasının verdiği manifest URL'sini yapıştırın";
 "Paste the text from AniList" = "AniList'teki metni yapıştırın";
 "Paste your TheIntroDB API key" = "TheIntroDB API anahtarınızı yapıştırın";
+"Paused" = "Duraklatıldı";
 "Peacock" = "Peacock";
 "Peligro" = "Tehlike";
 "Películas" = "Filmler";
@@ -1953,6 +1960,7 @@
 "Plan to Watch" = "İzlenecekler";
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
+"Planning" = "Planning";
 "Play" = "Oynat";
 "Play a random episode" = "Rastgele bir bölüm oynat";
 "Play movie" = "Filmi oynat";
@@ -2014,6 +2022,7 @@
 "Premiumize API key" = "Premiumize API anahtarı";
 "Press Play" = "Oynat'a Bas";
 "Press play on something. It'll show up here once you start watching." = "Bir içerikte Oynat'a basın. İzlemeye başladığınızda burada görünür.";
+"Press play to start the room for everyone" = "Press play to start the room for everyone";
 "Prestige Drama" = "Prestijli Dramalar";
 "Prestige drama, weekly chapters, and series worth disappearing into." = "Prestijli dramalar, haftalık bölümler ve içinde kaybolmaya değer diziler.";
 "Preview" = "Önizleme";
@@ -2102,6 +2111,7 @@
 "Reading options" = "Reading options";
 "Reading your search" = "Aramanız yorumlanıyor";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
+"Ready" = "Hazır";
 "Real IMDb and Rotten Tomatoes scores." = "Gerçek IMDb ve Rotten Tomatoes puanları.";
 "Real-Debrid API token" = "Real-Debrid API belirteci";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Önbelleğe alınmış yayınlar doğrudan oynatılır. Anahtarlar cihazınızda kalır.";
@@ -2178,6 +2188,7 @@
 "Renombrar" = "Yeniden adlandır";
 "Repair library" = "Kitaplığı onar";
 "Repeat" = "Tekrarla";
+"Repeating" = "Repeating";
 "Repetición" = "Tekrarla";
 "Replace image" = "Görüntüyü değiştir";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Tanıtım turunu yeniden oynatın veya uygulamada kapattığınız tüm ipuçlarını tekrar gösterin.";
@@ -2362,6 +2373,7 @@
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Trakt'a gönderiliyor…";
 "Sending..." = "Gönderiliyor...";
+"Sends guests a pointer to this screen in their app" = "Sends guests a pointer to this screen in their app";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n} öğe Trakt'a gönderildi";
 "Sequels & Prequels" = "Devam ve Öncesini Anlatan Yapımlar";
@@ -2957,6 +2969,7 @@
 "Upcoming" = "Yaklaşan";
 "Upcoming Anime" = "Yakında Çıkacak Animeler";
 "Upcoming Season" = "Gelecek Sezon";
+"Upcoming episodes and movies from your Simkl watching and plan-to-watch lists" = "Simkl izleme ve izlenecekler listelerinizdeki yaklaşan bölümler ve filmler";
 "Upcoming episodes and movies from your Trakt watchlist" = "Trakt izleme listenizdeki gelecek bölümler ve filmler";
 "Upcoming episodes and movies from your saved shows" = "Kaydettiğiniz dizilerin gelecek bölümleri ve filmleri";
 "Upcoming items from your watchlist" = "İzleme listenizde yakında yayınlanacaklar";
@@ -3109,6 +3122,7 @@
 "Your Letterboxd password" = "Letterboxd parolanız";
 "Your MyAnimeList is empty" = "MyAnimeList'iniz boş";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Roku'nuz, ağınızdaki uygulamalardan gelen kontrol isteklerini engelleyecek şekilde ayarlandığından Harbor cihaza erişemiyor. Bu ayarı Roku'da yalnızca bir kez yapmanız gerekir.";
+"Your Simkl plan-to-watch list has no episodes airing this month. Switch to All upcoming to browse everything." = "Simkl izleme planı listenizde bu ay yayımlanacak bölüm yok. Tümünü görmek için Tüm yaklaşanlar seçeneğine geçin.";
 "Your Stremio library + addons sync in untouched." = "Stremio kütüphaneniz ve eklentileriniz değişmeden eşitlenir.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Trakt izleme listeniz boş, içe aktarılacak bir şey yok.";

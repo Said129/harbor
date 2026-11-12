@@ -457,6 +457,7 @@
 "Caches" = "캐시";
 "Calendar" = "캘린더";
 "Calendario" = "캘린더";
+"Call guests" = "Call guests";
 "Cam Recording" = "Cam Recording";
 "Cambiar fuente" = "스트림 전환";
 "Cambiar nombre de la fila" = "행 이름 변경";
@@ -1301,6 +1302,7 @@
 "In Theaters Now" = "현재 극장 상영작";
 "In Watchlist" = "관심 목록에 있음";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In this room: {title}" = "In this room: {title}";
 "In watchlist" = "시청 목록에 있음";
 "Independent Spirit Awards" = "인디펜던트 스피릿상";
 "India" = "인도";
@@ -1511,6 +1513,7 @@
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "시청하지 않음으로 표시";
 "Mark as watched" = "시청함으로 표시";
+"Mark next episode" = "Mark next episode";
 "Mark watched button" = "시청함 표시 버튼";
 "Match Dolby Vision, HDR10 and HLG streams." = "Dolby Vision, HDR10, HLG 스트림과 일치합니다.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "mpv 플레이어에서 다운로드한 자막을 오디오에 맞춥니다. 내장 자막 트랙은 기존 타이밍을 유지합니다.";
@@ -1603,6 +1606,7 @@
 "Mute" = "음소거";
 "Muted text" = "흐린 텍스트";
 "My Library" = "내 라이브러리";
+"My Simkl" = "내 Simkl";
 "My Trakt" = "내 Trakt";
 "My Trakt watchlist" = "내 Trakt 관심 목록";
 "My channels" = "My channels";
@@ -1759,6 +1763,7 @@
 "Not installed" = "설치되지 않음";
 "Not interested" = "관심 없음";
 "Not now" = "나중에";
+"Not ready yet" = "Not ready yet";
 "Not set" = "설정되지 않음";
 "Nothing airing this month" = "Nothing airing this month";
 "Nothing anticipated this month" = "이번 달에는 기대작이 없습니다";
@@ -1768,6 +1773,7 @@
 "Nothing in progress yet. Press Play on something." = "아직 시청 중인 콘텐츠가 없습니다. 콘텐츠를 재생해 보세요.";
 "Nothing installed yet" = "아직 설치된 것이 없습니다";
 "Nothing matched this filter. Try another category or change your region in Settings." = "이 필터와 일치하는 항목이 없습니다. 다른 카테고리를 선택하거나 설정에서 지역을 변경해 보세요.";
+"Nothing on Simkl this month" = "이번 달 Simkl 항목 없음";
 "Nothing on Trakt this month" = "이번 달 Trakt 항목 없음";
 "Nothing saved on Trakt yet." = "Trakt에 아직 저장된 항목이 없습니다.";
 "Nothing this month" = "이번 달에는 항목이 없습니다";
@@ -1905,6 +1911,7 @@
 "Paste the manifest URL the configure page gave you" = "설정 페이지에서 제공한 매니페스트 URL을 붙여넣으세요";
 "Paste the text from AniList" = "AniList의 텍스트 붙여넣기";
 "Paste your TheIntroDB API key" = "TheIntroDB API 키 붙여넣기";
+"Paused" = "일시 정지됨";
 "Peacock" = "Peacock";
 "Peligro" = "위험";
 "Películas" = "영화";
@@ -1953,6 +1960,7 @@
 "Plan to Watch" = "시청 예정";
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
+"Planning" = "Planning";
 "Play" = "재생";
 "Play a random episode" = "무작위 에피소드 재생";
 "Play movie" = "영화 재생";
@@ -2014,6 +2022,7 @@
 "Premiumize API key" = "Premiumize API 키";
 "Press Play" = "재생하세요";
 "Press play on something. It'll show up here once you start watching." = "콘텐츠를 재생해 보세요. 시청을 시작하면 여기에 표시됩니다.";
+"Press play to start the room for everyone" = "Press play to start the room for everyone";
 "Prestige Drama" = "명품 드라마";
 "Prestige drama, weekly chapters, and series worth disappearing into." = "명품 드라마와 주간 연재작, 푹 빠져들 만한 시리즈입니다.";
 "Preview" = "미리보기";
@@ -2102,6 +2111,7 @@
 "Reading options" = "Reading options";
 "Reading your search" = "검색어 분석 중";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
+"Ready" = "준비됨";
 "Real IMDb and Rotten Tomatoes scores." = "실제 IMDb 및 Rotten Tomatoes 평점입니다.";
 "Real-Debrid API token" = "Real-Debrid API 토큰";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link를 지원합니다. 캐시된 스트림은 바로 재생되며 키는 로컬에 보관됩니다.";
@@ -2178,6 +2188,7 @@
 "Renombrar" = "이름 변경";
 "Repair library" = "라이브러리 복구";
 "Repeat" = "반복";
+"Repeating" = "Repeating";
 "Repetición" = "반복";
 "Replace image" = "이미지 교체";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "둘러보기를 다시 진행하거나 앱에서 닫은 팁을 모두 다시 표시합니다.";
@@ -2362,6 +2373,7 @@
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Trakt로 전송 중…";
 "Sending..." = "전송 중...";
+"Sends guests a pointer to this screen in their app" = "Sends guests a pointer to this screen in their app";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "{n}개를 Trakt로 전송함";
 "Sequels & Prequels" = "후속작 및 전작";
@@ -2957,6 +2969,7 @@
 "Upcoming" = "예정";
 "Upcoming Anime" = "공개 예정 애니메이션";
 "Upcoming Season" = "다음 시즌 공개 예정작";
+"Upcoming episodes and movies from your Simkl watching and plan-to-watch lists" = "Simkl의 시청 중 및 시청 예정 목록에 있는 공개 예정 에피소드와 영화";
 "Upcoming episodes and movies from your Trakt watchlist" = "Trakt 관심 목록의 공개 예정 에피소드와 영화";
 "Upcoming episodes and movies from your saved shows" = "저장한 시리즈의 공개 예정 에피소드와 영화";
 "Upcoming items from your watchlist" = "관심 목록의 공개 예정 항목";
@@ -3109,6 +3122,7 @@
 "Your Letterboxd password" = "Letterboxd 비밀번호";
 "Your MyAnimeList is empty" = "MyAnimeList가 비어 있습니다";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Roku가 네트워크 내 앱의 제어 요청을 차단하도록 설정되어 있어 Harbor에서 연결할 수 없습니다. Roku에서 한 번만 설정하면 됩니다.";
+"Your Simkl plan-to-watch list has no episodes airing this month. Switch to All upcoming to browse everything." = "Simkl의 시청 예정 목록에 이번 달 방영 에피소드가 없습니다. 모든 공개 예정작을 보려면 전체 예정을 선택하세요.";
 "Your Stremio library + addons sync in untouched." = "Stremio 보관함과 애드온을 그대로 동기화합니다.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Trakt 관심 목록이 비어 있어 가져올 항목이 없습니다.";

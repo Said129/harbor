@@ -177,7 +177,16 @@
     "TMDB order": "Orden de TMDB",
     "Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field.": "Ábrelo en un navegador normal, configúralo allí y vuelve a pegar el enlace de instalación en el campo Manifest URL.",
     "Hide adult content": "Ocultar contenido para adultos",
-    "Filters out streams from adult catalogs and addons. On by default.": "Filtra los streams de catálogos y complementos para adultos. Activado por defecto."
+    "Filters out streams from adult catalogs and addons. On by default.": "Filtra los streams de catálogos y complementos para adultos. Activado por defecto.",
+    "In this room: {title}": "En esta sala: {title}",
+    "Press play to start the room for everyone": "Pulsa reproducir para iniciar la sala para todos",
+    "Not ready yet": "Aún no está listo",
+    "Call guests": "Llamar a los invitados",
+    "Anime": "Anime",
+    "Sends guests a pointer to this screen in their app": "Envía a los invitados un enlace a esta pantalla en su app",
+    "Mark next episode": "Marcar el siguiente episodio",
+    "Planning": "Planeado",
+    "Repeating": "Repitiendo"
   },
   "pt": {
     "Give more weight to titles in your languages and region in Discover.": "Dá mais peso aos títulos nos teus idiomas e da tua região em Descobrir.",

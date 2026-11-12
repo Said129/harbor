@@ -304,6 +304,15 @@ targets:
       - path: HarborTests/F3SharedCrewTests.swift
       - path: HarborTests/F4AnimeStreamTests.swift
       - path: HarborTests/F5DebridLibraryTests.swift
+      - path: HarborTests/F6LiveTVTests.swift
+      - path: HarborTests/F6TogetherTests.swift
+      - path: HarborTests/F7SimklWatchlistTests.swift
+      - path: HarborTests/F7TrackerEditTests.swift
+      - path: HarborTests/F7TrackerProgressTests.swift
+      - path: HarborTests/F8CalendarTests.swift
+      - path: HarborTests/F8LocalSidecarTests.swift
+      - path: HarborTests/F8MALScoreTests.swift
+      - path: HarborTests/F8PersonAwardsTests.swift
       - path: HarborTests/F9ContentFilterTests.swift
       - path: HarborTests/F10SportsFootballTests.swift
       - path: HarborTests/Fixtures

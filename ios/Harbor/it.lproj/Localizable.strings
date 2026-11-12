@@ -457,6 +457,7 @@
 "Caches" = "Cache";
 "Calendar" = "Calendario";
 "Calendario" = "Calendario";
+"Call guests" = "Call guests";
 "Cam Recording" = "Cam Recording";
 "Cambiar fuente" = "Cambia stream";
 "Cambiar nombre de la fila" = "Rinomina riga";
@@ -1301,6 +1302,7 @@
 "In Theaters Now" = "Ora al cinema";
 "In Watchlist" = "Nella Lista";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In this room: {title}" = "In this room: {title}";
 "In watchlist" = "Nella Lista";
 "Independent Spirit Awards" = "Independent Spirit Awards";
 "India" = "India";
@@ -1511,6 +1513,7 @@
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "Segna come non visto";
 "Mark as watched" = "Segna come visto";
+"Mark next episode" = "Mark next episode";
 "Mark watched button" = "Pulsante Segna come visto";
 "Match Dolby Vision, HDR10 and HLG streams." = "Seleziona flussi Dolby Vision, HDR10 e HLG.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Sincronizza i sottotitoli scaricati con l’audio in mpv. Le tracce incorporate mantengono la sincronizzazione originale.";
@@ -1603,6 +1606,7 @@
 "Mute" = "Disattiva audio";
 "Muted text" = "Testo attenuato";
 "My Library" = "La mia raccolta";
+"My Simkl" = "Il mio Simkl";
 "My Trakt" = "Il mio Trakt";
 "My Trakt watchlist" = "La mia lista di Trakt";
 "My channels" = "My channels";
@@ -1759,6 +1763,7 @@
 "Not installed" = "Non installato";
 "Not interested" = "Non mi interessa";
 "Not now" = "Non ora";
+"Not ready yet" = "Not ready yet";
 "Not set" = "Non impostato";
 "Nothing airing this month" = "Nothing airing this month";
 "Nothing anticipated this month" = "Nessun titolo atteso questo mese";
@@ -1768,6 +1773,7 @@
 "Nothing in progress yet. Press Play on something." = "Non ci sono ancora contenuti in corso. Premi Riproduci su un titolo.";
 "Nothing installed yet" = "Ancora nulla di installato";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Nessuna corrispondenza con questo filtro. Prova un'altra categoria o cambia la regione nelle Impostazioni.";
+"Nothing on Simkl this month" = "Nessun titolo su Simkl questo mese";
 "Nothing on Trakt this month" = "Nessun titolo su Trakt questo mese";
 "Nothing saved on Trakt yet." = "Non hai ancora salvato nulla su Trakt.";
 "Nothing this month" = "Nulla questo mese";
@@ -1905,6 +1911,7 @@
 "Paste the manifest URL the configure page gave you" = "Incolla l'URL del manifest fornito dalla pagina di configurazione";
 "Paste the text from AniList" = "Incolla il testo da AniList";
 "Paste your TheIntroDB API key" = "Incolla la tua chiave API TheIntroDB";
+"Paused" = "In pausa";
 "Peacock" = "Peacock";
 "Peligro" = "Pericolo";
 "Películas" = "Film";
@@ -1953,6 +1960,7 @@
 "Plan to Watch" = "Da vedere";
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
+"Planning" = "Planning";
 "Play" = "Riproduci";
 "Play a random episode" = "Riproduci un episodio casuale";
 "Play movie" = "Riproduci film";
@@ -2014,6 +2022,7 @@
 "Premiumize API key" = "Chiave API Premiumize";
 "Press Play" = "Premi Riproduci";
 "Press play on something. It'll show up here once you start watching." = "Avvia la riproduzione di qualcosa. Comparirà qui non appena inizi a guardarlo.";
+"Press play to start the room for everyone" = "Press play to start the room for everyone";
 "Prestige Drama" = "Dramma di prestigio";
 "Prestige drama, weekly chapters, and series worth disappearing into." = "Drammi di prestigio, capitoli settimanali e serie in cui perdersi.";
 "Preview" = "Anteprima";
@@ -2102,6 +2111,7 @@
 "Reading options" = "Reading options";
 "Reading your search" = "Lettura della ricerca";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
+"Ready" = "Pronto";
 "Real IMDb and Rotten Tomatoes scores." = "Punteggi reali di IMDb e Rotten Tomatoes.";
 "Real-Debrid API token" = "Token API di Real-Debrid";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Gli stream nella cache vengono riprodotti direttamente. Le chiavi restano in locale.";
@@ -2178,6 +2188,7 @@
 "Renombrar" = "Rinomina";
 "Repair library" = "Ripara raccolta";
 "Repeat" = "Ripeti";
+"Repeating" = "Repeating";
 "Repetición" = "Ripeti";
 "Replace image" = "Sostituisci immagine";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Ripeti la guida introduttiva o mostra di nuovo tutti i suggerimenti nascosti nell'app.";
@@ -2362,6 +2373,7 @@
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Invio a Trakt…";
 "Sending..." = "Invio in corso...";
+"Sends guests a pointer to this screen in their app" = "Sends guests a pointer to this screen in their app";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "Invio di {n} a Trakt completato";
 "Sequels & Prequels" = "Sequel e prequel";
@@ -2957,6 +2969,7 @@
 "Upcoming" = "In arrivo";
 "Upcoming Anime" = "Anime in arrivo";
 "Upcoming Season" = "Prossima Stagione";
+"Upcoming episodes and movies from your Simkl watching and plan-to-watch lists" = "Episodi e Film in arrivo dalle tue Liste In visione e Da guardare di Simkl";
 "Upcoming episodes and movies from your Trakt watchlist" = "Episodi e Film in arrivo dalla tua Lista di Trakt";
 "Upcoming episodes and movies from your saved shows" = "Episodi e Film in arrivo dalle Serie che hai salvato";
 "Upcoming items from your watchlist" = "Contenuti in arrivo dalla tua Lista";
@@ -3109,6 +3122,7 @@
 "Your Letterboxd password" = "La tua password di Letterboxd";
 "Your MyAnimeList is empty" = "Il tuo MyAnimeList è vuoto";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Il tuo Roku è impostato per bloccare le richieste di controllo dalle app sulla tua rete, quindi Harbor non può raggiungerlo. Devi modificare questa impostazione sul Roku una sola volta.";
+"Your Simkl plan-to-watch list has no episodes airing this month. Switch to All upcoming to browse everything." = "La tua lista da guardare di Simkl non contiene episodi in onda questo mese. Seleziona Tutte le prossime uscite per vedere tutto.";
 "Your Stremio library + addons sync in untouched." = "La tua libreria Stremio e i tuoi Add-on vengono sincronizzati senza modifiche.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "La tua Lista di Trakt è vuota, non c'è nulla da importare.";

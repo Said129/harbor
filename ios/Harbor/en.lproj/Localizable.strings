@@ -392,6 +392,7 @@
 "Cached only" = "Cached only";
 "Calendar" = "Calendar";
 "Calendario" = "Calendar";
+"Call guests" = "Call guests";
 "Cam Recording" = "Cam Recording";
 "Cambiar fuente" = "Switch stream";
 "Cambiar nombre de la fila" = "Rename row";
@@ -1155,6 +1156,7 @@
 "In Theaters Now" = "In Theaters Now";
 "In Watchlist" = "In Watchlist";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
+"In this room: {title}" = "In this room: {title}";
 "In watchlist" = "In watchlist";
 "Independent Spirit Awards" = "Independent Spirit Awards";
 "India" = "India";
@@ -1343,6 +1345,7 @@
 "Mark as read" = "Mark as read";
 "Mark as unwatched" = "Mark as unwatched";
 "Mark as watched" = "Mark as watched";
+"Mark next episode" = "Mark next episode";
 "Mark watched button" = "Mark watched button";
 "Match Dolby Vision, HDR10 and HLG streams." = "Match Dolby Vision, HDR10 and HLG streams.";
 "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing." = "Match downloaded subtitles to the audio in the mpv player. Embedded subtitle tracks keep their existing timing.";
@@ -1428,6 +1431,7 @@
 "Mute" = "Mute";
 "Muted text" = "Muted text";
 "My Library" = "My Library";
+"My Simkl" = "My Simkl";
 "My Trakt" = "My Trakt";
 "My Trakt watchlist" = "My Trakt watchlist";
 "My channels" = "My channels";
@@ -1563,6 +1567,7 @@
 "Not connected" = "Not connected";
 "Not installed" = "Not installed";
 "Not now" = "Not now";
+"Not ready yet" = "Not ready yet";
 "Not set" = "Not set";
 "Nothing airing this month" = "Nothing airing this month";
 "Nothing anticipated this month" = "Nothing anticipated this month";
@@ -1570,6 +1575,7 @@
 "Nothing from your library this month" = "Nothing from your library this month";
 "Nothing here yet" = "Nothing here yet";
 "Nothing in progress yet. Press Play on something." = "Nothing in progress yet. Press Play on something.";
+"Nothing on Simkl this month" = "Nothing on Simkl this month";
 "Nothing on Trakt this month" = "Nothing on Trakt this month";
 "Nothing saved on Trakt yet." = "Nothing saved on Trakt yet.";
 "Nothing this month" = "Nothing this month";
@@ -1693,6 +1699,7 @@
 "Paste the manifest URL the configure page gave you" = "Paste the manifest URL the configure page gave you";
 "Paste the text from AniList" = "Paste the text from AniList";
 "Paste your TheIntroDB API key" = "Paste your TheIntroDB API key";
+"Paused" = "Paused";
 "Peligro" = "Danger";
 "Películas" = "Movies";
 "Películas animadas" = "Animated Movies";
@@ -1731,6 +1738,7 @@
 "Plan to Watch" = "Plan to Watch";
 "Plan to Watch Movies on Simkl" = "Plan to Watch Movies on Simkl";
 "Plan to Watch TV Shows on Simkl" = "Plan to Watch TV Shows on Simkl";
+"Planning" = "Planning";
 "Play" = "Play";
 "Play a random episode" = "Play a random episode";
 "Play movie" = "Play movie";
@@ -1783,6 +1791,7 @@
 "Premiumize API key" = "Premiumize API key";
 "Press Play" = "Press Play";
 "Press play on something. It'll show up here once you start watching." = "Press play on something. It'll show up here once you start watching.";
+"Press play to start the room for everyone" = "Press play to start the room for everyone";
 "Prestige Drama" = "Prestige Drama";
 "Prestige drama, weekly chapters, and series worth disappearing into." = "Prestige drama, weekly chapters, and series worth disappearing into.";
 "Preview" = "Preview";
@@ -1862,6 +1871,7 @@
 "Reading options" = "Reading options";
 "Reading your search" = "Reading your search";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
+"Ready" = "Ready";
 "Real IMDb and Rotten Tomatoes scores." = "Real IMDb and Rotten Tomatoes scores.";
 "Real-Debrid API token" = "Real-Debrid API token";
 "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local." = "Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link. Cached streams play direct. Keys stay local.";
@@ -1935,6 +1945,7 @@
 "Renombrar" = "Rename";
 "Repair library" = "Repair library";
 "Repeat" = "Repeat";
+"Repeating" = "Repeating";
 "Repetición" = "Repeat";
 "Replace image" = "Replace image";
 "Report an injected ad" = "Report an injected ad";
@@ -2104,6 +2115,7 @@
 "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
 "Sending to Trakt…" = "Sending to Trakt…";
 "Sending..." = "Sending...";
+"Sends guests a pointer to this screen in their app" = "Sends guests a pointer to this screen in their app";
 "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it." = "Sent once to Stremboxd to obtain a sign-in token. Harbor never keeps it.";
 "Sent {n} to Trakt" = "Sent {n} to Trakt";
 "Sequels & Prequels" = "Sequels & Prequels";
@@ -2639,6 +2651,7 @@
 "Upcoming" = "Upcoming";
 "Upcoming Anime" = "Upcoming Anime";
 "Upcoming Season" = "Upcoming Season";
+"Upcoming episodes and movies from your Simkl watching and plan-to-watch lists" = "Upcoming episodes and movies from your Simkl watching and plan-to-watch lists";
 "Upcoming episodes and movies from your Trakt watchlist" = "Upcoming episodes and movies from your Trakt watchlist";
 "Upcoming episodes and movies from your saved shows" = "Upcoming episodes and movies from your saved shows";
 "Upcoming items from your watchlist" = "Upcoming items from your watchlist";
@@ -2777,6 +2790,7 @@
 "Your Letterboxd password" = "Your Letterboxd password";
 "Your MyAnimeList is empty" = "Your MyAnimeList is empty";
 "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku." = "Your Roku is set to block control requests from apps on your network, so Harbor can't reach it. This is a one-time setting on the Roku.";
+"Your Simkl plan-to-watch list has no episodes airing this month. Switch to All upcoming to browse everything." = "Your Simkl plan-to-watch list has no episodes airing this month. Switch to All upcoming to browse everything.";
 "Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Your Trakt watchlist is empty, nothing to import.";
 "Your account is out of credits for this model. Pick a free model or top up." = "Your account is out of credits for this model. Pick a free model or top up.";
