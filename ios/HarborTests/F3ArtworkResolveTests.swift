@@ -2,10 +2,11 @@ import XCTest
 @testable import Harbor
 
 final class F3ArtworkResolveTests: XCTestCase {
-    func testIMDbTitlesResolveTheirLogoOnlyOnTheTitlePage() {
+    func testIMDbTitlesResolveTheirLogo() {
         XCTAssertTrue(CardArtworkResolver.canResolve(Media(id: "tt1234567", type: "movie", name: "Owned title"), imdbLogo: true))
         XCTAssertTrue(CardArtworkResolver.canResolve(Media(id: "tt1234567", type: "series", name: "Show"), imdbLogo: true))
-        XCTAssertFalse(CardArtworkResolver.canResolve(Media(id: "tt1234567", type: "movie", name: "Card")))
+        // AnimePublicIdentity already accepts IMDb ids, so cards resolve them too.
+        XCTAssertTrue(CardArtworkResolver.canResolve(Media(id: "tt1234567", type: "movie", name: "Card")))
     }
 
     func testTMDBIdsStillResolveTheirLogo() {

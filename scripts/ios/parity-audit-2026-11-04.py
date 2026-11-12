@@ -608,6 +608,109 @@ BEHAVIORS = expand("""
 245 X AirPlay legacy discovery and playback: Desktop speaks the AirPlay protocol itself; iOS routes audio and video through the system route picker and screen mirroring, which already carry AirPlay
 258 D self-hosted relay: the relay address setting works and the room flow uses it; Desktop's Cloudflare deploy is an excluded desktop-only step
 342 X remappable hotkeys: Desktop's default shortcuts work on an iPad keyboard; remapping them is a pointer-and-keyboard settings screen with no use on a touch device
+1 P cross-row Home dedupe against the hero and the first-row Top 10 section still differ; they need the base rows separated from the personal and addon rails
+2 D Home applies Desktop's one-card-per-resolved-anime-franchise pass, most recently watched first; the Stremio library source is an owner exclusion
+5 P the people and keyword lanes need TMDB person and keyword ids kept per watched title, which taste events do not store; the featured source pool still differs
+6 P the people and keyword daily lanes, custom Discover row order and full awards paging (24 per page up to 150) remain
+8 D every Desktop genre tile opens the TMDB genre grid, or the public Cinemeta genre catalog without a key; Desktop has no richer editorial screen
+10 P movie rows skip hero and earlier titles, drop rows under four titles and take the Top 10 from weekly trending as Desktop does; page collection rows remain because iOS has no local collections model
+11 D the cinema hero gates rotation on viewport, scene phase, drag and hover with a reduce-motion curve and uses the daily rotation with recent-play exclusion; live catalog behavior is runtime only
+14 P the rotating mast and weekly Top 10 exist; per-page collection assignments and the day-copy mast text remain
+15 P Desktop's manual-watched resurface rule reads a storage module iOS does not mirror
+18 P the anime room follows Desktop's row display rules and per-pool franchise dedupe; the Your MAL and Your AniList account rows, live Crunchyroll award metas and page collections remain
+19 D per-pool franchise dedupe seeded by Top Picks is ported and the rank cards were already covered
+20 P award winners sort newest first; live Crunchyroll award metas remain unported
+21 P Top Picks use a page per day and genre with taste genres first, AniList origin and a franchise merge; scored rotation, Kitsu sequels, the shown-picks ring, watch-history picks and new releases remain
+22 P the empty search shows genre tiles; music, sports and character facets remain
+30 D magnet and info-hash cards play through debrid or the saved remote streaming server; only Desktop's local torrent engine is absent, a recorded platform exclusion
+33 D the title page shows the shared-crew line from Wikidata with a sheet of the films; Desktop's detail layout editor is excluded as low value on a phone
+34 D IMDb titles already resolve their logo through the TMDB find path (AnimePublicIdentity accepts IMDb ids), after the saved choice and the season artwork
+35 D genre pills show the first three genres, TMDB genres open a filtered browse and unmapped names stay plain text
+41 D episode rows show runtime, a New badge, progress and a per-row watched toggle, and manual unwatched decisions apply
+42 P episode search across seasons by title or SxE and the random-episode and mark-season items exist; mark-season writes to Trakt only because Simkl progress is read only
+44 D merge and deduplication live in AnimeEpisodeService.applying and AnimeEpisodePool
+45 D season mapping lives in AnimeEpisodeService.applying and EpisodeOrderProjection
+48 D install replaces by manifest id or URL and keeps the place and the disabled state; the Stremio account write is an owner exclusion
+55 D the order is saved for every native profile and applied to streams; the account write and its verification are an owner exclusion
+61 D a captured configure link installs at once and the page falls back to the browser after 7.5 seconds
+68 D installed addons use declared types, prefixes and alternate requests with the exclusions of HarborService.streamRequests
+85 D the anime filename fields are attached on the Swift side and applied by the Rust ranking after parsing
+90 P the title gate needs Kitsu's alternative titles, a network fetch iOS does not make yet
+104 D the Rust ranking restores corroborated early-leak rejections before scoring
+105 D the Rust ranking applies Desktop's anime parsing and the exact-episode filter
+106 D the pipeline lists each configured provider's library, matches it to the title and merges the matches ahead of the addon streams
+115 D external and YouTube links open in the browser and the NZB message is mapped; NZB playback needs a Usenet client iOS does not have
+119 D Real-Debrid library entries reach the stream list through the shared pipeline
+123 D AllDebrid library entries reach the stream list through the shared pipeline
+127 D Premiumize library entries reach the stream list through the shared pipeline
+131 D TorBox library entries reach the stream list through the shared pipeline
+135 D Debrid-Link library entries reach the stream list through the shared pipeline
+151 P transcode URL generation exists; the decode-error retry needs a player failure classification that does not exist yet
+164 D tone-mapping curves are offered and applied when a video opens; SDR boost, RTX and shader stages are platform exclusions
+173 D the second track is drawn at the selected size and placement from mpv cue events; device validation is the only thing pending
+174 D custom subtitle fonts are imported per profile into the folder mpv reads
+179 D the playing file can be saved from the player; shader chains, draw and DVR are platform or protocol exclusions
+180 D the source picker has Desktop's format, cached-only, language and flagged filters
+188 P the episode panel honors Instant Play; browsing sources while the previous episode keeps playing and queue navigation remain
+199 D stream subtitles in the person's language are converted to UTF-8 with Desktop's Arabic plausibility check; no declared-encoding input
+201 P stream-hint ranking and the automatic provider choice exist; the movie-hash bonus and the timing preflight remain
+203 P manual live sync for external SRT and VTT tracks exists; full source matching and structural calibration remain
+206 P same ratio hypotheses and correlation gates as Desktop on a coarser grid with an energy voice detector; no piecewise tier
+207 X Desktop extracts a whole embedded track with an ffmpeg process; iOS has none and mpv exposes the track to the player
+211 D YouTube trailers play in the hero and detail views through the official embed
+219 D gzip guides are inflated, the typed address is tried first and the parsed guide is cached by the file's date
+220 D most-watched order from a play count joins the relevance order
+221 D category sheets show channel counts; Desktop has no drag reorder
+229 X Desktop caches a parsed index on disk; iOS keeps the raw XMLTV file for the same window plus an in-memory parsed copy, because a second parsed copy could cost up to 200 MB
+243 D vendor buckets, MIME, DIDL profiles and settle pauses match Desktop's dlna.rs
+250 P the room shows who is ready and its current title; the other-title notice needs the player
+256 D the host's call-guests actions send the Home, Discover, Anime, Library and Addons pointers
+257 P source-matching scoring exists and is tested; no player flow uses it yet
+266 D deliberate difference: cloud anime items are dropped only while their local copy is shown
+269 D saving or removing a bookmark also updates the Simkl Plan to Watch list; Desktop's cloud library part is an owner exclusion
+271 D folder imports load the sidecar subtitles next to a video; Desktop also scans on demand
+279 P import and change endpoints exist; Desktop's one-time export plan is not built
+280 D the Trakt list request builder matches Desktop; iOS shows lists through the custom calendar sources
+281 D the recommendations request matches Desktop
+284 P sort, spoilers, replies and paging exist; likes and the title rating are not ported
+286 D list progress loads on launch, on activation and when a title opens, and kitsu titles copy their AniList or MAL entry
+287 D a long-press menu changes status, marks the next episode or removes the entry
+292 D the account picture shows in the MyAnimeList settings
+293 D a long-press menu changes status, marks the next episode or removes the entry
+294 D MAL progress loads without opening the lists screen
+299 D the calendar offers My Simkl together with Desktop's other sources
+300 P ratings are fetched and the write request exists; the screen that calls the write was not checked
+301 P pure grouping exists; Desktop groups on its library tab, which needs a franchise list screen
+304 X Desktop's Letterboxd tab lists catalogs that iOS already shows as Home rails and View All
+309 D trailers, backdrops, logos and watch providers are fetched with fixed image sizes
+310 D OMDb scores, cache and budget are in place; Desktop reads OMDb awards in no view
+312 P the anime series logo and backdrops fill from Fanart; anime movies and Desktop's poster and home hero logos remain
+313 D MDBList chips exist on cards; Desktop batches the requests, iOS requests one per card
+314 P person pages load awards by IMDb name id; the person collapse key is not wired
+319 D the detail page shows the MAL score for anime and kitsu titles
+321 D the calendar offers all of Desktop's sources except Games
+322 P the library calendar has the curated order, limits and dedupe; dates come from addon metadata, not Desktop's Cinemeta or TMDB resolution
+329 P the adult-content switch exists for plugin streams; the anime half and Stremio addon streams are not covered
+332 X Desktop's default display face is not bundled; iOS ships Fraunces as its display face
+333 X layout, card, button, CSS and navigation chrome presets and the theme catalogue are Desktop web customization; palettes, custom colors and saved themes exist
+334 X the Desktop font pairs are not bundled and would need font registration
+335 X Desktop's card and button styles are CSS presets; the native subset (radius, effect, focus) exists
+336 X Desktop's custom navigation reorders web sidebar chrome; the iPhone tab structure is fixed
+337 D palettes, custom colors, saved themes, import and export and the background exist; only the CSS editor is missing, an accepted exclusion
+341 D the background image with dim exists; iOS cannot change the app icon
+343 X Desktop applies uploaded fonts to every web text style; iOS registers uploaded fonts for the reader and the subtitles
+345 D local episode and release alerts exist; the Discord and Telegram webhooks are excluded
+347 P AI assisted search with the person's own key exists; recommendations and the episode mode do not
+349 P statistics come from local history; genres and people need a TMDB credits pass
+360 D legacy defaults and the TMDB key are imported once; Desktop's schema migrations never existed on iOS
+361 X Desktop's advanced panel is updater, autostart, tray and web-build banners that do not apply to iOS; library repair exists
+363 D the closed-vocabulary event log exports; crash evidence is the system crash log
+364 P Harbor and Stremio title links and addon links are routed; list, music and profile links remain
+395 P period headings, boxscore stats and player tables exist; cricket partnerships and the baseball and football situation panels remain
+396 D football drive plays form the timeline; other sports use key events
+397 P a home team per league group exists; a team browser and a followed-team schedule remain
+401 P each broadcaster gets a Live TV search link; attached channels, the playlist matcher and the page-URL resolver remain
+424 X a sidecar cover fills in when there is no embedded art; choosing among several embedded pictures needs a picture type AVFoundation does not expose
 """)
 
 SETTINGS = expand("""
@@ -1065,6 +1168,31 @@ SETTINGS = expand("""
 497 D The per-profile locale preference defaults to on and controls native Discover ranking, daily catalog floors and Critics Pick. Desktop's regular Home view does not consume this preference.
 195 X stremioServerTranscode: the key is stored but Desktop has no control for it either, so there is no behavior to match
 349 X audioDevice: iOS has no per-app output device list; the system route picker (AirPlay, Bluetooth, speaker) chooses the output
+11 X tvdbKey: iOS uses the public TVDB proxy without a personal key, and a key field would store a third-party secret for no gain
+65 D the original ribbon follows the active Home Top 10 and moves a bookmark that shares its corner
+128 P arcs from TMDB story groups win over the TVDB order on plain series; anime pools have no arcs
+129 D the episode order provider setting keeps the TMDB order and skips TVDB, as Desktop does
+211 X castAlwaysTranscode: Desktop stores it but nothing in its source reads it, so there is no behavior to match
+227 D ASS size normalisation works for external, embedded and remote tracks, falling back to the dominant style when only the header is known
+231 D custom subtitle fonts are imported, listed, previewed and removed per profile
+244 D the per-profile second line size control is clamped like Desktop's
+246 X autoSyncApplyStructural: Desktop's calibration bundle is provisional in 0.9.132 and nothing supplies another, so the toggle cannot change any result
+256 X subtitlePreselect: the subtitle panel picks the exact track one tap after start, and a page before playback would repeat that across every source and episode change
+318 D tone-mapping is added; inverse tone mapping is a platform exclusion because iOS renders to an 8-bit standard-range surface
+342 D with a key saved, auto-sync offers an exact OpenSubtitles hash match as a replacement
+363 D cwSources are edited in the interface settings and read by the playback recovery
+366 D the launch-prompt interval options exist and are stored per profile
+369 D the league list is stored per profile like Desktop's sportsLeagues
+395 D library sort (recent, title, year) drives every library view
+433 D the page layout round-trips order, hidden rows, names, numerals, hero source and custom sources
+434 X nothing to hold: Desktop keeps it only while a theme preset with a navigation layout is active, and iOS presets carry none
+436 D the anime row map covers Desktop's keys and keeps unsupported rows in its shadow
+438 P favourite genres seed the picks after the taste genres with a daily page; the two-to-five page fill and the scored franchise merge detail are not ported
+439 D MAL picks get a country from one AniList request so the excluded-origins setting can hide them
+470 D the calendar source is kept per profile and offers all of Desktop's sources except Games
+478 D the custom calendar has its filter sheet with people, genres, providers, countries, media types and Trakt sources
+487 P each source takes an optional guide address; Desktop's EPG-only source kind is not ported
+488 D iOS keeps the container per Xtream account; Desktop has one global key its interface never writes
 """)
 
 def audit(items, verdicts, label):

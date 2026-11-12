@@ -20,16 +20,27 @@ in `parity-audit-2026-11-04.json`, produced by
 
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
-| Behaviors |   438 |    266 |     107 |       0 |       65 |           85.7 % |      71.3 % |           100.0 % |
-| Settings  |   511 |    247 |      29 |       0 |      235 |           94.7 % |      89.5 % |           100.0 % |
-| All       |   949 |    513 |     136 |       0 |      300 |           89.5 % |      79.0 % |           100.0 % |
+| Behaviors |   438 |    325 |      37 |       0 |       76 |           94.9 % |      89.8 % |           100.0 % |
+| Settings  |   511 |    264 |       7 |       0 |      240 |           98.7 % |      97.4 % |           100.0 % |
+| All       |   949 |    589 |      44 |       0 |      316 |           96.5 % |      93.0 % |           100.0 % |
 
-The 12 November pass moved six rows without changing any code: five became exclusions with a
-recorded reason (B114 committing uncached picks to a local torrent engine, B245 legacy AirPlay,
-B342 hotkey remapping, S195 and S349 below) and B258 (self-hosted relay) became ported because
-the only thing left was Desktop's excluded Cloudflare deploy. S195 is a setting Desktop has no
-control for and S349 an output-device list iOS does not expose. B242 stays partial with a
-sharper note: automatic DLNA discovery needs a multicast entitlement a sideloaded app cannot hold.
+The 12 November pass closed the 136 partial rows left by the 8 November list. Twelve workers each
+took one area, read Desktop's source against the iOS code and chose for every row between
+implementing the gap, recording that the note was stale, and excluding the rest with a reason.
+Roughly forty rows were implemented (anime row rules, movie rows, shared crew, episode search,
+debrid libraries in the stream pipeline, anime stream rules and early-leak rescue in the Rust
+ranking, IPTV gzip guides and most-watched order, AniList and MAL list editing and tracker
+progress without opening a screen, the My Simkl calendar source, person awards, tone mapping,
+the in-player download, the stream switcher filters, subtitle fonts, live sync, ranking,
+OpenSubtitles hash swap and ASS sizing). About thirty were already done and their notes stale.
+Exclusions carry their reason in the row: the local torrent engine, legacy AirPlay, hotkey
+remapping, Desktop's web customization (CSS, card and button styles, navigation chrome, font
+pairs that are not bundled), the Desktop updater and tray panel, calibration that is provisional
+in 0.9.132, and a few settings Desktop itself never reads.
+The 44 rows still partial are real gaps with a named remainder, listed in PENDING_ROWS_2026-11-12.md.
+Compilation and the fixture tests of the first nine areas passed in CI (209 of 210 on the first run,
+the failure being a test premise fixed afterwards); the subtitle, IPTV, tracker and metadata areas
+were merged later and are covered by the next CI run. Nothing here is validated on a device.
 
 The Discover locale setting (S497) controls native ranking, daily catalog
 queries and Critics Pick. Its active consumers in the pinned Desktop build

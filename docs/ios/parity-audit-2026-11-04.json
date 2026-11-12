@@ -5,35 +5,35 @@
   "summary": {
     "behaviors": {
       "total": 438,
-      "ported": 266,
-      "partial": 107,
+      "ported": 325,
+      "partial": 37,
       "missing": 0,
-      "excluded": 65,
-      "counted": 373,
-      "weighted_percent": 85.7,
-      "ported_only_percent": 71.3,
+      "excluded": 76,
+      "counted": 362,
+      "weighted_percent": 94.9,
+      "ported_only_percent": 89.8,
       "ported_or_partial_percent": 100.0
     },
     "settings": {
       "total": 511,
-      "ported": 247,
-      "partial": 29,
+      "ported": 264,
+      "partial": 7,
       "missing": 0,
-      "excluded": 235,
-      "counted": 276,
-      "weighted_percent": 94.7,
-      "ported_only_percent": 89.5,
+      "excluded": 240,
+      "counted": 271,
+      "weighted_percent": 98.7,
+      "ported_only_percent": 97.4,
       "ported_or_partial_percent": 100.0
     },
     "all": {
       "total": 949,
-      "ported": 513,
-      "partial": 136,
+      "ported": 589,
+      "partial": 44,
       "missing": 0,
-      "excluded": 300,
-      "counted": 649,
-      "weighted_percent": 89.5,
-      "ported_only_percent": 79.0,
+      "excluded": 316,
+      "counted": 633,
+      "weighted_percent": 96.5,
+      "ported_only_percent": 93.0,
       "ported_or_partial_percent": 100.0
     }
   },
@@ -41,56 +41,56 @@
     {
       "area": "Home, Discover and rooms",
       "range": "B1-B21",
-      "ported": 8,
-      "partial": 13,
+      "ported": 12,
+      "partial": 9,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 69.0
+      "weighted_percent": 78.6
     },
     {
       "area": "Search",
       "range": "B22-B32",
-      "ported": 8,
-      "partial": 2,
+      "ported": 9,
+      "partial": 1,
       "missing": 0,
       "excluded": 1,
-      "weighted_percent": 90.0
+      "weighted_percent": 95.0
     },
     {
       "area": "Details and episodes",
       "range": "B33-B47",
-      "ported": 8,
-      "partial": 7,
+      "ported": 14,
+      "partial": 1,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 76.7
+      "weighted_percent": 96.7
     },
     {
       "area": "Addons and catalogs",
       "range": "B48-B67",
-      "ported": 16,
-      "partial": 3,
+      "ported": 19,
+      "partial": 0,
       "missing": 0,
       "excluded": 1,
-      "weighted_percent": 92.1
+      "weighted_percent": 100.0
     },
     {
       "area": "Stream pipeline, parser, trust and scoring",
       "range": "B68-B106",
-      "ported": 33,
-      "partial": 6,
+      "ported": 38,
+      "partial": 1,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 92.3
+      "weighted_percent": 98.7
     },
     {
       "area": "Resolution and Debrid",
       "range": "B107-B135",
-      "ported": 21,
-      "partial": 6,
+      "ported": 27,
+      "partial": 0,
       "missing": 0,
       "excluded": 2,
-      "weighted_percent": 88.9
+      "weighted_percent": 100.0
     },
     {
       "area": "Torrent engine and streaming server",
@@ -104,65 +104,65 @@
     {
       "area": "Player, subtitles, skip, trailers and downloads",
       "range": "B154-B216",
-      "ported": 38,
-      "partial": 12,
+      "ported": 45,
+      "partial": 4,
       "missing": 0,
-      "excluded": 13,
-      "weighted_percent": 88.0
+      "excluded": 14,
+      "weighted_percent": 95.9
     },
     {
       "area": "Live TV, VOD, DVR and multiview",
       "range": "B217-B238",
-      "ported": 10,
-      "partial": 4,
+      "ported": 13,
+      "partial": 0,
       "missing": 0,
-      "excluded": 8,
-      "weighted_percent": 85.7
+      "excluded": 9,
+      "weighted_percent": 100.0
     },
     {
       "area": "Casting and Watch Together",
       "range": "B239-B259",
-      "ported": 9,
-      "partial": 5,
+      "ported": 11,
+      "partial": 3,
       "missing": 0,
       "excluded": 7,
-      "weighted_percent": 82.1
+      "weighted_percent": 89.3
     },
     {
       "area": "Stremio account, library and local files",
       "range": "B260-B273",
-      "ported": 6,
-      "partial": 4,
+      "ported": 9,
+      "partial": 1,
       "missing": 0,
       "excluded": 4,
-      "weighted_percent": 80.0
+      "weighted_percent": 95.0
     },
     {
       "area": "Trackers",
       "range": "B274-B304",
-      "ported": 18,
-      "partial": 13,
+      "ported": 26,
+      "partial": 4,
       "missing": 0,
-      "excluded": 0,
-      "weighted_percent": 79.0
+      "excluded": 1,
+      "weighted_percent": 93.3
     },
     {
       "area": "Metadata providers, calendar and lists",
       "range": "B305-B323",
-      "ported": 11,
-      "partial": 8,
+      "ported": 16,
+      "partial": 3,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 78.9
+      "weighted_percent": 92.1
     },
     {
       "area": "Profiles, appearance, integrations and system",
       "range": "B324-B365",
-      "ported": 12,
-      "partial": 16,
+      "ported": 17,
+      "partial": 4,
       "missing": 0,
-      "excluded": 14,
-      "weighted_percent": 71.4
+      "excluded": 21,
+      "weighted_percent": 90.5
     },
     {
       "area": "Manga",
@@ -176,11 +176,11 @@
     {
       "area": "Sports",
       "range": "B391-B401",
-      "ported": 6,
-      "partial": 5,
+      "ported": 7,
+      "partial": 4,
       "missing": 0,
       "excluded": 0,
-      "weighted_percent": 77.3
+      "weighted_percent": 81.8
     },
     {
       "area": "Home customization",
@@ -213,10 +213,10 @@
       "area": "Music",
       "range": "B422-B437",
       "ported": 14,
-      "partial": 2,
+      "partial": 1,
       "missing": 0,
-      "excluded": 0,
-      "weighted_percent": 93.8
+      "excluded": 1,
+      "weighted_percent": 96.7
     },
     {
       "area": "Subtitle FPS",
@@ -234,14 +234,14 @@
       "id": "Home hero and real catalogs",
       "desktop_source": "src/views/home.tsx",
       "verdict": "P",
-      "note": "Home uses Desktop's public Trending, Trakt and Simkl pools with a three-hour cache, explicit rail priority, catalog fallback, and per-title ranking. Native base catalog composition and some personal rails still differ."
+      "note": "cross-row Home dedupe against the hero and the first-row Top 10 section still differ; they need the base rows separated from the personal and addon rails"
     },
     {
       "index": 2,
       "id": "Continue Watching on Home",
       "desktop_source": "src/views/home.tsx",
-      "verdict": "P",
-      "note": "The native row removes a resolved anime franchise's known aliases and can restore them without clearing progress. Profile and playback changes fence late lookups. Desktop's default visible franchise dedupe and differing account sources remain."
+      "verdict": "D",
+      "note": "Home applies Desktop's one-card-per-resolved-anime-franchise pass, most recently watched first; the Stremio library source is an owner exclusion"
     },
     {
       "index": 3,
@@ -262,14 +262,14 @@
       "id": "Discover personalized feed",
       "desktop_source": "src/views/discover.tsx",
       "verdict": "P",
-      "note": "Discover applies profile-scoped locale affinity to Trending and Top Rated and excludes downvoted titles from suggestion pools. The native featured source pool and personalized daily lanes still differ."
+      "note": "the people and keyword lanes need TMDB person and keyword ids kept per watched title, which taste events do not store; the featured source pool still differs"
     },
     {
       "index": 6,
       "id": "Daily discovery rails",
       "desktop_source": "src/views/discover.tsx",
       "verdict": "P",
-      "note": "Discover runs Desktop's seeded genre, decade, language, country, TV, streaming and anchor rails with lazy paging, locale floors, relaxed fallbacks and a Cinemeta fallback. People and keyword lanes, custom row ordering and full awards pagination remain."
+      "note": "the people and keyword daily lanes, custom Discover row order and full awards paging (24 per page up to 150) remain"
     },
     {
       "index": 7,
@@ -282,8 +282,8 @@
       "index": 8,
       "id": "Genre discovery",
       "desktop_source": "src/views/discover.tsx",
-      "verdict": "P",
-      "note": "genre discovery: all eighteen Desktop tiles now open the correct TMDB filter or the public Cinemeta genre catalog without a TMDB key; artwork loads lazily and the richer editorial genre screen remains pending"
+      "verdict": "D",
+      "note": "every Desktop genre tile opens the TMDB genre grid, or the public Cinemeta genre catalog without a key; Desktop has no richer editorial screen"
     },
     {
       "index": 9,
@@ -297,14 +297,14 @@
       "id": "Movies room",
       "desktop_source": "src/views/movies.tsx",
       "verdict": "P",
-      "note": "The iOS movie room has no user collection rows assigned to the page, no Top 10 Movies Today row (no movie top-10 rail was found in ContentPageModel or TMDBService), no cross-row de-duplication against the hero and..."
+      "note": "movie rows skip hero and earlier titles, drop rows under four titles and take the Top 10 from weekly trending as Desktop does; page collection rows remain because iOS has no local collections model"
     },
     {
       "index": 11,
       "id": "Cinema hero",
       "desktop_source": "src/views/movies.tsx",
-      "verdict": "P",
-      "note": "Movies uses Desktop's five TMDB requests, daily ordering, recent-play exclusion and fallback. The native carousel pauses for horizontal drag, pointer hover, the viewport and backgrounding. Native motion and live catalog validation remain pending."
+      "verdict": "D",
+      "note": "the cinema hero gates rotation on viewport, scene phase, drag and hover with a reduce-motion curve and uses the daily rotation with recent-play exclusion; live catalog behavior is runtime only"
     },
     {
       "index": 12,
@@ -325,14 +325,14 @@
       "id": "Shows room",
       "desktop_source": "src/views/shows.tsx",
       "verdict": "P",
-      "note": "The Shows room uses Desktop’s rotating mast, six-slide featured pool, weekly Top 10 and native Continue Watching. Custom collection assignments and parts of Desktop’s presentation remain pending."
+      "note": "the rotating mast and weekly Top 10 exist; per-page collection assignments and the day-copy mast text remain"
     },
     {
       "index": 15,
       "id": "Series Continue Watching",
       "desktop_source": "src/views/shows.tsx",
       "verdict": "P",
-      "note": "Shows places the native continue row after the hero with Desktop's sixteen-item cap. IMDb anime still appear, while anime-provider IDs are reserved for the Anime room. Desktop's manual-watched resurface rules remain pending."
+      "note": "Desktop's manual-watched resurface rule reads a storage module iOS does not mirror"
     },
     {
       "index": 16,
@@ -353,35 +353,35 @@
       "id": "Anime room",
       "desktop_source": "src/views/anime.tsx",
       "verdict": "P",
-      "note": "DesktopAnimeRows and MAL/AniList public rows"
+      "note": "the anime room follows Desktop's row display rules and per-pool franchise dedupe; the Your MAL and Your AniList account rows, live Crunchyroll award metas and page collections remain"
     },
     {
       "index": 19,
       "id": "Anime genres and rankings",
       "desktop_source": "src/views/anime.tsx",
-      "verdict": "P",
-      "note": "DesktopAnimeRows and MAL/AniList public rows"
+      "verdict": "D",
+      "note": "per-pool franchise dedupe seeded by Top Picks is ported and the rank cards were already covered"
     },
     {
       "index": 20,
       "id": "Anime award winners",
       "desktop_source": "src/views/anime.tsx",
       "verdict": "P",
-      "note": "DesktopAnimeRows and MAL/AniList public rows"
+      "note": "award winners sort newest first; live Crunchyroll award metas remain unported"
     },
     {
       "index": 21,
       "id": "Anime Top Picks",
       "desktop_source": "src/views/anime.tsx",
       "verdict": "P",
-      "note": "DesktopAnimeRows and MAL/AniList public rows"
+      "note": "Top Picks use a page per day and genre with taste genres first, AniList origin and a franchise merge; scored rotation, Kitsu sequels, the shown-picks ring, watch-history picks and new releases remain"
     },
     {
       "index": 22,
       "id": "Global search",
       "desktop_source": "src/lib/search.ts",
       "verdict": "P",
-      "note": "Native search surfaces the most popular eligible TMDB result and opens an equivalent addon record when available. Year and genre queries open the standard Desktop browse rails. Editorial genre sections and additional result facets remain pending."
+      "note": "the empty search shows genre tiles; music, sports and character facets remain"
     },
     {
       "index": 23,
@@ -436,8 +436,8 @@
       "index": 30,
       "id": "Search magnet links",
       "desktop_source": "src/components/search",
-      "verdict": "P",
-      "note": "magnet and info-hash card plays through debrid only (5 Nov, uncompiled)"
+      "verdict": "D",
+      "note": "magnet and info-hash cards play through debrid or the saved remote streaming server; only Desktop's local torrent engine is absent, a recorded platform exclusion"
     },
     {
       "index": 31,
@@ -457,22 +457,22 @@
       "index": 33,
       "id": "Real content details",
       "desktop_source": "src/views/detail.tsx",
-      "verdict": "P",
-      "note": "real content details: the shared crew rules (three or more shared films, the line text) exist as helpers (8 Nov, written by Haiku, uncompiled); there is no crew query, cache or line on the page and no detail layout editor"
+      "verdict": "D",
+      "note": "the title page shows the shared-crew line from Wikidata with a sheet of the films; Desktop's detail layout editor is excluded as low value on a phone"
     },
     {
       "index": 34,
       "id": "Poster / backdrop / logo",
       "desktop_source": "src/views/detail.tsx",
-      "verdict": "P",
-      "note": "poster, backdrop and logo: the title page logo now resolves through CardArtworkResolver after the saved choice and the season artwork (8 Nov, written by Haiku, uncompiled); the resolver only accepts TMDB and anime ids, so IMDb titles keep the metadata logo"
+      "verdict": "D",
+      "note": "IMDb titles already resolve their logo through the TMDB find path (AnimePublicIdentity accepts IMDb ids), after the saved choice and the season artwork"
     },
     {
       "index": 35,
       "id": "Synopsis / genres / ratings",
       "desktop_source": "src/views/detail.tsx",
-      "verdict": "P",
-      "note": "synopsis, genres and ratings: only the first three genres show and a TMDB genre opens a filtered browse; unmapped genre names stay plain text (8 Nov, written by Haiku, uncompiled)"
+      "verdict": "D",
+      "note": "genre pills show the first three genres, TMDB genres open a filtered browse and unmapped names stay plain text"
     },
     {
       "index": 36,
@@ -513,15 +513,15 @@
       "index": 41,
       "id": "Episode details",
       "desktop_source": "src/views/detail/series-episodes.tsx",
-      "verdict": "P",
-      "note": "episode details: rows show the runtime, a New badge, the percent watched and the watched-ago text with a thin progress bar (8 Nov, written by Haiku, uncompiled); no manual unwatched override in that text, no dedicated episode detail view"
+      "verdict": "D",
+      "note": "episode rows show runtime, a New badge, progress and a per-row watched toggle, and manual unwatched decisions apply"
     },
     {
       "index": 42,
       "id": "Episode selection",
       "desktop_source": "src/views/detail/series-episodes.tsx",
       "verdict": "P",
-      "note": "episode selection: the initial season follows Desktop's resume rule, and a random-episode button and a mark-season item in the sort menu are in for plain seasons (8 Nov, written by Haiku, uncompiled); cross-season search is not ported and mark-season writes to Trakt only, not Simkl"
+      "note": "episode search across seasons by title or SxE and the random-episode and mark-season items exist; mark-season writes to Trakt only because Simkl progress is read only"
     },
     {
       "index": 43,
@@ -534,15 +534,15 @@
       "index": 44,
       "id": "Episode merge and deduplication",
       "desktop_source": "src/lib/series-episodes.ts",
-      "verdict": "P",
-      "note": "AnimeEpisodePool and episode projection"
+      "verdict": "D",
+      "note": "merge and deduplication live in AnimeEpisodeService.applying and AnimeEpisodePool"
     },
     {
       "index": 45,
       "id": "Season episode mapping",
       "desktop_source": "src/lib/series-episodes.ts",
-      "verdict": "P",
-      "note": "AnimeEpisodePool and episode projection"
+      "verdict": "D",
+      "note": "season mapping lives in AnimeEpisodeService.applying and EpisodeOrderProjection"
     },
     {
       "index": 46,
@@ -562,8 +562,8 @@
       "index": 48,
       "id": "Install addon URL",
       "desktop_source": "src/lib/addon-store.ts",
-      "verdict": "P",
-      "note": "install addon URL: an install now replaces the addon with the same manifest id or URL, keeps its place in the list and keeps the disabled state by URL (8 Nov, written by Haiku, uncompiled); the Stremio account write is still absent (see rows 50 to 52)"
+      "verdict": "D",
+      "note": "install replaces by manifest id or URL and keeps the place and the disabled state; the Stremio account write is an owner exclusion"
     },
     {
       "index": 49,
@@ -611,8 +611,8 @@
       "index": 55,
       "id": "Addon order",
       "desktop_source": "src/lib/addons-store",
-      "verdict": "P",
-      "note": "The order is saved only locally and only for guest profiles (AppModel.move goes through persist, which throws for a signed-in Stremio account); there is no stale check, no account write or verification, and no back..."
+      "verdict": "D",
+      "note": "the order is saved for every native profile and applied to streams; the account write and its verification are an owner exclusion"
     },
     {
       "index": 56,
@@ -653,8 +653,8 @@
       "index": 61,
       "id": "Addon configuration viewport",
       "desktop_source": "src/views/addons.tsx",
-      "verdict": "P",
-      "note": "addon configuration viewport: a captured link now installs at once as on Desktop (8 Nov, written by Haiku, uncompiled); there is still no timed fallback to the browser"
+      "verdict": "D",
+      "note": "a captured configure link installs at once and the page falls back to the browser after 7.5 seconds"
     },
     {
       "index": 62,
@@ -702,8 +702,8 @@
       "index": 68,
       "id": "Real addon stream requests",
       "desktop_source": "src/lib/streams/addons.ts",
-      "verdict": "P",
-      "note": "Installed addons use their declared playback types and prefixes, including alternate requests for nonstandard IDs. Control-only, retired and Stremio Local Files endpoints are excluded. iOS retains both verified anime and IMDb identities when available and uses its native HTTP transport."
+      "verdict": "D",
+      "note": "installed addons use declared types, prefixes and alternate requests with the exclusions of HarborService.streamRequests"
     },
     {
       "index": 69,
@@ -821,8 +821,8 @@
       "index": 85,
       "id": "Anime filename parsing",
       "desktop_source": "harbor-core/src/parser.rs",
-      "verdict": "P",
-      "note": "anitomy enrichment of anime names not ported"
+      "verdict": "D",
+      "note": "the anime filename fields are attached on the Swift side and applied by the Rust ranking after parsing"
     },
     {
       "index": 86,
@@ -857,7 +857,7 @@
       "id": "Title / year mismatch rejection",
       "desktop_source": "harbor-core/src/trust.rs",
       "verdict": "P",
-      "note": "title gate synced, but the anime alias titles are not passed yet"
+      "note": "the title gate needs Kitsu's alternative titles, a network fetch iOS does not make yet"
     },
     {
       "index": 91,
@@ -954,22 +954,22 @@
       "index": 104,
       "id": "Corroborated early leak rescue",
       "desktop_source": "src/lib/streams/pipeline.ts",
-      "verdict": "P",
-      "note": "corroborated early-leak rescue: pure rules and tests exist; the Rust ranking does not call them yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
+      "verdict": "D",
+      "note": "the Rust ranking restores corroborated early-leak rejections before scoring"
     },
     {
       "index": 105,
       "id": "Anime stream enrichment",
       "desktop_source": "src/lib/streams/pipeline.ts",
-      "verdict": "P",
-      "note": "anime stream enrichment: Desktop's anime parsing as pure functions; the Rust ranking parses before it can use them (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
+      "verdict": "D",
+      "note": "the Rust ranking applies Desktop's anime parsing and the exact-episode filter"
     },
     {
       "index": 106,
       "id": "Debrid library merge",
       "desktop_source": "src/lib/streams/pipeline.ts",
-      "verdict": "P",
-      "note": "debrid library merge: matching and merge as pure functions; the pipeline does not list the library yet (7 Nov, written by Haiku, CI run 42 green, 103 cases)"
+      "verdict": "D",
+      "note": "the pipeline lists each configured provider's library, matches it to the title and merges the matches ahead of the addon streams"
     },
     {
       "index": 107,
@@ -1031,8 +1031,8 @@
       "index": 115,
       "id": "External / YouTube / NZB error handling",
       "desktop_source": "src/lib/streams/resolve.ts",
-      "verdict": "P",
-      "note": "external links open; YouTube/NZB handling incomplete"
+      "verdict": "D",
+      "note": "external and YouTube links open in the browser and the NZB message is mapped; NZB playback needs a Usenet client iOS does not have"
     },
     {
       "index": 116,
@@ -1059,8 +1059,8 @@
       "index": 119,
       "id": "Real-Debrid library",
       "desktop_source": "src/lib/debrid/realdebrid.ts",
-      "verdict": "P",
-      "note": "library used for verification only"
+      "verdict": "D",
+      "note": "Real-Debrid library entries reach the stream list through the shared pipeline"
     },
     {
       "index": 120,
@@ -1087,8 +1087,8 @@
       "index": 123,
       "id": "AllDebrid library",
       "desktop_source": "src/lib/debrid/alldebrid.ts",
-      "verdict": "P",
-      "note": "library used for verification only"
+      "verdict": "D",
+      "note": "AllDebrid library entries reach the stream list through the shared pipeline"
     },
     {
       "index": 124,
@@ -1115,8 +1115,8 @@
       "index": 127,
       "id": "Premiumize library",
       "desktop_source": "src/lib/debrid/premiumize.ts",
-      "verdict": "P",
-      "note": "library used for verification only"
+      "verdict": "D",
+      "note": "Premiumize library entries reach the stream list through the shared pipeline"
     },
     {
       "index": 128,
@@ -1143,8 +1143,8 @@
       "index": 131,
       "id": "TorBox library",
       "desktop_source": "src/lib/debrid/torbox.ts",
-      "verdict": "P",
-      "note": "library used for verification only"
+      "verdict": "D",
+      "note": "TorBox library entries reach the stream list through the shared pipeline"
     },
     {
       "index": 132,
@@ -1171,8 +1171,8 @@
       "index": 135,
       "id": "Debrid-Link library",
       "desktop_source": "src/lib/debrid/debridlink.ts",
-      "verdict": "P",
-      "note": "library used for verification only"
+      "verdict": "D",
+      "note": "Debrid-Link library entries reach the stream list through the shared pipeline"
     },
     {
       "index": 136,
@@ -1284,7 +1284,7 @@
       "id": "Transcode URL generation",
       "desktop_source": "src/lib/stremio-server.ts",
       "verdict": "P",
-      "note": "transcode URL generation is built and tested; the decode-error retry that uses it is not wired (7 Nov, written by Haiku, CI run 25 pending)"
+      "note": "transcode URL generation exists; the decode-error retry needs a player failure classification that does not exist yet"
     },
     {
       "index": 152,
@@ -1374,8 +1374,8 @@
       "index": 164,
       "id": "HDR / tonemapping",
       "desktop_source": "src-tauri/src/mpv.rs",
-      "verdict": "P",
-      "note": "tone mapping options only"
+      "verdict": "D",
+      "note": "tone-mapping curves are offered and applied when a video opens; SDR boost, RTX and shader stages are platform exclusions"
     },
     {
       "index": 165,
@@ -1437,15 +1437,15 @@
       "index": 173,
       "id": "Dual subtitle tracks",
       "desktop_source": "src/lib/player",
-      "verdict": "P",
-      "note": "The native player draws the second track at the selected size and placement, using mpv cue events. Picture in Picture uses mpv native drawing. Focused Apple validation is pending."
+      "verdict": "D",
+      "note": "the second track is drawn at the selected size and placement from mpv cue events; device validation is the only thing pending"
     },
     {
       "index": 174,
       "id": "Custom subtitle fonts",
       "desktop_source": "src/lib/player",
-      "verdict": "P",
-      "note": "custom subtitle fonts: the accepted file types, the 32 MB limit and the name rule exist (8 Nov, written by Haiku, uncompiled); the import is not wired because the player maps any unknown font id to Inter"
+      "verdict": "D",
+      "note": "custom subtitle fonts are imported per profile into the folder mpv reads"
     },
     {
       "index": 175,
@@ -1479,15 +1479,15 @@
       "index": 179,
       "id": "Touch-equivalent transport controls",
       "desktop_source": "src/components/player",
-      "verdict": "P",
-      "note": "The audio panel has a volume slider. The video panel exports a clean PNG frame through Files, with Apple validation pending. Shader, draw, in-player download and DVR controls still differ."
+      "verdict": "D",
+      "note": "the playing file can be saved from the player; shader chains, draw and DVR are platform or protocol exclusions"
     },
     {
       "index": 180,
       "id": "Stream switcher",
       "desktop_source": "src/components/player",
-      "verdict": "P",
-      "note": "The iOS picker opened from the player's Change source action has only quality and provider filters plus the Both/Direct-debrid mode toggle; cached-only, preferred-language, source-group and flagged/rejected toggles..."
+      "verdict": "D",
+      "note": "the source picker has Desktop's format, cached-only, language and flagged filters"
     },
     {
       "index": 181,
@@ -1543,7 +1543,7 @@
       "id": "Player episode panel",
       "desktop_source": "src/components/player",
       "verdict": "P",
-      "note": "The episode panel honors Instant Play and opens the selected episode in the native source picker when manual. Transport keeps automatic advance. iOS currently releases the previous player for manual selection. Inline source browsing and queue-driven navigation remain pending."
+      "note": "the episode panel honors Instant Play; browsing sources while the previous episode keeps playing and queue navigation remain"
     },
     {
       "index": 189,
@@ -1619,8 +1619,8 @@
       "index": 199,
       "id": "Subtitle encoding detection",
       "desktop_source": "src/lib/subtitles",
-      "verdict": "P",
-      "note": "encoding handling in SubtitleFileService"
+      "verdict": "D",
+      "note": "stream subtitles in the person's language are converted to UTF-8 with Desktop's Arabic plausibility check; no declared-encoding input"
     },
     {
       "index": 200,
@@ -1634,7 +1634,7 @@
       "id": "Subtitle ranking / dedupe",
       "desktop_source": "src/lib/subtitles",
       "verdict": "P",
-      "note": "subtitle ranking and dedupe: provider search now deduplicates by language, URL, title and format, interleaves providers and prioritizes language; native rows and download cache preserve distinct results, while Desktop stream-hint ranking and automatic provider selection remain pending"
+      "note": "stream-hint ranking and the automatic provider choice exist; the movie-hash bonus and the timing preflight remain"
     },
     {
       "index": 202,
@@ -1648,7 +1648,7 @@
       "id": "Subtitle text resync",
       "desktop_source": "src/lib/subtitles",
       "verdict": "P",
-      "note": "External subtitle estimates can be reviewed and applied from the player, and verified community matches keep automatic application. Desktop's full source matching and structural calibration are pending."
+      "note": "manual live sync for external SRT and VTT tracks exists; full source matching and structural calibration remain"
     },
     {
       "index": 204,
@@ -1669,14 +1669,14 @@
       "id": "Audio correlation subtitle sync",
       "desktop_source": "src-tauri/src/subsync",
       "verdict": "P",
-      "note": "SubtitleAutoSync; embedded tracks via mpv"
+      "note": "same ratio hypotheses and correlation gates as Desktop on a coarser grid with an energy voice detector; no piecewise tier"
     },
     {
       "index": 207,
       "id": "Subtitle track extraction",
       "desktop_source": "src-tauri/src/sub_extract.rs",
-      "verdict": "P",
-      "note": "SubtitleAutoSync; embedded tracks via mpv"
+      "verdict": "X",
+      "note": "Desktop extracts a whole embedded track with an ffmpeg process; iOS has none and mpv exposes the track to the player"
     },
     {
       "index": 208,
@@ -1703,8 +1703,8 @@
       "index": 211,
       "id": "YouTube trailer resolution",
       "desktop_source": "src-tauri/src/trailer.rs",
-      "verdict": "P",
-      "note": "addon trailers; no YouTube resolution in app"
+      "verdict": "D",
+      "note": "YouTube trailers play in the hero and detail views through the official embed"
     },
     {
       "index": 212,
@@ -1759,22 +1759,22 @@
       "index": 219,
       "id": "XMLTV EPG",
       "desktop_source": "src/lib/iptv",
-      "verdict": "P",
-      "note": "XMLTV EPG: Desktop's parser, now and next lookup, tvg-shift and shared tvg-id rule, a per-source cache and the now and next line under each channel are in (8 Nov, written by Haiku, uncompiled); a gzip guide is refused, only the first answering address is used, and the programmes kept are those from two hours ago to three days ahead"
+      "verdict": "D",
+      "note": "gzip guides are inflated, the typed address is tried first and the parsed guide is cached by the file's date"
     },
     {
       "index": 220,
       "id": "Live channel catalogs",
       "desktop_source": "src/lib/iptv",
-      "verdict": "P",
-      "note": "live channel catalogs: channels follow Desktop's group relevance order with pinned channels first and hidden categories removed (8 Nov, written by Haiku, uncompiled); most-watched ordering is not ported because iOS keeps no play counts"
+      "verdict": "D",
+      "note": "most-watched order from a play count joins the relevance order"
     },
     {
       "index": 221,
       "id": "Channel categories",
       "desktop_source": "src/lib/iptv",
-      "verdict": "P",
-      "note": "channel categories: relevance order, per-list pins and hidden categories with a management sheet (8 Nov, written by Haiku, uncompiled); no drag reorder and no counts"
+      "verdict": "D",
+      "note": "category sheets show channel counts; Desktop has no drag reorder"
     },
     {
       "index": 222,
@@ -1829,8 +1829,8 @@
       "index": 229,
       "id": "Persistent IPTV cache",
       "desktop_source": "src/lib/iptv",
-      "verdict": "P",
-      "note": "persistent IPTV cache: the guide is kept as a raw XMLTV file per source with Desktop's one hour freshness and twelve hour offline use (8 Nov, written by Haiku, uncompiled); no parsed snapshot is stored"
+      "verdict": "X",
+      "note": "Desktop caches a parsed index on disk; iOS keeps the raw XMLTV file for the same window plus an in-memory parsed copy, because a second parsed copy could cost up to 200 MB"
     },
     {
       "index": 230,
@@ -1927,8 +1927,8 @@
       "index": 243,
       "id": "DLNA vendor capabilities",
       "desktop_source": "src-tauri/src/dlna.rs",
-      "verdict": "P",
-      "note": "DLNA vendor handling in the load request (7 Nov, written by Haiku, CI run 32 green (43 cases), cast run green (36 cases))"
+      "verdict": "D",
+      "note": "vendor buckets, MIME, DIDL profiles and settle pauses match Desktop's dlna.rs"
     },
     {
       "index": 244,
@@ -1977,7 +1977,7 @@
       "id": "Watch party create / join",
       "desktop_source": "src/lib/together",
       "verdict": "P",
-      "note": "Watch Together rooms: create and join through the relay with a sheet; the player holds the lobby paused, the host starts the room by pressing play, guests follow and send their controls to the host; no lobby screen with a ready list and no other-title notice (7 Nov, player side uncompiled)"
+      "note": "the room shows who is ready and its current title; the other-title notice needs the player"
     },
     {
       "index": 251,
@@ -2018,15 +2018,15 @@
       "index": 256,
       "id": "Host summon / invite",
       "desktop_source": "src/lib/together",
-      "verdict": "P",
-      "note": "host summon and invite: guests get the invite card (Join or Choose) and the summon card, and the host's invite goes out when its sources open (8 Nov, uncompiled); Desktop's host-side summon actions live in its context menu and have no iOS screen yet"
+      "verdict": "D",
+      "note": "the host's call-guests actions send the Home, Discover, Anime, Library and Addons pointers"
     },
     {
       "index": 257,
       "id": "Source matching",
       "desktop_source": "src/lib/together",
       "verdict": "P",
-      "note": "source matching: scoring exists and is tested, no player flow uses it yet (7 Nov, written by Haiku, CI runs 43 and 44 green)"
+      "note": "source-matching scoring exists and is tested; no player flow uses it yet"
     },
     {
       "index": 258,
@@ -2088,8 +2088,8 @@
       "index": 266,
       "id": "Continue Watching merge",
       "desktop_source": "src/lib/continue-watching.ts",
-      "verdict": "P",
-      "note": "Continue Watching merge: the sort key now takes the newer of the activity and the local resume time (8 Nov, written by Haiku, uncompiled); cloud anime items are dropped only while their local copy is shown, because iOS imports them into the local library and Desktop's unconditional drop would hide them otherwise"
+      "verdict": "D",
+      "note": "deliberate difference: cloud anime items are dropped only while their local copy is shown"
     },
     {
       "index": 267,
@@ -2109,8 +2109,8 @@
       "index": 269,
       "id": "Watchlist",
       "desktop_source": "src/lib/watchlist.ts",
-      "verdict": "P",
-      "note": "watchlist through trackers and library"
+      "verdict": "D",
+      "note": "saving or removing a bookmark also updates the Simkl Plan to Watch list; Desktop's cloud library part is an owner exclusion"
     },
     {
       "index": 270,
@@ -2123,8 +2123,8 @@
       "index": 271,
       "id": "Local file library scanning",
       "desktop_source": "src-tauri/src/local_lib.rs",
-      "verdict": "P",
-      "note": "local file library: the person picks files or a folder in the Files app and they are kept as bookmarks; no background scan (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "verdict": "D",
+      "note": "folder imports load the sidecar subtitles next to a video; Desktop also scans on demand"
     },
     {
       "index": 272,
@@ -2180,21 +2180,21 @@
       "id": "Trakt watchlist import / export",
       "desktop_source": "src/lib/trakt",
       "verdict": "P",
-      "note": "Trakt import/export, lists, recommendations partial"
+      "note": "import and change endpoints exist; Desktop's one-time export plan is not built"
     },
     {
       "index": 280,
       "id": "Trakt lists",
       "desktop_source": "src/lib/trakt",
-      "verdict": "P",
-      "note": "Trakt import/export, lists, recommendations partial"
+      "verdict": "D",
+      "note": "the Trakt list request builder matches Desktop; iOS shows lists through the custom calendar sources"
     },
     {
       "index": 281,
       "id": "Trakt recommendations",
       "desktop_source": "src/lib/trakt",
-      "verdict": "P",
-      "note": "Trakt import/export, lists, recommendations partial"
+      "verdict": "D",
+      "note": "the recommendations request matches Desktop"
     },
     {
       "index": 282,
@@ -2215,7 +2215,7 @@
       "id": "Trakt comments",
       "desktop_source": "src/lib/trakt",
       "verdict": "P",
-      "note": "Trakt comments: sort, spoilers, replies and paging are in; the post, like and rating request builders exist (8 Nov, written by Haiku, uncompiled) but no screen posts"
+      "note": "sort, spoilers, replies and paging exist; likes and the title rating are not ported"
     },
     {
       "index": 285,
@@ -2228,15 +2228,15 @@
       "index": 286,
       "id": "AniList watched sync",
       "desktop_source": "src/lib/anilist",
-      "verdict": "P",
-      "note": "AniList watched sync: list progress marks the first aired episodes watched (8 Nov, written by Haiku, uncompiled); the progress is read only after the AniList lists screen has been opened, and kitsu ids are not mapped"
+      "verdict": "D",
+      "note": "list progress loads on launch, on activation and when a title opens, and kitsu titles copy their AniList or MAL entry"
     },
     {
       "index": 287,
       "id": "AniList lists",
       "desktop_source": "src/lib/anilist",
-      "verdict": "P",
-      "note": "AniList lists: read-only browse by status with search and type filter, no edits (7 Nov, written by Haiku, CI run 23 green)"
+      "verdict": "D",
+      "note": "a long-press menu changes status, marks the next episode or removes the entry"
     },
     {
       "index": 288,
@@ -2270,22 +2270,22 @@
       "index": 292,
       "id": "MAL profile",
       "desktop_source": "src/lib/mal",
-      "verdict": "P",
-      "note": "MyAnimeList name shown; no avatar"
+      "verdict": "D",
+      "note": "the account picture shows in the MyAnimeList settings"
     },
     {
       "index": 293,
       "id": "MAL lists",
       "desktop_source": "src/lib/mal",
-      "verdict": "P",
-      "note": "MyAnimeList lists: read-only browse by status with search and type filter (7 Nov, written by Haiku, CI runs 37 to 39 green)"
+      "verdict": "D",
+      "note": "a long-press menu changes status, marks the next episode or removes the entry"
     },
     {
       "index": 294,
       "id": "MAL watched sync",
       "desktop_source": "src/lib/mal",
-      "verdict": "P",
-      "note": "MAL watched sync: list progress marks the first aired episodes watched (8 Nov, written by Haiku, uncompiled); the progress is read only after the MyAnimeList lists screen has been opened"
+      "verdict": "D",
+      "note": "MAL progress loads without opening the lists screen"
     },
     {
       "index": 295,
@@ -2319,22 +2319,22 @@
       "index": 299,
       "id": "Simkl calendar",
       "desktop_source": "src/lib/simkl",
-      "verdict": "P",
-      "note": "Simkl premieres calendar source (7 Nov, uncompiled); no My Simkl source"
+      "verdict": "D",
+      "note": "the calendar offers My Simkl together with Desktop's other sources"
     },
     {
       "index": 300,
       "id": "Simkl user ratings",
       "desktop_source": "src/lib/simkl",
       "verdict": "P",
-      "note": "Simkl ratings, anime grouping partial"
+      "note": "ratings are fetched and the write request exists; the screen that calls the write was not checked"
     },
     {
       "index": 301,
       "id": "Simkl anime grouping",
       "desktop_source": "src/lib/simkl",
       "verdict": "P",
-      "note": "Simkl anime grouping: the pure grouping, rating average and year range are ported (8 Nov, written by Haiku, uncompiled); no screen uses them and the relations enhancement is not ported"
+      "note": "pure grouping exists; Desktop groups on its library tab, which needs a franchise list screen"
     },
     {
       "index": 302,
@@ -2354,8 +2354,8 @@
       "index": 304,
       "id": "Letterboxd catalog integration",
       "desktop_source": "src/lib/stremboxd",
-      "verdict": "P",
-      "note": "Letterboxd catalogs appear as Home rails and in View All; no catalog-browser integration (7 Nov, written by Haiku, CI run 24 green)"
+      "verdict": "X",
+      "note": "Desktop's Letterboxd tab lists catalogs that iOS already shows as Home rails and View All"
     },
     {
       "index": 305,
@@ -2389,15 +2389,15 @@
       "index": 309,
       "id": "TMDB images / trailers / providers",
       "desktop_source": "src/lib/providers",
-      "verdict": "P",
-      "note": "TMDB images, trailers and watch providers"
+      "verdict": "D",
+      "note": "trailers, backdrops, logos and watch providers are fetched with fixed image sizes"
     },
     {
       "index": 310,
       "id": "OMDB ratings and budget",
       "desktop_source": "src/lib/providers",
-      "verdict": "P",
-      "note": "OMDB ratings and budget: scores, cache, budget, refused key and now the awards parsing (8 Nov, written by Haiku, uncompiled); no screen shows awards or the budget, as Desktop reads neither"
+      "verdict": "D",
+      "note": "OMDb scores, cache and budget are in place; Desktop reads OMDb awards in no view"
     },
     {
       "index": 311,
@@ -2411,21 +2411,21 @@
       "id": "Fanart artwork",
       "desktop_source": "src/lib/providers",
       "verdict": "P",
-      "note": "Fanart artwork: with a Fanart key, an anime title's logo and backdrops fill what is missing on its detail page (8 Nov, written by Haiku, uncompiled); Desktop's poster, the home hero logos and the movie lookup are not ported"
+      "note": "the anime series logo and backdrops fill from Fanart; anime movies and Desktop's poster and home hero logos remain"
     },
     {
       "index": 313,
       "id": "MDBList ratings",
       "desktop_source": "src/lib/providers",
-      "verdict": "P",
-      "note": "MdblistService: scores on the detail row; no cards chips (7 Nov, compiled; cases passed)"
+      "verdict": "D",
+      "note": "MDBList chips exist on cards; Desktop batches the requests, iOS requests one per card"
     },
     {
       "index": 314,
       "id": "Wikidata awards / people",
       "desktop_source": "src/lib/providers",
       "verdict": "P",
-      "note": "Wikidata awards and people: titles have awards; the person award kind and collapse rules exist (8 Nov, written by Haiku, uncompiled); iOS fetches no people awards"
+      "note": "person pages load awards by IMDb name id; the person collapse key is not wired"
     },
     {
       "index": 315,
@@ -2459,8 +2459,8 @@
       "index": 319,
       "id": "Jikan MAL ratings",
       "desktop_source": "src/lib/providers",
-      "verdict": "P",
-      "note": "Jikan in AnimeService"
+      "verdict": "D",
+      "note": "the detail page shows the MAL score for anime and kitsu titles"
     },
     {
       "index": 320,
@@ -2473,15 +2473,15 @@
       "index": 321,
       "id": "Calendar source filters",
       "desktop_source": "src/lib/calendar.ts",
-      "verdict": "P",
-      "note": "source switcher with library, all upcoming, My Trakt, Trakt anticipated, Simkl premieres and anime with its Sub/Dub switch (7 Nov, uncompiled); no My Simkl or games; Custom source with its filter sheet (7 Nov, uncompiled)"
+      "verdict": "D",
+      "note": "the calendar offers all of Desktop's sources except Games"
     },
     {
       "index": 322,
       "id": "Library release calendar",
       "desktop_source": "src/lib/calendar.ts",
       "verdict": "P",
-      "note": "library release calendar: every library title that is not removed, plus the Trakt watchlist when Trakt is connected, with Desktop's curated order, the 80 shows and 80 movies limits, no season 0 episode 0 and a dedupe (8 Nov, written by Haiku, uncompiled); dates still come from the addon metadata, not Desktop's Cinemeta and TMDB resolution"
+      "note": "the library calendar has the curated order, limits and dedupe; dates come from addon metadata, not Desktop's Cinemeta or TMDB resolution"
     },
     {
       "index": 323,
@@ -2530,7 +2530,7 @@
       "id": "Content categories",
       "desktop_source": "src/lib/parental.tsx",
       "verdict": "P",
-      "note": "hideContent categories"
+      "note": "the adult-content switch exists for plugin streams; the anime half and Stremio addon streams are not covered"
     },
     {
       "index": 330,
@@ -2550,43 +2550,43 @@
       "index": 332,
       "id": "Harbor visual identity",
       "desktop_source": "src/lib/theme.ts",
-      "verdict": "P",
-      "note": "iOS hard-codes Fraunces for every display heading (HarborTheme.displayFont) instead of the Desktop default display face (Sentient in sentient-switzer), and the Desktop layout, card and button styling of the identit..."
+      "verdict": "X",
+      "note": "Desktop's default display face is not bundled; iOS ships Fraunces as its display face"
     },
     {
       "index": 333,
       "id": "Theme presets",
       "desktop_source": "src/lib/theme.ts",
-      "verdict": "P",
-      "note": "iOS has the eight base palettes, custom colors and saved themes with backgrounds, but no layout, card-style, button-style, CSS or navigation chrome choices, and no beta, featured or template theme catalogue."
+      "verdict": "X",
+      "note": "layout, card, button, CSS and navigation chrome presets and the theme catalogue are Desktop web customization; palettes, custom colors and saved themes exist"
     },
     {
       "index": 334,
       "id": "Font pairings",
       "desktop_source": "src/lib/theme.ts",
-      "verdict": "P",
-      "note": "iOS offers only three body choices (Switzer, Inter, System) and a fixed Fraunces display face; the Sentient, Fraunces + Inter, General Sans, Cabinet Grotesk, IBM Plex and Plus Jakarta pairs are not offered and the..."
+      "verdict": "X",
+      "note": "the Desktop font pairs are not bundled and would need font registration"
     },
     {
       "index": 335,
       "id": "Card / button styles",
       "desktop_source": "src/lib/theme.ts",
-      "verdict": "P",
-      "note": "poster appearance and navigation layout"
+      "verdict": "X",
+      "note": "Desktop's card and button styles are CSS presets; the native subset (radius, effect, focus) exists"
     },
     {
       "index": 336,
       "id": "Custom navigation layouts",
       "desktop_source": "src/lib/theme.ts",
-      "verdict": "P",
-      "note": "poster appearance and navigation layout"
+      "verdict": "X",
+      "note": "Desktop's custom navigation reorders web sidebar chrome; the iPhone tab structure is fixed"
     },
     {
       "index": 337,
       "id": "Theme Studio",
       "desktop_source": "src/views/settings/theme-panel",
-      "verdict": "P",
-      "note": "Theme Studio without the code editor: library, import/export and background (7 Nov, written by Haiku, CI run 23 green)"
+      "verdict": "D",
+      "note": "palettes, custom colors, saved themes, import and export and the background exist; only the CSS editor is missing, an accepted exclusion"
     },
     {
       "index": 338,
@@ -2613,8 +2613,8 @@
       "index": 341,
       "id": "Custom background / logo",
       "desktop_source": "src/views/settings/theme-panel",
-      "verdict": "P",
-      "note": "custom background image with dim; no logo (iOS cannot change the app icon this way) (7 Nov, written by Haiku, CI run 23 green)"
+      "verdict": "D",
+      "note": "the background image with dim exists; iOS cannot change the app icon"
     },
     {
       "index": 342,
@@ -2627,8 +2627,8 @@
       "index": 343,
       "id": "Custom font upload",
       "desktop_source": "src/lib/custom-fonts.ts",
-      "verdict": "P",
-      "note": "reading fonts only"
+      "verdict": "X",
+      "note": "Desktop applies uploaded fonts to every web text style; iOS registers uploaded fonts for the reader and the subtitles"
     },
     {
       "index": 344,
@@ -2641,8 +2641,8 @@
       "index": 345,
       "id": "Content notifications",
       "desktop_source": "src/lib/webhook-engine.ts",
-      "verdict": "P",
-      "note": "content notifications as local notifications for upcoming episodes and releases, scheduled while the app is open; Discord and Telegram webhooks stay excluded (7 Nov, written by Haiku, CI run 31 green, 80 cases)"
+      "verdict": "D",
+      "note": "local episode and release alerts exist; the Discord and Telegram webhooks are excluded"
     },
     {
       "index": 346,
@@ -2656,7 +2656,7 @@
       "id": "AI assisted recommendations / search",
       "desktop_source": "src/lib/ai-search.ts",
       "verdict": "P",
-      "note": "AI assisted search with own keys; recommendations and the episode mode are not ported (7 Nov, written by Haiku, CI run 25 pending)"
+      "note": "AI assisted search with the person's own key exists; recommendations and the episode mode do not"
     },
     {
       "index": 348,
@@ -2670,7 +2670,7 @@
       "id": "Watching statistics / Wrapped",
       "desktop_source": "src/lib/wrapped",
       "verdict": "P",
-      "note": "watching statistics: hours, titles, split, top titles, highlights, year heatmap from local history; genres and people need Desktop's network enrichment (7 Nov, written by Haiku, CI run 23 green)"
+      "note": "statistics come from local history; genres and people need a TMDB credits pass"
     },
     {
       "index": 350,
@@ -2746,15 +2746,15 @@
       "index": 360,
       "id": "Profile settings migration",
       "desktop_source": "src/lib/settings",
-      "verdict": "P",
-      "note": "migrations and advanced configuration partial"
+      "verdict": "D",
+      "note": "legacy defaults and the TMDB key are imported once; Desktop's schema migrations never existed on iOS"
     },
     {
       "index": 361,
       "id": "Advanced configuration",
       "desktop_source": "src/lib/settings",
-      "verdict": "P",
-      "note": "migrations and advanced configuration partial"
+      "verdict": "X",
+      "note": "Desktop's advanced panel is updater, autostart, tray and web-build banners that do not apply to iOS; library repair exists"
     },
     {
       "index": 362,
@@ -2767,15 +2767,15 @@
       "index": 363,
       "id": "Crash diagnostics",
       "desktop_source": "src-tauri/src/crash_report.rs",
-      "verdict": "P",
-      "note": "Diagnostics log export"
+      "verdict": "D",
+      "note": "the closed-vocabulary event log exports; crash evidence is the system crash log"
     },
     {
       "index": 364,
       "id": "Harbor / Stremio deep links",
       "desktop_source": "src/lib/deep-link.ts",
       "verdict": "P",
-      "note": "Harbor and Stremio detail links now open the iOS title screen with episode hints, and Stremio manifests open the installer. Desktop list, music and profile routes and browser URL handoffs remain pending."
+      "note": "Harbor and Stremio title links and addon links are routed; list, music and profile links remain"
     },
     {
       "index": 365,
@@ -2992,21 +2992,21 @@
       "id": "Sports score periods and statistics",
       "desktop_source": "src/lib/sports/espn-summary.ts",
       "verdict": "P",
-      "note": "sports score periods: the headings follow Desktop (Set, Period, Quarter, Overtime, Innings) (8 Nov, written by Haiku, uncompiled); cricket partnership and player tables, baseball and football situation panels and volleyball set data are not ported"
+      "note": "period headings, boxscore stats and player tables exist; cricket partnerships and the baseball and football situation panels remain"
     },
     {
       "index": 396,
       "id": "Sports event commentary",
       "desktop_source": "src/lib/sports/espn-summary.ts",
-      "verdict": "P",
-      "note": "sports event commentary: a typed timeline from key events with clock and participant; American football drive plays still fall back to commentary text (8 Nov, written by Haiku, uncompiled)"
+      "verdict": "D",
+      "note": "football drive plays form the timeline; other sports use key events"
     },
     {
       "index": 397,
       "id": "Sports favorite leagues and teams",
       "desktop_source": "src/lib/sports/favourites.ts",
       "verdict": "P",
-      "note": "sports favorite leagues and teams: a home team per league group can be set from the match detail and is kept in the Keychain, and the form, last result and next fixture rules exist (8 Nov, written by Haiku, uncompiled); no team browser, no followed-team schedule view"
+      "note": "a home team per league group exists; a team browser and a followed-team schedule remain"
     },
     {
       "index": 398,
@@ -3034,7 +3034,7 @@
       "id": "Sports configured broadcast sources",
       "desktop_source": "src/lib/sports/stream-resolver.ts",
       "verdict": "P",
-      "note": "iOS has no per-event attached sources, no matching of playlist channels to the game, and no page-URL stream resolver; it only starts a Live TV search for the first broadcast name."
+      "note": "each broadcaster gets a Live TV search link; attached channels, the playlist matcher and the page-URL resolver remain"
     },
     {
       "index": 402,
@@ -3194,8 +3194,8 @@
       "index": 424,
       "id": "Music audio cover import",
       "desktop_source": "src-tauri/src/music/connectors/local/tags.rs",
-      "verdict": "P",
-      "note": "music audio cover import: a sidecar cover (cover, folder, front) fills in when there is no embedded art, for folder imports; the front-cover tag preference is not possible with AVFoundation's artwork key (8 Nov, written by Haiku, uncompiled)"
+      "verdict": "X",
+      "note": "a sidecar cover fills in when there is no embedded art; choosing among several embedded pictures needs a picture type AVFoundation does not expose"
     },
     {
       "index": 425,
@@ -3371,8 +3371,8 @@
       "index": 11,
       "id": "tvdbKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "TVDB used without a user key setting"
+      "verdict": "X",
+      "note": "tvdbKey: iOS uses the public TVDB proxy without a personal key, and a key field would store a third-party secret for no gain"
     },
     {
       "index": 12,
@@ -3749,8 +3749,8 @@
       "index": 65,
       "id": "top10Ribbon",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "The original corner ribbon follows the active Home Top 10 and moves a bookmark sharing its corner. Native Home rows still differ from Desktop's data in some configurations."
+      "verdict": "D",
+      "note": "the original ribbon follows the active Home Top 10 and moves a bookmark that shares its corner"
     },
     {
       "index": 66,
@@ -4191,14 +4191,14 @@
       "id": "episodeArcGroups",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "episode arcs from TMDB story groups on plain series; no TVDB order or anime pool (7 Nov, written by Haiku, CI run 24 green)"
+      "note": "arcs from TMDB story groups win over the TVDB order on plain series; anime pools have no arcs"
     },
     {
       "index": 129,
       "id": "episodeOrderProvider",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "episode order via TVDB season type"
+      "verdict": "D",
+      "note": "the episode order provider setting keeps the TMDB order and skips TVDB, as Desktop does"
     },
     {
       "index": 130,
@@ -4771,8 +4771,8 @@
       "index": 211,
       "id": "castAlwaysTranscode",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "castAlwaysTranscode is stored; there is no cast pipeline yet (7 Nov, written by Haiku, CI run 25 pending)"
+      "verdict": "X",
+      "note": "castAlwaysTranscode: Desktop stores it but nothing in its source reads it, so there is no behavior to match"
     },
     {
       "index": 212,
@@ -4883,8 +4883,8 @@
       "index": 227,
       "id": "subAssNormalizeSize",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "normalise ASS subtitle size: applied to external local ASS files only; embedded tracks need Desktop's Tauri-only extract command and remote files are not fetched (8 Nov, written by Haiku, uncompiled)"
+      "verdict": "D",
+      "note": "ASS size normalisation works for external, embedded and remote tracks, falling back to the dominant style when only the header is known"
     },
     {
       "index": 228,
@@ -4911,8 +4911,8 @@
       "index": 231,
       "id": "customFonts",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "reading fonts only"
+      "verdict": "D",
+      "note": "custom subtitle fonts are imported, listed, previewed and removed per profile"
     },
     {
       "index": 232,
@@ -5002,8 +5002,8 @@
       "index": 244,
       "id": "subSecondaryScale",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "The per-profile size controls the second subtitle in the inline player. The floating window uses mpv 0.41 native sizing. Focused Apple validation is pending."
+      "verdict": "D",
+      "note": "the per-profile second line size control is clamped like Desktop's"
     },
     {
       "index": 245,
@@ -5016,8 +5016,8 @@
       "index": 246,
       "id": "autoSyncApplyStructural",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "Uncalibrated audio corrections are offered for review in the player, following the shipped Desktop calibration. Automatic application of calibrated structural results and its setting are pending."
+      "verdict": "X",
+      "note": "autoSyncApplyStructural: Desktop's calibration bundle is provisional in 0.9.132 and nothing supplies another, so the toggle cannot change any result"
     },
     {
       "index": 247,
@@ -5086,8 +5086,8 @@
       "index": 256,
       "id": "subtitlePreselect",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "preselect subtitles before playback: not wired, iOS hands the source straight to the player and the tracks only exist once mpv has loaded the file"
+      "verdict": "X",
+      "note": "subtitlePreselect: the subtitle panel picks the exact track one tap after start, and a page before playback would repeat that across every source and episode change"
     },
     {
       "index": 257,
@@ -5520,8 +5520,8 @@
       "index": 318,
       "id": "mpvTweaks",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "tone-mapping is added; inverse tone mapping is a platform exclusion because iOS renders to an 8-bit standard-range surface"
     },
     {
       "index": 319,
@@ -5688,8 +5688,8 @@
       "index": 342,
       "id": "opensubtitlesApiKey",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "OpenSubtitles key is stored; auto-sync does not read it yet (7 Nov, written by Haiku, CI run 25 pending)"
+      "verdict": "D",
+      "note": "with a key saved, auto-sync offers an exact OpenSubtitles hash match as a replacement"
     },
     {
       "index": 343,
@@ -5835,8 +5835,8 @@
       "index": 363,
       "id": "externalContinueWatching",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "external continue watching via cwSources"
+      "verdict": "D",
+      "note": "cwSources are edited in the interface settings and read by the playback recovery"
     },
     {
       "index": 364,
@@ -5856,8 +5856,8 @@
       "index": 366,
       "id": "skipProfileScreen",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "profile prompt interval"
+      "verdict": "D",
+      "note": "the launch-prompt interval options exist and are stored per profile"
     },
     {
       "index": 367,
@@ -5877,8 +5877,8 @@
       "index": 369,
       "id": "sportsLeagues",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "sports favourites"
+      "verdict": "D",
+      "note": "the league list is stored per profile like Desktop's sportsLeagues"
     },
     {
       "index": 370,
@@ -6059,8 +6059,8 @@
       "index": 395,
       "id": "librarySort",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "library sort"
+      "verdict": "D",
+      "note": "library sort (recent, title, year) drives every library view"
     },
     {
       "index": 396,
@@ -6325,15 +6325,15 @@
       "index": 433,
       "id": "homeRows",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "home rows and navigation names"
+      "verdict": "D",
+      "note": "the page layout round-trips order, hidden rows, names, numerals, hero source and custom sources"
     },
     {
       "index": 434,
       "id": "navCustomization",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "home rows and navigation names"
+      "verdict": "X",
+      "note": "nothing to hold: Desktop keeps it only while a theme preset with a navigation layout is active, and iOS presets carry none"
     },
     {
       "index": 435,
@@ -6346,8 +6346,8 @@
       "index": 436,
       "id": "animeRows",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "anime rows"
+      "verdict": "D",
+      "note": "the anime row map covers Desktop's keys and keeps unsupported rows in its shadow"
     },
     {
       "index": 437,
@@ -6361,14 +6361,14 @@
       "id": "animeFavoriteGenres",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "favourite anime genres: each favourite adds a Jikan genre request to Top Picks (8 Nov, written by Haiku, uncompiled); Desktop's daily seeded page, history seeding and franchise merge are not ported"
+      "note": "favourite genres seed the picks after the taste genres with a daily page; the two-to-five page fill and the scored franchise merge detail are not ported"
     },
     {
       "index": 439,
       "id": "animeExcludeOrigins",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "excluded anime origins: passed through the policy, but no pick carries a country on iOS"
+      "verdict": "D",
+      "note": "MAL picks get a country from one AniList request so the excluded-origins setting can hide them"
     },
     {
       "index": 440,
@@ -6584,8 +6584,8 @@
       "index": 470,
       "id": "calendarSource",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "calendarSource kept per profile; six of Desktop's nine sources (7 Nov, uncompiled)"
+      "verdict": "D",
+      "note": "the calendar source is kept per profile and offers all of Desktop's sources except Games"
     },
     {
       "index": 471,
@@ -6640,8 +6640,8 @@
       "index": 478,
       "id": "customCalendar",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "customCalendar: people, genres, providers, countries, media types and Trakt sources with a filter sheet (7 Nov, uncompiled)"
+      "verdict": "D",
+      "note": "the custom calendar has its filter sheet with people, genres, providers, countries, media types and Trakt sources"
     },
     {
       "index": 479,
@@ -6704,14 +6704,14 @@
       "id": "iptvPlaylists",
       "desktop_source": "src/lib/settings/types.ts",
       "verdict": "P",
-      "note": "earlier review Partial"
+      "note": "each source takes an optional guide address; Desktop's EPG-only source kind is not ported"
     },
     {
       "index": 488,
       "id": "iptvLiveContainer",
       "desktop_source": "src/lib/settings/types.ts",
-      "verdict": "P",
-      "note": "earlier review Partial"
+      "verdict": "D",
+      "note": "iOS keeps the container per Xtream account; Desktop has one global key its interface never writes"
     },
     {
       "index": 489,

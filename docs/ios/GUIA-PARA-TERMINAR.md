@@ -13,7 +13,7 @@ Esta guia es para continuar el trabajo con otra herramienta (por ejemplo ChatGPT
 | Referencia Desktop 0.9.132 (solo lectura) | `C:\Users\Said\Documents\Codex\2026-10-11\podrias-ser-capaz-de-seguir-este\work\harbor-revision\parity132\desktop-0.9.132` |
 | Auditoria (script que genera todo)        | `scripts/ios/parity-audit-2026-11-04.py`                                                                                   |
 | Resultado de la auditoria                 | `docs/ios/PARITY_AUDIT_2026-11-04.md` y `parity-audit-2026-11-04.json`                                                     |
-| Filas pendientes (generado)               | `docs/ios/PENDING_ROWS_2026-11-08.md`                                                                                      |
+| Filas pendientes (generado)               | `docs/ios/PENDING_ROWS_2026-11-12.md`                                                                                      |
 | Registro de trabajo                       | `docs/ios/music-subtitle-94-work.md` (una seccion por ronda)                                                               |
 | Mensaje para el dueno                     | `C:\Users\Said\Downloads\Harbor\MENSAJE-PARA-SAID.md`                                                                      |
 
@@ -38,7 +38,7 @@ El equipo de Windows no tiene el SDK de Apple. **Todo lo que se compila o se pru
 
 ## 4. Como se trabaja (el ciclo de una ronda)
 
-1. Elegir filas pendientes de `docs/ios/PENDING_ROWS_2026-11-08.md`. Leer el fuente de Desktop de cada fila y el codigo de iOS antes de tocar nada.
+1. Elegir filas pendientes de `docs/ios/PENDING_ROWS_2026-11-12.md`. Leer el fuente de Desktop de cada fila y el codigo de iOS antes de tocar nada.
 2. Cambios pequenos: la logica en funciones puras en un archivo nuevo de `ios/Harbor/Services` o `ios/Harbor/Models`, y en las vistas grandes (`DetailView`, `EpisodeList`, `PlayerView`, `HarborService`) solo unas lineas que llamen a esa logica.
 3. Cada ronda lleva su archivo de pruebas `ios/HarborTests/Rxx...Tests.swift` y se registra en `ios/project.yml` (bloque `HarborChangedTests`, una linea `- path: HarborTests/NombreTests.swift`).
 4. Textos nuevos de interfaz: en ingles, exactamente el texto de Desktop, con `DesktopInterfaceText.value("...")`. Luego sincronizar traducciones (seccion 5).
@@ -87,7 +87,7 @@ gh workflow run ios.yml --repo Said129/harbor --ref ios/music-validation-94 -f v
 
 ## 8. Que queda (resumen honesto)
 
-El detalle esta en `docs/ios/PENDING_ROWS_2026-11-08.md` (163 filas: 159 parciales y 4 faltantes). Lo que queda se divide en tres tipos:
+El detalle esta en `docs/ios/PENDING_ROWS_2026-11-12.md` (163 filas: 159 parciales y 4 faltantes). Lo que queda se divide en tres tipos:
 
 1. **Logica ya escrita y probada pero sin conectar a ninguna pantalla** (reglas de paginas dobles de manga, continuar la cola de musica, reescanear carpetas de musica, reglas de ranking de subtitulos, ranking de busqueda por popularidad, catch-up de TV en vivo, orden diario de Discover, linea de equipo en comun...). Conectarlas es trabajo de pantalla y es lo mas rentable.
 2. **Funciones grandes que faltan**: busqueda de anime (AniList, Jikan, Kitsu), mas rieles de TMDB que tiene Desktop, filtro de categorias en la biblioteca de manga (Suwayomi), vista de detalle de episodio, progreso de las listas de AniList y MAL sin tener que abrir su pantalla, la normalizacion de nombres de filas de addons, pestana de equipos favoritos de deportes.
