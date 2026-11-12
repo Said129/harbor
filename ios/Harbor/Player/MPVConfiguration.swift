@@ -63,7 +63,16 @@ enum MPVConfiguration {
             let settings = playback ?? PlaybackPreferences.shared.options
             // Xcode copies registered fonts into the bundle resource root.
             if let fonts = Bundle.main.url(forResource: "Inter", withExtension: "ttf") {
-                try check(mpv_set_option_string(handle, "sub-fonts-dir", fonts.deletingLastPathComponent().path))
+                // The person's own subtitle fonts live in a folder of their own, beside copies of the bundled families.
+                // If that folder cannot be prepared or mpv refuses it, the bundled folder is used, so a font never stops playback.
+                let owner = MetadataPreferences.shared.settingsOwner ?? "guest"
+                var customApplied = false
+                if let custom = SubtitleFontStore.shared.playerDirectory(owner: owner) {
+                    customApplied = mpv_set_option_string(handle, "sub-fonts-dir", custom.path) >= 0
+                }
+                if !customApplied {
+                    try check(mpv_set_option_string(handle, "sub-fonts-dir", fonts.deletingLastPathComponent().path))
+                }
             }
             // Desktop's `mpvBufferBoost` gives `large` when no size is chosen. Its memory is bounded by `BufferSize`'s budget.
             let boost = UserDefaults.standard.bool(forKey: BufferSize.boostKey)

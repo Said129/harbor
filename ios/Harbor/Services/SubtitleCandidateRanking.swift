@@ -1,23 +1,42 @@
 import Foundation
 
 /// Desktop's auto-selection order for subtitle candidates (`rankSubtitleCandidates` in `lib/subtitles/candidate-ranking.ts`).
-/// Without stream hints Desktop scores every candidate alike on the movie hash, release affinity, source rank, timing and
-/// episode, so those keys are left out here. The hash flag is not carried by `SubtitleProviderCandidate` yet.
+/// With stream hints (`SubtitleStreamHints`) it also drops candidates for another episode or an incompatible release, and orders
+/// by episode, release confidence, source family and release score. Without hints those keys tie, as on Desktop. The movie-hash
+/// flag and the timing preflight are not carried by `SubtitleProviderCandidate`, so those two keys are left out.
 enum SubtitleCandidateRanking {
-    /// Desktop's filters that need no hints: forced and foreign-only tracks are never auto-picked, and when languages
-    /// are preferred only candidates with a language score remain.
-    static func autoPickable(_ candidates: [SubtitleProviderCandidate], preferredLanguages: [String]) -> [SubtitleProviderCandidate] {
+    /// Desktop's filters: forced and foreign-only tracks are never auto-picked, when languages are preferred only candidates
+    /// with a language score remain, and with hints a candidate for another episode or an incompatible release is dropped.
+    static func autoPickable(_ candidates: [SubtitleProviderCandidate], preferredLanguages: [String],
+                             hints: SubtitleStreamHints? = nil) -> [SubtitleProviderCandidate] {
         candidates.filter { !$0.forced && !$0.foreignOnly }
             .filter { preferredLanguages.isEmpty || languageScore($0, preferredLanguages) >= 0 }
+            .filter { !explicitEpisodeMismatch($0, hints) }
+            .filter { streamMatch($0, hints: hints).level != .incompatible }
     }
 
     /// The candidates in Desktop's auto-selection order, best first.
-    static func rank(_ candidates: [SubtitleProviderCandidate], preferredLanguages: [String]) -> [SubtitleProviderCandidate] {
-        autoPickable(candidates, preferredLanguages: preferredLanguages).sorted { compare($0, $1, preferredLanguages: preferredLanguages) < 0 }
+    static func rank(_ candidates: [SubtitleProviderCandidate], preferredLanguages: [String],
+                     hints: SubtitleStreamHints? = nil) -> [SubtitleProviderCandidate] {
+        let rows = autoPickable(candidates, preferredLanguages: preferredLanguages, hints: hints).map { candidate in
+            (candidate: candidate, match: streamMatch(candidate, hints: hints))
+        }
+        let ordered = rows.sorted { left, right in
+            compare(left.candidate, right.candidate, preferredLanguages: preferredLanguages, hints: hints,
+                    matches: (left.match, right.match)) < 0
+        }
+        return ordered.map { $0.candidate }
     }
 
     /// Negative when `a` comes first. Each step mirrors one `b - a` comparison of Desktop's sort.
-    static func compare(_ a: SubtitleProviderCandidate, _ b: SubtitleProviderCandidate, preferredLanguages: [String]) -> Int {
+    static func compare(_ a: SubtitleProviderCandidate, _ b: SubtitleProviderCandidate, preferredLanguages: [String],
+                        hints: SubtitleStreamHints? = nil) -> Int {
+        compare(a, b, preferredLanguages: preferredLanguages, hints: hints,
+                matches: (streamMatch(a, hints: hints), streamMatch(b, hints: hints)))
+    }
+
+    private static func compare(_ a: SubtitleProviderCandidate, _ b: SubtitleProviderCandidate, preferredLanguages: [String],
+                                hints: SubtitleStreamHints?, matches: (SubtitleStreamMatch, SubtitleStreamMatch)) -> Int {
         let language = desc(languageScore(b, preferredLanguages), languageScore(a, preferredLanguages))
         if language != 0 { return language }
         let strong = desc(strongProviderRank(b), strongProviderRank(a))
@@ -26,6 +45,14 @@ enum SubtitleCandidateRanking {
             let strongScore = desc(providerScore(b), providerScore(a))
             if strongScore != 0 { return strongScore }
         }
+        let episode = desc(explicitEpisodeRank(b, hints), explicitEpisodeRank(a, hints))
+        if episode != 0 { return episode }
+        let level = desc(matches.1.level.rank, matches.0.level.rank)
+        if level != 0 { return level }
+        let family = desc(matches.1.sourceRank, matches.0.sourceRank)
+        if family != 0 { return family }
+        let release = desc(matches.1.score, matches.0.score)
+        if release != 0 { return release }
         let weak = desc(weakProviderRank(b), weakProviderRank(a))
         if weak != 0 { return weak }
         let providerMatch = desc(providerScore(b), providerScore(a))
@@ -79,6 +106,35 @@ enum SubtitleCandidateRanking {
         [candidate.provider.rawValue, candidate.subtitle.id ?? "", SubtitleLanguages.normalize(candidate.subtitle.lang ?? ""), candidate.subtitle.url, candidate.release ?? ""]
             .joined(separator: "|")
             .lowercased()
+    }
+
+    /// Desktop `streamMatchDetail` without the movie-hash bonus: how well the candidate's release name fits the stream. With no hints
+    /// every candidate scores alike (low, rank 1, zero), so nothing is reordered or dropped.
+    static func streamMatch(_ candidate: SubtitleProviderCandidate, hints: SubtitleStreamHints?) -> SubtitleStreamMatch {
+        guard let hints else { return SubtitleStreamMatch(score: 0, reasons: [], sourceRank: 1, level: .low) }
+        let text = [candidate.release ?? "", candidate.searchTitle ?? "", candidate.subtitle.url].joined(separator: " ")
+        let affinity = SubtitleReleaseMatch.affinity(stream: hints.tags(), subtitleText: text)
+        var total = affinity.score
+        if candidate.hearingImpaired && !hints.preferHearingImpaired { total -= 25 }
+        return SubtitleStreamMatch(score: total, reasons: affinity.reasons, sourceRank: affinity.sourceRank, level: affinity.level)
+    }
+
+    /// Desktop `explicitEpisodeMismatch`: a candidate that names another season or episode than the stream.
+    static func explicitEpisodeMismatch(_ candidate: SubtitleProviderCandidate, _ hints: SubtitleStreamHints?) -> Bool {
+        guard let hints else { return false }
+        if let season = candidate.season, let wanted = hints.season, season != wanted { return true }
+        if let episode = candidate.episode, let wanted = hints.episode, episode != wanted { return true }
+        return false
+    }
+
+    /// Desktop `explicitEpisodeRank`: one for the season, two for the episode, two more when the provider confirmed the episode.
+    static func explicitEpisodeRank(_ candidate: SubtitleProviderCandidate, _ hints: SubtitleStreamHints?) -> Int {
+        guard let hints else { return 0 }
+        var rank = 0
+        if let season = candidate.season, let wanted = hints.season, season == wanted { rank += 1 }
+        if let episode = candidate.episode, let wanted = hints.episode, episode == wanted { rank += 2 }
+        if candidate.episodeConfirmed { rank += 2 }
+        return rank
     }
 
     private static func flag(_ value: Bool) -> Int { value ? 1 : 0 }

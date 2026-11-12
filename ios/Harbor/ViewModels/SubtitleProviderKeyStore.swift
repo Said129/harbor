@@ -2,7 +2,7 @@ import Foundation
 import Observation
 
 /// The subtitle provider keys of one profile, kept in the Keychain (Desktop's `opensubtitlesApiKey`, `subdlApiKey`
-/// and `subsourceApiKey` settings). The OpenSubtitles key is stored for the auto-sync port and is not read yet.
+/// and `subsourceApiKey` settings). The OpenSubtitles key is read by the auto-sync exact-file lookup (`OpenSubtitlesHashSwap`).
 @MainActor @Observable final class SubtitleProviderKeyStore {
     enum Provider: String, CaseIterable, Sendable { case opensubtitles, subdl, subsource }
 

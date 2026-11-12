@@ -33,6 +33,22 @@ struct SubtitleDocument: Sendable {
     }
 
     func structuralCues() throws -> [SubtitlePivotCue] {
+        try cuesInFileOrder().sorted { $0.start < $1.start }
+    }
+
+    /// The file text with every cue given its own start and end, in file order. Nil when the count does not match `cues`.
+    func applying(cueTimes: [(start: Double, end: Double)]) -> String? {
+        guard cueTimes.count == cues.count else { return nil }
+        var indexByLocation: [Int: Int] = [:]
+        for (index, cue) in cues.enumerated() { indexByLocation[cue.range.location] = index }
+        return rewriting { cue in
+            guard let index = indexByLocation[cue.range.location], cueTimes.indices.contains(index) else { return (cue.start, cue.end) }
+            return (cueTimes[index].start, cueTimes[index].end)
+        }
+    }
+
+    /// The cues with their text, in the order they appear in the file (the order of `cues`).
+    func cuesInFileOrder() throws -> [SubtitlePivotCue] {
         let source = text as NSString
         let blankLine = try NSRegularExpression(pattern: #"\r\n[ \t]*\r\n|\n[ \t]*\n|\r(?!\n)[ \t]*\r(?!\n)"#)
         let tags = try NSRegularExpression(pattern: #"<[^>]+>|\{[^}]*\}"#)
@@ -51,7 +67,7 @@ struct SubtitleDocument: Sendable {
                 .reduce(stripped) { $0.replacingOccurrences(of: $1.0, with: $1.1) }
             return SubtitlePivotCue(start: cue.start, end: cue.end, text: body)
         }
-        return cues.sorted { $0.start < $1.start }
+        return cues
     }
 
     private func rewriting(_ timing: (Cue) -> SubtitlePivotAudio.Interval) -> String {

@@ -280,6 +280,8 @@ struct PlaybackSource: Codable, Identifiable, Sendable {
         // Only the optional provider search can attach this context. Addon JSON cannot request a profile key.
         var providerDownload: SubtitleProviderDownload? = nil
         var searchIdentity: String? = nil
+        /// What the provider said about this result, for ranking. Only the provider search sets it, and it is never encoded.
+        var evidence: SubtitleCandidateEvidence? = nil
         var selectionIdentity: String { searchIdentity ?? url }
         var downloadIdentity: String {
             guard let context = providerDownload else { return selectionIdentity }

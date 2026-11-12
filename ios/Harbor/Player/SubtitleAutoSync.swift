@@ -7,11 +7,13 @@ import Libmpv
 enum SubtitleAutoSync {
     struct Window: Sendable { let start: Double; let length: Double }
     struct Correction: Sendable {
-        enum Origin: Equatable, Sendable { case verifiedCommunity, audioEstimate, crossLanguage }
+        enum Origin: Equatable, Sendable { case verifiedCommunity, audioEstimate, crossLanguage, hashExact }
         let document: SubtitleDocument
         let timing: SubtitleSyncResult
         let origin: Origin
         var pivotTransform: SubtitlePivotTransform? = nil
+        /// False when the document already holds the final times (a hash-matched swap, or a manual text sync) and the status line should not print an offset.
+        var reportsTiming = true
 
         func rewrittenSubtitle() -> String {
             if let pivotTransform { return document.applying(pivotTransform) }
@@ -27,18 +29,24 @@ enum SubtitleAutoSync {
         return [.init(start: 180, length: 600), .init(start: late, length: min(600, duration - late))]
     }
 
-    static func analyze(source: PlaybackSource, subtitle: String, duration: Double, audioID: Int?) async throws -> Correction? {
+    static func analyze(source: PlaybackSource, subtitle: String, duration: Double, audioID: Int?,
+                        hashSwap: OpenSubtitlesHashSwapContext? = nil) async throws -> Correction? {
         guard duration.isFinite, (60...28_800).contains(duration) else { throw HarborError(code: "subtitle-sync-duration") }
         let document = try await load(subtitle)
-        return try await analyze(source: source, document: document, duration: duration, audioID: audioID)
+        return try await analyze(source: source, document: document, duration: duration, audioID: audioID, hashSwap: hashSwap)
     }
 
-    static func analyze(source: PlaybackSource, document: SubtitleDocument, duration: Double, audioID: Int?) async throws -> Correction? {
+    static func analyze(source: PlaybackSource, document: SubtitleDocument, duration: Double, audioID: Int?,
+                        hashSwap: OpenSubtitlesHashSwapContext? = nil) async throws -> Correction? {
         guard duration.isFinite, (60...28_800).contains(duration) else { throw HarborError(code: "subtitle-sync-duration") }
         let cues = document.cues.map { ($0.start, $0.end) }
         // Desktop's community database goes first. Only a tier A answer is applied without analysing the audio.
         if let communityTiming = await CommunitySync.communityTiming(cues: cues, durationSec: duration) {
             return Correction(document: document, timing: communityTiming, origin: .verifiedCommunity)
+        }
+        // Desktop's exact-file tier: with the person's OpenSubtitles key, a trusted hash match is offered as a replacement subtitle.
+        if let hashSwap, let swap = await OpenSubtitlesHashSwap.resolve(source: source, document: document, context: hashSwap) {
+            return swap
         }
         let windows = windows(duration)
         var intervals: [(Double, Double)] = []

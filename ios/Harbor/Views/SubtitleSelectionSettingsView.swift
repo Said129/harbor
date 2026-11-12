@@ -51,10 +51,9 @@ struct SubtitleSelectionSettingsView: View {
                                  note: text("Switch to a better language match if it arrives after playback starts. Leave off to keep the current track."),
                                  isOn: $preferences.subtitleAutoUpgrade)
                 .accessibilityIdentifier("settings-subtitle-auto-upgrade")
-            HarborSettingsToggle(text("Choose subtitles before playback"),
-                                 note: text("Choose the exact track and language after picking a source, before the video starts."),
-                                 isOn: $preferences.subtitlePreselect)
-                .accessibilityIdentifier("settings-subtitle-preselect")
+            // Desktop's "Choose subtitles before playback" is not offered. The player's subtitle panel already lets the person pick the exact
+            // track one tap after the video starts, and a page before playback would duplicate that choice across several start paths
+            // (manual source, autoplay, continuation, episode change). The stored `subtitlePreselect` value still follows the profile.
         }
     }
 

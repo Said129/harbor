@@ -44,7 +44,7 @@ enum SubtitleTextEncoding {
         return String(data: data, encoding: String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(encoding)))
     }
 
-    /// Desktop's `assessCandidate`. The Arabic word-list plausibility term is not ported, so Arabic ties can differ from Desktop.
+    /// Desktop's `assessCandidate`, including the Arabic word-list plausibility term (`SubtitleArabicPlausibility`). Desktop's declared-encoding bonus is not used: iOS receives no declared encoding.
     private static func score(_ text: String, language: String?) -> Double {
         let scalars = Array(text.unicodeScalars)
         let content = scalars.filter { !$0.properties.isWhitespace }
@@ -71,6 +71,7 @@ enum SubtitleTextEncoding {
         if arabicLanguage {
             if arabicRatio >= 0.25 { value += 0.05 } else if letters >= 8 { value -= 0.18 }
             if letters >= 8 { value -= (1 - arabicRatio) * 0.08 }
+            value += SubtitleArabicPlausibility.score(text) * 0.08
         }
         return min(1, max(0, value))
     }

@@ -12,7 +12,14 @@ struct SubtitleTracksView: View {
     @State private var fileError: String?
     @State private var addonQuery = ""
     @State private var panelWidth: CGFloat = 0
+    @State private var textSyncOpen = false
     @AppStorage("subtitleAutoSync") private var autoSync = false
+
+    /// Live sync reads the lines of the selected subtitle file, so it needs an external SRT or VTT track and no second subtitle.
+    private var textSyncAvailable: Bool {
+        guard let track = state.primarySubtitle, state.secondarySubtitle == nil else { return false }
+        return track.external && track.isTextSubtitle && SubtitleTextSync.supportsFile(named: track.externalFilename)
+    }
 
     private var tracks: [PlayerState.Track] { state.tracks.filter { $0.type == "sub" } }
     private var groups: [(key: String, title: String, count: Int)] {
@@ -60,6 +67,7 @@ struct SubtitleTracksView: View {
             }
             .onChange(of: groups.map(\.key)) { _, keys in if let language, language != "all", !keys.contains(language) { self.language = nil } }
             .onChange(of: state.subtitleImportMessage) { _, message in if message != nil { language = "all"; source = "all" } }
+            .sheet(isPresented: $textSyncOpen) { SubtitleTextSyncView(state: state) }
     }
 
     private var panelContent: some View {
@@ -131,6 +139,8 @@ struct SubtitleTracksView: View {
                     .frame(minHeight: 44).accessibilityIdentifier("subtitle-sync-now")
             }
             if let message = state.subtitleSyncMessage { Text(DesktopInterfaceText.value(message)).font(HarborTheme.font(12)).foregroundStyle(.secondary).accessibilityIdentifier("subtitle-sync-status") }
+            Button(DesktopInterfaceText.value("Live sync")) { textSyncOpen = true }
+                .disabled(disabled || !textSyncAvailable).frame(minHeight: 44).accessibilityIdentifier("subtitle-live-sync")
             if state.subtitleSyncOriginal != nil {
                 Button("Restaurar subtítulo original") { state.controller?.restoreSubtitleBeforeSync() }.frame(minHeight: 44)
             }

@@ -1,7 +1,7 @@
 import Foundation
 
 /// Desktop's custom subtitle font rules (`lib/custom-fonts.ts`): accepted files, the size limit and the display name.
-/// The import itself is not ported: the iOS subtitle renderer lives in `Player` and only knows the built-in families.
+/// The import is `SubtitleFontStore`: it copies the font into the folder mpv reads, and the picker selects it as `custom:<id>`.
 enum SubtitleCustomFontRules {
     static let formats: [String: String] = ["ttf": "truetype", "otf": "opentype", "woff": "woff", "woff2": "woff2"]
     static let maximumBytes = 32 * 1024 * 1024

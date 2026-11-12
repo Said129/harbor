@@ -161,12 +161,16 @@ struct PlaybackOptions: Codable, Equatable {
     var bufferSize = BufferSize.auto
 
     var subtitleFamily: String {
+        // A custom font (`custom:<id>`) is the family name inside the imported file; one that is gone falls back to Inter.
+        if SubtitleFontSelection.customID(in: subtitleFont) != nil {
+            return SubtitleFontSelection.mpvFamily(for: subtitleFont, builtIn: "Inter")
+        }
         switch subtitleFont {
-        case "system": "Helvetica Neue"
-        case "serif": "Times New Roman"
-        case "rounded": "Fredoka"
-        case "arabic": "Vazirmatn"
-        default: "Inter"
+        case "system": return "Helvetica Neue"
+        case "serif": return "Times New Roman"
+        case "rounded": return "Fredoka"
+        case "arabic": return "Vazirmatn"
+        default: return "Inter"
         }
     }
 
