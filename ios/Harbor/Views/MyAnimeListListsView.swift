@@ -1,13 +1,14 @@
 import SwiftUI
 
-/// Desktop's MyAnimeList lists (`views/library/mal-tab.tsx`). Read-only: status, progress and removal edits
-/// (`lib/mal/mutations.ts`) are not ported yet.
+/// Desktop's MyAnimeList lists (`views/library/mal-tab.tsx`). Each card's menu changes the status, moves the episode
+/// count on or removes the entry (`TrackerListEdit`, Desktop's `lib/mal/mutations.ts`).
 struct MyAnimeListListsView: View {
     let app: AppModel
     @State private var account: MALAccount
     @State private var entries: [MALListEntry] = []
     @State private var loading = true
     @State private var loadFailed = false
+    @State private var actionFailed = false
     @State private var kind = MALListKind.all
     @State private var query = ""
     @Environment(\.locale) private var locale
@@ -25,6 +26,10 @@ struct MyAnimeListListsView: View {
                 if account.session == nil {
                     Text(text("Not connected")).foregroundStyle(.secondary)
                 } else {
+                    if actionFailed {
+                        Text(text("Couldn't reach MyAnimeList. Try refreshing.")).font(.callout).foregroundStyle(.orange)
+                            .accessibilityIdentifier("mal-list-action-error")
+                    }
                     content
                 }
             }
@@ -122,7 +127,40 @@ struct MyAnimeListListsView: View {
             }
         }
         .buttonStyle(.plain)
+        .contextMenu { entryMenu(entry) }
         .accessibilityIdentifier("mal-list-entry")
+    }
+
+    /// Desktop's entry menu: each status, the next episode, and removal from the list.
+    @ViewBuilder private func entryMenu(_ entry: MALListEntry) -> some View {
+        ForEach(TrackerListEdit.malChoices, id: \.status) { choice in
+            Button(text(choice.label)) {
+                Task { await perform { token, client in try await TrackerListEdit.malSave(mediaID: entry.media.id, status: choice.status, token: token, client: client) } }
+            }
+        }
+        if let next = TrackerListEdit.nextProgress(entry.watched, total: entry.media.numEpisodes) {
+            Button(text("Mark next episode")) {
+                Task { await perform { token, client in try await TrackerListEdit.malProgress(mediaID: entry.media.id, watched: next, token: token, client: client) } }
+            }
+        }
+        Button(text("Remove from list"), role: .destructive) {
+            Task { await perform { token, client in try await TrackerListEdit.malRemove(mediaID: entry.media.id, token: token, client: client) } }
+        }
+    }
+
+    /// Runs one list edit with a current token, then reloads the lists. A token MyAnimeList refuses is refreshed first.
+    private func perform(_ operation: (String, MALClient) async throws -> Void) async {
+        guard let session = account.session else { return }
+        var token = session.accessToken
+        if !session.isActive(), let renewed = await account.refresh() { token = renewed }
+        do {
+            try await operation(token, MALClient(transport: MALHTTPTransport()))
+            actionFailed = false
+            await load()
+        } catch {
+            if let apiError = error as? MALAPIError, apiError.status == 401 { await account.validate() }
+            actionFailed = true
+        }
     }
 
     /// Desktop's `fetchMalList`, after a session that has expired is refreshed first.
