@@ -549,10 +549,10 @@ final class CalendarSourcesTests: XCTestCase {
     }
 
     func testSourcesFollowDesktopsSettingAndEmptyMonthTexts() {
-        XCTAssertEqual(CalendarSource.allCases.map(\.rawValue), ["library", "all", "trakt", "anticipated", "simkl-anticipated", "anime", "custom"])
+        XCTAssertEqual(CalendarSource.allCases.map(\.rawValue), ["library", "all", "trakt", "simkl", "anticipated", "simkl-anticipated", "anime", "custom"])
         XCTAssertEqual(CalendarSource.offered(traktConnected: true).map(\.rawValue), ["library", "all", "trakt", "anticipated", "anime", "custom"])
         XCTAssertEqual(CalendarSource.offered(traktConnected: false).map(\.rawValue), ["library", "all", "anticipated", "anime", "custom"], "My Trakt waits for a Trakt account")
-        XCTAssertEqual(CalendarSource.offered(traktConnected: true, simklConnected: true).map(\.rawValue), ["library", "all", "trakt", "anticipated", "simkl-anticipated", "anime", "custom"], "Simkl premieres wait for a Simkl account")
+        XCTAssertEqual(CalendarSource.offered(traktConnected: true, simklConnected: true).map(\.rawValue), ["library", "all", "trakt", "simkl", "anticipated", "simkl-anticipated", "anime", "custom"], "My Simkl and Simkl premieres wait for a Simkl account")
         XCTAssertEqual(CalendarSource.simklAnticipated.label, "Simkl premieres")
         XCTAssertEqual(CalendarSources.emptyMonth(source: .simklAnticipated, filter: "all", watchlistOnly: false).heading, "No Simkl premieres this month")
         XCTAssertEqual(CalendarSource.all.label, "All upcoming"); XCTAssertEqual(CalendarSource.anticipated.hint, "The most anticipated upcoming releases on Trakt")

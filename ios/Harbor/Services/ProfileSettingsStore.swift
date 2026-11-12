@@ -53,7 +53,7 @@ struct ContinueWatchingPreferences: Sendable {
         "watchlistBadge", "showDubBadge", "showCardBadges", "showWatchedBadge", "top10Ribbon", "top10RibbonSide",
         "rowCardStyle", "tvCardLogoPos", "posterScale", "posterRadius", "posterEffect", "posterQuality",
         "posterFocusedCard", "posterBackdropExpansion", "posterDockMagnification", "posterDockTransitionMs", "hidePosterTitles",
-        "simklEnableUserRatings", "simklScrobbleEnabled", "simklShowCommunityRatings", "cwSources",
+        "simklEnableUserRatings", "simklScrobbleEnabled", "simklShowCommunityRatings", "cwSources", "calendar.source",
         "simklHomeRailsEnabled", "simklUpNextRailEnabled", "simklTrendingRailEnabled", "simklAnimeTitleLanguage",
         "simklGranularFilters.movies.plantowatch", "simklGranularFilters.shows.watching", "simklGranularFilters.shows.plantowatch",
         "tmdbImageLangs", "harbor:title-logos", "harbor:title-posters", "harbor:title-backdrops",

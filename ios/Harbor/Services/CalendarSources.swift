@@ -1,8 +1,8 @@
 import Foundation
 
-/// The calendar's sources (Desktop's `calendarSource` setting, same values). My Simkl and Games are not offered yet.
+/// The calendar's sources (Desktop's `calendarSource` setting, same values). Games is not offered (owner exclusion).
 enum CalendarSource: String, CaseIterable, Sendable {
-    case library, all, trakt, anticipated
+    case library, all, trakt, simkl, anticipated
     case simklAnticipated = "simkl-anticipated"
     case anime, custom
 
@@ -12,6 +12,7 @@ enum CalendarSource: String, CaseIterable, Sendable {
         case .library: "My library"
         case .all: "All upcoming"
         case .trakt: "My Trakt"
+        case .simkl: "My Simkl"
         case .anticipated: "Trakt anticipated"
         case .simklAnticipated: "Simkl premieres"
         case .anime: "Anime"
@@ -23,6 +24,7 @@ enum CalendarSource: String, CaseIterable, Sendable {
         case .library: "Upcoming episodes and movies from your saved shows"
         case .all: "Everything releasing this month from TMDB"
         case .trakt: "Upcoming episodes and movies from your Trakt watchlist"
+        case .simkl: "Upcoming episodes and movies from your Simkl watching and plan-to-watch lists"
         case .anticipated: "The most anticipated upcoming releases on Trakt"
         case .simklAnticipated: "New shows and anime premiering this month, from Simkl"
         case .anime: "Anime episodes airing this month, sub or dub"
@@ -34,14 +36,14 @@ enum CalendarSource: String, CaseIterable, Sendable {
         case .library: "nav-library"
         case .all: "nav-explore"
         case .trakt, .anticipated: "tracker-trakt"
-        case .simklAnticipated: "tracker-simkl"
+        case .simkl, .simklAnticipated: "tracker-simkl"
         case .anime: "nav-anime"
         case .custom: "desktop-star"
         }
     }
-    /// Desktop hides "My Trakt" until Trakt is connected, and the Simkl source until Simkl is.
+    /// Desktop hides "My Trakt" until Trakt is connected, and the Simkl sources until Simkl is.
     static func offered(traktConnected: Bool, simklConnected: Bool = false) -> [CalendarSource] {
-        allCases.filter { ($0 != .trakt || traktConnected) && ($0 != .simklAnticipated || simklConnected) }
+        allCases.filter { ($0 != .trakt || traktConnected) && ($0 != .simkl || simklConnected) && ($0 != .simklAnticipated || simklConnected) }
     }
 }
 
@@ -485,6 +487,8 @@ enum CalendarSources {
         switch source {
         case .library:
             return EmptyMonth(heading: "Nothing from your library this month", message: "Your saved shows have no episodes scheduled for this month. Switch to All upcoming to browse the full release calendar.")
+        case .simkl:
+            return EmptyMonth(heading: "Nothing on Simkl this month", message: "Your Simkl plan-to-watch list has no episodes airing this month. Switch to All upcoming to browse everything.")
         case .trakt:
             return EmptyMonth(heading: "Nothing on Trakt this month", message: "Trakt has no upcoming releases for your watchlist this month. Past months and dates more than six months out aren't covered by Trakt's calendar feed.")
         case .anticipated:

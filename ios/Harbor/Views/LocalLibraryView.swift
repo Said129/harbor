@@ -257,9 +257,11 @@ struct LocalLibraryView: View {
             endAccess()
             access = opened
             playbackTitle = record.parsed.title
+            // Subtitle files beside the video in a picked folder load with it, as Desktop's `subtitlePaths` do.
+            let sidecars = LocalSubtitleSidecars.urls(for: opened.file).map { PlaybackSource.Subtitle(url: $0.path) }
             // Local files have no catalog id, so progress is not sent to the library. Playback starts at 0.
             playback = PlaybackSession(
-                source: PlaybackSource(url: opened.file.path, headers: nil, subtitles: nil, via: "local"),
+                source: PlaybackSource(url: opened.file.path, headers: nil, subtitles: sidecars.isEmpty ? nil : sidecars, via: "local"),
                 target: ResumeTarget(id: "local:" + record.id),
                 startMs: 0,
                 storageWarning: nil,

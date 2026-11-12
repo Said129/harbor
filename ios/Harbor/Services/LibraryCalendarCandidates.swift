@@ -34,6 +34,16 @@ enum LibraryCalendarCandidates {
         }
     }
 
+    /// Desktop's `fetchSimklCalendar` candidates: the Simkl watchlist and the titles being watched, when Simkl has an IMDb, TMDB or MAL id.
+    static func entries(simkl items: [SimklListItem]) -> [LibraryCalendarEntry] {
+        items.compactMap { item -> LibraryCalendarEntry? in
+            guard item.status == .watching || item.status == .plantowatch else { return nil }
+            let keys = item.ids.aliases(kind: item.kind)
+            guard keys.contains(where: { $0.hasPrefix("tt") || $0.hasPrefix("tmdb:") || $0.hasPrefix("mal:") }) else { return nil }
+            return LibraryCalendarEntry(media: item.media, type: item.kind == .movie ? "movie" : "series", mtime: 0, temp: false, removed: false)
+        }
+    }
+
     /// Desktop's `gatherCandidates` merge, `curatedFirst` order and per-kind limits, as the titles to resolve.
     static func select(_ entries: [LibraryCalendarEntry]) -> [Media] {
         var order: [String] = []

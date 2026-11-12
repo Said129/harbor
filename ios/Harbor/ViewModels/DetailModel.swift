@@ -138,9 +138,27 @@ final class DetailModel {
             guard library.owner == owner else { return }
             media = result
             metadataLoaded = true
+            await applyMALScore(id: result.id, owner: owner, library: library)
         }
         catch is CancellationError { return }
         catch { if library.owner == owner { self.error = safeMessage(error) } }
+    }
+
+    /// Desktop's `useMalScore` (`lib/mal-rating.ts`): an anime page shows the title's MAL score when MAL has one, and the addon's
+    /// rating otherwise. Only MAL and Kitsu ids are read, as Desktop does; a Kitsu id is mapped to its MAL id by `kitsuToMal`
+    /// (the ARM relation, then the AniZip mapping). A failure keeps the addon rating.
+    private func applyMALScore(id: String, owner: String, library: LibraryModel) async {
+        guard AnimeService.isAnime(id), id.hasPrefix("mal:") || id.hasPrefix("kitsu:") else { return }
+        var known: Int? = nil
+        if id.hasPrefix("mal:") {
+            known = Int(id.dropFirst(4))
+        } else if let kitsu = Int(id.dropFirst(6)) {
+            known = await AnimeFranchiseService.shared.malMediaID(kitsu: kitsu)
+        }
+        guard let known, let score = await AnimeService.shared.malScore(malID: known) else { return }
+        guard library.owner == owner, media.id == id else { return }
+        media.imdbRating = score
+        media.ratingSource = "MAL"
     }
 
     func loadRelated(_ addons: [Addon], owner: String, library: LibraryModel) async {

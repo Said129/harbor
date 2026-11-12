@@ -59,8 +59,8 @@ extension TitleAwardCeremonyGroup {
         self.client = client
     }
 
-    func refresh(imdbID: String?, isSeries: Bool) async {
-        guard let imdbID, TitleAwardParser.isTitleID(imdbID) else {
+    func refresh(imdbID: String?, isSeries: Bool, allowsPerson: Bool = false) async {
+        guard let imdbID, TitleAwardParser.isTitleID(imdbID) || (allowsPerson && TitleAwardParser.isPersonID(imdbID)) else {
             result = nil
             return
         }
@@ -69,7 +69,7 @@ extension TitleAwardCeremonyGroup {
             result = cached
             return
         }
-        let loaded = await client.load(imdbID: imdbID, isSeries: isSeries)
+        let loaded = await client.load(imdbID: imdbID, isSeries: isSeries, allowsPerson: allowsPerson)
         guard !Task.isCancelled else { return }
         if loaded.complete { Self.cache[key] = loaded }
         result = loaded
@@ -80,6 +80,8 @@ extension TitleAwardCeremonyGroup {
 struct TitleAwardsSection: View {
     let imdbID: String?
     let isSeries: Bool
+    /// The person page passes an `nm` id; Desktop's `useAwards` takes it the same way.
+    var allowsPerson: Bool = false
     @State private var model = TitleAwardsModel()
 
     var body: some View {
@@ -101,7 +103,7 @@ struct TitleAwardsSection: View {
                 .accessibilityIdentifier("detail-title-awards")
             }
         }
-        .task(id: imdbID) { await model.refresh(imdbID: imdbID, isSeries: isSeries) }
+        .task(id: imdbID) { await model.refresh(imdbID: imdbID, isSeries: isSeries, allowsPerson: allowsPerson) }
     }
 
     private var groups: [TitleAwardCeremonyGroup] {
