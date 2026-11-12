@@ -37,6 +37,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A new font applies the next time a video opens." = "A new font applies the next time a video opens.";
 "A relay we run. Nothing to set up, and it stays current on its own." = "由我们运营的中继服务器。无需设置，并会自动保持最新。";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "按住 Shift 并按方向键时进行更短距离的跳转，便于每次微调几秒。";
@@ -183,6 +184,8 @@
 "Al reproducir automáticamente el siguiente episodio, conserva la misma versión/fuente que acabas de ver en lugar de la fuente mejor clasificada de Harbor. Si esa fuente no está disponible, usa la mejor fuente." = "自动播放下一集时，继续使用刚才观看的同一版本或播放源，而非 Harbor 排名最高的播放源。如果该播放源不可用，则回退到最佳播放源。";
 "Albums" = "专辑";
 "Aleatorio" = "随机搭配";
+"Align to now" = "对齐到当前播放时间";
+"Aligned" = "已对齐";
 "Alignment" = "对齐";
 "Alineación" = "对齐";
 "All" = "全部";
@@ -283,6 +286,7 @@
 "Authorized {when}" = "已于 {when} 授权";
 "Auto" = "自动";
 "Auto (match video)" = "自动（匹配视频）";
+"Auto (recommended)" = "自动（推荐）";
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "自动调整带样式的（ASS）字幕，使不同文件中的对白字幕大小保持一致，同时保留其颜色、字体和标识位置。";
 "Auto-hide the Skip button after" = "自动隐藏“跳过”按钮的等待时间";
 "Auto-play next episode" = "自动播放下一集";
@@ -334,6 +338,7 @@
 "Bajar {name}" = "下移{name}";
 "Balance picture quality and performance. Changes apply to the next video you play." = "平衡画质与性能。更改会应用于下一次播放的视频。";
 "Balanced" = "均衡";
+"Balanced (Mobius)" = "均衡（Mobius）";
 "Bar" = "条形栏";
 "Bar color" = "进度条颜色";
 "Barra de búsqueda" = "进度条";
@@ -669,6 +674,7 @@
 "Contraste" = "对比度";
 "Controles" = "控件";
 "Controls" = "控件";
+"Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play." = "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.";
 "Copia principal." = "主要文字。";
 "Copia secundaria." = "备用副本。";
 "Copied" = "已复制";
@@ -695,6 +701,7 @@
 "Could not reach this server" = "无法连接此服务器";
 "Could not read file" = "无法读取文件";
 "Could not read the account on this device." = "Could not read the account on this device.";
+"Could not read this subtitle track. Pick a different subtitle, then try again." = "无法读取此字幕轨道。请选择其他字幕后重试。";
 "Could not read your lists. Your saved data is preserved." = "无法读取你的列表。已保存的数据仍然保留。";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not resolve that Letterboxd list URL." = "无法解析该 Letterboxd 列表 URL。";
@@ -721,6 +728,7 @@
 "Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "无法连接到此 Roku";
 "Couldn't read that image. Try a different file." = "无法读取该图片，请尝试其他文件。";
+"Couldn't save the synced subtitle. Try again." = "无法保存已同步的字幕。请重试。";
 "Couldn't scan that folder." = "无法扫描该文件夹。";
 "Cover Image URL" = "封面图片 URL";
 "Cozy Autumn Nights" = "温馨秋夜";
@@ -868,6 +876,7 @@
 "Dracula" = "Dracula";
 "Drama" = "剧情";
 "Drama Series" = "剧情剧集";
+"Drift fixed" = "已修正时间漂移";
 "Drift monitor" = "漂移监测";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "在应用背景中添加壁纸。使用调暗滑块可确保文字清晰可读。";
 "Drop shadow" = "投影";
@@ -1035,8 +1044,10 @@
 "Fill" = "填充";
 "Fills in where TMDB comes up empty (anime, older catalog). Free at" = "在 TMDB 数据缺失时进行补充（动漫、旧片库）。可在此免费获取";
 "Film" = "电影";
+"Filmic (Hable)" = "电影感（Hable）";
 "Filter countries" = "筛选国家/地区";
 "Filter genres" = "筛选类型";
+"Filtered" = "已筛选";
 "Filters" = "筛选";
 "Filters out streams from adult catalogs and addons. On by default." = "筛除成人目录和插件中的播放源。默认开启。";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "查找并分享与视频和字幕文件匹配的已验证时间校正。开启私密模式可停止社区查询和贡献。";
@@ -1047,6 +1058,7 @@
 "Finnish" = "芬兰语";
 "First-light picks" = "晨光精选";
 "Fit" = "适应";
+"Fix one section" = "修正一个片段";
 "Flat" = "平直";
 "Flechas" = "箭头";
 "Focus" = "Focus";
@@ -1064,6 +1076,7 @@
 "Forest" = "森林";
 "Forget" = "忘记";
 "Forget remote streaming server" = "移除已保存的远程播放服务器";
+"Format" = "格式";
 "Formato de canales" = "Channel format";
 "Forzado" = "强制";
 "Found {count} streams for {title} in {seconds}s" = "在 {seconds} 秒内为 {title} 找到 {count} 个播放源";
@@ -1356,6 +1369,7 @@
 "Jina API key (optional)" = "Jina API 密钥（可选）";
 "Jina Reader" = "Jina Reader";
 "Join" = "加入";
+"Jump here" = "跳到此处";
 "Jump past a known injected ad on its own instead of showing the Skip button." = "自动跳过已知的插入广告，而不显示“跳过”按钮。";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "片头一开始就自动跳过。回退到片头会重新播放，不会再次跳过。跳过按钮遵循上方设置。";
 "Just added" = "最新添加";
@@ -1439,6 +1453,7 @@
 "Live TV" = "直播电视";
 "Live TV playlists" = "直播电视播放列表";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
+"Live sync" = "实时同步";
 "Llegaste al final · {n} complementos" = "已到底 · 共 {n} 个插件";
 "Load effect" = "加载效果";
 "Load file" = "加载文件";
@@ -1550,6 +1565,7 @@
 "Misterio" = "悬疑";
 "Mix surround sound down to stereo" = "将环绕声下混为立体声";
 "Mode" = "模式";
+"Modern (Spline)" = "现代（Spline）";
 "Modo de concentración" = "专注模式";
 "Modo de lectura" = "阅读模式";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "设置本集结束前显示“接下来播放”提示的时间。“自动”会根据剧集时长调整，避免短剧集过早提示。“关闭”会隐藏提示。";
@@ -1732,6 +1748,7 @@
 "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo." = "Could not analyze this source. Playback continues; you can retry.";
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "没有任何来源返回视频流";
+"No sources" = "无来源";
 "No sources match your filter" = "没有符合筛选条件的内容源";
 "No streams came back." = "没有返回任何播放源。";
 "No streams for {title}" = "{title} 没有播放源";
@@ -1787,6 +1804,7 @@
 "Now" = "现在";
 "Now Playing" = "正在播放";
 "Now playing: {label}" = "正在播放：{label}";
+"Now tap the last line of that section." = "现在点击该片段的最后一句台词。";
 "Now watching on AniList" = "已在 AniList 标记为正在观看";
 "Now watching on MyAnimeList" = "已在 MyAnimeList 标记为正在观看";
 "Nuevos estrenos de anime" = "动漫新作";
@@ -1970,6 +1988,8 @@
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
 "Play to where the ad starts and add it, then play to the end and tap Now. You can also type the times. Add more than one if there are several." = "播放到广告开始的位置并添加，然后播放到广告结束处并点击“现在”。你也可以手动输入时间。如有多段广告，可添加多段。";
 "Play trailers in the hero" = "在焦点推荐区播放预告片";
+"Play until you hear a line inside this section, tap it, then choose Align to now." = "播放至听到此片段中的一句台词，点击该台词，然后选择“对齐到当前播放时间”。";
+"Play until you hear a line. Tap that same line below, then choose Align to now." = "播放至听到一句台词。点击下方对应的台词，然后选择“对齐到当前播放时间”。";
 "Playback" = "播放";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2109,6 +2129,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "阅读模式";
 "Reading options" = "Reading options";
+"Reading subtitles..." = "正在读取字幕…";
 "Reading your search" = "正在理解你的搜索内容";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Ready" = "就绪";
@@ -2133,6 +2154,7 @@
 "Recommended for you" = "为你推荐";
 "Recordatorio" = "Reminder";
 "Redondeado" = "圆体";
+"Reference (bt.2390)" = "参考级（bt.2390）";
 "Refresh" = "刷新";
 "Refresh episodes" = "Refresh episodes";
 "Refresh sources" = "刷新来源";
@@ -2208,6 +2230,7 @@
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "需要包含丰富图片素材的作品才能用于焦点推荐";
 "Resaltado, progreso." = "高亮、进度。";
 "Reset" = "重置";
+"Reset filters" = "重置筛选条件";
 "Reset picture" = "重置画面";
 "Reset subtitle style" = "Reset subtitle style";
 "Reset sync" = "重置同步";
@@ -2328,6 +2351,7 @@
 "Se usa con 55 % / 25 % de opacidad." = "使用 55% / 25% 不透明度。";
 "Search" = "搜索";
 "Search SUBDL for subtitles in multiple languages. Requires an API key." = "在 SUBDL 搜索多种语言的字幕。需要 API 密钥。";
+"Search a line by its words" = "按台词内容搜索";
 "Search actors, directors…" = "搜索演员、导演…";
 "Search addons" = "搜索插件";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
@@ -2450,6 +2474,7 @@
 "Show episode ratings" = "显示剧集评分";
 "Show every addon row" = "显示每个插件的内容栏";
 "Show everything anyway" = "仍要显示全部";
+"Show flagged" = "显示已标记项";
 "Show format chips on stream rows" = "在片源行中显示格式标签";
 "Show forum threads and comments from AniList on anime detail pages." = "在动漫详情页显示 AniList 论坛主题和评论。";
 "Show full descriptions" = "显示完整简介";
@@ -2536,6 +2561,7 @@
 "Smooth on weak PCs" = "低性能电脑流畅优先";
 "Sobre la línea principal" = "主字幕上方";
 "Soccer" = "足球";
+"Soft (Reinhard)" = "柔和（Reinhard）";
 "Soft halo around the text. Cleanest on most content." = "在文字周围添加柔和光晕，适合大多数内容，效果最简洁。";
 "Softer and dimmer, kinder for late-night watching." = "画面更柔和、更暗，适合深夜观看。";
 "Solo posición y tamaño" = "仅位置和大小";
@@ -2708,6 +2734,7 @@
 "Tamaño" = "大小";
 "Tamil" = "泰米尔语";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
+"Tap the first line of the section you want to fix." = "点击要修复片段的第一句台词。";
 "Tarjetas de carteles" = "海报卡片";
 "Tarjetas de episodios" = "单集卡片";
 "Tarjetas, paneles." = "卡片、面板。";
@@ -2796,6 +2823,7 @@
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "This server responded but is not supported" = "此服务器有响应，但不受支持";
+"This subtitle looks like a different version of the video." = "此字幕似乎对应视频的其他版本。";
 "This theme is missing a color ({color})." = "此主题缺少颜色（{color}）。";
 "This theme is missing its colors." = "此主题缺少颜色。";
 "This theme's preview colors look invalid." = "此主题的预览颜色似乎有误。";
@@ -2807,6 +2835,8 @@
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "点踩会从精选中隐藏此片。点赞有助于推荐类似内容。";
 "Tiempo reproducido" = "Playback time";
+"Timing and drift are corrected. Check playback, then save." = "时间偏移和漂移均已校正。请检查播放效果，然后保存。";
+"Timing is aligned. If it becomes early or late later, repeat this at another line." = "时间已对齐。如果之后字幕又出现提前或延后，请在另一句台词处重复此操作。";
 "Tipo" = "类型";
 "Tipografía" = "字体排版";
 "Titles" = "片名";
@@ -2828,6 +2858,7 @@
 "Todos los deportes" = "所有运动";
 "Todos los géneros" = "所有类型";
 "Todos los idiomas" = "所有语言";
+"Tone-mapping curve" = "色调映射曲线";
 "Tonight" = "今晚";
 "Tonight's Slate" = "今晚片单";
 "Tonight's binge bait" = "今晚一看就停不下来";
@@ -4348,6 +4379,7 @@
 "{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "剩余 {h} 小时";
 "{h}h {m}m left" = "剩余 {h} 小时 {m} 分钟";
+"{langs} only" = "仅限 {langs}";
 "{ms} ms" = "{ms} 毫秒";
 "{m}m left" = "剩余 {m} 分钟";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} 以及所有其他名称、徽标和品牌标识均为其各自所有者的财产，此处仅用于兼容和识别。";
@@ -4368,6 +4400,7 @@
 "{n} eps" = "{n} 集";
 "{n} films." = "{n} films.";
 "{n} hidden" = "{n} 个已隐藏";
+"{n} hidden by trust filter" = "信任过滤器已隐藏 {n} 项";
 "{n} hr" = "{n} 小时";
 "{n} in a day" = "一天内 {n} 部";
 "{n} item" = "{n} 个项目";
@@ -4379,9 +4412,11 @@
 "{n} months ago" = "{n} 个月前";
 "{n} not matched" = "{n} 个未匹配";
 "{n} sec" = "{n} 秒";
+"{n} section fixes. Reset all" = "已修正 {n} 个片段。全部重置";
 "{n} seeds" = "{n} 个做种者";
 "{n} semillas" = "{n} 个做种者";
 "{n} sources · 0 made it through" = "{n} 个片源 · 0 个通过筛选";
+"{n} uncached hidden" = "已隐藏 {n} 个未缓存项";
 "{n} watching" = "{n} 人正在观看";
 "{n} weeks ago" = "{n} weeks ago";
 "{n} years ago" = "{n} years ago";

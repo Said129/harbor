@@ -7,16 +7,17 @@
   "coverage_note": "This report inventories generated Desktop-derived labels and known mobile-only English fallbacks. It is not a certification of complete translation of every native message or of overall functional parity.",
   "languages": {
     "en": {
-      "entries": 4030,
-      "sha256": "9dda1d0df5f78b8b279bc1f36d62370f22dba1b7f29b56085379db74b83ae374",
+      "entries": 4065,
+      "sha256": "41035de2f2b7f0a335d2138fb2011c90da2bddabe0751695810e7cfdd729c7ff",
       "mobile_only_english_fallback": []
     },
     "ar": {
-      "entries": 4446,
-      "sha256": "28ccfe7e3004338efc6df162f56c7ffdae0dfe66ba4712f7fa9fb6084f73aded",
+      "entries": 4481,
+      "sha256": "99fbc5d690d5ec5f81dffa06101acdef6bb78d79219dd5d50a46caf99489d20f",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -54,6 +55,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not connect to Simkl. Try again.",
         "Could not load navigation settings. Saved settings are kept.",
         "Could not load streaming preferences. Saved settings are kept.",
@@ -235,11 +237,12 @@
       ]
     },
     "zh": {
-      "entries": 4405,
-      "sha256": "684489b7afd5f13fc39d7ab03bccd4b9bcff9e3ccfdc671a5b37ca9c2b2f6fa2",
+      "entries": 4440,
+      "sha256": "4c929a7e3e1f3ce2d65cfbb795d71b2982edef5dc8e2aed20a324fd16eba0471",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -284,6 +287,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not connect to Simkl. Try again.",
@@ -493,11 +497,12 @@
       ]
     },
     "fr": {
-      "entries": 4405,
-      "sha256": "66244f9b6d5c45aa50e3c8f7d769366989c3b3e95196e9fcde2c57cb87cf23c1",
+      "entries": 4440,
+      "sha256": "980157da2f5a1a4e630f22996331ad1c3e61a71779bad9ca8c64d3e5514b11af",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -542,6 +547,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not connect to Simkl. Try again.",
@@ -751,11 +757,12 @@
       ]
     },
     "de": {
-      "entries": 4405,
-      "sha256": "f48a3a93288e2fa77bb681afea3f83b89f4cdcc64c191b0c04fdb727bdbc10e8",
+      "entries": 4440,
+      "sha256": "73ff0a93a259645156fb0e50b493992eeea693301aeac437d91b76400502e8e6",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -800,6 +807,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not connect to Simkl. Try again.",
@@ -1009,11 +1017,12 @@
       ]
     },
     "hi": {
-      "entries": 4405,
-      "sha256": "38dcaa15931cbf6ccb952384783c58c4156df681fc307cf46c328a246a7ccccf",
+      "entries": 4440,
+      "sha256": "e2ff829ea5d216a639d0f142e37afdc87b1efb941bbea1c62854dfe53b9b614f",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -1058,6 +1067,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not connect to Simkl. Try again.",
@@ -1267,11 +1277,12 @@
       ]
     },
     "id": {
-      "entries": 4405,
-      "sha256": "dca031747bec023d4d5f3746cfcedd2210115d431f931fbee7c7ea96ebc4e776",
+      "entries": 4440,
+      "sha256": "5d48c37d8b44b818f453636c113bd6c36441aaf65a221f1548a44a12cf80cc79",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -1316,6 +1327,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not connect to Simkl. Try again.",
@@ -1525,11 +1537,12 @@
       ]
     },
     "it": {
-      "entries": 4405,
-      "sha256": "b2b269496bd13340c944f3ba8944f1b0d0354a46f04bfb191d5bbd37805b158b",
+      "entries": 4440,
+      "sha256": "0272c1033f0bbdb37a086a3da7942100d903b9ac7427c4de6e0ea4bdd7216462",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -1574,6 +1587,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not connect to Simkl. Try again.",
@@ -1783,11 +1797,12 @@
       ]
     },
     "ja": {
-      "entries": 4405,
-      "sha256": "d695bd1a78f8515a411350454eafcc7effbbed0c13415bab5966fac2ce2ac5be",
+      "entries": 4440,
+      "sha256": "208934fd44cd6a1ceb48f440f212594fb80b528a5e69e775dd722ae170cd8cae",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -1832,6 +1847,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not connect to Simkl. Try again.",
@@ -2041,11 +2057,12 @@
       ]
     },
     "ko": {
-      "entries": 4405,
-      "sha256": "05273b0140043e90140a8af376e4f80207ff4e75be276216e515cd4e1da4cc95",
+      "entries": 4440,
+      "sha256": "ea5fa203c6eba616888d38034a7607cc7f99e7b9cb297b4da262f8e7ac6c43dd",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -2090,6 +2107,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not connect to Simkl. Try again.",
@@ -2299,11 +2317,12 @@
       ]
     },
     "pl": {
-      "entries": 4405,
-      "sha256": "47fd9b62c98634b1324424c0d24fa87065337d0cc85f3c6cb4395307eb66bca3",
+      "entries": 4440,
+      "sha256": "69d9a78c3d931e2da913da0910b707774a273ee9a278c522739d6da17fdc0554",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -2348,6 +2367,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not connect to Simkl. Try again.",
@@ -2557,11 +2577,12 @@
       ]
     },
     "pt": {
-      "entries": 4432,
-      "sha256": "fa4b7cfdb62617bebece63d9cf10174063332e786f26c480857082a947b9087f",
+      "entries": 4467,
+      "sha256": "eb9deddd592e4402dbc489f46a5d5345a607aece05882ce2ae1c6ef509dd3866",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -2600,6 +2621,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not connect to Simkl. Try again.",
         "Could not load navigation settings. Saved settings are kept.",
         "Could not load streaming preferences. Saved settings are kept.",
@@ -2789,11 +2811,12 @@
       ]
     },
     "ru": {
-      "entries": 4419,
-      "sha256": "61884ebb450214d44480e2186f649bc5187ff6f2e6053346a1b2fef952525a67",
+      "entries": 4454,
+      "sha256": "fb55311ddff3c50706936e50a70d144f545f84b1d2f3b68215a5d6509e11d742",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -2831,6 +2854,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not connect to Simkl. Try again.",
         "Could not load navigation settings. Saved settings are kept.",
         "Could not load streaming preferences. Saved settings are kept.",
@@ -3012,16 +3036,17 @@
       ]
     },
     "es": {
-      "entries": 4405,
-      "sha256": "637a0783af0e9d7d65cb9cea33034e94fdda59b7f2782bf90a0e85557389b7c3",
+      "entries": 4440,
+      "sha256": "15860ee7496cf0af419d4f2289ab78117df7cf5ec17ccbb61729d99a90378cbf",
       "mobile_only_english_fallback": []
     },
     "tr": {
-      "entries": 4405,
-      "sha256": "a6a6efb3123f2f8b11fcf550245a664f296f9e5944887c7825e2703266655c5e",
+      "entries": 4440,
+      "sha256": "0794ec7ce9635477afc97517b562629333c0c64086d7d0071dda53dbc1cdaffd",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -3066,6 +3091,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not connect to Simkl. Try again.",
@@ -3275,11 +3301,12 @@
       ]
     },
     "vi": {
-      "entries": 4405,
-      "sha256": "c43fef3c534be57bfd4e26d3e527002040372c920accc60f47085d8401344217",
+      "entries": 4440,
+      "sha256": "bfe10b6763c3038d199466a2e7a4ee7843e3bad102fc9c68ba94ed18b5c4d24f",
       "mobile_only_english_fallback": [
         "15 minutes before",
         "30 minutes before",
+        "A new font applies the next time a video opens.",
         "A-B loop",
         "Accents",
         "Add bookmark",
@@ -3324,6 +3351,7 @@
         "Configure Sports",
         "Configure addon",
         "Continue to next chapter",
+        "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.",
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not connect to Simkl. Try again.",

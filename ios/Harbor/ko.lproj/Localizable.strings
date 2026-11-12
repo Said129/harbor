@@ -37,6 +37,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A new font applies the next time a video opens." = "A new font applies the next time a video opens.";
 "A relay we run. Nothing to set up, and it stays current on its own." = "Harbor에서 운영하는 릴레이입니다. 별도 설정이 필요 없으며 자동으로 최신 상태를 유지합니다.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift와 방향키를 함께 눌러 몇 초씩 미세하게 이동합니다.";
@@ -183,6 +184,8 @@
 "Al reproducir automáticamente el siguiente episodio, conserva la misma versión/fuente que acabas de ver en lugar de la fuente mejor clasificada de Harbor. Si esa fuente no está disponible, usa la mejor fuente." = "다음 에피소드를 자동 재생할 때 Harbor에서 가장 높은 순위의 스트림 대신 방금 보던 것과 같은 릴리스/소스를 유지합니다. 해당 소스를 사용할 수 없으면 최적의 스트림을 사용합니다.";
 "Albums" = "앨범";
 "Aleatorio" = "무작위";
+"Align to now" = "현재 시점에 맞추기";
+"Aligned" = "맞춤";
 "Alignment" = "정렬";
 "Alineación" = "정렬";
 "All" = "전체";
@@ -283,6 +286,7 @@
 "Authorized {when}" = "{when} 승인됨";
 "Auto" = "자동";
 "Auto (match video)" = "자동(동영상에 맞춤)";
+"Auto (recommended)" = "자동(권장)";
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "스타일이 지정된 (ASS) 자막의 색상, 글꼴, 표지판 위치는 유지하면서 파일마다 대사 크기가 같도록 자동 조정합니다.";
 "Auto-hide the Skip button after" = "건너뛰기 버튼 자동 숨김 시간";
 "Auto-play next episode" = "다음 에피소드 자동 재생";
@@ -334,6 +338,7 @@
 "Bajar {name}" = "{name} 아래로 이동";
 "Balance picture quality and performance. Changes apply to the next video you play." = "화질과 성능의 균형을 조정합니다. 변경 사항은 다음에 재생하는 동영상에 적용됩니다.";
 "Balanced" = "균형";
+"Balanced (Mobius)" = "균형(Mobius)";
 "Bar" = "바";
 "Bar color" = "바 색상";
 "Barra de búsqueda" = "탐색 막대";
@@ -669,6 +674,7 @@
 "Contraste" = "대비";
 "Controles" = "컨트롤";
 "Controls" = "컨트롤";
+"Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play." = "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.";
 "Copia principal." = "기본 문구.";
 "Copia secundaria." = "보조 사본입니다.";
 "Copied" = "복사됨";
@@ -695,6 +701,7 @@
 "Could not reach this server" = "이 서버에 연결할 수 없습니다";
 "Could not read file" = "파일을 읽을 수 없습니다";
 "Could not read the account on this device." = "Could not read the account on this device.";
+"Could not read this subtitle track. Pick a different subtitle, then try again." = "이 자막 트랙을 읽지 못했습니다. 다른 자막을 선택한 후 다시 시도하세요.";
 "Could not read your lists. Your saved data is preserved." = "목록을 읽을 수 없습니다. 저장된 데이터는 유지됩니다.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not resolve that Letterboxd list URL." = "해당 Letterboxd 리스트 URL을 확인할 수 없습니다.";
@@ -721,6 +728,7 @@
 "Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "이 Roku에 연결할 수 없음";
 "Couldn't read that image. Try a different file." = "이미지를 읽을 수 없습니다. 다른 파일을 사용해 보세요.";
+"Couldn't save the synced subtitle. Try again." = "동기화한 자막을 저장하지 못했습니다. 다시 시도해 주세요.";
 "Couldn't scan that folder." = "해당 폴더를 스캔할 수 없습니다.";
 "Cover Image URL" = "표지 이미지 URL";
 "Cozy Autumn Nights" = "포근한 가을밤";
@@ -868,6 +876,7 @@
 "Dracula" = "Dracula";
 "Drama" = "드라마";
 "Drama Series" = "드라마 시리즈";
+"Drift fixed" = "밀림 보정됨";
 "Drift monitor" = "싱크 이탈 모니터";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "앱 배경에 배경화면을 표시합니다. 어둡기 슬라이더로 텍스트를 읽기 쉽게 유지할 수 있습니다.";
 "Drop shadow" = "그림자";
@@ -1035,8 +1044,10 @@
 "Fill" = "채우기";
 "Fills in where TMDB comes up empty (anime, older catalog). Free at" = "TMDB에 정보가 없는 콘텐츠(애니메이션, 오래된 카탈로그)를 보완합니다. 다음에서 무료로 이용 가능";
 "Film" = "영화";
+"Filmic (Hable)" = "필름풍(Hable)";
 "Filter countries" = "국가 필터";
 "Filter genres" = "장르 필터";
+"Filtered" = "필터 적용됨";
 "Filters" = "필터";
 "Filters out streams from adult catalogs and addons. On by default." = "성인 카탈로그 및 애드온의 스트림을 필터링합니다. 기본적으로 켜져 있습니다.";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "일치하는 동영상과 자막 파일의 검증된 타이밍 보정을 찾고 공유합니다. 비공개 모드를 켜면 커뮤니티 검색과 기여를 중단합니다.";
@@ -1047,6 +1058,7 @@
 "Finnish" = "핀란드어";
 "First-light picks" = "새벽빛 추천작";
 "Fit" = "맞춤";
+"Fix one section" = "구간 하나 수정";
 "Flat" = "균형";
 "Flechas" = "화살표 키";
 "Focus" = "Focus";
@@ -1064,6 +1076,7 @@
 "Forest" = "숲";
 "Forget" = "삭제";
 "Forget remote streaming server" = "저장된 원격 스트리밍 서버 삭제";
+"Format" = "형식";
 "Formato de canales" = "Channel format";
 "Forzado" = "강제 자막";
 "Found {count} streams for {title} in {seconds}s" = "{title}의 스트림 {count}개를 {seconds}초 만에 찾았습니다";
@@ -1356,6 +1369,7 @@
 "Jina API key (optional)" = "Jina API 키(선택 사항)";
 "Jina Reader" = "Jina Reader";
 "Join" = "참여";
+"Jump here" = "여기로 이동";
 "Jump past a known injected ad on its own instead of showing the Skip button." = "건너뛰기 버튼을 표시하지 않고 알려진 삽입 광고를 자동으로 건너뜁니다.";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "오프닝이 시작되면 즉시 자동으로 건너뜁니다. 오프닝으로 되돌리면 다시 건너뛰지 않고 재생합니다. 건너뛰기 버튼은 위 설정을 따릅니다.";
 "Just added" = "최근 추가순";
@@ -1439,6 +1453,7 @@
 "Live TV" = "실시간 TV";
 "Live TV playlists" = "실시간 TV 재생목록";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
+"Live sync" = "실시간 동기화";
 "Llegaste al final · {n} complementos" = "마지막입니다 · 애드온 {n}개";
 "Load effect" = "로드 효과";
 "Load file" = "파일 불러오기";
@@ -1550,6 +1565,7 @@
 "Misterio" = "미스터리";
 "Mix surround sound down to stereo" = "서라운드 사운드를 스테레오로 다운믹스";
 "Mode" = "모드";
+"Modern (Spline)" = "모던(Spline)";
 "Modo de concentración" = "집중 모드";
 "Modo de lectura" = "읽기 모드";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "에피소드가 끝나기 전에 다음 재생 알림을 표시할 시점을 설정합니다. 자동은 에피소드 길이에 맞춰 조절하므로 짧은 에피소드에서 너무 일찍 표시되지 않습니다. 끄면 숨깁니다.";
@@ -1732,6 +1748,7 @@
 "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo." = "Could not analyze this source. Playback continues; you can retry.";
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "스트림을 반환한 소스가 없습니다";
+"No sources" = "소스 없음";
 "No sources match your filter" = "필터와 일치하는 소스가 없습니다";
 "No streams came back." = "돌아온 스트림이 없습니다.";
 "No streams for {title}" = "{title}의 스트림 없음";
@@ -1787,6 +1804,7 @@
 "Now" = "지금";
 "Now Playing" = "현재 재생 중";
 "Now playing: {label}" = "현재 재생 중: {label}";
+"Now tap the last line of that section." = "이제 해당 구간의 마지막 대사를 탭하세요.";
 "Now watching on AniList" = "AniList에서 시청 중";
 "Now watching on MyAnimeList" = "MyAnimeList에서 시청 중";
 "Nuevos estrenos de anime" = "최신 애니메이션";
@@ -1970,6 +1988,8 @@
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
 "Play to where the ad starts and add it, then play to the end and tap Now. You can also type the times. Add more than one if there are several." = "광고가 시작되는 지점까지 재생해 추가한 다음, 끝까지 재생하고 '지금'을 탭하세요. 시간을 직접 입력할 수도 있습니다. 광고가 여러 개라면 모두 추가하세요.";
 "Play trailers in the hero" = "히어로에서 트레일러 재생";
+"Play until you hear a line inside this section, tap it, then choose Align to now." = "이 구간 안의 대사가 들릴 때까지 재생하고 해당 대사를 탭한 다음 현재 시점에 맞추기를 선택하세요.";
+"Play until you hear a line. Tap that same line below, then choose Align to now." = "대사가 들릴 때까지 재생하세요. 아래에서 같은 대사를 탭한 다음 현재 시점에 맞추기를 선택하세요.";
 "Playback" = "재생";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2109,6 +2129,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "읽기 모드";
 "Reading options" = "Reading options";
+"Reading subtitles..." = "자막 읽는 중...";
 "Reading your search" = "검색어 분석 중";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Ready" = "준비됨";
@@ -2133,6 +2154,7 @@
 "Recommended for you" = "회원님을 위한 추천";
 "Recordatorio" = "Reminder";
 "Redondeado" = "둥근 글꼴";
+"Reference (bt.2390)" = "레퍼런스(bt.2390)";
 "Refresh" = "새로 고침";
 "Refresh episodes" = "Refresh episodes";
 "Refresh sources" = "소스 새로고침";
@@ -2208,6 +2230,7 @@
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "히어로에 표시하려면 아트워크가 풍부한 작품이 필요합니다";
 "Resaltado, progreso." = "강조, 진행률.";
 "Reset" = "초기화";
+"Reset filters" = "필터 초기화";
 "Reset picture" = "화면 초기화";
 "Reset subtitle style" = "Reset subtitle style";
 "Reset sync" = "동기화 초기화";
@@ -2328,6 +2351,7 @@
 "Se usa con 55 % / 25 % de opacidad." = "55% / 25% 알파로 사용됩니다.";
 "Search" = "검색";
 "Search SUBDL for subtitles in multiple languages. Requires an API key." = "SUBDL에서 여러 언어의 자막을 검색합니다. API 키가 필요합니다.";
+"Search a line by its words" = "단어로 대사 검색";
 "Search actors, directors…" = "배우, 감독 검색…";
 "Search addons" = "애드온 검색";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
@@ -2450,6 +2474,7 @@
 "Show episode ratings" = "에피소드 평점 표시";
 "Show every addon row" = "모든 애드온 행 표시";
 "Show everything anyway" = "그래도 모두 표시";
+"Show flagged" = "신고된 항목 표시";
 "Show format chips on stream rows" = "스트림 행에 형식 배지 표시";
 "Show forum threads and comments from AniList on anime detail pages." = "애니메이션 상세 페이지에 AniList의 포럼 스레드와 댓글을 표시합니다.";
 "Show full descriptions" = "전체 설명 표시";
@@ -2536,6 +2561,7 @@
 "Smooth on weak PCs" = "저사양 PC에서 부드럽게";
 "Sobre la línea principal" = "기본 자막 위";
 "Soccer" = "축구";
+"Soft (Reinhard)" = "부드럽게(Reinhard)";
 "Soft halo around the text. Cleanest on most content." = "텍스트 주변의 부드러운 후광입니다. 대부분의 콘텐츠에서 가장 깔끔합니다.";
 "Softer and dimmer, kinder for late-night watching." = "더 부드럽고 어둡게 조정해 심야 시청 시 눈의 부담을 줄입니다.";
 "Solo posición y tamaño" = "위치와 크기만";
@@ -2708,6 +2734,7 @@
 "Tamaño" = "크기";
 "Tamil" = "타밀어";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
+"Tap the first line of the section you want to fix." = "수정할 구간의 첫 번째 대사를 탭하세요.";
 "Tarjetas de carteles" = "포스터 카드";
 "Tarjetas de episodios" = "에피소드 카드";
 "Tarjetas, paneles." = "카드, 패널.";
@@ -2796,6 +2823,7 @@
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "This server responded but is not supported" = "서버가 응답했지만 지원되지 않습니다";
+"This subtitle looks like a different version of the video." = "이 자막은 다른 버전의 영상용인 것 같습니다.";
 "This theme is missing a color ({color})." = "이 테마에 색상({color})이 없습니다.";
 "This theme is missing its colors." = "이 테마에 색상 정보가 없습니다.";
 "This theme's preview colors look invalid." = "이 테마의 미리보기 색상이 올바르지 않습니다.";
@@ -2807,6 +2835,8 @@
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "싫어요를 누르면 이 작품이 추천에서 숨겨집니다. 좋아요를 누르면 비슷한 작품이 더 많이 추천됩니다.";
 "Tiempo reproducido" = "Playback time";
+"Timing and drift are corrected. Check playback, then save." = "타이밍과 밀림이 보정되었습니다. 재생을 확인한 다음 저장하세요.";
+"Timing is aligned. If it becomes early or late later, repeat this at another line." = "타이밍이 맞춰졌습니다. 이후 다시 빠르거나 늦어지면 다른 대사에서 이 작업을 반복하세요.";
 "Tipo" = "유형";
 "Tipografía" = "타이포그래피";
 "Titles" = "작품";
@@ -2828,6 +2858,7 @@
 "Todos los deportes" = "모든 스포츠";
 "Todos los géneros" = "모든 장르";
 "Todos los idiomas" = "모든 언어";
+"Tone-mapping curve" = "톤 매핑 곡선";
 "Tonight" = "오늘 밤";
 "Tonight's Slate" = "오늘 밤 편성작";
 "Tonight's binge bait" = "오늘 밤 정주행 유발작";
@@ -4348,6 +4379,7 @@
 "{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "{h}시간 남음";
 "{h}h {m}m left" = "{h}시간 {m}분 남음";
+"{langs} only" = "{langs}만";
 "{ms} ms" = "{ms}밀리초";
 "{m}m left" = "{m}분 남음";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} 및 기타 모든 이름, 로고, 브랜드 표시는 각 소유자의 자산이며 호환성과 식별 목적으로만 사용됩니다.";
@@ -4368,6 +4400,7 @@
 "{n} eps" = "에피소드 {n}개";
 "{n} films." = "{n} films.";
 "{n} hidden" = "숨김 {n}개";
+"{n} hidden by trust filter" = "신뢰 필터로 숨긴 항목 {n}개";
 "{n} hr" = "{n}시간";
 "{n} in a day" = "하루에 {n}개";
 "{n} item" = "항목 {n}개";
@@ -4379,9 +4412,11 @@
 "{n} months ago" = "{n}개월 전";
 "{n} not matched" = "일치하지 않음 {n}개";
 "{n} sec" = "{n}초";
+"{n} section fixes. Reset all" = "구간 수정 {n}개. 모두 초기화";
 "{n} seeds" = "시드 {n}개";
 "{n} semillas" = "시드 {n}개";
 "{n} sources · 0 made it through" = "소스 {n}개 · 통과 0개";
+"{n} uncached hidden" = "캐시되지 않은 항목 {n}개 숨김";
 "{n} watching" = "{n}명 시청 중";
 "{n} weeks ago" = "{n} weeks ago";
 "{n} years ago" = "{n} years ago";

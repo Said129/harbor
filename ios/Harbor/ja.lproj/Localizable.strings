@@ -37,6 +37,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A new font applies the next time a video opens." = "A new font applies the next time a video opens.";
 "A relay we run. Nothing to set up, and it stays current on its own." = "当社が運用するリレーです。設定は不要で、自動的に最新の状態に保たれます。";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shiftと矢印キーで短く移動し、数秒ずつ微調整できます。";
@@ -183,6 +184,8 @@
 "Al reproducir automáticamente el siguiente episodio, conserva la misma versión/fuente que acabas de ver en lugar de la fuente mejor clasificada de Harbor. Si esa fuente no está disponible, usa la mejor fuente." = "次のエピソードを自動再生するとき、Harborで最上位のストリームではなく、直前まで見ていたものと同じリリースまたはソースを使用します。そのソースが利用できない場合は、最適なストリームを使用します。";
 "Albums" = "アルバム";
 "Aleatorio" = "シャッフル";
+"Align to now" = "現在位置に合わせる";
+"Aligned" = "同期済み";
 "Alignment" = "配置";
 "Alineación" = "配置";
 "All" = "すべて";
@@ -283,6 +286,7 @@
 "Authorized {when}" = "{when}に認証済み";
 "Auto" = "自動";
 "Auto (match video)" = "自動（動画に合わせる）";
+"Auto (recommended)" = "自動（推奨）";
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "スタイル付き (ASS) 字幕の色、フォント、画面内テキストの配置を保ちながら、ファイルが変わってもセリフが同じ大きさになるよう自動調整します。";
 "Auto-hide the Skip button after" = "スキップボタンを自動で隠すまでの時間";
 "Auto-play next episode" = "次のエピソードを自動再生";
@@ -334,6 +338,7 @@
 "Bajar {name}" = "{name}を下に移動";
 "Balance picture quality and performance. Changes apply to the next video you play." = "画質とパフォーマンスのバランスを調整します。変更は次に再生する動画に適用されます。";
 "Balanced" = "バランス";
+"Balanced (Mobius)" = "バランス（Mobius）";
 "Bar" = "バー";
 "Bar color" = "バーの色";
 "Barra de búsqueda" = "シークバー";
@@ -669,6 +674,7 @@
 "Contraste" = "コントラスト";
 "Controles" = "コントロール";
 "Controls" = "コントロール";
+"Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play." = "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.";
 "Copia principal." = "メインテキスト。";
 "Copia secundaria." = "補足テキスト。";
 "Copied" = "コピーしました";
@@ -695,6 +701,7 @@
 "Could not reach this server" = "このサーバーに接続できませんでした";
 "Could not read file" = "ファイルを読み込めませんでした";
 "Could not read the account on this device." = "Could not read the account on this device.";
+"Could not read this subtitle track. Pick a different subtitle, then try again." = "この字幕トラックを読み込めませんでした。別の字幕を選択して、もう一度お試しください。";
 "Could not read your lists. Your saved data is preserved." = "リストを読み込めませんでした。保存済みデータは保持されています。";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not resolve that Letterboxd list URL." = "そのLetterboxdリストのURLを特定できませんでした。";
@@ -721,6 +728,7 @@
 "Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "このRokuに接続できませんでした";
 "Couldn't read that image. Try a different file." = "画像を読み込めませんでした。別のファイルをお試しください。";
+"Couldn't save the synced subtitle. Try again." = "同期済み字幕を保存できませんでした。もう一度お試しください。";
 "Couldn't scan that folder." = "そのフォルダーをスキャンできませんでした。";
 "Cover Image URL" = "カバー画像URL";
 "Cozy Autumn Nights" = "秋の夜にほっこり";
@@ -868,6 +876,7 @@
 "Dracula" = "Dracula";
 "Drama" = "ドラマ";
 "Drama Series" = "ドラマシリーズ";
+"Drift fixed" = "ずれを補正済み";
 "Drift monitor" = "同期ずれの監視";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "アプリの背景に壁紙を設定します。暗さスライダーで文字の読みやすさを保てます。";
 "Drop shadow" = "ドロップシャドウ";
@@ -1035,8 +1044,10 @@
 "Fill" = "画面いっぱいに表示";
 "Fills in where TMDB comes up empty (anime, older catalog). Free at" = "TMDBに情報がない場合（アニメ、旧作カタログ）に補完します。次で無料です:";
 "Film" = "映画";
+"Filmic (Hable)" = "フィルム調（Hable）";
 "Filter countries" = "国で絞り込む";
 "Filter genres" = "ジャンルで絞り込む";
+"Filtered" = "フィルター適用済み";
 "Filters" = "フィルター";
 "Filters out streams from adult catalogs and addons. On by default." = "成人向けカタログやアドオンのストリームを除外します。デフォルトでオンです。";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "一致する動画・字幕ファイルの検証済みタイミング補正を検索・共有します。プライベートモードをオンにすると、コミュニティへの照会と提供を停止します。";
@@ -1047,6 +1058,7 @@
 "Finnish" = "フィンランド語";
 "First-light picks" = "朝いちのおすすめ";
 "Fit" = "全体を表示";
+"Fix one section" = "1つのセクションを修正";
 "Flat" = "フラット";
 "Flechas" = "矢印キー";
 "Focus" = "Focus";
@@ -1064,6 +1076,7 @@
 "Forest" = "森";
 "Forget" = "登録解除";
 "Forget remote streaming server" = "保存したリモート配信サーバーを削除";
+"Format" = "形式";
 "Formato de canales" = "Channel format";
 "Forzado" = "強制字幕";
 "Found {count} streams for {title} in {seconds}s" = "{title}のストリームを{seconds}秒で{count}件見つけました";
@@ -1356,6 +1369,7 @@
 "Jina API key (optional)" = "Jina APIキー（任意）";
 "Jina Reader" = "Jina Reader";
 "Join" = "参加";
+"Jump here" = "ここへ移動";
 "Jump past a known injected ad on its own instead of showing the Skip button." = "既知の挿入広告では「スキップ」ボタンを表示せず、自動的に広告の末尾まで移動します。";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "オープニングが始まると自動でスキップします。イントロに巻き戻した場合は再度スキップせず再生します。スキップボタンは上の設定に従います。";
 "Just added" = "新着";
@@ -1439,6 +1453,7 @@
 "Live TV" = "ライブTV";
 "Live TV playlists" = "ライブTVプレイリスト";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
+"Live sync" = "リアルタイム同期";
 "Llegaste al final · {n} complementos" = "以上です・アドオン{n}件";
 "Load effect" = "読み込み効果";
 "Load file" = "ファイルを読み込む";
@@ -1550,6 +1565,7 @@
 "Misterio" = "ミステリー";
 "Mix surround sound down to stereo" = "サラウンド音声をステレオにダウンミックス";
 "Mode" = "モード";
+"Modern (Spline)" = "モダン（Spline）";
 "Modo de concentración" = "集中モード";
 "Modo de lectura" = "閲覧モード";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "エピソード終了の何秒前に「次のエピソード」を表示するかを設定します。自動ではエピソードの長さに合わせて調整し、短いエピソードで早く表示されすぎないようにします。オフにすると非表示になります。";
@@ -1732,6 +1748,7 @@
 "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo." = "Could not analyze this source. Playback continues; you can retry.";
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "どのソースからもストリームが返されませんでした";
+"No sources" = "ソースなし";
 "No sources match your filter" = "フィルターに一致するソースはありません";
 "No streams came back." = "ストリームは返ってきませんでした。";
 "No streams for {title}" = "{title}のストリームはありません";
@@ -1787,6 +1804,7 @@
 "Now" = "現在";
 "Now Playing" = "再生中";
 "Now playing: {label}" = "再生中: {label}";
+"Now tap the last line of that section." = "次に、その区間の最後のセリフをタップしてください。";
 "Now watching on AniList" = "AniListで視聴中";
 "Now watching on MyAnimeList" = "MyAnimeListで視聴中";
 "Nuevos estrenos de anime" = "新作アニメ";
@@ -1970,6 +1988,8 @@
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
 "Play to where the ad starts and add it, then play to the end and tap Now. You can also type the times. Add more than one if there are several." = "広告の開始位置まで再生して追加し、終了位置まで再生して「現在位置」をタップしてください。時刻を直接入力することもできます。複数ある場合はそれぞれ追加してください。";
 "Play trailers in the hero" = "ヒーローエリアでトレーラーを再生";
+"Play until you hear a line inside this section, tap it, then choose Align to now." = "この区間内のセリフが聞こえるまで再生し、そのセリフをタップしてから「現在位置に合わせる」を選択してください。";
+"Play until you hear a line. Tap that same line below, then choose Align to now." = "セリフが聞こえるまで再生してください。下にある同じセリフをタップし、「現在位置に合わせる」を選択します。";
 "Playback" = "再生";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2109,6 +2129,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "閲覧モード";
 "Reading options" = "Reading options";
+"Reading subtitles..." = "字幕を読み込み中...";
 "Reading your search" = "検索内容を解析中";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Ready" = "準備完了";
@@ -2133,6 +2154,7 @@
 "Recommended for you" = "あなたへのおすすめ";
 "Recordatorio" = "Reminder";
 "Redondeado" = "丸ゴシック";
+"Reference (bt.2390)" = "リファレンス（bt.2390）";
 "Refresh" = "更新";
 "Refresh episodes" = "Refresh episodes";
 "Refresh sources" = "ソースを更新";
@@ -2208,6 +2230,7 @@
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "ヒーロー表示には画像が豊富な作品が必要です";
 "Resaltado, progreso." = "ハイライト、進捗。";
 "Reset" = "リセット";
+"Reset filters" = "フィルターをリセット";
 "Reset picture" = "画質をリセット";
 "Reset subtitle style" = "Reset subtitle style";
 "Reset sync" = "同期をリセット";
@@ -2328,6 +2351,7 @@
 "Se usa con 55 % / 25 % de opacidad." = "55% / 25%のアルファ値で使用。";
 "Search" = "検索";
 "Search SUBDL for subtitles in multiple languages. Requires an API key." = "SUBDL で多言語の字幕を検索します。API キーが必要です。";
+"Search a line by its words" = "セリフを語句で検索";
 "Search actors, directors…" = "俳優、監督を検索…";
 "Search addons" = "アドオンを検索";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
@@ -2450,6 +2474,7 @@
 "Show episode ratings" = "エピソードの評価を表示";
 "Show every addon row" = "すべてのアドオン列を表示";
 "Show everything anyway" = "それでもすべて表示";
+"Show flagged" = "フラグ付きも表示";
 "Show format chips on stream rows" = "ストリーム行に形式タグを表示";
 "Show forum threads and comments from AniList on anime detail pages." = "アニメ詳細ページにAniListのフォーラムスレッドとコメントを表示します。";
 "Show full descriptions" = "説明を全文表示";
@@ -2536,6 +2561,7 @@
 "Smooth on weak PCs" = "低スペックPCでも滑らか";
 "Sobre la línea principal" = "メイン字幕の上";
 "Soccer" = "サッカー";
+"Soft (Reinhard)" = "ソフト（Reinhard）";
 "Soft halo around the text. Cleanest on most content." = "テキストの周囲に柔らかな光彩を付けます。ほとんどの映像ですっきり表示されます。";
 "Softer and dimmer, kinder for late-night watching." = "柔らかく暗めの映像にし、深夜でも目に負担をかけずに視聴できます。";
 "Solo posición y tamaño" = "位置とサイズのみ";
@@ -2708,6 +2734,7 @@
 "Tamaño" = "サイズ";
 "Tamil" = "タミル語";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
+"Tap the first line of the section you want to fix." = "修正する区間の最初のセリフをタップしてください。";
 "Tarjetas de carteles" = "ポスターカード";
 "Tarjetas de episodios" = "エピソードカード";
 "Tarjetas, paneles." = "カード、パネル。";
@@ -2796,6 +2823,7 @@
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "This server responded but is not supported" = "サーバーから応答がありましたが、対応していません";
+"This subtitle looks like a different version of the video." = "この字幕は別バージョンの動画用のようです。";
 "This theme is missing a color ({color})." = "このテーマにはカラー（{color}）がありません。";
 "This theme is missing its colors." = "このテーマには配色がありません。";
 "This theme's preview colors look invalid." = "このテーマのプレビューカラーは無効なようです。";
@@ -2807,6 +2835,8 @@
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "低評価にするとこの作品が注目作品から非表示になり、高評価にすると似た作品がおすすめに表示されやすくなります。";
 "Tiempo reproducido" = "Playback time";
+"Timing and drift are corrected. Check playback, then save." = "タイミングとずれを補正しました。再生して確認してから保存してください。";
+"Timing is aligned. If it becomes early or late later, repeat this at another line." = "タイミングを合わせました。後で字幕が早すぎたり遅すぎたりした場合は、別のセリフで同じ操作を繰り返してください。";
 "Tipo" = "タイプ";
 "Tipografía" = "タイポグラフィ";
 "Titles" = "作品";
@@ -2828,6 +2858,7 @@
 "Todos los deportes" = "すべてのスポーツ";
 "Todos los géneros" = "すべてのジャンル";
 "Todos los idiomas" = "すべての言語";
+"Tone-mapping curve" = "トーンマッピングカーブ";
 "Tonight" = "今夜";
 "Tonight's Slate" = "今夜のラインナップ";
 "Tonight's binge bait" = "今夜の一気見候補";
@@ -4348,6 +4379,7 @@
 "{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "残り{h}時間";
 "{h}h {m}m left" = "残り{h}時間{m}分";
+"{langs} only" = "{langs}のみ";
 "{ms} ms" = "{ms} ミリ秒";
 "{m}m left" = "残り{m}分";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}をはじめ、その他すべての名称、ロゴ、ブランド表記は各所有者に帰属し、互換性の確保と識別のみを目的として使用されています。";
@@ -4368,6 +4400,7 @@
 "{n} eps" = "{n}話";
 "{n} films." = "{n} films.";
 "{n} hidden" = "{n}件非表示";
+"{n} hidden by trust filter" = "信頼度フィルターで{n}件非表示";
 "{n} hr" = "{n}時間";
 "{n} in a day" = "1日で{n}本";
 "{n} item" = "{n}件";
@@ -4379,9 +4412,11 @@
 "{n} months ago" = "{n}か月前";
 "{n} not matched" = "未照合{n}件";
 "{n} sec" = "{n}秒";
+"{n} section fixes. Reset all" = "区間修正が{n}件。すべてリセット";
 "{n} seeds" = "シード数: {n}";
 "{n} semillas" = "シード数: {n}";
 "{n} sources · 0 made it through" = "{n}件のソース · 利用可能 0件";
+"{n} uncached hidden" = "未キャッシュを{n}件非表示";
 "{n} watching" = "{n}人が視聴中";
 "{n} weeks ago" = "{n} weeks ago";
 "{n} years ago" = "{n} years ago";

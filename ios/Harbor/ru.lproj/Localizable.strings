@@ -39,6 +39,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A new font applies the next time a video opens." = "A new font applies the next time a video opens.";
 "A relay we run. Nothing to set up, and it stays current on its own." = "Ретранслятор на нашей стороне. Настраивать ничего не нужно, обновляется сам.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Более короткий скачок по Shift со стрелками, чтобы сдвигать всего на несколько секунд.";
@@ -185,6 +186,8 @@
 "Al reproducir automáticamente el siguiente episodio, conserva la misma versión/fuente que acabas de ver en lugar de la fuente mejor clasificada de Harbor. Si esa fuente no está disponible, usa la mejor fuente." = "При автозапуске следующей серии сохранять тот же релиз или источник, который вы смотрели, вместо лучшего по рейтингу потока Harbor. Если источник недоступен, берётся лучший поток.";
 "Albums" = "Альбомы";
 "Aleatorio" = "Перемешать";
+"Align to now" = "Выровнять по текущему моменту";
+"Aligned" = "Выровнено";
 "Alignment" = "Выравнивание";
 "Alineación" = "Выравнивание";
 "All" = "Все";
@@ -285,6 +288,7 @@
 "Authorized {when}" = "Авторизовано {when}";
 "Auto" = "Авто";
 "Auto (match video)" = "Авто (как у видео)";
+"Auto (recommended)" = "Авто (рекомендуется)";
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "Автоматически подгоняет стилизованные (ASS) субтитры, чтобы диалоги были одного размера во всех файлах, сохраняя их цвета, шрифты и расположение надписей.";
 "Auto-hide the Skip button after" = "Скрывать кнопку «Пропустить» через";
 "Auto-play next episode" = "Автовоспроизведение следующей серии";
@@ -337,6 +341,7 @@
 "Bajar {name}" = "Переместить «{name}» вниз";
 "Balance picture quality and performance. Changes apply to the next video you play." = "Выберите баланс качества изображения и производительности. Изменения применятся к следующему видео.";
 "Balanced" = "Сбалансированный";
+"Balanced (Mobius)" = "Сбалансированный (Mobius)";
 "Bar" = "Полоса";
 "Bar color" = "Цвет полосы";
 "Barra de búsqueda" = "Полоса перемотки";
@@ -672,6 +677,7 @@
 "Contraste" = "Контраст";
 "Controles" = "Управление";
 "Controls" = "Управление";
+"Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play." = "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.";
 "Copia principal." = "Основной текст.";
 "Copia secundaria." = "Второстепенный текст.";
 "Copied" = "Скопировано";
@@ -698,6 +704,7 @@
 "Could not reach this server" = "Не удалось подключиться к серверу";
 "Could not read file" = "Не удалось прочитать файл";
 "Could not read the account on this device." = "Could not read the account on this device.";
+"Could not read this subtitle track. Pick a different subtitle, then try again." = "Не удалось прочитать эту дорожку субтитров. Выберите другие субтитры и попробуйте снова.";
 "Could not read your lists. Your saved data is preserved." = "Не удалось прочитать ваши списки. Сохранённые данные не потеряны.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not resolve that Letterboxd list URL." = "Не удалось распознать этот URL списка Letterboxd.";
@@ -724,6 +731,7 @@
 "Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "Не удалось подключиться к Roku";
 "Couldn't read that image. Try a different file." = "Не удалось прочитать изображение. Попробуйте другой файл.";
+"Couldn't save the synced subtitle. Try again." = "Не удалось сохранить синхронизированные субтитры. Повторите попытку.";
 "Couldn't scan that folder." = "Не удалось просканировать папку.";
 "Cover Image URL" = "URL обложки";
 "Cozy Autumn Nights" = "Уютные осенние вечера";
@@ -871,6 +879,7 @@
 "Dracula" = "Dracula";
 "Drama" = "Драма";
 "Drama Series" = "Драматические сериалы";
+"Drift fixed" = "Дрейф исправлен";
 "Drift monitor" = "Контроль расхождения";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "Поставьте обои под интерфейс приложения. Ползунок затемнения сохранит читаемость текста.";
 "Drop shadow" = "Тень";
@@ -1038,8 +1047,10 @@
 "Fill" = "Заполнить";
 "Fills in where TMDB comes up empty (anime, older catalog). Free at" = "Восполняет пробелы в TMDB (аниме, старые каталоги). Бесплатно на";
 "Film" = "Фильм";
+"Filmic (Hable)" = "Кинематографичный (Hable)";
 "Filter countries" = "Фильтр стран";
 "Filter genres" = "Фильтр жанров";
+"Filtered" = "Отфильтровано";
 "Filters" = "Фильтры";
 "Filters out streams from adult catalogs and addons. On by default." = "Отфильтровывает потоки из каталогов и дополнений для взрослых. Включено по умолчанию.";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "Находите и публикуйте проверенные поправки синхронизации для соответствующих файлов видео и субтитров. Включите приватный режим, чтобы отключить запросы к сообществу и отправку данных.";
@@ -1050,6 +1061,7 @@
 "Finnish" = "Финский";
 "First-light picks" = "Подборка на рассвет";
 "Fit" = "Вписать";
+"Fix one section" = "Исправить один фрагмент";
 "Flat" = "Ровный";
 "Flechas" = "Стрелки";
 "Focus" = "Focus";
@@ -1067,6 +1079,7 @@
 "Forest" = "Лес";
 "Forget" = "Забыть";
 "Forget remote streaming server" = "Забыть удалённый сервер воспроизведения";
+"Format" = "Формат";
 "Formato de canales" = "Channel format";
 "Forzado" = "Форсированные";
 "Found {count} streams for {title} in {seconds}s" = "Найдено {count} потоков для {title} за {seconds} с";
@@ -1360,6 +1373,7 @@
 "Jina API key (optional)" = "API-ключ Jina (необязательно)";
 "Jina Reader" = "Jina Reader";
 "Join" = "Присоединиться";
+"Jump here" = "Перейти сюда";
 "Jump past a known injected ad on its own instead of showing the Skip button." = "Автоматически перематывать известную встроенную рекламу вместо показа кнопки «Пропустить».";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Автоматически пропускает заставки сразу после начала. При перемотке назад заставка воспроизводится без повторного пропуска. Кнопка пропуска следует настройке выше.";
 "Just added" = "Только что добавлены";
@@ -1443,6 +1457,7 @@
 "Live TV" = "Прямой эфир";
 "Live TV playlists" = "Плейлисты прямого эфира";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
+"Live sync" = "Живая синхронизация";
 "Llegaste al final · {n} complementos" = "Это всё · {n} дополнений";
 "Load effect" = "Эффект загрузки";
 "Load file" = "Загрузить файл";
@@ -1554,6 +1569,7 @@
 "Misterio" = "Детектив";
 "Mix surround sound down to stereo" = "Сводить объёмный звук в стерео";
 "Mode" = "Режим";
+"Modern (Spline)" = "Современный (Spline)";
 "Modo de concentración" = "Режим фокуса";
 "Modo de lectura" = "Режим чтения";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Когда плашка «Далее» появляется перед концом серии. «Авто» подстраивается под длину серии, чтобы короткие серии не предлагали переход слишком рано. «Выкл.» скрывает её.";
@@ -1739,6 +1755,7 @@
 "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo." = "Не удалось проанализировать источник. Просмотр продолжается; можно повторить попытку.";
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Не удалось применить синхронизацию. Исходные субтитры сохранены.";
 "No source returned a stream" = "Ни один источник не вернул поток";
+"No sources" = "Нет источников";
 "No sources match your filter" = "Нет источников по этому фильтру";
 "No streams came back." = "Потоки не вернулись.";
 "No streams for {title}" = "Нет потоков для {title}";
@@ -1794,6 +1811,7 @@
 "Now" = "Сейчас";
 "Now Playing" = "Сейчас воспроизводится";
 "Now playing: {label}" = "Сейчас в эфире: {label}";
+"Now tap the last line of that section." = "Теперь нажмите на последнюю реплику участка.";
 "Now watching on AniList" = "Просмотр отмечен в AniList";
 "Now watching on MyAnimeList" = "Просмотр отмечен в MyAnimeList";
 "Nuevos estrenos de anime" = "Новинки аниме";
@@ -1980,6 +1998,8 @@
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
 "Play to where the ad starts and add it, then play to the end and tap Now. You can also type the times. Add more than one if there are several." = "Доведите до начала рекламы и добавьте её, затем доведите до конца и нажмите «Сейчас». Время можно ввести вручную. Добавьте несколько, если реклам несколько.";
 "Play trailers in the hero" = "Воспроизводить трейлеры в баннере";
+"Play until you hear a line inside this section, tap it, then choose Align to now." = "Дождитесь реплики внутри участка, нажмите на неё и выберите выравнивание по текущему моменту.";
+"Play until you hear a line. Tap that same line below, then choose Align to now." = "Дождитесь нужной реплики, нажмите на неё ниже и выберите выравнивание по текущему моменту.";
 "Playback" = "Воспроизведение";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2119,6 +2139,7 @@
 "Reading help" = "Как пользоваться Manga и eBook";
 "Reading mode" = "Режим чтения";
 "Reading options" = "Reading options";
+"Reading subtitles..." = "Чтение субтитров...";
 "Reading your search" = "Разбор запроса";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Ready" = "Готово";
@@ -2144,6 +2165,7 @@
 "Recordatorio" = "Reminder";
 "Red" = "Red";
 "Redondeado" = "Скруглённый";
+"Reference (bt.2390)" = "Эталонная (bt.2390)";
 "Refresh" = "Обновить";
 "Refresh episodes" = "Refresh episodes";
 "Refresh sources" = "Обновить источники";
@@ -2219,6 +2241,7 @@
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Для главного баннера нужны материалы с качественными изображениями";
 "Resaltado, progreso." = "Выделение, прогресс.";
 "Reset" = "Сбросить";
+"Reset filters" = "Сбросить фильтры";
 "Reset picture" = "Сбросить изображение";
 "Reset subtitle style" = "Reset subtitle style";
 "Reset sync" = "Сбросить синхронизацию";
@@ -2339,6 +2362,7 @@
 "Se usa con 55 % / 25 % de opacidad." = "Используется с непрозрачностью 55% / 25%.";
 "Search" = "Поиск";
 "Search SUBDL for subtitles in multiple languages. Requires an API key." = "Ищите субтитры на разных языках в SUBDL. Нужен ключ API.";
+"Search a line by its words" = "Поиск строки по словам";
 "Search actors, directors…" = "Поиск актёров, режиссёров…";
 "Search addons" = "Поиск дополнений";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
@@ -2461,6 +2485,7 @@
 "Show episode ratings" = "Показывать оценки серий";
 "Show every addon row" = "Показывать все ряды дополнений";
 "Show everything anyway" = "Всё равно показать всё";
+"Show flagged" = "Показать помеченные";
 "Show format chips on stream rows" = "Показывать метки формата в строках потоков";
 "Show forum threads and comments from AniList on anime detail pages." = "Показывать темы форума и комментарии из AniList на страницах аниме.";
 "Show full descriptions" = "Показывать описания полностью";
@@ -2548,6 +2573,7 @@
 "Smooth on weak PCs" = "Плавно на слабых ПК";
 "Sobre la línea principal" = "Над основной строкой";
 "Soccer" = "Футбол";
+"Soft (Reinhard)" = "Мягкий (Reinhard)";
 "Soft halo around the text. Cleanest on most content." = "Мягкий ореол вокруг текста. Аккуратнее всего на большинстве видео.";
 "Softer and dimmer, kinder for late-night watching." = "Мягче и темнее, удобнее для ночного просмотра.";
 "Software" = "Software";
@@ -2721,6 +2747,7 @@
 "Tamaño" = "Размер";
 "Tamil" = "Тамильский";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
+"Tap the first line of the section you want to fix." = "Нажмите на первую реплику участка, который нужно исправить.";
 "Tarjetas de carteles" = "Карточки с постерами";
 "Tarjetas de episodios" = "Карточки серий";
 "Tarjetas, paneles." = "Карточки, панели.";
@@ -2810,6 +2837,7 @@
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "This server responded but is not supported" = "Сервер ответил, но не поддерживается";
+"This subtitle looks like a different version of the video." = "Похоже, эти субтитры от другой версии видео.";
 "This theme is missing a color ({color})." = "В этой теме отсутствует цвет ({color}).";
 "This theme is missing its colors." = "В этой теме отсутствуют цвета.";
 "This theme's preview colors look invalid." = "Цвета предварительного просмотра этой темы некорректны.";
@@ -2821,6 +2849,8 @@
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "«Не нравится» скрывает название из «Рекомендуемого». «Нравится» помогает подбирать похожее.";
 "Tiempo reproducido" = "Playback time";
+"Timing and drift are corrected. Check playback, then save." = "Время и дрейф исправлены. Проверьте воспроизведение и сохраните.";
+"Timing is aligned. If it becomes early or late later, repeat this at another line." = "Время выровнено. Если позже субтитры начнут опережать или отставать, повторите это на другой реплике.";
 "Tipo" = "Тип";
 "Tipografía" = "Типографика";
 "Titles" = "Названия";
@@ -2842,6 +2872,7 @@
 "Todos los deportes" = "Все виды спорта";
 "Todos los géneros" = "Все жанры";
 "Todos los idiomas" = "Все языки";
+"Tone-mapping curve" = "Кривая тональной компрессии";
 "Tonight" = "Сегодня вечером";
 "Tonight's Slate" = "Программа на вечер";
 "Tonight's binge bait" = "Чтобы залипнуть на вечер";
@@ -4362,6 +4393,7 @@
 "{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "осталось {h} ч";
 "{h}h {m}m left" = "осталось {h} ч {m} мин";
+"{langs} only" = "Только {langs}";
 "{ms} ms" = "{ms} ms";
 "{m}m left" = "осталось {m} мин";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, а также все прочие названия, логотипы и упоминания брендов принадлежат их соответствующим владельцам и используются здесь исключительно для обеспечения совместимости и идентификации.";
@@ -4382,6 +4414,7 @@
 "{n} eps" = "{n} эп";
 "{n} films." = "{n} films.";
 "{n} hidden" = "скрыто {n}";
+"{n} hidden by trust filter" = "Скрыто фильтром доверия: {n}";
 "{n} hr" = "{n} ч";
 "{n} in a day" = "{n} за день";
 "{n} item" = "{n} элементов";
@@ -4393,9 +4426,11 @@
 "{n} months ago" = "{n} мес. назад";
 "{n} not matched" = "Не сопоставлено: {n}";
 "{n} sec" = "{n} сек";
+"{n} section fixes. Reset all" = "Исправлений фрагментов: {n}. Сбросить все";
 "{n} seeds" = "Сидов: {n}";
 "{n} semillas" = "Сидов: {n}";
 "{n} sources · 0 made it through" = "{n} источников · ни один не прошёл отбор";
+"{n} uncached hidden" = "Скрыто без кэша: {n}";
 "{n} watching" = "Зрителей: {n}";
 "{n} weeks ago" = "{n} weeks ago";
 "{n} years ago" = "{n} years ago";

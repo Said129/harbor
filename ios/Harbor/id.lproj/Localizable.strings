@@ -37,6 +37,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A new font applies the next time a video opens." = "A new font applies the next time a video opens.";
 "A relay we run. Nothing to set up, and it stays current on its own." = "Relay yang kami kelola. Tidak perlu disiapkan dan selalu diperbarui secara otomatis.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Lompatan yang lebih pendek dengan Shift dan tombol panah untuk bergeser beberapa detik setiap kali.";
@@ -183,6 +184,8 @@
 "Al reproducir automáticamente el siguiente episodio, conserva la misma versión/fuente que acabas de ver en lugar de la fuente mejor clasificada de Harbor. Si esa fuente no está disponible, usa la mejor fuente." = "Saat memutar episode berikutnya secara otomatis, gunakan rilis/sumber yang sama dengan yang baru saja Anda tonton, bukan stream peringkat teratas Harbor. Jika sumber itu tidak tersedia, stream terbaik akan digunakan.";
 "Albums" = "Album";
 "Aleatorio" = "Acak";
+"Align to now" = "Selaraskan ke waktu sekarang";
+"Aligned" = "Selaras";
 "Alignment" = "Penyelarasan";
 "Alineación" = "Penyelarasan";
 "All" = "Semua";
@@ -283,6 +286,7 @@
 "Authorized {when}" = "Diizinkan {when}";
 "Auto" = "Otomatis";
 "Auto (match video)" = "Otomatis (sesuai video)";
+"Auto (recommended)" = "Otomatis (disarankan)";
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "Menyesuaikan subtitle bergaya (ASS) secara otomatis agar ukuran dialog tetap sama di semua file, sekaligus mempertahankan warna, font, dan posisi teksnya.";
 "Auto-hide the Skip button after" = "Sembunyikan tombol Lewati secara otomatis setelah";
 "Auto-play next episode" = "Putar episode berikutnya secara otomatis";
@@ -334,6 +338,7 @@
 "Bajar {name}" = "Pindahkan {name} ke bawah";
 "Balance picture quality and performance. Changes apply to the next video you play." = "Seimbangkan kualitas gambar dan kinerja. Perubahan berlaku pada video berikutnya yang Anda putar.";
 "Balanced" = "Seimbang";
+"Balanced (Mobius)" = "Seimbang (Mobius)";
 "Bar" = "Bilah";
 "Bar color" = "Warna bilah";
 "Barra de búsqueda" = "Bilah waktu";
@@ -669,6 +674,7 @@
 "Contraste" = "Kontras";
 "Controles" = "Kontrol";
 "Controls" = "Kontrol";
+"Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play." = "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.";
 "Copia principal." = "Salinan utama.";
 "Copia secundaria." = "Teks sekunder.";
 "Copied" = "Disalin";
@@ -695,6 +701,7 @@
 "Could not reach this server" = "Tidak dapat menghubungi server ini";
 "Could not read file" = "Tidak dapat membaca file";
 "Could not read the account on this device." = "Could not read the account on this device.";
+"Could not read this subtitle track. Pick a different subtitle, then try again." = "Tidak dapat membaca trek subtitle ini. Pilih subtitle lain, lalu coba lagi.";
 "Could not read your lists. Your saved data is preserved." = "Daftar Anda tidak dapat dibaca. Data tersimpan tetap dipertahankan.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not resolve that Letterboxd list URL." = "Tidak dapat memproses URL daftar Letterboxd tersebut.";
@@ -721,6 +728,7 @@
 "Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "Tidak dapat terhubung ke Roku ini";
 "Couldn't read that image. Try a different file." = "Tidak dapat membaca gambar tersebut. Coba file lain.";
+"Couldn't save the synced subtitle. Try again." = "Tidak dapat menyimpan subtitle yang disinkronkan. Coba lagi.";
 "Couldn't scan that folder." = "Tidak dapat memindai folder tersebut.";
 "Cover Image URL" = "URL Gambar Sampul";
 "Cozy Autumn Nights" = "Malam Musim Gugur yang Nyaman";
@@ -868,6 +876,7 @@
 "Dracula" = "Dracula";
 "Drama" = "Drama";
 "Drama Series" = "Serial Drama";
+"Drift fixed" = "Penyimpangan diperbaiki";
 "Drift monitor" = "Pemantau penyimpangan";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "Pasang wallpaper di belakang aplikasi. Penggeser peredupan menjaga teks tetap mudah dibaca.";
 "Drop shadow" = "Bayangan jatuh";
@@ -1035,8 +1044,10 @@
 "Fill" = "Penuhi";
 "Fills in where TMDB comes up empty (anime, older catalog). Free at" = "Melengkapi data yang tidak tersedia di TMDB (anime, katalog lama). Gratis di";
 "Film" = "Film";
+"Filmic (Hable)" = "Filmic (Hable)";
 "Filter countries" = "Filter negara";
 "Filter genres" = "Filter genre";
+"Filtered" = "Difilter";
 "Filters" = "Filter";
 "Filters out streams from adult catalogs and addons. On by default." = "Menyaring stream dari katalog dan addon dewasa. Aktif secara default.";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "Temukan dan bagikan koreksi waktu terverifikasi untuk berkas video dan subtitle yang cocok. Aktifkan Mode privat untuk menghentikan pencarian dan kontribusi komunitas.";
@@ -1047,6 +1058,7 @@
 "Finnish" = "Bahasa Finlandia";
 "First-light picks" = "Pilihan saat fajar";
 "Fit" = "Sesuaikan";
+"Fix one section" = "Perbaiki satu bagian";
 "Flat" = "Datar";
 "Flechas" = "Panah";
 "Focus" = "Focus";
@@ -1064,6 +1076,7 @@
 "Forest" = "Hutan";
 "Forget" = "Lupakan";
 "Forget remote streaming server" = "Lupakan server streaming jarak jauh";
+"Format" = "Format";
 "Formato de canales" = "Channel format";
 "Forzado" = "Paksa";
 "Found {count} streams for {title} in {seconds}s" = "Ditemukan {count} stream untuk {title} dalam {seconds} dtk";
@@ -1356,6 +1369,7 @@
 "Jina API key (optional)" = "Kunci API Jina (opsional)";
 "Jina Reader" = "Jina Reader";
 "Join" = "Bergabung";
+"Jump here" = "Lompat ke sini";
 "Jump past a known injected ad on its own instead of showing the Skip button." = "Lewati otomatis iklan sisipan yang diketahui tanpa menampilkan tombol Lewati.";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Lewati pembuka secara otomatis begitu dimulai. Kembali ke bagian pembuka akan memutarnya tanpa melewati lagi. Tombol Lewati mengikuti pengaturan di atas.";
 "Just added" = "Baru ditambahkan";
@@ -1439,6 +1453,7 @@
 "Live TV" = "TV Langsung";
 "Live TV playlists" = "Daftar putar TV Langsung";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
+"Live sync" = "Sinkronisasi real-time";
 "Llegaste al final · {n} complementos" = "Anda telah mencapai akhir · {n} addon";
 "Load effect" = "Efek pemuatan";
 "Load file" = "Muat file";
@@ -1550,6 +1565,7 @@
 "Misterio" = "Misteri";
 "Mix surround sound down to stereo" = "Gabungkan suara surround menjadi stereo";
 "Mode" = "Mode";
+"Modern (Spline)" = "Modern (Spline)";
 "Modo de concentración" = "Mode fokus";
 "Modo de lectura" = "Mode baca";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Waktu munculnya label Berikutnya sebelum episode berakhir. Otomatis menyesuaikan dengan durasi episode agar episode pendek tidak memunculkannya terlalu dini. Jika dinonaktifkan, label akan disembunyikan.";
@@ -1732,6 +1748,7 @@
 "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo." = "Could not analyze this source. Playback continues; you can retry.";
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "Tidak ada sumber yang memberikan stream";
+"No sources" = "Tidak ada sumber";
 "No sources match your filter" = "Tidak ada sumber yang cocok dengan filter Anda";
 "No streams came back." = "Tidak ada stream yang kembali.";
 "No streams for {title}" = "Tidak ada stream untuk {title}";
@@ -1787,6 +1804,7 @@
 "Now" = "Sekarang";
 "Now Playing" = "Sedang Diputar";
 "Now playing: {label}" = "Sedang diputar: {label}";
+"Now tap the last line of that section." = "Sekarang ketuk baris terakhir bagian tersebut.";
 "Now watching on AniList" = "Sedang menonton di AniList";
 "Now watching on MyAnimeList" = "Sedang menonton di MyAnimeList";
 "Nuevos estrenos de anime" = "Rilisan Anime Baru";
@@ -1970,6 +1988,8 @@
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
 "Play to where the ad starts and add it, then play to the end and tap Now. You can also type the times. Add more than one if there are several." = "Putar hingga iklan dimulai lalu tambahkan waktunya, kemudian putar hingga akhir dan ketuk Sekarang. Anda juga dapat mengetik waktunya. Tambahkan lebih dari satu jika ada beberapa.";
 "Play trailers in the hero" = "Putar trailer di bagian hero";
+"Play until you hear a line inside this section, tap it, then choose Align to now." = "Putar hingga Anda mendengar dialog dalam bagian ini, ketuk dialog tersebut, lalu pilih Selaraskan ke sekarang.";
+"Play until you hear a line. Tap that same line below, then choose Align to now." = "Putar hingga Anda mendengar dialog. Ketuk dialog yang sama di bawah, lalu pilih Selaraskan ke sekarang.";
 "Playback" = "Pemutaran";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2109,6 +2129,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "Mode baca";
 "Reading options" = "Reading options";
+"Reading subtitles..." = "Membaca subtitle...";
 "Reading your search" = "Membaca pencarian Anda";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Ready" = "Siap";
@@ -2133,6 +2154,7 @@
 "Recommended for you" = "Direkomendasikan untuk Anda";
 "Recordatorio" = "Reminder";
 "Redondeado" = "Bersudut membulat";
+"Reference (bt.2390)" = "Referensi (bt.2390)";
 "Refresh" = "Segarkan";
 "Refresh episodes" = "Refresh episodes";
 "Refresh sources" = "Segarkan sumber";
@@ -2208,6 +2230,7 @@
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Memerlukan judul dengan materi visual lengkap untuk mengisi banner utama";
 "Resaltado, progreso." = "Sorotan, progres.";
 "Reset" = "Atur ulang";
+"Reset filters" = "Atur ulang filter";
 "Reset picture" = "Atur ulang gambar";
 "Reset subtitle style" = "Reset subtitle style";
 "Reset sync" = "Atur ulang sinkronisasi";
@@ -2328,6 +2351,7 @@
 "Se usa con 55 % / 25 % de opacidad." = "Digunakan pada alpha 55% / 25%.";
 "Search" = "Cari";
 "Search SUBDL for subtitles in multiple languages. Requires an API key." = "Cari subtitle dalam berbagai bahasa di SUBDL. Memerlukan kunci API.";
+"Search a line by its words" = "Cari dialog berdasarkan kata-katanya";
 "Search actors, directors…" = "Cari aktor, sutradara…";
 "Search addons" = "Cari addon";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
@@ -2450,6 +2474,7 @@
 "Show episode ratings" = "Tampilkan rating episode";
 "Show every addon row" = "Tampilkan setiap baris addon";
 "Show everything anyway" = "Tetap tampilkan semuanya";
+"Show flagged" = "Tampilkan yang ditandai";
 "Show format chips on stream rows" = "Tampilkan chip format pada baris stream";
 "Show forum threads and comments from AniList on anime detail pages." = "Tampilkan utas forum dan komentar dari AniList di halaman detail anime.";
 "Show full descriptions" = "Tampilkan deskripsi lengkap";
@@ -2536,6 +2561,7 @@
 "Smooth on weak PCs" = "Mulus di PC berspesifikasi rendah";
 "Sobre la línea principal" = "Di atas baris utama";
 "Soccer" = "Sepak bola";
+"Soft (Reinhard)" = "Lembut (Reinhard)";
 "Soft halo around the text. Cleanest on most content." = "Pendar lembut di sekitar teks. Paling bersih pada sebagian besar konten.";
 "Softer and dimmer, kinder for late-night watching." = "Lebih lembut dan redup, lebih nyaman untuk menonton larut malam.";
 "Solo posición y tamaño" = "Hanya posisi dan ukuran";
@@ -2708,6 +2734,7 @@
 "Tamaño" = "Ukuran";
 "Tamil" = "Tamil";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
+"Tap the first line of the section you want to fix." = "Ketuk baris pertama pada bagian yang ingin Anda perbaiki.";
 "Tarjetas de carteles" = "Kartu poster";
 "Tarjetas de episodios" = "Kartu episode";
 "Tarjetas, paneles." = "Kartu, panel.";
@@ -2796,6 +2823,7 @@
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "This server responded but is not supported" = "Server ini merespons tetapi tidak didukung";
+"This subtitle looks like a different version of the video." = "Subtitle ini tampaknya untuk versi video yang berbeda.";
 "This theme is missing a color ({color})." = "Tema ini tidak memiliki warna ({color}).";
 "This theme is missing its colors." = "Tema ini tidak memiliki warna.";
 "This theme's preview colors look invalid." = "Warna pratinjau tema ini tampaknya tidak valid.";
@@ -2807,6 +2835,8 @@
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "Jempol ke bawah menyembunyikan judul ini dari Unggulan. Jempol ke atas membantu menampilkan pilihan serupa.";
 "Tiempo reproducido" = "Playback time";
+"Timing and drift are corrected. Check playback, then save." = "Pewaktuan dan penyimpangan telah dikoreksi. Periksa pemutaran, lalu simpan.";
+"Timing is aligned. If it becomes early or late later, repeat this at another line." = "Pewaktuan sudah selaras. Jika kemudian menjadi terlalu awal atau terlambat, ulangi ini pada baris lain.";
 "Tipo" = "Jenis";
 "Tipografía" = "Tipografi";
 "Titles" = "Judul";
@@ -2828,6 +2858,7 @@
 "Todos los deportes" = "Semua olahraga";
 "Todos los géneros" = "Semua genre";
 "Todos los idiomas" = "Semua bahasa";
+"Tone-mapping curve" = "Kurva pemetaan rona";
 "Tonight" = "Malam ini";
 "Tonight's Slate" = "Sajian Malam Ini";
 "Tonight's binge bait" = "Tontonan maraton malam ini";
@@ -4348,6 +4379,7 @@
 "{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "tersisa {h}j";
 "{h}h {m}m left" = "tersisa {h}j {m}m";
+"{langs} only" = "Hanya {langs}";
 "{ms} ms" = "{ms} md";
 "{m}m left" = "Tersisa {m} mnt";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, serta semua nama, logo, dan referensi merek lainnya adalah milik masing-masing pemiliknya dan hanya digunakan di sini untuk kompatibilitas dan identifikasi.";
@@ -4368,6 +4400,7 @@
 "{n} eps" = "{n} ep";
 "{n} films." = "{n} films.";
 "{n} hidden" = "{n} disembunyikan";
+"{n} hidden by trust filter" = "{n} disembunyikan oleh filter tingkat kepercayaan";
 "{n} hr" = "{n} jam";
 "{n} in a day" = "{n} dalam sehari";
 "{n} item" = "{n} item";
@@ -4379,9 +4412,11 @@
 "{n} months ago" = "{n} bulan lalu";
 "{n} not matched" = "{n} tidak berhasil dicocokkan";
 "{n} sec" = "{n} dtk";
+"{n} section fixes. Reset all" = "{n} perbaikan pada bagian. Atur ulang semua";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} sumber · 0 lolos";
+"{n} uncached hidden" = "{n} yang belum di-cache disembunyikan";
 "{n} watching" = "{n} sedang menonton";
 "{n} weeks ago" = "{n} weeks ago";
 "{n} years ago" = "{n} years ago";

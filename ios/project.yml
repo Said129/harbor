@@ -315,6 +315,15 @@ targets:
       - path: HarborTests/F8PersonAwardsTests.swift
       - path: HarborTests/F9ContentFilterTests.swift
       - path: HarborTests/F10SportsFootballTests.swift
+      - path: HarborTests/F11AssHeaderTests.swift
+      - path: HarborTests/F11EncodingTests.swift
+      - path: HarborTests/F11OpenSubtitlesHashSwapTests.swift
+      - path: HarborTests/F11SubtitleFontTests.swift
+      - path: HarborTests/F11SubtitleRankingTests.swift
+      - path: HarborTests/F11TextSyncTests.swift
+      - path: HarborTests/F12HdrToneMappingTests.swift
+      - path: HarborTests/F12PlayerDownloadTests.swift
+      - path: HarborTests/F12StreamSwitcherFilterTests.swift
       - path: HarborTests/Fixtures
         type: folder
         buildPhase: resources

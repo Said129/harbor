@@ -37,6 +37,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A new font applies the next time a video opens." = "A new font applies the next time a video opens.";
 "A relay we run. Nothing to set up, and it stays current on its own." = "हमारे द्वारा चलाया जाने वाला रिले। कुछ भी सेटअप नहीं करना पड़ता और यह अपने-आप अप-टू-डेट रहता है।";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift और ऐरो कुंजियों से छोटा जंप, ताकि हर बार कुछ सेकंड आगे-पीछे किया जा सके।";
@@ -183,6 +184,8 @@
 "Al reproducir automáticamente el siguiente episodio, conserva la misma versión/fuente que acabas de ver en lugar de la fuente mejor clasificada de Harbor. Si esa fuente no está disponible, usa la mejor fuente." = "अगला एपिसोड अपने-आप चलाते समय Harbor की सबसे ऊँची रैंक वाली स्ट्रीम के बजाय उसी रिलीज़/स्रोत का इस्तेमाल करें जिसे आप अभी देख रहे थे। वह स्रोत उपलब्ध न होने पर सबसे अच्छी स्ट्रीम इस्तेमाल की जाती है।";
 "Albums" = "एल्बम";
 "Aleatorio" = "शफ़ल करें";
+"Align to now" = "अभी के समय से सिंक करें";
+"Aligned" = "सिंक हो गया";
 "Alignment" = "संरेखण";
 "Alineación" = "संरेखण";
 "All" = "सभी";
@@ -283,6 +286,7 @@
 "Authorized {when}" = "अधिकृत: {when}";
 "Auto" = "ऑटो";
 "Auto (match video)" = "ऑटो (वीडियो के अनुरूप)";
+"Auto (recommended)" = "ऑटो (अनुशंसित)";
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "स्टाइल वाले (ASS) सबटाइटल अपने-आप समायोजित करता है, ताकि अलग-अलग फ़ाइलों में संवाद का आकार समान रहे और उनके रंग, फ़ॉन्ट व साइन की पोज़िशन बनी रहे।";
 "Auto-hide the Skip button after" = "इतने समय बाद स्किप बटन अपने-आप छिपाएँ";
 "Auto-play next episode" = "अगला एपिसोड अपने-आप चलाएँ";
@@ -334,6 +338,7 @@
 "Bajar {name}" = "{name} नीचे ले जाएँ";
 "Balance picture quality and performance. Changes apply to the next video you play." = "तस्वीर की गुणवत्ता और प्रदर्शन में संतुलन रखें। बदलाव अगले चलाए जाने वाले वीडियो पर लागू होंगे।";
 "Balanced" = "संतुलित";
+"Balanced (Mobius)" = "संतुलित (Mobius)";
 "Bar" = "बार";
 "Bar color" = "बार का रंग";
 "Barra de búsqueda" = "सीक बार";
@@ -669,6 +674,7 @@
 "Contraste" = "कॉन्ट्रास्ट";
 "Controles" = "कंट्रोल";
 "Controls" = "कंट्रोल";
+"Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play." = "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.";
 "Copia principal." = "मुख्य टेक्स्ट।";
 "Copia secundaria." = "द्वितीयक टेक्स्ट।";
 "Copied" = "कॉपी किया गया";
@@ -695,6 +701,7 @@
 "Could not reach this server" = "इस सर्वर से संपर्क नहीं हो सका";
 "Could not read file" = "फ़ाइल पढ़ी नहीं जा सकी";
 "Could not read the account on this device." = "Could not read the account on this device.";
+"Could not read this subtitle track. Pick a different subtitle, then try again." = "यह सबटाइटल ट्रैक पढ़ा नहीं जा सका। कोई दूसरा सबटाइटल चुनें, फिर कोशिश करें।";
 "Could not read your lists. Your saved data is preserved." = "आपकी सूचियाँ पढ़ी नहीं जा सकीं। सहेजा गया डेटा सुरक्षित है।";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not resolve that Letterboxd list URL." = "उस Letterboxd लिस्ट के URL को पहचाना नहीं जा सका।";
@@ -721,6 +728,7 @@
 "Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "इस Roku से संपर्क नहीं हो सका";
 "Couldn't read that image. Try a different file." = "वह इमेज पढ़ी नहीं जा सकी। कोई दूसरी फ़ाइल आज़माएँ।";
+"Couldn't save the synced subtitle. Try again." = "सिंक किया गया सबटाइटल सेव नहीं किया जा सका। फिर कोशिश करें।";
 "Couldn't scan that folder." = "वह फ़ोल्डर स्कैन नहीं किया जा सका।";
 "Cover Image URL" = "कवर इमेज URL";
 "Cozy Autumn Nights" = "सुकून भरी पतझड़ की रातें";
@@ -868,6 +876,7 @@
 "Dracula" = "ड्रैकुला";
 "Drama" = "ड्रामा";
 "Drama Series" = "ड्रामा सीरीज़";
+"Drift fixed" = "ड्रिफ्ट ठीक किया गया";
 "Drift monitor" = "ड्रिफ्ट मॉनिटर";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "ऐप के पीछे वॉलपेपर डालें। डिम स्लाइडर टेक्स्ट को पढ़ने योग्य बनाए रखता है।";
 "Drop shadow" = "ड्रॉप शैडो";
@@ -1035,8 +1044,10 @@
 "Fill" = "भरें";
 "Fills in where TMDB comes up empty (anime, older catalog). Free at" = "जहाँ TMDB में जानकारी नहीं मिलती, वहाँ जानकारी देता है (एनीमे, पुराना कैटलॉग)। यहाँ मुफ़्त है";
 "Film" = "फ़िल्म";
+"Filmic (Hable)" = "फ़िल्मी (Hable)";
 "Filter countries" = "देश फ़िल्टर करें";
 "Filter genres" = "शैलियाँ फ़िल्टर करें";
+"Filtered" = "फ़िल्टर किया गया";
 "Filters" = "फ़िल्टर";
 "Filters out streams from adult catalogs and addons. On by default." = "वयस्क कैटलॉग और ऐडऑन की स्ट्रीम हटा देता है। डिफ़ॉल्ट रूप से चालू है।";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "मेल खाने वाले वीडियो और उपशीर्षक के लिए सत्यापित टाइमिंग सुधार खोजें और साझा करें। समुदाय से खोज और योगदान रोकने के लिए निजी मोड चालू करें।";
@@ -1047,6 +1058,7 @@
 "Finnish" = "फ़िनिश";
 "First-light picks" = "भोर की पसंद";
 "Fit" = "फ़िट करें";
+"Fix one section" = "एक सेक्शन ठीक करें";
 "Flat" = "फ़्लैट";
 "Flechas" = "तीर";
 "Focus" = "Focus";
@@ -1064,6 +1076,7 @@
 "Forest" = "वन";
 "Forget" = "हटाएँ";
 "Forget remote streaming server" = "सहेजा हुआ रिमोट स्ट्रीमिंग सर्वर हटाएँ";
+"Format" = "फ़ॉर्मैट";
 "Formato de canales" = "Channel format";
 "Forzado" = "फ़ोर्स्ड";
 "Found {count} streams for {title} in {seconds}s" = "{title} के लिए {seconds}s में {count} स्ट्रीम मिलीं";
@@ -1356,6 +1369,7 @@
 "Jina API key (optional)" = "Jina API कुंजी (वैकल्पिक)";
 "Jina Reader" = "Jina रीडर";
 "Join" = "जुड़ें";
+"Jump here" = "यहाँ जाएँ";
 "Jump past a known injected ad on its own instead of showing the Skip button." = "स्किप बटन दिखाने के बजाय, पहचाने गए इंजेक्टेड विज्ञापन को अपने-आप स्किप करें।";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "ओपनिंग शुरू होते ही अपने-आप आगे बढ़ें। इंट्रो पर वापस जाने पर वह दोबारा चलेगा और फिर स्किप नहीं होगा। स्किप बटन ऊपर की सेटिंग का पालन करता है।";
 "Just added" = "हाल ही में जोड़ा गया";
@@ -1439,6 +1453,7 @@
 "Live TV" = "लाइव TV";
 "Live TV playlists" = "लाइव TV प्लेलिस्ट";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
+"Live sync" = "लाइव सिंक";
 "Llegaste al final · {n} complementos" = "आप अंत तक पहुँच गए हैं · {n} ऐडऑन";
 "Load effect" = "लोड इफ़ेक्ट";
 "Load file" = "फ़ाइल लोड करें";
@@ -1550,6 +1565,7 @@
 "Misterio" = "रहस्य";
 "Mix surround sound down to stereo" = "सराउंड साउंड को स्टीरियो में मिक्स करें";
 "Mode" = "मोड";
+"Modern (Spline)" = "आधुनिक (स्प्लाइन)";
 "Modo de concentración" = "फ़ोकस मोड";
 "Modo de lectura" = "पढ़ने का मोड";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "एपिसोड खत्म होने से कितनी देर पहले अगला पिल दिखाई दे। ऑटो इसे एपिसोड की अवधि के अनुसार समायोजित करता है, ताकि छोटे एपिसोड में यह बहुत जल्दी न दिखे। बंद करने पर यह छिप जाता है।";
@@ -1732,6 +1748,7 @@
 "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo." = "Could not analyze this source. Playback continues; you can retry.";
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "किसी स्रोत से कोई स्ट्रीम नहीं मिली";
+"No sources" = "कोई स्रोत नहीं";
 "No sources match your filter" = "आपके फ़िल्टर से मेल खाने वाला कोई स्रोत नहीं";
 "No streams came back." = "कोई स्ट्रीम वापस नहीं आई।";
 "No streams for {title}" = "{title} के लिए कोई स्ट्रीम नहीं";
@@ -1787,6 +1804,7 @@
 "Now" = "अभी";
 "Now Playing" = "अभी चल रहा है";
 "Now playing: {label}" = "अभी चल रहा है: {label}";
+"Now tap the last line of that section." = "अब उस सेक्शन की आख़िरी लाइन पर टैप करें।";
 "Now watching on AniList" = "अब AniList पर देख रहे हैं";
 "Now watching on MyAnimeList" = "अब MyAnimeList पर देख रहे हैं";
 "Nuevos estrenos de anime" = "नई एनीमे रिलीज़";
@@ -1970,6 +1988,8 @@
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
 "Play to where the ad starts and add it, then play to the end and tap Now. You can also type the times. Add more than one if there are several." = "जहाँ विज्ञापन शुरू होता है वहाँ तक चलाएँ और उसे जोड़ें, फिर अंत तक चलाकर अभी पर टैप करें। आप समय टाइप भी कर सकते हैं। अगर कई विज्ञापन हैं, तो एक से अधिक जोड़ें।";
 "Play trailers in the hero" = "हीरो सेक्शन में ट्रेलर चलाएँ";
+"Play until you hear a line inside this section, tap it, then choose Align to now." = "इस सेक्शन में कोई लाइन सुनाई देने तक चलाएँ, उस पर टैप करें, फिर अभी के समय से मिलाएँ चुनें।";
+"Play until you hear a line. Tap that same line below, then choose Align to now." = "कोई लाइन सुनाई देने तक चलाएँ। नीचे उसी लाइन पर टैप करें, फिर अभी के समय से मिलाएँ चुनें।";
 "Playback" = "प्लेबैक";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2109,6 +2129,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "पढ़ने का मोड";
 "Reading options" = "Reading options";
+"Reading subtitles..." = "सबटाइटल पढ़े जा रहे हैं...";
 "Reading your search" = "आपकी खोज पढ़ी जा रही है";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Ready" = "तैयार";
@@ -2133,6 +2154,7 @@
 "Recommended for you" = "आपके लिए सुझाए गए";
 "Recordatorio" = "Reminder";
 "Redondeado" = "गोलाकार";
+"Reference (bt.2390)" = "रेफ़रेंस (bt.2390)";
 "Refresh" = "रिफ़्रेश करें";
 "Refresh episodes" = "Refresh episodes";
 "Refresh sources" = "स्रोत रिफ़्रेश करें";
@@ -2208,6 +2230,7 @@
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "हीरो सेक्शन में दिखाने के लिए भरपूर आर्टवर्क वाले टाइटल चाहिए";
 "Resaltado, progreso." = "हाइलाइट, प्रगति।";
 "Reset" = "रीसेट करें";
+"Reset filters" = "फ़िल्टर रीसेट करें";
 "Reset picture" = "तस्वीर रीसेट करें";
 "Reset subtitle style" = "Reset subtitle style";
 "Reset sync" = "सिंक रीसेट करें";
@@ -2328,6 +2351,7 @@
 "Se usa con 55 % / 25 % de opacidad." = "55% / 25% अल्फ़ा पर इस्तेमाल होता है।";
 "Search" = "खोजें";
 "Search SUBDL for subtitles in multiple languages. Requires an API key." = "SUBDL पर कई भाषाओं में उपशीर्षक खोजें। API कुंजी चाहिए।";
+"Search a line by its words" = "शब्दों से कोई पंक्ति खोजें";
 "Search actors, directors…" = "अभिनेता, निर्देशक खोजें…";
 "Search addons" = "ऐडऑन खोजें";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
@@ -2450,6 +2474,7 @@
 "Show episode ratings" = "एपिसोड की रेटिंग दिखाएँ";
 "Show every addon row" = "हर ऐडऑन पंक्ति दिखाएँ";
 "Show everything anyway" = "फिर भी सब कुछ दिखाएँ";
+"Show flagged" = "फ़्लैग किए गए आइटम दिखाएँ";
 "Show format chips on stream rows" = "स्ट्रीम पंक्तियों पर फ़ॉर्मैट चिप दिखाएँ";
 "Show forum threads and comments from AniList on anime detail pages." = "एनीमे विवरण पेजों पर AniList के फ़ोरम थ्रेड और टिप्पणियाँ दिखाएँ।";
 "Show full descriptions" = "पूरे विवरण दिखाएँ";
@@ -2536,6 +2561,7 @@
 "Smooth on weak PCs" = "कम क्षमता वाले PC पर भी स्मूद";
 "Sobre la línea principal" = "मुख्य पंक्ति के ऊपर";
 "Soccer" = "फ़ुटबॉल";
+"Soft (Reinhard)" = "सॉफ़्ट (Reinhard)";
 "Soft halo around the text. Cleanest on most content." = "टेक्स्ट के चारों ओर हल्की चमक। ज़्यादातर कॉन्टेंट पर सबसे साफ़ दिखता है।";
 "Softer and dimmer, kinder for late-night watching." = "ज़्यादा सॉफ़्ट और मंद, देर रात देखने में आँखों के लिए आरामदायक।";
 "Solo posición y tamaño" = "केवल स्थिति और आकार";
@@ -2708,6 +2734,7 @@
 "Tamaño" = "आकार";
 "Tamil" = "तमिल";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
+"Tap the first line of the section you want to fix." = "जिस सेक्शन को ठीक करना है, उसकी पहली पंक्ति पर टैप करें।";
 "Tarjetas de carteles" = "पोस्टर कार्ड";
 "Tarjetas de episodios" = "एपिसोड कार्ड";
 "Tarjetas, paneles." = "कार्ड, पैनल।";
@@ -2796,6 +2823,7 @@
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "This server responded but is not supported" = "सर्वर ने जवाब दिया, लेकिन यह समर्थित नहीं है";
+"This subtitle looks like a different version of the video." = "यह सबटाइटल वीडियो के किसी दूसरे वर्ज़न का लगता है।";
 "This theme is missing a color ({color})." = "इस थीम में रंग ({color}) नहीं है।";
 "This theme is missing its colors." = "इस थीम में रंग नहीं हैं।";
 "This theme's preview colors look invalid." = "इस थीम के प्रीव्यू के रंग अमान्य लगते हैं।";
@@ -2807,6 +2835,8 @@
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "थम्ब्स डाउन इस टाइटल को फ़ीचर्ड से छिपाता है। थम्ब्स अप इससे मिलते-जुलते सुझाव दिखाने में मदद करता है।";
 "Tiempo reproducido" = "Playback time";
+"Timing and drift are corrected. Check playback, then save." = "टाइमिंग और ड्रिफ्ट ठीक कर दिए गए हैं। प्लेबैक जाँचें, फिर सेव करें।";
+"Timing is aligned. If it becomes early or late later, repeat this at another line." = "टाइमिंग मेल खा रही है। अगर आगे चलकर यह जल्दी या देर से आने लगे, तो किसी दूसरी पंक्ति पर इसे दोहराएँ।";
 "Tipo" = "प्रकार";
 "Tipografía" = "टाइपोग्राफ़ी";
 "Titles" = "शीर्षक";
@@ -2828,6 +2858,7 @@
 "Todos los deportes" = "सभी खेल";
 "Todos los géneros" = "सभी शैलियाँ";
 "Todos los idiomas" = "सभी भाषाएँ";
+"Tone-mapping curve" = "टोन-मैपिंग कर्व";
 "Tonight" = "आज रात";
 "Tonight's Slate" = "आज रात की पेशकश";
 "Tonight's binge bait" = "आज रात लगातार देखने के लिए";
@@ -4348,6 +4379,7 @@
 "{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "{h} घंटे बाकी";
 "{h}h {m}m left" = "{h} घंटे {m} मिनट बाकी";
+"{langs} only" = "केवल {langs}";
 "{ms} ms" = "{ms} मिलीसेकंड";
 "{m}m left" = "{m} मिनट बाकी";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, और अन्य सभी नाम, लोगो व ब्रांड संदर्भ उनके संबंधित स्वामियों की संपत्ति हैं और यहां केवल संगतता व पहचान के लिए इस्तेमाल किए गए हैं।";
@@ -4368,6 +4400,7 @@
 "{n} eps" = "{n} एपिसोड";
 "{n} films." = "{n} films.";
 "{n} hidden" = "{n} छिपे हुए";
+"{n} hidden by trust filter" = "ट्रस्ट फ़िल्टर ने {n} छिपाए";
 "{n} hr" = "{n} घंटे";
 "{n} in a day" = "एक दिन में {n}";
 "{n} item" = "{n} आइटम";
@@ -4379,9 +4412,11 @@
 "{n} months ago" = "{n} महीने पहले";
 "{n} not matched" = "{n} का मिलान नहीं हुआ";
 "{n} sec" = "{n} सेकंड";
+"{n} section fixes. Reset all" = "{n} सेक्शन में किए गए सुधार। सभी रीसेट करें";
 "{n} seeds" = "{n} सीड";
 "{n} semillas" = "{n} सीड";
 "{n} sources · 0 made it through" = "{n} स्रोत · 0 सफल रहे";
+"{n} uncached hidden" = "{n} अनकैश्ड आइटम छिपाए गए";
 "{n} watching" = "{n} देख रहे हैं";
 "{n} weeks ago" = "{n} weeks ago";
 "{n} years ago" = "{n} years ago";

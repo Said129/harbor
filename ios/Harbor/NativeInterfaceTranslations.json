@@ -186,7 +186,9 @@
     "Sends guests a pointer to this screen in their app": "Envía a los invitados un enlace a esta pantalla en su app",
     "Mark next episode": "Marcar el siguiente episodio",
     "Planning": "Planeado",
-    "Repeating": "Repitiendo"
+    "Repeating": "Repitiendo",
+    "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.": "Controla cuánto se reducen las luces intensas para ajustarse a tu pantalla. Los cambios se aplican en el siguiente vídeo que reproduzcas.",
+    "A new font applies the next time a video opens.": "Una fuente nueva se aplica la próxima vez que se abre un vídeo."
   },
   "pt": {
     "Give more weight to titles in your languages and region in Discover.": "Dá mais peso aos títulos nos teus idiomas e da tua região em Descobrir.",

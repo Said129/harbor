@@ -37,6 +37,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A new font applies the next time a video opens." = "A new font applies the next time a video opens.";
 "A relay we run. Nothing to set up, and it stays current on its own." = "Obsługiwany przez nas serwer pośredniczący. Nie wymaga konfiguracji i aktualizuje się automatycznie.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Krótszy skok po naciśnięciu Shift i klawisza strzałki, umożliwiający przesuwanie o kilka sekund.";
@@ -183,6 +184,8 @@
 "Al reproducir automáticamente el siguiente episodio, conserva la misma versión/fuente que acabas de ver en lugar de la fuente mejor clasificada de Harbor. Si esa fuente no está disponible, usa la mejor fuente." = "Podczas automatycznego odtwarzania następnego odcinka zachowaj to samo wydanie lub źródło, z którego właśnie korzystano, zamiast najwyżej ocenionego strumienia Harbor. Jeśli to źródło jest niedostępne, użyty zostanie najlepszy strumień.";
 "Albums" = "Albumy";
 "Aleatorio" = "Losuj";
+"Align to now" = "Wyrównaj do bieżącego momentu";
+"Aligned" = "Wyrównano";
 "Alignment" = "Wyrównanie";
 "Alineación" = "Wyrównanie";
 "All" = "Wszystko";
@@ -283,6 +286,7 @@
 "Authorized {when}" = "Autoryzowano {when}";
 "Auto" = "Automatycznie";
 "Auto (match video)" = "Automatycznie (dopasuj do filmu)";
+"Auto (recommended)" = "Automatyczna (zalecana)";
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "Automatycznie dostosowuje stylizowane napisy (ASS), aby dialogi miały ten sam rozmiar w różnych plikach, zachowując ich kolory, czcionki i rozmieszczenie napisów ekranowych.";
 "Auto-hide the Skip button after" = "Automatycznie ukryj przycisk Pomiń po";
 "Auto-play next episode" = "Automatycznie odtwarzaj następny odcinek";
@@ -334,6 +338,7 @@
 "Bajar {name}" = "Przenieś {name} w dół";
 "Balance picture quality and performance. Changes apply to the next video you play." = "Zrównoważ jakość obrazu i wydajność. Zmiany zostaną zastosowane przy następnym odtwarzanym filmie.";
 "Balanced" = "Zrównoważone";
+"Balanced (Mobius)" = "Zrównoważona (Mobius)";
 "Bar" = "Pasek";
 "Bar color" = "Kolor paska";
 "Barra de búsqueda" = "Pasek przewijania";
@@ -669,6 +674,7 @@
 "Contraste" = "Kontrast";
 "Controles" = "Elementy sterujące";
 "Controls" = "Elementy sterujące";
+"Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play." = "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.";
 "Copia principal." = "Tekst główny.";
 "Copia secundaria." = "Kopia dodatkowa.";
 "Copied" = "Skopiowano";
@@ -695,6 +701,7 @@
 "Could not reach this server" = "Nie udało się połączyć z tym serwerem";
 "Could not read file" = "Nie udało się odczytać pliku";
 "Could not read the account on this device." = "Could not read the account on this device.";
+"Could not read this subtitle track. Pick a different subtitle, then try again." = "Nie udało się odczytać tej ścieżki napisów. Wybierz inne napisy i spróbuj ponownie.";
 "Could not read your lists. Your saved data is preserved." = "Nie udało się odczytać list. Zapisane dane zostały zachowane.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not resolve that Letterboxd list URL." = "Nie udało się rozpoznać adresu URL tej listy Letterboxd.";
@@ -721,6 +728,7 @@
 "Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "Nie udało się połączyć z tym Roku";
 "Couldn't read that image. Try a different file." = "Nie udało się odczytać tego obrazu. Spróbuj użyć innego pliku.";
+"Couldn't save the synced subtitle. Try again." = "Nie udało się zapisać zsynchronizowanych napisów. Spróbuj ponownie.";
 "Couldn't scan that folder." = "Nie udało się przeskanować tego folderu.";
 "Cover Image URL" = "URL okładki";
 "Cozy Autumn Nights" = "Przytulne jesienne wieczory";
@@ -868,6 +876,7 @@
 "Dracula" = "Dracula";
 "Drama" = "Dramat";
 "Drama Series" = "Seriale dramatyczne";
+"Drift fixed" = "Skorygowano rozbieżność";
 "Drift monitor" = "Monitor rozjazdu";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "Umieść tapetę w tle aplikacji. Suwak przyciemnienia pomaga zachować czytelność tekstu.";
 "Drop shadow" = "Cień";
@@ -1035,8 +1044,10 @@
 "Fill" = "Wypełnij";
 "Fills in where TMDB comes up empty (anime, older catalog). Free at" = "Uzupełnia braki w TMDB, zwłaszcza dla anime i starszego katalogu. Bezpłatnie na";
 "Film" = "Film";
+"Filmic (Hable)" = "Filmowa (Hable)";
 "Filter countries" = "Filtruj kraje";
 "Filter genres" = "Filtruj gatunki";
+"Filtered" = "Przefiltrowano";
 "Filters" = "Filtry";
 "Filters out streams from adult catalogs and addons. On by default." = "Odfiltrowuje strumienie z katalogów i dodatków dla dorosłych. Domyślnie włączone.";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "Znajduj i udostępniaj zweryfikowane korekty synchronizacji dla pasujących plików wideo i napisów. Włącz tryb prywatny, aby zatrzymać zapytania i wkład do społeczności.";
@@ -1047,6 +1058,7 @@
 "Finnish" = "fiński";
 "First-light picks" = "Propozycje na pierwsze promienie dnia";
 "Fit" = "Dopasuj";
+"Fix one section" = "Popraw jedną sekcję";
 "Flat" = "Neutralny";
 "Flechas" = "Strzałki";
 "Focus" = "Focus";
@@ -1064,6 +1076,7 @@
 "Forest" = "Las";
 "Forget" = "Zapomnij";
 "Forget remote streaming server" = "Zapomnij zdalny serwer strumieniowania";
+"Format" = "Format";
 "Formato de canales" = "Channel format";
 "Forzado" = "Wymuszone";
 "Found {count} streams for {title} in {seconds}s" = "Znaleziono {count} strumieni dla {title} w {seconds}s";
@@ -1356,6 +1369,7 @@
 "Jina API key (optional)" = "Klucz API Jina (opcjonalnie)";
 "Jina Reader" = "Jina Reader";
 "Join" = "Dołącz";
+"Jump here" = "Przejdź tutaj";
 "Jump past a known injected ad on its own instead of showing the Skip button." = "Automatycznie pomijaj znaną wstrzykniętą reklamę zamiast wyświetlać przycisk Pomiń.";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Automatycznie pomijaj czołówki, gdy się zaczynają. Cofnięcie do czołówki odtworzy ją bez ponownego pomijania. Przycisk Pomiń działa zgodnie z ustawieniem powyżej.";
 "Just added" = "Ostatnio dodane";
@@ -1439,6 +1453,7 @@
 "Live TV" = "Telewizja na żywo";
 "Live TV playlists" = "Playlisty telewizji na żywo";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
+"Live sync" = "Synchronizacja na żywo";
 "Llegaste al final · {n} complementos" = "To już koniec · {n} dodatków";
 "Load effect" = "Efekt wczytywania";
 "Load file" = "Wczytaj plik";
@@ -1550,6 +1565,7 @@
 "Misterio" = "Tajemnica";
 "Mix surround sound down to stereo" = "Miksuj dźwięk przestrzenny do stereo";
 "Mode" = "Tryb";
+"Modern (Spline)" = "Nowoczesna (Spline)";
 "Modo de concentración" = "Tryb skupienia";
 "Modo de lectura" = "Tryb czytania";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Określa, kiedy przed końcem odcinka pojawia się etykieta Następny odcinek. Opcja Automatycznie dopasowuje czas do długości odcinka, dzięki czemu w krótkich odcinkach monit nie pojawia się zbyt wcześnie. Opcja Wył. go ukrywa.";
@@ -1732,6 +1748,7 @@
 "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo." = "Could not analyze this source. Playback continues; you can retry.";
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "Żadne źródło nie zwróciło strumienia";
+"No sources" = "Brak źródeł";
 "No sources match your filter" = "Żadne źródła nie pasują do filtra";
 "No streams came back." = "Nie wróciły żadne strumienie.";
 "No streams for {title}" = "Brak strumieni dla {title}";
@@ -1787,6 +1804,7 @@
 "Now" = "Teraz";
 "Now Playing" = "Teraz odtwarzane";
 "Now playing: {label}" = "Teraz odtwarzane: {label}";
+"Now tap the last line of that section." = "Teraz stuknij ostatni wiersz tej sekcji.";
 "Now watching on AniList" = "Teraz oglądasz na AniList";
 "Now watching on MyAnimeList" = "Teraz oglądasz na MyAnimeList";
 "Nuevos estrenos de anime" = "Nowe anime";
@@ -1970,6 +1988,8 @@
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
 "Play to where the ad starts and add it, then play to the end and tap Now. You can also type the times. Add more than one if there are several." = "Odtwórz film do miejsca, w którym zaczyna się reklama, i dodaj je, a następnie odtwórz do końca reklamy i stuknij Teraz. Możesz też wpisać czasy. Jeśli reklam jest kilka, dodaj więcej niż jedną.";
 "Play trailers in the hero" = "Odtwarzaj zwiastuny w banerze głównym";
+"Play until you hear a line inside this section, tap it, then choose Align to now." = "Odtwarzaj, aż usłyszysz kwestię z tej sekcji, stuknij ją, a następnie wybierz „Wyrównaj do bieżącego momentu”.";
+"Play until you hear a line. Tap that same line below, then choose Align to now." = "Odtwarzaj, aż usłyszysz kwestię. Stuknij tę samą kwestię poniżej, a następnie wybierz „Wyrównaj do bieżącego momentu”.";
 "Playback" = "Odtwarzanie";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2109,6 +2129,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "Tryb czytania";
 "Reading options" = "Reading options";
+"Reading subtitles..." = "Odczytywanie napisów...";
 "Reading your search" = "Odczytywanie wyszukiwania";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Ready" = "Gotowe";
@@ -2133,6 +2154,7 @@
 "Recommended for you" = "Polecane dla Ciebie";
 "Recordatorio" = "Reminder";
 "Redondeado" = "Zaokrąglona";
+"Reference (bt.2390)" = "Referencyjna (bt.2390)";
 "Refresh" = "Odśwież";
 "Refresh episodes" = "Refresh episodes";
 "Refresh sources" = "Odśwież źródła";
@@ -2208,6 +2230,7 @@
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Do zasilania głównej karuzeli potrzebne są tytuły z bogatą oprawą graficzną";
 "Resaltado, progreso." = "Wyróżnienie, postęp.";
 "Reset" = "Resetuj";
+"Reset filters" = "Resetuj filtry";
 "Reset picture" = "Resetuj obraz";
 "Reset subtitle style" = "Reset subtitle style";
 "Reset sync" = "Zresetuj synchronizację";
@@ -2328,6 +2351,7 @@
 "Se usa con 55 % / 25 % de opacidad." = "Używane z kryciem 55% / 25%.";
 "Search" = "Szukaj";
 "Search SUBDL for subtitles in multiple languages. Requires an API key." = "Szukaj napisów w wielu językach w SUBDL. Wymaga klucza API.";
+"Search a line by its words" = "Wyszukaj wiersz po jego słowach";
 "Search actors, directors…" = "Szukaj aktorów, reżyserów…";
 "Search addons" = "Szukaj dodatków";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
@@ -2450,6 +2474,7 @@
 "Show episode ratings" = "Pokazuj oceny odcinków";
 "Show every addon row" = "Pokaż sekcję każdego dodatku";
 "Show everything anyway" = "Mimo to pokaż wszystko";
+"Show flagged" = "Pokaż oznaczone";
 "Show format chips on stream rows" = "Pokazuj etykiety formatów w wierszach strumieni";
 "Show forum threads and comments from AniList on anime detail pages." = "Pokazuj wątki na forum i komentarze z AniList na stronach szczegółów anime.";
 "Show full descriptions" = "Pokazuj pełne opisy";
@@ -2536,6 +2561,7 @@
 "Smooth on weak PCs" = "Płynne odtwarzanie na słabszych komputerach";
 "Sobre la línea principal" = "Nad głównym wierszem";
 "Soccer" = "Piłka nożna";
+"Soft (Reinhard)" = "Łagodna (Reinhard)";
 "Soft halo around the text. Cleanest on most content." = "Delikatna poświata wokół tekstu. Najbardziej estetyczna przy większości treści.";
 "Softer and dimmer, kinder for late-night watching." = "Bardziej miękki i ciemniejszy obraz, przyjemniejszy podczas oglądania późno w nocy.";
 "Solo posición y tamaño" = "Tylko położenie i rozmiar";
@@ -2708,6 +2734,7 @@
 "Tamaño" = "Rozmiar";
 "Tamil" = "tamilski";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
+"Tap the first line of the section you want to fix." = "Stuknij pierwszy wiersz sekcji, którą chcesz poprawić.";
 "Tarjetas de carteles" = "Karty plakatów";
 "Tarjetas de episodios" = "Karty odcinków";
 "Tarjetas, paneles." = "Karty, panele.";
@@ -2796,6 +2823,7 @@
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "This server responded but is not supported" = "Ten serwer odpowiedział, ale nie jest obsługiwany";
+"This subtitle looks like a different version of the video." = "Te napisy wyglądają na przeznaczone do innej wersji filmu.";
 "This theme is missing a color ({color})." = "W tym motywie brakuje koloru ({color}).";
 "This theme is missing its colors." = "W tym motywie brakuje kolorów.";
 "This theme's preview colors look invalid." = "Kolory podglądu tego motywu są nieprawidłowe.";
@@ -2807,6 +2835,8 @@
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "Kciuk w dół ukrywa ten tytuł w sekcji Polecane. Kciuk w górę pomaga wyświetlać podobne propozycje.";
 "Tiempo reproducido" = "Playback time";
+"Timing and drift are corrected. Check playback, then save." = "Skorygowano synchronizację i rozbieżność. Sprawdź odtwarzanie, a następnie zapisz.";
+"Timing is aligned. If it becomes early or late later, repeat this at another line." = "Czas jest zsynchronizowany. Jeśli napisy zaczną później wyprzedzać lub opóźniać obraz, powtórz tę czynność przy innym wierszu.";
 "Tipo" = "Typ";
 "Tipografía" = "Typografia";
 "Titles" = "Tytuły";
@@ -2828,6 +2858,7 @@
 "Todos los deportes" = "Wszystkie sporty";
 "Todos los géneros" = "Wszystkie gatunki";
 "Todos los idiomas" = "Wszystkie języki";
+"Tone-mapping curve" = "Krzywa mapowania tonalnego";
 "Tonight" = "Dziś wieczorem";
 "Tonight's Slate" = "Dzisiejszy zestaw";
 "Tonight's binge bait" = "Dzisiejsza pokusa na maraton";
@@ -4348,6 +4379,7 @@
 "{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "pozostało {h} godz.";
 "{h}h {m}m left" = "pozostało {h} godz. {m} min";
+"{langs} only" = "Tylko {langs}";
 "{ms} ms" = "{ms} ms";
 "{m}m left" = "pozostało {m} min";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} oraz wszystkie inne nazwy, logo i odniesienia do marek są własnością ich odpowiednich właścicieli i są tu używane wyłącznie w celu zapewnienia zgodności i identyfikacji.";
@@ -4368,6 +4400,7 @@
 "{n} eps" = "{n} odc.";
 "{n} films." = "{n} films.";
 "{n} hidden" = "{n} ukrytych";
+"{n} hidden by trust filter" = "Ukrytych przez filtr zaufania: {n}";
 "{n} hr" = "{n} godz.";
 "{n} in a day" = "{n} w ciągu dnia";
 "{n} item" = "{n} elementów";
@@ -4379,9 +4412,11 @@
 "{n} months ago" = "{n} miesięcy temu";
 "{n} not matched" = "{n} niedopasowanych";
 "{n} sec" = "{n} s";
+"{n} section fixes. Reset all" = "{n} poprawek sekcji. Resetuj wszystkie";
 "{n} seeds" = "{n} seedów";
 "{n} semillas" = "{n} seedów";
 "{n} sources · 0 made it through" = "{n} źródeł · 0 przeszło filtry";
+"{n} uncached hidden" = "Ukryto {n} niebuforowanych pozycji";
 "{n} watching" = "{n} oglądających";
 "{n} weeks ago" = "{n} weeks ago";
 "{n} years ago" = "{n} years ago";

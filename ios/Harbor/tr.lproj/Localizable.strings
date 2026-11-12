@@ -37,6 +37,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A new font applies the next time a video opens." = "A new font applies the next time a video opens.";
 "A relay we run. Nothing to set up, and it stays current on its own." = "Bizim işlettiğimiz bir aktarıcı. Kurulum gerektirmez ve kendini otomatik olarak güncel tutar.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Shift ile ok tuşlarına basıldığında her seferinde birkaç saniyelik daha kısa bir atlama yapar.";
@@ -183,6 +184,8 @@
 "Al reproducir automáticamente el siguiente episodio, conserva la misma versión/fuente que acabas de ver en lugar de la fuente mejor clasificada de Harbor. Si esa fuente no está disponible, usa la mejor fuente." = "Sonraki bölüm otomatik oynatılırken Harbor'ın en üst sıradaki yayını yerine az önce izlediğiniz sürümü/kaynağı korur. Bu kaynak kullanılamıyorsa en iyi yayına geçer.";
 "Albums" = "Albümler";
 "Aleatorio" = "Karıştır";
+"Align to now" = "Şimdiye hizala";
+"Aligned" = "Hizalandı";
 "Alignment" = "Hizalama";
 "Alineación" = "Hizalama";
 "All" = "Tümü";
@@ -283,6 +286,7 @@
 "Authorized {when}" = "{when} yetkilendirildi";
 "Auto" = "Otomatik";
 "Auto (match video)" = "Otomatik (videoyla eşleştir)";
+"Auto (recommended)" = "Otomatik (önerilen)";
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "Biçimlendirilmiş (ASS) altyazıları, renklerini, yazı tiplerini ve ekran yazılarının konumlarını korurken konuşmaların tüm dosyalarda aynı boyutta kalacağı şekilde otomatik olarak ayarlar.";
 "Auto-hide the Skip button after" = "Atla düğmesini şu süreden sonra otomatik gizle";
 "Auto-play next episode" = "Sonraki bölümü otomatik oynat";
@@ -334,6 +338,7 @@
 "Bajar {name}" = "{name} öğesini aşağı taşı";
 "Balance picture quality and performance. Changes apply to the next video you play." = "Görüntü kalitesi ile performansı dengeleyin. Değişiklikler bir sonraki oynattığınız videoda geçerli olur.";
 "Balanced" = "Dengeli";
+"Balanced (Mobius)" = "Dengeli (Mobius)";
 "Bar" = "Çubuk";
 "Bar color" = "Çubuk rengi";
 "Barra de búsqueda" = "İlerleme çubuğu";
@@ -669,6 +674,7 @@
 "Contraste" = "Kontrast";
 "Controles" = "Kontroller";
 "Controls" = "Kontroller";
+"Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play." = "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.";
 "Copia principal." = "Birincil metin.";
 "Copia secundaria." = "İkincil metin.";
 "Copied" = "Kopyalandı";
@@ -695,6 +701,7 @@
 "Could not reach this server" = "Bu sunucuya ulaşılamadı";
 "Could not read file" = "Dosya okunamadı";
 "Could not read the account on this device." = "Could not read the account on this device.";
+"Could not read this subtitle track. Pick a different subtitle, then try again." = "Bu altyazı parçası okunamadı. Farklı bir altyazı seçip tekrar deneyin.";
 "Could not read your lists. Your saved data is preserved." = "Listeleriniz okunamadı. Kayıtlı verileriniz korunuyor.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not resolve that Letterboxd list URL." = "Bu Letterboxd listesinin URL'si çözümlenemedi.";
@@ -721,6 +728,7 @@
 "Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "Bu Roku'ya erişilemedi";
 "Couldn't read that image. Try a different file." = "Bu görüntü okunamadı. Başka bir dosya deneyin.";
+"Couldn't save the synced subtitle. Try again." = "Eşzamanlanan altyazı kaydedilemedi. Tekrar deneyin.";
 "Couldn't scan that folder." = "Bu klasör taranamadı.";
 "Cover Image URL" = "Kapak Görseli URL'si";
 "Cozy Autumn Nights" = "Sıcacık Sonbahar Geceleri";
@@ -868,6 +876,7 @@
 "Dracula" = "Dracula";
 "Drama" = "Dram";
 "Drama Series" = "Dram Dizileri";
+"Drift fixed" = "Kayma düzeltildi";
 "Drift monitor" = "Kayma izleyici";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "Uygulamanın arkasına bir duvar kâğıdı ekleyin. Karartma kaydırıcısı metnin okunaklı kalmasını sağlar.";
 "Drop shadow" = "Gölge";
@@ -1035,8 +1044,10 @@
 "Fill" = "Doldur";
 "Fills in where TMDB comes up empty (anime, older catalog). Free at" = "TMDB'nin boş bıraktığı alanları tamamlar (anime, eski katalog). Ücretsiz:";
 "Film" = "Film";
+"Filmic (Hable)" = "Sinematik (Hable)";
 "Filter countries" = "Ülkeleri filtrele";
 "Filter genres" = "Türleri filtrele";
+"Filtered" = "Filtrelendi";
 "Filters" = "Filtreler";
 "Filters out streams from adult catalogs and addons. On by default." = "Yetişkin kataloglarındaki ve eklentilerindeki yayınları filtreler. Varsayılan olarak açıktır.";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "Eşleşen video ve altyazı dosyaları için doğrulanmış zamanlama düzeltmeleri bulun ve paylaşın. Topluluk sorgularını ve katkıları durdurmak için Özel modu açın.";
@@ -1047,6 +1058,7 @@
 "Finnish" = "Fince";
 "First-light picks" = "Günün ilk ışıklarında";
 "Fit" = "Sığdır";
+"Fix one section" = "Tek bir bölümü düzelt";
 "Flat" = "Düz";
 "Flechas" = "Ok tuşları";
 "Focus" = "Focus";
@@ -1064,6 +1076,7 @@
 "Forest" = "Orman";
 "Forget" = "Unut";
 "Forget remote streaming server" = "Uzak yayın sunucusunu unut";
+"Format" = "Biçim";
 "Formato de canales" = "Channel format";
 "Forzado" = "Zorunlu";
 "Found {count} streams for {title} in {seconds}s" = "{title} için {seconds} sn içinde {count} yayın bulundu";
@@ -1356,6 +1369,7 @@
 "Jina API key (optional)" = "Jina API anahtarı (isteğe bağlı)";
 "Jina Reader" = "Jina Reader";
 "Join" = "Katıl";
+"Jump here" = "Buraya atla";
 "Jump past a known injected ad on its own instead of showing the Skip button." = "Atla düğmesini göstermek yerine yayına eklenmiş olduğu bilinen bir reklamı otomatik olarak geçer.";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Açılış başlar başlamaz otomatik olarak atlayın. Açılışa geri sararsanız yeniden atlanmadan oynatılır. Atla düğmesi yukarıdaki ayara uyar.";
 "Just added" = "Yeni eklenenler";
@@ -1439,6 +1453,7 @@
 "Live TV" = "Canlı TV";
 "Live TV playlists" = "Canlı TV oynatma listeleri";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
+"Live sync" = "Canlı eşitleme";
 "Llegaste al final · {n} complementos" = "Sona ulaştınız · {n} eklenti";
 "Load effect" = "Yükleme efekti";
 "Load file" = "Dosya yükle";
@@ -1550,6 +1565,7 @@
 "Misterio" = "Gizem";
 "Mix surround sound down to stereo" = "Çevresel sesi stereoya indirge";
 "Mode" = "Mod";
+"Modern (Spline)" = "Modern (Spline)";
 "Modo de concentración" = "Odak modu";
 "Modo de lectura" = "Okuma modu";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Bölüm bitmeden önce Sıradaki rozetinin ne zaman görüneceğini belirler. Otomatik seçeneği bölüm uzunluğuna göre ayarlanır, böylece kısa bölümlerde bildirim çok erken gösterilmez. Kapalı seçeneği bildirimi gizler.";
@@ -1732,6 +1748,7 @@
 "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo." = "Could not analyze this source. Playback continues; you can retry.";
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "Hiçbir kaynak yayın döndürmedi";
+"No sources" = "Kaynak yok";
 "No sources match your filter" = "Filtrenizle eşleşen kaynak yok";
 "No streams came back." = "Hiç yayın dönmedi.";
 "No streams for {title}" = "{title} için yayın yok";
@@ -1787,6 +1804,7 @@
 "Now" = "Şimdi";
 "Now Playing" = "Şimdi oynatılıyor";
 "Now playing: {label}" = "Şimdi oynatılıyor: {label}";
+"Now tap the last line of that section." = "Şimdi bu bölümün son repliğine dokunun.";
 "Now watching on AniList" = "AniList'te izleniyor";
 "Now watching on MyAnimeList" = "MyAnimeList'te izleniyor";
 "Nuevos estrenos de anime" = "Yeni Çıkan Animeler";
@@ -1970,6 +1988,8 @@
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
 "Play to where the ad starts and add it, then play to the end and tap Now. You can also type the times. Add more than one if there are several." = "Reklamın başladığı yere kadar oynatıp başlangıcı ekleyin, ardından reklamın sonuna kadar oynatıp Şimdi'ye dokunun. Zamanları elle de girebilirsiniz. Birden fazla reklam varsa her birini ekleyin.";
 "Play trailers in the hero" = "Fragmanları öne çıkan alanda oynat";
+"Play until you hear a line inside this section, tap it, then choose Align to now." = "Bu bölümdeki bir repliği duyana kadar oynatın, repliğe dokunun ve Şimdiye hizala seçeneğini seçin.";
+"Play until you hear a line. Tap that same line below, then choose Align to now." = "Bir replik duyana kadar oynatın. Aşağıda aynı repliğe dokunun, ardından Şimdiye hizala seçeneğini seçin.";
 "Playback" = "Oynatma";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2109,6 +2129,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "Okuma modu";
 "Reading options" = "Reading options";
+"Reading subtitles..." = "Altyazılar okunuyor...";
 "Reading your search" = "Aramanız yorumlanıyor";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Ready" = "Hazır";
@@ -2133,6 +2154,7 @@
 "Recommended for you" = "Sizin için önerilenler";
 "Recordatorio" = "Reminder";
 "Redondeado" = "Yuvarlak";
+"Reference (bt.2390)" = "Referans (bt.2390)";
 "Refresh" = "Yenile";
 "Refresh episodes" = "Refresh episodes";
 "Refresh sources" = "Kaynakları yenile";
@@ -2208,6 +2230,7 @@
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Vitrinde gösterilebilmesi için zengin görsellere sahip içerikler gerekir";
 "Resaltado, progreso." = "Vurgu, ilerleme.";
 "Reset" = "Sıfırla";
+"Reset filters" = "Filtreleri sıfırla";
 "Reset picture" = "Görüntüyü sıfırla";
 "Reset subtitle style" = "Reset subtitle style";
 "Reset sync" = "Senkronizasyonu sıfırla";
@@ -2328,6 +2351,7 @@
 "Se usa con 55 % / 25 % de opacidad." = "%55 / %25 alfa ile kullanılır.";
 "Search" = "Ara";
 "Search SUBDL for subtitles in multiple languages. Requires an API key." = "SUBDL'de birden fazla dilde altyazı arayın. API anahtarı gerekir.";
+"Search a line by its words" = "Bir satırı içerdiği sözcüklerle ara";
 "Search actors, directors…" = "Oyuncu, yönetmen ara…";
 "Search addons" = "Eklenti ara";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
@@ -2450,6 +2474,7 @@
 "Show episode ratings" = "Bölüm puanlarını göster";
 "Show every addon row" = "Her eklenti satırını göster";
 "Show everything anyway" = "Yine de tümünü göster";
+"Show flagged" = "İşaretlenenleri göster";
 "Show format chips on stream rows" = "Yayın satırlarında biçim etiketlerini göster";
 "Show forum threads and comments from AniList on anime detail pages." = "Anime ayrıntı sayfalarında AniList'teki forum konularını ve yorumları gösterin.";
 "Show full descriptions" = "Açıklamaların tamamını göster";
@@ -2536,6 +2561,7 @@
 "Smooth on weak PCs" = "Düşük donanımlı bilgisayarlarda akıcı";
 "Sobre la línea principal" = "Ana satırın üstü";
 "Soccer" = "Futbol";
+"Soft (Reinhard)" = "Yumuşak (Reinhard)";
 "Soft halo around the text. Cleanest on most content." = "Metnin çevresinde yumuşak bir hale. Çoğu içerikte en temiz görünüm.";
 "Softer and dimmer, kinder for late-night watching." = "Daha yumuşak ve loş görüntüsüyle gece izlerken gözlerinizi daha az yorar.";
 "Solo posición y tamaño" = "Yalnızca konum ve boyut";
@@ -2708,6 +2734,7 @@
 "Tamaño" = "Boyut";
 "Tamil" = "Tamilce";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
+"Tap the first line of the section you want to fix." = "Düzeltmek istediğiniz bölümün ilk repliğine dokunun.";
 "Tarjetas de carteles" = "Poster kartları";
 "Tarjetas de episodios" = "Bölüm kartları";
 "Tarjetas, paneles." = "Kartlar, paneller.";
@@ -2796,6 +2823,7 @@
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "This server responded but is not supported" = "Bu sunucu yanıt verdi ancak desteklenmiyor";
+"This subtitle looks like a different version of the video." = "Bu altyazı videonun farklı bir sürümüne ait gibi görünüyor.";
 "This theme is missing a color ({color})." = "Bu temada bir renk eksik ({color}).";
 "This theme is missing its colors." = "Bu temanın renkleri eksik.";
 "This theme's preview colors look invalid." = "Bu temanın önizleme renkleri geçersiz görünüyor.";
@@ -2807,6 +2835,8 @@
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "Beğenmeme düğmesi bu içeriği Öne Çıkanlar bölümünden kaldırır. Beğenme düğmesi ise benzer önerilerin gösterilmesine yardımcı olur.";
 "Tiempo reproducido" = "Playback time";
+"Timing and drift are corrected. Check playback, then save." = "Zamanlama ve kayma düzeltildi. Oynatmayı kontrol edip kaydedin.";
+"Timing is aligned. If it becomes early or late later, repeat this at another line." = "Zamanlama hizalandı. İleride erkene ya da geçe kayarsa başka bir replikte bunu tekrarlayın.";
 "Tipo" = "Tür";
 "Tipografía" = "Tipografi";
 "Titles" = "Başlıklar";
@@ -2828,6 +2858,7 @@
 "Todos los deportes" = "Tüm sporlar";
 "Todos los géneros" = "Tüm türler";
 "Todos los idiomas" = "Tüm diller";
+"Tone-mapping curve" = "Ton eşleme eğrisi";
 "Tonight" = "Bu Gece";
 "Tonight's Slate" = "Bu Gecenin Programı";
 "Tonight's binge bait" = "Bu gecenin maratonlukları";
@@ -4348,6 +4379,7 @@
 "{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "{h} sa kaldı";
 "{h}h {m}m left" = "{h} sa {m} dk kaldı";
+"{langs} only" = "Yalnızca {langs}";
 "{ms} ms" = "{ms} ms";
 "{m}m left" = "{m} dk kaldı";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} ve diğer tüm adlar, logolar ve marka referansları ilgili sahiplerinin mülkiyetindedir ve burada yalnızca uyumluluk ve tanımlama amacıyla kullanılır.";
@@ -4368,6 +4400,7 @@
 "{n} eps" = "{n} blm";
 "{n} films." = "{n} films.";
 "{n} hidden" = "{n} gizli";
+"{n} hidden by trust filter" = "Güven filtresi {n} sonucu gizledi";
 "{n} hr" = "{n} sa.";
 "{n} in a day" = "Bir günde {n}";
 "{n} item" = "{n} öğe";
@@ -4379,9 +4412,11 @@
 "{n} months ago" = "{n} ay önce";
 "{n} not matched" = "{n} eşleşmedi";
 "{n} sec" = "{n} sn.";
+"{n} section fixes. Reset all" = "{n} bölüm düzeltmesi. Tümünü sıfırla";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} kaynak · 0 tanesi filtreleri geçti";
+"{n} uncached hidden" = "Önbelleğe alınmamış {n} sonuç gizlendi";
 "{n} watching" = "{n} kişi izliyor";
 "{n} weeks ago" = "{n} weeks ago";
 "{n} years ago" = "{n} years ago";

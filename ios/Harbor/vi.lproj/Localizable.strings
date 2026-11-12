@@ -37,6 +37,7 @@
 "A list by {owner}, {n} films." = "A list by {owner}, {n} films.";
 "A list by {owner}." = "A list by {owner}.";
 "A little of everything, all year long." = "A little of everything, all year long.";
+"A new font applies the next time a video opens." = "A new font applies the next time a video opens.";
 "A relay we run. Nothing to set up, and it stays current on its own." = "Một relay do chúng tôi vận hành. Không cần thiết lập và luôn tự động cập nhật.";
 "A short note about this list" = "A short note about this list";
 "A shorter jump on Shift plus the arrow keys, for nudging a few seconds at a time." = "Tua một quãng ngắn hơn bằng Shift kết hợp với các phím mũi tên để dịch chuyển vài giây mỗi lần.";
@@ -183,6 +184,8 @@
 "Al reproducir automáticamente el siguiente episodio, conserva la misma versión/fuente que acabas de ver en lugar de la fuente mejor clasificada de Harbor. Si esa fuente no está disponible, usa la mejor fuente." = "Khi tự động phát tập tiếp theo, tiếp tục dùng cùng bản phát hành/nguồn bạn vừa xem thay vì luồng được Harbor xếp hạng cao nhất. Nếu nguồn đó không khả dụng, ứng dụng sẽ dùng luồng tốt nhất.";
 "Albums" = "Album";
 "Aleatorio" = "Ngẫu nhiên";
+"Align to now" = "Căn theo thời điểm hiện tại";
+"Aligned" = "Đã căn chỉnh";
 "Alignment" = "Căn chỉnh";
 "Alineación" = "Căn chỉnh";
 "All" = "Tất cả";
@@ -283,6 +286,7 @@
 "Authorized {when}" = "Đã ủy quyền {when}";
 "Auto" = "Tự động";
 "Auto (match video)" = "Tự động (khớp video)";
+"Auto (recommended)" = "Tự động (khuyên dùng)";
 "Auto-adjusts styled (ASS) subtitles so dialogue stays the same size across files, while keeping their colors, fonts, and sign placement." = "Tự động điều chỉnh phụ đề có định dạng (ASS) để lời thoại giữ cùng kích thước giữa các tệp, đồng thời giữ nguyên màu sắc, phông chữ và vị trí biển hiệu.";
 "Auto-hide the Skip button after" = "Tự động ẩn nút Bỏ qua sau";
 "Auto-play next episode" = "Tự động phát tập tiếp theo";
@@ -334,6 +338,7 @@
 "Bajar {name}" = "Chuyển {name} xuống";
 "Balance picture quality and performance. Changes apply to the next video you play." = "Cân bằng chất lượng hình ảnh và hiệu năng. Thay đổi áp dụng cho video tiếp theo bạn phát.";
 "Balanced" = "Cân bằng";
+"Balanced (Mobius)" = "Cân bằng (Mobius)";
 "Bar" = "Thanh";
 "Bar color" = "Màu thanh";
 "Barra de búsqueda" = "Thanh tua";
@@ -669,6 +674,7 @@
 "Contraste" = "Độ tương phản";
 "Controles" = "Điều khiển";
 "Controls" = "Điều khiển";
+"Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play." = "Controls how bright highlights are reduced to fit your display. Changes apply to the next video you play.";
 "Copia principal." = "Bản chính.";
 "Copia secundaria." = "Bản sao phụ.";
 "Copied" = "Đã sao chép";
@@ -695,6 +701,7 @@
 "Could not reach this server" = "Không thể kết nối với máy chủ này";
 "Could not read file" = "Không thể đọc tệp";
 "Could not read the account on this device." = "Could not read the account on this device.";
+"Could not read this subtitle track. Pick a different subtitle, then try again." = "Không thể đọc rãnh phụ đề này. Hãy chọn phụ đề khác rồi thử lại.";
 "Could not read your lists. Your saved data is preserved." = "Không thể đọc danh sách của bạn. Dữ liệu đã lưu vẫn được giữ nguyên.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not resolve that Letterboxd list URL." = "Không thể nhận dạng URL danh sách Letterboxd đó.";
@@ -721,6 +728,7 @@
 "Couldn't reach the device. Check it's on the same Wi-Fi as your computer." = "Couldn't reach the device. Check it's on the same Wi-Fi as your computer.";
 "Couldn't reach this Roku" = "Không thể kết nối với Roku này";
 "Couldn't read that image. Try a different file." = "Không thể đọc ảnh đó. Hãy thử một tệp khác.";
+"Couldn't save the synced subtitle. Try again." = "Không thể lưu phụ đề đã đồng bộ. Hãy thử lại.";
 "Couldn't scan that folder." = "Không thể quét thư mục đó.";
 "Cover Image URL" = "URL ảnh bìa";
 "Cozy Autumn Nights" = "Đêm thu ấm cúng";
@@ -868,6 +876,7 @@
 "Dracula" = "Dracula";
 "Drama" = "Chính kịch";
 "Drama Series" = "Phim bộ chính kịch";
+"Drift fixed" = "Đã sửa độ trôi";
 "Drift monitor" = "Theo dõi độ lệch";
 "Drop a wallpaper behind the app. The dim slider keeps text readable." = "Đặt hình nền phía sau ứng dụng. Thanh trượt làm tối giúp văn bản dễ đọc.";
 "Drop shadow" = "Bóng đổ";
@@ -1035,8 +1044,10 @@
 "Fill" = "Lấp đầy";
 "Fills in where TMDB comes up empty (anime, older catalog). Free at" = "Bổ sung khi TMDB không có dữ liệu (anime, danh mục cũ). Miễn phí tại";
 "Film" = "Phim điện ảnh";
+"Filmic (Hable)" = "Điện ảnh (Hable)";
 "Filter countries" = "Lọc quốc gia";
 "Filter genres" = "Lọc thể loại";
+"Filtered" = "Đã lọc";
 "Filters" = "Bộ lọc";
 "Filters out streams from adult catalogs and addons. On by default." = "Lọc các luồng từ danh mục và tiện ích bổ sung dành cho người lớn. Mặc định bật.";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "Tìm và chia sẻ điều chỉnh thời gian đã xác minh cho các tệp video và phụ đề khớp nhau. Bật Chế độ riêng tư để ngừng tra cứu và đóng góp cộng đồng.";
@@ -1047,6 +1058,7 @@
 "Finnish" = "Tiếng Phần Lan";
 "First-light picks" = "Lựa chọn lúc bình minh";
 "Fit" = "Vừa khung";
+"Fix one section" = "Sửa một đoạn";
 "Flat" = "Cân bằng";
 "Flechas" = "Phím mũi tên";
 "Focus" = "Focus";
@@ -1064,6 +1076,7 @@
 "Forest" = "Rừng xanh";
 "Forget" = "Quên";
 "Forget remote streaming server" = "Quên máy chủ phát trực tuyến từ xa";
+"Format" = "Định dạng";
 "Formato de canales" = "Channel format";
 "Forzado" = "Bắt buộc";
 "Found {count} streams for {title} in {seconds}s" = "Tìm thấy {count} luồng phát cho {title} trong {seconds} giây";
@@ -1356,6 +1369,7 @@
 "Jina API key (optional)" = "Khóa API Jina (không bắt buộc)";
 "Jina Reader" = "Jina Reader";
 "Join" = "Tham gia";
+"Jump here" = "Chuyển đến đây";
 "Jump past a known injected ad on its own instead of showing the Skip button." = "Tự động bỏ qua quảng cáo chèn đã biết thay vì hiển thị nút Bỏ qua.";
 "Jump past openings automatically the moment one starts. Seeking back into an intro replays it without skipping again. The Skip button follows the setting above." = "Tự động bỏ qua phần mở đầu ngay khi bắt đầu. Tua lại vào phần mở đầu sẽ phát phần đó mà không bỏ qua lần nữa. Nút Bỏ qua tuân theo cài đặt ở trên.";
 "Just added" = "Mới thêm";
@@ -1439,6 +1453,7 @@
 "Live TV" = "TV trực tiếp";
 "Live TV playlists" = "Danh sách phát TV trực tiếp";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
+"Live sync" = "Đồng bộ trực tiếp";
 "Llegaste al final · {n} complementos" = "Bạn đã xem hết · {n} tiện ích bổ sung";
 "Load effect" = "Hiệu ứng tải";
 "Load file" = "Tải tệp";
@@ -1550,6 +1565,7 @@
 "Misterio" = "Bí ẩn";
 "Mix surround sound down to stereo" = "Trộn âm thanh vòm xuống stereo";
 "Mode" = "Chế độ";
+"Modern (Spline)" = "Hiện đại (Spline)";
 "Modo de concentración" = "Chế độ tập trung";
 "Modo de lectura" = "Chế độ đọc";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Thời điểm nhãn Tập tiếp theo xuất hiện trước khi tập kết thúc. Tự động điều chỉnh theo độ dài tập để không nhắc quá sớm với các tập ngắn. Tắt để ẩn.";
@@ -1732,6 +1748,7 @@
 "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo." = "Could not analyze this source. Playback continues; you can retry.";
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "Không nguồn nào trả về luồng phát";
+"No sources" = "Không có nguồn";
 "No sources match your filter" = "Không có nguồn nào khớp với bộ lọc";
 "No streams came back." = "Không có luồng phát nào trả về.";
 "No streams for {title}" = "Không có luồng phát cho {title}";
@@ -1787,6 +1804,7 @@
 "Now" = "Bây giờ";
 "Now Playing" = "Đang phát";
 "Now playing: {label}" = "Đang phát: {label}";
+"Now tap the last line of that section." = "Giờ hãy nhấn vào câu cuối cùng của đoạn đó.";
 "Now watching on AniList" = "Đang xem trên AniList";
 "Now watching on MyAnimeList" = "Đang xem trên MyAnimeList";
 "Nuevos estrenos de anime" = "Anime mới phát hành";
@@ -1970,6 +1988,8 @@
 "Play starts the best-ranked stream straight away." = "Play starts the best-ranked stream straight away.";
 "Play to where the ad starts and add it, then play to the end and tap Now. You can also type the times. Add more than one if there are several." = "Phát đến lúc quảng cáo bắt đầu rồi thêm mốc, sau đó phát đến cuối quảng cáo và nhấn Bây giờ. Bạn cũng có thể nhập thời gian. Thêm nhiều khoảng nếu có nhiều quảng cáo.";
 "Play trailers in the hero" = "Phát trailer trong khu vực nổi bật";
+"Play until you hear a line inside this section, tap it, then choose Align to now." = "Phát đến khi bạn nghe thấy một câu trong đoạn này, nhấn vào câu đó, rồi chọn Căn theo thời điểm hiện tại.";
+"Play until you hear a line. Tap that same line below, then choose Align to now." = "Phát đến khi bạn nghe thấy một câu. Nhấn vào chính câu đó bên dưới, rồi chọn Căn theo thời điểm hiện tại.";
 "Playback" = "Phát";
 "Playback has ended." = "Playback has ended.";
 "Playback position" = "Playback position";
@@ -2109,6 +2129,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "Chế độ đọc";
 "Reading options" = "Reading options";
+"Reading subtitles..." = "Đang đọc phụ đề...";
 "Reading your search" = "Đang đọc nội dung tìm kiếm";
 "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection." = "Reads up to ten minutes ahead. Uses more memory to help with an unstable connection.";
 "Ready" = "Sẵn sàng";
@@ -2133,6 +2154,7 @@
 "Recommended for you" = "Đề xuất cho bạn";
 "Recordatorio" = "Reminder";
 "Redondeado" = "Bo tròn";
+"Reference (bt.2390)" = "Tham chiếu (bt.2390)";
 "Refresh" = "Làm mới";
 "Refresh episodes" = "Refresh episodes";
 "Refresh sources" = "Làm mới nguồn";
@@ -2208,6 +2230,7 @@
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Cần các tựa phim có hình ảnh phong phú để đưa lên mục nổi bật";
 "Resaltado, progreso." = "Tô sáng, tiến trình.";
 "Reset" = "Đặt lại";
+"Reset filters" = "Đặt lại bộ lọc";
 "Reset picture" = "Đặt lại hình ảnh";
 "Reset subtitle style" = "Reset subtitle style";
 "Reset sync" = "Đặt lại đồng bộ";
@@ -2328,6 +2351,7 @@
 "Se usa con 55 % / 25 % de opacidad." = "Dùng ở độ trong suốt 55% / 25%.";
 "Search" = "Tìm kiếm";
 "Search SUBDL for subtitles in multiple languages. Requires an API key." = "Tìm phụ đề nhiều ngôn ngữ trên SUBDL. Cần khóa API.";
+"Search a line by its words" = "Tìm một dòng theo nội dung";
 "Search actors, directors…" = "Tìm kiếm diễn viên, đạo diễn…";
 "Search addons" = "Tìm tiện ích bổ sung";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
@@ -2450,6 +2474,7 @@
 "Show episode ratings" = "Hiển thị điểm đánh giá tập";
 "Show every addon row" = "Hiển thị mọi hàng tiện ích bổ sung";
 "Show everything anyway" = "Vẫn hiển thị tất cả";
+"Show flagged" = "Hiện nội dung bị gắn cờ";
 "Show format chips on stream rows" = "Hiện nhãn định dạng trên các hàng luồng phát";
 "Show forum threads and comments from AniList on anime detail pages." = "Hiển thị chủ đề diễn đàn và bình luận từ AniList trên trang chi tiết anime.";
 "Show full descriptions" = "Hiển thị mô tả đầy đủ";
@@ -2536,6 +2561,7 @@
 "Smooth on weak PCs" = "Mượt trên PC yếu";
 "Sobre la línea principal" = "Phía trên dòng chính";
 "Soccer" = "Bóng đá";
+"Soft (Reinhard)" = "Dịu (Reinhard)";
 "Soft halo around the text. Cleanest on most content." = "Quầng sáng nhẹ quanh chữ. Rõ nét nhất với hầu hết nội dung.";
 "Softer and dimmer, kinder for late-night watching." = "Dịu và tối hơn, dễ chịu hơn khi xem khuya.";
 "Solo posición y tamaño" = "Chỉ vị trí và kích thước";
@@ -2708,6 +2734,7 @@
 "Tamaño" = "Kích thước";
 "Tamil" = "Tiếng Tamil";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
+"Tap the first line of the section you want to fix." = "Nhấn vào câu đầu tiên của đoạn bạn muốn sửa.";
 "Tarjetas de carteles" = "Thẻ áp phích";
 "Tarjetas de episodios" = "Thẻ tập";
 "Tarjetas, paneles." = "Thẻ, bảng.";
@@ -2796,6 +2823,7 @@
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "This server responded but is not supported" = "Máy chủ này đã phản hồi nhưng không được hỗ trợ";
+"This subtitle looks like a different version of the video." = "Phụ đề này có vẻ dành cho một phiên bản video khác.";
 "This theme is missing a color ({color})." = "Giao diện này thiếu một màu ({color}).";
 "This theme is missing its colors." = "Giao diện này thiếu bảng màu.";
 "This theme's preview colors look invalid." = "Màu xem trước của giao diện này có vẻ không hợp lệ.";
@@ -2807,6 +2835,8 @@
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "Không thích sẽ ẩn tựa phim này khỏi mục Nổi bật. Thích sẽ giúp hiển thị các lựa chọn tương tự.";
 "Tiempo reproducido" = "Playback time";
+"Timing and drift are corrected. Check playback, then save." = "Thời gian và độ trôi đã được sửa. Hãy kiểm tra khi phát, rồi lưu.";
+"Timing is aligned. If it becomes early or late later, repeat this at another line." = "Thời gian đã được căn chỉnh. Nếu phụ đề bị sớm hoặc muộn về sau, hãy lặp lại thao tác này ở một câu khác.";
 "Tipo" = "Loại";
 "Tipografía" = "Kiểu chữ";
 "Titles" = "Tựa phim";
@@ -2828,6 +2858,7 @@
 "Todos los deportes" = "Tất cả môn thể thao";
 "Todos los géneros" = "Tất cả thể loại";
 "Todos los idiomas" = "Tất cả ngôn ngữ";
+"Tone-mapping curve" = "Đường cong ánh xạ tông màu";
 "Tonight" = "Tối nay";
 "Tonight's Slate" = "Danh sách phim tối nay";
 "Tonight's binge bait" = "Phim cuốn để xem liền mạch tối nay";
@@ -4348,6 +4379,7 @@
 "{genreA} + {genreB}" = "{genreA} + {genreB}";
 "{h}h left" = "còn {h} giờ";
 "{h}h {m}m left" = "còn {h} giờ {m} phút";
+"{langs} only" = "Chỉ {langs}";
 "{ms} ms" = "{ms} ms";
 "{m}m left" = "còn {m} phút";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} và mọi tên, logo cùng thông tin tham chiếu thương hiệu khác đều thuộc sở hữu của chủ sở hữu tương ứng và chỉ được sử dụng tại đây để đảm bảo khả năng tương thích và nhận diện.";
@@ -4368,6 +4400,7 @@
 "{n} eps" = "{n} tập";
 "{n} films." = "{n} films.";
 "{n} hidden" = "{n} đã ẩn";
+"{n} hidden by trust filter" = "{n} mục bị ẩn bởi bộ lọc tin cậy";
 "{n} hr" = "{n} giờ";
 "{n} in a day" = "{n} trong một ngày";
 "{n} item" = "{n} mục";
@@ -4379,9 +4412,11 @@
 "{n} months ago" = "{n} tháng trước";
 "{n} not matched" = "{n} mục chưa khớp";
 "{n} sec" = "{n} giây";
+"{n} section fixes. Reset all" = "Đã sửa {n} mục. Đặt lại tất cả";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{n} sources · 0 made it through" = "{n} nguồn · 0 nguồn vượt qua";
+"{n} uncached hidden" = "Đã ẩn {n} mục chưa lưu đệm";
 "{n} watching" = "{n} người đang xem";
 "{n} weeks ago" = "{n} weeks ago";
 "{n} years ago" = "{n} years ago";
