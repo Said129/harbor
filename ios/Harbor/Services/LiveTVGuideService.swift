@@ -15,6 +15,14 @@ actor LiveTVGuideService {
     static let shared = LiveTVGuideService()
     private static let freshFor: TimeInterval = 60 * 60
     private static let usableWhenOffline: TimeInterval = 12 * 60 * 60
+    /// Desktop keeps parsed guides in memory (`epg-store.ts` `cache`). Two are kept here, so a Programación screen
+    /// does not parse the whole XMLTV file again each time it opens.
+    private static let parsedLimit = 2
+    private struct ParsedGuide {
+        let savedAt: Date
+        let guide: LiveTVGuide
+    }
+    private var parsed: [String: ParsedGuide] = [:]
     private let session: URLSession
 
     init() {
@@ -30,46 +38,64 @@ actor LiveTVGuideService {
         let file = try cacheFile(source, owner: owner)
         let savedAt = try? file.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
         if !refresh, let saved = savedAt, Date().timeIntervalSince(saved) < Self.freshFor {
-            return try LiveTVXMLTV.parse(Data(contentsOf: file), window: Self.window())
+            return try cachedGuide(file, savedAt: saved)
         }
+        // Desktop's `doFetchWithFallback`: an address whose guide has no programmes is skipped, and the next one is tried.
+        var empty: LiveTVGuide?
         for url in urls {
             do {
                 try Task.checkCancellation()
                 let data = try await download(url)
                 let guide = try LiveTVXMLTV.parse(data, window: Self.window())
+                if guide.isEmpty { empty = guide; continue }
                 try data.write(to: file, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+                // The parsed copy is keyed by the file's own modification date, the same value `cachedGuide` reads back.
+                if let written = try? file.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate {
+                    parsed[file.path] = ParsedGuide(savedAt: written, guide: guide)
+                }
                 return guide
             } catch {
                 try Task.checkCancellation()
             }
         }
         if let saved = savedAt, Date().timeIntervalSince(saved) < Self.usableWhenOffline {
-            return try? LiveTVXMLTV.parse(Data(contentsOf: file), window: Self.window())
+            return try? cachedGuide(file, savedAt: saved)
         }
-        return nil
+        return empty
     }
 
-    /// Desktop's guide window: twelve hours of catch-up history through three days ahead.
+    /// The parsed copy of the saved guide, reused while the file has not changed on disk.
+    private func cachedGuide(_ file: URL, savedAt: Date) throws -> LiveTVGuide {
+        if let entry = parsed[file.path], entry.savedAt == savedAt { return entry.guide }
+        let guide = try LiveTVXMLTV.parse(Data(contentsOf: file), window: Self.window())
+        if parsed[file.path] == nil, parsed.count >= Self.parsedLimit { parsed.removeAll() }
+        parsed[file.path] = ParsedGuide(savedAt: savedAt, guide: guide)
+        return guide
+    }
+
+    /// The programmes kept from a guide: twelve hours of catch-up history through three days ahead. Desktop keeps every
+    /// programme; iOS bounds the copy in memory so a very large guide cannot fill a phone.
     static func window(now: Date = Date()) -> ClosedRange<Date> {
         now.addingTimeInterval(-12 * 3600)...now.addingTimeInterval(72 * 3600)
     }
 
     func remove(_ source: LivePlaylistSource, owner: String) throws {
         let file = try cacheFile(source, owner: owner)
+        parsed[file.path] = nil
         if FileManager.default.fileExists(atPath: file.path) { try FileManager.default.removeItem(at: file) }
     }
 
-    /// Desktop's `useEpg` address rule: an Xtream account names its guide from the player API link, and an M3U link
-    /// that ends in get.php or player_api.php names it too. A file import names none.
+    /// Desktop's `useEpg` address rule: the guide address the user typed comes first (`epgUrl`). Then an Xtream account
+    /// names its guide from the player API link, and an M3U link that ends in get.php or player_api.php names it too.
+    /// A file import names none.
     static func urls(for source: LivePlaylistSource) -> [URL] {
-        let raw: [String]
+        var raw: [String] = []
+        if let typed = source.epgURL, !typed.isEmpty { raw.append(typed) }
         if let account = source.xtream {
-            guard let api = try? account.api(nil) else { return [] }
-            raw = LiveTVEPG.derivedURLs(playlist: api.absoluteString)
+            guard let api = try? account.api(nil) else { return raw.compactMap { LivePlaylistService.validURL($0) } }
+            raw.append(contentsOf: LiveTVEPG.derivedURLs(playlist: api.absoluteString))
         } else if let playlist = source.url {
-            raw = LiveTVEPG.derivedURLs(playlist: playlist)
-        } else {
-            raw = []
+            raw.append(contentsOf: LiveTVEPG.derivedURLs(playlist: playlist))
         }
         return raw.compactMap { LivePlaylistService.validURL($0) }
     }

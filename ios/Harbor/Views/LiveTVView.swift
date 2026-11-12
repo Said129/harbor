@@ -27,7 +27,15 @@ struct LiveTVView: View {
     /// Desktop's category pins and hidden categories belong to one playlist, so they apply only when a single list is selected.
     private var groupPrefs: LiveGroupPrefs { source == "all" ? LiveGroupPrefs() : preferences.groupPrefs(for: source) }
     private var sourceGroups: [String] { LiveTVGroupOrder.sortedGroups(Array(Set(channels.filter { $0.source == source }.compactMap(\.group))), region: MetadataPreferences.shared.region, preferredLanguages: StreamSourceSettings.names(StreamPreferences.shared.streamLanguages)) }
-    private var catalog: [LiveChannel] { LiveTVCatalogOrder.catalog(selectedChannels, region: MetadataPreferences.shared.region, preferredLanguages: StreamSourceSettings.names(StreamPreferences.shared.streamLanguages), pinnedChannels: preferences.pinnedChannels, prefs: groupPrefs) }
+    private var catalog: [LiveChannel] { LiveTVCatalogOrder.catalog(selectedChannels, region: MetadataPreferences.shared.region, preferredLanguages: StreamSourceSettings.names(StreamPreferences.shared.streamLanguages), pinnedChannels: preferences.pinnedChannels, prefs: groupPrefs, plays: preferences.channelPlayCounts) }
+    /// Channels per category in the selected list, for the category sheet's counts.
+    private var sourceGroupCounts: [String: Int] {
+        var counts: [String: Int] = [:]
+        for channel in channels where channel.source == source {
+            if let group = channel.group { counts[group, default: 0] += 1 }
+        }
+        return counts
+    }
     private var sourceNames: [String: String] { Dictionary(preferences.sources.map { ($0.id, $0.name) }, uniquingKeysWith: { first, _ in first }) }
     /// Desktop's Favorites group ignores the list and category pickers and shows the saved favourites, loaded or not.
     private var filtered: [LiveChannel] {
@@ -43,7 +51,7 @@ struct LiveTVView: View {
             .searchable(text: $query, prompt: "Canales y categorías")
             .toolbar { ToolbarItem(placement: .topBarTrailing) { Button { configuring = true } label: { Image(systemName: "slider.horizontal.3") }.accessibilityLabel("Listas de Live TV") } }
             .sheet(isPresented: $configuring) { LiveSourcesView(preferences: preferences) }
-            .sheet(isPresented: $managingCategories) { LiveCategoryManageView(preferences: preferences, sourceID: source, groups: sourceGroups) }
+            .sheet(isPresented: $managingCategories) { LiveCategoryManageView(preferences: preferences, sourceID: source, groups: sourceGroups, counts: sourceGroupCounts) }
             .task(id: preferences.sources) { await load(refresh: false) }
             .onChange(of: query) { _, _ in visibleCount = 100 }
             .onChange(of: category) { _, _ in visibleCount = 100 }
@@ -152,6 +160,8 @@ struct LiveTVView: View {
                 sessionMedia.description = channel.name + " · catch up"
             }
             playback = PlaybackSession(source: resolved, target: ResumeTarget(id: "iptv:" + channel.id), startMs: 0, storageWarning: nil, progressEnabled: false, owner: owner, media: sessionMedia)
+            // Desktop counts live starts only (`recordChannelPlay`); a catch-up replay is not counted.
+            if program == nil { try? preferences.recordPlay(channel) }
         } catch {
             guard playbackRequest == request, owner == app.accountOperationScope,
                   app.settingsOwner == preferences.owner, preferences.sources.contains(sourceSnapshot) else { return }
@@ -172,6 +182,7 @@ struct LiveSourcesView: View {
     @State private var username = ""
     @State private var password = ""
     @State private var container = "ts"
+    @State private var guideURL = ""
     var body: some View {
         NavigationStack {
             Form {
@@ -184,6 +195,7 @@ struct LiveSourcesView: View {
                     Picker("Tipo", selection: $kind) { Text("Lista M3U").tag("m3u"); Text("Servidor Xtream").tag("xtream") }.pickerStyle(.segmented)
                     TextField("Nombre de la lista", text: $name)
                     TextField(kind == "xtream" ? "Dirección del servidor" : "URL http o https", text: $url).textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
+                    TextField("Dirección de la guía (opcional)", text: $guideURL).textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
                     if kind == "xtream" {
                         TextField("Usuario", text: $username).textInputAutocapitalization(.never).autocorrectionDisabled().textContentType(.username)
                         SecureField("Contraseña", text: $password).textContentType(.password)
@@ -201,14 +213,22 @@ struct LiveSourcesView: View {
             }
     }
     private func newSource(remote: String?, fallback: String) -> LivePlaylistSource { LivePlaylistSource(id: UUID().uuidString.lowercased(), name: name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? fallback : String(name.prefix(120)), url: remote) }
+    /// Desktop's `epgUrl` field: optional, but when typed it must be an http or https address.
+    private func guideAddress() throws -> String? {
+        let raw = guideURL.trimmingCharacters(in: .whitespacesAndNewlines)
+        if raw.isEmpty { return nil }
+        guard LivePlaylistService.validURL(raw) != nil else { throw HarborError(code: "iptv-url") }
+        return raw
+    }
     private func addURL() async {
         let raw = url.trimmingCharacters(in: .whitespacesAndNewlines)
         guard LivePlaylistService.validURL(raw) != nil else { error = safeMessage(HarborError(code: "iptv-url")); return }
         var source = newSource(remote: raw, fallback: "Lista M3U")
+        do { source.epgURL = try guideAddress() } catch { self.error = safeMessage(error); return }
         source.xtream = XtreamAccount.fromPlaylist(raw)
         if source.xtream != nil { source.url = nil; source.xtreamContainer = container }
         saving = true; error = nil; defer { saving = false }
-        do { _ = try await LivePlaylistService.shared.load(source, owner: preferences.owner, refresh: true); try preferences.add(source); name = ""; url = "" }
+        do { _ = try await LivePlaylistService.shared.load(source, owner: preferences.owner, refresh: true); try preferences.add(source); name = ""; url = ""; guideURL = "" }
         catch { try? await LivePlaylistService.shared.remove(source, owner: preferences.owner); self.error = safeMessage(error) }
     }
     private func addServer() async {
@@ -216,15 +236,17 @@ struct LiveSourcesView: View {
         var source = newSource(remote: nil, fallback: "Xtream")
         do {
             source.xtream = try XtreamAccount.make(server: url, username: username, password: password); source.xtreamContainer = container
+            source.epgURL = try guideAddress()
             _ = try await XtreamClient(source: source, owner: preferences.owner).capabilities(refresh: true)
-            try preferences.add(source); name = ""; url = ""; username = ""; password = ""
+            try preferences.add(source); name = ""; url = ""; username = ""; password = ""; guideURL = ""
         } catch { try? await LivePlaylistService.shared.remove(source, owner: preferences.owner); self.error = safeMessage(error) }
     }
     private func addFile(_ file: URL) async {
         let access = file.startAccessingSecurityScopedResource(); defer { if access { file.stopAccessingSecurityScopedResource() } }
-        let source = newSource(remote: nil, fallback: String(file.deletingPathExtension().lastPathComponent.prefix(120)))
+        var source = newSource(remote: nil, fallback: String(file.deletingPathExtension().lastPathComponent.prefix(120)))
+        do { source.epgURL = try guideAddress() } catch { self.error = safeMessage(error); return }
         saving = true; error = nil; defer { saving = false }
-        do { _ = try await LivePlaylistService.shared.importFile(file, source: source, owner: preferences.owner); try preferences.add(source); name = "" }
+        do { _ = try await LivePlaylistService.shared.importFile(file, source: source, owner: preferences.owner); try preferences.add(source); name = ""; guideURL = "" }
         catch { try? await LivePlaylistService.shared.remove(source, owner: preferences.owner); self.error = safeMessage(error) }
     }
     private func remove(_ source: LivePlaylistSource) {

@@ -108,14 +108,49 @@ struct TogetherSheet: View {
                 }
             }
         }
+        // The lobby: until the host starts the room, each member shows whether they are ready (Desktop's lobby gate).
         Section {
             ForEach(sortedParticipants, id: \.id) { participant in
-                Text(participant.name)
+                HStack {
+                    Text(participant.name)
+                    Spacer()
+                    if !session.snapshot.started {
+                        Image(systemName: participant.ready ? "checkmark.circle.fill" : "circle.dashed")
+                            .foregroundStyle(participant.ready ? Color.green : Color.secondary)
+                            .accessibilityLabel(DesktopInterfaceText.value(participant.ready ? "Ready" : "Not ready yet"))
+                    }
+                }
             }
         } header: {
             Text(DesktopInterfaceText.value("{n} watching", variables: ["n": String(sortedParticipants.count)]))
+        } footer: {
+            if !session.snapshot.started {
+                Text(DesktopInterfaceText.value(session.isHost ? "Press play to start the room for everyone" : "Waiting for the host to start"))
+            }
+        }
+        // The title the room is on, from the last state sent by a member. The player compares it with the title on screen.
+        if let roomTitle = session.snapshot.syncState?.mediaTitle, !roomTitle.isEmpty {
+            Section {
+                Text(DesktopInterfaceText.value("In this room: {title}", variables: ["title": roomTitle]))
+            }
         }
         chatSection
+        if session.isHost {
+            Section {
+                ForEach(TogetherToastRules.summonViews.indices, id: \.self) { index in
+                    Button {
+                        let option = TogetherToastRules.summonViews[index]
+                        session.summon(TogetherSummonTarget(view: option.view, label: option.label))
+                    } label: {
+                        Text(DesktopInterfaceText.value(TogetherToastRules.summonViews[index].label))
+                    }
+                }
+            } header: {
+                Text(DesktopInterfaceText.value("Call guests"))
+            } footer: {
+                Text(DesktopInterfaceText.value("Sends guests a pointer to this screen in their app"))
+            }
+        }
         if session.isHost {
             Section {
                 Toggle(DesktopInterfaceText.value("Guests pick their own source"), isOn: Binding(

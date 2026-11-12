@@ -8,9 +8,12 @@ struct LiveGroupPrefs: Codable, Hashable, Sendable {
 
 /// Desktop's live channel and category order: `sortChannelsByGroupRelevance` (`group-relevance.ts`),
 /// `applyUserChannelOrder` and `applyUserGroupOrder` (`channel-order.ts`), channel pins (`pins.ts`),
-/// the group pin and hide toggles (`group-order.ts`) and the Favorites group (`favorites.tsx`).
-/// Most-watched ordering is not ported: iOS keeps no channel play counts.
+/// the group pin and hide toggles (`group-order.ts`), the most-watched order from the play counts (`channel-stats.ts`)
+/// and the Favorites group (`favorites.tsx`).
 enum LiveTVCatalogOrder {
+    /// Desktop's `MOST_WATCHED_MIN`: a channel started this many times moves up after the pinned ones.
+    static let mostWatchedMinimum = 3
+
     /// Desktop's `sortChannelsByGroupRelevance`: higher group score first, then group name, and channels
     /// without a group last. Equal keys keep the source order.
     static func channelsByGroupRelevance(_ channels: [LiveChannel], region: String, preferredLanguages: [String]) -> [LiveChannel] {
@@ -51,9 +54,43 @@ enum LiveTVCatalogOrder {
         return channels.filter { !hiddenSet.contains($0.group ?? "Uncategorized") }
     }
 
-    /// The channel list order Desktop's pipeline builds: relevance, then channel pins, then hidden categories.
-    static func catalog(_ channels: [LiveChannel], region: String, preferredLanguages: [String], pinnedChannels: [String], prefs: LiveGroupPrefs) -> [LiveChannel] {
-        removingHiddenGroups(pinnedFirst(channelsByGroupRelevance(channels, region: region, preferredLanguages: preferredLanguages), pinned: pinnedChannels), hidden: prefs.hidden)
+    /// Desktop's `applyUserChannelOrder`: pinned channels first in pin order, then channels started at least
+    /// `mostWatchedMinimum` times (most started first, equal counts keep their order), then the rest in their current order.
+    static func userChannelOrder(_ channels: [LiveChannel], pinned: [String], plays: [String: Int]) -> [LiveChannel] {
+        guard !channels.isEmpty else { return channels }
+        var rank: [String: Int] = [:]
+        for (index, id) in pinned.enumerated() { rank[id] = index }
+        var pinnedRows: [(index: Int, channel: LiveChannel)] = []
+        var watchedRows: [(index: Int, count: Int, channel: LiveChannel)] = []
+        var rest: [LiveChannel] = []
+        for (index, channel) in channels.enumerated() {
+            if rank[channel.id] != nil {
+                pinnedRows.append((index: index, channel: channel))
+                continue
+            }
+            let count: Int = plays[channel.id] ?? 0
+            if count >= mostWatchedMinimum {
+                watchedRows.append((index: index, count: count, channel: channel))
+                continue
+            }
+            rest.append(channel)
+        }
+        if pinnedRows.isEmpty && watchedRows.isEmpty { return channels }
+        let pinnedSorted: [LiveChannel] = pinnedRows.sorted { lhs, rhs in
+            let left: Int = rank[lhs.channel.id] ?? 0
+            let right: Int = rank[rhs.channel.id] ?? 0
+            return left != right ? left < right : lhs.index < rhs.index
+        }.map { $0.channel }
+        let watchedSorted: [LiveChannel] = watchedRows.sorted { lhs, rhs in
+            lhs.count != rhs.count ? lhs.count > rhs.count : lhs.index < rhs.index
+        }.map { $0.channel }
+        return pinnedSorted + watchedSorted + rest
+    }
+
+    /// The channel list order Desktop's pipeline builds: relevance, then pins and most-watched, then hidden categories.
+    static func catalog(_ channels: [LiveChannel], region: String, preferredLanguages: [String], pinnedChannels: [String], prefs: LiveGroupPrefs, plays: [String: Int] = [:]) -> [LiveChannel] {
+        let relevant: [LiveChannel] = channelsByGroupRelevance(channels, region: region, preferredLanguages: preferredLanguages)
+        return removingHiddenGroups(userChannelOrder(relevant, pinned: pinnedChannels, plays: plays), hidden: prefs.hidden)
     }
 
     /// Desktop's `applyUserGroupOrder`: hidden categories leave the list, pinned categories come first in pin order.
