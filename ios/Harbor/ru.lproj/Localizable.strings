@@ -947,6 +947,7 @@
 "Epic Adventures" = "Эпические приключения";
 "Episode" = "Серия";
 "Episode cards" = "Карточки серий";
+"Episode order source" = "Episode order source";
 "Episode ordering" = "Порядок серий";
 "Episode {n}" = "Серия {n}";
 "Episodes" = "Серии";
@@ -1039,6 +1040,7 @@
 "Filter countries" = "Фильтр стран";
 "Filter genres" = "Фильтр жанров";
 "Filters" = "Фильтры";
+"Filters out streams from adult catalogs and addons. On by default." = "Отфильтровывает потоки из каталогов и дополнений для взрослых. Включено по умолчанию.";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "Находите и публикуйте проверенные поправки синхронизации для соответствующих файлов видео и субтитров. Включите приватный режим, чтобы отключить запросы к сообществу и отправку данных.";
 "Finding lyrics" = "Поиск текста";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
@@ -1191,6 +1193,7 @@
 "Hidden titles" = "Hidden titles";
 "Hide" = "Скрыть";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
+"Hide adult content" = "Скрыть контент для взрослых";
 "Hide all sources" = "Скрыть все источники";
 "Hide and skip episodes" = "Скрывать и пропускать серии";
 "Hide anime I've already watched" = "Скрывать просмотренное аниме";
@@ -1846,6 +1849,7 @@
 "Open image" = "Открыть изображение";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "Открыть в браузере";
+"Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field." = "Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field.";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on AniList" = "Открыть на AniList";
@@ -2327,6 +2331,7 @@
 "Search actors, directors…" = "Поиск актёров, режиссёров…";
 "Search addons" = "Поиск дополнений";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search episodes" = "Поиск серий";
 "Search for \"Media Assistant\" (channel ID 782875, free)." = "Найдите «Media Assistant» (ID канала 782875, бесплатно).";
 "Search is too long." = "Search is too long.";
 "Search languages" = "Поиск языков";
@@ -2411,6 +2416,7 @@
 "Share" = "Поделиться";
 "Share file" = "Share file";
 "Share with {name}" = "Общий доступ с {name}";
+"Shares crew with" = "Shares crew with";
 "Shares crew with 1 other film" = "Shares crew with 1 other film";
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
@@ -2690,12 +2696,14 @@
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB подключён. Включено {n} {services}. Добро пожаловать на борт.";
 "TMDB has no notable releases for this month and region." = "В TMDB нет заметных релизов для этого месяца и региона.";
 "TMDB is temporarily unavailable. Try your search again shortly." = "TMDB временно недоступен. Повторите поиск чуть позже.";
+"TMDB order" = "TMDB order";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB даёт полный поток всех релизов месяца. Бесплатного тарифа хватает. Настройка – около 60 секунд. Переключитесь на «Мою библиотеку», если хотите видеть только сохранённое.";
 "TMDB · catalogs and rails" = "TMDB · каталоги и ряды";
 "TMDB · catálogos y filas" = "TMDB · каталоги и ряды";
 "TV" = "ТВ";
 "TV Shows" = "Сериалы";
 "TV shows wide art cards with the logo on them. Poster is the classic grid." = "«ТВ»: широкие карточки с обложкой и логотипом на ней. «Постер»: классическая сетка.";
+"TVDB order" = "Порядок TVDB";
 "Table of contents" = "Table of contents";
 "Tags" = "Теги";
 "Tamaño" = "Размер";
@@ -2910,6 +2918,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "Ряды «В тренде», «Популярное», «В кино» и ряды сервисов.";
 "Trending, in theaters, what's on every streamer." = "В тренде, в кино и что идёт на каждом сервисе.";
 "True Crime Files" = "Реальные преступления";
+"Try a genre" = "Попробуйте жанр";
 "Try again" = "Повторить";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Сначала искать названия и описания в вашем дополнении. Использовать Cinemeta, если дополнение ничего не найдёт.";
 "Tu avatar, nombre e identificador en Harbor." = "Ваш аватар, имя и ник во всём Harbor.";
@@ -3818,6 +3827,9 @@
 "music.mobile.spotify.install" = "Установите Spotify и войдите в официальное приложение.";
 "music.mobile.spotify.remote" = "Spotify воспроизводит звук в официальном приложении. Для аккаунтов Free сохраняются реклама и ограничения воспроизведения.";
 "music.mobile.spotify.restricted" = "Spotify не разрешает это действие при текущем состоянии или ограничениях вашей учётной записи.";
+"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
+"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";
+"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
 "music.mute" = "Выключить звук";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";
@@ -4392,6 +4404,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Рейтинг сообщества";
 "العربية" = "العربية";
-"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
-"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
-"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";

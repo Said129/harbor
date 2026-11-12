@@ -944,6 +944,7 @@
 "Epic Adventures" = "Aventuras épicas";
 "Episode" = "Episodio";
 "Episode cards" = "Tarjetas de episodios";
+"Episode order source" = "Fuente del orden de episodios";
 "Episode ordering" = "Orden de episodios";
 "Episode {n}" = "Episodio {n}";
 "Episodes" = "Episodios";
@@ -1036,6 +1037,7 @@
 "Filter countries" = "Filtrar países";
 "Filter genres" = "Filtrar géneros";
 "Filters" = "Filtros";
+"Filters out streams from adult catalogs and addons. On by default." = "Filtra los streams de catálogos y complementos para adultos. Activado por defecto.";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "Busca y comparte correcciones de sincronización verificadas para archivos de vídeo y subtítulos coincidentes. Activa el modo privado para detener las consultas y aportaciones a la comunidad.";
 "Finding lyrics" = "Buscando la letra";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
@@ -1187,6 +1189,7 @@
 "Hidden titles" = "Títulos ocultos";
 "Hide" = "Ocultar";
 "Hide Spooktober invitation" = "Ocultar invitación de Spooktober";
+"Hide adult content" = "Ocultar contenido para adultos";
 "Hide all sources" = "Ocultar todas las fuentes";
 "Hide and skip episodes" = "Ocultar y omitir episodios";
 "Hide anime I've already watched" = "Ocultar anime que ya vi";
@@ -1838,6 +1841,7 @@
 "Open image" = "Abrir imagen";
 "Open in Safari" = "Abrir en Safari";
 "Open in browser" = "Abrir en el navegador";
+"Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field." = "Ábrelo en un navegador normal, configúralo allí y vuelve a pegar el enlace de instalación en el campo Manifest URL.";
 "Open music player" = "Abrir reproductor de Música";
 "Open navigation" = "Abrir navegación";
 "Open on AniList" = "Abrir en AniList";
@@ -2316,6 +2320,7 @@
 "Search actors, directors…" = "Buscar actores, directores…";
 "Search addons" = "Buscar complementos";
 "Search by title or author, or change the language." = "Busca por título o autor, o cambia el idioma.";
+"Search episodes" = "Buscar episodios";
 "Search for \"Media Assistant\" (channel ID 782875, free)." = "Busca \"Media Assistant\" (ID del canal: 782875, gratis).";
 "Search is too long." = "La búsqueda es demasiado larga.";
 "Search languages" = "Buscar idiomas";
@@ -2400,6 +2405,7 @@
 "Share" = "Compartir";
 "Share file" = "Compartir archivo";
 "Share with {name}" = "Compartir con {name}";
+"Shares crew with" = "Comparte equipo con";
 "Shares crew with 1 other film" = "Shares crew with 1 other film";
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
@@ -2677,12 +2683,14 @@
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB conectado. {n} {services} de streaming activados. Bienvenido a bordo.";
 "TMDB has no notable releases for this month and region." = "TMDB no tiene estrenos destacados para este mes y esta región.";
 "TMDB is temporarily unavailable. Try your search again shortly." = "TMDB no está disponible temporalmente. Vuelve a intentar la búsqueda en unos momentos.";
+"TMDB order" = "Orden de TMDB";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB alimenta el flujo de todos los estrenos de este mes. El plan gratuito es suficiente. Configurarlo toma unos 60 segundos. Cambia a Mi biblioteca si prefieres ver solo lo que guardaste.";
 "TMDB · catalogs and rails" = "TMDB · catálogos y filas";
 "TMDB · catálogos y filas" = "TMDB · catálogos y filas";
 "TV" = "TV";
 "TV Shows" = "Series de TV";
 "TV shows wide art cards with the logo on them. Poster is the classic grid." = "Tarjetas horizontales de series de TV con el logotipo sobre la imagen. Póster usa la cuadrícula clásica.";
+"TVDB order" = "Orden de TVDB";
 "Table of contents" = "Índice";
 "Tags" = "Etiquetas";
 "Tamaño" = "Tamaño";
@@ -2896,6 +2904,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "Tendencias, Populares, En cines y las filas de cada servicio.";
 "Trending, in theaters, what's on every streamer." = "Tendencias, en cines y qué hay en cada servicio de streaming.";
 "True Crime Files" = "Archivos de crímenes reales";
+"Try a genre" = "Prueba un género";
 "Try again" = "Inténtalo de nuevo";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Busca primero títulos y descripciones en tu complemento. Usa Cinemeta cuando no haya resultados.";
 "Tu avatar, nombre e identificador en Harbor." = "Tu avatar, nombre e identificador en Harbor.";
@@ -3804,6 +3813,9 @@
 "music.mobile.spotify.install" = "Instala Spotify e inicia sesión en su aplicación oficial.";
 "music.mobile.spotify.remote" = "Spotify reproduce el audio en su aplicación oficial. Las cuentas Free conservan sus anuncios y límites de reproducción.";
 "music.mobile.spotify.restricted" = "Spotify no permite esta acción con el estado o los límites actuales de tu cuenta.";
+"music.mobile.spotify.web" = "Abre el reproductor web oficial de Spotify dentro de Harbor. Inicias sesión en la página de Spotify, así que Harbor nunca ve tu contraseña. Una cuenta Free reproduce lo que Spotify permite en la web.";
+"music.mobile.spotify.webError" = "Spotify no se cargó. Revisa la conexión y vuelve a intentarlo.";
+"music.mobile.youtube.consent" = "La búsqueda y la reproducción consultan YouTube Music y los servidores de Google. No se usa ninguna cuenta; Harbor reproduce el audio que YouTube ofrece a cualquier visitante.";
 "music.mute" = "Silenciar";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";
@@ -4378,6 +4390,3 @@
 "Índice" = "Índice";
 "Índice de la comunidad" = "Índice de la comunidad";
 "العربية" = "العربية";
-"music.mobile.youtube.consent" = "La búsqueda y la reproducción consultan YouTube Music y los servidores de Google. No se usa ninguna cuenta; Harbor reproduce el audio que YouTube ofrece a cualquier visitante.";
-"music.mobile.spotify.web" = "Abre el reproductor web oficial de Spotify dentro de Harbor. Inicias sesión en la página de Spotify, así que Harbor nunca ve tu contraseña. Una cuenta Free reproduce lo que Spotify permite en la web.";
-"music.mobile.spotify.webError" = "Spotify no se cargó. Revisa la conexión y vuelve a intentarlo.";

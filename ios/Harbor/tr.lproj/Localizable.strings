@@ -944,6 +944,7 @@
 "Epic Adventures" = "Destansı Maceralar";
 "Episode" = "Bölüm";
 "Episode cards" = "Bölüm kartları";
+"Episode order source" = "Episode order source";
 "Episode ordering" = "Bölüm sıralaması";
 "Episode {n}" = "Bölüm {n}";
 "Episodes" = "Bölümler";
@@ -1036,6 +1037,7 @@
 "Filter countries" = "Ülkeleri filtrele";
 "Filter genres" = "Türleri filtrele";
 "Filters" = "Filtreler";
+"Filters out streams from adult catalogs and addons. On by default." = "Yetişkin kataloglarındaki ve eklentilerindeki yayınları filtreler. Varsayılan olarak açıktır.";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "Eşleşen video ve altyazı dosyaları için doğrulanmış zamanlama düzeltmeleri bulun ve paylaşın. Topluluk sorgularını ve katkıları durdurmak için Özel modu açın.";
 "Finding lyrics" = "Şarkı sözleri aranıyor";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
@@ -1187,6 +1189,7 @@
 "Hidden titles" = "Hidden titles";
 "Hide" = "Gizle";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
+"Hide adult content" = "Yetişkinlere yönelik içerikleri gizle";
 "Hide all sources" = "Tüm kaynakları gizle";
 "Hide and skip episodes" = "Bölümleri gizle ve atla";
 "Hide anime I've already watched" = "İzlediğim animeleri gizle";
@@ -1838,6 +1841,7 @@
 "Open image" = "Görseli aç";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "Tarayıcıda aç";
+"Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field." = "Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field.";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on AniList" = "AniList'te aç";
@@ -2316,6 +2320,7 @@
 "Search actors, directors…" = "Oyuncu, yönetmen ara…";
 "Search addons" = "Eklenti ara";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search episodes" = "Bölümlerde ara";
 "Search for \"Media Assistant\" (channel ID 782875, free)." = "\"Media Assistant\"ı arayın (kanal kimliği 782875, ücretsiz).";
 "Search is too long." = "Search is too long.";
 "Search languages" = "Dil ara";
@@ -2400,6 +2405,7 @@
 "Share" = "Paylaş";
 "Share file" = "Share file";
 "Share with {name}" = "{name} ile paylaş";
+"Shares crew with" = "Shares crew with";
 "Shares crew with 1 other film" = "Shares crew with 1 other film";
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
@@ -2677,12 +2683,14 @@
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB bağlandı. {n} yayın {services} etkin. Aramıza hoş geldiniz.";
 "TMDB has no notable releases for this month and region." = "TMDB'de bu ay ve bölge için kayda değer bir yayın yok.";
 "TMDB is temporarily unavailable. Try your search again shortly." = "TMDB geçici olarak kullanılamıyor. Kısa süre sonra tekrar aramayı deneyin.";
+"TMDB order" = "TMDB order";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB, bu ay yayınlanacak tüm içeriklerin eksiksiz akışını sağlar. Ücretsiz plan yeterlidir ve kurulumu yaklaşık 60 saniye sürer. Yalnızca kaydettiklerinizi görmek isterseniz Kütüphanem'e geçin.";
 "TMDB · catalogs and rails" = "TMDB · kataloglar ve raflar";
 "TMDB · catálogos y filas" = "TMDB · kataloglar ve raflar";
 "TV" = "TV";
 "TV Shows" = "Diziler";
 "TV shows wide art cards with the logo on them. Poster is the classic grid." = "TV, üzerinde logo bulunan geniş görsel kartları gösterir. Poster ise klasik ızgara görünümüdür.";
+"TVDB order" = "TVDB sıralaması";
 "Table of contents" = "Table of contents";
 "Tags" = "Etiketler";
 "Tamaño" = "Boyut";
@@ -2896,6 +2904,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "Trendler, Popüler, Vizyondakiler ve hizmetlere özel satırlar.";
 "Trending, in theaters, what's on every streamer." = "Gündemdekiler, vizyondakiler ve tüm yayın hizmetlerindeki içerikler.";
 "True Crime Files" = "Gerçek Suç Dosyaları";
+"Try a genre" = "Bir tür deneyin";
 "Try again" = "Tekrar dene";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Adlar ve açıklamalar için önce eklentinizi deneyin. Eklenti sonuç vermezse Cinemeta'yı kullanın.";
 "Tu avatar, nombre e identificador en Harbor." = "Harbor genelinde avatarınız, adınız ve kullanıcı adınız.";
@@ -3804,6 +3813,9 @@
 "music.mobile.spotify.install" = "Spotify’ı yükleyin ve resmî uygulamasında oturum açın.";
 "music.mobile.spotify.remote" = "Spotify sesi resmî uygulamasında çalar. Free hesaplarda reklamlar ve oynatma sınırları devam eder.";
 "music.mobile.spotify.restricted" = "Spotify, hesabınızın mevcut durumu veya sınırları nedeniyle bu işleme izin vermiyor.";
+"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
+"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";
+"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
 "music.mute" = "Sesi kapat";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";
@@ -4378,6 +4390,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Topluluk endeksi";
 "العربية" = "العربية";
-"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
-"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
-"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";

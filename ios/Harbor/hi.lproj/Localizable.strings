@@ -944,6 +944,7 @@
 "Epic Adventures" = "महाकाव्य रोमांच";
 "Episode" = "एपिसोड";
 "Episode cards" = "एपिसोड कार्ड";
+"Episode order source" = "Episode order source";
 "Episode ordering" = "एपिसोड क्रम";
 "Episode {n}" = "एपिसोड {n}";
 "Episodes" = "एपिसोड";
@@ -1036,6 +1037,7 @@
 "Filter countries" = "देश फ़िल्टर करें";
 "Filter genres" = "शैलियाँ फ़िल्टर करें";
 "Filters" = "फ़िल्टर";
+"Filters out streams from adult catalogs and addons. On by default." = "वयस्क कैटलॉग और ऐडऑन की स्ट्रीम हटा देता है। डिफ़ॉल्ट रूप से चालू है।";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "मेल खाने वाले वीडियो और उपशीर्षक के लिए सत्यापित टाइमिंग सुधार खोजें और साझा करें। समुदाय से खोज और योगदान रोकने के लिए निजी मोड चालू करें।";
 "Finding lyrics" = "बोल खोजे जा रहे हैं";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
@@ -1187,6 +1189,7 @@
 "Hidden titles" = "Hidden titles";
 "Hide" = "छिपाएँ";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
+"Hide adult content" = "वयस्क सामग्री छिपाएँ";
 "Hide all sources" = "सभी स्रोत छिपाएँ";
 "Hide and skip episodes" = "एपिसोड छिपाएँ और छोड़ें";
 "Hide anime I've already watched" = "जो एनीमे मैं पहले ही देख चुका हूँ, उन्हें छिपाएँ";
@@ -1838,6 +1841,7 @@
 "Open image" = "चित्र खोलें";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "ब्राउज़र में खोलें";
+"Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field." = "Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field.";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on AniList" = "AniList पर खोलें";
@@ -2316,6 +2320,7 @@
 "Search actors, directors…" = "अभिनेता, निर्देशक खोजें…";
 "Search addons" = "ऐडऑन खोजें";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search episodes" = "एपिसोड खोजें";
 "Search for \"Media Assistant\" (channel ID 782875, free)." = "\"Media Assistant\" खोजें (चैनल ID 782875, मुफ़्त)।";
 "Search is too long." = "Search is too long.";
 "Search languages" = "भाषाएँ खोजें";
@@ -2400,6 +2405,7 @@
 "Share" = "साझा करें";
 "Share file" = "Share file";
 "Share with {name}" = "{name} के साथ साझा करें";
+"Shares crew with" = "Shares crew with";
 "Shares crew with 1 other film" = "Shares crew with 1 other film";
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
@@ -2677,12 +2683,14 @@
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB कनेक्ट हो गया। {n} स्ट्रीमिंग {services} चालू हैं। स्वागत है।";
 "TMDB has no notable releases for this month and region." = "TMDB पर इस महीने और क्षेत्र के लिए कोई उल्लेखनीय रिलीज़ नहीं है।";
 "TMDB is temporarily unavailable. Try your search again shortly." = "TMDB अस्थायी रूप से उपलब्ध नहीं है। थोड़ी देर बाद फिर खोजें।";
+"TMDB order" = "TMDB order";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB इस महीने की हर रिलीज़ की जानकारी उपलब्ध कराता है। इसके लिए मुफ़्त टियर काफ़ी है। सेटअप में लगभग 60 सेकंड लगते हैं। अगर आप केवल सेव किए हुए शीर्षक देखना चाहते हैं, तो मेरी लाइब्रेरी पर जाएँ।";
 "TMDB · catalogs and rails" = "TMDB · कैटलॉग और पंक्तियाँ";
 "TMDB · catálogos y filas" = "TMDB · कैटलॉग और पंक्तियाँ";
 "TV" = "TV";
 "TV Shows" = "TV शो";
 "TV shows wide art cards with the logo on them. Poster is the classic grid." = "TV विकल्प में लोगो वाले चौड़े आर्ट कार्ड होते हैं। पोस्टर विकल्प में पारंपरिक ग्रिड होता है।";
+"TVDB order" = "TVDB क्रम";
 "Table of contents" = "Table of contents";
 "Tags" = "टैग";
 "Tamaño" = "आकार";
@@ -2896,6 +2904,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "ट्रेंडिंग, लोकप्रिय, सिनेमाघरों में और हर सेवा की अलग-अलग पंक्तियाँ।";
 "Trending, in theaters, what's on every streamer." = "ट्रेंडिंग, सिनेमाघरों में चल रही फ़िल्में और हर स्ट्रीमिंग सेवा पर उपलब्ध टाइटल।";
 "True Crime Files" = "ट्रू क्राइम फ़ाइलें";
+"Try a genre" = "कोई जॉनर आज़माएँ";
 "Try again" = "फिर कोशिश करें";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "शीर्षक और विवरण के लिए पहले अपना ऐडऑन आज़माएँ। उसमें नतीजा न हो तो Cinemeta इस्तेमाल करें।";
 "Tu avatar, nombre e identificador en Harbor." = "पूरे Harbor में आपका अवतार, नाम और हैंडल।";
@@ -3804,6 +3813,9 @@
 "music.mobile.spotify.install" = "Spotify इंस्टॉल करें और उसके आधिकारिक ऐप में साइन इन करें।";
 "music.mobile.spotify.remote" = "Spotify अपने आधिकारिक ऐप में ऑडियो चलाता है। Free खातों में विज्ञापन और प्लेबैक सीमाएँ बनी रहती हैं।";
 "music.mobile.spotify.restricted" = "आपके खाते की वर्तमान स्थिति या सीमाओं के कारण Spotify यह कार्रवाई करने की अनुमति नहीं देता।";
+"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
+"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";
+"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
 "music.mute" = "आवाज़ बंद करें";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";
@@ -4378,6 +4390,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "कम्युनिटी इंडेक्स";
 "العربية" = "अरबी";
-"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
-"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
-"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";

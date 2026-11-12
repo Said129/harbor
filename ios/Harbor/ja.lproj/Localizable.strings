@@ -944,6 +944,7 @@
 "Epic Adventures" = "壮大な冒険";
 "Episode" = "エピソード";
 "Episode cards" = "エピソードカード";
+"Episode order source" = "Episode order source";
 "Episode ordering" = "エピソードの順序";
 "Episode {n}" = "エピソード{n}";
 "Episodes" = "エピソード";
@@ -1036,6 +1037,7 @@
 "Filter countries" = "国で絞り込む";
 "Filter genres" = "ジャンルで絞り込む";
 "Filters" = "フィルター";
+"Filters out streams from adult catalogs and addons. On by default." = "成人向けカタログやアドオンのストリームを除外します。デフォルトでオンです。";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "一致する動画・字幕ファイルの検証済みタイミング補正を検索・共有します。プライベートモードをオンにすると、コミュニティへの照会と提供を停止します。";
 "Finding lyrics" = "歌詞を検索中";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
@@ -1187,6 +1189,7 @@
 "Hidden titles" = "Hidden titles";
 "Hide" = "非表示";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
+"Hide adult content" = "成人向けコンテンツを非表示";
 "Hide all sources" = "すべてのソースを非表示";
 "Hide and skip episodes" = "エピソードを非表示にしてスキップ";
 "Hide anime I've already watched" = "視聴済みのアニメを非表示";
@@ -1838,6 +1841,7 @@
 "Open image" = "画像を開く";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "ブラウザで開く";
+"Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field." = "Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field.";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on AniList" = "AniListで開く";
@@ -2316,6 +2320,7 @@
 "Search actors, directors…" = "俳優、監督を検索…";
 "Search addons" = "アドオンを検索";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search episodes" = "エピソードを検索";
 "Search for \"Media Assistant\" (channel ID 782875, free)." = "「Media Assistant」（チャンネルID 782875、無料）を検索してください。";
 "Search is too long." = "Search is too long.";
 "Search languages" = "言語を検索";
@@ -2400,6 +2405,7 @@
 "Share" = "共有";
 "Share file" = "Share file";
 "Share with {name}" = "{name}と共有";
+"Shares crew with" = "Shares crew with";
 "Shares crew with 1 other film" = "Shares crew with 1 other film";
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
@@ -2677,12 +2683,14 @@
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDBに接続しました。ストリーミング{services}を{n}件有効にしました。Harborへようこそ。";
 "TMDB has no notable releases for this month and region." = "今月、この地域で注目の配信作品はTMDBにありません。";
 "TMDB is temporarily unavailable. Try your search again shortly." = "TMDBは一時的に利用できません。しばらくしてからもう一度検索してください。";
+"TMDB order" = "TMDB order";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "今月の全配信作品はTMDBから取得します。無料プランで利用でき、設定は約60秒で完了します。保存した作品だけを表示する場合は、マイライブラリに切り替えてください。";
 "TMDB · catalogs and rails" = "TMDB・カタログとレール";
 "TMDB · catálogos y filas" = "TMDB・カタログとレール";
 "TV" = "TVシリーズ";
 "TV Shows" = "テレビ番組";
 "TV shows wide art cards with the logo on them. Poster is the classic grid." = "「TV」はロゴ入りの横長アートカード、「ポスター」は定番のグリッド表示です。";
+"TVDB order" = "TVDB順";
 "Table of contents" = "Table of contents";
 "Tags" = "タグ";
 "Tamaño" = "サイズ";
@@ -2896,6 +2904,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "「トレンド」「人気」「上映中」と、サービス別のレール。";
 "Trending, in theaters, what's on every streamer." = "トレンド、劇場公開中、各配信サービスの話題作。";
 "True Crime Files" = "実録犯罪ファイル";
+"Try a genre" = "ジャンルで検索";
 "Try again" = "再試行";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "タイトルと説明はまずアドオンで検索し、結果がない場合は Cinemeta を使用します。";
 "Tu avatar, nombre e identificador en Harbor." = "Harbor全体で使用するアバター、名前、ハンドルネームです。";
@@ -3804,6 +3813,9 @@
 "music.mobile.spotify.install" = "Spotify をインストールし、公式アプリでログインしてください。";
 "music.mobile.spotify.remote" = "Spotify の公式アプリで音声を再生します。Free アカウントでは広告と再生制限が維持されます。";
 "music.mobile.spotify.restricted" = "現在のアカウントの状態または制限により、Spotify はこの操作を許可していません。";
+"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
+"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";
+"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
 "music.mute" = "ミュート";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";
@@ -4378,6 +4390,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "コミュニティインデックス";
 "العربية" = "アラビア語";
-"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
-"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
-"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";

@@ -944,6 +944,7 @@
 "Epic Adventures" = "史诗冒险";
 "Episode" = "剧集";
 "Episode cards" = "单集卡片";
+"Episode order source" = "Episode order source";
 "Episode ordering" = "单集排序";
 "Episode {n}" = "第 {n} 集";
 "Episodes" = "剧集";
@@ -1036,6 +1037,7 @@
 "Filter countries" = "筛选国家/地区";
 "Filter genres" = "筛选类型";
 "Filters" = "筛选";
+"Filters out streams from adult catalogs and addons. On by default." = "筛除成人目录和插件中的播放源。默认开启。";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "查找并分享与视频和字幕文件匹配的已验证时间校正。开启私密模式可停止社区查询和贡献。";
 "Finding lyrics" = "正在查找歌词";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
@@ -1187,6 +1189,7 @@
 "Hidden titles" = "Hidden titles";
 "Hide" = "隐藏";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
+"Hide adult content" = "隐藏成人内容";
 "Hide all sources" = "隐藏所有片源";
 "Hide and skip episodes" = "隐藏并跳过单集";
 "Hide anime I've already watched" = "隐藏我已看过的动漫";
@@ -1838,6 +1841,7 @@
 "Open image" = "打开图片";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "在浏览器中打开";
+"Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field." = "Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field.";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on AniList" = "在 AniList 上打开";
@@ -2316,6 +2320,7 @@
 "Search actors, directors…" = "搜索演员、导演…";
 "Search addons" = "搜索插件";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search episodes" = "搜索剧集";
 "Search for \"Media Assistant\" (channel ID 782875, free)." = "搜索“Media Assistant”（频道 ID 782875，免费）。";
 "Search is too long." = "Search is too long.";
 "Search languages" = "搜索语言";
@@ -2400,6 +2405,7 @@
 "Share" = "分享";
 "Share file" = "Share file";
 "Share with {name}" = "与 {name} 共享";
+"Shares crew with" = "Shares crew with";
 "Shares crew with 1 other film" = "Shares crew with 1 other film";
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
@@ -2677,12 +2683,14 @@
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB 已连接。已开启 {n} 个流媒体{services}。欢迎登船。";
 "TMDB has no notable releases for this month and region." = "TMDB 中本月及该地区没有值得关注的新内容。";
 "TMDB is temporarily unavailable. Try your search again shortly." = "TMDB 暂时不可用，请稍后重试搜索。";
+"TMDB order" = "TMDB order";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB 提供本月全部新内容的海量数据，免费套餐即可满足需求，设置约需 60 秒。如果你只想查看已保存的内容，请切换到“我的媒体库”。";
 "TMDB · catalogs and rails" = "TMDB · 目录和内容栏";
 "TMDB · catálogos y filas" = "TMDB · 目录和内容栏";
 "TV" = "电视剧";
 "TV Shows" = "电视剧";
 "TV shows wide art cards with the logo on them. Poster is the classic grid." = "电视节目显示为带徽标的横向图片卡片。海报则采用经典网格布局。";
+"TVDB order" = "TVDB 顺序";
 "Table of contents" = "Table of contents";
 "Tags" = "标签";
 "Tamaño" = "大小";
@@ -2896,6 +2904,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "趋势、热门、院线热映以及各服务的内容栏。";
 "Trending, in theaters, what's on every streamer." = "热门趋势、正在上映，以及各流媒体平台的内容。";
 "True Crime Files" = "真实罪案档案";
+"Try a genre" = "尝试按类型搜索";
 "Try again" = "重试";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "优先通过插件获取标题和简介。插件无结果时使用 Cinemeta。";
 "Tu avatar, nombre e identificador en Harbor." = "你在 Harbor 中使用的头像、名称和账号名。";
@@ -3804,6 +3813,9 @@
 "music.mobile.spotify.install" = "请安装 Spotify 并在其官方应用中登录。";
 "music.mobile.spotify.remote" = "Spotify 在其官方应用中播放音频。Free 账户仍有广告和播放限制。";
 "music.mobile.spotify.restricted" = "由于账户当前的状态或限制，Spotify 不允许此操作。";
+"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
+"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";
+"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
 "music.mute" = "静音";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";
@@ -4378,6 +4390,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "社区指数";
 "العربية" = "阿拉伯语";
-"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
-"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
-"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";

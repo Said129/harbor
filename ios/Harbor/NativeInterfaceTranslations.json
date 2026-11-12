@@ -168,7 +168,16 @@
     "1 hour before": "1 hora antes",
     "Date-only releases have no hour, so they alert at 9:00 AM on their day.": "Los estrenos sin hora avisan a las 9:00 del día.",
     "Local files": "Archivos locales",
-    "Host or address": "Host o dirección"
+    "Host or address": "Host o dirección",
+    "Try a genre": "Prueba un género",
+    "Search episodes": "Buscar episodios",
+    "Shares crew with": "Comparte equipo con",
+    "Episode order source": "Fuente del orden de episodios",
+    "TVDB order": "Orden de TVDB",
+    "TMDB order": "Orden de TMDB",
+    "Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field.": "Ábrelo en un navegador normal, configúralo allí y vuelve a pegar el enlace de instalación en el campo Manifest URL.",
+    "Hide adult content": "Ocultar contenido para adultos",
+    "Filters out streams from adult catalogs and addons. On by default.": "Filtra los streams de catálogos y complementos para adultos. Activado por defecto."
   },
   "pt": {
     "Give more weight to titles in your languages and region in Discover.": "Dá mais peso aos títulos nos teus idiomas e da tua região em Descobrir.",

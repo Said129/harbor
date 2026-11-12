@@ -944,6 +944,7 @@
 "Epic Adventures" = "대서사 모험";
 "Episode" = "에피소드";
 "Episode cards" = "에피소드 카드";
+"Episode order source" = "Episode order source";
 "Episode ordering" = "에피소드 순서";
 "Episode {n}" = "에피소드 {n}";
 "Episodes" = "에피소드";
@@ -1036,6 +1037,7 @@
 "Filter countries" = "국가 필터";
 "Filter genres" = "장르 필터";
 "Filters" = "필터";
+"Filters out streams from adult catalogs and addons. On by default." = "성인 카탈로그 및 애드온의 스트림을 필터링합니다. 기본적으로 켜져 있습니다.";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "일치하는 동영상과 자막 파일의 검증된 타이밍 보정을 찾고 공유합니다. 비공개 모드를 켜면 커뮤니티 검색과 기여를 중단합니다.";
 "Finding lyrics" = "가사를 찾는 중";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
@@ -1187,6 +1189,7 @@
 "Hidden titles" = "Hidden titles";
 "Hide" = "숨기기";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
+"Hide adult content" = "성인 콘텐츠 숨기기";
 "Hide all sources" = "모든 소스 숨기기";
 "Hide and skip episodes" = "에피소드 숨기기 및 건너뛰기";
 "Hide anime I've already watched" = "이미 본 애니메이션 숨기기";
@@ -1838,6 +1841,7 @@
 "Open image" = "이미지 열기";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "브라우저에서 열기";
+"Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field." = "Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field.";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on AniList" = "AniList에서 열기";
@@ -2316,6 +2320,7 @@
 "Search actors, directors…" = "배우, 감독 검색…";
 "Search addons" = "애드온 검색";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search episodes" = "에피소드 검색";
 "Search for \"Media Assistant\" (channel ID 782875, free)." = "\"Media Assistant\"를 검색하세요(채널 ID 782875, 무료).";
 "Search is too long." = "Search is too long.";
 "Search languages" = "언어 검색";
@@ -2400,6 +2405,7 @@
 "Share" = "공유";
 "Share file" = "Share file";
 "Share with {name}" = "{name}과(와) 공유";
+"Shares crew with" = "Shares crew with";
 "Shares crew with 1 other film" = "Shares crew with 1 other film";
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
@@ -2677,12 +2683,14 @@
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "TMDB가 연결되었습니다. 스트리밍 {services} {n}개가 켜져 있습니다. Harbor에 오신 것을 환영합니다.";
 "TMDB has no notable releases for this month and region." = "TMDB에 이번 달 해당 지역의 주요 공개작이 없습니다.";
 "TMDB is temporarily unavailable. Try your search again shortly." = "TMDB를 일시적으로 사용할 수 없습니다. 잠시 후 다시 검색하세요.";
+"TMDB order" = "TMDB order";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB에서 이번 달의 모든 공개작을 제공합니다. 무료 요금제로 이용할 수 있으며 설정에는 약 60초가 걸립니다. 저장한 콘텐츠만 보려면 내 라이브러리로 전환하세요.";
 "TMDB · catalogs and rails" = "TMDB · 카탈로그 및 콘텐츠 행";
 "TMDB · catálogos y filas" = "TMDB · 카탈로그 및 콘텐츠 행";
 "TV" = "TV";
 "TV Shows" = "TV 프로그램";
 "TV shows wide art cards with the logo on them. Poster is the classic grid." = "TV에서는 로고가 표시된 가로형 아트 카드를 사용합니다. 포스터는 클래식 그리드 형식입니다.";
+"TVDB order" = "TVDB 순서";
 "Table of contents" = "Table of contents";
 "Tags" = "태그";
 "Tamaño" = "크기";
@@ -2896,6 +2904,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "트렌딩, 인기, 극장 상영작 및 서비스별 콘텐츠 행입니다.";
 "Trending, in theaters, what's on every streamer." = "인기 콘텐츠, 극장 상영작, 모든 스트리밍 서비스의 콘텐츠를 한곳에서 확인하세요.";
 "True Crime Files" = "실화 범죄 파일";
+"Try a genre" = "장르를 검색해 보세요";
 "Try again" = "다시 시도";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "제목과 설명을 먼저 애드온에서 찾습니다. 애드온에 결과가 없으면 Cinemeta를 사용합니다.";
 "Tu avatar, nombre e identificador en Harbor." = "Harbor 전반에 표시되는 아바타, 이름 및 핸들입니다.";
@@ -3804,6 +3813,9 @@
 "music.mobile.spotify.install" = "Spotify를 설치하고 공식 앱에서 로그인하세요.";
 "music.mobile.spotify.remote" = "Spotify 공식 앱에서 오디오를 재생합니다. Free 계정에는 광고와 재생 제한이 그대로 적용됩니다.";
 "music.mobile.spotify.restricted" = "계정의 현재 상태나 제한으로 인해 Spotify에서 이 작업을 허용하지 않습니다.";
+"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
+"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";
+"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
 "music.mute" = "음소거";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";
@@ -4378,6 +4390,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "커뮤니티 지수";
 "العربية" = "العربية";
-"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
-"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
-"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";

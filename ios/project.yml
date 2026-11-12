@@ -295,6 +295,17 @@ targets:
       - path: HarborTests/SpotifyMusicTests.swift
       - path: HarborTests/SoundCloudMusicTests.swift
       - path: HarborTests/YouTubeMusicTests.swift
+      - path: HarborTests/F1ContinueWatchingTests.swift
+      - path: HarborTests/F1MoviesRoomTests.swift
+      - path: HarborTests/F2AnimePicksTests.swift
+      - path: HarborTests/F3ArtworkResolveTests.swift
+      - path: HarborTests/F3EpisodeSearchTests.swift
+      - path: HarborTests/F3SearchGenreTests.swift
+      - path: HarborTests/F3SharedCrewTests.swift
+      - path: HarborTests/F4AnimeStreamTests.swift
+      - path: HarborTests/F5DebridLibraryTests.swift
+      - path: HarborTests/F9ContentFilterTests.swift
+      - path: HarborTests/F10SportsFootballTests.swift
       - path: HarborTests/Fixtures
         type: folder
         buildPhase: resources

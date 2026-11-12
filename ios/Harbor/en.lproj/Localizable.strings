@@ -837,6 +837,7 @@
 "Epic Adventures" = "Epic Adventures";
 "Episode" = "Episode";
 "Episode cards" = "Episode cards";
+"Episode order source" = "Episode order source";
 "Episode ordering" = "Episode ordering";
 "Episode {n}" = "Episode {n}";
 "Episodes" = "Episodes";
@@ -920,6 +921,7 @@
 "Filter countries" = "Filter countries";
 "Filter genres" = "Filter genres";
 "Filters" = "Filters";
+"Filters out streams from adult catalogs and addons. On by default." = "Filters out streams from adult catalogs and addons. On by default.";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions.";
 "Finding lyrics" = "Finding lyrics";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
@@ -1048,6 +1050,7 @@
 "Hidden titles" = "Hidden titles";
 "Hide" = "Hide";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
+"Hide adult content" = "Hide adult content";
 "Hide all sources" = "Hide all sources";
 "Hide and skip episodes" = "Hide and skip episodes";
 "Hide anime I've already watched" = "Hide anime I've already watched";
@@ -1634,6 +1637,7 @@
 "Open image" = "Open image";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "Open in browser";
+"Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field." = "Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field.";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on AniList" = "Open on AniList";
@@ -2061,6 +2065,7 @@
 "Search actors, directors…" = "Search actors, directors…";
 "Search addons" = "Search addons";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search episodes" = "Search episodes";
 "Search for \"Media Assistant\" (channel ID 782875, free)." = "Search for \"Media Assistant\" (channel ID 782875, free).";
 "Search is too long." = "Search is too long.";
 "Search languages" = "Search languages";
@@ -2139,6 +2144,7 @@
 "Shadow strength" = "Shadow strength";
 "Share" = "Share";
 "Share file" = "Share file";
+"Shares crew with" = "Shares crew with";
 "Shares crew with 1 other film" = "Shares crew with 1 other film";
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
@@ -2391,12 +2397,14 @@
 "TMDB API key (v3)" = "TMDB API key (v3)";
 "TMDB has no notable releases for this month and region." = "TMDB has no notable releases for this month and region.";
 "TMDB is temporarily unavailable. Try your search again shortly." = "TMDB is temporarily unavailable. Try your search again shortly.";
+"TMDB order" = "TMDB order";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved.";
 "TMDB · catalogs and rails" = "TMDB · catalogs and rails";
 "TMDB · catálogos y filas" = "TMDB · catalogs and rails";
 "TV" = "TV";
 "TV Shows" = "TV Shows";
 "TV shows wide art cards with the logo on them. Poster is the classic grid." = "TV shows wide art cards with the logo on them. Poster is the classic grid.";
+"TVDB order" = "TVDB order";
 "Table of contents" = "Table of contents";
 "Tags" = "Tags";
 "Tamaño" = "Size";
@@ -2585,6 +2593,7 @@
 "Trending on {source}" = "Trending on {source}";
 "Trending, Popular, In Theaters, and the per service rails." = "Trending, Popular, In Theaters, and the per service rails.";
 "True Crime Files" = "True Crime Files";
+"Try a genre" = "Try a genre";
 "Try again" = "Try again";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result.";
 "Tu avatar, nombre e identificador en Harbor." = "Your avatar, name, and handle across Harbor.";
@@ -3456,6 +3465,9 @@
 "music.mobile.spotify.install" = "Install Spotify and sign in to its official app.";
 "music.mobile.spotify.remote" = "Spotify plays audio in its official app. Free accounts keep its ads and playback limits.";
 "music.mobile.spotify.restricted" = "Spotify does not allow this action with your account’s current state or limits.";
+"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
+"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";
+"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
 "music.mute" = "Mute";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";
@@ -4003,6 +4015,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Community index";
 "العربية" = "العربية";
-"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
-"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
-"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";

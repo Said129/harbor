@@ -967,6 +967,7 @@
 "Epic Adventures" = "مغامرات ملحمية";
 "Episode" = "حلقة";
 "Episode cards" = "بطاقات الحلقات";
+"Episode order source" = "Episode order source";
 "Episode ordering" = "ترتيب الحلقات";
 "Episode {n}" = "الحلقة {n}";
 "Episodes" = "الحلقات";
@@ -1059,6 +1060,7 @@
 "Filter countries" = "تصفية البلدان";
 "Filter genres" = "تصفية الأنواع";
 "Filters" = "المرشّحات";
+"Filters out streams from adult catalogs and addons. On by default." = "يستبعد البثوث من كتالوجات وإضافات البالغين. مفعّل افتراضيًا.";
 "Find and share verified timing corrections for matching video and subtitle files. Turn on Private mode to stop community lookups and contributions." = "اعثر على تصحيحات توقيت موثّقة لملفات الفيديو والترجمة المتطابقة وشاركها. فعّل الوضع الخاص لإيقاف البحث في بيانات المجتمع والمساهمة فيها.";
 "Finding lyrics" = "جارٍ البحث عن الكلمات";
 "Finish the setup on the configure page, then paste the manifest URL it hands back here." = "Finish the setup on the configure page, then paste the manifest URL it hands back here.";
@@ -1211,6 +1213,7 @@
 "Hidden titles" = "Hidden titles";
 "Hide" = "إخفاء";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
+"Hide adult content" = "إخفاء المحتوى للبالغين";
 "Hide all sources" = "إخفاء كل المصادر";
 "Hide and skip episodes" = "إخفاء الحلقات وتخطّيها";
 "Hide anime I've already watched" = "إخفاء الأنمي الذي شاهدته بالفعل";
@@ -1866,6 +1869,7 @@
 "Open image" = "فتح الصورة";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "فتح في المتصفح";
+"Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field." = "Open it in a regular browser, set it up there, then come back and paste the install link into the Manifest URL field.";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
 "Open on AniList" = "فتح على AniList";
@@ -2349,6 +2353,7 @@
 "Search actors, directors…" = "ابحث عن ممثلين ومخرجين…";
 "Search addons" = "ابحث عن الإضافات";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search episodes" = "البحث في الحلقات";
 "Search for \"Media Assistant\" (channel ID 782875, free)." = "ابحث عن \"Media Assistant\" (معرّف القناة 782875، مجانًا).";
 "Search is too long." = "Search is too long.";
 "Search languages" = "ابحث في اللغات";
@@ -2433,6 +2438,7 @@
 "Share" = "مشاركة";
 "Share file" = "Share file";
 "Share with {name}" = "مشاركة مع {name}";
+"Shares crew with" = "Shares crew with";
 "Shares crew with 1 other film" = "Shares crew with 1 other film";
 "Shares crew with {n} other films" = "Shares crew with {n} other films";
 "Shares {n} crew" = "Shares {n} crew";
@@ -2713,12 +2719,14 @@
 "TMDB connected. {n} streaming {services} on. Welcome aboard." = "تم ربط TMDB. {n} {services} بث مفعّلة. مرحبًا بك.";
 "TMDB has no notable releases for this month and region." = "لا توجد لدى TMDB إصدارات بارزة لهذا الشهر والمنطقة.";
 "TMDB is temporarily unavailable. Try your search again shortly." = "TMDB غير متاح مؤقتًا. أعد البحث بعد قليل.";
+"TMDB order" = "TMDB order";
 "TMDB powers the firehose of every release this month. The free tier covers it. About 60 seconds to set up. Switch to My Library if you'd rather only see what you've saved." = "تغذّي TMDB سيل كل إصدارات هذا الشهر. الباقة المجانية تكفي. الإعداد يستغرق نحو 60 ثانية. بدّل إلى \"مكتبتي\" إن كنت تفضّل رؤية ما حفظته فقط.";
 "TMDB · catalogs and rails" = "TMDB · البيانات الوصفية الأساسية";
 "TMDB · catálogos y filas" = "TMDB · البيانات الوصفية الأساسية";
 "TV" = "المسلسلات";
 "TV Shows" = "مسلسلات تلفزيونية";
 "TV shows wide art cards with the logo on them. Poster is the classic grid." = "يعرض نمط المسلسلات بطاقات فنية عريضة تحمل الشعار، بينما الملصق هو الشبكة الكلاسيكية.";
+"TVDB order" = "ترتيب TVDB";
 "Table of contents" = "Table of contents";
 "Tags" = "الوسوم";
 "Tamaño" = "الحجم";
@@ -2933,6 +2941,7 @@
 "Trending, Popular, In Theaters, and the per service rails." = "صفوف «الرائج» و«الشائع» و«في دور العرض» وصفوف كل خدمة.";
 "Trending, in theaters, what's on every streamer." = "الرائج، وما يُعرض في السينما، وما هو متاح على كل منصّة بث.";
 "True Crime Files" = "ملفات جرائم حقيقية";
+"Try a genre" = "جرّب نوعًا";
 "Try again" = "حاول مرة أخرى";
 "Try your addon first for titles and descriptions. Use Cinemeta when the addon has no result." = "جرّب إضافتك أولًا للحصول على العناوين والأوصاف. استخدم Cinemeta عندما لا تُرجع الإضافة نتيجة.";
 "Tu avatar, nombre e identificador en Harbor." = "صورتك الرمزية واسمك ومُعرِّفك في جميع أنحاء Harbor.";
@@ -3845,6 +3854,9 @@
 "music.mobile.spotify.install" = "ثبّت Spotify وسجّل الدخول في تطبيقه الرسمي.";
 "music.mobile.spotify.remote" = "يشغّل Spotify الصوت في تطبيقه الرسمي. تبقى الإعلانات وقيود التشغيل في حسابات Free.";
 "music.mobile.spotify.restricted" = "لا يسمح Spotify بهذا الإجراء وفق الحالة الحالية لحسابك أو قيوده.";
+"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
+"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";
+"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
 "music.mute" = "كتم الصوت";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";
@@ -4419,6 +4431,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "فهرس المجتمع";
 "العربية" = "العربية";
-"music.mobile.youtube.consent" = "Search and playback contact YouTube Music and Google's media servers. No account is used; Harbor plays the audio YouTube offers to any visitor.";
-"music.mobile.spotify.web" = "Opens Spotify's own web player inside Harbor. You sign in on Spotify's page, so Harbor never sees your password. A Free account plays what Spotify allows on the web.";
-"music.mobile.spotify.webError" = "Spotify did not load. Check the connection and try again.";
