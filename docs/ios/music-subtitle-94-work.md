@@ -2300,3 +2300,26 @@ Spotify web: the Spotify connection screen has a "Spotify Web Player" entry that
 with other pages) and a desktop user agent. The person signs in on Spotify's page; the app never sees the password and does not script or read the page. Only https pages are
 followed. Harbor's own interface over Spotify (native lists, Harbor controls) is not built: it would need Spotify's private web endpoints or its Premium-only developer API.
 Whether the web view plays full songs on an iPhone is unverified; Spotify lists Safari on iPhone as supported but embeds in web views are known to fall back to previews.
+
+## Closing round of the 136 partial rows (12 November)
+
+The owner asked to finish the whole port before the final IPA. The 136 rows left partial were split into twelve areas, each handled by one worker in its own worktree
+(`ios/final-f1` to `f12`), with the same outcome per row: implement, show the audit note was stale, or exclude with a reason. A first batch of Haiku workers and two Sonnet
+workers were stopped by a rate limit; their uncommitted work stayed in the worktrees and fresh workers finished it. Merged in this order: Home and Movies, debrid libraries,
+Discover and Anime, sports, search and detail, settings, addons and stream pipeline (Rust included), trackers, IPTV and Watch Together, metadata and calendar, player,
+subtitles. Two merges conflicted in `HarborService.swift` (library merge, anime inputs, flagged streams) and were resolved by hand so `ranked` carries all three.
+
+What changed for the person using the app: one Home card per anime franchise; movie rows follow Desktop's hero, dedupe and Top 10 rules; the anime room follows Desktop's row
+rules and daily Top Picks; debrid libraries feed the stream list; anime filename fields, the exact-episode filter and the early-leak rescue run in the Rust ranking; the title
+page shows the shared-crew line, episode search and an episode-order setting; AniList and MAL entries can be edited from a long-press menu and list progress no longer waits for
+the lists screen; saving a bookmark also updates Simkl Plan to Watch when Simkl is connected; the calendar offers My Simkl and keeps its source per profile; IPTV reads gzip
+guides, orders by most watched and takes a guide address; the Watch Together sheet shows who is ready; the Picture settings have tone-mapping curves, the Options page can save the
+playing file and the source picker has Desktop's four missing filters; subtitles gain custom fonts, a manual live sync, ranking against the stream's release name with an automatic
+provider choice, stream subtitles converted to UTF-8, ASS sizing for embedded tracks and an OpenSubtitles hash swap offer.
+
+Behavior changes worth testing on the device first: the automatic subtitle choice (a subtitle in the preferred language is loaded when the file has none), the Simkl write on
+bookmark, and `MPVController` itself, which three of the subtitle features touch. The physical subtitle drift after seeking is still not reproduced and was not changed.
+
+Validation: the first nine areas compiled (Swift and Rust with clippy) and 209 of 210 focused cases passed in run 43194274155; the one failure was a test premise (IMDb ids
+already resolve through AnimePublicIdentity) and is fixed. The last four areas are covered by the next runs. `MusicServerCatalogTests` has one failing case in the music run
+(the Spanish and Arabic capability labels differ from the fixture's English text); the keys are not ones this work touched and it was not compared against an older commit.
