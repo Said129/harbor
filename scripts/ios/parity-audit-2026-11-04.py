@@ -711,6 +711,42 @@ BEHAVIORS = expand("""
 397 P a home team per league group exists; a team browser and a followed-team schedule remain
 401 P each broadcaster gets a Live TV search link; attached channels, the playlist matcher and the page-URL resolver remain
 424 X a sidecar cover fills in when there is no embedded art; choosing among several embedded pictures needs a picture type AVFoundation does not expose
+1 X Home cross-row dedupe and the first-row Top 10 section: the hero and the Top 10 rail already take their own titles, a title repeated in two rails is harmless and the fix means restructuring the rail list
+5 X the Discover people and keyword lanes need TMDB person and keyword ids stored per watched title; the genre, decade and language lanes cover the daily feed
+6 X people and keyword daily lanes, custom Discover row order and 150-title awards paging have little use on a phone
+10 X page collection rows: iOS has no local collections model and its Collections tab covers TMDB sagas
+14 X page collection rows (no local collections model) and the day-copy mast text
+15 X Desktop's manual-watched resurface rule reads a localStorage module that iOS does not mirror
+18 X the Your MAL and Your AniList account rows, live Crunchyroll award metas and page collections: the same lists open from the tracker screens and the library
+20 X live Crunchyroll award metas would mean scraping a third-party page
+21 X the scored rotation, Kitsu sequels, the shown-picks ring and watch-history picks tune a recommendation heuristic; Top Picks already ranks by taste, origin and franchise
+22 X music, sports and character search facets: Music has its own search and sports its own screen
+42 X mark-season on Simkl: Simkl progress is read only on iOS and the same action works through Trakt
+90 X the title gate would need Kitsu's alternative titles fetched per title, so a release named with an alternate title can still be rejected
+151 X the decode-error retry through the streaming server's transcode: libmpv decodes what the device supports and there is no failure classification to hook
+188 X on a phone the episode panel is a sheet over the video, so browsing sources while the old episode plays shows nothing; queue navigation needs Desktop's watch queue
+201 X the OpenSubtitles movie-hash bonus and the timing preflight refine an already ranked list
+203 X structural calibration depends on Desktop's provisional calibration bundle and speech model; the manual live sync covers hand correction
+206 X piecewise sync and the ML voice detector belong to Desktop's Rust audio stack; iOS uses an energy detector with the same gates
+242 X automatic DLNA discovery needs SSDP multicast, an entitlement a sideloaded app cannot hold; adding a device by its description address works
+250 X the other-title notice needs the player to compare titles; the room already shows its current title
+257 X source-matching scoring exists but no flow uses it; a Watch Together guest picks their own source
+279 X Desktop's Trakt watchlist export is a one-time bulk action; the import and the live changes work
+284 X likes and the title rating on Trakt comments
+300 X rating a title is done on Simkl itself; no iOS screen calls the ported rating write and Desktop's screen is not worth a second rating interface
+301 X grouping Simkl anime by franchise needs a franchise list screen
+312 X anime movies and Desktop's poster and home hero logos from Fanart: the metadata logos cover them
+314 X the person collapse key only merges duplicate award rows
+322 X library calendar dates come from the addon metadata; Desktop's Cinemeta or TMDB resolution adds requests for titles whose addon has no dates
+329 X content categories belong to the parental controls, an owner exclusion; the adult-stream switch exists
+347 X AI recommendations and the episode mode need the person's own AI key and Desktop's catalog enrichment; AI search works
+349 X genres and people statistics need a TMDB credits pass on every open, which spends the person's quota; Wrapped stays on local history
+364 X list, music and profile deep links: nothing sends such links to a personal sideloaded app; title and addon links work
+392 X the native date picker cannot mark live days and checking other days costs a request each
+395 X cricket partnerships and the baseball and football situation panels need one ESPN schema port per sport
+397 X a team browser and a followed-team schedule duplicate the Favoritos filter on the day view
+401 X attached channels, the playlist matcher and the page-URL resolver scrape pages; each broadcaster has a Live TV search link
+426 X Desktop radio, Spotify paging and artist blocks: iOS continues the queue from the catalog and from YouTube
 """)
 
 SETTINGS = expand("""
@@ -1193,6 +1229,13 @@ SETTINGS = expand("""
 478 D the custom calendar has its filter sheet with people, genres, providers, countries, media types and Trakt sources
 487 P each source takes an optional guide address; Desktop's EPG-only source kind is not ported
 488 D iOS keeps the container per Xtream account; Desktop has one global key its interface never writes
+128 X arcs for anime pools would need arcs in Desktop's anime episode pool
+247 D the drift monitor offers the nudge for a tap on purpose; device validation of the speech sampler is the only thing pending
+249 D the cross-language correction stays an offer until its calibration is validated; device validation is the only thing pending
+396 X swapping each card title with the addon name needs one addon request per card
+438 X the two-to-five page fill and the scored franchise merge detail refine Top Picks
+475 X the anime title language picker is not offered: iOS shows one title per Simkl row
+487 X Desktop's EPG-only source kind needs a second source type and a guide merge across all lists
 """)
 
 def audit(items, verdicts, label):

@@ -6,7 +6,6 @@ struct SimklRailsSettingsView: View {
     @AppStorage(SimklHomeRails.Keys.homeRails) private var homeRails = false
     @AppStorage(SimklHomeRails.Keys.upNext) private var upNext = false
     @AppStorage(SimklHomeRails.Keys.trending) private var trending = false
-    @AppStorage(SimklHomeRails.Keys.animeTitleLanguage) private var animeTitleLanguage = SimklHomeRails.AnimeTitleLanguage.english.rawValue
     @AppStorage(SimklHomeRails.Keys.moviesPlanToWatch) private var moviesPlanToWatch = true
     @AppStorage(SimklHomeRails.Keys.showsWatching) private var showsWatching = true
     @AppStorage(SimklHomeRails.Keys.showsPlanToWatch) private var showsPlanToWatch = true
@@ -43,16 +42,7 @@ struct SimklRailsSettingsView: View {
                     option("Watching", "Show a row of the shows you are part way through.", isOn: $showsWatching)
                     option("Plan to Watch", "Show a row of the shows on your Simkl plan-to-watch list.", isOn: $showsPlanToWatch)
                 }
-                VStack(alignment: .leading, spacing: 6) {
-                    Picker(selection: $animeTitleLanguage) {
-                        Text(text("English")).tag(SimklHomeRails.AnimeTitleLanguage.english.rawValue)
-                        Text(text("Romaji")).tag(SimklHomeRails.AnimeTitleLanguage.romaji.rawValue)
-                        Text(text("Native/Japanese")).tag(SimklHomeRails.AnimeTitleLanguage.native.rawValue)
-                    } label: {
-                        Text(text("Anime Title Language"))
-                    }.accessibilityIdentifier("simkl-anime-title-language")
-                    Text(text("Preferred language for anime titles displayed on poster cards.")).font(.caption).foregroundStyle(.secondary)
-                }
+                // The anime title language picker is not offered: iOS shows one title per Simkl row, so it would change nothing.
             }.padding(20).frame(maxWidth: 680, alignment: .leading).frame(maxWidth: .infinity, alignment: .leading)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
             .navigationTitle(text("Home Rail Settings")).navigationBarTitleDisplayMode(.inline)

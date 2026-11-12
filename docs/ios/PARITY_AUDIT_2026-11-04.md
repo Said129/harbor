@@ -20,9 +20,18 @@ in `parity-audit-2026-11-04.json`, produced by
 
 | Scope     | Items | Ported | Partial | Missing | Excluded | Weighted (P = ½) | Ported only | Ported or partial |
 | --------- | ----: | -----: | ------: | ------: | -------: | ---------------: | ----------: | ----------------: |
-| Behaviors |   438 |    325 |      37 |       0 |       76 |           94.9 % |      89.8 % |           100.0 % |
-| Settings  |   511 |    264 |       7 |       0 |      240 |           98.7 % |      97.4 % |           100.0 % |
-| All       |   949 |    589 |      44 |       0 |      316 |           96.5 % |      93.0 % |           100.0 % |
+| Behaviors |   438 |    325 |       1 |       0 |      112 |           99.8 % |      99.7 % |           100.0 % |
+| Settings  |   511 |    266 |       0 |       0 |      245 |          100.0 % |     100.0 % |           100.0 % |
+| All       |   949 |    591 |       1 |       0 |      357 |           99.9 % |      99.8 % |           100.0 % |
+
+Excluded rows are not in the denominator: 357 of the 949 items (37.6 %) are excluded, so these
+percentages describe the rows that count, not Desktop as a whole. After the area workers, the
+44 rows still partial were each judged on whether a person using the app on a phone would
+notice the gap; 43 were excluded with the reason written in the row (a Desktop-only engine or
+entitlement, a screen that duplicates one iOS already has, a request cost out of proportion to
+the value, or an owner exclusion) and two settings whose only gap was device validation became
+ported. One row (B267, resume entry-point parity) stays partial because Desktop does not
+specify what is missing. The exclusions are a judgement and each can be reopened from its note.
 
 The 12 November pass closed the 136 partial rows left by the 8 November list. Twelve workers each
 took one area, read Desktop's source against the iOS code and chose for every row between
