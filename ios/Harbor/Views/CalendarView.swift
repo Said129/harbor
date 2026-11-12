@@ -21,7 +21,7 @@ struct CalendarView: View {
     /// Desktop's `filtered`: All upcoming holds movies and TV only and can be narrowed to the library; the other sources show everything they found.
     private var shown: [ReleaseEvent] {
         switch source {
-        case .library, .simklAnticipated:
+        case .library, .simkl, .simklAnticipated:
             return model.events.filter { kind == "all" || $0.kind == kind }
         case .all:
             let names = watchlistOnly ? Set(app.library.items.compactMap(\.media).map { CalendarSources.libraryKey(name: $0.name, isSeries: $0.type != "movie") }) : []
@@ -39,6 +39,7 @@ struct CalendarView: View {
         case .library: return "\(app.library.owner)|\(period)|\(app.library.items.map { $0.id + $0.modified }.joined())|library"
         case .all: return "\(app.personalOwner)|\(period)|all|\(MetadataPreferences.shared.tmdbKey.hashValue)|\(MetadataPreferences.shared.region)"
         case .trakt: return "\(app.personalOwner)|\(period)|trakt|\(traktConnected)"
+        case .simkl: return "\(app.personalOwner)|\(period)|simkl|\(simklConnected)"
         case .anticipated, .simklAnticipated: return "\(period)|\(source.rawValue)"
         case .anime: return "\(period)|anime|\(animeDub)"
         case .custom: return "\(app.personalOwner)|\(period)|custom|\(customCalendar.value.hashValue)|\(MetadataPreferences.shared.tmdbKey.hashValue)|\(MetadataPreferences.shared.region)|\(traktConnected)"
@@ -81,7 +82,7 @@ struct CalendarView: View {
                         HarborPill(title: DesktopInterfaceText.value("Dub"), selected: animeDub) { animeDub = true }.accessibilityIdentifier("calendar-anime-dub")
                     }
                 }
-                if source == .library || source == .all || source == .simklAnticipated {
+                if source == .library || source == .simkl || source == .all || source == .simklAnticipated {
                     ScrollView(.horizontal) {
                         HStack(spacing: 6) {
                             HarborPill(title: DesktopInterfaceText.value("All"), selected: kind == "all") { kind = "all" }

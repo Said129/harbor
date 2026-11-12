@@ -23,16 +23,22 @@ final class CalendarModel {
     private var metadata: [String: Media] = [:]
     private var signature = ""
     func load(month: Date, app: AppModel, source: CalendarSource = .library, animeDub: Bool = false) async {
-        if source != .library { await loadSource(source, month: month, app: app, animeDub: animeDub); return }
+        if source != .library && source != .simkl { await loadSource(source, month: month, app: app, animeDub: animeDub); return }
         generation += 1
         let current = generation
         let accountSignature = app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined()
         if accountSignature != signature { metadata = [:]; signature = accountSignature }
         loading = true; error = nil; events = []
         defer { if current == generation { loading = false } }
-        let traktEntries = await traktWatchlistEntries(app: app)
+        let candidates: [LibraryCalendarEntry]
+        if source == .simkl {
+            candidates = await simklWatchlistEntries(app: app)
+        } else {
+            let traktEntries = await traktWatchlistEntries(app: app)
+            candidates = LibraryCalendarCandidates.entries(from: app.library.items) + traktEntries
+        }
         guard current == generation, !Task.isCancelled else { return }
-        let mediaList = LibraryCalendarCandidates.select(LibraryCalendarCandidates.entries(from: app.library.items) + traktEntries)
+        let mediaList = LibraryCalendarCandidates.select(candidates)
         let calendar = Calendar.current
         guard let interval = calendar.dateInterval(of: .month, for: month) else { return }
         var failures = 0
@@ -90,6 +96,15 @@ final class CalendarModel {
         guard let value = try? await account.response(.library(.watchlist), active: lease), let items = try? TraktLibraryItem.watchlist(value) else { return [] }
         return LibraryCalendarCandidates.entries(traktWatchlist: items)
     }
+    /// The Simkl watchlist and the titles being watched, as calendar candidates when a Simkl account is connected (Desktop's
+    /// `fetchSimklCalendar`). The Simkl library model refreshes its synced list first, as the Simkl library screen does, so a
+    /// person who never opened that screen still gets their list; a failed sync keeps the last saved list.
+    private func simklWatchlistEntries(app: AppModel) async -> [LibraryCalendarEntry] {
+        let library = SimklLibraryModel(app: app)
+        await library.refresh()
+        guard library.isActive else { return [] }
+        return LibraryCalendarCandidates.entries(simkl: Array(library.store.snapshot.items.values))
+    }
     /// One of Desktop's other sources: All upcoming (TMDB), My Trakt, Trakt anticipated or Anime (AniList).
     private func loadSource(_ source: CalendarSource, month: Date, app: AppModel, animeDub: Bool) async {
         generation += 1
@@ -102,7 +117,7 @@ final class CalendarModel {
         var fetcher = CalendarFetcher(); fetcher.calendar = calendar
         let items: [CalendarItem]
         switch source {
-        case .library:
+        case .library, .simkl:
             return
         case .all:
             let configuration = MetadataPreferences.shared.configuration()

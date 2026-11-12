@@ -44,6 +44,8 @@ struct PersonProfile: Sendable {
     let profilePath: String?
     let cast: [PersonCreditItem]
     let crew: [PersonCreditItem]
+    /// The person's IMDb `nm` id from TMDB's `external_ids` (Desktop's `person.imdbId`), which the awards load uses.
+    var imdbID: String? = nil
 }
 
 /// One titled group of the filmography grid, in Desktop's display order.
@@ -247,7 +249,7 @@ struct TMDBPeople: Sendable {
         let name = englishName.flatMap { $0.isEmpty ? nil : $0 } ?? localized
         let cast = stableSorted(dedupe(value["combined_credits"]["cast"].array.compactMap(credit), byMedia: false)) { $0.popularity }
         let crew = stableSorted(value["combined_credits"]["crew"].array.compactMap(credit)) { $0.popularity }
-        return PersonProfile(
+        var result = PersonProfile(
             id: id,
             name: name,
             biography: value["biography"].string ?? "",
@@ -259,6 +261,9 @@ struct TMDBPeople: Sendable {
             cast: cast,
             crew: crew
         )
+        let imdb = value["external_ids"]["imdb_id"].string
+        result.imdbID = (imdb?.isEmpty ?? true) ? nil : imdb
+        return result
     }
 
     static func credit(_ value: JSONValue) -> PersonCreditItem? {

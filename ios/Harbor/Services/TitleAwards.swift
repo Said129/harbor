@@ -70,9 +70,15 @@ enum TitleAwardParser {
         value.range(of: #"^tt[0-9]{1,12}$"#, options: .regularExpression) != nil
     }
 
-    /// Desktop interpolates the IMDb id into the query; here only a well formed title id is accepted.
-    static func query(imdbID: String, nominations: Bool) -> String? {
-        guard isTitleID(imdbID) else { return nil }
+    /// A person (`nm`) id: Desktop's `fetchAwards` sends it through the same query, since the query matches any IMDb id.
+    static func isPersonID(_ value: String) -> Bool {
+        value.range(of: #"^nm[0-9]{1,12}$"#, options: .regularExpression) != nil
+    }
+
+    /// Desktop interpolates the IMDb id into the query; here only a well formed title id is accepted, or a person id when
+    /// `allowsPerson` is set by the person page.
+    static func query(imdbID: String, nominations: Bool, allowsPerson: Bool = false) -> String? {
+        guard isTitleID(imdbID) || (allowsPerson && isPersonID(imdbID)) else { return nil }
         return (nominations ? titleAwardNominationQuery : titleAwardWinQuery).replacingOccurrences(of: "IMDB_ID", with: imdbID)
     }
 
@@ -352,10 +358,10 @@ struct TitleAwardsHTTPTransport: TitleAwardsTransport {
 struct TitleAwardsClient: Sendable {
     let transport: any TitleAwardsTransport
 
-    func load(imdbID: String, isSeries: Bool) async -> TitleAwardsLoad {
-        guard TitleAwardParser.isTitleID(imdbID) else { return TitleAwardsLoad(entries: [], complete: false) }
-        async let winsBody = body(TitleAwardParser.query(imdbID: imdbID, nominations: false))
-        async let nominationsBody = body(TitleAwardParser.query(imdbID: imdbID, nominations: true))
+    func load(imdbID: String, isSeries: Bool, allowsPerson: Bool = false) async -> TitleAwardsLoad {
+        guard TitleAwardParser.isTitleID(imdbID) || (allowsPerson && TitleAwardParser.isPersonID(imdbID)) else { return TitleAwardsLoad(entries: [], complete: false) }
+        async let winsBody = body(TitleAwardParser.query(imdbID: imdbID, nominations: false, allowsPerson: allowsPerson))
+        async let nominationsBody = body(TitleAwardParser.query(imdbID: imdbID, nominations: true, allowsPerson: allowsPerson))
         let winsData = await winsBody
         let nominationsData = await nominationsBody
         let wins = winsData.flatMap { TitleAwardParser.rows(from: $0, won: true) } ?? []

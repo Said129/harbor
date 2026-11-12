@@ -81,6 +81,41 @@ enum LocalLibraryFolderScan {
     }
 }
 
+/// Desktop's `adjacent_subtitles` (`src-tauri/src/local_lib.rs`): the subtitle files that belong to a video in a picked folder.
+enum LocalSubtitleSidecars {
+    static let extensions: Set<String> = ["srt", "ass", "ssa", "vtt"]
+
+    /// `siblings` are the file names beside the video, the video included. A folder with one video takes every subtitle in it;
+    /// otherwise a subtitle belongs to the video when its name is the video's name followed by a dot, a dash or an underscore.
+    static func matches(video: String, siblings: [String]) -> [String] {
+        let videoStem = (video as NSString).deletingPathExtension.lowercased()
+        let videoCount = siblings.filter { LocalFilenameParser.isVideo($0) }.count
+        let found: [String] = siblings.filter { (name: String) -> Bool in
+            let ext = (name as NSString).pathExtension.lowercased()
+            guard extensions.contains(ext) else { return false }
+            if videoCount == 1 { return true }
+            let stem = (name as NSString).deletingPathExtension.lowercased()
+            guard stem.hasPrefix(videoStem) else { return false }
+            let suffix = String(stem.dropFirst(videoStem.count))
+            return suffix.isEmpty || [".", "-", "_"].contains(String(suffix.prefix(1)))
+        }
+        return found.sorted()
+    }
+
+    /// The subtitle files beside `video` in its folder. Only a folder the person picked can be listed, so a single picked
+    /// file has none. Call it while the folder's access is open.
+    static func urls(for video: URL) -> [URL] {
+        let folder = video.deletingLastPathComponent()
+        guard let entries = try? FileManager.default.contentsOfDirectory(at: folder, includingPropertiesForKeys: [.isRegularFileKey], options: []) else { return [] }
+        let names: [String] = entries.compactMap { (url: URL) -> String? in
+            let values = try? url.resourceValues(forKeys: [.isRegularFileKey])
+            return values?.isRegularFile == true ? url.lastPathComponent : nil
+        }
+        let wanted = Set(matches(video: video.lastPathComponent, siblings: names))
+        return entries.filter { wanted.contains($0.lastPathComponent) }.sorted { $0.path < $1.path }
+    }
+}
+
 private struct LocalLibraryDocument: Codable, Sendable {
     var version = 1
     var records: [LocalLibraryRecord] = []

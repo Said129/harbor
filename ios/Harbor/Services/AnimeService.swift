@@ -327,6 +327,23 @@ actor AnimeService {
         return values
     }
 
+    /// Desktop's `jikanScore`: the MAL score of one title (`/anime/{id}`), read for the anime detail page. Nil when MAL has none.
+    func malScore(malID: Int) async -> String? {
+        guard malID > 0, let url = URL(string: "https://api.jikan.moe/v4/anime/\(malID)") else { return nil }
+        // Same spacing as the list requests, so the detail page does not break Jikan's rate limit.
+        let delay = max(0, nextJikan.timeIntervalSinceNow)
+        nextJikan = Date().addingTimeInterval(delay + 0.45)
+        if delay > 0 { try? await Task.sleep(for: .seconds(delay)) }
+        guard !Task.isCancelled, let response = try? await http.json(url.absoluteString) else { return nil }
+        return Self.malScore(response)
+    }
+
+    /// The score in a Jikan single-title reply, to one decimal, when it is between 0 and 10.
+    static func malScore(_ response: JSONValue) -> String? {
+        guard let score = response["data"]["score"].numericValue, score > 0, score <= 10 else { return nil }
+        return String(format: "%.1f", score)
+    }
+
     /// Desktop's Top Picks candidates: the airing and popular rails, then page 1 of Jikan's score-sorted list for each
     /// favourite genre (`jikanByGenre`, seeded by `animeSeedGenres`). Empty favourites add no requests.
     func picks(records: [LibraryRecord], options: AnimePicksPolicy.Options, watchedIDs: Set<String>, tasteGenres: [String] = []) async throws -> [Media] {

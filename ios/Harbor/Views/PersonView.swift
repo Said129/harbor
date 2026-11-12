@@ -14,6 +14,8 @@ struct PersonView: View {
             VStack(alignment: .leading, spacing: 28) {
                 if loading { ProgressView().frame(maxWidth: .infinity).padding() }
                 if let profile { PersonHeaderView(profile: profile) }
+                // Desktop's person page reads the awards of the person's IMDb id (`useAwards(person.imdbId)`).
+                TitleAwardsSection(imdbID: profile?.imdbID, isSeries: false, allowsPerson: true)
                 if !knownFor.isEmpty { CreditRail(title: DesktopInterfaceText.value("Known For"), app: app, items: knownFor) }
                 ForEach(sections) { section in FilmographyGrid(section: section, app: app) }
                 if !loading && profile != nil && knownFor.isEmpty && sections.isEmpty { emptyNotice }
