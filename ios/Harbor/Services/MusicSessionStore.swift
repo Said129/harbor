@@ -68,7 +68,8 @@ actor MusicSessionFileStore: MusicSessionPersisting {
         try write(bytes, to: root.appendingPathComponent("checkpoint.json"))
     }
 
-    func clear(owner: String) throws {
+    // Same signature as the protocol's default, so a call on the store itself reaches this one and not the empty default.
+    func clear(owner: String) async throws {
         let root = try root(owner)
         for name in ["checkpoint.json", "queue.json"] {
             let file = root.appendingPathComponent(name)

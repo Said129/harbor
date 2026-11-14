@@ -126,10 +126,14 @@ private actor RecordingSessionStore: MusicSessionPersisting {
         try await store.write(snapshot(track("one")), owner: owner)
         let saved = try await store.read(owner: owner)
         XCTAssertNotNil(saved)
-        try await store.clear(owner: owner)
+        // The player holds the store as the protocol, so that is the path that matters.
+        let persisting: any MusicSessionPersisting = store
+        try await persisting.clear(owner: owner)
         let cleared = try await store.read(owner: owner)
         XCTAssertNil(cleared, "A cleared session does not come back")
         try await store.clear(owner: owner)
+        let again = try await store.read(owner: owner)
+        XCTAssertNil(again, "Clearing twice is harmless")
     }
 
     func testClosingThePlayerForgetsTheSessionButStoppingKeepsIt() async throws {
