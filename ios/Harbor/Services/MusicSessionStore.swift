@@ -18,6 +18,12 @@ struct MusicSessionSnapshot: Sendable {
 protocol MusicSessionPersisting: Sendable {
     func read(owner: String) async throws -> MusicSessionSnapshot?
     func write(_ value: MusicSessionSnapshot, owner: String) async throws
+    /// Forgets the saved session, so a player the person closed does not come back at the next launch.
+    func clear(owner: String) async throws
+}
+
+extension MusicSessionPersisting {
+    func clear(owner: String) async throws { }
 }
 
 /// Queue bytes change only with membership/metadata. The small checkpoint is
@@ -60,6 +66,15 @@ actor MusicSessionFileStore: MusicSessionPersisting {
                                                        position: value.position, savedAt: value.savedAt))
         guard bytes.count <= 128 * 1024 else { throw HarborError(code: "music-session") }
         try write(bytes, to: root.appendingPathComponent("checkpoint.json"))
+    }
+
+    func clear(owner: String) throws {
+        let root = try root(owner)
+        for name in ["checkpoint.json", "queue.json"] {
+            let file = root.appendingPathComponent(name)
+            if FileManager.default.fileExists(atPath: file.path) { try FileManager.default.removeItem(at: file) }
+        }
+        written[owner] = nil
     }
 
     func read(owner: String) throws -> MusicSessionSnapshot? {

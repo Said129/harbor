@@ -561,9 +561,23 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
         repeatMode = MusicRepeat(rawValue: UserDefaults.standard.string(forKey: "music.repeat") ?? "off") ?? .off
         changeVolume(Self.savedVolume())
     }
-    func stop() {
+    /// Ends playback but keeps the saved session, so an interrupted listen resumes paused at the next launch.
+    func stop() { halt(savingSession: true) }
+    /// The person closed the player: end playback and forget the saved session, so the mini player does not return after the app restarts.
+    func close() {
+        let closing = owner, pending = checkpointWrite
+        halt(savingSession: false)
+        guard let checkpoints else { return }
+        checkpointWrite = Task {
+            // A write that was already under way must finish first, or it would put the session back.
+            await pending?.value
+            do { try await checkpoints.clear(owner: closing) }
+            catch { Diagnostics.shared.recordFailure(HarborError(code: "music-session")) }
+        }
+    }
+    private func halt(savingSession: Bool) {
         cancelQueueContinuation()
-        saveCheckpoint(force: true)
+        if savingSession { saveCheckpoint(force: true) }
         restoreTask?.cancel(); restoreTask = nil; restored = false
         effectLease = nil; audioEffects = .init(); effectRevision = UUID()
         meterUsers.removeAll(); meterRevision &+= 1

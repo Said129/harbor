@@ -68,6 +68,9 @@ final class DownloadManager: NSObject, URLSessionDownloadDelegate {
     @ObservationIgnored private var foregroundSession: URLSession!
     @ObservationIgnored private var lastWrite: [UUID: Date] = [:]
     @ObservationIgnored private var completion: (() -> Void)?
+    /// Bytes per second of each active download, smoothed. Observed, so a row redraws as the speed changes.
+    private(set) var speeds: [UUID: Double] = [:]
+    @ObservationIgnored private var speedSamples: [UUID: (at: Date, bytes: Int64)] = [:]
 
     override private init() {
         super.init()
@@ -149,8 +152,18 @@ final class DownloadManager: NSObject, URLSessionDownloadDelegate {
     func toggle(_ item: DownloadItem, owner: String) {
         let hash = Self.ownerHash(owner)
         guard ready, let current = items.first(where: { $0.id == item.id && $0.owner == hash }), let task = tasks[current.id] else { return }
+        // A resumed transfer measures its speed afresh instead of averaging in the time it sat paused.
+        forgetSpeed(current.id)
         if current.status == .paused { task.resume(); update(current.id) { $0.status = .downloading } }
         else if current.status == .downloading { task.suspend(); update(current.id) { $0.status = .paused } }
+    }
+    private func forgetSpeed(_ id: UUID) { speeds[id] = nil; speedSamples[id] = nil }
+    private func recordSpeed(_ id: UUID, bytes: Int64, at now: Date) {
+        guard let last = speedSamples[id] else { speedSamples[id] = (now, bytes); return }
+        let seconds = now.timeIntervalSince(last.at)
+        guard seconds >= 1 else { return }
+        speeds[id] = DownloadProgressPresentation.smoothedSpeed(previous: speeds[id], bytes: bytes, lastBytes: last.bytes, seconds: seconds)
+        speedSamples[id] = (now, bytes)
     }
 
     func remove(_ item: DownloadItem, owner: String) {
@@ -160,7 +173,7 @@ final class DownloadManager: NSObject, URLSessionDownloadDelegate {
             let candidates = [try file(current), try Self.staging(current.id)]
             try commit(items.filter { $0.id != current.id })
             tasks.removeValue(forKey: current.id)?.cancel()
-            lastWrite[current.id] = nil
+            lastWrite[current.id] = nil; forgetSpeed(current.id)
             for file in candidates where FileManager.default.fileExists(atPath: file.path) { try FileManager.default.removeItem(at: file) }
         } catch { self.error = "No se pudo eliminar el archivo descargado." }
     }
@@ -200,7 +213,7 @@ final class DownloadManager: NSObject, URLSessionDownloadDelegate {
             try FileManager.default.setAttributes([.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication], ofItemAtPath: destination.path)
             let size = (try destination.resourceValues(forKeys: [.fileSizeKey]).fileSize).map(Int64.init) ?? item.received
             update(id) { $0.status = .complete; $0.received = size; $0.expected = size; $0.message = nil }
-            tasks[id] = nil
+            tasks[id] = nil; forgetSpeed(id)
         } catch { update(id) { $0.status = .failed; $0.message = "No se pudo guardar el archivo descargado." } }
     }
     nonisolated private static func root() throws -> URL {
@@ -218,9 +231,12 @@ final class DownloadManager: NSObject, URLSessionDownloadDelegate {
 
     nonisolated func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
         guard let raw = downloadTask.taskDescription, let id = UUID(uuidString: raw) else { return }
+        // A server that streams without a length reports -1 here; the task may still know what to expect.
+        let expected = DownloadProgressPresentation.expectedBytes(reported: totalBytesExpectedToWrite, taskExpectation: downloadTask.countOfBytesExpectedToReceive)
         Task { @MainActor in
             let now = Date(), persist = now.timeIntervalSince(self.lastWrite[id] ?? .distantPast) >= 5
-            self.update(id, persist: persist) { $0.received = totalBytesWritten; $0.expected = totalBytesExpectedToWrite }
+            self.update(id, persist: persist) { $0.received = totalBytesWritten; $0.expected = expected }
+            self.recordSpeed(id, bytes: totalBytesWritten, at: now)
             if persist { self.lastWrite[id] = now }
         }
     }
@@ -240,7 +256,7 @@ final class DownloadManager: NSObject, URLSessionDownloadDelegate {
     }
     nonisolated func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         guard error != nil, let raw = task.taskDescription, let id = UUID(uuidString: raw) else { return }
-        Task { @MainActor in self.update(id) { $0.status = .failed; $0.message = "La descarga falló. Vuelve a elegir una fuente." }; self.tasks[id] = nil }
+        Task { @MainActor in self.update(id) { $0.status = .failed; $0.message = "La descarga falló. Vuelve a elegir una fuente." }; self.tasks[id] = nil; self.forgetSpeed(id) }
     }
     nonisolated func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         Task { @MainActor in let handler = self.completion; self.completion = nil; handler?() }

@@ -7,6 +7,8 @@ struct StreamPickerView: View {
     var selection: MediaPlaybackSelection? = nil
     let downloading: Bool
     let downloadMessage: String?
+    /// The profile's downloads owner; with it the picker follows the download it started and shows its progress.
+    var downloadOwner: String? = nil
     let play: (StreamOffer) -> Void
     let download: ((StreamOffer) -> Void)?
     let refresh: () -> Void
@@ -160,6 +162,18 @@ struct StreamPickerView: View {
             }.buttonStyle(.plain)
         }
     }
+    /// The progress of the download this title or episode has under way, so pressing Download shows that it is working.
+    @ViewBuilder private var activeDownload: some View {
+        if let owner = downloadOwner,
+           let item = PlayerDownloadPolicy.latest(in: DownloadManager.shared.list(owner: owner), mediaID: model.playbackContextMedia.id, videoID: episode?.id),
+           item.status.isActive {
+            VStack(alignment: .leading, spacing: 8) {
+                DownloadProgressBlock(item: item)
+                Text("Puedes seguirla en Descargas.").font(HarborTheme.font(12)).foregroundStyle(ThemePreferences.shared.color("ink-subtle"))
+            }.padding(12).frame(maxWidth: .infinity, alignment: .leading)
+                .background(ThemePreferences.shared.color("elevated").opacity(0.6), in: .rect(cornerRadius: 12))
+        }
+    }
     @ViewBuilder private var content: some View {
         // Desktop lists sources as addons answer; the loader only covers the wait for the first one.
         if waitingForEpisode || (model.loadingStreams && model.offers.isEmpty) {
@@ -167,6 +181,7 @@ struct StreamPickerView: View {
         } else if let offer = selected {
             if let error = model.error { Text(error).font(HarborTheme.font(14)).foregroundStyle(.orange) }
             if let downloadMessage { Text(downloadMessage).font(HarborTheme.font(13)).foregroundStyle(ThemePreferences.shared.color("ink-muted")) }
+            activeDownload
             if model.loadingStreams { pendingSources }
             fewSources
             modeToggle

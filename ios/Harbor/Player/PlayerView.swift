@@ -562,7 +562,7 @@ struct PlayerView: View {
         return !resumePending && canChangeEpisode && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !pendingSourceChange && !autoNextCancelled && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && scenePhase == .active && lead > 0 && remaining > 0.5 && remaining <= lead && !state.ended
     }
     private func requestEpisode(_ episode: Episode, from selection: PlayerEpisodeSelection = .transport) {
-        guard active, canChangeEpisode, !episodeChanging, !sourceChanging, !retrying, !state.restarting, episode.available, scenePhase == .active, let changeEpisode else { return }
+        guard active, canChangeEpisode, !episodeChanging, !sourceChanging, !retrying, !state.restarting, scenePhase == .active, let changeEpisode else { return }
         episodeChanging = true
         saveCheckpoint(exiting: true)
         changeEpisode(episode, selection.playsImmediately(instantPlay: StreamPreferences.shared.automatic))

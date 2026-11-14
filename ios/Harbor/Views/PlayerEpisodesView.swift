@@ -231,7 +231,7 @@ private struct PlayerEpisodeCard: View {
                                 .background(HarborTheme.accent.opacity(0.82), in: Capsule())
                         }.frame(maxWidth: .infinity, minHeight: thumbnailWidth * 9 / 16, alignment: .topLeading)
                     }.frame(maxWidth: .infinity, alignment: .leading).contentShape(Rectangle())
-                }.buttonStyle(.plain).disabled(playing ? !canRestart : !episode.available)
+                }.buttonStyle(.plain).disabled(playing && !canRestart)
                     .accessibilityIdentifier("player-episode-\(episode.id)")
                     .accessibilityLabel(DesktopInterfaceText.value(playing ? "Restart" : "Play") + ": " + (hidesTitle ? fallbackTitle : title))
                 detailsButton
@@ -242,7 +242,7 @@ private struct PlayerEpisodeCard: View {
             }
             if expanded {
                 Button(action: activate) { details.contentShape(Rectangle()) }
-                    .buttonStyle(.plain).disabled(playing ? !canRestart : !episode.available)
+                    .buttonStyle(.plain).disabled(playing && !canRestart)
                     .accessibilityLabel(DesktopInterfaceText.value(playing ? "Restart" : "Play") + ": " + (hidesTitle ? fallbackTitle : title))
                     .accessibilityIdentifier("player-episode-description-\(episode.id)")
                     .padding(.horizontal, 12).padding(.bottom, 12).transition(.opacity.combined(with: .move(edge: .top)))

@@ -9,7 +9,7 @@ enum EpisodeSequence {
 
     static func startingEpisode(_ videos: [Episode], record: LibraryRecord?, watched: Set<String>, now: Date = Date(), presentation: EpisodeOrderProjection? = nil, watchedBySource: [String: Set<String>] = [:]) -> Episode? {
         let selected = presentation.flatMap { $0.applies(to: videos) ? $0 : nil }
-        let available = ordered(videos, presentation: selected).filter { $0.releaseDate.map { $0 <= now } ?? true }
+        let available = ordered(videos, presentation: selected).filter { !$0.comingSoon(now: now) }
         let singleSource = Set(videos.compactMap(\.sourceMetaID)).count <= 1
         func regular(_ episode: Episode, defaultSeason: Int = 0) -> Bool { selected?.isRegular(episode.routingKey) ?? ((episode.season ?? defaultSeason) > 0) }
         func wasWatched(_ episode: Episode) -> Bool {
@@ -61,7 +61,7 @@ enum EpisodeSequence {
                hidden.contains(HiddenEpisodes.key($0.sourceMetaID ?? current.id, season: $0.season ?? 0, episode: $0.episode ?? 0)) { return false }
             guard let candidateSeason = $0.season, let number = $0.episode, number > 0,
                   (sequence?.contains($0.routingKey) ?? (season == 0 ? candidateSeason == 0 : candidateSeason > 0)),
-                  ($0.releaseDate.map({ $0 <= now }) ?? true) else { return false }
+                  !$0.comingSoon(now: now) else { return false }
             return coordinates.insert($0.navigationKey).inserted
         }
         guard let index = available.firstIndex(where: { $0.navigationKey == playing.navigationKey }) else { return (nil, nil) }

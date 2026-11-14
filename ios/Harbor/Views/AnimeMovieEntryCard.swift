@@ -57,9 +57,10 @@ struct AnimeFranchiseExtraRow: View {
         return mask.active && !revealed
     }
     private var episodeLabel: String { DesktopInterfaceText.value("Episode {n}", variables: ["n": String(extra.slot.number)]) }
-    private var available: Bool {
-        guard let date = extra.slot.aired else { return !extra.entry.upcoming }
-        return (ISO8601DateParser.shared.date(String(date.prefix(10)) + "T00:00:00Z").map { $0 <= Date() } ?? !extra.entry.upcoming)
+    /// Only a label: a franchise entry that is listed as upcoming can still be opened.
+    private var upcoming: Bool {
+        guard let date = extra.slot.aired else { return extra.entry.upcoming }
+        return ISO8601DateParser.shared.date(String(date.prefix(10)) + "T00:00:00Z").map { $0 > Date().addingTimeInterval(Episode.upcomingGrace) } ?? extra.entry.upcoming
     }
     var body: some View {
         VStack(alignment: .leading, spacing: 9) {
@@ -79,11 +80,11 @@ struct AnimeFranchiseExtraRow: View {
                             if loading { ProgressView().controlSize(.small) }
                         }.frame(maxWidth: .infinity, alignment: .leading)
                     }.contentShape(Rectangle())
-                }.buttonStyle(.plain).disabled(loading || !available || !canPlay).accessibilityLabel(hidden && InterfacePreferences.shared.spoilerHideTitles ? episodeLabel : extra.name)
+                }.buttonStyle(.plain).disabled(loading || !canPlay).accessibilityLabel(hidden && InterfacePreferences.shared.spoilerHideTitles ? episodeLabel : extra.name)
                     .accessibilityIdentifier("franchise-extra-" + extra.entry.id)
                 if let toggleWatched { Button(action: toggleWatched) {
                     Image(watched ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 23, height: 23).frame(width: 44, height: 44)
-                }.buttonStyle(.plain).disabled(loading || !available)
+                }.buttonStyle(.plain).disabled(loading)
                     .accessibilityLabel(DesktopInterfaceText.value(watched ? "Marcar como no visto" : "Marcar como visto"))
                 }
             }
@@ -95,7 +96,7 @@ struct AnimeFranchiseExtraRow: View {
             if hidden && (InterfacePreferences.shared.spoilerHideThumbnails || InterfacePreferences.shared.spoilerHideTitles || InterfacePreferences.shared.spoilerHideDescriptions) {
                 Button(DesktopInterfaceText.value("Reveal")) { revealed = true }.font(.caption).frame(minHeight: 44)
             }
-            if !available { Text(DesktopInterfaceText.value("Próximamente")).font(.caption).foregroundStyle(HarborTheme.accent) }
+            if upcoming { Text(DesktopInterfaceText.value("Próximamente")).font(.caption).foregroundStyle(HarborTheme.accent) }
             Divider()
         }
     }

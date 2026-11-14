@@ -196,7 +196,12 @@ struct Episode: Codable, Identifiable, Hashable, Sendable {
         guard let released else { return nil }
         return ISO8601DateParser.shared.date(released) ?? ISO8601DateParser.shared.date(String(released.prefix(10)) + "T00:00:00Z")
     }
-    var available: Bool { releaseDate.map { $0 <= Date() } ?? true }
+    /// A listed air date is often midnight UTC or the start of the day in another time zone, so an
+    /// episode that is out today can carry a date a few hours ahead of the phone's clock. Only a date
+    /// more than a day away counts as upcoming, and even then it is a label, never a lock.
+    static let upcomingGrace: TimeInterval = 86_400
+    func comingSoon(now: Date = Date()) -> Bool { releaseDate.map { $0 > now.addingTimeInterval(Self.upcomingGrace) } ?? false }
+    var available: Bool { !comingSoon() }
 }
 
 struct Addon: Codable, Identifiable, Sendable {

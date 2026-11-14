@@ -126,7 +126,13 @@ struct HarborShell: View {
                 }.padding(.top, 12).padding(.bottom, 16).frame(width: 282).frame(maxHeight: .infinity).background(HarborTheme.background)
                     .transition(.move(edge: .leading))
             }
-        }.safeAreaInset(edge: .bottom, spacing: 0) { MusicMiniPlayer() }
+        }.safeAreaInset(edge: .bottom, spacing: 0) {
+            VStack(spacing: 0) {
+                if section != .downloads { DownloadsActivityBar(owner: app.personalOwner, open: { select(.downloads) }) }
+                // The mini player belongs to the Music section; music keeps playing when the person goes elsewhere.
+                if MusicMiniPlayerVisibility.shows(in: section) { MusicMiniPlayer() }
+            }
+        }
             .modifier(SimklPendingRecovery(app: app))
             .modifier(TogetherToastDriver(select: { select($0) }, open: { path.append($0) }))
             .environment(\.locale, Locale(identifier: InterfaceLanguage.resolve(uiLanguage)))

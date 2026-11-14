@@ -35,6 +35,11 @@ extension EnvironmentValues {
     }
 }
 
+/// Where the mini player is drawn: only in the Music section. Leaving it hides the bar without stopping the music.
+enum MusicMiniPlayerVisibility {
+    static func shows(in section: HarborSection) -> Bool { section == .music }
+}
+
 @MainActor struct MusicMiniPlayer: View {
     @Bindable var player: MusicPlayback
     @State private var expanded = false
@@ -97,7 +102,7 @@ extension EnvironmentValues {
                             recording(item)
                         }
                         MusicNowPanels(player: player)
-                        Button(DesktopInterfaceText.value("music.player.close"), role: .destructive) { player.stop(); dismiss() }
+                        Button(DesktopInterfaceText.value("music.player.close"), role: .destructive) { player.close(); dismiss() }
                     } else { ContentUnavailableView(DesktopInterfaceText.value("Music"), image: "nav-music") }
                 }.frame(width: width).padding(edge).frame(maxWidth: .infinity)
             }

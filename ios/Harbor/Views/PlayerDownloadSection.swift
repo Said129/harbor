@@ -36,17 +36,12 @@ struct PlayerDownloadSection: View {
                         .frame(maxWidth: .infinity, minHeight: 44)
                 }.accessibilityIdentifier("player-download-start")
             }
-        case .downloading(let fraction, let paused):
+        case .downloading:
             VStack(alignment: .leading, spacing: 8) {
-                if let fraction = fraction {
-                    ProgressView(value: fraction)
-                } else {
-                    ProgressView()
-                }
-                HStack {
-                    Text(progressText(fraction: fraction, paused: paused)).font(HarborTheme.font(13)).foregroundStyle(.secondary)
-                    Spacer(minLength: 8)
-                    if let item = item {
+                if let item = item {
+                    DownloadProgressBlock(item: item)
+                    HStack {
+                        Spacer(minLength: 8)
                         Button(DesktopInterfaceText.value("Cancel")) { DownloadManager.shared.remove(item, owner: owner) }
                             .frame(minHeight: 44).accessibilityIdentifier("player-download-cancel")
                     }
@@ -56,12 +51,6 @@ struct PlayerDownloadSection: View {
             Label(DesktopInterfaceText.value("Saved"), image: "music-check").font(HarborTheme.font(15, weight: .semibold))
                 .frame(minHeight: 44).accessibilityIdentifier("player-download-saved")
         }
-    }
-
-    private func progressText(fraction: Double?, paused: Bool) -> String {
-        let status = paused ? DownloadStatus.paused.title : DownloadStatus.downloading.title
-        guard let fraction = fraction else { return status }
-        return status + " " + String(Int((fraction * 100).rounded())) + "%"
     }
 
     private func start(_ context: PlayerDownloadContext, owner: String) {

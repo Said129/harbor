@@ -194,7 +194,7 @@ struct DetailView: View {
             EBookShelf.hash(MetadataPreferences.shared.configuration().fanartKey)].joined(separator: "|")
     }
     private var streamPicker: StreamPickerView {
-        StreamPickerView(model: model, addons: app.addons, episode: selectedEpisode, selection: streamSelection, downloading: downloading, downloadMessage: downloadMessage,
+        StreamPickerView(model: model, addons: app.addons, episode: selectedEpisode, selection: streamSelection, downloading: downloading, downloadMessage: downloadMessage, downloadOwner: app.personalOwner,
                          play: { offer in playOffer(offer) }, download: streamDownloadAction,
                          refresh: { refreshStreams() }, back: { showStreams = false },
                          streamingSettings: { AnyView(StreamSourcesSettingsView(app: app).toolbar(.visible, for: .navigationBar)) })
@@ -369,7 +369,7 @@ struct DetailView: View {
         }
         guard let (episode, automatic, owner) = pendingEpisode else { return }
         pendingEpisode = nil
-        guard showStreams, owner == app.library.owner, episode.available else { return }
+        guard showStreams, owner == app.library.owner else { return }
         selectionRevision &+= 1
         // The old surface has been released. The picker can either wait for
         // a choice or preserve the current source for an automatic advance.

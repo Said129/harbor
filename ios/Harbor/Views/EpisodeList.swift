@@ -401,12 +401,12 @@ struct EpisodeList: View {
                             .blur(radius: blurOverview ? 5 : 0)
                     }
                 }.frame(width: width, alignment: .leading).frame(maxWidth: fill, alignment: .leading).contentShape(Rectangle())
-            }.buttonStyle(.plain).disabled(!episode.available)
+            }.buttonStyle(.plain)
                 .accessibilityIdentifier("detail-episode-\(episode.id)")
             HStack(spacing: 8) {
                 Button { Task { await library.toggleEpisode(source, episode: episode) } } label: {
                     Image(seen ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 23, height: 23).frame(width: 44, height: 44).contentShape(Rectangle())
-                }.buttonStyle(.plain).disabled(library.busy || !episode.available)
+                }.buttonStyle(.plain).disabled(library.busy)
                     .accessibilityLabel(DesktopInterfaceText.value(seen ? "Mark as unwatched" : "Mark as watched"))
                 if hidden && (InterfacePreferences.shared.spoilerHideThumbnails || blurTitle || blurOverview) {
                     Button(DesktopInterfaceText.value("Reveal")) { revealed.insert(episode.routingKey) }.font(.caption).frame(minHeight: 44)
@@ -476,17 +476,17 @@ struct EpisodeList: View {
                                 .accessibilityLabel(hidden && InterfacePreferences.shared.spoilerHideDescriptions ? DesktopInterfaceText.value("Spoilers") : overview)
                         }
                     }.frame(maxWidth: .infinity, alignment: .leading).contentShape(Rectangle())
-                }.buttonStyle(.plain).disabled(!episode.available)
+                }.buttonStyle(.plain)
                     .accessibilityLabel("Reproducir episodio \(episode.listedEpisode ?? 0)")
                     .accessibilityIdentifier("detail-episode-\(episode.id)")
                 Button { Task { await library.toggleEpisode(source, episode: episode) } } label: {
                     Image(seen ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 23, height: 23).frame(width: 44, height: 44).contentShape(Rectangle())
-                }.buttonStyle(.plain).disabled(library.busy || !episode.available).accessibilityLabel(seen ? "Marcar episodio como no visto" : "Marcar episodio como visto")
+                }.buttonStyle(.plain).disabled(library.busy).accessibilityLabel(seen ? "Marcar episodio como no visto" : "Marcar episodio como visto")
             }
             if hidden && (InterfacePreferences.shared.spoilerHideThumbnails || InterfacePreferences.shared.spoilerHideTitles || InterfacePreferences.shared.spoilerHideDescriptions) {
                 Button(DesktopInterfaceText.value("Reveal")) { revealed.insert(episode.routingKey) }.font(.caption).frame(minHeight: 44)
             }
-            if !episode.available { Text("Próximamente").font(.caption).foregroundStyle(HarborTheme.accent) }
+            if episode.comingSoon() { Text(DesktopInterfaceText.value("Próximamente")).font(.caption).foregroundStyle(HarborTheme.accent) }
             Divider()
         }.contextMenu {
             if InterfacePreferences.shared.episodeHiding {

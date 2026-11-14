@@ -54,12 +54,11 @@ struct DownloadsView: View {
             Artwork(url: item.media.poster, fallback: item.media.fallbackPoster, maxPixels: 260).frame(width: 52, height: 78).clipShape(.rect(cornerRadius: 6)).accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 7) {
                 Text(item.title).font(.subheadline.weight(.semibold)).lineLimit(2)
-                HStack { Text(item.status.title); Spacer(); Text(transferSize(item)) }.font(.caption).foregroundStyle(.secondary)
+                if !item.status.isActive {
+                    HStack { Text(item.status.title); Spacer(); Text(transferSize(item)) }.font(.caption).foregroundStyle(.secondary)
+                }
                 if item.status.isActive {
-                    if let fraction = item.fraction {
-                        ProgressView(value: fraction).accessibilityLabel("Progreso de descarga").accessibilityValue(fraction.formatted(.percent.precision(.fractionLength(0))))
-                        Text(fraction.formatted(.percent.precision(.fractionLength(0)))).font(.caption).monospacedDigit().foregroundStyle(.secondary)
-                    } else if item.status == .downloading { ProgressView().frame(maxWidth: .infinity, alignment: .leading) }
+                    DownloadProgressBlock(item: item)
                     Button(item.status == .paused ? "Reanudar" : "Pausar") { toggle(item) }.buttonStyle(.borderless).font(.caption).frame(minHeight: 44)
                 }
                 if let message = item.message { Text(message).font(.caption).foregroundStyle(.orange) }

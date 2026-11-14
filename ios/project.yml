@@ -295,6 +295,7 @@ targets:
       - path: HarborTests/SpotifyMusicTests.swift
       - path: HarborTests/SoundCloudMusicTests.swift
       - path: HarborTests/YouTubeMusicTests.swift
+      - path: HarborTests/DeviceReportFixesTests.swift
       - path: HarborTests/F1ContinueWatchingTests.swift
       - path: HarborTests/F1MoviesRoomTests.swift
       - path: HarborTests/F2AnimePicksTests.swift
