@@ -1,5 +1,13 @@
+// A phone has no tray, floating windows, picture in picture or embedded libmpv window. On mobile these modules are
+// replaced by the stand-ins in `mobile.rs`, which keep the same names so the command list below is unchanged.
+#[cfg(mobile)]
+mod mobile;
+#[cfg(mobile)]
+use mobile::{browser, fullscreen, hdr_overlay, modal_overlay, mpv, pip, tray};
+
 mod anime4k;
 mod binary_lookup;
+#[cfg(desktop)]
 mod browser;
 mod cast;
 mod cast_hls;
@@ -12,11 +20,15 @@ mod dlna;
 mod download;
 mod dvr;
 mod fonts;
+#[cfg(desktop)]
 mod fullscreen;
+#[cfg(desktop)]
 mod hdr_overlay;
 mod http_fetch;
 mod local_lib;
+#[cfg(desktop)]
 mod modal_overlay;
+#[cfg(desktop)]
 mod mpv;
 mod multiview;
 mod proc_mem;
@@ -25,6 +37,7 @@ mod roku;
 mod mpv_render_mac;
 #[cfg(target_os = "linux")]
 mod mpv_render_linux;
+#[cfg(desktop)]
 mod pip;
 #[cfg(target_os = "macos")]
 mod pip_mac;
@@ -43,6 +56,7 @@ mod thumbs;
 mod torrent_engine;
 mod trailer;
 mod transcode;
+#[cfg(desktop)]
 mod tray;
 mod web_server;
 mod webview_helpers;
@@ -434,7 +448,7 @@ pub fn run() {
     let app_builder = tauri::Builder::default();
     // Let a Linux development build run alongside the installed Harbor app.
     // Packaged builds keep the normal single-instance behavior.
-    #[cfg(not(all(target_os = "linux", debug_assertions)))]
+    #[cfg(all(desktop, not(all(target_os = "linux", debug_assertions))))]
     let app_builder = app_builder
         .plugin(tauri_plugin_single_instance::init(|app, args, _cwd| {
             use tauri::{Emitter, Manager};
@@ -460,8 +474,11 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_deep_link::init())
+        .plugin(tauri_plugin_process::init());
+    // The updater and the remembered window size and position are desktop plugins.
+    #[cfg(desktop)]
+    let app_builder = app_builder
         .plugin(tauri_plugin_updater::Builder::new().build())
-        .plugin(tauri_plugin_process::init())
         .plugin(
             tauri_plugin_window_state::Builder::default()
                 .with_state_flags(
@@ -471,7 +488,8 @@ pub fn run() {
                         | tauri_plugin_window_state::StateFlags::FULLSCREEN,
                 )
                 .build(),
-        )
+        );
+    let app_builder = app_builder
         .manage(proxy_state)
         .manage(mpv_state)
         .manage(pip_state)

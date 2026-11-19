@@ -137,8 +137,18 @@ export const NAV_ITEMS: NavItem[] = [
   },
 ];
 
+/**
+ * The phone build (Android, built with VITE_HARBOR_PHONE=1) leaves out the same top-level sections the iPhone app
+ * does. Of the sections in this Desktop version only Kids is on that list: the owner excluded Kids and the parental
+ * controls from the phone apps.
+ */
+const PHONE_BUILD =
+  (import.meta as unknown as { env?: Record<string, string | undefined> }).env?.VITE_HARBOR_PHONE === "1";
+const PHONE_EXCLUDED: ReadonlySet<string> = new Set<string>(["kids"]);
+
 export function applyNavCustomization(items: NavItem[], cfg: NavCustomization): NavItem[] {
   const shown = items
+    .filter((it) => !(PHONE_BUILD && PHONE_EXCLUDED.has(it.id)))
     .filter((it) => !cfg.hidden.includes(it.id))
     .map((it) => (cfg.renamed[it.id] ? { ...it, label: cfg.renamed[it.id] } : it));
   if (cfg.order.length === 0) return shown;

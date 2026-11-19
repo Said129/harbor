@@ -4,8 +4,6 @@ name: Android spike
 # It runs only on android/spike-* branches and builds nothing that is shipped.
 
 on:
-  push:
-    branches: ["android/spike-*"]
   workflow_dispatch:
 
 permissions:
