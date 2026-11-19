@@ -45,6 +45,10 @@ jobs:
           BIN="$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin"
           export CC_aarch64_linux_android="$BIN/aarch64-linux-android24-clang"
           export AR_aarch64_linux_android="$BIN/llvm-ar"
+          # OpenSSL's own makefile looks for the NDK tools by name, so the NDK bin directory must be on PATH.
+          export PATH="$BIN:$PATH"
+          export ANDROID_NDK_ROOT="$NDK"
+          export RANLIB="$BIN/llvm-ranlib"
           export CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER="$BIN/aarch64-linux-android24-clang"
           cd src-tauri
           set +e
